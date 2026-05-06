@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createClient, createServiceClient } from '@/lib/supabase';
+import { createServiceClient } from '@/lib/supabase';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -10,8 +10,8 @@ export async function GET(request: Request) {
     return NextResponse.json({ erro: 'Autorização negada ou código ausente' }, { status: 400 });
   }
 
-  const supabase = await createClient();
-  const { data: integracao } = await supabase
+  const serviceClient = createServiceClient();
+  const { data: integracao } = await serviceClient
     .from('integracoes')
     .select('*')
     .eq('tipo', 'bling')

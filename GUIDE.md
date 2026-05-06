@@ -90,6 +90,21 @@ src/services/integration.ts  → refresh automático + helpers
 - Token fixo: `Authorization: Bearer {token}`
 - Armazenar na tabela `integracoes` com `tipo: 'dslite'`
 
+### 🔵 Webhooks do Mercado Livre
+
+**Endpoint:** `POST /api/webhooks/ml/notifications`
+
+**Registrar no ML:** `https://app.vortek.shop/api/webhooks/ml/notifications`
+
+O ML envia POST com:
+```json
+{ "topic": "orders", "resource": "https://api.mercadolibre.com/orders/123456" }
+```
+
+**Topics:** `orders`, `questions`, `claims`, `payments`, `items`
+
+Após receber, o servidor busca o recurso completo usando o token salvo e dispara a sincronização correspondente (Job Queue futuramente).
+
 ---
 
 ## Fase 3 — Job Queue + Feedback Visual
