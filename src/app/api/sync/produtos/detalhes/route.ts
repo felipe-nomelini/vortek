@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
 import { createJob, registerJobHandler, isCancelled } from '@/services/job-queue';
 import { getValidBlingToken } from '@/services/integration';
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
@@ -79,10 +78,11 @@ registerJobHandler('sync-produtos-detalhes', async (jobId: string, update: Updat
 });
 
 export async function POST(request: Request) {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+  const apiKey = request.headers.get('x-api-key');
+  if (apiKey !== process.env.API_SECRET_KEY) {
+    return NextResponse.json({ erro: 'Chave de API inválida' }, { status: 401 });
+  }
 
   const job = await createJob('sync-produtos-detalhes', 0);
-  return NextResponse.json(job, { status: 201 });
+  return NextResponse.json({ jobId: job.id, status: job.status });
 }
