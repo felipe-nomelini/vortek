@@ -50,9 +50,11 @@ export async function POST(request: Request) {
       if (!error) salvos++;
     }
 
-    const totalPages = body.paging?.pages || Math.ceil((body.total || 0) / 100);
-    if (pagina >= totalPages) break;
-    if (!body.paging && !body.total && produtos.length < 100) break;
+    if (produtos.length < 100) break;
+    if (body.paging?.pages || body.total) {
+      const totalPages = body.paging?.pages || Math.ceil((body.total || 0) / 100);
+      if (pagina >= totalPages) break;
+    }
     pagina++;
   }
 
