@@ -58,7 +58,8 @@ export async function GET(request: Request) {
       .eq('tipo', 'bling');
 
     return NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP_URL}/configuracoes?tab=integracoes`);
-  } catch {
-    return NextResponse.json({ erro: 'Erro de rede ao conectar com Bling' }, { status: 502 });
+  } catch (err) {
+    console.error('[Bling Callback] Erro:', err);
+    return NextResponse.json({ erro: `Erro de rede ao conectar com Bling: ${err instanceof Error ? err.message : 'desconhecido'}` }, { status: 502 });
   }
 }
