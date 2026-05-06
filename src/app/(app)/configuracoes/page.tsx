@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Card, Row, Col, Input, InputNumber, Select, Button, Tag, Table, Modal, Tabs, Typography, Switch, Space, message, Upload, Avatar } from 'antd';
 import type { TableProps, UploadProps } from 'antd';
 import { PlusOutlined, UserOutlined, UploadOutlined } from '@ant-design/icons';
+import { createClient } from '@/lib/supabase-client';
 
 const { Title, Text } = Typography;
 
@@ -53,6 +54,25 @@ export default function ConfiguracoesPage() {
   const [ml, setMl] = useState({ clientId: '', clientSecret: '', redirectUri: '', conectado: false });
   const [bling, setBling] = useState({ clientId: '', clientSecret: '', redirectUri: '', conectado: false });
   const [dslite, setDslite] = useState({ url: '', token: '', conectado: false });
+
+  useEffect(() => {
+    const load = async () => {
+      const supabase = createClient();
+      const { data: integracoes } = await supabase.from('integracoes').select('*');
+      if (!integracoes) return;
+      for (const i of integracoes) {
+        if (i.tipo === 'mercadolivre') setMl({ clientId: i.client_id || '', clientSecret: i.client_secret || '', redirectUri: i.redirect_uri || '', conectado: i.conectado });
+        if (i.tipo === 'bling') setBling({ clientId: i.client_id || '', clientSecret: i.client_secret || '', redirectUri: i.redirect_uri || '', conectado: i.conectado });
+        if (i.tipo === 'dslite') setDslite({ url: i.url || '', token: i.access_token || '', conectado: i.conectado });
+      }
+    };
+    load();
+  }, []);
+
+  const saveIntegracao = useCallback(async (tipo: string, data: Record<string, any>) => {
+    const supabase = createClient();
+    await supabase.from('integracoes').update(data).eq('tipo', tipo);
+  }, []);
 
   useEffect(() => {
     saveIntegrations(ml.conectado, bling.conectado, dslite.conectado);
@@ -150,9 +170,9 @@ export default function ConfiguracoesPage() {
       key: 'ml', nome: 'Mercado Livre', conectado: ml.conectado, cor: '#1677ff', bg: '#111d2e',
       fields: (
         <>
-          <Input size="small" placeholder="Client ID (App ID)" value={ml.clientId} onChange={e => setMl(p => ({ ...p, clientId: e.target.value }))} style={inputStyle} />
-          <Input size="small" placeholder="Client Secret" type="password" value={ml.clientSecret} onChange={e => setMl(p => ({ ...p, clientSecret: e.target.value }))} style={inputStyle} />
-          <Input size="small" placeholder="Redirect URI" value={ml.redirectUri} onChange={e => setMl(p => ({ ...p, redirectUri: e.target.value }))} style={inputStyle} />
+          <Input size="small" placeholder="Client ID (App ID)" value={ml.clientId} onChange={e => setMl(p => ({ ...p, clientId: e.target.value }))} onBlur={() => saveIntegracao('mercadolivre', { client_id: ml.clientId })} style={inputStyle} />
+          <Input size="small" placeholder="Client Secret" type="password" value={ml.clientSecret} onChange={e => setMl(p => ({ ...p, clientSecret: e.target.value }))} onBlur={() => saveIntegracao('mercadolivre', { client_secret: ml.clientSecret })} style={inputStyle} />
+          <Input size="small" placeholder="Redirect URI" value={ml.redirectUri} onChange={e => setMl(p => ({ ...p, redirectUri: e.target.value }))} onBlur={() => saveIntegracao('mercadolivre', { redirect_uri: ml.redirectUri })} style={inputStyle} />
         </>
       ),
       action: { label: 'Conectar com ML', onClick: conectarML },
@@ -161,9 +181,9 @@ export default function ConfiguracoesPage() {
       key: 'bling', nome: 'Bling V3', conectado: bling.conectado, cor: '#52c41a', bg: '#162812',
       fields: (
         <>
-          <Input size="small" placeholder="Client ID" value={bling.clientId} onChange={e => setBling(p => ({ ...p, clientId: e.target.value }))} style={inputStyle} />
-          <Input size="small" placeholder="Client Secret" type="password" value={bling.clientSecret} onChange={e => setBling(p => ({ ...p, clientSecret: e.target.value }))} style={inputStyle} />
-          <Input size="small" placeholder="Redirect URI" value={bling.redirectUri} onChange={e => setBling(p => ({ ...p, redirectUri: e.target.value }))} style={inputStyle} />
+          <Input size="small" placeholder="Client ID" value={bling.clientId} onChange={e => setBling(p => ({ ...p, clientId: e.target.value }))} onBlur={() => saveIntegracao('bling', { client_id: bling.clientId })} style={inputStyle} />
+          <Input size="small" placeholder="Client Secret" type="password" value={bling.clientSecret} onChange={e => setBling(p => ({ ...p, clientSecret: e.target.value }))} onBlur={() => saveIntegracao('bling', { client_secret: bling.clientSecret })} style={inputStyle} />
+          <Input size="small" placeholder="Redirect URI" value={bling.redirectUri} onChange={e => setBling(p => ({ ...p, redirectUri: e.target.value }))} onBlur={() => saveIntegracao('bling', { redirect_uri: bling.redirectUri })} style={inputStyle} />
         </>
       ),
       action: { label: 'Conectar com Bling', onClick: conectarBling },
@@ -172,8 +192,8 @@ export default function ConfiguracoesPage() {
       key: 'dslite', nome: 'DSLite', conectado: dslite.conectado, cor: '#fa8c16', bg: '#2a1706',
       fields: (
         <>
-          <Input size="small" placeholder="URL da API" value={dslite.url} onChange={e => setDslite(p => ({ ...p, url: e.target.value }))} style={inputStyle} />
-          <Input size="small" placeholder="Token de Acesso" type="password" value={dslite.token} onChange={e => setDslite(p => ({ ...p, token: e.target.value }))} style={inputStyle} />
+          <Input size="small" placeholder="URL da API" value={dslite.url} onChange={e => setDslite(p => ({ ...p, url: e.target.value }))} onBlur={() => saveIntegracao('dslite', { url: dslite.url })} style={inputStyle} />
+          <Input size="small" placeholder="Token de Acesso" type="password" value={dslite.token} onChange={e => setDslite(p => ({ ...p, token: e.target.value }))} onBlur={() => saveIntegracao('dslite', { access_token: dslite.token })} style={inputStyle} />
         </>
       ),
       action: { label: 'Testar Conexão', onClick: testarDslite },
