@@ -2,6 +2,10 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { getValidBlingToken } from '@/services/integration';
 
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, '').replace(/&[^;]+;/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 export async function POST(request: Request) {
   const apiKey = request.headers.get('x-api-key');
   if (apiKey !== process.env.API_SECRET_KEY) {
@@ -39,6 +43,8 @@ export async function POST(request: Request) {
         preco_bling: p.preco || 0,
         bling_id: String(p.id),
         bling_status: p.situacao === 'A' ? 'ativo' : 'inativo',
+        descricao: p.descricaoCurta ? stripHtml(p.descricaoCurta) : '',
+        imagens: p.imagemURL ? [p.imagemURL] : [],
       }, { onConflict: 'sku' });
 
       if (!error) salvos++;
