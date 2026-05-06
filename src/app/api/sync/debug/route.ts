@@ -17,6 +17,6 @@ export async function GET(request: Request) {
   const text = await res.text();
   return NextResponse.json({
     status: res.status,
-    raw: text.length > 2000 ? text.substring(0, 2000) + '...' : text,
+    raw: text,
   });
 }
