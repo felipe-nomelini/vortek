@@ -8,3 +8,24 @@ html, body {
   height: 100%;
   background: #000000;
 }
+
+.ant-input,
+.ant-input-number,
+.ant-input-affix-wrapper,
+.ant-input-number-affix-wrapper {
+  min-height: 38px !important;
+}
+
+.ant-select-selector {
+  min-height: 38px !important;
+}
+
+.ant-input-number-input,
+.ant-input[type="text"],
+.ant-input[type="password"] {
+  height: 36px !important;
+}
+
+textarea.ant-input {
+  min-height: 80px !important;
+}
