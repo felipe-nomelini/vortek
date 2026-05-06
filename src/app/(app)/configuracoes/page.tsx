@@ -91,6 +91,7 @@ export default function ConfiguracoesPage() {
   const testarDslite = () => {
     if (!dslite.url || !dslite.token) { messageApi.warning('Preencha a URL e o Token'); return; }
     setDslite(p => ({ ...p, conectado: true }));
+    saveIntegracao('dslite', { url: dslite.url, access_token: dslite.token, conectado: true });
     messageApi.success('Conexão testada com sucesso!');
   };
 
