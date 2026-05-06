@@ -17,7 +17,7 @@ export async function GET() {
   }
 
   const redirectUri = integracao.redirect_uri || `${process.env.NEXT_PUBLIC_APP_URL}/api/integracao/ml/callback`;
-  const state = crypto.randomUUID();
+  const state = Math.random().toString(36).substring(2, 18);
 
   const url = new URL('https://auth.mercadolivre.com.br/authorization');
   url.searchParams.set('response_type', 'code');

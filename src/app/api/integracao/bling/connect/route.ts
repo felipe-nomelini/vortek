@@ -16,7 +16,7 @@ export async function GET() {
     return NextResponse.json({ erro: 'Configure o Client ID do Bling nas Configurações primeiro' }, { status: 400 });
   }
 
-  const state = crypto.randomUUID();
+  const state = Math.random().toString(36).substring(2, 18);
 
   const url = new URL('https://www.bling.com.br/Api/v3/oauth/authorize');
   url.searchParams.set('response_type', 'code');
