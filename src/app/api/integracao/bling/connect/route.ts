@@ -18,7 +18,7 @@ export async function GET() {
 
   const state = Math.random().toString(36).substring(2, 18);
 
-  const url = new URL('https://www.bling.com.br/Api/v3/oauth/authorize');
+  const url = new URL('https://bling.com.br/Api/v3/oauth/authorize');
   url.searchParams.set('response_type', 'code');
   url.searchParams.set('client_id', integracao.client_id);
   url.searchParams.set('state', state);
