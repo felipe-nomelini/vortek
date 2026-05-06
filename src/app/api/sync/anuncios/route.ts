@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
-import { createClient, createServiceClient } from '@/lib/supabase';
+import { createServiceClient } from '@/lib/supabase';
 import { fetchML } from '@/services/integration';
 
-export async function POST() {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+export async function POST(request: Request) {
+  const apiKey = request.headers.get('x-api-key');
+  if (apiKey !== process.env.API_SECRET_KEY) {
+    return NextResponse.json({ erro: 'Chave de API inválida' }, { status: 401 });
+  }
 
   const me = await fetchML<any>('/users/me');
   if (!me) return NextResponse.json({ erro: 'Erro ao conectar com ML' }, { status: 502 });

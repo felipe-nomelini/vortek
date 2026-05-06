@@ -27,7 +27,14 @@ export async function middleware(request: NextRequest) {
 
   const { pathname } = request.nextUrl;
 
-  if (!user && !pathname.startsWith('/login')) {
+  const apiKey = request.headers.get('x-api-key');
+  const isSyncRoute = pathname.startsWith('/api/sync/');
+
+  if (isSyncRoute && apiKey === process.env.API_SECRET_KEY) {
+    return supabaseResponse;
+  }
+
+  if (!user && !pathname.startsWith('/login') && !pathname.startsWith('/api/')) {
     const url = request.nextUrl.clone();
     url.pathname = '/login';
     return NextResponse.redirect(url);

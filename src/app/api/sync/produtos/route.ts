@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
-import { createClient, createServiceClient } from '@/lib/supabase';
+import { createServiceClient } from '@/lib/supabase';
 import { fetchBling } from '@/services/integration';
 
-export async function POST() {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+export async function POST(request: Request) {
+  const apiKey = request.headers.get('x-api-key');
+  if (apiKey !== process.env.API_SECRET_KEY) {
+    return NextResponse.json({ erro: 'Chave de API inválida' }, { status: 401 });
+  }
 
   const data = await fetchBling<any>('/produtos?pagina=1&limite=100');
   if (!data) return NextResponse.json({ erro: 'Erro ao sincronizar com Bling' }, { status: 502 });
