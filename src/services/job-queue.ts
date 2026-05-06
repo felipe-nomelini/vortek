@@ -32,7 +32,7 @@ function now(): string {
 }
 
 function makeId(): string {
-  return Math.random().toString(36).substring(2, 10) + Date.now().toString(36);
+  return crypto.randomUUID();
 }
 
 export function registerJobHandler(tipo: string, handler: JobHandler) {
