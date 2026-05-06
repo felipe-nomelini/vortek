@@ -23,5 +23,5 @@ export async function GET() {
   url.searchParams.set('client_id', integracao.client_id);
   url.searchParams.set('state', state);
 
-  return NextResponse.redirect(url.toString());
+  return Response.json({ url: url.toString() });
 }
