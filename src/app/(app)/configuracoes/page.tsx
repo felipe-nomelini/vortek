@@ -80,14 +80,12 @@ export default function ConfiguracoesPage() {
 
   const conectarML = () => {
     if (!ml.clientId || !ml.redirectUri) { messageApi.warning('Preencha Client ID e Redirect URI'); return; }
-    window.open(`https://auth.mercadolivre.com.br/authorization?response_type=code&client_id=${ml.clientId}&redirect_uri=${encodeURIComponent(ml.redirectUri)}`, '_blank');
-    setMl(p => ({ ...p, conectado: true }));
+    window.location.href = '/api/integracao/ml/connect';
   };
 
   const conectarBling = () => {
     if (!bling.clientId) { messageApi.warning('Preencha o Client ID'); return; }
-    window.open(`https://www.bling.com.br/Api/v3/oauth/authorize?response_type=code&client_id=${bling.clientId}`, '_blank');
-    setBling(p => ({ ...p, conectado: true }));
+    window.location.href = '/api/integracao/bling/connect';
   };
 
   const testarDslite = () => {
