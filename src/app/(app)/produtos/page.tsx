@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import {
   Table, Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Space, Row, Col,
 } from 'antd';
@@ -32,18 +32,6 @@ const priceFieldOptions = [
   { value: 'profit', label: 'Lucro' },
 ];
 
-const mockProducts: Product[] = [
-  { id: '1', sku: 'FONE-001', name: 'Fone Bluetooth X1', brand: 'TechSound', stock: 45, cost: 22.50, blingPrice: 59.90, mlFee: 0.15, mlShipping: 8.50, customPrice: null, blingStatus: 'ativo', mlStatus: 'ativo', netWeight: 0.150, grossWeight: 0.220, width: 8, height: 5, depth: 3, gtin: '7891234560010', description: 'Fone Bluetooth com drivers de 40mm, bateria com 20h de autonomia e alcance de 10m. Compatível com todos os dispositivos Bluetooth.', images: ['https://picsum.photos/seed/fone1/400/400', 'https://picsum.photos/seed/fone2/400/400', 'https://picsum.photos/seed/fone3/400/400'], category: 'Eletrônicos > Áudio > Fones de Ouvido' },
-  { id: '2', sku: 'CAPA-002', name: 'Capa Silicone iPhone 15', brand: 'TechSound', stock: 120, cost: 8.30, blingPrice: 29.90, mlFee: 0.13, mlShipping: 5.00, customPrice: 34.90, blingStatus: 'ativo', mlStatus: 'ativo', netWeight: 0.035, grossWeight: 0.060, width: 16, height: 8, depth: 1, gtin: '7891234560027', description: 'Capa de silicone flexível para iPhone 15. Proteção contra quedas e arranhões. Disponível em diversas cores.', images: ['https://picsum.photos/seed/capa1/400/400', 'https://picsum.photos/seed/capa2/400/400'], category: 'Celulares > Capas > iPhone 15' },
-  { id: '3', sku: 'CAR-003', name: 'Carregador USB-C 20W', brand: 'VoltPower', stock: 78, cost: 14.90, blingPrice: 39.90, mlFee: 0.14, mlShipping: 6.50, customPrice: null, blingStatus: 'ativo', mlStatus: 'pausado', netWeight: 0.060, grossWeight: 0.100, width: 6, height: 6, depth: 3, gtin: '7891234560034', description: 'Carregador USB-C com tecnologia GaN, 20W de potência e carregamento rápido para smartphones e tablets.', images: ['https://picsum.photos/seed/car1/400/400'], category: 'Eletrônicos > Carregadores > USB-C' },
-  { id: '4', sku: 'PEL-004', name: 'Película Premium Z10', brand: 'GlassShield', stock: 200, cost: 3.50, blingPrice: 14.90, mlFee: 0.17, mlShipping: 4.00, customPrice: 19.90, blingStatus: 'ativo', mlStatus: 'ativo', netWeight: 0.010, grossWeight: 0.030, width: 18, height: 10, depth: 0.1, gtin: '7891234560041', description: 'Película de vidro temperado 9H para iPhone 15. Resistente a riscos e oleosidade. Fácil instalação.', images: ['https://picsum.photos/seed/pel1/400/400', 'https://picsum.photos/seed/pel2/400/400'], category: 'Celulares > Películas > iPhone 15' },
-  { id: '5', sku: 'MOUSE-005', name: 'Mouse Gamer RGB', brand: 'GameX', stock: 0, cost: 35.00, blingPrice: 89.90, mlFee: 0.14, mlShipping: 10.00, customPrice: null, blingStatus: 'inativo', mlStatus: 'sem_anuncio', netWeight: 0.100, grossWeight: 0.180, width: 12, height: 6, depth: 4, gtin: '7891234560058', description: 'Mouse gamer com sensor óptico de 6400DPI, 6 botões programáveis e iluminação RGB personalizável.', images: ['https://picsum.photos/seed/mouse1/400/400'], category: undefined },
-  { id: '6', sku: 'TEC-006', name: 'Teclado Mecânico TKL', brand: 'GameX', stock: 23, cost: 65.00, blingPrice: 149.90, mlFee: 0.13, mlShipping: 12.00, customPrice: null, blingStatus: 'ativo', mlStatus: 'ativo', netWeight: 0.700, grossWeight: 1.100, width: 36, height: 14, depth: 4, gtin: '7891234560065', description: 'Teclado mecânico Tenkeyless com switches Red, retroiluminado RGB e construção em alumínio escovado.', images: ['https://picsum.photos/seed/tec1/400/400', 'https://picsum.photos/seed/tec2/400/400', 'https://picsum.photos/seed/tec3/400/400'], category: 'Informática > Teclados > Mecânicos' },
-  { id: '7', sku: 'MON-007', name: 'Suporte Articulado Monitor', brand: 'ErgoTech', stock: 15, cost: 42.00, blingPrice: 99.90, mlFee: 0.12, mlShipping: 15.00, customPrice: 89.90, blingStatus: 'ativo', mlStatus: 'pausado', netWeight: 0.800, grossWeight: 1.300, width: 20, height: 45, depth: 12, gtin: '7891234560072', description: 'Suporte articulado para monitor de 17" a 32". Movimento de rotação, inclinação e ajuste de altura com sistema a gás.', images: ['https://picsum.photos/seed/mon1/400/400'], category: 'Informática > Acessórios > Suportes' },
-  { id: '8', sku: 'CAB-008', name: 'Cabo HDMI 2.1 2m', brand: 'VoltPower', stock: 90, cost: 11.00, blingPrice: 34.90, mlFee: 0.16, mlShipping: 5.50, customPrice: null, blingStatus: 'inativo', mlStatus: 'sem_anuncio', netWeight: 0.080, grossWeight: 0.120, width: 12, height: 8, depth: 2, gtin: '7891234560089', description: 'Cabo HDMI 2.1 de 2 metros com suporte a 4K@120Hz, HDR10+ e eARC. Compatível com TVs, monitores e consoles.', images: ['https://picsum.photos/seed/cab1/400/400'], category: undefined },
-  { id: '9', sku: 'ADAP-009', name: 'Adaptador Bluetooth 5.3', brand: 'TechSound', stock: 55, cost: 9.50, blingPrice: 24.90, mlFee: 0.15, mlShipping: 4.50, customPrice: null, blingStatus: 'ativo', mlStatus: 'ativo', netWeight: 0.005, grossWeight: 0.020, width: 3, height: 1.5, depth: 0.8, gtin: '7891234560096', description: 'Adaptador Bluetooth 5.3 USB-A para PCs. Baixa latência, alcance de 30m e compatível com Windows, Linux e Mac.', images: ['https://picsum.photos/seed/adap1/400/400', 'https://picsum.photos/seed/adap2/400/400'], category: 'Informática > Acessórios > Adaptadores' },
-  { id: '10', sku: 'CAIXA-010', name: 'Caixa Som Portátil 20W', brand: 'TechSound', stock: 32, cost: 28.00, blingPrice: 69.90, mlFee: 0.14, mlShipping: 9.00, customPrice: null, blingStatus: 'ativo', mlStatus: 'ativo', netWeight: 0.450, grossWeight: 0.650, width: 18, height: 8, depth: 8, gtin: '7891234560102', description: 'Caixa de som portátil 20W com Bluetooth 5.3, resistência IPX7 e bateria de 12h. Ideal para levar para qualquer lugar.', images: ['https://picsum.photos/seed/caixa1/400/400', 'https://picsum.photos/seed/caixa2/400/400', 'https://picsum.photos/seed/caixa3/400/400'], category: 'Eletrônicos > Áudio > Caixas de Som' },
-];
 
 interface ProductRow {
   key: string;
@@ -67,9 +55,50 @@ const blingStatusLabel: Record<BlingStatus, string> = { ativo: 'Ativo', inativo:
 const mlStatusColor: Record<MLStatus, string> = { ativo: 'green', pausado: 'orange', sem_anuncio: 'default' };
 const mlStatusLabel: Record<MLStatus, string> = { ativo: 'Ativo', pausado: 'Pausado', sem_anuncio: 'Sem Anúncio' };
 
+function mapDBtoProduct(item: any): Product {
+  return {
+    id: item.id,
+    sku: item.sku,
+    name: item.nome,
+    brand: item.marca || '',
+    stock: item.estoque || 0,
+    cost: item.custo || 0,
+    blingPrice: item.preco_bling || 0,
+    mlFee: item.ml_fee || 0.15,
+    mlShipping: item.ml_shipping || 0,
+    customPrice: item.custom_price,
+    blingStatus: item.bling_status || 'ativo',
+    mlStatus: item.ml_status || 'sem_anuncio',
+    netWeight: item.peso_liq || 0,
+    grossWeight: item.peso_bruto || 0,
+    width: item.largura || 0,
+    height: item.altura || 0,
+    depth: item.profundidade || 0,
+    gtin: item.gtin || '',
+    description: item.descricao || '',
+    images: item.imagens || [],
+    category: item.categoria,
+  };
+}
+
 export default function ProductsPage() {
   const router = useRouter();
-  const [products] = useState<Product[]>(mockProducts);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch('/api/produtos');
+        if (res.ok) {
+          const json = await res.json();
+          const data = json.data || [];
+          setProducts(data.map(mapDBtoProduct));
+        }
+      } catch {}
+      setLoading(false);
+    })();
+  }, []);
   const [search, setSearch] = useState('');
   const [filterBlingStatus, setFilterBlingStatus] = useState<BlingStatus | ''>('');
   const [filterMLStatus, setFilterMLStatus] = useState<MLStatus | ''>('');
