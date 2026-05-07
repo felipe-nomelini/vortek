@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import {
   Table, Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space,
 } from 'antd';
@@ -52,7 +52,33 @@ const mockOrders: Order[] = [
   { id: 12, numero: 331, numeroLoja: 'ML-2012', data: '2026-04-25T11:30:00Z', dataSaida: null, dataPrevista: null, contato: { id: 12, nome: 'Gustavo Pereira', tipoPessoa: 'F', numeroDocumento: '555.666.777-88' }, totalProdutos: 149.90, total: 164.90, situacao: { id: 0, valor: 'aberto' }, loja: { id: 1 }, transporte: { frete: 15.00, prazoEntrega: 6, contato: { nome: 'Gustavo Pereira' } }, notaFiscal: null, rastreio: null, lucro: 35.60 },
 ];
 
+function mapDBtoOrder(item: any): Order {
+  return {
+    id: item.id,
+    numero: item.numero || 0,
+    numeroLoja: item.numero_loja || '',
+    data: item.data || new Date().toISOString(),
+    dataSaida: item.data_saida,
+    dataPrevista: item.data_prevista,
+    contato: {
+      id: 0,
+      nome: item.contato_nome || '',
+      tipoPessoa: 'F',
+      numeroDocumento: item.contato_documento || '',
+    },
+    totalProdutos: item.total || 0,
+    total: item.total || 0,
+    situacao: { id: 0, valor: item.situacao || 'aberto' },
+    loja: { id: 1 },
+    transporte: item.frete ? { frete: item.frete, prazoEntrega: null, contato: { nome: item.contato_nome || '' } } : null,
+    notaFiscal: item.nota_fiscal_numero ? { numero: item.nota_fiscal_numero, emitida: item.nota_fiscal_emitida } : null,
+    rastreio: item.rastreio,
+    lucro: item.lucro || 0,
+  };
+}
+
 export default function BlingPedidosPage() {
+  const [allOrders, setAllOrders] = useState<Order[]>([]);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<OrderStatus | ''>('');
   const [dateRange, setDateRange] = useState<[string | null, string | null]>([null, null]);
@@ -60,8 +86,25 @@ export default function BlingPedidosPage() {
   const [priceMax, setPriceMax] = useState<number | null>(null);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch('/api/pedidos');
+        if (res.ok) {
+          const json = await res.json();
+          const data = json.data || [];
+          if (data.length > 0) {
+            setAllOrders(data.map(mapDBtoOrder));
+            return;
+          }
+        }
+      } catch {}
+      setAllOrders(mockOrders);
+    })();
+  }, []);
+
   const filtered = useMemo(() => {
-    return mockOrders.filter(o => {
+    return allOrders.filter(o => {
       if (search) {
         const q = search.toLowerCase();
         if (!String(o.numero).includes(q) && !o.contato.nome.toLowerCase().includes(q)) return false;

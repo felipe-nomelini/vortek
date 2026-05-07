@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { Card, Row, Col, Statistic, Tag, Typography, Table, Progress } from 'antd';
 import { ArrowUpOutlined, ArrowDownOutlined, TrophyFilled } from '@ant-design/icons';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
@@ -77,6 +78,28 @@ function Trend({ value, label }: { value: number; label: string }) {
 }
 
 export default function DashboardPage() {
+  const [prodCount, setProdCount] = useState(342);
+  const [pedCount, setPedCount] = useState(342);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const [prodRes, pedRes] = await Promise.all([
+          fetch('/api/produtos'),
+          fetch('/api/pedidos'),
+        ]);
+        if (prodRes.ok) {
+          const json = await prodRes.json();
+          if (json.total) setProdCount(json.total);
+        }
+        if (pedRes.ok) {
+          const json = await pedRes.json();
+          if (json.total) setPedCount(json.total);
+        }
+      } catch {}
+    })();
+  }, []);
+
   return (
     <div>
       <Title level={4} style={{ color: '#e0e0e0', marginBottom: 24 }}>Dashboard</Title>
@@ -84,8 +107,8 @@ export default function DashboardPage() {
       <Row gutter={[16, 16]} style={{ marginBottom: 20 }}>
         {[
           { title: 'Faturamento do Mês', value: 84750, prefix: 'R$', color: '#1677ff', trend: 12, trendLabel: 'vs abr' },
-          { title: 'Total de Pedidos', value: 342, color: '#52c41a', trend: -3, trendLabel: 'vs abr' },
-          { title: 'Produtos Ativos', value: 342, color: '#faad14', trend: 8, trendLabel: 'vs abr' },
+          { title: 'Total de Pedidos', value: pedCount, color: '#52c41a', trend: 0, trendLabel: '' },
+          { title: 'Produtos Ativos', value: prodCount, color: '#faad14', trend: 0, trendLabel: '' },
           { title: 'Lucro Líquido', value: 24750.5, prefix: 'R$', color: '#ff4d4f', trend: 15, trendLabel: 'vs abr' },
         ].map(card => (
           <Col xs={12} lg={6} key={card.title}>
