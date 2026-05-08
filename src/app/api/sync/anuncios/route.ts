@@ -2,6 +2,10 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { fetchML } from '@/services/integration';
 
+function delay(ms: number) {
+  return new Promise(r => setTimeout(r, ms));
+}
+
 export async function POST(request: Request) {
   const apiKey = request.headers.get('x-api-key');
   if (apiKey !== process.env.API_SECRET_KEY) {
@@ -15,7 +19,7 @@ export async function POST(request: Request) {
   let totalGeral = 0;
   let salvos = 0;
   let offset = 0;
-  const limit = 100;
+  const limit = 50;
 
   while (true) {
     const search = await fetchML<any>(
@@ -29,7 +33,8 @@ export async function POST(request: Request) {
 
     totalGeral += itemIds.length;
 
-    for (const itemId of itemIds) {
+    for (let i = 0; i < itemIds.length; i++) {
+      const itemId = itemIds[i];
       const item = await fetchML<any>(`/items/${itemId}`);
       if (!item) continue;
 
@@ -45,6 +50,8 @@ export async function POST(request: Request) {
       }, { onConflict: 'ml_item_id' });
 
       salvos++;
+
+      if (i % 10 === 0) await delay(1000);
     }
 
     const paging = search.paging;
@@ -53,6 +60,7 @@ export async function POST(request: Request) {
 
     if (offset >= total) break;
     if (itemIds.length < limit) break;
+    await delay(2000);
   }
 
   return NextResponse.json({ ok: true, sincronizados: salvos, total: totalGeral });
