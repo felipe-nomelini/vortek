@@ -2,10 +2,6 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { fetchML } from '@/services/integration';
 
-function delay(ms: number) {
-  return new Promise(r => setTimeout(r, ms));
-}
-
 export async function POST(request: Request) {
   const apiKey = request.headers.get('x-api-key');
   if (apiKey !== process.env.API_SECRET_KEY) {
@@ -19,28 +15,22 @@ export async function POST(request: Request) {
   let totalGeral = 0;
   let salvos = 0;
   let offset = 0;
-  const limit = 50;
+  const limit = 100;
 
   while (true) {
-    await delay(3000);
-
     const search = await fetchML<any>(
       `/users/${me.id}/items/search?limit=${limit}&offset=${offset}`
     );
 
-    if (!search) {
-      break;
-    }
+    if (!search) break;
 
     const itemIds = search.results || [];
     if (itemIds.length === 0) break;
 
     totalGeral += itemIds.length;
 
-    for (let i = 0; i < itemIds.length; i++) {
-      if (i > 0 && i % 5 === 0) await delay(1500);
-
-      const item = await fetchML<any>(`/items/${itemIds[i]}`);
+    for (const itemId of itemIds) {
+      const item = await fetchML<any>(`/items/${itemId}`);
       if (!item) continue;
 
       await serviceClient.from('anuncios_ml').upsert({
@@ -59,7 +49,6 @@ export async function POST(request: Request) {
 
     const total = search.paging?.total || 0;
     offset += limit;
-
     if (offset >= total) break;
     if (itemIds.length < limit) break;
   }
