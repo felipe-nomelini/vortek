@@ -113,24 +113,44 @@ export async function fetchML<T>(path: string, options?: RequestInit): Promise<T
   const token = await getValidMLToken();
   if (!token) return null;
 
-  const res = await fetch(`https://api.mercadolibre.com${path}`, {
-    ...options,
-    headers: { ...options?.headers, Authorization: `Bearer ${token}` },
-  });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 30000);
 
-  if (!res.ok) return null;
-  return res.json();
+  try {
+    const res = await fetch(`https://api.mercadolibre.com${path}`, {
+      ...options,
+      signal: controller.signal,
+      headers: { ...options?.headers, Authorization: `Bearer ${token}` },
+    });
+
+    if (!res.ok) return null;
+    return res.json();
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 export async function fetchBling<T>(path: string, options?: RequestInit): Promise<T | null> {
   const token = await getValidBlingToken();
   if (!token) return null;
 
-  const res = await fetch(`https://api.bling.com.br/Api/v3${path}`, {
-    ...options,
-    headers: { ...options?.headers, Authorization: `Bearer ${token}`, Accept: '1.0' },
-  });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 30000);
 
-  if (!res.ok) return null;
-  return res.json();
+  try {
+    const res = await fetch(`https://api.bling.com.br/Api/v3${path}`, {
+      ...options,
+      signal: controller.signal,
+      headers: { ...options?.headers, Authorization: `Bearer ${token}`, Accept: '1.0' },
+    });
+
+    if (!res.ok) return null;
+    return res.json();
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timeout);
+  }
 }
