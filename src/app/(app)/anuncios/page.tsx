@@ -1,11 +1,12 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space } from 'antd';
+import { useState, useMemo, useEffect } from 'react';
+import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, Spin } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
-import { SearchOutlined, EllipsisOutlined } from '@ant-design/icons';
+import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
 import { formatCurrency } from '@/lib/format';
+import { createClient } from '@/lib/supabase-client';
 
 const { Title } = Typography;
 
@@ -64,6 +65,8 @@ const mockAnuncios: Anuncio[] = [
 ];
 
 export default function AnunciosPage() {
+  const [data, setData] = useState<Anuncio[]>([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [tipoFilter, setTipoFilter] = useState<ListingType | ''>('');
   const [statusFilter, setStatusFilter] = useState<ListingStatus | ''>('');
@@ -73,8 +76,34 @@ export default function AnunciosPage() {
   const [mlMax, setMlMax] = useState<number | null>(null);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const supabase = createClient();
+        const { data: dbData } = await supabase.from('anuncios_ml').select('*').limit(10000);
+        if (dbData && dbData.length > 0) {
+          setData(dbData.map((item: any) => ({
+            id: item.ml_item_id || '',
+            sku: item.sku || '',
+            produto: item.titulo || '',
+            tipo: 'premium' as ListingType,
+            precoBling: item.preco_bling || 0,
+            precoML: item.preco_ml || 0,
+            vendidos: item.vendidos || 0,
+            visitas: item.visitas || 0,
+            saude: item.saude || 0,
+            status: item.status || 'ativo',
+            catalogo: item.catalogo || false,
+          })));
+        }
+      } catch {}
+      setLoading(false);
+    })();
+  }, []);
+
   const filtered = useMemo(() => {
-    return mockAnuncios.filter(a => {
+    const source = data.length > 0 ? data : mockAnuncios;
+    return source.filter(a => {
       if (search) {
         const q = search.toLowerCase();
         if (!a.produto.toLowerCase().includes(q) && !a.sku.toLowerCase().includes(q)) return false;
@@ -87,7 +116,7 @@ export default function AnunciosPage() {
       if (mlMax !== null && a.precoML > mlMax) return false;
       return true;
     });
-  }, [search, tipoFilter, statusFilter, blingMin, blingMax, mlMin, mlMax]);
+  }, [data, search, tipoFilter, statusFilter, blingMin, blingMax, mlMin, mlMax]);
 
   const columns: TableProps<Anuncio>['columns'] = [
     {
@@ -205,19 +234,21 @@ export default function AnunciosPage() {
           </Col>
         </Row>
       </div>
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-        <ResizableTable<Anuncio>
-          storageKey="anuncios"
-          dataSource={filtered}
-          columns={columns}
-          rowKey="id"
-          rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
-          pagination={{ pageSize: 20, showSizeChanger: true, showTotal: t => `${t} anúncios` }}
-          scroll={{ x: 1200 }}
-          style={{ background: 'transparent' }}
-          size="small"
-        />
-      </div>
+      <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
+        <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
+          <ResizableTable<Anuncio>
+            storageKey="anuncios"
+            dataSource={filtered}
+            columns={columns}
+            rowKey="id"
+            rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
+            pagination={{ pageSize: 20, showSizeChanger: true, showTotal: t => `${t} anúncios` }}
+            scroll={{ x: 1200 }}
+            style={{ background: 'transparent' }}
+            size="small"
+          />
+        </div>
+      </Spin>
     </div>
   );
 }

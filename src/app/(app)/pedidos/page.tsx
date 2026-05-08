@@ -2,11 +2,11 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import {
-  Table, Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space,
+  Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin,
 } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
-import { SearchOutlined, EllipsisOutlined } from '@ant-design/icons';
+import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
 import { formatCurrency } from '@/lib/format';
 import type { Order, OrderStatus } from '@/types/order';
 
@@ -80,6 +80,7 @@ function mapDBtoOrder(item: any): Order {
 
 export default function BlingPedidosPage() {
   const [allOrders, setAllOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<OrderStatus | ''>('');
   const [dateRange, setDateRange] = useState<[string | null, string | null]>([null, null]);
@@ -96,11 +97,13 @@ export default function BlingPedidosPage() {
           const data = json.data || [];
           if (data.length > 0) {
             setAllOrders(data.map(mapDBtoOrder));
+            setLoading(false);
             return;
           }
         }
       } catch {}
       setAllOrders(mockOrders);
+      setLoading(false);
     })();
   }, []);
 
@@ -242,19 +245,21 @@ export default function BlingPedidosPage() {
           </Col>
         </Row>
       </div>
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-        <ResizableTable<Order>
-          storageKey="pedidos"
-          dataSource={filtered}
-          columns={columns}
-          rowKey="id"
-          rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
-          pagination={{ pageSize: 20, showSizeChanger: true, showTotal: t => `${t} pedidos` }}
-          scroll={{ x: 900 }}
-          style={{ background: 'transparent' }}
-          size="small"
-        />
-      </div>
+      <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
+        <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
+          <ResizableTable<Order>
+            storageKey="pedidos"
+            dataSource={filtered}
+            columns={columns}
+            rowKey="id"
+            rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
+            pagination={{ pageSize: 20, showSizeChanger: true, showTotal: t => `${t} pedidos` }}
+            scroll={{ x: 900 }}
+            style={{ background: 'transparent' }}
+            size="small"
+          />
+        </div>
+      </Spin>
     </div>
   );
 }
