@@ -79,13 +79,14 @@ export default function NotasFiscaisPage() {
 
   const columns: TableProps<NotaFiscal>['columns'] = [
     {
-      title: 'ID', dataIndex: 'id', key: 'id', width: 70,
-      sorter: (a, b) => a.id - b.id,
-    },
-    {
       title: 'Pedido', dataIndex: 'pedido', key: 'pedido', width: 90,
       sorter: (a, b) => a.pedido - b.pedido,
       render: (v: number) => <span style={{ fontFamily: 'monospace' }}>#{String(v).padStart(6, '0')}</span>,
+    },
+    {
+      title: 'Número', dataIndex: 'numero', key: 'numero', width: 120,
+      sorter: (a, b) => a.numero.localeCompare(b.numero),
+      render: (v: string) => <span style={{ fontFamily: 'monospace' }}>{v}</span>,
     },
     {
       title: 'Cliente', dataIndex: 'cliente', key: 'cliente',
@@ -99,11 +100,6 @@ export default function NotasFiscaisPage() {
         return new Date(a.data).getTime() - new Date(b.data).getTime();
       },
       render: (d: string) => d ? new Date(d).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : <span style={{ color: '#666' }}>—</span>,
-    },
-    {
-      title: 'Número', dataIndex: 'numero', key: 'numero', width: 120,
-      sorter: (a, b) => a.numero.localeCompare(b.numero),
-      render: (v: string) => <span style={{ fontFamily: 'monospace' }}>{v}</span>,
     },
     {
       title: 'Valor', dataIndex: 'valor', key: 'valor', width: 110,

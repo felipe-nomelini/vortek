@@ -167,10 +167,6 @@ export default function ProductsPage() {
 
   const columns: TableProps<ProductRow>['columns'] = [
     {
-      title: 'ID', dataIndex: ['product', 'id'], key: 'id', width: 70,
-      sorter: (a, b) => parseInt(a.product.id) - parseInt(b.product.id),
-    },
-    {
       title: 'SKU', dataIndex: ['product', 'sku'], key: 'sku', width: 110,
       sorter: (a, b) => a.product.sku.localeCompare(b.product.sku),
     },

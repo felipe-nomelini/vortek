@@ -124,10 +124,6 @@ export default function BlingPedidosPage() {
 
   const columns: TableProps<Order>['columns'] = [
     {
-      title: 'ID', dataIndex: 'id', key: 'id', width: 70,
-      sorter: (a, b) => a.id - b.id,
-    },
-    {
       title: 'Número', dataIndex: 'numero', key: 'numero', width: 100,
       sorter: (a, b) => a.numero - b.numero,
       render: (num: number) => <span style={{ fontFamily: 'monospace' }}>#{String(num).padStart(6, '0')}</span>,

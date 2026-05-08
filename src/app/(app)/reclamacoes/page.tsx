@@ -56,7 +56,7 @@ const stageLabel: Record<ClaimStage, string> = { claim: 'Negociação', dispute:
 
 const mockReclamacoes: Reclamacao[] = [
   {
-    id: 1001, pedido: 337, cliente: 'Pedro Martins', tipo: 'cancelamento', stage: 'claim', status: 'opened', data: '2026-05-02T11:00:00Z',
+    id: 5308212444, pedido: 337, cliente: 'Pedro Martins', tipo: 'cancelamento', stage: 'claim', status: 'opened', data: '2026-05-02T11:00:00Z',
     mensagens: [
       { sender: 'Comprador', texto: 'Produto veio com defeito, o mouse não liga. Quero cancelar a compra.', data: '2026-05-02T11:05:00Z' },
       { sender: 'Vendedor', texto: 'Olá Pedro, sinto muito pelo ocorrido. Vamos processar o cancelamento. Pode nos enviar uma foto do defeito?', data: '2026-05-02T14:30:00Z' },
@@ -64,7 +64,7 @@ const mockReclamacoes: Reclamacao[] = [
     ],
   },
   {
-    id: 1002, pedido: 333, cliente: 'Diego Nunes', tipo: 'cancelamento', stage: 'dispute', status: 'opened', data: '2026-04-28T10:00:00Z',
+    id: 5308212555, pedido: 333, cliente: 'Diego Nunes', tipo: 'cancelamento', stage: 'dispute', status: 'opened', data: '2026-04-28T10:00:00Z',
     mensagens: [
       { sender: 'Comprador', texto: 'Comprei o produto errado, quero cancelar.', data: '2026-04-28T10:15:00Z' },
       { sender: 'Vendedor', texto: 'Diego, o pedido já foi faturado e está em processo de separação. Infelizmente não podemos cancelar após o faturamento.', data: '2026-04-28T11:00:00Z' },
@@ -72,13 +72,13 @@ const mockReclamacoes: Reclamacao[] = [
     ],
   },
   {
-    id: 1003, pedido: 342, cliente: 'Ana Ferreira', tipo: 'devolucao', stage: 'claim', status: 'opened', data: '2026-05-05T09:30:00Z',
+    id: 5308212666, pedido: 342, cliente: 'Ana Ferreira', tipo: 'devolucao', stage: 'claim', status: 'opened', data: '2026-05-05T09:30:00Z',
     mensagens: [
       { sender: 'Comprador', texto: 'O fone chegou mas o áudio está falhando no lado direito. Quero devolver.', data: '2026-05-05T09:35:00Z' },
     ],
   },
   {
-    id: 1004, pedido: 331, cliente: 'Gustavo Pereira', tipo: 'devolucao', stage: 'recontact', status: 'closed', data: '2026-04-26T11:30:00Z',
+    id: 5308212777, pedido: 331, cliente: 'Gustavo Pereira', tipo: 'devolucao', stage: 'recontact', status: 'closed', data: '2026-04-26T11:30:00Z',
     mensagens: [
       { sender: 'Comprador', texto: 'O suporte veio sem um dos parafusos, não consigo montar.', data: '2026-04-26T11:45:00Z' },
       { sender: 'Vendedor', texto: 'Gustavo, vamos enviar o parafuso faltante pelo correio. Pedimos desculpas pelo transtorno.', data: '2026-04-26T14:00:00Z' },
@@ -87,7 +87,7 @@ const mockReclamacoes: Reclamacao[] = [
     ],
   },
   {
-    id: 1005, pedido: 340, cliente: 'Marina Costa', tipo: 'mediacao', stage: 'dispute', status: 'opened', data: '2026-05-04T18:45:00Z',
+    id: 5308212888, pedido: 340, cliente: 'Marina Costa', tipo: 'mediacao', stage: 'dispute', status: 'opened', data: '2026-05-04T18:45:00Z',
     mensagens: [
       { sender: 'Comprador', texto: 'O carregador não carrega meu celular. Testei com outro carregador e funciona normal.', data: '2026-05-04T19:00:00Z' },
       { sender: 'Vendedor', texto: 'Marina, você testou com o cabo original? Pode ser incompatibilidade do cabo.', data: '2026-05-05T09:00:00Z' },
@@ -95,7 +95,7 @@ const mockReclamacoes: Reclamacao[] = [
     ],
   },
   {
-    id: 1006, pedido: 335, cliente: 'Fernando Oliveira', tipo: 'devolucao', stage: 'claim', status: 'closed', data: '2026-04-30T09:45:00Z',
+    id: 5308212999, pedido: 335, cliente: 'Fernando Oliveira', tipo: 'devolucao', stage: 'claim', status: 'closed', data: '2026-04-30T09:45:00Z',
     mensagens: [
       { sender: 'Comprador', texto: 'O cabo HDMI veio com a ponta amassada.', data: '2026-04-30T10:00:00Z' },
       { sender: 'Vendedor', texto: 'Vamos realizar a troca imediatamente. Envie o produto de volta pelo correio.', data: '2026-04-30T11:00:00Z' },
