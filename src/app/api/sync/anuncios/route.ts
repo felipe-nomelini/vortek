@@ -22,11 +22,15 @@ export async function POST(request: Request) {
   const limit = 50;
 
   while (true) {
+    await delay(3000);
+
     const search = await fetchML<any>(
       `/users/${me.id}/items/search?limit=${limit}&offset=${offset}`
     );
 
-    if (!search) break;
+    if (!search) {
+      break;
+    }
 
     const itemIds = search.results || [];
     if (itemIds.length === 0) break;
@@ -34,8 +38,9 @@ export async function POST(request: Request) {
     totalGeral += itemIds.length;
 
     for (let i = 0; i < itemIds.length; i++) {
-      const itemId = itemIds[i];
-      const item = await fetchML<any>(`/items/${itemId}`);
+      if (i > 0 && i % 5 === 0) await delay(1500);
+
+      const item = await fetchML<any>(`/items/${itemIds[i]}`);
       if (!item) continue;
 
       await serviceClient.from('anuncios_ml').upsert({
@@ -50,17 +55,13 @@ export async function POST(request: Request) {
       }, { onConflict: 'ml_item_id' });
 
       salvos++;
-
-      if (i % 10 === 0) await delay(1000);
     }
 
-    const paging = search.paging;
-    const total = paging?.total || 0;
+    const total = search.paging?.total || 0;
     offset += limit;
 
     if (offset >= total) break;
     if (itemIds.length < limit) break;
-    await delay(2000);
   }
 
   return NextResponse.json({ ok: true, sincronizados: salvos, total: totalGeral });
