@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import {
-  Table, Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Space, Row, Col,
+  Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Space, Row, Col,
 } from 'antd';
 import type { TableProps } from 'antd';
 import { SearchOutlined, EllipsisOutlined } from '@ant-design/icons';
@@ -10,6 +10,7 @@ import { calculateSuggestedPrice } from '@/services/pricing';
 import { formatCurrency, formatPercent } from '@/lib/format';
 import { useRouter } from 'next/navigation';
 import type { Product, BlingStatus, MLStatus } from '@/types/product';
+import ResizableTable from '@/components/ResizableTable';
 
 const { Title } = Typography;
 
@@ -366,7 +367,8 @@ export default function ProductsPage() {
         </div>
       )}
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-        <Table<ProductRow>
+        <ResizableTable<ProductRow>
+          storageKey="produtos"
           dataSource={filtered}
           columns={columns}
           rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}

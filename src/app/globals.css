@@ -29,3 +29,23 @@ html, body {
 textarea.ant-input {
   min-height: 80px !important;
 }
+
+.rt-resizable-handle {
+  position: absolute;
+  right: -5px;
+  bottom: 0;
+  z-index: 1;
+  width: 10px;
+  height: 100%;
+  cursor: col-resize;
+  user-select: none;
+}
+
+.rt-resizable {
+  position: relative;
+}
+
+.ant-table-thead th {
+  position: relative;
+  overflow: visible !important;
+}

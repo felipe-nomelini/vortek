@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Table, Input, Select, Button, Tag, Typography, Row, Col, DatePicker } from 'antd';
+import { Input, Select, Button, Tag, Typography, Row, Col, DatePicker } from 'antd';
+import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
 import { SearchOutlined, EllipsisOutlined } from '@ant-design/icons';
 
@@ -207,7 +208,8 @@ export default function ReclamacoesPage() {
         </Row>
       </div>
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-        <Table<Reclamacao>
+        <ResizableTable<Reclamacao>
+          storageKey="reclamacoes"
           dataSource={filtered}
           columns={columns}
           rowKey="id"

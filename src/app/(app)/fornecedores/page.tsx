@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Table, Input, Button, Dropdown, Typography, Row, Col } from 'antd';
+import { Input, Button, Dropdown, Typography, Row, Col } from 'antd';
+import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
 import { SearchOutlined, EllipsisOutlined } from '@ant-design/icons';
 
@@ -104,7 +105,8 @@ export default function FornecedoresPage() {
         </Row>
       </div>
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-        <Table<Supplier>
+        <ResizableTable<Supplier>
+          storageKey="fornecedores"
           dataSource={filtered}
           columns={columns}
           rowKey="id"

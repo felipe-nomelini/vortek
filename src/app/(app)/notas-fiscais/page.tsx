@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Table, Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space } from 'antd';
+import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space } from 'antd';
+import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
 import { SearchOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { formatCurrency } from '@/lib/format';
@@ -174,7 +175,8 @@ export default function NotasFiscaisPage() {
         </Row>
       </div>
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-        <Table<NotaFiscal>
+        <ResizableTable<NotaFiscal>
+          storageKey="notas-fiscais"
           dataSource={filtered}
           columns={columns}
           rowKey="id"

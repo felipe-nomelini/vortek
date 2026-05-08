@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Table, Input, Select, Tag, Typography, Row, Col, Button, Dropdown } from 'antd';
+import { Input, Select, Tag, Typography, Row, Col, Button, Dropdown } from 'antd';
+import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
 import { useRouter } from 'next/navigation';
 import { SearchOutlined, EllipsisOutlined } from '@ant-design/icons';
@@ -161,7 +162,8 @@ export default function ClientesPage() {
         </Row>
       </div>
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-        <Table<Client>
+        <ResizableTable<Client>
+          storageKey="clientes"
           dataSource={filtered}
           columns={columns}
           rowKey="id"
