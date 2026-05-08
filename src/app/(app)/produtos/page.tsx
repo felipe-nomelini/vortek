@@ -2,10 +2,10 @@
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import {
-  Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Space, Row, Col,
+  Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Space, Row, Col, Spin,
 } from 'antd';
 import type { TableProps } from 'antd';
-import { SearchOutlined, EllipsisOutlined } from '@ant-design/icons';
+import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { formatCurrency, formatPercent } from '@/lib/format';
 import { useRouter } from 'next/navigation';
@@ -366,18 +366,20 @@ export default function ProductsPage() {
           </Button>
         </div>
       )}
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-        <ResizableTable<ProductRow>
-          storageKey="produtos"
-          dataSource={filtered}
-          columns={columns}
-          rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
-          pagination={false}
-          scroll={{ x: 1400 }}
-          style={{ background: 'transparent' }}
-          size="small"
-        />
-      </div>
+      <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
+        <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
+          <ResizableTable<ProductRow>
+            storageKey="produtos"
+            dataSource={filtered}
+            columns={columns}
+            rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
+            pagination={false}
+            scroll={{ x: 1400 }}
+            style={{ background: 'transparent' }}
+            size="small"
+          />
+        </div>
+      </Spin>
     </div>
   );
 }
