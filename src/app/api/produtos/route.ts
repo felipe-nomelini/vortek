@@ -6,7 +6,7 @@ export async function GET() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
 
-  const { data, error } = await supabase.from('produtos').select('*', { count: 'exact' }).order('created_at', { ascending: false }).limit(10000);
+  const { data, error } = await supabase.from('produtos').select('*', { count: 'exact' }).order('created_at', { ascending: false }).range(0, 9999);
 
   if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
   return NextResponse.json({ data, total: data.length, count: data.length });
