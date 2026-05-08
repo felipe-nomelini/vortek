@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
   while (true) {
     const search = await fetchML<any>(
-      `/users/${me.id}/items/search?search_type=scan&limit=${limit}&offset=${offset}`
+      `/users/${me.id}/items/search?limit=${limit}&offset=${offset}`
     );
 
     if (!search) break;
