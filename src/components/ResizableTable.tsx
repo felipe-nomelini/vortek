@@ -4,7 +4,7 @@ import { Table } from 'antd';
 import { Resizable } from 'react-resizable';
 import type { ResizableProps } from 'react-resizable';
 import type { TableProps } from 'antd';
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 
 interface ResizableTableProps<T> extends TableProps<T> {
   storageKey: string;
@@ -54,9 +54,14 @@ function saveWidths(key: string, widths: ColumnWidths) {
   localStorage.setItem(`rt_widths_${key}`, JSON.stringify(widths));
 }
 
-export default function ResizableTable<T extends object>({ storageKey, columns, ...restProps }: ResizableTableProps<T>) {
+export default function ResizableTable<T extends object>({ storageKey, columns, pagination: paginationProp, ...restProps }: ResizableTableProps<T>) {
   const [widths, setWidths] = useState<ColumnWidths>({});
   const loaded = useRef(false);
+
+  const pagination = useMemo(() => {
+    if (paginationProp === undefined || paginationProp === false || paginationProp === null) return paginationProp as any;
+    return { ...paginationProp };
+  }, []);
 
   useEffect(() => {
     if (!loaded.current) {
@@ -107,6 +112,7 @@ export default function ResizableTable<T extends object>({ storageKey, columns, 
     <Table<T>
       components={components}
       columns={processedColumns}
+      pagination={pagination}
       {...restProps}
     />
   );
