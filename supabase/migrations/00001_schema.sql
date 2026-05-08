@@ -182,6 +182,7 @@ create table public.jobs (
   status text not null default 'pendente',
   progresso integer not null default 0,
   total integer not null default 0,
+  processados integer not null default 0,
   log jsonb not null default '[]',
   cancelado boolean not null default false,
   created_by uuid references auth.users(id),
