@@ -6,10 +6,10 @@ export async function GET() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
 
-  const { data, error } = await supabase.from('produtos').select('*').order('created_at', { ascending: false });
+  const { data, error } = await supabase.from('produtos').select('*', { count: 'exact' }).order('created_at', { ascending: false }).limit(10000);
 
   if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
-  return NextResponse.json({ data, total: data.length });
+  return NextResponse.json({ data, total: data.length, count: data.length });
 }
 
 export async function POST(request: Request) {

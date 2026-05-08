@@ -372,7 +372,7 @@ export default function ProductsPage() {
           dataSource={filtered}
           columns={columns}
           rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
-          pagination={{ pageSize: 20, showSizeChanger: true, showTotal: t => `${t} produtos` }}
+          pagination={{ pageSize: 20, showSizeChanger: true, pageSizeOptions: ['20', '50', '100'], showTotal: t => `${t} produtos` }}
           scroll={{ x: 1400 }}
           style={{ background: 'transparent' }}
           size="small"
