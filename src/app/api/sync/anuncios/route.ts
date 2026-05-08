@@ -11,30 +11,49 @@ export async function POST(request: Request) {
   const me = await fetchML<any>('/users/me');
   if (!me) return NextResponse.json({ erro: 'Erro ao conectar com ML' }, { status: 502 });
 
-  const search = await fetchML<any>(`/users/${me.id}/items/search?search_type=scan&limit=100`);
-  if (!search) return NextResponse.json({ erro: 'Erro ao buscar anúncios' }, { status: 502 });
-
-  const itemIds = search.results || [];
   const serviceClient = createServiceClient();
+  let totalGeral = 0;
   let salvos = 0;
+  let offset = 0;
+  const limit = 100;
 
-  for (const itemId of itemIds) {
-    const item = await fetchML<any>(`/items/${itemId}`);
-    if (!item) continue;
+  while (true) {
+    const search = await fetchML<any>(
+      `/users/${me.id}/items/search?search_type=scan&limit=${limit}&offset=${offset}`
+    );
 
-    await serviceClient.from('anuncios_ml').upsert({
-      ml_item_id: item.id,
-      sku: item.seller_sku || item.id,
-      titulo: item.title,
-      preco_ml: item.price,
-      vendidos: item.sold_quantity || 0,
-      status: item.status === 'active' ? 'ativo' : item.status === 'paused' ? 'pausado' : 'sem_anuncio',
-      thumbnail: item.thumbnail,
-      permalink: item.permalink,
-    }, { onConflict: 'ml_item_id' });
+    if (!search) break;
 
-    salvos++;
+    const itemIds = search.results || [];
+    if (itemIds.length === 0) break;
+
+    totalGeral += itemIds.length;
+
+    for (const itemId of itemIds) {
+      const item = await fetchML<any>(`/items/${itemId}`);
+      if (!item) continue;
+
+      await serviceClient.from('anuncios_ml').upsert({
+        ml_item_id: item.id,
+        sku: item.seller_sku || item.id,
+        titulo: item.title,
+        preco_ml: item.price,
+        vendidos: item.sold_quantity || 0,
+        status: item.status === 'active' ? 'ativo' : item.status === 'paused' ? 'pausado' : 'sem_anuncio',
+        thumbnail: item.thumbnail,
+        permalink: item.permalink,
+      }, { onConflict: 'ml_item_id' });
+
+      salvos++;
+    }
+
+    const paging = search.paging;
+    const total = paging?.total || 0;
+    offset += limit;
+
+    if (offset >= total) break;
+    if (itemIds.length < limit) break;
   }
 
-  return NextResponse.json({ ok: true, sincronizados: salvos, total: itemIds.length });
+  return NextResponse.json({ ok: true, sincronizados: salvos, total: totalGeral });
 }
