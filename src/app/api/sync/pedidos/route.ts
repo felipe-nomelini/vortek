@@ -32,7 +32,7 @@ export async function POST(request: Request) {
   let salvos = 0;
 
   for (const o of results) {
-    await serviceClient.from('pedidos').upsert({
+    const { error } = await serviceClient.from('pedidos').upsert({
       numero: o.id,
       numero_loja: String(o.id),
       data: o.date_created,
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
       ml_order_id: String(o.id),
     }, { onConflict: 'ml_order_id' });
 
-    salvos++;
+    if (!error) salvos++;
   }
 
   const total = orders.paging?.total || 0;

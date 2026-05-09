@@ -95,7 +95,7 @@ create policy "Admin pode gerenciar produtos" on public.produtos for all using (
 -- ── Pedidos ────────────────────────────────────────────────
 create table public.pedidos (
   id uuid primary key default uuid_generate_v4(),
-  numero integer not null,
+  numero bigint not null,
   numero_loja text,
   data timestamptz not null default now(),
   data_saida timestamptz,
@@ -107,7 +107,7 @@ create table public.pedidos (
   situacao pedido_status not null default 'aberto',
   rastreio text,
   lucro numeric(10,2) not null default 0,
-  ml_order_id text,
+  ml_order_id text unique,
   bling_id text,
   nota_fiscal_numero text,
   nota_fiscal_emitida boolean not null default false,
@@ -157,7 +157,7 @@ create policy "Todos podem ver fornecedores" on public.fornecedores for select u
 -- ── Anúncios ML ────────────────────────────────────────────
 create table public.anuncios_ml (
   id uuid primary key default uuid_generate_v4(),
-  ml_item_id text not null,
+  ml_item_id text not null unique,
   produto_id uuid references public.produtos(id),
   sku text not null,
   titulo text not null,
