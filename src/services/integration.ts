@@ -72,6 +72,35 @@ export async function getValidMLToken(): Promise<string | null> {
   }
 }
 
+export async function refreshMLToken(): Promise<string | null> {
+  const integracao = await getIntegracao('mercadolivre');
+  if (!integracao?.refresh_token) return null;
+
+  try {
+    const res = await fetch('https://api.mercadolibre.com/oauth/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded', accept: 'application/json' },
+      body: new URLSearchParams({
+        grant_type: 'refresh_token',
+        client_id: integracao.client_id!,
+        client_secret: integracao.client_secret!,
+        refresh_token: integracao.refresh_token,
+      }),
+    });
+
+    if (!res.ok) {
+      await createServiceClient().from('integracoes').update({ conectado: false }).eq('tipo', 'mercadolivre');
+      return null;
+    }
+
+    const data = await res.json();
+    await updateTokens('mercadolivre', data.access_token, data.refresh_token, data.expires_in || 10800);
+    return data.access_token;
+  } catch {
+    return null;
+  }
+}
+
 export async function getValidBlingToken(): Promise<string | null> {
   const integracao = await getIntegracao('bling');
   if (!integracao?.refresh_token) return null;
@@ -110,18 +139,30 @@ export async function getValidBlingToken(): Promise<string | null> {
 }
 
 export async function fetchML<T>(path: string, options?: RequestInit): Promise<T | null> {
-  const token = await getValidMLToken();
+  let token = await getValidMLToken();
   if (!token) return null;
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 30000);
 
-  try {
+  const doFetch = async (tok: string) => {
     const res = await fetch(`https://api.mercadolibre.com${path}`, {
       ...options,
       signal: controller.signal,
-      headers: { ...options?.headers, Authorization: `Bearer ${token}` },
+      headers: { ...options?.headers, Authorization: `Bearer ${tok}` },
     });
+    return res;
+  };
+
+  try {
+    let res = await doFetch(token);
+
+    if (res.status === 401) {
+      const newToken = await refreshMLToken();
+      if (!newToken) return null;
+      token = newToken;
+      res = await doFetch(token);
+    }
 
     if (!res.ok) return null;
     return res.json();
