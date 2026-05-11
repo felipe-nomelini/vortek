@@ -1,6 +1,6 @@
 import { createServiceClient } from '@/lib/supabase';
 
-type IntegracaoTipo = 'mercadolivre' | 'bling' | 'dslite';
+type IntegracaoTipo = 'mercadolivre' | 'bling' | 'dslite' | 'brasilnfe';
 
 interface Integracao {
   id: string;

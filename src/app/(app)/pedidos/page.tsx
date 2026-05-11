@@ -2,11 +2,11 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import {
-  Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin,
+  Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message,
 } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
-import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
+import { SearchOutlined, EllipsisOutlined, LoadingOutlined, FileTextOutlined, CarOutlined } from '@ant-design/icons';
 import { formatCurrency } from '@/lib/format';
 import type { Order, OrderStatus } from '@/types/order';
 
@@ -39,18 +39,18 @@ const statusLabel: Record<OrderStatus, string> = {
 };
 
 const mockOrders: Order[] = [
-  { id: 1, numero: 342, numeroLoja: 'ML-2001', data: '2026-05-04T14:30:00Z', dataSaida: null, dataPrevista: '2026-05-08T23:59:00Z', contato: { id: 1, nome: 'Ana Ferreira', tipoPessoa: 'F', numeroDocumento: '123.456.789-00' }, totalProdutos: 79.90, total: 89.90, situacao: { id: 0, valor: 'aberto' }, loja: { id: 1 }, transporte: { frete: 10.00, prazoEntrega: 4, contato: { nome: 'Ana Ferreira' } }, notaFiscal: null, rastreio: null, lucro: 22.40 },
-  { id: 2, numero: 341, numeroLoja: 'ML-2002', data: '2026-05-04T10:15:00Z', dataSaida: '2026-05-04T16:00:00Z', dataPrevista: null, contato: { id: 2, nome: 'Carlos Lima', tipoPessoa: 'F', numeroDocumento: '234.567.890-11' }, totalProdutos: 149.90, total: 161.90, situacao: { id: 4, valor: 'faturado' }, loja: { id: 1 }, transporte: { frete: 12.00, prazoEntrega: null, contato: { nome: 'Carlos Lima' } }, notaFiscal: { numero: 'NF-000001', emitida: true }, rastreio: 'BR123456789', lucro: 38.75 },
-  { id: 3, numero: 340, numeroLoja: 'ML-2003', data: '2026-05-03T18:45:00Z', dataSaida: '2026-05-04T09:00:00Z', dataPrevista: null, contato: { id: 3, nome: 'Marina Costa', tipoPessoa: 'F', numeroDocumento: '345.678.901-22' }, totalProdutos: 24.90, total: 29.90, situacao: { id: 5, valor: 'entregue' }, loja: { id: 1 }, transporte: { frete: 5.00, prazoEntrega: null, contato: { nome: 'Marina Costa' } }, notaFiscal: { numero: 'NF-000002', emitida: true }, rastreio: 'BR987654321', lucro: 8.15 },
-  { id: 4, numero: 339, numeroLoja: 'ML-2004', data: '2026-05-03T09:30:00Z', dataSaida: null, dataPrevista: null, contato: { id: 4, nome: 'Roberto Alves', tipoPessoa: 'F', numeroDocumento: '456.789.012-33' }, totalProdutos: 59.90, total: 59.90, situacao: { id: 0, valor: 'aberto' }, loja: { id: 1 }, transporte: null, notaFiscal: null, rastreio: null, lucro: 12.30 },
-  { id: 5, numero: 338, numeroLoja: 'ML-2005', data: '2026-05-02T16:20:00Z', dataSaida: '2026-05-03T10:00:00Z', dataPrevista: null, contato: { id: 5, nome: 'Juliana Santos', tipoPessoa: 'F', numeroDocumento: '567.890.123-44' }, totalProdutos: 179.90, total: 194.90, situacao: { id: 4, valor: 'faturado' }, loja: { id: 1 }, transporte: { frete: 15.00, prazoEntrega: null, contato: { nome: 'Juliana Santos' } }, notaFiscal: { numero: 'NF-000003', emitida: true }, rastreio: 'BR456123789', lucro: 51.20 },
-  { id: 6, numero: 337, numeroLoja: 'ML-2006', data: '2026-05-01T11:00:00Z', dataSaida: null, dataPrevista: null, contato: { id: 6, nome: 'Pedro Martins', tipoPessoa: 'F', numeroDocumento: '678.901.234-55' }, totalProdutos: 34.90, total: 34.90, situacao: { id: 2, valor: 'cancelado' }, loja: { id: 1 }, transporte: null, notaFiscal: null, rastreio: null, lucro: -34.90 },
-  { id: 7, numero: 336, numeroLoja: 'ML-2007', data: '2026-04-30T14:00:00Z', dataSaida: '2026-04-30T18:00:00Z', dataPrevista: null, contato: { id: 7, nome: 'Luciana Rocha', tipoPessoa: 'F', numeroDocumento: '789.012.345-66' }, totalProdutos: 89.90, total: 99.90, situacao: { id: 5, valor: 'entregue' }, loja: { id: 1 }, transporte: { frete: 10.00, prazoEntrega: null, contato: { nome: 'Luciana Rocha' } }, notaFiscal: { numero: 'NF-000004', emitida: true }, rastreio: 'BR789321654', lucro: 28.50 },
-  { id: 8, numero: 335, numeroLoja: 'ML-2008', data: '2026-04-29T09:45:00Z', dataSaida: '2026-04-29T15:30:00Z', dataPrevista: null, contato: { id: 8, nome: 'Fernando Oliveira', tipoPessoa: 'F', numeroDocumento: '890.123.456-77' }, totalProdutos: 149.90, total: 159.90, situacao: { id: 5, valor: 'entregue' }, loja: { id: 1 }, transporte: { frete: 10.00, prazoEntrega: null, contato: { nome: 'Fernando Oliveira' } }, notaFiscal: { numero: 'NF-000005', emitida: true }, rastreio: 'BR654987321', lucro: 42.00 },
-  { id: 9, numero: 334, numeroLoja: 'ML-2009', data: '2026-04-28T13:30:00Z', dataSaida: '2026-04-29T08:00:00Z', dataPrevista: null, contato: { id: 9, nome: 'Camila Barbosa', tipoPessoa: 'F', numeroDocumento: '901.234.567-88' }, totalProdutos: 24.90, total: 29.90, situacao: { id: 4, valor: 'faturado' }, loja: { id: 1 }, transporte: { frete: 5.00, prazoEntrega: null, contato: { nome: 'Camila Barbosa' } }, notaFiscal: { numero: 'NF-000006', emitida: true }, rastreio: 'BR321789654', lucro: 6.80 },
-  { id: 10, numero: 333, numeroLoja: 'ML-2010', data: '2026-04-27T10:00:00Z', dataSaida: null, dataPrevista: null, contato: { id: 10, nome: 'Diego Nunes', tipoPessoa: 'F', numeroDocumento: '012.345.678-99' }, totalProdutos: 69.90, total: 69.90, situacao: { id: 2, valor: 'cancelado' }, loja: { id: 1 }, transporte: null, notaFiscal: null, rastreio: null, lucro: -69.90 },
-  { id: 11, numero: 332, numeroLoja: 'ML-2011', data: '2026-04-26T15:00:00Z', dataSaida: '2026-04-27T12:00:00Z', dataPrevista: null, contato: { id: 11, nome: 'Tatiane Souza', tipoPessoa: 'F', numeroDocumento: '111.222.333-44' }, totalProdutos: 89.90, total: 97.90, situacao: { id: 5, valor: 'entregue' }, loja: { id: 1 }, transporte: { frete: 8.00, prazoEntrega: null, contato: { nome: 'Tatiane Souza' } }, notaFiscal: { numero: 'NF-000007', emitida: true }, rastreio: 'BR147258369', lucro: 25.40 },
-  { id: 12, numero: 331, numeroLoja: 'ML-2012', data: '2026-04-25T11:30:00Z', dataSaida: null, dataPrevista: null, contato: { id: 12, nome: 'Gustavo Pereira', tipoPessoa: 'F', numeroDocumento: '555.666.777-88' }, totalProdutos: 149.90, total: 164.90, situacao: { id: 0, valor: 'aberto' }, loja: { id: 1 }, transporte: { frete: 15.00, prazoEntrega: 6, contato: { nome: 'Gustavo Pereira' } }, notaFiscal: null, rastreio: null, lucro: 35.60 },
+  { id: 1, numero: 342, numeroLoja: 'ML-2001', data: '2026-05-04T14:30:00Z', dataSaida: null, dataPrevista: '2026-05-08T23:59:00Z', contato: { id: 1, nome: 'Ana Ferreira', tipoPessoa: 'F', numeroDocumento: '123.456.789-00' }, totalProdutos: 79.90, total: 89.90, situacao: { id: 0, valor: 'aberto' }, loja: { id: 1 }, transporte: { frete: 10.00, prazoEntrega: 4, contato: { nome: 'Ana Ferreira' } }, notaFiscal: null, rastreio: null, lucro: 22.40, dslite_id: null },
+  { id: 2, numero: 341, numeroLoja: 'ML-2002', data: '2026-05-04T10:15:00Z', dataSaida: '2026-05-04T16:00:00Z', dataPrevista: null, contato: { id: 2, nome: 'Carlos Lima', tipoPessoa: 'F', numeroDocumento: '234.567.890-11' }, totalProdutos: 149.90, total: 161.90, situacao: { id: 4, valor: 'faturado' }, loja: { id: 1 }, transporte: { frete: 12.00, prazoEntrega: null, contato: { nome: 'Carlos Lima' } }, notaFiscal: { numero: 'NF-000001', emitida: true }, rastreio: 'BR123456789', lucro: 38.75, dslite_id: '12345' },
+  { id: 3, numero: 340, numeroLoja: 'ML-2003', data: '2026-05-03T18:45:00Z', dataSaida: '2026-05-04T09:00:00Z', dataPrevista: null, contato: { id: 3, nome: 'Marina Costa', tipoPessoa: 'F', numeroDocumento: '345.678.901-22' }, totalProdutos: 24.90, total: 29.90, situacao: { id: 5, valor: 'entregue' }, loja: { id: 1 }, transporte: { frete: 5.00, prazoEntrega: null, contato: { nome: 'Marina Costa' } }, notaFiscal: { numero: 'NF-000002', emitida: true }, rastreio: 'BR987654321', lucro: 8.15, dslite_id: null },
+  { id: 4, numero: 339, numeroLoja: 'ML-2004', data: '2026-05-03T09:30:00Z', dataSaida: null, dataPrevista: null, contato: { id: 4, nome: 'Roberto Alves', tipoPessoa: 'F', numeroDocumento: '456.789.012-33' }, totalProdutos: 59.90, total: 59.90, situacao: { id: 0, valor: 'aberto' }, loja: { id: 1 }, transporte: null, notaFiscal: null, rastreio: null, lucro: 12.30, dslite_id: null },
+  { id: 5, numero: 338, numeroLoja: 'ML-2005', data: '2026-05-02T16:20:00Z', dataSaida: '2026-05-03T10:00:00Z', dataPrevista: null, contato: { id: 5, nome: 'Juliana Santos', tipoPessoa: 'F', numeroDocumento: '567.890.123-44' }, totalProdutos: 179.90, total: 194.90, situacao: { id: 4, valor: 'faturado' }, loja: { id: 1 }, transporte: { frete: 15.00, prazoEntrega: null, contato: { nome: 'Juliana Santos' } }, notaFiscal: { numero: 'NF-000003', emitida: true }, rastreio: 'BR456123789', lucro: 51.20, dslite_id: null },
+  { id: 6, numero: 337, numeroLoja: 'ML-2006', data: '2026-05-01T11:00:00Z', dataSaida: null, dataPrevista: null, contato: { id: 6, nome: 'Pedro Martins', tipoPessoa: 'F', numeroDocumento: '678.901.234-55' }, totalProdutos: 34.90, total: 34.90, situacao: { id: 2, valor: 'cancelado' }, loja: { id: 1 }, transporte: null, notaFiscal: null, rastreio: null, lucro: -34.90, dslite_id: null },
+  { id: 7, numero: 336, numeroLoja: 'ML-2007', data: '2026-04-30T14:00:00Z', dataSaida: '2026-04-30T18:00:00Z', dataPrevista: null, contato: { id: 7, nome: 'Luciana Rocha', tipoPessoa: 'F', numeroDocumento: '789.012.345-66' }, totalProdutos: 89.90, total: 99.90, situacao: { id: 5, valor: 'entregue' }, loja: { id: 1 }, transporte: { frete: 10.00, prazoEntrega: null, contato: { nome: 'Luciana Rocha' } }, notaFiscal: { numero: 'NF-000004', emitida: true }, rastreio: 'BR789321654', lucro: 28.50, dslite_id: null },
+  { id: 8, numero: 335, numeroLoja: 'ML-2008', data: '2026-04-29T09:45:00Z', dataSaida: '2026-04-29T15:30:00Z', dataPrevista: null, contato: { id: 8, nome: 'Fernando Oliveira', tipoPessoa: 'F', numeroDocumento: '890.123.456-77' }, totalProdutos: 149.90, total: 159.90, situacao: { id: 5, valor: 'entregue' }, loja: { id: 1 }, transporte: { frete: 10.00, prazoEntrega: null, contato: { nome: 'Fernando Oliveira' } }, notaFiscal: { numero: 'NF-000005', emitida: true }, rastreio: 'BR654987321', lucro: 42.00, dslite_id: null },
+  { id: 9, numero: 334, numeroLoja: 'ML-2009', data: '2026-04-28T13:30:00Z', dataSaida: '2026-04-29T08:00:00Z', dataPrevista: null, contato: { id: 9, nome: 'Camila Barbosa', tipoPessoa: 'F', numeroDocumento: '901.234.567-88' }, totalProdutos: 24.90, total: 29.90, situacao: { id: 4, valor: 'faturado' }, loja: { id: 1 }, transporte: { frete: 5.00, prazoEntrega: null, contato: { nome: 'Camila Barbosa' } }, notaFiscal: { numero: 'NF-000006', emitida: true }, rastreio: 'BR321789654', lucro: 6.80, dslite_id: null },
+  { id: 10, numero: 333, numeroLoja: 'ML-2010', data: '2026-04-27T10:00:00Z', dataSaida: null, dataPrevista: null, contato: { id: 10, nome: 'Diego Nunes', tipoPessoa: 'F', numeroDocumento: '012.345.678-99' }, totalProdutos: 69.90, total: 69.90, situacao: { id: 2, valor: 'cancelado' }, loja: { id: 1 }, transporte: null, notaFiscal: null, rastreio: null, lucro: -69.90, dslite_id: null },
+  { id: 11, numero: 332, numeroLoja: 'ML-2011', data: '2026-04-26T15:00:00Z', dataSaida: '2026-04-27T12:00:00Z', dataPrevista: null, contato: { id: 11, nome: 'Tatiane Souza', tipoPessoa: 'F', numeroDocumento: '111.222.333-44' }, totalProdutos: 89.90, total: 97.90, situacao: { id: 5, valor: 'entregue' }, loja: { id: 1 }, transporte: { frete: 8.00, prazoEntrega: null, contato: { nome: 'Tatiane Souza' } }, notaFiscal: { numero: 'NF-000007', emitida: true }, rastreio: 'BR147258369', lucro: 25.40, dslite_id: null },
+  { id: 12, numero: 331, numeroLoja: 'ML-2012', data: '2026-04-25T11:30:00Z', dataSaida: null, dataPrevista: null, contato: { id: 12, nome: 'Gustavo Pereira', tipoPessoa: 'F', numeroDocumento: '555.666.777-88' }, totalProdutos: 149.90, total: 164.90, situacao: { id: 0, valor: 'aberto' }, loja: { id: 1 }, transporte: { frete: 15.00, prazoEntrega: 6, contato: { nome: 'Gustavo Pereira' } }, notaFiscal: null, rastreio: null, lucro: 35.60, dslite_id: null },
 ];
 
 function mapDBtoOrder(item: any): Order {
@@ -75,6 +75,7 @@ function mapDBtoOrder(item: any): Order {
     notaFiscal: item.nota_fiscal_numero ? { numero: item.nota_fiscal_numero, emitida: item.nota_fiscal_emitida } : null,
     rastreio: item.rastreio,
     lucro: item.lucro || 0,
+    dslite_id: item.dslite_id || null,
   };
 }
 
@@ -87,6 +88,71 @@ export default function BlingPedidosPage() {
   const [priceMin, setPriceMin] = useState<number | null>(null);
   const [priceMax, setPriceMax] = useState<number | null>(null);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const [actionLoading, setActionLoading] = useState<string | null>(null);
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const emitirNFe = async (order: Order) => {
+    setActionLoading(`nfe-${order.id}`);
+    try {
+      const res = await fetch('/api/nfe/emitir', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          pedidoId: order.id,
+          cliente: {
+            cpfCnpj: order.contato.numeroDocumento.replace(/\D/g, ''),
+            nome: order.contato.nome,
+          },
+          produtos: [{
+            nome: `Pedido #${order.numero}`,
+            ncm: '84713012',
+            cfop: 5102,
+            quantidade: 1,
+            valorUnitario: order.totalProdutos,
+          }],
+          frete: order.transporte?.frete || 0,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        messageApi.success(`NF-e emitida! Chave: ${data.chave}`);
+        setAllOrders(prev => prev.map(o =>
+          o.id === order.id ? { ...o, notaFiscal: { numero: String(data.numero || ''), emitida: true } } : o
+        ));
+      } else {
+        messageApi.error(`Erro: ${data.mensagem || 'Falha ao emitir'}`);
+      }
+    } catch (err: any) {
+      messageApi.error(err.message);
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
+  const criarPedidoDslite = async (order: Order) => {
+    setActionLoading(`dslite-${order.id}`);
+    try {
+      const res = await fetch('/api/dslite/pedido', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          pedidoId: order.id,
+          fornecedorId: 1,
+          xmlConteudo: `<?xml version="1.0" encoding="UTF-8"?><pedido><cliente>${order.contato.nome}</cliente><valor>${order.total}</valor></pedido>`,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        messageApi.success(`Pedido criado na DSLite! ID: ${data.data?.dsid}`);
+      } else {
+        messageApi.error('Erro ao criar pedido na DSLite');
+      }
+    } catch (err: any) {
+      messageApi.error(err.message);
+    } finally {
+      setActionLoading(null);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -184,29 +250,51 @@ export default function BlingPedidosPage() {
       ),
     },
     {
-      title: 'Ações', key: 'actions', width: 60, fixed: 'right',
-      render: (_, record) => (
-        <Dropdown
-          menu={{
-            items: [
-              { key: 'view', label: 'Visualizar' },
-              { key: 'invoice', label: 'Emitir Nota Fiscal' },
-              { key: 'bling', label: 'Abrir no Bling' },
-              ...(record.situacao.valor === 'aberto' ? [{ key: 'cancel', label: 'Cancelar Pedido' }] : []),
-            ],
-            onClick: ({ key }) => console.log(`${key} ${record.numero}`),
-          }}
-          trigger={['click']}
-        >
-          <Button type="text" size="small" icon={<EllipsisOutlined />} />
-        </Dropdown>
-      ),
+      title: 'Ações', key: 'actions', width: 160, fixed: 'right',
+      render: (_, record) => {
+        const nfLoading = actionLoading === `nfe-${record.id}`;
+        const dsLoading = actionLoading === `dslite-${record.id}`;
+        return (
+          <Space size={4}>
+            {!record.notaFiscal?.emitida && record.situacao.valor !== 'cancelado' && (
+              <Button
+                size="small"
+                type="primary"
+                ghost
+                icon={nfLoading ? <LoadingOutlined /> : <FileTextOutlined />}
+                loading={nfLoading}
+                onClick={() => emitirNFe(record)}
+                style={{ fontSize: 12 }}
+              >
+                NF-e
+              </Button>
+            )}
+            {!record.dslite_id && record.situacao.valor === 'aberto' && (
+              <Button
+                size="small"
+                icon={dsLoading ? <LoadingOutlined /> : <CarOutlined />}
+                loading={dsLoading}
+                onClick={() => criarPedidoDslite(record)}
+                style={{ fontSize: 12 }}
+              >
+                DSLite
+              </Button>
+            )}
+            {record.notaFiscal?.numero && (
+              <Tag color={record.notaFiscal.emitida ? 'green' : 'orange'} style={{ margin: 0, fontSize: 11 }}>
+                {record.notaFiscal.numero}
+              </Tag>
+            )}
+          </Space>
+        );
+      },
     },
   ];
 
   return (
     <div>
-      <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Pedidos - Bling</Title>
+      {contextHolder}
+      <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Pedidos</Title>
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
         <Row gutter={[8, 8]} align="middle">
           <Col>

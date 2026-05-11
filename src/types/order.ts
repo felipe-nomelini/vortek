@@ -31,4 +31,5 @@ export interface Order {
   } | null;
   rastreio: string | null;
   lucro: number;
+  dslite_id: string | null;
 }

@@ -4,91 +4,71 @@
 
 ---
 
-## Fase 1 — Backend + Banco de Dados (Fundação)
-
-- Servidor Node/Express (ou API routes do Next.js)
-- Supabase + PostgreSQL
-- Tabelas: `produtos`, `pedidos`, `clientes`, `fornecedores`, `usuarios`, `configuracoes`
-- Autenticação JWT (Supabase Auth)
-- CRUD básico de todas as entidades
-
----
-
 ## Fase 1 — Backend + Banco de Dados ✅ (Concluída)
 
 - ✅ Supabase configurado (12 tabelas + RLS + triggers)
 - ✅ Admin `admin@vortek.shop` / `Vortek@123` criado
 - ✅ API routes de CRUD (produtos, pedidos, clientes, configuracoes)
-- ✅ Login + middlware de autenticação
+- ✅ Login + middleware de autenticação
 - ✅ Build 24 páginas / 0 erros
 
 ---
 
 ## Fase 2 — Integrações Individuais (Em andamento)
 
-### Estrutura da implementação
+### Fluxo Final (sem Bling)
 
 ```
-src/app/api/integracao/
-├── ml/
-│   ├── connect/route.ts     → GET → redirect para auth ML
-│   └── callback/route.ts    → GET → recebe code, troca por token, salva no DB
-├── bling/
-│   ├── connect/route.ts     → GET → redirect para auth Bling
-│   └── callback/route.ts    → GET → recebe code, troca por token, salva no DB
-│
-src/services/integration.ts  → refresh automático + helpers
+Mercado Livre ←→ Vortek ERP ←→ DSLite (dropshipping + catálogo)
+                              ←→ Brasil NFe (NF-e R$ 49,90/mês)
 ```
 
-### 🔵 Mercado Livre OAuth2
+### Serviços Criados
 
-**Fluxo:**
-1. Usuário clica "Conectar" → redirect para `https://auth.mercadolivre.com.br/authorization?response_type=code&client_id={APP_ID}&redirect_uri={CALLBACK_URL}`
-2. ML redireciona para `{CALLBACK_URL}?code={CODE}`
-3. Servidor troca code por token: `POST https://api.mercadolibre.com/oauth/token`
-4. Salva `access_token`, `refresh_token`, `user_id`, `expires_in` na tabela `integracoes`
-
-**Refresh automático:** Antes de cada requisição, verifica se token expirou. Se sim, usa `refresh_token` para renovar.
-
-**Rate limit:** ~10 req/min — fila com backoff nas sincronizações.
-
-| Funcionalidade | Complexidade | Endpoint |
-|---|---|---|
-| OAuth2 (connect + callback + refresh) | 🔴 Alta | `/oauth/token` |
-| Listar anúncios | 🟡 Média | `GET /users/{id}/items/search` |
-| Criar anúncio | 🔴 Alta | `POST /items` |
-| Ativar/Pausar anúncio | 🟢 Baixa | `PUT /items/{id}` |
-| Atualizar preço | 🟢 Baixa | `PUT /items/{id}` |
-| Sincronizar pedidos | 🟡 Média | `GET /orders/search` |
-| Sincronizar visitas/vendidos | 🟡 Média | POST em lote |
-| Responder perguntas | 🟢 Baixa | `POST /answers` |
-| Gerenciar reclamações | 🟡 Média | `POST /post-purchase/v1/claims` |
-| Reputação | 🟢 Baixa | `GET /users/me` |
-| Webhooks | 🟡 Média | Notificações em tempo real |
-
-### 🟢 Bling V3 OAuth2
-
-**Fluxo:**
-1. Usuário clica "Conectar" → redirect para `https://www.bling.com.br/Api/v3/oauth/authorize?response_type=code&client_id={CLIENT_ID}`
-2. Bling redireciona para `{CALLBACK_URL}?code={CODE}`
-3. Servidor troca code por token: `POST https://api.bling.com.br/Api/v3/oauth/token` com `Authorization: Basic base64(client_id:client_secret)`
-4. Salva tokens na tabela `integracoes`
-
-**Refresh:** Mesmo endpoint com `grant_type=refresh_token`.
-
-| Funcionalidade | Complexidade | Endpoint |
-|---|---|---|
-| OAuth2 (connect + callback) | 🔴 Alta | `/Api/v3/oauth/token` |
-| Sincronizar produtos | 🟡 Média | `GET /produtos` |
-| Atualizar preço | 🟢 Baixa | `PATCH /produtos/{id}` |
-| Ativar/Desativar produto | 🟢 Baixa | `PATCH /produtos/{id}/situacao` |
-| Sincronizar pedidos | 🟡 Média | `GET /pedidos/vendas` |
-| Sincronizar clientes | 🟡 Média | `GET /contatos` |
+| Arquivo | Função |
+|---|---|
+| `src/services/dslite.ts` | Catálogo, preço/estoque, pedidos dropshipping |
+| `src/services/nfe.ts` | Emitir/cancelar/consultar NF-e via Brasil NFe (SDK `brasilnfe`) |
 
 ### 🟠 DSLite
 
-- Token fixo: `Authorization: Bearer {token}`
-- Armazenar na tabela `integracoes` com `tipo: 'dslite'`
+**Configuração:** Token fixo no header `Token:` (armazenado em `integracoes` tipo `dslite`)
+
+| Funcionalidade | Endpoint API | Rota Vortek |
+|---|---|---|
+| Sync catálogo | `GET /CrossDocking/Catalogo/{fornecedorId}` | `POST /api/sync/catalogo` |
+| Sync preço/estoque | `GET /CrossDocking/PrecoEstoque/{fornecedorId}` | `POST /api/sync/preco-estoque` |
+| Mapear produto (DE/PARA) | `PUT /CrossDocking/Catalogo/{fornecedorId}/{produtoId}/{produtoIdEmpresa}` | — (via service) |
+| Criar pedido dropshipping | `POST /DropShipping/fornecedor/{id}/transportadora/{id}` | `POST /api/dslite/pedido` |
+| Consultar status pedido | `GET /DropShipping/{id}` | `GET /api/dslite/pedido/status?dsid={id}` |
+
+### 🟢 Brasil NFe
+
+**Configuração:** Token fixo no header `Token:` (armazenado em `integracoes` tipo `brasilnfe`)
+**Preço:** R$ **49,90**/mês — emissão **ilimitada** NF-e (modelo 55)
+
+| Funcionalidade | Endpoint API | Rota Vortek |
+|---|---|---|
+| Emitir NF-e | `POST /services/fiscal/EnviarNotaFiscal` | `POST /api/nfe/emitir` |
+| Cancelar NF-e | `POST /services/fiscal/CancelarNotaFiscal` | `POST /api/nfe/cancelar` |
+| Status SEFAZ | `POST /services/statusSefaz` | `GET /api/nfe/status` |
+| Carta de Correção | `POST /services/fiscal/CartaCorrecao` | — |
+| SDK oficial | `npm install brasilnfe` (TypeScript) | ✅ Instalado |
+
+### 🔵 Mercado Livre OAuth2 (já implementado)
+
+- ✅ OAuth2 (connect + callback + refresh)
+- ✅ Sincronizar anúncios
+- ✅ Sincronizar pedidos
+- 🔜 Criar/Ativar/Pausar anúncio
+- 🔜 Responder perguntas
+- 🔜 Webhooks
+
+### 🟢 Bling V3 (depreciado — manter apenas para referência)
+
+- ⚠️ Bloqueado por Cloudflare no VPS
+- ⚠️ Refresh token consumido (single-use) — requer re-autorização
+- ⏳ Será removido quando migração para DSLite + Brasil NFe estiver completa
 
 ### 🔵 Webhooks do Mercado Livre
 
@@ -96,52 +76,13 @@ src/services/integration.ts  → refresh automático + helpers
 
 **Registrar no ML:** `https://app.vortek.shop/api/webhooks/ml/notifications`
 
-O ML envia POST com:
-```json
-{ "topic": "orders", "resource": "https://api.mercadolibre.com/orders/123456" }
-```
-
 **Topics:** `orders`, `questions`, `claims`, `payments`, `items`
-
-Após receber, o servidor busca o recurso completo usando o token salvo e dispara a sincronização correspondente (Job Queue futuramente).
 
 ---
 
-## Fase 3 — Job Queue + Feedback Visual
+## Fase 3 — Job Queue + Feedback Visual ✅ (Concluída)
 
-**Status: ✅ Estrutura criada (ProgressModal, jobs API, job-queue service)**
-
-### Arquitetura
-- Backend: **Job Queue** (in-memory + persistência PostgreSQL)
-- Frontend: **Polling** (`GET /api/jobs/{id}`)
-- Cada job tem: `id`, `status`, `progresso`, `log[]`, `cancellable`
-
-### Modal de Progresso (Componente Criado)
-
-```
-┌────────────────────────────────────────────────┐
-│  🔄 Sincronizando Produtos com Bling            │
-│                                                  │
-│  ████████████████░░░░░░░░░░░░░░  45%             │
-│  Processando: 45 de 100 produtos                 │
-│                                                  │
-│  ┌─ Log ───────────────────────────────────┐    │
-│  │ ✅ FONE-001 → Preço atualizado          │    │
-│  │ ✅ CAPA-002 → Preço atualizado          │    │
-│  │ ❌ MOUSE-005 → Erro: rate limit (tent  │    │
-│  │   ativa 2 em 5s)                        │    │
-│  │ ⏳ CAB-008 → Aguardando...              │    │
-│  └─────────────────────────────────────────┘    │
-│                                                  │
-│  [⏹️  Cancelar]                     [Fechar]     │
-└────────────────────────────────────────────────┘
-```
-
-### Funcionalidades da Modal
-- Barra de progresso (0-100%)
-- Log em tempo real com ícones (✅ ❌ ⏳)
-- Cancelar (mata o job no backend)
-- Sumário ao final (X concluídos, Y erros, Z cancelados)
+- ✅ Estrutura criada (ProgressModal, jobs API, job-queue service)
 
 ---
 
@@ -149,120 +90,76 @@ Após receber, o servidor busca o recurso completo usando o token salvo e dispar
 
 **Status: ⏳ A implementar**
 
-As sincronizações atuais (Bling produtos, ML anúncios, ML pedidos) são manuais — exigem chamada `curl`. Para automatizar, existem 3 opções:
+| Tarefa | Frequência | Gatilho |
+|---|---|---|
+| Sync catálogo DSLite → Vortek | Diária (6h) | Cron ou botão |
+| Sync preço/estoque DSLite | Diária (6h) | Cron ou botão |
+| Sync ML pedidos | A cada 15min | Cron + webhook |
+| Criar pedido DSLite | Automático (ao receber pedido ML pago) | Evento |
+| Emitir NF-e | Manual (botão) ou automático | Ação usuário |
 
-### Opção 1 — Cron Job no VPS (imediatamente)
-
-Script que roda em horários fixos via crontab do sistema:
-
-```cron
-# Sincronizar produtos do Bling todos os dias às 6h
-0 6 * * * curl -X POST https://app.vortek.shop/api/sync/produtos \
-  -H "x-api-key: ..."
-
-# Sincronizar anúncios do ML (6 páginas) às 6h30
-30 6 * * * /opt/vortek/sync-anuncios.sh
-```
-
-**Prós:** Simples, implementa em minutos no VPS  
-**Contras:** Sem feedback visual, sem logs centralizados
-
-### Opção 2 — Botão "Sincronizar Agora" no frontend
-
-Adicionar botão de sync na página de Configurações ou Dashboard que:
-1. Dispara o sync via API
-2. Abre o **ProgressModal** com barra + log
-3. Acompanha o progresso via polling (`GET /api/jobs/{id}`)
-
-**Prós:** Feedback visual completo, usuário controla  
-**Contras:** Ação manual, não substitui sincronização automática
-
-### Opção 3 — Agendamento via Job Queue (completo)
-
-Usar Bull + Redis para agendar syncs automáticos:
-- Cron interno dispara jobs programados
-- Jobs rodam em background com progresso no banco
-- Logs e erros disponíveis na interface
-
-**Prós:** Completo, auditável, escalável  
-**Contras:** Requer Redis no VPS
-
-### Recomendação
+### Opções de implementação
 
 | Curto prazo | Médio prazo | Longo prazo |
 |---|---|---|
-| Opção 1 (cron) + Opção 2 (botão) | Opção 3 (Job Queue com Redis) | Agendamento configurável pelo usuário |
+| Cron job no VPS + botão "Sync Now" | Job Queue com Redis | Agendamento configurável pelo usuário |
 
 ---
 
 ## Fase 4 — Funcionalidades Completas
 
-Cada ação implementada endpoint por endpoint, substituindo os placeholders (`console.log`):
-
-- Atualizar preço no Bling → `PATCH /produtos/{id}`
-- Ativar/Desativar no Bling → `PATCH /produtos/{id}/situacao`
-- Criar anúncio no ML → `POST /items`
-- Atualizar preço no ML → `PUT /items/{id}`
-- Responder pergunta → `POST /answers`
-- Sincronizar catálogo completo → Job queue
-- Sincronizar pedidos (ML + Bling) → Job queue
-- Emitir nota fiscal → Requer certificado
+| Ação | API | Prioridade |
+|---|---|---|
+| Criar anúncio ML | `POST /items` | 🔴 Alta |
+| Ativar/Pausar anúncio ML | `PUT /items/{id}` | 🟡 Média |
+| Atualizar preço no ML | `PUT /items/{id}` | 🟡 Média |
+| Responder perguntas ML | `POST /answers` | 🟡 Média |
+| Mapear produto (DE/PARA) DSLite | `PUT /Catalogo/{id}/{produtoId}` | 🔴 Alta |
+| Emitir NF-e (botão na página de pedidos) | Brasil NFe | ✅ Implementado |
+| Cancelar NF-e (botão na página de pedidos) | Brasil NFe | 🔜 Pendente |
+| Criar pedido DSLite (botão na página de pedidos) | DSLite | ✅ Implementado |
 
 ---
 
 ## Fase 5 — Deploy no Easypanel
-
-### Preparar o repositório
-
-```bash
-cd /home/nomelini/projetos/vortek
-git init
-echo ".env.local" > .gitignore
-echo ".next" >> .gitignore
-echo "node_modules" >> .gitignore
-git add -A
-git commit -m "v0.1 - Setup inicial + Fase 2 OAuth integracoes"
-git branch -M main
-git remote add origin https://github.com/felipe-nomelini/vortek.git
-git push -u origin main
-```
-
-### Configurar no Easypanel
-
-| Etapa | Ação |
-|---|---|
-| 1. Novo projeto | Nome: `vortek` |
-| 2. + Service | Tipo: **App** |
-| 3. Fonte | GitHub → `felipe-nomelini/vortek` |
-| 4. Build | **Nixpacks** (automático, sem Dockerfile) |
-| 5. Variáveis | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `NEXT_PUBLIC_APP_URL` |
-| 6. Domínio | Configurar `app.vortek.shop` |
-| 7. Deploy | Clicar e aguardar (1-2 min) |
 
 ### Registrar redirect URIs
 
 | App | Redirect URI |
 |---|---|
 | **ML** | `https://app.vortek.shop/api/integracao/ml/callback` |
-| **Bling** | `https://app.vortek.shop/api/integracao/bling/callback` |
 
 ### Conectar
 
 1. Acessar `https://app.vortek.shop/login`
 2. Email: `admin@vortek.shop` / Senha: `Vortek@123`
-3. Configurações → Integrações → preencher credenciais → Conectar
+3. Configurações → Integrações → preencher credenciais
 
-### Desenvolvimento local (depois dos tokens salvos)
+### Migração do banco
 
-```bash
-npm run dev  # localhost:3000
+Após deploy, rodar a migration no SQL Editor do Supabase:
+
+```sql
+-- supabase/migrations/00002_nfe_dslite.sql
+alter type integracao_tipo add value if not exists 'brasilnfe';
+alter table public.pedidos add column if not exists nfe_chave text;
+alter table public.pedidos add column if not exists nfe_xml text;
+alter table public.pedidos add column if not exists nfe_danfe_url text;
+alter table public.pedidos add column if not exists nfe_protocolo text;
+alter table public.pedidos add column if not exists nfe_status text default 'pendente';
+alter table public.pedidos add column if not exists dslite_id text;
+alter table public.pedidos add column if not exists dslite_status text;
+alter table public.produtos add column if not exists dslite_fornecedor_id text;
+alter table public.produtos add column if not exists dslite_produto_id text;
+alter table public.produtos add column if not exists dslite_ultima_sync timestamptz;
+insert into public.integracoes (tipo, conectado) values ('brasilnfe', false) on conflict (tipo) do nothing;
 ```
 
 ---
 
 ## Notas Técnicas
 
-- **Rate limits apertados:** Especialmente no ML. Qualquer sync em massa precisa de fila com backoff, ou chamadas são rejeitadas. Usar Bull + Redis para gerenciar filas.
-- **Schemas mutáveis:** Bling e ML mudam schemas com frequência. Seguir o Protocolo de Consulta Obrigatória (MCP) do AGENTS.md — pesquisar documentação oficial antes de implementar qualquer endpoint.
-- **OAuth2 require servidor:** Callbacks precisam de endpoint público (`/api/ml/callback`, `/api/bling/callback`).
+- **Rate limits apertados:** Especialmente no ML. Qualquer sync em massa precisa de fila com backoff, ou chamadas são rejeitadas.
+- **SDK oficial:** `brasilnfe` (npm) mantido pela Brasil NFe, TypeScript nativo.
+- **DSLite auth:** Header `Token:` (fixo, sem OAuth).
 - **Ações em massa sempre com feedback:** Toda ação que processa múltiplos itens DEVE abrir a Modal de Progresso. Sem exceção.
