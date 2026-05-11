@@ -35,6 +35,7 @@ export async function POST(req: Request) {
     }
 
     const resultados: any[] = [];
+    const SKU_PREFIXOS: Record<string, string> = { '27': 'FJ', '39': 'NMC', '81': 'VO' };
 
     for (const fId of ids) {
       let page = 1;
@@ -56,8 +57,9 @@ export async function POST(req: Request) {
         const totalPaginas = Math.ceil(totalRegistros / apiPageSize);
 
         // Build batch payloads
+        const prefixo = SKU_PREFIXOS[String(fId)] || '';
         const batch = produtos.map((item) => ({
-          sku: item.produtoid_empresa || item.produtoid || `PROD-${item.produtoid}-${fId}`,
+          sku: prefixo + (item.produtoid_empresa || item.produtoid || `PROD-${item.produtoid}`),
           nome: item.titulo,
           marca: item.marca || null,
           fornecedor: fornName,

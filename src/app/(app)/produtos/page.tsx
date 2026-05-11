@@ -2,10 +2,10 @@
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import {
-  Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Space, Row, Col, Spin,
+  Input, Select, InputNumber, Button, Tag, Typography, Space, Row, Col, Spin,
 } from 'antd';
 import type { TableProps } from 'antd';
-import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
+import { SearchOutlined, LoadingOutlined } from '@ant-design/icons';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { formatCurrency, formatPercent } from '@/lib/format';
 import { useRouter } from 'next/navigation';
@@ -19,6 +19,12 @@ const mlStatusOptions: { value: MLStatus | ''; label: string }[] = [
   { value: 'ativo', label: 'Ativo' },
   { value: 'pausado', label: 'Pausado' },
   { value: 'sem_anuncio', label: 'Sem Anúncio' },
+];
+
+const estoqueOptions = [
+  { value: 'todos', label: 'Todos' },
+  { value: 'com_estoque', label: 'Com Estoque' },
+  { value: 'sem_estoque', label: 'Sem Estoque' },
 ];
 
 const priceFieldOptions = [
@@ -76,43 +82,36 @@ export default function ProductsPage() {
   const router = useRouter();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const res = await fetch('/api/produtos');
-        if (res.ok) {
-          const json = await res.json();
-          const data = json.data || [];
-          setProducts(data.map(mapDBtoProduct));
-        }
-      } catch {}
-      setLoading(false);
-    })();
-  }, []);
   const [search, setSearch] = useState('');
   const [filterMLStatus, setFilterMLStatus] = useState<MLStatus | ''>('');
   const [filterFornecedores, setFilterFornecedores] = useState<string[]>([]);
+  const [filterEstoque, setFilterEstoque] = useState<string>('todos');
   const [priceField, setPriceField] = useState<string>('cost');
   const [priceMin, setPriceMin] = useState<number | null>(null);
   const [priceMax, setPriceMax] = useState<number | null>(null);
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [customPrices, setCustomPrices] = useState<Record<string, number | null>>({});
 
-  const handlePriceChange = useCallback((productId: string, value: number | null) => {
-    setCustomPrices(prev => ({ ...prev, [productId]: value }));
+  const fetchProducts = useCallback(async (p: number, s: string) => {
+    setLoading(true);
+    try {
+      const params = new URLSearchParams({ page: String(p) });
+      if (s) params.set('search', s);
+      const res = await fetch(`/api/produtos?${params}`);
+      if (res.ok) {
+        const json = await res.json();
+        const data = json.data || [];
+        setProducts(data.map(mapDBtoProduct));
+        setTotal(json.total || 0);
+      }
+    } catch {}
+    setLoading(false);
   }, []);
 
-  const rows: ProductRow[] = useMemo(() => {
-    return products.map(p => {
-      const effectiveCustomPrice = p.customPrice !== null
-        ? p.customPrice
-        : (customPrices[p.id] !== undefined ? customPrices[p.id] : null);
-      const productWithPrice = { ...p, customPrice: effectiveCustomPrice };
-      const { displayPrice, profit } = computeDerived(productWithPrice);
-      return { key: p.id, product: productWithPrice, displayPrice, profit };
-    });
-  }, [products, customPrices]);
+  useEffect(() => {
+    fetchProducts(page, search);
+  }, [page, fetchProducts]);
 
   const fornecedorOptions = useMemo(() => {
     const set = new Set<string>();
@@ -122,14 +121,19 @@ export default function ProductsPage() {
     return Array.from(set).sort();
   }, [products]);
 
+  const rows: ProductRow[] = useMemo(() => {
+    return products.map(p => {
+      const { displayPrice, profit } = computeDerived(p);
+      return { key: p.id, product: p, displayPrice, profit };
+    });
+  }, [products]);
+
   const filtered = useMemo(() => {
     return rows.filter(r => {
-      if (search) {
-        const q = search.toLowerCase();
-        if (!r.product.name.toLowerCase().includes(q) && !r.product.sku.toLowerCase().includes(q)) return false;
-      }
       if (filterMLStatus && r.product.mlStatus !== filterMLStatus) return false;
       if (filterFornecedores.length > 0 && (!r.product.fornecedor || !filterFornecedores.includes(r.product.fornecedor))) return false;
+      if (filterEstoque === 'com_estoque' && r.product.stock <= 0) return false;
+      if (filterEstoque === 'sem_estoque' && r.product.stock > 0) return false;
       if (priceMin !== null || priceMax !== null) {
         let val: number;
         switch (priceField) {
@@ -143,23 +147,16 @@ export default function ProductsPage() {
       }
       return true;
     });
-  }, [rows, search, filterMLStatus, filterFornecedores, priceField, priceMin, priceMax]);
+  }, [rows, filterMLStatus, filterFornecedores, filterEstoque, priceField, priceMin, priceMax]);
 
-  const selectedProducts = useMemo(
-    () => filtered.filter(r => selectedRowKeys.includes(r.key)),
-    [filtered, selectedRowKeys],
-  );
-
-  const hasNoML = selectedProducts.some(r => r.product.mlStatus === 'sem_anuncio');
-  const showBulk = selectedRowKeys.length > 0;
-
-  const handleBulkAction = (action: string) => {
-    console.log(`Bulk ${action} for`, selectedRowKeys);
-  };
+  const handleSearch = useCallback(() => {
+    setPage(1);
+    fetchProducts(1, search);
+  }, [search, fetchProducts]);
 
   const columns: TableProps<ProductRow>['columns'] = [
     {
-      title: 'SKU', dataIndex: ['product', 'sku'], key: 'sku', width: 110,
+      title: 'SKU', dataIndex: ['product', 'sku'], key: 'sku', width: 130,
       sorter: (a, b) => a.product.sku.localeCompare(b.product.sku),
     },
     {
@@ -213,7 +210,12 @@ export default function ProductsPage() {
             size="small"
             style={{ width: 140 }}
             value={val ?? record.displayPrice}
-            onChange={v => handlePriceChange(record.product.id, v ?? null)}
+            onChange={v => {
+              const newProducts = products.map(p =>
+                p.id === record.product.id ? { ...p, customPrice: v ?? null } : p
+              );
+              setProducts(newProducts);
+            }}
             formatter={(v) => v !== undefined ? formatCurrency(typeof v === 'string' ? parseFloat(v) : v) : ''}
             parser={(v) => {
               if (!v) return 0;
@@ -239,27 +241,6 @@ export default function ProductsPage() {
         <Tag color={mlStatusColor[status]}>{mlStatusLabel[status]}</Tag>
       ),
     },
-    {
-      title: 'Ações', key: 'actions', width: 60, fixed: 'right',
-      render: (_, record) => {
-        const mlIsNone = record.product.mlStatus === 'sem_anuncio';
-        return (
-          <Dropdown
-            menu={{
-              items: [
-                ...(mlIsNone ? [{ key: 'createML', label: 'Criar anúncio no ML' }] : []),
-              ],
-              onClick: ({ key }) => {
-                if (key === 'createML') console.log('Criar anúncio ML', record.product.id);
-              },
-            }}
-            trigger={['click']}
-          >
-            <Button type="text" size="small" icon={<EllipsisOutlined />} />
-          </Dropdown>
-        );
-      },
-    },
   ];
 
   return (
@@ -273,9 +254,14 @@ export default function ProductsPage() {
               prefix={<SearchOutlined />}
               value={search}
               onChange={e => setSearch(e.target.value)}
+              onPressEnter={handleSearch}
               style={{ width: 220 }}
               allowClear
+              onClear={() => { setSearch(''); setPage(1); fetchProducts(1, ''); }}
             />
+          </Col>
+          <Col>
+            <Button onClick={handleSearch} size="small">Buscar</Button>
           </Col>
           <Col>
             <Select
@@ -294,11 +280,8 @@ export default function ProductsPage() {
               placeholder="Fornecedor"
               value={filterFornecedores}
               onChange={v => {
-                if (v.includes('__all__')) {
-                  setFilterFornecedores([]);
-                } else {
-                  setFilterFornecedores(v);
-                }
+                if (v.includes('__all__')) setFilterFornecedores([]);
+                else setFilterFornecedores(v);
               }}
               options={[
                 ...(filterFornecedores.length === 0 ? [{ value: '__all__', label: 'Todos' }] : []),
@@ -311,6 +294,14 @@ export default function ProductsPage() {
             />
           </Col>
           <Col>
+            <Select
+              value={filterEstoque}
+              onChange={v => setFilterEstoque(v)}
+              options={estoqueOptions}
+              style={{ width: 150 }}
+            />
+          </Col>
+          <Col>
             <Space.Compact>
               <Select value={priceField} onChange={setPriceField} options={priceFieldOptions} style={{ width: 130 }} />
               <InputNumber placeholder="Mín" value={priceMin} onChange={v => setPriceMin(v ?? null)} style={{ width: 100 }} />
@@ -319,42 +310,21 @@ export default function ProductsPage() {
           </Col>
         </Row>
       </div>
-      {showBulk && (
-        <div
-          style={{
-            background: '#141414',
-            border: '1px solid #1677ff',
-            borderRadius: 8,
-            padding: '10px 16px',
-            marginBottom: 16,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 12,
-          }}
-        >
-          <span style={{ color: '#a0a0a0', fontSize: 14 }}>
-            <strong style={{ color: '#e0e0e0' }}>{selectedRowKeys.length}</strong> produto{selectedRowKeys.length > 1 ? 's' : ''} selecionado{selectedRowKeys.length > 1 ? 's' : ''}
-          </span>
-          <div style={{ width: 1, height: 20, background: '#303030' }} />
-          {hasNoML && (
-            <Button size="small" onClick={() => handleBulkAction('createML')}>
-              Criar anúncio no ML
-            </Button>
-          )}
-          <div style={{ flex: 1 }} />
-          <Button size="small" onClick={() => setSelectedRowKeys([])} type="text" style={{ color: '#ff4d4f' }}>
-            Limpar seleção
-          </Button>
-        </div>
-      )}
       <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
         <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
           <ResizableTable<ProductRow>
             storageKey="produtos"
             dataSource={filtered}
             columns={columns}
-            rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
-            pagination={false}
+            rowKey="key"
+            pagination={{
+              current: page,
+              pageSize: 100,
+              total,
+              showSizeChanger: false,
+              showTotal: (t) => `${t} produtos`,
+              onChange: (p) => setPage(p),
+            }}
             scroll={{ x: 1200 }}
             style={{ background: 'transparent' }}
             size="small"
