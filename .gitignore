@@ -4,3 +4,4 @@ node_modules
 *.log
 package/
 *.tgz
+supabase/.temp/

@@ -24,7 +24,7 @@ export async function GET(request: Request) {
 
     const basicAuth = Buffer.from(`${integracao.client_id}:${integracao.client_secret}`).toString('base64');
 
-    const targetUrl = process.env.BLING_PROXY_URL || 'https://koewhtgkakddifhxdmbs.supabase.co/functions/v1/bling-proxy';
+    const targetUrl = 'https://api.bling.com.br/Api/v3/oauth/token';
 
     const tokenResponse = await fetch(targetUrl, {
       method: 'POST',
