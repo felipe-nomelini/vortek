@@ -244,7 +244,7 @@ export default function AnunciosPage() {
             columns={columns}
             rowKey="id"
             rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
-            pagination={{ pageSize: 20, showSizeChanger: true, showTotal: t => `${t} anúncios` }}
+            pagination={false}
             scroll={{ x: 1200 }}
             style={{ background: 'transparent' }}
             size="small"
