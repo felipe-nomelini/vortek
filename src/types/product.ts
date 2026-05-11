@@ -5,6 +5,7 @@ export interface Product {
   sku: string;
   name: string;
   brand: string;
+  fornecedor: string | null;
   stock: number;
   cost: number;
   mlFee: number;

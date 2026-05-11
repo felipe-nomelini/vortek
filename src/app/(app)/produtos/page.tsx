@@ -53,6 +53,7 @@ function mapDBtoProduct(item: any): Product {
     sku: item.sku,
     name: item.nome,
     brand: item.marca || '',
+    fornecedor: item.fornecedor || null,
     stock: item.estoque || 0,
     cost: item.custo || 0,
     mlFee: item.ml_fee || 0.15,
@@ -91,6 +92,7 @@ export default function ProductsPage() {
   }, []);
   const [search, setSearch] = useState('');
   const [filterMLStatus, setFilterMLStatus] = useState<MLStatus | ''>('');
+  const [filterFornecedores, setFilterFornecedores] = useState<string[]>([]);
   const [priceField, setPriceField] = useState<string>('cost');
   const [priceMin, setPriceMin] = useState<number | null>(null);
   const [priceMax, setPriceMax] = useState<number | null>(null);
@@ -112,6 +114,14 @@ export default function ProductsPage() {
     });
   }, [products, customPrices]);
 
+  const fornecedorOptions = useMemo(() => {
+    const set = new Set<string>();
+    for (const p of products) {
+      if (p.fornecedor) set.add(p.fornecedor);
+    }
+    return Array.from(set).sort();
+  }, [products]);
+
   const filtered = useMemo(() => {
     return rows.filter(r => {
       if (search) {
@@ -119,6 +129,7 @@ export default function ProductsPage() {
         if (!r.product.name.toLowerCase().includes(q) && !r.product.sku.toLowerCase().includes(q)) return false;
       }
       if (filterMLStatus && r.product.mlStatus !== filterMLStatus) return false;
+      if (filterFornecedores.length > 0 && (!r.product.fornecedor || !filterFornecedores.includes(r.product.fornecedor))) return false;
       if (priceMin !== null || priceMax !== null) {
         let val: number;
         switch (priceField) {
@@ -132,7 +143,7 @@ export default function ProductsPage() {
       }
       return true;
     });
-  }, [rows, search, filterMLStatus, priceField, priceMin, priceMax]);
+  }, [rows, search, filterMLStatus, filterFornecedores, priceField, priceMin, priceMax]);
 
   const selectedProducts = useMemo(
     () => filtered.filter(r => selectedRowKeys.includes(r.key)),
@@ -162,6 +173,13 @@ export default function ProductsPage() {
           {name}
         </a>
       ),
+    },
+    {
+      title: 'Fornecedor', dataIndex: ['product', 'fornecedor'], key: 'fornecedor', width: 140,
+      sorter: (a, b) => (a.product.fornecedor || '').localeCompare(b.product.fornecedor || ''),
+      render: (v: string | null) => v
+        ? <Tag color="default">{v}</Tag>
+        : <span style={{ color: '#666' }}>—</span>,
     },
     {
       title: 'Estoque', dataIndex: ['product', 'stock'], key: 'stock', width: 90,
@@ -268,6 +286,28 @@ export default function ProductsPage() {
               style={{ width: 150 }}
               allowClear
               onClear={() => setFilterMLStatus('')}
+            />
+          </Col>
+          <Col>
+            <Select
+              mode="multiple"
+              placeholder="Fornecedor"
+              value={filterFornecedores}
+              onChange={v => {
+                if (v.includes('__all__')) {
+                  setFilterFornecedores([]);
+                } else {
+                  setFilterFornecedores(v);
+                }
+              }}
+              options={[
+                ...(filterFornecedores.length === 0 ? [{ value: '__all__', label: 'Todos' }] : []),
+                ...fornecedorOptions.map(f => ({ value: f, label: f })),
+              ]}
+              style={{ minWidth: 180, maxWidth: 250 }}
+              maxTagCount={2}
+              allowClear
+              onClear={() => setFilterFornecedores([])}
             />
           </Col>
           <Col>

@@ -12,10 +12,18 @@ export async function POST(req: Request) {
 
     const client = createServiceClient();
 
+    // Build map of fornecedorId -> apelido
+    const fornecedores = await listarFornecedores();
+    const fornecedorMap = new Map<number, string>();
+    if (fornecedores) {
+      for (const f of fornecedores) {
+        fornecedorMap.set(f.id, f.apelido);
+      }
+    }
+
     // If no fornecedorIds provided, discover all active ones
     let ids = fornecedorIds;
     if (ids.length === 0) {
-      const fornecedores = await listarFornecedores();
       if (!fornecedores || fornecedores.length === 0) {
         return NextResponse.json({ error: 'Nenhum fornecedor encontrado' }, { status: 502 });
       }
@@ -61,6 +69,7 @@ export async function POST(req: Request) {
             gtin: item.ean11 || null,
             ncm: item.ncm || null,
             categoria: item.categoria_nome || null,
+            fornecedor: fornecedorMap.get(Number(fId)) || null,
             dslite_fornecedor_id: String(fId),
             dslite_produto_id: String(item.produtoid),
             dslite_ultima_sync: new Date().toISOString(),
