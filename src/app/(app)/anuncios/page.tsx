@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, Spin } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
+import QualidadeModal from '@/components/QualidadeModal';
 import type { TableProps } from 'antd';
 import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
 import { formatCurrency } from '@/lib/format';
@@ -22,7 +23,8 @@ interface Anuncio {
   precoML: number;
   vendidos: number;
   visitas: number;
-  saude: number;
+  qualidade: number;
+  qualidadeObj?: { total: number; itens: { nome: string; ok: boolean; pontos: number; max: number }[]; dica: string };
   status: ListingStatus;
   catalogo: boolean;
 }
@@ -39,29 +41,18 @@ const statusOptions = [
   { value: 'pausado', label: 'Pausado' },
 ];
 
-function healthColor(score: number): string {
-  if (score >= 80) return '#52c41a';
-  if (score >= 50) return '#faad14';
-  return '#ff4d4f';
-}
-
-function healthBg(score: number): string {
-  if (score >= 80) return '#52c41a1A';
-  if (score >= 50) return '#faad141A';
-  return '#ff4d4f1A';
-}
 
 const mockAnuncios: Anuncio[] = [
-  { id: 'MLB1001', sku: 'FONE-001', produto: 'Fone Bluetooth X1', tipo: 'premium', precoBling: 59.90, precoML: 79.90, vendidos: 23, visitas: 320, saude: 92, status: 'ativo', catalogo: true },
-  { id: 'MLB1002', sku: 'CAPA-002', produto: 'Capa Silicone iPhone 15', tipo: 'premium', precoBling: 29.90, precoML: 39.90, vendidos: 45, visitas: 580, saude: 88, status: 'ativo', catalogo: true },
-  { id: 'MLB1003', sku: 'CAR-003', produto: 'Carregador USB-C 20W', tipo: 'classico', precoBling: 39.90, precoML: 49.90, vendidos: 12, visitas: 120, saude: 45, status: 'pausado', catalogo: false },
-  { id: 'MLB1004', sku: 'PEL-004', produto: 'Película Premium Z10', tipo: 'premium', precoBling: 14.90, precoML: 24.90, vendidos: 78, visitas: 890, saude: 76, status: 'ativo', catalogo: true },
-  { id: 'MLB1005', sku: 'MOUSE-005', produto: 'Mouse Gamer RGB', tipo: 'classico', precoBling: 89.90, precoML: 0, vendidos: 0, visitas: 0, saude: 0, status: 'pausado', catalogo: false },
-  { id: 'MLB1006', sku: 'TEC-006', produto: 'Teclado Mecânico TKL', tipo: 'premium', precoBling: 149.90, precoML: 179.90, vendidos: 8, visitas: 210, saude: 71, status: 'ativo', catalogo: true },
-  { id: 'MLB1007', sku: 'MON-007', produto: 'Suporte Articulado Monitor', tipo: 'classico', precoBling: 99.90, precoML: 119.90, vendidos: 5, visitas: 95, saude: 55, status: 'pausado', catalogo: false },
-  { id: 'MLB1008', sku: 'CAB-008', produto: 'Cabo HDMI 2.1 2m', tipo: 'classico', precoBling: 34.90, precoML: 44.90, vendidos: 15, visitas: 180, saude: 35, status: 'pausado', catalogo: false },
-  { id: 'MLB1009', sku: 'ADAP-009', produto: 'Adaptador Bluetooth 5.3', tipo: 'classico', precoBling: 24.90, precoML: 34.90, vendidos: 22, visitas: 260, saude: 82, status: 'ativo', catalogo: true },
-  { id: 'MLB1010', sku: 'CAIXA-010', produto: 'Caixa Som Portátil 20W', tipo: 'premium', precoBling: 69.90, precoML: 89.90, vendidos: 18, visitas: 310, saude: 90, status: 'ativo', catalogo: true },
+  { id: 'MLB1001', sku: 'FONE-001', produto: 'Fone Bluetooth X1', tipo: 'premium', precoBling: 59.90, precoML: 79.90, vendidos: 23, visitas: 320, qualidade: 92, qualidadeObj: undefined, status: 'ativo', catalogo: true },
+  { id: 'MLB1002', sku: 'CAPA-002', produto: 'Capa Silicone iPhone 15', tipo: 'premium', precoBling: 29.90, precoML: 39.90, vendidos: 45, visitas: 580, qualidade: 88, qualidadeObj: undefined, status: 'ativo', catalogo: true },
+  { id: 'MLB1003', sku: 'CAR-003', produto: 'Carregador USB-C 20W', tipo: 'classico', precoBling: 39.90, precoML: 49.90, vendidos: 12, visitas: 120, qualidade: 45, qualidadeObj: undefined, status: 'pausado', catalogo: false },
+  { id: 'MLB1004', sku: 'PEL-004', produto: 'Película Premium Z10', tipo: 'premium', precoBling: 14.90, precoML: 24.90, vendidos: 78, visitas: 890, qualidade: 76, qualidadeObj: undefined, status: 'ativo', catalogo: true },
+  { id: 'MLB1005', sku: 'MOUSE-005', produto: 'Mouse Gamer RGB', tipo: 'classico', precoBling: 89.90, precoML: 0, vendidos: 0, visitas: 0, qualidade: 0, qualidadeObj: undefined, status: 'pausado', catalogo: false },
+  { id: 'MLB1006', sku: 'TEC-006', produto: 'Teclado Mecânico TKL', tipo: 'premium', precoBling: 149.90, precoML: 179.90, vendidos: 8, visitas: 210, qualidade: 71, qualidadeObj: undefined, status: 'ativo', catalogo: true },
+  { id: 'MLB1007', sku: 'MON-007', produto: 'Suporte Articulado Monitor', tipo: 'classico', precoBling: 99.90, precoML: 119.90, vendidos: 5, visitas: 95, qualidade: 55, qualidadeObj: undefined, status: 'pausado', catalogo: false },
+  { id: 'MLB1008', sku: 'CAB-008', produto: 'Cabo HDMI 2.1 2m', tipo: 'classico', precoBling: 34.90, precoML: 44.90, vendidos: 15, visitas: 180, qualidade: 35, qualidadeObj: undefined, status: 'pausado', catalogo: false },
+  { id: 'MLB1009', sku: 'ADAP-009', produto: 'Adaptador Bluetooth 5.3', tipo: 'classico', precoBling: 24.90, precoML: 34.90, vendidos: 22, visitas: 260, qualidade: 82, qualidadeObj: undefined, status: 'ativo', catalogo: true },
+  { id: 'MLB1010', sku: 'CAIXA-010', produto: 'Caixa Som Portátil 20W', tipo: 'premium', precoBling: 69.90, precoML: 89.90, vendidos: 18, visitas: 310, qualidade: 90, qualidadeObj: undefined, status: 'ativo', catalogo: true },
 ];
 
 export default function AnunciosPage() {
@@ -75,6 +66,7 @@ export default function AnunciosPage() {
   const [mlMin, setMlMin] = useState<number | null>(null);
   const [mlMax, setMlMax] = useState<number | null>(null);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const [modalQualidade, setModalQualidade] = useState<{ open: boolean; score: number; itens: any[]; dica: string; titulo: string }>({ open: false, score: 0, itens: [], dica: '', titulo: '' });
 
   useEffect(() => {
     (async () => {
@@ -91,7 +83,8 @@ export default function AnunciosPage() {
             precoML: item.preco_ml || 0,
             vendidos: item.vendidos || 0,
             visitas: item.visitas || 0,
-            saude: item.saude || 0,
+            qualidade: item.qualidade || 0,
+            qualidadeObj: item.qualidade_info || undefined,
             status: item.status || 'ativo',
             catalogo: item.catalogo || false,
           })));
@@ -151,17 +144,26 @@ export default function AnunciosPage() {
       sorter: (a, b) => a.visitas - b.visitas,
     },
     {
-      title: 'Saúde', dataIndex: 'saude', key: 'saude', width: 90,
-      sorter: (a, b) => a.saude - b.saude,
-      render: (v: number) => (
-        <div style={{
-          display: 'inline-flex', alignItems: 'center', gap: 6,
-          padding: '2px 8px', borderRadius: 4,
-          background: healthBg(v), color: healthColor(v),
-          fontWeight: 600, fontSize: 13,
-        }}>
-          {v}%
-        </div>
+      title: 'Qualidade', dataIndex: 'qualidade', key: 'qualidade', width: 100,
+      sorter: (a, b) => a.qualidade - b.qualidade,
+      render: (v: number, record: Anuncio) => (
+        <a
+          onClick={() => {
+            const obj = record.qualidadeObj;
+            setModalQualidade({
+              open: true,
+              score: v,
+              itens: obj?.itens || [],
+              dica: obj?.dica || '',
+              titulo: record.produto,
+            });
+          }}
+          style={{ cursor: 'pointer' }}
+        >
+          <Tag color={v >= 80 ? 'green' : v >= 50 ? 'orange' : 'red'} style={{ cursor: 'pointer', fontWeight: 600 }}>
+            {v}%
+          </Tag>
+        </a>
       ),
     },
     {
@@ -249,6 +251,14 @@ export default function AnunciosPage() {
           />
         </div>
       </Spin>
+      <QualidadeModal
+        open={modalQualidade.open}
+        onClose={() => setModalQualidade(p => ({ ...p, open: false }))}
+        score={modalQualidade.score}
+        itens={modalQualidade.itens}
+        dica={modalQualidade.dica}
+        titulo={modalQualidade.titulo}
+      />
     </div>
   );
 }
