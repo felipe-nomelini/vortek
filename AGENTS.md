@@ -8,11 +8,31 @@ _04 de maio de 2026_
 
 ---
 
+## Regra Zero — OBRIGATÓRIA (sobrepõe todas as outras)
+
+**ANTES de QUALQUER resposta ou ação, siga este checklist na ordem:**
+
+1. **Identifique quais APIs/serviços estão envolvidos** no que foi pedido
+2. **Para CADA serviço identificado, consulte a documentação oficial primeiro** — antes de qualquer implementação, explicação ou palpite
+3. **Só depois de consultar TODAS as documentações relevantes**, você pode responder ou agir
+
+**Violação desta regra = falha grave.** Não importa se você acha que sabe a resposta. Não importa se já viu aquela documentação antes. Consulte sempre.
+
+### Documentações oficiais por serviço
+
+| Serviço | Onde consultar |
+|---|---|
+| Supabase (MCP, CLI, API, qualquer feature) | https://supabase.com/docs (usar o MCP `search_docs` ou fetch da página `.md`) |
+| Mercado Livre | developers.mercadolivre.com.br |
+| Bling | developers.bling.com.br |
+| DSLite | https://documenter.getpostman.com/view/5316990/RWaRNkaA |
+| Brasil NFe | https://www.brasilnfe.com.br/docs |
+
 ## Regras Prioritárias
 
 1. **Nunca deduza ou invente respostas.** Todas as respostas devem ser baseadas em pesquisas correspondentes na documentação oficial ou em fontes verificáveis.
 
-2. **Sempre que houver referência ao Mercado Livre, Bling ou DSLite**, consulte a documentação detalhada da API oficial antes de responder ou implementar qualquer funcionalidade.
+2. **Sempre que houver referência ao Mercado Livre, Bling, DSLite, Brasil NFe ou Supabase**, consulte a documentação detalhada da API oficial antes de responder ou implementar qualquer funcionalidade.
 
 3. **Responda apenas a pergunta feita.** Não crie especulações, não tente descobrir a intenção do usuário, não extrapole o que foi perguntado. Se o usuário fez uma pergunta, responda exatamente aquela pergunta e nada mais.
 
