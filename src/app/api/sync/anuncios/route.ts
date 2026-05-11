@@ -43,6 +43,8 @@ export async function POST(request: Request) {
       status: item.status === 'active' ? 'ativo' : item.status === 'paused' ? 'pausado' : 'sem_anuncio',
       thumbnail: item.thumbnail,
       permalink: item.permalink,
+      saude: item.health != null ? Math.round(item.health * 100) : null,
+      catalogo: item.catalog_listing === true,
     }, { onConflict: 'ml_item_id' });
 
     salvos++;
