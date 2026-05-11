@@ -2,28 +2,28 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 
 export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const code = searchParams.get('code');
-  const error = searchParams.get('error');
-
-  if (error || !code) {
-    return NextResponse.json({ erro: 'Autorização negada ou código ausente' }, { status: 400 });
-  }
-
-  const serviceClient = createServiceClient();
-  const { data: integracao } = await serviceClient
-    .from('integracoes')
-    .select('*')
-    .eq('tipo', 'bling')
-    .single();
-
-  if (!integracao?.client_id || !integracao?.client_secret) {
-    return NextResponse.json({ erro: 'Credenciais do Bling não configuradas' }, { status: 400 });
-  }
-
-  const basicAuth = Buffer.from(`${integracao.client_id}:${integracao.client_secret}`).toString('base64');
-
   try {
+    const { searchParams } = new URL(request.url);
+    const code = searchParams.get('code');
+    const error = searchParams.get('error');
+
+    if (error || !code) {
+      return NextResponse.json({ erro: 'Autorização negada ou código ausente' }, { status: 400 });
+    }
+
+    const serviceClient = createServiceClient();
+    const { data: integracao } = await serviceClient
+      .from('integracoes')
+      .select('*')
+      .eq('tipo', 'bling')
+      .single();
+
+    if (!integracao?.client_id || !integracao?.client_secret) {
+      return NextResponse.json({ erro: 'Credenciais do Bling não configuradas' }, { status: 400 });
+    }
+
+    const basicAuth = Buffer.from(`${integracao.client_id}:${integracao.client_secret}`).toString('base64');
+
     const tokenResponse = await fetch('https://api.bling.com.br/Api/v3/oauth/token', {
       method: 'POST',
       headers: {
@@ -45,8 +45,8 @@ export async function GET(request: Request) {
 
     const expiresAt = new Date(Date.now() + (tokenData.expires_in || 21600) * 1000).toISOString();
 
-    const serviceClient = createServiceClient();
-    await serviceClient
+    const updateClient = createServiceClient();
+    await updateClient
       .from('integracoes')
       .update({
         access_token: tokenData.access_token,
@@ -60,6 +60,6 @@ export async function GET(request: Request) {
     return NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP_URL}/configuracoes?tab=integracoes`);
   } catch (err) {
     console.error('[Bling Callback] Erro:', err);
-    return NextResponse.json({ erro: `Erro de rede ao conectar com Bling: ${err instanceof Error ? err.message : 'desconhecido'}` }, { status: 502 });
+    return NextResponse.json({ erro: `${err instanceof Error ? err.message : 'Erro desconhecido'}` }, { status: 500 });
   }
 }
