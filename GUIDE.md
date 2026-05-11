@@ -10,42 +10,72 @@
 - ✅ Admin `admin@vortek.shop` / `Vortek@123` criado
 - ✅ API routes de CRUD (produtos, pedidos, clientes, configuracoes)
 - ✅ Login + middleware de autenticação
-- ✅ Build 24 páginas / 0 erros
+- ✅ Bling removido (15 arquivos modificados, 5 deletados, migration 00003)
 
 ---
 
 ## Fase 2 — Integrações Individuais (Em andamento)
 
-### Fluxo Final (sem Bling)
+### Fluxo Final
 
 ```
 Mercado Livre ←→ Vortek ERP ←→ DSLite (dropshipping + catálogo)
                               ←→ Brasil NFe (NF-e R$ 49,90/mês)
 ```
 
-### Serviços Criados
-
-| Arquivo | Função |
-|---|---|
-| `src/services/dslite.ts` | Catálogo, preço/estoque, pedidos dropshipping |
-| `src/services/nfe.ts` | Emitir/cancelar/consultar NF-e via Brasil NFe (SDK `brasilnfe`) |
-
 ### 🟠 DSLite
 
-**Configuração:** Token fixo no header `Token:` (armazenado em `integracoes` tipo `dslite`)
+**Configuração:** API DSLite com Token fixo no header `Token:`
+- Base URL: `https://api.dslite.com.br`
+- Empresa: VORTEK TECNOLOGIA (ID 7945) — CrossDocking/DropShipping ativo
+- Validade: 29/05/2026
+
+**Fornecedores disponíveis:**
+
+| ID | Nome | Produtos | CrossDocking |
+|---|---|---|---|
+| 2 | HAYAMAX-PR | **6.642** | ✅ Ativo |
+| 27 | FLORATTA JOIAS | 247 | ✅ Ativo |
+| 39 | NOVA CENTER | 545 | ✅ Ativo |
+| 81 | VITRINE OUTLET | 2.259 | ✅ Ativo |
+| **Total** | | **~9.693** | |
+
+**Sync catálogo:** Paginado (1000 por página), faz sync de todos os fornecedores ativos automaticamente se nenhum ID for informado.
+
+**Campos mapeados por produto:**
+
+| Campo DSLite | Campo Vortek |
+|---|---|
+| `produtoid` | `dslite_produto_id` |
+| `produtoid_empresa` | `sku` |
+| `titulo` | `nome` |
+| `preco_crossdocking` | `custo` |
+| `estoque` | `estoque` |
+| `ean11` | `gtin` |
+| `ncm` | `ncm` |
+| `marca` | `marca` |
+| `peso / largura / altura / profundidade` | `peso_liq / largura / altura / profundidade` |
+| `descricao` | `descricao` |
+| `categoria_nome` | `categoria` |
+| `cest` | — (armazenar futuramente) |
+| `ipi / icmsrate` | — (impostos) |
 
 | Funcionalidade | Endpoint API | Rota Vortek |
 |---|---|---|
-| Sync catálogo | `GET /CrossDocking/Catalogo/{fornecedorId}` | `POST /api/sync/catalogo` |
-| Sync preço/estoque | `GET /CrossDocking/PrecoEstoque/{fornecedorId}` | `POST /api/sync/preco-estoque` |
+| Sync catálogo (full) | `GET /CrossDocking/Catalogo/{fornecedorId}` | `POST /api/sync/catalogo` |
+| Sync preço/estoque (rápido) | `GET /CrossDocking/PrecoEstoque/{fornecedorId}` | `POST /api/sync/preco-estoque` |
 | Mapear produto (DE/PARA) | `PUT /CrossDocking/Catalogo/{fornecedorId}/{produtoId}/{produtoIdEmpresa}` | — (via service) |
 | Criar pedido dropshipping | `POST /DropShipping/fornecedor/{id}/transportadora/{id}` | `POST /api/dslite/pedido` |
 | Consultar status pedido | `GET /DropShipping/{id}` | `GET /api/dslite/pedido/status?dsid={id}` |
+| Listar fornecedores | `GET /Empresa/fornecedor/status` | — (via service) |
+| Listar categorias | `GET /CrossDocking/Categoria` | — (via service) |
 
 ### 🟢 Brasil NFe
 
-**Configuração:** Token fixo no header `Token:` (armazenado em `integracoes` tipo `brasilnfe`)
-**Preço:** R$ **49,90**/mês — emissão **ilimitada** NF-e (modelo 55)
+**Configuração:** Token fixo no header `Token:`
+**Preço:** R$ **49,90**/mês — emissão **ilimitada** NF-e (modelo 55) + NFC-e (modelo 65)
+
+**Testado em homologação:** ✅ NF-e emitida e autorizada pela SEFAZ
 
 | Funcionalidade | Endpoint API | Rota Vortek |
 |---|---|---|
@@ -55,7 +85,7 @@ Mercado Livre ←→ Vortek ERP ←→ DSLite (dropshipping + catálogo)
 | Carta de Correção | `POST /services/fiscal/CartaCorrecao` | — |
 | SDK oficial | `npm install brasilnfe` (TypeScript) | ✅ Instalado |
 
-### 🔵 Mercado Livre OAuth2 (já implementado)
+### 🔵 Mercado Livre OAuth2
 
 - ✅ OAuth2 (connect + callback + refresh)
 - ✅ Sincronizar anúncios
@@ -64,25 +94,9 @@ Mercado Livre ←→ Vortek ERP ←→ DSLite (dropshipping + catálogo)
 - 🔜 Responder perguntas
 - 🔜 Webhooks
 
-### 🟢 Bling V3 (depreciado — manter apenas para referência)
-
-- ⚠️ Bloqueado por Cloudflare no VPS
-- ⚠️ Refresh token consumido (single-use) — requer re-autorização
-- ⏳ Será removido quando migração para DSLite + Brasil NFe estiver completa
-
-### 🔵 Webhooks do Mercado Livre
-
-**Endpoint:** `POST /api/webhooks/ml/notifications`
-
-**Registrar no ML:** `https://app.vortek.shop/api/webhooks/ml/notifications`
-
-**Topics:** `orders`, `questions`, `claims`, `payments`, `items`
-
 ---
 
 ## Fase 3 — Job Queue + Feedback Visual ✅ (Concluída)
-
-- ✅ Estrutura criada (ProgressModal, jobs API, job-queue service)
 
 ---
 
@@ -96,13 +110,7 @@ Mercado Livre ←→ Vortek ERP ←→ DSLite (dropshipping + catálogo)
 | Sync preço/estoque DSLite | Diária (6h) | Cron ou botão |
 | Sync ML pedidos | A cada 15min | Cron + webhook |
 | Criar pedido DSLite | Automático (ao receber pedido ML pago) | Evento |
-| Emitir NF-e | Manual (botão) ou automático | Ação usuário |
-
-### Opções de implementação
-
-| Curto prazo | Médio prazo | Longo prazo |
-|---|---|---|
-| Cron job no VPS + botão "Sync Now" | Job Queue com Redis | Agendamento configurável pelo usuário |
+| Emitir NF-e | Manual (botão) | Ação usuário |
 
 ---
 
@@ -115,9 +123,11 @@ Mercado Livre ←→ Vortek ERP ←→ DSLite (dropshipping + catálogo)
 | Atualizar preço no ML | `PUT /items/{id}` | 🟡 Média |
 | Responder perguntas ML | `POST /answers` | 🟡 Média |
 | Mapear produto (DE/PARA) DSLite | `PUT /Catalogo/{id}/{produtoId}` | 🔴 Alta |
-| Emitir NF-e (botão na página de pedidos) | Brasil NFe | ✅ Implementado |
-| Cancelar NF-e (botão na página de pedidos) | Brasil NFe | 🔜 Pendente |
-| Criar pedido DSLite (botão na página de pedidos) | DSLite | ✅ Implementado |
+| Emitir NF-e (botão na página de pedidos) | Brasil NFe | ✅ |
+| Cancelar NF-e na UI | Brasil NFe | 🔜 |
+| Criar pedido DSLite (botão) | DSLite | ✅ |
+| Carta de Correção CC-e | Brasil NFe | 🔜 |
+| Consultar NF-e por chave | Brasil NFe | 🔜 (SDK limitado) |
 
 ---
 
@@ -135,31 +145,14 @@ Mercado Livre ←→ Vortek ERP ←→ DSLite (dropshipping + catálogo)
 2. Email: `admin@vortek.shop` / Senha: `Vortek@123`
 3. Configurações → Integrações → preencher credenciais
 
-### Migração do banco
-
-Após deploy, rodar a migration no SQL Editor do Supabase:
-
-```sql
--- supabase/migrations/00002_nfe_dslite.sql
-alter type integracao_tipo add value if not exists 'brasilnfe';
-alter table public.pedidos add column if not exists nfe_chave text;
-alter table public.pedidos add column if not exists nfe_xml text;
-alter table public.pedidos add column if not exists nfe_danfe_url text;
-alter table public.pedidos add column if not exists nfe_protocolo text;
-alter table public.pedidos add column if not exists nfe_status text default 'pendente';
-alter table public.pedidos add column if not exists dslite_id text;
-alter table public.pedidos add column if not exists dslite_status text;
-alter table public.produtos add column if not exists dslite_fornecedor_id text;
-alter table public.produtos add column if not exists dslite_produto_id text;
-alter table public.produtos add column if not exists dslite_ultima_sync timestamptz;
-insert into public.integracoes (tipo, conectado) values ('brasilnfe', false) on conflict (tipo) do nothing;
-```
-
 ---
 
 ## Notas Técnicas
 
-- **Rate limits apertados:** Especialmente no ML. Qualquer sync em massa precisa de fila com backoff, ou chamadas são rejeitadas.
+- **Rate limits apertados:** Especialmente no ML. Sync em massa precisa de fila com backoff.
 - **SDK oficial:** `brasilnfe` (npm) mantido pela Brasil NFe, TypeScript nativo.
 - **DSLite auth:** Header `Token:` (fixo, sem OAuth).
-- **Ações em massa sempre com feedback:** Toda ação que processa múltiplos itens DEVE abrir a Modal de Progresso. Sem exceção.
+- **DSLite paginação:** Parâmetros `page`, `limit`. Padrão 1000 por página.
+- **DSLite timeout:** 60s (alguns catálogos grandes podem precisar de mais).
+- **Ações em massa sempre com feedback:** Processar múltiplos itens DEVE abrir a Modal de Progresso.
+- **AGENTS.md:** Regra Zero obriga a consultar documentação oficial antes de qualquer ação.

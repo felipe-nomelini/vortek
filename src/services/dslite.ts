@@ -21,7 +21,7 @@ async function fetchDslite<T>(path: string, options?: RequestInit): Promise<T | 
   if (!cfg) return null;
 
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 30000);
+  const timeout = setTimeout(() => controller.abort(), 60000);
 
   try {
     const res = await fetch(`${cfg.url}${path}`, {
@@ -42,22 +42,99 @@ async function fetchDslite<T>(path: string, options?: RequestInit): Promise<T | 
   }
 }
 
-export interface DsliteProdutoCatalogo {
-  id: number;
+// ── API response types ──────────────────────────────────────
+
+export interface DsliteCatalogoResponse {
+  fornecedorid: number;
   nome: string;
-  codigo?: string;
-  marca?: string;
-  categoria?: string;
-  preco?: number;
-  estoque?: number;
-  gtin?: string;
-  ncm?: string;
+  cnpj: string;
+  apelido: string;
+  detalhesConsulta: {
+    offset: number;
+    limit: number;
+    registrosRetornados: number;
+    totalRegistros: number;
+  };
+  produtos: DsliteProduto[];
 }
 
-export interface DslitePrecoEstoque {
-  id: number;
-  preco: number;
+export interface DslitePrecoEstoqueResponse {
+  fornecedorid: number;
+  nome: string;
+  cnpj: string;
+  apelido: string;
+  detalhesConsulta: {
+    offset: number;
+    limit: number;
+    registrosRetornados: number;
+    totalRegistros: number;
+  };
+  produtos: DslitePrecoEstoqueItem[];
+}
+
+export interface DsliteProduto {
+  produtoid: string;
+  produtoid_empresa: string;
+  fornecedorid: number;
+  titulo: string;
+  titulo_curto?: string;
+  preco_normal: number;
+  preco_crossdocking: number;
+  preco_promocional?: number;
+  margem_lucro?: number;
   estoque: number;
+  estoque_total?: number;
+  ean11?: string;
+  ncm?: string;
+  marca?: string;
+  modelo?: string;
+  peso?: number;
+  largura?: number;
+  altura?: number;
+  profundidade?: number;
+  descricao?: string;
+  caracteristicas?: string;
+  informacoes?: string;
+  link_imagem?: string;
+  link?: string;
+  categoria_nome?: string;
+  categoriaid?: string;
+  cest?: string;
+  ipi?: number;
+  icmsrate?: number;
+  origem_faturamento?: string;
+  cep_origem?: string;
+  tempo_garantia?: number;
+  status_empresa?: string;
+  status_fornecedor?: string;
+  data_atualizacao_preco?: { date: string; timezone_type: number; timezone: string };
+  data_atualizacao_estoque?: { date: string; timezone_type: number; timezone: string };
+  midias?: { tipo: string; indice: string; valor: string }[];
+  volumes?: number;
+  embalagem_unidade?: string;
+  variacoes?: any[];
+}
+
+export interface DslitePrecoEstoqueItem {
+  produtoid: string;
+  produtoid_empresa: string;
+  fornecedorid: number;
+  titulo: string;
+  preco_normal: number;
+  preco_crossdocking: number;
+  estoque: number;
+  ean11?: string;
+  ncm?: string;
+  marca?: string;
+  status_empresa?: string;
+}
+
+export interface DsliteFornecedorStatus {
+  id: number;
+  apelido: string;
+  status: string;
+  crossdocking: string;
+  dropshipping: string;
 }
 
 export interface DslitePedidoRetorno {
@@ -68,16 +145,50 @@ export interface DslitePedidoRetorno {
   xml_simbolica?: string;
 }
 
-export async function sincronizarCatalogo(fornecedorId: number | string): Promise<DsliteProdutoCatalogo[] | null> {
-  return fetchDslite<DsliteProdutoCatalogo[]>(`/v1/CrossDocking/Catalogo/${fornecedorId}`);
+// ── Services ─────────────────────────────────────────────────
+
+export async function listarFornecedores(): Promise<DsliteFornecedorStatus[] | null> {
+  const data = await fetchDslite<any>('/v1/Empresa/fornecedor/status');
+  return data?.fornecedores ?? null;
 }
 
-export async function sincronizarPrecoEstoque(fornecedorId: number | string): Promise<DslitePrecoEstoque[] | null> {
-  return fetchDslite<DslitePrecoEstoque[]>(`/v1/CrossDocking/PrecoEstoque/${fornecedorId}`);
+export async function sincronizarCatalogo(
+  fornecedorId: number | string,
+  page: number = 1,
+  limit: number = 1000
+): Promise<DsliteCatalogoResponse | null> {
+  return fetchDslite<DsliteCatalogoResponse>(
+    `/v1/CrossDocking/Catalogo/${fornecedorId}?page=${page}&limit=${limit}`
+  );
 }
 
-export async function mapearProduto(fornecedorId: number | string, produtoId: number | string, produtoIdEmpresa: number | string): Promise<boolean> {
-  const result = await fetchDslite(`/v1/CrossDocking/Catalogo/${fornecedorId}/${produtoId}/${produtoIdEmpresa}`, { method: 'PUT' });
+export async function obterProdutoEspecifico(
+  fornecedorId: number | string,
+  produtoId: number | string
+): Promise<DsliteProduto | null> {
+  const data = await fetchDslite<any>(`/v1/CrossDocking/Catalogo/${fornecedorId}/${produtoId}`);
+  return data?.produto ?? null;
+}
+
+export async function sincronizarPrecoEstoque(
+  fornecedorId: number | string,
+  page: number = 1,
+  limit: number = 1000
+): Promise<DslitePrecoEstoqueResponse | null> {
+  return fetchDslite<DslitePrecoEstoqueResponse>(
+    `/v1/CrossDocking/PrecoEstoque/${fornecedorId}?page=${page}&limit=${limit}`
+  );
+}
+
+export async function mapearProduto(
+  fornecedorId: number | string,
+  produtoId: number | string,
+  produtoIdEmpresa: number | string
+): Promise<boolean> {
+  const result = await fetchDslite(
+    `/v1/CrossDocking/Catalogo/${fornecedorId}/${produtoId}/${produtoIdEmpresa}`,
+    { method: 'PUT' }
+  );
   return result !== null;
 }
 
@@ -88,21 +199,12 @@ export async function criarPedidoDropshipping(
 ): Promise<DslitePedidoRetorno | null> {
   return fetchDslite<DslitePedidoRetorno>(
     `/v1/DropShipping/fornecedor/${fornecedorId}/transportadora/${transportadoraId}`,
-    {
-      method: 'POST',
-      body: xmlConteudo,
-      headers: { 'Content-Type': 'application/xml' },
-    }
+    { method: 'POST', body: xmlConteudo, headers: { 'Content-Type': 'application/xml' } }
   );
 }
 
 export async function consultarPedido(dsid: number | string): Promise<DslitePedidoRetorno | null> {
   return fetchDslite<DslitePedidoRetorno>(`/v1/DropShipping/${dsid}`);
-}
-
-export async function consultarStatusEntrega(dsid: number | string): Promise<string | null> {
-  const pedido = await consultarPedido(dsid);
-  return pedido?.status ?? null;
 }
 
 export async function listarCategorias(): Promise<any[] | null> {
