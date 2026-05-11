@@ -39,6 +39,14 @@ function calcularQualidade(item: any): { total: number; itens: any[]; dica: stri
   return { total, itens, dica };
 }
 
+function extrairSku(item: any): string {
+  if (item.seller_sku) return item.seller_sku;
+  if (item.seller_custom_field) return item.seller_custom_field;
+  const skuAttr = (item.attributes || []).find((a: any) => a.id === 'SELLER_SKU');
+  if (skuAttr?.value_name) return skuAttr.value_name;
+  return item.id;
+}
+
 export async function POST(request: Request) {
   const apiKey = request.headers.get('x-api-key');
   if (apiKey !== process.env.API_SECRET_KEY) {
@@ -73,7 +81,7 @@ export async function POST(request: Request) {
 
     await serviceClient.from('anuncios_ml').upsert({
       ml_item_id: item.id,
-      sku: item.seller_sku || item.id,
+      sku: extrairSku(item),
       titulo: item.title,
       preco_ml: item.price,
       vendidos: item.sold_quantity || 0,
