@@ -12,10 +12,12 @@ export async function POST(req: Request) {
     }
 
     const input: EmitirNFeInput = {
+      pedidoId,
       cliente: {
         cpfCnpj: cliente.cpfCnpj,
         nome: cliente.nome,
         ie: cliente.ie,
+        indicadorIe: cliente.indicadorIe,
         endereco: cliente.endereco,
         telefone: cliente.telefone,
         email: cliente.email,

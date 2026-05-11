@@ -22,10 +22,12 @@ function getApi(token: string) {
 }
 
 export interface EmitirNFeInput {
+  pedidoId?: string;
   cliente: {
     cpfCnpj: string;
     nome: string;
     ie?: string;
+    indicadorIe?: number;
     endereco?: {
       logradouro: string;
       numero: string;
@@ -69,6 +71,10 @@ export async function emitirNFe(input: EmitirNFeInput): Promise<NFeRetorno> {
   const cfg = await getConfig();
   if (!cfg) return { success: false, mensagem: 'Brasil NFe não configurado' };
 
+  const valorTotal = input.produtos.reduce((s, p) => s + p.quantidade * p.valorUnitario, 0);
+  const valorFrete = input.frete || 0;
+  const valorFinal = valorTotal + valorFrete;
+
   try {
     const api = getApi(cfg.token);
     const result = await api.notaFiscal.enviarNotaFiscal({
@@ -76,10 +82,14 @@ export async function emitirNFe(input: EmitirNFeInput): Promise<NFeRetorno> {
       NaturezaOperacao: input.naturezaOperacao || 'Venda de Mercadoria',
       TipoAmbiente: cfg.ambiente,
       Finalidade: input.finalidade || 1,
+      IndicadorPresenca: 2,
+      ConsumidorFinal: true,
+      IdentificadorInterno: input.pedidoId || crypto.randomUUID(),
       Cliente: {
         CpfCnpj: input.cliente.cpfCnpj,
         NmCliente: input.cliente.nome,
         Ie: input.cliente.ie || '',
+        IndicadorIe: input.cliente.indicadorIe ?? 9,
         Endereco: input.cliente.endereco
           ? {
               Logradouro: input.cliente.endereco.logradouro,
@@ -97,17 +107,33 @@ export async function emitirNFe(input: EmitirNFeInput): Promise<NFeRetorno> {
         },
       },
       Produtos: input.produtos.map((p) => ({
+        CodProdutoServico: p.nome.substring(0, 60),
         NmProduto: p.nome,
         NCM: p.ncm,
         CFOP: p.cfop,
         Quantidade: p.quantidade,
         ValorUnitario: p.valorUnitario,
+        ValorTotal: p.quantidade * p.valorUnitario,
         EAN: p.gtin || '',
         UnidadeComercial: p.unidade || 'UN',
+        OrigemProduto: 0,
+        Imposto: {
+          ICMS: { CodSituacaoTributaria: '102', AliquotaICMS: 0 },
+          IPI: { CodSituacaoTributaria: '99', CodEnquadramento: '999', Aliquota: 0 },
+          PIS: { CodSituacaoTributaria: '99', Aliquota: 0 },
+          COFINS: { CodSituacaoTributaria: '99', Aliquota: 0 },
+        },
       })),
-      Transporte: input.frete
-        ? { ModalidadeFrete: input.frete > 0 ? 0 : 9 }
-        : undefined,
+      Pagamentos: [
+        {
+          IndicadorPagamento: 0,
+          FormaPagamento: '15',
+          VlPago: valorFinal,
+        },
+      ],
+      Transporte: {
+        ModalidadeFrete: valorFrete > 0 ? 0 : 9,
+      },
     });
 
     const retorno = result.ReturnNF;
