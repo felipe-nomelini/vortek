@@ -14,6 +14,8 @@ _04 de maio de 2026_
 
 2. **Sempre que houver referência ao Mercado Livre, Bling ou DSLite**, consulte a documentação detalhada da API oficial antes de responder ou implementar qualquer funcionalidade.
 
+3. **Responda apenas a pergunta feita.** Não crie especulações, não tente descobrir a intenção do usuário, não extrapole o que foi perguntado. Se o usuário fez uma pergunta, responda exatamente aquela pergunta e nada mais.
+
 ---
 
 ## Instruções do Agente de Desenvolvimento - Vortek
