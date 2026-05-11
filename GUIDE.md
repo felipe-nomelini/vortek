@@ -109,12 +109,14 @@ Após receber, o servidor busca o recurso completo usando o token salvo e dispar
 
 ## Fase 3 — Job Queue + Feedback Visual
 
+**Status: ✅ Estrutura criada (ProgressModal, jobs API, job-queue service)**
+
 ### Arquitetura
-- Backend: **Job Queue** (Bull + Redis)
-- Frontend: **Polling** (`GET /api/jobs/{id}`) ou WebSocket
+- Backend: **Job Queue** (in-memory + persistência PostgreSQL)
+- Frontend: **Polling** (`GET /api/jobs/{id}`)
 - Cada job tem: `id`, `status`, `progresso`, `log[]`, `cancellable`
 
-### Modal de Progresso (Componente Único)
+### Modal de Progresso (Componente Criado)
 
 ```
 ┌────────────────────────────────────────────────┐
@@ -138,9 +140,58 @@ Após receber, o servidor busca o recurso completo usando o token salvo e dispar
 ### Funcionalidades da Modal
 - Barra de progresso (0-100%)
 - Log em tempo real com ícones (✅ ❌ ⏳)
-- Tentativas com backoff (rate limit)
 - Cancelar (mata o job no backend)
 - Sumário ao final (X concluídos, Y erros, Z cancelados)
+
+---
+
+## Fase 3.5 — Automação das Sincronizações
+
+**Status: ⏳ A implementar**
+
+As sincronizações atuais (Bling produtos, ML anúncios, ML pedidos) são manuais — exigem chamada `curl`. Para automatizar, existem 3 opções:
+
+### Opção 1 — Cron Job no VPS (imediatamente)
+
+Script que roda em horários fixos via crontab do sistema:
+
+```cron
+# Sincronizar produtos do Bling todos os dias às 6h
+0 6 * * * curl -X POST https://app.vortek.shop/api/sync/produtos \
+  -H "x-api-key: ..."
+
+# Sincronizar anúncios do ML (6 páginas) às 6h30
+30 6 * * * /opt/vortek/sync-anuncios.sh
+```
+
+**Prós:** Simples, implementa em minutos no VPS  
+**Contras:** Sem feedback visual, sem logs centralizados
+
+### Opção 2 — Botão "Sincronizar Agora" no frontend
+
+Adicionar botão de sync na página de Configurações ou Dashboard que:
+1. Dispara o sync via API
+2. Abre o **ProgressModal** com barra + log
+3. Acompanha o progresso via polling (`GET /api/jobs/{id}`)
+
+**Prós:** Feedback visual completo, usuário controla  
+**Contras:** Ação manual, não substitui sincronização automática
+
+### Opção 3 — Agendamento via Job Queue (completo)
+
+Usar Bull + Redis para agendar syncs automáticos:
+- Cron interno dispara jobs programados
+- Jobs rodam em background com progresso no banco
+- Logs e erros disponíveis na interface
+
+**Prós:** Completo, auditável, escalável  
+**Contras:** Requer Redis no VPS
+
+### Recomendação
+
+| Curto prazo | Médio prazo | Longo prazo |
+|---|---|---|
+| Opção 1 (cron) + Opção 2 (botão) | Opção 3 (Job Queue com Redis) | Agendamento configurável pelo usuário |
 
 ---
 
