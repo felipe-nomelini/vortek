@@ -31,9 +31,9 @@ const roleColor: Record<UserRole, string> = { admin: 'red', gerente: 'blue', ope
 const cardBg = { background: '#141414', border: '1px solid #303030', borderRadius: 8 };
 const inputStyle = { background: '#1f1f1f', border: '1px solid #303030', borderRadius: 6 };
 
-function saveIntegrations(ml: boolean, bling: boolean, dslite: boolean, brasilnfe: boolean) {
+function saveIntegrations(ml: boolean, dslite: boolean, brasilnfe: boolean) {
   if (typeof window !== 'undefined') {
-    localStorage.setItem('vortek_integrations', JSON.stringify({ ml, bling, dslite, brasilnfe }));
+    localStorage.setItem('vortek_integrations', JSON.stringify({ ml, dslite, brasilnfe }));
   }
 }
 
@@ -51,25 +51,23 @@ export default function ConfiguracoesPage() {
   });
   const patchEmpresa = (d: Partial<typeof empresa>) => setEmpresa(p => ({ ...p, ...d }));
 
-const [ml, setMl] = useState({ clientId: '', clientSecret: '', redirectUri: '', conectado: false });
-const [bling, setBling] = useState({ clientId: '', clientSecret: '', redirectUri: '', conectado: false });
-const [dslite, setDslite] = useState({ url: '', token: '', conectado: false });
-const [brasilnfe, setBrasilnfe] = useState({ token: '', ambiente: 'homologacao', conectado: false });
+  const [ml, setMl] = useState({ clientId: '', clientSecret: '', redirectUri: '', conectado: false });
+  const [dslite, setDslite] = useState({ url: '', token: '', conectado: false });
+  const [brasilnfe, setBrasilnfe] = useState({ token: '', ambiente: 'homologacao', conectado: false });
 
-useEffect(() => {
-  const load = async () => {
-    const supabase = createClient();
-    const { data: integracoes } = await supabase.from('integracoes').select('*');
-    if (!integracoes) return;
-    for (const i of integracoes) {
-      if (i.tipo === 'mercadolivre') setMl({ clientId: i.client_id || '', clientSecret: i.client_secret || '', redirectUri: i.redirect_uri || '', conectado: i.conectado });
-      if (i.tipo === 'bling') setBling({ clientId: i.client_id || '', clientSecret: i.client_secret || '', redirectUri: i.redirect_uri || '', conectado: i.conectado });
-      if (i.tipo === 'dslite') setDslite({ url: i.url || '', token: i.access_token || '', conectado: i.conectado });
-      if (i.tipo === 'brasilnfe') setBrasilnfe({ token: i.access_token || '', ambiente: i.client_id === 'producao' ? 'producao' : 'homologacao', conectado: i.conectado });
-    }
-  };
-  load();
-}, []);
+  useEffect(() => {
+    const load = async () => {
+      const supabase = createClient();
+      const { data: integracoes } = await supabase.from('integracoes').select('*');
+      if (!integracoes) return;
+      for (const i of integracoes) {
+        if (i.tipo === 'mercadolivre') setMl({ clientId: i.client_id || '', clientSecret: i.client_secret || '', redirectUri: i.redirect_uri || '', conectado: i.conectado });
+        if (i.tipo === 'dslite') setDslite({ url: i.url || '', token: i.access_token || '', conectado: i.conectado });
+        if (i.tipo === 'brasilnfe') setBrasilnfe({ token: i.access_token || '', ambiente: i.client_id === 'producao' ? 'producao' : 'homologacao', conectado: i.conectado });
+      }
+    };
+    load();
+  }, []);
 
   const saveIntegracao = useCallback(async (tipo: string, data: Record<string, any>) => {
     const supabase = createClient();
@@ -77,8 +75,8 @@ useEffect(() => {
   }, []);
 
   useEffect(() => {
-    saveIntegrations(ml.conectado, bling.conectado, dslite.conectado, brasilnfe.conectado);
-  }, [ml.conectado, bling.conectado, dslite.conectado, brasilnfe.conectado]);
+    saveIntegrations(ml.conectado, dslite.conectado, brasilnfe.conectado);
+  }, [ml.conectado, dslite.conectado, brasilnfe.conectado]);
 
   const testarBrasilnfe = () => {
   if (!brasilnfe.token) { messageApi.warning('Preencha o Token'); return; }
@@ -92,16 +90,11 @@ useEffect(() => {
 };
 
 const conectarML = () => {
-    if (!ml.clientId || !ml.redirectUri) { messageApi.warning('Preencha Client ID e Redirect URI'); return; }
-    window.location.href = '/api/integracao/ml/connect';
-  };
+  if (!ml.clientId || !ml.redirectUri) { messageApi.warning('Preencha Client ID e Redirect URI'); return; }
+  window.location.href = '/api/integracao/ml/connect';
+};
 
-  const conectarBling = () => {
-    if (!bling.clientId) { messageApi.warning('Preencha o Client ID'); return; }
-    window.location.href = '/api/integracao/bling/connect';
-  };
-
-  const testarDslite = () => {
+const testarDslite = () => {
     if (!dslite.url || !dslite.token) { messageApi.warning('Preencha a URL e o Token'); return; }
     setDslite(p => ({ ...p, conectado: true }));
     saveIntegracao('dslite', { url: dslite.url, access_token: dslite.token, conectado: true });
@@ -188,17 +181,6 @@ const conectarML = () => {
         </>
       ),
       action: { label: 'Conectar com ML', onClick: conectarML },
-    },
-    {
-      key: 'bling', nome: 'Bling V3', conectado: bling.conectado, cor: '#52c41a', bg: '#162812',
-      fields: (
-        <>
-          <Input size="small" placeholder="Client ID" value={bling.clientId} onChange={e => setBling(p => ({ ...p, clientId: e.target.value }))} onBlur={() => saveIntegracao('bling', { client_id: bling.clientId })} style={inputStyle} />
-          <Input size="small" placeholder="Client Secret" type="password" value={bling.clientSecret} onChange={e => setBling(p => ({ ...p, clientSecret: e.target.value }))} onBlur={() => saveIntegracao('bling', { client_secret: bling.clientSecret })} style={inputStyle} />
-          <Input size="small" placeholder="Redirect URI" value={bling.redirectUri} onChange={e => setBling(p => ({ ...p, redirectUri: e.target.value }))} onBlur={() => saveIntegracao('bling', { redirect_uri: bling.redirectUri })} style={inputStyle} />
-        </>
-      ),
-      action: { label: 'Conectar com Bling', onClick: conectarBling },
     },
     {
       key: 'dslite', nome: 'DSLite', conectado: dslite.conectado, cor: '#fa8c16', bg: '#2a1706',

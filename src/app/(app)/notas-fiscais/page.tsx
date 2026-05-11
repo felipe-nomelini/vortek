@@ -117,12 +117,11 @@ export default function NotasFiscaisPage() {
       render: (_, record) => (
         <Dropdown
           menu={{
-            items: [
-              ...(record.status === 'pendente' ? [{ key: 'emitir', label: 'Emitir Nota Fiscal' }] : []),
-              { key: 'download', label: 'Baixar PDF' },
-              { key: 'email', label: 'Enviar por e-mail' },
-              { key: 'bling', label: 'Abrir no Bling' },
-            ],
+              items: [
+                { key: 'view', label: 'Visualizar' },
+                { key: 'download', label: 'Baixar PDF' },
+                { key: 'email', label: 'Enviar por e-mail' },
+              ],
             onClick: ({ key }) => console.log(`${key} ${record.numero}`),
           }}
           trigger={['click']}

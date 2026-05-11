@@ -79,7 +79,7 @@ function mapDBtoOrder(item: any): Order {
   };
 }
 
-export default function BlingPedidosPage() {
+export default function PedidosPage() {
   const [allOrders, setAllOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');

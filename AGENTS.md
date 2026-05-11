@@ -24,7 +24,6 @@ _04 de maio de 2026_
 |---|---|
 | Supabase (MCP, CLI, API, qualquer feature) | https://supabase.com/docs (usar o MCP `search_docs` ou fetch da página `.md`) |
 | Mercado Livre | developers.mercadolivre.com.br |
-| Bling | developers.bling.com.br |
 | DSLite | https://documenter.getpostman.com/view/5316990/RWaRNkaA |
 | Brasil NFe | https://www.brasilnfe.com.br/docs |
 
@@ -32,7 +31,7 @@ _04 de maio de 2026_
 
 1. **Nunca deduza ou invente respostas.** Todas as respostas devem ser baseadas em pesquisas correspondentes na documentação oficial ou em fontes verificáveis.
 
-2. **Sempre que houver referência ao Mercado Livre, Bling, DSLite, Brasil NFe ou Supabase**, consulte a documentação detalhada da API oficial antes de responder ou implementar qualquer funcionalidade.
+2. **Sempre que houver referência ao Mercado Livre, DSLite, Brasil NFe ou Supabase**, consulte a documentação detalhada da API oficial antes de responder ou implementar qualquer funcionalidade.
 
 3. **Responda apenas a pergunta feita.** Não crie especulações, não tente descobrir a intenção do usuário, não extrapole o que foi perguntado. Se o usuário fez uma pergunta, responda exatamente aquela pergunta e nada mais.
 
@@ -85,16 +84,16 @@ $$
 
 O agente deve estruturar os serviços de integração seguindo estes requisitos:
 
-- **Bling V3**: Implementar fluxo de autenticação OAuth2. Sincronizar catálogo de produtos, níveis de estoque e atualização de preços de custo.
-- **Mercado Livre**: Gestão completa de anúncios, incluindo importação de anúncios existentes, criação de novos anúncios a partir do catálogo Bling, ativação/pausa e cálculo em tempo real de frete e taxas de venda.
+- **Mercado Livre**: Gestão completa de anúncios, incluindo importação de anúncios existentes, criação de novos anúncios, ativação/pausa e cálculo em tempo real de frete e taxas de venda.
 - **DSLite**: Integração para rastreamento de pedidos de dropshipping e consumo de webhooks para atualização automática de status de entrega no dashboard.
+- **Brasil NFe**: Emissão de NF-e (modelo 55) via REST API para notas fiscais de venda.
 
 ### 6. Regras de Desenvolvimento
 
 Para manter a integridade do projeto a longo prazo, siga estas regras:
 
 - **Arquitetura**: Utilize Server Components para a busca inicial de dados e Client Components apenas para partes que exigem interatividade (formulários, modais, filtros dinâmicos).
-- **Segurança**: Todas as respostas de APIs externas (Bling, ML, DSLite) devem ser validadas com Zod antes de serem processadas pelo sistema.
+- **Segurança**: Todas as respostas de APIs externas (ML, DSLite, Brasil NFe) devem ser validadas com Zod antes de serem processadas pelo sistema.
 - **Organização de Pastas**:
   ```
   src/app          → Rotas e páginas.
@@ -109,6 +108,6 @@ Para manter a integridade do projeto a longo prazo, siga estas regras:
 
 Para garantir a confiabilidade das integrações, o agente deve seguir este protocolo rigoroso:
 
-- **Proibição de Conhecimento Legado**: Nunca utilize informações pré-treinadas ou legadas sobre as APIs do Bling e Mercado Livre, pois as especificações de endpoints e schemas mudam frequentemente.
-- **Uso Obrigatório de MCP**: É mandatório utilizar ferramentas de busca (MCP) para consultar as documentações oficiais (developers.bling.com.br e developers.mercadolivre.com.br) antes de implementar qualquer endpoint, schema ou fluxo de integração.
+- **Proibição de Conhecimento Legado**: Nunca utilize informações pré-treinadas ou legadas sobre as APIs do Mercado Livre, pois as especificações de endpoints e schemas mudam frequentemente.
+- **Uso Obrigatório de MCP**: É mandatório utilizar ferramentas de busca (MCP) para consultar as documentações oficiais (developers.mercadolivre.com.br) antes de implementar qualquer endpoint, schema ou fluxo de integração.
 - **Prioridade Técnica**: A precisão técnica é a prioridade máxima. A consulta prévia visa mitigar erros de cálculo, falhas de autenticação e inconsistências de dados que possam afetar a saúde financeira da operação.

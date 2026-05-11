@@ -241,8 +241,8 @@ export default function DashboardPage() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               {[
                 { label: 'Mercado Livre', status: 'Conectado', cor: '#1677ff', bg: '#111d2e', on: true },
-                { label: 'Bling V3', status: 'Conectado', cor: '#52c41a', bg: '#162812', on: true },
                 { label: 'DSLite', status: 'Desconectado', cor: '#555', bg: '#1a1a1a', on: false },
+                { label: 'Brasil NFe', status: 'Desconectado', cor: '#555', bg: '#1a1a1a', on: false },
               ].map(i => (
                 <div key={i.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 12px', borderRadius: 6, background: i.bg, border: `1px solid ${i.on ? i.cor : '#303030'}` }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>

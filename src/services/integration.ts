@@ -1,6 +1,6 @@
 import { createServiceClient } from '@/lib/supabase';
 
-type IntegracaoTipo = 'mercadolivre' | 'bling' | 'dslite' | 'brasilnfe';
+type IntegracaoTipo = 'mercadolivre' | 'dslite' | 'brasilnfe';
 
 interface Integracao {
   id: string;
@@ -101,43 +101,6 @@ export async function refreshMLToken(): Promise<string | null> {
   }
 }
 
-export async function getValidBlingToken(): Promise<string | null> {
-  const integracao = await getIntegracao('bling');
-  if (!integracao?.refresh_token) return null;
-
-  if (integracao.access_token && !isExpired(integracao.token_expires_at)) {
-    return integracao.access_token;
-  }
-
-  const basicAuth = Buffer.from(`${integracao.client_id}:${integracao.client_secret}`).toString('base64');
-
-  try {
-    const res = await fetch('https://api.bling.com.br/Api/v3/oauth/token', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Accept: '1.0',
-        Authorization: `Basic ${basicAuth}`,
-      },
-      body: new URLSearchParams({
-        grant_type: 'refresh_token',
-        refresh_token: integracao.refresh_token,
-      }),
-    });
-
-    if (!res.ok) {
-      await createServiceClient().from('integracoes').update({ conectado: false }).eq('tipo', 'bling');
-      return null;
-    }
-
-    const data = await res.json();
-    await updateTokens('bling', data.access_token, data.refresh_token, data.expires_in || 21600);
-    return data.access_token;
-  } catch {
-    return null;
-  }
-}
-
 export async function fetchML<T>(path: string, options?: RequestInit): Promise<T | null> {
   let token = await getValidMLToken();
   if (!token) return null;
@@ -173,25 +136,3 @@ export async function fetchML<T>(path: string, options?: RequestInit): Promise<T
   }
 }
 
-export async function fetchBling<T>(path: string, options?: RequestInit): Promise<T | null> {
-  const token = await getValidBlingToken();
-  if (!token) return null;
-
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 30000);
-
-  try {
-    const res = await fetch(`https://api.bling.com.br/Api/v3${path}`, {
-      ...options,
-      signal: controller.signal,
-      headers: { ...options?.headers, Authorization: `Bearer ${token}`, Accept: '1.0' },
-    });
-
-    if (!res.ok) return null;
-    return res.json();
-  } catch {
-    return null;
-  } finally {
-    clearTimeout(timeout);
-  }
-}

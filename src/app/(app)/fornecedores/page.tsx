@@ -72,11 +72,11 @@ export default function FornecedoresPage() {
       render: (_, record) => (
         <Dropdown
           menu={{
-            items: [
-              { key: 'edit', label: 'Editar' },
-              { key: 'dslite', label: 'Ver no DSLite' },
-              { key: 'bling', label: 'Abrir no Bling' },
-            ],
+              items: [
+                { key: 'view', label: 'Visualizar' },
+                { key: 'edit', label: 'Editar' },
+                { key: 'dslite', label: 'Ver no DSLite' },
+              ],
             onClick: ({ key }) => console.log(`${key} ${record.id}`),
           }}
           trigger={['click']}

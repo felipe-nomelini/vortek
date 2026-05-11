@@ -40,7 +40,6 @@ const menuItems = [
 
 interface Integracoes {
   ml: boolean;
-  bling: boolean;
   dslite: boolean;
   brasilnfe: boolean;
 }
@@ -49,7 +48,7 @@ export default function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const [profile, setProfile] = useState({ nome: 'Admin', avatar: '' });
-  const [ints, setInts] = useState<Integracoes>({ ml: false, bling: false, dslite: false, brasilnfe: false });
+  const [ints, setInts] = useState<Integracoes>({ ml: false, dslite: false, brasilnfe: false });
 
   useEffect(() => {
     const saved = localStorage.getItem('vortek_user_profile');
@@ -110,7 +109,6 @@ export default function Sidebar() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 10 }}>
           {[
             { key: 'ml', label: 'Mercado Livre', on: ints.ml },
-            { key: 'bling', label: 'Bling', on: ints.bling },
             { key: 'dslite', label: 'DSLite', on: ints.dslite },
             { key: 'brasilnfe', label: 'Brasil NFe', on: ints.brasilnfe },
           ].map(i => (

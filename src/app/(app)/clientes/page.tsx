@@ -118,11 +118,10 @@ export default function ClientesPage() {
       render: (_, record) => (
         <Dropdown
           menu={{
-            items: [
-              { key: 'edit', label: 'Editar' },
-              { key: 'bling', label: 'Abrir no Bling' },
-              { key: 'ml', label: 'Ver no Mercado Livre' },
-            ],
+              items: [
+                { key: 'view', label: 'Visualizar' },
+                { key: 'edit', label: 'Editar' },
+              ],
             onClick: ({ key }) => console.log(`${key} ${record.id}`),
           }}
           trigger={['click']}

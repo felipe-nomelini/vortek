@@ -9,15 +9,10 @@ import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/i
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { formatCurrency, formatPercent } from '@/lib/format';
 import { useRouter } from 'next/navigation';
-import type { Product, BlingStatus, MLStatus } from '@/types/product';
+import type { Product, MLStatus } from '@/types/product';
 import ResizableTable from '@/components/ResizableTable';
 
 const { Title } = Typography;
-
-const blingStatusOptions: { value: BlingStatus; label: string }[] = [
-  { value: 'ativo', label: 'Ativo' },
-  { value: 'inativo', label: 'Inativo' },
-];
 
 const mlStatusOptions: { value: MLStatus | ''; label: string }[] = [
   { value: '', label: 'Todos' },
@@ -28,11 +23,9 @@ const mlStatusOptions: { value: MLStatus | ''; label: string }[] = [
 
 const priceFieldOptions = [
   { value: 'cost', label: 'Custo' },
-  { value: 'blingPrice', label: 'Preço Bling' },
   { value: 'suggestedPrice', label: 'Sugerido' },
   { value: 'profit', label: 'Lucro' },
 ];
-
 
 interface ProductRow {
   key: string;
@@ -51,8 +44,6 @@ function computeDerived(product: Product): { displayPrice: number; profit: numbe
   return { displayPrice: Math.round(displayPrice * 100) / 100, profit: Math.round(profit * 100) / 100 };
 }
 
-const blingStatusColor: Record<BlingStatus, string> = { ativo: 'green', inativo: 'red' };
-const blingStatusLabel: Record<BlingStatus, string> = { ativo: 'Ativo', inativo: 'Inativo' };
 const mlStatusColor: Record<MLStatus, string> = { ativo: 'green', pausado: 'orange', sem_anuncio: 'default' };
 const mlStatusLabel: Record<MLStatus, string> = { ativo: 'Ativo', pausado: 'Pausado', sem_anuncio: 'Sem Anúncio' };
 
@@ -64,11 +55,9 @@ function mapDBtoProduct(item: any): Product {
     brand: item.marca || '',
     stock: item.estoque || 0,
     cost: item.custo || 0,
-    blingPrice: item.preco_bling || 0,
     mlFee: item.ml_fee || 0.15,
     mlShipping: item.ml_shipping || 0,
     customPrice: item.custom_price,
-    blingStatus: item.bling_status || 'ativo',
     mlStatus: item.ml_status || 'sem_anuncio',
     netWeight: item.peso_liq || 0,
     grossWeight: item.peso_bruto || 0,
@@ -101,7 +90,6 @@ export default function ProductsPage() {
     })();
   }, []);
   const [search, setSearch] = useState('');
-  const [filterBlingStatus, setFilterBlingStatus] = useState<BlingStatus | ''>('');
   const [filterMLStatus, setFilterMLStatus] = useState<MLStatus | ''>('');
   const [priceField, setPriceField] = useState<string>('cost');
   const [priceMin, setPriceMin] = useState<number | null>(null);
@@ -130,13 +118,11 @@ export default function ProductsPage() {
         const q = search.toLowerCase();
         if (!r.product.name.toLowerCase().includes(q) && !r.product.sku.toLowerCase().includes(q)) return false;
       }
-      if (filterBlingStatus && r.product.blingStatus !== filterBlingStatus) return false;
       if (filterMLStatus && r.product.mlStatus !== filterMLStatus) return false;
       if (priceMin !== null || priceMax !== null) {
         let val: number;
         switch (priceField) {
           case 'cost': val = r.product.cost; break;
-          case 'blingPrice': val = r.product.blingPrice; break;
           case 'suggestedPrice': val = r.displayPrice; break;
           case 'profit': val = r.profit; break;
           default: val = 0;
@@ -146,19 +132,13 @@ export default function ProductsPage() {
       }
       return true;
     });
-  }, [rows, search, filterBlingStatus, filterMLStatus, priceField, priceMin, priceMax]);
-
-  const handleToggleBling = (productId: string) => {
-    console.log('Toggle Bling status for', productId);
-  };
+  }, [rows, search, filterMLStatus, priceField, priceMin, priceMax]);
 
   const selectedProducts = useMemo(
     () => filtered.filter(r => selectedRowKeys.includes(r.key)),
     [filtered, selectedRowKeys],
   );
 
-  const allBlingActive = selectedProducts.length > 0 && selectedProducts.every(r => r.product.blingStatus === 'ativo');
-  const allBlingInactive = selectedProducts.length > 0 && selectedProducts.every(r => r.product.blingStatus === 'inativo');
   const hasNoML = selectedProducts.some(r => r.product.mlStatus === 'sem_anuncio');
   const showBulk = selectedRowKeys.length > 0;
 
@@ -193,11 +173,6 @@ export default function ProductsPage() {
     {
       title: 'Custo', dataIndex: ['product', 'cost'], key: 'cost', width: 110,
       sorter: (a, b) => a.product.cost - b.product.cost,
-      render: (v: number) => formatCurrency(v),
-    },
-    {
-      title: 'Preço Bling', dataIndex: ['product', 'blingPrice'], key: 'blingPrice', width: 130,
-      sorter: (a, b) => a.product.blingPrice - b.product.blingPrice,
       render: (v: number) => formatCurrency(v),
     },
     {
@@ -240,13 +215,6 @@ export default function ProductsPage() {
       ),
     },
     {
-      title: 'Status Bling', dataIndex: ['product', 'blingStatus'], key: 'blingStatus', width: 120,
-      sorter: (a, b) => a.product.blingStatus.localeCompare(b.product.blingStatus),
-      render: (status: BlingStatus) => (
-        <Tag color={blingStatusColor[status]}>{blingStatusLabel[status]}</Tag>
-      ),
-    },
-    {
       title: 'Status ML', dataIndex: ['product', 'mlStatus'], key: 'mlStatus', width: 130,
       sorter: (a, b) => a.product.mlStatus.localeCompare(b.product.mlStatus),
       render: (status: MLStatus) => (
@@ -256,18 +224,15 @@ export default function ProductsPage() {
     {
       title: 'Ações', key: 'actions', width: 60, fixed: 'right',
       render: (_, record) => {
-        const blingIsActive = record.product.blingStatus === 'ativo';
         const mlIsNone = record.product.mlStatus === 'sem_anuncio';
         return (
           <Dropdown
             menu={{
               items: [
-                { key: 'updateBlingPrice', label: 'Atualizar preço no Bling' },
-                { key: 'toggleBling', label: blingIsActive ? 'Desativar no Bling' : 'Ativar no Bling' },
                 ...(mlIsNone ? [{ key: 'createML', label: 'Criar anúncio no ML' }] : []),
               ],
               onClick: ({ key }) => {
-                if (key === 'toggleBling') handleToggleBling(record.product.id);
+                if (key === 'createML') console.log('Criar anúncio ML', record.product.id);
               },
             }}
             trigger={['click']}
@@ -292,17 +257,6 @@ export default function ProductsPage() {
               onChange={e => setSearch(e.target.value)}
               style={{ width: 220 }}
               allowClear
-            />
-          </Col>
-          <Col>
-            <Select
-              placeholder="Status Bling"
-              value={filterBlingStatus || undefined}
-              onChange={v => setFilterBlingStatus(v as BlingStatus | '')}
-              options={[{ value: '', label: 'Status Bling' }, ...blingStatusOptions]}
-              style={{ width: 150 }}
-              allowClear
-              onClear={() => setFilterBlingStatus('')}
             />
           </Col>
           <Col>
@@ -342,19 +296,6 @@ export default function ProductsPage() {
             <strong style={{ color: '#e0e0e0' }}>{selectedRowKeys.length}</strong> produto{selectedRowKeys.length > 1 ? 's' : ''} selecionado{selectedRowKeys.length > 1 ? 's' : ''}
           </span>
           <div style={{ width: 1, height: 20, background: '#303030' }} />
-          <Button size="small" onClick={() => handleBulkAction('updateBlingPrice')}>
-            Atualizar preço no Bling
-          </Button>
-          {allBlingActive && (
-            <Button size="small" onClick={() => handleBulkAction('deactivateBling')}>
-              Desativar no Bling
-            </Button>
-          )}
-          {allBlingInactive && (
-            <Button size="small" onClick={() => handleBulkAction('activateBling')}>
-              Ativar no Bling
-            </Button>
-          )}
           {hasNoML && (
             <Button size="small" onClick={() => handleBulkAction('createML')}>
               Criar anúncio no ML
@@ -374,7 +315,7 @@ export default function ProductsPage() {
             columns={columns}
             rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
             pagination={false}
-            scroll={{ x: 1400 }}
+            scroll={{ x: 1200 }}
             style={{ background: 'transparent' }}
             size="small"
           />
