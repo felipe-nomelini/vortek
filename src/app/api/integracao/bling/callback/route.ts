@@ -37,10 +37,16 @@ export async function GET(request: Request) {
       }),
     });
 
-    const tokenData = await tokenResponse.json();
+    const text = await tokenResponse.text();
+    let tokenData: any;
+    try {
+      tokenData = JSON.parse(text);
+    } catch {
+      return NextResponse.json({ erro: `Resposta do Bling: ${text.substring(0, 500)}` }, { status: 400 });
+    }
 
     if (!tokenResponse.ok) {
-      return NextResponse.json({ erro: `Erro ao obter token: ${tokenData.error || 'desconhecido'}` }, { status: 400 });
+      return NextResponse.json({ erro: `Erro ao obter token: ${tokenData.error || text.substring(0, 200)}` }, { status: 400 });
     }
 
     const expiresAt = new Date(Date.now() + (tokenData.expires_in || 21600) * 1000).toISOString();
