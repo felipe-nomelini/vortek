@@ -8,6 +8,14 @@ _04 de maio de 2026_
 
 ---
 
+## Regras Prioritárias
+
+1. **Nunca deduza ou invente respostas.** Todas as respostas devem ser baseadas em pesquisas correspondentes na documentação oficial ou em fontes verificáveis.
+
+2. **Sempre que houver referência ao Mercado Livre, Bling ou DSLite**, consulte a documentação detalhada da API oficial antes de responder ou implementar qualquer funcionalidade.
+
+---
+
 ## Instruções do Agente de Desenvolvimento - Vortek
 
 ### 1. Identidade e Função
