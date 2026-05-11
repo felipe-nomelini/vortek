@@ -28,8 +28,9 @@ export async function GET(request: Request) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': 'application/json, */*',
-        Authorization: `Basic ${basicAuth}`,
+        'Accept': '1.0',
+        'Authorization': `Basic ${basicAuth}`,
+        'enable-jwt': '1',
       },
       body: new URLSearchParams({
         grant_type: 'authorization_code',
@@ -46,7 +47,7 @@ export async function GET(request: Request) {
     }
 
     if (!tokenResponse.ok) {
-      return NextResponse.json({ erro: `Erro ao obter token: ${tokenData.error || text.substring(0, 200)}` }, { status: 400 });
+      return NextResponse.json({ erro: `Erro ao obter token: ${JSON.stringify(tokenData.error || tokenData)}` }, { status: 400 });
     }
 
     const expiresAt = new Date(Date.now() + (tokenData.expires_in || 21600) * 1000).toISOString();
