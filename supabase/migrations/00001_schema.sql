@@ -131,7 +131,7 @@ create table public.clientes (
   total_vendas integer not null default 0,
   ml_nickname text,
   ml_id text,
-  bling_contato_id text,
+  bling_contato_id text unique,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
