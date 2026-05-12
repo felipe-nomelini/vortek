@@ -13,8 +13,8 @@ export async function GET(request: Request) {
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
 
-  // Separate count query (head:true = metadata only, no data)
-  let countQuery = supabase.from('produtos').select('*', { count: 'exact', head: true });
+  // Separate count query (range 0-0 to avoid fetching all rows)
+  let countQuery = supabase.from('produtos').select('id', { count: 'exact', head: false }).range(0, 0);
   if (search) {
     countQuery = countQuery.or(`nome.ilike.%${search}%,sku.ilike.%${search}%`);
   }

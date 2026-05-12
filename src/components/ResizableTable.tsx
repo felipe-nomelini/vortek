@@ -58,10 +58,9 @@ export default function ResizableTable<T extends object>({ storageKey, columns, 
   const [widths, setWidths] = useState<ColumnWidths>({});
   const loaded = useRef(false);
 
-  const pagination = useMemo(() => {
-    if (paginationProp === undefined || paginationProp === false || paginationProp === null) return paginationProp as any;
-    return { ...paginationProp };
-  }, []);
+  const pagination = paginationProp === undefined || paginationProp === false || paginationProp === null
+    ? paginationProp
+    : { ...paginationProp };
 
   useEffect(() => {
     if (!loaded.current) {
