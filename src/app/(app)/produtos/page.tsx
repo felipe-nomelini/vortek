@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import {
-  Input, Select, InputNumber, Tag, Typography, Space, Row, Col, Spin,
+  Input, Select, InputNumber, Tag, Typography, Space, Spin,
 } from 'antd';
 import type { TableProps } from 'antd';
 import { SearchOutlined, LoadingOutlined } from '@ant-design/icons';
@@ -240,8 +240,8 @@ export default function ProductsPage() {
     <div>
       <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Produtos</Title>
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <Row gutter={[8, 8]} align="middle">
-          <Col>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+          <div style={{ height: 24, display: 'inline-flex', alignItems: 'center' }}>
             <Input
               placeholder="Buscar por nome ou SKU"
               prefix={<SearchOutlined />}
@@ -253,8 +253,8 @@ export default function ProductsPage() {
               size="small"
               onClear={() => { setInputSearch(''); setSearch(''); setPage(1); }}
             />
-          </Col>
-          <Col>
+          </div>
+          <div style={{ height: 24, display: 'inline-flex', alignItems: 'center' }}>
             <Select
               placeholder="Status ML"
               size="small"
@@ -265,8 +265,8 @@ export default function ProductsPage() {
               allowClear
               onClear={() => setFilterMLStatus('')}
             />
-          </Col>
-          <Col>
+          </div>
+          <div style={{ height: 24, display: 'inline-flex', alignItems: 'center' }}>
             <Select
               mode="multiple"
               placeholder="Fornecedor"
@@ -285,8 +285,8 @@ export default function ProductsPage() {
               allowClear
               onClear={() => setFilterFornecedores([])}
             />
-          </Col>
-          <Col>
+          </div>
+          <div style={{ height: 24, display: 'inline-flex', alignItems: 'center' }}>
             <Select
               size="small"
               value={filterEstoque}
@@ -294,15 +294,15 @@ export default function ProductsPage() {
               options={estoqueOptions}
               style={{ width: 150 }}
             />
-          </Col>
-          <Col>
-            <Space.Compact>
+          </div>
+          <div style={{ height: 24, display: 'inline-flex', alignItems: 'center' }}>
+            <Space.Compact size="small">
               <Select size="small" value={priceField} onChange={setPriceField} options={priceFieldOptions} style={{ width: 130 }} />
               <InputNumber size="small" placeholder="Mín" value={priceMin} onChange={v => setPriceMin(v ?? null)} style={{ width: 100 }} />
               <InputNumber size="small" placeholder="Máx" value={priceMax} onChange={v => setPriceMax(v ?? null)} style={{ width: 100 }} />
             </Space.Compact>
-          </Col>
-        </Row>
+          </div>
+        </div>
       </div>
       <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
         <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
