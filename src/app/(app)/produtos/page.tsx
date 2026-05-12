@@ -96,11 +96,12 @@ export default function ProductsPage() {
   const [priceMin, setPriceMin] = useState<number | null>(null);
   const [priceMax, setPriceMax] = useState<number | null>(null);
 
-  const fetchProducts = useCallback(async (p: number, s: string) => {
+  const fetchProducts = useCallback(async (p: number, s: string, f: string[]) => {
     setLoading(true);
     try {
       const params = new URLSearchParams({ page: String(p) });
       if (s) params.set('search', s);
+      if (f.length > 0) params.set('fornecedores', f.join(','));
       const res = await fetch(`/api/produtos?${params}`);
       if (res.ok) {
         const json = await res.json();
@@ -114,8 +115,8 @@ export default function ProductsPage() {
   }, []);
 
   useEffect(() => {
-    fetchProducts(page, search);
-  }, [page, fetchProducts]);
+    fetchProducts(page, search, filterFornecedores);
+  }, [page, search, filterFornecedores, fetchProducts]);
 
   const rows: ProductRow[] = useMemo(() => {
     return products.map(p => {
@@ -127,7 +128,6 @@ export default function ProductsPage() {
   const filtered = useMemo(() => {
     return rows.filter(r => {
       if (filterMLStatus && r.product.mlStatus !== filterMLStatus) return false;
-      if (filterFornecedores.length > 0 && (!r.product.fornecedor || !filterFornecedores.includes(r.product.fornecedor))) return false;
       if (filterEstoque === 'com_estoque' && r.product.stock <= 0) return false;
       if (filterEstoque === 'sem_estoque' && r.product.stock > 0) return false;
       if (priceMin !== null || priceMax !== null) {
@@ -143,12 +143,12 @@ export default function ProductsPage() {
       }
       return true;
     });
-  }, [rows, filterMLStatus, filterFornecedores, filterEstoque, priceField, priceMin, priceMax]);
+  }, [rows, filterMLStatus, filterEstoque, priceField, priceMin, priceMax]);
 
   const handleSearch = useCallback(() => {
     setPage(1);
-    fetchProducts(1, search);
-  }, [search, fetchProducts]);
+    fetchProducts(1, search, filterFornecedores);
+  }, [search, filterFornecedores, fetchProducts]);
 
   const columns: TableProps<ProductRow>['columns'] = [
     {
@@ -253,7 +253,7 @@ export default function ProductsPage() {
               onPressEnter={handleSearch}
               style={{ width: 220 }}
               allowClear
-              onClear={() => { setSearch(''); setPage(1); fetchProducts(1, ''); }}
+              onClear={() => { setSearch(''); setPage(1); fetchProducts(1, '', []); }}
             />
           </Col>
           <Col>

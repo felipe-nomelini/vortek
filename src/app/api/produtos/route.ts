@@ -13,18 +13,28 @@ export async function GET(request: Request) {
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
 
-  // Separate count query (range 0-0 to avoid fetching all rows)
-  let countQuery = supabase.from('produtos').select('id', { count: 'exact', head: false }).range(0, 0);
-  if (search) {
-    countQuery = countQuery.or(`nome.ilike.%${search}%,sku.ilike.%${search}%`);
+  // Parse fornecedor filter (comma-separated)
+  const fornecedorFilter = searchParams.get('fornecedores')?.split(',').filter(Boolean) || [];
+
+  // Helper to apply common filters to a query
+  function applyFilters(query: any) {
+    if (search) {
+      query = query.or(`nome.ilike.%${search}%,sku.ilike.%${search}%`);
+    }
+    if (fornecedorFilter.length > 0) {
+      query = query.in('fornecedor', fornecedorFilter);
+    }
+    return query;
   }
+
+  // Separate count query
+  let countQuery = supabase.from('produtos').select('id', { count: 'exact', head: false }).range(0, 0);
+  countQuery = applyFilters(countQuery);
   const { count } = await countQuery;
 
   // Data query with pagination
   let dataQuery = supabase.from('produtos').select('*');
-  if (search) {
-    dataQuery = dataQuery.or(`nome.ilike.%${search}%,sku.ilike.%${search}%`);
-  }
+  dataQuery = applyFilters(dataQuery);
   const { data, error } = await dataQuery
     .order('sku', { ascending: true })
     .range(from, to);
