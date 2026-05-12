@@ -250,12 +250,14 @@ export default function ProductsPage() {
               onPressEnter={() => { setPage(1); setSearch(inputSearch); }}
               style={{ width: 220 }}
               allowClear
+              size="small"
               onClear={() => { setInputSearch(''); setSearch(''); setPage(1); }}
             />
           </Col>
           <Col>
             <Select
               placeholder="Status ML"
+              size="small"
               value={filterMLStatus || undefined}
               onChange={v => setFilterMLStatus(v as MLStatus | '')}
               options={mlStatusOptions}
@@ -268,6 +270,7 @@ export default function ProductsPage() {
             <Select
               mode="multiple"
               placeholder="Fornecedor"
+              size="small"
               value={filterFornecedores}
               onChange={v => {
                 if (v.includes('__all__')) setFilterFornecedores([]);
@@ -285,6 +288,7 @@ export default function ProductsPage() {
           </Col>
           <Col>
             <Select
+              size="small"
               value={filterEstoque}
               onChange={v => setFilterEstoque(v)}
               options={estoqueOptions}
@@ -293,9 +297,9 @@ export default function ProductsPage() {
           </Col>
           <Col>
             <Space.Compact>
-              <Select value={priceField} onChange={setPriceField} options={priceFieldOptions} style={{ width: 130 }} />
-              <InputNumber placeholder="Mín" value={priceMin} onChange={v => setPriceMin(v ?? null)} style={{ width: 100 }} />
-              <InputNumber placeholder="Máx" value={priceMax} onChange={v => setPriceMax(v ?? null)} style={{ width: 100 }} />
+              <Select size="small" value={priceField} onChange={setPriceField} options={priceFieldOptions} style={{ width: 130 }} />
+              <InputNumber size="small" placeholder="Mín" value={priceMin} onChange={v => setPriceMin(v ?? null)} style={{ width: 100 }} />
+              <InputNumber size="small" placeholder="Máx" value={priceMax} onChange={v => setPriceMax(v ?? null)} style={{ width: 100 }} />
             </Space.Compact>
           </Col>
         </Row>
