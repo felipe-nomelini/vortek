@@ -15,7 +15,7 @@ export async function POST(request: Request) {
     const serviceClient = createServiceClient();
     const resourcePath = resource.replace('https://api.mercadolibre.com', '');
 
-    if (topic === 'orders') {
+    if (topic === 'orders_v2') {
       const order = await fetchML<any>(resourcePath);
       if (order) {
         const { data: existing } = await serviceClient
@@ -44,7 +44,6 @@ export async function POST(request: Request) {
             .select('id')
             .single();
 
-          // Auto-cria pedido DSLite se for um pedido pago
           if (inserted && order.status === 'paid') {
             const xmlSimples = `<?xml version="1.0" encoding="UTF-8"?>
 <pedido>
@@ -65,6 +64,14 @@ export async function POST(request: Request) {
           }
         }
       }
+    }
+
+    if (topic === 'questions') {
+      // Notificações de perguntas — serão processadas sob demanda
+    }
+
+    if (topic === 'items') {
+      // Notificações de alterações em anúncios — serão processadas sob demanda
     }
 
     return NextResponse.json({ ok: true });
