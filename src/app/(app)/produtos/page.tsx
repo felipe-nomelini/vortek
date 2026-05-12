@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import {
-  Input, Select, InputNumber, Button, Tag, Typography, Space, Row, Col, Spin,
+  Input, Select, InputNumber, Tag, Typography, Space, Row, Col, Spin,
 } from 'antd';
 import type { TableProps } from 'antd';
 import { SearchOutlined, LoadingOutlined } from '@ant-design/icons';
@@ -146,11 +146,6 @@ export default function ProductsPage() {
     });
   }, [rows, filterMLStatus, filterEstoque, priceField, priceMin, priceMax]);
 
-  const handleSearch = useCallback(() => {
-    setPage(1);
-    fetchProducts(1, search, filterFornecedores);
-  }, [search, filterFornecedores, fetchProducts]);
-
   const columns: TableProps<ProductRow>['columns'] = [
     {
       title: 'SKU', dataIndex: ['product', 'sku'], key: 'sku', width: 130,
@@ -251,14 +246,11 @@ export default function ProductsPage() {
               prefix={<SearchOutlined />}
               value={search}
               onChange={e => setSearch(e.target.value)}
-              onPressEnter={handleSearch}
+              onPressEnter={() => { setPage(1); fetchProducts(1, search, filterFornecedores); }}
               style={{ width: 220 }}
               allowClear
               onClear={() => { setSearch(''); setPage(1); fetchProducts(1, '', []); }}
             />
-          </Col>
-          <Col>
-            <Button onClick={handleSearch}>Buscar</Button>
           </Col>
           <Col>
             <Select
