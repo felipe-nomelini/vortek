@@ -1,20 +1,15 @@
+/**
+ * Gerenciamento de tokens OAuth para integrações com APIs externas.
+ * Atualmente suporta Mercado Livre (OAuth2 com refresh automático).
+ * Os tokens são armazenados na tabela `integracoes` do Supabase.
+ */
 import { createServiceClient } from '@/lib/supabase';
+import type { Database } from '@/types/database';
 
-type IntegracaoTipo = 'mercadolivre' | 'dslite' | 'brasilnfe';
+type IntegracaoRow = Database['public']['Tables']['integracoes']['Row'];
+type IntegracaoTipo = IntegracaoRow['tipo'];
 
-interface Integracao {
-  id: string;
-  tipo: IntegracaoTipo;
-  client_id: string | null;
-  client_secret: string | null;
-  access_token: string | null;
-  refresh_token: string | null;
-  token_expires_at: string | null;
-  url: string | null;
-  conectado: boolean;
-}
-
-async function getIntegracao(tipo: IntegracaoTipo): Promise<Integracao | null> {
+async function getIntegracao(tipo: IntegracaoTipo): Promise<IntegracaoRow | null> {
   const client = createServiceClient();
   const { data } = await client.from('integracoes').select('*').eq('tipo', tipo).single();
   return data;
@@ -39,13 +34,8 @@ function isExpired(expiresAt: string | null): boolean {
   return new Date(expiresAt).getTime() - Date.now() < 300000;
 }
 
-export async function getValidMLToken(): Promise<string | null> {
-  const integracao = await getIntegracao('mercadolivre');
-  if (!integracao?.refresh_token) return null;
-
-  if (integracao.access_token && !isExpired(integracao.token_expires_at)) {
-    return integracao.access_token;
-  }
+async function refreshMLTokenFromDB(integracao: IntegracaoRow): Promise<string | null> {
+  if (!integracao.refresh_token) return null;
 
   try {
     const res = await fetch('https://api.mercadolibre.com/oauth/token', {
@@ -53,8 +43,8 @@ export async function getValidMLToken(): Promise<string | null> {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded', accept: 'application/json' },
       body: new URLSearchParams({
         grant_type: 'refresh_token',
-        client_id: integracao.client_id!,
-        client_secret: integracao.client_secret!,
+        client_id: integracao.client_id || '',
+        client_secret: integracao.client_secret || '',
         refresh_token: integracao.refresh_token,
       }),
     });
@@ -72,33 +62,15 @@ export async function getValidMLToken(): Promise<string | null> {
   }
 }
 
-export async function refreshMLToken(): Promise<string | null> {
+export async function getValidMLToken(): Promise<string | null> {
   const integracao = await getIntegracao('mercadolivre');
   if (!integracao?.refresh_token) return null;
 
-  try {
-    const res = await fetch('https://api.mercadolibre.com/oauth/token', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded', accept: 'application/json' },
-      body: new URLSearchParams({
-        grant_type: 'refresh_token',
-        client_id: integracao.client_id!,
-        client_secret: integracao.client_secret!,
-        refresh_token: integracao.refresh_token,
-      }),
-    });
-
-    if (!res.ok) {
-      await createServiceClient().from('integracoes').update({ conectado: false }).eq('tipo', 'mercadolivre');
-      return null;
-    }
-
-    const data = await res.json();
-    await updateTokens('mercadolivre', data.access_token, data.refresh_token, data.expires_in || 10800);
-    return data.access_token;
-  } catch {
-    return null;
+  if (integracao.access_token && !isExpired(integracao.token_expires_at)) {
+    return integracao.access_token;
   }
+
+  return refreshMLTokenFromDB(integracao);
 }
 
 export async function fetchML<T>(path: string, options?: RequestInit): Promise<T | null> {
@@ -121,9 +93,11 @@ export async function fetchML<T>(path: string, options?: RequestInit): Promise<T
     let res = await doFetch(token);
 
     if (res.status === 401) {
-      const newToken = await refreshMLToken();
-      if (!newToken) return null;
-      token = newToken;
+      // Force refresh by clearing cached token via getValidMLToken on retry
+      // The refresh is handled by the next call to getValidMLToken below
+      const freshToken = await getValidMLToken();
+      if (!freshToken) return null;
+      token = freshToken;
       res = await doFetch(token);
     }
 

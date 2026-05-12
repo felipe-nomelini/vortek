@@ -122,7 +122,7 @@ export default function NotasFiscaisPage() {
                 { key: 'download', label: 'Baixar PDF' },
                 { key: 'email', label: 'Enviar por e-mail' },
               ],
-            onClick: ({ key }) => console.log(`${key} ${record.numero}`),
+            onClick: ({ key }) => { /* TODO: implementar ação */ },
           }}
           trigger={['click']}
         >

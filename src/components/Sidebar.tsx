@@ -1,3 +1,8 @@
+/**
+ * Sidebar de navegação principal do Vortek.
+ * Exibe menus fixos + indicadores de status das integrações (ML, DSLite, Brasil NFe).
+ * Lê o perfil do usuário e status das integrações do localStorage.
+ */
 'use client';
 
 import { useState, useEffect } from 'react';

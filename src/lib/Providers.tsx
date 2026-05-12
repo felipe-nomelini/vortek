@@ -1,3 +1,8 @@
+/**
+ * Provider raiz do Ant Design.
+ * Aplica tema dark, paleta de cores padrão e algoritmo CSS-in-JS.
+ * Envolve toda a aplicação no root layout.
+ */
 'use client';
 
 import { ConfigProvider, theme } from 'antd';

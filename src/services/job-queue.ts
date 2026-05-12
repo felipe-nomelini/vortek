@@ -1,3 +1,11 @@
+/**
+ * Sistema de fila de jobs em memória com persistência no Supabase.
+ * Gerencia execução assíncrona de tarefas longas com suporte a:
+ * - Barra de progresso (0-100%)
+ * - Logs em tempo real
+ * - Cancelamento via AbortController
+ * - Persistência na tabela `jobs` do Supabase
+ */
 import { createServiceClient } from '@/lib/supabase';
 
 export type JobStatus = 'pendente' | 'rodando' | 'completo' | 'erro' | 'cancelado';
@@ -82,7 +90,7 @@ async function runJob(jobId: string, tipo: string, total: number) {
     const msg = err instanceof Error ? err.message : 'Erro desconhecido';
     const serviceClient = createServiceClient();
     const current = await serviceClient.from('jobs').select('log').eq('id', jobId).single();
-    const log = current.data?.log || [];
+    const log: any[] = (current.data?.log || []) as any[];
     log.push({ type: 'error', message: msg, timestamp: now() });
     await serviceClient.from('jobs').update({ status: 'erro', log: JSON.stringify(log), finished_at: now() }).eq('id', jobId);
   }
@@ -95,7 +103,7 @@ export async function getJob(jobId: string): Promise<JobData | null> {
   const { data } = await serviceClient.from('jobs').select('*').eq('id', jobId).single();
   if (!data) return null;
   return {
-    id: data.id, tipo: data.tipo, status: data.status,
+    id: data.id, tipo: data.tipo, status: data.status as JobStatus,
     progresso: data.progresso, total: data.total, processados: data.processados || 0,
     log: typeof data.log === 'string' ? JSON.parse(data.log) : (data.log || []),
     cancelado: data.cancelado, created_at: data.created_at, finished_at: data.finished_at,

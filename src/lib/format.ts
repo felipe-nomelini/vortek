@@ -1,3 +1,5 @@
+/** Utilitários de formatação de valores monetários e percentuais. */
+
 const currency = new Intl.NumberFormat('pt-BR', {
   style: 'currency',
   currency: 'BRL',
@@ -18,7 +20,7 @@ export function currencyFormatter(v: number | string | undefined | null): string
   return currency.format(num);
 }
 
-export function currencyParser(value: string | undefined): number {
-  if (!value) return 0;
-  return parseFloat(value.replace(/R\$\s?/g, '').replace(/\./g, '').replace(',', '.'));
+export function currencyParser(v: string | undefined): number {
+  if (!v) return 0;
+  return parseFloat(v.replace(/R\$\s?/g, '').replace(/\./g, '').replace(',', '.'));
 }

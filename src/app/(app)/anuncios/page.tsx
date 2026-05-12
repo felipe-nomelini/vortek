@@ -180,7 +180,7 @@ export default function AnunciosPage() {
               { key: 'updatePrice', label: 'Atualizar Preço' },
               { key: 'optimize', label: 'Otimizar com IA' },
             ],
-            onClick: ({ key }) => console.log(`${key} ${record.id}`),
+            onClick: ({ key }) => { /* TODO: implementar ação */ },
           }}
           trigger={['click']}
         >

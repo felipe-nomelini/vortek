@@ -1,3 +1,8 @@
+/**
+ * Tabela com colunas redimensionáveis via arrasto lateral.
+ * As larguras são salvas no localStorage (chave: `rt_widths_{storageKey}`).
+ * Wrapper do Ant Design Table que adiciona componentes de resize nos headers.
+ */
 'use client';
 
 import { Table } from 'antd';

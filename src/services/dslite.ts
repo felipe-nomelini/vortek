@@ -1,3 +1,8 @@
+/**
+ * Serviço de integração com a API DSLite.
+ * Gerencia catálogo de produtos, preços/estoque, pedidos dropshipping e fornecedores.
+ * Autenticação via token fixo no header `Token:`.
+ */
 import { createServiceClient } from '@/lib/supabase';
 
 interface DsliteConfig {

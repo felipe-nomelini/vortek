@@ -157,7 +157,7 @@ export default function CatalogoPage() {
               ...(record.status === 'elegivel' ? [{ key: 'addCatalog', label: 'Adicionar ao Catálogo' }] : []),
               ...(record.status === 'no_catalogo' ? [{ key: 'optimize', label: 'Otimizar Preço' }] : []),
             ],
-            onClick: ({ key }) => console.log(`${key} ${record.sku}`),
+            onClick: ({ key }) => { /* TODO: implementar ação */ },
           }}
           trigger={['click']}
         >

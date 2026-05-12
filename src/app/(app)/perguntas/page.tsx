@@ -155,7 +155,7 @@ export default function PerguntasPage() {
               { key: 'viewItem', label: 'Ver Anúncio' },
               { key: 'block', label: 'Bloquear Cliente' },
             ],
-            onClick: ({ key }) => console.log(`${key} ${record.id}`),
+            onClick: ({ key }) => { /* TODO: implementar ação */ },
           }}
           trigger={['click']}
         >

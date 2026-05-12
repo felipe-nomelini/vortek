@@ -1,3 +1,8 @@
+/**
+ * Serviço de emissão de NF-e via Brasil NFe.
+ * Usa o SDK oficial `brasilnfe` (npm) para emitir, cancelar e consultar notas fiscais.
+ * Configuração: token fixo armazenado na tabela `integracoes` tipo `brasilnfe`.
+ */
 import { BrasilNFe } from 'brasilnfe';
 import { createServiceClient } from '@/lib/supabase';
 

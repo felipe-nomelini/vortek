@@ -1,3 +1,8 @@
+/**
+ * Modal de detalhamento da qualidade de um anúncio do Mercado Livre.
+ * Exibe score geral e breakdown por critério (imagem, preço, frete, etc.).
+ * Acionado ao clicar no badge de qualidade na tabela de anúncios.
+ */
 'use client';
 
 import { Modal, Progress, Tag, Typography, Divider } from 'antd';

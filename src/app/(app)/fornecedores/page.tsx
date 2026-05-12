@@ -77,7 +77,7 @@ export default function FornecedoresPage() {
                 { key: 'edit', label: 'Editar' },
                 { key: 'dslite', label: 'Ver no DSLite' },
               ],
-            onClick: ({ key }) => console.log(`${key} ${record.id}`),
+            onClick: ({ key }) => { /* TODO: implementar ação */ },
           }}
           trigger={['click']}
         >

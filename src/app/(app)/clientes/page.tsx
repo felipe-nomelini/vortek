@@ -122,7 +122,7 @@ export default function ClientesPage() {
                 { key: 'view', label: 'Visualizar' },
                 { key: 'edit', label: 'Editar' },
               ],
-            onClick: ({ key }) => console.log(`${key} ${record.id}`),
+            onClick: ({ key }) => { /* TODO: implementar ação */ },
           }}
           trigger={['click']}
         >
