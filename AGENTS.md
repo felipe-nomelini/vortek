@@ -18,6 +18,17 @@ _04 de maio de 2026_
 
 **Violação desta regra = falha grave.** Não importa se você acha que sabe a resposta. Não importa se já viu aquela documentação antes. Consulte sempre.
 
+### Ferramentas de consulta (usar obrigatoriamente)
+
+| Para | Usar | Proibido |
+|---|---|---|
+| Pesquisar web | `firecrawl_search` | webfetch |
+| Extrair conteúdo de página | `firecrawl_scrape` | webfetch, dedução |
+| Documentação Supabase | MCP `search_docs` ou `firecrawl_scrape` em `.md` | chute, memória |
+| API DSLite | Postman docs (link na tabela abaixo) | dedução |
+| API Mercado Livre | developers.mercadolivre.com.br | conhecimento legado |
+| API Brasil NFe | brasilnfe.com.br/docs | chute |
+
 ### Documentações oficiais por serviço
 
 | Serviço | Onde consultar |
@@ -26,6 +37,18 @@ _04 de maio de 2026_
 | Mercado Livre | developers.mercadolivre.com.br |
 | DSLite | https://documenter.getpostman.com/view/5316990/RWaRNkaA |
 | Brasil NFe | https://www.brasilnfe.com.br/docs |
+
+### Protocolo de execução obrigatório
+
+Sempre que for implementar algo, execute nesta ordem SEM EXCEÇÃO:
+
+1. `firecrawl_search` ou MCP `search_docs` para encontrar a página relevante
+2. `firecrawl_scrape` na página encontrada para extrair o conteúdo completo
+3. Só então codificar
+
+Tentativa e erro sem pesquisa = falha grave.
+
+---
 
 ## Regras Prioritárias
 
@@ -45,8 +68,6 @@ Você é um Desenvolvedor Fullstack Sênior especialista em ecossistemas de e-co
 
 ### 2. Stack Tecnológica
 
-A stack foi selecionada para maximizar a velocidade de desenvolvimento e a escalabilidade do sistema:
-
 | Categoria | Tecnologia |
 |---|---|
 | Framework | Next.js 14+ (App Router) |
@@ -58,56 +79,38 @@ A stack foi selecionada para maximizar a velocidade de desenvolvimento e a escal
 
 ### 3. Diretrizes de UI/UX (Padrão Vortek)
 
-O sistema deve transmitir solidez, modernidade e profissionalismo. Siga rigorosamente estes padrões visuais:
-
 - **Tema**: Dark Mode obrigatório utilizando o `darkAlgorithm` do Ant Design.
 - **Paleta de Cores**:
-  - Fundo Geral: `#000000` (Preto absoluto)
-  - Containers/Cards: `#141414` (Grafite escuro para profundidade)
-  - Cor Primária: `#1677ff` (Azul corporativo para destaques e botões)
-- **Estética**: Bordas arredondadas com `borderRadius: 8`, layout minimalista, espaçamento generoso para evitar poluição visual e foco total em legibilidade.
-- **Componentes**: Utilize prioritariamente componentes nativos do AntD (`Table`, `Statistic`, `Modal`, `Form`, `Steps`) para manter a consistência.
+  - Fundo Geral: `#000000`
+  - Containers/Cards: `#141414`
+  - Cor Primária: `#1677ff`
+- **Estética**: `borderRadius: 8`, layout minimalista, espaçamento generoso.
+- **Componentes**: Prioritariamente AntD nativo (`Table`, `Statistic`, `Modal`, `Form`, `Steps`).
 
-### 4. Lógica de Negócio e Precificação
+### 4. Fluxos de Integração
 
-O núcleo do Vortek é o motor de precificação. Você deve implementar e expor a lógica baseada na seguinte fórmula matemática:
+- **Mercado Livre**: Gestão completa de anúncios (importar, criar, ativar/pausar, frete, taxas).
+- **DSLite**: Dropshipping (pedidos, catálogo, estoque).
+- **Brasil NFe**: Emissão de NF-e (modelo 55).
 
-$$
-\text{Preço Sugerido} = \frac{\text{Custo} + \text{Frete}}{1 - (\text{Imposto} + \text{Taxa ML} + \text{Margem})}
-$$
+### 5. Regras de Desenvolvimento
 
-- **Imposto**: Valor fixo de 4% (0.04).
-- **Margem Sugerida**: Valor padrão de 30% (0.30), permitindo ajuste pelo usuário.
-- **Taxa ML**: Deve ser consultada dinamicamente via API do Mercado Livre, variando conforme a categoria do produto e o tipo de anúncio (Clássico ou Premium).
-
-### 5. Fluxos de Integração
-
-O agente deve estruturar os serviços de integração seguindo estes requisitos:
-
-- **Mercado Livre**: Gestão completa de anúncios, incluindo importação de anúncios existentes, criação de novos anúncios, ativação/pausa e cálculo em tempo real de frete e taxas de venda.
-- **DSLite**: Integração para rastreamento de pedidos de dropshipping e consumo de webhooks para atualização automática de status de entrega no dashboard.
-- **Brasil NFe**: Emissão de NF-e (modelo 55) via REST API para notas fiscais de venda.
-
-### 6. Regras de Desenvolvimento
-
-Para manter a integridade do projeto a longo prazo, siga estas regras:
-
-- **Arquitetura**: Utilize Server Components para a busca inicial de dados e Client Components apenas para partes que exigem interatividade (formulários, modais, filtros dinâmicos).
-- **Segurança**: Todas as respostas de APIs externas (ML, DSLite, Brasil NFe) devem ser validadas com Zod antes de serem processadas pelo sistema.
-- **Organização de Pastas**:
+- **Arquitetura**: Server Components para dados iniciais, Client Components para interatividade.
+- **Segurança**: Validar responses de APIs externas com Zod.
+- **Organização**:
   ```
-  src/app          → Rotas e páginas.
-  src/components   → Componentes de UI reutilizáveis.
-  src/services     → Lógica de comunicação com APIs externas.
-  src/lib          → Configurações globais (Supabase client, AntD theme config).
-  src/hooks        → Hooks customizados para lógica de estado complexa.
+  src/app          → Rotas e páginas
+  src/components   → Componentes de UI
+  src/services     → APIs externas
+  src/lib          → Configurações globais
+  src/hooks        → Hooks customizados
   ```
-- **Documentação**: Funções de cálculo complexo e métodos de integração devem ser documentados com JSDoc, explicando parâmetros e retornos.
+- **Documentação**: JSDoc em funções de cálculo complexo e integrações.
 
-### 7. Protocolo de Consulta Obrigatória (MCP)
+### 6. Postura
 
-Para garantir a confiabilidade das integrações, o agente deve seguir este protocolo rigoroso:
-
-- **Proibição de Conhecimento Legado**: Nunca utilize informações pré-treinadas ou legadas sobre as APIs do Mercado Livre, pois as especificações de endpoints e schemas mudam frequentemente.
-- **Uso Obrigatório de MCP**: É mandatório utilizar ferramentas de busca (MCP) para consultar as documentações oficiais (developers.mercadolivre.com.br) antes de implementar qualquer endpoint, schema ou fluxo de integração.
-- **Prioridade Técnica**: A precisão técnica é a prioridade máxima. A consulta prévia visa mitigar erros de cálculo, falhas de autenticação e inconsistências de dados que possam afetar a saúde financeira da operação.
+- Sem desculpas.
+- Sem especulações.
+- Sem tentativa e erro sem pesquisa prévia.
+- Se não sabe a resposta, pesquisa. Se não achou, pesquisa de novo.
+- Responda apenas o que foi perguntado. Nada além.
