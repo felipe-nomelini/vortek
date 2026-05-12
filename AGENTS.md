@@ -95,6 +95,12 @@ Você é um Desenvolvedor Fullstack Sênior especialista em ecossistemas de e-co
 
 ### 5. Regras de Desenvolvimento
 
+### Performance First
+
+- **Pense na escala antes de codar**: qualquer operação que envolva consulta ao banco, API externa ou processamento de arrays, pergunte-se "quantos registros isso vai processar?" e "quantas vezes isso vai ser chamado por interação do usuário?"
+- **Evite requisições desnecessárias**: um onChange que dispara fetch a cada tecla é inaceitável para mais de 100 registros. Use debounce, Enter key, ou botão de busca explícito.
+- **Toda iteração de lista (map, filter, reduce) no frontend**: considere se a lista pode ter mais de 100 itens. Se sim, a operação deve ser server-side ou paginada.
+
 - **Arquitetura**: Server Components para dados iniciais, Client Components para interatividade.
 - **Segurança**: Validar responses de APIs externas com Zod.
 - **Organização**:

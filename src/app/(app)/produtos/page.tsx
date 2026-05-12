@@ -88,6 +88,7 @@ export default function ProductsPage() {
   const [page, setPage] = useState(1);
 
   const [search, setSearch] = useState('');
+  const [inputSearch, setInputSearch] = useState('');
   const [filterMLStatus, setFilterMLStatus] = useState<MLStatus | ''>('');
   const [filterFornecedores, setFilterFornecedores] = useState<string[]>([]);
   const [fornecedorOptions, setFornecedorOptions] = useState<string[]>(FORNECEDORES);
@@ -244,12 +245,12 @@ export default function ProductsPage() {
             <Input
               placeholder="Buscar por nome ou SKU"
               prefix={<SearchOutlined />}
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              onPressEnter={() => { setPage(1); fetchProducts(1, search, filterFornecedores); }}
+              value={inputSearch}
+              onChange={e => setInputSearch(e.target.value)}
+              onPressEnter={() => { setPage(1); setSearch(inputSearch); }}
               style={{ width: 220 }}
               allowClear
-              onClear={() => { setSearch(''); setPage(1); fetchProducts(1, '', []); }}
+              onClear={() => { setInputSearch(''); setSearch(''); setPage(1); }}
             />
           </Col>
           <Col>
