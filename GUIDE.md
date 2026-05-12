@@ -14,7 +14,7 @@
 
 ---
 
-## Fase 2 — Integrações Individuais (Em andamento)
+## Fase 2 — Integrações Individuais ✅ (Concluída)
 
 ### Fluxo Final
 
@@ -40,41 +40,16 @@ Mercado Livre ←→ Vortek ERP ←→ DSLite (dropshipping + catálogo)
 | 81 | VITRINE OUTLET | 2.259 | ✅ Ativo |
 | **Total** | | **~9.693** | |
 
-**Sync catálogo:** Paginado (1000 por página), faz sync de todos os fornecedores ativos automaticamente se nenhum ID for informado.
-
-**Campos mapeados por produto:**
-
-| Campo DSLite | Campo Vortek |
-|---|---|
-| `produtoid` | `dslite_produto_id` |
-| `produtoid_empresa` | `sku` |
-| `titulo` | `nome` |
-| `preco_crossdocking` | `custo` |
-| `estoque` | `estoque` |
-| `ean11` | `gtin` |
-| `ncm` | `ncm` |
-| `marca` | `marca` |
-| `peso / largura / altura / profundidade` | `peso_liq / largura / altura / profundidade` |
-| `descricao` | `descricao` |
-| `categoria_nome` | `categoria` |
-| `cest` | — (armazenar futuramente) |
-| `ipi / icmsrate` | — (impostos) |
-
 | Funcionalidade | Endpoint API | Rota Vortek |
 |---|---|---|
-| Sync catálogo (full) | `GET /CrossDocking/Catalogo/{fornecedorId}` | `POST /api/sync/catalogo` |
-| Sync preço/estoque (rápido) | `GET /CrossDocking/PrecoEstoque/{fornecedorId}` | `POST /api/sync/preco-estoque` |
-| Mapear produto (DE/PARA) | `PUT /CrossDocking/Catalogo/{fornecedorId}/{produtoId}/{produtoIdEmpresa}` | — (via service) |
+| Sync catálogo | `GET /CrossDocking/Catalogo/{fornecedorId}` | `POST /api/sync/catalogo` |
+| Sync preço/estoque | `GET /CrossDocking/PrecoEstoque/{fornecedorId}` | `POST /api/sync/preco-estoque` |
 | Criar pedido dropshipping | `POST /DropShipping/fornecedor/{id}/transportadora/{id}` | `POST /api/dslite/pedido` |
 | Consultar status pedido | `GET /DropShipping/{id}` | `GET /api/dslite/pedido/status?dsid={id}` |
-| Listar fornecedores | `GET /Empresa/fornecedor/status` | — (via service) |
-| Listar categorias | `GET /CrossDocking/Categoria` | — (via service) |
 
 ### 🟢 Brasil NFe
 
-**Configuração:** Token fixo no header `Token:`
 **Preço:** R$ **49,90**/mês — emissão **ilimitada** NF-e (modelo 55) + NFC-e (modelo 65)
-
 **Testado em homologação:** ✅ NF-e emitida e autorizada pela SEFAZ
 
 | Funcionalidade | Endpoint API | Rota Vortek |
@@ -82,7 +57,6 @@ Mercado Livre ←→ Vortek ERP ←→ DSLite (dropshipping + catálogo)
 | Emitir NF-e | `POST /services/fiscal/EnviarNotaFiscal` | `POST /api/nfe/emitir` |
 | Cancelar NF-e | `POST /services/fiscal/CancelarNotaFiscal` | `POST /api/nfe/cancelar` |
 | Status SEFAZ | `POST /services/statusSefaz` | `GET /api/nfe/status` |
-| Carta de Correção | `POST /services/fiscal/CartaCorrecao` | — |
 | SDK oficial | `npm install brasilnfe` (TypeScript) | ✅ Instalado |
 
 ### 🔵 Mercado Livre OAuth2
@@ -90,9 +64,6 @@ Mercado Livre ←→ Vortek ERP ←→ DSLite (dropshipping + catálogo)
 - ✅ OAuth2 (connect + callback + refresh)
 - ✅ Sincronizar anúncios
 - ✅ Sincronizar pedidos
-- 🔜 Criar/Ativar/Pausar anúncio
-- 🔜 Responder perguntas
-- 🔜 Webhooks
 
 ---
 
@@ -100,38 +71,106 @@ Mercado Livre ←→ Vortek ERP ←→ DSLite (dropshipping + catálogo)
 
 ---
 
-## Fase 3.5 — Automação das Sincronizações
+## Fase 4 — Limpeza e Organização do Código (NOVA)
 
-**Status: ⏳ A implementar**
+**Validado via Context7:** Ant Design 5, Next.js 14 App Router, Supabase JS v2.
 
-| Tarefa | Frequência | Gatilho |
+### 4.1 — Remover código morto (5 arquivos)
+
+| Arquivo | Motivo |
+|---|---|
+| `src/components/Header.tsx` | Nunca importado |
+| `src/components/ProgressModal.tsx` | Nunca importado |
+| `src/lib/AntdRegistry.tsx` | Duplicado no `Providers.tsx` |
+| `src/lib/api-key.ts` | `validateApiKey` nunca usada |
+| `src/lib/theme.ts` | Tema duplicado no `Providers.tsx` |
+
+### 4.2 — Consertar globals.css (validado pelo Ant Design 5 docs via Context7)
+
+**Problema:** `globals.css` força `min-height: 38px !important` em Input, Select e InputNumber, ignorando o `size` prop do Ant Design.
+
+**Solução:** Remover as linhas 12-27 do `globals.css`. O Ant Design 5 controla altura via **Component Tokens** no `ConfigProvider`:
+
+```tsx
+// lib/Providers.tsx
+<ConfigProvider theme={{
+  components: {
+    Input: { controlHeight: 32 },
+    Select: { controlHeight: 32 },
+    InputNumber: { controlHeight: 32 },
+  },
+}}>
+```
+
+### 4.3 — Gerar tipos TypeScript do Supabase (validado pelo Supabase JS docs via Context7)
+
+**Problema:** 44 usos de `any` em todo o código.
+
+**Solução:** Rodar comando oficial do Supabase CLI:
+```bash
+supabase gen types typescript --linked > src/types/database.ts
+```
+
+Depois registrar no `createClient<Database>()` no `lib/supabase.ts`. TypeScript infere **todos** os tipos automaticamente — zero `any` manual.
+
+### 4.4 — Extrair lógica duplicada
+
+| Duplicata | Solução |
+|---|---|
+| `fetchAll()` em `api/clientes` e `api/pedidos` | Criar `lib/fetch-all.ts` |
+| `mockClients` em `clientes/page` e `clientes/[id]` | Criar `lib/mocks/clientes.ts` |
+| `refreshMLToken()` duplicata de `getValidMLToken()` | Remover função duplicada |
+
+### 4.5 — Substituir stubs de dropdown por ações reais
+
+| Onde | Qtde | Problema |
 |---|---|---|
-| Sync catálogo DSLite → Vortek | Diária (6h) | Cron ou botão |
-| Sync preço/estoque DSLite | Diária (6h) | Cron ou botão |
-| Sync ML pedidos | A cada 15min | Cron + webhook |
-| Criar pedido DSLite | Automático (ao receber pedido ML pago) | Evento |
-| Emitir NF-e | Manual (botão) | Ação usuário |
+| Dropdowns em 8 páginas | 8 | `console.log(key + id)` em vez de ação real |
+| Webhook ML | 4 | `console.log` sem estrutura |
+
+### 4.6 — Documentar código (comentários)
+
+| Escopo | Qtde | O que fazer |
+|---|---|---|
+| Serviços (`services/*.ts`) | 4 | JSDoc completo (`@param`, `@returns`) |
+| Rotas (`api/**/route.ts`) | 21 | 1 linha descritiva no topo |
+| Tipos (`types/*.ts`) | 3 | JSDoc em cada interface |
+| Componentes (`components/*.tsx`) | 3 | JSDoc no componente e props |
+| Páginas (`(app)/**/page.tsx`) | 15 | 1 linha descritiva no topo |
 
 ---
 
-## Fase 4 — Funcionalidades Completas
+## Fase 5 — Funcionalidades Completas (pendentes)
 
 | Ação | API | Prioridade |
 |---|---|---|
+| Conectar páginas mock ao backend | — | 🔴 Alta |
 | Criar anúncio ML | `POST /items` | 🔴 Alta |
 | Ativar/Pausar anúncio ML | `PUT /items/{id}` | 🟡 Média |
 | Atualizar preço no ML | `PUT /items/{id}` | 🟡 Média |
 | Responder perguntas ML | `POST /answers` | 🟡 Média |
 | Mapear produto (DE/PARA) DSLite | `PUT /Catalogo/{id}/{produtoId}` | 🔴 Alta |
-| Emitir NF-e (botão na página de pedidos) | Brasil NFe | ✅ |
 | Cancelar NF-e na UI | Brasil NFe | 🔜 |
-| Criar pedido DSLite (botão) | DSLite | ✅ |
 | Carta de Correção CC-e | Brasil NFe | 🔜 |
-| Consultar NF-e por chave | Brasil NFe | 🔜 (SDK limitado) |
+
+### Páginas para migrar de mock para dados reais
+
+| Página | Dados mock | API destino |
+|---|---|---|
+| `produtos/[id]/page.tsx` | 10 produtos | `GET /api/produtos?id=X` |
+| `clientes/page.tsx` | 15 clientes | `GET /api/clientes` |
+| `clientes/[id]/page.tsx` | 15 clientes | `GET /api/clientes?id=X` |
+| `fornecedores/page.tsx` | 8 fornecedores | DSLite + Supabase |
+| `catalogo/page.tsx` | 10 itens | Produtos + fornecedor |
+| `perguntas/page.tsx` | 12 perguntas | `GET /questions/search` (ML) |
+| `reclamacoes/page.tsx` | 6 reclamações | `GET /claims` (ML) |
+| `reputacao/page.tsx` | 1 objeto | `GET /users/me` (ML) |
+| `notas-fiscais/page.tsx` | 12 notas | Tabela `pedidos` (nfe_*) |
+| `dashboard/page.tsx` | Gráficos mock | Dados reais de vendas/pedidos |
 
 ---
 
-## Fase 5 — Deploy no Easypanel
+## Fase 6 — Deploy no Easypanel
 
 ### Registrar redirect URIs
 
@@ -154,5 +193,7 @@ Mercado Livre ←→ Vortek ERP ←→ DSLite (dropshipping + catálogo)
 - **DSLite auth:** Header `Token:` (fixo, sem OAuth).
 - **DSLite paginação:** Parâmetros `page`, `limit`. Padrão 1000 por página.
 - **DSLite timeout:** 60s (alguns catálogos grandes podem precisar de mais).
-- **Ações em massa sempre com feedback:** Processar múltiplos itens DEVE abrir a Modal de Progresso.
-- **AGENTS.md:** Regra Zero obriga a consultar documentação oficial antes de qualquer ação.
+- **Performance First:** onChange que dispara fetch a cada tecla é inaceitável para +100 registros. Use Enter key ou debounce.
+- **Tipagem:** Use `supabase gen types typescript` antes de cada novo sync para manter os tipos do banco sincronizados.
+- **Ant Design 5:** Nunca use `!important` no CSS global. Use `ConfigProvider` com Component Tokens.
+- **AGENTS.md:** Regra Zero obriga a consultar documentação oficial antes de qualquer ação. Use o MCP Context7 para bibliotecas.
