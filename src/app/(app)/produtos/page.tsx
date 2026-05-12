@@ -258,7 +258,7 @@ export default function ProductsPage() {
             />
           </Col>
           <Col>
-            <Button onClick={handleSearch} size="small">Buscar</Button>
+            <Button onClick={handleSearch}>Buscar</Button>
           </Col>
           <Col>
             <Select
