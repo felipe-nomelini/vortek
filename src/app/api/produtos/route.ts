@@ -31,12 +31,9 @@ export async function GET(request: Request) {
 
   if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
 
-  // Get distinct fornecedores (use service client to bypass RLS)
+  // Get distinct fornecedores via RPC (sem limite de linhas)
   const serviceClient = createServiceClient();
-  const { data: fornData } = await serviceClient
-    .from('produtos')
-    .select('fornecedor')
-    .limit(10000);
+  const { data: fornData } = await serviceClient.rpc('get_fornecedores');
   const fornecedoresSet = new Set<string>();
   for (const item of fornData || []) {
     if (item.fornecedor) fornecedoresSet.add(item.fornecedor);
