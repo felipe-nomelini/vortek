@@ -90,6 +90,7 @@ export default function ProductsPage() {
   const [search, setSearch] = useState('');
   const [filterMLStatus, setFilterMLStatus] = useState<MLStatus | ''>('');
   const [filterFornecedores, setFilterFornecedores] = useState<string[]>([]);
+  const [fornecedorOptions, setFornecedorOptions] = useState<string[]>(FORNECEDORES);
   const [filterEstoque, setFilterEstoque] = useState<string>('todos');
   const [priceField, setPriceField] = useState<string>('cost');
   const [priceMin, setPriceMin] = useState<number | null>(null);
@@ -106,6 +107,7 @@ export default function ProductsPage() {
         const data = json.data || [];
         setProducts(data.map(mapDBtoProduct));
         setTotal(json.total || 0);
+        if (json.fornecedores?.length) setFornecedorOptions(json.fornecedores);
       }
     } catch {}
     setLoading(false);
@@ -279,7 +281,7 @@ export default function ProductsPage() {
               }}
               options={[
                 ...(filterFornecedores.length === 0 ? [{ value: '__all__', label: 'Todos' }] : []),
-                ...FORNECEDORES.map(f => ({ value: f, label: f })),
+                ...fornecedorOptions.map(f => ({ value: f, label: f })),
               ]}
               style={{ minWidth: 180, maxWidth: 250 }}
               maxTagCount={2}

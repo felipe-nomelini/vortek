@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { createClient, createServiceClient } from '@/lib/supabase';
 
 export async function GET(request: Request) {
   const supabase = await createClient();
@@ -31,7 +31,23 @@ export async function GET(request: Request) {
 
   if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
 
-  return NextResponse.json({ data, total: count || 0, page, pageSize });
+  // Get distinct fornecedores (use service client to bypass RLS)
+  const serviceClient = createServiceClient();
+  const { data: fornData } = await serviceClient
+    .from('produtos')
+    .select('fornecedor');
+  const fornecedoresSet = new Set<string>();
+  for (const item of fornData || []) {
+    if (item.fornecedor) fornecedoresSet.add(item.fornecedor);
+  }
+
+  return NextResponse.json({
+    data,
+    total: count || 0,
+    page,
+    pageSize,
+    fornecedores: Array.from(fornecedoresSet).sort(),
+  });
 }
 
 export async function POST(request: Request) {
