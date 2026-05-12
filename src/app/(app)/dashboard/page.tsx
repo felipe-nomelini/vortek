@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Card, Row, Col, Statistic, Tag, Typography, Table, Progress } from 'antd';
-import { ArrowUpOutlined, ArrowDownOutlined, TrophyFilled } from '@ant-design/icons';
+import { Card, Row, Col, Statistic, Tag, Typography, Table, Progress, Button, Space, message } from 'antd';
+import { ArrowUpOutlined, ArrowDownOutlined, TrophyFilled, SyncOutlined } from '@ant-design/icons';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { formatCurrency } from '@/lib/format';
 
@@ -80,6 +80,29 @@ function Trend({ value, label }: { value: number; label: string }) {
 export default function DashboardPage() {
   const [prodCount, setProdCount] = useState(342);
   const [pedCount, setPedCount] = useState(342);
+  const [syncStatus, setSyncStatus] = useState<Record<string, 'idle' | 'running' | 'done'>>({});
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const triggerSync = async (tipo: string) => {
+    setSyncStatus(prev => ({ ...prev, [tipo]: 'running' }));
+    try {
+      const res = await fetch('/api/sync/run', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tipo }),
+      });
+      if (res.ok) {
+        setSyncStatus(prev => ({ ...prev, [tipo]: 'done' }));
+        messageApi.success(`Sync ${tipo} concluído!`);
+      } else {
+        messageApi.error(`Erro no sync ${tipo}`);
+        setSyncStatus(prev => ({ ...prev, [tipo]: 'idle' }));
+      }
+    } catch {
+      messageApi.error(`Erro ao conectar`);
+      setSyncStatus(prev => ({ ...prev, [tipo]: 'idle' }));
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -102,6 +125,7 @@ export default function DashboardPage() {
 
   return (
     <div>
+      {contextHolder}
       <Title level={4} style={{ color: '#e0e0e0', marginBottom: 24 }}>Dashboard</Title>
 
       <Row gutter={[16, 16]} style={{ marginBottom: 20 }}>
@@ -255,6 +279,29 @@ export default function DashboardPage() {
             </div>
             <div style={{ marginTop: 12 }}>
               <a style={{ color: '#1677ff', fontSize: 12 }} href="/configuracoes">Gerenciar integrações →</a>
+            </div>
+            <div style={{ borderTop: '1px solid #303030', marginTop: 16, paddingTop: 16 }}>
+              <Text style={{ color: '#a0a0a0', fontSize: 12, display: 'block', marginBottom: 10 }}>Sincronizações</Text>
+              <Space direction="vertical" style={{ width: '100%' }} size={6}>
+                {[
+                  { tipo: 'catalogo', label: 'Sync Catálogo DSLite' },
+                  { tipo: 'precos', label: 'Sync Preços DSLite' },
+                  { tipo: 'anuncios', label: 'Sync Anúncios ML' },
+                  { tipo: 'pedidos', label: 'Sync Pedidos ML' },
+                ].map(s => (
+                  <Button
+                    key={s.tipo}
+                    size="small"
+                    block
+                    icon={<SyncOutlined spin={syncStatus[s.tipo] === 'running'} />}
+                    loading={syncStatus[s.tipo] === 'running'}
+                    onClick={() => triggerSync(s.tipo)}
+                    style={{ textAlign: 'left', height: 32 }}
+                  >
+                    {syncStatus[s.tipo] === 'done' ? '✅' : ''} {s.label}
+                  </Button>
+                ))}
+              </Space>
             </div>
           </Card>
         </Col>

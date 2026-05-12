@@ -1,51 +1,74 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { fetchML } from '@/services/integration';
+import { criarPedidoDropshipping } from '@/services/dslite';
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { topic, resource } = body;
 
-    console.log(`[Webhook ML] topic=${topic} resource=${resource}`);
-
     if (!topic || !resource) {
       return NextResponse.json({ ok: false, erro: 'topic e resource obrigatórios' }, { status: 400 });
     }
 
     const serviceClient = createServiceClient();
-
     const resourcePath = resource.replace('https://api.mercadolibre.com', '');
 
     if (topic === 'orders') {
       const order = await fetchML<any>(resourcePath);
       if (order) {
-        await serviceClient.from('pedidos').upsert({
-          numero: order.id,
-          numero_loja: String(order.id),
-          data: order.date_created,
+        const { data: existing } = await serviceClient
+          .from('pedidos')
+          .select('id')
+          .eq('ml_order_id', String(order.id))
+          .maybeSingle();
+
+        const pedidoPayload = {
+          numero: Number(order.id) || 0,
+          numero_loja: String(order.id || ''),
+          data: order.date_created || new Date().toISOString(),
           contato_nome: order.buyer?.nickname || 'Desconhecido',
+          contato_documento: String(order.buyer?.identification?.number || ''),
           total: order.total_amount || 0,
-          situacao: order.status === 'paid' ? 'aberto' : order.status === 'shipped' ? 'faturado' : 'entregue',
-          ml_order_id: String(order.id),
-        }, { onConflict: 'ml_order_id' });
-        console.log(`[Webhook ML] Order ${order.id} saved`);
+          situacao: order.status === 'paid' ? 'aberto' : 'atendido' as any,
+          ml_order_id: String(order.id || ''),
+        } as any;
+
+        if (existing) {
+          await serviceClient.from('pedidos').update(pedidoPayload).eq('id', existing.id);
+        } else {
+          const { data: inserted } = await serviceClient
+            .from('pedidos')
+            .insert(pedidoPayload)
+            .select('id')
+            .single();
+
+          // Auto-cria pedido DSLite se for um pedido pago
+          if (inserted && order.status === 'paid') {
+            const xmlSimples = `<?xml version="1.0" encoding="UTF-8"?>
+<pedido>
+  <cliente>${order.buyer?.nickname || 'Cliente'}</cliente>
+  <valor>${order.total_amount || 0}</valor>
+  <ml_order_id>${order.id}</ml_order_id>
+</pedido>`;
+            const dsliteResult = await criarPedidoDropshipping(2, '', xmlSimples);
+            if (dsliteResult) {
+              await serviceClient
+                .from('pedidos')
+                .update({
+                  dslite_id: String(dsliteResult.dsid),
+                  dslite_status: dsliteResult.status,
+                })
+                .eq('id', inserted.id);
+            }
+          }
+        }
       }
-    }
-
-    if (topic === 'questions') {
-      const questionId = resourcePath.split('/').pop();
-      console.log(`[Webhook ML] Question ${questionId} received - sync on demand`);
-    }
-
-    if (topic === 'claims') {
-      const claimId = resourcePath.split('/').pop();
-      console.log(`[Webhook ML] Claim ${claimId} received - sync on demand`);
     }
 
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error('[Webhook ML] Error:', err);
-    return NextResponse.json({ ok: false, erro: 'Internal error' }, { status: 500 });
+    return NextResponse.json({ error: err instanceof Error ? err.message : 'Erro desconhecido' }, { status: 500 });
   }
 }
