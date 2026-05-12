@@ -88,6 +88,7 @@ export default function ProductsPage() {
   const [search, setSearch] = useState('');
   const [filterMLStatus, setFilterMLStatus] = useState<MLStatus | ''>('');
   const [filterFornecedores, setFilterFornecedores] = useState<string[]>([]);
+  const [fornecedorOptions, setFornecedorOptions] = useState<string[]>([]);
   const [filterEstoque, setFilterEstoque] = useState<string>('todos');
   const [priceField, setPriceField] = useState<string>('cost');
   const [priceMin, setPriceMin] = useState<number | null>(null);
@@ -104,6 +105,7 @@ export default function ProductsPage() {
         const data = json.data || [];
         setProducts(data.map(mapDBtoProduct));
         setTotal(json.total || 0);
+        if (json.fornecedores) setFornecedorOptions(json.fornecedores);
       }
     } catch {}
     setLoading(false);
@@ -112,14 +114,6 @@ export default function ProductsPage() {
   useEffect(() => {
     fetchProducts(page, search);
   }, [page, fetchProducts]);
-
-  const fornecedorOptions = useMemo(() => {
-    const set = new Set<string>();
-    for (const p of products) {
-      if (p.fornecedor) set.add(p.fornecedor);
-    }
-    return Array.from(set).sort();
-  }, [products]);
 
   const rows: ProductRow[] = useMemo(() => {
     return products.map(p => {

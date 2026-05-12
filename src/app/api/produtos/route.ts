@@ -31,7 +31,18 @@ export async function GET(request: Request) {
 
   if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
 
-  return NextResponse.json({ data, total: count || 0, page, pageSize });
+  // Get distinct fornecedores for the filter dropdown
+  const { data: fornData } = await supabase
+    .from('produtos')
+    .select('fornecedor')
+    .not('fornecedor', 'is', null);
+  const fornecedoresSet = new Set<string>();
+  for (const item of fornData || []) {
+    if (item.fornecedor) fornecedoresSet.add(item.fornecedor);
+  }
+  const fornecedores = Array.from(fornecedoresSet).sort();
+
+  return NextResponse.json({ data, total: count || 0, page, pageSize, fornecedores });
 }
 
 export async function POST(request: Request) {
