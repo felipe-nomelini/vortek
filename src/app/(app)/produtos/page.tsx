@@ -241,67 +241,57 @@ export default function ProductsPage() {
       <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Produtos</Title>
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-          <div style={{ height: 24, display: 'inline-flex', alignItems: 'center' }}>
-            <Input
-              placeholder="Buscar por nome ou SKU"
-              prefix={<SearchOutlined />}
-              value={inputSearch}
-              onChange={e => setInputSearch(e.target.value)}
-              onPressEnter={() => { setPage(1); setSearch(inputSearch); }}
-              style={{ width: 220 }}
-              allowClear
-              size="small"
-              onClear={() => { setInputSearch(''); setSearch(''); setPage(1); }}
-            />
-          </div>
-          <div style={{ height: 24, display: 'inline-flex', alignItems: 'center' }}>
-            <Select
-              placeholder="Status ML"
-              size="small"
-              value={filterMLStatus || undefined}
-              onChange={v => setFilterMLStatus(v as MLStatus | '')}
-              options={mlStatusOptions}
-              style={{ width: 150 }}
-              allowClear
-              onClear={() => setFilterMLStatus('')}
-            />
-          </div>
-          <div style={{ height: 24, display: 'inline-flex', alignItems: 'center' }}>
-            <Select
-              mode="multiple"
-              placeholder="Fornecedor"
-              size="small"
-              value={filterFornecedores}
-              onChange={v => {
-                if (v.includes('__all__')) setFilterFornecedores([]);
-                else setFilterFornecedores(v);
-              }}
-              options={[
-                ...(filterFornecedores.length === 0 ? [{ value: '__all__', label: 'Todos' }] : []),
-                ...fornecedorOptions.map(f => ({ value: f, label: f })),
-              ]}
-              style={{ minWidth: 180, maxWidth: 250 }}
-              maxTagCount={2}
-              allowClear
-              onClear={() => setFilterFornecedores([])}
-            />
-          </div>
-          <div style={{ height: 24, display: 'inline-flex', alignItems: 'center' }}>
-            <Select
-              size="small"
-              value={filterEstoque}
-              onChange={v => setFilterEstoque(v)}
-              options={estoqueOptions}
-              style={{ width: 150 }}
-            />
-          </div>
-          <div style={{ height: 24, display: 'inline-flex', alignItems: 'center' }}>
-            <Space.Compact size="small">
-              <Select size="small" value={priceField} onChange={setPriceField} options={priceFieldOptions} style={{ width: 130 }} />
-              <InputNumber size="small" placeholder="Mín" value={priceMin} onChange={v => setPriceMin(v ?? null)} style={{ width: 100 }} />
-              <InputNumber size="small" placeholder="Máx" value={priceMax} onChange={v => setPriceMax(v ?? null)} style={{ width: 100 }} />
-            </Space.Compact>
-          </div>
+          <Input
+            placeholder="Buscar por nome ou SKU"
+            prefix={<SearchOutlined />}
+            value={inputSearch}
+            onChange={e => setInputSearch(e.target.value)}
+            onPressEnter={() => { setPage(1); setSearch(inputSearch); }}
+            style={{ width: 220 }}
+            allowClear
+            size="small"
+            onClear={() => { setInputSearch(''); setSearch(''); setPage(1); }}
+          />
+          <Select
+            placeholder="Status ML"
+            size="small"
+            value={filterMLStatus || undefined}
+            onChange={v => setFilterMLStatus(v as MLStatus | '')}
+            options={mlStatusOptions}
+            style={{ width: 150 }}
+            allowClear
+            onClear={() => setFilterMLStatus('')}
+          />
+          <Select
+            mode="multiple"
+            placeholder="Fornecedor"
+            size="small"
+            value={filterFornecedores}
+            onChange={v => {
+              if (v.includes('__all__')) setFilterFornecedores([]);
+              else setFilterFornecedores(v);
+            }}
+            options={[
+              ...(filterFornecedores.length === 0 ? [{ value: '__all__', label: 'Todos' }] : []),
+              ...fornecedorOptions.map(f => ({ value: f, label: f })),
+            ]}
+            style={{ minWidth: 180, maxWidth: 250 }}
+            maxTagCount={2}
+            allowClear
+            onClear={() => setFilterFornecedores([])}
+          />
+          <Select
+            size="small"
+            value={filterEstoque}
+            onChange={v => setFilterEstoque(v)}
+            options={estoqueOptions}
+            style={{ width: 150 }}
+          />
+          <Space.Compact size="small">
+            <Select size="small" value={priceField} onChange={setPriceField} options={priceFieldOptions} style={{ width: 130 }} />
+            <InputNumber size="small" placeholder="Mín" value={priceMin} onChange={v => setPriceMin(v ?? null)} style={{ width: 100 }} />
+            <InputNumber size="small" placeholder="Máx" value={priceMax} onChange={v => setPriceMax(v ?? null)} style={{ width: 100 }} />
+          </Space.Compact>
         </div>
       </div>
       <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
