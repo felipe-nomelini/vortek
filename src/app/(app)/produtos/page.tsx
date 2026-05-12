@@ -95,6 +95,7 @@ export default function ProductsPage() {
   const [priceField, setPriceField] = useState<string>('cost');
   const [priceMin, setPriceMin] = useState<number | null>(null);
   const [priceMax, setPriceMax] = useState<number | null>(null);
+  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
   const fetchProducts = useCallback(async (p: number, s: string, f: string[]) => {
     setLoading(true);
@@ -313,6 +314,7 @@ export default function ProductsPage() {
             dataSource={filtered}
             columns={columns}
             rowKey="key"
+            rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
             pagination={{
               current: page,
               pageSize: 100,
