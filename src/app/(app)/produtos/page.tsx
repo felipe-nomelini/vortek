@@ -2,17 +2,17 @@
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import {
-  Input, Select, InputNumber, Tag, Typography, Space, Spin,
+  Input, Select, InputNumber, Tag, Typography, Space, Spin, Modal, Button, message, Dropdown,
 } from 'antd';
 import type { TableProps } from 'antd';
-import { SearchOutlined, LoadingOutlined } from '@ant-design/icons';
+import { SearchOutlined, LoadingOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { formatCurrency, formatPercent } from '@/lib/format';
 import { useRouter } from 'next/navigation';
 import type { Product, MLStatus } from '@/types/product';
 import ResizableTable from '@/components/ResizableTable';
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 const mlStatusOptions: { value: MLStatus | ''; label: string }[] = [
   { value: '', label: 'Todos' },
@@ -97,6 +97,55 @@ export default function ProductsPage() {
   const [priceMin, setPriceMin] = useState<number | null>(null);
   const [priceMax, setPriceMax] = useState<number | null>(null);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const [messageApi, contextHolder] = message.useMessage();
+  const [mlModal, setMlModal] = useState<{ open: boolean; produtoId: string; nome: string; categorias: any[]; loading: boolean }>({ open: false, produtoId: '', nome: '', categorias: [], loading: false });
+
+  const abrirCriarAnuncioML = async (productId: string, nome: string) => {
+    setMlModal({ open: true, produtoId: productId, nome, categorias: [], loading: true });
+    try {
+      const res = await fetch('/api/ml/anuncio/categorias', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ produtoId: productId }),
+      });
+      const data = await res.json();
+      if (data.categorias) {
+        setMlModal(prev => ({ ...prev, categorias: data.categorias, loading: false }));
+      } else {
+        messageApi.error(data.error || 'Erro ao buscar categorias');
+        setMlModal(prev => ({ ...prev, open: false }));
+      }
+    } catch {
+      messageApi.error('Erro ao conectar');
+      setMlModal(prev => ({ ...prev, open: false }));
+    }
+  };
+
+  const confirmarCriarAnuncio = async (categoriaId: string) => {
+    setMlModal(prev => ({ ...prev, loading: true }));
+    try {
+      const res = await fetch('/api/ml/anuncio/criar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          produtoId: mlModal.produtoId,
+          categoriaId,
+          listingType: 'gold_pro',
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        messageApi.success(`Anúncio criado! ${data.anuncio.permalink}`);
+        setMlModal(prev => ({ ...prev, open: false }));
+      } else {
+        messageApi.error(data.error || 'Erro ao criar anúncio');
+        setMlModal(prev => ({ ...prev, loading: false }));
+      }
+    } catch {
+      messageApi.error('Erro ao criar anúncio');
+      setMlModal(prev => ({ ...prev, loading: false }));
+    }
+  };
 
   const fetchProducts = useCallback(async (p: number, s: string, f: string[]) => {
     setLoading(true);
@@ -234,6 +283,23 @@ export default function ProductsPage() {
         <Tag color={mlStatusColor[status]}>{mlStatusLabel[status]}</Tag>
       ),
     },
+    {
+      title: 'Ações', key: 'actions', width: 60, fixed: 'right',
+      render: (_, record) => (
+        record.product.mlStatus === 'sem_anuncio' ? (
+          <Button
+            type="link"
+            size="small"
+            onClick={() => abrirCriarAnuncioML(record.product.id, record.product.name)}
+            style={{ fontSize: 12, padding: 0 }}
+          >
+            Criar ML
+          </Button>
+        ) : (
+          <span style={{ color: '#666', fontSize: 11 }}>—</span>
+        )
+      ),
+    },
   ];
 
   return (
@@ -312,6 +378,46 @@ export default function ProductsPage() {
           />
         </div>
       </Spin>
+
+      <Modal
+        title={`Criar Anúncio no ML — ${mlModal.nome}`}
+        open={mlModal.open}
+        onCancel={() => setMlModal(prev => ({ ...prev, open: false }))}
+        footer={null}
+        width={500}
+      >
+        {mlModal.loading && mlModal.categorias.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: 20 }}>
+            <LoadingOutlined style={{ fontSize: 24 }} />
+            <p style={{ marginTop: 8, color: '#a0a0a0' }}>Buscando categorias...</p>
+          </div>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <Text style={{ color: '#a0a0a0', fontSize: 13, marginBottom: 8 }}>
+              Selecione a categoria mais adequada para este anúncio:
+            </Text>
+            {mlModal.categorias.map((cat: any) => (
+              <Button
+                key={cat.id}
+                block
+                style={{
+                  height: 'auto',
+                  padding: '12px 16px',
+                  textAlign: 'left',
+                  background: '#1a1a1a',
+                  border: '1px solid #303030',
+                  borderRadius: 6,
+                }}
+                onClick={() => confirmarCriarAnuncio(cat.id)}
+              >
+                <div style={{ color: '#e0e0e0', fontWeight: 600, fontSize: 14 }}>{cat.nome}</div>
+                <div style={{ color: '#888', fontSize: 12, marginTop: 2 }}>{cat.dominio}</div>
+              </Button>
+            ))}
+            {mlModal.loading && <Text style={{ color: '#1677ff', textAlign: 'center' }}>Criando anúncio...</Text>}
+          </div>
+        )}
+      </Modal>
     </div>
   );
 }
