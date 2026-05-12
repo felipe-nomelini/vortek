@@ -35,7 +35,8 @@ export async function GET(request: Request) {
   const serviceClient = createServiceClient();
   const { data: fornData } = await serviceClient
     .from('produtos')
-    .select('fornecedor');
+    .select('fornecedor')
+    .limit(10000);
   const fornecedoresSet = new Set<string>();
   for (const item of fornData || []) {
     if (item.fornecedor) fornecedoresSet.add(item.fornecedor);
