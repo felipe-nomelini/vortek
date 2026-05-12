@@ -13,6 +13,11 @@
       "type": "remote",
       "url": "https://mcp.supabase.com/mcp?project_ref=koewhtgkakddifhxdmbs&features=docs%2Caccount%2Cdatabase%2Cdebugging%2Cdevelopment%2Cfunctions%2Cbranching%2Cstorage",
       "enabled": true
+    },
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true
     }
   }
 }
