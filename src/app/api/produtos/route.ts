@@ -13,13 +13,19 @@ export async function GET(request: Request) {
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
 
-  let query = supabase.from('produtos').select('*', { count: 'exact', head: false });
-
+  // Separate count query (head:true = metadata only, no data)
+  let countQuery = supabase.from('produtos').select('*', { count: 'exact', head: true });
   if (search) {
-    query = query.or(`nome.ilike.%${search}%,sku.ilike.%${search}%`);
+    countQuery = countQuery.or(`nome.ilike.%${search}%,sku.ilike.%${search}%`);
   }
+  const { count } = await countQuery;
 
-  const { data, error, count } = await query
+  // Data query with pagination
+  let dataQuery = supabase.from('produtos').select('*');
+  if (search) {
+    dataQuery = dataQuery.or(`nome.ilike.%${search}%,sku.ilike.%${search}%`);
+  }
+  const { data, error } = await dataQuery
     .order('sku', { ascending: true })
     .range(from, to);
 
