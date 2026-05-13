@@ -79,6 +79,7 @@ export async function createListing(input: MLCreateItemInput): Promise<MLCreateI
     if (input.fiscalData.ncm) attributes.push({ id: 'NCM', value_name: input.fiscalData.ncm });
     if (input.fiscalData.cest) attributes.push({ id: 'CEST', value_name: input.fiscalData.cest });
     if (input.fiscalData.csosn) attributes.push({ id: 'CSOSN', value_name: input.fiscalData.csosn });
+    // INVOICE sale term obriga a emissao de NF-e pelo ML
     saleTerms.push({ id: 'INVOICE', value_name: 'Factura A' });
   }
 

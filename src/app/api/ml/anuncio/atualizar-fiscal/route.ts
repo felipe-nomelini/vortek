@@ -50,7 +50,7 @@ export async function POST(req: Request) {
         gtin: produto.gtin || undefined,
         ncm: produto.ncm || undefined,
         cest: produto.cest || undefined,
-        csosn: produto.csosn || '101',
+        csosn: produto.csosn || '102',
       });
 
       if (ok) {
