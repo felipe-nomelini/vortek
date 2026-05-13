@@ -72,12 +72,14 @@ export async function getCategoryAttributes(categoryId: string): Promise<MLAttri
 
 export async function createListing(input: MLCreateItemInput): Promise<MLCreateItemResult | null> {
   const attributes = [...input.attributes];
+  const saleTerms: Array<{ id: string; value_name: string; value_id?: string }> = [];
 
   if (input.fiscalData) {
     if (input.fiscalData.gtin) attributes.push({ id: 'GTIN', value_name: input.fiscalData.gtin });
     if (input.fiscalData.ncm) attributes.push({ id: 'NCM', value_name: input.fiscalData.ncm });
     if (input.fiscalData.cest) attributes.push({ id: 'CEST', value_name: input.fiscalData.cest });
     if (input.fiscalData.csosn) attributes.push({ id: 'CSOSN', value_name: input.fiscalData.csosn });
+    saleTerms.push({ id: 'INVOICE', value_name: 'Factura A' });
   }
 
   const payload: Record<string, any> = {
@@ -92,6 +94,7 @@ export async function createListing(input: MLCreateItemInput): Promise<MLCreateI
     description: { plain_text: input.description },
     pictures: input.pictures.map(url => ({ source: url })),
     attributes,
+    sale_terms: saleTerms.length > 0 ? saleTerms : undefined,
     shipping: input.shipping
       ? {
           mode: input.shipping.mode || 'me2',
@@ -120,10 +123,14 @@ export async function updateListingFiscalData(
 
   if (attributes.length === 0) return true;
 
+  const payload: Record<string, any> = {};
+  if (attributes.length > 0) payload.attributes = attributes;
+  payload.sale_terms = [{ id: 'INVOICE', value_name: 'Factura A' }];
+
   const result = await fetchML(`/items/${itemId}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ attributes }),
+    body: JSON.stringify(payload),
   });
   return result !== null;
 }
