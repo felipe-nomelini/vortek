@@ -72,6 +72,12 @@ export async function POST(req: Request) {
       description: produto.descricao || titulo,
       pictures,
       attributes,
+      fiscalData: {
+        gtin: produto.gtin || undefined,
+        ncm: produto.ncm || undefined,
+        cest: produto.cest || undefined,
+        csosn: produto.csosn || '101',
+      },
     });
 
     if (!result) {

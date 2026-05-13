@@ -19,24 +19,6 @@ export interface MLAttribute {
   hierarchy?: string;
 }
 
-export interface MLCategoryDetail {
-  id: string;
-  name: string;
-  settings: {
-    listing_allowed: boolean;
-    max_title_length: number;
-    max_description_length: number;
-    max_pictures_per_item: number;
-    buying_modes: string[];
-    item_conditions: string[];
-    shipping_modes: string[] | null;
-    shipping_options: string[];
-    price: string;
-    stock: string;
-    currencies: string[];
-  };
-}
-
 export interface MLCreateItemInput {
   title: string;
   categoryId: string;
@@ -47,6 +29,12 @@ export interface MLCreateItemInput {
   description: string;
   pictures: string[];
   attributes: Array<{ id: string; value_name?: string; value_id?: string }>;
+  fiscalData?: {
+    gtin?: string;
+    ncm?: string;
+    cest?: string;
+    csosn?: string;
+  };
   shipping?: {
     mode?: string;
     localPickUp?: boolean;
@@ -82,11 +70,16 @@ export async function getCategoryAttributes(categoryId: string): Promise<MLAttri
   return data.filter((a: any) => !a.tags?.hidden);
 }
 
-export async function getCategoryDetail(categoryId: string): Promise<MLCategoryDetail | null> {
-  return fetchML<MLCategoryDetail>(`/categories/${categoryId}`);
-}
-
 export async function createListing(input: MLCreateItemInput): Promise<MLCreateItemResult | null> {
+  const attributes = [...input.attributes];
+
+  if (input.fiscalData) {
+    if (input.fiscalData.gtin) attributes.push({ id: 'GTIN', value_name: input.fiscalData.gtin });
+    if (input.fiscalData.ncm) attributes.push({ id: 'NCM', value_name: input.fiscalData.ncm });
+    if (input.fiscalData.cest) attributes.push({ id: 'CEST', value_name: input.fiscalData.cest });
+    if (input.fiscalData.csosn) attributes.push({ id: 'CSOSN', value_name: input.fiscalData.csosn });
+  }
+
   const payload: Record<string, any> = {
     title: input.title,
     category_id: input.categoryId,
@@ -98,7 +91,7 @@ export async function createListing(input: MLCreateItemInput): Promise<MLCreateI
     condition: input.condition,
     description: { plain_text: input.description },
     pictures: input.pictures.map(url => ({ source: url })),
-    attributes: input.attributes,
+    attributes,
     shipping: input.shipping
       ? {
           mode: input.shipping.mode || 'me2',
@@ -113,4 +106,24 @@ export async function createListing(input: MLCreateItemInput): Promise<MLCreateI
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
   });
+}
+
+export async function updateListingFiscalData(
+  itemId: string,
+  fiscalData: { gtin?: string; ncm?: string; cest?: string; csosn?: string }
+): Promise<boolean> {
+  const attributes: Array<{ id: string; value_name: string }> = [];
+  if (fiscalData.gtin) attributes.push({ id: 'GTIN', value_name: fiscalData.gtin });
+  if (fiscalData.ncm) attributes.push({ id: 'NCM', value_name: fiscalData.ncm });
+  if (fiscalData.cest) attributes.push({ id: 'CEST', value_name: fiscalData.cest });
+  if (fiscalData.csosn) attributes.push({ id: 'CSOSN', value_name: fiscalData.csosn });
+
+  if (attributes.length === 0) return true;
+
+  const result = await fetchML(`/items/${itemId}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ attributes }),
+  });
+  return result !== null;
 }

@@ -74,6 +74,21 @@ export async function POST(request: Request) {
       // Notificações de alterações em anúncios — serão processadas sob demanda
     }
 
+    if (topic === 'invoices') {
+      const invoice = await fetchML<any>(resourcePath);
+      if (invoice?.order_id) {
+        await serviceClient
+          .from('pedidos')
+          .update({
+            nota_fiscal_numero: invoice.number || invoice.id,
+            nota_fiscal_emitida: true,
+            nfe_status: 'autorizada',
+            nfe_chave: invoice.key || null,
+          })
+          .eq('ml_order_id', String(invoice.order_id));
+      }
+    }
+
     return NextResponse.json({ ok: true });
   } catch (err) {
     return NextResponse.json({ error: err instanceof Error ? err.message : 'Erro desconhecido' }, { status: 500 });

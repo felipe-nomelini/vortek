@@ -107,6 +107,7 @@ export interface DsliteProduto {
   cest?: string;
   ipi?: number;
   icmsrate?: number;
+  origem?: string;
   origem_faturamento?: string;
   cep_origem?: string;
   tempo_garantia?: number;

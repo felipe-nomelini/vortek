@@ -401,7 +401,9 @@ export type Database = {
         Row: {
           altura: number
           categoria: string | null
+          cest: string | null
           created_at: string
+          csosn: string | null
           custo: number
           custom_price: number | null
           descricao: string
@@ -421,6 +423,8 @@ export type Database = {
           ml_status: Database["public"]["Enums"]["ml_status"]
           ncm: string | null
           nome: string
+          origem_fiscal: string | null
+          origem_uf: string | null
           peso_bruto: number
           peso_liq: number
           profundidade: number
@@ -430,7 +434,9 @@ export type Database = {
         Insert: {
           altura?: number
           categoria?: string | null
+          cest?: string | null
           created_at?: string
+          csosn?: string | null
           custo?: number
           custom_price?: number | null
           descricao?: string
@@ -450,6 +456,8 @@ export type Database = {
           ml_status?: Database["public"]["Enums"]["ml_status"]
           ncm?: string | null
           nome: string
+          origem_fiscal?: string | null
+          origem_uf?: string | null
           peso_bruto?: number
           peso_liq?: number
           profundidade?: number
@@ -459,7 +467,9 @@ export type Database = {
         Update: {
           altura?: number
           categoria?: string | null
+          cest?: string | null
           created_at?: string
+          csosn?: string | null
           custo?: number
           custom_price?: number | null
           descricao?: string
@@ -479,6 +489,8 @@ export type Database = {
           ml_status?: Database["public"]["Enums"]["ml_status"]
           ncm?: string | null
           nome?: string
+          origem_fiscal?: string | null
+          origem_uf?: string | null
           peso_bruto?: number
           peso_liq?: number
           profundidade?: number
