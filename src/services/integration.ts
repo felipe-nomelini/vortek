@@ -44,12 +44,16 @@ function classifyMLFailure(path: string, status: number, body: string): MLFailur
 
   const expectedInvoice404 = path.includes('/invoices/orders/') && status === 404;
   const expectedShipment404 = /\/orders\/.+\/shipments/.test(path) && status === 404;
+  const expectedCarrier404 =
+    /\/shipments\/.+\/carrier/.test(path) &&
+    status === 404 &&
+    lowerBody.includes('tracking url');
   const expectedShipping404 =
     path.includes('/shipping_options') &&
     status === 404 &&
     (lowerBody.includes('stock out') || lowerBody.includes('no coverage'));
 
-  if (expectedInvoice404 || expectedShipment404 || expectedShipping404) {
+  if (expectedInvoice404 || expectedShipment404 || expectedCarrier404 || expectedShipping404) {
     return 'expected_operational';
   }
 

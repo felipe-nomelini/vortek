@@ -330,6 +330,7 @@ type SyncReasonCode =
   | 'ok'
   | 'already_paused'
   | 'not_paused_after_update'
+  | 'activation_without_stock'
   | 'network_error'
   | 'rate_limited'
   | 'optimistic_lock'
@@ -527,6 +528,8 @@ export async function sincronizarEstoqueComML(
   pausa_confirmada: number;
   pausa_pendente: number;
   erros_bloqueio_ml: number;
+  bloqueios_ml_regra: number;
+  ativacao_bloqueada_sem_estoque: number;
   erros_transitorios: number;
   erros_nao_recuperaveis: number;
   detalhes: Array<{
@@ -556,6 +559,8 @@ export async function sincronizarEstoqueComML(
     pausa_confirmada: 0,
     pausa_pendente: 0,
     erros_bloqueio_ml: 0,
+    bloqueios_ml_regra: 0,
+    ativacao_bloqueada_sem_estoque: 0,
     erros_transitorios: 0,
     erros_nao_recuperaveis: 0,
     detalhes: [] as Array<{
@@ -573,9 +578,13 @@ export async function sincronizarEstoqueComML(
       http_status?: number;
     }>,
   };
+  const skipRetryForItem = new Set<string>();
 
   for (const produto of produtos) {
     if (!produto.ml_item_id) continue;
+    if (skipRetryForItem.has(produto.ml_item_id)) {
+      continue;
+    }
 
     const estoque = produto.estoque || 0;
     const mlStatus = produto.ml_status || 'sem_anuncio';
@@ -648,6 +657,7 @@ export async function sincronizarEstoqueComML(
         resultado.pausa_pendente++;
         if (isBlockedByMlRule(fallbackReason)) {
           resultado.erros_bloqueio_ml++;
+          resultado.bloqueios_ml_regra++;
           console.warn(
             `[sync-ml-estoque] Bloqueio de regra ML para ${produto.ml_item_id}: ${fallbackReason} | ${detalhe.erro}`
           );
@@ -660,45 +670,97 @@ export async function sincronizarEstoqueComML(
       }
     } else if (mlStatus === 'pausado') {
       detalhe.acao = 'reativar';
-      const reactivate = await reativarItemML(produto.ml_item_id);
-      const statusCheck = await obterStatusItemML(produto.ml_item_id);
-      const verifiedStatus = statusCheck.data?.status || reactivate.data?.status;
+      const updateBeforeReactivate = await atualizarQuantidadeItemML(produto.ml_item_id, estoque);
+      const statusBeforeReactivate = await obterStatusItemML(produto.ml_item_id);
+      const quantityInMl = Number(statusBeforeReactivate.data?.available_quantity ?? updateBeforeReactivate.data?.available_quantity ?? 0);
+      let totalAttempts = updateBeforeReactivate.attempts + statusBeforeReactivate.attempts;
 
-      if (reactivate.success && verifiedStatus === 'active') {
-        detalhe = {
-          ...detalhe,
-          sucesso: true,
-          status: reactivate.data?.status || verifiedStatus,
-          verified_status: verifiedStatus,
-          reason_code: 'ok',
-          attempts: reactivate.attempts + statusCheck.attempts,
-          http_status: reactivate.status || statusCheck.status,
-        };
-        resultado.reativados++;
-        resultado.sucessos++;
-      } else {
+      if (!updateBeforeReactivate.success && !updateBeforeReactivate.transient) {
+        const reasonCode = updateBeforeReactivate.reason_code || statusBeforeReactivate.reason_code;
         detalhe = {
           ...detalhe,
           sucesso: false,
-          erro: reactivate.error || statusCheck.error || 'Não foi possível reativar anúncio',
-          status: reactivate.data?.status || undefined,
-          verified_status: verifiedStatus,
-          reason_code: reactivate.reason_code || statusCheck.reason_code,
-          is_blocked_by_ml_rule: isBlockedByMlRule(reactivate.reason_code || statusCheck.reason_code),
-          attempts: reactivate.attempts + statusCheck.attempts,
-          http_status: reactivate.status || statusCheck.status,
+          erro: updateBeforeReactivate.error || statusBeforeReactivate.error || 'Falha ao preparar anúncio para reativação',
+          status: updateBeforeReactivate.data?.status || statusBeforeReactivate.data?.status,
+          verified_status: statusBeforeReactivate.data?.status,
+          reason_code: reasonCode,
+          is_blocked_by_ml_rule: isBlockedByMlRule(reasonCode),
+          attempts: totalAttempts,
+          http_status: updateBeforeReactivate.status || statusBeforeReactivate.status,
         };
         resultado.erros++;
-        if (isBlockedByMlRule(reactivate.reason_code || statusCheck.reason_code)) {
+        skipRetryForItem.add(produto.ml_item_id);
+        if (isBlockedByMlRule(reasonCode)) {
           resultado.erros_bloqueio_ml++;
+          resultado.bloqueios_ml_regra++;
           console.warn(
-            `[sync-ml-estoque] Bloqueio de regra ML para ${produto.ml_item_id}: ${reactivate.reason_code || statusCheck.reason_code} | ${detalhe.erro}`
+            `[sync-ml-estoque] Bloqueio de regra ML para ${produto.ml_item_id}: ${reasonCode} | ${detalhe.erro}`
           );
         }
-        if (reactivate.transient || statusCheck.transient) {
+        if (updateBeforeReactivate.transient || statusBeforeReactivate.transient) {
           resultado.erros_transitorios++;
         } else {
           resultado.erros_nao_recuperaveis++;
+        }
+      } else if (!Number.isFinite(quantityInMl) || quantityInMl <= 0) {
+        detalhe = {
+          ...detalhe,
+          sucesso: false,
+          erro: 'Reativação bloqueada: anúncio segue sem estoque no ML após atualização de quantidade',
+          status: statusBeforeReactivate.data?.status || updateBeforeReactivate.data?.status,
+          verified_status: statusBeforeReactivate.data?.status,
+          reason_code: 'activation_without_stock',
+          is_blocked_by_ml_rule: false,
+          attempts: totalAttempts,
+          http_status: updateBeforeReactivate.status || statusBeforeReactivate.status,
+        };
+        resultado.erros++;
+        resultado.ativacao_bloqueada_sem_estoque++;
+        resultado.erros_nao_recuperaveis++;
+      } else {
+        const reactivate = await reativarItemML(produto.ml_item_id);
+        const statusCheck = await obterStatusItemML(produto.ml_item_id);
+        const verifiedStatus = statusCheck.data?.status || reactivate.data?.status;
+        totalAttempts += reactivate.attempts + statusCheck.attempts;
+
+        if (reactivate.success && verifiedStatus === 'active') {
+          detalhe = {
+            ...detalhe,
+            sucesso: true,
+            status: reactivate.data?.status || verifiedStatus,
+            verified_status: verifiedStatus,
+            reason_code: 'ok',
+            attempts: totalAttempts,
+            http_status: reactivate.status || statusCheck.status,
+          };
+          resultado.reativados++;
+          resultado.sucessos++;
+        } else {
+          const reasonCode = reactivate.reason_code || statusCheck.reason_code;
+          detalhe = {
+            ...detalhe,
+            sucesso: false,
+            erro: reactivate.error || statusCheck.error || 'Não foi possível reativar anúncio',
+            status: reactivate.data?.status || undefined,
+            verified_status: verifiedStatus,
+            reason_code: reasonCode,
+            is_blocked_by_ml_rule: isBlockedByMlRule(reasonCode),
+            attempts: totalAttempts,
+            http_status: reactivate.status || statusCheck.status,
+          };
+          resultado.erros++;
+          if (isBlockedByMlRule(reasonCode)) {
+            resultado.erros_bloqueio_ml++;
+            resultado.bloqueios_ml_regra++;
+            console.warn(
+              `[sync-ml-estoque] Bloqueio de regra ML para ${produto.ml_item_id}: ${reasonCode} | ${detalhe.erro}`
+            );
+          }
+          if (reactivate.transient || statusCheck.transient) {
+            resultado.erros_transitorios++;
+          } else {
+            resultado.erros_nao_recuperaveis++;
+          }
         }
       }
     } else {
@@ -731,8 +793,12 @@ export async function sincronizarEstoqueComML(
           http_status: updateStock.status || statusCheck.status,
         };
         resultado.erros++;
+        if (!updateStock.transient) {
+          skipRetryForItem.add(produto.ml_item_id);
+        }
         if (isBlockedByMlRule(updateStock.reason_code || statusCheck.reason_code)) {
           resultado.erros_bloqueio_ml++;
+          resultado.bloqueios_ml_regra++;
           console.warn(
             `[sync-ml-estoque] Bloqueio de regra ML para ${produto.ml_item_id}: ${updateStock.reason_code || statusCheck.reason_code} | ${detalhe.erro}`
           );
@@ -784,6 +850,8 @@ export async function reconciliarPausasEstoqueZero(
     pausa_confirmada: sync.pausa_confirmada,
     pausa_pendente: sync.pausa_pendente,
     erros_bloqueio_ml: sync.erros_bloqueio_ml,
+    bloqueios_ml_regra: sync.bloqueios_ml_regra,
+    ativacao_bloqueada_sem_estoque: sync.ativacao_bloqueada_sem_estoque,
     erros_transitorios: sync.erros_transitorios,
     erros_nao_recuperaveis: sync.erros_nao_recuperaveis,
     detalhes: [...detalhes, ...sync.detalhes.map((d) => ({
