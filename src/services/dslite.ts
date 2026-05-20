@@ -21,7 +21,7 @@ async function getConfig(): Promise<DsliteConfig | null> {
   return { url: data.url.replace(/\/+$/, ''), token: data.access_token };
 }
 
-async function fetchDslite<T>(path: string, options?: RequestInit): Promise<T | null> {
+export async function fetchDslite<T>(path: string, options?: RequestInit): Promise<T | null> {
   const cfg = await getConfig();
   if (!cfg) return null;
 
@@ -141,14 +141,33 @@ export interface DsliteFornecedorStatus {
   status: string;
   crossdocking: string;
   dropshipping: string;
+  nome?: string;
+  cnpj?: string;
+  endereco?: string;
+  email?: string;
+  telefone?: string;
+  [key: string]: unknown;
 }
 
 export interface DslitePedidoRetorno {
   dsid: number;
   status: string;
-  xml_fatura?: string;
-  xml_remessa?: string;
-  xml_simbolica?: string;
+  chave_acesso: string;
+  nf_numero: string;
+}
+
+export interface DsliteCriarPedidoResponse {
+  total: number;
+  sucesso: number;
+  erros: number;
+  logs: {
+    dsid: number;
+    status: string;
+    chave_acesso: string;
+    nf_numero: string;
+    mensagem_tipo: string;
+    mensagem_conteudo: string;
+  }[];
 }
 
 // ── Services ─────────────────────────────────────────────────
@@ -199,20 +218,257 @@ export async function mapearProduto(
 }
 
 export async function criarPedidoDropshipping(
-  fornecedorId: number | string,
-  transportadoraId: number | string,
   xmlConteudo: string
 ): Promise<DslitePedidoRetorno | null> {
-  return fetchDslite<DslitePedidoRetorno>(
-    `/v1/DropShipping/fornecedor/${fornecedorId}/transportadora/${transportadoraId}`,
-    { method: 'POST', body: xmlConteudo, headers: { 'Content-Type': 'application/xml' } }
-  );
+  const cfg = await getConfig();
+  if (!cfg) return null;
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 60000);
+
+  try {
+    const formData = new FormData();
+    const blob = new Blob([xmlConteudo], { type: 'application/xml' });
+    formData.append('files', blob, 'nota.xml');
+
+    const res = await fetch(`${cfg.url}/v1/DropShipping`, {
+      method: 'POST',
+      signal: controller.signal,
+      headers: {
+        'Accept': 'application/json',
+        Token: cfg.token,
+      },
+      body: formData,
+    });
+
+    if (!res.ok) {
+      const errText = await res.text().catch(() => '');
+      console.error(`[dslite] Erro ao criar pedido: HTTP ${res.status} — ${errText.substring(0, 500)}`);
+      return null;
+    }
+
+    const data: DsliteCriarPedidoResponse = await res.json();
+    const log = data.logs?.[0];
+    if (!log?.dsid) {
+      console.error(`[dslite] Resposta sem dsid:`, JSON.stringify(data, null, 2));
+      return null;
+    }
+
+    return {
+      dsid: log.dsid,
+      status: log.status,
+      chave_acesso: log.chave_acesso,
+      nf_numero: log.nf_numero,
+    };
+  } catch (err: any) {
+    console.error(`[dslite] Erro inesperado ao criar pedido:`, err);
+    return null;
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 export async function consultarPedido(dsid: number | string): Promise<DslitePedidoRetorno | null> {
   return fetchDslite<DslitePedidoRetorno>(`/v1/DropShipping/${dsid}`);
 }
 
+export async function consultarPedidoPorChaveAcesso(
+  chaveAcesso: string
+): Promise<{ dsid: number; status: string; cancelado: boolean } | null> {
+  const data = await fetchDslite<any>(`/v1/DropShipping/${chaveAcesso}`);
+  if (!data?.dsid) return null;
+
+  const status = data.status || '';
+  const statusCode = data.status_code || '';
+  const cancelado =
+    statusCode === 'CAN' ||
+    statusCode === 'CEM' ||
+    status.toLowerCase().includes('cancelado');
+
+  return {
+    dsid: data.dsid,
+    status,
+    cancelado,
+  };
+}
+
 export async function listarCategorias(): Promise<any[] | null> {
   return fetchDslite('/v1/CrossDocking/Categoria');
+}
+
+export async function buscarProdutoPorSku(
+  fornecedorId: number | string,
+  sku: string
+): Promise<DsliteProduto | null> {
+  let page = 1;
+  while (true) {
+    const data = await fetchDslite<DsliteCatalogoResponse>(
+      `/v1/CrossDocking/Catalogo/${fornecedorId}?page=${page}&limit=100`
+    );
+    if (!data?.produtos?.length) return null;
+
+    // Busca pelo produtoid_empresa (SKU sem prefixo)
+    const produto = data.produtos.find(p => String(p.produtoid_empresa) === sku);
+    if (produto) return produto;
+
+    // Fallback: busca pelo produtoid
+    const byProdutoid = data.produtos.find(p => String(p.produtoid) === sku);
+    if (byProdutoid) return byProdutoid;
+
+    const totalRegistros = data.detalhesConsulta?.totalRegistros || 0;
+    const registrosRetornados = data.detalhesConsulta?.registrosRetornados || data.produtos.length;
+    const totalPaginas = Math.ceil(totalRegistros / registrosRetornados);
+
+    if (page >= totalPaginas) return null;
+    page++;
+  }
+}
+
+export async function informarFornecedorPedido(
+  dsid: number | string,
+  fornecedorId: number | string
+): Promise<{ success: boolean; message?: string; data?: any } | null> {
+  const cfg = await getConfig();
+  if (!cfg) return null;
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 30000);
+
+  try {
+    const res = await fetch(`${cfg.url}/v1/DropShipping/${dsid}/fornecedor/${fornecedorId}`, {
+      method: 'PUT',
+      signal: controller.signal,
+      headers: {
+        'Accept': 'application/json',
+        'Token': cfg.token,
+      },
+    });
+
+    const responseText = await res.text();
+    
+    if (!res.ok) {
+      return { 
+        success: false, 
+        message: `HTTP ${res.status}: ${responseText.substring(0, 300)}` 
+      };
+    }
+
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch {
+      data = responseText;
+    }
+
+    return { success: true, data };
+  } catch (err: any) {
+    return { success: false, message: err?.message || 'Erro ao informar fornecedor' };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+export async function vincularProdutoItem(
+  dsid: number | string,
+  itemId: number | string,
+  produtoId: number | string
+): Promise<{ success: boolean; message?: string } | null> {
+  const cfg = await getConfig();
+  if (!cfg) return null;
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 30000);
+
+  try {
+    const res = await fetch(`${cfg.url}/v1/DropShipping/${dsid}/item/${itemId}/${produtoId}`, {
+      method: 'PUT',
+      signal: controller.signal,
+      headers: {
+        'Accept': 'application/json',
+        'Token': cfg.token,
+      },
+    });
+
+    if (!res.ok) {
+      const errText = await res.text().catch(() => '');
+      return { success: false, message: `HTTP ${res.status}: ${errText.substring(0, 300)}` };
+    }
+
+    return { success: true };
+  } catch (err: any) {
+    return { success: false, message: err?.message || 'Erro ao vincular produto' };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+export async function definirTransportadoraPedido(
+  dsid: number | string,
+  transportadoraId: number | string
+): Promise<{ success: boolean; message?: string } | null> {
+  const cfg = await getConfig();
+  if (!cfg) return null;
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 30000);
+
+  try {
+    const res = await fetch(`${cfg.url}/v1/DropShipping/${dsid}/transportadora/${transportadoraId}`, {
+      method: 'PUT',
+      signal: controller.signal,
+      headers: {
+        'Accept': 'application/json',
+        'Token': cfg.token,
+      },
+    });
+
+    if (!res.ok) {
+      const errText = await res.text().catch(() => '');
+      return { success: false, message: `HTTP ${res.status}: ${errText.substring(0, 300)}` };
+    }
+
+    return { success: true };
+  } catch (err: any) {
+    return { success: false, message: err?.message || 'Erro ao definir transportadora' };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+export async function enviarEtiqueta(
+  dsid: number | string,
+  pdfBuffer: Buffer,
+  fileName: string = 'etiqueta.pdf'
+): Promise<{ success: boolean; message?: string } | null> {
+  const cfg = await getConfig();
+  if (!cfg) return null;
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 60000);
+
+  const formData = new FormData();
+  const blob = new Blob([new Uint8Array(pdfBuffer)], { type: 'application/pdf' });
+  formData.append('file', blob, fileName);
+
+  try {
+    const res = await fetch(`${cfg.url}/v1/DropShipping/${dsid}/etiqueta`, {
+      method: 'POST',
+      signal: controller.signal,
+      headers: {
+        Token: cfg.token,
+      },
+      body: formData,
+    });
+
+    if (!res.ok) {
+      const errText = await res.text().catch(() => '');
+      return { success: false, message: `HTTP ${res.status}: ${errText.substring(0, 300)}` };
+    }
+
+    return { success: true };
+  } catch (err: any) {
+    return { success: false, message: err?.message || 'Erro ao enviar etiqueta' };
+  } finally {
+    clearTimeout(timeout);
+  }
 }

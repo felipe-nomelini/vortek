@@ -8,7 +8,7 @@
  */
 import { createServiceClient } from '@/lib/supabase';
 
-export type JobStatus = 'pendente' | 'rodando' | 'completo' | 'erro' | 'cancelado';
+export type JobStatus = 'pendente' | 'rodando' | 'completo' | 'completo_parcial' | 'erro' | 'cancelado';
 
 export interface JobLogEntry {
   type: 'success' | 'error' | 'info';
@@ -47,7 +47,7 @@ export function registerJobHandler(tipo: string, handler: JobHandler) {
   handlers.set(tipo, handler);
 }
 
-export async function createJob(tipo: string, total: number): Promise<JobData> {
+export async function createJob(tipo: string, total: number, createdBy: string | null = null): Promise<JobData> {
   const id = makeId();
   const job: JobData = {
     id, tipo, status: 'pendente', progresso: 0,
@@ -58,7 +58,7 @@ export async function createJob(tipo: string, total: number): Promise<JobData> {
   const serviceClient = createServiceClient();
   await serviceClient.from('jobs').insert({
     id, tipo, status: 'pendente', progresso: 0, total,
-    log: [], cancelado: false, created_by: null,
+    log: [], cancelado: false, created_by: createdBy,
   });
 
   runJob(id, tipo, total);

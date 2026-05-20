@@ -21,4 +21,6 @@ export interface Product {
   description: string;
   images: string[];
   category?: string;
+  ncm: string | null;
+  cest: string | null;
 }

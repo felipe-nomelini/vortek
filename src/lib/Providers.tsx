@@ -22,6 +22,11 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             colorPrimary: '#1677ff',
             borderRadius: 8,
           },
+          components: {
+            Input: { controlHeight: 32 },
+            InputNumber: { controlHeight: 32 },
+            Select: { controlHeight: 32 },
+          },
         }}
       >
         {children}

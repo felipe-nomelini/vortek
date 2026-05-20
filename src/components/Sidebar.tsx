@@ -7,6 +7,7 @@
 
 import { useState, useEffect } from 'react';
 import { Layout, Menu, Avatar, Typography } from 'antd';
+import type { MenuProps } from 'antd';
 import Image from 'next/image';
 import {
   DashboardOutlined,
@@ -28,12 +29,20 @@ import { usePathname, useRouter } from 'next/navigation';
 const { Sider } = Layout;
 const { Text } = Typography;
 
-const menuItems = [
+const menuItems: MenuProps['items'] = [
   { key: '/dashboard', icon: <DashboardOutlined />, label: 'Dashboard' },
   { key: '/produtos', icon: <ShoppingCartOutlined />, label: 'Produtos' },
   { key: '/clientes', icon: <TeamOutlined />, label: 'Clientes' },
   { key: '/fornecedores', icon: <TruckOutlined />, label: 'Fornecedores' },
-  { key: '/pedidos', icon: <OrderedListOutlined />, label: 'Pedidos' },
+  {
+    key: 'pedidos-group',
+    icon: <OrderedListOutlined />,
+    label: 'Pedidos',
+    children: [
+      { key: '/pedidos', icon: <ShoppingCartOutlined />, label: 'Vendas' },
+      { key: '/compras', icon: <TruckOutlined />, label: 'Compras' },
+    ],
+  },
   { key: '/notas-fiscais', icon: <FileTextOutlined />, label: 'Notas Fiscais' },
   { key: '/anuncios', icon: <ShopOutlined />, label: 'Anúncios' },
   { key: '/catalogo', icon: <AppstoreOutlined />, label: 'Catálogo' },
@@ -46,14 +55,13 @@ const menuItems = [
 interface Integracoes {
   ml: boolean;
   dslite: boolean;
-  brasilnfe: boolean;
 }
 
 export default function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const [profile, setProfile] = useState({ nome: 'Admin', avatar: '' });
-  const [ints, setInts] = useState<Integracoes>({ ml: false, dslite: false, brasilnfe: false });
+  const [ints, setInts] = useState<Integracoes>({ ml: false, dslite: false });
 
   useEffect(() => {
     const saved = localStorage.getItem('vortek_user_profile');
@@ -100,8 +108,11 @@ export default function Sidebar() {
         theme="dark"
         mode="inline"
         selectedKeys={[pathname]}
+        defaultOpenKeys={pathname.startsWith('/pedidos') || pathname.startsWith('/compras') ? ['pedidos-group'] : []}
         items={menuItems}
-        onClick={({ key }) => router.push(key)}
+        onSelect={({ key }) => {
+          if (key && !key.endsWith('-group')) router.push(key);
+        }}
         style={{ background: 'transparent', borderRight: 0, marginTop: 8, flex: 1, overflowY: 'auto' }}
       />
       <div
@@ -115,7 +126,6 @@ export default function Sidebar() {
           {[
             { key: 'ml', label: 'Mercado Livre', on: ints.ml },
             { key: 'dslite', label: 'DSLite', on: ints.dslite },
-            { key: 'brasilnfe', label: 'Brasil NFe', on: ints.brasilnfe },
           ].map(i => (
             <div key={i.key} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <div style={{ width: 8, height: 8, borderRadius: 4, background: i.on ? '#52c41a' : '#555' }} />

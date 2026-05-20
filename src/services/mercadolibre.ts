@@ -1,4 +1,4 @@
-import { fetchML } from './integration';
+import { fetchML, fetchMLRaw, getValidMLToken } from './integration';
 
 export interface MLCategoryPrediction {
   domain_id: string;
@@ -20,7 +20,8 @@ export interface MLAttribute {
 }
 
 export interface MLCreateItemInput {
-  title: string;
+  title?: string;
+  familyName?: string;
   categoryId: string;
   price: number;
   availableQuantity: number;
@@ -29,11 +30,20 @@ export interface MLCreateItemInput {
   description: string;
   pictures: string[];
   attributes: Array<{ id: string; value_name?: string; value_id?: string }>;
+  sellerCustomField?: string;
+  saleTerms?: Array<{ id: string; value_name?: string; value_id?: string }>;
   fiscalData?: {
     gtin?: string;
     ncm?: string;
     cest?: string;
     csosn?: string;
+    net_weight?: number;
+    gross_weight?: number;
+    measurement_unit?: string;
+    origem_fiscal?: string;
+    fci?: string;
+    ex_tipi?: string;
+    cost?: number;
   };
   shipping?: {
     mode?: string;
@@ -72,19 +82,20 @@ export async function getCategoryAttributes(categoryId: string): Promise<MLAttri
 
 export async function createListing(input: MLCreateItemInput): Promise<MLCreateItemResult | null> {
   const attributes = [...input.attributes];
-  const saleTerms: Array<{ id: string; value_name: string; value_id?: string }> = [];
+  const hasSellerSku = attributes.some((a) => a.id.toUpperCase() === 'SELLER_SKU');
+  if (!hasSellerSku && input.sellerCustomField) {
+    attributes.push({ id: 'SELLER_SKU', value_name: input.sellerCustomField });
+  }
+  const saleTerms: Array<{ id: string; value_name?: string; value_id?: string }> = [...(input.saleTerms || [])];
 
   if (input.fiscalData) {
     if (input.fiscalData.gtin) attributes.push({ id: 'GTIN', value_name: input.fiscalData.gtin });
-    if (input.fiscalData.ncm) attributes.push({ id: 'NCM', value_name: input.fiscalData.ncm });
-    if (input.fiscalData.cest) attributes.push({ id: 'CEST', value_name: input.fiscalData.cest });
-    if (input.fiscalData.csosn) attributes.push({ id: 'CSOSN', value_name: input.fiscalData.csosn });
-    // INVOICE sale term obriga a emissao de NF-e pelo ML
-    saleTerms.push({ id: 'INVOICE', value_name: 'Factura A' });
+    if (!saleTerms.find((term) => term.id === 'INVOICE')) {
+      saleTerms.push({ id: 'INVOICE', value_name: 'Factura A' });
+    }
   }
 
   const payload: Record<string, any> = {
-    title: input.title,
     category_id: input.categoryId,
     price: input.price,
     currency_id: 'BRL',
@@ -95,15 +106,24 @@ export async function createListing(input: MLCreateItemInput): Promise<MLCreateI
     description: { plain_text: input.description },
     pictures: input.pictures.map(url => ({ source: url })),
     attributes,
+    seller_custom_field: input.sellerCustomField || undefined,
     sale_terms: saleTerms.length > 0 ? saleTerms : undefined,
     shipping: input.shipping
       ? {
           mode: input.shipping.mode || 'me2',
-          local_pick_up: input.shipping.localPickUp ?? true,
-          free_shipping: input.shipping.freeShipping ?? false,
+          local_pick_up: input.shipping.localPickUp ?? false,
+          free_shipping: input.shipping.freeShipping ?? true,
         }
-      : { mode: 'not_specified', local_pick_up: true, free_shipping: false },
+      : { mode: 'me2', local_pick_up: false, free_shipping: true },
   };
+
+  if (input.familyName) {
+    payload.family_name = input.familyName;
+  } else {
+    payload.title = input.title;
+  }
+
+  console.log('[ML createListing] payload:', JSON.stringify(payload, null, 2));
 
   return fetchML<MLCreateItemResult>('/items', {
     method: 'POST',
@@ -112,26 +132,730 @@ export async function createListing(input: MLCreateItemInput): Promise<MLCreateI
   });
 }
 
+export async function upsertItemFiscalData(data: FiscalDataInput): Promise<FiscalApiResult<any>> {
+  const result = await sendItemFiscalData(data);
+  if (!result.success && result.status === 409) {
+    return fiscalApiFetch(`/items/fiscal_information/${encodeURIComponent(data.sku)}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  }
+  return result;
+}
+
+export interface UpdateFiscalDataInput {
+  itemId: string;
+  sku: string;
+  title: string;
+  ncm: string;
+  origin_type: 'manufacturer' | 'reseller' | 'imported';
+  origin_detail: string;
+  gtin?: string;
+  cest?: string;
+  csosn?: string;
+  net_weight?: number;
+  gross_weight?: number;
+  measurement_unit?: string;
+  cost?: number;
+  fci?: string;
+  ex_tipi?: string;
+  tax_rule_id?: number;
+}
+
 export async function updateListingFiscalData(
+  data: UpdateFiscalDataInput
+): Promise<{ success: boolean; step?: string; error?: string; fields?: Array<{ field: string; message: string; error_code: string }> }> {
+  const fiscalPayload: FiscalDataInput = {
+    sku: data.sku,
+    title: data.title,
+    type: 'single',
+    measurement_unit: data.measurement_unit || 'UN',
+    cost: data.cost,
+    tax_information: {
+      ncm: data.ncm,
+      origin_type: data.origin_type,
+      origin_detail: data.origin_detail,
+      ean: data.gtin,
+      cest: data.cest,
+      csosn: data.csosn,
+      net_weight: data.net_weight,
+      gross_weight: data.gross_weight,
+      fci: data.fci,
+      ex_tipi: data.ex_tipi,
+      tax_rule_id: data.tax_rule_id,
+    },
+  };
+
+  const upsertResult = await upsertItemFiscalData(fiscalPayload);
+  if (!upsertResult.success) {
+    return { success: false, step: 'criar_dados_fiscais', error: upsertResult.error, fields: upsertResult.fields };
+  }
+
+  const linkResult = await linkFiscalDataToItem(data.sku, data.itemId);
+  if (!linkResult.success) {
+    return { success: false, step: 'vincular_sku', error: linkResult.error };
+  }
+
+  const invoiceResult = await setItemInvoiceSaleTerm(data.itemId);
+  if (!invoiceResult) {
+    return { success: false, step: 'invoice_term', error: 'Falha ao setar INVOICE sale_term' };
+  }
+
+  return { success: true };
+}
+
+export interface FiscalDataInput {
+  sku: string;
+  title: string;
+  type: 'single' | 'bundle';
+  measurement_unit?: string;
+  cost?: number;
+  tax_information: {
+    ncm: string;
+    origin_type: 'manufacturer' | 'reseller' | 'imported';
+    origin_detail: string;
+    ean?: string;
+    cest?: string;
+    csosn?: string;
+    tax_rule_id?: number;
+    fci?: string;
+    ex_tipi?: string;
+    net_weight?: number;
+    gross_weight?: number;
+    med_anvisa_code?: string;
+    med_exemption_reason?: string;
+  };
+}
+
+export type FiscalApiResult<T> =
+  | { success: true; data: T }
+  | { success: false; status: number; error: string; fields?: Array<{ field: string; message: string; error_code: string }> };
+
+async function fiscalApiFetch<T>(path: string, options: RequestInit): Promise<FiscalApiResult<T>> {
+  const token = await getValidMLToken();
+  if (!token) return { success: false, status: 401, error: 'Token ML não disponível' };
+
+  const doFetch = async (tok: string) => {
+    return fetch(`https://api.mercadolibre.com${path}`, {
+      ...options,
+      headers: {
+        ...options.headers,
+        Authorization: `Bearer ${tok}`,
+        'Content-Type': 'application/json',
+      },
+    });
+  };
+
+  let res = await doFetch(token);
+
+  if (res.status === 401) {
+    const freshToken = await getValidMLToken();
+    if (!freshToken) return { success: false, status: 401, error: 'Token expirado - refresh falhou' };
+    res = await doFetch(freshToken);
+  }
+
+  const body = await res.json();
+
+  if (!res.ok) {
+    return {
+      success: false,
+      status: res.status,
+      error: body.message || `HTTP ${res.status}`,
+      fields: body.fields,
+    };
+  }
+
+  return { success: true, data: body as T };
+}
+
+export async function sendItemFiscalData(data: FiscalDataInput): Promise<FiscalApiResult<any>> {
+  return fiscalApiFetch('/items/fiscal_information', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function linkFiscalDataToItem(
+  sku: string,
   itemId: string,
-  fiscalData: { gtin?: string; ncm?: string; cest?: string; csosn?: string }
-): Promise<boolean> {
-  const attributes: Array<{ id: string; value_name: string }> = [];
-  if (fiscalData.gtin) attributes.push({ id: 'GTIN', value_name: fiscalData.gtin });
-  if (fiscalData.ncm) attributes.push({ id: 'NCM', value_name: fiscalData.ncm });
-  if (fiscalData.cest) attributes.push({ id: 'CEST', value_name: fiscalData.cest });
-  if (fiscalData.csosn) attributes.push({ id: 'CSOSN', value_name: fiscalData.csosn });
+  variationId?: string
+): Promise<FiscalApiResult<any>> {
+  return fiscalApiFetch('/items/fiscal_information/items', {
+    method: 'POST',
+    body: JSON.stringify({ sku, item_id: itemId, variation_id: variationId || '' }),
+  });
+}
 
-  if (attributes.length === 0) return true;
+export async function getItemFiscalData(itemId: string): Promise<FiscalApiResult<any>> {
+  return fiscalApiFetch(`/items/${itemId}/fiscal_information/detail`, {
+    method: 'GET',
+  });
+}
 
-  const payload: Record<string, any> = {};
-  if (attributes.length > 0) payload.attributes = attributes;
-  payload.sale_terms = [{ id: 'INVOICE', value_name: 'Factura A' }];
+export async function checkCanInvoice(itemId: string): Promise<FiscalApiResult<{ item_id: string; seller_id: string; variation_id: string; status: boolean }>> {
+  return fiscalApiFetch(`/can_invoice/items/${itemId}`, {
+    method: 'GET',
+  });
+}
 
+export async function searchItemBySellerSku(sku: string): Promise<string | null> {
+  const me = await fetchML<{ id: number }>('/users/me');
+  if (!me) return null;
+  const data = await fetchML<{ results: string[] }>(`/users/${me.id}/items/search?seller_sku=${encodeURIComponent(sku)}`);
+  if (!data?.results?.length) return null;
+  return data.results[0];
+}
+
+export async function setItemInvoiceSaleTerm(itemId: string): Promise<boolean> {
   const result = await fetchML(`/items/${itemId}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
+    body: JSON.stringify({ sale_terms: [{ id: 'INVOICE', value_name: 'Factura A' }] }),
   });
   return result !== null;
+}
+
+export interface QuantityPriceTier {
+  minPurchaseUnit: number;
+  amount: number;
+}
+
+export interface MLItemStatus {
+  id: string;
+  status: string;
+  available_quantity: number;
+}
+
+type SyncReasonCode =
+  | 'ok'
+  | 'already_paused'
+  | 'not_paused_after_update'
+  | 'network_error'
+  | 'rate_limited'
+  | 'optimistic_lock'
+  | 'ml_server_error'
+  | 'under_review'
+  | 'field_not_updatable'
+  | 'forbidden'
+  | 'auth_error'
+  | 'bad_request'
+  | 'unknown_error';
+
+interface MlRequestResult<T = any> {
+  success: boolean;
+  data?: T;
+  status?: number;
+  error?: string;
+  reason_code: SyncReasonCode;
+  transient: boolean;
+}
+
+const STOCK_SYNC_DELAY_MS = 1000;
+const STOCK_SYNC_RETRY_BASE_MS = 1200;
+const STOCK_SYNC_MAX_RETRIES = 4;
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+function parseJsonSafe(raw: string): any {
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+function classifyMlItemError(status: number | undefined, parsedBody: any, fallback: string): MlRequestResult {
+  if (!status) {
+    return {
+      success: false,
+      error: fallback || 'Falha de rede/comunicação',
+      reason_code: 'network_error',
+      transient: true,
+    };
+  }
+
+  const message = String(parsedBody?.message || fallback || `HTTP ${status}`);
+  const lowerMessage = message.toLowerCase();
+  const causes = Array.isArray(parsedBody?.cause) ? parsedBody.cause : [];
+  const causeCodes = causes.map((c: any) => String(c?.code || '').toLowerCase());
+
+  if (status === 429) {
+    return { success: false, status, error: message, reason_code: 'rate_limited', transient: true };
+  }
+  if (status === 409) {
+    return { success: false, status, error: message, reason_code: 'optimistic_lock', transient: true };
+  }
+  if (status === 401) {
+    return { success: false, status, error: message, reason_code: 'auth_error', transient: false };
+  }
+  if (status === 403) {
+    return { success: false, status, error: message, reason_code: 'forbidden', transient: false };
+  }
+  if (status >= 500) {
+    return { success: false, status, error: message, reason_code: 'ml_server_error', transient: true };
+  }
+  if (status === 400 && (lowerMessage.includes('under_review') || lowerMessage.includes('moderat'))) {
+    return { success: false, status, error: message, reason_code: 'under_review', transient: false };
+  }
+  if (status === 400 && causeCodes.includes('field_not_updatable')) {
+    return { success: false, status, error: message, reason_code: 'field_not_updatable', transient: false };
+  }
+  if (status === 400) {
+    return { success: false, status, error: message, reason_code: 'bad_request', transient: false };
+  }
+  return { success: false, status, error: message, reason_code: 'unknown_error', transient: false };
+}
+
+async function mlItemRequest<T = any>(path: string, options?: RequestInit): Promise<MlRequestResult<T>> {
+  const raw = await fetchMLRaw(path, options);
+
+  if (!raw) {
+    return {
+      success: false,
+      error: 'Falha de comunicação com o Mercado Livre',
+      reason_code: 'network_error',
+      transient: true,
+    };
+  }
+
+  const parsed = parseJsonSafe(raw.body);
+  if (raw.status >= 200 && raw.status < 300) {
+    return {
+      success: true,
+      data: parsed as T,
+      status: raw.status,
+      reason_code: 'ok',
+      transient: false,
+    };
+  }
+
+  return classifyMlItemError(raw.status, parsed, raw.body.substring(0, 400));
+}
+
+async function withMlRetry<T>(fn: () => Promise<MlRequestResult<T>>): Promise<MlRequestResult<T> & { attempts: number }> {
+  let attempt = 0;
+  let last: MlRequestResult<T> = {
+    success: false,
+    error: 'Não executado',
+    reason_code: 'unknown_error',
+    transient: false,
+  };
+
+  while (attempt < STOCK_SYNC_MAX_RETRIES) {
+    attempt++;
+    const result = await fn();
+    last = result;
+
+    if (result.success) {
+      return { ...result, attempts: attempt };
+    }
+
+    if (!result.transient || attempt >= STOCK_SYNC_MAX_RETRIES) {
+      return { ...result, attempts: attempt };
+    }
+
+    await delay(STOCK_SYNC_RETRY_BASE_MS * attempt);
+  }
+
+  return { ...last, attempts: attempt };
+}
+
+async function obterStatusItemML(itemId: string): Promise<MlRequestResult<MLItemStatus> & { attempts: number }> {
+  return withMlRetry<MLItemStatus>(() => mlItemRequest<MLItemStatus>(`/items/${itemId}`, { method: 'GET' }));
+}
+
+async function atualizarQuantidadeItemML(
+  itemId: string,
+  quantidade: number
+): Promise<MlRequestResult<MLItemStatus> & { attempts: number }> {
+  return withMlRetry<MLItemStatus>(() =>
+    mlItemRequest<MLItemStatus>(`/items/${itemId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ available_quantity: quantidade }),
+    })
+  );
+}
+
+async function pausarItemML(itemId: string): Promise<MlRequestResult<MLItemStatus> & { attempts: number }> {
+  return withMlRetry<MLItemStatus>(() =>
+    mlItemRequest<MLItemStatus>(`/items/${itemId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status: 'paused' }),
+    })
+  );
+}
+
+async function reativarItemML(itemId: string): Promise<MlRequestResult<MLItemStatus> & { attempts: number }> {
+  return withMlRetry<MLItemStatus>(() =>
+    mlItemRequest<MLItemStatus>(`/items/${itemId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status: 'active' }),
+    })
+  );
+}
+
+export async function atualizarEstoqueML(
+  itemId: string,
+  quantidade: number
+): Promise<{ success: boolean; status?: string; error?: string }> {
+  const result = await atualizarQuantidadeItemML(itemId, quantidade);
+  if (!result.success) {
+    return { success: false, error: result.error };
+  }
+  return { success: true, status: result.data?.status };
+}
+
+export async function reativarAnuncioML(
+  itemId: string
+): Promise<{ success: boolean; status?: string; error?: string }> {
+  const result = await reativarItemML(itemId);
+  if (!result.success) {
+    return { success: false, error: result.error };
+  }
+  return { success: true, status: result.data?.status };
+}
+
+export async function sincronizarEstoqueComML(
+  produtos: Array<{ ml_item_id: string; sku?: string; estoque: number; ml_status?: string }>
+): Promise<{
+  sucessos: number;
+  erros: number;
+  pausados: number;
+  reativados: number;
+  pausa_confirmada: number;
+  pausa_pendente: number;
+  erros_bloqueio_ml: number;
+  erros_transitorios: number;
+  erros_nao_recuperaveis: number;
+  detalhes: Array<{
+    ml_item_id: string;
+    sku?: string;
+    estoque: number;
+    acao: string;
+    sucesso: boolean;
+    erro?: string;
+    status?: string;
+    verified_status?: string;
+    reason_code?: SyncReasonCode;
+    is_blocked_by_ml_rule?: boolean;
+    attempts?: number;
+    http_status?: number;
+  }>;
+}> {
+  const blockedReasonCodes: SyncReasonCode[] = ['under_review', 'field_not_updatable'];
+  const isBlockedByMlRule = (reasonCode?: SyncReasonCode) =>
+    !!reasonCode && blockedReasonCodes.includes(reasonCode);
+
+  const resultado = {
+    sucessos: 0,
+    erros: 0,
+    pausados: 0,
+    reativados: 0,
+    pausa_confirmada: 0,
+    pausa_pendente: 0,
+    erros_bloqueio_ml: 0,
+    erros_transitorios: 0,
+    erros_nao_recuperaveis: 0,
+    detalhes: [] as Array<{
+      ml_item_id: string;
+      sku?: string;
+      estoque: number;
+      acao: string;
+      sucesso: boolean;
+      erro?: string;
+      status?: string;
+      verified_status?: string;
+      reason_code?: SyncReasonCode;
+      is_blocked_by_ml_rule?: boolean;
+      attempts?: number;
+      http_status?: number;
+    }>,
+  };
+
+  for (const produto of produtos) {
+    if (!produto.ml_item_id) continue;
+
+    const estoque = produto.estoque || 0;
+    const mlStatus = produto.ml_status || 'sem_anuncio';
+    let detalhe: {
+      ml_item_id: string;
+      sku?: string;
+      estoque: number;
+      acao: string;
+      sucesso: boolean;
+      erro?: string;
+      status?: string;
+      verified_status?: string;
+      reason_code?: SyncReasonCode;
+      is_blocked_by_ml_rule?: boolean;
+      attempts?: number;
+      http_status?: number;
+    } = {
+      ml_item_id: produto.ml_item_id,
+      sku: produto.sku,
+      estoque,
+      acao: 'atualizar_estoque',
+      sucesso: false,
+    };
+
+    if (estoque === 0) {
+      detalhe.acao = 'pausar_estoque_zero';
+
+      const updateZero = await atualizarQuantidadeItemML(produto.ml_item_id, 0);
+      const statusDepoisUpdate = await obterStatusItemML(produto.ml_item_id);
+      let totalAttempts = updateZero.attempts + statusDepoisUpdate.attempts;
+      let reasonCode: SyncReasonCode = updateZero.reason_code;
+
+      let statusFinal = statusDepoisUpdate.data?.status || updateZero.data?.status;
+      if (statusFinal !== 'paused') {
+        const forcePause = await pausarItemML(produto.ml_item_id);
+        const statusFinalCheck = await obterStatusItemML(produto.ml_item_id);
+        totalAttempts += forcePause.attempts + statusFinalCheck.attempts;
+        statusFinal = statusFinalCheck.data?.status || forcePause.data?.status || statusFinal;
+        reasonCode = forcePause.reason_code;
+      }
+
+      const confirmadoPausado = statusFinal === 'paused';
+      if (confirmadoPausado) {
+        detalhe = {
+          ...detalhe,
+          sucesso: true,
+          status: statusFinal,
+          verified_status: statusFinal,
+          reason_code: 'ok',
+          attempts: totalAttempts,
+          http_status: updateZero.status || statusDepoisUpdate.status,
+        };
+        resultado.pausados++;
+        resultado.pausa_confirmada++;
+        resultado.sucessos++;
+      } else {
+        const fallbackReason = reasonCode || 'not_paused_after_update';
+        detalhe = {
+          ...detalhe,
+          sucesso: false,
+          erro: updateZero.error || statusDepoisUpdate.error || 'Item não pausou após atualização de estoque zero',
+          status: updateZero.data?.status || statusDepoisUpdate.data?.status,
+          verified_status: statusFinal || undefined,
+          reason_code: fallbackReason,
+          is_blocked_by_ml_rule: isBlockedByMlRule(fallbackReason),
+          attempts: totalAttempts,
+          http_status: updateZero.status || statusDepoisUpdate.status,
+        };
+        resultado.erros++;
+        resultado.pausa_pendente++;
+        if (isBlockedByMlRule(fallbackReason)) {
+          resultado.erros_bloqueio_ml++;
+          console.warn(
+            `[sync-ml-estoque] Bloqueio de regra ML para ${produto.ml_item_id}: ${fallbackReason} | ${detalhe.erro}`
+          );
+        }
+        if (updateZero.transient || statusDepoisUpdate.transient) {
+          resultado.erros_transitorios++;
+        } else {
+          resultado.erros_nao_recuperaveis++;
+        }
+      }
+    } else if (mlStatus === 'pausado') {
+      detalhe.acao = 'reativar';
+      const reactivate = await reativarItemML(produto.ml_item_id);
+      const statusCheck = await obterStatusItemML(produto.ml_item_id);
+      const verifiedStatus = statusCheck.data?.status || reactivate.data?.status;
+
+      if (reactivate.success && verifiedStatus === 'active') {
+        detalhe = {
+          ...detalhe,
+          sucesso: true,
+          status: reactivate.data?.status || verifiedStatus,
+          verified_status: verifiedStatus,
+          reason_code: 'ok',
+          attempts: reactivate.attempts + statusCheck.attempts,
+          http_status: reactivate.status || statusCheck.status,
+        };
+        resultado.reativados++;
+        resultado.sucessos++;
+      } else {
+        detalhe = {
+          ...detalhe,
+          sucesso: false,
+          erro: reactivate.error || statusCheck.error || 'Não foi possível reativar anúncio',
+          status: reactivate.data?.status || undefined,
+          verified_status: verifiedStatus,
+          reason_code: reactivate.reason_code || statusCheck.reason_code,
+          is_blocked_by_ml_rule: isBlockedByMlRule(reactivate.reason_code || statusCheck.reason_code),
+          attempts: reactivate.attempts + statusCheck.attempts,
+          http_status: reactivate.status || statusCheck.status,
+        };
+        resultado.erros++;
+        if (isBlockedByMlRule(reactivate.reason_code || statusCheck.reason_code)) {
+          resultado.erros_bloqueio_ml++;
+          console.warn(
+            `[sync-ml-estoque] Bloqueio de regra ML para ${produto.ml_item_id}: ${reactivate.reason_code || statusCheck.reason_code} | ${detalhe.erro}`
+          );
+        }
+        if (reactivate.transient || statusCheck.transient) {
+          resultado.erros_transitorios++;
+        } else {
+          resultado.erros_nao_recuperaveis++;
+        }
+      }
+    } else {
+      detalhe.acao = 'atualizar_estoque';
+      const updateStock = await atualizarQuantidadeItemML(produto.ml_item_id, estoque);
+      const statusCheck = await obterStatusItemML(produto.ml_item_id);
+      const verifiedStatus = statusCheck.data?.status || updateStock.data?.status;
+
+      if (updateStock.success) {
+        detalhe = {
+          ...detalhe,
+          sucesso: true,
+          status: updateStock.data?.status || verifiedStatus,
+          verified_status: verifiedStatus,
+          reason_code: 'ok',
+          attempts: updateStock.attempts + statusCheck.attempts,
+          http_status: updateStock.status || statusCheck.status,
+        };
+        resultado.sucessos++;
+      } else {
+        detalhe = {
+          ...detalhe,
+          sucesso: false,
+          erro: updateStock.error || statusCheck.error || 'Falha ao atualizar estoque no ML',
+          status: updateStock.data?.status || undefined,
+          verified_status: verifiedStatus,
+          reason_code: updateStock.reason_code || statusCheck.reason_code,
+          is_blocked_by_ml_rule: isBlockedByMlRule(updateStock.reason_code || statusCheck.reason_code),
+          attempts: updateStock.attempts + statusCheck.attempts,
+          http_status: updateStock.status || statusCheck.status,
+        };
+        resultado.erros++;
+        if (isBlockedByMlRule(updateStock.reason_code || statusCheck.reason_code)) {
+          resultado.erros_bloqueio_ml++;
+          console.warn(
+            `[sync-ml-estoque] Bloqueio de regra ML para ${produto.ml_item_id}: ${updateStock.reason_code || statusCheck.reason_code} | ${detalhe.erro}`
+          );
+        }
+        if (updateStock.transient || statusCheck.transient) {
+          resultado.erros_transitorios++;
+        } else {
+          resultado.erros_nao_recuperaveis++;
+        }
+      }
+    }
+
+    resultado.detalhes.push(detalhe);
+    await delay(STOCK_SYNC_DELAY_MS);
+  }
+
+  return resultado;
+}
+
+export async function reconciliarPausasEstoqueZero(
+  produtos: Array<{ ml_item_id: string; sku?: string; estoque: number; ml_status?: string }>
+) {
+  const detalhes: Array<{ ml_item_id: string; sku?: string; current_status?: string; acao: string; sucesso: boolean; erro?: string }> = [];
+  const candidatos: Array<{ ml_item_id: string; sku?: string; estoque: number; ml_status?: string }> = [];
+
+  for (const produto of produtos) {
+    if (!produto.ml_item_id) continue;
+    const status = await obterStatusItemML(produto.ml_item_id);
+    const currentStatus = status.data?.status;
+
+    if (status.success && currentStatus === 'paused') {
+      detalhes.push({
+        ml_item_id: produto.ml_item_id,
+        sku: produto.sku,
+        current_status: currentStatus,
+        acao: 'verificar_status',
+        sucesso: true,
+      });
+      continue;
+    }
+
+    candidatos.push(produto);
+  }
+
+  const sync = await sincronizarEstoqueComML(candidatos);
+  return {
+    verificados: produtos.length,
+    candidatos: candidatos.length,
+    pausa_confirmada: sync.pausa_confirmada,
+    pausa_pendente: sync.pausa_pendente,
+    erros_bloqueio_ml: sync.erros_bloqueio_ml,
+    erros_transitorios: sync.erros_transitorios,
+    erros_nao_recuperaveis: sync.erros_nao_recuperaveis,
+    detalhes: [...detalhes, ...sync.detalhes.map((d) => ({
+      ml_item_id: d.ml_item_id,
+      sku: d.sku,
+      current_status: d.verified_status || d.status,
+      acao: d.acao,
+      sucesso: d.sucesso,
+      erro: d.erro,
+    }))],
+  };
+}
+
+export async function setItemQuantityPricing(
+  itemId: string,
+  basePrice: number
+): Promise<boolean> {
+  const tiers: QuantityPriceTier[] = [
+    { minPurchaseUnit: 3, amount: Math.round(basePrice * 0.97 * 100) / 100 },
+    { minPurchaseUnit: 5, amount: Math.round(basePrice * 0.96 * 100) / 100 },
+    { minPurchaseUnit: 10, amount: Math.round(basePrice * 0.95 * 100) / 100 },
+  ];
+
+  const payload = {
+    prices: tiers.map(tier => ({
+      type: 'standard',
+      amount: tier.amount,
+      currency_id: 'BRL',
+      conditions: {
+        context_restrictions: ['channel_marketplace', 'user_type_business'],
+        min_purchase_unit: tier.minPurchaseUnit,
+      },
+    })),
+  };
+
+  try {
+    const result = await fetchML<any>(`/items/${itemId}/prices/standard/quantity`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    if (result && result.id) {
+      console.log(`[setItemQuantityPricing] Sucesso para ${itemId}`, result.prices);
+      return true;
+    }
+    console.warn(`[setItemQuantityPricing] Resposta inesperada para ${itemId}:`, result);
+    return false;
+  } catch (err: any) {
+    console.error(`[setItemQuantityPricing] Erro para ${itemId}:`, err.message || err);
+    return false;
+  }
+}
+
+export async function updateItemPrice(itemId: string, price: number): Promise<boolean> {
+  try {
+    const result = await fetchML<any>(`/items/${itemId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ price }),
+    });
+
+    const ok = Boolean(result && result.id);
+    if (ok) {
+      console.log(`[updateItemPrice] Sucesso item=${itemId} price=${price}`);
+      return true;
+    }
+
+    console.warn(`[updateItemPrice] Resposta inesperada item=${itemId}`, result);
+    return false;
+  } catch (err: any) {
+    console.error(`[updateItemPrice] Falha item=${itemId}:`, err?.message || err);
+    return false;
+  }
 }

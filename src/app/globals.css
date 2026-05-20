@@ -9,10 +9,6 @@ html, body {
   background: #000000;
 }
 
-textarea.ant-input {
-  min-height: 80px !important;
-}
-
 .rt-resizable-handle {
   position: absolute;
   right: -5px;

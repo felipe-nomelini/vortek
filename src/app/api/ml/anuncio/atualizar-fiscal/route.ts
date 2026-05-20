@@ -7,7 +7,6 @@ export async function POST(req: Request) {
     const body = await req.json().catch(() => ({}));
     const supabase = createServiceClient();
 
-    // Buscar todos os anúncios do ML (tabela anuncios_ml)
     const { data: anuncios, error: anunciosError } = await supabase
       .from('anuncios_ml')
       .select('ml_item_id, sku')
@@ -18,7 +17,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, error: 'Nenhum anúncio encontrado. Execute o sync de anúncios primeiro.' }, { status: 404 });
     }
 
-    // Filtrar por produtoIds se informado
     const anunciosFiltrados = body.produtoIds?.length
       ? anuncios.filter((a: any) => body.produtoIds.includes(a.sku))
       : anuncios;
@@ -31,34 +29,55 @@ export async function POST(req: Request) {
     for (const a of anunciosFiltrados) {
       const { data: produto } = await supabase
         .from('produtos')
-        .select('gtin, ncm, cest, csosn')
+        .select('sku, nome, ncm, gtin, cest, csosn, origem_fiscal, peso_liq, peso_bruto, custo')
         .eq('sku', a.sku)
         .maybeSingle();
 
-      if (!produto || (!produto.gtin && !produto.ncm)) {
+      if (!produto || !produto.ncm) {
         ignorados++;
         resultados.push({
           sku: a.sku,
           ml_item_id: a.ml_item_id,
           status: 'ignorado',
-          motivo: !produto ? 'produto não encontrado no banco' : 'sem dados fiscais',
+          motivo: !produto ? 'produto não encontrado' : 'sem NCM',
         });
         continue;
       }
 
-      const ok = await updateListingFiscalData(a.ml_item_id, {
+      const originDetail = produto.origem_fiscal || '0';
+      const originType = originDetail === '3' || originDetail === '5' || originDetail === '8' ? 'imported'
+        : originDetail === '1' ? 'manufacturer'
+        : 'reseller';
+
+      const fiscalResult = await updateListingFiscalData({
+        itemId: a.ml_item_id,
+        sku: produto.sku,
+        title: produto.nome,
+        ncm: produto.ncm,
+        origin_type: originType,
+        origin_detail: originDetail,
         gtin: produto.gtin || undefined,
-        ncm: produto.ncm || undefined,
         cest: produto.cest || undefined,
-        csosn: produto.csosn || '102',
+        csosn: (produto.csosn === '101' || !produto.csosn) ? '102' : produto.csosn,
+        net_weight: produto.peso_liq || undefined,
+        gross_weight: produto.peso_bruto || undefined,
+        measurement_unit: 'UN',
+        cost: produto.custo,
       });
 
-      if (ok) {
+      if (fiscalResult.success) {
         sucesso++;
         resultados.push({ sku: a.sku, ml_item_id: a.ml_item_id, status: 'ok' });
       } else {
         erro++;
-        resultados.push({ sku: a.sku, ml_item_id: a.ml_item_id, status: 'erro' });
+        resultados.push({
+          sku: a.sku,
+          ml_item_id: a.ml_item_id,
+          status: 'erro',
+          step: fiscalResult.step,
+          error: fiscalResult.error,
+          fields: fiscalResult.fields,
+        });
       }
     }
 

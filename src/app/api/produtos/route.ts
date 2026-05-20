@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 
+function normalizeSku(input: unknown): string {
+  return String(input ?? '').trim().toUpperCase();
+}
+
 export async function GET(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -13,10 +17,11 @@ export async function GET(request: Request) {
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
 
-  // Parse fornecedor filter (comma-separated)
   const fornecedorFilter = searchParams.get('fornecedores')?.split(',').filter(Boolean) || [];
+  const mlStatus = searchParams.get('ml_status') || '';
+  const estoque = searchParams.get('estoque') || '';
 
-  // Helper to apply common filters to a query
+  // Helper to apply common DB filters to a query
   function applyFilters(query: any) {
     if (search) {
       query = query.or(`nome.ilike.%${search}%,sku.ilike.%${search}%`);
@@ -24,10 +29,18 @@ export async function GET(request: Request) {
     if (fornecedorFilter.length > 0) {
       query = query.in('fornecedor', fornecedorFilter);
     }
+    if (mlStatus) {
+      query = query.eq('ml_status', mlStatus);
+    }
+    if (estoque === 'com_estoque') {
+      query = query.gt('estoque', 0);
+    } else if (estoque === 'sem_estoque') {
+      query = query.eq('estoque', 0);
+    }
     return query;
   }
 
-  // Separate count query
+  // Count query (exact, via DB)
   let countQuery = supabase.from('produtos').select('id', { count: 'exact', head: false }).range(0, 0);
   countQuery = applyFilters(countQuery);
   const { count } = await countQuery;
@@ -41,7 +54,7 @@ export async function GET(request: Request) {
 
   if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
 
-  // Get distinct fornecedores via RPC (sem limite de linhas)
+  // Get distinct fornecedores via RPC
   const serviceClient = createServiceClient();
   const { data: fornData } = await serviceClient.rpc('get_fornecedores');
   const fornecedoresSet = new Set<string>();
@@ -50,7 +63,7 @@ export async function GET(request: Request) {
   }
 
   return NextResponse.json({
-    data,
+    data: data || [],
     total: count || 0,
     page,
     pageSize,
@@ -64,8 +77,25 @@ export async function POST(request: Request) {
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
 
   const body = await request.json();
-  const { data, error } = await supabase.from('produtos').insert(body).select().single();
+  const payload = { ...body } as Record<string, any>;
+  if ('sku' in payload) {
+    payload.sku = normalizeSku(payload.sku);
+  }
 
-  if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
+  const { data, error } = await supabase.from('produtos').insert(payload).select().single();
+
+  if (error) {
+    const msg = error.message || '';
+    const details = String((error as any).details || '');
+    if (
+      msg.includes('produtos_sku_upper_unique') ||
+      msg.includes('produtos_sku_key') ||
+      details.includes('produtos_sku_upper_unique') ||
+      details.includes('produtos_sku_key')
+    ) {
+      return NextResponse.json({ erro: 'SKU já cadastrado' }, { status: 409 });
+    }
+    return NextResponse.json({ erro: msg }, { status: 500 });
+  }
   return NextResponse.json(data, { status: 201 });
 }

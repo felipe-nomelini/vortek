@@ -1,8 +1,19 @@
 import { NextResponse } from 'next/server';
 import { sincronizarCatalogo, listarFornecedores } from '@/services/dslite';
+import { sincronizarEstoqueComML, reconciliarPausasEstoqueZero } from '@/services/mercadolibre';
 import { createServiceClient } from '@/lib/supabase';
 
 export const maxDuration = 300;
+
+function normalizeSku(input: unknown): string {
+  return String(input ?? '').trim().toUpperCase();
+}
+
+function fallbackNome(input: unknown, sku: string): string {
+  const nome = String(input ?? '').trim();
+  if (nome) return nome;
+  return `Produto ${sku}`;
+}
 
 export async function POST(req: Request) {
   try {
@@ -58,34 +69,41 @@ export async function POST(req: Request) {
 
         // Build batch payloads
         const prefixo = SKU_PREFIXOS[String(fId)] || '';
-        const batch = produtos.map((item) => ({
-          sku: prefixo + (item.produtoid_empresa || item.produtoid || `PROD-${item.produtoid}`),
-          nome: item.titulo,
-          marca: item.marca || null,
-          fornecedor: fornName,
-          gtin: item.ean11 || null,
-          ncm: item.ncm || null,
-          cest: item.cest || null,
-          origem_fiscal: item.origem || '0',
-          origem_uf: item.origem_faturamento || null,
-          categoria: item.categoria_nome || null,
-          custo: item.preco_crossdocking || item.preco_normal || 0,
-          estoque: item.estoque || 0,
-          ml_fee: 0.15,
-          ml_status: 'sem_anuncio',
-          peso_liq: item.peso || null,
-          peso_bruto: item.peso || null,
-          largura: item.largura || null,
-          altura: item.altura || null,
-          profundidade: item.profundidade || null,
-          descricao: item.descricao || null,
-          dslite_fornecedor_id: String(fId),
-          dslite_produto_id: item.produtoid,
-          dslite_ultima_sync: new Date().toISOString(),
-        }));
+        const batch = produtos.map((item) => {
+          const sku = normalizeSku(prefixo + (item.produtoid_empresa || item.produtoid || `PROD-${item.produtoid}`));
+          return {
+            sku,
+            nome: fallbackNome(item.titulo, sku),
+            marca: item.marca || '',
+            fornecedor: fornName,
+            gtin: item.ean11 || '',
+            ncm: item.ncm || null,
+            cest: item.cest || null,
+            origem_fiscal: item.origem || '0',
+            origem_uf: item.origem_faturamento || null,
+            categoria: item.categoria_nome || null,
+            custo: item.preco_crossdocking || item.preco_normal || 0,
+            estoque: item.estoque || 0,
+            ml_fee: 0.15,
+            peso_liq: item.peso || 0,
+            peso_bruto: item.peso || 0,
+            largura: item.largura || 0,
+            altura: item.altura || 0,
+            profundidade: item.profundidade || 0,
+            descricao: item.descricao || '',
+            imagens: item.midias
+              ? item.midias.filter((m: any) => m.tipo === 'imagem').map((m: any) => m.valor)
+              : item.link_imagem
+                ? [item.link_imagem]
+                : [],
+            dslite_fornecedor_id: String(fId),
+            dslite_produto_id: item.produtoid,
+            dslite_ultima_sync: new Date().toISOString(),
+          };
+        });
 
         // Upsert batch directly via Supabase REST API (much faster than individual)
-        const res = await fetch(`${supabaseUrl}/rest/v1/produtos`, {
+        const res = await fetch(`${supabaseUrl}/rest/v1/produtos?on_conflict=sku`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -102,6 +120,51 @@ export async function POST(req: Request) {
           break;
         }
 
+        // Busca produtos atualizados que têm anúncio no ML para sincronizar estoque
+        const skus = batch.map((b) => b.sku).filter(Boolean);
+        if (skus.length > 0) {
+          const { data: produtosComAnuncio } = await client
+            .from('produtos')
+            .select('sku, ml_item_id, estoque, ml_status')
+            .not('ml_item_id', 'is', null)
+            .in('sku', skus);
+
+          if (produtosComAnuncio && produtosComAnuncio.length > 0) {
+            const mlSync = await sincronizarEstoqueComML(produtosComAnuncio);
+
+            // Atualiza status no banco
+            for (const det of mlSync.detalhes) {
+              const statusConfirmado = det.verified_status || det.status;
+              if (det.sucesso && statusConfirmado && (statusConfirmado === 'active' || statusConfirmado === 'paused')) {
+                const novoStatus = statusConfirmado === 'active' ? 'ativo' : 'pausado';
+                await client
+                  .from('produtos')
+                  .update({ ml_status: novoStatus as any })
+                  .eq('ml_item_id', det.ml_item_id);
+                await client
+                  .from('anuncios_ml')
+                  .update({ status: novoStatus as any })
+                  .eq('ml_item_id', det.ml_item_id);
+              }
+            }
+
+            resultados.push({
+              fornecedorId: fId,
+              pagina: page,
+              mlSync: {
+                sucessos: mlSync.sucessos,
+                erros: mlSync.erros,
+                pausados: mlSync.pausados,
+                reativados: mlSync.reativados,
+                pausa_confirmada: mlSync.pausa_confirmada,
+                pausa_pendente: mlSync.pausa_pendente,
+                erros_transitorios: mlSync.erros_transitorios,
+                erros_nao_recuperaveis: mlSync.erros_nao_recuperaveis,
+              },
+            });
+          }
+        }
+
         totalSync += batch.length;
         page++;
 
@@ -112,7 +175,36 @@ export async function POST(req: Request) {
       resultados.push({ fornecedorId: fId, nome: fornName, total: totalSync });
     }
 
-    return NextResponse.json({ success: true, resultados });
+    const { data: produtosZeroEstoque } = await client
+      .from('produtos')
+      .select('sku, ml_item_id, estoque, ml_status')
+      .not('ml_item_id', 'is', null)
+      .eq('estoque', 0);
+
+    let reconciliacao = null;
+    if (produtosZeroEstoque && produtosZeroEstoque.length > 0) {
+      reconciliacao = await reconciliarPausasEstoqueZero(produtosZeroEstoque);
+
+      for (const item of reconciliacao.detalhes || []) {
+        if (item.sucesso && item.current_status === 'paused') {
+          await client
+            .from('produtos')
+            .update({ ml_status: 'pausado' as any })
+            .eq('ml_item_id', item.ml_item_id);
+          await client
+            .from('anuncios_ml')
+            .update({ status: 'pausado' as any })
+            .eq('ml_item_id', item.ml_item_id);
+        }
+      }
+    }
+
+    return NextResponse.json({
+      success: true,
+      resultados,
+      message: 'Sync de catálogo concluído com reconciliação de estoque zero',
+      reconciliacao_estoque_zero: reconciliacao,
+    });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }

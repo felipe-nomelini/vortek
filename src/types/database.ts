@@ -195,33 +195,57 @@ export type Database = {
       }
       fornecedores: {
         Row: {
+          ativo: boolean
+          apelido: string
           cnpj: string
           created_at: string
+          dslite_id: string | null
+          dslite_ultima_sync: string | null
+          dropshipping: string
           email: string
           endereco: string
           id: string
           nome: string
+          payload_dslite: Json
+          status_dslite: string
           telefone: string
+          crossdocking: string
           updated_at: string
         }
         Insert: {
+          ativo?: boolean
+          apelido?: string
           cnpj?: string
           created_at?: string
+          dslite_id?: string | null
+          dslite_ultima_sync?: string | null
+          dropshipping?: string
           email?: string
           endereco?: string
           id?: string
           nome: string
+          payload_dslite?: Json
+          status_dslite?: string
           telefone?: string
+          crossdocking?: string
           updated_at?: string
         }
         Update: {
+          ativo?: boolean
+          apelido?: string
           cnpj?: string
           created_at?: string
+          dslite_id?: string | null
+          dslite_ultima_sync?: string | null
+          dropshipping?: string
           email?: string
           endereco?: string
           id?: string
           nome?: string
+          payload_dslite?: Json
+          status_dslite?: string
           telefone?: string
+          crossdocking?: string
           updated_at?: string
         }
         Relationships: []
@@ -234,7 +258,12 @@ export type Database = {
           conectado: boolean
           created_at: string
           id: string
+          last_refresh_at: string | null
+          last_refresh_error: string | null
+          last_refresh_error_code: string | null
           redirect_uri: string | null
+          refresh_lock_token: string | null
+          refresh_lock_until: string | null
           refresh_token: string | null
           tipo: Database["public"]["Enums"]["integracao_tipo"]
           token_expires_at: string | null
@@ -248,7 +277,12 @@ export type Database = {
           conectado?: boolean
           created_at?: string
           id?: string
+          last_refresh_at?: string | null
+          last_refresh_error?: string | null
+          last_refresh_error_code?: string | null
           redirect_uri?: string | null
+          refresh_lock_token?: string | null
+          refresh_lock_until?: string | null
           refresh_token?: string | null
           tipo: Database["public"]["Enums"]["integracao_tipo"]
           token_expires_at?: string | null
@@ -262,7 +296,12 @@ export type Database = {
           conectado?: boolean
           created_at?: string
           id?: string
+          last_refresh_at?: string | null
+          last_refresh_error?: string | null
+          last_refresh_error_code?: string | null
           redirect_uri?: string | null
+          refresh_lock_token?: string | null
+          refresh_lock_until?: string | null
           refresh_token?: string | null
           tipo?: Database["public"]["Enums"]["integracao_tipo"]
           token_expires_at?: string | null
@@ -323,10 +362,16 @@ export type Database = {
           data_saida: string | null
           dslite_id: string | null
           dslite_status: string | null
+          dslite_etiqueta_enviada: boolean
           frete: number
           id: string
           lucro: number
+          ml_claim_id: string | null
+          ml_claim_status: string | null
+          ml_invoice_id: string | null
+          ml_invoice_reported: boolean
           ml_order_id: string | null
+          ml_shipment_id: string | null
           nfe_chave: string | null
           nfe_danfe_url: string | null
           nfe_protocolo: string | null
@@ -350,10 +395,16 @@ export type Database = {
           data_saida?: string | null
           dslite_id?: string | null
           dslite_status?: string | null
+          dslite_etiqueta_enviada?: boolean
           frete?: number
           id?: string
           lucro?: number
+          ml_claim_id?: string | null
+          ml_claim_status?: string | null
+          ml_invoice_id?: string | null
+          ml_invoice_reported?: boolean
           ml_order_id?: string | null
+          ml_shipment_id?: string | null
           nfe_chave?: string | null
           nfe_danfe_url?: string | null
           nfe_protocolo?: string | null
@@ -377,10 +428,16 @@ export type Database = {
           data_saida?: string | null
           dslite_id?: string | null
           dslite_status?: string | null
+          dslite_etiqueta_enviada?: boolean
           frete?: number
           id?: string
           lucro?: number
+          ml_claim_id?: string | null
+          ml_claim_status?: string | null
+          ml_invoice_id?: string | null
+          ml_invoice_reported?: boolean
           ml_order_id?: string | null
+          ml_shipment_id?: string | null
           nfe_chave?: string | null
           nfe_danfe_url?: string | null
           nfe_protocolo?: string | null
@@ -394,6 +451,72 @@ export type Database = {
           situacao?: Database["public"]["Enums"]["pedido_status"]
           total?: number
           updated_at?: string
+        }
+        Relationships: []
+      }
+      compras: {
+        Row: {
+          id: string
+          dsid: string
+          status: string
+          status_dslite: string
+          nf_chave: string | null
+          nf_numero: string | null
+          nf_serie: string | null
+          valor_total: number
+          valor_frete: number
+          data_criacao: string
+          rastreio: string | null
+          fornecedor_id: string | null
+          fornecedor_nome: string | null
+          destinatario_nome: string | null
+          destinatario_documento: string | null
+          produto_descricao: string | null
+          produto_sku: string | null
+          quantidade: number
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          dsid: string
+          status?: string
+          status_dslite?: string
+          nf_chave?: string | null
+          nf_numero?: string | null
+          nf_serie?: string | null
+          valor_total?: number
+          valor_frete?: number
+          data_criacao?: string
+          rastreio?: string | null
+          fornecedor_id?: string | null
+          fornecedor_nome?: string | null
+          destinatario_nome?: string | null
+          destinatario_documento?: string | null
+          produto_descricao?: string | null
+          produto_sku?: string | null
+          quantidade?: number
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          dsid?: string
+          status?: string
+          status_dslite?: string
+          nf_chave?: string | null
+          nf_numero?: string | null
+          nf_serie?: string | null
+          valor_total?: number
+          valor_frete?: number
+          data_criacao?: string
+          rastreio?: string | null
+          fornecedor_id?: string | null
+          fornecedor_nome?: string | null
+          destinatario_nome?: string | null
+          destinatario_documento?: string | null
+          produto_descricao?: string | null
+          produto_sku?: string | null
+          quantidade?: number
+          created_at?: string
         }
         Relationships: []
       }
@@ -420,6 +543,7 @@ export type Database = {
           ml_fee: number
           ml_item_id: string | null
           ml_shipping: number
+          ml_shipping_warning: string | null
           ml_status: Database["public"]["Enums"]["ml_status"]
           ncm: string | null
           nome: string
@@ -453,6 +577,7 @@ export type Database = {
           ml_fee?: number
           ml_item_id?: string | null
           ml_shipping?: number
+          ml_shipping_warning?: string | null
           ml_status?: Database["public"]["Enums"]["ml_status"]
           ncm?: string | null
           nome: string
@@ -486,6 +611,7 @@ export type Database = {
           ml_fee?: number
           ml_item_id?: string | null
           ml_shipping?: number
+          ml_shipping_warning?: string | null
           ml_status?: Database["public"]["Enums"]["ml_status"]
           ncm?: string | null
           nome?: string
@@ -537,9 +663,32 @@ export type Database = {
           fornecedor: string
         }[]
       }
+      match_dataset_vortek: {
+        Args: { match_count?: number; query_embedding: string }
+        Returns: {
+          category: string
+          is_vortek: boolean
+          question: string
+          reasoning: string
+          response: string
+          similarity: number
+          vortek_files: string[]
+        }[]
+      }
+      match_documentacao_vortek: {
+        Args: { match_count?: number; query_embedding: string }
+        Returns: {
+          conteudo: string
+          fonte: string
+          secao: string
+          similarity: number
+          titulo: string
+          url: string
+        }[]
+      }
     }
     Enums: {
-      integracao_tipo: "mercadolivre" | "bling" | "dslite" | "brasilnfe"
+      integracao_tipo: "mercadolivre" | "bling" | "dslite"
       ml_status: "ativo" | "pausado" | "sem_anuncio"
       pedido_status:
         | "aberto"
@@ -547,6 +696,16 @@ export type Database = {
         | "cancelado"
         | "faturado"
         | "entregue"
+        | "pendente"
+        | "preparando"
+        | "pronto_envio"
+        | "etiqueta_impressa"
+        | "coletado"
+        | "em_transito"
+        | "saiu_entrega"
+        | "dest_ausente"
+        | "recusado"
+        | "devolvido"
       user_role: "admin" | "gerente" | "operador" | "visualizador"
     }
     CompositeTypes: {
@@ -675,7 +834,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      integracao_tipo: ["mercadolivre", "bling", "dslite", "brasilnfe"],
+      integracao_tipo: ["mercadolivre", "bling", "dslite"],
       ml_status: ["ativo", "pausado", "sem_anuncio"],
       pedido_status: [
         "aberto",
@@ -683,6 +842,16 @@ export const Constants = {
         "cancelado",
         "faturado",
         "entregue",
+        "pendente",
+        "preparando",
+        "pronto_envio",
+        "etiqueta_impressa",
+        "coletado",
+        "em_transito",
+        "saiu_entrega",
+        "dest_ausente",
+        "recusado",
+        "devolvido",
       ],
       user_role: ["admin", "gerente", "operador", "visualizador"],
     },

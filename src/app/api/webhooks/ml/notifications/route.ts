@@ -1,7 +1,16 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
-import { fetchML } from '@/services/integration';
+import { fetchML, buscarXmlDaNF } from '@/services/integration';
+import { calculateOrderProfit } from '@/services/orders';
 import { criarPedidoDropshipping } from '@/services/dslite';
+
+function normalizeNfeStatus(status: string | null | undefined): string {
+  const normalized = String(status || '').toLowerCase();
+  if (normalized === 'authorized' || normalized === 'autorizada') return 'autorizada';
+  if (normalized === 'cancelled' || normalized === 'canceled' || normalized === 'cancelada') return 'cancelada';
+  if (!normalized) return 'pendente';
+  return normalized;
+}
 
 export async function POST(request: Request) {
   try {
@@ -24,6 +33,12 @@ export async function POST(request: Request) {
           .eq('ml_order_id', String(order.id))
           .maybeSingle();
 
+        // Buscar detalhes completos do pedido (inclui order_items para cálculo de lucro)
+        const detail = await fetchML<any>(`/orders/${order.id}`).catch(() => null);
+
+        // Calcular lucro
+        const { lucro, rastreio } = await calculateOrderProfit(detail);
+
         const pedidoPayload = {
           numero: Number(order.id) || 0,
           numero_loja: String(order.id || ''),
@@ -33,6 +48,8 @@ export async function POST(request: Request) {
           total: order.total_amount || 0,
           situacao: order.status === 'paid' ? 'aberto' : 'atendido' as any,
           ml_order_id: String(order.id || ''),
+          lucro,
+          rastreio,
         } as any;
 
         if (existing) {
@@ -51,7 +68,7 @@ export async function POST(request: Request) {
   <valor>${order.total_amount || 0}</valor>
   <ml_order_id>${order.id}</ml_order_id>
 </pedido>`;
-            const dsliteResult = await criarPedidoDropshipping(2, '', xmlSimples);
+            const dsliteResult = await criarPedidoDropshipping(xmlSimples);
             if (dsliteResult) {
               await serviceClient
                 .from('pedidos')
@@ -74,16 +91,69 @@ export async function POST(request: Request) {
       // Notificações de alterações em anúncios — serão processadas sob demanda
     }
 
+    if (topic === 'shipments' || topic === 'shipment_update') {
+      const shipment = await fetchML<any>(resourcePath);
+      if (shipment?.id) {
+        // Buscar pedido associado ao shipment
+        const orderId = shipment.order_id || shipment.resource_id;
+        if (orderId) {
+          const situacao = mapearStatusShipment(shipment.status, shipment.substatus);
+          // Não sobrescrever devolvido
+          const { data: pedido } = await serviceClient
+            .from('pedidos')
+            .select('situacao')
+            .eq('ml_order_id', String(orderId))
+            .maybeSingle();
+          const situacaoFinal = pedido?.situacao === 'devolvido' ? 'devolvido' : situacao;
+          await serviceClient
+            .from('pedidos')
+            .update({
+              ml_shipment_id: String(shipment.id),
+              situacao: situacaoFinal as any,
+            })
+            .eq('ml_order_id', String(orderId));
+        }
+      }
+    }
+
+    if (topic === 'claims' || topic === 'claim_update') {
+      const claim = await fetchML<any>(resourcePath);
+      if (claim?.resource_id && claim.resource === 'order') {
+        const isDevolvido = claim.resolution?.reason === 'item_returned' ||
+                           (claim.resolution?.closed_by === 'mediator' &&
+                            claim.resolution?.benefited?.includes('complainant'));
+        const situacao = isDevolvido ? 'devolvido' : undefined;
+        await serviceClient
+          .from('pedidos')
+          .update({
+            ml_claim_id: String(claim.id),
+            ml_claim_status: claim.status || null,
+            ...(situacao ? { situacao } : {}),
+          })
+          .eq('ml_order_id', String(claim.resource_id));
+      }
+    }
+
     if (topic === 'invoices') {
       const invoice = await fetchML<any>(resourcePath);
       if (invoice?.order_id) {
+        // Tenta baixar o XML se a NF estiver autorizada
+        let nfeXml: string | null = null;
+        if (invoice.status === 'authorized') {
+          const xmlResult = await buscarXmlDaNF(String(invoice.order_id));
+          if (xmlResult.xml) {
+            nfeXml = xmlResult.xml;
+          }
+        }
+
         await serviceClient
           .from('pedidos')
           .update({
             nota_fiscal_numero: invoice.number || invoice.id,
             nota_fiscal_emitida: true,
-            nfe_status: 'autorizada',
-            nfe_chave: invoice.key || null,
+            nfe_status: normalizeNfeStatus(invoice.status),
+            nfe_chave: invoice.key || invoice.attributes?.invoice_key || null,
+            ...(nfeXml ? { nfe_xml: nfeXml } : {}),
           })
           .eq('ml_order_id', String(invoice.order_id));
       }
@@ -92,5 +162,32 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   } catch (err) {
     return NextResponse.json({ error: err instanceof Error ? err.message : 'Erro desconhecido' }, { status: 500 });
+  }
+}
+
+function mapearStatusShipment(shipmentStatus: string, shipmentSubstatus?: string): string {
+  switch (shipmentStatus) {
+    case 'pending':
+      return 'pendente';
+    case 'handling':
+      return 'preparando';
+    case 'ready_to_ship':
+      if (shipmentSubstatus === 'printed') return 'etiqueta_impressa';
+      if (shipmentSubstatus === 'dropped_off') return 'coletado';
+      if (shipmentSubstatus === 'picked_up') return 'coletado';
+      return 'pronto_envio';
+    case 'shipped':
+      if (shipmentSubstatus === 'out_for_delivery') return 'saiu_entrega';
+      if (shipmentSubstatus === 'receiver_absent') return 'dest_ausente';
+      return 'em_transito';
+    case 'delivered':
+      return 'entregue';
+    case 'not_delivered':
+      if (shipmentSubstatus === 'refused_delivery') return 'recusado';
+      return 'dest_ausente';
+    case 'cancelled':
+      return 'cancelado';
+    default:
+      return 'aberto';
   }
 }

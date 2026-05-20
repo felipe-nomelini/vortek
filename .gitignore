@@ -5,3 +5,9 @@ node_modules
 package/
 *.tgz
 supabase/.temp/
+.opencode/
+.vscode/
+.mcp.json
+.agents/tools/
+tsconfig.tsbuildinfo
+scripts/build_dataset/data/*.parquet

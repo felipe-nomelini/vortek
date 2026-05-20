@@ -1,24 +1,21 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, Spin } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import QualidadeModal from '@/components/QualidadeModal';
 import type { TableProps } from 'antd';
 import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
 import { formatCurrency } from '@/lib/format';
-import { createClient } from '@/lib/supabase-client';
 
 const { Title } = Typography;
 
-type ListingType = 'classico' | 'premium';
 type ListingStatus = 'ativo' | 'pausado';
 
 interface Anuncio {
   id: string;
   sku: string;
   produto: string;
-  tipo: ListingType;
   precoML: number;
   vendidos: number;
   visitas: number;
@@ -28,82 +25,74 @@ interface Anuncio {
   catalogo: boolean;
 }
 
-const tipoOptions = [
-  { value: '', label: 'Todos os tipos' },
-  { value: 'classico', label: 'Clássico' },
-  { value: 'premium', label: 'Premium' },
-];
-
 const statusOptions = [
   { value: '', label: 'Todos os status' },
   { value: 'ativo', label: 'Ativo' },
   { value: 'pausado', label: 'Pausado' },
 ];
 
-
-const mockAnuncios: Anuncio[] = [
-  { id: 'MLB1001', sku: 'FONE-001', produto: 'Fone Bluetooth X1', tipo: 'premium', precoML: 79.90, vendidos: 23, visitas: 320, qualidade: 92, qualidadeObj: undefined, status: 'ativo', catalogo: true },
-  { id: 'MLB1002', sku: 'CAPA-002', produto: 'Capa Silicone iPhone 15', tipo: 'premium', precoML: 39.90, vendidos: 45, visitas: 580, qualidade: 88, qualidadeObj: undefined, status: 'ativo', catalogo: true },
-  { id: 'MLB1003', sku: 'CAR-003', produto: 'Carregador USB-C 20W', tipo: 'classico', precoML: 49.90, vendidos: 12, visitas: 120, qualidade: 45, qualidadeObj: undefined, status: 'pausado', catalogo: false },
-  { id: 'MLB1004', sku: 'PEL-004', produto: 'Película Premium Z10', tipo: 'premium', precoML: 24.90, vendidos: 78, visitas: 890, qualidade: 76, qualidadeObj: undefined, status: 'ativo', catalogo: true },
-  { id: 'MLB1005', sku: 'MOUSE-005', produto: 'Mouse Gamer RGB', tipo: 'classico', precoML: 0, vendidos: 0, visitas: 0, qualidade: 0, qualidadeObj: undefined, status: 'pausado', catalogo: false },
-  { id: 'MLB1006', sku: 'TEC-006', produto: 'Teclado Mecânico TKL', tipo: 'premium', precoML: 179.90, vendidos: 8, visitas: 210, qualidade: 71, qualidadeObj: undefined, status: 'ativo', catalogo: true },
-  { id: 'MLB1007', sku: 'MON-007', produto: 'Suporte Articulado Monitor', tipo: 'classico', precoML: 119.90, vendidos: 5, visitas: 95, qualidade: 55, qualidadeObj: undefined, status: 'pausado', catalogo: false },
-  { id: 'MLB1008', sku: 'CAB-008', produto: 'Cabo HDMI 2.1 2m', tipo: 'classico', precoML: 44.90, vendidos: 15, visitas: 180, qualidade: 35, qualidadeObj: undefined, status: 'pausado', catalogo: false },
-  { id: 'MLB1009', sku: 'ADAP-009', produto: 'Adaptador Bluetooth 5.3', tipo: 'classico', precoML: 34.90, vendidos: 22, visitas: 260, qualidade: 82, qualidadeObj: undefined, status: 'ativo', catalogo: true },
-  { id: 'MLB1010', sku: 'CAIXA-010', produto: 'Caixa Som Portátil 20W', tipo: 'premium', precoML: 89.90, vendidos: 18, visitas: 310, qualidade: 90, qualidadeObj: undefined, status: 'ativo', catalogo: true },
-];
+function mapDBtoAnuncio(item: any): Anuncio {
+  return {
+    id: item.ml_item_id || '',
+    sku: item.sku || '',
+    produto: item.titulo || '',
+    precoML: item.preco_ml || 0,
+    vendidos: item.vendidos || 0,
+    visitas: item.visitas || 0,
+    qualidade: item.qualidade || 0,
+    qualidadeObj: item.qualidade_info || undefined,
+    status: item.status || 'ativo',
+    catalogo: item.catalogo || false,
+  };
+}
 
 export default function AnunciosPage() {
   const [data, setData] = useState<Anuncio[]>([]);
   const [loading, setLoading] = useState(true);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+
   const [search, setSearch] = useState('');
-  const [tipoFilter, setTipoFilter] = useState<ListingType | ''>('');
   const [statusFilter, setStatusFilter] = useState<ListingStatus | ''>('');
   const [mlMin, setMlMin] = useState<number | null>(null);
   const [mlMax, setMlMax] = useState<number | null>(null);
+
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [modalQualidade, setModalQualidade] = useState<{ open: boolean; score: number; itens: any[]; dica: string; titulo: string }>({ open: false, score: 0, itens: [], dica: '', titulo: '' });
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const supabase = createClient();
-        const { data: dbData } = await supabase.from('anuncios_ml').select('*').limit(10000);
-        if (dbData && dbData.length > 0) {
-          setData(dbData.map((item: any) => ({
-            id: item.ml_item_id || '',
-            sku: item.sku || '',
-            produto: item.titulo || '',
-            tipo: 'premium' as ListingType,
-            precoML: item.preco_ml || 0,
-            vendidos: item.vendidos || 0,
-            visitas: item.visitas || 0,
-            qualidade: item.qualidade || 0,
-            qualidadeObj: item.qualidade_info || undefined,
-            status: item.status || 'ativo',
-            catalogo: item.catalogo || false,
-          })));
-        }
-      } catch {}
-      setLoading(false);
-    })();
-  }, []);
+  const buildParams = useCallback(() => {
+    const params = new URLSearchParams();
+    params.set('page', String(page));
+    if (search) params.set('search', search);
+    if (statusFilter) params.set('status', statusFilter);
+    if (mlMin !== null) params.set('priceMin', String(mlMin));
+    if (mlMax !== null) params.set('priceMax', String(mlMax));
+    return params;
+  }, [page, search, statusFilter, mlMin, mlMax]);
 
-  const filtered = useMemo(() => {
-    const source = data.length > 0 ? data : mockAnuncios;
-    return source.filter(a => {
-      if (search) {
-        const q = search.toLowerCase();
-        if (!a.produto.toLowerCase().includes(q) && !a.sku.toLowerCase().includes(q)) return false;
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/anuncios?${buildParams()}`);
+      if (res.ok) {
+        const json = await res.json();
+        setData((json.data || []).map(mapDBtoAnuncio));
+        setTotal(json.total || 0);
       }
-      if (tipoFilter && a.tipo !== tipoFilter) return false;
-      if (statusFilter && a.status !== statusFilter) return false;
-      if (mlMin !== null && a.precoML < mlMin) return false;
-      if (mlMax !== null && a.precoML > mlMax) return false;
-      return true;
-    });
-  }, [data, search, tipoFilter, statusFilter, mlMin, mlMax]);
+    } catch {}
+    setLoading(false);
+  }, [buildParams]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchData();
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [fetchData]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [search, statusFilter, mlMin, mlMax]);
 
   const columns: TableProps<Anuncio>['columns'] = [
     {
@@ -113,11 +102,6 @@ export default function AnunciosPage() {
     {
       title: 'Produto', dataIndex: 'produto', key: 'produto',
       sorter: (a, b) => a.produto.localeCompare(b.produto),
-    },
-    {
-      title: 'Tipo', dataIndex: 'tipo', key: 'tipo', width: 100,
-      sorter: (a, b) => a.tipo.localeCompare(b.tipo),
-      render: (t: ListingType) => <Tag color={t === 'premium' ? 'purple' : 'blue'}>{t === 'premium' ? 'Premium' : 'Clássico'}</Tag>,
     },
     {
       title: 'Preço ML', dataIndex: 'precoML', key: 'precoML', width: 110,
@@ -206,9 +190,6 @@ export default function AnunciosPage() {
             />
           </Col>
           <Col>
-            <Select placeholder="Tipo" value={tipoFilter || undefined} onChange={v => setTipoFilter(v as ListingType | '')} options={tipoOptions} style={{ width: 130 }} allowClear onClear={() => setTipoFilter('')} />
-          </Col>
-          <Col>
             <Select placeholder="Status" value={statusFilter || undefined} onChange={v => setStatusFilter(v as ListingStatus | '')} options={statusOptions} style={{ width: 130 }} allowClear onClear={() => setStatusFilter('')} />
           </Col>
           <Col>
@@ -223,11 +204,18 @@ export default function AnunciosPage() {
         <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
           <ResizableTable<Anuncio>
             storageKey="anuncios"
-            dataSource={filtered}
+            dataSource={data}
             columns={columns}
             rowKey="id"
             rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
-            pagination={false}
+            pagination={{
+              current: page,
+              pageSize: 100,
+              total,
+              showSizeChanger: false,
+              showTotal: (t) => `${t} anúncios`,
+              onChange: (p) => setPage(p),
+            }}
             scroll={{ x: 1200 }}
             style={{ background: 'transparent' }}
             size="small"

@@ -31,9 +31,9 @@ const roleColor: Record<UserRole, string> = { admin: 'red', gerente: 'blue', ope
 const cardBg = { background: '#141414', border: '1px solid #303030', borderRadius: 8 };
 const inputStyle = { background: '#1f1f1f', border: '1px solid #303030', borderRadius: 6 };
 
-function saveIntegrations(ml: boolean, dslite: boolean, brasilnfe: boolean) {
+function saveIntegrations(ml: boolean, dslite: boolean) {
   if (typeof window !== 'undefined') {
-    localStorage.setItem('vortek_integrations', JSON.stringify({ ml, dslite, brasilnfe }));
+    localStorage.setItem('vortek_integrations', JSON.stringify({ ml, dslite }));
   }
 }
 
@@ -53,7 +53,6 @@ export default function ConfiguracoesPage() {
 
   const [ml, setMl] = useState({ clientId: '', clientSecret: '', redirectUri: '', conectado: false });
   const [dslite, setDslite] = useState({ url: '', token: '', conectado: false });
-  const [brasilnfe, setBrasilnfe] = useState({ token: '', ambiente: 'homologacao', conectado: false });
 
   useEffect(() => {
     const load = async () => {
@@ -63,7 +62,6 @@ export default function ConfiguracoesPage() {
       for (const i of integracoes) {
         if (i.tipo === 'mercadolivre') setMl({ clientId: i.client_id || '', clientSecret: i.client_secret || '', redirectUri: i.redirect_uri || '', conectado: i.conectado });
         if (i.tipo === 'dslite') setDslite({ url: i.url || '', token: i.access_token || '', conectado: i.conectado });
-        if (i.tipo === 'brasilnfe') setBrasilnfe({ token: i.access_token || '', ambiente: i.client_id === 'producao' ? 'producao' : 'homologacao', conectado: i.conectado });
       }
     };
     load();
@@ -75,19 +73,8 @@ export default function ConfiguracoesPage() {
   }, []);
 
   useEffect(() => {
-    saveIntegrations(ml.conectado, dslite.conectado, brasilnfe.conectado);
-  }, [ml.conectado, dslite.conectado, brasilnfe.conectado]);
-
-  const testarBrasilnfe = () => {
-  if (!brasilnfe.token) { messageApi.warning('Preencha o Token'); return; }
-  setBrasilnfe(p => ({ ...p, conectado: true }));
-  saveIntegracao('brasilnfe', {
-    access_token: brasilnfe.token,
-    client_id: brasilnfe.ambiente,
-    conectado: true,
-  });
-  messageApi.success('Token salvo! Use a página de Pedidos para testar a emissão.');
-};
+    saveIntegrations(ml.conectado, dslite.conectado);
+  }, [ml.conectado, dslite.conectado]);
 
 const conectarML = () => {
   if (!ml.clientId || !ml.redirectUri) { messageApi.warning('Preencha Client ID e Redirect URI'); return; }
@@ -191,19 +178,6 @@ const testarDslite = () => {
         </>
       ),
       action: { label: 'Testar Conexão', onClick: testarDslite },
-    },
-    {
-      key: 'brasilnfe', nome: 'Brasil NFe', conectado: brasilnfe.conectado, cor: '#1677ff', bg: '#111d2e',
-      fields: (
-        <>
-          <Input size="small" placeholder="Token da API" type="password" value={brasilnfe.token} onChange={e => setBrasilnfe(p => ({ ...p, token: e.target.value }))} onBlur={() => saveIntegracao('brasilnfe', { access_token: brasilnfe.token })} style={inputStyle} />
-          <Select size="small" value={brasilnfe.ambiente} onChange={v => setBrasilnfe(p => ({ ...p, ambiente: v }))} style={inputStyle} options={[
-            { value: 'homologacao', label: 'Homologação' },
-            { value: 'producao', label: 'Produção' },
-          ]} />
-        </>
-      ),
-      action: { label: 'Salvar Token', onClick: testarBrasilnfe },
     },
   ];
 
