@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const TASKS = [
   { key: 'dslite_stock', tipo: 'sync_dslite_stock', label: 'DSLite Preço/Estoque', interval: (h: number) => (h >= 0 && h < 7 ? 20 : 10) },
   { key: 'dslite_catalog', tipo: 'sync_dslite_catalog', label: 'DSLite Catálogo', interval: (h: number) => (h >= 8 && h < 22 ? 120 : 240) },
@@ -62,5 +65,11 @@ export async function GET() {
     timezone: 'America/Sao_Paulo',
     hour,
     tasks: rows,
+  }, {
+    headers: {
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+      Pragma: 'no-cache',
+      Expires: '0',
+    },
   });
 }
