@@ -184,6 +184,14 @@ Depois registrar no `createClient<Database>()` no `lib/supabase.ts`. TypeScript 
 2. Email: `admin@vortek.shop` / Senha: `Vortek@123`
 3. Configurações → Integrações → preencher credenciais
 
+### Ajustes obrigatórios de runtime/build (Nixpacks)
+
+- Runtime Node fixado em **22** (`nixpacks.toml` com `NIXPACKS_NODE_VERSION=22`).
+- Não enviar `SUPABASE_SERVICE_ROLE_KEY` e `API_SECRET_KEY` como **Build Args**.
+- Definir `SUPABASE_SERVICE_ROLE_KEY` e `API_SECRET_KEY` apenas como **Runtime Environment Variables** no Easypanel.
+- `NEXT_PUBLIC_*` pode permanecer em build/runtime quando necessário para bundle do frontend.
+- Em caso de exposição em logs de build, **rotacionar imediatamente** as chaves e atualizar no painel.
+
 ---
 
 ## Notas Técnicas
