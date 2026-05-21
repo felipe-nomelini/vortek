@@ -18,6 +18,14 @@
       "type": "remote",
       "url": "https://mcp.context7.com/mcp",
       "enabled": true
+    },
+    "vortek-dataset": {
+      "type": "local",
+      "command": ["node", ".agents/tools/vortek-dataset/server.mjs"],
+      "enabled": true,
+      "environment": {
+        "OPENROUTER_API_KEY": "{env:OPENROUTER_API_KEY}"
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
-import { fetchML, fetchMLResult, type MLRequestResult } from '@/services/integration';
+import { fetchML, fetchMLResult, getMLAuthDiagnostics, type MLRequestResult } from '@/services/integration';
 import { calculateOrderProfit } from '@/services/orders';
 import type { Database } from '@/types/database';
 
@@ -130,6 +130,7 @@ type SyncOrderResult = {
   semNf: number;
   semShipment: number;
   authFailures: number;
+  authFatal: boolean;
   retriesTransient: number;
   nfAutorizada: number;
   nfCancelada: number;
@@ -198,6 +199,7 @@ async function processOrder(params: {
   let semNf = 0;
   let semShipment = 0;
   let authFailures = 0;
+  let authFatal = false;
   let retriesTransient = 0;
   let nfAutorizada = 0;
   let nfCancelada = 0;
@@ -334,6 +336,7 @@ async function processOrder(params: {
       nfPendente++;
     } else if (!invoiceResult.ok && invoiceResult.error?.category === 'auth_fatal') {
       authFailures++;
+      authFatal = true;
     }
   } catch {
     // ignora falha pontual de invoice
@@ -363,6 +366,7 @@ async function processOrder(params: {
       semShipment++;
     } else if (!shipmentResult.ok && shipmentResult.error?.category === 'auth_fatal') {
       authFailures++;
+      authFatal = true;
     }
   } catch {
     // ignora falha pontual de shipment
@@ -411,6 +415,7 @@ async function processOrder(params: {
     semNf,
     semShipment,
     authFailures,
+    authFatal,
     retriesTransient,
     nfAutorizada,
     nfCancelada,
@@ -431,8 +436,21 @@ export async function POST(request: Request) {
   const offset = parseInt(searchParams.get('offset') || '0', 10);
   const limit = 50;
 
-  const me = await fetchML<any>('/users/me');
-  if (!me) return NextResponse.json({ erro: 'Erro ao conectar com ML' }, { status: 502 });
+  const meResult = await fetchMLResult<any>('/users/me');
+  if (!meResult.ok || !meResult.data) {
+    if (meResult.error?.category === 'auth_fatal') {
+      const auth = await getMLAuthDiagnostics();
+      return NextResponse.json({
+        ok: false,
+        error: 'Integração ML requer reconexão para sincronizar pedidos',
+        failure_reason: 'auth_fatal',
+        auth_state: auth.state,
+        auth_blocked_until: auth.blocked_until,
+      }, { status: 401 });
+    }
+    return NextResponse.json({ erro: 'Erro ao conectar com ML' }, { status: 502 });
+  }
+  const me = meResult.data;
 
   const orders = await fetchML<any>(`/orders/search?seller=${me.id}&limit=${limit}&offset=${offset}`);
   if (!orders) return NextResponse.json({ erro: 'Erro ao buscar pedidos' }, { status: 502 });
@@ -461,6 +479,7 @@ export async function POST(request: Request) {
   }
 
   const serviceClient = createServiceClient();
+  let abortedByAuth = false;
 
   let cursor = 0;
   const workerCount = Math.min(SYNC_CONCURRENCY, results.length);
@@ -475,6 +494,9 @@ export async function POST(request: Request) {
       if (currentIndex >= results.length) {
         break;
       }
+      if (abortedByAuth) {
+        break;
+      }
 
       const order = results[currentIndex];
       const processed = await processOrder({
@@ -483,6 +505,10 @@ export async function POST(request: Request) {
         serviceClient,
       });
       localResults.push(processed);
+      if (processed.authFatal) {
+        abortedByAuth = true;
+        break;
+      }
     }
 
     return localResults;
@@ -508,6 +534,27 @@ export async function POST(request: Request) {
   const proximo = offset + limit;
   const acabou = proximo >= total || results.length < limit;
 
+  if (abortedByAuth) {
+    const auth = await getMLAuthDiagnostics();
+    return NextResponse.json({
+      ok: false,
+      error: 'Sincronização abortada por falha de autenticação com ML',
+      failure_reason: 'auth_fatal',
+      auth_state: auth.state,
+      auth_blocked_until: auth.blocked_until,
+      sincronizados: salvos,
+      auth_failures: authFailures,
+      retries_transient: retriesTransient,
+      nf_autorizada: nfAutorizada,
+      nf_cancelada: nfCancelada,
+      nf_pendente: nfPendente,
+      duracao_ms_total: totalDurationMs,
+      duracao_media_pedido_ms: avgDurationMs,
+      processed_count: processedResults.length,
+      aborted_by_auth: true,
+    }, { status: 401 });
+  }
+
   return NextResponse.json({
     ok: true,
     sincronizados: salvos,
@@ -528,5 +575,6 @@ export async function POST(request: Request) {
     shipments_404: semShipmentCount,
     invoices_404: semNfCount,
     concurrency: workerCount,
+    aborted_by_auth: false,
   });
 }

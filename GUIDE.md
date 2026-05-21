@@ -205,3 +205,42 @@ Depois registrar no `createClient<Database>()` no `lib/supabase.ts`. TypeScript 
 - **Tipagem:** Use `supabase gen types typescript` antes de cada novo sync para manter os tipos do banco sincronizados.
 - **Ant Design 5:** Nunca use `!important` no CSS global. Use `ConfigProvider` com Component Tokens.
 - **AGENTS.md:** Regra Zero obriga a consultar documentação oficial antes de qualquer ação. Use o MCP Context7 para bibliotecas.
+
+---
+
+## Runbook — Incidente OAuth Mercado Livre (`auth_fatal`)
+
+### Sintomas
+
+- Logs com `401 (auth_fatal)` e `invalid access token`.
+- Jobs de sync ML finalizando como `failed_auth`.
+- `/api/ops/health` ou `/api/sync/cron-status` com `ml_auth.state = reauth_required` ou `blocked_until` ativo.
+
+### Diagnóstico rápido
+
+1. Consultar `integracoes` (tipo `mercadolivre`):
+   - `conectado`
+   - `last_refresh_at`
+   - `last_refresh_error`
+   - `last_refresh_error_code`
+2. Confirmar se `last_refresh_error_code` é fatal (`invalid_grant`, `invalid_client`, `unauthorized_client`, `unauthorized_application`).
+3. Verificar se o `cron-dispatch` está pulando tarefas ML com `action = skipped_auth_block`.
+
+### Recuperação
+
+1. Reautenticar integração ML no painel (fluxo OAuth connect/callback).
+2. Confirmar transição para estado saudável:
+   - `integracoes.conectado = true`
+   - `last_refresh_error_code = null` (ou sem fatal)
+   - `ml_auth.state = ok`
+3. Validar manualmente:
+   - `POST /api/sync/anuncios`
+   - `POST /api/sync/pedidos`
+4. Confirmar retorno do scheduler:
+   - `cron-dispatch` volta a disparar `ml_anuncios` e `ml_pedidos`.
+
+### Critérios de encerramento
+
+- Sem novos `401 auth_fatal` por pelo menos 2 ciclos de cron.
+- Jobs ML voltam a concluir com `completo`.
+- `ml_auth.blocked_until` nulo.

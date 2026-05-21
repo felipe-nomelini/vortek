@@ -11,6 +11,7 @@ type IntegracaoRow = Database['public']['Tables']['integracoes']['Row'];
 type IntegracaoTipo = IntegracaoRow['tipo'];
 
 export type MLFailureCategory = 'expected_operational' | 'retryable' | 'auth_fatal' | 'error';
+export type MLAuthState = 'ok' | 'degraded' | 'reauth_required';
 
 export interface MLRequestError {
   status: number;
@@ -30,7 +31,38 @@ export interface MLRequestResult<T> {
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 const REFRESH_WAIT_MS = 700;
 const REFRESH_WAIT_ATTEMPTS = 8;
+const AUTH_FATAL_COOLDOWN_MS = 10 * 60 * 1000;
+const FATAL_REFRESH_ERROR_CODES = ['invalid_grant', 'invalid_client', 'unauthorized_client', 'unauthorized_application'];
 let inflightForcedRefresh: Promise<string | null> | null = null;
+let authBlockedUntilMs = 0;
+
+function logMlAuthEvent(payload: Record<string, any>) {
+  console.log(JSON.stringify({
+    event: 'ml_oauth_refresh',
+    timestamp_utc: new Date().toISOString(),
+    ...payload,
+  }));
+}
+
+function setAuthFatalCooldown(reason: string) {
+  authBlockedUntilMs = Math.max(authBlockedUntilMs, Date.now() + AUTH_FATAL_COOLDOWN_MS);
+  console.error(JSON.stringify({
+    event: 'ml_auth_fatal_block',
+    timestamp_utc: new Date().toISOString(),
+    reason,
+    blocked_until: new Date(authBlockedUntilMs).toISOString(),
+    cooldown_ms: AUTH_FATAL_COOLDOWN_MS,
+  }));
+}
+
+function clearAuthFatalCooldown() {
+  authBlockedUntilMs = 0;
+}
+
+function getAuthFatalBlockedUntil(): string | null {
+  if (authBlockedUntilMs <= Date.now()) return null;
+  return new Date(authBlockedUntilMs).toISOString();
+}
 
 function isExpired(expiresAt: string | null): boolean {
   if (!expiresAt) return true;
@@ -169,7 +201,7 @@ async function markRefreshFailure(
 }
 
 function isFatalAuthRefreshError(errorCode: string | null): boolean {
-  return ['invalid_grant', 'invalid_client', 'unauthorized_client', 'unauthorized_application'].includes(errorCode || '');
+  return FATAL_REFRESH_ERROR_CODES.includes(errorCode || '');
 }
 
 async function waitTokenFromOtherRefresher(): Promise<string | null> {
@@ -184,6 +216,7 @@ async function waitTokenFromOtherRefresher(): Promise<string | null> {
 }
 
 async function refreshMLTokenFromDB(force: boolean): Promise<string | null> {
+  const refreshStartedAt = Date.now();
   const initial = await getIntegracao('mercadolivre');
   if (!initial?.refresh_token) return null;
 
@@ -224,6 +257,15 @@ async function refreshMLTokenFromDB(force: boolean): Promise<string | null> {
       const message = payload?.error_description || payload?.message || `OAuth refresh HTTP ${res.status}`;
       const fatalAuth = isFatalAuthRefreshError(code);
       await markRefreshFailure(fatalAuth, code, message);
+      logMlAuthEvent({
+        result: 'failure',
+        error_code: code,
+        fatal_auth: fatalAuth,
+        duration_ms: Date.now() - refreshStartedAt,
+      });
+      if (fatalAuth) {
+        setAuthFatalCooldown(`refresh_failed:${code || 'unknown'}`);
+      }
       console.error(`[ML OAuth] Falha no refresh (${code || 'sem_codigo'}): ${message}`);
       return null;
     }
@@ -232,13 +274,32 @@ async function refreshMLTokenFromDB(force: boolean): Promise<string | null> {
     const refreshToken = payload?.refresh_token;
     if (!accessToken || !refreshToken) {
       await markRefreshFailure(false, 'invalid_refresh_payload', 'Resposta de refresh sem access_token/refresh_token');
+      logMlAuthEvent({
+        result: 'failure',
+        error_code: 'invalid_refresh_payload',
+        fatal_auth: false,
+        duration_ms: Date.now() - refreshStartedAt,
+      });
       return null;
     }
 
     await updateTokens('mercadolivre', accessToken, refreshToken, payload?.expires_in || 10800);
+    clearAuthFatalCooldown();
+    logMlAuthEvent({
+      result: 'success',
+      error_code: null,
+      fatal_auth: false,
+      duration_ms: Date.now() - refreshStartedAt,
+    });
     return accessToken;
   } catch (err: any) {
     await markRefreshFailure(false, 'refresh_exception', err?.message || 'Erro de rede ao atualizar token');
+    logMlAuthEvent({
+      result: 'failure',
+      error_code: 'refresh_exception',
+      fatal_auth: false,
+      duration_ms: Date.now() - refreshStartedAt,
+    });
     console.error('[ML OAuth] Exceção no refresh:', err?.message || err);
     return null;
   } finally {
@@ -267,6 +328,22 @@ export async function getValidMLToken(force = false): Promise<string | null> {
 }
 
 export async function fetchMLResult<T>(path: string, options?: RequestInit): Promise<MLRequestResult<T>> {
+  const blockedUntilIso = getAuthFatalBlockedUntil();
+  if (blockedUntilIso) {
+    return {
+      ok: false,
+      status: 401,
+      data: null,
+      error: {
+        status: 401,
+        code: 'auth_cooldown',
+        message: `Integração ML em cooldown até ${blockedUntilIso}`,
+        category: 'auth_fatal',
+        traceId: null,
+      },
+    };
+  }
+
   let token = await getValidMLToken();
   if (!token) {
     return {
@@ -307,6 +384,7 @@ export async function fetchMLResult<T>(path: string, options?: RequestInit): Pro
     if (res.status === 401) {
       const freshToken = await getValidMLToken(true);
       if (!freshToken) {
+        setAuthFatalCooldown('refresh_failed_after_401');
         return {
           ok: false,
           status: 401,
@@ -322,6 +400,9 @@ export async function fetchMLResult<T>(path: string, options?: RequestInit): Pro
       }
       token = freshToken;
       res = await doFetch(token);
+      if (res.status === 401) {
+        setAuthFatalCooldown('401_after_forced_refresh');
+      }
     }
 
     if (res.ok) {
@@ -378,8 +459,27 @@ export async function fetchML<T>(path: string, options?: RequestInit): Promise<T
 }
 
 export async function fetchMLRaw(path: string, options?: RequestInit): Promise<{ status: number; body: string } | null> {
+  const blockedUntilIso = getAuthFatalBlockedUntil();
+  if (blockedUntilIso) {
+    return {
+      status: 401,
+      body: JSON.stringify({
+        code: 'auth_cooldown',
+        message: `Integração ML em cooldown até ${blockedUntilIso}`,
+      }),
+    };
+  }
+
   let token = await getValidMLToken();
-  if (!token) return null;
+  if (!token) {
+    return {
+      status: 401,
+      body: JSON.stringify({
+        code: 'missing_token',
+        message: 'Token do Mercado Livre indisponível',
+      }),
+    };
+  }
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 30000);
@@ -397,9 +497,21 @@ export async function fetchMLRaw(path: string, options?: RequestInit): Promise<{
 
     if (res.status === 401) {
       const freshToken = await getValidMLToken(true);
-      if (!freshToken) return null;
+      if (!freshToken) {
+        setAuthFatalCooldown('refresh_failed_raw_after_401');
+        return {
+          status: 401,
+          body: JSON.stringify({
+            code: 'refresh_failed',
+            message: 'Falha ao renovar token do Mercado Livre',
+          }),
+        };
+      }
       token = freshToken;
       res = await doFetch(token);
+      if (res.status === 401) {
+        setAuthFatalCooldown('401_after_forced_refresh_raw');
+      }
     }
 
     const body = await res.text();
@@ -434,6 +546,37 @@ export async function getMLConnectionStatus(): Promise<{ conectado: boolean; pre
   }
 
   return { conectado: true, precisaReconectar: false, erro: me.error?.message || 'Falha transitória ao validar conexão ML' };
+}
+
+export async function getMLAuthDiagnostics(): Promise<{
+  state: MLAuthState;
+  blocked_until: string | null;
+  last_refresh_at: string | null;
+  last_refresh_error: string | null;
+  last_refresh_error_code: string | null;
+  conectado: boolean;
+}> {
+  const integracao = await getIntegracao('mercadolivre');
+  const blockedUntil = getAuthFatalBlockedUntil();
+  const lastErrorCode = integracao?.last_refresh_error_code || null;
+  const isFatalErrorCode = FATAL_REFRESH_ERROR_CODES.includes(lastErrorCode || '');
+  const reauthRequired = !integracao?.conectado || isFatalErrorCode;
+
+  let state: MLAuthState = 'ok';
+  if (reauthRequired) {
+    state = 'reauth_required';
+  } else if (lastErrorCode) {
+    state = 'degraded';
+  }
+
+  return {
+    state,
+    blocked_until: blockedUntil,
+    last_refresh_at: integracao?.last_refresh_at || null,
+    last_refresh_error: integracao?.last_refresh_error || null,
+    last_refresh_error_code: lastErrorCode,
+    conectado: Boolean(integracao?.conectado),
+  };
 }
 
 export async function buscarXmlDaNF(orderId: string): Promise<{ xml: string | null; error?: string }> {

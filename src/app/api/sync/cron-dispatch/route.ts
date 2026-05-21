@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { runMlSingleStageJob } from '@/services/sync-ml-job';
+import { getMLAuthDiagnostics } from '@/services/integration';
 
 export const maxDuration = 300;
 
@@ -120,10 +121,23 @@ export async function POST(request: Request) {
 
   const serviceClient = createServiceClient();
   const hour = getSaoPauloHour();
+  const mlAuth = await getMLAuthDiagnostics();
 
   const results: any[] = [];
 
   for (const task of TASKS) {
+    const isMlTask = task.key === 'ml_anuncios' || task.key === 'ml_pedidos';
+    if (isMlTask && (mlAuth.state === 'reauth_required' || Boolean(mlAuth.blocked_until))) {
+      results.push({
+        task: task.key,
+        action: 'skipped_auth_block',
+        auth_state: mlAuth.state,
+        auth_blocked_until: mlAuth.blocked_until,
+        last_refresh_error_code: mlAuth.last_refresh_error_code,
+      });
+      continue;
+    }
+
     const intervalMinutes = task.intervalMinutes(hour);
 
     const { data: running } = await serviceClient
@@ -253,6 +267,7 @@ export async function POST(request: Request) {
     jitter_ms: jitterMs,
     timezone: 'America/Sao_Paulo',
     hour,
+    ml_auth: mlAuth,
     results,
   });
 }

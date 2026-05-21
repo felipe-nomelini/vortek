@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
+import { getMLAuthDiagnostics } from '@/services/integration';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -25,6 +26,7 @@ function getSaoPauloHour() {
 export async function GET() {
   const serviceClient = createServiceClient();
   const hour = getSaoPauloHour();
+  const mlAuth = await getMLAuthDiagnostics();
 
   const rows = await Promise.all(TASKS.map(async (task) => {
     const { data: running } = await serviceClient
@@ -64,6 +66,7 @@ export async function GET() {
     success: true,
     timezone: 'America/Sao_Paulo',
     hour,
+    ml_auth: mlAuth,
     tasks: rows,
   }, {
     headers: {

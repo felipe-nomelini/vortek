@@ -49,7 +49,7 @@ async function updateJob(jobId: string, data: JobsUpdate) {
 
 export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
   success: boolean;
-  status: 'completo' | 'erro';
+  status: 'completo' | 'erro' | 'failed_auth';
   processados: number;
   total: number;
 }> {
@@ -66,10 +66,10 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
     throw new Error('Job não encontrado');
   }
 
-  if (job.finished_at || ['completo', 'completo_parcial', 'erro', 'cancelado'].includes(job.status)) {
+  if (job.finished_at || ['completo', 'completo_parcial', 'erro', 'cancelado', 'failed_auth'].includes(job.status)) {
     return {
       success: true,
-      status: job.status === 'completo' ? 'completo' : 'erro',
+      status: job.status === 'completo' ? 'completo' : (job.status === 'failed_auth' ? 'failed_auth' : 'erro'),
       processados: 1,
       total: 1,
     };
@@ -109,7 +109,8 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
 
     const raw = await res.json().catch(() => ({}));
     const ok = res.ok && raw?.success !== false && raw?.ok !== false;
-    const statusFinal: 'completo' | 'erro' = ok ? 'completo' : 'erro';
+    const authFailure = res.status === 401 && (raw?.failure_reason === 'auth_fatal' || raw?.auth_state === 'reauth_required');
+    const statusFinal: 'completo' | 'erro' | 'failed_auth' = ok ? 'completo' : (authFailure ? 'failed_auth' : 'erro');
 
     logs.push({
       event_type: 'job_stage_done',
@@ -118,6 +119,7 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
       http_status: res.status,
       message: raw?.message || raw?.erro || raw?.error || (ok ? 'Etapa concluída' : 'Etapa falhou'),
       timestamp: nowIso(),
+      auth_failure: authFailure,
       ...raw,
     });
 

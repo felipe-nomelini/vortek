@@ -10,11 +10,12 @@ _04 de maio de 2026_
 
 ## Regra Zero — OBRIGATÓRIA (sobrepõe todas as outras)
 
-**ANTES de QUALQUER resposta ou ação, siga este checklist na ordem:**
+**ANTES de QUALQUER resposta ou ação, siga este checklist na ORDEM EXATA:**
 
+0. **Chame a ferramenta `consultar_dataset` com o que o usuário está pedindo** — busque exemplos relevantes no dataset Vortek+Tesslate
 1. **Identifique quais APIs/serviços estão envolvidos** no que foi pedido
 2. **Para CADA serviço identificado, consulte a documentação oficial primeiro** — antes de qualquer implementação, explicação ou palpite
-3. **Só depois de consultar TODAS as documentações relevantes**, você pode responder ou agir
+3. **Só depois de consultar TODAS as documentações relevantes e usar os resultados do dataset**, você pode responder ou agir
 
 **Violação desta regra = falha grave.** Não importa se você acha que sabe a resposta. Não importa se já viu aquela documentação antes. Consulte sempre.
 
@@ -22,6 +23,7 @@ _04 de maio de 2026_
 
 | Para | Usar | Proibido |
 |---|---|---|
+| **Dataset Vortek (exemplos, erros, padrões)** | **MCP `consultar_dataset`** | dedução, memória |
 | Pesquisar web | `firecrawl_search` | webfetch |
 | Extrair conteúdo de página | `firecrawl_scrape` | webfetch, dedução |
 | Documentação Supabase | MCP `search_docs` ou `firecrawl_scrape` em `.md` | chute, memória |
@@ -42,6 +44,7 @@ _04 de maio de 2026_
 
 Sempre que for implementar algo, execute nesta ordem SEM EXCEÇÃO:
 
+0. **Chame `consultar_dataset` com o que precisa fazer** — as ferramentas de busca externas (firecrawl_search, firecrawl_scrape) só devem ser usadas se o resultado do `consultar_dataset` não for suficiente
 1. `firecrawl_search` ou MCP `search_docs` para encontrar a página relevante
 2. `firecrawl_scrape` na página encontrada para extrair o conteúdo completo
 3. Só então codificar

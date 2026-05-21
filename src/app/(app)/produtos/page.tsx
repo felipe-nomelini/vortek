@@ -189,6 +189,8 @@ export default function ProductsPage() {
     description: string;
     categorySchemaCache: Record<string, CategorySchemaResponse>;
     suggestingFieldId: string | null;
+    suggestingRequiredBulk: boolean;
+    suggestingOptionalBulk: boolean;
     loading: boolean;
   }>({
     open: false,
@@ -205,6 +207,8 @@ export default function ProductsPage() {
     description: '',
     categorySchemaCache: {},
     suggestingFieldId: null,
+    suggestingRequiredBulk: false,
+    suggestingOptionalBulk: false,
     loading: false,
   });
 
@@ -234,6 +238,8 @@ export default function ProductsPage() {
       description: product.description || '',
       categorySchemaCache: {},
       suggestingFieldId: null,
+      suggestingRequiredBulk: false,
+      suggestingOptionalBulk: false,
       loading: true,
     });
     try {
@@ -371,6 +377,145 @@ export default function ProductsPage() {
       messageApi.warning('Falha ao solicitar sugestão da IA');
     } finally {
       setMlModal(prev => ({ ...prev, suggestingFieldId: null }));
+    }
+  };
+
+  const sugerirSecaoIA = async (section: 'required' | 'optional') => {
+    if (!mlModal.produtoId || !mlModal.selectedCategory) return;
+
+    const currentRequired = mlModal.editableAttributes;
+    const currentOptional = mlModal.optionalAttributes;
+    const requiredDefs = mlModal.categorias.find(c => c.id === mlModal.selectedCategory)?.requiredAttributes || [];
+
+    type CandidateField = {
+      id: string;
+      name: string;
+      value_type?: string;
+      values?: MlCategoryAttributeOption[];
+      index: number;
+    };
+
+    const candidates: CandidateField[] = section === 'required'
+      ? currentRequired
+        .map((attr, index) => {
+          const valueFilled = Boolean(attr.value_id) || Boolean(attr.value_name?.trim());
+          if (valueFilled) return null;
+
+          const def = requiredDefs.find(a => a.id === attr.id);
+          return {
+            id: attr.id,
+            name: attr.name,
+            value_type: def?.value_type || 'string',
+            values: def?.values || [],
+            index,
+          } as CandidateField;
+        })
+        .filter((item): item is CandidateField => item !== null)
+      : currentOptional
+        .map((attr, index) => {
+          const valueFilled = Boolean(attr.value_id) || Boolean(attr.value_name?.trim());
+          if (valueFilled) return null;
+
+          return {
+            id: attr.id,
+            name: attr.name,
+            value_type: attr.value_type,
+            values: attr.values || [],
+            index,
+          } as CandidateField;
+        })
+        .filter((item): item is CandidateField => item !== null);
+
+    const alreadyFilledCount = (section === 'required' ? currentRequired : currentOptional).length - candidates.length;
+
+    if (candidates.length === 0) {
+      messageApi.info('Nenhum campo vazio para preencher nesta seção.');
+      return;
+    }
+
+    setMlModal(prev => ({
+      ...prev,
+      suggestingRequiredBulk: section === 'required' ? true : prev.suggestingRequiredBulk,
+      suggestingOptionalBulk: section === 'optional' ? true : prev.suggestingOptionalBulk,
+    }));
+
+    let successCount = 0;
+    let failedCount = 0;
+
+    try {
+      for (const field of candidates) {
+        try {
+          const res = await fetch('/api/ml/anuncio/sugerir-campo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              produtoId: mlModal.produtoId,
+              categoriaId: mlModal.selectedCategory,
+              field: {
+                id: field.id,
+                name: field.name,
+                value_type: field.value_type,
+                allowed_values: field.values || [],
+              },
+              currentForm: {
+                required_attributes: mlModal.editableAttributes,
+                optional_attributes: mlModal.optionalAttributes,
+                sale_terms: mlModal.saleTerms,
+                fiscal: mlModal.editableFiscal,
+                description: mlModal.description,
+              },
+            }),
+          });
+
+          const data = await res.json();
+          if (!res.ok || !data?.success) {
+            failedCount += 1;
+            continue;
+          }
+
+          const suggestion = data.suggestion || {};
+          const hasValue = Boolean(suggestion.value_id) || Boolean(String(suggestion.value_name || '').trim());
+          if (!hasValue) {
+            failedCount += 1;
+            continue;
+          }
+
+          setMlModal(prev => {
+            if (section === 'required') {
+              const next = [...prev.editableAttributes];
+              next[field.index] = {
+                ...next[field.index],
+                value_id: suggestion.value_id || '',
+                value_name: suggestion.value_name || '',
+              };
+              return { ...prev, editableAttributes: next };
+            }
+
+            const next = [...prev.optionalAttributes];
+            next[field.index] = {
+              ...next[field.index],
+              value_id: suggestion.value_id || '',
+              value_name: suggestion.value_name || '',
+            };
+            return { ...prev, optionalAttributes: next };
+          });
+          successCount += 1;
+        } catch {
+          failedCount += 1;
+        }
+      }
+
+      const totalProcessado = candidates.length;
+      messageApi.info(
+        `Preenchimento IA (${section === 'required' ? 'obrigatórios' : 'secundários'}): ` +
+        `${successCount} preenchidos, ${alreadyFilledCount} ignorados, ${failedCount} falhas (total processado: ${totalProcessado}).`
+      );
+    } finally {
+      setMlModal(prev => ({
+        ...prev,
+        suggestingRequiredBulk: section === 'required' ? false : prev.suggestingRequiredBulk,
+        suggestingOptionalBulk: section === 'optional' ? false : prev.suggestingOptionalBulk,
+      }));
     }
   };
 
@@ -1049,7 +1194,21 @@ export default function ProductsPage() {
             {/* Atributos obrigatórios da categoria */}
             {mlModal.selectedCategory && mlModal.editableAttributes.length > 0 && (
               <div style={{ background: '#1a1a1a', border: '1px solid #303030', borderRadius: 6, padding: 16 }}>
-                <Title level={5} style={{ color: '#e0e0e0', marginBottom: 12, marginTop: 0 }}>Atributos Obrigatórios</Title>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                  <Title level={5} style={{ color: '#e0e0e0', margin: 0 }}>Atributos Obrigatórios</Title>
+                  <Button
+                    size="small"
+                    onClick={() => void sugerirSecaoIA('required')}
+                    loading={mlModal.suggestingRequiredBulk}
+                    disabled={
+                      !mlModal.selectedCategory ||
+                      mlModal.suggestingOptionalBulk ||
+                      mlModal.editableAttributes.every((a) => Boolean(a.value_id) || Boolean(a.value_name?.trim()))
+                    }
+                  >
+                    Preencher com IA
+                  </Button>
+                </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 10 }}>
                   {mlModal.editableAttributes.map((attr, idx) => (
                     <div key={attr.id} style={{ display: 'grid', gridTemplateColumns: '220px 1fr auto', gap: 8, alignItems: 'center' }}>
@@ -1104,7 +1263,21 @@ export default function ProductsPage() {
 
             {mlModal.selectedCategory && mlModal.optionalAttributes.length > 0 && (
               <div style={{ background: '#1a1a1a', border: '1px solid #303030', borderRadius: 6, padding: 16 }}>
-                <Title level={5} style={{ color: '#e0e0e0', marginBottom: 12, marginTop: 0 }}>Atributos Secundários</Title>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                  <Title level={5} style={{ color: '#e0e0e0', margin: 0 }}>Atributos Secundários</Title>
+                  <Button
+                    size="small"
+                    onClick={() => void sugerirSecaoIA('optional')}
+                    loading={mlModal.suggestingOptionalBulk}
+                    disabled={
+                      !mlModal.selectedCategory ||
+                      mlModal.suggestingRequiredBulk ||
+                      mlModal.optionalAttributes.every((a) => Boolean(a.value_id) || Boolean(a.value_name?.trim()))
+                    }
+                  >
+                    Preencher com IA
+                  </Button>
+                </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 10 }}>
                   {mlModal.optionalAttributes.map((attr, idx) => (
                     <div key={attr.id} style={{ display: 'grid', gridTemplateColumns: '220px 1fr auto', gap: 8, alignItems: 'center' }}>

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
+import { getMLAuthDiagnostics } from '@/services/integration';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -12,6 +13,14 @@ export async function GET() {
   const mem = process.memoryUsage();
 
   let runningJobs: Array<{ id: string; tipo: string; status: string; created_at: string }> = [];
+  let mlAuth = {
+    state: 'ok',
+    blocked_until: null as string | null,
+    last_refresh_at: null as string | null,
+    last_refresh_error: null as string | null,
+    last_refresh_error_code: null as string | null,
+    conectado: false,
+  };
   try {
     const client = createServiceClient();
     const { data } = await client
@@ -24,6 +33,11 @@ export async function GET() {
     runningJobs = (data || []) as Array<{ id: string; tipo: string; status: string; created_at: string }>;
   } catch {
     // health endpoint deve responder mesmo sem acesso ao banco
+  }
+  try {
+    mlAuth = await getMLAuthDiagnostics();
+  } catch {
+    // mantém health resiliente
   }
 
   return NextResponse.json(
@@ -42,6 +56,7 @@ export async function GET() {
         },
       },
       running_jobs: runningJobs,
+      ml_auth: mlAuth,
     },
     {
       headers: {

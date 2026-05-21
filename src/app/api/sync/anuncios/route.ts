@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
-import { fetchML, fetchMLResult, type MLRequestError } from '@/services/integration';
+import { fetchML, fetchMLResult, getMLAuthDiagnostics, type MLRequestError } from '@/services/integration';
 
 export const maxDuration = 300;
 
-const CONCURRENCY = 5;
+const CONCURRENCY = 3;
 
 function calcularQualidade(item: any): { total: number; itens: any[]; dica: string } {
   const tags = item.tags || [];
@@ -112,7 +112,8 @@ async function getMLShipping(itemId: string, sellerZip: string): Promise<Shippin
       return { value: 0, warning: err?.code || err?.message || 'shipping_error', retrySuccess, retryFailed: true, authFailure: false };
     }
 
-    await new Promise(resolve => setTimeout(resolve, 500 * (attempt + 1)));
+    const jitter = Math.floor(Math.random() * 250);
+    await new Promise(resolve => setTimeout(resolve, (700 * (attempt + 1)) + jitter));
   }
 
   return { value: 0, warning: 'shipping_retry_exhausted', retrySuccess, retryFailed: true, authFailure: false };
@@ -140,8 +141,21 @@ export async function POST(request: Request) {
   const offset = parseInt(searchParams.get('offset') || '0', 10);
   const limit = 100;
 
-  const me = await fetchML<any>('/users/me');
-  if (!me) return NextResponse.json({ erro: 'Erro ao conectar com ML' }, { status: 502 });
+  const meResult = await fetchMLResult<any>('/users/me');
+  if (!meResult.ok || !meResult.data) {
+    if (meResult.error?.category === 'auth_fatal') {
+      const auth = await getMLAuthDiagnostics();
+      return NextResponse.json({
+        ok: false,
+        error: 'Integração ML requer reconexão para sincronizar anúncios',
+        failure_reason: 'auth_fatal',
+        auth_state: auth.state,
+        auth_blocked_until: auth.blocked_until,
+      }, { status: 401 });
+    }
+    return NextResponse.json({ erro: 'Erro ao conectar com ML' }, { status: 502 });
+  }
+  const me = meResult.data;
 
   const sellerZip = me.address?.zip_code || '';
   const search = await fetchML<any>(`/users/${me.id}/items/search?limit=${limit}&offset=${offset}`);
@@ -169,11 +183,17 @@ export async function POST(request: Request) {
   let retryFailed = 0;
   let authFailures = 0;
   let linkageWarnings = 0;
+  let abortedByAuth = false;
 
   await runPool(itemIds, CONCURRENCY, async (itemId) => {
+    if (abortedByAuth) return;
+
     const itemResult = await fetchMLResult<any>(`/items/${itemId}`);
     if (!itemResult.ok || !itemResult.data) {
-      if (itemResult.error?.category === 'auth_fatal') authFailures++;
+      if (itemResult.error?.category === 'auth_fatal') {
+        authFailures++;
+        abortedByAuth = true;
+      }
       return;
     }
 
@@ -232,7 +252,10 @@ export async function POST(request: Request) {
       if (shipping.warning) warningsExpected++;
       if (shipping.retrySuccess) retrySuccess++;
       if (shipping.retryFailed) retryFailed++;
-      if (shipping.authFailure) authFailures++;
+      if (shipping.authFailure) {
+        authFailures++;
+        abortedByAuth = true;
+      }
 
       await serviceClient
         .from('produtos')
@@ -249,6 +272,24 @@ export async function POST(request: Request) {
     salvos++;
   });
 
+  if (abortedByAuth) {
+    const auth = await getMLAuthDiagnostics();
+    return NextResponse.json({
+      ok: false,
+      error: 'Sincronização abortada por falha de autenticação com ML',
+      failure_reason: 'auth_fatal',
+      auth_state: auth.state,
+      auth_blocked_until: auth.blocked_until,
+      sincronizados: salvos,
+      warnings_expected: warningsExpected,
+      retry_success: retrySuccess,
+      retry_failed: retryFailed,
+      auth_failures: authFailures,
+      linkage_warnings: linkageWarnings,
+      aborted_by_auth: true,
+    }, { status: 401 });
+  }
+
   const total = search.paging?.total || 0;
   const proximo = offset + limit;
   const acabou = proximo >= total || itemIds.length < limit;
@@ -264,6 +305,7 @@ export async function POST(request: Request) {
     retry_success: retrySuccess,
     retry_failed: retryFailed,
     auth_failures: authFailures,
+    aborted_by_auth: false,
     linkage_warnings: linkageWarnings,
   });
 }
