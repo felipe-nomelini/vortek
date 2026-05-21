@@ -340,6 +340,7 @@ export interface MLItemStatus {
 
 type SyncReasonCode =
   | 'ok'
+  | 'manual_block'
   | 'already_paused'
   | 'not_paused_after_update'
   | 'activation_without_stock'
@@ -369,6 +370,43 @@ const STOCK_SYNC_RETRY_BASE_MS = 1200;
 const STOCK_SYNC_MAX_RETRIES = 4;
 const ML_BLOCK_COOLDOWN_HOURS = 6;
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+async function getMlManualBlockSet(
+  produtos: Array<{ ml_item_id: string; sku?: string }>
+): Promise<{ byMlItemId: Map<string, string>; bySku: Map<string, string> }> {
+  const byMlItemId = new Map<string, string>();
+  const bySku = new Map<string, string>();
+  const serviceClient = createServiceClient();
+
+  const itemIds = Array.from(new Set(produtos.map((p) => String(p.ml_item_id || '').trim()).filter(Boolean)));
+  const skus = Array.from(new Set(produtos.map((p) => String(p.sku || '').trim().toUpperCase()).filter(Boolean)));
+
+  let query = serviceClient
+    .from('ml_manual_blocklist')
+    .select('sku, ml_item_id, motivo')
+    .eq('ativo', true);
+
+  if (itemIds.length > 0 && skus.length > 0) {
+    query = query.or(`ml_item_id.in.(${itemIds.join(',')}),sku.in.(${skus.join(',')})`);
+  } else if (itemIds.length > 0) {
+    query = query.in('ml_item_id', itemIds);
+  } else if (skus.length > 0) {
+    query = query.in('sku', skus);
+  } else {
+    return { byMlItemId, bySku };
+  }
+
+  const { data } = await query;
+  for (const row of data || []) {
+    const reason = String(row.motivo || 'Bloqueio manual temporário');
+    const mlItemId = String(row.ml_item_id || '').trim();
+    const sku = String(row.sku || '').trim().toUpperCase();
+    if (mlItemId) byMlItemId.set(mlItemId, reason);
+    if (sku) bySku.set(sku, reason);
+  }
+
+  return { byMlItemId, bySku };
+}
 
 function parseJsonSafe(raw: string): any {
   try {
@@ -547,6 +585,8 @@ export async function sincronizarEstoqueComML(
   skipped_blocked_cooldown: number;
   erros_transitorios: number;
   erros_nao_recuperaveis: number;
+  skipped_manual_block: number;
+  manual_block_items: Array<{ ml_item_id: string; sku?: string; motivo: string }>;
   detalhes: Array<{
     ml_item_id: string;
     sku?: string;
@@ -567,6 +607,7 @@ export async function sincronizarEstoqueComML(
   const isBlockedByMlRule = (reasonCode?: SyncReasonCode) =>
     !!reasonCode && blockedReasonCodes.includes(reasonCode);
   const serviceClient = createServiceClient();
+  const manualBlockSet = await getMlManualBlockSet(produtos);
   const mlItemIds = produtos.map((p) => p.ml_item_id).filter(Boolean);
   const blockStateByItemId = new Map<string, {
     blockedUntil: string | null;
@@ -626,6 +667,8 @@ export async function sincronizarEstoqueComML(
     bloqueios_ml_regra: 0,
     ativacao_bloqueada_sem_estoque: 0,
     skipped_blocked_cooldown: 0,
+    skipped_manual_block: 0,
+    manual_block_items: [] as Array<{ ml_item_id: string; sku?: string; motivo: string }>,
     erros_transitorios: 0,
     erros_nao_recuperaveis: 0,
     detalhes: [] as Array<{
@@ -649,6 +692,33 @@ export async function sincronizarEstoqueComML(
   for (const produto of produtos) {
     if (!produto.ml_item_id) continue;
     if (skipRetryForItem.has(produto.ml_item_id)) {
+      continue;
+    }
+
+    const skuUpper = String(produto.sku || '').trim().toUpperCase();
+    const manualReason = manualBlockSet.byMlItemId.get(produto.ml_item_id) || (skuUpper ? manualBlockSet.bySku.get(skuUpper) : undefined);
+    if (manualReason) {
+      const detalheBlocked = {
+        ml_item_id: produto.ml_item_id,
+        sku: produto.sku,
+        estoque: produto.estoque || 0,
+        acao: 'skip_manual_block',
+        sucesso: false,
+        erro: manualReason,
+        reason_code: 'manual_block' as SyncReasonCode,
+      };
+      resultado.skipped_manual_block++;
+      if (resultado.manual_block_items.length < 20) {
+        resultado.manual_block_items.push({ ml_item_id: produto.ml_item_id, sku: produto.sku, motivo: manualReason });
+      }
+      console.warn(JSON.stringify({
+        event: 'sync_ml_manual_block_skip',
+        ml_item_id: produto.ml_item_id,
+        sku: produto.sku,
+        motivo: manualReason,
+        timestamp_utc: new Date().toISOString(),
+      }));
+      resultado.detalhes.push(detalheBlocked);
       continue;
     }
 
@@ -928,9 +998,37 @@ export async function reconciliarPausasEstoqueZero(
 ) {
   const detalhes: Array<{ ml_item_id: string; sku?: string; current_status?: string; acao: string; sucesso: boolean; erro?: string }> = [];
   const candidatos: Array<{ ml_item_id: string; sku?: string; estoque: number; ml_status?: string }> = [];
+  const manualBlockSet = await getMlManualBlockSet(produtos);
+  const manualBlockedDetalhes: Array<{ ml_item_id: string; sku?: string; current_status?: string; acao: string; sucesso: boolean; erro?: string }> = [];
+  const manualBlockItems: Array<{ ml_item_id: string; sku?: string; motivo: string }> = [];
+  let skippedManualBlock = 0;
 
   for (const produto of produtos) {
     if (!produto.ml_item_id) continue;
+    const skuUpper = String(produto.sku || '').trim().toUpperCase();
+    const manualReason = manualBlockSet.byMlItemId.get(produto.ml_item_id) || (skuUpper ? manualBlockSet.bySku.get(skuUpper) : undefined);
+    if (manualReason) {
+      skippedManualBlock++;
+      if (manualBlockItems.length < 20) {
+        manualBlockItems.push({ ml_item_id: produto.ml_item_id, sku: produto.sku, motivo: manualReason });
+      }
+      manualBlockedDetalhes.push({
+        ml_item_id: produto.ml_item_id,
+        sku: produto.sku,
+        acao: 'skip_manual_block',
+        sucesso: false,
+        erro: manualReason,
+      });
+      console.warn(JSON.stringify({
+        event: 'sync_ml_manual_block_skip',
+        ml_item_id: produto.ml_item_id,
+        sku: produto.sku,
+        motivo: manualReason,
+        timestamp_utc: new Date().toISOString(),
+      }));
+      continue;
+    }
+
     const status = await obterStatusItemML(produto.ml_item_id);
     const currentStatus = status.data?.status;
 
@@ -955,11 +1053,13 @@ export async function reconciliarPausasEstoqueZero(
     pausa_confirmada: sync.pausa_confirmada,
     pausa_pendente: sync.pausa_pendente,
     erros_bloqueio_ml: sync.erros_bloqueio_ml,
+    skipped_manual_block: sync.skipped_manual_block + skippedManualBlock,
+    manual_block_items: [...manualBlockItems, ...(sync.manual_block_items || [])].slice(0, 20),
     bloqueios_ml_regra: sync.bloqueios_ml_regra,
     ativacao_bloqueada_sem_estoque: sync.ativacao_bloqueada_sem_estoque,
     erros_transitorios: sync.erros_transitorios,
     erros_nao_recuperaveis: sync.erros_nao_recuperaveis,
-    detalhes: [...detalhes, ...sync.detalhes.map((d) => ({
+    detalhes: [...detalhes, ...manualBlockedDetalhes, ...sync.detalhes.map((d) => ({
       ml_item_id: d.ml_item_id,
       sku: d.sku,
       current_status: d.verified_status || d.status,
