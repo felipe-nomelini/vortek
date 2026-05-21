@@ -250,9 +250,20 @@ async function fiscalApiFetch<T>(path: string, options: RequestInit): Promise<Fi
   let res = await doFetch(token);
 
   if (res.status === 401) {
-    const freshToken = await getValidMLToken();
+    console.warn(JSON.stringify({
+      event: 'ml_auth_retry',
+      attempt: 'retry_after_forced_refresh',
+      path,
+      method: options.method || 'GET',
+      status: 401,
+      timestamp_utc: new Date().toISOString(),
+    }));
+    const freshToken = await getValidMLToken(true);
     if (!freshToken) return { success: false, status: 401, error: 'Token expirado - refresh falhou' };
     res = await doFetch(freshToken);
+    if (res.status === 401) {
+      return { success: false, status: 401, error: 'Falha de autenticação no Mercado Livre após refresh forçado' };
+    }
   }
 
   const body = await res.json();

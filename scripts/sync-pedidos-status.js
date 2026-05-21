@@ -16,7 +16,7 @@ if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
-async function getValidMLToken() {
+async function getValidMLToken(force = false) {
   const { data: integracao } = await supabase
     .from('integracoes')
     .select('*')
@@ -25,7 +25,7 @@ async function getValidMLToken() {
 
   if (!integracao?.refresh_token) return null;
 
-  if (integracao.access_token && integracao.token_expires_at) {
+  if (!force && integracao.access_token && integracao.token_expires_at) {
     const expiresAt = new Date(integracao.token_expires_at).getTime();
     if (expiresAt - Date.now() > 300000) {
       return integracao.access_token;
@@ -57,12 +57,39 @@ async function getValidMLToken() {
   return data.access_token;
 }
 
-async function fetchML(token, path) {
+async function fetchMLRaw(token, path) {
   const res = await fetch(`https://api.mercadolibre.com${path}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  if (!res.ok) return null;
-  return res.json();
+  const text = await res.text().catch(() => '');
+  let data = null;
+  try {
+    data = text ? JSON.parse(text) : null;
+  } catch {
+    data = null;
+  }
+  return { status: res.status, ok: res.ok, data, text };
+}
+
+async function fetchMLWithRefresh(path) {
+  let token = await getValidMLToken();
+  if (!token) return { ok: false, status: 401, data: null };
+
+  let res = await fetchMLRaw(token, path);
+  if (res.ok) return res;
+  if (res.status !== 401) return res;
+
+  console.warn(JSON.stringify({
+    event: 'ml_auth_retry',
+    attempt: 'retry_after_forced_refresh',
+    path,
+    method: 'GET',
+    status: 401,
+    timestamp_utc: new Date().toISOString(),
+  }));
+  token = await getValidMLToken(true);
+  if (!token) return { ok: false, status: 401, data: null };
+  return fetchMLRaw(token, path);
 }
 
 function mapearStatusShipment(shipmentStatus, shipmentSubstatus) {
@@ -87,14 +114,9 @@ function mapearStatusShipment(shipmentStatus, shipmentSubstatus) {
 }
 
 async function main() {
-  const token = await getValidMLToken();
-  if (!token) {
-    console.error('Failed to get ML token');
-    process.exit(1);
-  }
-
-  const me = await fetchML(token, '/users/me');
-  if (!me) {
+  const meRes = await fetchMLWithRefresh('/users/me');
+  const me = meRes.data;
+  if (!meRes.ok || !me) {
     console.error('Failed to get user info');
     process.exit(1);
   }
@@ -122,8 +144,9 @@ async function main() {
       const orderId = pedido.ml_order_id;
 
       // Buscar detalhes do pedido
-      const detail = await fetchML(token, `/orders/${orderId}`);
-      if (!detail) {
+      const detailRes = await fetchMLWithRefresh(`/orders/${orderId}`);
+      const detail = detailRes.data;
+      if (!detailRes.ok || !detail) {
         console.log(`[SKIP] Order ${orderId}: not found in ML`);
         skipped++;
         continue;
@@ -133,8 +156,9 @@ async function main() {
       let mlShipmentId = null;
       let situacao = pedido.situacao;
       try {
-        const shipment = await fetchML(token, `/orders/${orderId}/shipments`);
-        if (shipment?.id) {
+        const shipmentRes = await fetchMLWithRefresh(`/orders/${orderId}/shipments`);
+        const shipment = shipmentRes.data;
+        if (shipmentRes.ok && shipment?.id) {
           mlShipmentId = String(shipment.id);
           const shipStatus = shipment.status;
           const shipSubstatus = shipment.substatus;
@@ -151,8 +175,9 @@ async function main() {
       let mlClaimStatus = null;
       let isDevolvido = false;
       try {
-        const claimsSearch = await fetchML(token, `/post-purchase/v1/claims/search?resource_id=${orderId}&resource=order`);
-        if (claimsSearch?.data && Array.isArray(claimsSearch.data) && claimsSearch.data.length > 0) {
+        const claimsSearchRes = await fetchMLWithRefresh(`/post-purchase/v1/claims/search?resource_id=${orderId}&resource=order`);
+        const claimsSearch = claimsSearchRes.data;
+        if (claimsSearchRes.ok && claimsSearch?.data && Array.isArray(claimsSearch.data) && claimsSearch.data.length > 0) {
           const claim = claimsSearch.data[0];
           mlClaimId = String(claim.id);
           mlClaimStatus = claim.status;
@@ -171,8 +196,9 @@ async function main() {
       if (!mlClaimId && detail.claim_id) {
         try {
           mlClaimId = String(detail.claim_id);
-          const claim = await fetchML(token, `/post-purchase/v1/claims/${detail.claim_id}`);
-          if (claim?.status) {
+          const claimRes = await fetchMLWithRefresh(`/post-purchase/v1/claims/${detail.claim_id}`);
+          const claim = claimRes.data;
+          if (claimRes.ok && claim?.status) {
             mlClaimStatus = claim.status;
           }
         } catch (e) {

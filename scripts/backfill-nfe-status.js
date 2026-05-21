@@ -19,6 +19,78 @@ function normalizeNfeStatus(status) {
   return normalized;
 }
 
+async function getValidMLToken(sb, force = false) {
+  const { data: integracao, error } = await sb
+    .from('integracoes')
+    .select('*')
+    .eq('tipo', 'mercadolivre')
+    .maybeSingle();
+
+  if (error || !integracao?.refresh_token) return null;
+
+  if (!force && integracao.access_token && integracao.token_expires_at) {
+    const expiresAt = new Date(integracao.token_expires_at).getTime();
+    if (expiresAt - Date.now() > 300000) return integracao.access_token;
+  }
+
+  const res = await fetch('https://api.mercadolibre.com/oauth/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      grant_type: 'refresh_token',
+      client_id: integracao.client_id || '',
+      client_secret: integracao.client_secret || '',
+      refresh_token: integracao.refresh_token,
+    }),
+  });
+
+  if (!res.ok) return null;
+  const data = await res.json();
+  if (!data?.access_token || !data?.refresh_token) return null;
+
+  await sb.from('integracoes').update({
+    access_token: data.access_token,
+    refresh_token: data.refresh_token,
+    token_expires_at: new Date(Date.now() + (data.expires_in || 10800) * 1000).toISOString(),
+    conectado: true,
+  }).eq('tipo', 'mercadolivre');
+
+  return data.access_token;
+}
+
+async function fetchMLJson(sb, path) {
+  let token = await getValidMLToken(sb);
+  if (!token) return { ok: false, status: 401, data: null, errorText: 'missing_token' };
+
+  const doFetch = async (tok) => fetch(`https://api.mercadolibre.com${path}`, {
+    headers: { Authorization: `Bearer ${tok}` },
+  });
+
+  let res = await doFetch(token);
+  if (res.status === 401) {
+    console.warn(JSON.stringify({
+      event: 'ml_auth_retry',
+      attempt: 'retry_after_forced_refresh',
+      path,
+      method: 'GET',
+      status: 401,
+      timestamp_utc: new Date().toISOString(),
+    }));
+    const freshToken = await getValidMLToken(sb, true);
+    if (!freshToken) return { ok: false, status: 401, data: null, errorText: 'refresh_failed' };
+    token = freshToken;
+    res = await doFetch(token);
+  }
+
+  if (!res.ok) {
+    const errorText = await res.text().catch(() => '');
+    return { ok: false, status: res.status, data: null, errorText };
+  }
+
+  const data = await res.json().catch(() => null);
+  return { ok: true, status: res.status, data, errorText: null };
+}
+
 async function main() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const serviceRole = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -34,24 +106,9 @@ async function main() {
   const orderId = (process.env.ORDER_ID || '').trim();
   const limit = Number(process.env.LIMIT || 200);
 
-  const { data: integ, error: integError } = await sb
-    .from('integracoes')
-    .select('access_token')
-    .eq('tipo', 'mercadolivre')
-    .maybeSingle();
-
-  if (integError || !integ?.access_token) {
-    throw new Error(`Token ML indisponível: ${integError?.message || 'sem access_token'}`);
-  }
-
-  const token = integ.access_token;
-
-  const meRes = await fetch('https://api.mercadolibre.com/users/me', {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-
-  const me = await meRes.json();
-  if (!me?.id) {
+  const meResult = await fetchMLJson(sb, '/users/me');
+  const me = meResult.data;
+  if (!meResult.ok || !me?.id) {
     throw new Error('Falha ao obter /users/me no ML.');
   }
 
@@ -84,22 +141,18 @@ async function main() {
     const oid = String(p.ml_order_id);
 
     try {
-      const invRes = await fetch(`https://api.mercadolibre.com/users/${me.id}/invoices/orders/${oid}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      if (invRes.status === 404) {
+      const invResult = await fetchMLJson(sb, `/users/${me.id}/invoices/orders/${oid}`);
+      if (invResult.status === 404) {
         semInvoice += 1;
         continue;
       }
 
-      if (!invRes.ok) {
-        const txt = await invRes.text().catch(() => '');
-        errors.push({ orderId: oid, status: invRes.status, error: txt.slice(0, 200) });
+      if (!invResult.ok) {
+        errors.push({ orderId: oid, status: invResult.status || 0, error: String(invResult.errorText || '').slice(0, 200) });
         continue;
       }
 
-      const invoice = await invRes.json();
+      const invoice = invResult.data;
       const nextNfeStatus = normalizeNfeStatus(invoice?.status);
       const currentNfeStatus = String(p.nfe_status || '').toLowerCase();
 

@@ -629,7 +629,7 @@ export async function buscarXmlDaNF(orderId: string): Promise<{ xml: string | nu
 
 export async function baixarEtiquetaML(shipmentId: string): Promise<{ pdf: Buffer | null; error?: string }> {
   try {
-    const token = await getValidMLToken();
+    let token = await getValidMLToken();
     if (!token) {
       return { pdf: null, error: 'Token do ML não disponível' };
     }
@@ -639,11 +639,37 @@ export async function baixarEtiquetaML(shipmentId: string): Promise<{ pdf: Buffe
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 30000);
 
-    try {
-      const res = await fetch(`https://api.mercadolibre.com/shipment_labels?shipment_ids=${shipmentId}`, {
-        headers: { Authorization: `Bearer ${token}` },
+    const doFetch = async (tok: string) => {
+      return fetch(`https://api.mercadolibre.com/shipment_labels?shipment_ids=${shipmentId}`, {
+        headers: { Authorization: `Bearer ${tok}` },
         signal: controller.signal,
       });
+    };
+
+    try {
+      let res = await doFetch(token);
+
+      if (res.status === 401) {
+        console.warn(JSON.stringify({
+          event: 'ml_auth_retry',
+          attempt: 'retry_after_forced_refresh',
+          path: '/shipment_labels',
+          method: 'GET',
+          status: 401,
+          shipment_id: shipmentId,
+          timestamp_utc: new Date().toISOString(),
+        }));
+        const freshToken = await getValidMLToken(true);
+        if (!freshToken) {
+          setAuthFatalCooldown('refresh_failed_label_after_401');
+          return { pdf: null, error: 'Falha ao renovar token do Mercado Livre para baixar etiqueta' };
+        }
+        token = freshToken;
+        res = await doFetch(token);
+        if (res.status === 401) {
+          setAuthFatalCooldown('401_after_forced_refresh_label');
+        }
+      }
 
       if (!res.ok) {
         const text = await res.text().catch(() => '');

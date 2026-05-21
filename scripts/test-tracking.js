@@ -15,7 +15,7 @@ if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
-async function getValidMLToken() {
+async function getValidMLToken(force = false) {
   const { data: integracao } = await supabase
     .from('integracoes')
     .select('*')
@@ -24,7 +24,7 @@ async function getValidMLToken() {
 
   if (!integracao?.refresh_token) return null;
 
-  if (integracao.access_token && integracao.token_expires_at) {
+  if (!force && integracao.access_token && integracao.token_expires_at) {
     const expiresAt = new Date(integracao.token_expires_at).getTime();
     if (expiresAt - Date.now() > 300000) {
       return integracao.access_token;
@@ -55,12 +55,39 @@ async function getValidMLToken() {
   return data.access_token;
 }
 
-async function fetchML(token, path) {
+async function fetchMLRaw(token, path, extraHeaders = {}) {
   const res = await fetch(`https://api.mercadolibre.com${path}`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}`, ...extraHeaders },
   });
-  if (!res.ok) return null;
-  return res.json();
+  const text = await res.text().catch(() => '');
+  let data = null;
+  try {
+    data = text ? JSON.parse(text) : null;
+  } catch {
+    data = null;
+  }
+  return { ok: res.ok, status: res.status, data, text };
+}
+
+async function fetchMLWithRefresh(path, extraHeaders = {}) {
+  let token = await getValidMLToken();
+  if (!token) return { ok: false, status: 401, data: null, text: 'missing_token' };
+
+  let res = await fetchMLRaw(token, path, extraHeaders);
+  if (res.ok) return res;
+  if (res.status !== 401) return res;
+
+  console.warn(JSON.stringify({
+    event: 'ml_auth_retry',
+    attempt: 'retry_after_forced_refresh',
+    path,
+    method: 'GET',
+    status: 401,
+    timestamp_utc: new Date().toISOString(),
+  }));
+  token = await getValidMLToken(true);
+  if (!token) return { ok: false, status: 401, data: null, text: 'refresh_failed' };
+  return fetchMLRaw(token, path, extraHeaders);
 }
 
 async function main() {
@@ -83,27 +110,22 @@ async function main() {
 
   console.log('Pedido:', pedido);
 
-  const token = await getValidMLToken();
-  if (!token) { console.error('No ML token'); process.exit(1); }
-
   console.log('Token obtained successfully');
 
   if (pedido.ml_shipment_id) {
     console.log('\n=== FETCHING SHIPMENT DATA ===');
 
     // Status atual
-    const current = await fetchML(token, `/shipments/${pedido.ml_shipment_id}`);
+    const currentRes = await fetchMLWithRefresh(`/shipments/${pedido.ml_shipment_id}`);
+    const current = currentRes.data;
     console.log('Current status:', current?.status, current?.substatus);
 
     // History
-    const historyUrl = `https://api.mercadolibre.com/shipments/${pedido.ml_shipment_id}/history`;
-    const historyRes = await fetch(historyUrl, {
-      headers: { Authorization: `Bearer ${token}`, 'x-format-new': 'true' }
-    });
+    const historyRes = await fetchMLWithRefresh(`/shipments/${pedido.ml_shipment_id}/history`, { 'x-format-new': 'true' });
     console.log('History response status:', historyRes.status);
 
     if (historyRes.ok) {
-      const historyData = await historyRes.json();
+      const historyData = historyRes.data;
       console.log('History is array:', Array.isArray(historyData));
       console.log('History length:', historyData.length);
       console.log('History items:');
@@ -111,17 +133,19 @@ async function main() {
         console.log(`  ${i + 1}. ${h.status} / ${h.substatus} @ ${h.date}`);
       });
     } else {
-      console.error('History error:', await historyRes.text());
+      console.error('History error:', historyRes.text);
     }
 
     // Carrier
-    const carrier = await fetchML(token, `/shipments/${pedido.ml_shipment_id}/carrier`);
+    const carrierRes = await fetchMLWithRefresh(`/shipments/${pedido.ml_shipment_id}/carrier`);
+    const carrier = carrierRes.data;
     console.log('Carrier:', carrier);
   }
 
   if (pedido.ml_claim_id) {
     console.log('\n=== FETCHING CLAIM DATA ===');
-    const claim = await fetchML(token, `/post-purchase/v1/claims/${pedido.ml_claim_id}`);
+    const claimRes = await fetchMLWithRefresh(`/post-purchase/v1/claims/${pedido.ml_claim_id}`);
+    const claim = claimRes.data;
     console.log('Claim:', JSON.stringify(claim, null, 2));
   }
 }
