@@ -8,6 +8,7 @@ export const revalidate = 0;
 const TASKS = [
   { key: 'dslite_stock', tipo: 'sync_dslite_stock', label: 'DSLite Preço/Estoque', interval: (h: number) => (h >= 0 && h < 7 ? 20 : 10) },
   { key: 'dslite_catalog', tipo: 'sync_dslite_catalog', label: 'DSLite Catálogo', interval: (h: number) => (h >= 8 && h < 22 ? 120 : 240) },
+  { key: 'dslite_pedidos', tipo: 'sync_dslite_pedidos', label: 'DSLite Pedidos de Compra', interval: () => 10 },
   { key: 'ml_anuncios', tipo: 'sync_anuncios_ml', label: 'ML Anúncios', interval: () => 30 },
   { key: 'ml_pedidos', tipo: 'sync_pedidos_ml', label: 'ML Pedidos', interval: (h: number) => (h >= 8 && h < 23 ? 15 : 30) },
 ] as const;

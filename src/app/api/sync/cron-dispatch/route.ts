@@ -6,7 +6,7 @@ import { getMLAuthDiagnostics } from '@/services/integration';
 export const maxDuration = 300;
 
 type CronTask = {
-  key: 'dslite_stock' | 'dslite_catalog' | 'ml_anuncios' | 'ml_pedidos';
+  key: 'dslite_stock' | 'dslite_catalog' | 'dslite_pedidos' | 'ml_anuncios' | 'ml_pedidos';
   jobTipo: string;
   path: string;
   label: string;
@@ -30,6 +30,13 @@ const TASKS: CronTask[] = [
     path: '/api/sync/catalogo',
     label: 'DSLite Catálogo',
     intervalMinutes: (hour) => (hour >= 8 && hour < 22 ? 120 : 240),
+  },
+  {
+    key: 'dslite_pedidos',
+    jobTipo: 'sync_dslite_pedidos',
+    path: '/api/sync/dslite-pedidos',
+    label: 'DSLite Pedidos de Compra',
+    intervalMinutes: () => 10,
   },
   {
     key: 'ml_anuncios',

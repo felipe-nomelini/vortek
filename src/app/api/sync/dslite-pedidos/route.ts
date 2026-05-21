@@ -58,7 +58,12 @@ function parseDataCriacao(dataStr: string): string | undefined {
   }
 }
 
-export async function POST() {
+export async function POST(request: Request) {
+  const apiKey = request.headers.get('x-api-key') || '';
+  if (!apiKey || apiKey !== process.env.API_SECRET_KEY) {
+    return NextResponse.json({ error: 'API key inválida' }, { status: 401 });
+  }
+
   try {
     const client = createServiceClient();
     const hoje = new Date();
