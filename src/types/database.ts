@@ -319,6 +319,39 @@ export type Database = {
         }
         Relationships: []
       }
+      ml_manual_blocklist: {
+        Row: {
+          ativo: boolean
+          created_at: string
+          created_by: string | null
+          id: string
+          ml_item_id: string | null
+          motivo: string | null
+          sku: string | null
+          updated_at: string
+        }
+        Insert: {
+          ativo?: boolean
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          ml_item_id?: string | null
+          motivo?: string | null
+          sku?: string | null
+          updated_at?: string
+        }
+        Update: {
+          ativo?: boolean
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          ml_item_id?: string | null
+          motivo?: string | null
+          sku?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       jobs: {
         Row: {
           cancelado: boolean

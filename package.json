@@ -10,7 +10,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "next lint --fix"
+    "lint:fix": "next lint --fix",
+    "check:build-secrets": "bash scripts/check-build-secrets.sh",
+    "dedupe:produtos:dry": "node scripts/dedupe-produtos.js",
+    "dedupe:produtos:apply": "node scripts/dedupe-produtos.js --apply"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.23.0",

@@ -1,8 +1,44 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
+import { buildCanonicalDsliteSku, normalizeSku, stripKnownSkuPrefix, getFornecedorSkuPrefix } from '@/lib/sku';
 
-function normalizeSku(input: unknown): string {
-  return String(input ?? '').trim().toUpperCase();
+function coerceDsliteIdentity(updateData: Record<string, any>): { ok: true; payload: Record<string, any> } | { ok: false; error: string } {
+  const fornecedorId = updateData.dslite_fornecedor_id != null ? String(updateData.dslite_fornecedor_id).trim() : '';
+  const produtoId = updateData.dslite_produto_id != null ? String(updateData.dslite_produto_id).trim() : '';
+  const hasFornecedor = Boolean(fornecedorId);
+  const hasProdutoId = Boolean(produtoId);
+  const hasSku = 'sku' in updateData && Boolean(normalizeSku(updateData.sku));
+
+  if (!hasFornecedor && !hasProdutoId && !hasSku) return { ok: true, payload: updateData };
+  if (hasFornecedor && !getFornecedorSkuPrefix(fornecedorId)) {
+    return { ok: false, error: `Fornecedor DSLite ${fornecedorId} não possui prefixo SKU configurado.` };
+  }
+
+  const skuProvided = hasSku ? normalizeSku(updateData.sku) : '';
+  const baseFromSku = skuProvided ? stripKnownSkuPrefix(skuProvided) : '';
+  const baseId = produtoId || baseFromSku;
+
+  if (hasFornecedor && !baseId) {
+    return { ok: false, error: 'Para produto DSLite, informe dslite_produto_id ou SKU válido.' };
+  }
+
+  if (hasFornecedor && baseId) {
+    const canonicalSku = buildCanonicalDsliteSku(fornecedorId, baseId, baseId);
+    if (skuProvided && skuProvided !== canonicalSku) {
+      return { ok: false, error: `SKU incompatível com fornecedor DSLite. Esperado: ${canonicalSku}` };
+    }
+    return {
+      ok: true,
+      payload: {
+        ...updateData,
+        sku: canonicalSku,
+        dslite_fornecedor_id: fornecedorId,
+        dslite_produto_id: produtoId || baseId,
+      },
+    };
+  }
+
+  return { ok: true, payload: { ...updateData, sku: skuProvided || updateData.sku } };
 }
 
 export async function GET(
@@ -60,6 +96,17 @@ export async function PATCH(
     if ('cest' in body) updateData.cest = body.cest;
     if ('origem_fiscal' in body) updateData.origem_fiscal = body.origem_fiscal;
     if ('csosn' in body) updateData.csosn = body.csosn;
+    if ('dslite_fornecedor_id' in body) updateData.dslite_fornecedor_id = body.dslite_fornecedor_id;
+    if ('dslite_produto_id' in body) updateData.dslite_produto_id = body.dslite_produto_id;
+
+    const normalized = coerceDsliteIdentity(updateData);
+    if (!normalized.ok) {
+      return NextResponse.json(
+        { error: normalized.error },
+        { status: 422 }
+      );
+    }
+    Object.assign(updateData, normalized.payload);
 
     const { data, error } = await supabase
       .from('produtos')

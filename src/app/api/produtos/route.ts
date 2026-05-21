@@ -1,8 +1,39 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
+import { buildCanonicalDsliteSku, normalizeSku, stripKnownSkuPrefix, getFornecedorSkuPrefix } from '@/lib/sku';
 
-function normalizeSku(input: unknown): string {
-  return String(input ?? '').trim().toUpperCase();
+function coerceDsliteIdentity(payload: Record<string, any>): { ok: true; payload: Record<string, any> } | { ok: false; error: string } {
+  const fornecedorId = payload.dslite_fornecedor_id != null ? String(payload.dslite_fornecedor_id).trim() : '';
+  const produtoId = payload.dslite_produto_id != null ? String(payload.dslite_produto_id).trim() : '';
+  const hasFornecedor = Boolean(fornecedorId);
+  const hasProdutoId = Boolean(produtoId);
+  if (!hasFornecedor && !hasProdutoId) return { ok: true, payload };
+
+  if (hasFornecedor && !getFornecedorSkuPrefix(fornecedorId)) {
+    return { ok: false, error: `Fornecedor DSLite ${fornecedorId} não possui prefixo SKU configurado.` };
+  }
+
+  const skuProvided = 'sku' in payload ? normalizeSku(payload.sku) : '';
+  const baseFromSku = skuProvided ? stripKnownSkuPrefix(skuProvided) : '';
+  const baseId = produtoId || baseFromSku;
+  if (!baseId) {
+    return { ok: false, error: 'Para produto DSLite, informe dslite_produto_id ou SKU válido.' };
+  }
+
+  const canonicalSku = buildCanonicalDsliteSku(fornecedorId, baseId, baseId);
+  if (skuProvided && skuProvided !== canonicalSku) {
+    return { ok: false, error: `SKU incompatível com fornecedor DSLite. Esperado: ${canonicalSku}` };
+  }
+
+  return {
+    ok: true,
+    payload: {
+      ...payload,
+      sku: canonicalSku,
+      dslite_fornecedor_id: fornecedorId || payload.dslite_fornecedor_id,
+      dslite_produto_id: produtoId || baseId,
+    },
+  };
 }
 
 export async function GET(request: Request) {
@@ -77,10 +108,15 @@ export async function POST(request: Request) {
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
 
   const body = await request.json();
-  const payload = { ...body } as Record<string, any>;
+  let payload = { ...body } as Record<string, any>;
   if ('sku' in payload) {
     payload.sku = normalizeSku(payload.sku);
   }
+  const normalized = coerceDsliteIdentity(payload);
+  if (!normalized.ok) {
+    return NextResponse.json({ erro: normalized.error }, { status: 422 });
+  }
+  payload = normalized.payload;
 
   const { data, error } = await supabase.from('produtos').insert(payload).select().single();
 

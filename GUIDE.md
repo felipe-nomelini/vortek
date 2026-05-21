@@ -191,6 +191,7 @@ Depois registrar no `createClient<Database>()` no `lib/supabase.ts`. TypeScript 
 - Definir `SUPABASE_SERVICE_ROLE_KEY` e `API_SECRET_KEY` apenas como **Runtime Environment Variables** no Easypanel.
 - `NEXT_PUBLIC_*` pode permanecer em build/runtime quando necessário para bundle do frontend.
 - Em caso de exposição em logs de build, **rotacionar imediatamente** as chaves e atualizar no painel.
+- Rodar `npm run check:build-secrets` antes de deploy; deve retornar `[OK]`.
 
 ---
 

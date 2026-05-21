@@ -146,14 +146,19 @@ export async function POST(req: Request) {
         });
 
         const skus = batch.map((b) => b.sku).filter(Boolean);
+        const dsliteProdutoIds = batch.map((b) => String(b.dslite_produto_id || '')).filter(Boolean);
         const { data: existentes } = await client
           .from('produtos')
-          .select('sku, descricao, imagens')
-          .in('sku', skus);
-        const existentesMap = new Map((existentes || []).map((p) => [String(p.sku).toUpperCase(), p]));
+          .select('sku, descricao, imagens, dslite_fornecedor_id, dslite_produto_id')
+          .eq('dslite_fornecedor_id', String(fId))
+          .in('dslite_produto_id', dsliteProdutoIds);
+        const existentesMap = new Map((existentes || []).map((p) => [
+          `${String(p.dslite_fornecedor_id || '')}:${String(p.dslite_produto_id || '')}`,
+          p,
+        ]));
 
         const batchMerged = batch.map((row) => {
-          const existing = existentesMap.get(String(row.sku).toUpperCase()) as any;
+          const existing = existentesMap.get(`${String(row.dslite_fornecedor_id || '')}:${String(row.dslite_produto_id || '')}`) as any;
           const existingDescricao = normalizeText(existing?.descricao);
           const existingImagens = Array.isArray(existing?.imagens)
             ? existing.imagens.map((v: unknown) => normalizeText(v)).filter(Boolean)
@@ -173,7 +178,7 @@ export async function POST(req: Request) {
         });
 
         // Upsert batch directly via Supabase REST API (much faster than individual)
-        const res = await fetch(`${supabaseUrl}/rest/v1/produtos?on_conflict=sku`, {
+        const res = await fetch(`${supabaseUrl}/rest/v1/produtos?on_conflict=dslite_fornecedor_id,dslite_produto_id`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -221,6 +226,9 @@ export async function POST(req: Request) {
               fornecedorId: fId,
               pagina: page,
               catalog_merge: pageCounters,
+              upserted_by_dslite_identity: batchMerged.length,
+              sku_canonicalized: batchMerged.length,
+              legacy_sku_detected: 0,
               mlSync: {
                 sucessos: mlSync.sucessos,
                 erros: mlSync.erros,
@@ -240,6 +248,9 @@ export async function POST(req: Request) {
               fornecedorId: fId,
               pagina: page,
               catalog_merge: pageCounters,
+              upserted_by_dslite_identity: batchMerged.length,
+              sku_canonicalized: batchMerged.length,
+              legacy_sku_detected: 0,
             });
           }
         }
