@@ -1,4 +1,5 @@
 import { fetchML, fetchMLRaw, getValidMLToken } from './integration';
+import { createServiceClient } from '@/lib/supabase';
 
 export interface MLCategoryPrediction {
   domain_id: string;
@@ -340,6 +341,7 @@ type SyncReasonCode =
   | 'forbidden'
   | 'auth_error'
   | 'bad_request'
+  | 'blocked_cooldown'
   | 'unknown_error';
 
 interface MlRequestResult<T = any> {
@@ -354,6 +356,7 @@ interface MlRequestResult<T = any> {
 const STOCK_SYNC_DELAY_MS = 1000;
 const STOCK_SYNC_RETRY_BASE_MS = 1200;
 const STOCK_SYNC_MAX_RETRIES = 4;
+const ML_BLOCK_COOLDOWN_HOURS = 6;
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 function parseJsonSafe(raw: string): any {
@@ -530,6 +533,7 @@ export async function sincronizarEstoqueComML(
   erros_bloqueio_ml: number;
   bloqueios_ml_regra: number;
   ativacao_bloqueada_sem_estoque: number;
+  skipped_blocked_cooldown: number;
   erros_transitorios: number;
   erros_nao_recuperaveis: number;
   detalhes: Array<{
@@ -542,6 +546,7 @@ export async function sincronizarEstoqueComML(
     status?: string;
     verified_status?: string;
     reason_code?: SyncReasonCode;
+    blocked_until?: string;
     is_blocked_by_ml_rule?: boolean;
     attempts?: number;
     http_status?: number;
@@ -550,6 +555,54 @@ export async function sincronizarEstoqueComML(
   const blockedReasonCodes: SyncReasonCode[] = ['under_review', 'field_not_updatable'];
   const isBlockedByMlRule = (reasonCode?: SyncReasonCode) =>
     !!reasonCode && blockedReasonCodes.includes(reasonCode);
+  const serviceClient = createServiceClient();
+  const mlItemIds = produtos.map((p) => p.ml_item_id).filter(Boolean);
+  const blockStateByItemId = new Map<string, {
+    blockedUntil: string | null;
+    reason: string | null;
+    lastError: string | null;
+  }>();
+
+  if (mlItemIds.length > 0) {
+    const { data: blockRows } = await serviceClient
+      .from('anuncios_ml')
+      .select('ml_item_id, ml_sync_blocked_until, ml_sync_block_reason, ml_sync_last_error')
+      .in('ml_item_id', mlItemIds);
+
+    for (const row of blockRows || []) {
+      blockStateByItemId.set(row.ml_item_id, {
+        blockedUntil: row.ml_sync_blocked_until,
+        reason: row.ml_sync_block_reason,
+        lastError: row.ml_sync_last_error,
+      });
+    }
+  }
+
+  const setBlockedCooldown = async (mlItemId: string, reasonCode: SyncReasonCode, errorMessage?: string) => {
+    const blockedUntil = new Date(Date.now() + ML_BLOCK_COOLDOWN_HOURS * 60 * 60 * 1000).toISOString();
+    await serviceClient
+      .from('anuncios_ml')
+      .update({
+        ml_sync_blocked_until: blockedUntil,
+        ml_sync_block_reason: reasonCode,
+        ml_sync_last_error: errorMessage || null,
+      })
+      .eq('ml_item_id', mlItemId);
+    blockStateByItemId.set(mlItemId, { blockedUntil, reason: reasonCode, lastError: errorMessage || null });
+    return blockedUntil;
+  };
+
+  const clearBlockedCooldown = async (mlItemId: string) => {
+    await serviceClient
+      .from('anuncios_ml')
+      .update({
+        ml_sync_blocked_until: null,
+        ml_sync_block_reason: null,
+        ml_sync_last_error: null,
+      })
+      .eq('ml_item_id', mlItemId);
+    blockStateByItemId.set(mlItemId, { blockedUntil: null, reason: null, lastError: null });
+  };
 
   const resultado = {
     sucessos: 0,
@@ -561,6 +614,7 @@ export async function sincronizarEstoqueComML(
     erros_bloqueio_ml: 0,
     bloqueios_ml_regra: 0,
     ativacao_bloqueada_sem_estoque: 0,
+    skipped_blocked_cooldown: 0,
     erros_transitorios: 0,
     erros_nao_recuperaveis: 0,
     detalhes: [] as Array<{
@@ -573,6 +627,7 @@ export async function sincronizarEstoqueComML(
       status?: string;
       verified_status?: string;
       reason_code?: SyncReasonCode;
+      blocked_until?: string;
       is_blocked_by_ml_rule?: boolean;
       attempts?: number;
       http_status?: number;
@@ -598,6 +653,7 @@ export async function sincronizarEstoqueComML(
       status?: string;
       verified_status?: string;
       reason_code?: SyncReasonCode;
+      blocked_until?: string;
       is_blocked_by_ml_rule?: boolean;
       attempts?: number;
       http_status?: number;
@@ -608,6 +664,24 @@ export async function sincronizarEstoqueComML(
       acao: 'atualizar_estoque',
       sucesso: false,
     };
+
+    const blockState = blockStateByItemId.get(produto.ml_item_id);
+    const blockedUntil = blockState?.blockedUntil ? new Date(blockState.blockedUntil) : null;
+    const isBlockedNow = blockedUntil && blockedUntil.getTime() > Date.now();
+    if (isBlockedNow) {
+      detalhe = {
+        ...detalhe,
+        acao: 'skip_blocked_cooldown',
+        sucesso: false,
+        erro: blockState?.lastError || `Item em cooldown de bloqueio ML até ${blockedUntil.toISOString()}`,
+        reason_code: 'blocked_cooldown',
+        blocked_until: blockedUntil.toISOString(),
+        is_blocked_by_ml_rule: true,
+      };
+      resultado.skipped_blocked_cooldown++;
+      resultado.detalhes.push(detalhe);
+      continue;
+    }
 
     if (estoque === 0) {
       detalhe.acao = 'pausar_estoque_zero';
@@ -628,6 +702,7 @@ export async function sincronizarEstoqueComML(
 
       const confirmadoPausado = statusFinal === 'paused';
       if (confirmadoPausado) {
+        await clearBlockedCooldown(produto.ml_item_id);
         detalhe = {
           ...detalhe,
           sucesso: true,
@@ -642,6 +717,9 @@ export async function sincronizarEstoqueComML(
         resultado.sucessos++;
       } else {
         const fallbackReason = reasonCode || 'not_paused_after_update';
+        const blockedUntilIso = isBlockedByMlRule(fallbackReason)
+          ? await setBlockedCooldown(produto.ml_item_id, fallbackReason, updateZero.error || statusDepoisUpdate.error || undefined)
+          : undefined;
         detalhe = {
           ...detalhe,
           sucesso: false,
@@ -649,6 +727,7 @@ export async function sincronizarEstoqueComML(
           status: updateZero.data?.status || statusDepoisUpdate.data?.status,
           verified_status: statusFinal || undefined,
           reason_code: fallbackReason,
+          blocked_until: blockedUntilIso,
           is_blocked_by_ml_rule: isBlockedByMlRule(fallbackReason),
           attempts: totalAttempts,
           http_status: updateZero.status || statusDepoisUpdate.status,
@@ -677,6 +756,9 @@ export async function sincronizarEstoqueComML(
 
       if (!updateBeforeReactivate.success && !updateBeforeReactivate.transient) {
         const reasonCode = updateBeforeReactivate.reason_code || statusBeforeReactivate.reason_code;
+        const blockedUntilIso = isBlockedByMlRule(reasonCode)
+          ? await setBlockedCooldown(produto.ml_item_id, reasonCode, updateBeforeReactivate.error || statusBeforeReactivate.error || undefined)
+          : undefined;
         detalhe = {
           ...detalhe,
           sucesso: false,
@@ -684,6 +766,7 @@ export async function sincronizarEstoqueComML(
           status: updateBeforeReactivate.data?.status || statusBeforeReactivate.data?.status,
           verified_status: statusBeforeReactivate.data?.status,
           reason_code: reasonCode,
+          blocked_until: blockedUntilIso,
           is_blocked_by_ml_rule: isBlockedByMlRule(reasonCode),
           attempts: totalAttempts,
           http_status: updateBeforeReactivate.status || statusBeforeReactivate.status,
@@ -724,6 +807,7 @@ export async function sincronizarEstoqueComML(
         totalAttempts += reactivate.attempts + statusCheck.attempts;
 
         if (reactivate.success && verifiedStatus === 'active') {
+          await clearBlockedCooldown(produto.ml_item_id);
           detalhe = {
             ...detalhe,
             sucesso: true,
@@ -737,6 +821,9 @@ export async function sincronizarEstoqueComML(
           resultado.sucessos++;
         } else {
           const reasonCode = reactivate.reason_code || statusCheck.reason_code;
+          const blockedUntilIso = isBlockedByMlRule(reasonCode)
+            ? await setBlockedCooldown(produto.ml_item_id, reasonCode, reactivate.error || statusCheck.error || undefined)
+            : undefined;
           detalhe = {
             ...detalhe,
             sucesso: false,
@@ -744,6 +831,7 @@ export async function sincronizarEstoqueComML(
             status: reactivate.data?.status || undefined,
             verified_status: verifiedStatus,
             reason_code: reasonCode,
+            blocked_until: blockedUntilIso,
             is_blocked_by_ml_rule: isBlockedByMlRule(reasonCode),
             attempts: totalAttempts,
             http_status: reactivate.status || statusCheck.status,
@@ -770,6 +858,7 @@ export async function sincronizarEstoqueComML(
       const verifiedStatus = statusCheck.data?.status || updateStock.data?.status;
 
       if (updateStock.success) {
+        await clearBlockedCooldown(produto.ml_item_id);
         detalhe = {
           ...detalhe,
           sucesso: true,
@@ -781,14 +870,19 @@ export async function sincronizarEstoqueComML(
         };
         resultado.sucessos++;
       } else {
+        const reasonCode = updateStock.reason_code || statusCheck.reason_code;
+        const blockedUntilIso = isBlockedByMlRule(reasonCode)
+          ? await setBlockedCooldown(produto.ml_item_id, reasonCode, updateStock.error || statusCheck.error || undefined)
+          : undefined;
         detalhe = {
           ...detalhe,
           sucesso: false,
           erro: updateStock.error || statusCheck.error || 'Falha ao atualizar estoque no ML',
           status: updateStock.data?.status || undefined,
           verified_status: verifiedStatus,
-          reason_code: updateStock.reason_code || statusCheck.reason_code,
-          is_blocked_by_ml_rule: isBlockedByMlRule(updateStock.reason_code || statusCheck.reason_code),
+          reason_code: reasonCode,
+          blocked_until: blockedUntilIso,
+          is_blocked_by_ml_rule: isBlockedByMlRule(reasonCode),
           attempts: updateStock.attempts + statusCheck.attempts,
           http_status: updateStock.status || statusCheck.status,
         };

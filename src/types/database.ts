@@ -19,6 +19,9 @@ export type Database = {
           catalogo: boolean
           created_at: string
           id: string
+          ml_sync_block_reason: string | null
+          ml_sync_blocked_until: string | null
+          ml_sync_last_error: string | null
           ml_item_id: string
           permalink: string | null
           preco_ml: number
@@ -38,6 +41,9 @@ export type Database = {
           catalogo?: boolean
           created_at?: string
           id?: string
+          ml_sync_block_reason?: string | null
+          ml_sync_blocked_until?: string | null
+          ml_sync_last_error?: string | null
           ml_item_id: string
           permalink?: string | null
           preco_ml?: number
@@ -57,6 +63,9 @@ export type Database = {
           catalogo?: boolean
           created_at?: string
           id?: string
+          ml_sync_block_reason?: string | null
+          ml_sync_blocked_until?: string | null
+          ml_sync_last_error?: string | null
           ml_item_id?: string
           permalink?: string | null
           preco_ml?: number
