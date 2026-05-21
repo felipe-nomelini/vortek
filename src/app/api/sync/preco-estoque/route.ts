@@ -2,12 +2,11 @@ import { NextResponse } from 'next/server';
 import { sincronizarPrecoEstoque, listarFornecedores } from '@/services/dslite';
 import { sincronizarEstoqueComML, reconciliarPausasEstoqueZero } from '@/services/mercadolibre';
 import { createServiceClient } from '@/lib/supabase';
+import { buildCanonicalDsliteSku } from '@/lib/sku';
 
 export const maxDuration = 300;
 
-function normalizeSku(input: unknown): string {
-  return String(input ?? '').trim().toUpperCase();
-}
+const MAX_BATCH_UPDATE = 200;
 
 function fallbackNome(input: unknown, sku: string): string {
   const nome = String(input ?? '').trim();
@@ -15,155 +14,239 @@ function fallbackNome(input: unknown, sku: string): string {
   return `Produto ${sku}`;
 }
 
+function parsePositiveInt(input: unknown, fallback: number): number {
+  const n = Number(input);
+  if (!Number.isFinite(n) || n <= 0) return fallback;
+  return Math.floor(n);
+}
+
+function chunkArray<T>(arr: T[], size: number): T[][] {
+  const chunks: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) {
+    chunks.push(arr.slice(i, i + size));
+  }
+  return chunks;
+}
+
 export async function POST(req: Request) {
+  const startedAt = Date.now();
   try {
     const body = await req.json().catch(() => ({}));
-    const fornecedorIds: (number | string)[] = body.fornecedorIds || [];
-    const pageSize: number = body.pageSize || 100;
+
+    const fornecedorIdsRaw: (number | string)[] = Array.isArray(body.fornecedorIds) ? body.fornecedorIds : [];
+    const fornecedorIdSingle = body.fornecedorId;
+    const startPage = parsePositiveInt(body.page, 1);
+    const pageSize = parsePositiveInt(body.pageSize, 50);
+    const maxPagesPerRun = parsePositiveInt(body.maxPagesPerRun, 1);
+    const withMlSync = Boolean(body.withMlSync);
 
     const client = createServiceClient();
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
 
-    let ids = fornecedorIds;
+    const fornecedores = await listarFornecedores();
+    if (!fornecedores || fornecedores.length === 0) {
+      return NextResponse.json({ error: 'Nenhum fornecedor encontrado' }, { status: 502 });
+    }
+
+    let ids = fornecedorIdsRaw;
+    if (fornecedorIdSingle !== undefined && fornecedorIdSingle !== null && String(fornecedorIdSingle).trim()) {
+      ids = [fornecedorIdSingle];
+    }
+
     if (ids.length === 0) {
-      const fornecedores = await listarFornecedores();
-      if (!fornecedores || fornecedores.length === 0) {
-        return NextResponse.json({ error: 'Nenhum fornecedor encontrado' }, { status: 502 });
-      }
       ids = fornecedores.filter((f) => f.crossdocking === 'Ativo').map((f) => f.id);
     }
 
+    ids = Array.from(new Set(ids.map((id) => String(id).trim()).filter(Boolean)));
+
+    if (ids.length === 0) {
+      return NextResponse.json({ error: 'Nenhum fornecedor ativo selecionado' }, { status: 400 });
+    }
+
+    const targetFornecedor = String(ids[0]);
     const resultados: any[] = [];
-    let totalGeral = 0;
 
-    for (const fId of ids) {
-      let page = 1;
-      let atualizados = 0;
+    let recordsSeen = 0;
+    let recordsUpdated = 0;
+    let recordsNotFound = 0;
+    let recordsSkippedCreate = 0;
+    let pagesProcessed = 0;
 
-      while (true) {
-        const response = await sincronizarPrecoEstoque(fId, page, pageSize);
-        if (!response?.produtos || response.produtos.length === 0) {
-          if (page === 1) resultados.push({ fornecedorId: fId, error: 'Falha' });
-          break;
+    let currentPage = startPage;
+    let hasMore = false;
+
+    for (let i = 0; i < maxPagesPerRun; i++) {
+      const response = await sincronizarPrecoEstoque(targetFornecedor, currentPage, pageSize);
+      if (!response?.produtos || response.produtos.length === 0) {
+        if (currentPage === startPage) {
+          resultados.push({ fornecedorId: targetFornecedor, pagina: currentPage, error: 'Falha ou página vazia' });
         }
+        hasMore = false;
+        break;
+      }
 
-        const { produtos, detalhesConsulta } = response;
-        const totalRegistros = detalhesConsulta?.totalRegistros || 0;
-        const apiPageSize = detalhesConsulta?.limit || produtos.length;
-        const totalPaginas = Math.ceil(totalRegistros / apiPageSize);
+      const { produtos, detalhesConsulta } = response;
+      pagesProcessed += 1;
+      recordsSeen += produtos.length;
 
-        const batch = produtos.map((item) => ({
-          sku: normalizeSku(item.produtoid_empresa || item.produtoid),
-          nome: fallbackNome(item.titulo, normalizeSku(item.produtoid_empresa || item.produtoid)),
+      const totalRegistros = detalhesConsulta?.totalRegistros || 0;
+      const apiPageSize = detalhesConsulta?.limit || produtos.length;
+      const totalPaginas = Math.ceil(totalRegistros / apiPageSize);
+
+      const batch = produtos.map((item) => {
+        const sku = buildCanonicalDsliteSku(targetFornecedor, item.produtoid_empresa, item.produtoid);
+        return {
+          sku,
+          nome: fallbackNome(item.titulo, sku),
           custo: item.preco_crossdocking || item.preco_normal || 0,
           estoque: item.estoque || 0,
           dslite_ultima_sync: new Date().toISOString(),
-        }));
+        };
+      });
 
-        const res = await fetch(`${supabaseUrl}/rest/v1/produtos?on_conflict=sku`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            apikey: serviceKey,
-            Authorization: `Bearer ${serviceKey}`,
-            Prefer: 'resolution=merge-duplicates',
-          },
-          body: JSON.stringify(batch),
-        });
+      const skus = batch.map((b) => b.sku).filter(Boolean);
+      const { data: existentes, error: existentesErr } = await client
+        .from('produtos')
+        .select('id, sku, nome')
+        .in('sku', skus);
 
-        if (!res.ok) {
-          const errText = await res.text();
-          resultados.push({ fornecedorId: fId, pagina: page, error: `HTTP ${res.status}: ${errText.substring(0, 200)}` });
-          break;
-        }
-
-        // Busca produtos atualizados que têm anúncio no ML para sincronizar estoque
-        const skus = batch.map((b) => b.sku).filter(Boolean);
-        if (skus.length > 0) {
-          const { data: produtosComAnuncio } = await client
-            .from('produtos')
-            .select('sku, ml_item_id, estoque, ml_status')
-            .not('ml_item_id', 'is', null)
-            .in('sku', skus);
-
-          if (produtosComAnuncio && produtosComAnuncio.length > 0) {
-            const mlSync = await sincronizarEstoqueComML(produtosComAnuncio);
-
-            // Atualiza status no banco
-            for (const det of mlSync.detalhes) {
-              const statusConfirmado = det.verified_status || det.status;
-              if (det.sucesso && statusConfirmado && (statusConfirmado === 'active' || statusConfirmado === 'paused')) {
-                const novoStatus = statusConfirmado === 'active' ? 'ativo' : 'pausado';
-                await client
-                  .from('produtos')
-                  .update({ ml_status: novoStatus as any })
-                  .eq('ml_item_id', det.ml_item_id);
-                await client
-                  .from('anuncios_ml')
-                  .update({ status: novoStatus as any })
-                  .eq('ml_item_id', det.ml_item_id);
-              }
-            }
-
-            resultados.push({
-              fornecedorId: fId,
-              pagina: page,
-              mlSync: {
-                sucessos: mlSync.sucessos,
-                erros: mlSync.erros,
-                pausados: mlSync.pausados,
-                reativados: mlSync.reativados,
-                pausa_confirmada: mlSync.pausa_confirmada,
-                pausa_pendente: mlSync.pausa_pendente,
-                erros_bloqueio_ml: mlSync.erros_bloqueio_ml,
-                bloqueios_ml_regra: mlSync.bloqueios_ml_regra,
-                ativacao_bloqueada_sem_estoque: mlSync.ativacao_bloqueada_sem_estoque,
-                erros_transitorios: mlSync.erros_transitorios,
-                erros_nao_recuperaveis: mlSync.erros_nao_recuperaveis,
-              },
-            });
-          }
-        }
-
-        atualizados += batch.length;
-        page++;
-        if (page > totalPaginas) break;
+      if (existentesErr) {
+        return NextResponse.json({
+          success: false,
+          error: `Erro ao carregar SKUs existentes: ${existentesErr.message}`,
+          context: { fornecedorId: targetFornecedor, page: currentPage },
+        }, { status: 500 });
       }
 
-      resultados.push({ fornecedorId: fId, atualizados });
-      totalGeral += atualizados;
+      const existentesMap = new Map((existentes || []).map((p) => [String(p.sku).toUpperCase(), p]));
+      const updates: Array<Record<string, unknown>> = [];
+
+      for (const row of batch) {
+        const existing = existentesMap.get(String(row.sku).toUpperCase()) as any;
+        if (!existing?.id) {
+          recordsNotFound += 1;
+          recordsSkippedCreate += 1;
+          resultados.push({ fornecedorId: targetFornecedor, pagina: currentPage, event: 'missing_in_catalog_sync', sku: row.sku });
+          continue;
+        }
+
+        updates.push({
+          id: existing.id,
+          custo: row.custo,
+          estoque: row.estoque,
+          dslite_ultima_sync: row.dslite_ultima_sync,
+          ...(existing.nome ? {} : { nome: row.nome }),
+        });
+      }
+
+      if (updates.length > 0) {
+        const chunks = chunkArray(updates, MAX_BATCH_UPDATE);
+        for (const payload of chunks) {
+          const { error: upsertErr } = await client
+            .from('produtos')
+            .upsert(payload as any[], { onConflict: 'id' });
+          if (upsertErr) {
+            return NextResponse.json({
+              success: false,
+              error: `Erro ao atualizar lote de produtos: ${upsertErr.message}`,
+              context: { fornecedorId: targetFornecedor, page: currentPage },
+            }, { status: 500 });
+          }
+          recordsUpdated += payload.length;
+        }
+      }
+
+      if (withMlSync && skus.length > 0) {
+        const { data: produtosComAnuncio } = await client
+          .from('produtos')
+          .select('sku, ml_item_id, estoque, ml_status')
+          .not('ml_item_id', 'is', null)
+          .in('sku', skus);
+
+        if (produtosComAnuncio && produtosComAnuncio.length > 0) {
+          const mlSync = await sincronizarEstoqueComML(produtosComAnuncio);
+          for (const det of mlSync.detalhes) {
+            const statusConfirmado = det.verified_status || det.status;
+            if (det.sucesso && statusConfirmado && (statusConfirmado === 'active' || statusConfirmado === 'paused')) {
+              const novoStatus = statusConfirmado === 'active' ? 'ativo' : 'pausado';
+              await client.from('produtos').update({ ml_status: novoStatus as any }).eq('ml_item_id', det.ml_item_id);
+              await client.from('anuncios_ml').update({ status: novoStatus as any }).eq('ml_item_id', det.ml_item_id);
+            }
+          }
+
+          resultados.push({
+            fornecedorId: targetFornecedor,
+            pagina: currentPage,
+            mlSync: {
+              sucessos: mlSync.sucessos,
+              erros: mlSync.erros,
+              pausados: mlSync.pausados,
+              reativados: mlSync.reativados,
+              pausa_confirmada: mlSync.pausa_confirmada,
+              pausa_pendente: mlSync.pausa_pendente,
+              erros_bloqueio_ml: mlSync.erros_bloqueio_ml,
+              bloqueios_ml_regra: mlSync.bloqueios_ml_regra,
+              ativacao_bloqueada_sem_estoque: mlSync.ativacao_bloqueada_sem_estoque,
+              erros_transitorios: mlSync.erros_transitorios,
+              erros_nao_recuperaveis: mlSync.erros_nao_recuperaveis,
+            },
+          });
+        }
+      }
+
+      hasMore = currentPage < totalPaginas;
+      currentPage += 1;
+      if (!hasMore) break;
     }
 
-    const { data: produtosZeroEstoque } = await client
-      .from('produtos')
-      .select('sku, ml_item_id, estoque, ml_status')
-      .not('ml_item_id', 'is', null)
-      .eq('estoque', 0);
+    let nextCursor: { fornecedorId: string; page: number } | null = null;
+    if (hasMore) {
+      nextCursor = { fornecedorId: targetFornecedor, page: currentPage };
+    } else if (ids.length > 1) {
+      const currentIndex = ids.indexOf(targetFornecedor);
+      const nextFornecedor = ids[currentIndex + 1];
+      if (nextFornecedor) {
+        nextCursor = { fornecedorId: String(nextFornecedor), page: 1 };
+      } else {
+        nextCursor = { fornecedorId: String(ids[0]), page: 1 };
+      }
+    }
 
     let reconciliacao = null;
-    if (produtosZeroEstoque && produtosZeroEstoque.length > 0) {
-      reconciliacao = await reconciliarPausasEstoqueZero(produtosZeroEstoque);
+    if (withMlSync) {
+      const { data: produtosZeroEstoque } = await client
+        .from('produtos')
+        .select('sku, ml_item_id, estoque, ml_status')
+        .not('ml_item_id', 'is', null)
+        .eq('estoque', 0);
 
-      for (const item of reconciliacao.detalhes || []) {
-        if (item.sucesso && item.current_status === 'paused') {
-          await client
-            .from('produtos')
-            .update({ ml_status: 'pausado' as any })
-            .eq('ml_item_id', item.ml_item_id);
-          await client
-            .from('anuncios_ml')
-            .update({ status: 'pausado' as any })
-            .eq('ml_item_id', item.ml_item_id);
+      if (produtosZeroEstoque && produtosZeroEstoque.length > 0) {
+        reconciliacao = await reconciliarPausasEstoqueZero(produtosZeroEstoque);
+
+        for (const item of reconciliacao.detalhes || []) {
+          if (item.sucesso && item.current_status === 'paused') {
+            await client.from('produtos').update({ ml_status: 'pausado' as any }).eq('ml_item_id', item.ml_item_id);
+            await client.from('anuncios_ml').update({ status: 'pausado' as any }).eq('ml_item_id', item.ml_item_id);
+          }
         }
       }
     }
 
     return NextResponse.json({
       success: true,
-      total: totalGeral,
-      resultados,
-      message: 'Sync de preço/estoque concluído com reconciliação de estoque zero',
+      total: recordsSeen,
+      updated: recordsUpdated,
+      not_found: recordsNotFound,
+      skipped_create: recordsSkippedCreate,
+      results: resultados,
+      with_ml_sync: withMlSync,
+      fornecedor_id: targetFornecedor,
+      pages_processed: pagesProcessed,
+      records_seen: recordsSeen,
+      records_updated: recordsUpdated,
+      duration_ms: Date.now() - startedAt,
+      next_cursor: nextCursor,
+      allow_create_on_price_sync: false,
+      message: 'Sync de preço/estoque concluído',
       reconciliacao_estoque_zero: reconciliacao,
     });
   } catch (err: any) {

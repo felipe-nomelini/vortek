@@ -77,6 +77,7 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
 
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
   const apiKey = process.env.API_SECRET_KEY || '';
+  const requestTimeoutMs = Number(process.env.INTERNAL_SYNC_TIMEOUT_MS || 120000);
   const logs = parseJobLog(job.log);
 
   try {
@@ -98,14 +99,23 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
       }
     }
 
-    const res = await fetch(url.toString(), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-      },
-      body: JSON.stringify(body || {}),
-    });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), requestTimeoutMs);
+    const startedAtMs = Date.now();
+    let res: Response;
+    try {
+      res = await fetch(url.toString(), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': apiKey,
+        },
+        body: JSON.stringify(body || {}),
+        signal: controller.signal,
+      });
+    } finally {
+      clearTimeout(timeout);
+    }
 
     const raw = await res.json().catch(() => ({}));
     const ok = res.ok && raw?.success !== false && raw?.ok !== false;
@@ -119,6 +129,8 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
       http_status: res.status,
       message: raw?.message || raw?.erro || raw?.error || (ok ? 'Etapa concluída' : 'Etapa falhou'),
       timestamp: nowIso(),
+      duration_ms: Date.now() - startedAtMs,
+      request_timeout_ms: requestTimeoutMs,
       auth_failure: authFailure,
       ...raw,
     });

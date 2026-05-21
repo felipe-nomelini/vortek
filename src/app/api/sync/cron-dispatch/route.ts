@@ -12,6 +12,7 @@ type CronTask = {
   label: string;
   intervalMinutes: (hour: number) => number;
   progressiveOffset?: boolean;
+  usesCursor?: boolean;
 };
 
 const TASKS: CronTask[] = [
@@ -21,6 +22,7 @@ const TASKS: CronTask[] = [
     path: '/api/sync/preco-estoque',
     label: 'DSLite Preço/Estoque',
     intervalMinutes: (hour) => (hour >= 0 && hour < 7 ? 20 : 10),
+    usesCursor: true,
   },
   {
     key: 'dslite_catalog',
@@ -93,6 +95,19 @@ function extractOffsetFromJobLog(log: any): number {
     }
   }
   return 0;
+}
+
+function extractStockCursorFromJobLog(log: any): { fornecedorId: string; page: number } | null {
+  const logs = parseLog(log);
+  for (let i = logs.length - 1; i >= 0; i--) {
+    const entry = logs[i] || {};
+    if (entry.event_type !== 'job_stage_done') continue;
+    const cursor = entry?.next_cursor;
+    if (cursor?.fornecedorId && Number.isFinite(Number(cursor?.page)) && Number(cursor.page) > 0) {
+      return { fornecedorId: String(cursor.fornecedorId), page: Number(cursor.page) };
+    }
+  }
+  return null;
 }
 
 function consecutiveFailures(statuses: string[]): number {
@@ -189,8 +204,12 @@ export async function POST(request: Request) {
     }
 
     let offset = 0;
+    let stockCursor: { fornecedorId: string; page: number } | null = null;
     if (task.progressiveOffset && recent.length > 0) {
       offset = extractOffsetFromJobLog(recent[0].log);
+    }
+    if (task.usesCursor && recent.length > 0) {
+      stockCursor = extractStockCursorFromJobLog(recent[0].log);
     }
 
     const initialLog = [
@@ -204,6 +223,7 @@ export async function POST(request: Request) {
         backoff_minutes: backoffMinutes,
         consecutive_failures: failureStreak,
         offset,
+        stock_cursor: stockCursor,
       },
       ...(failureStreak >= 3
         ? [{
@@ -241,12 +261,22 @@ export async function POST(request: Request) {
     }
 
     setTimeout(() => {
+      const body = task.usesCursor
+        ? {
+            fornecedorId: stockCursor?.fornecedorId,
+            page: stockCursor?.page || 1,
+            pageSize: 50,
+            maxPagesPerRun: 1,
+            withMlSync: false,
+          }
+        : undefined;
       void runMlSingleStageJob({
         jobId: insertedJob.id,
         tipo: task.jobTipo,
         path: task.path,
         label: task.label,
         query: task.progressiveOffset ? { offset } : undefined,
+        body,
       }).catch((err: any) => {
         console.error('[cron-dispatch] erro ao executar job', task.key, err?.message || err);
       });
@@ -259,6 +289,7 @@ export async function POST(request: Request) {
       interval_minutes: intervalMinutes,
       backoff_minutes: backoffMinutes,
       offset,
+      stock_cursor: stockCursor,
     });
   }
 
