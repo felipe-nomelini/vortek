@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
-import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin } from 'antd';
+import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, message, Modal } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TablePaginationConfig, TableProps } from 'antd';
 import type { SorterResult } from 'antd/es/table/interface';
@@ -23,6 +23,10 @@ interface NotaFiscalRow {
   valor: number;
   status: NFStatus;
   ml_order_id: string | null;
+  contato_documento?: string | null;
+  nfe_chave?: string | null;
+  nfe_danfe_url?: string | null;
+  danfe_available?: boolean;
 }
 
 const statusOptions = [
@@ -56,6 +60,77 @@ export default function NotasFiscaisPage() {
   const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const [messageApi, contextHolder] = message.useMessage();
+  const [sendingRowId, setSendingRowId] = useState<string | null>(null);
+  const [emailModalOpen, setEmailModalOpen] = useState(false);
+  const [emailTarget, setEmailTarget] = useState<NotaFiscalRow | null>(null);
+  const [emailTo, setEmailTo] = useState('');
+  const [emailSubject, setEmailSubject] = useState('');
+  const [emailBody, setEmailBody] = useState('');
+
+  const resolvePdfUrl = useCallback(async (row: NotaFiscalRow): Promise<string | null> => {
+    const res = await fetch(`/api/notas-fiscais/${row.id}/pdf`);
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || !json?.url) {
+      messageApi.error(json?.error || 'Não foi possível localizar o PDF da nota fiscal');
+      return null;
+    }
+    return String(json.url);
+  }, [messageApi]);
+
+  const handleViewPdf = useCallback(async (row: NotaFiscalRow) => {
+    const url = await resolvePdfUrl(row);
+    if (!url) return;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }, [resolvePdfUrl]);
+
+  const handleDownloadPdf = useCallback(async (row: NotaFiscalRow) => {
+    const url = await resolvePdfUrl(row);
+    if (!url) return;
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `danfe_${row.numero || row.pedido}.pdf`;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }, [resolvePdfUrl]);
+
+  const openEmailModal = useCallback((row: NotaFiscalRow) => {
+    setEmailTarget(row);
+    const pedidoFmt = String(row.pedido).padStart(6, '0');
+    setEmailTo('');
+    setEmailSubject(`NF-e ${row.numero} - Pedido #${pedidoFmt}`);
+    setEmailBody(`Olá ${row.cliente},\n\nSegue em anexo a DANFE da NF-e ${row.numero}.\n\nMensagem automática Vortek.`);
+    setEmailModalOpen(true);
+  }, []);
+
+  const handleSendEmail = useCallback(async () => {
+    if (!emailTarget) return;
+    setSendingRowId(emailTarget.id);
+    try {
+      const res = await fetch(`/api/notas-fiscais/${emailTarget.id}/enviar-email`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to: emailTo || undefined,
+          subject: emailSubject || undefined,
+          message: emailBody || undefined,
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        messageApi.error(json?.error || 'Falha ao enviar e-mail da nota fiscal');
+        return;
+      }
+      messageApi.success(`NF enviada para ${json.to}`);
+      setEmailModalOpen(false);
+      setEmailTarget(null);
+    } finally {
+      setSendingRowId(null);
+    }
+  }, [emailTarget, emailTo, emailSubject, emailBody, messageApi]);
 
   const fetchNotas = useCallback(async () => {
     setLoading(true);
@@ -107,7 +182,16 @@ export default function NotasFiscaisPage() {
       key: 'pedido',
       width: 110,
       sorter: true,
-      render: (v: number) => <span style={{ fontFamily: 'monospace' }}>#{String(v).padStart(6, '0')}</span>,
+      render: (v: number) => (
+        <a
+          href={`https://www.mercadolivre.com.br/vendas/${v}/detalhe`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ fontFamily: 'monospace', color: '#1677ff', textDecoration: 'none' }}
+        >
+          #{String(v).padStart(6, '0')}
+        </a>
+      ),
     },
     {
       title: 'Número',
@@ -115,7 +199,19 @@ export default function NotasFiscaisPage() {
       key: 'numero',
       width: 130,
       sorter: true,
-      render: (v: string) => <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
+      render: (v: string, row: NotaFiscalRow) => {
+        if (!v || v === '—' || row.status === 'pendente') return <span style={{ fontFamily: 'monospace' }}>—</span>;
+        return (
+          <Button
+            type="link"
+            size="small"
+            style={{ padding: 0, fontFamily: 'monospace' }}
+            onClick={() => handleViewPdf(row)}
+          >
+            {v}
+          </Button>
+        );
+      },
     },
     {
       title: 'Cliente',
@@ -163,7 +259,7 @@ export default function NotasFiscaisPage() {
       key: 'actions',
       width: 60,
       fixed: 'right',
-      render: () => (
+      render: (_, record: NotaFiscalRow) => (
         <Dropdown
           menu={{
             items: [
@@ -171,13 +267,15 @@ export default function NotasFiscaisPage() {
               { key: 'download', label: 'Baixar PDF' },
               { key: 'email', label: 'Enviar por e-mail' },
             ],
-            onClick: () => {
-              // TODO: implementar ações da NF
+            onClick: ({ key }) => {
+              if (key === 'view') handleViewPdf(record);
+              if (key === 'download') handleDownloadPdf(record);
+              if (key === 'email') openEmailModal(record);
             },
           }}
           trigger={['click']}
         >
-          <Button type="text" size="small" icon={<EllipsisOutlined />} />
+          <Button type="text" size="small" icon={<EllipsisOutlined />} loading={sendingRowId === record.id} />
         </Dropdown>
       ),
     },
@@ -199,6 +297,7 @@ export default function NotasFiscaisPage() {
 
   return (
     <div>
+      {contextHolder}
       <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Notas Fiscais</Title>
 
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
@@ -288,6 +387,37 @@ export default function NotasFiscaisPage() {
           />
         </div>
       </Spin>
+      <Modal
+        open={emailModalOpen}
+        title="Enviar Nota Fiscal por e-mail"
+        onCancel={() => {
+          setEmailModalOpen(false);
+          setEmailTarget(null);
+        }}
+        onOk={handleSendEmail}
+        okText="Enviar"
+        confirmLoading={!!sendingRowId}
+        destroyOnClose
+      >
+        <Space direction="vertical" style={{ width: '100%' }} size={10}>
+          <Input
+            placeholder="E-mail destinatário (fallback manual)"
+            value={emailTo}
+            onChange={(e) => setEmailTo(e.target.value)}
+          />
+          <Input
+            placeholder="Assunto"
+            value={emailSubject}
+            onChange={(e) => setEmailSubject(e.target.value)}
+          />
+          <Input.TextArea
+            rows={6}
+            placeholder="Mensagem"
+            value={emailBody}
+            onChange={(e) => setEmailBody(e.target.value)}
+          />
+        </Space>
+      </Modal>
     </div>
   );
 }

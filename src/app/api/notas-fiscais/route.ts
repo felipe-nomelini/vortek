@@ -65,7 +65,7 @@ export async function GET(request: Request) {
     let countQuery = supabase.from('pedidos').select('id', { count: 'exact', head: true });
     let dataQuery = supabase
       .from('pedidos')
-      .select('id, numero, ml_order_id, contato_nome, data, nota_fiscal_numero, nota_fiscal_emitida, nfe_status, total')
+      .select('id, numero, ml_order_id, contato_nome, contato_documento, data, nota_fiscal_numero, nota_fiscal_emitida, nfe_status, nfe_chave, nfe_danfe_url, total')
       .order(sortBy, { ascending: sortOrder === 'asc', nullsFirst: false })
       .range(from, to);
 
@@ -143,6 +143,10 @@ export async function GET(request: Request) {
       valor: Number(row.total || 0),
       status: mapStatus(row),
       ml_order_id: row.ml_order_id,
+      contato_documento: row.contato_documento || null,
+      nfe_chave: row.nfe_chave || null,
+      nfe_danfe_url: row.nfe_danfe_url || null,
+      danfe_available: !!row.nota_fiscal_numero,
     }));
 
     return NextResponse.json({
