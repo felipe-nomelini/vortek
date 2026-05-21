@@ -2,17 +2,51 @@ import { NextResponse } from 'next/server';
 import { sincronizarCatalogo, listarFornecedores } from '@/services/dslite';
 import { sincronizarEstoqueComML, reconciliarPausasEstoqueZero } from '@/services/mercadolibre';
 import { createServiceClient } from '@/lib/supabase';
+import { buildCanonicalDsliteSku } from '@/lib/sku';
 
 export const maxDuration = 300;
-
-function normalizeSku(input: unknown): string {
-  return String(input ?? '').trim().toUpperCase();
-}
 
 function fallbackNome(input: unknown, sku: string): string {
   const nome = String(input ?? '').trim();
   if (nome) return nome;
   return `Produto ${sku}`;
+}
+
+function normalizeText(input: unknown): string {
+  return String(input ?? '').replace(/\s+/g, ' ').trim();
+}
+
+function pickBestDescription(item: any): { text: string; source: 'descricao' | 'caracteristicas' | 'informacoes' | 'none' } {
+  const descricao = normalizeText(item?.descricao);
+  if (descricao) return { text: descricao, source: 'descricao' };
+  const caracteristicas = normalizeText(item?.caracteristicas);
+  if (caracteristicas) return { text: caracteristicas, source: 'caracteristicas' };
+  const informacoes = normalizeText(item?.informacoes);
+  if (informacoes) return { text: informacoes, source: 'informacoes' };
+  return { text: '', source: 'none' };
+}
+
+function extractImageUrls(item: any): { urls: string[]; fromMidias: boolean } {
+  const urls: string[] = [];
+  const midias = Array.isArray(item?.midias) ? item.midias : [];
+  let fromMidias = false;
+
+  for (const media of midias) {
+    const tipo = normalizeText(media?.tipo).toLowerCase();
+    const valor = normalizeText(media?.valor);
+    if (!valor) continue;
+    if (tipo === 'imagem' || tipo === 'image' || tipo === 'img') {
+      urls.push(valor);
+      fromMidias = true;
+    }
+  }
+
+  if (urls.length === 0) {
+    const fallback = normalizeText(item?.link_imagem);
+    if (fallback) urls.push(fallback);
+  }
+
+  return { urls: Array.from(new Set(urls)), fromMidias };
 }
 
 export async function POST(req: Request) {
@@ -46,8 +80,6 @@ export async function POST(req: Request) {
     }
 
     const resultados: any[] = [];
-    const SKU_PREFIXOS: Record<string, string> = { '27': 'FJ', '39': 'NMC', '81': 'VO' };
-
     for (const fId of ids) {
       let page = 1;
       let totalSync = 0;
@@ -67,10 +99,25 @@ export async function POST(req: Request) {
         const registrosRetornados = detalhesConsulta?.registrosRetornados || produtos.length;
         const totalPaginas = Math.ceil(totalRegistros / apiPageSize);
 
+        const pageCounters = {
+          descricao_preservada: 0,
+          imagens_preservadas: 0,
+          descricao_enriquecida_por_fallback: 0,
+          imagens_extraidas_midias: 0,
+        };
+
         // Build batch payloads
-        const prefixo = SKU_PREFIXOS[String(fId)] || '';
         const batch = produtos.map((item) => {
-          const sku = normalizeSku(prefixo + (item.produtoid_empresa || item.produtoid || `PROD-${item.produtoid}`));
+          const sku = buildCanonicalDsliteSku(fId, item.produtoid_empresa, item.produtoid);
+          const description = pickBestDescription(item);
+          const images = extractImageUrls(item);
+          if (description.source !== 'descricao' && description.source !== 'none') {
+            pageCounters.descricao_enriquecida_por_fallback += 1;
+          }
+          if (images.fromMidias && images.urls.length > 0) {
+            pageCounters.imagens_extraidas_midias += 1;
+          }
+
           return {
             sku,
             nome: fallbackNome(item.titulo, sku),
@@ -90,15 +137,38 @@ export async function POST(req: Request) {
             largura: item.largura || 0,
             altura: item.altura || 0,
             profundidade: item.profundidade || 0,
-            descricao: item.descricao || '',
-            imagens: item.midias
-              ? item.midias.filter((m: any) => m.tipo === 'imagem').map((m: any) => m.valor)
-              : item.link_imagem
-                ? [item.link_imagem]
-                : [],
+            descricao: description.text,
+            imagens: images.urls,
             dslite_fornecedor_id: String(fId),
             dslite_produto_id: item.produtoid,
             dslite_ultima_sync: new Date().toISOString(),
+          };
+        });
+
+        const skus = batch.map((b) => b.sku).filter(Boolean);
+        const { data: existentes } = await client
+          .from('produtos')
+          .select('sku, descricao, imagens')
+          .in('sku', skus);
+        const existentesMap = new Map((existentes || []).map((p) => [String(p.sku).toUpperCase(), p]));
+
+        const batchMerged = batch.map((row) => {
+          const existing = existentesMap.get(String(row.sku).toUpperCase()) as any;
+          const existingDescricao = normalizeText(existing?.descricao);
+          const existingImagens = Array.isArray(existing?.imagens)
+            ? existing.imagens.map((v: unknown) => normalizeText(v)).filter(Boolean)
+            : [];
+
+          const shouldPreserveDescricao = !row.descricao && existingDescricao;
+          const shouldPreserveImagens = row.imagens.length === 0 && existingImagens.length > 0;
+
+          if (shouldPreserveDescricao) pageCounters.descricao_preservada += 1;
+          if (shouldPreserveImagens) pageCounters.imagens_preservadas += 1;
+
+          return {
+            ...row,
+            descricao: shouldPreserveDescricao ? existingDescricao : row.descricao,
+            imagens: shouldPreserveImagens ? existingImagens : row.imagens,
           };
         });
 
@@ -111,7 +181,7 @@ export async function POST(req: Request) {
             Authorization: `Bearer ${serviceKey}`,
             Prefer: 'resolution=merge-duplicates',
           },
-          body: JSON.stringify(batch),
+          body: JSON.stringify(batchMerged),
         });
 
         if (!res.ok) {
@@ -121,7 +191,6 @@ export async function POST(req: Request) {
         }
 
         // Busca produtos atualizados que têm anúncio no ML para sincronizar estoque
-        const skus = batch.map((b) => b.sku).filter(Boolean);
         if (skus.length > 0) {
           const { data: produtosComAnuncio } = await client
             .from('produtos')
@@ -151,6 +220,7 @@ export async function POST(req: Request) {
             resultados.push({
               fornecedorId: fId,
               pagina: page,
+              catalog_merge: pageCounters,
               mlSync: {
                 sucessos: mlSync.sucessos,
                 erros: mlSync.erros,
@@ -165,10 +235,16 @@ export async function POST(req: Request) {
                 erros_nao_recuperaveis: mlSync.erros_nao_recuperaveis,
               },
             });
+          } else {
+            resultados.push({
+              fornecedorId: fId,
+              pagina: page,
+              catalog_merge: pageCounters,
+            });
           }
         }
 
-        totalSync += batch.length;
+        totalSync += batchMerged.length;
         page++;
 
         // Stop if we've processed all pages

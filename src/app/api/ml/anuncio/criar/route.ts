@@ -20,10 +20,24 @@ function hasValue(attr: { value_name?: string; value_id?: string }) {
   return Boolean((attr.value_id && String(attr.value_id).trim()) || (attr.value_name && String(attr.value_name).trim()));
 }
 
+function normalizeText(input: unknown) {
+  return String(input ?? '').replace(/\s+/g, ' ').trim();
+}
+
 function buildDescription(produto: any, input?: string) {
-  if (input && String(input).trim()) return String(input).trim();
-  if (produto.descricao && String(produto.descricao).trim()) return String(produto.descricao).trim();
-  return [produto.nome, produto.marca].filter(Boolean).join(' - ').substring(0, 5000);
+  const manual = normalizeText(input);
+  if (manual) return manual.slice(0, 5000);
+
+  const descricao = normalizeText(produto?.descricao);
+  if (descricao) return descricao.slice(0, 5000);
+
+  const caracteristicas = normalizeText(produto?.caracteristicas);
+  if (caracteristicas) return caracteristicas.slice(0, 5000);
+
+  const informacoes = normalizeText(produto?.informacoes);
+  if (informacoes) return informacoes.slice(0, 5000);
+
+  return [normalizeText(produto?.nome), normalizeText(produto?.marca)].filter(Boolean).join(' - ').slice(0, 5000);
 }
 
 export async function POST(req: Request) {
