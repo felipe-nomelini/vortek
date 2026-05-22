@@ -276,7 +276,9 @@ export async function POST(request: Request) {
             maxPagesPerRun: 1,
             withMlSync: false,
           }
-        : undefined;
+        : task.key === 'dslite_pedidos'
+          ? { windowDays: 60 }
+          : undefined;
       void runMlSingleStageJob({
         jobId: insertedJob.id,
         tipo: task.jobTipo,

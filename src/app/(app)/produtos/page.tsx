@@ -95,25 +95,42 @@ interface CategorySchemaResponse {
   };
 }
 
-function computeDerived(product: Product): { displayPrice: number; profit: number | null } {
-  // Sem anúncio vinculado: não temos frete/taxa reais do ML
-  if (product.mlStatus === 'sem_anuncio') {
-    const displayPrice = product.customPrice ?? calculateSuggestedPrice({
-      cost: product.cost,
-      shipping: product.mlShipping,
-      mlFee: product.mlFee,
-    }).suggestedPrice;
-    return { displayPrice: Math.round(displayPrice * 100) / 100, profit: null };
-  }
+const NOT_APPLICABLE_ID = '-1';
+const DEPENDENT_FIELDS: Record<string, string[]> = {
+  WITH_CLOSING: ['CLASP_TYPE'],
+  WITH_GEMSTONE: ['GEMSTONE_TYPE', 'GEMSTONE_COLOR'],
+};
+const FALSE_VALUE_IDS = new Set(['242084']);
 
+function isNegativeChoice(valueId?: string, valueName?: string) {
+  const txt = String(valueName || '').trim().toLowerCase();
+  return FALSE_VALUE_IDS.has(String(valueId || '')) || txt === 'não' || txt === 'nao' || txt === 'false';
+}
+
+function withNotApplicableOption(values: MlCategoryAttributeOption[] = []) {
+  if (values.some((v) => String(v.id) === NOT_APPLICABLE_ID)) return values;
+  return [{ id: NOT_APPLICABLE_ID, name: 'Não se aplica' }, ...values];
+}
+
+function computeDerived(product: Product): { displayPrice: number; profit: number | null } {
   try {
     const result = calculateSuggestedPrice({
       cost: product.cost,
       shipping: product.mlShipping,
       mlFee: product.mlFee,
     });
-    const displayPrice = product.customPrice ?? result.suggestedPrice;
-    return { displayPrice: Math.round(displayPrice * 100) / 100, profit: result.netProfit };
+    const displayPrice = Math.round((product.customPrice ?? result.suggestedPrice) * 100) / 100;
+
+    // Sem anúncio vinculado: não exibimos lucro operacional.
+    if (product.mlStatus === 'sem_anuncio') {
+      return { displayPrice, profit: null };
+    }
+
+    const tax = displayPrice * 0.04;
+    const mlFeeAmount = displayPrice * product.mlFee;
+    const netProfit = displayPrice - product.cost - product.mlShipping - tax - mlFeeAmount;
+
+    return { displayPrice, profit: Math.round(netProfit * 100) / 100 };
   } catch {
     return { displayPrice: Math.round((product.customPrice ?? product.cost) * 100) / 100, profit: null };
   }
@@ -168,6 +185,8 @@ export default function ProductsPage() {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [messageApi, contextHolder] = message.useMessage();
   const [updatingPriceProductId, setUpdatingPriceProductId] = useState<string | null>(null);
+  const [savingCustomPriceById, setSavingCustomPriceById] = useState<Record<string, boolean>>({});
+  const [persistedCustomPriceById, setPersistedCustomPriceById] = useState<Record<string, number | null>>({});
   const [mlModal, setMlModal] = useState<{
     open: boolean;
     produtoId: string;
@@ -213,6 +232,34 @@ export default function ProductsPage() {
   });
 
   const [stats, setStats] = useState({ total: 0, comEstoque: 0, semAnuncio: 0, lucroMedio: 0, receitaPotencial: 0 });
+
+  const applyDependencyRules = useCallback((modalState: typeof mlModal) => {
+    const requiredMap = new Map(modalState.editableAttributes.map((a) => [a.id, a]));
+    const optionalMap = new Map(modalState.optionalAttributes.map((a) => [a.id, a]));
+
+    for (const [parentId, children] of Object.entries(DEPENDENT_FIELDS)) {
+      const parent = requiredMap.get(parentId) || optionalMap.get(parentId);
+      if (!parent) continue;
+      if (!isNegativeChoice(parent.value_id, parent.value_name)) continue;
+
+      for (const childId of children) {
+        if (requiredMap.has(childId)) {
+          const current = requiredMap.get(childId)!;
+          requiredMap.set(childId, { ...current, value_id: NOT_APPLICABLE_ID, value_name: 'Não se aplica' });
+        }
+        if (optionalMap.has(childId)) {
+          const current = optionalMap.get(childId)!;
+          optionalMap.set(childId, { ...current, value_id: NOT_APPLICABLE_ID, value_name: 'Não se aplica' });
+        }
+      }
+    }
+
+    return {
+      ...modalState,
+      editableAttributes: Array.from(requiredMap.values()),
+      optionalAttributes: Array.from(optionalMap.values()),
+    };
+  }, []);
 
   const abrirCriarAnuncioML = async (product: Product) => {
     const derived = computeDerived(product);
@@ -356,12 +403,12 @@ export default function ProductsPage() {
         if (target === 'required' && typeof index === 'number') {
           const next = [...prev.editableAttributes];
           next[index] = { ...next[index], value_id: suggestion.value_id || '', value_name: suggestion.value_name || '' };
-          return { ...prev, editableAttributes: next };
+          return applyDependencyRules({ ...prev, editableAttributes: next });
         }
         if (target === 'optional' && typeof index === 'number') {
           const next = [...prev.optionalAttributes];
           next[index] = { ...next[index], value_id: suggestion.value_id || '', value_name: suggestion.value_name || '' };
-          return { ...prev, optionalAttributes: next };
+          return applyDependencyRules({ ...prev, optionalAttributes: next });
         }
         if (target === 'sale_term' && typeof index === 'number') {
           const next = [...prev.saleTerms];
@@ -488,7 +535,7 @@ export default function ProductsPage() {
                 value_id: suggestion.value_id || '',
                 value_name: suggestion.value_name || '',
               };
-              return { ...prev, editableAttributes: next };
+              return applyDependencyRules({ ...prev, editableAttributes: next });
             }
 
             const next = [...prev.optionalAttributes];
@@ -497,7 +544,7 @@ export default function ProductsPage() {
               value_id: suggestion.value_id || '',
               value_name: suggestion.value_name || '',
             };
-            return { ...prev, optionalAttributes: next };
+            return applyDependencyRules({ ...prev, optionalAttributes: next });
           });
           successCount += 1;
         } catch {
@@ -631,7 +678,11 @@ export default function ProductsPage() {
       if (res.ok) {
         const json = await res.json();
         const data = json.data || [];
-        setProducts(data.map(mapDBtoProduct));
+        const mapped: Product[] = data.map(mapDBtoProduct);
+        setProducts(mapped);
+        setPersistedCustomPriceById(Object.fromEntries(
+          mapped.map((p) => [p.id, p.customPrice ?? null])
+        ));
         setTotal(json.total || 0);
         if (json.fornecedores?.length) setFornecedorOptions(json.fornecedores);
       }
@@ -678,6 +729,41 @@ export default function ProductsPage() {
     fetchProducts();
     fetchStats();
   }, [fetchProducts, fetchStats]);
+
+  const persistCustomPrice = useCallback(async (productId: string, customPrice: number | null) => {
+    const normalized = customPrice === null ? null : Math.round(customPrice * 100) / 100;
+    const persistedRaw = persistedCustomPriceById[productId] ?? null;
+    const persisted = persistedRaw === null ? null : Math.round(persistedRaw * 100) / 100;
+    if (normalized === persisted) return;
+
+    if (normalized !== null && normalized < 0) {
+      messageApi.warning('Preço sugerido não pode ser negativo.');
+      setProducts((prev) => prev.map((p) => (p.id === productId ? { ...p, customPrice: persisted } : p)));
+      return;
+    }
+
+    const previousPersisted = persistedRaw;
+    setSavingCustomPriceById((prev) => ({ ...prev, [productId]: true }));
+
+    try {
+      const res = await fetch(`/api/produtos/${productId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ custom_price: normalized }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(json?.error || json?.erro || 'Falha ao salvar preço sugerido');
+      }
+      setProducts((prev) => prev.map((p) => (p.id === productId ? { ...p, customPrice: normalized } : p)));
+      setPersistedCustomPriceById((prev) => ({ ...prev, [productId]: normalized }));
+    } catch (error: any) {
+      messageApi.error(error?.message || 'Erro ao salvar preço sugerido');
+      setProducts((prev) => prev.map((p) => (p.id === productId ? { ...p, customPrice: previousPersisted } : p)));
+    } finally {
+      setSavingCustomPriceById((prev) => ({ ...prev, [productId]: false }));
+    }
+  }, [messageApi, persistedCustomPriceById]);
 
   const rows: ProductRow[] = useMemo(() => {
     return products.map(p => {
@@ -757,10 +843,13 @@ export default function ProductsPage() {
       sorter: (a, b) => a.displayPrice - b.displayPrice,
       render: (_, record) => {
         const val = record.product.customPrice;
+        const isSaving = Boolean(savingCustomPriceById[record.product.id]);
         return (
           <InputNumber
             size="small"
             style={{ width: 140 }}
+            disabled={isSaving}
+            status={isSaving ? 'warning' : undefined}
             value={val ?? record.displayPrice}
             onChange={v => {
               const newProducts = products.map(p =>
@@ -768,10 +857,16 @@ export default function ProductsPage() {
               );
               setProducts(newProducts);
             }}
+            onBlur={() => {
+              const latest = products.find((p) => p.id === record.product.id);
+              if (!latest) return;
+              persistCustomPrice(record.product.id, latest.customPrice ?? null);
+            }}
             formatter={(v) => v !== undefined ? formatCurrency(typeof v === 'string' ? parseFloat(v) : v) : ''}
             parser={(v) => {
-              if (!v) return 0;
-              return parseFloat(v.replace(/R\$\s?/g, '').replace(/\./g, '').replace(',', '.'));
+              if (!v || !String(v).trim()) return null as any;
+              const parsed = parseFloat(String(v).replace(/R\$\s?/g, '').replace(/\./g, '').replace(',', '.'));
+              return Number.isNaN(parsed) ? null as any : parsed;
             }}
           />
         );
@@ -1223,11 +1318,11 @@ export default function ProductsPage() {
                             const selectedVal = selectedDef?.values?.find(v => v.id === value);
                             setMlModal(prev => {
                               const next = [...prev.editableAttributes];
-                              next[idx] = { ...next[idx], value_id: value, value_name: selectedVal?.name || '' };
-                              return { ...prev, editableAttributes: next };
+                              next[idx] = { ...next[idx], value_id: value, value_name: selectedVal?.name || (value === NOT_APPLICABLE_ID ? 'Não se aplica' : '') };
+                              return applyDependencyRules({ ...prev, editableAttributes: next });
                             });
                           }}
-                          options={(mlModal.categorias.find(c => c.id === mlModal.selectedCategory)?.requiredAttributes?.find(a => a.id === attr.id)?.values || []).map(v => ({ value: v.id, label: v.name }))}
+                          options={withNotApplicableOption(mlModal.categorias.find(c => c.id === mlModal.selectedCategory)?.requiredAttributes?.find(a => a.id === attr.id)?.values || []).map(v => ({ value: v.id, label: v.name }))}
                         />
                       ) : (
                         <Input
@@ -1287,14 +1382,14 @@ export default function ProductsPage() {
                           size="small"
                           value={attr.value_id || undefined}
                           onChange={(value) => {
-                            const selectedVal = attr.values.find(v => v.id === value);
+                            const selectedVal = withNotApplicableOption(attr.values || []).find(v => v.id === value);
                             setMlModal(prev => {
                               const next = [...prev.optionalAttributes];
-                              next[idx] = { ...next[idx], value_id: value, value_name: selectedVal?.name || '' };
-                              return { ...prev, optionalAttributes: next };
+                              next[idx] = { ...next[idx], value_id: value, value_name: selectedVal?.name || (value === NOT_APPLICABLE_ID ? 'Não se aplica' : '') };
+                              return applyDependencyRules({ ...prev, optionalAttributes: next });
                             });
                           }}
-                          options={attr.values.map(v => ({ value: v.id, label: v.name }))}
+                          options={withNotApplicableOption(attr.values || []).map(v => ({ value: v.id, label: v.name }))}
                           allowClear
                         />
                       ) : (
@@ -1355,7 +1450,7 @@ export default function ProductsPage() {
                             const selectedVal = term.values.find(v => v.id === value);
                             setMlModal(prev => {
                               const next = [...prev.saleTerms];
-                              next[idx] = { ...next[idx], value_id: value, value_name: selectedVal?.name || '' };
+                              next[idx] = { ...next[idx], value_id: value, value_name: term.id === 'WARRANTY_TIME' ? '' : (selectedVal?.name || '') };
                               return { ...prev, saleTerms: next };
                             });
                           }}
@@ -1369,7 +1464,7 @@ export default function ProductsPage() {
                             const value = e.target.value;
                             setMlModal(prev => {
                               const next = [...prev.saleTerms];
-                              next[idx] = { ...next[idx], value_name: value };
+                              next[idx] = { ...next[idx], value_name: value, value_id: term.id === 'WARRANTY_TIME' ? '' : next[idx].value_id };
                               return { ...prev, saleTerms: next };
                             });
                           }}

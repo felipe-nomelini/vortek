@@ -1,151 +1,222 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space } from 'antd';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, Tabs, message, Spin } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
-import { SearchOutlined, EllipsisOutlined } from '@ant-design/icons';
+import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
 import { formatCurrency } from '@/lib/format';
 
 const { Title } = Typography;
 
-type BuyBoxStatus = 'ganhando' | 'perdendo' | 'disputando';
-type CatalogoStatus = 'no_catalogo' | 'elegivel' | 'fora';
+type TabKey = 'no_catalogo' | 'elegiveis';
 
-interface CatalogoItem {
-  sku: string;
-  produto: string;
-  id: string;
-  gtin: string;
-  preco: number;
-  buyBox: BuyBoxStatus;
-  status: CatalogoStatus;
-}
-
-const buyBoxOptions = [
-  { value: '', label: 'Todos' },
-  { value: 'ganhando', label: 'Ganhando' },
-  { value: 'perdendo', label: 'Perdendo' },
-  { value: 'disputando', label: 'Disputando' },
-];
-
-const statusOptions = [
-  { value: '', label: 'Todos' },
-  { value: 'no_catalogo', label: 'No Catálogo' },
-  { value: 'elegivel', label: 'Elegível' },
-  { value: 'fora', label: 'Fora do Catálogo' },
-];
-
-const buyBoxColor: Record<BuyBoxStatus, string> = {
-  ganhando: 'green',
-  perdendo: 'red',
-  disputando: 'orange',
+type NoCatalogoRow = {
+  ml_item_id: string;
+  title: string;
+  seller_sku: string | null;
+  sku_local: string | null;
+  produto_id: string | null;
+  catalog_product_id: string | null;
+  status: string | null;
+  price: number;
+  available_quantity: number;
+  sold_quantity: number;
+  permalink: string | null;
+  thumbnail: string | null;
+  category_id: string | null;
+  domain_id: string | null;
+  catalog_listing: boolean;
+  item_relations: any[] | null;
+  last_updated: string | null;
 };
 
-const statusColor: Record<CatalogoStatus, string> = {
-  no_catalogo: 'purple',
-  elegivel: 'blue',
-  fora: 'default',
+type ElegivelRow = {
+  ml_item_id: string;
+  title: string;
+  seller_sku: string | null;
+  status: string | null;
+  price: number;
+  permalink: string | null;
+  thumbnail: string | null;
+  category_id: string | null;
+  domain_id: string | null;
+  catalog_product_id: string | null;
+  eligibility_status: string | null;
+  buy_box_eligible: boolean;
+  eligibility_reason: string | null;
+  variation_eligibility: Array<{ id?: number; status?: string; buy_box_eligible?: boolean }>;
+  last_updated: string | null;
 };
 
-const statusLabel: Record<CatalogoStatus, string> = {
-  no_catalogo: 'No Catálogo',
-  elegivel: 'Elegível',
-  fora: 'Fora do Catálogo',
-};
-
-const mockCatalogo: CatalogoItem[] = [
-  { sku: 'FONE-001', produto: 'Fone Bluetooth X1', id: 'MLB-CAT-001', gtin: '7891234560010', preco: 79.90, buyBox: 'ganhando', status: 'no_catalogo' },
-  { sku: 'CAPA-002', produto: 'Capa Silicone iPhone 15', id: 'MLB-CAT-002', gtin: '7891234560027', preco: 39.90, buyBox: 'ganhando', status: 'no_catalogo' },
-  { sku: 'CAR-003', produto: 'Carregador USB-C 20W', id: 'MLB-CAT-003', gtin: '7891234560034', preco: 49.90, buyBox: 'perdendo', status: 'no_catalogo' },
-  { sku: 'PEL-004', produto: 'Película Premium Z10', id: 'MLB-CAT-004', gtin: '7891234560041', preco: 24.90, buyBox: 'ganhando', status: 'no_catalogo' },
-  { sku: 'MOUSE-005', produto: 'Mouse Gamer RGB', id: '', gtin: '7891234560058', preco: 89.90, buyBox: 'disputando', status: 'elegivel' },
-  { sku: 'TEC-006', produto: 'Teclado Mecânico TKL', id: 'MLB-CAT-006', gtin: '7891234560065', preco: 179.90, buyBox: 'disputando', status: 'no_catalogo' },
-  { sku: 'MON-007', produto: 'Suporte Articulado Monitor', id: '', gtin: '7891234560072', preco: 119.90, buyBox: 'perdendo', status: 'elegivel' },
-  { sku: 'CAB-008', produto: 'Cabo HDMI 2.1 2m', id: '', gtin: '7891234560089', preco: 44.90, buyBox: 'perdendo', status: 'fora' },
-  { sku: 'ADAP-009', produto: 'Adaptador Bluetooth 5.3', id: 'MLB-CAT-009', gtin: '7891234560096', preco: 34.90, buyBox: 'ganhando', status: 'no_catalogo' },
-  { sku: 'CAIXA-010', produto: 'Caixa Som Portátil 20W', id: 'MLB-CAT-010', gtin: '7891234560102', preco: 89.90, buyBox: 'ganhando', status: 'no_catalogo' },
+const statusMlOptions = [
+  { value: 'all', label: 'Todos os status ML' },
+  { value: 'active', label: 'Ativo' },
+  { value: 'paused', label: 'Pausado' },
+  { value: 'closed', label: 'Fechado' },
 ];
 
-function priceToWin(record: CatalogoItem): number | null {
-  if (record.buyBox === 'ganhando') return null;
-  const base = record.preco;
-  if (record.buyBox === 'perdendo') return Math.round((base * 0.92) * 100) / 100;
-  return Math.round((base * 0.97) * 100) / 100;
-}
+const eligibilityStatusOptions = [
+  { value: 'all', label: 'Todos os status' },
+  { value: 'READY_FOR_OPTIN', label: 'Ready for opt-in' },
+  { value: 'ALREADY_OPTED_IN', label: 'Already opted-in' },
+  { value: 'NOT_ELIGIBLE', label: 'Not eligible' },
+  { value: 'PRODUCT_INACTIVE', label: 'Product inactive' },
+  { value: 'CLOSED', label: 'Closed' },
+  { value: 'COMPETING', label: 'Competing' },
+];
+
+const eligibilityColor: Record<string, string> = {
+  READY_FOR_OPTIN: 'green',
+  ALREADY_OPTED_IN: 'blue',
+  NOT_ELIGIBLE: 'red',
+  PRODUCT_INACTIVE: 'orange',
+  CLOSED: 'default',
+  COMPETING: 'gold',
+};
 
 export default function CatalogoPage() {
+  const [activeTab, setActiveTab] = useState<TabKey>('no_catalogo');
+  const [loading, setLoading] = useState(true);
+  const [messageApi, contextHolder] = message.useMessage();
+
   const [search, setSearch] = useState('');
-  const [buyBoxFilter, setBuyBoxFilter] = useState<BuyBoxStatus | ''>('');
-  const [statusFilter, setStatusFilter] = useState<CatalogoStatus | ''>('');
-  const [precoMin, setPrecoMin] = useState<number | null>(null);
-  const [precoMax, setPrecoMax] = useState<number | null>(null);
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const [statusMl, setStatusMl] = useState('all');
+  const [eligibilityStatus, setEligibilityStatus] = useState('all');
+  const [priceMin, setPriceMin] = useState<number | null>(null);
+  const [priceMax, setPriceMax] = useState<number | null>(null);
 
-  const filtered = useMemo(() => {
-    return mockCatalogo.filter(item => {
-      if (search) {
-        const q = search.toLowerCase();
-        const fields = [item.sku, item.produto, item.id, item.gtin];
-        if (!fields.some(f => f.toLowerCase().includes(q))) return false;
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(50);
+  const [total, setTotal] = useState(0);
+
+  const [noCatalogoData, setNoCatalogoData] = useState<NoCatalogoRow[]>([]);
+  const [elegiveisData, setElegiveisData] = useState<ElegivelRow[]>([]);
+
+  const buildParams = useCallback(() => {
+    const params = new URLSearchParams();
+    params.set('page', String(page));
+    params.set('pageSize', String(pageSize));
+    if (search.trim()) params.set('search', search.trim());
+    if (statusMl !== 'all') params.set('statusMl', statusMl);
+    if (priceMin !== null) params.set('priceMin', String(priceMin));
+    if (priceMax !== null) params.set('priceMax', String(priceMax));
+    if (activeTab === 'elegiveis' && eligibilityStatus !== 'all') params.set('eligibilityStatus', eligibilityStatus);
+    return params.toString();
+  }, [activeTab, eligibilityStatus, page, pageSize, priceMax, priceMin, search, statusMl]);
+
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    try {
+      const endpoint = activeTab === 'no_catalogo' ? '/api/catalogo/no-catalogo' : '/api/catalogo/elegiveis';
+      const res = await fetch(`${endpoint}?${buildParams()}`);
+      const json = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        messageApi.error(json?.erro || 'Falha ao carregar catálogo');
+        if (activeTab === 'no_catalogo') setNoCatalogoData([]);
+        else setElegiveisData([]);
+        setTotal(0);
+        return;
       }
-      if (buyBoxFilter && item.buyBox !== buyBoxFilter) return false;
-      if (statusFilter && item.status !== statusFilter) return false;
-      if (precoMin !== null && item.preco < precoMin) return false;
-      if (precoMax !== null && item.preco > precoMax) return false;
-      return true;
-    });
-  }, [search, buyBoxFilter, statusFilter, precoMin, precoMax]);
 
-  const columns: TableProps<CatalogoItem>['columns'] = [
+      if (activeTab === 'no_catalogo') setNoCatalogoData(json.data || []);
+      else setElegiveisData(json.data || []);
+
+      setTotal(Number(json.total || 0));
+    } catch {
+      messageApi.error('Erro de conexão ao carregar catálogo');
+    } finally {
+      setLoading(false);
+    }
+  }, [activeTab, buildParams, messageApi]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [activeTab, search, statusMl, eligibilityStatus, priceMin, priceMax]);
+
+  const handleOptin = useCallback(async (row: ElegivelRow) => {
+    const catalogProductId = row.catalog_product_id || '';
+    if (!catalogProductId) {
+      messageApi.error('Item sem catalog_product_id. Opt-in não pode ser feito automaticamente.');
+      return;
+    }
+
+    const variationId = Array.isArray(row.variation_eligibility)
+      ? row.variation_eligibility.find((v) => String(v.status || '').toUpperCase() === 'READY_FOR_OPTIN' && v.buy_box_eligible)?.id
+      : undefined;
+
+    const res = await fetch('/api/catalogo/optin', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ itemId: row.ml_item_id, catalogProductId, variationId }),
+    });
+    const json = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      messageApi.error(json?.erro || 'Falha ao criar anúncio de catálogo');
+      return;
+    }
+
+    messageApi.success('Opt-in de catálogo executado com sucesso');
+    fetchData();
+  }, [fetchData, messageApi]);
+
+  const columnsNoCatalogo: TableProps<NoCatalogoRow>['columns'] = useMemo(() => ([
+    { title: 'SKU Local', dataIndex: 'sku_local', key: 'sku_local', width: 130, render: (v) => v || '—' },
+    { title: 'Seller SKU', dataIndex: 'seller_sku', key: 'seller_sku', width: 130, render: (v) => v || '—' },
+    { title: 'ML Item', dataIndex: 'ml_item_id', key: 'ml_item_id', width: 130, render: (v) => <span style={{ fontFamily: 'monospace' }}>{v}</span> },
+    { title: 'Título', dataIndex: 'title', key: 'title', width: 300 },
+    { title: 'Status ML', dataIndex: 'status', key: 'status', width: 110, render: (v) => <Tag color={v === 'active' ? 'green' : v === 'paused' ? 'orange' : 'default'}>{v || '—'}</Tag> },
+    { title: 'Preço', dataIndex: 'price', key: 'price', width: 110, render: (v) => formatCurrency(Number(v || 0)) },
+    { title: 'Estoque', dataIndex: 'available_quantity', key: 'available_quantity', width: 90 },
+    { title: 'Vendidos', dataIndex: 'sold_quantity', key: 'sold_quantity', width: 90 },
+    { title: 'Category', dataIndex: 'category_id', key: 'category_id', width: 110, render: (v) => v || '—' },
+    { title: 'Domain', dataIndex: 'domain_id', key: 'domain_id', width: 120, render: (v) => v || '—' },
+    { title: 'Catalog Product', dataIndex: 'catalog_product_id', key: 'catalog_product_id', width: 150, render: (v) => v || '—' },
+    { title: 'Relações', dataIndex: 'item_relations', key: 'item_relations', width: 90, render: (v) => Array.isArray(v) ? v.length : 0 },
+    { title: 'Atualizado', dataIndex: 'last_updated', key: 'last_updated', width: 160, render: (v) => v ? new Date(v).toLocaleString('pt-BR') : '—' },
     {
-      title: 'SKU', dataIndex: 'sku', key: 'sku', width: 110,
-      sorter: (a, b) => a.sku.localeCompare(b.sku),
+      title: 'Link', dataIndex: 'permalink', key: 'permalink', width: 90,
+      render: (v) => v ? <a href={v} target="_blank" rel="noopener noreferrer">Abrir</a> : '—',
     },
     {
-      title: 'Produto', dataIndex: 'produto', key: 'produto',
-      sorter: (a, b) => a.produto.localeCompare(b.produto),
+      title: 'Ações', key: 'actions', width: 60, fixed: 'right',
+      render: (_, record) => (
+        <Dropdown
+          menu={{ items: [{ key: 'view', label: 'Ver no ML' }], onClick: ({ key }) => { if (key === 'view' && record.permalink) window.open(record.permalink, '_blank'); } }}
+          trigger={['click']}
+        >
+          <Button type="text" size="small" icon={<EllipsisOutlined />} />
+        </Dropdown>
+      ),
     },
+  ]), []);
+
+  const columnsElegiveis: TableProps<ElegivelRow>['columns'] = useMemo(() => ([
+    { title: 'Seller SKU', dataIndex: 'seller_sku', key: 'seller_sku', width: 130, render: (v) => v || '—' },
+    { title: 'ML Item', dataIndex: 'ml_item_id', key: 'ml_item_id', width: 130, render: (v) => <span style={{ fontFamily: 'monospace' }}>{v}</span> },
+    { title: 'Título', dataIndex: 'title', key: 'title', width: 300 },
+    { title: 'Status ML', dataIndex: 'status', key: 'status', width: 110, render: (v) => <Tag color={v === 'active' ? 'green' : v === 'paused' ? 'orange' : 'default'}>{v || '—'}</Tag> },
+    { title: 'Preço', dataIndex: 'price', key: 'price', width: 110, render: (v) => formatCurrency(Number(v || 0)) },
+    { title: 'Category', dataIndex: 'category_id', key: 'category_id', width: 110, render: (v) => v || '—' },
+    { title: 'Domain', dataIndex: 'domain_id', key: 'domain_id', width: 120, render: (v) => v || '—' },
+    { title: 'Catalog Product', dataIndex: 'catalog_product_id', key: 'catalog_product_id', width: 160, render: (v) => v || '—' },
     {
-      title: 'ID', dataIndex: 'id', key: 'id', width: 130,
-      sorter: (a, b) => a.id.localeCompare(b.id),
-      render: (id: string) => id
-        ? <span style={{ fontFamily: 'monospace', fontSize: 12 }}>{id}</span>
-        : <span style={{ color: '#666' }}>—</span>,
+      title: 'Elegibilidade', dataIndex: 'eligibility_status', key: 'eligibility_status', width: 170,
+      render: (v) => <Tag color={eligibilityColor[String(v || '').toUpperCase()] || 'default'}>{v || '—'}</Tag>,
     },
+    { title: 'Buy Box', dataIndex: 'buy_box_eligible', key: 'buy_box_eligible', width: 90, render: (v) => <Tag color={v ? 'green' : 'red'}>{v ? 'SIM' : 'NÃO'}</Tag> },
+    { title: 'Motivo', dataIndex: 'eligibility_reason', key: 'eligibility_reason', width: 220, render: (v) => v || '—' },
+    { title: 'Variações aptas', dataIndex: 'variation_eligibility', key: 'variation_eligibility', width: 120, render: (v) => Array.isArray(v) ? v.filter((x) => String(x?.status || '').toUpperCase() === 'READY_FOR_OPTIN').length : 0 },
+    { title: 'Atualizado', dataIndex: 'last_updated', key: 'last_updated', width: 160, render: (v) => v ? new Date(v).toLocaleString('pt-BR') : '—' },
     {
-      title: 'GTIN/EAN', dataIndex: 'gtin', key: 'gtin', width: 140,
-      sorter: (a, b) => a.gtin.localeCompare(b.gtin),
-      render: (v: string) => <span style={{ fontFamily: 'monospace', fontSize: 12 }}>{v}</span>,
-    },
-    {
-      title: 'Preço', dataIndex: 'preco', key: 'preco', width: 110,
-      sorter: (a, b) => a.preco - b.preco,
-      render: (v: number) => formatCurrency(v),
-    },
-    {
-      title: 'Buy Box', dataIndex: 'buyBox', key: 'buyBox', width: 130,
-      sorter: (a, b) => a.buyBox.localeCompare(b.buyBox),
-      render: (bb: BuyBoxStatus, record) => {
-        const ptw = priceToWin(record);
-        return (
-          <div>
-            <Tag color={buyBoxColor[bb]} style={{ marginBottom: ptw ? 4 : 0 }}>
-              {bb.charAt(0).toUpperCase() + bb.slice(1)}
-            </Tag>
-            {ptw && (
-              <div style={{ fontSize: 11, color: '#a0a0a0' }}>
-                Preço sugerido: {formatCurrency(ptw)}
-              </div>
-            )}
-          </div>
-        );
-      },
-    },
-    {
-      title: 'Status', dataIndex: 'status', key: 'status', width: 130,
-      sorter: (a, b) => a.status.localeCompare(b.status),
-      render: (s: CatalogoStatus) => <Tag color={statusColor[s]}>{statusLabel[s]}</Tag>,
+      title: 'Link', dataIndex: 'permalink', key: 'permalink', width: 90,
+      render: (v) => v ? <a href={v} target="_blank" rel="noopener noreferrer">Abrir</a> : '—',
     },
     {
       title: 'Ações', key: 'actions', width: 60, fixed: 'right',
@@ -154,10 +225,12 @@ export default function CatalogoPage() {
           menu={{
             items: [
               { key: 'view', label: 'Ver no ML' },
-              ...(record.status === 'elegivel' ? [{ key: 'addCatalog', label: 'Adicionar ao Catálogo' }] : []),
-              ...(record.status === 'no_catalogo' ? [{ key: 'optimize', label: 'Otimizar Preço' }] : []),
+              { key: 'optin', label: 'Criar anúncio de catálogo' },
             ],
-            onClick: ({ key }) => { /* TODO: implementar ação */ },
+            onClick: ({ key }) => {
+              if (key === 'view' && record.permalink) window.open(record.permalink, '_blank');
+              if (key === 'optin') handleOptin(record);
+            },
           }}
           trigger={['click']}
         >
@@ -165,48 +238,114 @@ export default function CatalogoPage() {
         </Dropdown>
       ),
     },
-  ];
+  ]), [handleOptin]);
 
   return (
     <div>
+      {contextHolder}
       <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Catálogo - Mercado Livre</Title>
+
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
         <Row gutter={[8, 8]} align="middle">
           <Col>
             <Input
-              placeholder="Buscar (SKU, produto, ID, GTIN)"
+              placeholder="Buscar (SKU, título, IDs)"
               prefix={<SearchOutlined />}
               value={search}
-              onChange={e => setSearch(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
               style={{ width: 280 }}
               allowClear
             />
           </Col>
           <Col>
-            <Select placeholder="Buy Box" value={buyBoxFilter || undefined} onChange={v => setBuyBoxFilter(v as BuyBoxStatus | '')} options={buyBoxOptions} style={{ width: 140 }} allowClear onClear={() => setBuyBoxFilter('')} />
+            <Select
+              value={statusMl}
+              onChange={setStatusMl}
+              options={statusMlOptions}
+              style={{ width: 180 }}
+            />
           </Col>
-          <Col>
-            <Select placeholder="Status" value={statusFilter || undefined} onChange={v => setStatusFilter(v as CatalogoStatus | '')} options={statusOptions} style={{ width: 150 }} allowClear onClear={() => setStatusFilter('')} />
-          </Col>
+          {activeTab === 'elegiveis' && (
+            <Col>
+              <Select
+                value={eligibilityStatus}
+                onChange={setEligibilityStatus}
+                options={eligibilityStatusOptions}
+                style={{ width: 210 }}
+              />
+            </Col>
+          )}
           <Col>
             <Space.Compact>
-              <InputNumber placeholder="Preço mín" value={precoMin} onChange={v => setPrecoMin(v ?? null)} style={{ width: 110 }} />
-              <InputNumber placeholder="Preço máx" value={precoMax} onChange={v => setPrecoMax(v ?? null)} style={{ width: 110 }} />
+              <InputNumber placeholder="Preço mín" value={priceMin} onChange={(v) => setPriceMin(v ?? null)} style={{ width: 120 }} />
+              <InputNumber placeholder="Preço máx" value={priceMax} onChange={(v) => setPriceMax(v ?? null)} style={{ width: 120 }} />
             </Space.Compact>
           </Col>
         </Row>
       </div>
+
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-        <ResizableTable<CatalogoItem>
-          storageKey="catalogo"
-          dataSource={filtered}
-          columns={columns}
-          rowKey="sku"
-          rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
-          pagination={{ pageSize: 20, showSizeChanger: true, showTotal: t => `${t} produtos` }}
-          scroll={{ x: 1100 }}
-          style={{ background: 'transparent' }}
-          size="small"
+        <Tabs
+          activeKey={activeTab}
+          onChange={(key) => setActiveTab(key as TabKey)}
+          items={[
+            {
+              key: 'no_catalogo',
+              label: 'No Catálogo',
+              children: (
+                <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 24, color: '#1677ff' }} spin />}>
+                  <ResizableTable<NoCatalogoRow>
+                    storageKey="catalogo-no-catalogo"
+                    rowKey="ml_item_id"
+                    dataSource={noCatalogoData}
+                    columns={columnsNoCatalogo}
+                    pagination={{
+                      current: page,
+                      pageSize,
+                      total,
+                      showSizeChanger: true,
+                      onChange: (p, ps) => {
+                        setPage(p);
+                        setPageSize(ps || 50);
+                      },
+                      showTotal: (t) => `${t} anúncios`,
+                    }}
+                    scroll={{ x: 2000 }}
+                    size="small"
+                    style={{ background: 'transparent' }}
+                  />
+                </Spin>
+              ),
+            },
+            {
+              key: 'elegiveis',
+              label: 'Elegíveis',
+              children: (
+                <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 24, color: '#1677ff' }} spin />}>
+                  <ResizableTable<ElegivelRow>
+                    storageKey="catalogo-elegiveis"
+                    rowKey="ml_item_id"
+                    dataSource={elegiveisData}
+                    columns={columnsElegiveis}
+                    pagination={{
+                      current: page,
+                      pageSize,
+                      total,
+                      showSizeChanger: true,
+                      onChange: (p, ps) => {
+                        setPage(p);
+                        setPageSize(ps || 50);
+                      },
+                      showTotal: (t) => `${t} anúncios`,
+                    }}
+                    scroll={{ x: 2200 }}
+                    size="small"
+                    style={{ background: 'transparent' }}
+                  />
+                </Spin>
+              ),
+            },
+          ]}
         />
       </div>
     </div>

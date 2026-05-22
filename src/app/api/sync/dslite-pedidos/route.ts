@@ -66,16 +66,37 @@ export async function POST(request: Request) {
 
   try {
     const client = createServiceClient();
+    const body = await request.json().catch(() => ({}));
+    const rawWindowDays = Number(body?.windowDays);
+    const hasExplicitRange = Boolean(body?.dataInicial || body?.dataFinal);
+    const windowDays = Number.isFinite(rawWindowDays)
+      ? Math.min(365, Math.max(1, Math.trunc(rawWindowDays)))
+      : 60;
+
     const hoje = new Date();
-    const trintaDiasAtras = new Date(hoje.getTime() - 30 * 24 * 60 * 60 * 1000);
-    const dataInicial = trintaDiasAtras.toISOString().split('T')[0];
-    const dataFinal = hoje.toISOString().split('T')[0];
+    const defaultInicial = new Date(hoje.getTime() - windowDays * 24 * 60 * 60 * 1000)
+      .toISOString()
+      .split('T')[0];
+    const defaultFinal = hoje.toISOString().split('T')[0];
+
+    const dataInicial = String(body?.dataInicial || defaultInicial).trim();
+    const dataFinal = String(body?.dataFinal || defaultFinal).trim();
+
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dataInicial) || !/^\d{4}-\d{2}-\d{2}$/.test(dataFinal)) {
+      return NextResponse.json({ error: 'dataInicial/dataFinal devem estar no formato YYYY-MM-DD' }, { status: 422 });
+    }
+    if (dataInicial > dataFinal) {
+      return NextResponse.json({ error: 'dataInicial não pode ser maior que dataFinal' }, { status: 422 });
+    }
 
     let page = 1;
     let totalPedidos = 0;
     let inseridos = 0;
     let atualizados = 0;
     let erros = 0;
+    let pedidosVinculadosPorNfe = 0;
+    let pedidosSemNfeChave = 0;
+    let vinculoNaoEncontradoNoPedidos = 0;
 
     while (true) {
       const data = await fetchDslite<DslitePedidosResponse>(
@@ -84,7 +105,22 @@ export async function POST(request: Request) {
 
       if (!data?.pedidos?.length) {
         if (page === 1) {
-          return NextResponse.json({ success: true, total: 0, inseridos: 0, atualizados: 0, erros: 0, message: 'Nenhum pedido encontrado nos últimos 30 dias' });
+          return NextResponse.json({
+            success: true,
+            total: 0,
+            inseridos: 0,
+            atualizados: 0,
+            erros: 0,
+            pedidos_vinculados_por_nfe: 0,
+            pedidos_sem_nfe_chave: 0,
+            vinculo_nao_encontrado_no_pedidos: 0,
+            data_inicial_usada: dataInicial,
+            data_final_usada: dataFinal,
+            window_days: hasExplicitRange ? null : windowDays,
+            message: hasExplicitRange
+              ? 'Nenhum pedido encontrado no período informado'
+              : `Nenhum pedido encontrado nos últimos ${windowDays} dias`,
+          });
         }
         break;
       }
@@ -146,19 +182,27 @@ export async function POST(request: Request) {
 
           // Vincula dsid na tabela pedidos (vendas) pela chave da NF-e
           if (pedido.nf_chave) {
-            const { error: vinculoError } = await client
+            const { data: vinculados, error: vinculoError } = await client
               .from('pedidos')
               .update({
                 dslite_id: String(pedido.dsid),
                 dslite_status: pedido.status,
               })
-              .eq('nfe_chave', pedido.nf_chave);
+              .eq('nfe_chave', pedido.nf_chave)
+              .select('id');
 
             if (vinculoError) {
               console.error(`[sync-dslite-pedidos] Erro ao vincular pedido venda para dsid ${pedido.dsid}:`, vinculoError);
             } else {
+              if (Array.isArray(vinculados) && vinculados.length > 0) {
+                pedidosVinculadosPorNfe += vinculados.length;
+              } else {
+                vinculoNaoEncontradoNoPedidos++;
+              }
               console.log(`[sync-dslite-pedidos] Vinculado pedido venda com NF ${pedido.nf_chave} ao dsid ${pedido.dsid}`);
             }
+          } else {
+            pedidosSemNfeChave++;
           }
         } catch (err: any) {
           console.error(`[sync-dslite-pedidos] Erro no pedido ${pedido.dsid}:`, err);
@@ -177,6 +221,12 @@ export async function POST(request: Request) {
       inseridos,
       atualizados,
       erros,
+      pedidos_vinculados_por_nfe: pedidosVinculadosPorNfe,
+      pedidos_sem_nfe_chave: pedidosSemNfeChave,
+      vinculo_nao_encontrado_no_pedidos: vinculoNaoEncontradoNoPedidos,
+      data_inicial_usada: dataInicial,
+      data_final_usada: dataFinal,
+      window_days: hasExplicitRange ? null : windowDays,
     });
   } catch (err: any) {
     console.error(`[sync-dslite-pedidos] Erro geral:`, err);

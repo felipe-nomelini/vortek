@@ -485,6 +485,24 @@ export default function PedidosPage() {
       },
     },
     {
+      title: 'Pedido Compra',
+      key: 'pedidoCompra',
+      dataIndex: 'dslite_id',
+      width: 120,
+      align: 'center',
+      sorter: (a, b) => {
+        const va = isValidDsliteId(a.dslite_id) ? 1 : 0;
+        const vb = isValidDsliteId(b.dslite_id) ? 1 : 0;
+        return va - vb;
+      },
+      render: (_: string | null, record: Order) => {
+        const hasPurchaseOrder = !!isValidDsliteId(record.dslite_id);
+        return hasPurchaseOrder
+          ? <Tag color="green">SIM</Tag>
+          : <Tag color="orange">NÃO</Tag>;
+      },
+    },
+    {
       title: 'Lucro', dataIndex: 'lucro', key: 'lucro', width: 110,
       sorter: (a, b) => (a.lucro ?? -Infinity) - (b.lucro ?? -Infinity),
       render: (v: number | null) => {

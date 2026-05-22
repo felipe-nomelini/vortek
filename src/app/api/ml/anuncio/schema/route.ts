@@ -8,9 +8,26 @@ function normalizeStr(v: unknown): string {
   return String(v ?? '').trim();
 }
 
+function stripHtmlToText(input: unknown): string {
+  return String(input ?? '')
+    .replace(/<\s*br\s*\/?>/gi, ' ')
+    .replace(/<\s*\/p\s*>/gi, ' ')
+    .replace(/<\s*\/li\s*>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function buildDescription(produto: any): string {
-  if (normalizeStr(produto.descricao)) return produto.descricao;
-  const title = normalizeStr(produto.nome);
+  const descricao = stripHtmlToText(produto?.descricao);
+  if (descricao) return descricao;
+  const title = stripHtmlToText(produto?.nome);
   const marca = normalizeStr(produto.marca);
   const gtin = normalizeStr(produto.gtin);
   return [
@@ -32,6 +49,17 @@ function initialAttributeValue(attr: any, produto: any): { value_id?: string; va
   if (attrId === 'SELLER_PACKAGE_LENGTH' && produto.profundidade) return { value_name: `${produto.profundidade} cm` };
   if (attrId === 'SELLER_PACKAGE_WEIGHT' && produto.peso_bruto) return { value_name: `${produto.peso_bruto} g` };
   return {};
+}
+
+function normalizeBase(v: unknown): string {
+  return String(v ?? '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+function pickWarrantyDefaultValueId(values: Array<{ id: string; name: string }>): string | undefined {
+  if (!Array.isArray(values) || values.length === 0) return undefined;
+  const by12 = values.find((v) => normalizeBase(v.name).includes('12'));
+  if (by12) return String(by12.id);
+  return String(values[0].id);
 }
 
 export async function POST(req: Request) {
@@ -84,14 +112,39 @@ export async function POST(req: Request) {
       };
     });
 
-    const saleTerms = saleTermsRaw.map((term: any) => ({
-      id: term.id,
-      name: term.name,
-      value_type: term.value_type || 'string',
-      required: Boolean(term.tags?.required),
-      values: (term.values || []).slice(0, 100).map((v: any) => ({ id: v.id, name: v.name })),
-      value_name: term.id === 'WARRANTY_TIME' ? '12 meses de fábrica' : undefined,
-    }));
+    const saleTerms = saleTermsRaw.map((term: any) => {
+      const values = (term.values || []).slice(0, 100).map((v: any) => ({ id: v.id, name: v.name }));
+      if (term.id === 'WARRANTY_TIME') {
+        const defaultId = pickWarrantyDefaultValueId(values);
+        if (defaultId) {
+          const selected = values.find((v: { id: string; name: string }) => String(v.id) === defaultId);
+          return {
+            id: term.id,
+            name: term.name,
+            value_type: term.value_type || 'string',
+            required: Boolean(term.tags?.required),
+            values,
+            value_id: defaultId,
+            value_name: selected?.name || undefined,
+          };
+        }
+        return {
+          id: term.id,
+          name: term.name,
+          value_type: term.value_type || 'string',
+          required: Boolean(term.tags?.required),
+          values,
+          value_name: '12 meses de fábrica',
+        };
+      }
+      return {
+        id: term.id,
+        name: term.name,
+        value_type: term.value_type || 'string',
+        required: Boolean(term.tags?.required),
+        values,
+      };
+    });
 
     const hasWarranty = saleTerms.some((t) => t.id === 'WARRANTY_TIME');
     if (!hasWarranty) {

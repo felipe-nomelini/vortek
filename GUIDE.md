@@ -207,6 +207,19 @@ Depois registrar no `createClient<Database>()` no `lib/supabase.ts`. TypeScript 
 - **Ant Design 5:** Nunca use `!important` no CSS global. Use `ConfigProvider` com Component Tokens.
 - **AGENTS.md:** Regra Zero obriga a consultar documentação oficial antes de qualquer ação. Use o MCP Context7 para bibliotecas.
 
+### SMTP Gmail (Envio de NF)
+
+- Variáveis runtime obrigatórias:
+  - `SMTP_HOST=smtp.gmail.com`
+  - `SMTP_PORT=587`
+  - `SMTP_SECURE=false`
+  - `SMTP_USER=<conta smtp>`
+  - `SMTP_PASS=<app-password>`
+- Variável recomendada:
+  - `EMAIL_FROM_NFE=<email remetente>`
+- Fallback implementado: se `EMAIL_FROM_NFE` ausente, o sistema usa `SMTP_USER`.
+- Segredos SMTP devem ficar apenas em runtime env (nunca em build args).
+
 ---
 
 ## Runbook — Incidente OAuth Mercado Livre (`auth_fatal`)

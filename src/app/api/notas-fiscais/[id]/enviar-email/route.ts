@@ -133,15 +133,21 @@ export async function POST(request: Request, context: { params: { id: string } }
 
     return NextResponse.json({ success: true, to, nota: pedido.nota_fiscal_numero });
   } catch (err: any) {
+    const rawMessage = String(err?.message || 'send_failed');
+    const isConfigError = rawMessage.includes('Missing required env');
+    const publicError = isConfigError
+      ? 'Configuração de e-mail incompleta: verifique SMTP_HOST/SMTP_USER/SMTP_PASS (e opcionalmente EMAIL_FROM_NFE).'
+      : 'Falha ao enviar e-mail da nota fiscal';
+
     console.error(JSON.stringify({
       event: 'nota_fiscal_email_failed',
       nota_fiscal_numero: pedido.nota_fiscal_numero,
       pedido_numero: pedido.numero,
       to,
       user_id: user.id,
-      error: err?.message || 'send_failed',
+      error: rawMessage,
       timestamp_utc: new Date().toISOString(),
     }));
-    return NextResponse.json({ error: 'Falha ao enviar e-mail da nota fiscal' }, { status: 500 });
+    return NextResponse.json({ error: publicError }, { status: 500 });
   }
 }

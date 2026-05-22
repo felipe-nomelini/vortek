@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
-import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, message, Modal } from 'antd';
+import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, message, Modal, Statistic } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TablePaginationConfig, TableProps } from 'antd';
 import type { SorterResult } from 'antd/es/table/interface';
@@ -67,6 +67,13 @@ export default function NotasFiscaisPage() {
   const [emailTo, setEmailTo] = useState('');
   const [emailSubject, setEmailSubject] = useState('');
   const [emailBody, setEmailBody] = useState('');
+  const [summary, setSummary] = useState({
+    total: 0,
+    emitidas: 0,
+    pendentes: 0,
+    valor_total: 0,
+    imposto_total: 0,
+  });
 
   const resolvePdfUrl = useCallback(async (row: NotaFiscalRow): Promise<string | null> => {
     const res = await fetch(`/api/notas-fiscais/${row.id}/pdf`);
@@ -149,12 +156,28 @@ export default function NotasFiscaisPage() {
       if (valorMin !== null) params.set('valorMin', String(valorMin));
       if (valorMax !== null) params.set('valorMax', String(valorMax));
 
-      const res = await fetch(`/api/notas-fiscais?${params.toString()}`);
-      if (!res.ok) return;
+      const serialized = params.toString();
+      const [listRes, summaryRes] = await Promise.all([
+        fetch(`/api/notas-fiscais?${serialized}`),
+        fetch(`/api/notas-fiscais/resumo?${serialized}`),
+      ]);
 
-      const json = await res.json();
-      setRows(json.data || []);
-      setTotal(json.total || 0);
+      if (listRes.ok) {
+        const json = await listRes.json();
+        setRows(json.data || []);
+        setTotal(json.total || 0);
+      }
+
+      if (summaryRes.ok) {
+        const json = await summaryRes.json();
+        setSummary({
+          total: json.total || 0,
+          emitidas: json.emitidas || 0,
+          pendentes: json.pendentes || 0,
+          valor_total: Number(json.valor_total || 0),
+          imposto_total: Number(json.imposto_total || 0),
+        });
+      }
     } finally {
       setLoading(false);
     }
@@ -299,6 +322,46 @@ export default function NotasFiscaisPage() {
     <div>
       {contextHolder}
       <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Notas Fiscais</Title>
+
+      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
+        <Row gutter={[16, 16]}>
+          <Col xs={12} md={8} lg={4}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Total</span>}
+              value={summary.total}
+              valueStyle={{ color: '#1677ff', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+          <Col xs={12} md={8} lg={4}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Emitidas</span>}
+              value={summary.emitidas}
+              valueStyle={{ color: '#52c41a', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+          <Col xs={12} md={8} lg={4}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Pendentes</span>}
+              value={summary.pendentes}
+              valueStyle={{ color: '#faad14', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+          <Col xs={12} md={12} lg={6}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Valor Total</span>}
+              value={formatCurrency(summary.valor_total)}
+              valueStyle={{ color: '#13c2c2', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+          <Col xs={12} md={12} lg={6}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Imposto Total (4%)</span>}
+              value={formatCurrency(summary.imposto_total)}
+              valueStyle={{ color: '#cf1322', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+        </Row>
+      </div>
 
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
         <Row gutter={[8, 8]} align="middle">

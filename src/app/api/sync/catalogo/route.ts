@@ -16,12 +16,33 @@ function normalizeText(input: unknown): string {
   return String(input ?? '').replace(/\s+/g, ' ').trim();
 }
 
+function stripHtmlToText(input: unknown): { text: string; changed: boolean } {
+  const raw = String(input ?? '');
+  if (!raw) return { text: '', changed: false };
+
+  let out = raw
+    .replace(/<\s*br\s*\/?>/gi, ' ')
+    .replace(/<\s*\/p\s*>/gi, ' ')
+    .replace(/<\s*\/li\s*>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'");
+
+  out = normalizeText(out);
+  const changed = normalizeText(raw) !== out;
+  return { text: out, changed };
+}
+
 function pickBestDescription(item: any): { text: string; source: 'descricao' | 'caracteristicas' | 'informacoes' | 'none' } {
-  const descricao = normalizeText(item?.descricao);
+  const descricao = stripHtmlToText(item?.descricao).text;
   if (descricao) return { text: descricao, source: 'descricao' };
-  const caracteristicas = normalizeText(item?.caracteristicas);
+  const caracteristicas = stripHtmlToText(item?.caracteristicas).text;
   if (caracteristicas) return { text: caracteristicas, source: 'caracteristicas' };
-  const informacoes = normalizeText(item?.informacoes);
+  const informacoes = stripHtmlToText(item?.informacoes).text;
   if (informacoes) return { text: informacoes, source: 'informacoes' };
   return { text: '', source: 'none' };
 }
@@ -104,12 +125,19 @@ export async function POST(req: Request) {
           imagens_preservadas: 0,
           descricao_enriquecida_por_fallback: 0,
           imagens_extraidas_midias: 0,
+          descricao_html_sanitizada: 0,
         };
 
         // Build batch payloads
         const batch = produtos.map((item) => {
           const sku = buildCanonicalDsliteSku(fId, item.produtoid_empresa, item.produtoid);
           const description = pickBestDescription(item);
+          const descRaw = stripHtmlToText(item?.descricao);
+          const carRaw = stripHtmlToText(item?.caracteristicas);
+          const infRaw = stripHtmlToText(item?.informacoes);
+          if (descRaw.changed || carRaw.changed || infRaw.changed) {
+            pageCounters.descricao_html_sanitizada += 1;
+          }
           const images = extractImageUrls(item);
           if (description.source !== 'descricao' && description.source !== 'none') {
             pageCounters.descricao_enriquecida_por_fallback += 1;

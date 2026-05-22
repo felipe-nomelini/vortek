@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
-import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, Spin } from 'antd';
+import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, Spin, Statistic } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import QualidadeModal from '@/components/QualidadeModal';
 import type { TableProps } from 'antd';
@@ -59,6 +59,14 @@ export default function AnunciosPage() {
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [modalQualidade, setModalQualidade] = useState<{ open: boolean; score: number; itens: any[]; dica: string; titulo: string }>({ open: false, score: 0, itens: [], dica: '', titulo: '' });
+  const [summary, setSummary] = useState({
+    total: 0,
+    ativos: 0,
+    pausados: 0,
+    qualidade_baixa: 0,
+    qualidade_alta: 0,
+    qualidade_100: 0,
+  });
 
   const buildParams = useCallback(() => {
     const params = new URLSearchParams();
@@ -73,11 +81,27 @@ export default function AnunciosPage() {
   const fetchData = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/anuncios?${buildParams()}`);
-      if (res.ok) {
-        const json = await res.json();
+      const params = buildParams().toString();
+      const [listRes, summaryRes] = await Promise.all([
+        fetch(`/api/anuncios?${params}`),
+        fetch(`/api/anuncios/resumo?${params}`),
+      ]);
+
+      if (listRes.ok) {
+        const json = await listRes.json();
         setData((json.data || []).map(mapDBtoAnuncio));
         setTotal(json.total || 0);
+      }
+      if (summaryRes.ok) {
+        const json = await summaryRes.json();
+        setSummary({
+          total: json.total || 0,
+          ativos: json.ativos || 0,
+          pausados: json.pausados || 0,
+          qualidade_baixa: json.qualidade_baixa || 0,
+          qualidade_alta: json.qualidade_alta || 0,
+          qualidade_100: json.qualidade_100 || 0,
+        });
       }
     } catch {}
     setLoading(false);
@@ -177,6 +201,52 @@ export default function AnunciosPage() {
   return (
     <div>
       <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Anúncios - Mercado Livre</Title>
+      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
+        <Row gutter={[16, 16]}>
+          <Col xs={12} md={8} lg={4}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Total</span>}
+              value={summary.total}
+              valueStyle={{ color: '#1677ff', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+          <Col xs={12} md={8} lg={4}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Ativos</span>}
+              value={summary.ativos}
+              valueStyle={{ color: '#52c41a', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+          <Col xs={12} md={8} lg={4}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Pausados</span>}
+              value={summary.pausados}
+              valueStyle={{ color: '#faad14', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+          <Col xs={12} md={8} lg={4}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Qualidade Baixa</span>}
+              value={summary.qualidade_baixa}
+              valueStyle={{ color: '#ff4d4f', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+          <Col xs={12} md={8} lg={4}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Qualidade Alta</span>}
+              value={summary.qualidade_alta}
+              valueStyle={{ color: '#73d13d', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+          <Col xs={12} md={8} lg={4}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Qualidade 100%</span>}
+              value={summary.qualidade_100}
+              valueStyle={{ color: '#13c2c2', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+        </Row>
+      </div>
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
         <Row gutter={[8, 8]} align="middle">
           <Col>

@@ -7,11 +7,15 @@ import { createServiceClient } from '@/lib/supabase';
 type StepResult = { ok: boolean; error?: string };
 type AttrInput = { id: string; value_name?: string; value_id?: string };
 type SaleTermInput = { id: string; value_name?: string; value_id?: string };
+type MappedAttr = { id: string; value_name?: string; value_id?: string };
+
+const NOT_APPLICABLE_ID = '-1';
+const NO_IDS = new Set(['242084']);
 
 function normalizeAttr(attr: AttrInput) {
   return {
     id: String(attr.id),
-    value_id: attr.value_id ? String(attr.value_id) : undefined,
+    value_id: attr.value_id === NOT_APPLICABLE_ID ? NOT_APPLICABLE_ID : (attr.value_id ? String(attr.value_id) : undefined),
     value_name: attr.value_name ? String(attr.value_name) : undefined,
   };
 }
@@ -24,20 +28,75 @@ function normalizeText(input: unknown) {
   return String(input ?? '').replace(/\s+/g, ' ').trim();
 }
 
+function stripHtmlToText(input: unknown): string {
+  return normalizeText(
+    String(input ?? '')
+      .replace(/<\s*br\s*\/?>/gi, ' ')
+      .replace(/<\s*\/p\s*>/gi, ' ')
+      .replace(/<\s*\/li\s*>/gi, ' ')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/&nbsp;/gi, ' ')
+      .replace(/&amp;/gi, '&')
+      .replace(/&lt;/gi, '<')
+      .replace(/&gt;/gi, '>')
+      .replace(/&quot;/gi, '"')
+      .replace(/&#39;/gi, "'")
+  );
+}
+
 function buildDescription(produto: any, input?: string) {
-  const manual = normalizeText(input);
+  const manual = stripHtmlToText(input);
   if (manual) return manual.slice(0, 5000);
 
-  const descricao = normalizeText(produto?.descricao);
+  const descricao = stripHtmlToText(produto?.descricao);
   if (descricao) return descricao.slice(0, 5000);
 
-  const caracteristicas = normalizeText(produto?.caracteristicas);
+  const caracteristicas = stripHtmlToText(produto?.caracteristicas);
   if (caracteristicas) return caracteristicas.slice(0, 5000);
 
-  const informacoes = normalizeText(produto?.informacoes);
+  const informacoes = stripHtmlToText(produto?.informacoes);
   if (informacoes) return informacoes.slice(0, 5000);
 
   return [normalizeText(produto?.nome), normalizeText(produto?.marca)].filter(Boolean).join(' - ').slice(0, 5000);
+}
+
+function isNegative(value?: MappedAttr) {
+  if (!value) return false;
+  const id = String(value.value_id || '');
+  const name = normalizeText(value.value_name).toLowerCase();
+  return NO_IDS.has(id) || name === 'não' || name === 'nao' || name === 'false';
+}
+
+function sanitizeAttributesByDependencies(
+  attributesMap: Map<string, MappedAttr>,
+  warnings: string[],
+  mode: 'set_na' | 'omit'
+) {
+  const apply = (parentId: string, childIds: string[]) => {
+    const parent = attributesMap.get(parentId);
+    if (!isNegative(parent)) return;
+
+    for (const childId of childIds) {
+      if (!attributesMap.has(childId)) continue;
+      if (mode === 'set_na') {
+        attributesMap.set(childId, { id: childId, value_id: NOT_APPLICABLE_ID, value_name: undefined });
+        console.warn(JSON.stringify({ event: 'ml_attr_sanitized', attr_id: childId, parent_attr_id: parentId, action: 'set_na' }));
+      } else {
+        attributesMap.delete(childId);
+        console.warn(JSON.stringify({ event: 'ml_attr_sanitized', attr_id: childId, parent_attr_id: parentId, action: 'omit_na' }));
+      }
+      warnings.push(`Atributo ${childId} ajustado por consistência com ${parentId}.`);
+    }
+  };
+
+  apply('WITH_CLOSING', ['CLASP_TYPE']);
+  apply('WITH_GEMSTONE', ['GEMSTONE_TYPE', 'GEMSTONE_COLOR']);
+}
+
+function pickWarrantyValueId(values: Array<{ id: string; name: string }>) {
+  if (!Array.isArray(values) || values.length === 0) return undefined;
+  const hit12 = values.find((v) => normalizeText(v.name).toLowerCase().includes('12'));
+  return String((hit12 || values[0]).id);
 }
 
 export async function POST(req: Request) {
@@ -134,6 +193,7 @@ export async function POST(req: Request) {
     for (const attr of attrs) {
       const current = attributesMap.get(attr.id);
       if (!current) continue;
+      if (String(current.value_id || '') === NOT_APPLICABLE_ID) continue;
       if (current.value_id && Array.isArray(attr.values) && attr.values.length > 0) {
         const valid = attr.values.some((v: any) => String(v.id) === String(current.value_id));
         if (!valid) {
@@ -167,14 +227,35 @@ export async function POST(req: Request) {
     if (produto.peso_bruto) attributesMap.set('SELLER_PACKAGE_WEIGHT', { id: 'SELLER_PACKAGE_WEIGHT', value_id: undefined, value_name: `${produto.peso_bruto} g` });
     steps.atributos.ok = true;
 
+    const categoryInfo = await fetchML<any>(`/categories/${categoriaId}`);
+    const categorySaleTerms = Array.isArray(categoryInfo?.sale_terms) ? categoryInfo.sale_terms : [];
+    const warrantySchema = categorySaleTerms.find((t: any) => String(t.id) === 'WARRANTY_TIME');
+    const warrantyValues = Array.isArray(warrantySchema?.values)
+      ? warrantySchema.values.map((v: any) => ({ id: String(v.id), name: String(v.name) }))
+      : [];
+
     const saleTerms = Array.isArray(editedSaleTerms)
       ? (editedSaleTerms as SaleTermInput[])
         .filter((term) => term?.id)
-        .map((term) => ({ id: String(term.id), value_id: term.value_id ? String(term.value_id) : undefined, value_name: term.value_name ? String(term.value_name) : undefined }))
+        .map((term) => {
+          const id = String(term.id);
+          if (id === 'WARRANTY_TIME' && warrantyValues.length > 0) {
+            const valueId = term.value_id ? String(term.value_id) : '';
+            const valid = warrantyValues.some((v: { id: string; name: string }) => String(v.id) === valueId);
+            if (valid) return { id, value_id: valueId, value_name: undefined };
+            const fallbackId = pickWarrantyValueId(warrantyValues);
+            return { id, value_id: fallbackId, value_name: undefined };
+          }
+          return { id, value_id: term.value_id ? String(term.value_id) : undefined, value_name: term.value_name ? String(term.value_name) : undefined };
+        })
       : [];
 
     if (!saleTerms.find((t) => t.id === 'WARRANTY_TIME')) {
-      saleTerms.push({ id: 'WARRANTY_TIME', value_id: undefined, value_name: '12 meses de fábrica' });
+      if (warrantyValues.length > 0) {
+        saleTerms.push({ id: 'WARRANTY_TIME', value_id: pickWarrantyValueId(warrantyValues), value_name: undefined });
+      } else {
+        saleTerms.push({ id: 'WARRANTY_TIME', value_id: undefined, value_name: '12 meses de fábrica' });
+      }
     }
 
     const imagens = produto.imagens || [];
@@ -190,7 +271,9 @@ export async function POST(req: Request) {
       useFamilyName = me?.tags?.includes('user_product_seller') ?? false;
     } catch {}
 
-    const result = await createListing({
+    sanitizeAttributesByDependencies(attributesMap, warnings, 'set_na');
+
+    let listingPayload: Parameters<typeof createListing>[0] = {
       title: useFamilyName ? undefined : titulo,
       familyName: useFamilyName ? familyName : undefined,
       categoryId: categoriaId,
@@ -206,7 +289,20 @@ export async function POST(req: Request) {
       fiscalData: {
         gtin: fiscal?.gtin || produto.gtin || undefined,
       },
-    });
+    };
+
+    let result = await createListing(listingPayload);
+    if (!result) {
+      const hadNA = listingPayload.attributes.some((a) => String(a.value_id || '') === NOT_APPLICABLE_ID);
+      if (hadNA) {
+        const retryMap = new Map(listingPayload.attributes.map((a) => [a.id, a]));
+        sanitizeAttributesByDependencies(retryMap, warnings, 'omit');
+        listingPayload = { ...listingPayload, attributes: Array.from(retryMap.values()) };
+        result = await createListing(listingPayload);
+        warnings.push('n_a_fallback_to_omit');
+        console.warn(JSON.stringify({ event: 'ml_attr_sanitized', action: 'retry_without_na' }));
+      }
+    }
 
     if (!result) {
       steps.anuncio = { ok: false, error: 'Falha ao criar anúncio no ML' };
