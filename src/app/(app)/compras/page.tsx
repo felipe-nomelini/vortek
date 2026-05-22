@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import {
-  Input, Select, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message,
+  Input, Select, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic,
 } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
@@ -40,10 +40,8 @@ const statusOptions = [
   { value: 'Solicitado', label: 'Solicitado' },
   { value: 'Confirmado', label: 'Confirmado' },
   { value: 'Faturado', label: 'Faturado' },
-  { value: 'Em transporte', label: 'Em Transporte' },
-  { value: 'Produto Entregue', label: 'Entregue' },
   { value: 'Cancelado', label: 'Cancelado' },
-  { value: 'Rejeitado', label: 'Rejeitado' },
+  { value: 'Revisão', label: 'Revisão' },
 ];
 
 const statusColor: Record<string, string> = {
@@ -53,10 +51,8 @@ const statusColor: Record<string, string> = {
   'Solicitado': 'geekblue',
   'Confirmado': 'green',
   'Faturado': 'purple',
-  'Em transporte': 'purple',
-  'Produto Entregue': 'green',
   'Cancelado': 'default',
-  'Rejeitado': 'red',
+  'Revisão': 'magenta',
 };
 
 export default function ComprasPage() {
@@ -70,6 +66,15 @@ export default function ComprasPage() {
   const [dateRange, setDateRange] = useState<[string | null, string | null]>([null, null]);
 
   const [messageApi, contextHolder] = message.useMessage();
+  const [summary, setSummary] = useState({
+    total: 0,
+    pendentes: 0,
+    faturado: 0,
+    aguardando_informacoes: 0,
+    cancelado: 0,
+    revisao: 0,
+    valor_total: 0,
+  });
 
   const buildParams = useCallback(() => {
     const params = new URLSearchParams();
@@ -82,22 +87,50 @@ export default function ComprasPage() {
     return params;
   }, [page, search, statusFilter, dateRange]);
 
+  const buildSummaryParams = useCallback(() => {
+    const params = new URLSearchParams();
+    if (search) params.set('search', search);
+    if (statusFilter) params.set('status', statusFilter);
+    if (dateRange[0]) params.set('dateFrom', dateRange[0]);
+    if (dateRange[1]) params.set('dateTo', dateRange[1]);
+    return params;
+  }, [search, statusFilter, dateRange]);
+
   const fetchData = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/compras?${buildParams()}`);
-      if (res.ok) {
-        const json = await res.json();
+      const [listRes, summaryRes] = await Promise.all([
+        fetch(`/api/compras?${buildParams()}`),
+        fetch(`/api/compras/resumo?${buildSummaryParams()}`),
+      ]);
+
+      if (listRes.ok) {
+        const json = await listRes.json();
         setCompras(json.data || []);
         setTotal(json.total || 0);
       } else {
         messageApi.error('Erro ao carregar compras');
       }
+
+      if (summaryRes.ok) {
+        const json = await summaryRes.json();
+        setSummary({
+          total: Number(json.total || 0),
+          pendentes: Number(json.pendentes || 0),
+          faturado: Number(json.faturado || 0),
+          aguardando_informacoes: Number(json.aguardando_informacoes || 0),
+          cancelado: Number(json.cancelado || 0),
+          revisao: Number(json.revisao || 0),
+          valor_total: Number(json.valor_total || 0),
+        });
+      } else {
+        messageApi.error('Erro ao carregar resumo de compras');
+      }
     } catch {
       messageApi.error('Erro ao conectar');
     }
     setLoading(false);
-  }, [buildParams, messageApi]);
+  }, [buildParams, buildSummaryParams, messageApi]);
 
   useEffect(() => {
     fetchData();
@@ -175,14 +208,6 @@ export default function ComprasPage() {
       render: (v: number) => formatCurrency(v || 0),
     },
     {
-      title: 'Rastreio', dataIndex: 'rastreio', key: 'rastreio', width: 130,
-      render: (v: string | null) => v ? (
-        <span style={{ fontFamily: 'monospace', fontSize: 13, color: '#1677ff' }}>{v}</span>
-      ) : (
-        <span style={{ color: '#666' }}>—</span>
-      ),
-    },
-    {
       title: 'Status', dataIndex: 'status', key: 'status', width: 140,
       sorter: (a, b) => (a.status || '').localeCompare(b.status || ''),
       render: (status: string) => (
@@ -226,6 +251,60 @@ export default function ComprasPage() {
     <div>
       {contextHolder}
       <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Compras DSLite</Title>
+
+      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
+        <Row gutter={[16, 16]}>
+          <Col xs={12} md={8} lg={6} xl={3}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Total</span>}
+              value={summary.total}
+              valueStyle={{ color: '#1677ff', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+          <Col xs={12} md={8} lg={6} xl={3}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Pendentes</span>}
+              value={summary.pendentes}
+              valueStyle={{ color: '#faad14', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+          <Col xs={12} md={8} lg={6} xl={3}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Faturado</span>}
+              value={summary.faturado}
+              valueStyle={{ color: '#722ed1', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+          <Col xs={12} md={8} lg={6} xl={3}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Aguard. Informações</span>}
+              value={summary.aguardando_informacoes}
+              valueStyle={{ color: '#13c2c2', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+          <Col xs={12} md={8} lg={6} xl={3}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Cancelado</span>}
+              value={summary.cancelado}
+              valueStyle={{ color: '#8c8c8c', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+          <Col xs={12} md={8} lg={6} xl={3}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Revisão</span>}
+              value={summary.revisao}
+              valueStyle={{ color: '#eb2f96', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+          <Col xs={12} md={8} lg={6} xl={6}>
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Valor Total</span>}
+              value={formatCurrency(summary.valor_total)}
+              valueStyle={{ color: '#73d13d', fontWeight: 700, fontSize: 24 }}
+            />
+          </Col>
+        </Row>
+      </div>
 
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
         <Row gutter={[8, 8]} align="middle">
@@ -275,7 +354,7 @@ export default function ComprasPage() {
               showTotal: (t) => `${t} compras`,
               onChange: (p) => setPage(p),
             }}
-            scroll={{ x: 1040 }}
+            scroll={{ x: 910 }}
             style={{ background: 'transparent' }}
             size="small"
           />
