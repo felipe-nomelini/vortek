@@ -414,11 +414,7 @@ export default function PedidosPage() {
       ),
     },
     {
-      title: 'Pedido ML (Order ID)', dataIndex: 'ml_order_id', key: 'ml_order_id', width: 180,
-      render: (v: string | null | undefined) => <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
-    },
-    {
-      title: 'Pack ML (Pack ID)', dataIndex: 'ml_pack_id', key: 'ml_pack_id', width: 180,
+      title: 'Pack', dataIndex: 'ml_pack_id', key: 'ml_pack_id', width: 180,
       render: (v: string | null | undefined) => <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
     },
     {
