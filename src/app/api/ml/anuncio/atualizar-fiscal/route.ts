@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { updateListingFiscalData } from '@/services/mercadolibre';
 import { createServiceClient } from '@/lib/supabase';
+import { fiscalStrictSchema, mapOriginType, normalizeNcm } from '@/lib/fiscal-strict';
 
 export async function POST(req: Request) {
   try {
@@ -33,32 +34,49 @@ export async function POST(req: Request) {
         .eq('sku', a.sku)
         .maybeSingle();
 
-      if (!produto || !produto.ncm) {
+      if (!produto) {
         ignorados++;
         resultados.push({
           sku: a.sku,
           ml_item_id: a.ml_item_id,
           status: 'ignorado',
-          motivo: !produto ? 'produto não encontrado' : 'sem NCM',
+          motivo: 'produto não encontrado',
         });
         continue;
       }
 
-      const originDetail = produto.origem_fiscal || '0';
-      const originType = originDetail === '3' || originDetail === '5' || originDetail === '8' ? 'imported'
-        : originDetail === '1' ? 'manufacturer'
-        : 'reseller';
+      const parsed = fiscalStrictSchema.safeParse({
+        ncm: produto.ncm,
+        origem_fiscal: produto.origem_fiscal,
+        csosn: produto.csosn,
+        sku: produto.sku,
+        title: produto.nome,
+      });
+
+      if (!parsed.success) {
+        ignorados++;
+        resultados.push({
+          sku: a.sku,
+          ml_item_id: a.ml_item_id,
+          status: 'ignorado',
+          motivo: parsed.error.issues.map((i) => i.message).join(' | '),
+        });
+        continue;
+      }
+
+      const originDetail = parsed.data.origem_fiscal;
+      const originType = mapOriginType(originDetail);
 
       const fiscalResult = await updateListingFiscalData({
         itemId: a.ml_item_id,
-        sku: produto.sku,
-        title: produto.nome,
-        ncm: produto.ncm,
+        sku: parsed.data.sku,
+        title: parsed.data.title,
+        ncm: normalizeNcm(parsed.data.ncm),
         origin_type: originType,
         origin_detail: originDetail,
         gtin: produto.gtin || undefined,
         cest: produto.cest || undefined,
-        csosn: (produto.csosn === '101' || !produto.csosn) ? '102' : produto.csosn,
+        csosn: parsed.data.csosn,
         net_weight: produto.peso_liq || undefined,
         gross_weight: produto.peso_bruto || undefined,
         measurement_unit: 'UN',

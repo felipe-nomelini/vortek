@@ -1,0 +1,5 @@
+phase,ml_item_id,sku,status,error,expected,got
+target_selection,MLB4585881731,HYX83833,,needs_manual_choice,,
+target_selection,MLB4620396985,HYX87585,,needs_manual_choice,,
+target_selection,MLB6563284802,HYX86272,,needs_manual_choice,,
+target_selection,MLB4582553613,HYX76380,,needs_manual_choice,,

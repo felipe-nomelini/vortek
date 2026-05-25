@@ -579,41 +579,186 @@ export async function getMLAuthDiagnostics(): Promise<{
   };
 }
 
-export async function buscarXmlDaNF(orderId: string): Promise<{ xml: string | null; error?: string }> {
+export async function emitirNotaFiscalML(orderId: string): Promise<{
+  ok: boolean;
+  status?: string;
+  invoiceId?: string | number;
+  error?: string;
+  retryable?: boolean;
+}> {
+  const meResult = await fetchMLResult<any>('/users/me');
+  if (!meResult.ok || !meResult.data?.id) {
+    return {
+      ok: false,
+      error: meResult.error?.message || 'Não foi possível obter seller ID do ML',
+      retryable: meResult.error?.category === 'retryable',
+    };
+  }
+
+  const sellerId = meResult.data.id;
+  const orderNumeric = Number(orderId);
+  if (!Number.isFinite(orderNumeric)) {
+    return { ok: false, error: `orderId inválido para emissão: ${orderId}` };
+  }
+
+  const issueResult = await fetchMLResult<any>(`/users/${sellerId}/invoices/orders`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ orders: [orderNumeric] }),
+  });
+
+  if (issueResult.ok) {
+    return {
+      ok: true,
+      status: issueResult.data?.status || 'issued',
+      invoiceId: issueResult.data?.id || issueResult.data?.invoice_id,
+    };
+  }
+
+  const msg = String(issueResult.error?.message || '').toLowerCase();
+  const code = String(issueResult.error?.code || '').toLowerCase();
+  const alreadyIssued =
+    issueResult.status === 409 ||
+    msg.includes('already') ||
+    msg.includes('emitida') ||
+    msg.includes('already exists') ||
+    code.includes('already');
+
+  if (alreadyIssued) {
+    return { ok: true, status: 'already_issued' };
+  }
+
+  return {
+    ok: false,
+    error: issueResult.error?.message || `Falha ao emitir NF no ML (HTTP ${issueResult.status ?? 'n/a'})`,
+    retryable: issueResult.error?.category === 'retryable',
+  };
+}
+
+export async function consultarInvoiceDoPedidoML(orderId: string): Promise<{
+  ok: boolean;
+  invoiceId?: string | number;
+  status?: string;
+  error?: string;
+  temporary?: boolean;
+}> {
+  const meResult = await fetchMLResult<any>('/users/me');
+  if (!meResult.ok || !meResult.data?.id) {
+    return {
+      ok: false,
+      error: meResult.error?.message || 'Não foi possível obter seller ID do ML',
+      temporary: meResult.error?.category === 'retryable',
+    };
+  }
+
+  const sellerId = meResult.data.id;
+  const invoiceResult = await fetchMLResult<any>(`/users/${sellerId}/invoices/orders/${orderId}`);
+  if (!invoiceResult.ok || !invoiceResult.data) {
+    return {
+      ok: false,
+      error: invoiceResult.error?.message || 'Falha ao consultar invoice no ML',
+      temporary: invoiceResult.status === 404 || invoiceResult.error?.category === 'retryable' || invoiceResult.error?.category === 'expected_operational',
+    };
+  }
+
+  return {
+    ok: true,
+    invoiceId: invoiceResult.data.id,
+    status: invoiceResult.data.status,
+  };
+}
+
+export async function baixarXmlInvoiceML(invoiceId: string): Promise<{
+  xml: string | null;
+  error?: string;
+  temporary?: boolean;
+}> {
+  const meResult = await fetchMLResult<any>('/users/me');
+  if (!meResult.ok || !meResult.data?.id) {
+    return {
+      xml: null,
+      error: meResult.error?.message || 'Não foi possível obter seller ID do ML',
+      temporary: meResult.error?.category === 'retryable',
+    };
+  }
+
+  const sellerId = meResult.data.id;
+  const xmlResult = await fetchMLRaw(`/users/${sellerId}/invoices/documents/xml/${invoiceId}/authorized`);
+  if (!xmlResult) return { xml: null, error: 'Falha ao baixar XML do ML', temporary: true };
+
+  if (xmlResult.status !== 200) {
+    return {
+      xml: null,
+      error: `ML retornou HTTP ${xmlResult.status}: ${xmlResult.body.substring(0, 200)}`,
+      temporary: [404, 408, 409, 424, 429, 500, 502, 503, 504].includes(xmlResult.status),
+    };
+  }
+
+  if (xmlResult.body && xmlResult.body.length > 50) {
+    return { xml: xmlResult.body };
+  }
+  return { xml: null, error: 'XML vazio ou inválido retornado pelo ML' };
+}
+
+export async function buscarXmlDaNF(orderId: string): Promise<{
+  xml: string | null;
+  error?: string;
+  status_code_ml?: number | null;
+  error_code_ml?: string | null;
+  temporary?: boolean;
+}> {
   try {
-    const me = await fetchML<any>('/users/me');
-    if (!me?.id) {
-      return { xml: null, error: 'Não foi possível obter seller ID do ML' };
+    const meResult = await fetchMLResult<any>('/users/me');
+    if (!meResult.ok || !meResult.data?.id) {
+      return {
+        xml: null,
+        error: meResult.error?.message || 'Não foi possível obter seller ID do ML',
+        status_code_ml: meResult.status,
+        error_code_ml: meResult.error?.code || null,
+        temporary: meResult.error?.category === 'retryable',
+      };
     }
 
-    const sellerId = me.id;
+    const sellerId = meResult.data.id;
     console.log(`[buscarXmlDaNF] Buscando invoice pelo order_id=${orderId}`);
 
-    const invoiceResult = await fetchML<any>(`/users/${sellerId}/invoices/orders/${orderId}`);
-    if (!invoiceResult) {
-      return { xml: null, error: 'NF não encontrada para este pedido no ML' };
+    const invoiceResult = await fetchMLResult<any>(`/users/${sellerId}/invoices/orders/${orderId}`);
+    if (!invoiceResult.ok || !invoiceResult.data) {
+      const notFound = invoiceResult.status === 404;
+      return {
+        xml: null,
+        error: notFound ? 'NF ainda não disponível no ML para este pedido' : (invoiceResult.error?.message || 'Falha ao consultar invoice no ML'),
+        status_code_ml: invoiceResult.status,
+        error_code_ml: invoiceResult.error?.code || null,
+        temporary: notFound || invoiceResult.error?.category === 'retryable' || invoiceResult.error?.category === 'expected_operational',
+      };
     }
 
-    const invoiceId = invoiceResult.id;
+    const invoiceId = invoiceResult.data.id;
     if (!invoiceId) {
-      return { xml: null, error: 'Invoice ID não retornado pelo ML' };
+      return { xml: null, error: 'Invoice ID não retornado pelo ML', status_code_ml: invoiceResult.status, temporary: true };
     }
 
-    console.log(`[buscarXmlDaNF] Invoice encontrada: id=${invoiceId}, status=${invoiceResult.status}`);
+    console.log(`[buscarXmlDaNF] Invoice encontrada: id=${invoiceId}, status=${invoiceResult.data.status}`);
 
-    if (invoiceResult.status !== 'authorized') {
-      return { xml: null, error: `NF ainda não autorizada (status: ${invoiceResult.status})` };
+    if (invoiceResult.data.status !== 'authorized') {
+      return { xml: null, error: `NF ainda não autorizada (status: ${invoiceResult.data.status})`, temporary: true };
     }
 
     console.log(`[buscarXmlDaNF] Baixando XML pelo invoice_id=${invoiceId}`);
 
     const xmlResult = await fetchMLRaw(`/users/${sellerId}/invoices/documents/xml/${invoiceId}/authorized`);
     if (!xmlResult) {
-      return { xml: null, error: 'Falha ao baixar XML do ML' };
+      return { xml: null, error: 'Falha ao baixar XML do ML', temporary: true };
     }
 
     if (xmlResult.status !== 200) {
-      return { xml: null, error: `ML retornou HTTP ${xmlResult.status}: ${xmlResult.body.substring(0, 200)}` };
+      return {
+        xml: null,
+        error: `ML retornou HTTP ${xmlResult.status}: ${xmlResult.body.substring(0, 200)}`,
+        status_code_ml: xmlResult.status,
+        temporary: [404, 408, 409, 424, 429, 500, 502, 503, 504].includes(xmlResult.status),
+      };
     }
 
     if (xmlResult.body && xmlResult.body.length > 50) {
@@ -623,7 +768,7 @@ export async function buscarXmlDaNF(orderId: string): Promise<{ xml: string | nu
 
     return { xml: null, error: 'XML vazio ou inválido retornado pelo ML' };
   } catch (err: any) {
-    return { xml: null, error: `Exceção: ${err?.message || err}` };
+    return { xml: null, error: `Exceção: ${err?.message || err}`, temporary: true };
   }
 }
 

@@ -1,0 +1,15 @@
+{
+  "generated_at_utc": "2026-05-22T21:17:18.300Z",
+  "apply_stats": {
+    "attempted": 1,
+    "switched": 1,
+    "switched_with_patch": 0,
+    "blocked_manual": 5,
+    "failures": 0
+  },
+  "failures_count": 4,
+  "recheck": {
+    "critical_domain_diff": 5,
+    "same_domain_diff": 0
+  }
+}

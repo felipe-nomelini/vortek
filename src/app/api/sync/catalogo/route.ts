@@ -154,7 +154,7 @@ export async function POST(req: Request) {
             gtin: item.ean11 || '',
             ncm: item.ncm || null,
             cest: item.cest || null,
-            origem_fiscal: item.origem || '0',
+            origem_fiscal: item.origem || null,
             origem_uf: item.origem_faturamento || null,
             categoria: item.categoria_nome || null,
             custo: item.preco_crossdocking || item.preco_normal || 0,

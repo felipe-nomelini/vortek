@@ -1,0 +1,16 @@
+[
+  {
+    "ml_item_id": "MLB6565445396",
+    "sku_ml": "HYX86941",
+    "before_status": "ok",
+    "after_status": "ok",
+    "attempts": 1
+  },
+  {
+    "ml_item_id": "MLB6565393528",
+    "sku_ml": "HYX86940",
+    "before_status": "ok",
+    "after_status": "ok",
+    "attempts": 1
+  }
+]

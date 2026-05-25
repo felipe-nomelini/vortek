@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { getItemFiscalData, checkCanInvoice, searchItemBySellerSku, updateListingFiscalData } from '@/services/mercadolibre';
+import { fiscalStrictSchema, mapOriginType, normalizeNcm } from '@/lib/fiscal-strict';
 
 export async function POST(req: Request) {
   try {
@@ -37,25 +38,30 @@ export async function POST(req: Request) {
       });
     }
 
-    if (!prod.ncm) {
-      return NextResponse.json({ success: false, error: 'Produto sem NCM', sku }, { status: 200 });
+    const parsed = fiscalStrictSchema.safeParse({
+      ncm: prod.ncm,
+      origem_fiscal: prod.origem_fiscal,
+      csosn: prod.csosn,
+      sku,
+      title: prod.nome,
+    });
+    if (!parsed.success) {
+      return NextResponse.json({ success: false, error: parsed.error.issues.map((i) => i.message).join(' | '), sku }, { status: 422 });
     }
 
-    const originDetail = prod.origem_fiscal || '0';
-    const originType = originDetail === '3' || originDetail === '5' || originDetail === '8' ? 'imported'
-      : originDetail === '1' ? 'manufacturer'
-      : 'reseller';
+    const originDetail = parsed.data.origem_fiscal;
+    const originType = mapOriginType(originDetail);
 
     const fiscalResult = await updateListingFiscalData({
       itemId: mlItemId,
       sku,
       title: prod.nome,
-      ncm: prod.ncm,
+      ncm: normalizeNcm(parsed.data.ncm),
       origin_type: originType,
       origin_detail: originDetail,
       gtin: prod.gtin || undefined,
       cest: prod.cest || undefined,
-      csosn: prod.csosn || undefined,
+      csosn: parsed.data.csosn,
       net_weight: prod.peso_liq || undefined,
       gross_weight: prod.peso_bruto || undefined,
       measurement_unit: 'UN',

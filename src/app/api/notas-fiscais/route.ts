@@ -27,7 +27,8 @@ function isNfeCanceled(value: string | null | undefined): boolean {
 
 function mapStatus(row: { nota_fiscal_emitida: boolean; nota_fiscal_numero: string | null; nfe_status: string | null }): NFStatus {
   if (isNfeCanceled(row.nfe_status)) return 'cancelada';
-  if (row.nota_fiscal_emitida || !!row.nota_fiscal_numero) return 'emitida';
+  const nfe = String(row.nfe_status || '').toLowerCase();
+  if (row.nota_fiscal_emitida && (nfe === 'authorized' || nfe === 'autorizada')) return 'emitida';
   return 'pendente';
 }
 
@@ -65,7 +66,7 @@ export async function GET(request: Request) {
     let countQuery = supabase.from('pedidos').select('id', { count: 'exact', head: true });
     let dataQuery = supabase
       .from('pedidos')
-      .select('id, numero, ml_order_id, contato_nome, contato_documento, data, nota_fiscal_numero, nota_fiscal_emitida, nfe_status, nfe_chave, nfe_danfe_url, total')
+      .select('id, numero, ml_order_id, ml_pack_id, contato_nome, contato_documento, data, nota_fiscal_numero, nota_fiscal_emitida, nfe_status, nfe_chave, nfe_danfe_url, total')
       .order(sortBy, { ascending: sortOrder === 'asc', nullsFirst: false })
       .range(from, to);
 
@@ -74,6 +75,7 @@ export async function GET(request: Request) {
         `contato_nome.ilike.%${search}%`,
         `nota_fiscal_numero.ilike.%${search}%`,
         `ml_order_id.ilike.%${search}%`,
+        `ml_pack_id.ilike.%${search}%`,
       ];
 
       if (/^\d+$/.test(search)) {
@@ -89,8 +91,8 @@ export async function GET(request: Request) {
       countQuery = countQuery.or('nfe_status.eq.cancelada,nfe_status.eq.cancelled,nfe_status.eq.canceled');
       dataQuery = dataQuery.or('nfe_status.eq.cancelada,nfe_status.eq.cancelled,nfe_status.eq.canceled');
     } else if (status === 'emitida') {
-      countQuery = countQuery.eq('nota_fiscal_emitida', true).not('nfe_status', 'in', '("cancelada","cancelled","canceled")');
-      dataQuery = dataQuery.eq('nota_fiscal_emitida', true).not('nfe_status', 'in', '("cancelada","cancelled","canceled")');
+      countQuery = countQuery.eq('nota_fiscal_emitida', true).or('nfe_status.eq.authorized,nfe_status.eq.autorizada');
+      dataQuery = dataQuery.eq('nota_fiscal_emitida', true).or('nfe_status.eq.authorized,nfe_status.eq.autorizada');
     } else if (status === 'pendente') {
       countQuery = countQuery.eq('nota_fiscal_emitida', false);
       dataQuery = dataQuery.eq('nota_fiscal_emitida', false);
@@ -143,10 +145,12 @@ export async function GET(request: Request) {
       valor: Number(row.total || 0),
       status: mapStatus(row),
       ml_order_id: row.ml_order_id,
+      ml_pack_id: (row as any).ml_pack_id || null,
       contato_documento: row.contato_documento || null,
       nfe_chave: row.nfe_chave || null,
       nfe_danfe_url: row.nfe_danfe_url || null,
-      danfe_available: !!row.nota_fiscal_numero,
+      nfe_status: row.nfe_status || null,
+      danfe_available: !!row.nfe_danfe_url,
     }));
 
     return NextResponse.json({

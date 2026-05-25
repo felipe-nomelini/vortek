@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useCallback, useEffect } from 'react';
+import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import {
   Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic, Divider,
 } from 'antd';
@@ -106,6 +106,8 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     ml_shipment_id: item.ml_shipment_id,
     ml_invoice_reported: item.ml_invoice_reported || false,
     ml_order_id: item.ml_order_id,
+    ml_pack_id: item.ml_pack_id,
+    nfe_status: item.nfe_status,
   };
 }
 
@@ -139,8 +141,10 @@ export default function PedidosPage() {
   const [trackingOrderStatus, setTrackingOrderStatus] = useState<OrderStatus>('aberto');
 
   const [dsliteProgressOpen, setDsliteProgressOpen] = useState(false);
+  const dslitePollRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [dsliteSteps, setDsliteSteps] = useState<ProgressStep[]>([
-    { label: 'Buscando NF no Mercado Livre', status: 'pending' },
+    { label: 'Emitindo NF no Mercado Livre', status: 'pending' },
+    { label: 'Buscando NF/XML no Mercado Livre', status: 'pending' },
     { label: 'Buscando produto no catálogo DSLite', status: 'pending' },
     { label: 'Criando pedido na DSLite', status: 'pending' },
     { label: 'Vinculando fornecedor e produtos', status: 'pending' },
@@ -205,9 +209,14 @@ export default function PedidosPage() {
     setPage(1);
   }, [search, statusFilter, dateRange, priceMin, priceMax]);
 
+  useEffect(() => () => {
+    if (dslitePollRef.current) clearTimeout(dslitePollRef.current);
+  }, []);
+
   const criarPedidoDslite = async (order: Order) => {
     const steps: ProgressStep[] = [
-      { label: 'Buscando NF no Mercado Livre', status: 'loading' },
+      { label: 'Emitindo NF no Mercado Livre', status: 'loading' },
+      { label: 'Buscando NF/XML no Mercado Livre', status: 'pending' },
       { label: 'Buscando produto no catálogo DSLite', status: 'pending' },
       { label: 'Criando pedido na DSLite', status: 'pending' },
       { label: 'Informando fornecedor', status: 'pending' },
@@ -218,7 +227,7 @@ export default function PedidosPage() {
     setDsliteProgressOpen(true);
 
     try {
-      const res = await fetch('/api/dslite/pedido', {
+      const startRes = await fetch('/api/dslite/pedido', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -226,108 +235,97 @@ export default function PedidosPage() {
           mlOrderId: order.ml_order_id,
         }),
       });
-      const data = await res.json();
-
-      if (data.success) {
-        const produto = data.data?.produto;
-        const dsid = data.data?.dsid;
-        const etiquetaStatus = data.data?.etiquetaStatus;
-        const etiquetaError = data.data?.etiquetaError;
-        const stepFornecedor = data.data?.steps?.fornecedor;
-        const stepTransportadora = data.data?.steps?.transportadora;
-        const stepEtiqueta = data.data?.steps?.etiqueta;
-        const pendencias: string[] = data.data?.pendencias || [];
-
-        const updatedSteps: ProgressStep[] = [
-          { label: 'Buscando NF no Mercado Livre', status: 'success' },
-          {
-            label: 'Buscando produto no catálogo DSLite',
-            status: 'success',
-            detail: produto ? `${produto.titulo} (ID: ${produto.produtoid})` : 'Produto encontrado'
-          },
-          {
-            label: 'Criando pedido na DSLite',
-            status: 'success',
-            detail: `Pedido Nº ${dsid}`
-          },
-          {
-            label: 'Informando fornecedor',
-            status: stepFornecedor?.status === 'success' ? 'success' : 'warning',
-            detail: stepFornecedor?.message ||
-              (data.data?.fornecedorStatus === 'vinculado'
-                ? 'Fornecedor vinculado com sucesso'
-                : 'Aguardando vinculação manual')
-          },
-          {
-            label: 'Definindo transportadora (Correios)',
-            status: stepTransportadora?.status === 'success' ? 'success' : 'warning',
-            detail: stepTransportadora?.message || data.data?.transportadoraMessage || 'Aguardando definição de transportadora'
-          },
-        ];
-
-        if (etiquetaStatus === 'enviada') {
-          updatedSteps.push({
-            label: 'Enviando etiqueta para DSLite',
-            status: 'success',
-            detail: stepEtiqueta?.message || 'Etiqueta do ML enviada automaticamente'
-          });
-        } else if (etiquetaStatus === 'erro') {
-          updatedSteps.push({
-            label: 'Enviando etiqueta para DSLite',
-            status: 'warning',
-            detail: stepEtiqueta?.message || etiquetaError || 'Etiqueta não disponível no momento'
-          });
-        } else {
-          updatedSteps.push({
-            label: 'Enviando etiqueta para DSLite',
-            status: 'warning',
-            detail: stepEtiqueta?.message || 'Pedido sem envio no ML'
-          });
-        }
-
-        if (pendencias.length > 0 && etiquetaStatus !== 'enviada') {
-          updatedSteps.push({
-            label: 'Pendência operacional',
-            status: 'warning',
-            detail: 'Use "Enviar Etiqueta DSLite" para concluir: ' + pendencias.join(' | '),
-          });
-        }
-
-        setDsliteSteps(updatedSteps);
-        setOrders(prev => prev.map(o =>
-          o.id === order.id ? {
-            ...o,
-            dslite_id: String(dsid),
-            dslite_etiqueta_enviada: etiquetaStatus === 'enviada'
-          } : o
-        ));
-      } else {
-        const is409 = res.status === 409;
-        const errorMsg = data.error || 'Falha ao criar pedido na DSLite';
-        setDsliteSteps(prev => {
-          const updated = [...prev];
-          const firstPending = updated.findIndex(s => s.status === 'pending');
-          const idx = firstPending >= 0 ? firstPending : updated.length - 1;
-          updated[idx] = {
-            label: updated[idx].label,
-            status: 'error',
-            error: is409 ? 'NF-e já utilizada no DSLite' : errorMsg,
-            detail: is409
-              ? 'Cancele a NF-e atual no painel do Mercado Livre e emita uma nova para prosseguir.'
-              : undefined,
-          };
-          return updated;
-        });
+      const startData = await startRes.json();
+      if (!startRes.ok || !startData?.jobId) {
+        throw new Error(startData?.error || 'Falha ao iniciar criação do pedido DSLite');
       }
+
+      const poll = async () => {
+        const res = await fetch(`/api/dslite/pedido/status?jobId=${encodeURIComponent(startData.jobId)}`);
+        const data = await res.json();
+        if (!res.ok || !data?.success) {
+          throw new Error(data?.error || 'Falha ao consultar status do job DSLite');
+        }
+
+        const mapped: ProgressStep[] = (data.steps || []).map((s: any) => ({
+          label: s.label,
+          status: s.status,
+          detail: s.detail,
+          error: s.error,
+        }));
+        if (mapped.length) setDsliteSteps(mapped);
+
+        const state = data.state as string;
+        if (state === 'running') {
+          dslitePollRef.current = setTimeout(() => {
+            poll().catch((err) => {
+              setDsliteSteps((prev) => {
+                const updated = [...prev];
+                const firstPending = updated.findIndex(s => s.status === 'pending' || s.status === 'loading');
+                const idx = firstPending >= 0 ? firstPending : updated.length - 1;
+                updated[idx] = { ...updated[idx], status: 'error', error: err.message || 'Erro ao acompanhar job' };
+                return updated;
+              });
+            });
+          }, 1500);
+          return;
+        }
+
+        if (state === 'success' || state === 'warning') {
+          const payload = data.data || {};
+          if (payload.dsid) {
+            setOrders(prev => prev.map(o =>
+              o.id === order.id ? {
+                ...o,
+                dslite_id: String(payload.dsid),
+                dslite_etiqueta_enviada: payload.etiquetaStatus === 'enviada'
+              } : o
+            ));
+          }
+          return;
+        }
+
+        if (state === 'error') {
+          setDsliteSteps((prev) => {
+            const updated = [...prev];
+            const idx = updated.findIndex(s => s.status === 'error');
+            if (idx === -1) {
+              const fallback = updated.findIndex(s => s.status === 'loading');
+              const pos = fallback >= 0 ? fallback : updated.length - 1;
+              updated[pos] = { ...updated[pos], status: 'error', error: (data.data?.error || 'Falha ao criar pedido DSLite') };
+            }
+            return updated;
+          });
+        }
+      };
+
+      await poll();
     } catch (err: any) {
       setDsliteSteps(prev => {
         const updated = [...prev];
-        const firstPending = updated.findIndex(s => s.status === 'pending');
+        const firstPending = updated.findIndex(s => s.status === 'pending' || s.status === 'loading');
         const idx = firstPending >= 0 ? firstPending : updated.length - 1;
         updated[idx] = { label: updated[idx].label, status: 'error', error: err.message };
         return updated;
       });
     }
+  };
+
+  const pararPollingDslite = () => {
+    if (dslitePollRef.current) {
+      clearTimeout(dslitePollRef.current);
+      dslitePollRef.current = null;
+    }
+  };
+
+  const fecharModalDslite = () => {
+    pararPollingDslite();
+    setDsliteProgressOpen(false);
+  };
+
+  const tentarNovamenteDslite = () => {
+    pararPollingDslite();
+    setDsliteProgressOpen(false);
   };
 
   const enviarEtiquetaAutomatica = async (order: Order) => {
@@ -403,16 +401,25 @@ export default function PedidosPage() {
     {
       title: 'Número', dataIndex: 'numero', key: 'numero', width: 100,
       sorter: (a, b) => a.numero - b.numero,
-      render: (num: number) => (
+      render: (num: number, record: Order) => (
         <a
-          href={`https://www.mercadolivre.com.br/vendas/${num}/detalhe`}
+          href={`https://www.mercadolivre.com.br/vendas/${record.ml_pack_id || num}/detalhe`}
           target="_blank"
           rel="noopener noreferrer"
+          title={`Order ID: ${record.ml_order_id || '—'} | Pack ID: ${record.ml_pack_id || '—'}`}
           style={{ fontFamily: 'monospace', color: '#1677ff', textDecoration: 'none' }}
         >
           #{String(num).padStart(6, '0')}
         </a>
       ),
+    },
+    {
+      title: 'Pedido ML (Order ID)', dataIndex: 'ml_order_id', key: 'ml_order_id', width: 180,
+      render: (v: string | null | undefined) => <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
+    },
+    {
+      title: 'Pack ML (Pack ID)', dataIndex: 'ml_pack_id', key: 'ml_pack_id', width: 180,
+      render: (v: string | null | undefined) => <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
     },
     {
       title: 'Data', dataIndex: 'data', key: 'data', width: 160,
@@ -685,10 +692,11 @@ export default function PedidosPage() {
         title="Criando Pedido DSLite"
         steps={dsliteSteps}
         onClose={() => {
-          setDsliteProgressOpen(false);
+          fecharModalDslite();
           fetchData();
         }}
-        showCloseButton={dsliteSteps.some(s => s.status === 'error' || s.status === 'success')}
+        onCancel={tentarNovamenteDslite}
+        showCloseButton={dsliteSteps.some(s => s.status === 'error' || s.status === 'success' || s.status === 'warning')}
       />
       <ProgressModal
         open={etiquetaProgressOpen}

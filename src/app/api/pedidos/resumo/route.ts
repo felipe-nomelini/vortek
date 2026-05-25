@@ -17,7 +17,7 @@ export async function GET(request: Request) {
   // Build base query
   function applyFilters(query: any) {
     if (search) {
-      query = query.or(`numero.ilike.%${search}%,contato_nome.ilike.%${search}%`);
+      query = query.or(`numero.ilike.%${search}%,contato_nome.ilike.%${search}%,ml_order_id.ilike.%${search}%,ml_pack_id.ilike.%${search}%`);
     }
     if (status) {
       query = query.eq('situacao', status);

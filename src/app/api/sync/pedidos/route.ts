@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { fetchML, fetchMLResult, getMLAuthDiagnostics, type MLRequestResult } from '@/services/integration';
 import { calculateOrderProfit } from '@/services/orders';
+import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import type { Database } from '@/types/database';
 
 export const maxDuration = 300;
@@ -295,6 +296,7 @@ async function processOrder(params: {
   let nfeChave: string | null = null;
   let nfeDanfeUrl: string | null = null;
   let nfeStatus: string | undefined;
+  const mlPackId = detail?.pack_id ? String(detail.pack_id) : (o.pack_id ? String(o.pack_id) : null);
 
   try {
     const invoiceFetch = await fetchMLResultWithRetry<any>(`/users/${meId}/invoices/orders/${o.id}`);
@@ -306,12 +308,31 @@ async function processOrder(params: {
       notaFiscalNumero = String(invoice.invoice_number);
       nfeChave = invoice.attributes?.invoice_key || null;
       nfeStatus = normalizeNfeStatus(invoice.status);
+      await registrarEventoNfAuditoria({
+        mlOrderId: String(o.id),
+        mlPackId,
+        evento: 'retorno_ml',
+        respostaMl: {
+          invoice_id: invoice.id || null,
+          invoice_number: invoice.invoice_number || null,
+          status: invoice.status || null,
+          invoice_key: nfeChave,
+        },
+        statusResultante: nfeStatus,
+      });
       if (nfeStatus === 'autorizada') nfAutorizada++;
       else if (nfeStatus === 'cancelada') nfCancelada++;
       else nfPendente++;
 
       // Baixar DANFE via consultadanfe.com e salvar no Storage
       if (nfeChave) {
+        await registrarEventoNfAuditoria({
+          mlOrderId: String(o.id),
+          mlPackId,
+          evento: 'download_danfe',
+          payloadEnviado: { invoice_key: nfeChave },
+          statusResultante: 'started',
+        });
         const danfeResult = await baixarDanfeConsultaDanfe(nfeChave);
         if (danfeResult.success && danfeResult.pdf && danfeResult.pdf.length > 0) {
           const filePath = `${o.id}/${notaFiscalNumero}.pdf`;
@@ -329,6 +350,16 @@ async function processOrder(params: {
             }
           }
         }
+        await registrarEventoNfAuditoria({
+          mlOrderId: String(o.id),
+          mlPackId,
+          evento: 'download_danfe',
+          respostaMl: {
+            success: Boolean(nfeDanfeUrl),
+            message: danfeResult.mensagem || null,
+          },
+          statusResultante: nfeDanfeUrl ? 'success' : 'failed',
+        });
       }
     } else if (!invoiceResult.ok && invoiceResult.error?.status === 404) {
       semNf++;
@@ -392,6 +423,7 @@ async function processOrder(params: {
 
   const { error } = await serviceClient.from('pedidos').upsert({
     ml_order_id: String(o.id),
+    ml_pack_id: mlPackId,
     numero: o.id,
     numero_loja: String(o.id),
     data: o.date_created,
@@ -404,7 +436,7 @@ async function processOrder(params: {
     nfe_chave: nfeChave,
     nfe_status: nfeStatus,
     nfe_danfe_url: nfeDanfeUrl,
-    nota_fiscal_emitida: !!notaFiscalNumero,
+    nota_fiscal_emitida: nfeStatus === 'autorizada' && !!nfeChave && !!nfeDanfeUrl,
     ml_shipment_id: mlShipmentId,
     ml_claim_id: mlClaimId,
     ml_claim_status: mlClaimStatus,

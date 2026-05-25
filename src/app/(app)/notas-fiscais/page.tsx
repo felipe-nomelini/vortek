@@ -23,6 +23,8 @@ interface NotaFiscalRow {
   valor: number;
   status: NFStatus;
   ml_order_id: string | null;
+  ml_pack_id: string | null;
+  nfe_status?: string | null;
   contato_documento?: string | null;
   nfe_chave?: string | null;
   nfe_danfe_url?: string | null;
@@ -205,16 +207,31 @@ export default function NotasFiscaisPage() {
       key: 'pedido',
       width: 110,
       sorter: true,
-      render: (v: number) => (
+      render: (v: number, row: NotaFiscalRow) => (
         <a
-          href={`https://www.mercadolivre.com.br/vendas/${v}/detalhe`}
+          href={`https://www.mercadolivre.com.br/vendas/${row.ml_pack_id || v}/detalhe`}
           target="_blank"
           rel="noopener noreferrer"
+          title={`Order ID: ${row.ml_order_id || '—'} | Pack ID: ${row.ml_pack_id || '—'}`}
           style={{ fontFamily: 'monospace', color: '#1677ff', textDecoration: 'none' }}
         >
           #{String(v).padStart(6, '0')}
         </a>
       ),
+    },
+    {
+      title: 'Pedido ML (Order ID)',
+      dataIndex: 'ml_order_id',
+      key: 'ml_order_id',
+      width: 180,
+      render: (v: string | null) => <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
+    },
+    {
+      title: 'Pack ML (Pack ID)',
+      dataIndex: 'ml_pack_id',
+      key: 'ml_pack_id',
+      width: 180,
+      render: (v: string | null) => <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
     },
     {
       title: 'Número',
@@ -276,6 +293,13 @@ export default function NotasFiscaisPage() {
       width: 120,
       sorter: true,
       render: (s: NFStatus) => <Tag color={statusColor[s]}>{s.charAt(0).toUpperCase() + s.slice(1)}</Tag>,
+    },
+    {
+      title: 'Status Técnico',
+      dataIndex: 'nfe_status',
+      key: 'nfe_status',
+      width: 140,
+      render: (v: string | null | undefined) => <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
     },
     {
       title: 'Ações',

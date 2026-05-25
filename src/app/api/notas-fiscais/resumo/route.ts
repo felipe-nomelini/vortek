@@ -14,7 +14,8 @@ function isNfeCanceled(value: string | null | undefined): boolean {
 
 function mapStatus(row: { nota_fiscal_emitida: boolean; nota_fiscal_numero: string | null; nfe_status: string | null }): NFStatus {
   if (isNfeCanceled(row.nfe_status)) return 'cancelada';
-  if (row.nota_fiscal_emitida || !!row.nota_fiscal_numero) return 'emitida';
+  const nfe = String(row.nfe_status || '').toLowerCase();
+  if (row.nota_fiscal_emitida && (nfe === 'authorized' || nfe === 'autorizada')) return 'emitida';
   return 'pendente';
 }
 
@@ -40,13 +41,14 @@ export async function GET(request: Request) {
 
     let query = supabase
       .from('pedidos')
-      .select('nota_fiscal_numero, nota_fiscal_emitida, nfe_status, total, data, contato_nome, ml_order_id, numero');
+      .select('nota_fiscal_numero, nota_fiscal_emitida, nfe_status, total, data, contato_nome, ml_order_id, ml_pack_id, numero');
 
     if (search) {
       const filters = [
         `contato_nome.ilike.%${search}%`,
         `nota_fiscal_numero.ilike.%${search}%`,
         `ml_order_id.ilike.%${search}%`,
+        `ml_pack_id.ilike.%${search}%`,
       ];
 
       if (/^\d+$/.test(search)) {
@@ -58,7 +60,7 @@ export async function GET(request: Request) {
     if (status === 'cancelada') {
       query = query.or('nfe_status.eq.cancelada,nfe_status.eq.cancelled,nfe_status.eq.canceled');
     } else if (status === 'emitida') {
-      query = query.eq('nota_fiscal_emitida', true).not('nfe_status', 'in', '("cancelada","cancelled","canceled")');
+      query = query.eq('nota_fiscal_emitida', true).or('nfe_status.eq.authorized,nfe_status.eq.autorizada');
     } else if (status === 'pendente') {
       query = query.eq('nota_fiscal_emitida', false);
     }

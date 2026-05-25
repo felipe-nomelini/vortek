@@ -3,6 +3,7 @@ import { createListing, getCategoryAttributes, setItemQuantityPricing, updateLis
 import { fetchML } from '@/services/integration';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { createServiceClient } from '@/lib/supabase';
+import { fiscalStrictSchema, mapOriginType, normalizeNcm } from '@/lib/fiscal-strict';
 
 type StepResult = { ok: boolean; error?: string };
 type AttrInput = { id: string; value_name?: string; value_id?: string };
@@ -356,26 +357,33 @@ export async function POST(req: Request) {
     }, { onConflict: 'ml_item_id' });
 
     const fiscalErrors: string[] = [];
-    const ncmFinal = fiscal?.ncm || produto.ncm;
-    const gtinFinal = fiscal?.gtin || produto.gtin;
-    const cestFinal = fiscal?.cest || produto.cest;
-    const csosnFinal = fiscal?.csosn || produto.csosn;
-    const origemFinal = fiscal?.origem_fiscal || produto.origem_fiscal || '0';
+    const ncmFinal = fiscal?.ncm ?? produto.ncm;
+    const gtinFinal = fiscal?.gtin ?? produto.gtin;
+    const cestFinal = fiscal?.cest ?? produto.cest;
+    const csosnFinal = fiscal?.csosn ?? produto.csosn;
+    const origemFinal = fiscal?.origem_fiscal ?? produto.origem_fiscal;
 
-    if (ncmFinal) {
-      const originType = origemFinal === '3' || origemFinal === '5' || origemFinal === '8' ? 'imported' : origemFinal === '1' ? 'manufacturer' : 'reseller';
-      const csosn = (csosnFinal === '101' || !csosnFinal) ? '102' : csosnFinal;
+    const fiscalParsed = fiscalStrictSchema.safeParse({
+      ncm: ncmFinal,
+      origem_fiscal: origemFinal,
+      csosn: csosnFinal,
+      sku: produto.sku,
+      title: produto.nome,
+    });
+
+    if (fiscalParsed.success) {
+      const originType = mapOriginType(fiscalParsed.data.origem_fiscal);
 
       const fiscalResult = await updateListingFiscalData({
         itemId: result.id,
-        sku: produto.sku,
-        title: produto.nome,
-        ncm: ncmFinal,
+        sku: fiscalParsed.data.sku,
+        title: fiscalParsed.data.title,
+        ncm: normalizeNcm(fiscalParsed.data.ncm),
         origin_type: originType,
-        origin_detail: origemFinal,
+        origin_detail: fiscalParsed.data.origem_fiscal,
         gtin: gtinFinal || undefined,
         cest: cestFinal || undefined,
-        csosn,
+        csosn: fiscalParsed.data.csosn,
         net_weight: produto.peso_liq || undefined,
         gross_weight: produto.peso_bruto || undefined,
         measurement_unit: 'UN',
@@ -384,12 +392,18 @@ export async function POST(req: Request) {
 
       if (!fiscalResult.success) fiscalErrors.push(`${fiscalResult.step}: ${fiscalResult.error}`);
     } else {
-      warnings.push('Produto sem NCM cadastrado. Dados fiscais não enviados.');
+      steps.fiscal = { ok: false, error: fiscalParsed.error.issues.map((i) => i.message).join(' | ') };
+      return NextResponse.json({
+        success: false,
+        steps,
+        warnings,
+        missing_required_attributes: missingRequiredAttributes,
+        error: 'Dados fiscais obrigatórios inválidos. Emissão fiscal bloqueada.',
+      }, { status: 422 });
     }
 
     if (fiscalErrors.length === 0) {
-      steps.fiscal.ok = Boolean(ncmFinal);
-      if (!ncmFinal) steps.fiscal = { ok: false, error: 'Fiscal não enviado por ausência de NCM' };
+      steps.fiscal.ok = true;
     } else {
       steps.fiscal = { ok: false, error: fiscalErrors.join(' | ') };
     }

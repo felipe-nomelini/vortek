@@ -3,6 +3,7 @@ import { createServiceClient } from '@/lib/supabase';
 import { fetchML, buscarXmlDaNF } from '@/services/integration';
 import { calculateOrderProfit } from '@/services/orders';
 import { criarPedidoDropshipping } from '@/services/dslite';
+import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 
 function normalizeNfeStatus(status: string | null | undefined): string {
   const normalized = String(status || '').toLowerCase();
@@ -48,6 +49,7 @@ export async function POST(request: Request) {
           total: order.total_amount || 0,
           situacao: order.status === 'paid' ? 'aberto' : 'atendido' as any,
           ml_order_id: String(order.id || ''),
+          ml_pack_id: order.pack_id ? String(order.pack_id) : null,
           lucro,
           rastreio,
         } as any;
@@ -137,22 +139,66 @@ export async function POST(request: Request) {
     if (topic === 'invoices') {
       const invoice = await fetchML<any>(resourcePath);
       if (invoice?.order_id) {
+        const { data: pedido } = await serviceClient
+          .from('pedidos')
+          .select('id, ml_pack_id')
+          .eq('ml_order_id', String(invoice.order_id))
+          .maybeSingle();
+        const normalizedStatus = normalizeNfeStatus(invoice.status);
+        const isAuthorized = normalizedStatus === 'autorizada';
+        const invoiceKey = invoice.key || invoice.attributes?.invoice_key || null;
+
+        await registrarEventoNfAuditoria({
+          pedidoId: pedido?.id || null,
+          mlOrderId: String(invoice.order_id),
+          mlPackId: pedido?.ml_pack_id || null,
+          evento: 'retorno_ml',
+          respostaMl: {
+            invoice_id: invoice.id || null,
+            invoice_number: invoice.number || invoice.invoice_number || null,
+            status: invoice.status || null,
+            invoice_key: invoiceKey,
+          },
+          statusResultante: normalizedStatus,
+        });
+
         // Tenta baixar o XML se a NF estiver autorizada
         let nfeXml: string | null = null;
-        if (invoice.status === 'authorized') {
+        if (isAuthorized) {
+          await registrarEventoNfAuditoria({
+            pedidoId: pedido?.id || null,
+            mlOrderId: String(invoice.order_id),
+            mlPackId: pedido?.ml_pack_id || null,
+            evento: 'download_xml',
+            payloadEnviado: { invoice_id: invoice.id || null },
+            statusResultante: 'started',
+          });
           const xmlResult = await buscarXmlDaNF(String(invoice.order_id));
           if (xmlResult.xml) {
             nfeXml = xmlResult.xml;
           }
+          await registrarEventoNfAuditoria({
+            pedidoId: pedido?.id || null,
+            mlOrderId: String(invoice.order_id),
+            mlPackId: pedido?.ml_pack_id || null,
+            evento: 'download_xml',
+            respostaMl: {
+              status_code_ml: xmlResult.status_code_ml ?? null,
+              error_code_ml: xmlResult.error_code_ml ?? null,
+              has_xml: Boolean(xmlResult.xml),
+              error: xmlResult.error || null,
+            },
+            statusResultante: xmlResult.xml ? 'success' : 'failed',
+          });
         }
 
         await serviceClient
           .from('pedidos')
           .update({
-            nota_fiscal_numero: invoice.number || invoice.id,
-            nota_fiscal_emitida: true,
-            nfe_status: normalizeNfeStatus(invoice.status),
-            nfe_chave: invoice.key || invoice.attributes?.invoice_key || null,
+            nota_fiscal_numero: invoice.number || invoice.invoice_number || invoice.id,
+            nota_fiscal_emitida: isAuthorized && !!invoiceKey && !!nfeXml,
+            nfe_status: normalizedStatus,
+            nfe_chave: invoiceKey,
             ...(nfeXml ? { nfe_xml: nfeXml } : {}),
           })
           .eq('ml_order_id', String(invoice.order_id));

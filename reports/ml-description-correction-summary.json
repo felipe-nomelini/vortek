@@ -1,0 +1,18 @@
+{
+  "generated_at_utc": "2026-05-22T22:16:43.008Z",
+  "total_target_count": 2,
+  "item_file": "reports/ml-description-correction-non-catalog-item-ids.txt",
+  "success_count": 2,
+  "failure_count": 0,
+  "skip_count": 0,
+  "apply_stats": {
+    "linked_updated": 0,
+    "descriptions_updated": 2,
+    "titles_updated": 0,
+    "brands_updated": 0,
+    "gtins_updated": 0,
+    "skipped_manual_conflict": 0,
+    "skipped_no_local_value": 0,
+    "api_failures": 0
+  }
+}

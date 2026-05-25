@@ -413,6 +413,7 @@ export type Database = {
           ml_invoice_id: string | null
           ml_invoice_reported: boolean
           ml_order_id: string | null
+          ml_pack_id: string | null
           ml_shipment_id: string | null
           nfe_chave: string | null
           nfe_danfe_url: string | null
@@ -446,6 +447,7 @@ export type Database = {
           ml_invoice_id?: string | null
           ml_invoice_reported?: boolean
           ml_order_id?: string | null
+          ml_pack_id?: string | null
           ml_shipment_id?: string | null
           nfe_chave?: string | null
           nfe_danfe_url?: string | null
@@ -479,6 +481,7 @@ export type Database = {
           ml_invoice_id?: string | null
           ml_invoice_reported?: boolean
           ml_order_id?: string | null
+          ml_pack_id?: string | null
           ml_shipment_id?: string | null
           nfe_chave?: string | null
           nfe_danfe_url?: string | null
@@ -495,6 +498,50 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      nf_auditoria_eventos: {
+        Row: {
+          created_at: string
+          evento: string
+          id: string
+          ml_order_id: string | null
+          ml_pack_id: string | null
+          payload_enviado: Json | null
+          pedido_id: string | null
+          resposta_ml: Json | null
+          status_resultante: string | null
+        }
+        Insert: {
+          created_at?: string
+          evento: string
+          id?: string
+          ml_order_id?: string | null
+          ml_pack_id?: string | null
+          payload_enviado?: Json | null
+          pedido_id?: string | null
+          resposta_ml?: Json | null
+          status_resultante?: string | null
+        }
+        Update: {
+          created_at?: string
+          evento?: string
+          id?: string
+          ml_order_id?: string | null
+          ml_pack_id?: string | null
+          payload_enviado?: Json | null
+          pedido_id?: string | null
+          resposta_ml?: Json | null
+          status_resultante?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "nf_auditoria_eventos_pedido_id_fkey"
+            columns: ["pedido_id"]
+            isOneToOne: false
+            referencedRelation: "pedidos"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       compras: {
         Row: {

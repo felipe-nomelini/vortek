@@ -54,4 +54,6 @@ export interface Order {
   ml_shipment_id: string | null;
   ml_invoice_reported?: boolean;
   ml_order_id?: string | null;
+  ml_pack_id?: string | null;
+  nfe_status?: string | null;
 }
