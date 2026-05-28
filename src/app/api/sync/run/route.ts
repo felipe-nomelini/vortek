@@ -216,7 +216,7 @@ export async function POST(request: Request) {
 
       const query = buildQuery(task.key, safeBody);
       const payload = buildBody(task.key, task.defaultBody, safeBody);
-      const initialLog = [
+      const initialLog: any[] = [
         {
           event_type: 'manual_dispatch',
           type: 'info',
