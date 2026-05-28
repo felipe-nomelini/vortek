@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { fetchDslite } from '@/services/dslite';
 import { createServiceClient } from '@/lib/supabase';
+import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 
 export const maxDuration = 300;
 
@@ -48,7 +49,6 @@ interface DslitePedidosResponse {
 }
 
 function parseDataCriacao(dataStr: string): string | undefined {
-  // Formato: "DD/MM/YYYY HH:mm:ss"
   try {
     const [datePart, timePart] = dataStr.split(' ');
     const [day, month, year] = datePart.split('/');
@@ -58,13 +58,49 @@ function parseDataCriacao(dataStr: string): string | undefined {
   }
 }
 
+function normalizeNfeKey(value: unknown): string {
+  return String(value || '').replace(/\D/g, '');
+}
+
 export async function POST(request: Request) {
+  const startedAt = Date.now();
   const apiKey = request.headers.get('x-api-key') || '';
   if (!apiKey || apiKey !== process.env.API_SECRET_KEY) {
     return NextResponse.json({ error: 'API key inválida' }, { status: 401 });
   }
 
+  let lockOwnerToken = '';
+  let lockAcquired = false;
+  const domain = 'compras:dslite';
+  const errors: Array<{ code: string; message: string; context?: Record<string, unknown> }> = [];
+
   try {
+    const lock = await acquireDomainLock({
+      domain,
+      ownerTask: 'sync_dslite_pedidos_compra',
+      ttlSeconds: 20 * 60,
+      metadata: { source: 'api/sync/dslite-pedidos' },
+    });
+    lockAcquired = lock.acquired;
+    lockOwnerToken = lock.ownerToken;
+
+    if (!lockAcquired) {
+      return NextResponse.json({
+        success: false,
+        domain,
+        job: {
+          key: 'sync_dslite_pedidos_compra',
+          started_at: new Date(startedAt).toISOString(),
+          finished_at: new Date().toISOString(),
+          lock_acquired: false,
+        },
+        cursor: null,
+        records: { seen: 0, inserted: 0, updated: 0, failed: 0 },
+        errors: [{ code: 'domain_lock_conflict', message: `Domínio ${domain} já está em execução` }],
+        duration: { ms: Date.now() - startedAt },
+      }, { status: 409 });
+    }
+
     const client = createServiceClient();
     const body = await request.json().catch(() => ({}));
     const rawWindowDays = Number(body?.windowDays);
@@ -90,47 +126,43 @@ export async function POST(request: Request) {
     }
 
     let page = 1;
-    let totalPedidos = 0;
-    let inseridos = 0;
-    let atualizados = 0;
-    let erros = 0;
-    let pedidosVinculadosPorNfe = 0;
-    let pedidosSemNfeChave = 0;
-    let vinculoNaoEncontradoNoPedidos = 0;
+    let recordsSeen = 0;
+    let inserted = 0;
+    let updated = 0;
+    let failed = 0;
+    let linkedByNfe = 0;
+    let linkedByNfeFallback = 0;
+    let withoutNfe = 0;
+    let linkNotFound = 0;
+
+    const fallbackNfeMap = new Map<string, string[]>();
+    const { data: pedidosComNfe } = await client
+      .from('pedidos')
+      .select('id, nfe_chave, dslite_id')
+      .not('nfe_chave', 'is', null)
+      .or('dslite_id.is.null,dslite_id.eq.');
+
+    for (const row of pedidosComNfe || []) {
+      const normalized = normalizeNfeKey((row as any)?.nfe_chave);
+      if (!normalized) continue;
+      const list = fallbackNfeMap.get(normalized) || [];
+      list.push(String((row as any).id));
+      fallbackNfeMap.set(normalized, list);
+    }
 
     while (true) {
       const data = await fetchDslite<DslitePedidosResponse>(
-        `/v1/DropShipping?data_criacao_inicial=${dataInicial}&data_criacao_final=${dataFinal}&limit=100&page=${page}`
+        `/v1/DropShipping?data_criacao_inicial=${dataInicial}&data_criacao_final=${dataFinal}&limit=100&page=${page}`,
       );
 
       if (!data?.pedidos?.length) {
-        if (page === 1) {
-          return NextResponse.json({
-            success: true,
-            total: 0,
-            inseridos: 0,
-            atualizados: 0,
-            erros: 0,
-            pedidos_vinculados_por_nfe: 0,
-            pedidos_sem_nfe_chave: 0,
-            vinculo_nao_encontrado_no_pedidos: 0,
-            data_inicial_usada: dataInicial,
-            data_final_usada: dataFinal,
-            window_days: hasExplicitRange ? null : windowDays,
-            message: hasExplicitRange
-              ? 'Nenhum pedido encontrado no período informado'
-              : `Nenhum pedido encontrado nos últimos ${windowDays} dias`,
-          });
-        }
         break;
       }
 
       for (const pedido of data.pedidos) {
-        totalPedidos++;
-
+        recordsSeen += 1;
         try {
           const item = pedido.items?.[0];
-
           const payload = {
             dsid: String(pedido.dsid),
             status: pedido.status,
@@ -158,78 +190,169 @@ export async function POST(request: Request) {
             .maybeSingle();
 
           if (existente?.id) {
-            const { error } = await client
+            const { error: updateError } = await client
               .from('compras')
-              .update(payload)
+              .update(payload as any)
               .eq('id', existente.id);
-            if (error) {
-              console.error(`[sync-dslite-pedidos] Erro ao atualizar compra ${pedido.dsid}:`, error);
-              erros++;
+            if (updateError) {
+              failed += 1;
+              errors.push({
+                code: 'dslite_purchase_update_failed',
+                message: updateError.message,
+                context: { dsid: pedido.dsid },
+              });
             } else {
-              atualizados++;
+              updated += 1;
             }
           } else {
-            const { error } = await client
+            const { error: insertError } = await client
               .from('compras')
-              .insert(payload);
-            if (error) {
-              console.error(`[sync-dslite-pedidos] Erro ao inserir compra ${pedido.dsid}:`, error);
-              erros++;
+              .insert(payload as any);
+            if (insertError) {
+              failed += 1;
+              errors.push({
+                code: 'dslite_purchase_insert_failed',
+                message: insertError.message,
+                context: { dsid: pedido.dsid },
+              });
             } else {
-              inseridos++;
+              inserted += 1;
             }
           }
 
-          // Vincula dsid na tabela pedidos (vendas) pela chave da NF-e
           if (pedido.nf_chave) {
             const { data: vinculados, error: vinculoError } = await client
               .from('pedidos')
               .update({
                 dslite_id: String(pedido.dsid),
                 dslite_status: pedido.status,
-              })
+              } as any)
               .eq('nfe_chave', pedido.nf_chave)
               .select('id');
 
             if (vinculoError) {
-              console.error(`[sync-dslite-pedidos] Erro ao vincular pedido venda para dsid ${pedido.dsid}:`, vinculoError);
+              errors.push({
+                code: 'dslite_link_by_nfe_failed',
+                message: vinculoError.message,
+                context: { dsid: pedido.dsid, nf_chave: pedido.nf_chave },
+              });
+            } else if (Array.isArray(vinculados) && vinculados.length > 0) {
+              linkedByNfe += vinculados.length;
             } else {
-              if (Array.isArray(vinculados) && vinculados.length > 0) {
-                pedidosVinculadosPorNfe += vinculados.length;
+              const normalizedNfe = normalizeNfeKey(pedido.nf_chave);
+              const fallbackIds = normalizedNfe ? (fallbackNfeMap.get(normalizedNfe) || []) : [];
+
+              if (fallbackIds.length > 0) {
+                const { data: fallbackUpdated, error: fallbackError } = await client
+                  .from('pedidos')
+                  .update({
+                    dslite_id: String(pedido.dsid),
+                    dslite_status: pedido.status,
+                  } as any)
+                  .in('id', fallbackIds as any)
+                  .is('dslite_id', null)
+                  .select('id');
+
+                if (fallbackError) {
+                  errors.push({
+                    code: 'dslite_link_by_nfe_fallback_failed',
+                    message: fallbackError.message,
+                    context: { dsid: pedido.dsid, nf_chave: pedido.nf_chave, fallback_ids: fallbackIds },
+                  });
+                  linkNotFound += 1;
+                } else if (Array.isArray(fallbackUpdated) && fallbackUpdated.length > 0) {
+                  linkedByNfe += fallbackUpdated.length;
+                  linkedByNfeFallback += fallbackUpdated.length;
+                  const updatedIds = new Set(fallbackUpdated.map((row: any) => String(row.id)));
+                  fallbackNfeMap.set(
+                    normalizedNfe,
+                    fallbackIds.filter((id) => !updatedIds.has(String(id))),
+                  );
+                } else {
+                  linkNotFound += 1;
+                }
               } else {
-                vinculoNaoEncontradoNoPedidos++;
+                linkNotFound += 1;
               }
-              console.log(`[sync-dslite-pedidos] Vinculado pedido venda com NF ${pedido.nf_chave} ao dsid ${pedido.dsid}`);
             }
           } else {
-            pedidosSemNfeChave++;
+            withoutNfe += 1;
           }
         } catch (err: any) {
-          console.error(`[sync-dslite-pedidos] Erro no pedido ${pedido.dsid}:`, err);
-          erros++;
+          failed += 1;
+          errors.push({
+            code: 'dslite_purchase_processing_failed',
+            message: err?.message || 'Falha ao processar pedido DSLite',
+            context: { dsid: pedido.dsid },
+          });
         }
       }
 
       const totalPaginas = Math.ceil((data.detalhesConsulta?.totalRegistros || 0) / (data.detalhesConsulta?.limit || 100));
       if (page >= totalPaginas) break;
-      page++;
+      page += 1;
     }
 
     return NextResponse.json({
-      success: true,
-      total: totalPedidos,
-      inseridos,
-      atualizados,
-      erros,
-      pedidos_vinculados_por_nfe: pedidosVinculadosPorNfe,
-      pedidos_sem_nfe_chave: pedidosSemNfeChave,
-      vinculo_nao_encontrado_no_pedidos: vinculoNaoEncontradoNoPedidos,
+      success: errors.length === 0,
+      domain,
+      job: {
+        key: 'sync_dslite_pedidos_compra',
+        started_at: new Date(startedAt).toISOString(),
+        finished_at: new Date().toISOString(),
+        lock_acquired: true,
+      },
+      cursor: null,
+      records: {
+        seen: recordsSeen,
+        inserted,
+        updated,
+        linked_by_nfe: linkedByNfe,
+        linked_by_nfe_fallback: linkedByNfeFallback,
+        without_nfe: withoutNfe,
+        link_not_found: linkNotFound,
+        failed,
+      },
+      errors,
+      duration: { ms: Date.now() - startedAt },
+      // Compatibilidade
+      total: recordsSeen,
+      inseridos: inserted,
+      atualizados: updated,
+      erros: failed,
+      pedidos_vinculados_por_nfe: linkedByNfe,
+      pedidos_vinculados_por_nfe_fallback: linkedByNfeFallback,
+      pedidos_sem_nfe_chave: withoutNfe,
+      vinculo_nao_encontrado_no_pedidos: linkNotFound,
       data_inicial_usada: dataInicial,
       data_final_usada: dataFinal,
       window_days: hasExplicitRange ? null : windowDays,
     });
   } catch (err: any) {
-    console.error(`[sync-dslite-pedidos] Erro geral:`, err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    errors.push({
+      code: 'dslite_pedidos_sync_unexpected_error',
+      message: err?.message || 'Erro inesperado no sync DSLite de pedidos de compra',
+    });
+    return NextResponse.json({
+      success: false,
+      domain,
+      job: {
+        key: 'sync_dslite_pedidos_compra',
+        started_at: new Date(startedAt).toISOString(),
+        finished_at: new Date().toISOString(),
+        lock_acquired: lockAcquired,
+      },
+      cursor: null,
+      records: { seen: 0, inserted: 0, updated: 0, failed: 0 },
+      errors,
+      duration: { ms: Date.now() - startedAt },
+    }, { status: 500 });
+  } finally {
+    if (lockOwnerToken) {
+      await releaseDomainLock({
+        domain,
+        ownerToken: lockOwnerToken,
+      }).catch(() => null);
+    }
   }
 }

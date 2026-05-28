@@ -4,12 +4,89 @@ import { fetchML, fetchMLResult, getMLAuthDiagnostics, type MLRequestResult } fr
 import { calculateOrderProfit } from '@/services/orders';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import type { Database } from '@/types/database';
+import { getExpectedCfopByUf } from '@/lib/fiscal/cfop';
+import { resolveCodMunicipio } from '@/lib/fiscal/municipio-ibge';
+import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
+import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
 
 export const maxDuration = 300;
 
 const SYNC_CONCURRENCY = 3;
 const TRANSIENT_RETRY_ATTEMPTS = 2;
 const TRANSIENT_RETRY_BASE_DELAY_MS = 900;
+const ORDER_SNAPSHOT_V2_ENABLED = String(process.env.ORDER_SNAPSHOT_V2_ENABLED || 'true').toLowerCase() === 'true';
+const SNAPSHOT_TOTAL_TOLERANCE = 0.01;
+
+interface BillingSnapshot {
+  nome: string;
+  documento: string;
+  tipoPessoa: string;
+  ie: string | null;
+  endereco: {
+    street_name: string;
+    street_number: string;
+    neighborhood: string;
+    city_name: string;
+    city_id?: string;
+    cod_municipio?: string;
+    state_id: string;
+    state_name: string;
+    zip_code: string;
+    country_id?: string;
+  };
+}
+
+interface PaymentSnapshot {
+  id: string | null;
+  status: string | null;
+  payment_type: string | null;
+  total_paid_amount: number;
+}
+
+interface OrderItemSnapshot {
+  ml_item_id: string | null;
+  seller_sku: string | null;
+  titulo: string;
+  quantidade: number;
+  unidade: string | null;
+  valor_unitario: number;
+  valor_total_bruto: number;
+  desconto_item: number;
+  frete_rateado_item: number;
+  valor_total_liquido: number;
+  ncm: string | null;
+  cest: string | null;
+  gtin: string | null;
+  origem_fiscal: string | null;
+  csosn: string | null;
+  cfop_sugerido: string | null;
+}
+
+interface OrderFiscalSnapshot {
+  source: 'ml_live' | 'local_fallback';
+  buyerMlId: string | null;
+  billing: BillingSnapshot;
+  pagamentos: PaymentSnapshot[];
+  itens: OrderItemSnapshot[];
+  totais: {
+    total_produtos: number;
+    frete_total: number;
+    desconto_total: number;
+    total_final: number;
+  };
+  incompleto: boolean;
+  pendencias: string[];
+}
+
+type SourceTag = 'v2_billing' | 'legacy_billing' | 'order' | 'shipment' | 'existing' | 'fallback';
+type BillingResolved = {
+  nome: string;
+  documento: string;
+  tipoPessoa: string;
+  ie: string;
+  endereco: BillingSnapshot['endereco'];
+  fieldSources: Record<'documento' | 'uf' | 'city' | 'cep' | 'ie' | 'nome', SourceTag>;
+};
 
 function titleCase(s: string): string {
   return s.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
@@ -17,6 +94,312 @@ function titleCase(s: string): string {
 
 function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function normalizeDocument(value: string | null | undefined): string {
+  return String(value || '').replace(/\D/g, '');
+}
+
+function detectTipoPessoaFromDoc(doc: string): string {
+  if (doc.length === 14) return 'J';
+  if (doc.length === 11) return 'F';
+  return '';
+}
+
+function isValidCpfCnpj(doc: string): boolean {
+  return doc.length === 11 || doc.length === 14;
+}
+
+const UF_CODES = new Set([
+  'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA',
+  'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN',
+  'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO',
+]);
+
+function extractUfFromAddress(value: string | null | undefined): string | null {
+  const raw = String(value || '').toUpperCase();
+  const m = raw.match(/-\s*([A-Z]{2})(?:\b|,)/);
+  if (m?.[1] && UF_CODES.has(m[1])) return m[1];
+  const end = raw.match(/,\s*([A-Z]{2})\s*$/);
+  if (end?.[1] && UF_CODES.has(end[1])) return end[1];
+  const tokens = raw
+    .replace(/[^\w\s-]/g, ' ')
+    .replace(/[_-]/g, ' ')
+    .split(/\s+/)
+    .filter(Boolean);
+  for (let i = tokens.length - 1; i >= 0; i -= 1) {
+    if (UF_CODES.has(tokens[i])) return tokens[i];
+  }
+  return null;
+}
+
+function normalizeUf(value: string | null | undefined): string {
+  const raw = String(value || '').trim().toUpperCase();
+  if (!raw) return '';
+  if (raw.startsWith('BR-') && raw.length >= 5) return raw.slice(3);
+  return raw;
+}
+
+function ufFromStateName(value: string | null | undefined): string {
+  const raw = String(value || '').trim().toUpperCase();
+  const table: Record<string, string> = {
+    ACRE: 'AC',
+    ALAGOAS: 'AL',
+    AMAPA: 'AP',
+    AMAZONAS: 'AM',
+    BAHIA: 'BA',
+    CEARA: 'CE',
+    'DISTRITO FEDERAL': 'DF',
+    'ESPIRITO SANTO': 'ES',
+    GOIAS: 'GO',
+    MARANHAO: 'MA',
+    'MATO GROSSO': 'MT',
+    'MATO GROSSO DO SUL': 'MS',
+    'MINAS GERAIS': 'MG',
+    PARA: 'PA',
+    PARAIBA: 'PB',
+    PARANA: 'PR',
+    PERNAMBUCO: 'PE',
+    PIAUI: 'PI',
+    'RIO DE JANEIRO': 'RJ',
+    'RIO GRANDE DO NORTE': 'RN',
+    'RIO GRANDE DO SUL': 'RS',
+    RONDONIA: 'RO',
+    RORAIMA: 'RR',
+    'SANTA CATARINA': 'SC',
+    'SAO PAULO': 'SP',
+    SERGIPE: 'SE',
+    TOCANTINS: 'TO',
+  };
+  if (!raw) return '';
+  const normalized = raw
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return table[normalized] || '';
+}
+
+function normalizeZip(value: string | null | undefined): string {
+  return String(value || '').replace(/\D/g, '');
+}
+
+function normalizeIe(value: string | null | undefined): string {
+  return String(value || '').trim();
+}
+
+function resolveEmitUfForFiscal(empresa: any): { emitUf: string | null; source: 'empresa.uf_fiscal' | 'endereco_fallback' | 'missing' } {
+  const ufFiscal = normalizeUf(empresa?.uf_fiscal);
+  if (ufFiscal && UF_CODES.has(ufFiscal)) return { emitUf: ufFiscal, source: 'empresa.uf_fiscal' };
+  const fromAddress = extractUfFromAddress(empresa?.endereco || null);
+  if (fromAddress) return { emitUf: fromAddress, source: 'endereco_fallback' };
+  return { emitUf: null, source: 'missing' };
+}
+
+function getAdditionalInfoValue(additionalInfo: any[], type: string): string {
+  const found = additionalInfo.find((entry) => String(entry?.type || '').toUpperCase() === type.toUpperCase());
+  return String(found?.value || '').trim();
+}
+
+function parseBillingInfoFromML(input: any): {
+  nome: string;
+  documento: string;
+  tipoPessoa: string;
+  ie: string;
+  endereco: BillingSnapshot['endereco'];
+  fieldSources: Record<string, 'billing_info' | 'order' | 'fallback'>;
+} {
+  const binfo = input?.billing_info || {};
+  const additionalInfo = Array.isArray(binfo?.additional_info) ? binfo.additional_info : [];
+
+  const businessName = getAdditionalInfoValue(additionalInfo, 'BUSINESS_NAME');
+  const docType = getAdditionalInfoValue(additionalInfo, 'DOC_TYPE');
+  const docNumber = getAdditionalInfoValue(additionalInfo, 'DOC_NUMBER') || String(binfo?.doc_number || '');
+  const stateRegistration = getAdditionalInfoValue(additionalInfo, 'STATE_REGISTRATION');
+  const cityName = getAdditionalInfoValue(additionalInfo, 'CITY_NAME');
+  const cityId = getAdditionalInfoValue(additionalInfo, 'CITY_ID');
+  const streetName = getAdditionalInfoValue(additionalInfo, 'STREET_NAME');
+  const streetNumber = getAdditionalInfoValue(additionalInfo, 'STREET_NUMBER');
+  const neighborhood = getAdditionalInfoValue(additionalInfo, 'NEIGHBORHOOD');
+  const stateCode = getAdditionalInfoValue(additionalInfo, 'STATE_CODE');
+  const stateName = getAdditionalInfoValue(additionalInfo, 'STATE_NAME');
+  const zipCode = getAdditionalInfoValue(additionalInfo, 'ZIP_CODE');
+  const countryId = getAdditionalInfoValue(additionalInfo, 'COUNTRY_ID');
+
+  const documentoNormalizado = normalizeDocument(docNumber);
+  const tipoPessoa = docType
+    ? (docType.toUpperCase() === 'CNPJ' ? 'J' : docType.toUpperCase() === 'CPF' ? 'F' : detectTipoPessoaFromDoc(documentoNormalizado))
+    : detectTipoPessoaFromDoc(documentoNormalizado);
+
+  const resolvedUf = normalizeUf(stateCode) || ufFromStateName(stateName);
+
+  return {
+    nome: businessName,
+    documento: documentoNormalizado,
+    tipoPessoa,
+    ie: normalizeIe(stateRegistration),
+    endereco: {
+      street_name: streetName,
+      street_number: streetNumber,
+      neighborhood,
+      city_name: cityName,
+      city_id: cityId || undefined,
+      state_id: resolvedUf,
+      state_name: stateName,
+      zip_code: normalizeZip(zipCode),
+      country_id: countryId || undefined,
+    },
+    fieldSources: {
+      nome: businessName ? 'billing_info' : 'fallback',
+      documento: docNumber ? 'billing_info' : 'fallback',
+      tipoPessoa: docType ? 'billing_info' : 'fallback',
+      ie: stateRegistration ? 'billing_info' : 'fallback',
+      endereco: (streetName || cityName || stateCode || zipCode) ? 'billing_info' : 'fallback',
+    },
+  };
+}
+
+function parseBillingInfoV2FromML(input: any): {
+  nome: string;
+  documento: string;
+  tipoPessoa: string;
+  ie: string;
+  endereco: BillingSnapshot['endereco'];
+  taxpayerType: string | null;
+} {
+  const b = input?.buyer?.billing_info || {};
+  const identification = b?.identification || {};
+  const address = b?.address || {};
+  const state = address?.state || {};
+  const taxes = b?.taxes || {};
+
+  const docType = String(identification?.type || '').trim().toUpperCase();
+  const docNumber = normalizeDocument(String(identification?.number || ''));
+  const tipoPessoa = docType
+    ? (docType === 'CNPJ' ? 'J' : docType === 'CPF' ? 'F' : detectTipoPessoaFromDoc(docNumber))
+    : detectTipoPessoaFromDoc(docNumber);
+
+  const stateName = String(state?.name || '').trim();
+  const stateCode = String(state?.code || '').trim();
+  const resolvedUf = normalizeUf(stateCode) || ufFromStateName(stateName);
+
+  const nome = String(b?.name || '').trim();
+  const lastName = String(b?.last_name || '').trim();
+  const businessName = String(b?.business_name || '').trim();
+  const composedNome = businessName || `${nome} ${lastName}`.trim();
+
+  const ieDirect = normalizeIe(String(b?.state_registration_number || b?.state_registration || ''));
+  const ieFromTaxes = normalizeIe(String(taxes?.state_registration?.number || taxes?.state_registration || ''));
+  const ie = ieDirect || ieFromTaxes;
+
+  return {
+    nome: composedNome,
+    documento: docNumber,
+    tipoPessoa,
+    ie,
+    taxpayerType: String(taxes?.taxpayer_type?.description || taxes?.taxpayer_type || '').trim() || null,
+    endereco: {
+      street_name: String(address?.street_name || '').trim(),
+      street_number: String(address?.street_number || '').trim(),
+      neighborhood: String(address?.neighborhood || '').trim(),
+      city_name: String(address?.city_name || '').trim(),
+      city_id: String(address?.city_id || '').trim() || undefined,
+      state_id: resolvedUf,
+      state_name: stateName,
+      zip_code: normalizeZip(String(address?.zip_code || '')),
+      country_id: String(address?.country_id || '').trim() || undefined,
+    },
+  };
+}
+
+function pickFirstNonEmpty(...values: Array<string | null | undefined>): string {
+  for (const v of values) {
+    const s = String(v || '').trim();
+    if (s) return s;
+  }
+  return '';
+}
+
+function resolveBillingSnapshot(params: {
+  v2: ReturnType<typeof parseBillingInfoV2FromML> | null;
+  legacy: ReturnType<typeof parseBillingInfoFromML> | null;
+  order: any;
+  shipment: any;
+  existingAddress: any;
+  existingIe: string;
+  nickname: string;
+}): BillingResolved {
+  const { v2, legacy, order, shipment, existingAddress, existingIe, nickname } = params;
+  const receiver = shipment?.receiver_address || order?.shipping?.receiver_address || {};
+  const receiverStateCode = normalizeUf(receiver?.state?.id || receiver?.state_id || receiver?.state_code || '');
+  const receiverStateName = String(receiver?.state?.name || receiver?.state_name || '').trim();
+  const receiverUf = receiverStateCode || ufFromStateName(receiverStateName);
+
+  const orderBuyerDoc = normalizeDocument(order?.buyer?.billing_info?.doc_number || order?.buyer?.billing_info?.doc || '');
+  const orderBuyerNome = `${String(order?.buyer?.first_name || '').trim()} ${String(order?.buyer?.last_name || '').trim()}`.trim();
+
+  const documento = pickFirstNonEmpty(
+    v2?.documento,
+    legacy?.documento,
+    orderBuyerDoc,
+  );
+  const tipoPessoa = detectTipoPessoaFromDoc(documento);
+  const ie = pickFirstNonEmpty(v2?.ie, legacy?.ie, existingIe);
+
+  const stateId = pickFirstNonEmpty(
+    v2?.endereco?.state_id,
+    legacy?.endereco?.state_id,
+    receiverUf,
+    normalizeUf(existingAddress?.state_id),
+  );
+  const cityName = pickFirstNonEmpty(
+    v2?.endereco?.city_name,
+    legacy?.endereco?.city_name,
+    receiver?.city?.name,
+    receiver?.city_name,
+    existingAddress?.city_name,
+  );
+  const zipCode = normalizeZip(pickFirstNonEmpty(
+    v2?.endereco?.zip_code,
+    legacy?.endereco?.zip_code,
+    receiver?.zip_code,
+    existingAddress?.zip_code,
+  ));
+
+  const nome = pickFirstNonEmpty(
+    v2?.nome,
+    legacy?.nome,
+    orderBuyerNome,
+    nickname,
+  );
+
+  const fieldSources: BillingResolved['fieldSources'] = {
+    documento: v2?.documento ? 'v2_billing' : legacy?.documento ? 'legacy_billing' : orderBuyerDoc ? 'order' : 'fallback',
+    uf: v2?.endereco?.state_id ? 'v2_billing' : legacy?.endereco?.state_id ? 'legacy_billing' : receiverUf ? 'shipment' : existingAddress?.state_id ? 'existing' : 'fallback',
+    city: v2?.endereco?.city_name ? 'v2_billing' : legacy?.endereco?.city_name ? 'legacy_billing' : (receiver?.city?.name || receiver?.city_name) ? 'shipment' : existingAddress?.city_name ? 'existing' : 'fallback',
+    cep: v2?.endereco?.zip_code ? 'v2_billing' : legacy?.endereco?.zip_code ? 'legacy_billing' : receiver?.zip_code ? 'shipment' : existingAddress?.zip_code ? 'existing' : 'fallback',
+    ie: v2?.ie ? 'v2_billing' : legacy?.ie ? 'legacy_billing' : existingIe ? 'existing' : 'fallback',
+    nome: v2?.nome ? 'v2_billing' : legacy?.nome ? 'legacy_billing' : orderBuyerNome ? 'order' : 'fallback',
+  };
+
+  return {
+    nome,
+    documento,
+    tipoPessoa,
+    ie,
+    endereco: {
+      street_name: pickFirstNonEmpty(v2?.endereco?.street_name, legacy?.endereco?.street_name, receiver?.address_line, receiver?.street_name, existingAddress?.street_name),
+      street_number: pickFirstNonEmpty(v2?.endereco?.street_number, legacy?.endereco?.street_number, receiver?.street_number, existingAddress?.street_number),
+      neighborhood: pickFirstNonEmpty(v2?.endereco?.neighborhood, legacy?.endereco?.neighborhood, receiver?.neighborhood, existingAddress?.neighborhood),
+      city_name: cityName,
+      city_id: pickFirstNonEmpty(v2?.endereco?.city_id, legacy?.endereco?.city_id, receiver?.city?.id, receiver?.city_id, existingAddress?.city_id) || undefined,
+      state_id: stateId,
+      state_name: pickFirstNonEmpty(v2?.endereco?.state_name, legacy?.endereco?.state_name, receiverStateName, existingAddress?.state_name),
+      zip_code: zipCode,
+      country_id: pickFirstNonEmpty(v2?.endereco?.country_id, legacy?.endereco?.country_id, receiver?.country?.id, receiver?.country_id, existingAddress?.country_id) || undefined,
+    },
+    fieldSources,
+  };
 }
 
 async function fetchMLResultWithRetry<T>(path: string): Promise<{ result: MLRequestResult<T>; retries: number }> {
@@ -102,49 +485,36 @@ async function buscarClaims(orderId: string | number): Promise<{ id: string | nu
   return { id: null, status: null, isDevolvido: false };
 }
 
-async function baixarDanfeConsultaDanfe(chave: string): Promise<{ success: boolean; pdf?: Buffer; mensagem?: string }> {
-  try {
-    const res = await fetch('https://consultadanfe.com/api/v1/consulta', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chave, format: 'json' }),
-    });
-
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      return { success: false, mensagem: err.message || `HTTP ${res.status}` };
-    }
-
-    const data = await res.json();
-    if (data.status === 'ok' && data.pdf_base64) {
-      return { success: true, pdf: Buffer.from(data.pdf_base64, 'base64') };
-    }
-
-    return { success: false, mensagem: data.message || 'PDF não disponível' };
-  } catch (err: any) {
-    return { success: false, mensagem: err?.message || 'Erro ao baixar DANFE' };
-  }
-}
-
 type SyncOrderResult = {
   salvo: boolean;
-  semNf: number;
   semShipment: number;
   authFailures: number;
   authFatal: boolean;
   retriesTransient: number;
-  nfAutorizada: number;
-  nfCancelada: number;
-  nfPendente: number;
   durationMs: number;
 };
 
-function normalizeNfeStatus(status: string | null | undefined): string {
-  const normalized = String(status || '').toLowerCase();
-  if (normalized === 'authorized' || normalized === 'autorizada') return 'autorizada';
-  if (normalized === 'cancelled' || normalized === 'canceled' || normalized === 'cancelada') return 'cancelada';
-  if (!normalized) return 'pendente';
-  return normalized;
+async function resolvePackId(params: {
+  order: any;
+  detail: any;
+  existingPackId: string | null;
+}): Promise<{ packId: string | null; source: string }> {
+  const fromDetail = params.detail?.pack_id ? String(params.detail.pack_id) : null;
+  if (fromDetail) return { packId: fromDetail, source: 'order_detail' };
+
+  const fromSearch = params.order?.pack_id ? String(params.order.pack_id) : null;
+  if (fromSearch) return { packId: fromSearch, source: 'orders_search' };
+
+  try {
+    const detailAlt = await fetchML<any>(`/orders/${params.order.id}`, { headers: { 'x-format-new': 'true' } });
+    const fromAlt = detailAlt?.pack_id ? String(detailAlt.pack_id) : null;
+    if (fromAlt) return { packId: fromAlt, source: 'order_detail_alt' };
+  } catch {
+    // ignora
+  }
+
+  if (params.existingPackId) return { packId: params.existingPackId, source: 'existing_db' };
+  return { packId: null, source: 'not_found' };
 }
 
 async function upsertCliente(serviceClient: ReturnType<typeof createServiceClient>, payload: {
@@ -189,26 +559,165 @@ async function upsertCliente(serviceClient: ReturnType<typeof createServiceClien
   await serviceClient.from('clientes').insert(basePayload as any);
 }
 
+async function buildOrderItemsSnapshot(params: {
+  serviceClient: ReturnType<typeof createServiceClient>;
+  orderItems: any[];
+  emitUf: string | null;
+  destUf: string | null;
+  freteTotal: number;
+}): Promise<OrderItemSnapshot[]> {
+  const { serviceClient, orderItems, emitUf, destUf, freteTotal } = params;
+  const itemIds = Array.from(new Set(orderItems.map((it) => String(it?.item?.id || '')).filter(Boolean)));
+  const skus = Array.from(new Set(orderItems.map((it) => String(it?.item?.seller_sku || '').trim()).filter(Boolean)));
+
+  let productsByMlItem = new Map<string, any>();
+  let productsBySku = new Map<string, any>();
+
+  if (itemIds.length > 0) {
+    const { data } = await serviceClient
+      .from('produtos')
+      .select('ml_item_id,sku,ncm,cest,gtin,origem_fiscal,csosn')
+      .in('ml_item_id', itemIds);
+    productsByMlItem = new Map((data || []).map((p: any) => [String(p.ml_item_id || ''), p]));
+  }
+  if (skus.length > 0) {
+    const { data } = await serviceClient
+      .from('produtos')
+      .select('ml_item_id,sku,ncm,cest,gtin,origem_fiscal,csosn')
+      .in('sku', skus);
+    productsBySku = new Map((data || []).map((p: any) => [String(p.sku || ''), p]));
+  }
+
+  const totalQtd = orderItems.reduce((sum, it) => sum + Number(it?.quantity || 0), 0);
+  const cfop = getExpectedCfopByUf(emitUf, destUf);
+
+  return orderItems.map((it) => {
+    const mlItemId = String(it?.item?.id || '').trim() || null;
+    const sellerSku = String(it?.item?.seller_sku || '').trim() || null;
+    const quantidade = Number(it?.quantity || 0);
+    const valorUnitario = Number(it?.unit_price || 0);
+    const valorBase = Number(it?.full_unit_price || valorUnitario);
+    const valorTotalBruto = Number((valorBase * quantidade).toFixed(2));
+    const valorTotalLiquido = Number((valorUnitario * quantidade).toFixed(2));
+    const descontoItem = Number((valorTotalBruto - valorTotalLiquido).toFixed(2));
+    const freteRateado = totalQtd > 0
+      ? Number(((freteTotal * quantidade) / totalQtd).toFixed(2))
+      : 0;
+
+    const produto = (mlItemId && productsByMlItem.get(mlItemId))
+      || (sellerSku && productsBySku.get(sellerSku))
+      || null;
+
+    return {
+      ml_item_id: mlItemId,
+      seller_sku: sellerSku,
+      titulo: String(it?.item?.title || it?.item?.description || 'Item sem título'),
+      quantidade,
+      unidade: String(it?.item?.unit || 'UN'),
+      valor_unitario: valorUnitario,
+      valor_total_bruto: valorTotalBruto,
+      desconto_item: descontoItem > 0 ? descontoItem : 0,
+      frete_rateado_item: freteRateado,
+      valor_total_liquido: Number((valorTotalLiquido + freteRateado).toFixed(2)),
+      ncm: produto?.ncm || null,
+      cest: produto?.cest || null,
+      gtin: produto?.gtin || null,
+      origem_fiscal: produto?.origem_fiscal || null,
+      csosn: produto?.csosn || null,
+      cfop_sugerido: cfop,
+    };
+  });
+}
+
+function buildOrderSnapshot(params: {
+  detail: any;
+  billingSnapshot: BillingSnapshot;
+  items: OrderItemSnapshot[];
+  source: 'ml_live' | 'local_fallback';
+  freteTotal: number;
+  emitUf: string | null;
+}): OrderFiscalSnapshot {
+  const { detail, billingSnapshot, items, source, freteTotal, emitUf } = params;
+  const paymentsRaw = Array.isArray(detail?.payments) ? detail.payments : [];
+  const pagamentos: PaymentSnapshot[] = paymentsRaw.map((p: any) => ({
+    id: p?.id ? String(p.id) : null,
+    status: p?.status ? String(p.status) : null,
+    payment_type: p?.payment_type || p?.payment_method_id || null,
+    total_paid_amount: Number(p?.total_paid_amount || p?.transaction_amount || 0),
+  }));
+
+  const totalProdutos = Number(items.reduce((sum, it) => sum + (it.valor_total_bruto || 0), 0).toFixed(2));
+  const descontoTotal = Number(items.reduce((sum, it) => sum + (it.desconto_item || 0), 0).toFixed(2));
+  const totalFinal = Number(detail?.total_amount || 0);
+
+  const pendencias: string[] = [];
+  if (items.length === 0) pendencias.push('pedido_sem_itens');
+  if (items.some((it) => it.quantidade <= 0 || it.valor_unitario <= 0)) pendencias.push('item_quantidade_ou_valor_invalido');
+  if (!isValidCpfCnpj(normalizeDocument(billingSnapshot.documento))) pendencias.push('billing_documento_invalido');
+  if (!billingSnapshot.endereco?.state_id || !billingSnapshot.endereco?.zip_code || !billingSnapshot.endereco?.city_name) {
+    pendencias.push('billing_endereco_incompleto');
+  }
+  if (!String(billingSnapshot.endereco?.cod_municipio || '').trim()) {
+    pendencias.push('billing_cod_municipio_ausente');
+  }
+  if (!emitUf) {
+    pendencias.push('empresa_uf_emitente_ausente');
+  }
+  if (billingSnapshot.tipoPessoa === 'J' && !billingSnapshot.ie) {
+    pendencias.push('billing_ie_ausente_cnpj');
+  }
+  if (items.some((it) => !it.ncm)) pendencias.push('item_sem_ncm');
+
+  const totalCalculado = Number((items.reduce((sum, it) => sum + (it.valor_total_liquido || 0), 0)).toFixed(2));
+  if (Math.abs(totalCalculado - totalFinal) > SNAPSHOT_TOTAL_TOLERANCE) {
+    pendencias.push('divergencia_total');
+  }
+
+  return {
+    source,
+    buyerMlId: detail?.buyer?.id ? String(detail.buyer.id) : null,
+    billing: billingSnapshot,
+    pagamentos,
+    itens: items,
+    totais: {
+      total_produtos: totalProdutos,
+      frete_total: Number(freteTotal.toFixed(2)),
+      desconto_total: descontoTotal,
+      total_final: totalFinal,
+    },
+    incompleto: pendencias.length > 0,
+    pendencias,
+  };
+}
+
 async function processOrder(params: {
   order: any;
-  meId: number;
   serviceClient: ReturnType<typeof createServiceClient>;
 }): Promise<SyncOrderResult> {
   const startedAt = Date.now();
-  const { order: o, meId, serviceClient } = params;
+  const { order: o, serviceClient } = params;
 
-  let semNf = 0;
   let semShipment = 0;
   let authFailures = 0;
   let authFatal = false;
   let retriesTransient = 0;
-  let nfAutorizada = 0;
-  let nfCancelada = 0;
-  let nfPendente = 0;
+  let existingPackId: string | null = null;
+  let existingPedidoId: string | null = null;
+
+  const { data: existingPedido } = await serviceClient
+    .from('pedidos')
+    .select('id, ml_pack_id, billing_ie, billing_endereco')
+    .eq('ml_order_id', String(o.id))
+    .maybeSingle();
+  existingPackId = existingPedido?.ml_pack_id ? String(existingPedido.ml_pack_id) : null;
+  existingPedidoId = existingPedido?.id ? String(existingPedido.id) : null;
+  const existingBillingIe = normalizeIe((existingPedido as any)?.billing_ie || '');
+  const existingBillingEndereco = (existingPedido as any)?.billing_endereco || {};
 
   // 1. Detalhes completos do pedido (first_name, last_name)
   const detail = await fetchML<any>(`/orders/${o.id}`).catch(() => null);
-  const buyer = detail?.buyer || o.buyer;
+  const sourceOrder = detail || o;
+  const buyer = sourceOrder?.buyer || o.buyer;
 
   // 2. Nome formatado: Nome Sobrenome (NICKNAME)
   const first = buyer?.first_name || '';
@@ -221,54 +730,99 @@ async function processOrder(params: {
   const contatoNome = nome ? `${nome} (${nickname})` : nickname || 'Desconhecido';
 
   // 2b. Salvar/atualizar cliente no banco
+  const billingSnapshot: BillingSnapshot = {
+    nome: '',
+    documento: '',
+    tipoPessoa: '',
+    ie: null,
+    endereco: {
+      street_name: '',
+      street_number: '',
+      neighborhood: '',
+      city_name: '',
+      state_id: '',
+      state_name: '',
+      zip_code: '',
+    },
+  };
   try {
     const buyerId = buyer?.id;
     if (buyerId) {
-      let billingName = '';
-      let billingLastName = '';
-      let docNumber = '';
-      let streetName = '';
-      let streetNumber = '';
-      let neighborhood = '';
-      let cityName = '';
-      let stateName = '';
-      let zipCode = '';
+      const billingInfoId = sourceOrder?.buyer?.billing_info?.id || o?.buyer?.billing_info?.id || null;
+      const siteId = String(sourceOrder?.site_id || o?.site_id || 'MLB');
 
-      const billingInfoId = detail?.buyer?.billing_info?.id;
+      let parsedV2: ReturnType<typeof parseBillingInfoV2FromML> | null = null;
       if (billingInfoId) {
-        try {
-          const billing = await fetchML<any>(`/orders/billing-info/MLB/${billingInfoId}`);
-          if (billing?.buyer?.billing_info) {
-            const binfo = billing.buyer.billing_info;
-            billingName = binfo.name || '';
-            billingLastName = binfo.last_name || '';
-            docNumber = binfo.identification?.number || '';
-            const addr = binfo.address;
-            if (addr) {
-              streetName = addr.street_name || '';
-              streetNumber = addr.street_number || '';
-              neighborhood = addr.neighborhood || '';
-              cityName = addr.city_name || '';
-              stateName = addr.state?.name || '';
-              zipCode = addr.zip_code || '';
-            }
+        const billingV2Result = await fetchMLResultWithRetry<any>(`/orders/billing-info/${siteId}/${billingInfoId}`);
+        retriesTransient += billingV2Result.retries;
+        if (billingV2Result.result.ok && billingV2Result.result.data?.buyer?.billing_info) {
+          try {
+            parsedV2 = parseBillingInfoV2FromML(billingV2Result.result.data);
+          } catch {
+            parsedV2 = null;
           }
-        } catch {
-          // ignora fallback para dados do order
         }
       }
 
-      if (!billingName) billingName = buyer?.first_name || '';
-      if (!billingLastName) billingLastName = buyer?.last_name || '';
+      const billingLegacyResult = await fetchMLResultWithRetry<any>(`/orders/${o.id}/billing_info`);
+      retriesTransient += billingLegacyResult.retries;
+      let parsedLegacy: ReturnType<typeof parseBillingInfoFromML> | null = null;
+      if (billingLegacyResult.result.ok && billingLegacyResult.result.data?.billing_info) {
+        try {
+          parsedLegacy = parseBillingInfoFromML(billingLegacyResult.result.data);
+        } catch {
+          parsedLegacy = null;
+        }
+      }
 
-      const nomeReal = `${billingName} ${billingLastName}`.trim() || nickname || 'Desconhecido';
+      const resolvedBilling = resolveBillingSnapshot({
+        v2: parsedV2,
+        legacy: parsedLegacy,
+        order: sourceOrder,
+        shipment: sourceOrder?.shipping || null,
+        existingAddress: existingBillingEndereco,
+        existingIe: existingBillingIe,
+        nickname,
+      });
+
+      const nomeReal = resolvedBilling.nome || nickname || 'Desconhecido';
       const clienteNome = nomeReal ? `${nomeReal} (${nickname})` : nickname || 'Desconhecido';
-      const documento = docNumber || '';
-      const tipoPessoa = docNumber.length === 14 ? 'J' : docNumber.length === 11 ? 'F' : '';
+      const documento = normalizeDocument(resolvedBilling.documento);
+      const tipoPessoa = resolvedBilling.tipoPessoa || detectTipoPessoaFromDoc(documento);
+      const normalizedIe = normalizeIe(resolvedBilling.ie) || existingBillingIe || '';
+      const municipio = await resolveCodMunicipio({
+        client: serviceClient as any,
+        uf: resolvedBilling.endereco.state_id,
+        cityName: resolvedBilling.endereco.city_name,
+        zipCode: resolvedBilling.endereco.zip_code,
+      });
+      billingSnapshot.nome = nomeReal;
+      billingSnapshot.documento = documento;
+      billingSnapshot.tipoPessoa = tipoPessoa;
+      billingSnapshot.ie = normalizedIe || null;
+      billingSnapshot.endereco = {
+        street_name: resolvedBilling.endereco.street_name,
+        street_number: resolvedBilling.endereco.street_number,
+        neighborhood: resolvedBilling.endereco.neighborhood,
+        city_name: resolvedBilling.endereco.city_name,
+        city_id: resolvedBilling.endereco.city_id,
+        cod_municipio: municipio.codMunicipio || String(existingBillingEndereco?.cod_municipio || '').trim() || undefined,
+        state_id: normalizeUf(resolvedBilling.endereco.state_id),
+        state_name: resolvedBilling.endereco.state_name,
+        zip_code: normalizeZip(resolvedBilling.endereco.zip_code),
+        country_id: resolvedBilling.endereco.country_id,
+      };
 
-      const enderecoParts = [streetName, streetNumber, neighborhood, cityName, stateName, zipCode].filter(Boolean);
+      const enderecoParts = [
+        billingSnapshot.endereco.street_name,
+        billingSnapshot.endereco.street_number,
+        billingSnapshot.endereco.neighborhood,
+        billingSnapshot.endereco.city_name,
+        billingSnapshot.endereco.state_name,
+        billingSnapshot.endereco.zip_code,
+      ].filter(Boolean);
       const endereco = enderecoParts.length > 0
-        ? `${streetName}${streetNumber ? ', ' + streetNumber : ''}${neighborhood ? ' - ' + neighborhood : ''}${cityName ? ', ' + cityName : ''}${stateName ? ' - ' + stateName : ''}${zipCode ? ', CEP ' + zipCode : ''}`
+        ? `${billingSnapshot.endereco.street_name}${billingSnapshot.endereco.street_number ? ', ' + billingSnapshot.endereco.street_number : ''}${billingSnapshot.endereco.neighborhood ? ' - ' + billingSnapshot.endereco.neighborhood : ''}${billingSnapshot.endereco.city_name ? ', ' + billingSnapshot.endereco.city_name : ''}${billingSnapshot.endereco.state_name ? ' - ' + billingSnapshot.endereco.state_name : ''}${billingSnapshot.endereco.zip_code ? ', CEP ' + billingSnapshot.endereco.zip_code : ''}`
         : '';
 
       await upsertCliente(serviceClient, {
@@ -279,99 +833,68 @@ async function processOrder(params: {
         tipoPessoa,
         endereco,
       });
+
+      await registrarEventoNfAuditoria({
+        pedidoId: existingPedidoId,
+        mlOrderId: String(o.id),
+        evento: 'sync_snapshot_start',
+        respostaMl: {
+          billing_info_id: billingInfoId || null,
+          fieldSources: {
+            documento_source: resolvedBilling.fieldSources.documento,
+            uf_source: resolvedBilling.fieldSources.uf,
+            city_source: resolvedBilling.fieldSources.city,
+            cep_source: resolvedBilling.fieldSources.cep,
+            ie_source: resolvedBilling.fieldSources.ie,
+            cod_municipio_source: municipio.source,
+            cod_municipio_reason: municipio.reason || null,
+          },
+        },
+        statusResultante: 'billing_resolved',
+      });
     }
   } catch (err: any) {
     console.error(`[sync-pedidos] Erro ao salvar cliente do pedido ${o.id}:`, err?.message || err);
+  }
+
+  if (!billingSnapshot.nome) {
+    billingSnapshot.nome = `${buyer?.first_name || ''} ${buyer?.last_name || ''}`.trim() || nickname || 'Desconhecido';
+  }
+  if (!billingSnapshot.documento) {
+    billingSnapshot.documento = normalizeDocument(String(sourceOrder?.buyer?.billing_info?.doc_number || ''));
+  }
+  if (!billingSnapshot.tipoPessoa) {
+    billingSnapshot.tipoPessoa = detectTipoPessoaFromDoc(normalizeDocument(billingSnapshot.documento));
+  }
+  if (!billingSnapshot.ie && existingBillingIe) {
+    billingSnapshot.ie = existingBillingIe;
   }
 
   // 3. Claims: buscar reclamações via endpoint de search
   const { id: claimIdFromSearch, status: claimStatusFromSearch, isDevolvido } = await buscarClaims(o.id);
 
   // 4. Status: usa tags 'delivered'/'not_delivered' para refinar (considerando devolução)
-  const tags: string[] = o.tags || [];
-  let situacao = determinarSituacao(o.status, tags, isDevolvido);
+  const tags: string[] = sourceOrder?.tags || o.tags || [];
+  let situacao = determinarSituacao(sourceOrder?.status || o.status, tags, isDevolvido);
 
-  // 5. NF-e: busca invoice se existir
-  let notaFiscalNumero: string | null = null;
-  let nfeChave: string | null = null;
-  let nfeDanfeUrl: string | null = null;
-  let nfeStatus: string | undefined;
-  const mlPackId = detail?.pack_id ? String(detail.pack_id) : (o.pack_id ? String(o.pack_id) : null);
-
-  try {
-    const invoiceFetch = await fetchMLResultWithRetry<any>(`/users/${meId}/invoices/orders/${o.id}`);
-    retriesTransient += invoiceFetch.retries;
-    const invoiceResult = invoiceFetch.result;
-
-    if (invoiceResult.ok && invoiceResult.data?.invoice_number) {
-      const invoice = invoiceResult.data;
-      notaFiscalNumero = String(invoice.invoice_number);
-      nfeChave = invoice.attributes?.invoice_key || null;
-      nfeStatus = normalizeNfeStatus(invoice.status);
-      await registrarEventoNfAuditoria({
-        mlOrderId: String(o.id),
-        mlPackId,
-        evento: 'retorno_ml',
-        respostaMl: {
-          invoice_id: invoice.id || null,
-          invoice_number: invoice.invoice_number || null,
-          status: invoice.status || null,
-          invoice_key: nfeChave,
-        },
-        statusResultante: nfeStatus,
-      });
-      if (nfeStatus === 'autorizada') nfAutorizada++;
-      else if (nfeStatus === 'cancelada') nfCancelada++;
-      else nfPendente++;
-
-      // Baixar DANFE via consultadanfe.com e salvar no Storage
-      if (nfeChave) {
-        await registrarEventoNfAuditoria({
-          mlOrderId: String(o.id),
-          mlPackId,
-          evento: 'download_danfe',
-          payloadEnviado: { invoice_key: nfeChave },
-          statusResultante: 'started',
-        });
-        const danfeResult = await baixarDanfeConsultaDanfe(nfeChave);
-        if (danfeResult.success && danfeResult.pdf && danfeResult.pdf.length > 0) {
-          const filePath = `${o.id}/${notaFiscalNumero}.pdf`;
-          const { error: uploadError } = await serviceClient.storage
-            .from('danfes')
-            .upload(filePath, danfeResult.pdf, { contentType: 'application/pdf', upsert: true });
-
-          if (!uploadError) {
-            const { data: signedData } = await serviceClient.storage
-              .from('danfes')
-              .createSignedUrl(filePath, 60 * 60 * 24 * 7);
-
-            if (signedData?.signedUrl) {
-              nfeDanfeUrl = signedData.signedUrl;
-            }
-          }
-        }
-        await registrarEventoNfAuditoria({
-          mlOrderId: String(o.id),
-          mlPackId,
-          evento: 'download_danfe',
-          respostaMl: {
-            success: Boolean(nfeDanfeUrl),
-            message: danfeResult.mensagem || null,
-          },
-          statusResultante: nfeDanfeUrl ? 'success' : 'failed',
-        });
-      }
-    } else if (!invoiceResult.ok && invoiceResult.error?.status === 404) {
-      semNf++;
-      nfeStatus = 'pendente';
-      nfPendente++;
-    } else if (!invoiceResult.ok && invoiceResult.error?.category === 'auth_fatal') {
-      authFailures++;
-      authFatal = true;
-    }
-  } catch {
-    // ignora falha pontual de invoice
-  }
+  // 5. NF-e via ML desativada por política: sync não importa nem sobrescreve campos fiscais.
+  const packResolution = await resolvePackId({
+    order: o,
+    detail,
+    existingPackId,
+  });
+  const mlPackId = packResolution.packId;
+  await registrarEventoNfAuditoria({
+    pedidoId: existingPedidoId,
+    mlOrderId: String(o.id),
+    mlPackId,
+    evento: 'ml_fiscal_sync_ignored',
+    respostaMl: {
+      motivo: 'fiscal_ml_desativado_por_politica',
+      escopo: 'sync_pedidos',
+    },
+    statusResultante: 'ignored',
+  });
 
   // 6. Shipment: buscar ml_shipment_id e status detalhado (uma única chamada por pedido)
   let mlShipmentId: string | null = null;
@@ -421,37 +944,183 @@ async function processOrder(params: {
     // ignora falha pontual
   }
 
-  const { error } = await serviceClient.from('pedidos').upsert({
+  const freteTotal = Number(shipmentDetail?.shipping_option?.cost || sourceOrder?.shipping_cost || o.shipping_cost || 0);
+  const destUf = String(billingSnapshot.endereco.state_id || '').trim().toUpperCase() || null;
+  const { data: empresaData } = await serviceClient
+    .from('empresa')
+    .select('endereco,uf_fiscal')
+    .limit(1)
+    .maybeSingle();
+  const emitUfDecision = resolveEmitUfForFiscal(empresaData || null);
+  const emitUf = emitUfDecision.emitUf;
+  if (emitUfDecision.source === 'endereco_fallback') {
+    await registrarEventoNfAuditoria({
+      pedidoId: existingPedidoId,
+      mlOrderId: String(o.id),
+      mlPackId,
+      evento: 'empresa_uf_fallback_endereco',
+      respostaMl: {
+        emit_uf_source: 'endereco_fallback',
+        emit_uf_value: emitUf,
+        dest_uf_value: destUf,
+      },
+      statusResultante: 'warning',
+    });
+  } else if (!emitUf) {
+    await registrarEventoNfAuditoria({
+      pedidoId: existingPedidoId,
+      mlOrderId: String(o.id),
+      mlPackId,
+      evento: 'empresa_fiscal_config_missing',
+      respostaMl: {
+        campo: 'empresa.uf_fiscal',
+        emit_uf_source: 'missing',
+        emit_uf_value: null,
+        dest_uf_value: destUf,
+      },
+      statusResultante: 'missing_emit_uf',
+    });
+  }
+
+  let snapshot: OrderFiscalSnapshot | null = null;
+  if (ORDER_SNAPSHOT_V2_ENABLED) {
+    const orderItems = Array.isArray(detail?.order_items) ? detail.order_items : [];
+    const itemsSnapshot = await buildOrderItemsSnapshot({
+      serviceClient,
+      orderItems,
+      emitUf,
+      destUf,
+      freteTotal,
+    });
+    snapshot = buildOrderSnapshot({
+      detail,
+      billingSnapshot,
+      items: itemsSnapshot,
+      source: 'ml_live',
+      freteTotal,
+      emitUf,
+    });
+    await registrarEventoNfAuditoria({
+      mlOrderId: String(o.id),
+      mlPackId,
+      evento: 'sync_snapshot_start',
+      respostaMl: {
+        items_count: itemsSnapshot.length,
+        source: snapshot.source,
+        emit_uf_source: emitUfDecision.source,
+        emit_uf_value: emitUf,
+        dest_uf_value: destUf,
+        fields_source: {
+          billing: 'billing_info',
+          order: 'orders',
+        },
+      },
+      statusResultante: 'started',
+    });
+  }
+
+  const { data: upsertedPedido, error } = await serviceClient.from('pedidos').upsert({
     ml_order_id: String(o.id),
-    ml_pack_id: mlPackId,
-    numero: o.id,
-    numero_loja: String(o.id),
-    data: o.date_created,
+    ...(mlPackId ? { ml_pack_id: mlPackId } : {}),
+    numero: sourceOrder?.id || o.id,
+    numero_loja: String(sourceOrder?.id || o.id),
+    data: sourceOrder?.date_created || o.date_created,
     contato_nome: contatoNome,
-    total: o.total_amount || 0,
+    total: sourceOrder?.total_amount || o.total_amount || 0,
     situacao,
     rastreio,
     lucro: lucro ?? undefined,
-    nota_fiscal_numero: notaFiscalNumero,
-    nfe_chave: nfeChave,
-    nfe_status: nfeStatus,
-    nfe_danfe_url: nfeDanfeUrl,
-    nota_fiscal_emitida: nfeStatus === 'autorizada' && !!nfeChave && !!nfeDanfeUrl,
     ml_shipment_id: mlShipmentId,
     ml_claim_id: mlClaimId,
     ml_claim_status: mlClaimStatus,
-  } as any, { onConflict: 'ml_order_id' });
+    ...(snapshot ? {
+      snapshot_source: snapshot.source,
+      snapshot_version: 1,
+      snapshot_incompleto: snapshot.incompleto,
+      snapshot_pendencias: snapshot.pendencias,
+      buyer_ml_id: snapshot.buyerMlId,
+      billing_nome: snapshot.billing.nome || null,
+      billing_documento: snapshot.billing.documento || null,
+      billing_tipo_pessoa: snapshot.billing.tipoPessoa || null,
+      billing_ie: snapshot.billing.ie || ((existingPedido as any)?.billing_ie ?? null),
+      billing_endereco: snapshot.billing.endereco,
+      pagamento_resumo: snapshot.pagamentos,
+      totais_snapshot: snapshot.totais,
+      sincronizado_em: new Date().toISOString(),
+      frete: snapshot.totais.frete_total,
+    } : {}),
+  } as any, { onConflict: 'ml_order_id' }).select('id').maybeSingle();
+
+  if (!mlPackId) {
+    await registrarEventoNfAuditoria({
+      pedidoId: upsertedPedido?.id || existingPedidoId || null,
+      mlOrderId: String(o.id),
+      evento: 'pack_id_pendente',
+      respostaMl: {
+        motivo: 'pack_id_nao_encontrado_no_sync',
+        source: packResolution.source,
+      },
+      statusResultante: 'warning',
+    });
+  }
+
+  if (!error && snapshot && upsertedPedido?.id) {
+    const pedidoId = upsertedPedido.id;
+    const items = snapshot.itens;
+    const mapped = items.map((it) => ({
+      pedido_id: pedidoId,
+      ml_order_id: String(o.id),
+      ml_item_id: it.ml_item_id,
+      seller_sku: it.seller_sku,
+      titulo: it.titulo,
+      quantidade: it.quantidade,
+      unidade: it.unidade,
+      valor_unitario: it.valor_unitario,
+      valor_total_bruto: it.valor_total_bruto,
+      desconto_item: it.desconto_item,
+      frete_rateado_item: it.frete_rateado_item,
+      valor_total_liquido: it.valor_total_liquido,
+      ncm: it.ncm,
+      cest: it.cest,
+      gtin: it.gtin,
+      origem_fiscal: it.origem_fiscal,
+      csosn: it.csosn,
+      cfop_sugerido: it.cfop_sugerido,
+    }));
+
+    await serviceClient.from('pedido_itens').delete().eq('pedido_id', pedidoId);
+    if (mapped.length > 0) {
+      await serviceClient.from('pedido_itens').insert(mapped as any);
+    }
+
+    await registrarEventoNfAuditoria({
+      pedidoId,
+      mlOrderId: String(o.id),
+      mlPackId,
+      evento: snapshot.incompleto ? 'sync_snapshot_partial' : 'sync_snapshot_success',
+      respostaMl: {
+        items_count: mapped.length,
+        pendencias: snapshot.pendencias,
+        source: snapshot.source,
+      },
+      statusResultante: snapshot.incompleto ? 'partial' : 'success',
+    });
+  } else if (snapshot) {
+    await registrarEventoNfAuditoria({
+      mlOrderId: String(o.id),
+      mlPackId,
+      evento: 'sync_snapshot_failed',
+      respostaMl: { error: error?.message || 'upsert_pedido_failed' },
+      statusResultante: 'failed',
+    });
+  }
 
   return {
     salvo: !error,
-    semNf,
     semShipment,
     authFailures,
     authFatal,
     retriesTransient,
-    nfAutorizada,
-    nfCancelada,
-    nfPendente,
     durationMs: Date.now() - startedAt,
   };
 }
@@ -463,10 +1132,50 @@ export async function POST(request: Request) {
   }
 
   const startedAt = Date.now();
+  const domain = 'pedidos:ml_ingest';
+  let lockOwnerToken = '';
+  let lockAcquired = false;
+
+  try {
+    const lock = await acquireDomainLock({
+      domain,
+      ownerTask: 'sync_ml_orders_ingest',
+      ttlSeconds: 20 * 60,
+      metadata: { source: 'api/sync/pedidos' },
+    });
+    lockOwnerToken = lock.ownerToken;
+    lockAcquired = lock.acquired;
+
+    if (!lockAcquired) {
+      return NextResponse.json({
+        success: false,
+        domain,
+        job: {
+          key: 'sync_ml_orders_ingest',
+          started_at: new Date(startedAt).toISOString(),
+          finished_at: new Date().toISOString(),
+          lock_acquired: false,
+        },
+        cursor: null,
+        records: { seen: 0, synced: 0, failed: 0 },
+        errors: [{ code: 'domain_lock_conflict', message: `Domínio ${domain} já está em execução` }],
+        duration: { ms: Date.now() - startedAt },
+      }, { status: 409 });
+    }
+
+  let body: any = null;
+  try {
+    body = await request.json();
+  } catch {
+    body = null;
+  }
 
   const { searchParams } = new URL(request.url);
   const offset = parseInt(searchParams.get('offset') || '0', 10);
   const limit = 50;
+  const forcedMlOrderId = String(searchParams.get('mlOrderId') || body?.mlOrderId || '').trim();
+  const watermarkParam = String(searchParams.get('lastUpdatedFrom') || body?.lastUpdatedFrom || '').trim();
+  const safetyWindowMinutes = Math.max(1, Math.min(120, Number(body?.safetyWindowMinutes || 15)));
 
   const meResult = await fetchMLResult<any>('/users/me');
   if (!meResult.ok || !meResult.data) {
@@ -484,10 +1193,43 @@ export async function POST(request: Request) {
   }
   const me = meResult.data;
 
-  const orders = await fetchML<any>(`/orders/search?seller=${me.id}&limit=${limit}&offset=${offset}`);
-  if (!orders) return NextResponse.json({ erro: 'Erro ao buscar pedidos' }, { status: 502 });
+  let results: any[] = [];
+  let total = 0;
+  if (forcedMlOrderId) {
+    const forcedOrder = await fetchML<any>(`/orders/${encodeURIComponent(forcedMlOrderId)}`);
+    if (!forcedOrder?.id) {
+      return NextResponse.json({
+        ok: false,
+        erro: 'Pedido não encontrado no Mercado Livre para sincronização pontual',
+        ml_order_id: forcedMlOrderId,
+      }, { status: 404 });
+    }
+    results = [forcedOrder];
+    total = 1;
+  } else {
+    const watermarkKey = 'sync_ml_orders_ingest_watermark';
+    const watermarkStored = await getSyncRuntimeConfigValue(watermarkKey);
+    const baseFrom = watermarkParam || watermarkStored || '';
+    const from = baseFrom
+      ? new Date(new Date(baseFrom).getTime() - safetyWindowMinutes * 60 * 1000).toISOString()
+      : '';
+    const to = new Date().toISOString();
 
-  const results = orders.results || [];
+    const query = new URLSearchParams({
+      seller: String(me.id),
+      limit: String(limit),
+      offset: String(offset),
+      sort: 'updated_asc',
+      ...(from ? { 'order.date_last_updated.from': from } : {}),
+      ...(to ? { 'order.date_last_updated.to': to } : {}),
+    });
+
+    const orders = await fetchML<any>(`/orders/search?${query.toString()}`);
+    if (!orders) return NextResponse.json({ erro: 'Erro ao buscar pedidos' }, { status: 502 });
+    results = orders.results || [];
+    total = orders.paging?.total || 0;
+  }
+
   if (results.length === 0) {
     return NextResponse.json({
       ok: true,
@@ -533,7 +1275,6 @@ export async function POST(request: Request) {
       const order = results[currentIndex];
       const processed = await processOrder({
         order,
-        meId: me.id,
         serviceClient,
       });
       localResults.push(processed);
@@ -550,26 +1291,63 @@ export async function POST(request: Request) {
   const processedResults = workerOutputs.flat();
 
   const salvos = processedResults.filter((r) => r.salvo).length;
-  const semNfCount = processedResults.reduce((sum, r) => sum + r.semNf, 0);
   const semShipmentCount = processedResults.reduce((sum, r) => sum + r.semShipment, 0);
   const authFailures = processedResults.reduce((sum, r) => sum + r.authFailures, 0);
   const retriesTransient = processedResults.reduce((sum, r) => sum + r.retriesTransient, 0);
-  const nfAutorizada = processedResults.reduce((sum, r) => sum + r.nfAutorizada, 0);
-  const nfCancelada = processedResults.reduce((sum, r) => sum + r.nfCancelada, 0);
-  const nfPendente = processedResults.reduce((sum, r) => sum + r.nfPendente, 0);
+  const semNfCount = 0;
+  const nfAutorizada = 0;
+  const nfCancelada = 0;
+  const nfPendente = 0;
   const totalDurationMs = Date.now() - startedAt;
   const avgDurationMs = processedResults.length > 0
     ? Math.round(processedResults.reduce((sum, r) => sum + r.durationMs, 0) / processedResults.length)
     : 0;
 
-  const total = orders.paging?.total || 0;
-  const proximo = offset + limit;
-  const acabou = proximo >= total || results.length < limit;
+  const proximo = forcedMlOrderId ? null : offset + limit;
+  const acabou = forcedMlOrderId ? true : (proximo! >= total || results.length < limit);
+  const maxLastUpdated = !forcedMlOrderId
+    ? results
+        .map((order: any) => String(order?.date_last_updated || order?.last_updated || '').trim())
+        .filter(Boolean)
+        .sort()
+        .pop() || null
+    : null;
+
+  if (maxLastUpdated) {
+    await setSyncRuntimeConfigValue('sync_ml_orders_ingest_watermark', maxLastUpdated);
+  }
+
+  let syncDiagnostico: any = null;
+  if (forcedMlOrderId) {
+    const { data: pedidoSync } = await serviceClient
+      .from('pedidos')
+      .select('id,ml_order_id,snapshot_incompleto,snapshot_pendencias,sincronizado_em')
+      .eq('ml_order_id', forcedMlOrderId)
+      .maybeSingle();
+    let itensCount = 0;
+    if (pedidoSync?.id) {
+      const { count } = await serviceClient
+        .from('pedido_itens')
+        .select('*', { head: true, count: 'exact' })
+        .eq('pedido_id', pedidoSync.id);
+      itensCount = count || 0;
+    }
+    syncDiagnostico = {
+      ml_order_id: forcedMlOrderId,
+      pedido_id: pedidoSync?.id || null,
+      itens_count: itensCount,
+      snapshot_incompleto: pedidoSync?.snapshot_incompleto ?? null,
+      snapshot_pendencias: pedidoSync?.snapshot_pendencias ?? [],
+      sincronizado_em: pedidoSync?.sincronizado_em || null,
+    };
+  }
 
   if (abortedByAuth) {
     const auth = await getMLAuthDiagnostics();
     return NextResponse.json({
       ok: false,
+      success: false,
+      domain,
       error: 'Sincronização abortada por falha de autenticação com ML',
       failure_reason: 'auth_fatal',
       auth_state: auth.state,
@@ -584,11 +1362,25 @@ export async function POST(request: Request) {
       duracao_media_pedido_ms: avgDurationMs,
       processed_count: processedResults.length,
       aborted_by_auth: true,
+      job: {
+        key: 'sync_ml_orders_ingest',
+        started_at: new Date(startedAt).toISOString(),
+        finished_at: new Date().toISOString(),
+        lock_acquired: true,
+      },
     }, { status: 401 });
   }
 
   return NextResponse.json({
     ok: true,
+    success: true,
+    domain,
+    job: {
+      key: 'sync_ml_orders_ingest',
+      started_at: new Date(startedAt).toISOString(),
+      finished_at: new Date().toISOString(),
+      lock_acquired: true,
+    },
     sincronizados: salvos,
     pagina: Math.floor(offset / limit) + 1,
     total,
@@ -608,5 +1400,40 @@ export async function POST(request: Request) {
     invoices_404: semNfCount,
     concurrency: workerCount,
     aborted_by_auth: false,
+    cursor: acabou ? null : { offset: proximo, limit },
+    records: {
+      seen: results.length,
+      synced: salvos,
+      failed: results.length - salvos,
+      sem_shipment: semShipmentCount,
+      retries_transient: retriesTransient,
+    },
+    errors: [],
+    duration: { ms: totalDurationMs },
+    watermark: maxLastUpdated,
+    ...(syncDiagnostico ? { sync_diagnostico: syncDiagnostico } : {}),
   });
+  } catch (err: any) {
+    return NextResponse.json({
+      success: false,
+      domain,
+      job: {
+        key: 'sync_ml_orders_ingest',
+        started_at: new Date(startedAt).toISOString(),
+        finished_at: new Date().toISOString(),
+        lock_acquired: lockAcquired,
+      },
+      cursor: null,
+      records: { seen: 0, synced: 0, failed: 0 },
+      errors: [{ code: 'ml_orders_sync_unexpected_error', message: err?.message || 'Erro inesperado no sync de pedidos ML' }],
+      duration: { ms: Date.now() - startedAt },
+    }, { status: 500 });
+  } finally {
+    if (lockOwnerToken) {
+      await releaseDomainLock({
+        domain,
+        ownerToken: lockOwnerToken,
+      }).catch(() => null);
+    }
+  }
 }

@@ -16,7 +16,7 @@ export async function POST() {
   const { data: runningJob } = await serviceClient
     .from('jobs')
     .select('id, status')
-    .eq('tipo', 'sync_pedidos_ml')
+    .eq('tipo', 'sync_ml_orders_ingest')
     .eq('created_by', user.id)
     .in('status', ['pendente', 'rodando'])
     .order('created_at', { ascending: false })
@@ -35,7 +35,7 @@ export async function POST() {
   const { data: insertedJob, error: jobInsertError } = await serviceClient
     .from('jobs')
     .insert({
-      tipo: 'sync_pedidos_ml',
+      tipo: 'sync_ml_orders_ingest',
       status: 'pendente',
       progresso: 0,
       total: 1,
@@ -57,9 +57,9 @@ export async function POST() {
   setTimeout(() => {
     void runMlSingleStageJob({
       jobId: insertedJob.id,
-      tipo: 'sync_pedidos_ml',
+      tipo: 'sync_ml_orders_ingest',
       path: '/api/sync/pedidos',
-      label: 'Sync Pedidos ML',
+      label: 'Sync ML Pedidos (Ingestão)',
     }).catch(async (err: any) => {
       console.error('[sync-pedidos-job] Falha ao iniciar processamento em background:', err?.message || err);
       const { data: currentJob } = await serviceClient

@@ -2,73 +2,12 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { runMlSingleStageJob } from '@/services/sync-ml-job';
 import { getMLAuthDiagnostics } from '@/services/integration';
+import { SYNC_TASKS, getIntervalMinutesForTask, getSaoPauloHour } from '@/lib/sync/registry';
 
 export const maxDuration = 300;
 
-type CronTask = {
-  key: 'dslite_stock' | 'dslite_catalog' | 'dslite_pedidos' | 'ml_anuncios' | 'ml_pedidos';
-  jobTipo: string;
-  path: string;
-  label: string;
-  intervalMinutes: (hour: number) => number;
-  progressiveOffset?: boolean;
-  usesCursor?: boolean;
-};
-
-const TASKS: CronTask[] = [
-  {
-    key: 'dslite_stock',
-    jobTipo: 'sync_dslite_stock',
-    path: '/api/sync/preco-estoque',
-    label: 'DSLite Preço/Estoque',
-    intervalMinutes: (hour) => (hour >= 0 && hour < 7 ? 20 : 10),
-    usesCursor: true,
-  },
-  {
-    key: 'dslite_catalog',
-    jobTipo: 'sync_dslite_catalog',
-    path: '/api/sync/catalogo',
-    label: 'DSLite Catálogo',
-    intervalMinutes: (hour) => (hour >= 8 && hour < 22 ? 120 : 240),
-  },
-  {
-    key: 'dslite_pedidos',
-    jobTipo: 'sync_dslite_pedidos',
-    path: '/api/sync/dslite-pedidos',
-    label: 'DSLite Pedidos de Compra',
-    intervalMinutes: () => 10,
-  },
-  {
-    key: 'ml_anuncios',
-    jobTipo: 'sync_anuncios_ml',
-    path: '/api/sync/anuncios',
-    label: 'ML Anúncios',
-    intervalMinutes: () => 30,
-    progressiveOffset: true,
-  },
-  {
-    key: 'ml_pedidos',
-    jobTipo: 'sync_pedidos_ml',
-    path: '/api/sync/pedidos',
-    label: 'ML Pedidos',
-    intervalMinutes: (hour) => (hour >= 8 && hour < 23 ? 15 : 30),
-    progressiveOffset: true,
-  },
-];
-
 function nowIso() {
   return new Date().toISOString();
-}
-
-function getSaoPauloHour() {
-  const parts = new Intl.DateTimeFormat('en-US', {
-    timeZone: 'America/Sao_Paulo',
-    hour: '2-digit',
-    hour12: false,
-  }).formatToParts(new Date());
-
-  const hour = parts.find((p) => p.type === 'hour')?.value || '00';
-  return Number(hour);
 }
 
 function parseLog(log: any): any[] {
@@ -89,27 +28,24 @@ function sleep(ms: number) {
 
 function extractOffsetFromJobLog(log: any): number {
   const logs = parseLog(log);
-  for (let i = logs.length - 1; i >= 0; i--) {
+  for (let i = logs.length - 1; i >= 0; i -= 1) {
     const entry = logs[i] || {};
-    if (entry.event_type === 'job_stage_done') {
-      if (entry.acabou === true || entry.proximo === null) {
-        return 0;
-      }
-      const proximo = Number(entry.proximo);
-      if (Number.isFinite(proximo) && proximo >= 0) {
-        return proximo;
-      }
-    }
+    const fromCursor = Number(entry?.cursor?.offset);
+    if (Number.isFinite(fromCursor) && fromCursor >= 0) return fromCursor;
+
+    const fromLegacy = Number(entry?.proximo);
+    if (Number.isFinite(fromLegacy) && fromLegacy >= 0) return fromLegacy;
+
+    if (entry?.acabou === true) return 0;
   }
   return 0;
 }
 
-function extractStockCursorFromJobLog(log: any): { fornecedorId: string; page: number } | null {
+function extractCursorFromJobLog(log: any): { fornecedorId: string; page: number } | null {
   const logs = parseLog(log);
-  for (let i = logs.length - 1; i >= 0; i--) {
+  for (let i = logs.length - 1; i >= 0; i -= 1) {
     const entry = logs[i] || {};
-    if (entry.event_type !== 'job_stage_done') continue;
-    const cursor = entry?.next_cursor;
+    const cursor = entry?.cursor || entry?.next_cursor;
     if (cursor?.fornecedorId && Number.isFinite(Number(cursor?.page)) && Number(cursor.page) > 0) {
       return { fornecedorId: String(cursor.fornecedorId), page: Number(cursor.page) };
     }
@@ -119,9 +55,9 @@ function extractStockCursorFromJobLog(log: any): { fornecedorId: string; page: n
 
 function consecutiveFailures(statuses: string[]): number {
   let count = 0;
-  for (const s of statuses) {
-    if (s === 'completo') break;
-    count++;
+  for (const status of statuses) {
+    if (status === 'completo') break;
+    count += 1;
   }
   return count;
 }
@@ -144,23 +80,24 @@ export async function POST(request: Request) {
   const serviceClient = createServiceClient();
   const hour = getSaoPauloHour();
   const mlAuth = await getMLAuthDiagnostics();
-
   const results: any[] = [];
 
-  for (const task of TASKS) {
-    const isMlTask = task.key === 'ml_anuncios' || task.key === 'ml_pedidos';
+  const tasksToRun = SYNC_TASKS.filter((task) => task.schedule);
+
+  for (const task of tasksToRun) {
+    const intervalMinutes = getIntervalMinutesForTask(task, hour);
+    if (!intervalMinutes || intervalMinutes <= 0) continue;
+
+    const isMlTask = task.kind === 'ml';
     if (isMlTask && (mlAuth.state === 'reauth_required' || Boolean(mlAuth.blocked_until))) {
       results.push({
         task: task.key,
         action: 'skipped_auth_block',
         auth_state: mlAuth.state,
         auth_blocked_until: mlAuth.blocked_until,
-        last_refresh_error_code: mlAuth.last_refresh_error_code,
       });
       continue;
     }
-
-    const intervalMinutes = task.intervalMinutes(hour);
 
     const { data: running } = await serviceClient
       .from('jobs')
@@ -176,7 +113,6 @@ export async function POST(request: Request) {
         task: task.key,
         action: 'skipped_running',
         jobId: running.id,
-        status: running.status,
       });
       continue;
     }
@@ -201,22 +137,21 @@ export async function POST(request: Request) {
         results.push({
           task: task.key,
           action: 'skipped_not_due',
+          next_due_at: new Date(nextDueMs).toISOString(),
           interval_minutes: intervalMinutes,
           backoff_minutes: backoffMinutes,
-          next_due_at: new Date(nextDueMs).toISOString(),
-          consecutive_failures: failureStreak,
         });
         continue;
       }
     }
 
     let offset = 0;
-    let stockCursor: { fornecedorId: string; page: number } | null = null;
-    if (task.progressiveOffset && recent.length > 0) {
+    let cursor: { fornecedorId: string; page: number } | null = null;
+    if (task.usesOffset && recent.length > 0) {
       offset = extractOffsetFromJobLog(recent[0].log);
     }
     if (task.usesCursor && recent.length > 0) {
-      stockCursor = extractStockCursorFromJobLog(recent[0].log);
+      cursor = extractCursorFromJobLog(recent[0].log);
     }
 
     const initialLog = [
@@ -226,24 +161,16 @@ export async function POST(request: Request) {
         message: `Disparo automático: ${task.label}`,
         timestamp: nowIso(),
         task: task.key,
+        task_domain: task.domain,
         interval_minutes: intervalMinutes,
         backoff_minutes: backoffMinutes,
         consecutive_failures: failureStreak,
         offset,
-        stock_cursor: stockCursor,
+        cursor,
       },
-      ...(failureStreak >= 3
-        ? [{
-            event_type: 'cron_alert',
-            type: 'error',
-            message: `Alerta: ${failureStreak} falhas consecutivas em ${task.label}`,
-            timestamp: nowIso(),
-            task: task.key,
-          }]
-        : []),
     ];
 
-    const { data: insertedJob, error: jobInsertError } = await serviceClient
+    const { data: insertedJob, error: insertError } = await serviceClient
       .from('jobs')
       .insert({
         tipo: task.jobTipo,
@@ -258,33 +185,28 @@ export async function POST(request: Request) {
       .select('id')
       .single();
 
-    if (jobInsertError || !insertedJob?.id) {
+    if (insertError || !insertedJob?.id) {
       results.push({
         task: task.key,
         action: 'insert_error',
-        error: jobInsertError?.message || 'Falha ao criar job',
+        error: insertError?.message || 'Falha ao criar job',
       });
       continue;
     }
 
     setTimeout(() => {
-      const body = task.usesCursor
-        ? {
-            fornecedorId: stockCursor?.fornecedorId,
-            page: stockCursor?.page || 1,
-            pageSize: 50,
-            maxPagesPerRun: 1,
-            withMlSync: false,
-          }
-        : task.key === 'dslite_pedidos'
-          ? { windowDays: 60 }
-          : undefined;
+      const body = {
+        ...(task.defaultBody || {}),
+        ...(task.usesCursor ? { fornecedorId: cursor?.fornecedorId, page: cursor?.page || 1 } : {}),
+      };
+      const query = task.usesOffset ? { offset } : undefined;
+
       void runMlSingleStageJob({
         jobId: insertedJob.id,
         tipo: task.jobTipo,
         path: task.path,
         label: task.label,
-        query: task.progressiveOffset ? { offset } : undefined,
+        query,
         body,
       }).catch((err: any) => {
         console.error('[cron-dispatch] erro ao executar job', task.key, err?.message || err);
@@ -298,7 +220,7 @@ export async function POST(request: Request) {
       interval_minutes: intervalMinutes,
       backoff_minutes: backoffMinutes,
       offset,
-      stock_cursor: stockCursor,
+      cursor,
     });
   }
 
@@ -311,3 +233,4 @@ export async function POST(request: Request) {
     results,
   });
 }
+

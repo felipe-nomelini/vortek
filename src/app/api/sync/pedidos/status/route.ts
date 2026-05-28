@@ -20,7 +20,7 @@ export async function GET(request: Request) {
       .from('jobs')
       .select('id, tipo, status, progresso, processados, total, log, finished_at, created_by, created_at')
       .eq('id', jobId)
-      .eq('tipo', 'sync_pedidos_ml')
+      .eq('tipo', 'sync_ml_orders_ingest')
       .eq('created_by', user.id)
       .single();
     job = result.data;
@@ -29,7 +29,7 @@ export async function GET(request: Request) {
     const result = await serviceClient
       .from('jobs')
       .select('id, tipo, status, progresso, processados, total, log, finished_at, created_by, created_at')
-      .eq('tipo', 'sync_pedidos_ml')
+      .eq('tipo', 'sync_ml_orders_ingest')
       .eq('created_by', user.id)
       .in('status', ['pendente', 'rodando'])
       .order('created_at', { ascending: false })
