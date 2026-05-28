@@ -118,31 +118,28 @@ export async function POST(request: Request) {
   const forcedPedidoId = String(searchParams.get('pedidoId') || '').trim();
 
   const serviceClient = createServiceClient();
+  const pedidosTable = () => serviceClient.from('pedidos' as any) as any;
   const targets = new Map<string, any>();
 
   const [{ data: missingIe }, { data: incompletos }] = await Promise.all([
-    serviceClient
-      .from('pedidos')
+    pedidosTable()
       .select('id,ml_order_id,billing_tipo_pessoa,billing_ie,billing_endereco,snapshot_incompleto,snapshot_pendencias')
       .eq('billing_tipo_pessoa', 'J')
       .is('billing_ie', null)
       .not('ml_order_id', 'is', null)
       .limit(limit),
-    serviceClient
-      .from('pedidos')
+    pedidosTable()
       .select('id,ml_order_id,billing_tipo_pessoa,billing_ie,billing_endereco,snapshot_incompleto,snapshot_pendencias')
       .eq('snapshot_incompleto', true)
       .not('ml_order_id', 'is', null)
       .limit(limit),
   ]);
-  const { data: stateMissing } = await serviceClient
-    .from('pedidos')
+  const { data: stateMissing } = await pedidosTable()
     .select('id,ml_order_id,billing_tipo_pessoa,billing_ie,billing_endereco,snapshot_incompleto,snapshot_pendencias')
     .not('ml_order_id', 'is', null)
     .or('billing_endereco->>state_id.is.null,billing_endereco->>state_id.eq.,billing_endereco->>city_name.is.null,billing_endereco->>city_name.eq.,billing_endereco->>zip_code.is.null,billing_endereco->>zip_code.eq.,billing_endereco->>cod_municipio.is.null,billing_endereco->>cod_municipio.eq.')
     .limit(limit);
-  const { data: semItensCandidates } = await serviceClient
-    .from('pedidos')
+  const { data: semItensCandidates } = await pedidosTable()
     .select('id,ml_order_id,billing_tipo_pessoa,billing_ie,billing_endereco,snapshot_incompleto,snapshot_pendencias')
     .not('ml_order_id', 'is', null)
     .eq('snapshot_incompleto', false)
@@ -150,8 +147,7 @@ export async function POST(request: Request) {
     .limit(limit * 4);
   let forced: any[] = [];
   if (forcedMlOrderId || forcedPedidoId) {
-    let q = serviceClient
-      .from('pedidos')
+    let q = pedidosTable()
       .select('id,ml_order_id,billing_tipo_pessoa,billing_ie,billing_endereco,snapshot_incompleto,snapshot_pendencias')
       .not('ml_order_id', 'is', null)
       .limit(5);
@@ -273,8 +269,7 @@ export async function POST(request: Request) {
       if (!(itensCount && itensCount > 0)) pendencias.push('pedido_sem_itens');
 
       const snapshotIncompleto = pendencias.length > 0;
-      const { error } = await serviceClient
-        .from('pedidos')
+      const { error } = await pedidosTable()
         .update({
           billing_nome: businessName || undefined,
           billing_documento: documento || undefined,
