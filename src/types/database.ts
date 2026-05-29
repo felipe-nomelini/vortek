@@ -91,6 +91,92 @@ export type Database = {
           },
         ]
       }
+      catalogo_ml_snapshot: {
+        Row: {
+          buy_box_status: string | null
+          buy_box_winning: boolean
+          catalog_product_id: string | null
+          category_id: string | null
+          created_at: string
+          domain_id: string | null
+          id: string
+          last_updated_ml: string | null
+          ml_item_id: string
+          permalink: string | null
+          price: number
+          price_to_win: number | null
+          produto_id: string | null
+          related_item_id: string | null
+          related_permalink: string | null
+          seller_id: number
+          seller_sku: string | null
+          sku_local: string | null
+          status: string | null
+          synced_at: string
+          thumbnail: string | null
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          buy_box_status?: string | null
+          buy_box_winning?: boolean
+          catalog_product_id?: string | null
+          category_id?: string | null
+          created_at?: string
+          domain_id?: string | null
+          id?: string
+          last_updated_ml?: string | null
+          ml_item_id: string
+          permalink?: string | null
+          price?: number
+          price_to_win?: number | null
+          produto_id?: string | null
+          related_item_id?: string | null
+          related_permalink?: string | null
+          seller_id: number
+          seller_sku?: string | null
+          sku_local?: string | null
+          status?: string | null
+          synced_at?: string
+          thumbnail?: string | null
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          buy_box_status?: string | null
+          buy_box_winning?: boolean
+          catalog_product_id?: string | null
+          category_id?: string | null
+          created_at?: string
+          domain_id?: string | null
+          id?: string
+          last_updated_ml?: string | null
+          ml_item_id?: string
+          permalink?: string | null
+          price?: number
+          price_to_win?: number | null
+          produto_id?: string | null
+          related_item_id?: string | null
+          related_permalink?: string | null
+          seller_id?: number
+          seller_sku?: string | null
+          sku_local?: string | null
+          status?: string | null
+          synced_at?: string
+          thumbnail?: string | null
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalogo_ml_snapshot_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       clientes: {
         Row: {
           created_at: string
@@ -144,6 +230,7 @@ export type Database = {
           created_at: string
           id: string
           margem_lucro: number
+          nfe_provider_default: string
           notificacoes_email: boolean
           notificacoes_push: boolean
           updated_at: string
@@ -152,6 +239,7 @@ export type Database = {
           created_at?: string
           id?: string
           margem_lucro?: number
+          nfe_provider_default?: string
           notificacoes_email?: boolean
           notificacoes_push?: boolean
           updated_at?: string
@@ -160,6 +248,7 @@ export type Database = {
           created_at?: string
           id?: string
           margem_lucro?: number
+          nfe_provider_default?: string
           notificacoes_email?: boolean
           notificacoes_push?: boolean
           updated_at?: string
@@ -168,6 +257,7 @@ export type Database = {
       }
       empresa: {
         Row: {
+          cod_municipio_fiscal: string | null
           cnpj: string
           created_at: string
           email: string
@@ -176,9 +266,11 @@ export type Database = {
           nickname: string
           nome: string
           telefone: string
+          uf_fiscal: string | null
           updated_at: string
         }
         Insert: {
+          cod_municipio_fiscal?: string | null
           cnpj?: string
           created_at?: string
           email?: string
@@ -187,9 +279,11 @@ export type Database = {
           nickname?: string
           nome?: string
           telefone?: string
+          uf_fiscal?: string | null
           updated_at?: string
         }
         Update: {
+          cod_municipio_fiscal?: string | null
           cnpj?: string
           created_at?: string
           email?: string
@@ -198,6 +292,7 @@ export type Database = {
           nickname?: string
           nome?: string
           telefone?: string
+          uf_fiscal?: string | null
           updated_at?: string
         }
         Relationships: []
@@ -396,6 +491,12 @@ export type Database = {
       }
       pedidos: {
         Row: {
+          billing_documento: string | null
+          billing_endereco: Json | null
+          billing_ie: string | null
+          billing_nome: string | null
+          billing_tipo_pessoa: string | null
+          buyer_ml_id: string | null
           contato_documento: string
           contato_nome: string
           created_at: string
@@ -414,9 +515,17 @@ export type Database = {
           ml_invoice_reported: boolean
           ml_order_id: string | null
           ml_pack_id: string | null
+          ml_fiscal_release_at: string | null
+          ml_fiscal_release_reason: string | null
+          ml_fiscal_release_source: string | null
+          ml_fiscal_release_checked_at: string | null
           ml_shipment_id: string | null
           nfe_chave: string | null
+          nfe_cfop: string | null
           nfe_danfe_url: string | null
+          nfe_external_id: string | null
+          nfe_last_sync_at: string | null
+          nfe_provider: string | null
           nfe_protocolo: string | null
           nfe_status: string | null
           nfe_xml: string | null
@@ -424,12 +533,25 @@ export type Database = {
           nota_fiscal_numero: string | null
           numero: number
           numero_loja: string | null
+          pagamento_resumo: Json | null
           rastreio: string | null
+          sincronizado_em: string | null
           situacao: Database["public"]["Enums"]["pedido_status"]
+          snapshot_incompleto: boolean
+          snapshot_pendencias: Json | null
+          snapshot_source: string | null
+          snapshot_version: number
+          totais_snapshot: Json | null
           total: number
           updated_at: string
         }
         Insert: {
+          billing_documento?: string | null
+          billing_endereco?: Json | null
+          billing_ie?: string | null
+          billing_nome?: string | null
+          billing_tipo_pessoa?: string | null
+          buyer_ml_id?: string | null
           contato_documento?: string
           contato_nome: string
           created_at?: string
@@ -448,9 +570,17 @@ export type Database = {
           ml_invoice_reported?: boolean
           ml_order_id?: string | null
           ml_pack_id?: string | null
+          ml_fiscal_release_at?: string | null
+          ml_fiscal_release_reason?: string | null
+          ml_fiscal_release_source?: string | null
+          ml_fiscal_release_checked_at?: string | null
           ml_shipment_id?: string | null
           nfe_chave?: string | null
+          nfe_cfop?: string | null
           nfe_danfe_url?: string | null
+          nfe_external_id?: string | null
+          nfe_last_sync_at?: string | null
+          nfe_provider?: string | null
           nfe_protocolo?: string | null
           nfe_status?: string | null
           nfe_xml?: string | null
@@ -458,12 +588,25 @@ export type Database = {
           nota_fiscal_numero?: string | null
           numero: number
           numero_loja?: string | null
+          pagamento_resumo?: Json | null
           rastreio?: string | null
+          sincronizado_em?: string | null
           situacao?: Database["public"]["Enums"]["pedido_status"]
+          snapshot_incompleto?: boolean
+          snapshot_pendencias?: Json | null
+          snapshot_source?: string | null
+          snapshot_version?: number
+          totais_snapshot?: Json | null
           total?: number
           updated_at?: string
         }
         Update: {
+          billing_documento?: string | null
+          billing_endereco?: Json | null
+          billing_ie?: string | null
+          billing_nome?: string | null
+          billing_tipo_pessoa?: string | null
+          buyer_ml_id?: string | null
           contato_documento?: string
           contato_nome?: string
           created_at?: string
@@ -482,9 +625,17 @@ export type Database = {
           ml_invoice_reported?: boolean
           ml_order_id?: string | null
           ml_pack_id?: string | null
+          ml_fiscal_release_at?: string | null
+          ml_fiscal_release_reason?: string | null
+          ml_fiscal_release_source?: string | null
+          ml_fiscal_release_checked_at?: string | null
           ml_shipment_id?: string | null
           nfe_chave?: string | null
+          nfe_cfop?: string | null
           nfe_danfe_url?: string | null
+          nfe_external_id?: string | null
+          nfe_last_sync_at?: string | null
+          nfe_provider?: string | null
           nfe_protocolo?: string | null
           nfe_status?: string | null
           nfe_xml?: string | null
@@ -492,12 +643,99 @@ export type Database = {
           nota_fiscal_numero?: string | null
           numero?: number
           numero_loja?: string | null
+          pagamento_resumo?: Json | null
           rastreio?: string | null
+          sincronizado_em?: string | null
           situacao?: Database["public"]["Enums"]["pedido_status"]
+          snapshot_incompleto?: boolean
+          snapshot_pendencias?: Json | null
+          snapshot_source?: string | null
+          snapshot_version?: number
+          totais_snapshot?: Json | null
           total?: number
           updated_at?: string
         }
         Relationships: []
+      }
+      pedido_itens: {
+        Row: {
+          cest: string | null
+          cfop_sugerido: string | null
+          created_at: string
+          csosn: string | null
+          desconto_item: number
+          frete_rateado_item: number
+          gtin: string | null
+          id: string
+          ml_item_id: string | null
+          ml_order_id: string | null
+          ncm: string | null
+          origem_fiscal: string | null
+          pedido_id: string
+          quantidade: number
+          seller_sku: string | null
+          titulo: string
+          unidade: string | null
+          updated_at: string
+          valor_total_bruto: number
+          valor_total_liquido: number
+          valor_unitario: number
+        }
+        Insert: {
+          cest?: string | null
+          cfop_sugerido?: string | null
+          created_at?: string
+          csosn?: string | null
+          desconto_item?: number
+          frete_rateado_item?: number
+          gtin?: string | null
+          id?: string
+          ml_item_id?: string | null
+          ml_order_id?: string | null
+          ncm?: string | null
+          origem_fiscal?: string | null
+          pedido_id: string
+          quantidade?: number
+          seller_sku?: string | null
+          titulo?: string
+          unidade?: string | null
+          updated_at?: string
+          valor_total_bruto?: number
+          valor_total_liquido?: number
+          valor_unitario?: number
+        }
+        Update: {
+          cest?: string | null
+          cfop_sugerido?: string | null
+          created_at?: string
+          csosn?: string | null
+          desconto_item?: number
+          frete_rateado_item?: number
+          gtin?: string | null
+          id?: string
+          ml_item_id?: string | null
+          ml_order_id?: string | null
+          ncm?: string | null
+          origem_fiscal?: string | null
+          pedido_id?: string
+          quantidade?: number
+          seller_sku?: string | null
+          titulo?: string
+          unidade?: string | null
+          updated_at?: string
+          valor_total_bruto?: number
+          valor_total_liquido?: number
+          valor_unitario?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pedido_itens_pedido_id_fkey"
+            columns: ["pedido_id"]
+            isOneToOne: false
+            referencedRelation: "pedidos"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       nf_auditoria_eventos: {
         Row: {
@@ -777,7 +1015,7 @@ export type Database = {
       }
     }
     Enums: {
-      integracao_tipo: "mercadolivre" | "bling" | "dslite"
+      integracao_tipo: "mercadolivre" | "bling" | "dslite" | "brasilnfe"
       ml_status: "ativo" | "pausado" | "sem_anuncio"
       pedido_status:
         | "aberto"
@@ -923,7 +1161,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      integracao_tipo: ["mercadolivre", "bling", "dslite"],
+      integracao_tipo: ["mercadolivre", "bling", "dslite", "brasilnfe"],
       ml_status: ["ativo", "pausado", "sem_anuncio"],
       pedido_status: [
         "aberto",
