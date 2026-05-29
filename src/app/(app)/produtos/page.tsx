@@ -674,6 +674,9 @@ export default function ProductsPage() {
       if (filterFornecedores.length > 0) params.set('fornecedores', filterFornecedores.join(','));
       if (filterMLStatus) params.set('ml_status', filterMLStatus);
       if (filterEstoque !== 'todos') params.set('estoque', filterEstoque);
+      if (priceMin !== null) params.set('priceMin', String(priceMin));
+      if (priceMax !== null) params.set('priceMax', String(priceMax));
+      params.set('priceField', priceField);
       const res = await fetch(`/api/produtos?${params}`);
       if (res.ok) {
         const json = await res.json();
@@ -688,7 +691,7 @@ export default function ProductsPage() {
       }
     } catch {}
     setLoading(false);
-  }, [page, lastSearch, filterFornecedores, filterMLStatus, filterEstoque]);
+  }, [page, lastSearch, filterFornecedores, filterMLStatus, filterEstoque, priceMin, priceMax, priceField]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -702,7 +705,7 @@ export default function ProductsPage() {
 
   useEffect(() => {
     setPage(1);
-  }, [filterMLStatus, filterEstoque, filterFornecedores]);
+  }, [filterMLStatus, filterEstoque, filterFornecedores, priceField, priceMin, priceMax]);
 
   const fetchStats = useCallback(async () => {
     try {
@@ -711,6 +714,9 @@ export default function ProductsPage() {
       if (filterFornecedores.length > 0) params.set('fornecedores', filterFornecedores.join(','));
       if (filterMLStatus) params.set('ml_status', filterMLStatus);
       if (filterEstoque !== 'todos') params.set('estoque', filterEstoque);
+      if (priceMin !== null) params.set('priceMin', String(priceMin));
+      if (priceMax !== null) params.set('priceMax', String(priceMax));
+      params.set('priceField', priceField);
       const res = await fetch(`/api/produtos/resumo?${params}`);
       if (res.ok) {
         const json = await res.json();
@@ -723,7 +729,7 @@ export default function ProductsPage() {
         });
       }
     } catch {}
-  }, [lastSearch, filterFornecedores, filterMLStatus, filterEstoque]);
+  }, [lastSearch, filterFornecedores, filterMLStatus, filterEstoque, priceMin, priceMax, priceField]);
 
   useEffect(() => {
     fetchProducts();
@@ -771,24 +777,6 @@ export default function ProductsPage() {
       return { key: p.id, product: p, displayPrice, profit };
     });
   }, [products]);
-
-  const filtered = useMemo(() => {
-    return rows.filter(r => {
-      if (priceMin !== null || priceMax !== null) {
-        if (priceField === 'profit' && r.profit === null) return false;
-        let val: number;
-        switch (priceField) {
-          case 'cost': val = r.product.cost; break;
-          case 'suggestedPrice': val = r.displayPrice; break;
-          case 'profit': val = r.profit ?? 0; break;
-          default: val = 0;
-        }
-        if (priceMin !== null && val < priceMin) return false;
-        if (priceMax !== null && val > priceMax) return false;
-      }
-      return true;
-    });
-  }, [rows, priceField, priceMin, priceMax]);
 
 
 
@@ -1039,7 +1027,7 @@ export default function ProductsPage() {
         <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
           <ResizableTable<ProductRow>
             storageKey="produtos"
-            dataSource={filtered}
+            dataSource={rows}
             columns={columns}
             rowKey="key"
             rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}

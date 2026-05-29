@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { buildCanonicalDsliteSku, normalizeSku, stripKnownSkuPrefix, getFornecedorSkuPrefix } from '@/lib/sku';
+import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 
 function coerceDsliteIdentity(updateData: Record<string, any>): { ok: true; payload: Record<string, any> } | { ok: false; error: string } {
   const fornecedorId = updateData.dslite_fornecedor_id != null ? String(updateData.dslite_fornecedor_id).trim() : '';
@@ -74,6 +75,19 @@ export async function PATCH(
     const body = await req.json();
     const supabase = createServiceClient();
 
+    const { data: current, error: currentError } = await supabase
+      .from('produtos')
+      .select('id, ml_item_id, custom_price, estoque, ml_status')
+      .eq('id', params.id)
+      .maybeSingle();
+
+    if (currentError) {
+      return NextResponse.json({ error: currentError.message }, { status: 500 });
+    }
+    if (!current?.id) {
+      return NextResponse.json({ error: 'Produto não encontrado' }, { status: 404 });
+    }
+
     // Mapear campos do frontend (camelCase) para o banco (snake_case)
     const updateData: Record<string, any> = {};
 
@@ -85,6 +99,7 @@ export async function PATCH(
     if ('custo' in body) updateData.custo = body.custo;
     if ('ml_shipping' in body) updateData.ml_shipping = body.ml_shipping;
     if ('ml_fee' in body) updateData.ml_fee = body.ml_fee;
+    if ('ml_status' in body) updateData.ml_status = body.ml_status;
     if ('custom_price' in body) updateData.custom_price = body.custom_price;
     if ('peso_liq' in body) updateData.peso_liq = body.peso_liq;
     if ('peso_bruto' in body) updateData.peso_bruto = body.peso_bruto;
@@ -135,7 +150,40 @@ export async function PATCH(
       );
     }
 
-    return NextResponse.json({ data });
+    const shouldEnqueueMlPublish = ['custom_price', 'estoque', 'ml_status'].some((field) => field in body);
+    let outboxWarning: string | null = null;
+
+    if (shouldEnqueueMlPublish && String(data?.ml_item_id || '').trim()) {
+      const outbox = await enqueueMlPublishOutbox(supabase, {
+        produtoId: String(data.id),
+        mlItemId: String(data.ml_item_id),
+        desiredStatus: (data.ml_status || null) as any,
+        desiredPrice: typeof data.custom_price === 'number' ? data.custom_price : null,
+        desiredQuantity: typeof data.estoque === 'number' ? data.estoque : null,
+        source: 'produto_patch',
+        payload: {
+          previous: {
+            custom_price: current.custom_price,
+            estoque: current.estoque,
+            ml_status: current.ml_status,
+          },
+          next: {
+            custom_price: data.custom_price,
+            estoque: data.estoque,
+            ml_status: data.ml_status,
+          },
+        },
+      });
+
+      if (!outbox.ok) {
+        outboxWarning = outbox.error;
+      }
+    }
+
+    return NextResponse.json({
+      data,
+      ...(outboxWarning ? { warning: `Produto atualizado, mas falhou ao enfileirar publicação ML: ${outboxWarning}` } : {}),
+    });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }

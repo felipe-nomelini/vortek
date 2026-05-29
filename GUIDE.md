@@ -220,6 +220,14 @@ Depois registrar no `createClient<Database>()` no `lib/supabase.ts`. TypeScript 
 - Fallback implementado: se `EMAIL_FROM_NFE` ausente, o sistema usa `SMTP_USER`.
 - Segredos SMTP devem ficar apenas em runtime env (nunca em build args).
 
+### Regra Fiscal CFOP (DSLite)
+
+- Regra oficial obrigatória no fluxo de criação de pedido DSLite:
+  - Mesmo estado (emitente e destinatário na mesma UF): `CFOP 5120`
+  - Estado diferente (emitente e destinatário em UFs diferentes): `CFOP 6120`
+- Apenas `5120` e `6120` são permitidos.
+- Qualquer CFOP diferente, ausência de CFOP no XML, ou divergência da regra por UF bloqueia o pedido DSLite e exige correção na origem fiscal.
+
 ---
 
 ## Runbook — Incidente OAuth Mercado Livre (`auth_fatal`)

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { createClient, createServiceClient } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase';
+import { calculateSuggestedPrice } from '@/services/pricing';
 
 export async function GET(request: Request) {
   const supabase = await createClient();
@@ -11,6 +12,60 @@ export async function GET(request: Request) {
   const fornecedorFilter = searchParams.get('fornecedores')?.split(',').filter(Boolean) || [];
   const mlStatus = searchParams.get('ml_status') || '';
   const estoque = searchParams.get('estoque') || '';
+  const priceFieldParam = searchParams.get('priceField') || 'cost';
+  const priceField: 'cost' | 'suggestedPrice' | 'profit' =
+    priceFieldParam === 'suggestedPrice' || priceFieldParam === 'profit'
+      ? priceFieldParam
+      : 'cost';
+  const rawPriceMin = searchParams.get('priceMin');
+  const rawPriceMax = searchParams.get('priceMax');
+  const parsedPriceMin = rawPriceMin !== null ? Number(rawPriceMin) : null;
+  const parsedPriceMax = rawPriceMax !== null ? Number(rawPriceMax) : null;
+  const priceMin = parsedPriceMin !== null && Number.isFinite(parsedPriceMin) ? parsedPriceMin : null;
+  const priceMax = parsedPriceMax !== null && Number.isFinite(parsedPriceMax) ? parsedPriceMax : null;
+  const hasPriceFilter = priceMin !== null || priceMax !== null;
+
+  function computeDerived(item: any): { displayPrice: number; profit: number | null } {
+    try {
+      const result = calculateSuggestedPrice({
+        cost: item.custo || 0,
+        shipping: item.ml_shipping || 0,
+        mlFee: item.ml_fee || 0.15,
+      });
+      const displayPrice = Math.round((item.custom_price ?? result.suggestedPrice) * 100) / 100;
+
+      if (item.ml_status === 'sem_anuncio') {
+        return { displayPrice, profit: null };
+      }
+
+      const tax = displayPrice * 0.04;
+      const mlFeeAmount = displayPrice * (item.ml_fee || 0.15);
+      const netProfit = displayPrice - (item.custo || 0) - (item.ml_shipping || 0) - tax - mlFeeAmount;
+      return { displayPrice, profit: Math.round(netProfit * 100) / 100 };
+    } catch {
+      return {
+        displayPrice: Math.round(((item.custom_price ?? item.custo) || 0) * 100) / 100,
+        profit: null,
+      };
+    }
+  }
+
+  function matchesPriceFilter(item: any): boolean {
+    if (!hasPriceFilter) return true;
+    const { displayPrice, profit } = computeDerived(item);
+    let value = 0;
+    if (priceField === 'cost') {
+      value = Number(item.custo || 0);
+    } else if (priceField === 'suggestedPrice') {
+      value = displayPrice;
+    } else {
+      if (profit === null) return false;
+      value = profit;
+    }
+    if (priceMin !== null && value < priceMin) return false;
+    if (priceMax !== null && value > priceMax) return false;
+    return true;
+  }
 
   // Build base query with direct filters
   function applyFilters(query: any) {
@@ -31,52 +86,45 @@ export async function GET(request: Request) {
     return query;
   }
 
-  // Total
-  let totalQuery = supabase.from('produtos').select('*', { count: 'exact', head: false }).range(0, 0);
-  totalQuery = applyFilters(totalQuery);
-  const { count: total } = await totalQuery;
+  const chunkSize = 1000;
+  const allRows: any[] = [];
+  let offset = 0;
 
-  // Com Estoque
-  let comEstoqueQuery = supabase.from('produtos').select('*', { count: 'exact', head: false }).range(0, 0);
-  comEstoqueQuery = applyFilters(comEstoqueQuery);
-  comEstoqueQuery = comEstoqueQuery.gt('estoque', 0);
-  const { count: comEstoque } = await comEstoqueQuery;
+  while (true) {
+    let query = supabase.from('produtos').select('estoque, custo, ml_shipping, ml_fee, custom_price, ml_status');
+    query = applyFilters(query);
+    const { data, error } = await query
+      .order('sku', { ascending: true })
+      .range(offset, offset + chunkSize - 1);
+    if (error) {
+      return NextResponse.json({ erro: error.message }, { status: 500 });
+    }
+    const rows = data || [];
+    allRows.push(...rows);
+    if (rows.length < chunkSize) break;
+    offset += chunkSize;
+  }
 
-  // Sem Anúncio
-  let semAnuncioQuery = supabase.from('produtos').select('*', { count: 'exact', head: false }).range(0, 0);
-  semAnuncioQuery = applyFilters(semAnuncioQuery);
-  semAnuncioQuery = semAnuncioQuery.eq('ml_status', 'sem_anuncio');
-  const { count: semAnuncio } = await semAnuncioQuery;
+  const filteredRows = hasPriceFilter ? allRows.filter(matchesPriceFilter) : allRows;
 
-  // Receita Potencial e Lucro Médio (sum over filtered)
-  let sumQuery = supabase.from('produtos').select('estoque, custo, ml_shipping, ml_fee, custom_price, ml_status');
-  sumQuery = applyFilters(sumQuery);
-  const { data: sumData } = await sumQuery;
-
+  let total = filteredRows.length;
+  let comEstoque = 0;
+  let semAnuncio = 0;
   let receitaPotencial = 0;
   let lucroSum = 0;
   let lucroCount = 0;
 
-  for (const item of sumData || []) {
-    const estoque = item.estoque || 0;
-    // Preço de exibição = custom_price ou suggestedPrice
-    let displayPrice: number;
-    try {
-      const { calculateSuggestedPrice } = await import('@/services/pricing');
-      const result = calculateSuggestedPrice({
-        cost: item.custo || 0,
-        shipping: item.ml_shipping || 0,
-        mlFee: item.ml_fee || 0.15,
-      });
-      displayPrice = item.custom_price ?? result.suggestedPrice;
-      if (item.ml_status !== 'sem_anuncio') {
-        lucroSum += result.netProfit;
-        lucroCount++;
-      }
-    } catch {
-      displayPrice = item.custom_price ?? item.custo ?? 0;
+  for (const item of filteredRows) {
+    const estoqueAtual = Number(item.estoque || 0);
+    if (estoqueAtual > 0) comEstoque++;
+    if (item.ml_status === 'sem_anuncio') semAnuncio++;
+
+    const { displayPrice, profit } = computeDerived(item);
+    receitaPotencial += displayPrice * estoqueAtual;
+    if (profit !== null) {
+      lucroSum += profit;
+      lucroCount++;
     }
-    receitaPotencial += displayPrice * estoque;
   }
 
   const lucroMedio = lucroCount > 0 ? lucroSum / lucroCount : 0;

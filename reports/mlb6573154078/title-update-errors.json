@@ -1,0 +1,21 @@
+{
+  "generated_at_utc": "2026-05-28T18:10:45.147Z",
+  "attempts": [
+    {
+      "endpoint": "PUT /items/MLB6573154078",
+      "body": {
+        "title": "Caixa de Som Passiva Frahm HS 6\" Outdoor 140w Com Trafo Preta"
+      },
+      "status": 400,
+      "error": "You cannot modify the title if the item has a family_name"
+    },
+    {
+      "endpoint": "PUT /items/MLB6573154078",
+      "body": {
+        "family_name": "Caixa de Som Passiva Frahm HS 6\" Outdoor 140w Com Trafo Preta"
+      },
+      "status": 400,
+      "error": "The field family name is invalid"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "generated_at_utc": "2026-05-28T18:07:32.495Z",
+  "summary": {
+    "total_ativos": 484,
+    "sem_vinculo": 0,
+    "descricao_vazia": 0,
+    "descricao_html_literal": 0,
+    "titulo_divergente": 0,
+    "marca_divergente": 0,
+    "gtin_ausente_ml_com_gtin_local": 0,
+    "gtin_divergente": 0
+  },
+  "total_targets": 0,
+  "targets": []
+}

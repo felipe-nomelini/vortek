@@ -45,7 +45,15 @@ const menuItems: MenuProps['items'] = [
   },
   { key: '/notas-fiscais', icon: <FileTextOutlined />, label: 'Notas Fiscais' },
   { key: '/anuncios', icon: <ShopOutlined />, label: 'Anúncios' },
-  { key: '/catalogo', icon: <AppstoreOutlined />, label: 'Catálogo' },
+  {
+    key: 'catalogo-group',
+    icon: <AppstoreOutlined />,
+    label: 'Catálogo',
+    children: [
+      { key: '/catalogo/no-catalogo', icon: <AppstoreOutlined />, label: 'No Catálogo' },
+      { key: '/catalogo/elegiveis', icon: <AppstoreOutlined />, label: 'Elegíveis' },
+    ],
+  },
   { key: '/perguntas', icon: <QuestionCircleOutlined />, label: 'Perguntas' },
   { key: '/reputacao', icon: <StarOutlined />, label: 'Reputação' },
   { key: '/reclamacoes', icon: <WarningOutlined />, label: 'Reclamações' },
@@ -108,7 +116,10 @@ export default function Sidebar() {
         theme="dark"
         mode="inline"
         selectedKeys={[pathname]}
-        defaultOpenKeys={pathname.startsWith('/pedidos') || pathname.startsWith('/compras') ? ['pedidos-group'] : []}
+        defaultOpenKeys={[
+          ...(pathname.startsWith('/pedidos') || pathname.startsWith('/compras') ? ['pedidos-group'] : []),
+          ...(pathname.startsWith('/catalogo') ? ['catalogo-group'] : []),
+        ]}
         items={menuItems}
         onSelect={({ key }) => {
           if (key && !key.endsWith('-group')) router.push(key);

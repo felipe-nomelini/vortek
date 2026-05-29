@@ -69,12 +69,43 @@ function isExpired(expiresAt: string | null): boolean {
   return new Date(expiresAt).getTime() - Date.now() < 300000;
 }
 
+function isBlockedMlFiscalInvoicePath(path: string): boolean {
+  return /\/users\/[^/]+\/invoices(?:\/|$)/i.test(path) || /\/invoices\/documents\//i.test(path);
+}
+
+function logMlFiscalEndpointBlocked(path: string, method: string) {
+  const stackOrigin = new Error().stack
+    ?.split('\n')
+    .slice(2, 7)
+    .map((line) => line.trim())
+    .join(' | ') || null;
+  const payload = {
+    event: 'ml_fiscal_endpoint_blocked',
+    timestamp_utc: new Date().toISOString(),
+    path,
+    method,
+    blocked_reason: 'fiscal_ml_desativado_por_politica',
+    stack_origin: stackOrigin,
+  };
+  console.error(JSON.stringify(payload));
+  void (async () => {
+    try {
+      await createServiceClient()
+        .from('nf_auditoria_eventos')
+        .insert({
+          evento: 'ml_fiscal_endpoint_blocked',
+          status_resultante: 'blocked',
+          resposta_ml: payload,
+        });
+    } catch {}
+  })();
+}
+
 function classifyMLFailure(path: string, status: number, body: string): MLFailureCategory {
   const lowerBody = body.toLowerCase();
   if (status === 401) return 'auth_fatal';
   if ([408, 409, 424, 429, 500, 502, 503, 504].includes(status)) return 'retryable';
 
-  const expectedInvoice404 = path.includes('/invoices/orders/') && status === 404;
   const expectedShipment404 = /\/orders\/.+\/shipments/.test(path) && status === 404;
   const expectedCarrier404 =
     /\/shipments\/.+\/carrier/.test(path) &&
@@ -84,8 +115,22 @@ function classifyMLFailure(path: string, status: number, body: string): MLFailur
     path.includes('/shipping_options') &&
     status === 404 &&
     (lowerBody.includes('stock out') || lowerBody.includes('no coverage'));
+  const expectedShipmentInvoiceData404 =
+    /\/shipments\/[^/]+\/invoice_data/i.test(path) &&
+    status === 404 &&
+    (lowerBody.includes('not_found_shipment_invoice') || lowerBody.includes('not found shipment invoice'));
+  const expectedShipmentInvoiceData415JsonUnsupported =
+    /\/shipments\/[^/]+\/invoice_data/i.test(path) &&
+    status === 415 &&
+    (lowerBody.includes('unsupported type json') || lowerBody.includes('unsupported content-type json'));
 
-  if (expectedInvoice404 || expectedShipment404 || expectedCarrier404 || expectedShipping404) {
+  if (
+    expectedShipment404
+    || expectedCarrier404
+    || expectedShipping404
+    || expectedShipmentInvoiceData404
+    || expectedShipmentInvoiceData415JsonUnsupported
+  ) {
     return 'expected_operational';
   }
 
@@ -328,6 +373,23 @@ export async function getValidMLToken(force = false): Promise<string | null> {
 }
 
 export async function fetchMLResult<T>(path: string, options?: RequestInit): Promise<MLRequestResult<T>> {
+  const method = options?.method || 'GET';
+  if (isBlockedMlFiscalInvoicePath(path)) {
+    logMlFiscalEndpointBlocked(path, method);
+    return {
+      ok: false,
+      status: 403,
+      data: null,
+      error: {
+        status: 403,
+        code: 'ml_fiscal_endpoint_blocked',
+        message: 'Endpoint fiscal de invoice do Mercado Livre bloqueado por política.',
+        category: 'error',
+        traceId: null,
+      },
+    };
+  }
+
   const blockedUntilIso = getAuthFatalBlockedUntil();
   if (blockedUntilIso) {
     return {
@@ -362,7 +424,6 @@ export async function fetchMLResult<T>(path: string, options?: RequestInit): Pro
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 30000);
-  const method = options?.method || 'GET';
 
   const doFetch = async (tok: string) => {
     return fetch(`https://api.mercadolibre.com${path}`, {
@@ -459,6 +520,18 @@ export async function fetchML<T>(path: string, options?: RequestInit): Promise<T
 }
 
 export async function fetchMLRaw(path: string, options?: RequestInit): Promise<{ status: number; body: string } | null> {
+  const method = options?.method || 'GET';
+  if (isBlockedMlFiscalInvoicePath(path)) {
+    logMlFiscalEndpointBlocked(path, method);
+    return {
+      status: 403,
+      body: JSON.stringify({
+        code: 'ml_fiscal_endpoint_blocked',
+        message: 'Endpoint fiscal de invoice do Mercado Livre bloqueado por política.',
+      }),
+    };
+  }
+
   const blockedUntilIso = getAuthFatalBlockedUntil();
   if (blockedUntilIso) {
     return {
@@ -524,11 +597,11 @@ export async function fetchMLRaw(path: string, options?: RequestInit): Promise<{
         category: classifyMLFailure(path, res.status, body),
         traceId: extractTraceId(parsed),
       };
-      logMLFailure(options?.method || 'GET', path, res.status, body, error);
+      logMLFailure(method, path, res.status, body, error);
     }
     return { status: res.status, body };
   } catch (err: any) {
-    console.warn(`[ML API] ${options?.method || 'GET'} ${path} → exception (retryable): ${err?.message || err}`);
+    console.warn(`[ML API] ${method} ${path} → exception (retryable): ${err?.message || err}`);
     return null;
   } finally {
     clearTimeout(timeout);
@@ -586,197 +659,422 @@ export async function emitirNotaFiscalML(orderId: string): Promise<{
   error?: string;
   retryable?: boolean;
 }> {
-  const meResult = await fetchMLResult<any>('/users/me');
-  if (!meResult.ok || !meResult.data?.id) {
+  void orderId;
+  return {
+    ok: false,
+    error: 'Emissão fiscal via ML desativada por política.',
+    retryable: false,
+  };
+}
+
+export async function anexarDocumentosFiscaisML(input: {
+  mlPackId?: string | null;
+  mlOrderId?: string | null;
+  nfeXml?: string | null;
+  danfePdf?: Buffer | null;
+}): Promise<{
+  ok: boolean;
+  attachedXml: boolean;
+  attachedDanfe: boolean;
+  statusCode?: number | null;
+  endpoint?: string | null;
+  error?: string;
+  errorCode?: string | null;
+}> {
+  void input;
+  const blockedReason = 'pack_fiscal_documents_disabled_policy';
+  const payload = {
+    event: 'ml_fiscal_runtime_call_denied',
+    timestamp_utc: new Date().toISOString(),
+    endpoint: '/packs/{pack_id}/fiscal_documents',
+    method: 'POST',
+    blocked_reason: blockedReason,
+  };
+  console.error(JSON.stringify(payload));
+  void (async () => {
+    try {
+      await createServiceClient()
+        .from('nf_auditoria_eventos')
+        .insert({
+          evento: 'ml_fiscal_runtime_call_denied',
+          status_resultante: 'denied',
+          resposta_ml: payload,
+        });
+    } catch {}
+  })();
+  return {
+    ok: false,
+    attachedXml: false,
+    attachedDanfe: false,
+    statusCode: 403,
+    endpoint: '/packs/{pack_id}/fiscal_documents',
+    error: 'Upload fiscal via packs/fiscal_documents desativado por política. Use shipment invoice_data.',
+    errorCode: 'ml_fiscal_pack_upload_disabled',
+  };
+}
+
+export async function consultarInvoiceDataPorShipmentML(shipmentId: string, siteId: string = 'MLB'): Promise<{
+  ok: boolean;
+  data?: any;
+  statusCode?: number | null;
+  error?: string;
+  temporary?: boolean;
+}> {
+  const path = `/shipments/${encodeURIComponent(String(shipmentId))}/invoice_data?siteId=${encodeURIComponent(siteId)}`;
+  const res = await fetchMLResult<any>(path);
+  if (!res.ok || !res.data) {
     return {
       ok: false,
-      error: meResult.error?.message || 'Não foi possível obter seller ID do ML',
-      retryable: meResult.error?.category === 'retryable',
+      statusCode: res.status,
+      error: res.error?.message || 'Falha ao consultar invoice_data no ML',
+      temporary:
+        res.status === 404 ||
+        res.error?.category === 'retryable' ||
+        res.error?.category === 'expected_operational',
+    };
+  }
+  return { ok: true, data: res.data, statusCode: res.status };
+}
+
+export async function upsertInvoiceDataMLByShipment(input: {
+  shipmentId: string;
+  fiscalKey: string;
+  invoiceNumber: string | number;
+  invoiceSerie: string | number;
+  invoiceDate: string;
+  invoiceAmount: number;
+  nfeXml: string;
+  cfop?: string | number | null;
+  siteId?: string;
+}): Promise<{
+  ok: boolean;
+  statusCode?: number | null;
+  method?: 'PUT' | 'POST';
+  lastMethodTried?: 'PUT' | 'POST';
+  endpoint?: string;
+  data?: any;
+  error?: string;
+  reason?: string;
+  errorCode?: string | null;
+  contentMode?: 'json' | 'xml';
+  attempts?: Array<{
+    method: 'PUT' | 'POST';
+    endpoint: string;
+    contentType: string;
+    statusCode: number | null;
+    code?: string | null;
+    message?: string | null;
+  }>;
+}> {
+  const shipmentId = String(input.shipmentId || '').trim();
+  const fiscalKey = String(input.fiscalKey || '').trim();
+  const invoiceNumber = String(input.invoiceNumber || '').trim();
+  const invoiceSerie = String(input.invoiceSerie || '').trim();
+  const invoiceDate = String(input.invoiceDate || '').trim();
+  const siteId = String(input.siteId || 'MLB').trim() || 'MLB';
+  const invoiceAmount = Number(input.invoiceAmount || 0);
+  const nfeXml = String(input.nfeXml || '').trim();
+
+  if (!shipmentId || !fiscalKey || !invoiceNumber || !invoiceSerie || !invoiceDate || !(invoiceAmount > 0)) {
+    return {
+      ok: false,
+      statusCode: 400,
+      error: 'Dados insuficientes para subir invoice_data no ML',
+      reason: 'invalid_input',
+    };
+  }
+  if (!nfeXml) {
+    return {
+      ok: false,
+      statusCode: 400,
+      error: 'NF XML ausente para upload fiscal no ML',
+      reason: 'nf_xml_ausente_para_upload_ml',
     };
   }
 
-  const sellerId = meResult.data.id;
-  const orderNumeric = Number(orderId);
-  if (!Number.isFinite(orderNumeric)) {
-    return { ok: false, error: `orderId inválido para emissão: ${orderId}` };
+  const endpointInvoiceDataJson = `/shipments/${encodeURIComponent(shipmentId)}/invoice_data?siteId=${encodeURIComponent(siteId)}`;
+  const endpointInvoiceDataXml = `/shipments/${encodeURIComponent(shipmentId)}/invoice_data/?siteId=${encodeURIComponent(siteId)}`;
+  const payloadJson: Record<string, any> = {
+    fiscal_key: fiscalKey,
+    invoice_number: invoiceNumber,
+    invoice_serie: invoiceSerie,
+    invoice_date: invoiceDate,
+    invoice_amount: invoiceAmount,
+  };
+  if (input.cfop !== null && input.cfop !== undefined && String(input.cfop).trim()) {
+    payloadJson.cfop = String(input.cfop).trim();
   }
 
-  const issueResult = await fetchMLResult<any>(`/users/${sellerId}/invoices/orders`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ orders: [orderNumeric] }),
-  });
+  let lastError = 'Falha ao subir invoice_data no ML';
+  let lastStatus: number | null = null;
+  let lastCode: string | null = null;
+  let lastMethod: 'PUT' | 'POST' | undefined;
+  let lastEndpoint: string | undefined;
+  let selectedContentMode: 'json' | 'xml' | undefined;
+  const attempts: Array<{
+    method: 'PUT' | 'POST';
+    endpoint: string;
+    contentType: string;
+    statusCode: number | null;
+    code?: string | null;
+    message?: string | null;
+  }> = [];
 
-  if (issueResult.ok) {
+  const tryUpload = async (method: 'PUT' | 'POST', endpoint: string, contentType: string, body: string) => {
+    lastMethod = method;
+    lastEndpoint = endpoint;
+    const result = await fetchMLResult<any>(endpoint, {
+      method,
+      headers: { 'Content-Type': contentType },
+      body,
+    });
+    if (result.ok) {
+      return { ok: true as const, result };
+    }
+    lastStatus = result.status;
+    const message = result.error?.message || `HTTP ${result.status ?? 'n/a'}`;
+    lastError = message;
+    lastCode = String(result.error?.code || '').trim() || null;
+    attempts.push({
+      method,
+      endpoint,
+      contentType,
+      statusCode: result.status ?? null,
+      code: lastCode,
+      message,
+    });
+    const code = String(result.error?.code || '').toLowerCase();
+    const lowerMsg = message.toLowerCase();
+    const duplicatedKey = code.includes('duplicated_fiscal_key') || lowerMsg.includes('duplicated_fiscal_key');
+    const alreadySaved = code.includes('shipment_invoice_already_saved') || lowerMsg.includes('already saved');
+    const unsupportedJson =
+      result.status === 415 &&
+      (code.includes('unsupported content-type json') || lowerMsg.includes('unsupported type json'));
+    return {
+      ok: false as const,
+      result,
+      duplicatedKey,
+      alreadySaved,
+      unsupportedJson,
+      authFatal: result.status === 401 || result.error?.category === 'auth_fatal',
+    };
+  };
+
+  // 1) Consulta estado atual do shipment invoice_data
+  const currentInvoiceData = await consultarInvoiceDataPorShipmentML(shipmentId, siteId);
+  if (currentInvoiceData.ok && currentInvoiceData.data) {
+    const currentKey = String(currentInvoiceData.data?.fiscal_key || '').trim();
+    if (currentKey && currentKey === fiscalKey) {
+      return {
+        ok: true,
+        statusCode: currentInvoiceData.statusCode || 200,
+        endpoint: endpointInvoiceDataJson,
+        data: currentInvoiceData.data,
+        reason: 'already_linked',
+        contentMode: 'json',
+        attempts,
+      };
+    }
+
+    const invoiceId = String(currentInvoiceData.data?.id || '').trim();
+    if (invoiceId) {
+      selectedContentMode = 'xml';
+      const updateEndpoint = `/shipment_invoice/${encodeURIComponent(invoiceId)}/?siteId=${encodeURIComponent(siteId)}`;
+      const updateTry = await tryUpload('PUT', updateEndpoint, 'application/xml', nfeXml);
+      if (updateTry.ok) {
+        return {
+          ok: true,
+          statusCode: updateTry.result.status,
+          method: 'PUT',
+          lastMethodTried: 'PUT',
+          endpoint: updateEndpoint,
+          data: updateTry.result.data,
+          reason: 'updated_xml',
+          contentMode: 'xml',
+          attempts,
+        };
+      }
+      if ((updateTry as any).duplicatedKey || (updateTry as any).alreadySaved) {
+        return {
+          ok: true,
+          statusCode: lastStatus,
+          method: 'PUT',
+          lastMethodTried: 'PUT',
+          endpoint: updateEndpoint,
+          data: null,
+          reason: 'updated_xml',
+          contentMode: 'xml',
+          attempts,
+        };
+      }
+    }
+  }
+
+  // 2) Criação no shipment invoice_data: PUT JSON -> POST JSON -> POST XML
+  selectedContentMode = 'json';
+  const putJson = await tryUpload('PUT', endpointInvoiceDataJson, 'application/json', JSON.stringify(payloadJson));
+  if (putJson.ok) {
     return {
       ok: true,
-      status: issueResult.data?.status || 'issued',
-      invoiceId: issueResult.data?.id || issueResult.data?.invoice_id,
+      statusCode: putJson.result.status,
+      method: 'PUT',
+      lastMethodTried: 'PUT',
+      endpoint: endpointInvoiceDataJson,
+      data: putJson.result.data,
+      reason: 'created_json',
+      contentMode: 'json',
+      attempts,
+    };
+  }
+  if ((putJson as any).duplicatedKey || (putJson as any).alreadySaved) {
+    return {
+      ok: true,
+      statusCode: lastStatus,
+      method: 'PUT',
+      lastMethodTried: 'PUT',
+      endpoint: endpointInvoiceDataJson,
+      data: null,
+      reason: 'already_linked',
+      contentMode: 'json',
+      attempts,
+    };
+  }
+  if ((putJson as any).authFatal) {
+    return {
+      ok: false,
+      statusCode: lastStatus,
+      method: 'PUT',
+      lastMethodTried: 'PUT',
+      endpoint: endpointInvoiceDataJson,
+      error: lastError,
+      reason: 'auth_fatal',
+      errorCode: lastCode,
+      contentMode: 'json',
+      attempts,
     };
   }
 
-  const msg = String(issueResult.error?.message || '').toLowerCase();
-  const code = String(issueResult.error?.code || '').toLowerCase();
-  const alreadyIssued =
-    issueResult.status === 409 ||
-    msg.includes('already') ||
-    msg.includes('emitida') ||
-    msg.includes('already exists') ||
-    code.includes('already');
-
-  if (alreadyIssued) {
-    return { ok: true, status: 'already_issued' };
+  const postJson = await tryUpload('POST', endpointInvoiceDataJson, 'application/json', JSON.stringify(payloadJson));
+  if (postJson.ok) {
+    return {
+      ok: true,
+      statusCode: postJson.result.status,
+      method: 'POST',
+      lastMethodTried: 'POST',
+      endpoint: endpointInvoiceDataJson,
+      data: postJson.result.data,
+      reason: 'created_json',
+      contentMode: 'json',
+      attempts,
+    };
   }
+  if ((postJson as any).duplicatedKey || (postJson as any).alreadySaved) {
+    return {
+      ok: true,
+      statusCode: lastStatus,
+      method: 'POST',
+      lastMethodTried: 'POST',
+      endpoint: endpointInvoiceDataJson,
+      data: null,
+      reason: 'already_linked',
+      contentMode: 'json',
+      attempts,
+    };
+  }
+  if ((postJson as any).authFatal) {
+    return {
+      ok: false,
+      statusCode: lastStatus,
+      method: 'POST',
+      lastMethodTried: 'POST',
+      endpoint: endpointInvoiceDataJson,
+      error: lastError,
+      reason: 'auth_fatal',
+      errorCode: lastCode,
+      contentMode: 'json',
+      attempts,
+    };
+  }
+
+  const shouldTryXml = Boolean((putJson as any).unsupportedJson || (postJson as any).unsupportedJson);
+  if (shouldTryXml) {
+    selectedContentMode = 'xml';
+    const postXml = await tryUpload('POST', endpointInvoiceDataXml, 'application/xml', nfeXml);
+    if (postXml.ok) {
+      return {
+        ok: true,
+        statusCode: postXml.result.status,
+        method: 'POST',
+        lastMethodTried: 'POST',
+        endpoint: endpointInvoiceDataXml,
+        data: postXml.result.data,
+        reason: 'created_xml',
+        contentMode: 'xml',
+        attempts,
+      };
+    }
+    if ((postXml as any).duplicatedKey || (postXml as any).alreadySaved) {
+      return {
+        ok: true,
+        statusCode: lastStatus,
+        method: 'POST',
+        lastMethodTried: 'POST',
+        endpoint: endpointInvoiceDataXml,
+        data: null,
+        reason: 'already_linked',
+        contentMode: 'xml',
+        attempts,
+      };
+    }
+    if ((postXml as any).authFatal) {
+      return {
+        ok: false,
+        statusCode: lastStatus,
+        method: 'POST',
+        lastMethodTried: 'POST',
+        endpoint: endpointInvoiceDataXml,
+        error: lastError,
+        reason: 'auth_fatal',
+        errorCode: lastCode,
+        contentMode: 'xml',
+        attempts,
+      };
+    }
+  }
+
+  const allShipmentInvoice404 = attempts.length >= 2 && attempts.every((a) => {
+    const code = String(a.code || '').toLowerCase();
+    const msg = String(a.message || '').toLowerCase();
+    return a.statusCode === 404 && (code.includes('not_found_shipment_invoice') || msg.includes('not found shipment invoice'));
+  });
 
   return {
     ok: false,
-    error: issueResult.error?.message || `Falha ao emitir NF no ML (HTTP ${issueResult.status ?? 'n/a'})`,
-    retryable: issueResult.error?.category === 'retryable',
+    statusCode: lastStatus,
+    method: lastMethod,
+    lastMethodTried: lastMethod,
+    endpoint: lastEndpoint || endpointInvoiceDataJson,
+    error: lastError,
+    reason: allShipmentInvoice404
+      ? 'shipment_invoice_not_found_after_all_modes'
+      : (shouldTryXml ? 'unsupported_content_type' : 'ml_invoice_data_upload_failed'),
+    errorCode: lastCode,
+    contentMode: selectedContentMode,
+    attempts,
   };
 }
 
-export async function consultarInvoiceDoPedidoML(orderId: string): Promise<{
-  ok: boolean;
-  invoiceId?: string | number;
-  status?: string;
+export async function baixarEtiquetaML(shipmentId: string): Promise<{
+  pdf: Buffer | null;
   error?: string;
-  temporary?: boolean;
+  retryable?: boolean;
+  reason?: 'buffered' | 'not_ready' | 'auth' | 'http_error' | 'invalid_pdf' | 'unknown';
+  statusCode?: number;
 }> {
-  const meResult = await fetchMLResult<any>('/users/me');
-  if (!meResult.ok || !meResult.data?.id) {
-    return {
-      ok: false,
-      error: meResult.error?.message || 'Não foi possível obter seller ID do ML',
-      temporary: meResult.error?.category === 'retryable',
-    };
-  }
-
-  const sellerId = meResult.data.id;
-  const invoiceResult = await fetchMLResult<any>(`/users/${sellerId}/invoices/orders/${orderId}`);
-  if (!invoiceResult.ok || !invoiceResult.data) {
-    return {
-      ok: false,
-      error: invoiceResult.error?.message || 'Falha ao consultar invoice no ML',
-      temporary: invoiceResult.status === 404 || invoiceResult.error?.category === 'retryable' || invoiceResult.error?.category === 'expected_operational',
-    };
-  }
-
-  return {
-    ok: true,
-    invoiceId: invoiceResult.data.id,
-    status: invoiceResult.data.status,
-  };
-}
-
-export async function baixarXmlInvoiceML(invoiceId: string): Promise<{
-  xml: string | null;
-  error?: string;
-  temporary?: boolean;
-}> {
-  const meResult = await fetchMLResult<any>('/users/me');
-  if (!meResult.ok || !meResult.data?.id) {
-    return {
-      xml: null,
-      error: meResult.error?.message || 'Não foi possível obter seller ID do ML',
-      temporary: meResult.error?.category === 'retryable',
-    };
-  }
-
-  const sellerId = meResult.data.id;
-  const xmlResult = await fetchMLRaw(`/users/${sellerId}/invoices/documents/xml/${invoiceId}/authorized`);
-  if (!xmlResult) return { xml: null, error: 'Falha ao baixar XML do ML', temporary: true };
-
-  if (xmlResult.status !== 200) {
-    return {
-      xml: null,
-      error: `ML retornou HTTP ${xmlResult.status}: ${xmlResult.body.substring(0, 200)}`,
-      temporary: [404, 408, 409, 424, 429, 500, 502, 503, 504].includes(xmlResult.status),
-    };
-  }
-
-  if (xmlResult.body && xmlResult.body.length > 50) {
-    return { xml: xmlResult.body };
-  }
-  return { xml: null, error: 'XML vazio ou inválido retornado pelo ML' };
-}
-
-export async function buscarXmlDaNF(orderId: string): Promise<{
-  xml: string | null;
-  error?: string;
-  status_code_ml?: number | null;
-  error_code_ml?: string | null;
-  temporary?: boolean;
-}> {
-  try {
-    const meResult = await fetchMLResult<any>('/users/me');
-    if (!meResult.ok || !meResult.data?.id) {
-      return {
-        xml: null,
-        error: meResult.error?.message || 'Não foi possível obter seller ID do ML',
-        status_code_ml: meResult.status,
-        error_code_ml: meResult.error?.code || null,
-        temporary: meResult.error?.category === 'retryable',
-      };
-    }
-
-    const sellerId = meResult.data.id;
-    console.log(`[buscarXmlDaNF] Buscando invoice pelo order_id=${orderId}`);
-
-    const invoiceResult = await fetchMLResult<any>(`/users/${sellerId}/invoices/orders/${orderId}`);
-    if (!invoiceResult.ok || !invoiceResult.data) {
-      const notFound = invoiceResult.status === 404;
-      return {
-        xml: null,
-        error: notFound ? 'NF ainda não disponível no ML para este pedido' : (invoiceResult.error?.message || 'Falha ao consultar invoice no ML'),
-        status_code_ml: invoiceResult.status,
-        error_code_ml: invoiceResult.error?.code || null,
-        temporary: notFound || invoiceResult.error?.category === 'retryable' || invoiceResult.error?.category === 'expected_operational',
-      };
-    }
-
-    const invoiceId = invoiceResult.data.id;
-    if (!invoiceId) {
-      return { xml: null, error: 'Invoice ID não retornado pelo ML', status_code_ml: invoiceResult.status, temporary: true };
-    }
-
-    console.log(`[buscarXmlDaNF] Invoice encontrada: id=${invoiceId}, status=${invoiceResult.data.status}`);
-
-    if (invoiceResult.data.status !== 'authorized') {
-      return { xml: null, error: `NF ainda não autorizada (status: ${invoiceResult.data.status})`, temporary: true };
-    }
-
-    console.log(`[buscarXmlDaNF] Baixando XML pelo invoice_id=${invoiceId}`);
-
-    const xmlResult = await fetchMLRaw(`/users/${sellerId}/invoices/documents/xml/${invoiceId}/authorized`);
-    if (!xmlResult) {
-      return { xml: null, error: 'Falha ao baixar XML do ML', temporary: true };
-    }
-
-    if (xmlResult.status !== 200) {
-      return {
-        xml: null,
-        error: `ML retornou HTTP ${xmlResult.status}: ${xmlResult.body.substring(0, 200)}`,
-        status_code_ml: xmlResult.status,
-        temporary: [404, 408, 409, 424, 429, 500, 502, 503, 504].includes(xmlResult.status),
-      };
-    }
-
-    if (xmlResult.body && xmlResult.body.length > 50) {
-      console.log(`[buscarXmlDaNF] XML baixado com sucesso, tamanho: ${xmlResult.body.length} chars`);
-      return { xml: xmlResult.body };
-    }
-
-    return { xml: null, error: 'XML vazio ou inválido retornado pelo ML' };
-  } catch (err: any) {
-    return { xml: null, error: `Exceção: ${err?.message || err}`, temporary: true };
-  }
-}
-
-export async function baixarEtiquetaML(shipmentId: string): Promise<{ pdf: Buffer | null; error?: string }> {
   try {
     let token = await getValidMLToken();
     if (!token) {
-      return { pdf: null, error: 'Token do ML não disponível' };
+      return { pdf: null, error: 'Token do ML não disponível', reason: 'auth', retryable: true };
     }
 
     console.log(`[baixarEtiquetaML] Baixando etiqueta para shipment ${shipmentId}`);
@@ -807,7 +1105,13 @@ export async function baixarEtiquetaML(shipmentId: string): Promise<{ pdf: Buffe
         const freshToken = await getValidMLToken(true);
         if (!freshToken) {
           setAuthFatalCooldown('refresh_failed_label_after_401');
-          return { pdf: null, error: 'Falha ao renovar token do Mercado Livre para baixar etiqueta' };
+          return {
+            pdf: null,
+            error: 'Falha ao renovar token do Mercado Livre para baixar etiqueta',
+            reason: 'auth',
+            retryable: true,
+            statusCode: 401,
+          };
         }
         token = freshToken;
         res = await doFetch(token);
@@ -819,7 +1123,19 @@ export async function baixarEtiquetaML(shipmentId: string): Promise<{ pdf: Buffe
       if (!res.ok) {
         const text = await res.text().catch(() => '');
         console.error(`[baixarEtiquetaML] ML retornou HTTP ${res.status}: ${text.substring(0, 300)}`);
-        return { pdf: null, error: `ML retornou HTTP ${res.status}` };
+        const lowered = text.toLowerCase();
+        const isNotReady = lowered.includes('invoice_pending')
+          || lowered.includes('not_printable_status')
+          || lowered.includes('shplab0200');
+        const isBuffered = lowered.includes('buffered');
+        const isRetryableStatus = [404, 408, 409, 423, 424, 425, 429, 500, 502, 503, 504].includes(res.status);
+        return {
+          pdf: null,
+          error: text ? text.substring(0, 300) : `ML retornou HTTP ${res.status}`,
+          reason: isBuffered ? 'buffered' : isNotReady ? 'not_ready' : 'http_error',
+          retryable: isBuffered || isNotReady || isRetryableStatus,
+          statusCode: res.status,
+        };
       }
 
       const arrayBuffer = await res.arrayBuffer();
@@ -827,16 +1143,19 @@ export async function baixarEtiquetaML(shipmentId: string): Promise<{ pdf: Buffe
 
       if (buffer.length < 4 || buffer.toString('ascii', 0, 4) !== '%PDF') {
         console.error(`[baixarEtiquetaML] Resposta não é um PDF válido (tamanho: ${buffer.length})`);
-        return { pdf: null, error: 'Resposta do ML não é um PDF válido' };
+        return { pdf: null, error: 'Resposta do ML não é um PDF válido', reason: 'invalid_pdf', retryable: true, statusCode: res.status };
       }
 
       console.log(`[baixarEtiquetaML] Etiqueta baixada com sucesso: ${buffer.length} bytes`);
-      return { pdf: buffer };
+      return { pdf: buffer, statusCode: res.status };
     } finally {
       clearTimeout(timeout);
     }
   } catch (err: any) {
     console.error('[baixarEtiquetaML] Erro:', err);
-    return { pdf: null, error: err?.message || 'Erro ao baixar etiqueta' };
+    const msg = String(err?.message || 'Erro ao baixar etiqueta');
+    const lowered = msg.toLowerCase();
+    const buffered = lowered.includes('buffered');
+    return { pdf: null, error: msg, reason: buffered ? 'buffered' : 'unknown', retryable: true };
   }
 }

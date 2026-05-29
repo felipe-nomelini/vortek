@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { buildCanonicalDsliteSku, normalizeSku, stripKnownSkuPrefix, getFornecedorSkuPrefix } from '@/lib/sku';
+import { calculateSuggestedPrice } from '@/services/pricing';
+import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 
 function coerceDsliteIdentity(payload: Record<string, any>): { ok: true; payload: Record<string, any> } | { ok: false; error: string } {
   const fornecedorId = payload.dslite_fornecedor_id != null ? String(payload.dslite_fornecedor_id).trim() : '';
@@ -51,6 +53,60 @@ export async function GET(request: Request) {
   const fornecedorFilter = searchParams.get('fornecedores')?.split(',').filter(Boolean) || [];
   const mlStatus = searchParams.get('ml_status') || '';
   const estoque = searchParams.get('estoque') || '';
+  const priceFieldParam = searchParams.get('priceField') || 'cost';
+  const priceField: 'cost' | 'suggestedPrice' | 'profit' =
+    priceFieldParam === 'suggestedPrice' || priceFieldParam === 'profit'
+      ? priceFieldParam
+      : 'cost';
+  const rawPriceMin = searchParams.get('priceMin');
+  const rawPriceMax = searchParams.get('priceMax');
+  const parsedPriceMin = rawPriceMin !== null ? Number(rawPriceMin) : null;
+  const parsedPriceMax = rawPriceMax !== null ? Number(rawPriceMax) : null;
+  const priceMin = parsedPriceMin !== null && Number.isFinite(parsedPriceMin) ? parsedPriceMin : null;
+  const priceMax = parsedPriceMax !== null && Number.isFinite(parsedPriceMax) ? parsedPriceMax : null;
+  const hasPriceFilter = priceMin !== null || priceMax !== null;
+
+  function computeDerived(item: any): { displayPrice: number; profit: number | null } {
+    try {
+      const result = calculateSuggestedPrice({
+        cost: item.custo || 0,
+        shipping: item.ml_shipping || 0,
+        mlFee: item.ml_fee || 0.15,
+      });
+      const displayPrice = Math.round((item.custom_price ?? result.suggestedPrice) * 100) / 100;
+
+      if (item.ml_status === 'sem_anuncio') {
+        return { displayPrice, profit: null };
+      }
+
+      const tax = displayPrice * 0.04;
+      const mlFeeAmount = displayPrice * (item.ml_fee || 0.15);
+      const netProfit = displayPrice - (item.custo || 0) - (item.ml_shipping || 0) - tax - mlFeeAmount;
+      return { displayPrice, profit: Math.round(netProfit * 100) / 100 };
+    } catch {
+      return {
+        displayPrice: Math.round(((item.custom_price ?? item.custo) || 0) * 100) / 100,
+        profit: null,
+      };
+    }
+  }
+
+  function matchesPriceFilter(item: any): boolean {
+    const { displayPrice, profit } = computeDerived(item);
+    let value = 0;
+    if (priceField === 'cost') {
+      value = Number(item.custo || 0);
+    } else if (priceField === 'suggestedPrice') {
+      value = displayPrice;
+    } else {
+      if (profit === null) return false;
+      value = profit;
+    }
+
+    if (priceMin !== null && value < priceMin) return false;
+    if (priceMax !== null && value > priceMax) return false;
+    return true;
+  }
 
   // Helper to apply common DB filters to a query
   function applyFilters(query: any) {
@@ -71,19 +127,48 @@ export async function GET(request: Request) {
     return query;
   }
 
-  // Count query (exact, via DB)
-  let countQuery = supabase.from('produtos').select('id', { count: 'exact', head: false }).range(0, 0);
-  countQuery = applyFilters(countQuery);
-  const { count } = await countQuery;
+  let data: any[] = [];
+  let total = 0;
+  if (hasPriceFilter) {
+    // With derived price/profit filters we need to apply filtering over the full filtered dataset.
+    const chunkSize = 1000;
+    const allRows: any[] = [];
+    let offset = 0;
 
-  // Data query with pagination
-  let dataQuery = supabase.from('produtos').select('*');
-  dataQuery = applyFilters(dataQuery);
-  const { data, error } = await dataQuery
-    .order('sku', { ascending: true })
-    .range(from, to);
+    while (true) {
+      let chunkQuery = supabase.from('produtos').select('*');
+      chunkQuery = applyFilters(chunkQuery);
+      const { data: chunk, error } = await chunkQuery
+        .order('sku', { ascending: true })
+        .range(offset, offset + chunkSize - 1);
 
-  if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
+      if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
+      const rows = chunk || [];
+      allRows.push(...rows);
+      if (rows.length < chunkSize) break;
+      offset += chunkSize;
+    }
+
+    const filteredRows = allRows.filter(matchesPriceFilter);
+    total = filteredRows.length;
+    data = filteredRows.slice(from, to + 1);
+  } else {
+    // Count query (exact, via DB)
+    let countQuery = supabase.from('produtos').select('id', { count: 'exact', head: false }).range(0, 0);
+    countQuery = applyFilters(countQuery);
+    const { count } = await countQuery;
+    total = count || 0;
+
+    // Data query with pagination
+    let dataQuery = supabase.from('produtos').select('*');
+    dataQuery = applyFilters(dataQuery);
+    const { data: pageData, error } = await dataQuery
+      .order('sku', { ascending: true })
+      .range(from, to);
+
+    if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
+    data = pageData || [];
+  }
 
   // Get distinct fornecedores via RPC
   const serviceClient = createServiceClient();
@@ -95,7 +180,7 @@ export async function GET(request: Request) {
 
   return NextResponse.json({
     data: data || [],
-    total: count || 0,
+    total,
     page,
     pageSize,
     fornecedores: Array.from(fornecedoresSet).sort(),
@@ -133,5 +218,24 @@ export async function POST(request: Request) {
     }
     return NextResponse.json({ erro: msg }, { status: 500 });
   }
-  return NextResponse.json(data, { status: 201 });
+  let warning: string | null = null;
+  if (String((data as any)?.ml_item_id || '').trim()) {
+    const outbox = await enqueueMlPublishOutbox(createServiceClient(), {
+      produtoId: String((data as any).id),
+      mlItemId: String((data as any).ml_item_id),
+      desiredStatus: ((data as any).ml_status || null) as any,
+      desiredPrice: typeof (data as any).custom_price === 'number' ? (data as any).custom_price : null,
+      desiredQuantity: typeof (data as any).estoque === 'number' ? (data as any).estoque : null,
+      source: 'produto_create',
+      payload: { origin: 'api/produtos POST' },
+    });
+    if (!outbox.ok) {
+      warning = outbox.error;
+    }
+  }
+
+  return NextResponse.json(
+    warning ? { data, warning: `Produto criado, mas falhou ao enfileirar publicação ML: ${warning}` } : data,
+    { status: 201 },
+  );
 }

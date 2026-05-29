@@ -1,17 +1,9 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
-import { fetchML, buscarXmlDaNF } from '@/services/integration';
+import { fetchML } from '@/services/integration';
 import { calculateOrderProfit } from '@/services/orders';
-import { criarPedidoDropshipping } from '@/services/dslite';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
-
-function normalizeNfeStatus(status: string | null | undefined): string {
-  const normalized = String(status || '').toLowerCase();
-  if (normalized === 'authorized' || normalized === 'autorizada') return 'autorizada';
-  if (normalized === 'cancelled' || normalized === 'canceled' || normalized === 'cancelada') return 'cancelada';
-  if (!normalized) return 'pendente';
-  return normalized;
-}
+import { extractMlFiscalReleaseWindow } from '@/lib/ml/fiscal-release';
 
 export async function POST(request: Request) {
   try {
@@ -28,9 +20,13 @@ export async function POST(request: Request) {
     if (topic === 'orders_v2') {
       const order = await fetchML<any>(resourcePath);
       if (order) {
+        const shipment = await fetchML<any>(`/orders/${order.id}/shipments`).catch(() => null);
+        const shipmentFetched = Boolean(shipment && typeof shipment === 'object' && shipment.id);
+        const fiscalRelease = extractMlFiscalReleaseWindow(shipment);
+        const hasFutureRelease = Boolean(fiscalRelease.releaseAt && fiscalRelease.isBlockedNow);
         const { data: existing } = await serviceClient
           .from('pedidos')
-          .select('id')
+          .select('id,snapshot_incompleto,snapshot_pendencias,ml_fiscal_release_at')
           .eq('ml_order_id', String(order.id))
           .maybeSingle();
 
@@ -40,7 +36,7 @@ export async function POST(request: Request) {
         // Calcular lucro
         const { lucro, rastreio } = await calculateOrderProfit(detail);
 
-        const pedidoPayload = {
+        const pedidoPayload: any = {
           numero: Number(order.id) || 0,
           numero_loja: String(order.id || ''),
           data: order.date_created || new Date().toISOString(),
@@ -52,34 +48,119 @@ export async function POST(request: Request) {
           ml_pack_id: order.pack_id ? String(order.pack_id) : null,
           lucro,
           rastreio,
-        } as any;
+          ...(shipmentFetched ? { ml_shipment_id: String(shipment.id) } : {}),
+          ...(shipmentFetched
+            ? {
+                ml_fiscal_release_at: hasFutureRelease ? fiscalRelease.releaseAt : null,
+                ml_fiscal_release_reason: hasFutureRelease ? (fiscalRelease.reason || 'buffered') : null,
+                ml_fiscal_release_source: hasFutureRelease ? 'orders_shipments' : null,
+                ml_fiscal_release_checked_at: new Date().toISOString(),
+              }
+            : {}),
+        };
 
         if (existing) {
+          const { count: itensCount } = await serviceClient
+            .from('pedido_itens')
+            .select('*', { head: true, count: 'exact' })
+            .eq('pedido_id', existing.id);
+          const hasSnapshotItems = Boolean(itensCount && itensCount > 0);
+          if (!hasSnapshotItems) {
+            pedidoPayload.snapshot_incompleto = true;
+            pedidoPayload.snapshot_pendencias = ['pedido_sem_itens', 'snapshot_origem_webhook_parcial'];
+            pedidoPayload.sincronizado_em = null;
+          }
           await serviceClient.from('pedidos').update(pedidoPayload).eq('id', existing.id);
+          const hadReleaseBefore = Boolean(existing.ml_fiscal_release_at);
+          if (shipmentFetched && hasFutureRelease) {
+            await registrarEventoNfAuditoria({
+              pedidoId: String(existing.id),
+              mlOrderId: String(order.id || ''),
+              mlPackId: order.pack_id ? String(order.pack_id) : null,
+              evento: hadReleaseBefore ? 'ml_fiscal_release_window_updated' : 'ml_fiscal_release_window_detected',
+              respostaMl: {
+                release_at: fiscalRelease.releaseAt,
+                reason: fiscalRelease.reason || null,
+                source_path: fiscalRelease.sourcePath,
+                checked_at: pedidoPayload.ml_fiscal_release_checked_at,
+                now_utc: new Date().toISOString(),
+                blocked_now: true,
+                source: 'orders_v2',
+              },
+              statusResultante: 'blocked',
+            });
+          } else if (shipmentFetched && hadReleaseBefore) {
+            await registrarEventoNfAuditoria({
+              pedidoId: String(existing.id),
+              mlOrderId: String(order.id || ''),
+              mlPackId: order.pack_id ? String(order.pack_id) : null,
+              evento: 'ml_fiscal_release_window_cleared',
+              respostaMl: {
+                release_at: null,
+                reason: fiscalRelease.reason || null,
+                source_path: fiscalRelease.sourcePath,
+                checked_at: pedidoPayload.ml_fiscal_release_checked_at,
+                now_utc: new Date().toISOString(),
+                blocked_now: false,
+                source: 'orders_v2',
+              },
+              statusResultante: 'cleared',
+            });
+          }
+          if (!hasSnapshotItems) {
+            await registrarEventoNfAuditoria({
+              pedidoId: String(existing.id),
+              mlOrderId: String(order.id || ''),
+              mlPackId: order.pack_id ? String(order.pack_id) : null,
+              evento: 'sync_snapshot_partial',
+              respostaMl: {
+                source: 'webhook_orders_v2',
+                motivo: 'webhook_partial_order',
+                pendencias: ['pedido_sem_itens', 'snapshot_origem_webhook_parcial'],
+              },
+              statusResultante: 'partial',
+            });
+          }
         } else {
+          pedidoPayload.snapshot_incompleto = true;
+          pedidoPayload.snapshot_pendencias = ['pedido_sem_itens', 'snapshot_origem_webhook_parcial'];
+          pedidoPayload.sincronizado_em = null;
           const { data: inserted } = await serviceClient
             .from('pedidos')
             .insert(pedidoPayload)
             .select('id')
             .single();
-
-          if (inserted && order.status === 'paid') {
-            const xmlSimples = `<?xml version="1.0" encoding="UTF-8"?>
-<pedido>
-  <cliente>${order.buyer?.nickname || 'Cliente'}</cliente>
-  <valor>${order.total_amount || 0}</valor>
-  <ml_order_id>${order.id}</ml_order_id>
-</pedido>`;
-            const dsliteResult = await criarPedidoDropshipping(xmlSimples);
-            if (dsliteResult) {
-              await serviceClient
-                .from('pedidos')
-                .update({
-                  dslite_id: String(dsliteResult.dsid),
-                  dslite_status: dsliteResult.status,
-                })
-                .eq('id', inserted.id);
-            }
+          if (inserted?.id && shipmentFetched && hasFutureRelease) {
+            await registrarEventoNfAuditoria({
+              pedidoId: String(inserted.id),
+              mlOrderId: String(order.id || ''),
+              mlPackId: order.pack_id ? String(order.pack_id) : null,
+              evento: 'ml_fiscal_release_window_detected',
+              respostaMl: {
+                release_at: fiscalRelease.releaseAt,
+                reason: fiscalRelease.reason || null,
+                source_path: fiscalRelease.sourcePath,
+                checked_at: pedidoPayload.ml_fiscal_release_checked_at,
+                now_utc: new Date().toISOString(),
+                blocked_now: true,
+                source: 'orders_v2',
+              },
+              statusResultante: 'blocked',
+            });
+          }
+          if (inserted?.id) {
+            await registrarEventoNfAuditoria({
+              pedidoId: String(inserted.id),
+              mlOrderId: String(order.id || ''),
+              mlPackId: order.pack_id ? String(order.pack_id) : null,
+              evento: 'sync_snapshot_partial',
+              respostaMl: {
+                source: 'webhook_orders_v2',
+                motivo: 'webhook_partial_order',
+                pendencias: ['pedido_sem_itens', 'snapshot_origem_webhook_parcial'],
+              },
+              statusResultante: 'partial',
+            });
           }
         }
       }
@@ -96,6 +177,8 @@ export async function POST(request: Request) {
     if (topic === 'shipments' || topic === 'shipment_update') {
       const shipment = await fetchML<any>(resourcePath);
       if (shipment?.id) {
+        const fiscalRelease = extractMlFiscalReleaseWindow(shipment);
+        const hasFutureRelease = Boolean(fiscalRelease.releaseAt && fiscalRelease.isBlockedNow);
         // Buscar pedido associado ao shipment
         const orderId = shipment.order_id || shipment.resource_id;
         if (orderId) {
@@ -103,7 +186,7 @@ export async function POST(request: Request) {
           // Não sobrescrever devolvido
           const { data: pedido } = await serviceClient
             .from('pedidos')
-            .select('situacao')
+            .select('id,situacao,ml_fiscal_release_at,ml_pack_id')
             .eq('ml_order_id', String(orderId))
             .maybeSingle();
           const situacaoFinal = pedido?.situacao === 'devolvido' ? 'devolvido' : situacao;
@@ -112,8 +195,51 @@ export async function POST(request: Request) {
             .update({
               ml_shipment_id: String(shipment.id),
               situacao: situacaoFinal as any,
+              ml_fiscal_release_at: hasFutureRelease ? fiscalRelease.releaseAt : null,
+              ml_fiscal_release_reason: hasFutureRelease ? (fiscalRelease.reason || 'buffered') : null,
+              ml_fiscal_release_source: hasFutureRelease ? 'shipments_topic' : null,
+              ml_fiscal_release_checked_at: new Date().toISOString(),
             })
             .eq('ml_order_id', String(orderId));
+
+          if (pedido?.id) {
+            const hadReleaseBefore = Boolean((pedido as any).ml_fiscal_release_at);
+            if (hasFutureRelease) {
+              await registrarEventoNfAuditoria({
+                pedidoId: String((pedido as any).id),
+                mlOrderId: String(orderId),
+                mlPackId: (pedido as any).ml_pack_id ? String((pedido as any).ml_pack_id) : null,
+                evento: hadReleaseBefore ? 'ml_fiscal_release_window_updated' : 'ml_fiscal_release_window_detected',
+                respostaMl: {
+                  release_at: fiscalRelease.releaseAt,
+                  reason: fiscalRelease.reason || null,
+                  source_path: fiscalRelease.sourcePath,
+                  checked_at: new Date().toISOString(),
+                  now_utc: new Date().toISOString(),
+                  blocked_now: true,
+                  source: 'shipments_topic',
+                },
+                statusResultante: 'blocked',
+              });
+            } else if (hadReleaseBefore) {
+              await registrarEventoNfAuditoria({
+                pedidoId: String((pedido as any).id),
+                mlOrderId: String(orderId),
+                mlPackId: (pedido as any).ml_pack_id ? String((pedido as any).ml_pack_id) : null,
+                evento: 'ml_fiscal_release_window_cleared',
+                respostaMl: {
+                  release_at: null,
+                  reason: fiscalRelease.reason || null,
+                  source_path: fiscalRelease.sourcePath,
+                  checked_at: new Date().toISOString(),
+                  now_utc: new Date().toISOString(),
+                  blocked_now: false,
+                  source: 'shipments_topic',
+                },
+                statusResultante: 'cleared',
+              });
+            }
+          }
         }
       }
     }
@@ -137,72 +263,19 @@ export async function POST(request: Request) {
     }
 
     if (topic === 'invoices') {
-      const invoice = await fetchML<any>(resourcePath);
-      if (invoice?.order_id) {
-        const { data: pedido } = await serviceClient
-          .from('pedidos')
-          .select('id, ml_pack_id')
-          .eq('ml_order_id', String(invoice.order_id))
-          .maybeSingle();
-        const normalizedStatus = normalizeNfeStatus(invoice.status);
-        const isAuthorized = normalizedStatus === 'autorizada';
-        const invoiceKey = invoice.key || invoice.attributes?.invoice_key || null;
-
-        await registrarEventoNfAuditoria({
-          pedidoId: pedido?.id || null,
-          mlOrderId: String(invoice.order_id),
-          mlPackId: pedido?.ml_pack_id || null,
-          evento: 'retorno_ml',
-          respostaMl: {
-            invoice_id: invoice.id || null,
-            invoice_number: invoice.number || invoice.invoice_number || null,
-            status: invoice.status || null,
-            invoice_key: invoiceKey,
-          },
-          statusResultante: normalizedStatus,
-        });
-
-        // Tenta baixar o XML se a NF estiver autorizada
-        let nfeXml: string | null = null;
-        if (isAuthorized) {
-          await registrarEventoNfAuditoria({
-            pedidoId: pedido?.id || null,
-            mlOrderId: String(invoice.order_id),
-            mlPackId: pedido?.ml_pack_id || null,
-            evento: 'download_xml',
-            payloadEnviado: { invoice_id: invoice.id || null },
-            statusResultante: 'started',
-          });
-          const xmlResult = await buscarXmlDaNF(String(invoice.order_id));
-          if (xmlResult.xml) {
-            nfeXml = xmlResult.xml;
-          }
-          await registrarEventoNfAuditoria({
-            pedidoId: pedido?.id || null,
-            mlOrderId: String(invoice.order_id),
-            mlPackId: pedido?.ml_pack_id || null,
-            evento: 'download_xml',
-            respostaMl: {
-              status_code_ml: xmlResult.status_code_ml ?? null,
-              error_code_ml: xmlResult.error_code_ml ?? null,
-              has_xml: Boolean(xmlResult.xml),
-              error: xmlResult.error || null,
-            },
-            statusResultante: xmlResult.xml ? 'success' : 'failed',
-          });
-        }
-
-        await serviceClient
-          .from('pedidos')
-          .update({
-            nota_fiscal_numero: invoice.number || invoice.invoice_number || invoice.id,
-            nota_fiscal_emitida: isAuthorized && !!invoiceKey && !!nfeXml,
-            nfe_status: normalizedStatus,
-            nfe_chave: invoiceKey,
-            ...(nfeXml ? { nfe_xml: nfeXml } : {}),
-          })
-          .eq('ml_order_id', String(invoice.order_id));
-      }
+      await registrarEventoNfAuditoria({
+        pedidoId: null,
+        mlOrderId: null,
+        mlPackId: null,
+        evento: 'ml_fiscal_webhook_ignored',
+        respostaMl: {
+          motivo: 'fiscal_ml_desativado_por_politica',
+          topic,
+          resource,
+          observacao: 'Webhook fiscal do ML ignorado sem consulta ao endpoint de invoices por política.',
+        },
+        statusResultante: 'ignored',
+      });
     }
 
     return NextResponse.json({ ok: true });

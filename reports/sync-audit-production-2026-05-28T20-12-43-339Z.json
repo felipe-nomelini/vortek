@@ -1,0 +1,3696 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-28T20:12:43.339Z",
+    "base_url": "https://app.vortek.shop",
+    "window_days": 7
+  },
+  "summary": {
+    "pass_count": 7,
+    "fail_count": 8,
+    "overall_pass": false
+  },
+  "baseline_before": {
+    "captured_at": "2026-05-28T20:08:58.161Z",
+    "window_days": 7,
+    "window_from": "2026-05-21T20:08:58.160Z",
+    "tables": {
+      "fornecedores": {
+        "count": 5,
+        "count_error": null,
+        "max_ts": "2026-05-28T18:45:08.027+00:00",
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": [
+          {
+            "id": "a2b7d909-af70-4fda-99d2-21b16dd46c10",
+            "dslite_id": "2",
+            "nome": "Hayamax Distribuidora De Produtos Ltda",
+            "ativo": true,
+            "dslite_ultima_sync": "2026-05-28T18:45:08.027+00:00"
+          },
+          {
+            "id": "7ce81d0b-4030-44f7-8cf3-5f165845a8c8",
+            "dslite_id": "8",
+            "nome": "",
+            "ativo": true,
+            "dslite_ultima_sync": "2026-05-28T18:45:08.027+00:00"
+          },
+          {
+            "id": "9c024741-1501-4eef-a304-1c1397bedc58",
+            "dslite_id": "27",
+            "nome": "Vgs Importação E Exportação Ltda",
+            "ativo": true,
+            "dslite_ultima_sync": "2026-05-28T18:45:08.027+00:00"
+          },
+          {
+            "id": "3f695c4b-3dd6-480b-a3b7-7d042133680d",
+            "dslite_id": "39",
+            "nome": "Magazine Nova Center Ltda (MN Center)",
+            "ativo": true,
+            "dslite_ultima_sync": "2026-05-28T18:45:08.027+00:00"
+          },
+          {
+            "id": "3902ca29-c6e6-46ac-8233-d4d14c56fdac",
+            "dslite_id": "81",
+            "nome": "Vitrine Outlet Comercio de Artigos do Vestuário Ltda",
+            "ativo": true,
+            "dslite_ultima_sync": "2026-05-28T18:45:08.027+00:00"
+          }
+        ]
+      },
+      "produtos_dslite": {
+        "count": 9151,
+        "count_error": null,
+        "max_ts": "2026-05-28T19:50:46.007+00:00",
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": [
+          {
+            "id": "7f723569-5663-4cfe-8c1c-d04618fe275a",
+            "sku": "HYX11228",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "11228",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "f9619f82-e683-42d8-a767-6005864a4a75",
+            "sku": "HYX12832",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "12832",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "6e24d68f-9d50-4688-8d0d-9f40bf519ce4",
+            "sku": "HYX11452",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "11452",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "96c13f97-73c4-4629-a34e-73bc839fc5bc",
+            "sku": "HYX15089",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "15089",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "4b78e307-1cc6-4872-a1dc-6f9ec848f1fb",
+            "sku": "HYX14352",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "14352",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "b2b2588b-4372-4890-833c-3f0c6e90f121",
+            "sku": "HYX12404",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "12404",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "b4e84fdb-e420-4ae3-a333-96e22cd4aedf",
+            "sku": "HYX1192",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "1192",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "41b3f721-cde7-461d-a8cb-9a88c47e6d34",
+            "sku": "HYX11433",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "11433",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "9cebb98f-597c-4a0a-a846-5f012e5c66d7",
+            "sku": "HYX12653",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "12653",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "54837591-06f1-42e7-8a40-3e219f388383",
+            "sku": "HYX11451",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "11451",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "84a4faf0-2c12-458e-a96b-a5c0033d1327",
+            "sku": "HYX19495",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "19495",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "04874c2c-0dc1-4e89-87a1-baa1e2b72888",
+            "sku": "HYX18359",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "18359",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "54dca8fc-38ad-461d-babc-6814a171f735",
+            "sku": "HYX16372",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "16372",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "04d82506-c52b-4930-adff-ef5edd173788",
+            "sku": "HYX16838",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "16838",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "1711696d-0894-46b4-9447-881144cebdaa",
+            "sku": "HYX19464",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "19464",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "84ce5e79-e967-4aad-8e18-20478b1be82b",
+            "sku": "HYX20014",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "20014",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "fc50a7a6-a1c0-47df-b2a8-98166ebebf18",
+            "sku": "HYX20437",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "20437",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "1c71fd54-40eb-4eaa-b34b-d8e1c647ddb4",
+            "sku": "HYX15944",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "15944",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "0d9a445e-9719-4072-b249-a013ade8f6dd",
+            "sku": "HYX19496",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "19496",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "297df099-d8e2-42b4-b6e9-97c56e72a49b",
+            "sku": "HYX20436",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "20436",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          }
+        ]
+      },
+      "compras": {
+        "count": 62,
+        "count_error": null,
+        "max_ts": "2026-05-28T20:07:56.018191+00:00",
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": [
+          {
+            "id": "d312cbc5-3d0d-413c-9549-2b337cf7c83b",
+            "dsid": "353045",
+            "nf_chave": "43260465850289000183550010000000021863874965",
+            "status": "Cancelado",
+            "updated_at": "2026-05-28T20:07:56.018191+00:00"
+          },
+          {
+            "id": "845f8ac4-92a5-4f7d-aa07-699dfaebd17d",
+            "dsid": "353198",
+            "nf_chave": "43260465850289000183550010000000031945927440",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:55.647989+00:00"
+          },
+          {
+            "id": "bcbcf7ac-d20a-4e52-bddb-9ea5310c44c5",
+            "dsid": "353588",
+            "nf_chave": "43260465850289000183550010000000041068986680",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:55.250935+00:00"
+          },
+          {
+            "id": "741f8018-1da3-4ce2-8ba9-6ea9a80c2330",
+            "dsid": "353632",
+            "nf_chave": "43260465850289000183550010000000051080862632",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:54.845316+00:00"
+          },
+          {
+            "id": "ca6085c7-9e3c-4931-bb17-1ec069709228",
+            "dsid": "353818",
+            "nf_chave": "43260465850289000183550010000000061133836557",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:54.47566+00:00"
+          },
+          {
+            "id": "f2a5242d-3ecb-40a9-9f8b-be175d6b672c",
+            "dsid": "353891",
+            "nf_chave": "43260465850289000183550010000000071180719534",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:54.110158+00:00"
+          },
+          {
+            "id": "a4da89b3-4d9b-4ea6-aa6f-fe87e1c152c2",
+            "dsid": "353897",
+            "nf_chave": "43260465850289000183550010000000081182753699",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:53.730592+00:00"
+          },
+          {
+            "id": "5e5885a1-cc6a-477e-a884-37847d3341e9",
+            "dsid": "353979",
+            "nf_chave": "43260465850289000183550010000000091190654251",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:53.359989+00:00"
+          },
+          {
+            "id": "0e5e46b8-7e63-49dc-ad81-aef90de5d26d",
+            "dsid": "354157",
+            "nf_chave": "43260465850289000183550010000000101230447252",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:52.982001+00:00"
+          },
+          {
+            "id": "90096501-6023-4036-9dd4-78e0e67b248e",
+            "dsid": "355620",
+            "nf_chave": "43260465850289000183550010000000111611932366",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:52.614889+00:00"
+          },
+          {
+            "id": "ae116137-8c92-42d2-a084-9cb5e0bac872",
+            "dsid": "356266",
+            "nf_chave": "43260465850289000183550010000000121784344668",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:52.227858+00:00"
+          },
+          {
+            "id": "1f8d6a95-13c1-4512-a642-1f4a41cabfa8",
+            "dsid": "356341",
+            "nf_chave": "43260465850289000183550010000000131808674465",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:51.840238+00:00"
+          },
+          {
+            "id": "b55116f4-8855-4d9e-bba1-f6998967b658",
+            "dsid": "356414",
+            "nf_chave": "43260465850289000183550010000000141828529336",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:51.469372+00:00"
+          },
+          {
+            "id": "85f83905-5c01-45a9-b857-ef633e98ccdc",
+            "dsid": "356511",
+            "nf_chave": "43260465850289000183550010000000151863926610",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:51.101875+00:00"
+          },
+          {
+            "id": "ba6336c5-f207-4c2f-a5f6-a146405c9c96",
+            "dsid": "356956",
+            "nf_chave": "43260465850289000183550010000000161030373984",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:50.72151+00:00"
+          },
+          {
+            "id": "b414a68a-a68d-4b29-83d4-57c70727fc5a",
+            "dsid": "356971",
+            "nf_chave": "43260465850289000183550010000000171041076053",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:50.350727+00:00"
+          },
+          {
+            "id": "ad024932-9562-46c5-94c2-d7543ff4f604",
+            "dsid": "357042",
+            "nf_chave": "43260465850289000183550010000000181055474479",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:49.958001+00:00"
+          },
+          {
+            "id": "b1ed87f7-9da6-483d-abf5-18e81e8dc189",
+            "dsid": "357505",
+            "nf_chave": "43260465850289000183550010000000191159054627",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:49.584175+00:00"
+          },
+          {
+            "id": "b1024222-57af-4e1e-95b2-b26560370c41",
+            "dsid": "357532",
+            "nf_chave": "43260465850289000183550010000000201168052551",
+            "status": "Cancelado",
+            "updated_at": "2026-05-28T20:07:49.200003+00:00"
+          },
+          {
+            "id": "63d958cf-0867-40c9-83d0-f89a6411f04d",
+            "dsid": "357702",
+            "nf_chave": "43260465850289000183550010000000211211048040",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:48.835342+00:00"
+          }
+        ]
+      },
+      "pedidos": {
+        "count": 65,
+        "count_error": null,
+        "max_ts": "2026-05-28T20:07:55.373158+00:00",
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": [
+          {
+            "id": "76e6d0e3-13c0-4157-beb0-074f4b875f77",
+            "ml_order_id": "2000015878478306",
+            "ml_pack_id": null,
+            "dslite_id": "353588",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:07:55.373158+00:00",
+            "sincronizado_em": "2026-05-26T13:38:17.246+00:00"
+          },
+          {
+            "id": "27bc11e5-3e45-4346-bc8f-421ad045ec66",
+            "ml_order_id": "2000015882883228",
+            "ml_pack_id": "2000012406813735",
+            "dslite_id": "353632",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": true,
+            "snapshot_pendencias": [
+              "divergencia_total"
+            ],
+            "updated_at": "2026-05-28T20:07:54.976544+00:00",
+            "sincronizado_em": "2026-05-26T13:38:16.948+00:00"
+          },
+          {
+            "id": "d0963a7d-a377-4f5c-8ef7-3194171e19a9",
+            "ml_order_id": "2000015890776520",
+            "ml_pack_id": "2000012415062009",
+            "dslite_id": "353818",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:07:54.60164+00:00",
+            "sincronizado_em": "2026-05-26T13:38:22.58+00:00"
+          },
+          {
+            "id": "8b9f7d80-8baa-4941-b6c7-f42543ad61a0",
+            "ml_order_id": "2000015898623510",
+            "ml_pack_id": "2000012423192603",
+            "dslite_id": "353891",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:07:54.232601+00:00",
+            "sincronizado_em": "2026-05-26T13:38:22.885+00:00"
+          },
+          {
+            "id": "4b2198c0-83f9-435d-bde3-6a84f0cbbac2",
+            "ml_order_id": "2000015899388760",
+            "ml_pack_id": null,
+            "dslite_id": "353897",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": true,
+            "snapshot_pendencias": [
+              "divergencia_total"
+            ],
+            "updated_at": "2026-05-28T20:07:53.853674+00:00",
+            "sincronizado_em": "2026-05-26T13:38:24.267+00:00"
+          },
+          {
+            "id": "6aa79f43-e474-4513-a5c0-be7de23b151b",
+            "ml_order_id": "2000015901786328",
+            "ml_pack_id": "2000012426500235",
+            "dslite_id": "353979",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": true,
+            "snapshot_pendencias": [
+              "divergencia_total"
+            ],
+            "updated_at": "2026-05-28T20:07:53.486019+00:00",
+            "sincronizado_em": "2026-05-26T13:38:28.087+00:00"
+          },
+          {
+            "id": "21726746-0d39-42bc-b228-a3ab96a0a932",
+            "ml_order_id": "2000015906822278",
+            "ml_pack_id": "2000012430595783",
+            "dslite_id": "354157",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:07:53.109703+00:00",
+            "sincronizado_em": "2026-05-26T13:38:28.311+00:00"
+          },
+          {
+            "id": "dacb299a-6ae3-4993-b06f-982353f4bc70",
+            "ml_order_id": "2000015976270080",
+            "ml_pack_id": "2000012504133361",
+            "dslite_id": "355620",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:07:52.736153+00:00",
+            "sincronizado_em": "2026-05-26T13:38:36.003+00:00"
+          },
+          {
+            "id": "a04bf6aa-a562-41b8-90c2-95fd75e2f640",
+            "ml_order_id": "2000016006055420",
+            "ml_pack_id": null,
+            "dslite_id": "356266",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": true,
+            "snapshot_pendencias": [
+              "divergencia_total"
+            ],
+            "updated_at": "2026-05-28T20:07:52.347824+00:00",
+            "sincronizado_em": "2026-05-26T13:38:34.449+00:00"
+          },
+          {
+            "id": "88a46b57-690d-4f14-9903-3ac2fda17475",
+            "ml_order_id": "2000016009938768",
+            "ml_pack_id": "2000012539068955",
+            "dslite_id": "356341",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:07:51.965203+00:00",
+            "sincronizado_em": "2026-05-26T13:38:34.963+00:00"
+          },
+          {
+            "id": "976c6990-b68a-4d6c-ab16-0f87a5337647",
+            "ml_order_id": "2000016012330108",
+            "ml_pack_id": null,
+            "dslite_id": "356414",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": true,
+            "snapshot_pendencias": [
+              "divergencia_total"
+            ],
+            "updated_at": "2026-05-28T20:07:51.597109+00:00",
+            "sincronizado_em": "2026-05-26T13:38:40.635+00:00"
+          },
+          {
+            "id": "01f4d8b8-342d-4281-831e-b83fe16f013b",
+            "ml_order_id": "2000016017822114",
+            "ml_pack_id": null,
+            "dslite_id": "356511",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": true,
+            "snapshot_pendencias": [
+              "divergencia_total"
+            ],
+            "updated_at": "2026-05-28T20:07:51.223472+00:00",
+            "sincronizado_em": "2026-05-26T13:38:41.158+00:00"
+          },
+          {
+            "id": "303c90c9-a954-4b50-889c-1cd50f2b00fc",
+            "ml_order_id": "2000016052653878",
+            "ml_pack_id": null,
+            "dslite_id": "356956",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": true,
+            "snapshot_pendencias": [
+              "divergencia_total"
+            ],
+            "updated_at": "2026-05-28T20:07:50.849114+00:00",
+            "sincronizado_em": "2026-05-26T13:38:42.047+00:00"
+          },
+          {
+            "id": "9ee8933f-31dd-43cb-b1a9-67dd72b9e5c3",
+            "ml_order_id": "2000016055902134",
+            "ml_pack_id": null,
+            "dslite_id": "356971",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": true,
+            "snapshot_pendencias": [
+              "divergencia_total"
+            ],
+            "updated_at": "2026-05-28T20:07:50.474069+00:00",
+            "sincronizado_em": "2026-05-26T13:38:46.849+00:00"
+          },
+          {
+            "id": "4b08644c-6da5-40e5-9152-80a41e5f11f4",
+            "ml_order_id": "2000016060164372",
+            "ml_pack_id": null,
+            "dslite_id": "357042",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:07:50.095131+00:00",
+            "sincronizado_em": "2026-05-26T13:38:47.329+00:00"
+          },
+          {
+            "id": "32f86ed7-bf16-4f25-8e59-1e4fcd563325",
+            "ml_order_id": "2000016076921648",
+            "ml_pack_id": "2000012609006289",
+            "dslite_id": "357505",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:07:49.706987+00:00",
+            "sincronizado_em": "2026-05-26T13:38:47.652+00:00"
+          },
+          {
+            "id": "630336f3-d0d0-418e-9bc9-36d71412f7ad",
+            "ml_order_id": "2000016078960210",
+            "ml_pack_id": "2000012611083429",
+            "dslite_id": "357532",
+            "dslite_status": "Cancelado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:07:49.332908+00:00",
+            "sincronizado_em": "2026-05-26T13:38:52.916+00:00"
+          },
+          {
+            "id": "9c576aac-c8af-4ca7-be93-c1c5de423036",
+            "ml_order_id": "2000016088768548",
+            "ml_pack_id": null,
+            "dslite_id": "357702",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:07:48.961114+00:00",
+            "sincronizado_em": "2026-05-26T13:38:53.447+00:00"
+          },
+          {
+            "id": "c6229084-083f-47aa-8e86-c48c3030eb1f",
+            "ml_order_id": "2000016095132832",
+            "ml_pack_id": null,
+            "dslite_id": "357870",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": true,
+            "snapshot_pendencias": [
+              "divergencia_total"
+            ],
+            "updated_at": "2026-05-28T20:07:48.594436+00:00",
+            "sincronizado_em": "2026-05-26T13:38:53.486+00:00"
+          },
+          {
+            "id": "b1cdb331-9873-456a-845b-4599182b0a00",
+            "ml_order_id": "2000016106907142",
+            "ml_pack_id": "2000012640263377",
+            "dslite_id": "358088",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:07:48.22787+00:00",
+            "sincronizado_em": "2026-05-26T13:38:59.18+00:00"
+          }
+        ]
+      },
+      "pedido_itens": {
+        "count": 61,
+        "count_error": null,
+        "max_ts": "2026-05-28T01:15:25.329578+00:00",
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": [
+          {
+            "id": "b459650a-754f-467e-b474-9df893a77e7a",
+            "pedido_id": "730ceff2-8fd6-426e-9157-cbf5a62d2cb5",
+            "ml_order_id": "2000016643363478",
+            "ml_item_id": "MLB6646381018",
+            "seller_sku": "HYX86129",
+            "updated_at": "2026-05-28T01:15:25.329578+00:00"
+          },
+          {
+            "id": "e2672bf1-283a-4100-984a-124a6684f580",
+            "pedido_id": "b8465403-c9c2-46bb-befa-6e6bd2d5d4a3",
+            "ml_order_id": "2000016641655324",
+            "ml_item_id": "MLB6573107328",
+            "seller_sku": "HYX84256",
+            "updated_at": "2026-05-27T23:21:00.587054+00:00"
+          },
+          {
+            "id": "94605c51-9ca4-4f05-bc1a-38617560687a",
+            "pedido_id": "93400844-6f31-4f70-9bad-c1d7a26a1fe8",
+            "ml_order_id": "2000016633469086",
+            "ml_item_id": "MLB6573085652",
+            "seller_sku": "HYX86131",
+            "updated_at": "2026-05-27T15:16:29.826062+00:00"
+          },
+          {
+            "id": "82cfb80c-7ebc-40ae-87f1-9861d9c7c577",
+            "pedido_id": "de562d7d-c14a-4557-9f4d-39aa1b46cecf",
+            "ml_order_id": "2000016630100906",
+            "ml_item_id": "MLB6573199472",
+            "seller_sku": "HYX7808",
+            "updated_at": "2026-05-27T15:02:01.974483+00:00"
+          },
+          {
+            "id": "5d1fddd0-0748-48b2-a71f-2e20d38907ce",
+            "pedido_id": "c863b485-9493-4e08-a9c1-cce45477d9cd",
+            "ml_order_id": "2000016542132580",
+            "ml_item_id": "MLB4585804309",
+            "seller_sku": "HYX84488",
+            "updated_at": "2026-05-26T13:39:57.684698+00:00"
+          },
+          {
+            "id": "1548a1db-97a8-4d2b-ba88-953637e0d861",
+            "pedido_id": "b808eeec-1c55-4c5f-9365-8b9142b54a38",
+            "ml_order_id": "2000016538591744",
+            "ml_item_id": "MLB6573086292",
+            "seller_sku": "HYX86127",
+            "updated_at": "2026-05-26T13:39:56.188165+00:00"
+          },
+          {
+            "id": "11d2d81e-e987-44ff-8e63-6503c696ff2e",
+            "pedido_id": "7ff6dff3-4b8f-4a88-b566-6bebd1c48580",
+            "ml_order_id": "2000016538513104",
+            "ml_item_id": "MLB4640510315",
+            "seller_sku": "HYX87784",
+            "updated_at": "2026-05-26T13:39:52.498556+00:00"
+          },
+          {
+            "id": "d5a27355-c4e3-4b56-8858-6e0794da0092",
+            "pedido_id": "bf230c58-a9cf-4d12-9652-373b739e9053",
+            "ml_order_id": "2000016534629574",
+            "ml_item_id": "MLB4623519189",
+            "seller_sku": "HYX74978",
+            "updated_at": "2026-05-26T13:39:51.696618+00:00"
+          },
+          {
+            "id": "50743a81-a206-4114-9829-3939d06a52fc",
+            "pedido_id": "638e359b-0b5e-476f-abad-d66c4f5a6748",
+            "ml_order_id": "2000016515909642",
+            "ml_item_id": "MLB4612598749",
+            "seller_sku": "HYX75087",
+            "updated_at": "2026-05-26T13:39:50.036368+00:00"
+          },
+          {
+            "id": "d125e2c1-08ea-4920-bf85-7b1ce0ad91f6",
+            "pedido_id": "f6303433-d089-45e9-b4a0-d57f7560cc6d",
+            "ml_order_id": "2000016491602194",
+            "ml_item_id": "MLB6573098442",
+            "seller_sku": "HYX84563",
+            "updated_at": "2026-05-26T13:39:46.043609+00:00"
+          },
+          {
+            "id": "a97aa6b2-89a8-4c8c-ab7b-2cb764573139",
+            "pedido_id": "f437fff8-324f-4e11-ad51-fcf7f9c13844",
+            "ml_order_id": "2000016497231696",
+            "ml_item_id": "MLB4640510315",
+            "seller_sku": "HYX87784",
+            "updated_at": "2026-05-26T13:39:45.730199+00:00"
+          },
+          {
+            "id": "2b662c11-4ad3-4ec8-bd63-8739bb3be818",
+            "pedido_id": "1848fcea-69d3-41e5-8728-5f1b5070a800",
+            "ml_order_id": "2000016494086262",
+            "ml_item_id": "MLB6573107112",
+            "seller_sku": "HYX84825",
+            "updated_at": "2026-05-26T13:39:44.019543+00:00"
+          },
+          {
+            "id": "c9c9d89b-b490-470a-b4dd-253f00dcf6a9",
+            "pedido_id": "99db2bf3-97c8-4e05-9fbb-938460476516",
+            "ml_order_id": "2000016493107442",
+            "ml_item_id": "MLB6648864540",
+            "seller_sku": "HYX86127",
+            "updated_at": "2026-05-26T13:39:38.924055+00:00"
+          },
+          {
+            "id": "1b38b140-d92d-4f7a-8f47-2b5aea24a1be",
+            "pedido_id": "58cc0c36-1c74-4521-8ab0-4c4283225f34",
+            "ml_order_id": "2000016488610974",
+            "ml_item_id": "MLB4621088401",
+            "seller_sku": "HYX84488",
+            "updated_at": "2026-05-26T13:39:37.96087+00:00"
+          },
+          {
+            "id": "55c1e0df-6eda-4eaa-9267-5ec55218ce32",
+            "pedido_id": "07850251-7132-471b-8d08-a79eba582511",
+            "ml_order_id": "2000016491378128",
+            "ml_item_id": "MLB6573107112",
+            "seller_sku": "HYX84825",
+            "updated_at": "2026-05-26T13:39:37.640955+00:00"
+          },
+          {
+            "id": "93ee53cb-2106-4a6d-8d7f-677353b3982f",
+            "pedido_id": "04895b0d-0786-4673-84f2-0be540a34898",
+            "ml_order_id": "2000016472883084",
+            "ml_item_id": "MLB4623519189",
+            "seller_sku": "HYX74978",
+            "updated_at": "2026-05-26T13:39:31.300048+00:00"
+          },
+          {
+            "id": "522fbb31-8961-461c-8efb-d2206b67e303",
+            "pedido_id": "8d0d6342-b4ef-4cc1-97de-1f36cd49f901",
+            "ml_order_id": "2000016472557724",
+            "ml_item_id": "MLB6646506834",
+            "seller_sku": "HYX83304",
+            "updated_at": "2026-05-26T13:39:30.806997+00:00"
+          },
+          {
+            "id": "89d05b8d-5984-4f25-a476-710dc40f1f47",
+            "pedido_id": "b8ef0505-b59c-4924-a1a9-4d5f3e2ac208",
+            "ml_order_id": "2000016468451146",
+            "ml_item_id": "MLB4640510315",
+            "seller_sku": "HYX87784",
+            "updated_at": "2026-05-26T13:39:29.912164+00:00"
+          },
+          {
+            "id": "79a0f41d-ecc3-48ca-a485-8009a0508953",
+            "pedido_id": "00592cc6-bb70-49cc-8cba-6cf5845a1487",
+            "ml_order_id": "2000016436938632",
+            "ml_item_id": "MLB6573141540",
+            "seller_sku": "HYX84980",
+            "updated_at": "2026-05-26T13:39:24.815021+00:00"
+          },
+          {
+            "id": "c9721192-919d-4e72-b805-5e8c4ad1cf43",
+            "pedido_id": "370a73dc-e13d-407a-944c-d1946353c264",
+            "ml_order_id": "2000016467894486",
+            "ml_item_id": "MLB4612598749",
+            "seller_sku": "HYX75087",
+            "updated_at": "2026-05-26T13:39:24.385228+00:00"
+          }
+        ]
+      },
+      "catalogo_ml_snapshot": {
+        "count": 256,
+        "count_error": null,
+        "max_ts": "2026-05-28T19:50:51.761+00:00",
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": [
+          {
+            "id": "2c98fea1-e78e-4a4d-a36a-0f743d0f1d5d",
+            "ml_item_id": "MLB6563440786",
+            "seller_id": 3294514937,
+            "sku_local": "HYX86964",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:51.761+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "c8a576ad-b483-4169-811e-4eb759b2a1be",
+            "ml_item_id": "MLB6563495210",
+            "seller_id": 3294514937,
+            "sku_local": "HYX87545",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:51.514+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "63699df9-07a9-4f81-b81c-87015df61f35",
+            "ml_item_id": "MLB6563496888",
+            "seller_id": 3294514937,
+            "sku_local": "HYX84794",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:50.986+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "c7896ea6-ffd4-4d77-ad1b-c8b3749e64fd",
+            "ml_item_id": "MLB6563495246",
+            "seller_id": 3294514937,
+            "sku_local": "HYX85817",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:50.852+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "cd4f920d-425d-47c3-95b4-28f11127eabb",
+            "ml_item_id": "MLB6563496572",
+            "seller_id": 3294514937,
+            "sku_local": "HYX86108",
+            "status": "under_review",
+            "synced_at": "2026-05-28T19:50:50.76+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "86ee2063-2da9-4f9d-b73e-51a85442313e",
+            "ml_item_id": "MLB6563508286",
+            "seller_id": 3294514937,
+            "sku_local": "HYX87723",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:50.338+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "a0c00135-6978-4892-98b7-626db30e3ebe",
+            "ml_item_id": "MLB6563508424",
+            "seller_id": 3294514937,
+            "sku_local": "HYX85851",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:50.251+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "4f1d2a05-8c80-4797-a427-bf713443e0d2",
+            "ml_item_id": "MLB6563508512",
+            "seller_id": 3294514937,
+            "sku_local": "HYX85494",
+            "status": "paused",
+            "synced_at": "2026-05-28T19:50:50.197+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "fe139d0f-c8b4-4662-8e9d-8b1d557c2a91",
+            "ml_item_id": "MLB6563593978",
+            "seller_id": 3294514937,
+            "sku_local": "HYX87404",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:49.649+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "025756d7-ea0c-493d-8a39-f2c4740ea51e",
+            "ml_item_id": "MLB6563575262",
+            "seller_id": 3294514937,
+            "sku_local": "HYX75099",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:49.579+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "709f219a-51c0-47f0-8d2d-0430f797f956",
+            "ml_item_id": "MLB6563508730",
+            "seller_id": 3294514937,
+            "sku_local": "HYX86816",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:49.448+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "c2ef52d2-32a1-4319-a784-66e3af5327fd",
+            "ml_item_id": "MLB6564859394",
+            "seller_id": 3294514937,
+            "sku_local": "HYX85849",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:48.926+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "75f528c9-e5e5-4b3f-a06e-2c97eb07ee44",
+            "ml_item_id": "MLB6564912558",
+            "seller_id": 3294514937,
+            "sku_local": "HYX86946",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:48.905+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "a985e321-9d34-468c-a713-1d509d538b98",
+            "ml_item_id": "MLB6564261406",
+            "seller_id": 3294514937,
+            "sku_local": "HYX86897",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:48.899+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "fafb7833-78fe-4548-9f1f-f2e6398e5452",
+            "ml_item_id": "MLB6564925370",
+            "seller_id": 3294514937,
+            "sku_local": "HYX86948",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:48.236+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "b53e25d8-1ba2-4fd4-8e55-120add9d0a37",
+            "ml_item_id": "MLB6564912582",
+            "seller_id": 3294514937,
+            "sku_local": "HYX85490",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:48.222+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "8f810680-54fd-4667-9c46-d441a3dc0745",
+            "ml_item_id": "MLB6564925380",
+            "seller_id": 3294514937,
+            "sku_local": "HYX86947",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:48.159+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "41bf2610-7a17-4794-acec-cff868c42b7a",
+            "ml_item_id": "MLB6564925448",
+            "seller_id": 3294514937,
+            "sku_local": "HYX85740",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:47.54+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "999954d8-f963-4ca2-ba4c-90447fd50f44",
+            "ml_item_id": "MLB6565184970",
+            "seller_id": 3294514937,
+            "sku_local": "HYX85853",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:47.472+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "ef33d2da-564f-415c-88ce-e7ac042d69d3",
+            "ml_item_id": "MLB6564964670",
+            "seller_id": 3294514937,
+            "sku_local": "HYX86816",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:47.47+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          }
+        ]
+      },
+      "anuncios_ml_outbox": {
+        "count": 2,
+        "count_error": null,
+        "max_ts": "2026-05-28T19:54:02.026248+00:00",
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": [
+          {
+            "id": "fd81d2fe-37e9-4c01-9214-cb3a88f73b91",
+            "produto_id": "98b32c21-1aff-4225-a225-1c98cc5bf17b",
+            "ml_item_id": "MLB4612372705",
+            "status": "done",
+            "attempts": 1,
+            "last_error": null,
+            "created_at": "2026-05-28T19:54:02.026248+00:00",
+            "processed_at": "2026-05-28T19:54:10.662+00:00",
+            "source": "ml_anuncio_atualizar_preco"
+          },
+          {
+            "id": "f89c14c4-6b66-4e10-9859-6b4bc1de4e46",
+            "produto_id": "98b32c21-1aff-4225-a225-1c98cc5bf17b",
+            "ml_item_id": "MLB4612372705",
+            "status": "done",
+            "attempts": 1,
+            "last_error": null,
+            "created_at": "2026-05-28T19:53:18.400591+00:00",
+            "processed_at": "2026-05-28T19:53:31.65+00:00",
+            "source": "produto_patch"
+          }
+        ]
+      },
+      "jobs": {
+        "count": 1860,
+        "count_error": null,
+        "max_ts": "2026-05-28T20:07:30.574228+00:00",
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": [
+          {
+            "id": "1d83b888-f10e-4629-b43b-17c765842b27",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T20:07:30.574228+00:00",
+            "finished_at": "2026-05-28T20:07:56.206+00:00"
+          },
+          {
+            "id": "f7582043-e6f3-4e30-a4b4-fb67bdc443ec",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T20:01:29.079414+00:00",
+            "finished_at": "2026-05-28T20:02:28.645+00:00"
+          },
+          {
+            "id": "c7e5a169-6e4a-4fb3-8dd4-af8a7966e2b0",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T20:01:27.63014+00:00",
+            "finished_at": "2026-05-28T20:01:30.312+00:00"
+          },
+          {
+            "id": "f3e80266-1ab7-4492-b25c-7f72e186de29",
+            "tipo": "sync_anuncios_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T19:56:18.345328+00:00",
+            "finished_at": "2026-05-28T19:57:09.212+00:00"
+          },
+          {
+            "id": "11ba22ec-8145-4979-85e1-4e46af5127ef",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T19:56:17.90397+00:00",
+            "finished_at": "2026-05-28T19:56:43.664+00:00"
+          },
+          {
+            "id": "3b6cd066-1ba0-44cf-bdf2-6df0e9260b6c",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T19:45:15.029316+00:00",
+            "finished_at": "2026-05-28T19:45:36.697+00:00"
+          },
+          {
+            "id": "e92db747-a89e-4090-871a-8683965c35cf",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T19:45:14.130647+00:00",
+            "finished_at": "2026-05-28T19:45:40.037+00:00"
+          },
+          {
+            "id": "8be5d17d-218b-4d18-a3ee-684645789bfd",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T19:40:27.774663+00:00",
+            "finished_at": "2026-05-28T19:40:30.48+00:00"
+          },
+          {
+            "id": "884262ed-85bf-4a33-85fe-bf94c7fe6e39",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T19:30:30.881491+00:00",
+            "finished_at": "2026-05-28T19:30:56.388+00:00"
+          },
+          {
+            "id": "b84a5789-be7b-4d34-bba9-51e51b41a5e6",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T19:25:17.104949+00:00",
+            "finished_at": "2026-05-28T19:26:14.136+00:00"
+          },
+          {
+            "id": "0864895f-6426-46fa-890b-209baa803370",
+            "tipo": "sync_anuncios_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T19:25:16.458704+00:00",
+            "finished_at": "2026-05-28T19:25:45.237+00:00"
+          },
+          {
+            "id": "1627e4ee-e5eb-4819-aabe-81ce2daf7373",
+            "tipo": "sync_dslite_catalog",
+            "status": "completo",
+            "created_at": "2026-05-28T19:20:21.801044+00:00",
+            "finished_at": "2026-05-28T19:21:00.015+00:00"
+          },
+          {
+            "id": "b99c09d1-f070-49da-af1c-0f0fd027478c",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T19:15:26.318376+00:00",
+            "finished_at": "2026-05-28T19:15:51.098+00:00"
+          },
+          {
+            "id": "16ff59b7-2ba1-4b81-ab22-4b5b96de6606",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T19:15:25.333119+00:00",
+            "finished_at": "2026-05-28T19:15:28.544+00:00"
+          },
+          {
+            "id": "ec2a186d-2522-4606-abb2-595736f192db",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T19:05:30.282512+00:00",
+            "finished_at": "2026-05-28T19:05:47.893+00:00"
+          },
+          {
+            "id": "db07ac7d-45cd-428b-a584-0f6647b8a020",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T19:00:28.389079+00:00",
+            "finished_at": "2026-05-28T19:00:54.866+00:00"
+          },
+          {
+            "id": "9e594920-23c8-48ee-b2ea-0e17b4250e50",
+            "tipo": "sync_anuncios_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T18:50:32.233938+00:00",
+            "finished_at": "2026-05-28T18:51:16.988+00:00"
+          },
+          {
+            "id": "cab34d9c-ce78-4a36-8abb-dd9dc33895b0",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T18:50:31.068678+00:00",
+            "finished_at": "2026-05-28T18:50:33.846+00:00"
+          },
+          {
+            "id": "b073456d-c263-4033-aa31-d50e9ab7eef7",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T18:45:31.594523+00:00",
+            "finished_at": "2026-05-28T18:46:27.256+00:00"
+          },
+          {
+            "id": "de0b966f-983c-40c8-ab33-064c466e0a78",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T18:45:30.529268+00:00",
+            "finished_at": "2026-05-28T18:45:55.52+00:00"
+          },
+          {
+            "id": "d8944f09-a75c-4424-afab-ee0b657dd0dc",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T18:30:24.775995+00:00",
+            "finished_at": "2026-05-28T18:30:56.715+00:00"
+          },
+          {
+            "id": "41e16328-566c-4a34-87b3-b5f9ef398abe",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T18:25:32.991058+00:00",
+            "finished_at": "2026-05-28T18:25:49.446+00:00"
+          },
+          {
+            "id": "b89fde7e-c598-4f87-926f-720327394778",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T18:25:31.171726+00:00",
+            "finished_at": "2026-05-28T18:25:34.17+00:00"
+          },
+          {
+            "id": "45bb42c6-7d3f-4168-a2b9-13dd0d575171",
+            "tipo": "sync_anuncios_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T18:15:33.291854+00:00",
+            "finished_at": "2026-05-28T18:16:20.142+00:00"
+          },
+          {
+            "id": "c0408013-2461-48ea-bcd8-7d1eb34ff3b9",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T18:15:32.870709+00:00",
+            "finished_at": "2026-05-28T18:15:59.02+00:00"
+          },
+          {
+            "id": "fed345f8-78d4-4e2f-b37f-ebe5e2cc06c0",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T18:05:20.09256+00:00",
+            "finished_at": "2026-05-28T18:06:15.807+00:00"
+          },
+          {
+            "id": "2cce6309-e187-47aa-9773-4dc693086253",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T18:05:18.371082+00:00",
+            "finished_at": "2026-05-28T18:05:21.477+00:00"
+          },
+          {
+            "id": "7dc14e25-c8c5-4fb0-8dd4-33da51decb65",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T18:00:24.251105+00:00",
+            "finished_at": "2026-05-28T18:00:50.042+00:00"
+          },
+          {
+            "id": "0b909013-5138-4cec-8479-63270628ab08",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T17:45:15.736515+00:00",
+            "finished_at": "2026-05-28T17:45:33.049+00:00"
+          },
+          {
+            "id": "68b427f8-e965-4690-83bb-949a0f66f0c1",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T17:45:14.888887+00:00",
+            "finished_at": "2026-05-28T17:45:40.418+00:00"
+          },
+          {
+            "id": "f7d147df-f7c0-40b6-8466-68db97035537",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T17:45:13.948925+00:00",
+            "finished_at": "2026-05-28T17:45:16.817+00:00"
+          },
+          {
+            "id": "6b715145-2f9e-4c78-b3d3-ccb2733fa380",
+            "tipo": "sync_anuncios_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T17:40:13.922435+00:00",
+            "finished_at": "2026-05-28T17:41:01.576+00:00"
+          },
+          {
+            "id": "c2835922-a574-4285-a63a-f22b4b297f23",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T17:30:25.882065+00:00",
+            "finished_at": "2026-05-28T17:30:52.867+00:00"
+          },
+          {
+            "id": "3543f93b-bf0e-44d2-b685-bf20f63c4f58",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T17:25:20.488557+00:00",
+            "finished_at": "2026-05-28T17:26:16.1+00:00"
+          },
+          {
+            "id": "b675d180-2d1b-44b2-b707-dfecde500cf6",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T17:20:22.965125+00:00",
+            "finished_at": "2026-05-28T17:20:25.54+00:00"
+          },
+          {
+            "id": "905ae3c7-c97e-4a74-8efe-feee7b2a87f8",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T17:15:27.325635+00:00",
+            "finished_at": "2026-05-28T17:15:53.349+00:00"
+          },
+          {
+            "id": "e586891d-6e8b-4b7c-bae0-de8f3f4e725d",
+            "tipo": "sync_dslite_catalog",
+            "status": "completo",
+            "created_at": "2026-05-28T17:15:26.876484+00:00",
+            "finished_at": "2026-05-28T17:16:04.23+00:00"
+          },
+          {
+            "id": "cff317a2-2568-4a34-bd7b-9a9721d90394",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T17:05:28.184105+00:00",
+            "finished_at": "2026-05-28T17:05:44.592+00:00"
+          },
+          {
+            "id": "1283683d-49af-4fbe-ba69-fa6486c0baf5",
+            "tipo": "sync_anuncios_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T17:05:27.730365+00:00",
+            "finished_at": "2026-05-28T17:06:24.702+00:00"
+          },
+          {
+            "id": "662e81b0-1609-4489-b6d2-fba1710b2ba4",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T17:00:18.184559+00:00",
+            "finished_at": "2026-05-28T17:00:43.525+00:00"
+          },
+          {
+            "id": "ed3d6e56-13fe-408e-ba07-6b7641e82745",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T17:00:17.222113+00:00",
+            "finished_at": "2026-05-28T17:00:20.059+00:00"
+          },
+          {
+            "id": "f01761ed-7bd9-4243-991c-a5a3182824bb",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T16:45:24.565547+00:00",
+            "finished_at": "2026-05-28T16:46:17.989+00:00"
+          },
+          {
+            "id": "4427c2de-e022-46ca-8913-d61447f0f4b5",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T16:45:23.88347+00:00",
+            "finished_at": "2026-05-28T16:45:49.301+00:00"
+          },
+          {
+            "id": "b913fd67-8fe9-4002-928a-1e4d84f5074b",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T16:35:31.83547+00:00",
+            "finished_at": "2026-05-28T16:35:34.442+00:00"
+          },
+          {
+            "id": "76ed7f44-7176-4490-a2da-81a96c519865",
+            "tipo": "sync_anuncios_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T16:30:19.123141+00:00",
+            "finished_at": "2026-05-28T16:31:04.616+00:00"
+          },
+          {
+            "id": "d2cb67a7-f4d3-4bac-940e-3e08db336d77",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T16:30:18.656286+00:00",
+            "finished_at": "2026-05-28T16:30:45.556+00:00"
+          },
+          {
+            "id": "11575f1c-59af-434c-bd51-1e5a25bd1104",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T16:25:17.965539+00:00",
+            "finished_at": "2026-05-28T16:25:35.113+00:00"
+          },
+          {
+            "id": "615500bf-1795-4323-a724-8f11d14d148d",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T16:15:31.422533+00:00",
+            "finished_at": "2026-05-28T16:15:56.867+00:00"
+          },
+          {
+            "id": "1a872b82-8c1e-4424-9fd6-b3ffb8a2bb75",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T16:10:30.963544+00:00",
+            "finished_at": "2026-05-28T16:10:33.684+00:00"
+          },
+          {
+            "id": "84ac3aab-cef1-4da9-b233-f4b57301e493",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T16:05:23.782622+00:00",
+            "finished_at": "2026-05-28T16:06:23.562+00:00"
+          }
+        ]
+      },
+      "sync_domain_locks": {
+        "count": 0,
+        "count_error": null,
+        "max_ts": null,
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": []
+      }
+    }
+  },
+  "orchestration": {
+    "captured_at": "2026-05-28T20:09:10.079Z",
+    "prod_cron_status": {
+      "status": 200,
+      "ok": true,
+      "duration_ms": 1697,
+      "body": {
+        "success": true,
+        "timezone": "America/Sao_Paulo",
+        "hour": 17,
+        "ml_auth": {
+          "state": "ok",
+          "blocked_until": null,
+          "last_refresh_at": "2026-05-28T18:33:10.338+00:00",
+          "last_refresh_error": null,
+          "last_refresh_error_code": null,
+          "conectado": true
+        },
+        "tasks": [
+          {
+            "task": "dslite_stock",
+            "tipo": "sync_dslite_stock",
+            "label": "DSLite Preço/Estoque",
+            "interval_minutes": 10,
+            "running": null,
+            "last": {
+              "id": "c7e5a169-6e4a-4fb3-8dd4-af8a7966e2b0",
+              "status": "erro",
+              "created_at": "2026-05-28T20:01:27.63014+00:00",
+              "finished_at": "2026-05-28T20:01:30.312+00:00"
+            },
+            "next_run_estimate": "2026-05-28T20:11:30.312Z"
+          },
+          {
+            "task": "dslite_catalog",
+            "tipo": "sync_dslite_catalog",
+            "label": "DSLite Catálogo",
+            "interval_minutes": 120,
+            "running": null,
+            "last": {
+              "id": "1627e4ee-e5eb-4819-aabe-81ce2daf7373",
+              "status": "completo",
+              "created_at": "2026-05-28T19:20:21.801044+00:00",
+              "finished_at": "2026-05-28T19:21:00.015+00:00"
+            },
+            "next_run_estimate": "2026-05-28T21:21:00.015Z"
+          },
+          {
+            "task": "dslite_pedidos",
+            "tipo": "sync_dslite_pedidos",
+            "label": "DSLite Pedidos de Compra",
+            "interval_minutes": 10,
+            "running": null,
+            "last": {
+              "id": "1d83b888-f10e-4629-b43b-17c765842b27",
+              "status": "completo",
+              "created_at": "2026-05-28T20:07:30.574228+00:00",
+              "finished_at": "2026-05-28T20:07:56.206+00:00"
+            },
+            "next_run_estimate": "2026-05-28T20:17:56.206Z"
+          },
+          {
+            "task": "ml_anuncios",
+            "tipo": "sync_anuncios_ml",
+            "label": "ML Anúncios",
+            "interval_minutes": 30,
+            "running": null,
+            "last": {
+              "id": "f3e80266-1ab7-4492-b25c-7f72e186de29",
+              "status": "completo",
+              "created_at": "2026-05-28T19:56:18.345328+00:00",
+              "finished_at": "2026-05-28T19:57:09.212+00:00"
+            },
+            "next_run_estimate": "2026-05-28T20:27:09.212Z"
+          },
+          {
+            "task": "ml_pedidos",
+            "tipo": "sync_pedidos_ml",
+            "label": "ML Pedidos",
+            "interval_minutes": 15,
+            "running": null,
+            "last": {
+              "id": "f7582043-e6f3-4e30-a4b4-fb67bdc443ec",
+              "status": "completo",
+              "created_at": "2026-05-28T20:01:29.079414+00:00",
+              "finished_at": "2026-05-28T20:02:28.645+00:00"
+            },
+            "next_run_estimate": "2026-05-28T20:17:28.645Z"
+          }
+        ]
+      }
+    },
+    "local_cron_status": {
+      "status": 200,
+      "ok": true,
+      "duration_ms": 970,
+      "body": {
+        "success": true,
+        "timezone": "America/Sao_Paulo",
+        "hour": 17,
+        "ml_auth": {
+          "state": "ok",
+          "blocked_until": null,
+          "last_refresh_at": "2026-05-28T18:33:10.338+00:00",
+          "last_refresh_error": null,
+          "last_refresh_error_code": null,
+          "conectado": true
+        },
+        "tasks": [
+          {
+            "task": "sync_dslite_fornecedores",
+            "tipo": "sync_dslite_fornecedores",
+            "label": "DSLite Fornecedores",
+            "domain": "fornecedores:dslite",
+            "kind": "dslite",
+            "interval_minutes": 30,
+            "running": null,
+            "last": null,
+            "next_run_estimate": null
+          },
+          {
+            "task": "sync_dslite_catalogo",
+            "tipo": "sync_dslite_catalogo",
+            "label": "DSLite Catálogo",
+            "domain": "produtos:dslite_catalogo",
+            "kind": "dslite",
+            "interval_minutes": 360,
+            "running": null,
+            "last": null,
+            "next_run_estimate": null
+          },
+          {
+            "task": "sync_dslite_preco_estoque",
+            "tipo": "sync_dslite_preco_estoque",
+            "label": "DSLite Preço/Estoque",
+            "domain": "produtos:dslite_preco",
+            "kind": "dslite",
+            "interval_minutes": 2,
+            "running": null,
+            "last": null,
+            "next_run_estimate": null
+          },
+          {
+            "task": "sync_dslite_pedidos_compra",
+            "tipo": "sync_dslite_pedidos_compra",
+            "label": "DSLite Pedidos de Compra",
+            "domain": "compras:dslite",
+            "kind": "dslite",
+            "interval_minutes": 2,
+            "running": null,
+            "last": null,
+            "next_run_estimate": null
+          },
+          {
+            "task": "sync_ml_orders_ingest",
+            "tipo": "sync_ml_orders_ingest",
+            "label": "ML Pedidos (Ingestão)",
+            "domain": "pedidos:ml_ingest",
+            "kind": "ml",
+            "interval_minutes": 2,
+            "running": null,
+            "last": null,
+            "next_run_estimate": null
+          },
+          {
+            "task": "sync_ml_listings_observed",
+            "tipo": "sync_ml_listings_observed",
+            "label": "ML Anúncios (Observado)",
+            "domain": "anuncios:ml_pull",
+            "kind": "ml",
+            "interval_minutes": 5,
+            "running": null,
+            "last": null,
+            "next_run_estimate": null
+          },
+          {
+            "task": "sync_ml_listings_publish",
+            "tipo": "sync_ml_listings_publish",
+            "label": "ML Anúncios (Publicação)",
+            "domain": "anuncios:ml_push",
+            "kind": "ml",
+            "interval_minutes": 1,
+            "running": null,
+            "last": null,
+            "next_run_estimate": null
+          }
+        ]
+      }
+    },
+    "legacy_detected": true
+  },
+  "sync_runs": [
+    {
+      "sync": "sync_dslite_fornecedores",
+      "request": {
+        "url": "https://app.vortek.shop/api/sync/fornecedores",
+        "body": {}
+      },
+      "response": {
+        "status": 200,
+        "ok": true,
+        "duration_ms": 3116,
+        "summary": {
+          "success": true,
+          "domain": null,
+          "job": null,
+          "cursor": null,
+          "records": null,
+          "errors": null,
+          "message": "Fornecedores sincronizados com sucesso"
+        },
+        "raw": null
+      },
+      "classification": null,
+      "pass": true,
+      "started_at": "2026-05-28T20:09:10.079Z",
+      "finished_at": "2026-05-28T20:09:13.195Z"
+    },
+    {
+      "sync": "sync_dslite_catalogo",
+      "request": {
+        "url": "https://app.vortek.shop/api/sync/catalogo",
+        "body": {
+          "pageSize": 20,
+          "maxPagesPerRun": 1
+        }
+      },
+      "response": {
+        "status": 200,
+        "ok": true,
+        "duration_ms": 31842,
+        "summary": {
+          "success": true,
+          "domain": null,
+          "job": null,
+          "cursor": null,
+          "records": null,
+          "errors": null,
+          "message": "Sync de catálogo concluído com reconciliação de estoque zero"
+        },
+        "raw": null
+      },
+      "classification": null,
+      "pass": true,
+      "started_at": "2026-05-28T20:09:13.195Z",
+      "finished_at": "2026-05-28T20:09:45.038Z"
+    },
+    {
+      "sync": "sync_dslite_preco_estoque",
+      "request": {
+        "url": "https://app.vortek.shop/api/sync/preco-estoque",
+        "body": {
+          "pageSize": 20,
+          "maxPagesPerRun": 1,
+          "withMlSync": false
+        }
+      },
+      "response": {
+        "status": 500,
+        "ok": false,
+        "duration_ms": 2176,
+        "summary": {
+          "success": false,
+          "domain": null,
+          "job": null,
+          "cursor": null,
+          "records": null,
+          "errors": null,
+          "message": "Erro ao atualizar lote de produtos: null value in column \"sku\" of relation \"produtos\" violates not-null constraint"
+        },
+        "raw": null
+      },
+      "classification": "infra/deploy",
+      "pass": false,
+      "started_at": "2026-05-28T20:09:45.038Z",
+      "finished_at": "2026-05-28T20:09:47.216Z"
+    },
+    {
+      "sync": "sync_dslite_pedidos_compra",
+      "request": {
+        "url": "https://app.vortek.shop/api/sync/dslite-pedidos",
+        "body": {
+          "windowDays": 7
+        }
+      },
+      "response": {
+        "status": 200,
+        "ok": true,
+        "duration_ms": 7447,
+        "summary": {
+          "success": true,
+          "domain": null,
+          "job": null,
+          "cursor": null,
+          "records": null,
+          "errors": null,
+          "message": null
+        },
+        "raw": null
+      },
+      "classification": null,
+      "pass": true,
+      "started_at": "2026-05-28T20:09:47.216Z",
+      "finished_at": "2026-05-28T20:09:54.664Z"
+    },
+    {
+      "sync": "sync_ml_orders_ingest",
+      "request": {
+        "url": "https://app.vortek.shop/api/sync/pedidos",
+        "body": {
+          "safetyWindowMinutes": 15
+        }
+      },
+      "response": {
+        "status": 200,
+        "ok": true,
+        "duration_ms": 57000,
+        "summary": {
+          "success": true,
+          "domain": null,
+          "job": null,
+          "cursor": null,
+          "records": null,
+          "errors": null,
+          "message": null
+        },
+        "raw": null
+      },
+      "classification": null,
+      "pass": true,
+      "started_at": "2026-05-28T20:09:54.664Z",
+      "finished_at": "2026-05-28T20:10:51.664Z"
+    },
+    {
+      "sync": "sync_ml_listings_observed",
+      "request": {
+        "url": "https://app.vortek.shop/api/sync/anuncios?offset=0&limit=20",
+        "body": {}
+      },
+      "response": {
+        "status": 200,
+        "ok": true,
+        "duration_ms": 45618,
+        "summary": {
+          "success": true,
+          "domain": null,
+          "job": null,
+          "cursor": null,
+          "records": null,
+          "errors": null,
+          "message": null
+        },
+        "raw": null
+      },
+      "classification": null,
+      "pass": true,
+      "started_at": "2026-05-28T20:10:51.664Z",
+      "finished_at": "2026-05-28T20:11:37.282Z"
+    },
+    {
+      "sync": "sync_ml_listings_publish",
+      "request": {
+        "url": "https://app.vortek.shop/api/sync/anuncios/publish",
+        "body": {
+          "limit": 20
+        }
+      },
+      "response": {
+        "status": 404,
+        "ok": false,
+        "duration_ms": 297,
+        "summary": null,
+        "raw": "<!DOCTYPE html><html lang=\"pt-BR\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/c5b9b9d3c1f7e2b0.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/webpack-df91bcf259eca313.js\"/><script src=\"/_next/static/chunks/fd9d1056-c9950adf9b68fc32.js\" async=\"\"></script><script src=\"/_next/static/chunks/2117-5473f0d251fd3d54.js\" async=\"\"></script><script src=\"/_next/static/chunks/main-app-5294d1645fe5526e.js\" async=\"\"></script><script src=\"/_next/static/chunks/4715-db7730b0bc211cd0.js\" async=\"\"></script><script src=\"/_next/static/chunks/3067-a8acdd33c2b0cada.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/layout-8d8c639448bd91bb.js\" async=\"\"></script><meta name=\"robots\" content=\"noindex\"/><title>404: This page could not be found.</title><title>Vortek</title><meta name=\"description\" content=\"Sistema de gestão e precificação inteligente para dropshipping\"/><meta name=\"next-size-adjust\"/><script src=\"/_next/static/chunks/polyfills-42372ed130431b0a.js\" noModule=\"\"></script></head><body class=\"__className_f367f3\"><div style=\"font-fa"
+      },
+      "classification": "infra/deploy",
+      "pass": false,
+      "started_at": "2026-05-28T20:11:37.282Z",
+      "finished_at": "2026-05-28T20:11:37.579Z"
+    },
+    {
+      "sync": "sync_reconcile_fiscal",
+      "request": {
+        "url": "https://app.vortek.shop/api/sync/pedidos/reconciliar-fiscal?limit=100",
+        "body": {}
+      },
+      "response": {
+        "status": 404,
+        "ok": false,
+        "duration_ms": 271,
+        "summary": null,
+        "raw": "<!DOCTYPE html><html lang=\"pt-BR\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/c5b9b9d3c1f7e2b0.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/webpack-df91bcf259eca313.js\"/><script src=\"/_next/static/chunks/fd9d1056-c9950adf9b68fc32.js\" async=\"\"></script><script src=\"/_next/static/chunks/2117-5473f0d251fd3d54.js\" async=\"\"></script><script src=\"/_next/static/chunks/main-app-5294d1645fe5526e.js\" async=\"\"></script><script src=\"/_next/static/chunks/4715-db7730b0bc211cd0.js\" async=\"\"></script><script src=\"/_next/static/chunks/3067-a8acdd33c2b0cada.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/layout-8d8c639448bd91bb.js\" async=\"\"></script><meta name=\"robots\" content=\"noindex\"/><title>404: This page could not be found.</title><title>Vortek</title><meta name=\"description\" content=\"Sistema de gestão e precificação inteligente para dropshipping\"/><meta name=\"next-size-adjust\"/><script src=\"/_next/static/chunks/polyfills-42372ed130431b0a.js\" noModule=\"\"></script></head><body class=\"__className_f367f3\"><div style=\"font-fa"
+      },
+      "classification": "infra/deploy",
+      "pass": false,
+      "started_at": "2026-05-28T20:11:37.579Z",
+      "finished_at": "2026-05-28T20:11:37.851Z"
+    },
+    {
+      "sync": "sync_pack_id_backfill",
+      "request": {
+        "url": "https://app.vortek.shop/api/sync/pedidos/pack-id-backfill?limit=50",
+        "body": {}
+      },
+      "response": {
+        "status": 404,
+        "ok": false,
+        "duration_ms": 275,
+        "summary": null,
+        "raw": "<!DOCTYPE html><html lang=\"pt-BR\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/c5b9b9d3c1f7e2b0.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/webpack-df91bcf259eca313.js\"/><script src=\"/_next/static/chunks/fd9d1056-c9950adf9b68fc32.js\" async=\"\"></script><script src=\"/_next/static/chunks/2117-5473f0d251fd3d54.js\" async=\"\"></script><script src=\"/_next/static/chunks/main-app-5294d1645fe5526e.js\" async=\"\"></script><script src=\"/_next/static/chunks/4715-db7730b0bc211cd0.js\" async=\"\"></script><script src=\"/_next/static/chunks/3067-a8acdd33c2b0cada.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/layout-8d8c639448bd91bb.js\" async=\"\"></script><meta name=\"robots\" content=\"noindex\"/><title>404: This page could not be found.</title><title>Vortek</title><meta name=\"description\" content=\"Sistema de gestão e precificação inteligente para dropshipping\"/><meta name=\"next-size-adjust\"/><script src=\"/_next/static/chunks/polyfills-42372ed130431b0a.js\" noModule=\"\"></script></head><body class=\"__className_f367f3\"><div style=\"font-fa"
+      },
+      "classification": "infra/deploy",
+      "pass": false,
+      "started_at": "2026-05-28T20:11:37.851Z",
+      "finished_at": "2026-05-28T20:11:38.127Z"
+    },
+    {
+      "sync": "sync_municipios_seed",
+      "request": {
+        "url": "https://app.vortek.shop/api/sync/municipios-ibge/seed",
+        "body": {}
+      },
+      "response": {
+        "status": 404,
+        "ok": false,
+        "duration_ms": 275,
+        "summary": null,
+        "raw": "<!DOCTYPE html><html lang=\"pt-BR\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/c5b9b9d3c1f7e2b0.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/webpack-df91bcf259eca313.js\"/><script src=\"/_next/static/chunks/fd9d1056-c9950adf9b68fc32.js\" async=\"\"></script><script src=\"/_next/static/chunks/2117-5473f0d251fd3d54.js\" async=\"\"></script><script src=\"/_next/static/chunks/main-app-5294d1645fe5526e.js\" async=\"\"></script><script src=\"/_next/static/chunks/4715-db7730b0bc211cd0.js\" async=\"\"></script><script src=\"/_next/static/chunks/3067-a8acdd33c2b0cada.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/layout-8d8c639448bd91bb.js\" async=\"\"></script><meta name=\"robots\" content=\"noindex\"/><title>404: This page could not be found.</title><title>Vortek</title><meta name=\"description\" content=\"Sistema de gestão e precificação inteligente para dropshipping\"/><meta name=\"next-size-adjust\"/><script src=\"/_next/static/chunks/polyfills-42372ed130431b0a.js\" noModule=\"\"></script></head><body class=\"__className_f367f3\"><div style=\"font-fa"
+      },
+      "classification": "infra/deploy",
+      "pass": false,
+      "started_at": "2026-05-28T20:11:38.127Z",
+      "finished_at": "2026-05-28T20:11:38.402Z"
+    }
+  ],
+  "concurrency": {
+    "same_domain": {
+      "runs": [
+        {
+          "status": 500,
+          "ok": false,
+          "duration_ms": 2170,
+          "summary": {
+            "success": false,
+            "domain": null,
+            "job": null,
+            "cursor": null,
+            "records": null,
+            "errors": null,
+            "message": "Erro ao atualizar lote de produtos: null value in column \"sku\" of relation \"produtos\" violates not-null constraint"
+          }
+        },
+        {
+          "status": 500,
+          "ok": false,
+          "duration_ms": 2228,
+          "summary": {
+            "success": false,
+            "domain": null,
+            "job": null,
+            "cursor": null,
+            "records": null,
+            "errors": null,
+            "message": "Erro ao atualizar lote de produtos: null value in column \"sku\" of relation \"produtos\" violates not-null constraint"
+          }
+        }
+      ],
+      "pass": false
+    },
+    "different_domain": {
+      "runs": [
+        {
+          "status": 500,
+          "ok": false,
+          "duration_ms": 1682,
+          "summary": {
+            "success": false,
+            "domain": null,
+            "job": null,
+            "cursor": null,
+            "records": null,
+            "errors": null,
+            "message": "Erro ao atualizar lote de produtos: null value in column \"sku\" of relation \"produtos\" violates not-null constraint"
+          }
+        },
+        {
+          "status": 200,
+          "ok": true,
+          "duration_ms": 54555,
+          "summary": {
+            "success": true,
+            "domain": null,
+            "job": null,
+            "cursor": null,
+            "records": null,
+            "errors": null,
+            "message": null
+          }
+        }
+      ],
+      "pass": true
+    }
+  },
+  "integrity": {
+    "unique": {
+      "compras_dsid_duplicado": [],
+      "pedidos_ml_order_id_duplicado": [],
+      "pass": true
+    },
+    "domain": {
+      "vinculo_nf": {
+        "matched": 54,
+        "missing": 8
+      },
+      "pass": false
+    },
+    "outbox": {
+      "status_count": {
+        "done": 2
+      },
+      "failed_samples": [],
+      "pass": true
+    }
+  },
+  "baseline_after": {
+    "captured_at": "2026-05-28T20:12:36.927Z",
+    "window_days": 7,
+    "window_from": "2026-05-21T20:12:36.927Z",
+    "tables": {
+      "fornecedores": {
+        "count": 5,
+        "count_error": null,
+        "max_ts": "2026-05-28T20:09:10.209+00:00",
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": [
+          {
+            "id": "9c024741-1501-4eef-a304-1c1397bedc58",
+            "dslite_id": "27",
+            "nome": "Vgs Importação E Exportação Ltda",
+            "ativo": true,
+            "dslite_ultima_sync": "2026-05-28T20:09:10.209+00:00"
+          },
+          {
+            "id": "3f695c4b-3dd6-480b-a3b7-7d042133680d",
+            "dslite_id": "39",
+            "nome": "Magazine Nova Center Ltda (MN Center)",
+            "ativo": true,
+            "dslite_ultima_sync": "2026-05-28T20:09:10.209+00:00"
+          },
+          {
+            "id": "3902ca29-c6e6-46ac-8233-d4d14c56fdac",
+            "dslite_id": "81",
+            "nome": "Vitrine Outlet Comercio de Artigos do Vestuário Ltda",
+            "ativo": true,
+            "dslite_ultima_sync": "2026-05-28T20:09:10.209+00:00"
+          },
+          {
+            "id": "a2b7d909-af70-4fda-99d2-21b16dd46c10",
+            "dslite_id": "2",
+            "nome": "Hayamax Distribuidora De Produtos Ltda",
+            "ativo": true,
+            "dslite_ultima_sync": "2026-05-28T20:09:10.209+00:00"
+          },
+          {
+            "id": "7ce81d0b-4030-44f7-8cf3-5f165845a8c8",
+            "dslite_id": "8",
+            "nome": "",
+            "ativo": true,
+            "dslite_ultima_sync": "2026-05-28T20:09:10.209+00:00"
+          }
+        ]
+      },
+      "produtos_dslite": {
+        "count": 9151,
+        "count_error": null,
+        "max_ts": "2026-05-28T19:50:46.007+00:00",
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": [
+          {
+            "id": "54837591-06f1-42e7-8a40-3e219f388383",
+            "sku": "HYX11451",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "11451",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "9cebb98f-597c-4a0a-a846-5f012e5c66d7",
+            "sku": "HYX12653",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "12653",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "6e24d68f-9d50-4688-8d0d-9f40bf519ce4",
+            "sku": "HYX11452",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "11452",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "96c13f97-73c4-4629-a34e-73bc839fc5bc",
+            "sku": "HYX15089",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "15089",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "4b78e307-1cc6-4872-a1dc-6f9ec848f1fb",
+            "sku": "HYX14352",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "14352",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "7f723569-5663-4cfe-8c1c-d04618fe275a",
+            "sku": "HYX11228",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "11228",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "b4e84fdb-e420-4ae3-a333-96e22cd4aedf",
+            "sku": "HYX1192",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "1192",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "b2b2588b-4372-4890-833c-3f0c6e90f121",
+            "sku": "HYX12404",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "12404",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "f9619f82-e683-42d8-a767-6005864a4a75",
+            "sku": "HYX12832",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "12832",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "41b3f721-cde7-461d-a8cb-9a88c47e6d34",
+            "sku": "HYX11433",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "11433",
+            "dslite_ultima_sync": "2026-05-28T19:50:46.007+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "04874c2c-0dc1-4e89-87a1-baa1e2b72888",
+            "sku": "HYX18359",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "18359",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "1711696d-0894-46b4-9447-881144cebdaa",
+            "sku": "HYX19464",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "19464",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "0d9a445e-9719-4072-b249-a013ade8f6dd",
+            "sku": "HYX19496",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "19496",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "84a4faf0-2c12-458e-a96b-a5c0033d1327",
+            "sku": "HYX19495",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "19495",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "84ce5e79-e967-4aad-8e18-20478b1be82b",
+            "sku": "HYX20014",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "20014",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "04d82506-c52b-4930-adff-ef5edd173788",
+            "sku": "HYX16838",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "16838",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "54dca8fc-38ad-461d-babc-6814a171f735",
+            "sku": "HYX16372",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "16372",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "1c71fd54-40eb-4eaa-b34b-d8e1c647ddb4",
+            "sku": "HYX15944",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "15944",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          },
+          {
+            "id": "fc50a7a6-a1c0-47df-b2a8-98166ebebf18",
+            "sku": "HYX20437",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "20437",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 0
+          },
+          {
+            "id": "297df099-d8e2-42b4-b6e9-97c56e72a49b",
+            "sku": "HYX20436",
+            "dslite_fornecedor_id": "2",
+            "dslite_produto_id": "20436",
+            "dslite_ultima_sync": "2026-05-28T19:50:28.813+00:00",
+            "ml_item_id": null,
+            "ml_status": "sem_anuncio",
+            "custom_price": null,
+            "estoque": 15
+          }
+        ]
+      },
+      "compras": {
+        "count": 62,
+        "count_error": null,
+        "max_ts": "2026-05-28T20:09:54.852533+00:00",
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": [
+          {
+            "id": "a0478646-c611-45e4-ad3e-65f9a0345b77",
+            "dsid": "367350",
+            "nf_chave": "43260565850289000183550010000000471687304214",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:09:54.852533+00:00"
+          },
+          {
+            "id": "b9643adf-0709-400d-b7ca-daa8bee7bf7e",
+            "dsid": "367460",
+            "nf_chave": "43260565850289000183550010000000481693346028",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:09:54.492808+00:00"
+          },
+          {
+            "id": "8d5ceb90-5a31-4da5-8b2f-8d01952e4b9d",
+            "dsid": "367549",
+            "nf_chave": "43260565850289000183550010000000501729360872",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:09:54.114983+00:00"
+          },
+          {
+            "id": "338d76bd-7c62-4563-a50f-bf3d26af07e6",
+            "dsid": "367571",
+            "nf_chave": "43260565850289000183550010000000511744854268",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:09:53.761909+00:00"
+          },
+          {
+            "id": "e844fb22-4876-4a7f-9c2f-e04ee2b0793a",
+            "dsid": "367702",
+            "nf_chave": "43260565850289000183550010000000521760571400",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:09:53.408357+00:00"
+          },
+          {
+            "id": "220f0cb6-e432-4f54-acfc-e08d4dc53247",
+            "dsid": "367935",
+            "nf_chave": "43260565850289000183550010000000491694451620",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:09:53.036944+00:00"
+          },
+          {
+            "id": "a3f9f3ab-f41d-48b3-8ec6-080a1fde0251",
+            "dsid": "368536",
+            "nf_chave": "43260565850289000183550020000000011899730737",
+            "status": "Cancelado",
+            "updated_at": "2026-05-28T20:09:52.651125+00:00"
+          },
+          {
+            "id": "adb5152b-c0a5-4363-9609-12c85dea5741",
+            "dsid": "368791",
+            "nf_chave": "43260587958674000181558900671090421174194060",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:09:52.272657+00:00"
+          },
+          {
+            "id": "67a59877-6356-45ec-b892-0c7a01cadd38",
+            "dsid": "368792",
+            "nf_chave": "43260565850289000183550010000000051026877795",
+            "status": "Rejeitado",
+            "updated_at": "2026-05-28T20:09:51.884617+00:00"
+          },
+          {
+            "id": "ff1a963f-68c4-4864-9dff-262926746ca1",
+            "dsid": "368807",
+            "nf_chave": "43260565850289000183550020000000051026881446",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:09:51.522992+00:00"
+          },
+          {
+            "id": "dc63fac2-d219-4a93-bd5d-9597f2adf372",
+            "dsid": "368809",
+            "nf_chave": "43260565850289000183550020000000061026882113",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:09:51.152139+00:00"
+          },
+          {
+            "id": "213677f6-bb1f-4dde-a8a0-fa1963c2bd61",
+            "dsid": "368824",
+            "nf_chave": "43260565850289000183550020000000071026883869",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:09:50.784184+00:00"
+          },
+          {
+            "id": "e10e4a91-0ac7-4b7a-a08c-31f8c5232bb7",
+            "dsid": "368831",
+            "nf_chave": "43260565850289000183550020000000091026884924",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:09:50.403018+00:00"
+          },
+          {
+            "id": "7e53dc63-30a2-4b43-997d-500b6d34d42d",
+            "dsid": "369425",
+            "nf_chave": "43260565850289000183550020000000101026928396",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:09:49.996924+00:00"
+          },
+          {
+            "id": "50069b6b-878b-41de-9562-75aa690fd79b",
+            "dsid": "369426",
+            "nf_chave": "43260565850289000183550020000000111026929357",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:09:49.617043+00:00"
+          },
+          {
+            "id": "522ff941-f021-4c92-a1b0-96492820715a",
+            "dsid": "369595",
+            "nf_chave": "43260565850289000183550020000000131026952728",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:09:49.238312+00:00"
+          },
+          {
+            "id": "d312cbc5-3d0d-413c-9549-2b337cf7c83b",
+            "dsid": "353045",
+            "nf_chave": "43260465850289000183550010000000021863874965",
+            "status": "Cancelado",
+            "updated_at": "2026-05-28T20:07:56.018191+00:00"
+          },
+          {
+            "id": "845f8ac4-92a5-4f7d-aa07-699dfaebd17d",
+            "dsid": "353198",
+            "nf_chave": "43260465850289000183550010000000031945927440",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:55.647989+00:00"
+          },
+          {
+            "id": "bcbcf7ac-d20a-4e52-bddb-9ea5310c44c5",
+            "dsid": "353588",
+            "nf_chave": "43260465850289000183550010000000041068986680",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:55.250935+00:00"
+          },
+          {
+            "id": "741f8018-1da3-4ce2-8ba9-6ea9a80c2330",
+            "dsid": "353632",
+            "nf_chave": "43260465850289000183550010000000051080862632",
+            "status": "Faturado",
+            "updated_at": "2026-05-28T20:07:54.845316+00:00"
+          }
+        ]
+      },
+      "pedidos": {
+        "count": 65,
+        "count_error": null,
+        "max_ts": "2026-05-28T20:10:49.144269+00:00",
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": [
+          {
+            "id": "c863b485-9493-4e08-a9c1-cce45477d9cd",
+            "ml_order_id": "2000016542132580",
+            "ml_pack_id": "2000013098984157",
+            "dslite_id": "367549",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:10:49.144269+00:00",
+            "sincronizado_em": "2026-05-26T13:39:57.342+00:00"
+          },
+          {
+            "id": "b808eeec-1c55-4c5f-9365-8b9142b54a38",
+            "ml_order_id": "2000016538591744",
+            "ml_pack_id": "2000013095230653",
+            "dslite_id": "367935",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:10:48.262651+00:00",
+            "sincronizado_em": "2026-05-26T13:39:55.836+00:00"
+          },
+          {
+            "id": "7ff6dff3-4b8f-4a88-b566-6bebd1c48580",
+            "ml_order_id": "2000016538513104",
+            "ml_pack_id": null,
+            "dslite_id": "367460",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": true,
+            "snapshot_pendencias": [
+              "billing_ie_ausente_cnpj"
+            ],
+            "updated_at": "2026-05-28T20:10:46.680528+00:00",
+            "sincronizado_em": "2026-05-26T13:39:51.957+00:00"
+          },
+          {
+            "id": "bf230c58-a9cf-4d12-9652-373b739e9053",
+            "ml_order_id": "2000016534629574",
+            "ml_pack_id": "2000013088884257",
+            "dslite_id": "367350",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:10:46.175288+00:00",
+            "sincronizado_em": "2026-05-26T13:39:51.346+00:00"
+          },
+          {
+            "id": "638e359b-0b5e-476f-abad-d66c4f5a6748",
+            "ml_order_id": "2000016515909642",
+            "ml_pack_id": "2000013069055943",
+            "dslite_id": "366954",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": true,
+            "snapshot_pendencias": [
+              "divergencia_total"
+            ],
+            "updated_at": "2026-05-28T20:10:45.260097+00:00",
+            "sincronizado_em": "2026-05-26T13:39:49.69+00:00"
+          },
+          {
+            "id": "f437fff8-324f-4e11-ad51-fcf7f9c13844",
+            "ml_order_id": "2000016497231696",
+            "ml_pack_id": null,
+            "dslite_id": "366517",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:10:43.59848+00:00",
+            "sincronizado_em": "2026-05-26T13:39:45.163+00:00"
+          },
+          {
+            "id": "1848fcea-69d3-41e5-8728-5f1b5070a800",
+            "ml_order_id": "2000016494086262",
+            "ml_pack_id": "2000013046009381",
+            "dslite_id": "367169",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:10:43.120146+00:00",
+            "sincronizado_em": "2026-05-26T13:39:43.705+00:00"
+          },
+          {
+            "id": "f6303433-d089-45e9-b4a0-d57f7560cc6d",
+            "ml_order_id": "2000016491602194",
+            "ml_pack_id": "2000013043393713",
+            "dslite_id": "366410",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:10:42.038612+00:00",
+            "sincronizado_em": "2026-05-26T13:39:45.724+00:00"
+          },
+          {
+            "id": "07850251-7132-471b-8d08-a79eba582511",
+            "ml_order_id": "2000016491378128",
+            "ml_pack_id": "2000013043157885",
+            "dslite_id": "366391",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:10:40.089206+00:00",
+            "sincronizado_em": "2026-05-26T13:39:37.33+00:00"
+          },
+          {
+            "id": "99db2bf3-97c8-4e05-9fbb-938460476516",
+            "ml_order_id": "2000016493107442",
+            "ml_pack_id": "2000013045012185",
+            "dslite_id": "366408",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:10:40.026483+00:00",
+            "sincronizado_em": "2026-05-26T13:39:38.624+00:00"
+          },
+          {
+            "id": "58cc0c36-1c74-4521-8ab0-4c4283225f34",
+            "ml_order_id": "2000016488610974",
+            "ml_pack_id": null,
+            "dslite_id": "366335",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:10:38.946385+00:00",
+            "sincronizado_em": "2026-05-26T13:39:37.49+00:00"
+          },
+          {
+            "id": "04895b0d-0786-4673-84f2-0be540a34898",
+            "ml_order_id": "2000016472883084",
+            "ml_pack_id": null,
+            "dslite_id": "365826",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": true,
+            "snapshot_pendencias": [
+              "divergencia_total"
+            ],
+            "updated_at": "2026-05-28T20:10:36.878027+00:00",
+            "sincronizado_em": "2026-05-26T13:39:30.783+00:00"
+          },
+          {
+            "id": "8d0d6342-b4ef-4cc1-97de-1f36cd49f901",
+            "ml_order_id": "2000016472557724",
+            "ml_pack_id": null,
+            "dslite_id": "365823",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:10:36.529599+00:00",
+            "sincronizado_em": "2026-05-26T13:39:30.309+00:00"
+          },
+          {
+            "id": "b8ef0505-b59c-4924-a1a9-4d5f3e2ac208",
+            "ml_order_id": "2000016468451146",
+            "ml_pack_id": null,
+            "dslite_id": "365765",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:10:35.78096+00:00",
+            "sincronizado_em": "2026-05-26T13:39:29.121+00:00"
+          },
+          {
+            "id": "370a73dc-e13d-407a-944c-d1946353c264",
+            "ml_order_id": "2000016467894486",
+            "ml_pack_id": "2000013018502177",
+            "dslite_id": "365750",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:10:33.792096+00:00",
+            "sincronizado_em": "2026-05-26T13:39:24.029+00:00"
+          },
+          {
+            "id": "00592cc6-bb70-49cc-8cba-6cf5845a1487",
+            "ml_order_id": "2000016436938632",
+            "ml_pack_id": null,
+            "dslite_id": "365063",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": true,
+            "snapshot_pendencias": [
+              "divergencia_total"
+            ],
+            "updated_at": "2026-05-28T20:10:33.292456+00:00",
+            "sincronizado_em": "2026-05-26T13:39:24.239+00:00"
+          },
+          {
+            "id": "789c216b-1794-4b48-9a9e-fc0b98796c55",
+            "ml_order_id": "2000016434359786",
+            "ml_pack_id": "2000012983312593",
+            "dslite_id": "365032",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:10:32.462052+00:00",
+            "sincronizado_em": "2026-05-26T13:39:22.812+00:00"
+          },
+          {
+            "id": "ba3c057b-b1d6-4201-99ec-e8eeb404a07c",
+            "ml_order_id": "2000016430780198",
+            "ml_pack_id": "2000012979555763",
+            "dslite_id": "364970",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": false,
+            "snapshot_pendencias": [],
+            "updated_at": "2026-05-28T20:10:30.665404+00:00",
+            "sincronizado_em": "2026-05-26T13:39:17.865+00:00"
+          },
+          {
+            "id": "66a24df8-e75c-4d4a-ade8-ee9501b19acb",
+            "ml_order_id": "2000016361795590",
+            "ml_pack_id": null,
+            "dslite_id": "362819",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": true,
+            "snapshot_pendencias": [
+              "divergencia_total"
+            ],
+            "updated_at": "2026-05-28T20:10:30.257672+00:00",
+            "sincronizado_em": "2026-05-26T13:39:17.963+00:00"
+          },
+          {
+            "id": "5bbbfbcc-d0c7-434e-87eb-f2300d78e45a",
+            "ml_order_id": "2000016349049466",
+            "ml_pack_id": null,
+            "dslite_id": "362666",
+            "dslite_status": "Faturado",
+            "snapshot_incompleto": true,
+            "snapshot_pendencias": [
+              "divergencia_total"
+            ],
+            "updated_at": "2026-05-28T20:10:29.106198+00:00",
+            "sincronizado_em": "2026-05-26T13:39:16.644+00:00"
+          }
+        ]
+      },
+      "pedido_itens": {
+        "count": 61,
+        "count_error": null,
+        "max_ts": "2026-05-28T01:15:25.329578+00:00",
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": [
+          {
+            "id": "b459650a-754f-467e-b474-9df893a77e7a",
+            "pedido_id": "730ceff2-8fd6-426e-9157-cbf5a62d2cb5",
+            "ml_order_id": "2000016643363478",
+            "ml_item_id": "MLB6646381018",
+            "seller_sku": "HYX86129",
+            "updated_at": "2026-05-28T01:15:25.329578+00:00"
+          },
+          {
+            "id": "e2672bf1-283a-4100-984a-124a6684f580",
+            "pedido_id": "b8465403-c9c2-46bb-befa-6e6bd2d5d4a3",
+            "ml_order_id": "2000016641655324",
+            "ml_item_id": "MLB6573107328",
+            "seller_sku": "HYX84256",
+            "updated_at": "2026-05-27T23:21:00.587054+00:00"
+          },
+          {
+            "id": "94605c51-9ca4-4f05-bc1a-38617560687a",
+            "pedido_id": "93400844-6f31-4f70-9bad-c1d7a26a1fe8",
+            "ml_order_id": "2000016633469086",
+            "ml_item_id": "MLB6573085652",
+            "seller_sku": "HYX86131",
+            "updated_at": "2026-05-27T15:16:29.826062+00:00"
+          },
+          {
+            "id": "82cfb80c-7ebc-40ae-87f1-9861d9c7c577",
+            "pedido_id": "de562d7d-c14a-4557-9f4d-39aa1b46cecf",
+            "ml_order_id": "2000016630100906",
+            "ml_item_id": "MLB6573199472",
+            "seller_sku": "HYX7808",
+            "updated_at": "2026-05-27T15:02:01.974483+00:00"
+          },
+          {
+            "id": "5d1fddd0-0748-48b2-a71f-2e20d38907ce",
+            "pedido_id": "c863b485-9493-4e08-a9c1-cce45477d9cd",
+            "ml_order_id": "2000016542132580",
+            "ml_item_id": "MLB4585804309",
+            "seller_sku": "HYX84488",
+            "updated_at": "2026-05-26T13:39:57.684698+00:00"
+          },
+          {
+            "id": "1548a1db-97a8-4d2b-ba88-953637e0d861",
+            "pedido_id": "b808eeec-1c55-4c5f-9365-8b9142b54a38",
+            "ml_order_id": "2000016538591744",
+            "ml_item_id": "MLB6573086292",
+            "seller_sku": "HYX86127",
+            "updated_at": "2026-05-26T13:39:56.188165+00:00"
+          },
+          {
+            "id": "11d2d81e-e987-44ff-8e63-6503c696ff2e",
+            "pedido_id": "7ff6dff3-4b8f-4a88-b566-6bebd1c48580",
+            "ml_order_id": "2000016538513104",
+            "ml_item_id": "MLB4640510315",
+            "seller_sku": "HYX87784",
+            "updated_at": "2026-05-26T13:39:52.498556+00:00"
+          },
+          {
+            "id": "d5a27355-c4e3-4b56-8858-6e0794da0092",
+            "pedido_id": "bf230c58-a9cf-4d12-9652-373b739e9053",
+            "ml_order_id": "2000016534629574",
+            "ml_item_id": "MLB4623519189",
+            "seller_sku": "HYX74978",
+            "updated_at": "2026-05-26T13:39:51.696618+00:00"
+          },
+          {
+            "id": "50743a81-a206-4114-9829-3939d06a52fc",
+            "pedido_id": "638e359b-0b5e-476f-abad-d66c4f5a6748",
+            "ml_order_id": "2000016515909642",
+            "ml_item_id": "MLB4612598749",
+            "seller_sku": "HYX75087",
+            "updated_at": "2026-05-26T13:39:50.036368+00:00"
+          },
+          {
+            "id": "d125e2c1-08ea-4920-bf85-7b1ce0ad91f6",
+            "pedido_id": "f6303433-d089-45e9-b4a0-d57f7560cc6d",
+            "ml_order_id": "2000016491602194",
+            "ml_item_id": "MLB6573098442",
+            "seller_sku": "HYX84563",
+            "updated_at": "2026-05-26T13:39:46.043609+00:00"
+          },
+          {
+            "id": "a97aa6b2-89a8-4c8c-ab7b-2cb764573139",
+            "pedido_id": "f437fff8-324f-4e11-ad51-fcf7f9c13844",
+            "ml_order_id": "2000016497231696",
+            "ml_item_id": "MLB4640510315",
+            "seller_sku": "HYX87784",
+            "updated_at": "2026-05-26T13:39:45.730199+00:00"
+          },
+          {
+            "id": "2b662c11-4ad3-4ec8-bd63-8739bb3be818",
+            "pedido_id": "1848fcea-69d3-41e5-8728-5f1b5070a800",
+            "ml_order_id": "2000016494086262",
+            "ml_item_id": "MLB6573107112",
+            "seller_sku": "HYX84825",
+            "updated_at": "2026-05-26T13:39:44.019543+00:00"
+          },
+          {
+            "id": "c9c9d89b-b490-470a-b4dd-253f00dcf6a9",
+            "pedido_id": "99db2bf3-97c8-4e05-9fbb-938460476516",
+            "ml_order_id": "2000016493107442",
+            "ml_item_id": "MLB6648864540",
+            "seller_sku": "HYX86127",
+            "updated_at": "2026-05-26T13:39:38.924055+00:00"
+          },
+          {
+            "id": "1b38b140-d92d-4f7a-8f47-2b5aea24a1be",
+            "pedido_id": "58cc0c36-1c74-4521-8ab0-4c4283225f34",
+            "ml_order_id": "2000016488610974",
+            "ml_item_id": "MLB4621088401",
+            "seller_sku": "HYX84488",
+            "updated_at": "2026-05-26T13:39:37.96087+00:00"
+          },
+          {
+            "id": "55c1e0df-6eda-4eaa-9267-5ec55218ce32",
+            "pedido_id": "07850251-7132-471b-8d08-a79eba582511",
+            "ml_order_id": "2000016491378128",
+            "ml_item_id": "MLB6573107112",
+            "seller_sku": "HYX84825",
+            "updated_at": "2026-05-26T13:39:37.640955+00:00"
+          },
+          {
+            "id": "93ee53cb-2106-4a6d-8d7f-677353b3982f",
+            "pedido_id": "04895b0d-0786-4673-84f2-0be540a34898",
+            "ml_order_id": "2000016472883084",
+            "ml_item_id": "MLB4623519189",
+            "seller_sku": "HYX74978",
+            "updated_at": "2026-05-26T13:39:31.300048+00:00"
+          },
+          {
+            "id": "522fbb31-8961-461c-8efb-d2206b67e303",
+            "pedido_id": "8d0d6342-b4ef-4cc1-97de-1f36cd49f901",
+            "ml_order_id": "2000016472557724",
+            "ml_item_id": "MLB6646506834",
+            "seller_sku": "HYX83304",
+            "updated_at": "2026-05-26T13:39:30.806997+00:00"
+          },
+          {
+            "id": "89d05b8d-5984-4f25-a476-710dc40f1f47",
+            "pedido_id": "b8ef0505-b59c-4924-a1a9-4d5f3e2ac208",
+            "ml_order_id": "2000016468451146",
+            "ml_item_id": "MLB4640510315",
+            "seller_sku": "HYX87784",
+            "updated_at": "2026-05-26T13:39:29.912164+00:00"
+          },
+          {
+            "id": "79a0f41d-ecc3-48ca-a485-8009a0508953",
+            "pedido_id": "00592cc6-bb70-49cc-8cba-6cf5845a1487",
+            "ml_order_id": "2000016436938632",
+            "ml_item_id": "MLB6573141540",
+            "seller_sku": "HYX84980",
+            "updated_at": "2026-05-26T13:39:24.815021+00:00"
+          },
+          {
+            "id": "c9721192-919d-4e72-b805-5e8c4ad1cf43",
+            "pedido_id": "370a73dc-e13d-407a-944c-d1946353c264",
+            "ml_order_id": "2000016467894486",
+            "ml_item_id": "MLB4612598749",
+            "seller_sku": "HYX75087",
+            "updated_at": "2026-05-26T13:39:24.385228+00:00"
+          }
+        ]
+      },
+      "catalogo_ml_snapshot": {
+        "count": 256,
+        "count_error": null,
+        "max_ts": "2026-05-28T19:50:51.761+00:00",
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": [
+          {
+            "id": "2c98fea1-e78e-4a4d-a36a-0f743d0f1d5d",
+            "ml_item_id": "MLB6563440786",
+            "seller_id": 3294514937,
+            "sku_local": "HYX86964",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:51.761+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "c8a576ad-b483-4169-811e-4eb759b2a1be",
+            "ml_item_id": "MLB6563495210",
+            "seller_id": 3294514937,
+            "sku_local": "HYX87545",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:51.514+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "63699df9-07a9-4f81-b81c-87015df61f35",
+            "ml_item_id": "MLB6563496888",
+            "seller_id": 3294514937,
+            "sku_local": "HYX84794",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:50.986+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "c7896ea6-ffd4-4d77-ad1b-c8b3749e64fd",
+            "ml_item_id": "MLB6563495246",
+            "seller_id": 3294514937,
+            "sku_local": "HYX85817",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:50.852+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "cd4f920d-425d-47c3-95b4-28f11127eabb",
+            "ml_item_id": "MLB6563496572",
+            "seller_id": 3294514937,
+            "sku_local": "HYX86108",
+            "status": "under_review",
+            "synced_at": "2026-05-28T19:50:50.76+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "86ee2063-2da9-4f9d-b73e-51a85442313e",
+            "ml_item_id": "MLB6563508286",
+            "seller_id": 3294514937,
+            "sku_local": "HYX87723",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:50.338+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "a0c00135-6978-4892-98b7-626db30e3ebe",
+            "ml_item_id": "MLB6563508424",
+            "seller_id": 3294514937,
+            "sku_local": "HYX85851",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:50.251+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "4f1d2a05-8c80-4797-a427-bf713443e0d2",
+            "ml_item_id": "MLB6563508512",
+            "seller_id": 3294514937,
+            "sku_local": "HYX85494",
+            "status": "paused",
+            "synced_at": "2026-05-28T19:50:50.197+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "fe139d0f-c8b4-4662-8e9d-8b1d557c2a91",
+            "ml_item_id": "MLB6563593978",
+            "seller_id": 3294514937,
+            "sku_local": "HYX87404",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:49.649+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "025756d7-ea0c-493d-8a39-f2c4740ea51e",
+            "ml_item_id": "MLB6563575262",
+            "seller_id": 3294514937,
+            "sku_local": "HYX75099",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:49.579+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "709f219a-51c0-47f0-8d2d-0430f797f956",
+            "ml_item_id": "MLB6563508730",
+            "seller_id": 3294514937,
+            "sku_local": "HYX86816",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:49.448+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "c2ef52d2-32a1-4319-a784-66e3af5327fd",
+            "ml_item_id": "MLB6564859394",
+            "seller_id": 3294514937,
+            "sku_local": "HYX85849",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:48.926+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "75f528c9-e5e5-4b3f-a06e-2c97eb07ee44",
+            "ml_item_id": "MLB6564912558",
+            "seller_id": 3294514937,
+            "sku_local": "HYX86946",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:48.905+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "a985e321-9d34-468c-a713-1d509d538b98",
+            "ml_item_id": "MLB6564261406",
+            "seller_id": 3294514937,
+            "sku_local": "HYX86897",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:48.899+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "fafb7833-78fe-4548-9f1f-f2e6398e5452",
+            "ml_item_id": "MLB6564925370",
+            "seller_id": 3294514937,
+            "sku_local": "HYX86948",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:48.236+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "b53e25d8-1ba2-4fd4-8e55-120add9d0a37",
+            "ml_item_id": "MLB6564912582",
+            "seller_id": 3294514937,
+            "sku_local": "HYX85490",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:48.222+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "8f810680-54fd-4667-9c46-d441a3dc0745",
+            "ml_item_id": "MLB6564925380",
+            "seller_id": 3294514937,
+            "sku_local": "HYX86947",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:48.159+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "41bf2610-7a17-4794-acec-cff868c42b7a",
+            "ml_item_id": "MLB6564925448",
+            "seller_id": 3294514937,
+            "sku_local": "HYX85740",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:47.54+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "999954d8-f963-4ca2-ba4c-90447fd50f44",
+            "ml_item_id": "MLB6565184970",
+            "seller_id": 3294514937,
+            "sku_local": "HYX85853",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:47.472+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          },
+          {
+            "id": "ef33d2da-564f-415c-88ce-e7ac042d69d3",
+            "ml_item_id": "MLB6564964670",
+            "seller_id": 3294514937,
+            "sku_local": "HYX86816",
+            "status": "active",
+            "synced_at": "2026-05-28T19:50:47.47+00:00",
+            "updated_at": "2026-05-28T19:50:52.073282+00:00"
+          }
+        ]
+      },
+      "anuncios_ml_outbox": {
+        "count": 2,
+        "count_error": null,
+        "max_ts": "2026-05-28T19:54:02.026248+00:00",
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": [
+          {
+            "id": "fd81d2fe-37e9-4c01-9214-cb3a88f73b91",
+            "produto_id": "98b32c21-1aff-4225-a225-1c98cc5bf17b",
+            "ml_item_id": "MLB4612372705",
+            "status": "done",
+            "attempts": 1,
+            "last_error": null,
+            "created_at": "2026-05-28T19:54:02.026248+00:00",
+            "processed_at": "2026-05-28T19:54:10.662+00:00",
+            "source": "ml_anuncio_atualizar_preco"
+          },
+          {
+            "id": "f89c14c4-6b66-4e10-9859-6b4bc1de4e46",
+            "produto_id": "98b32c21-1aff-4225-a225-1c98cc5bf17b",
+            "ml_item_id": "MLB4612372705",
+            "status": "done",
+            "attempts": 1,
+            "last_error": null,
+            "created_at": "2026-05-28T19:53:18.400591+00:00",
+            "processed_at": "2026-05-28T19:53:31.65+00:00",
+            "source": "produto_patch"
+          }
+        ]
+      },
+      "jobs": {
+        "count": 1859,
+        "count_error": null,
+        "max_ts": "2026-05-28T20:07:30.574228+00:00",
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": [
+          {
+            "id": "1d83b888-f10e-4629-b43b-17c765842b27",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T20:07:30.574228+00:00",
+            "finished_at": "2026-05-28T20:07:56.206+00:00"
+          },
+          {
+            "id": "f7582043-e6f3-4e30-a4b4-fb67bdc443ec",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T20:01:29.079414+00:00",
+            "finished_at": "2026-05-28T20:02:28.645+00:00"
+          },
+          {
+            "id": "c7e5a169-6e4a-4fb3-8dd4-af8a7966e2b0",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T20:01:27.63014+00:00",
+            "finished_at": "2026-05-28T20:01:30.312+00:00"
+          },
+          {
+            "id": "f3e80266-1ab7-4492-b25c-7f72e186de29",
+            "tipo": "sync_anuncios_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T19:56:18.345328+00:00",
+            "finished_at": "2026-05-28T19:57:09.212+00:00"
+          },
+          {
+            "id": "11ba22ec-8145-4979-85e1-4e46af5127ef",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T19:56:17.90397+00:00",
+            "finished_at": "2026-05-28T19:56:43.664+00:00"
+          },
+          {
+            "id": "3b6cd066-1ba0-44cf-bdf2-6df0e9260b6c",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T19:45:15.029316+00:00",
+            "finished_at": "2026-05-28T19:45:36.697+00:00"
+          },
+          {
+            "id": "e92db747-a89e-4090-871a-8683965c35cf",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T19:45:14.130647+00:00",
+            "finished_at": "2026-05-28T19:45:40.037+00:00"
+          },
+          {
+            "id": "8be5d17d-218b-4d18-a3ee-684645789bfd",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T19:40:27.774663+00:00",
+            "finished_at": "2026-05-28T19:40:30.48+00:00"
+          },
+          {
+            "id": "884262ed-85bf-4a33-85fe-bf94c7fe6e39",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T19:30:30.881491+00:00",
+            "finished_at": "2026-05-28T19:30:56.388+00:00"
+          },
+          {
+            "id": "b84a5789-be7b-4d34-bba9-51e51b41a5e6",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T19:25:17.104949+00:00",
+            "finished_at": "2026-05-28T19:26:14.136+00:00"
+          },
+          {
+            "id": "0864895f-6426-46fa-890b-209baa803370",
+            "tipo": "sync_anuncios_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T19:25:16.458704+00:00",
+            "finished_at": "2026-05-28T19:25:45.237+00:00"
+          },
+          {
+            "id": "1627e4ee-e5eb-4819-aabe-81ce2daf7373",
+            "tipo": "sync_dslite_catalog",
+            "status": "completo",
+            "created_at": "2026-05-28T19:20:21.801044+00:00",
+            "finished_at": "2026-05-28T19:21:00.015+00:00"
+          },
+          {
+            "id": "b99c09d1-f070-49da-af1c-0f0fd027478c",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T19:15:26.318376+00:00",
+            "finished_at": "2026-05-28T19:15:51.098+00:00"
+          },
+          {
+            "id": "16ff59b7-2ba1-4b81-ab22-4b5b96de6606",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T19:15:25.333119+00:00",
+            "finished_at": "2026-05-28T19:15:28.544+00:00"
+          },
+          {
+            "id": "ec2a186d-2522-4606-abb2-595736f192db",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T19:05:30.282512+00:00",
+            "finished_at": "2026-05-28T19:05:47.893+00:00"
+          },
+          {
+            "id": "db07ac7d-45cd-428b-a584-0f6647b8a020",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T19:00:28.389079+00:00",
+            "finished_at": "2026-05-28T19:00:54.866+00:00"
+          },
+          {
+            "id": "9e594920-23c8-48ee-b2ea-0e17b4250e50",
+            "tipo": "sync_anuncios_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T18:50:32.233938+00:00",
+            "finished_at": "2026-05-28T18:51:16.988+00:00"
+          },
+          {
+            "id": "cab34d9c-ce78-4a36-8abb-dd9dc33895b0",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T18:50:31.068678+00:00",
+            "finished_at": "2026-05-28T18:50:33.846+00:00"
+          },
+          {
+            "id": "b073456d-c263-4033-aa31-d50e9ab7eef7",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T18:45:31.594523+00:00",
+            "finished_at": "2026-05-28T18:46:27.256+00:00"
+          },
+          {
+            "id": "de0b966f-983c-40c8-ab33-064c466e0a78",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T18:45:30.529268+00:00",
+            "finished_at": "2026-05-28T18:45:55.52+00:00"
+          },
+          {
+            "id": "d8944f09-a75c-4424-afab-ee0b657dd0dc",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T18:30:24.775995+00:00",
+            "finished_at": "2026-05-28T18:30:56.715+00:00"
+          },
+          {
+            "id": "41e16328-566c-4a34-87b3-b5f9ef398abe",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T18:25:32.991058+00:00",
+            "finished_at": "2026-05-28T18:25:49.446+00:00"
+          },
+          {
+            "id": "b89fde7e-c598-4f87-926f-720327394778",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T18:25:31.171726+00:00",
+            "finished_at": "2026-05-28T18:25:34.17+00:00"
+          },
+          {
+            "id": "45bb42c6-7d3f-4168-a2b9-13dd0d575171",
+            "tipo": "sync_anuncios_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T18:15:33.291854+00:00",
+            "finished_at": "2026-05-28T18:16:20.142+00:00"
+          },
+          {
+            "id": "c0408013-2461-48ea-bcd8-7d1eb34ff3b9",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T18:15:32.870709+00:00",
+            "finished_at": "2026-05-28T18:15:59.02+00:00"
+          },
+          {
+            "id": "fed345f8-78d4-4e2f-b37f-ebe5e2cc06c0",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T18:05:20.09256+00:00",
+            "finished_at": "2026-05-28T18:06:15.807+00:00"
+          },
+          {
+            "id": "2cce6309-e187-47aa-9773-4dc693086253",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T18:05:18.371082+00:00",
+            "finished_at": "2026-05-28T18:05:21.477+00:00"
+          },
+          {
+            "id": "7dc14e25-c8c5-4fb0-8dd4-33da51decb65",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T18:00:24.251105+00:00",
+            "finished_at": "2026-05-28T18:00:50.042+00:00"
+          },
+          {
+            "id": "0b909013-5138-4cec-8479-63270628ab08",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T17:45:15.736515+00:00",
+            "finished_at": "2026-05-28T17:45:33.049+00:00"
+          },
+          {
+            "id": "68b427f8-e965-4690-83bb-949a0f66f0c1",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T17:45:14.888887+00:00",
+            "finished_at": "2026-05-28T17:45:40.418+00:00"
+          },
+          {
+            "id": "f7d147df-f7c0-40b6-8466-68db97035537",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T17:45:13.948925+00:00",
+            "finished_at": "2026-05-28T17:45:16.817+00:00"
+          },
+          {
+            "id": "6b715145-2f9e-4c78-b3d3-ccb2733fa380",
+            "tipo": "sync_anuncios_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T17:40:13.922435+00:00",
+            "finished_at": "2026-05-28T17:41:01.576+00:00"
+          },
+          {
+            "id": "c2835922-a574-4285-a63a-f22b4b297f23",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T17:30:25.882065+00:00",
+            "finished_at": "2026-05-28T17:30:52.867+00:00"
+          },
+          {
+            "id": "3543f93b-bf0e-44d2-b685-bf20f63c4f58",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T17:25:20.488557+00:00",
+            "finished_at": "2026-05-28T17:26:16.1+00:00"
+          },
+          {
+            "id": "b675d180-2d1b-44b2-b707-dfecde500cf6",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T17:20:22.965125+00:00",
+            "finished_at": "2026-05-28T17:20:25.54+00:00"
+          },
+          {
+            "id": "905ae3c7-c97e-4a74-8efe-feee7b2a87f8",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T17:15:27.325635+00:00",
+            "finished_at": "2026-05-28T17:15:53.349+00:00"
+          },
+          {
+            "id": "e586891d-6e8b-4b7c-bae0-de8f3f4e725d",
+            "tipo": "sync_dslite_catalog",
+            "status": "completo",
+            "created_at": "2026-05-28T17:15:26.876484+00:00",
+            "finished_at": "2026-05-28T17:16:04.23+00:00"
+          },
+          {
+            "id": "cff317a2-2568-4a34-bd7b-9a9721d90394",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T17:05:28.184105+00:00",
+            "finished_at": "2026-05-28T17:05:44.592+00:00"
+          },
+          {
+            "id": "1283683d-49af-4fbe-ba69-fa6486c0baf5",
+            "tipo": "sync_anuncios_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T17:05:27.730365+00:00",
+            "finished_at": "2026-05-28T17:06:24.702+00:00"
+          },
+          {
+            "id": "662e81b0-1609-4489-b6d2-fba1710b2ba4",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T17:00:18.184559+00:00",
+            "finished_at": "2026-05-28T17:00:43.525+00:00"
+          },
+          {
+            "id": "ed3d6e56-13fe-408e-ba07-6b7641e82745",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T17:00:17.222113+00:00",
+            "finished_at": "2026-05-28T17:00:20.059+00:00"
+          },
+          {
+            "id": "f01761ed-7bd9-4243-991c-a5a3182824bb",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T16:45:24.565547+00:00",
+            "finished_at": "2026-05-28T16:46:17.989+00:00"
+          },
+          {
+            "id": "4427c2de-e022-46ca-8913-d61447f0f4b5",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T16:45:23.88347+00:00",
+            "finished_at": "2026-05-28T16:45:49.301+00:00"
+          },
+          {
+            "id": "b913fd67-8fe9-4002-928a-1e4d84f5074b",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T16:35:31.83547+00:00",
+            "finished_at": "2026-05-28T16:35:34.442+00:00"
+          },
+          {
+            "id": "76ed7f44-7176-4490-a2da-81a96c519865",
+            "tipo": "sync_anuncios_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T16:30:19.123141+00:00",
+            "finished_at": "2026-05-28T16:31:04.616+00:00"
+          },
+          {
+            "id": "d2cb67a7-f4d3-4bac-940e-3e08db336d77",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T16:30:18.656286+00:00",
+            "finished_at": "2026-05-28T16:30:45.556+00:00"
+          },
+          {
+            "id": "11575f1c-59af-434c-bd51-1e5a25bd1104",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T16:25:17.965539+00:00",
+            "finished_at": "2026-05-28T16:25:35.113+00:00"
+          },
+          {
+            "id": "615500bf-1795-4323-a724-8f11d14d148d",
+            "tipo": "sync_dslite_pedidos",
+            "status": "completo",
+            "created_at": "2026-05-28T16:15:31.422533+00:00",
+            "finished_at": "2026-05-28T16:15:56.867+00:00"
+          },
+          {
+            "id": "1a872b82-8c1e-4424-9fd6-b3ffb8a2bb75",
+            "tipo": "sync_dslite_stock",
+            "status": "erro",
+            "created_at": "2026-05-28T16:10:30.963544+00:00",
+            "finished_at": "2026-05-28T16:10:33.684+00:00"
+          },
+          {
+            "id": "84ac3aab-cef1-4da9-b233-f4b57301e493",
+            "tipo": "sync_pedidos_ml",
+            "status": "completo",
+            "created_at": "2026-05-28T16:05:23.782622+00:00",
+            "finished_at": "2026-05-28T16:06:23.562+00:00"
+          }
+        ]
+      },
+      "sync_domain_locks": {
+        "count": 0,
+        "count_error": null,
+        "max_ts": null,
+        "max_ts_error": null,
+        "sample_error": null,
+        "sample": []
+      }
+    }
+  },
+  "matrix": {
+    "sync_dslite_fornecedores": {
+      "pass": true,
+      "status": 200,
+      "duration_ms": 3116,
+      "classification": null,
+      "evidence": {
+        "success": true,
+        "domain": null,
+        "job": null,
+        "cursor": null,
+        "records": null,
+        "errors": null,
+        "message": "Fornecedores sincronizados com sucesso"
+      },
+      "corrective_action": null
+    },
+    "sync_dslite_catalogo": {
+      "pass": true,
+      "status": 200,
+      "duration_ms": 31842,
+      "classification": null,
+      "evidence": {
+        "success": true,
+        "domain": null,
+        "job": null,
+        "cursor": null,
+        "records": null,
+        "errors": null,
+        "message": "Sync de catálogo concluído com reconciliação de estoque zero"
+      },
+      "corrective_action": null
+    },
+    "sync_dslite_preco_estoque": {
+      "pass": false,
+      "status": 500,
+      "duration_ms": 2176,
+      "classification": "infra/deploy",
+      "evidence": {
+        "success": false,
+        "domain": null,
+        "job": null,
+        "cursor": null,
+        "records": null,
+        "errors": null,
+        "message": "Erro ao atualizar lote de produtos: null value in column \"sku\" of relation \"produtos\" violates not-null constraint"
+      },
+      "corrective_action": "Alinhar deploy de produção com a registry nova de syncs."
+    },
+    "sync_dslite_pedidos_compra": {
+      "pass": true,
+      "status": 200,
+      "duration_ms": 7447,
+      "classification": null,
+      "evidence": {
+        "success": true,
+        "domain": null,
+        "job": null,
+        "cursor": null,
+        "records": null,
+        "errors": null,
+        "message": null
+      },
+      "corrective_action": null
+    },
+    "sync_ml_orders_ingest": {
+      "pass": true,
+      "status": 200,
+      "duration_ms": 57000,
+      "classification": null,
+      "evidence": {
+        "success": true,
+        "domain": null,
+        "job": null,
+        "cursor": null,
+        "records": null,
+        "errors": null,
+        "message": null
+      },
+      "corrective_action": null
+    },
+    "sync_ml_listings_observed": {
+      "pass": true,
+      "status": 200,
+      "duration_ms": 45618,
+      "classification": null,
+      "evidence": {
+        "success": true,
+        "domain": null,
+        "job": null,
+        "cursor": null,
+        "records": null,
+        "errors": null,
+        "message": null
+      },
+      "corrective_action": null
+    },
+    "sync_ml_listings_publish": {
+      "pass": false,
+      "status": 404,
+      "duration_ms": 297,
+      "classification": "infra/deploy",
+      "evidence": "<!DOCTYPE html><html lang=\"pt-BR\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/c5b9b9d3c1f7e2b0.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/webpack-df91bcf259eca313.js\"/><script src=\"/_next/static/chunks/fd9d1056-c9950adf9b68fc32.js\" async=\"\"></script><script src=\"/_next/static/chunks/2117-5473f0d251fd3d54.js\" async=\"\"></script><script src=\"/_next/static/chunks/main-app-5294d1645fe5526e.js\" async=\"\"></script><script src=\"/_next/static/chunks/4715-db7730b0bc211cd0.js\" async=\"\"></script><script src=\"/_next/static/chunks/3067-a8acdd33c2b0cada.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/layout-8d8c639448bd91bb.js\" async=\"\"></script><meta name=\"robots\" content=\"noindex\"/><title>404: This page could not be found.</title><title>Vortek</title><meta name=\"description\" content=\"Sistema de gestão e precificação inteligente para dropshipping\"/><meta name=\"next-size-adjust\"/><script src=\"/_next/static/chunks/polyfills-42372ed130431b0a.js\" noModule=\"\"></script></head><body class=\"__className_f367f3\"><div style=\"font-fa",
+      "corrective_action": "Alinhar deploy de produção com a registry nova de syncs."
+    },
+    "sync_reconcile_fiscal": {
+      "pass": false,
+      "status": 404,
+      "duration_ms": 271,
+      "classification": "infra/deploy",
+      "evidence": "<!DOCTYPE html><html lang=\"pt-BR\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/c5b9b9d3c1f7e2b0.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/webpack-df91bcf259eca313.js\"/><script src=\"/_next/static/chunks/fd9d1056-c9950adf9b68fc32.js\" async=\"\"></script><script src=\"/_next/static/chunks/2117-5473f0d251fd3d54.js\" async=\"\"></script><script src=\"/_next/static/chunks/main-app-5294d1645fe5526e.js\" async=\"\"></script><script src=\"/_next/static/chunks/4715-db7730b0bc211cd0.js\" async=\"\"></script><script src=\"/_next/static/chunks/3067-a8acdd33c2b0cada.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/layout-8d8c639448bd91bb.js\" async=\"\"></script><meta name=\"robots\" content=\"noindex\"/><title>404: This page could not be found.</title><title>Vortek</title><meta name=\"description\" content=\"Sistema de gestão e precificação inteligente para dropshipping\"/><meta name=\"next-size-adjust\"/><script src=\"/_next/static/chunks/polyfills-42372ed130431b0a.js\" noModule=\"\"></script></head><body class=\"__className_f367f3\"><div style=\"font-fa",
+      "corrective_action": "Alinhar deploy de produção com a registry nova de syncs."
+    },
+    "sync_pack_id_backfill": {
+      "pass": false,
+      "status": 404,
+      "duration_ms": 275,
+      "classification": "infra/deploy",
+      "evidence": "<!DOCTYPE html><html lang=\"pt-BR\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/c5b9b9d3c1f7e2b0.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/webpack-df91bcf259eca313.js\"/><script src=\"/_next/static/chunks/fd9d1056-c9950adf9b68fc32.js\" async=\"\"></script><script src=\"/_next/static/chunks/2117-5473f0d251fd3d54.js\" async=\"\"></script><script src=\"/_next/static/chunks/main-app-5294d1645fe5526e.js\" async=\"\"></script><script src=\"/_next/static/chunks/4715-db7730b0bc211cd0.js\" async=\"\"></script><script src=\"/_next/static/chunks/3067-a8acdd33c2b0cada.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/layout-8d8c639448bd91bb.js\" async=\"\"></script><meta name=\"robots\" content=\"noindex\"/><title>404: This page could not be found.</title><title>Vortek</title><meta name=\"description\" content=\"Sistema de gestão e precificação inteligente para dropshipping\"/><meta name=\"next-size-adjust\"/><script src=\"/_next/static/chunks/polyfills-42372ed130431b0a.js\" noModule=\"\"></script></head><body class=\"__className_f367f3\"><div style=\"font-fa",
+      "corrective_action": "Alinhar deploy de produção com a registry nova de syncs."
+    },
+    "sync_municipios_seed": {
+      "pass": false,
+      "status": 404,
+      "duration_ms": 275,
+      "classification": "infra/deploy",
+      "evidence": "<!DOCTYPE html><html lang=\"pt-BR\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/c5b9b9d3c1f7e2b0.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/webpack-df91bcf259eca313.js\"/><script src=\"/_next/static/chunks/fd9d1056-c9950adf9b68fc32.js\" async=\"\"></script><script src=\"/_next/static/chunks/2117-5473f0d251fd3d54.js\" async=\"\"></script><script src=\"/_next/static/chunks/main-app-5294d1645fe5526e.js\" async=\"\"></script><script src=\"/_next/static/chunks/4715-db7730b0bc211cd0.js\" async=\"\"></script><script src=\"/_next/static/chunks/3067-a8acdd33c2b0cada.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/layout-8d8c639448bd91bb.js\" async=\"\"></script><meta name=\"robots\" content=\"noindex\"/><title>404: This page could not be found.</title><title>Vortek</title><meta name=\"description\" content=\"Sistema de gestão e precificação inteligente para dropshipping\"/><meta name=\"next-size-adjust\"/><script src=\"/_next/static/chunks/polyfills-42372ed130431b0a.js\" noModule=\"\"></script></head><body class=\"__className_f367f3\"><div style=\"font-fa",
+      "corrective_action": "Alinhar deploy de produção com a registry nova de syncs."
+    },
+    "_orchestration": {
+      "pass": false,
+      "status": 200,
+      "classification": "infra/deploy",
+      "evidence": {
+        "legacy_detected": true,
+        "prod_tasks": [
+          {
+            "task": "dslite_stock",
+            "tipo": "sync_dslite_stock",
+            "label": "DSLite Preço/Estoque",
+            "interval_minutes": 10,
+            "running": null,
+            "last": {
+              "id": "c7e5a169-6e4a-4fb3-8dd4-af8a7966e2b0",
+              "status": "erro",
+              "created_at": "2026-05-28T20:01:27.63014+00:00",
+              "finished_at": "2026-05-28T20:01:30.312+00:00"
+            },
+            "next_run_estimate": "2026-05-28T20:11:30.312Z"
+          },
+          {
+            "task": "dslite_catalog",
+            "tipo": "sync_dslite_catalog",
+            "label": "DSLite Catálogo",
+            "interval_minutes": 120,
+            "running": null,
+            "last": {
+              "id": "1627e4ee-e5eb-4819-aabe-81ce2daf7373",
+              "status": "completo",
+              "created_at": "2026-05-28T19:20:21.801044+00:00",
+              "finished_at": "2026-05-28T19:21:00.015+00:00"
+            },
+            "next_run_estimate": "2026-05-28T21:21:00.015Z"
+          },
+          {
+            "task": "dslite_pedidos",
+            "tipo": "sync_dslite_pedidos",
+            "label": "DSLite Pedidos de Compra",
+            "interval_minutes": 10,
+            "running": null,
+            "last": {
+              "id": "1d83b888-f10e-4629-b43b-17c765842b27",
+              "status": "completo",
+              "created_at": "2026-05-28T20:07:30.574228+00:00",
+              "finished_at": "2026-05-28T20:07:56.206+00:00"
+            },
+            "next_run_estimate": "2026-05-28T20:17:56.206Z"
+          },
+          {
+            "task": "ml_anuncios",
+            "tipo": "sync_anuncios_ml",
+            "label": "ML Anúncios",
+            "interval_minutes": 30,
+            "running": null,
+            "last": {
+              "id": "f3e80266-1ab7-4492-b25c-7f72e186de29",
+              "status": "completo",
+              "created_at": "2026-05-28T19:56:18.345328+00:00",
+              "finished_at": "2026-05-28T19:57:09.212+00:00"
+            },
+            "next_run_estimate": "2026-05-28T20:27:09.212Z"
+          },
+          {
+            "task": "ml_pedidos",
+            "tipo": "sync_pedidos_ml",
+            "label": "ML Pedidos",
+            "interval_minutes": 15,
+            "running": null,
+            "last": {
+              "id": "f7582043-e6f3-4e30-a4b4-fb67bdc443ec",
+              "status": "completo",
+              "created_at": "2026-05-28T20:01:29.079414+00:00",
+              "finished_at": "2026-05-28T20:02:28.645+00:00"
+            },
+            "next_run_estimate": "2026-05-28T20:17:28.645Z"
+          }
+        ]
+      },
+      "corrective_action": "Publicar versão nova da API (cron-dispatch/cron-status com taxonomy nova) no host de produção."
+    },
+    "_concurrency_same_domain": {
+      "pass": false,
+      "classification": "regra_domínio",
+      "evidence": [
+        {
+          "status": 500,
+          "ok": false,
+          "duration_ms": 2170,
+          "summary": {
+            "success": false,
+            "domain": null,
+            "job": null,
+            "cursor": null,
+            "records": null,
+            "errors": null,
+            "message": "Erro ao atualizar lote de produtos: null value in column \"sku\" of relation \"produtos\" violates not-null constraint"
+          }
+        },
+        {
+          "status": 500,
+          "ok": false,
+          "duration_ms": 2228,
+          "summary": {
+            "success": false,
+            "domain": null,
+            "job": null,
+            "cursor": null,
+            "records": null,
+            "errors": null,
+            "message": "Erro ao atualizar lote de produtos: null value in column \"sku\" of relation \"produtos\" violates not-null constraint"
+          }
+        }
+      ],
+      "corrective_action": "Garantir lock por domínio ativo em produção para sync concorrente."
+    },
+    "_concurrency_cross_domain": {
+      "pass": true,
+      "classification": null,
+      "evidence": [
+        {
+          "status": 500,
+          "ok": false,
+          "duration_ms": 1682,
+          "summary": {
+            "success": false,
+            "domain": null,
+            "job": null,
+            "cursor": null,
+            "records": null,
+            "errors": null,
+            "message": "Erro ao atualizar lote de produtos: null value in column \"sku\" of relation \"produtos\" violates not-null constraint"
+          }
+        },
+        {
+          "status": 200,
+          "ok": true,
+          "duration_ms": 54555,
+          "summary": {
+            "success": true,
+            "domain": null,
+            "job": null,
+            "cursor": null,
+            "records": null,
+            "errors": null,
+            "message": null
+          }
+        }
+      ],
+      "corrective_action": null
+    },
+    "_integrity_unique": {
+      "pass": true,
+      "classification": null,
+      "evidence": {
+        "compras_dsid_duplicado": [],
+        "pedidos_ml_order_id_duplicado": [],
+        "pass": true
+      },
+      "corrective_action": null
+    },
+    "_integrity_nf_link": {
+      "pass": false,
+      "classification": "regra_domínio",
+      "evidence": {
+        "vinculo_nf": {
+          "matched": 54,
+          "missing": 8
+        },
+        "pass": false
+      },
+      "corrective_action": "Reparar vínculo por NF entre compras e pedidos (dslite_id/dslite_status)."
+    }
+  }
+}

@@ -4,9 +4,9 @@
  * Regra: emitida=true somente com status autorizado e DANFE/XML disponível.
  *
  * Uso:
- *   set -a; source .env.local; set +a; node scripts/reconcile-nf-status.js
- *   ORDER_ID=2000016561767694 node scripts/reconcile-nf-status.js
- *   LIMIT=200 node scripts/reconcile-nf-status.js
+ *   set -a; source .env.local; set +a; ALLOW_ML_FISCAL_LEGACY=true node scripts/reconcile-nf-status.js
+ *   ALLOW_ML_FISCAL_LEGACY=true ORDER_ID=2000016561767694 node scripts/reconcile-nf-status.js
+ *   ALLOW_ML_FISCAL_LEGACY=true LIMIT=200 node scripts/reconcile-nf-status.js
  */
 
 const { createClient } = require('@supabase/supabase-js');
@@ -76,6 +76,23 @@ async function main() {
   const sb = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {
     auth: { autoRefreshToken: false, persistSession: false },
   });
+
+  if (String(process.env.ALLOW_ML_FISCAL_LEGACY || '').toLowerCase() !== 'true') {
+    const payload = {
+      event: 'ml_fiscal_legacy_script_blocked',
+      script: 'reconcile-nf-status.js',
+      blocked_reason: 'fiscal_ml_desativado_por_politica',
+      required_flag: 'ALLOW_ML_FISCAL_LEGACY=true',
+      timestamp_utc: new Date().toISOString(),
+    };
+    console.error(JSON.stringify(payload));
+    await sb.from('nf_auditoria_eventos').insert({
+      evento: 'ml_fiscal_legacy_script_blocked',
+      status_resultante: 'blocked',
+      resposta_ml: payload,
+    }).catch(() => null);
+    throw new Error('Fiscal ML desativado por política. Defina ALLOW_ML_FISCAL_LEGACY=true apenas para manutenção legada controlada.');
+  }
 
   const orderId = (process.env.ORDER_ID || '').trim();
   const limit = Number(process.env.LIMIT || 300);

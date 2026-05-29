@@ -9,11 +9,12 @@ export async function GET() {
   const { data: integracoes } = await supabase
     .from('integracoes')
     .select('tipo, conectado')
-    .in('tipo', ['mercadolivre', 'dslite']);
+    .in('tipo', ['mercadolivre', 'dslite', 'brasilnfe']);
 
   const labelMap: Record<string, string> = {
     mercadolivre: 'Mercado Livre',
     dslite: 'DSLite',
+    brasilnfe: 'Brasil NFe',
   };
 
   const status = (integracoes || []).map((i: any) => ({
@@ -22,7 +23,7 @@ export async function GET() {
     on: !!i.conectado,
   }));
 
-  const allLabels = ['Mercado Livre', 'DSLite'];
+  const allLabels = ['Mercado Livre', 'DSLite', 'Brasil NFe'];
   for (const label of allLabels) {
     if (!status.find(s => s.label === label)) {
       status.push({ label, status: 'Desconectado', on: false });

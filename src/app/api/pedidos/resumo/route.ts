@@ -57,10 +57,12 @@ export async function GET(request: Request) {
   }
 
   // Status counts via RPC ou group by
-  const { data: statusData } = await supabase
+  let statusQuery = supabase
     .from('pedidos')
     .select('situacao')
     .not('situacao', 'is', null);
+  statusQuery = applyFilters(statusQuery);
+  const { data: statusData } = await statusQuery;
 
   const statusCounts: Record<string, number> = {};
   for (const row of statusData || []) {

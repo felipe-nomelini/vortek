@@ -21,6 +21,13 @@ interface ProgressModalProps {
   onClose: () => void;
   onCancel?: () => void;
   showCloseButton?: boolean;
+  customActions?: Array<{
+    key: string;
+    label: string;
+    onClick: () => void;
+    danger?: boolean;
+    primary?: boolean;
+  }>;
 }
 
 const statusConfig: Record<StepStatus, { icon: React.ReactNode; color: string; badge: string }> = {
@@ -47,6 +54,7 @@ export default function ProgressModal({
   onClose,
   onCancel,
   showCloseButton = false,
+  customActions = [],
 }: ProgressModalProps) {
   const current = currentStepIndex(steps);
   const hasError = steps.some(s => s.status === 'error');
@@ -137,6 +145,17 @@ export default function ProgressModal({
               Tentar Novamente
             </Button>
           )}
+          {customActions.map((action) => (
+            <Button
+              key={action.key}
+              type={action.primary ? 'primary' : 'default'}
+              danger={Boolean(action.danger)}
+              onClick={action.onClick}
+              size="middle"
+            >
+              {action.label}
+            </Button>
+          ))}
           <Button type="primary" onClick={onClose} size="middle" danger={hasError && !allDone}>
             {allDone ? 'Fechar' : 'Cancelar'}
           </Button>

@@ -1,21 +1,32 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { calculateSuggestedPrice } from '@/services/pricing';
-import { setItemQuantityPricing, updateItemPrice } from '@/services/mercadolibre';
+import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 
 export async function POST(req: Request) {
   try {
     const body = await req.json().catch(() => ({}));
     const produtoId = body?.produtoId as string | undefined;
+    const source = (body?.source as 'catalog_price_to_win' | 'default' | undefined) || 'default';
+    const targetPriceRaw = body?.targetPrice;
 
     if (!produtoId) {
       return NextResponse.json({ error: 'produtoId é obrigatório' }, { status: 400 });
     }
 
+    let targetPrice: number | null = null;
+    if (targetPriceRaw !== undefined && targetPriceRaw !== null && String(targetPriceRaw).trim() !== '') {
+      const parsed = Number(targetPriceRaw);
+      if (!Number.isFinite(parsed) || parsed <= 0) {
+        return NextResponse.json({ error: 'targetPrice inválido. Informe um número maior que zero.' }, { status: 422 });
+      }
+      targetPrice = Math.round(parsed * 100) / 100;
+    }
+
     const supabase = createServiceClient();
     const { data: produto, error } = await supabase
       .from('produtos')
-      .select('id, ml_item_id, ml_status, custom_price, custo, ml_fee, ml_shipping')
+      .select('id, ml_item_id, ml_status, custom_price, custo, ml_fee, ml_shipping, estoque')
       .eq('id', produtoId)
       .single();
 
@@ -32,38 +43,73 @@ export async function POST(req: Request) {
     }
 
     let basePrice: number;
-    if (typeof produto.custom_price === 'number' && Number.isFinite(produto.custom_price)) {
-      basePrice = produto.custom_price;
+    if (targetPrice !== null) {
+      basePrice = targetPrice;
     } else {
-      const calc = calculateSuggestedPrice({
-        cost: Number(produto.custo || 0),
-        shipping: Number(produto.ml_shipping || 0),
-        mlFee: Number(produto.ml_fee || 0.15),
-      });
-      basePrice = calc.suggestedPrice;
+      if (typeof produto.custom_price === 'number' && Number.isFinite(produto.custom_price)) {
+        basePrice = produto.custom_price;
+      } else {
+        const calc = calculateSuggestedPrice({
+          cost: Number(produto.custo || 0),
+          shipping: Number(produto.ml_shipping || 0),
+          mlFee: Number(produto.ml_fee || 0.15),
+        });
+        basePrice = calc.suggestedPrice;
+      }
     }
 
     basePrice = Math.round(basePrice * 100) / 100;
 
+    const { error: persistError } = await supabase
+      .from('produtos')
+      .update({ custom_price: basePrice } as any)
+      .eq('id', produto.id);
+
+    if (persistError) {
+      return NextResponse.json({ error: `Falha ao salvar preço desejado local: ${persistError.message}` }, { status: 500 });
+    }
+
+    const outbox = await enqueueMlPublishOutbox(supabase, {
+      produtoId: String(produto.id),
+      mlItemId: String(produto.ml_item_id),
+      desiredStatus: (produto.ml_status || null) as any,
+      desiredPrice: basePrice,
+      desiredQuantity: typeof produto.estoque === 'number' ? produto.estoque : null,
+      source: 'ml_anuncio_atualizar_preco',
+      payload: {
+        source,
+        target_price_received: targetPrice,
+      },
+    });
+
     const errors: string[] = [];
-
-    const priceUpdated = await updateItemPrice(produto.ml_item_id, basePrice);
-    if (!priceUpdated) {
-      errors.push('Falha ao atualizar preço principal do anúncio');
+    if (!outbox.ok) {
+      errors.push(`Falha ao enfileirar publicação no ML: ${outbox.error}`);
     }
 
-    const quantityPricingUpdated = await setItemQuantityPricing(produto.ml_item_id, basePrice);
-    if (!quantityPricingUpdated) {
-      errors.push('Falha ao atualizar preços de atacado');
-    }
+    console.log(JSON.stringify({
+      event: 'ml_anuncio_atualizar_preco',
+      timestamp_utc: new Date().toISOString(),
+      produto_id: produto.id,
+      ml_item_id: produto.ml_item_id,
+      source,
+      target_price_received: targetPrice,
+      base_price: basePrice,
+      queued_publish: outbox.ok,
+      success: outbox.ok,
+    }));
 
     return NextResponse.json({
-      success: priceUpdated && quantityPricingUpdated,
+      success: outbox.ok,
       produtoId: produto.id,
       mlItemId: produto.ml_item_id,
       basePrice,
-      price_updated: priceUpdated,
-      quantity_pricing_updated: quantityPricingUpdated,
+      source,
+      target_price_received: targetPrice,
+      queued_publish: outbox.ok,
+      message: outbox.ok
+        ? 'Preço desejado salvo e publicação enfileirada para o sync de anúncios'
+        : 'Preço desejado salvo, mas falhou ao enfileirar publicação',
       errors,
     });
   } catch (err: any) {

@@ -40,32 +40,124 @@ function saveIntegrations(ml: boolean, dslite: boolean) {
 export default function ConfiguracoesPage() {
   const [tab, setTab] = useState('empresa');
   const [messageApi, contextHolder] = message.useMessage();
+  const [empresaId, setEmpresaId] = useState<string | null>(null);
+  const [savingEmpresa, setSavingEmpresa] = useState(false);
 
   const [empresa, setEmpresa] = useState({
-    nome: 'VORTEKTECNOLOGIA',
-    nickname: 'VORTEKTECNOLOGIA',
-    cnpj: '00.000.000/0001-00',
-    endereco: 'Rua Exemplo, 123 - São Paulo, SP',
-    email: 'contato@vortek.shop',
-    telefone: '(11) 99999-0000',
+    nome: '',
+    nickname: '',
+    cnpj: '',
+    endereco: '',
+    email: '',
+    telefone: '',
+    uf_fiscal: '',
+    cod_municipio_fiscal: '',
   });
   const patchEmpresa = (d: Partial<typeof empresa>) => setEmpresa(p => ({ ...p, ...d }));
 
   const [ml, setMl] = useState({ clientId: '', clientSecret: '', redirectUri: '', conectado: false });
   const [dslite, setDslite] = useState({ url: '', token: '', conectado: false });
+  const [brasilNfe, setBrasilNfe] = useState({ token: '', userToken: '', url: '', conectado: false });
+  const [defaultNfeProvider, setDefaultNfeProvider] = useState<'brasilnfe'>('brasilnfe');
 
   useEffect(() => {
     const load = async () => {
       const supabase = createClient();
+      const { data: empresaRows } = await supabase
+        .from('empresa')
+        .select('id,nome,nickname,cnpj,endereco,email,telefone,uf_fiscal,cod_municipio_fiscal')
+        .order('updated_at', { ascending: false })
+        .limit(1);
+
+      const empresaAtual = empresaRows?.[0];
+      if (empresaAtual) {
+        setEmpresaId(empresaAtual.id);
+        setEmpresa({
+          nome: empresaAtual.nome || '',
+          nickname: empresaAtual.nickname || '',
+          cnpj: empresaAtual.cnpj || '',
+          endereco: empresaAtual.endereco || '',
+          email: empresaAtual.email || '',
+          telefone: empresaAtual.telefone || '',
+          uf_fiscal: empresaAtual.uf_fiscal || '',
+          cod_municipio_fiscal: empresaAtual.cod_municipio_fiscal || '',
+        });
+      }
+
       const { data: integracoes } = await supabase.from('integracoes').select('*');
       if (!integracoes) return;
       for (const i of integracoes) {
         if (i.tipo === 'mercadolivre') setMl({ clientId: i.client_id || '', clientSecret: i.client_secret || '', redirectUri: i.redirect_uri || '', conectado: i.conectado });
         if (i.tipo === 'dslite') setDslite({ url: i.url || '', token: i.access_token || '', conectado: i.conectado });
+        if (i.tipo === 'brasilnfe') setBrasilNfe({ token: i.access_token || '', userToken: i.refresh_token || '', url: i.url || '', conectado: i.conectado });
+      }
+      const configRes = await fetch('/api/configuracoes');
+      if (configRes.ok) {
+        const conf = await configRes.json();
+        const provider = String(conf?.nfe_provider_default || '').toLowerCase();
+        if (provider === 'brasilnfe') {
+          setDefaultNfeProvider(provider);
+        }
       }
     };
     load();
   }, []);
+
+  const salvarEmpresa = useCallback(async () => {
+    const supabase = createClient();
+    setSavingEmpresa(true);
+    const ufFiscal = String(empresa.uf_fiscal || '').trim().toUpperCase();
+    const codMunicipioFiscal = String(empresa.cod_municipio_fiscal || '').replace(/\D/g, '');
+
+    if (!/^[A-Z]{2}$/.test(ufFiscal)) {
+      setSavingEmpresa(false);
+      messageApi.error('UF Fiscal inválida. Use 2 letras (ex.: RS).');
+      return;
+    }
+    if (codMunicipioFiscal && !/^\d{7}$/.test(codMunicipioFiscal)) {
+      setSavingEmpresa(false);
+      messageApi.error('Código Município (IBGE) inválido. Use 7 dígitos.');
+      return;
+    }
+
+    const payload = {
+      nome: empresa.nome?.trim() || '',
+      nickname: empresa.nickname?.trim() || '',
+      cnpj: empresa.cnpj?.trim() || '',
+      endereco: empresa.endereco?.trim() || '',
+      email: empresa.email?.trim() || '',
+      telefone: empresa.telefone?.trim() || '',
+      uf_fiscal: ufFiscal,
+      cod_municipio_fiscal: codMunicipioFiscal || null,
+      updated_at: new Date().toISOString(),
+    };
+
+    let error: { message: string } | null = null;
+
+    if (empresaId) {
+      const result = await supabase
+        .from('empresa')
+        .update(payload)
+        .eq('id', empresaId);
+      error = result.error;
+    } else {
+      const result = await supabase
+        .from('empresa')
+        .insert(payload)
+        .select('id')
+        .single();
+      error = result.error;
+      if (!result.error && result.data?.id) setEmpresaId(result.data.id);
+    }
+
+    setSavingEmpresa(false);
+    if (error) {
+      messageApi.error(`Falha ao salvar dados da empresa: ${error.message}`);
+      return;
+    }
+
+    messageApi.success('Dados da empresa salvos');
+  }, [empresa, empresaId, messageApi]);
 
   const saveIntegracao = useCallback(async (tipo: string, data: Record<string, any>) => {
     const supabase = createClient();
@@ -86,6 +178,33 @@ const testarDslite = () => {
     setDslite(p => ({ ...p, conectado: true }));
     saveIntegracao('dslite', { url: dslite.url, access_token: dslite.token, conectado: true });
     messageApi.success('Conexão testada com sucesso!');
+  };
+
+  const salvarDefaultProvider = useCallback(async (provider: 'brasilnfe') => {
+    const res = await fetch('/api/configuracoes/fiscal-provider', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ defaultProvider: provider }),
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      messageApi.error(json?.erro || 'Falha ao salvar provedor fiscal padrão');
+      return;
+    }
+    setDefaultNfeProvider(provider);
+    messageApi.success('Provedor fiscal padrão atualizado');
+  }, [messageApi]);
+
+  const testarBrasilNfe = () => {
+    if (!brasilNfe.token) { messageApi.warning('Preencha o Token da Brasil NFe'); return; }
+    setBrasilNfe((p) => ({ ...p, conectado: true }));
+    saveIntegracao('brasilnfe', {
+      access_token: brasilNfe.token,
+      refresh_token: brasilNfe.userToken || null,
+      url: brasilNfe.url || null,
+      conectado: true,
+    });
+    messageApi.success('Configuração da Brasil NFe salva!');
   };
 
   const [usuarios, setUsuarios] = useState<Usuario[]>([
@@ -179,6 +298,17 @@ const testarDslite = () => {
       ),
       action: { label: 'Testar Conexão', onClick: testarDslite },
     },
+    {
+      key: 'brasilnfe', nome: 'Brasil NFe', conectado: brasilNfe.conectado, cor: '#13c2c2', bg: '#0b2525',
+      fields: (
+        <>
+          <Input size="small" placeholder="Token da Empresa" type="password" value={brasilNfe.token} onChange={e => setBrasilNfe(p => ({ ...p, token: e.target.value }))} onBlur={() => saveIntegracao('brasilnfe', { access_token: brasilNfe.token })} style={inputStyle} />
+          <Input size="small" placeholder="User Token (opcional)" type="password" value={brasilNfe.userToken} onChange={e => setBrasilNfe(p => ({ ...p, userToken: e.target.value }))} onBlur={() => saveIntegracao('brasilnfe', { refresh_token: brasilNfe.userToken })} style={inputStyle} />
+          <Input size="small" placeholder="URL Base (opcional)" value={brasilNfe.url} onChange={e => setBrasilNfe(p => ({ ...p, url: e.target.value }))} onBlur={() => saveIntegracao('brasilnfe', { url: brasilNfe.url })} style={inputStyle} />
+        </>
+      ),
+      action: { label: 'Salvar Brasil NFe', onClick: testarBrasilNfe },
+    },
   ];
 
   return (
@@ -201,8 +331,15 @@ const testarDslite = () => {
                   <Col span={12}><div style={{ color: '#a0a0a0', fontSize: 13 }}>Nickname ML</div><Input size="small" value={empresa.nickname} onChange={e => patchEmpresa({ nickname: e.target.value })} style={inputStyle} /></Col>
                   <Col span={12}><div style={{ color: '#a0a0a0', fontSize: 13 }}>CNPJ</div><Input size="small" value={empresa.cnpj} onChange={e => patchEmpresa({ cnpj: e.target.value })} style={inputStyle} /></Col>
                   <Col span={12}><div style={{ color: '#a0a0a0', fontSize: 13 }}>Telefone</div><Input size="small" value={empresa.telefone} onChange={e => patchEmpresa({ telefone: e.target.value })} style={inputStyle} /></Col>
+                  <Col span={12}><div style={{ color: '#a0a0a0', fontSize: 13 }}>UF Fiscal</div><Input size="small" maxLength={2} value={empresa.uf_fiscal} onChange={e => patchEmpresa({ uf_fiscal: e.target.value.toUpperCase() })} style={inputStyle} /></Col>
+                  <Col span={12}><div style={{ color: '#a0a0a0', fontSize: 13 }}>Código Município (IBGE)</div><Input size="small" maxLength={7} value={empresa.cod_municipio_fiscal} onChange={e => patchEmpresa({ cod_municipio_fiscal: e.target.value.replace(/\D/g, '') })} style={inputStyle} /></Col>
                   <Col span={12}><div style={{ color: '#a0a0a0', fontSize: 13 }}>E-mail</div><Input size="small" value={empresa.email} onChange={e => patchEmpresa({ email: e.target.value })} style={inputStyle} /></Col>
                   <Col span={24}><div style={{ color: '#a0a0a0', fontSize: 13 }}>Endereço</div><Input size="small" value={empresa.endereco} onChange={e => patchEmpresa({ endereco: e.target.value })} style={inputStyle} /></Col>
+                  <Col span={24}>
+                    <Button type="primary" size="small" loading={savingEmpresa} onClick={salvarEmpresa}>
+                      Salvar dados da empresa
+                    </Button>
+                  </Col>
                 </Row>
               ),
             },
@@ -210,6 +347,22 @@ const testarDslite = () => {
               key: 'integracoes', label: '🔐 Integrações',
               children: (
                 <Row gutter={[16, 16]}>
+                  <Col span={24}>
+                    <Card styles={{ body: { padding: 12 } }} style={{ ...cardBg }}>
+                      <Space align="center" style={{ width: '100%', justifyContent: 'space-between' }}>
+                        <Text style={{ color: '#e0e0e0', fontWeight: 600 }}>Provedor fiscal padrão (NF-e)</Text>
+                        <Select
+                          size="small"
+                          style={{ minWidth: 220 }}
+                          value={defaultNfeProvider}
+                          onChange={(v: 'brasilnfe') => salvarDefaultProvider(v)}
+                          options={[
+                            { value: 'brasilnfe', label: 'Brasil NFe (primário)' },
+                          ]}
+                        />
+                      </Space>
+                    </Card>
+                  </Col>
                   {integrations.map(api => (
                     <Col xs={24} lg={8} key={api.key}>
                       <Card styles={{ body: { padding: 16 } }} style={{ ...cardBg, height: '100%', borderColor: api.conectado ? api.cor : '#303030' }}>
