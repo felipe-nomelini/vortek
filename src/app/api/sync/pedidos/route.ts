@@ -1216,9 +1216,12 @@ export async function POST(request: Request) {
       erro: diagnosticError.message,
       error: diagnosticError.message,
       failure_reason: 'ml_upstream_error',
+      code: diagnosticError.code,
+      category: diagnosticError.category,
+      upstream_status: diagnosticError.upstream_status,
       errors: [diagnosticError],
       retries_transient: meCheck.retries,
-    }, { status: 502 });
+    }, { status: 424 });
   }
   const me = meResult.data;
 
@@ -1248,7 +1251,7 @@ export async function POST(request: Request) {
       seller: String(me.id),
       limit: String(limit),
       offset: String(offset),
-      sort: 'updated_asc',
+      sort: 'date_asc',
       ...(from ? { 'order.date_last_updated.from': from } : {}),
       ...(to ? { 'order.date_last_updated.to': to } : {}),
     });
@@ -1273,9 +1276,12 @@ export async function POST(request: Request) {
         erro: diagnosticError.message,
         error: diagnosticError.message,
         failure_reason: 'ml_upstream_error',
+        code: diagnosticError.code,
+        category: diagnosticError.category,
+        upstream_status: diagnosticError.upstream_status,
         errors: [diagnosticError],
         retries_transient: ordersCheck.retries,
-      }, { status: 502 });
+      }, { status: 424 });
     }
 
     const orders = ordersResult.data;
