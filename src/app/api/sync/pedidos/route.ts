@@ -403,9 +403,18 @@ function resolveBillingSnapshot(params: {
 }
 
 async function fetchMLResultWithRetry<T>(path: string): Promise<{ result: MLRequestResult<T>; retries: number }> {
-  let retries = 0;
+  return fetchMLResultWithRetryConfig(path);
+}
 
-  for (let attempt = 0; attempt < TRANSIENT_RETRY_ATTEMPTS; attempt++) {
+async function fetchMLResultWithRetryConfig<T>(
+  path: string,
+  options?: { attempts?: number; baseDelayMs?: number },
+): Promise<{ result: MLRequestResult<T>; retries: number }> {
+  let retries = 0;
+  const attempts = Math.max(1, Number(options?.attempts || TRANSIENT_RETRY_ATTEMPTS));
+  const baseDelayMs = Math.max(100, Number(options?.baseDelayMs || TRANSIENT_RETRY_BASE_DELAY_MS));
+
+  for (let attempt = 0; attempt < attempts; attempt++) {
     const result = await fetchMLResult<T>(path);
 
     if (result.ok) {
@@ -413,14 +422,14 @@ async function fetchMLResultWithRetry<T>(path: string): Promise<{ result: MLRequ
     }
 
     const isRetryable = result.error?.category === 'retryable';
-    const hasNextAttempt = attempt < TRANSIENT_RETRY_ATTEMPTS - 1;
+    const hasNextAttempt = attempt < attempts - 1;
 
     if (!isRetryable || !hasNextAttempt) {
       return { result, retries };
     }
 
     retries += 1;
-    await sleep(TRANSIENT_RETRY_BASE_DELAY_MS * (attempt + 1));
+    await sleep(baseDelayMs * (attempt + 1));
   }
 
   const fallback = await fetchMLResult<T>(path);
@@ -1177,7 +1186,8 @@ export async function POST(request: Request) {
   const watermarkParam = String(searchParams.get('lastUpdatedFrom') || body?.lastUpdatedFrom || '').trim();
   const safetyWindowMinutes = Math.max(1, Math.min(120, Number(body?.safetyWindowMinutes || 15)));
 
-  const meResult = await fetchMLResult<any>('/users/me');
+  const meCheck = await fetchMLResultWithRetryConfig<any>('/users/me', { attempts: 3, baseDelayMs: 800 });
+  const meResult = meCheck.result;
   if (!meResult.ok || !meResult.data) {
     if (meResult.error?.category === 'auth_fatal') {
       const auth = await getMLAuthDiagnostics();
@@ -1189,7 +1199,26 @@ export async function POST(request: Request) {
         auth_blocked_until: auth.blocked_until,
       }, { status: 401 });
     }
-    return NextResponse.json({ erro: 'Erro ao conectar com ML' }, { status: 502 });
+
+    const diagnosticError = {
+      code: meResult.error?.code || 'ml_users_me_failed',
+      category: meResult.error?.category || 'error',
+      upstream_status: meResult.status,
+      message: meResult.error?.message || 'Erro ao conectar com ML',
+      endpoint: '/users/me',
+      retries: meCheck.retries,
+    };
+
+    return NextResponse.json({
+      ok: false,
+      success: false,
+      domain,
+      erro: diagnosticError.message,
+      error: diagnosticError.message,
+      failure_reason: 'ml_upstream_error',
+      errors: [diagnosticError],
+      retries_transient: meCheck.retries,
+    }, { status: 502 });
   }
   const me = meResult.data;
 
@@ -1224,8 +1253,32 @@ export async function POST(request: Request) {
       ...(to ? { 'order.date_last_updated.to': to } : {}),
     });
 
-    const orders = await fetchML<any>(`/orders/search?${query.toString()}`);
-    if (!orders) return NextResponse.json({ erro: 'Erro ao buscar pedidos' }, { status: 502 });
+    const ordersCheck = await fetchMLResultWithRetryConfig<any>(`/orders/search?${query.toString()}`, { attempts: 3, baseDelayMs: 800 });
+    const ordersResult = ordersCheck.result;
+
+    if (!ordersResult.ok || !ordersResult.data) {
+      const diagnosticError = {
+        code: ordersResult.error?.code || 'ml_orders_search_failed',
+        category: ordersResult.error?.category || 'error',
+        upstream_status: ordersResult.status,
+        message: ordersResult.error?.message || 'Erro ao buscar pedidos',
+        endpoint: '/orders/search',
+        retries: ordersCheck.retries,
+      };
+
+      return NextResponse.json({
+        ok: false,
+        success: false,
+        domain,
+        erro: diagnosticError.message,
+        error: diagnosticError.message,
+        failure_reason: 'ml_upstream_error',
+        errors: [diagnosticError],
+        retries_transient: ordersCheck.retries,
+      }, { status: 502 });
+    }
+
+    const orders = ordersResult.data;
     results = orders.results || [];
     total = orders.paging?.total || 0;
   }

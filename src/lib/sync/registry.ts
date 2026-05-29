@@ -49,6 +49,11 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     lockTtlSeconds: 45 * 60,
     kind: 'dslite',
     schedule: { businessMinutes: 360, offHoursMinutes: 720 },
+    usesCursor: true,
+    defaultBody: {
+      pageSize: 100,
+      maxPagesPerRun: 2,
+    },
   },
   {
     key: 'sync_dslite_preco_estoque',

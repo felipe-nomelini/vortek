@@ -90,6 +90,8 @@ export async function POST(req: Request) {
   const body = await req.json().catch(() => ({}));
   const pageSize = parsePositiveInt(body?.pageSize, 100);
   const maxPagesPerRun = parsePositiveInt(body?.maxPagesPerRun, Number.MAX_SAFE_INTEGER);
+  const cursorFornecedorId = String(body?.fornecedorId || '').trim();
+  const cursorPage = parsePositiveInt(body?.page, 1);
   const withMlSync = Boolean(body?.withMlSync);
 
   const jobContext = {
@@ -181,15 +183,18 @@ export async function POST(req: Request) {
     let suppliersProcessed = 0;
     let pagesProcessed = 0;
     let nextCursor: { fornecedorId: string; page: number } | null = null;
+    let remainingPagesBudget = maxPagesPerRun;
+    const startSupplierIndex = cursorFornecedorId ? fornecedorIds.indexOf(cursorFornecedorId) : 0;
 
-    for (let supplierIndex = 0; supplierIndex < fornecedorIds.length; supplierIndex += 1) {
+    let supplierIndex = startSupplierIndex >= 0 ? startSupplierIndex : 0;
+    let page = startSupplierIndex >= 0 && cursorFornecedorId ? cursorPage : 1;
+    let stopByBudget = false;
+
+    while (supplierIndex < fornecedorIds.length) {
       const fornecedorId = fornecedorIds[supplierIndex];
       const fornecedorNome = fornecedorMap.get(Number(fornecedorId)) || fornecedorId;
 
-      let page = 1;
-      let pagesThisSupplier = 0;
-
-      while (pagesThisSupplier < maxPagesPerRun) {
+      while (remainingPagesBudget > 0) {
         const response = await sincronizarCatalogo(fornecedorId, page, pageSize);
         if (!response?.produtos?.length) {
           break;
@@ -197,7 +202,7 @@ export async function POST(req: Request) {
 
         const produtos = response.produtos;
         pagesProcessed += 1;
-        pagesThisSupplier += 1;
+        remainingPagesBudget -= 1;
         recordsSeen += produtos.length;
 
         const batch = produtos.map((item) => {
@@ -286,18 +291,26 @@ export async function POST(req: Request) {
         const perPage = Number(response?.detalhesConsulta?.limit || produtos.length || pageSize);
         const totalPaginas = perPage > 0 ? Math.ceil(totalRegistros / perPage) : page;
         const hasMore = page < totalPaginas;
-        if (!hasMore) break;
-
-        page += 1;
-
-        if (pagesThisSupplier >= maxPagesPerRun) {
-          nextCursor = { fornecedorId: String(fornecedorId), page };
+        if (remainingPagesBudget <= 0) {
+          if (hasMore) {
+            nextCursor = { fornecedorId: String(fornecedorId), page: page + 1 };
+          } else {
+            const nextSupplierId = fornecedorIds[supplierIndex + 1];
+            nextCursor = nextSupplierId ? { fornecedorId: String(nextSupplierId), page: 1 } : null;
+          }
+          stopByBudget = true;
           break;
         }
+
+        if (!hasMore) break;
+        page += 1;
       }
 
       suppliersProcessed += 1;
-      if (nextCursor) break;
+      if (stopByBudget) break;
+
+      supplierIndex += 1;
+      page = 1;
     }
 
     return NextResponse.json({
@@ -352,4 +365,3 @@ export async function POST(req: Request) {
     }
   }
 }
-

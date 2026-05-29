@@ -121,6 +121,10 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
     const ok = res.ok && raw?.success !== false && raw?.ok !== false;
     const authFailure = res.status === 401 && (raw?.failure_reason === 'auth_fatal' || raw?.auth_state === 'reauth_required');
     const statusFinal: 'completo' | 'erro' | 'failed_auth' = ok ? 'completo' : (authFailure ? 'failed_auth' : 'erro');
+    const primaryError = Array.isArray(raw?.errors) && raw.errors.length > 0 ? raw.errors[0] : null;
+    const errorCode = raw?.code || raw?.error_code || primaryError?.code || null;
+    const errorCategory = raw?.category || primaryError?.category || null;
+    const upstreamStatus = raw?.upstream_status ?? primaryError?.upstream_status ?? null;
 
     logs.push({
       event_type: 'job_stage_done',
@@ -132,6 +136,9 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
       duration_ms: Date.now() - startedAtMs,
       request_timeout_ms: requestTimeoutMs,
       auth_failure: authFailure,
+      error_code: errorCode,
+      error_category: errorCategory,
+      upstream_status: upstreamStatus,
       ...raw,
     });
 
