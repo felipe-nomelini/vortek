@@ -39,6 +39,8 @@ const LABEL_WAIT_TIMEOUT_MS = 60_000;
 const SHIPMENT_WAIT_INTERVAL_MS = 5_000;
 const SHIPMENT_WAIT_TIMEOUT_MS = 90_000;
 const SYNC_ORDER_TIMEOUT_MS = 120_000;
+const SYNC_ORDER_LOCK_RETRY_ATTEMPTS = 6;
+const SYNC_ORDER_LOCK_RETRY_INTERVAL_MS = 2_000;
 const STRICT_NFE_VALIDATION = String(process.env.STRICT_NFE_VALIDATION || 'true').toLowerCase() === 'true';
 const HOMOLOG_DEST_NAME_MARKER = 'NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL';
 
@@ -118,31 +120,53 @@ async function runOrderSyncSnapshot(mlOrderId: string) {
   const apiKey = process.env.API_SECRET_KEY || '';
   const endpointUrl = new URL(`${baseUrl}/api/sync/pedidos`);
   endpointUrl.searchParams.set('mlOrderId', mlOrderId);
-  const startedAt = Date.now();
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), SYNC_ORDER_TIMEOUT_MS);
+  let lastResult: { ok: boolean; status: number; data: any; durationMs: number } | null = null;
 
-  try {
-    const res = await fetch(endpointUrl.toString(), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-      },
-      body: JSON.stringify({ mlOrderId }),
-      signal: controller.signal,
-    });
-    const data = await res.json().catch(() => ({}));
-    const ok = res.ok && data?.ok !== false;
-    return {
-      ok,
-      status: res.status,
-      data,
-      durationMs: Date.now() - startedAt,
-    };
-  } finally {
-    clearTimeout(timeout);
+  for (let attempt = 1; attempt <= SYNC_ORDER_LOCK_RETRY_ATTEMPTS; attempt += 1) {
+    const startedAt = Date.now();
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), SYNC_ORDER_TIMEOUT_MS);
+
+    try {
+      const res = await fetch(endpointUrl.toString(), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': apiKey,
+        },
+        body: JSON.stringify({ mlOrderId }),
+        signal: controller.signal,
+      });
+      const data = await res.json().catch(() => ({}));
+      const ok = res.ok && data?.ok !== false;
+      const result = {
+        ok,
+        status: res.status,
+        data,
+        durationMs: Date.now() - startedAt,
+      };
+      lastResult = result;
+
+      // 409 = lock de domínio em execução; aguarda e tenta novamente.
+      const isDomainLockConflict = res.status === 409
+        && Array.isArray(data?.errors)
+        && data.errors.some((e: any) => String(e?.code || '') === 'domain_lock_conflict');
+      if (!isDomainLockConflict || attempt >= SYNC_ORDER_LOCK_RETRY_ATTEMPTS) {
+        return result;
+      }
+
+      await sleep(SYNC_ORDER_LOCK_RETRY_INTERVAL_MS);
+    } finally {
+      clearTimeout(timeout);
+    }
   }
+
+  return lastResult || {
+    ok: false,
+    status: 500,
+    data: { error: 'Falha ao sincronizar pedido' },
+    durationMs: 0,
+  };
 }
 
 async function resolveShipmentIdWithWait(params: {
