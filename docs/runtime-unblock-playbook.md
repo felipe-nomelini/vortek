@@ -94,5 +94,9 @@ npm ci
 npm run build
 ```
 
+Deployment env checklist (runtime):
+
+- `BRASILNFE_TIPO_AMBIENTE=1` (obrigatório para emissão fiscal em produção)
+
 If `next build` fails with `from('...')` table/column typing errors, treat it as a
 type drift issue first and resync `src/types/database.ts` before patching route logic.

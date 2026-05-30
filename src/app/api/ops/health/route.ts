@@ -9,8 +9,23 @@ function nowSaoPauloIso() {
   return new Date().toLocaleString('sv-SE', { timeZone: 'America/Sao_Paulo' }).replace(' ', 'T');
 }
 
+function getBrasilNfeTipoAmbienteHealth() {
+  const envValue = process.env.BRASILNFE_TIPO_AMBIENTE;
+  const raw = typeof envValue === 'string' ? envValue.trim() : '';
+  const interpreted = raw === '' ? null : Number(raw);
+  const interpretedSafe = interpreted === null || Number.isNaN(interpreted) ? null : interpreted;
+  const ok = interpretedSafe === 1;
+  return {
+    status: ok ? 'ok' : 'invalid',
+    expected: 1,
+    brasilnfe_tipo_ambiente_raw: raw || null,
+    tipo_ambiente_interpretado: interpretedSafe,
+  } as const;
+}
+
 export async function GET() {
   const mem = process.memoryUsage();
+  const fiscalConfig = getBrasilNfeTipoAmbienteHealth();
 
   let runningJobs: Array<{ id: string; tipo: string; status: string; created_at: string }> = [];
   let mlAuth = {
@@ -57,6 +72,7 @@ export async function GET() {
       },
       running_jobs: runningJobs,
       ml_auth: mlAuth,
+      fiscal_config: fiscalConfig,
     },
     {
       headers: {

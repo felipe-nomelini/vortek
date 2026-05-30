@@ -60,16 +60,20 @@ function normalizeForCompare(value: string | null | undefined): string {
 }
 
 function resolveBrasilNfeTipoAmbienteStrict():
-  | { ok: true; value: 1 }
-  | { ok: false; value: null; error: string; raw: string } {
-  const raw = String(process.env.BRASILNFE_TIPO_AMBIENTE || '').trim();
-  const parsed = Number(raw);
-  if (parsed === 1) return { ok: true, value: 1 };
+  | { ok: true; value: 1; raw: string; interpreted: number }
+  | { ok: false; value: null; error: string; raw: string; interpreted: number | null } {
+  const envValue = process.env.BRASILNFE_TIPO_AMBIENTE;
+  const raw = typeof envValue === 'string' ? envValue.trim() : '';
+  const interpreted = raw === '' ? null : Number(raw);
+  if (interpreted === 1) return { ok: true, value: 1, raw, interpreted };
+  const interpretedDisplay = interpreted === null || Number.isNaN(interpreted) ? 'null' : String(interpreted);
+  const rawDisplay = raw || '(vazio)';
   return {
     ok: false,
     value: null,
     raw,
-    error: 'Configuração fiscal inválida: BRASILNFE_TIPO_AMBIENTE deve ser 1 (produção).',
+    interpreted: interpreted === null || Number.isNaN(interpreted) ? null : interpreted,
+    error: `Configuração fiscal inválida: BRASILNFE_TIPO_AMBIENTE="${rawDisplay}" (interpretado: ${interpretedDisplay}). Deve ser 1 (produção).`,
   };
 }
 
@@ -157,7 +161,15 @@ function buildPayloadFromSnapshot(
   if (!empresa?.cnpj) return { ok: false as const, error: 'Empresa/CNPJ não configurada para emissão.' };
   if (!Array.isArray(itens) || itens.length === 0) return { ok: false as const, error: 'Pedido sem itens para emissão.' };
   const tipoAmbienteConfig = resolveBrasilNfeTipoAmbienteStrict();
-  if (!tipoAmbienteConfig.ok) return { ok: false as const, error: tipoAmbienteConfig.error };
+  if (!tipoAmbienteConfig.ok) {
+    return {
+      ok: false as const,
+      error: tipoAmbienteConfig.error,
+      reason: 'tipo_ambiente_config_invalido',
+      brasilnfeTipoAmbienteRaw: tipoAmbienteConfig.raw,
+      brasilnfeTipoAmbienteInterpretado: tipoAmbienteConfig.interpreted,
+    };
+  }
 
   const doc = normalizeDocument(pedido.billing_documento);
   if (!(doc.length === 11 || doc.length === 14)) {
@@ -543,7 +555,26 @@ export async function ensureBrasilNfeInvoice(input: {
     empresa || null,
     input.identifierInternoOverride || null,
   );
-  if (!built.ok) return { ok: false, error: built.error };
+  if (!built.ok) {
+    if ((built as any)?.reason === 'tipo_ambiente_config_invalido') {
+      await registrarEventoNfAuditoria({
+        pedidoId: input.pedidoId,
+        mlOrderId,
+        evento: 'brasilnfe_tipo_ambiente_invalido',
+        payloadEnviado: {
+          brasilnfe_tipo_ambiente_raw: (built as any)?.brasilnfeTipoAmbienteRaw ?? null,
+          tipo_ambiente_interpretado: (built as any)?.brasilnfeTipoAmbienteInterpretado ?? null,
+          expected: 1,
+        },
+        respostaMl: {
+          error: built.error,
+          acao_recomendada: 'Definir BRASILNFE_TIPO_AMBIENTE=1 no runtime e redeploy',
+        },
+        statusResultante: 'blocked_invalid_env_config',
+      });
+    }
+    return { ok: false, error: built.error };
+  }
   await registrarEventoNfAuditoria({
     pedidoId: input.pedidoId,
     mlOrderId,

@@ -68,26 +68,27 @@ function normalizeForCompare(value: string | null | undefined): string {
 }
 
 function resolveBrasilNfeTipoAmbienteStrict():
-  | { ok: true; value: 1 }
-  | { ok: false; value: null; error: string; raw: string } {
-  const raw = String(process.env.BRASILNFE_TIPO_AMBIENTE || '').trim();
-  const parsed = Number(raw);
-  if (parsed === 1) return { ok: true, value: 1 };
+  | { ok: true; value: 1; raw: string; interpreted: number }
+  | { ok: false; value: null; error: string; raw: string; interpreted: number | null } {
+  const envValue = process.env.BRASILNFE_TIPO_AMBIENTE;
+  const raw = typeof envValue === 'string' ? envValue.trim() : '';
+  const interpreted = raw === '' ? null : Number(raw);
+  if (interpreted === 1) return { ok: true, value: 1, raw, interpreted };
+  const interpretedDisplay = interpreted === null || Number.isNaN(interpreted) ? 'null' : String(interpreted);
+  const rawDisplay = raw || '(vazio)';
   return {
     ok: false,
     value: null,
     raw,
-    error: 'Configuração fiscal inválida: BRASILNFE_TIPO_AMBIENTE deve ser 1 (produção).',
+    interpreted: interpreted === null || Number.isNaN(interpreted) ? null : interpreted,
+    error: `Configuração fiscal inválida: BRASILNFE_TIPO_AMBIENTE="${rawDisplay}" (interpretado: ${interpretedDisplay}). Deve ser 1 (produção).`,
   };
 }
 
 function getConfiguredTipoAmbienteValue(): number | null {
   const strict = resolveBrasilNfeTipoAmbienteStrict();
   if (strict.ok) return strict.value;
-  const raw = String(process.env.BRASILNFE_TIPO_AMBIENTE || '').trim();
-  const parsed = Number(raw);
-  if (!Number.isFinite(parsed)) return null;
-  return parsed;
+  return strict.interpreted;
 }
 
 function buildReissueIdentifier(baseIdentifier: string): string {
@@ -653,6 +654,8 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
       ok: false as const,
       error: tipoAmbienteConfig.error,
       reason: 'tipo_ambiente_config_invalido',
+      brasilnfeTipoAmbienteRaw: tipoAmbienteConfig.raw,
+      brasilnfeTipoAmbienteInterpretado: tipoAmbienteConfig.interpreted,
     };
   }
 
@@ -1459,6 +1462,9 @@ async function runDsliteCreateJob(
               emit_uf_source: (built as any)?.emitUfSource || null,
               emit_uf_value: (built as any)?.emitUf || null,
               dest_uf_value: (built as any)?.destUf || String((pedidoDiag as any)?.billing_endereco?.state_id || '').trim().toUpperCase() || null,
+              brasilnfe_tipo_ambiente_raw: (built as any)?.brasilnfeTipoAmbienteRaw ?? null,
+              tipo_ambiente_interpretado: (built as any)?.brasilnfeTipoAmbienteInterpretado ?? null,
+              expected: 1,
               missing_fields: {
                 state_id: !String((pedidoDiag as any)?.billing_endereco?.state_id || '').trim(),
                 city_name: !String((pedidoDiag as any)?.billing_endereco?.city_name || '').trim(),
@@ -1474,6 +1480,23 @@ async function runDsliteCreateJob(
             },
             statusResultante: 'blocked_snapshot_readiness',
           });
+          if ((built as any)?.reason === 'tipo_ambiente_config_invalido') {
+            await registrarEventoNfAuditoria({
+              pedidoId,
+              mlOrderId: mlOrderId ? String(mlOrderId) : String((pedidoDiag as any)?.ml_order_id || ''),
+              evento: 'brasilnfe_tipo_ambiente_invalido',
+              payloadEnviado: {
+                brasilnfe_tipo_ambiente_raw: (built as any)?.brasilnfeTipoAmbienteRaw ?? null,
+                tipo_ambiente_interpretado: (built as any)?.brasilnfeTipoAmbienteInterpretado ?? null,
+                expected: 1,
+              },
+              respostaMl: {
+                error: built.error,
+                acao_recomendada: 'Definir BRASILNFE_TIPO_AMBIENTE=1 no runtime e redeploy',
+              },
+              statusResultante: 'blocked_invalid_env_config',
+            });
+          }
           if (String((built as any)?.emitUfSource || '') === 'missing') {
             await registrarEventoNfAuditoria({
               pedidoId,

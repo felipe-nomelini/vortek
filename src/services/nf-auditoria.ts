@@ -81,6 +81,7 @@ type AuditEvent =
   | 'brasilnfe_source_enforced'
   | 'fiscal_provider_backfill_source'
   | 'dslite_carrier_skipped_existing'
+  | 'brasilnfe_tipo_ambiente_invalido'
   | 'step_auto_close';
 
 export async function registrarEventoNfAuditoria(input: {
