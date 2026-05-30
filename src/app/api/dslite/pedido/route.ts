@@ -40,6 +40,7 @@ const SHIPMENT_WAIT_INTERVAL_MS = 5_000;
 const SHIPMENT_WAIT_TIMEOUT_MS = 90_000;
 const SYNC_ORDER_TIMEOUT_MS = 120_000;
 const STRICT_NFE_VALIDATION = String(process.env.STRICT_NFE_VALIDATION || 'true').toLowerCase() === 'true';
+const HOMOLOG_DEST_NAME_MARKER = 'NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL';
 
 type StrictIssue = {
   campo: string;
@@ -54,6 +55,29 @@ type ModFreteDecision = {
   expectedOnly?: 0 | 2;
   degraded: boolean;
 };
+
+function normalizeForCompare(value: string | null | undefined): string {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toUpperCase();
+}
+
+function resolveBrasilNfeTipoAmbienteStrict():
+  | { ok: true; value: 1 }
+  | { ok: false; value: null; error: string; raw: string } {
+  const raw = String(process.env.BRASILNFE_TIPO_AMBIENTE || '').trim();
+  const parsed = Number(raw);
+  if (parsed === 1) return { ok: true, value: 1 };
+  return {
+    ok: false,
+    value: null,
+    raw,
+    error: 'Configuração fiscal inválida: BRASILNFE_TIPO_AMBIENTE deve ser 1 (produção).',
+  };
+}
 
 type StepStatus = 'pending' | 'loading' | 'success' | 'error' | 'warning';
 type JobState = 'running' | 'success' | 'warning' | 'error';
@@ -338,6 +362,53 @@ function extrairTagDoXml(xml: string, tag: string): string | null {
   return null;
 }
 
+function extrairDestinatarioNomeDoXml(xml: string): string | null {
+  try {
+    const match = xml.match(/<dest>[\s\S]*?<xNome>([^<]+)<\/xNome>/i);
+    if (match?.[1]) return match[1].trim();
+  } catch {}
+  return null;
+}
+
+function validarXmlNfeProducao(xml: string): {
+  ok: boolean;
+  tpAmb: string | null;
+  destinatarioNome: string | null;
+  marcadorHomologacao: boolean;
+  message?: string;
+} {
+  const tpAmb = extrairTagDoXml(xml, 'tpAmb');
+  const destinatarioNome = extrairDestinatarioNomeDoXml(xml);
+  const marcadorHomologacao = normalizeForCompare(destinatarioNome).includes(normalizeForCompare(HOMOLOG_DEST_NAME_MARKER));
+
+  if (tpAmb !== '1') {
+    return {
+      ok: false,
+      tpAmb,
+      destinatarioNome,
+      marcadorHomologacao,
+      message: 'NF-e em ambiente de homologação ou sem tpAmb=1. Emissão em produção é obrigatória.',
+    };
+  }
+
+  if (marcadorHomologacao) {
+    return {
+      ok: false,
+      tpAmb,
+      destinatarioNome,
+      marcadorHomologacao,
+      message: 'NF-e com destinatário de homologação detectado no XML. Emissão em produção com dados reais é obrigatória.',
+    };
+  }
+
+  return {
+    ok: true,
+    tpAmb,
+    destinatarioNome,
+    marcadorHomologacao,
+  };
+}
+
 function isNfeAuthorizedStatus(status: string | null | undefined): boolean {
   const normalized = String(status || '').toLowerCase();
   return normalized === 'authorized' || normalized === 'autorizada';
@@ -429,8 +500,8 @@ function validateNfePayloadStrict(
 ): { ok: boolean; issues: StrictIssue[] } {
   const issues: StrictIssue[] = [];
   const tipoAmbiente = Number(payload?.TipoAmbiente ?? 0);
-  if (![1, 2].includes(tipoAmbiente)) {
-    issues.push({ campo: 'TipoAmbiente', encontrado: tipoAmbiente || null, esperado: '1|2', motivo: 'tipo_ambiente_invalido' });
+  if (tipoAmbiente !== 1) {
+    issues.push({ campo: 'TipoAmbiente', encontrado: tipoAmbiente || null, esperado: 1, motivo: 'tipo_ambiente_nao_producao' });
   }
 
   const destUf = String(payload?.Cliente?.Endereco?.Uf || '').trim().toUpperCase() || null;
@@ -537,6 +608,14 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
     };
   }
   if (!empresa?.cnpj) return { ok: false as const, error: 'Empresa/CNPJ não configurada para emissão local' };
+  const tipoAmbienteConfig = resolveBrasilNfeTipoAmbienteStrict();
+  if (!tipoAmbienteConfig.ok) {
+    return {
+      ok: false as const,
+      error: tipoAmbienteConfig.error,
+      reason: 'tipo_ambiente_config_invalido',
+    };
+  }
 
   const doc = normalizeDocument((pedido as any).billing_documento);
   if (!(doc.length === 11 || doc.length === 14)) {
@@ -640,7 +719,7 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
 
   const payload = {
     IdentificadorInterno: `VORTEK-${String((pedido as any).numero || pedidoId)}`,
-    TipoAmbiente: Number(process.env.BRASILNFE_TIPO_AMBIENTE || 2),
+    TipoAmbiente: tipoAmbienteConfig.value,
     ModeloDocumento: 55,
     Finalidade: 1,
     NaturezaOperacao: 'VENDA DE MERCADORIA',
@@ -1074,8 +1153,8 @@ async function runDsliteCreateJob(
       const chaveXml = extrairChaveAcessoDoXml(xml);
       const cStatXml = extrairTagDoXml(xml, 'cStat');
       const xMotivoXml = extrairTagDoXml(xml, 'xMotivo');
-      const tpAmbRaw = Number(extrairTagDoXml(xml, 'tpAmb') || process.env.BRASILNFE_TIPO_AMBIENTE || 2);
-      const tpAmbXml: 1 | 2 = tpAmbRaw === 1 ? 1 : 2;
+      const tpAmbTag = extrairTagDoXml(xml, 'tpAmb');
+      const tpAmbXml: 1 | 2 | null = tpAmbTag === '1' ? 1 : (tpAmbTag === '2' ? 2 : null);
 
       await registrarEventoNfAuditoria({
         pedidoId,
@@ -1085,6 +1164,7 @@ async function runDsliteCreateJob(
           nfe_status_local_antes: nfeStatusAtual,
           chave_xml: chaveXml,
           tpAmb_xml: tpAmbXml,
+          tpAmb_xml_recebido: tpAmbTag,
           cStat_xml: cStatXml,
           xMotivo_xml: xMotivoXml,
         },
@@ -1111,7 +1191,7 @@ async function runDsliteCreateJob(
           nfeStatusAtual = null;
         };
 
-        if (cStatXml === '100' && chaveXml) {
+        if (cStatXml === '100' && chaveXml && tpAmbXml) {
           const check = await checkBrasilNfeChaveExists(chaveXml, tpAmbXml);
           if (check.exists) {
             await client
@@ -1132,6 +1212,7 @@ async function runDsliteCreateJob(
                 nfe_status_local_antes: pedidoRow?.nfe_status || null,
                 chave_xml: chaveXml,
                 tpAmb_xml: tpAmbXml,
+                tpAmb_xml_recebido: tpAmbTag,
                 cStat_xml: cStatXml,
                 found_in_brasilnfe: true,
                 acao: 'autocorrigir',
@@ -1149,6 +1230,7 @@ async function runDsliteCreateJob(
                 nfe_status_local_antes: pedidoRow?.nfe_status || null,
                 chave_xml: chaveXml,
                 tpAmb_xml: tpAmbXml,
+                tpAmb_xml_recebido: tpAmbTag,
                 cStat_xml: cStatXml,
                 found_in_brasilnfe: false,
                 acao: 'limpar_e_reemitir',
@@ -1167,6 +1249,7 @@ async function runDsliteCreateJob(
               nfe_status_local_antes: pedidoRow?.nfe_status || null,
               chave_xml: chaveXml,
               tpAmb_xml: tpAmbXml,
+              tpAmb_xml_recebido: tpAmbTag,
               cStat_xml: cStatXml,
               found_in_brasilnfe: false,
               acao: 'limpar_e_reemitir',
@@ -1255,6 +1338,7 @@ async function runDsliteCreateJob(
             evento: 'payload_validacao_bloqueio',
             payloadEnviado: {
               provider: selectedProvider,
+              tipo_ambiente_enviado: Number((built as any)?.payload?.TipoAmbiente ?? 0) || null,
               motivo: (built as any)?.reason || null,
               pedido_itens_count: pedidoItensCount || 0,
               emit_uf_source: (built as any)?.emitUfSource || null,
@@ -1329,6 +1413,7 @@ async function runDsliteCreateJob(
             payloadEnviado: {
               provider: selectedProvider,
               strict_nfe_validation: true,
+              tipo_ambiente_enviado: Number(payloadToEmit?.TipoAmbiente ?? 0) || null,
               emit_uf_source: emitUfSource,
               emit_uf_value: emitUfValue,
               dest_uf_value: destUfValue,
@@ -1361,6 +1446,7 @@ async function runDsliteCreateJob(
           evento: 'envio',
           payloadEnviado: {
             provider: selectedProvider,
+            tipo_ambiente_enviado: Number(payloadToEmit?.TipoAmbiente ?? 0) || null,
             emit_uf_source: emitUfSource,
             emit_uf_value: emitUfValue,
             dest_uf_value: destUfValue,
@@ -1407,6 +1493,7 @@ async function runDsliteCreateJob(
               payloadEnviado: {
                 provider: selectedProvider,
                 stage: 'emitir_nota',
+                tipo_ambiente_enviado: Number(payloadToEmit?.TipoAmbiente ?? 0) || null,
                 modfrete_encontrado: Number(payloadToEmit?.Transporte?.ModalidadeFrete ?? -1),
                 modfrete_esperado: strictExpectedModFrete,
                 allowed_modfrete: [0, 2],
@@ -1456,6 +1543,7 @@ async function runDsliteCreateJob(
               payloadEnviado: {
                 provider: selectedProvider,
                 stage: 'emitir_nota',
+                tipo_ambiente_enviado: Number(payloadToEmit?.TipoAmbiente ?? 0) || null,
                 modfrete_encontrado: Number(payloadToEmit?.Transporte?.ModalidadeFrete ?? -1),
                 modfrete_esperado: strictExpectedModFrete,
                 allowed_modfrete: [0, 2],
@@ -1519,6 +1607,7 @@ async function runDsliteCreateJob(
           payloadEnviado: {
             provider: selectedProvider,
             stage: 'emitir_nota',
+            tipo_ambiente_enviado: Number(payloadToEmit?.TipoAmbiente ?? 0) || null,
             modfrete_encontrado: Number(payloadToEmit?.Transporte?.ModalidadeFrete ?? -1),
             modfrete_esperado: strictExpectedModFrete,
             allowed_modfrete: [0, 2],
@@ -1843,6 +1932,34 @@ async function runDsliteCreateJob(
           }
         }
       }
+    }
+
+    const xmlAmbienteCheck = validarXmlNfeProducao(xml);
+    if (!xmlAmbienteCheck.ok) {
+      const msg = xmlAmbienteCheck.message || 'NF-e inválida para criação na DSLite.';
+      await registrarEventoNfAuditoria({
+        pedidoId,
+        mlOrderId: mlOrderId ? String(mlOrderId) : null,
+        evento: 'nfe_homologacao_bloqueada',
+        respostaMl: {
+          reason: 'nf_xml_not_production',
+          tpAmb_xml_recebido: xmlAmbienteCheck.tpAmb,
+          destinatario_xml: xmlAmbienteCheck.destinatarioNome,
+          marcador_homologacao_detectado: xmlAmbienteCheck.marcadorHomologacao,
+        },
+        statusResultante: 'blocked_homologation',
+      });
+      await setStep('validate_fiscal_prechecks', 'error', undefined, msg);
+      state = 'error';
+      result = {
+        stage: 'pre_validacao_ambiente_nf',
+        tpAmb_xml_recebido: xmlAmbienteCheck.tpAmb,
+        destinatario_xml: xmlAmbienteCheck.destinatarioNome,
+        marker: xmlAmbienteCheck.marcadorHomologacao,
+        message: msg,
+      };
+      await syncJob();
+      return;
     }
 
     const chaveAcesso = extrairChaveAcessoDoXml(xml);

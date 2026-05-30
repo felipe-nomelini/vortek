@@ -29,6 +29,7 @@ type AuditEvent =
   | 'dslite_desvinculo_manual'
   | 'dslite_purchase_created_with_brasilnfe_xml'
   | 'dslite_blocked_same_nfe'
+  | 'nfe_homologacao_bloqueada'
   | 'nfe_local_consistencia_check'
   | 'nfe_local_consistencia_check_start'
   | 'nfe_local_consistencia_check_result'

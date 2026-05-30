@@ -13,6 +13,7 @@ const UF_CODES = new Set([
   'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN',
   'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO',
 ]);
+const HOMOLOG_DEST_NAME_MARKER = 'NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL';
 
 function nowIso() {
   return new Date().toISOString();
@@ -49,6 +50,29 @@ function resolveEmitUf(empresa: any): string | null {
   return normalizeUf(empresa?.uf_fiscal) || extractUfFromAddress(empresa?.endereco || null);
 }
 
+function normalizeForCompare(value: string | null | undefined): string {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toUpperCase();
+}
+
+function resolveBrasilNfeTipoAmbienteStrict():
+  | { ok: true; value: 1 }
+  | { ok: false; value: null; error: string; raw: string } {
+  const raw = String(process.env.BRASILNFE_TIPO_AMBIENTE || '').trim();
+  const parsed = Number(raw);
+  if (parsed === 1) return { ok: true, value: 1 };
+  return {
+    ok: false,
+    value: null,
+    raw,
+    error: 'Configuração fiscal inválida: BRASILNFE_TIPO_AMBIENTE deve ser 1 (produção).',
+  };
+}
+
 function resolveModFrete(pedido: any): 0 | 2 | null {
   const candidates = [
     pedido?.totais_snapshot?.modFrete,
@@ -73,6 +97,50 @@ function extractTag(xml: string, tag: string): string | null {
   }
 }
 
+function extractDestinatarioNome(xml: string | null | undefined): string | null {
+  try {
+    const match = String(xml || '').match(/<dest>[\s\S]*?<xNome>([^<]+)<\/xNome>/i);
+    return match?.[1]?.trim() || null;
+  } catch {
+    return null;
+  }
+}
+
+function validateXmlNfeProducao(xml: string | null | undefined): {
+  ok: boolean;
+  tpAmb: string | null;
+  destinatarioNome: string | null;
+  marcadorHomologacao: boolean;
+  message?: string;
+} {
+  const rawXml = String(xml || '');
+  const tpAmb = extractTag(rawXml, 'tpAmb');
+  const destinatarioNome = extractDestinatarioNome(rawXml);
+  const marcadorHomologacao = normalizeForCompare(destinatarioNome).includes(normalizeForCompare(HOMOLOG_DEST_NAME_MARKER));
+
+  if (tpAmb !== '1') {
+    return {
+      ok: false,
+      tpAmb,
+      destinatarioNome,
+      marcadorHomologacao,
+      message: 'NF-e em ambiente de homologação ou sem tpAmb=1. Emissão em produção é obrigatória.',
+    };
+  }
+
+  if (marcadorHomologacao) {
+    return {
+      ok: false,
+      tpAmb,
+      destinatarioNome,
+      marcadorHomologacao,
+      message: 'NF-e com destinatário de homologação detectado no XML. Emissão em produção com dados reais é obrigatória.',
+    };
+  }
+
+  return { ok: true, tpAmb, destinatarioNome, marcadorHomologacao };
+}
+
 function extractCfop(xml: string | null): string | null {
   if (!xml) return null;
   return extractTag(xml, 'CFOP');
@@ -88,6 +156,8 @@ function buildPayloadFromSnapshot(
   if (pedido.snapshot_incompleto) return { ok: false as const, error: 'Snapshot fiscal incompleto. Sincronize o pedido.' };
   if (!empresa?.cnpj) return { ok: false as const, error: 'Empresa/CNPJ não configurada para emissão.' };
   if (!Array.isArray(itens) || itens.length === 0) return { ok: false as const, error: 'Pedido sem itens para emissão.' };
+  const tipoAmbienteConfig = resolveBrasilNfeTipoAmbienteStrict();
+  if (!tipoAmbienteConfig.ok) return { ok: false as const, error: tipoAmbienteConfig.error };
 
   const doc = normalizeDocument(pedido.billing_documento);
   if (!(doc.length === 11 || doc.length === 14)) {
@@ -153,7 +223,7 @@ function buildPayloadFromSnapshot(
     ok: true as const,
     payload: {
       IdentificadorInterno: String(identifierInternoOverride || `VORTEK-${String(pedido.numero || pedido.id)}`),
-      TipoAmbiente: Number(process.env.BRASILNFE_TIPO_AMBIENTE || 2),
+      TipoAmbiente: tipoAmbienteConfig.value,
       ModeloDocumento: 55,
       Finalidade: 1,
       NaturezaOperacao: 'VENDA DE MERCADORIA',
@@ -254,6 +324,25 @@ export async function ensureBrasilNfeInvoice(input: {
   const mlOrderId = String((pedido as any).ml_order_id || '');
 
   const provider = getFiscalProvider('brasilnfe');
+  const blockIfXmlNotProduction = async (xmlToCheck: string | null | undefined, stage: string) => {
+    if (!String(xmlToCheck || '').trim()) return null;
+    const check = validateXmlNfeProducao(xmlToCheck);
+    if (check.ok) return null;
+    await registrarEventoNfAuditoria({
+      pedidoId: input.pedidoId,
+      mlOrderId,
+      evento: 'nfe_homologacao_bloqueada',
+      respostaMl: {
+        stage,
+        reason: 'nf_xml_not_production',
+        tpAmb_xml_recebido: check.tpAmb,
+        destinatario_xml: check.destinatarioNome,
+        marcador_homologacao_detectado: check.marcadorHomologacao,
+      },
+      statusResultante: 'blocked_homologation',
+    });
+    return check.message || 'NF-e inválida para fluxo fiscal.';
+  };
 
   await registrarEventoNfAuditoria({
     pedidoId: input.pedidoId,
@@ -269,6 +358,8 @@ export async function ensureBrasilNfeInvoice(input: {
   });
 
   if (providerAtual === 'brasilnfe' && isAuthorizedStatus(statusAtual) && xmlAtual && chaveAtual) {
+    const blockedMessage = await blockIfXmlNotProduction(xmlAtual, 'local_authorized_snapshot');
+    if (blockedMessage) return { ok: false, error: blockedMessage };
     await registrarEventoNfAuditoria({
       pedidoId: input.pedidoId,
       mlOrderId,
@@ -302,6 +393,8 @@ export async function ensureBrasilNfeInvoice(input: {
     const chaveXml = extractTag(xmlAtual, 'chNFe');
     const cStatXml = extractTag(xmlAtual, 'cStat');
     if (chaveXml && cStatXml === '100') {
+      const blockedMessage = await blockIfXmlNotProduction(xmlAtual, 'local_xml_autocorrect');
+      if (blockedMessage) return { ok: false, error: blockedMessage };
       const numeroXml = extractTag(xmlAtual, 'nNF');
       const cfopXml = extractCfop(xmlAtual);
       await client
@@ -357,6 +450,8 @@ export async function ensureBrasilNfeInvoice(input: {
   if (shouldCheckGhost) {
     const xmlFetch = await provider.obterXml(externalAtual);
     if (xmlFetch.xml) {
+      const blockedMessage = await blockIfXmlNotProduction(xmlFetch.xml, 'external_id_recovery');
+      if (blockedMessage) return { ok: false, error: blockedMessage };
       const chave = extractTag(xmlFetch.xml, 'chNFe');
       const numero = extractTag(xmlFetch.xml, 'nNF');
       const cfop = extractCfop(xmlFetch.xml);
@@ -449,6 +544,16 @@ export async function ensureBrasilNfeInvoice(input: {
     input.identifierInternoOverride || null,
   );
   if (!built.ok) return { ok: false, error: built.error };
+  await registrarEventoNfAuditoria({
+    pedidoId: input.pedidoId,
+    mlOrderId,
+    evento: 'envio',
+    payloadEnviado: {
+      provider: 'brasilnfe',
+      tipo_ambiente_enviado: Number((built.payload as any)?.TipoAmbiente ?? 0) || null,
+    },
+    statusResultante: 'sending',
+  });
 
   const emissao = await provider.emitirNota({
     pedidoId: input.pedidoId,
@@ -555,6 +660,18 @@ export async function ensureBrasilNfeInvoice(input: {
   if (!xml && externalId) {
     const xmlFetch = await provider.obterXml(String(externalId));
     if (xmlFetch.xml) xml = xmlFetch.xml;
+  }
+  const blockedAfterEmission = await blockIfXmlNotProduction(xml, 'post_emission_xml');
+  if (blockedAfterEmission) {
+    return {
+      ok: false,
+      error: blockedAfterEmission,
+      consistency: {
+        checked: true,
+        cleanupExecuted: shouldCheckGhost,
+        recoveredFromExternalId: false,
+      },
+    };
   }
 
   let danfeUrl = emissao.danfeUrl || null;
