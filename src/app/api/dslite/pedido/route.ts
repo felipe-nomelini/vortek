@@ -90,6 +90,12 @@ function getConfiguredTipoAmbienteValue(): number | null {
   return parsed;
 }
 
+function buildReissueIdentifier(baseIdentifier: string): string {
+  const base = String(baseIdentifier || 'VORTEK').trim() || 'VORTEK';
+  const uniq = `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`.toUpperCase();
+  return `${base}-R${uniq}`;
+}
+
 type StepStatus = 'pending' | 'loading' | 'success' | 'error' | 'warning';
 type JobState = 'running' | 'success' | 'warning' | 'error';
 
@@ -1568,7 +1574,7 @@ async function runDsliteCreateJob(
           statusResultante: 'sending',
         });
       }
-      const emissao = await provider.emitirNota({
+      let emissao = await provider.emitirNota({
         pedidoId,
         mlOrderId: String(mlOrderId),
         nfePayload: payloadToEmit,
@@ -1681,31 +1687,67 @@ async function runDsliteCreateJob(
             return;
           }
 
-          const numeroXml = extrairTagDoXml(xmlByKey.xml, 'nNF');
-          const cfopXml = extractCfopsFromXml(xmlByKey.xml)[0] || null;
-          emissao.ok = true;
-          emissao.status = 'already_issued';
-          emissao.chave = notaExistente.chave;
-          emissao.protocolo = notaExistente.numeroProtocolo || null;
-          emissao.numero = numeroXml || (notaExistente.numero !== null ? String(notaExistente.numero) : null);
-          emissao.xml = xmlByKey.xml;
-          emissao.cfop = cfopXml;
-          emissao.externalId = notaExistente.numeroProtocolo || undefined;
-          emissao.error = undefined;
-          emissao.errorDetails = null;
-          emissaoReaproveitada = true;
+          const xmlFoundCheck = validarXmlNfeProducao(xmlByKey.xml);
+          if (xmlFoundCheck.ok) {
+            const numeroXml = extrairTagDoXml(xmlByKey.xml, 'nNF');
+            const cfopXml = extractCfopsFromXml(xmlByKey.xml)[0] || null;
+            emissao.ok = true;
+            emissao.status = 'already_issued';
+            emissao.chave = notaExistente.chave;
+            emissao.protocolo = notaExistente.numeroProtocolo || null;
+            emissao.numero = numeroXml || (notaExistente.numero !== null ? String(notaExistente.numero) : null);
+            emissao.xml = xmlByKey.xml;
+            emissao.cfop = cfopXml;
+            emissao.externalId = notaExistente.numeroProtocolo || undefined;
+            emissao.error = undefined;
+            emissao.errorDetails = null;
+            emissaoReaproveitada = true;
 
-          await registrarEventoNfAuditoria({
-            pedidoId,
-            mlOrderId: mlOrderId ? String(mlOrderId) : null,
-            evento: 'brasilnfe_duplicate_user_decision_use_existing',
-            respostaMl: {
-              identificador_interno: identificadorInterno,
-              nfe_chave_encontrada: notaExistente.chave,
-              decision_source: 'automatic',
-            },
-            statusResultante: 'auto_use_existing',
-          });
+            await registrarEventoNfAuditoria({
+              pedidoId,
+              mlOrderId: mlOrderId ? String(mlOrderId) : null,
+              evento: 'brasilnfe_duplicate_user_decision_use_existing',
+              respostaMl: {
+                identificador_interno: identificadorInterno,
+                nfe_chave_encontrada: notaExistente.chave,
+                decision_source: 'automatic',
+              },
+              statusResultante: 'auto_use_existing',
+            });
+          } else {
+            const identificadorReemissao = buildReissueIdentifier(identificadorInterno);
+            const payloadReemissao = {
+              ...(payloadToEmit as Record<string, any>),
+              IdentificadorInterno: identificadorReemissao,
+            };
+            const tipoAmbienteEnviado = Number(payloadReemissao?.TipoAmbiente ?? 0) || getConfiguredTipoAmbienteValue();
+
+            await registrarEventoNfAuditoria({
+              pedidoId,
+              mlOrderId: mlOrderId ? String(mlOrderId) : null,
+              evento: 'brasilnfe_duplicate_user_decision_reissue',
+              payloadEnviado: {
+                tipo_ambiente_enviado: tipoAmbienteEnviado,
+                identificador_interno_original: identificadorInterno,
+                identificador_interno_reemissao: identificadorReemissao,
+                nfe_chave_encontrada: notaExistente.chave,
+              },
+              respostaMl: {
+                tpAmb_xml_recebido: xmlFoundCheck.tpAmb,
+                destinatario_xml: xmlFoundCheck.destinatarioNome,
+                marcador_homologacao_detectado: xmlFoundCheck.marcadorHomologacao,
+                reason: 'duplicate_note_xml_not_production',
+              },
+              statusResultante: 'auto_reissue',
+            });
+
+            emissao = await provider.emitirNota({
+              pedidoId,
+              mlOrderId: String(mlOrderId),
+              nfePayload: payloadReemissao,
+            });
+            emissaoReaproveitada = false;
+          }
         }
       }
       if (!emissao.ok) {
