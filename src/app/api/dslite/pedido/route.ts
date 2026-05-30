@@ -81,6 +81,15 @@ function resolveBrasilNfeTipoAmbienteStrict():
   };
 }
 
+function getConfiguredTipoAmbienteValue(): number | null {
+  const strict = resolveBrasilNfeTipoAmbienteStrict();
+  if (strict.ok) return strict.value;
+  const raw = String(process.env.BRASILNFE_TIPO_AMBIENTE || '').trim();
+  const parsed = Number(raw);
+  if (!Number.isFinite(parsed)) return null;
+  return parsed;
+}
+
 type StepStatus = 'pending' | 'loading' | 'success' | 'error' | 'warning';
 type JobState = 'running' | 'success' | 'warning' | 'error';
 
@@ -1330,6 +1339,82 @@ async function runDsliteCreateJob(
       return;
     }
 
+    if (selectedProvider === 'brasilnfe' && xml) {
+      const xmlAmbienteLocalCheck = validarXmlNfeProducao(xml);
+      if (!xmlAmbienteLocalCheck.ok) {
+        const tipoAmbienteEnviado = getConfiguredTipoAmbienteValue();
+        const limpezaPayload = {
+          nfe_xml: null,
+          nfe_status: null,
+          nfe_chave: null,
+          nfe_external_id: null,
+          nfe_protocolo: null,
+          nota_fiscal_numero: null,
+          nfe_danfe_url: null,
+          nfe_cfop: null,
+          nfe_last_sync_at: now(),
+        } as any;
+
+        const { error: cleanupErr } = await client
+          .from('pedidos')
+          .update(limpezaPayload)
+          .eq('id', pedidoId);
+
+        if (cleanupErr) {
+          const msg = 'NF local em homologação detectada, mas falhou a auto-remediação do snapshot fiscal. Tente novamente.';
+          await registrarEventoNfAuditoria({
+            pedidoId,
+            mlOrderId: mlOrderId ? String(mlOrderId) : null,
+            evento: 'nfe_homologacao_bloqueada',
+            payloadEnviado: {
+              reason: 'nf_xml_not_production_local_snapshot_cleanup_failed',
+              tipo_ambiente_enviado: tipoAmbienteEnviado,
+            },
+            respostaMl: {
+              tpAmb_xml_recebido: xmlAmbienteLocalCheck.tpAmb,
+              destinatario_xml: xmlAmbienteLocalCheck.destinatarioNome,
+              marcador_homologacao_detectado: xmlAmbienteLocalCheck.marcadorHomologacao,
+              db_error: cleanupErr.message || null,
+            },
+            statusResultante: 'blocked_cleanup_failed',
+          });
+          await setStep('emit_nf_provider', 'error', undefined, msg);
+          state = 'error';
+          result = {
+            stage: 'pre_validacao_ambiente_nf_cleanup',
+            tpAmb_xml_recebido: xmlAmbienteLocalCheck.tpAmb,
+            destinatario_xml: xmlAmbienteLocalCheck.destinatarioNome,
+            marker: xmlAmbienteLocalCheck.marcadorHomologacao,
+            message: msg,
+          };
+          await syncJob();
+          return;
+        }
+
+        await registrarEventoNfAuditoria({
+          pedidoId,
+          mlOrderId: mlOrderId ? String(mlOrderId) : null,
+          evento: 'nfe_homologacao_auto_remediada',
+          payloadEnviado: {
+            reason: 'nf_xml_not_production_local_snapshot_reissue',
+            tipo_ambiente_enviado: tipoAmbienteEnviado,
+          },
+          respostaMl: {
+            tpAmb_xml_recebido: xmlAmbienteLocalCheck.tpAmb,
+            destinatario_xml: xmlAmbienteLocalCheck.destinatarioNome,
+            marcador_homologacao_detectado: xmlAmbienteLocalCheck.marcadorHomologacao,
+            acao: 'snapshot_nfe_limpo_e_reemissao_no_mesmo_fluxo',
+          },
+          statusResultante: 'auto_remediated',
+        });
+
+        xml = null;
+        nfeStatusAtual = null;
+        danfeUrlAtual = null;
+        await setStep('emit_nf_provider', 'loading', 'NF local em homologação detectada; limpando snapshot e reemitindo em produção');
+      }
+    }
+
     if (xml) {
       await completeAsSkipped('emit_nf_provider', 'NF já disponível no banco local');
       await completeAsSkipped('wait_nf_authorized', 'Autorização já refletida no XML local');
@@ -1649,6 +1734,44 @@ async function runDsliteCreateJob(
         await syncJob();
         return;
       }
+
+      if (selectedProvider === 'brasilnfe' && emissao.xml) {
+        const xmlPostEmissaoCheck = validarXmlNfeProducao(emissao.xml);
+        if (!xmlPostEmissaoCheck.ok) {
+          const tipoAmbienteEnviado = Number(payloadToEmit?.TipoAmbiente ?? 0) || getConfiguredTipoAmbienteValue();
+          const msg = xmlPostEmissaoCheck.message
+            || 'NF-e retornada em homologação na emissão. Persistência bloqueada; emissão em produção é obrigatória.';
+          await registrarEventoNfAuditoria({
+            pedidoId,
+            mlOrderId: mlOrderId ? String(mlOrderId) : null,
+            evento: 'nfe_homologacao_bloqueada',
+            payloadEnviado: {
+              reason: 'provider_xml_not_production_after_emission',
+              tipo_ambiente_enviado: tipoAmbienteEnviado,
+              nfe_chave_retorno: emissao.chave || null,
+              nfe_status_retorno: emissao.status || null,
+            },
+            respostaMl: {
+              tpAmb_xml_recebido: xmlPostEmissaoCheck.tpAmb,
+              destinatario_xml: xmlPostEmissaoCheck.destinatarioNome,
+              marcador_homologacao_detectado: xmlPostEmissaoCheck.marcadorHomologacao,
+            },
+            statusResultante: 'blocked_after_emission',
+          });
+          await setStep('emit_nf_provider', 'error', undefined, msg);
+          state = 'error';
+          result = {
+            stage: 'pos_emissao_ambiente_nf',
+            tpAmb_xml_recebido: xmlPostEmissaoCheck.tpAmb,
+            destinatario_xml: xmlPostEmissaoCheck.destinatarioNome,
+            marker: xmlPostEmissaoCheck.marcadorHomologacao,
+            message: msg,
+          };
+          await syncJob();
+          return;
+        }
+      }
+
       await setStep(
         'emit_nf_provider',
         'success',
@@ -1720,6 +1843,41 @@ async function runDsliteCreateJob(
           if (delay > 0) await sleep(delay);
           const xmlFetch = await provider.obterXml(String(invoiceId));
           if (xmlFetch.xml) {
+            if (selectedProvider === 'brasilnfe') {
+              const xmlPostFetchCheck = validarXmlNfeProducao(xmlFetch.xml);
+              if (!xmlPostFetchCheck.ok) {
+                const tipoAmbienteEnviado = getConfiguredTipoAmbienteValue();
+                const msg = xmlPostFetchCheck.message
+                  || 'NF-e retornada em homologação no download do XML. Persistência bloqueada; emissão em produção é obrigatória.';
+                await registrarEventoNfAuditoria({
+                  pedidoId,
+                  mlOrderId: mlOrderId ? String(mlOrderId) : null,
+                  evento: 'nfe_homologacao_bloqueada',
+                  payloadEnviado: {
+                    reason: 'provider_xml_not_production_after_fetch',
+                    tipo_ambiente_enviado: tipoAmbienteEnviado,
+                    invoice_id: String(invoiceId),
+                  },
+                  respostaMl: {
+                    tpAmb_xml_recebido: xmlPostFetchCheck.tpAmb,
+                    destinatario_xml: xmlPostFetchCheck.destinatarioNome,
+                    marcador_homologacao_detectado: xmlPostFetchCheck.marcadorHomologacao,
+                  },
+                  statusResultante: 'blocked_after_fetch',
+                });
+                await setStep('fetch_xml_provider', 'error', undefined, msg);
+                state = 'error';
+                result = {
+                  stage: 'pos_fetch_xml_ambiente_nf',
+                  tpAmb_xml_recebido: xmlPostFetchCheck.tpAmb,
+                  destinatario_xml: xmlPostFetchCheck.destinatarioNome,
+                  marker: xmlPostFetchCheck.marcadorHomologacao,
+                  message: msg,
+                };
+                await syncJob();
+                return;
+              }
+            }
             xml = xmlFetch.xml;
             await client
               .from('pedidos')
@@ -1961,12 +2119,16 @@ async function runDsliteCreateJob(
     const xmlAmbienteCheck = validarXmlNfeProducao(xml);
     if (!xmlAmbienteCheck.ok) {
       const msg = xmlAmbienteCheck.message || 'NF-e inválida para criação na DSLite.';
+      const tipoAmbienteEnviado = getConfiguredTipoAmbienteValue();
       await registrarEventoNfAuditoria({
         pedidoId,
         mlOrderId: mlOrderId ? String(mlOrderId) : null,
         evento: 'nfe_homologacao_bloqueada',
-        respostaMl: {
+        payloadEnviado: {
           reason: 'nf_xml_not_production',
+          tipo_ambiente_enviado: tipoAmbienteEnviado,
+        },
+        respostaMl: {
           tpAmb_xml_recebido: xmlAmbienteCheck.tpAmb,
           destinatario_xml: xmlAmbienteCheck.destinatarioNome,
           marcador_homologacao_detectado: xmlAmbienteCheck.marcadorHomologacao,
