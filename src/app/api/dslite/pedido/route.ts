@@ -1716,11 +1716,11 @@ async function runDsliteCreateJob(
             });
           } else {
             const identificadorReemissao = buildReissueIdentifier(identificadorInterno);
-            const payloadReemissao = {
+            const payloadReemissao: Record<string, any> = {
               ...(payloadToEmit as Record<string, any>),
               IdentificadorInterno: identificadorReemissao,
             };
-            const tipoAmbienteEnviado = Number(payloadReemissao?.TipoAmbiente ?? 0) || getConfiguredTipoAmbienteValue();
+            const tipoAmbienteEnviado = Number(payloadReemissao.TipoAmbiente ?? 0) || getConfiguredTipoAmbienteValue();
 
             await registrarEventoNfAuditoria({
               pedidoId,
