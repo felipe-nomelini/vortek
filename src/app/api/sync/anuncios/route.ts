@@ -2,10 +2,15 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { fetchML, fetchMLResult, getMLAuthDiagnostics } from '@/services/integration';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
+import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
+import { buildCatalogEnrichment } from '@/lib/catalogo/no-catalogo';
 
 export const maxDuration = 300;
 
 const CONCURRENCY = 3;
+const CATALOG_ENRICH_CONCURRENCY = 4;
+const CATALOG_REFRESH_TRIGGER_KEY = 'catalog_no_catalogo_refresh_last_trigger_at';
+const CATALOG_REFRESH_TRIGGER_INTERVAL_MS = 10 * 60 * 1000;
 
 function extractSku(item: any): string | null {
   if (item?.seller_sku) return String(item.seller_sku).trim().toUpperCase();
@@ -31,7 +36,7 @@ async function runPool<T>(items: T[], limit: number, worker: (item: T) => Promis
 
 export async function POST(request: Request) {
   const startedAt = Date.now();
-  const apiKey = request.headers.get('x-api-key');
+  const apiKey = request.headers.get('x-api-key') || '';
   if (apiKey !== process.env.API_SECRET_KEY) {
     return NextResponse.json({ error: 'Chave de API inválida' }, { status: 401 });
   }
@@ -125,6 +130,7 @@ export async function POST(request: Request) {
 
     const serviceClient = createServiceClient();
     const snapshots: any[] = [];
+    const catalogItemsBase: Array<{ id: string; item: any }> = [];
     let recordsFailed = 0;
 
     await runPool(itemIds, CONCURRENCY, async (itemId) => {
@@ -165,29 +171,154 @@ export async function POST(request: Request) {
         skuLocal = String(produto.sku || '') || null;
       }
 
+      const isCatalogListing = item.catalog_listing === true;
+      if (isCatalogListing) {
+        catalogItemsBase.push({ id: String(item.id), item });
+      }
+
       snapshots.push({
         ml_item_id: String(item.id),
         seller_id: Number(me.id),
+        catalog_listing: isCatalogListing,
         title: item.title || null,
         status: item.status || null,
         price: Number(item.price || 0),
-        price_to_win: null,
-        buy_box_status: null,
-        buy_box_winning: false,
         permalink: item.permalink || null,
         thumbnail: item.thumbnail || null,
         seller_sku: sku,
         catalog_product_id: item.catalog_product_id || null,
         category_id: item.category_id || null,
         domain_id: item.domain_id || null,
-        related_item_id: item.parent_item_id || null,
+        related_item_id: null,
         related_permalink: null,
+        buy_box_status: null,
+        buy_box_winning: false,
+        price_to_win: null,
         produto_id: produtoId,
         sku_local: skuLocal,
         last_updated_ml: item.last_updated || null,
         synced_at: new Date().toISOString(),
       });
     });
+
+    const previousSnapshotByItemId = new Map<string, {
+      related_item_id: string | null;
+      related_permalink: string | null;
+      buy_box_status: string | null;
+      buy_box_winning: boolean | null;
+      price_to_win: number | null;
+    }>();
+
+    const catalogIds = catalogItemsBase.map((x) => x.id);
+    for (let i = 0; i < catalogIds.length; i += 500) {
+      const slice = catalogIds.slice(i, i + 500);
+      if (slice.length === 0) continue;
+      const { data: prevRows } = await serviceClient
+        .from('catalogo_ml_snapshot')
+        .select('ml_item_id, related_item_id, related_permalink, buy_box_status, buy_box_winning, price_to_win')
+        .in('ml_item_id', slice);
+      for (const row of prevRows || []) {
+        previousSnapshotByItemId.set(String(row.ml_item_id), {
+          related_item_id: row.related_item_id || null,
+          related_permalink: row.related_permalink || null,
+          buy_box_status: row.buy_box_status || null,
+          buy_box_winning: typeof row.buy_box_winning === 'boolean' ? row.buy_box_winning : null,
+          price_to_win: row.price_to_win === null || row.price_to_win === undefined ? null : Number(row.price_to_win),
+        });
+      }
+    }
+
+    const relatedPermalinkById = new Map<string, string | null>();
+    const catalogEnrichedByItemId = new Map<string, {
+      related_item_id: string | null;
+      related_permalink: string | null;
+      buy_box_status: string | null;
+      buy_box_winning: boolean;
+      price_to_win: number | null;
+    }>();
+
+    await runPool(catalogItemsBase, CATALOG_ENRICH_CONCURRENCY, async (entry) => {
+      const itemId = entry.id;
+      const item = entry.item;
+
+      const priceResult = await fetchMLResult<any>(`/items/${itemId}/price_to_win?version=v2`);
+      const pricePayload = priceResult.ok && priceResult.data ? priceResult.data : null;
+      if (!pricePayload) {
+        errors.push({
+          code: 'catalog_enrichment_price_to_win_unavailable',
+          message: priceResult.error?.message || 'Falha transitória ao obter price_to_win',
+          context: { itemId, category: priceResult.error?.category || null, status: priceResult.status || null },
+        });
+      }
+
+      const baseRelatedId = buildCatalogEnrichment({
+        item,
+        priceToWinPayload: null,
+        relatedPermalink: null,
+      }).relatedItemId;
+
+      let relatedPermalink: string | null = null;
+      if (baseRelatedId) {
+        if (relatedPermalinkById.has(baseRelatedId)) {
+          relatedPermalink = relatedPermalinkById.get(baseRelatedId) || null;
+        } else {
+          const relatedResult = await fetchMLResult<any>(`/items/${baseRelatedId}`);
+          relatedPermalink = relatedResult.ok && relatedResult.data ? (relatedResult.data.permalink || null) : null;
+          relatedPermalinkById.set(baseRelatedId, relatedPermalink);
+          if (!relatedResult.ok || !relatedResult.data) {
+            errors.push({
+              code: 'catalog_enrichment_related_permalink_unavailable',
+              message: relatedResult.error?.message || 'Falha transitória ao obter permalink do relacionado',
+              context: { itemId, relatedItemId: baseRelatedId, category: relatedResult.error?.category || null, status: relatedResult.status || null },
+            });
+          }
+        }
+      }
+
+      const enrichment = buildCatalogEnrichment({
+        item,
+        priceToWinPayload: pricePayload,
+        relatedPermalink,
+      });
+
+      const previous = previousSnapshotByItemId.get(itemId);
+      catalogEnrichedByItemId.set(itemId, {
+        related_item_id: enrichment.relatedItemId ?? previous?.related_item_id ?? null,
+        related_permalink: enrichment.relatedPermalink ?? previous?.related_permalink ?? null,
+        buy_box_status: enrichment.buyBoxStatus ?? previous?.buy_box_status ?? null,
+        buy_box_winning: enrichment.buyBoxStatus
+          ? enrichment.buyBoxWinning
+          : (typeof previous?.buy_box_winning === 'boolean' ? previous.buy_box_winning : false),
+        price_to_win: enrichment.priceToWin ?? previous?.price_to_win ?? null,
+      });
+    });
+
+    for (const snapshot of snapshots) {
+      const itemId = String(snapshot.ml_item_id);
+      if (snapshot.catalog_listing === true) {
+        const enriched = catalogEnrichedByItemId.get(itemId);
+        if (enriched) {
+          snapshot.related_item_id = enriched.related_item_id;
+          snapshot.related_permalink = enriched.related_permalink;
+          snapshot.buy_box_status = enriched.buy_box_status;
+          snapshot.buy_box_winning = enriched.buy_box_winning;
+          snapshot.price_to_win = enriched.price_to_win;
+        } else {
+          const previous = previousSnapshotByItemId.get(itemId);
+          snapshot.related_item_id = previous?.related_item_id ?? null;
+          snapshot.related_permalink = previous?.related_permalink ?? null;
+          snapshot.buy_box_status = previous?.buy_box_status ?? null;
+          snapshot.buy_box_winning = typeof previous?.buy_box_winning === 'boolean' ? previous.buy_box_winning : false;
+          snapshot.price_to_win = previous?.price_to_win ?? null;
+        }
+      } else {
+        snapshot.related_item_id = null;
+        snapshot.related_permalink = null;
+        snapshot.buy_box_status = null;
+        snapshot.buy_box_winning = false;
+        snapshot.price_to_win = null;
+      }
+    }
 
     if (snapshots.length > 0) {
       const { error: upsertError } = await (serviceClient
@@ -218,6 +349,37 @@ export async function POST(request: Request) {
     const total = Number(search?.paging?.total || 0);
     const nextOffset = offset + limit;
     const done = nextOffset >= total || itemIds.length < limit;
+    let catalogRefreshTriggered = false;
+
+    try {
+      const lastTriggerRaw = await getSyncRuntimeConfigValue(CATALOG_REFRESH_TRIGGER_KEY);
+      const lastTriggerMs = lastTriggerRaw ? new Date(lastTriggerRaw).getTime() : 0;
+      const shouldTriggerRefresh = !lastTriggerMs || (Date.now() - lastTriggerMs) >= CATALOG_REFRESH_TRIGGER_INTERVAL_MS;
+
+      if (shouldTriggerRefresh) {
+        await setSyncRuntimeConfigValue(CATALOG_REFRESH_TRIGGER_KEY, new Date().toISOString());
+        catalogRefreshTriggered = true;
+        const refreshUrl = new URL('/api/catalogo/no-catalogo/refresh', new URL(request.url).origin).toString();
+
+        setTimeout(() => {
+          void fetch(refreshUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-api-key': apiKey,
+            },
+            body: JSON.stringify({ mode: 'incremental' }),
+          }).catch((err: any) => {
+            console.error('[sync-anuncios] falha ao disparar refresh incremental do catálogo', err?.message || err);
+          });
+        }, 0);
+      }
+    } catch (err: any) {
+      errors.push({
+        code: 'catalog_refresh_trigger_failed',
+        message: err?.message || 'Falha ao avaliar disparo do refresh de catálogo',
+      });
+    }
 
     return NextResponse.json({
       success: errors.length === 0,
@@ -242,6 +404,7 @@ export async function POST(request: Request) {
       total,
       proximo: done ? null : nextOffset,
       acabou: done,
+      catalog_refresh_triggered: catalogRefreshTriggered,
     });
   } catch (err: any) {
     return NextResponse.json({
@@ -267,4 +430,3 @@ export async function POST(request: Request) {
     }
   }
 }
-

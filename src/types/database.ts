@@ -95,6 +95,7 @@ export type Database = {
         Row: {
           buy_box_status: string | null
           buy_box_winning: boolean
+          catalog_listing: boolean
           catalog_product_id: string | null
           category_id: string | null
           created_at: string
@@ -120,6 +121,7 @@ export type Database = {
         Insert: {
           buy_box_status?: string | null
           buy_box_winning?: boolean
+          catalog_listing?: boolean
           catalog_product_id?: string | null
           category_id?: string | null
           created_at?: string
@@ -145,6 +147,7 @@ export type Database = {
         Update: {
           buy_box_status?: string | null
           buy_box_winning?: boolean
+          catalog_listing?: boolean
           catalog_product_id?: string | null
           category_id?: string | null
           created_at?: string

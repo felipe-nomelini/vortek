@@ -1,33 +1,13 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
-import { isWinningBuyBoxStatus, normalizeBuyBoxStatus, normalizePriceToWin } from '@/lib/catalogo/no-catalogo';
+import { buildCatalogEnrichment } from '@/lib/catalogo/no-catalogo';
 
 const PAGE_SIZE = 100;
 const MAX_INCREMENTAL_PAGES = 10;
 const DETAIL_CONCURRENCY = 6;
 const UPSERT_CHUNK_SIZE = 250;
 const DELETE_CHUNK_SIZE = 500;
-
-function extractRelatedItemId(itemRelations: any): string | null {
-  if (!Array.isArray(itemRelations)) return null;
-
-  for (const rel of itemRelations) {
-    if (!rel || typeof rel !== 'object') continue;
-
-    const direct = rel.id ?? rel.item_id ?? rel.itemId;
-    if (direct !== undefined && direct !== null && String(direct).trim()) {
-      return String(direct).trim();
-    }
-
-    const nested = rel?.item?.id ?? rel?.item?.item_id ?? rel?.item?.itemId;
-    if (nested !== undefined && nested !== null && String(nested).trim()) {
-      return String(nested).trim();
-    }
-  }
-
-  return null;
-}
 
 async function runPool<T>(items: T[], limit: number, worker: (item: T) => Promise<void>) {
   for (let i = 0; i < items.length; i += limit) {
@@ -45,9 +25,14 @@ export const maxDuration = 300;
 
 export async function POST(request: Request) {
   const startedAt = Date.now();
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+  const requestApiKey = request.headers.get('x-api-key') || '';
+  const isInternalCall = requestApiKey === process.env.API_SECRET_KEY;
+
+  if (!isInternalCall) {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+  }
 
   const body = await request.json().catch(() => ({}));
   const mode = body?.mode === 'full' ? 'full' : 'incremental';
@@ -67,6 +52,7 @@ export async function POST(request: Request) {
     event: 'catalog_snapshot_refresh_start',
     seller_id: sellerId,
     mode,
+    trigger_source: isInternalCall ? 'internal_api_key' : 'user_session',
     timestamp_utc: new Date().toISOString(),
   }));
 
@@ -99,7 +85,7 @@ export async function POST(request: Request) {
   }
 
   const detailsByItemId = new Map<string, any>();
-  const priceToWinByItemId = new Map<string, { buyBoxStatus: string | null; priceToWin: number | null }>();
+  const priceToWinByItemId = new Map<string, any>();
   const failedItemIds = new Set<string>();
 
   await runPool(allItemIds, DETAIL_CONCURRENCY, async (itemId) => {
@@ -118,17 +104,18 @@ export async function POST(request: Request) {
       return;
     }
 
-    priceToWinByItemId.set(itemId, {
-      buyBoxStatus: normalizeBuyBoxStatus(priceResult.data),
-      priceToWin: normalizePriceToWin(priceResult.data),
-    });
+    priceToWinByItemId.set(itemId, priceResult.data);
   });
 
   const relatedIds = new Set<string>();
   for (const itemId of allItemIds) {
     const detail = detailsByItemId.get(itemId);
     if (!detail) continue;
-    const relatedId = extractRelatedItemId(detail.item_relations);
+    const relatedId = buildCatalogEnrichment({
+      item: detail,
+      priceToWinPayload: null,
+      relatedPermalink: null,
+    }).relatedItemId;
     if (relatedId) relatedIds.add(relatedId);
   }
 
@@ -161,28 +148,36 @@ export async function POST(request: Request) {
     const item = detailsByItemId.get(itemId);
     if (!item) continue;
 
-    const relatedItemId = extractRelatedItemId(item.item_relations);
+    const baseRelatedItemId = buildCatalogEnrichment({
+      item,
+      priceToWinPayload: null,
+      relatedPermalink: null,
+    }).relatedItemId;
+    const enrichment = buildCatalogEnrichment({
+      item,
+      priceToWinPayload: priceToWinByItemId.get(itemId) || null,
+      relatedPermalink: baseRelatedItemId ? (relatedPermalinkById.get(baseRelatedItemId) || null) : null,
+    });
     const local = anuncioMap.get(itemId);
-    const priceToWin = priceToWinByItemId.get(itemId);
-    const buyBoxStatus = priceToWin?.buyBoxStatus || null;
 
     upsertRows.push({
       ml_item_id: String(item.id),
       seller_id: sellerId,
+      catalog_listing: true,
       title: item.title || null,
       status: item.status || null,
       price: Number(item.price || 0),
-      price_to_win: priceToWin?.priceToWin ?? null,
-      buy_box_status: buyBoxStatus,
-      buy_box_winning: isWinningBuyBoxStatus(buyBoxStatus),
+      price_to_win: enrichment.priceToWin,
+      buy_box_status: enrichment.buyBoxStatus,
+      buy_box_winning: enrichment.buyBoxWinning,
       permalink: item.permalink || null,
       thumbnail: item.thumbnail || null,
       seller_sku: item.seller_custom_field || null,
       catalog_product_id: item.catalog_product_id || null,
       category_id: item.category_id || null,
       domain_id: item.domain_id || null,
-      related_item_id: relatedItemId,
-      related_permalink: relatedItemId ? (relatedPermalinkById.get(relatedItemId) || null) : null,
+      related_item_id: enrichment.relatedItemId,
+      related_permalink: enrichment.relatedPermalink,
       produto_id: local?.produto_id || null,
       sku_local: local?.sku || null,
       last_updated_ml: item.last_updated || null,
@@ -209,7 +204,8 @@ export async function POST(request: Request) {
     const { data: existingRows, error: existingError } = await service
       .from('catalogo_ml_snapshot')
       .select('ml_item_id')
-      .eq('seller_id', sellerId);
+      .eq('seller_id', sellerId)
+      .eq('catalog_listing', true);
 
     if (existingError) {
       warnings.push(`stale_check_failed:${existingError.message}`);
@@ -220,13 +216,22 @@ export async function POST(request: Request) {
         .filter((id) => !freshSet.has(id));
 
       for (const staleChunk of chunk(staleIds, DELETE_CHUNK_SIZE)) {
-        const { error: deleteError, count } = await service
+        const { error: updateError, count } = await service
           .from('catalogo_ml_snapshot')
-          .delete({ count: 'exact' })
+          .update({
+            catalog_listing: false,
+            related_item_id: null,
+            related_permalink: null,
+            buy_box_status: null,
+            buy_box_winning: false,
+            price_to_win: null,
+            synced_at: new Date().toISOString(),
+          }, { count: 'exact' })
           .eq('seller_id', sellerId)
+          .eq('catalog_listing', true)
           .in('ml_item_id', staleChunk);
-        if (deleteError) {
-          warnings.push(`stale_delete_failed:${deleteError.message}`);
+        if (updateError) {
+          warnings.push(`stale_catalog_demote_failed:${updateError.message}`);
           continue;
         }
         removed += Number(count || 0);
@@ -250,6 +255,7 @@ export async function POST(request: Request) {
   console.log(JSON.stringify({
     event: 'catalog_snapshot_refresh_success',
     seller_id: sellerId,
+    trigger_source: isInternalCall ? 'internal_api_key' : 'user_session',
     ...response,
     timestamp_utc: new Date().toISOString(),
   }));

@@ -1,6 +1,23 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase';
 
+function hasApprovedPayment(pagamentoResumo: unknown): { approved: boolean; hasValidData: boolean } {
+  if (!Array.isArray(pagamentoResumo) || pagamentoResumo.length === 0) {
+    return { approved: false, hasValidData: false };
+  }
+
+  let hasValidData = false;
+  for (const payment of pagamentoResumo) {
+    if (!payment || typeof payment !== 'object') continue;
+    const status = String((payment as { status?: unknown }).status || '').toLowerCase();
+    if (!status) continue;
+    hasValidData = true;
+    if (status === 'approved') return { approved: true, hasValidData: true };
+  }
+
+  return { approved: false, hasValidData };
+}
+
 export async function GET(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -44,16 +61,30 @@ export async function GET(request: Request) {
   countQuery = applyFilters(countQuery);
   const { count } = await countQuery;
 
-  // Sum total e lucro
-  let sumQuery = supabase.from('pedidos').select('total, lucro');
+  // Sum total e lucro + métrica compatível ML (pagamento aprovado)
+  let sumQuery = supabase.from('pedidos').select('total, lucro, pagamento_resumo');
   sumQuery = applyFilters(sumQuery);
   const { data: sumData } = await sumQuery;
 
   let totalSum = 0;
   let lucroSum = 0;
+  let mlCompatibleCount = 0;
+  let mlCompatibleTotal = 0;
+  let mlCompatibleMissingPaymentData = 0;
+
   for (const row of sumData || []) {
     totalSum += row.total || 0;
     lucroSum += row.lucro || 0;
+
+    const paymentCheck = hasApprovedPayment(row.pagamento_resumo);
+    if (!paymentCheck.hasValidData) {
+      mlCompatibleMissingPaymentData += 1;
+      continue;
+    }
+    if (paymentCheck.approved) {
+      mlCompatibleCount += 1;
+      mlCompatibleTotal += row.total || 0;
+    }
   }
 
   // Status counts via RPC ou group by
@@ -80,5 +111,8 @@ export async function GET(request: Request) {
     ticket,
     margem,
     statusCounts,
+    mlCompatibleCount,
+    mlCompatibleTotal,
+    mlCompatibleMissingPaymentData,
   });
 }

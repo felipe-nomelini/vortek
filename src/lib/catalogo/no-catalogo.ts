@@ -8,6 +8,14 @@ export interface NoCatalogFilters {
   priceMax: number | null;
 }
 
+export interface CatalogEnrichment {
+  relatedItemId: string | null;
+  relatedPermalink: string | null;
+  buyBoxStatus: string | null;
+  priceToWin: number | null;
+  buyBoxWinning: boolean;
+}
+
 function safeText(term: string): string {
   return term
     .replace(/[,%()]/g, ' ')
@@ -78,6 +86,43 @@ export function normalizePriceToWin(payload: any): number | null {
     if (Number.isFinite(num) && num >= 0) return num;
   }
   return null;
+}
+
+export function extractRelatedItemId(itemRelations: any): string | null {
+  if (!Array.isArray(itemRelations)) return null;
+
+  for (const rel of itemRelations) {
+    if (!rel || typeof rel !== 'object') continue;
+
+    const direct = rel.id ?? rel.item_id ?? rel.itemId;
+    if (direct !== undefined && direct !== null && String(direct).trim()) {
+      return String(direct).trim();
+    }
+
+    const nested = rel?.item?.id ?? rel?.item?.item_id ?? rel?.item?.itemId;
+    if (nested !== undefined && nested !== null && String(nested).trim()) {
+      return String(nested).trim();
+    }
+  }
+
+  return null;
+}
+
+export function buildCatalogEnrichment(input: {
+  item: any;
+  priceToWinPayload: any | null;
+  relatedPermalink: string | null;
+}): CatalogEnrichment {
+  const relatedItemId = extractRelatedItemId(input.item?.item_relations);
+  const buyBoxStatus = normalizeBuyBoxStatus(input.priceToWinPayload);
+  const priceToWin = normalizePriceToWin(input.priceToWinPayload);
+  return {
+    relatedItemId,
+    relatedPermalink: relatedItemId ? (input.relatedPermalink || null) : null,
+    buyBoxStatus,
+    priceToWin,
+    buyBoxWinning: isWinningBuyBoxStatus(buyBoxStatus),
+  };
 }
 
 export function applyNoCatalogFilters<T>(query: T, filters: NoCatalogFilters): T {

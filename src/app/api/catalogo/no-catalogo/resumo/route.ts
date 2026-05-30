@@ -16,7 +16,10 @@ export async function GET(request: Request) {
   const countBase = () =>
     applyNoCatalogFilters(
       (() => {
-        let q: any = service.from('catalogo_ml_snapshot').select('id', { count: 'exact', head: false });
+        let q: any = service
+          .from('catalogo_ml_snapshot')
+          .select('id', { count: 'exact', head: false })
+          .eq('catalog_listing', true);
         if (sellerId !== null && Number.isFinite(sellerId)) {
           q = q.eq('seller_id', sellerId);
         }

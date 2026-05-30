@@ -8,6 +8,7 @@ import { getExpectedCfopByUf } from '@/lib/fiscal/cfop';
 import { resolveCodMunicipio } from '@/lib/fiscal/municipio-ibge';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
+import { extractMlFiscalReleaseWindow } from '@/lib/ml/fiscal-release';
 
 export const maxDuration = 300;
 
@@ -715,7 +716,7 @@ async function processOrder(params: {
 
   const { data: existingPedido } = await serviceClient
     .from('pedidos')
-    .select('id, ml_pack_id, billing_ie, billing_endereco')
+    .select('id, ml_pack_id, billing_ie, billing_endereco, ml_fiscal_release_at')
     .eq('ml_order_id', String(o.id))
     .maybeSingle();
   existingPackId = existingPedido?.ml_pack_id ? String(existingPedido.ml_pack_id) : null;
@@ -908,6 +909,8 @@ async function processOrder(params: {
   // 6. Shipment: buscar ml_shipment_id e status detalhado (uma única chamada por pedido)
   let mlShipmentId: string | null = null;
   let shipmentDetail: any = null;
+  let releaseWindowCheckOk = false;
+  let releaseWindow = extractMlFiscalReleaseWindow({ shipment: null, leadTime: null });
 
   try {
     const shipmentFetch = await fetchMLResultWithRetry<any>(`/orders/${o.id}/shipments`);
@@ -917,6 +920,21 @@ async function processOrder(params: {
     if (shipmentResult.ok && shipmentResult.data?.id) {
       shipmentDetail = shipmentResult.data;
       mlShipmentId = String(shipmentDetail.id);
+
+      const leadTimeFetch = await fetchMLResultWithRetry<any>(`/shipments/${mlShipmentId}/lead_time`);
+      retriesTransient += leadTimeFetch.retries;
+      const leadTimeResult = leadTimeFetch.result;
+      if (leadTimeResult.ok) {
+        releaseWindowCheckOk = true;
+        releaseWindow = extractMlFiscalReleaseWindow({
+          shipment: shipmentDetail,
+          leadTime: leadTimeResult.data,
+        });
+      } else {
+        console.error(
+          `[sync-pedidos] Falha ao consultar lead_time do shipment ${mlShipmentId} (order ${o.id}): status=${leadTimeResult.status || 0} message=${leadTimeResult.error?.message || 'erro_desconhecido'}`,
+        );
+      }
 
       if (situacao !== 'devolvido') {
         const shipStatus = shipmentDetail.status;
@@ -1028,6 +1046,9 @@ async function processOrder(params: {
     });
   }
 
+  const hasFutureRelease = Boolean(releaseWindow.releaseAt && releaseWindow.isBlockedNow);
+  const hadReleaseBefore = Boolean((existingPedido as any)?.ml_fiscal_release_at);
+
   const { data: upsertedPedido, error } = await serviceClient.from('pedidos').upsert({
     ml_order_id: String(o.id),
     ...(mlPackId ? { ml_pack_id: mlPackId } : {}),
@@ -1042,6 +1063,14 @@ async function processOrder(params: {
     ml_shipment_id: mlShipmentId,
     ml_claim_id: mlClaimId,
     ml_claim_status: mlClaimStatus,
+    ...(releaseWindowCheckOk
+      ? {
+          ml_fiscal_release_at: hasFutureRelease ? releaseWindow.releaseAt : null,
+          ml_fiscal_release_reason: hasFutureRelease ? (releaseWindow.reason || 'buffered') : null,
+          ml_fiscal_release_source: hasFutureRelease ? (releaseWindow.sourcePath || 'sync_pedidos') : null,
+          ml_fiscal_release_checked_at: new Date().toISOString(),
+        }
+      : {}),
     ...(snapshot ? {
       snapshot_source: snapshot.source,
       snapshot_version: 1,
@@ -1071,6 +1100,44 @@ async function processOrder(params: {
       },
       statusResultante: 'warning',
     });
+  }
+
+  if (!error && upsertedPedido?.id && releaseWindowCheckOk) {
+    if (hasFutureRelease) {
+      await registrarEventoNfAuditoria({
+        pedidoId: String(upsertedPedido.id),
+        mlOrderId: String(o.id),
+        mlPackId,
+        evento: hadReleaseBefore ? 'ml_fiscal_release_window_updated' : 'ml_fiscal_release_window_detected',
+        respostaMl: {
+          release_at: releaseWindow.releaseAt,
+          reason: releaseWindow.reason || null,
+          source_path: releaseWindow.sourcePath,
+          checked_at: new Date().toISOString(),
+          now_utc: new Date().toISOString(),
+          blocked_now: true,
+          source: 'sync_pedidos',
+        },
+        statusResultante: 'blocked',
+      });
+    } else if (hadReleaseBefore) {
+      await registrarEventoNfAuditoria({
+        pedidoId: String(upsertedPedido.id),
+        mlOrderId: String(o.id),
+        mlPackId,
+        evento: 'ml_fiscal_release_window_cleared',
+        respostaMl: {
+          release_at: null,
+          reason: releaseWindow.reason || null,
+          source_path: releaseWindow.sourcePath,
+          checked_at: new Date().toISOString(),
+          now_utc: new Date().toISOString(),
+          blocked_now: false,
+          source: 'sync_pedidos',
+        },
+        statusResultante: 'cleared',
+      });
+    }
   }
 
   if (!error && snapshot && upsertedPedido?.id) {

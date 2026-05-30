@@ -23,7 +23,8 @@ export async function GET(request: Request) {
 
   let countQuery: any = service
     .from('catalogo_ml_snapshot')
-    .select('id', { count: 'exact', head: false });
+    .select('id', { count: 'exact', head: false })
+    .eq('catalog_listing', true);
   if (sellerId !== null && Number.isFinite(sellerId)) {
     countQuery = countQuery.eq('seller_id', sellerId);
   }
@@ -35,7 +36,8 @@ export async function GET(request: Request) {
 
   let dataQuery: any = service
     .from('catalogo_ml_snapshot')
-    .select('*');
+    .select('*')
+    .eq('catalog_listing', true);
   if (sellerId !== null && Number.isFinite(sellerId)) {
     dataQuery = dataQuery.eq('seller_id', sellerId);
   }
@@ -66,7 +68,7 @@ export async function GET(request: Request) {
     thumbnail: row.thumbnail,
     category_id: row.category_id,
     domain_id: row.domain_id,
-    catalog_listing: true,
+    catalog_listing: row.catalog_listing,
     item_relations: null,
     last_updated: row.last_updated_ml,
   }));

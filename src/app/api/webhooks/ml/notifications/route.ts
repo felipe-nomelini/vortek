@@ -1,9 +1,43 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
-import { fetchML } from '@/services/integration';
+import { fetchML, fetchMLResult } from '@/services/integration';
 import { calculateOrderProfit } from '@/services/orders';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import { extractMlFiscalReleaseWindow } from '@/lib/ml/fiscal-release';
+
+async function resolveFiscalReleaseWindow(shipment: any | null): Promise<{
+  shipmentFetched: boolean;
+  releaseCheckOk: boolean;
+  releaseWindow: ReturnType<typeof extractMlFiscalReleaseWindow>;
+}> {
+  const shipmentFetched = Boolean(shipment && typeof shipment === 'object' && shipment.id);
+  if (!shipmentFetched) {
+    return {
+      shipmentFetched: false,
+      releaseCheckOk: false,
+      releaseWindow: extractMlFiscalReleaseWindow({ shipment: null, leadTime: null }),
+    };
+  }
+
+  const shipmentId = String(shipment.id);
+  const leadTimeResult = await fetchMLResult<any>(`/shipments/${shipmentId}/lead_time`);
+  if (!leadTimeResult.ok) {
+    console.error(
+      `[webhook-ml] Falha ao consultar lead_time do shipment ${shipmentId}: status=${leadTimeResult.status || 0} message=${leadTimeResult.error?.message || 'erro_desconhecido'}`,
+    );
+  }
+
+  const releaseWindow = extractMlFiscalReleaseWindow({
+    shipment,
+    leadTime: leadTimeResult.ok ? leadTimeResult.data : null,
+  });
+
+  return {
+    shipmentFetched: true,
+    releaseCheckOk: leadTimeResult.ok,
+    releaseWindow,
+  };
+}
 
 export async function POST(request: Request) {
   try {
@@ -21,8 +55,10 @@ export async function POST(request: Request) {
       const order = await fetchML<any>(resourcePath);
       if (order) {
         const shipment = await fetchML<any>(`/orders/${order.id}/shipments`).catch(() => null);
-        const shipmentFetched = Boolean(shipment && typeof shipment === 'object' && shipment.id);
-        const fiscalRelease = extractMlFiscalReleaseWindow(shipment);
+        const releaseInfo = await resolveFiscalReleaseWindow(shipment);
+        const shipmentFetched = releaseInfo.shipmentFetched;
+        const releaseCheckOk = releaseInfo.releaseCheckOk;
+        const fiscalRelease = releaseInfo.releaseWindow;
         const hasFutureRelease = Boolean(fiscalRelease.releaseAt && fiscalRelease.isBlockedNow);
         const { data: existing } = await serviceClient
           .from('pedidos')
@@ -49,11 +85,11 @@ export async function POST(request: Request) {
           lucro,
           rastreio,
           ...(shipmentFetched ? { ml_shipment_id: String(shipment.id) } : {}),
-          ...(shipmentFetched
+          ...(shipmentFetched && releaseCheckOk
             ? {
                 ml_fiscal_release_at: hasFutureRelease ? fiscalRelease.releaseAt : null,
                 ml_fiscal_release_reason: hasFutureRelease ? (fiscalRelease.reason || 'buffered') : null,
-                ml_fiscal_release_source: hasFutureRelease ? 'orders_shipments' : null,
+                ml_fiscal_release_source: hasFutureRelease ? (fiscalRelease.sourcePath || 'orders_shipments') : null,
                 ml_fiscal_release_checked_at: new Date().toISOString(),
               }
             : {}),
@@ -72,7 +108,7 @@ export async function POST(request: Request) {
           }
           await serviceClient.from('pedidos').update(pedidoPayload).eq('id', existing.id);
           const hadReleaseBefore = Boolean(existing.ml_fiscal_release_at);
-          if (shipmentFetched && hasFutureRelease) {
+          if (shipmentFetched && releaseCheckOk && hasFutureRelease) {
             await registrarEventoNfAuditoria({
               pedidoId: String(existing.id),
               mlOrderId: String(order.id || ''),
@@ -89,7 +125,7 @@ export async function POST(request: Request) {
               },
               statusResultante: 'blocked',
             });
-          } else if (shipmentFetched && hadReleaseBefore) {
+          } else if (shipmentFetched && releaseCheckOk && hadReleaseBefore) {
             await registrarEventoNfAuditoria({
               pedidoId: String(existing.id),
               mlOrderId: String(order.id || ''),
@@ -130,7 +166,7 @@ export async function POST(request: Request) {
             .insert(pedidoPayload)
             .select('id')
             .single();
-          if (inserted?.id && shipmentFetched && hasFutureRelease) {
+          if (inserted?.id && shipmentFetched && releaseCheckOk && hasFutureRelease) {
             await registrarEventoNfAuditoria({
               pedidoId: String(inserted.id),
               mlOrderId: String(order.id || ''),
@@ -177,7 +213,9 @@ export async function POST(request: Request) {
     if (topic === 'shipments' || topic === 'shipment_update') {
       const shipment = await fetchML<any>(resourcePath);
       if (shipment?.id) {
-        const fiscalRelease = extractMlFiscalReleaseWindow(shipment);
+        const releaseInfo = await resolveFiscalReleaseWindow(shipment);
+        const releaseCheckOk = releaseInfo.releaseCheckOk;
+        const fiscalRelease = releaseInfo.releaseWindow;
         const hasFutureRelease = Boolean(fiscalRelease.releaseAt && fiscalRelease.isBlockedNow);
         // Buscar pedido associado ao shipment
         const orderId = shipment.order_id || shipment.resource_id;
@@ -195,16 +233,20 @@ export async function POST(request: Request) {
             .update({
               ml_shipment_id: String(shipment.id),
               situacao: situacaoFinal as any,
-              ml_fiscal_release_at: hasFutureRelease ? fiscalRelease.releaseAt : null,
-              ml_fiscal_release_reason: hasFutureRelease ? (fiscalRelease.reason || 'buffered') : null,
-              ml_fiscal_release_source: hasFutureRelease ? 'shipments_topic' : null,
-              ml_fiscal_release_checked_at: new Date().toISOString(),
+              ...(releaseCheckOk
+                ? {
+                    ml_fiscal_release_at: hasFutureRelease ? fiscalRelease.releaseAt : null,
+                    ml_fiscal_release_reason: hasFutureRelease ? (fiscalRelease.reason || 'buffered') : null,
+                    ml_fiscal_release_source: hasFutureRelease ? (fiscalRelease.sourcePath || 'shipments_topic') : null,
+                    ml_fiscal_release_checked_at: new Date().toISOString(),
+                  }
+                : {}),
             })
             .eq('ml_order_id', String(orderId));
 
           if (pedido?.id) {
             const hadReleaseBefore = Boolean((pedido as any).ml_fiscal_release_at);
-            if (hasFutureRelease) {
+            if (releaseCheckOk && hasFutureRelease) {
               await registrarEventoNfAuditoria({
                 pedidoId: String((pedido as any).id),
                 mlOrderId: String(orderId),
@@ -221,7 +263,7 @@ export async function POST(request: Request) {
                 },
                 statusResultante: 'blocked',
               });
-            } else if (hadReleaseBefore) {
+            } else if (releaseCheckOk && hadReleaseBefore) {
               await registrarEventoNfAuditoria({
                 pedidoId: String((pedido as any).id),
                 mlOrderId: String(orderId),

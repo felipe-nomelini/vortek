@@ -1,0 +1,2026 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Relatório No Catálogo</title>
+  <style>
+    :root { --bg:#0b0b0b; --card:#161616; --line:#2a2a2a; --txt:#efefef; --muted:#a1a1a1; --ok:#2ecc71; --bad:#ff6b6b; --acc:#4da3ff; }
+    body { margin:0; font-family: Inter, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--txt); }
+    .wrap { max-width: 1400px; margin: 24px auto; padding: 0 16px 40px; }
+    h1 { margin: 0 0 12px; font-size: 24px; }
+    .meta { color: var(--muted); margin-bottom: 18px; }
+    .cards { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:10px; margin-bottom: 18px; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px; }
+    .card .k { color:var(--muted); font-size:12px; }
+    .card .v { font-size:20px; font-weight:700; margin-top:4px; }
+    .section { margin-top: 20px; }
+    .section h2 { margin:0 0 10px; font-size: 18px; }
+    .toolbar { display:flex; gap:8px; margin-bottom:8px; flex-wrap: wrap; }
+    input { background:#101010; border:1px solid var(--line); border-radius:8px; color:var(--txt); padding:8px 10px; min-width:280px; }
+    .table-wrap { border:1px solid var(--line); border-radius:10px; overflow:auto; background:var(--card); }
+    table { width:100%; border-collapse: collapse; min-width: 900px; }
+    th, td { border-bottom:1px solid var(--line); padding:8px 10px; font-size:13px; white-space:nowrap; }
+    th { position: sticky; top: 0; background:#1d1d1d; text-align:left; z-index:1; }
+    tr:hover td { background:#1b1b1b; }
+    .neg { color: var(--bad); font-weight:600; }
+    .pos { color: var(--ok); font-weight:600; }
+    .pill { display:inline-block; padding:2px 8px; border-radius:999px; border:1px solid var(--line); color:var(--acc); font-size:12px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Relatório de Prejuízo - No Catálogo</h1>
+    <div class="meta">Gerado em: 2026-05-29T19:14:24.624Z</div>
+
+    <div class="cards">
+      <div class="card"><div class="k">Total perdendo no catálogo</div><div class="v">199</div></div>
+      <div class="card"><div class="k">Bloco A (price_to_win > 0)</div><div class="v">172</div></div>
+      <div class="card"><div class="k">Bloco B (price_to_win = 0)</div><div class="v">27</div></div>
+      <div class="card"><div class="k">Itens com prejuízo (Bloco A)</div><div class="v">163</div></div>
+      <div class="card"><div class="k">Soma prejuízo (Bloco A)</div><div class="v">R$ 8.518,92</div></div>
+      <div class="card"><div class="k">Soma lucro (Bloco A)</div><div class="v neg">-R$ 8.419,14</div></div>
+    </div>
+
+    <div class="section">
+      <h2>Bloco A <span class="pill">Acionável (price_to_win &gt; 0)</span></h2>
+      <div class="toolbar"><input id="searchA" placeholder="Buscar por ml_item_id, sku_local, status..." /></div>
+      <div class="table-wrap">
+        <table id="tableA">
+          <thead><tr>
+            <th>ml_item_id</th><th>sku_local</th><th>preço_atual</th><th>price_to_win</th><th>lucro_no_preço_sugerido</th><th>prejuízo</th><th>buy_box_status</th><th>updated_at</th>
+          </tr></thead>
+          <tbody>
+<tr>
+  <td>MLB6682013034</td>
+  <td>HYX87545</td>
+  <td>R$ 1.108,03</td>
+  <td>R$ 484,00</td>
+  <td class="neg">-R$ 372,50</td>
+  <td class="neg">R$ 372,50</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6681942972</td>
+  <td>HYX85484</td>
+  <td>R$ 1.797,07</td>
+  <td>R$ 867,00</td>
+  <td class="neg">-R$ 340,03</td>
+  <td class="neg">R$ 340,03</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6571298252</td>
+  <td>HYX84795</td>
+  <td>R$ 845,36</td>
+  <td>R$ 312,00</td>
+  <td class="neg">-R$ 330,58</td>
+  <td class="neg">R$ 330,58</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4622927493</td>
+  <td>HYX86894</td>
+  <td>R$ 1.184,72</td>
+  <td>R$ 621,00</td>
+  <td class="neg">-R$ 314,45</td>
+  <td class="neg">R$ 314,45</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4622930445</td>
+  <td>HYX84822</td>
+  <td>R$ 1.203,60</td>
+  <td>R$ 706,00</td>
+  <td class="neg">-R$ 270,66</td>
+  <td class="neg">R$ 270,66</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6682014334</td>
+  <td>HYX84796</td>
+  <td>R$ 1.274,36</td>
+  <td>R$ 765,00</td>
+  <td class="neg">-R$ 259,66</td>
+  <td class="neg">R$ 259,66</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646643682</td>
+  <td>HYX84961</td>
+  <td>R$ 753,80</td>
+  <td>R$ 350,00</td>
+  <td class="neg">-R$ 246,42</td>
+  <td class="neg">R$ 246,42</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646643660</td>
+  <td>HYX86633</td>
+  <td>R$ 969,20</td>
+  <td>R$ 554,00</td>
+  <td class="neg">-R$ 220,01</td>
+  <td class="neg">R$ 220,01</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4585721899</td>
+  <td>HYX85066</td>
+  <td>R$ 1.327,55</td>
+  <td>R$ 976,00</td>
+  <td class="neg">-R$ 185,06</td>
+  <td class="neg">R$ 185,06</td>
+  <td>competing</td>
+  <td>2026-05-29T18:28:48.183298+00:00</td>
+</tr>
+<tr>
+  <td>MLB4621151671</td>
+  <td>HYX87582</td>
+  <td>R$ 1.198,84</td>
+  <td>R$ 816,00</td>
+  <td class="neg">-R$ 166,24</td>
+  <td class="neg">R$ 166,24</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6648864802</td>
+  <td>HYX80480</td>
+  <td>R$ 328,08</td>
+  <td>R$ 108,00</td>
+  <td class="neg">-R$ 150,38</td>
+  <td class="neg">R$ 150,38</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6572993150</td>
+  <td>HYX86246</td>
+  <td>R$ 854,49</td>
+  <td>R$ 549,00</td>
+  <td class="neg">-R$ 144,91</td>
+  <td class="neg">R$ 144,91</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4640510357</td>
+  <td>HYX84794</td>
+  <td>R$ 397,41</td>
+  <td>R$ 172,00</td>
+  <td class="neg">-R$ 142,84</td>
+  <td class="neg">R$ 142,84</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655134252</td>
+  <td>HYX65398</td>
+  <td>R$ 336,73</td>
+  <td>R$ 137,00</td>
+  <td class="neg">-R$ 128,11</td>
+  <td class="neg">R$ 128,11</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612598383</td>
+  <td>HYX85743</td>
+  <td>R$ 570,00</td>
+  <td>R$ 366,00</td>
+  <td class="neg">-R$ 127,57</td>
+  <td class="neg">R$ 127,57</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6682483632</td>
+  <td>HYX86132</td>
+  <td>R$ 219,08</td>
+  <td>R$ 51,34</td>
+  <td class="neg">-R$ 121,02</td>
+  <td class="neg">R$ 121,02</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4621087861</td>
+  <td>HYX84916</td>
+  <td>R$ 881,64</td>
+  <td>R$ 614,00</td>
+  <td class="neg">-R$ 110,99</td>
+  <td class="neg">R$ 110,99</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655262798</td>
+  <td>HYX85741</td>
+  <td>R$ 538,38</td>
+  <td>R$ 331,00</td>
+  <td class="neg">-R$ 110,37</td>
+  <td class="neg">R$ 110,37</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4656325443</td>
+  <td>HYX84492</td>
+  <td>R$ 1.128,84</td>
+  <td>R$ 831,00</td>
+  <td class="neg">-R$ 105,79</td>
+  <td class="neg">R$ 105,79</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4621151867</td>
+  <td>HYX75099</td>
+  <td>R$ 1.100,37</td>
+  <td>R$ 278,00</td>
+  <td class="neg">-R$ 104,93</td>
+  <td class="neg">R$ 104,93</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4620840011</td>
+  <td>HYX86350</td>
+  <td>R$ 706,98</td>
+  <td>R$ 493,00</td>
+  <td class="neg">-R$ 104,75</td>
+  <td class="neg">R$ 104,75</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6682014288</td>
+  <td>HYX86183</td>
+  <td>R$ 803,09</td>
+  <td>R$ 576,00</td>
+  <td class="neg">-R$ 98,01</td>
+  <td class="neg">R$ 98,01</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4640511379</td>
+  <td>HYX84138</td>
+  <td>R$ 259,10</td>
+  <td>R$ 117,00</td>
+  <td class="neg">-R$ 89,19</td>
+  <td class="neg">R$ 89,19</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4583160961</td>
+  <td>HYX86895</td>
+  <td>R$ 266,62</td>
+  <td>R$ 127,00</td>
+  <td class="neg">-R$ 86,43</td>
+  <td class="neg">R$ 86,43</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655262916</td>
+  <td>HYX82803</td>
+  <td>R$ 762,40</td>
+  <td>R$ 572,00</td>
+  <td class="neg">-R$ 84,08</td>
+  <td class="neg">R$ 84,08</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4620839945</td>
+  <td>HYX85504</td>
+  <td>R$ 1.469,53</td>
+  <td>R$ 434,00</td>
+  <td class="neg">-R$ 81,97</td>
+  <td class="neg">R$ 81,97</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646642718</td>
+  <td>HYX74645</td>
+  <td>R$ 254,62</td>
+  <td>R$ 122,00</td>
+  <td class="neg">-R$ 81,96</td>
+  <td class="neg">R$ 81,96</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4621088419</td>
+  <td>HYX83670</td>
+  <td>R$ 189,55</td>
+  <td>R$ 71,08</td>
+  <td class="neg">-R$ 74,41</td>
+  <td class="neg">R$ 74,41</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6648863964</td>
+  <td>HYX83457</td>
+  <td>R$ 386,93</td>
+  <td>R$ 248,00</td>
+  <td class="neg">-R$ 73,84</td>
+  <td class="neg">R$ 73,84</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612540545</td>
+  <td>HYX84684</td>
+  <td>R$ 434,95</td>
+  <td>R$ 288,00</td>
+  <td class="neg">-R$ 72,49</td>
+  <td class="neg">R$ 72,49</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4591797813</td>
+  <td>HYX86578</td>
+  <td>R$ 270,89</td>
+  <td>R$ 110,00</td>
+  <td class="neg">-R$ 72,08</td>
+  <td class="neg">R$ 72,08</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646508038</td>
+  <td>HYX86946</td>
+  <td>R$ 529,42</td>
+  <td>R$ 373,00</td>
+  <td class="neg">-R$ 70,05</td>
+  <td class="neg">R$ 70,05</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6643950882</td>
+  <td>HYX83441</td>
+  <td>R$ 264,45</td>
+  <td>R$ 146,00</td>
+  <td class="neg">-R$ 69,50</td>
+  <td class="neg">R$ 69,50</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6711764280</td>
+  <td>HYX87542</td>
+  <td>R$ 1.537,55</td>
+  <td>R$ 1.228,00</td>
+  <td class="neg">-R$ 66,23</td>
+  <td class="neg">R$ 66,23</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6563593978</td>
+  <td>HYX87404</td>
+  <td>R$ 274,86</td>
+  <td>R$ 166,00</td>
+  <td class="neg">-R$ 66,19</td>
+  <td class="neg">R$ 66,19</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646381024</td>
+  <td>HYX85146</td>
+  <td>R$ 356,00</td>
+  <td>R$ 48,67</td>
+  <td class="neg">-R$ 65,66</td>
+  <td class="neg">R$ 65,66</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6564964670</td>
+  <td>HYX86816</td>
+  <td>R$ 193,03</td>
+  <td>R$ 85,20</td>
+  <td class="neg">-R$ 65,54</td>
+  <td class="neg">R$ 65,54</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4621088393</td>
+  <td>HYX82770</td>
+  <td>R$ 1.057,43</td>
+  <td>R$ 820,00</td>
+  <td class="neg">-R$ 65,43</td>
+  <td class="neg">R$ 65,43</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6682014812</td>
+  <td>HYX84984</td>
+  <td>R$ 216,35</td>
+  <td>R$ 109,00</td>
+  <td class="neg">-R$ 65,32</td>
+  <td class="neg">R$ 65,32</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646643806</td>
+  <td>HYX84256</td>
+  <td>R$ 324,03</td>
+  <td>R$ 209,00</td>
+  <td class="neg">-R$ 64,01</td>
+  <td class="neg">R$ 64,01</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646642726</td>
+  <td>HYX86896</td>
+  <td>R$ 198,13</td>
+  <td>R$ 95,19</td>
+  <td class="neg">-R$ 61,07</td>
+  <td class="neg">R$ 61,07</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655262922</td>
+  <td>HYX86945</td>
+  <td>R$ 529,42</td>
+  <td>R$ 385,00</td>
+  <td class="neg">-R$ 60,33</td>
+  <td class="neg">R$ 60,33</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6682483890</td>
+  <td>HYX82997</td>
+  <td>R$ 214,94</td>
+  <td>R$ 114,00</td>
+  <td class="neg">-R$ 60,27</td>
+  <td class="neg">R$ 60,27</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6649084496</td>
+  <td>HYX84323</td>
+  <td>R$ 304,93</td>
+  <td>R$ 193,00</td>
+  <td class="neg">-R$ 60,17</td>
+  <td class="neg">R$ 60,17</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6564261406</td>
+  <td>HYX86897</td>
+  <td>R$ 198,13</td>
+  <td>R$ 97,51</td>
+  <td class="neg">-R$ 59,19</td>
+  <td class="neg">R$ 59,19</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6649110174</td>
+  <td>HYX85124</td>
+  <td>R$ 153,73</td>
+  <td>R$ 63,05</td>
+  <td class="neg">-R$ 58,08</td>
+  <td class="neg">R$ 58,08</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6649110310</td>
+  <td>HYX84322</td>
+  <td>R$ 347,18</td>
+  <td>R$ 233,00</td>
+  <td class="neg">-R$ 57,77</td>
+  <td class="neg">R$ 57,77</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655134160</td>
+  <td>HYX85096</td>
+  <td>R$ 197,28</td>
+  <td>R$ 100,00</td>
+  <td class="neg">-R$ 56,17</td>
+  <td class="neg">R$ 56,17</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655134142</td>
+  <td>HYX84956</td>
+  <td>R$ 117,71</td>
+  <td>R$ 34,02</td>
+  <td class="neg">-R$ 55,97</td>
+  <td class="neg">R$ 55,97</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612540519</td>
+  <td>HYX85491</td>
+  <td>R$ 159,15</td>
+  <td>R$ 70,87</td>
+  <td class="neg">-R$ 55,60</td>
+  <td class="neg">R$ 55,60</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646507038</td>
+  <td>HYX65026</td>
+  <td>R$ 135,65</td>
+  <td>R$ 49,27</td>
+  <td class="neg">-R$ 55,36</td>
+  <td class="neg">R$ 55,36</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4620768673</td>
+  <td>HYX83669</td>
+  <td>R$ 246,82</td>
+  <td>R$ 149,00</td>
+  <td class="neg">-R$ 54,55</td>
+  <td class="neg">R$ 54,55</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4585892635</td>
+  <td>HYX84267</td>
+  <td>R$ 150,00</td>
+  <td>R$ 49,21</td>
+  <td class="neg">-R$ 50,78</td>
+  <td class="neg">R$ 50,78</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612599209</td>
+  <td>HYX83456</td>
+  <td>R$ 369,93</td>
+  <td>R$ 262,00</td>
+  <td class="neg">-R$ 50,43</td>
+  <td class="neg">R$ 50,43</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612598523</td>
+  <td>HYX85091</td>
+  <td>R$ 197,28</td>
+  <td>R$ 111,00</td>
+  <td class="neg">-R$ 47,26</td>
+  <td class="neg">R$ 47,26</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4582622197</td>
+  <td>HYX82429</td>
+  <td>R$ 281,59</td>
+  <td>R$ 187,00</td>
+  <td class="neg">-R$ 45,64</td>
+  <td class="neg">R$ 45,64</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6682470600</td>
+  <td>HYX84980</td>
+  <td>R$ 228,94</td>
+  <td>R$ 145,00</td>
+  <td class="neg">-R$ 45,10</td>
+  <td class="neg">R$ 45,10</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6565184970</td>
+  <td>HYX85853</td>
+  <td>R$ 199,97</td>
+  <td>R$ 117,00</td>
+  <td class="neg">-R$ 44,71</td>
+  <td class="neg">R$ 44,71</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4586999295</td>
+  <td>HYX84983</td>
+  <td>R$ 216,35</td>
+  <td>R$ 135,00</td>
+  <td class="neg">-R$ 44,26</td>
+  <td class="neg">R$ 44,26</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646381418</td>
+  <td>HYX85397</td>
+  <td>R$ 224,70</td>
+  <td>R$ 143,00</td>
+  <td class="neg">-R$ 43,71</td>
+  <td class="neg">R$ 43,71</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4620839889</td>
+  <td>HYX84876</td>
+  <td>R$ 230,18</td>
+  <td>R$ 51,25</td>
+  <td class="neg">-R$ 43,46</td>
+  <td class="neg">R$ 43,46</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4620397347</td>
+  <td>HYX84487</td>
+  <td>R$ 321,85</td>
+  <td>R$ 230,00</td>
+  <td class="neg">-R$ 42,21</td>
+  <td class="neg">R$ 42,21</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4622927397</td>
+  <td>HYX82769</td>
+  <td>R$ 1.057,43</td>
+  <td>R$ 849,00</td>
+  <td class="neg">-R$ 41,94</td>
+  <td class="neg">R$ 41,94</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4591798837</td>
+  <td>HYX84981</td>
+  <td>R$ 228,94</td>
+  <td>R$ 150,00</td>
+  <td class="neg">-R$ 41,05</td>
+  <td class="neg">R$ 41,05</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646470886</td>
+  <td>HYX85490</td>
+  <td>R$ 267,63</td>
+  <td>R$ 186,00</td>
+  <td class="neg">-R$ 39,36</td>
+  <td class="neg">R$ 39,36</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6650868306</td>
+  <td>HYX83028</td>
+  <td>R$ 335,18</td>
+  <td>R$ 246,00</td>
+  <td class="neg">-R$ 38,72</td>
+  <td class="neg">R$ 38,72</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6630723142</td>
+  <td>HYX85133</td>
+  <td>R$ 785,86</td>
+  <td>R$ 636,00</td>
+  <td class="neg">-R$ 37,30</td>
+  <td class="neg">R$ 37,30</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646470888</td>
+  <td>HYX85740</td>
+  <td>R$ 291,79</td>
+  <td>R$ 212,00</td>
+  <td class="neg">-R$ 35,45</td>
+  <td class="neg">R$ 35,45</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4622930471</td>
+  <td>HYX82731</td>
+  <td>R$ 130,15</td>
+  <td>R$ 71,17</td>
+  <td class="neg">-R$ 34,71</td>
+  <td class="neg">R$ 34,71</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4622930451</td>
+  <td>HYX85567</td>
+  <td>R$ 765,97</td>
+  <td>R$ 576,00</td>
+  <td class="neg">-R$ 34,26</td>
+  <td class="neg">R$ 34,26</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4582815039</td>
+  <td>HYX86065</td>
+  <td>R$ 174,78</td>
+  <td>R$ 105,00</td>
+  <td class="neg">-R$ 33,80</td>
+  <td class="neg">R$ 33,80</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646642702</td>
+  <td>HYX86272</td>
+  <td>R$ 155,97</td>
+  <td>R$ 95,65</td>
+  <td class="neg">-R$ 33,26</td>
+  <td class="neg">R$ 33,26</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646469754</td>
+  <td>HYX84977</td>
+  <td>R$ 240,27</td>
+  <td>R$ 170,00</td>
+  <td class="neg">-R$ 32,89</td>
+  <td class="neg">R$ 32,89</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612598629</td>
+  <td>HYX82011</td>
+  <td>R$ 175,31</td>
+  <td>R$ 110,00</td>
+  <td class="neg">-R$ 32,87</td>
+  <td class="neg">R$ 32,87</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646508198</td>
+  <td>HYX82996</td>
+  <td>R$ 236,31</td>
+  <td>R$ 167,00</td>
+  <td class="neg">-R$ 32,51</td>
+  <td class="neg">R$ 32,51</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646643776</td>
+  <td>HYX82433</td>
+  <td>R$ 206,79</td>
+  <td>R$ 142,00</td>
+  <td class="neg">-R$ 31,80</td>
+  <td class="neg">R$ 31,80</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6572961568</td>
+  <td>HYX83008</td>
+  <td>R$ 182,26</td>
+  <td>R$ 89,70</td>
+  <td class="neg">-R$ 30,75</td>
+  <td class="neg">R$ 30,75</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646508220</td>
+  <td>HYX86623</td>
+  <td>R$ 172,81</td>
+  <td>R$ 116,00</td>
+  <td class="neg">-R$ 29,49</td>
+  <td class="neg">R$ 29,49</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4623519289</td>
+  <td>HYX84358</td>
+  <td>R$ 1.135,29</td>
+  <td>R$ 952,00</td>
+  <td class="neg">-R$ 29,26</td>
+  <td class="neg">R$ 29,26</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4621151913</td>
+  <td>HYX86599</td>
+  <td>R$ 102,38</td>
+  <td>R$ 53,58</td>
+  <td class="neg">-R$ 28,94</td>
+  <td class="neg">R$ 28,94</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655134278</td>
+  <td>HYX84875</td>
+  <td>R$ 103,37</td>
+  <td>R$ 60,56</td>
+  <td class="neg">-R$ 28,59</td>
+  <td class="neg">R$ 28,59</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655134262</td>
+  <td>HYX85489</td>
+  <td>R$ 99,89</td>
+  <td>R$ 49,16</td>
+  <td class="neg">-R$ 28,40</td>
+  <td class="neg">R$ 28,40</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612540513</td>
+  <td>HYX86960</td>
+  <td>R$ 225,63</td>
+  <td>R$ 163,00</td>
+  <td class="neg">-R$ 28,17</td>
+  <td class="neg">R$ 28,17</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646643668</td>
+  <td>HYX86140</td>
+  <td>R$ 111,89</td>
+  <td>R$ 63,81</td>
+  <td class="neg">-R$ 27,59</td>
+  <td class="neg">R$ 27,59</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655262944</td>
+  <td>HYX83013</td>
+  <td>R$ 113,77</td>
+  <td>R$ 66,66</td>
+  <td class="neg">-R$ 26,76</td>
+  <td class="neg">R$ 26,76</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646470900</td>
+  <td>HYX85739</td>
+  <td>R$ 292,06</td>
+  <td>R$ 223,00</td>
+  <td class="neg">-R$ 26,73</td>
+  <td class="neg">R$ 26,73</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655134296</td>
+  <td>HYX83437</td>
+  <td>R$ 102,15</td>
+  <td>R$ 56,66</td>
+  <td class="neg">-R$ 26,28</td>
+  <td class="neg">R$ 26,28</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646508218</td>
+  <td>HYX83672</td>
+  <td>R$ 94,84</td>
+  <td>R$ 50,38</td>
+  <td class="neg">-R$ 26,12</td>
+  <td class="neg">R$ 26,12</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6649085288</td>
+  <td>HYX85031</td>
+  <td>R$ 183,90</td>
+  <td>R$ 127,00</td>
+  <td class="neg">-R$ 25,20</td>
+  <td class="neg">R$ 25,20</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655134248</td>
+  <td>HYX84970</td>
+  <td>R$ 239,67</td>
+  <td>R$ 182,00</td>
+  <td class="neg">-R$ 25,14</td>
+  <td class="neg">R$ 25,14</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655262986</td>
+  <td>HYX85030</td>
+  <td>R$ 178,62</td>
+  <td>R$ 122,00</td>
+  <td class="neg">-R$ 25,10</td>
+  <td class="neg">R$ 25,10</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6564859394</td>
+  <td>HYX85849</td>
+  <td>R$ 100,49</td>
+  <td>R$ 60,45</td>
+  <td class="neg">-R$ 24,40</td>
+  <td class="neg">R$ 24,40</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6630711244</td>
+  <td>HYX86370</td>
+  <td>R$ 276,06</td>
+  <td>R$ 212,00</td>
+  <td class="neg">-R$ 24,28</td>
+  <td class="neg">R$ 24,28</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4621152031</td>
+  <td>HYX84458</td>
+  <td>R$ 103,15</td>
+  <td>R$ 60,43</td>
+  <td class="neg">-R$ 24,05</td>
+  <td class="neg">R$ 24,05</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4591747113</td>
+  <td>HYX87016</td>
+  <td>R$ 275,03</td>
+  <td>R$ 77,35</td>
+  <td class="neg">-R$ 23,71</td>
+  <td class="neg">R$ 23,71</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6649110226</td>
+  <td>HYX86577</td>
+  <td>R$ 227,16</td>
+  <td>R$ 175,00</td>
+  <td class="neg">-R$ 22,94</td>
+  <td class="neg">R$ 22,94</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4640510315</td>
+  <td>HYX87784</td>
+  <td>R$ 105,42</td>
+  <td>R$ 65,06</td>
+  <td class="neg">-R$ 22,04</td>
+  <td class="neg">R$ 22,04</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646469628</td>
+  <td>HYX84607</td>
+  <td>R$ 99,89</td>
+  <td>R$ 58,52</td>
+  <td class="neg">-R$ 21,92</td>
+  <td class="neg">R$ 21,92</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646382226</td>
+  <td>HYX85816</td>
+  <td>R$ 174,13</td>
+  <td>R$ 125,00</td>
+  <td class="neg">-R$ 21,52</td>
+  <td class="neg">R$ 21,52</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4620602381</td>
+  <td>HYX64641</td>
+  <td>R$ 123,76</td>
+  <td>R$ 64,78</td>
+  <td class="neg">-R$ 21,47</td>
+  <td class="neg">R$ 21,47</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4621152049</td>
+  <td>HYX84254</td>
+  <td>R$ 87,47</td>
+  <td>R$ 51,25</td>
+  <td class="neg">-R$ 21,22</td>
+  <td class="neg">R$ 21,22</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646507050</td>
+  <td>HYX84972</td>
+  <td>R$ 255,50</td>
+  <td>R$ 201,00</td>
+  <td class="neg">-R$ 21,15</td>
+  <td class="neg">R$ 21,15</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612599173</td>
+  <td>HYX86937</td>
+  <td>R$ 210,78</td>
+  <td>R$ 125,00</td>
+  <td class="neg">-R$ 21,00</td>
+  <td class="neg">R$ 21,00</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4620839811</td>
+  <td>HYX86958</td>
+  <td>R$ 289,06</td>
+  <td>R$ 228,00</td>
+  <td class="neg">-R$ 20,55</td>
+  <td class="neg">R$ 20,55</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646469162</td>
+  <td>HYX85278</td>
+  <td>R$ 101,53</td>
+  <td>R$ 57,90</td>
+  <td class="neg">-R$ 20,36</td>
+  <td class="neg">R$ 20,36</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6630723090</td>
+  <td>HYX83449</td>
+  <td>R$ 86,62</td>
+  <td>R$ 52,10</td>
+  <td class="neg">-R$ 20,33</td>
+  <td class="neg">R$ 20,33</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4623531819</td>
+  <td>HYX74983</td>
+  <td>R$ 153,60</td>
+  <td>R$ 90,60</td>
+  <td class="neg">-R$ 20,30</td>
+  <td class="neg">R$ 20,30</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612599843</td>
+  <td>HYX87543</td>
+  <td>R$ 184,45</td>
+  <td>R$ 133,00</td>
+  <td class="neg">-R$ 20,23</td>
+  <td class="neg">R$ 20,23</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4621151677</td>
+  <td>HYX85495</td>
+  <td>R$ 185,94</td>
+  <td>R$ 135,00</td>
+  <td class="neg">-R$ 20,07</td>
+  <td class="neg">R$ 20,07</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655134134</td>
+  <td>HYX84486</td>
+  <td>R$ 308,73</td>
+  <td>R$ 246,00</td>
+  <td class="neg">-R$ 19,94</td>
+  <td class="neg">R$ 19,94</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6649110130</td>
+  <td>HYX87330</td>
+  <td>R$ 171,87</td>
+  <td>R$ 122,00</td>
+  <td class="neg">-R$ 19,71</td>
+  <td class="neg">R$ 19,71</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646469262</td>
+  <td>HYX83003</td>
+  <td>R$ 139,92</td>
+  <td>R$ 96,19</td>
+  <td class="neg">-R$ 19,13</td>
+  <td class="neg">R$ 19,13</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646381020</td>
+  <td>HYX84917</td>
+  <td>R$ 650,47</td>
+  <td>R$ 541,00</td>
+  <td class="neg">-R$ 19,07</td>
+  <td class="neg">R$ 19,07</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646507824</td>
+  <td>HYX4657</td>
+  <td>R$ 103,79</td>
+  <td>R$ 69,73</td>
+  <td class="neg">-R$ 18,74</td>
+  <td class="neg">R$ 18,74</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6630722754</td>
+  <td>HYX75088</td>
+  <td>R$ 117,00</td>
+  <td>R$ 83,17</td>
+  <td class="neg">-R$ 18,35</td>
+  <td class="neg">R$ 18,35</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6630710448</td>
+  <td>HYX61221</td>
+  <td>R$ 344,87</td>
+  <td>R$ 280,00</td>
+  <td class="neg">-R$ 18,06</td>
+  <td class="neg">R$ 18,06</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646506832</td>
+  <td>HYX83833</td>
+  <td>R$ 277,20</td>
+  <td>R$ 160,00</td>
+  <td class="neg">-R$ 17,87</td>
+  <td class="neg">R$ 17,87</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646643654</td>
+  <td>HYX86947</td>
+  <td>R$ 261,82</td>
+  <td>R$ 208,00</td>
+  <td class="neg">-R$ 17,41</td>
+  <td class="neg">R$ 17,41</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6711764286</td>
+  <td>HYX86948</td>
+  <td>R$ 261,82</td>
+  <td>R$ 208,00</td>
+  <td class="neg">-R$ 17,41</td>
+  <td class="neg">R$ 17,41</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6649110350</td>
+  <td>HYX84137</td>
+  <td>R$ 105,23</td>
+  <td>R$ 70,70</td>
+  <td class="neg">-R$ 17,25</td>
+  <td class="neg">R$ 17,25</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4640509727</td>
+  <td>HYX83590</td>
+  <td>R$ 224,35</td>
+  <td>R$ 176,00</td>
+  <td class="neg">-R$ 16,73</td>
+  <td class="neg">R$ 16,73</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612540573</td>
+  <td>HYX84913</td>
+  <td>R$ 94,01</td>
+  <td>R$ 63,89</td>
+  <td class="neg">-R$ 16,29</td>
+  <td class="neg">R$ 16,29</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612540587</td>
+  <td>HYX83557</td>
+  <td>R$ 118,12</td>
+  <td>R$ 81,20</td>
+  <td class="neg">-R$ 15,65</td>
+  <td class="neg">R$ 15,65</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4620602535</td>
+  <td>HYX86367</td>
+  <td>R$ 432,43</td>
+  <td>R$ 135,00</td>
+  <td class="neg">-R$ 15,23</td>
+  <td class="neg">R$ 15,23</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612539543</td>
+  <td>HYX85977</td>
+  <td>R$ 179,27</td>
+  <td>R$ 135,00</td>
+  <td class="neg">-R$ 15,03</td>
+  <td class="neg">R$ 15,03</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6649110780</td>
+  <td>HYX74173</td>
+  <td>R$ 152,47</td>
+  <td>R$ 118,00</td>
+  <td class="neg">-R$ 14,96</td>
+  <td class="neg">R$ 14,96</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612346041</td>
+  <td>HYX84336</td>
+  <td>R$ 200,00</td>
+  <td>R$ 161,00</td>
+  <td class="neg">-R$ 14,86</td>
+  <td class="neg">R$ 14,86</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6572968828</td>
+  <td>HYX83458</td>
+  <td>R$ 111,12</td>
+  <td>R$ 78,99</td>
+  <td class="neg">-R$ 14,84</td>
+  <td class="neg">R$ 14,84</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612598715</td>
+  <td>HYX83802</td>
+  <td>R$ 104,13</td>
+  <td>R$ 74,84</td>
+  <td class="neg">-R$ 14,76</td>
+  <td class="neg">R$ 14,76</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655262764</td>
+  <td>HYX87541</td>
+  <td>R$ 88,90</td>
+  <td>R$ 59,72</td>
+  <td class="neg">-R$ 14,53</td>
+  <td class="neg">R$ 14,53</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655134104</td>
+  <td>HYX85857</td>
+  <td>R$ 88,78</td>
+  <td>R$ 60,34</td>
+  <td class="neg">-R$ 13,93</td>
+  <td class="neg">R$ 13,93</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6588226160</td>
+  <td>HYX86954</td>
+  <td>R$ 160,88</td>
+  <td>R$ 123,00</td>
+  <td class="neg">-R$ 13,91</td>
+  <td class="neg">R$ 13,91</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4640509685</td>
+  <td>HYX87546</td>
+  <td>R$ 1.028,09</td>
+  <td>R$ 859,00</td>
+  <td class="neg">-R$ 13,59</td>
+  <td class="neg">R$ 13,59</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4620839769</td>
+  <td>HYX86961</td>
+  <td>R$ 225,63</td>
+  <td>R$ 181,00</td>
+  <td class="neg">-R$ 13,59</td>
+  <td class="neg">R$ 13,59</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646471030</td>
+  <td>HYX84454</td>
+  <td>R$ 138,32</td>
+  <td>R$ 102,00</td>
+  <td class="neg">-R$ 13,39</td>
+  <td class="neg">R$ 13,39</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655134254</td>
+  <td>HYX85851</td>
+  <td>R$ 105,01</td>
+  <td>R$ 75,47</td>
+  <td class="neg">-R$ 13,33</td>
+  <td class="neg">R$ 13,33</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646470912</td>
+  <td>HYX86936</td>
+  <td>R$ 92,73</td>
+  <td>R$ 65,92</td>
+  <td class="neg">-R$ 11,39</td>
+  <td class="neg">R$ 11,39</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6644492612</td>
+  <td>HYX84964</td>
+  <td>R$ 1.314,71</td>
+  <td>R$ 441,00</td>
+  <td class="neg">-R$ 10,91</td>
+  <td class="neg">R$ 10,91</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655134370</td>
+  <td>HYX81871</td>
+  <td>R$ 98,89</td>
+  <td>R$ 71,07</td>
+  <td class="neg">-R$ 10,22</td>
+  <td class="neg">R$ 10,22</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4585721531</td>
+  <td>HYX83459</td>
+  <td>R$ 113,90</td>
+  <td>R$ 88,09</td>
+  <td class="neg">-R$ 9,70</td>
+  <td class="neg">R$ 9,70</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612599785</td>
+  <td>HYX86955</td>
+  <td>R$ 143,78</td>
+  <td>R$ 115,00</td>
+  <td class="neg">-R$ 9,51</td>
+  <td class="neg">R$ 9,51</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646643854</td>
+  <td>HYX84986</td>
+  <td>R$ 174,00</td>
+  <td>R$ 138,00</td>
+  <td class="neg">-R$ 9,26</td>
+  <td class="neg">R$ 9,26</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6649085078</td>
+  <td>HYX85972</td>
+  <td>R$ 113,56</td>
+  <td>R$ 88,71</td>
+  <td class="neg">-R$ 8,74</td>
+  <td class="neg">R$ 8,74</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646470674</td>
+  <td>HYX72355</td>
+  <td>R$ 93,81</td>
+  <td>R$ 73,28</td>
+  <td class="neg">-R$ 8,53</td>
+  <td class="neg">R$ 8,53</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4640509151</td>
+  <td>HYX86967</td>
+  <td>R$ 114,78</td>
+  <td>R$ 92,36</td>
+  <td class="neg">-R$ 8,00</td>
+  <td class="neg">R$ 8,00</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4622930443</td>
+  <td>HYX84988</td>
+  <td>R$ 173,58</td>
+  <td>R$ 138,00</td>
+  <td class="neg">-R$ 7,96</td>
+  <td class="neg">R$ 7,96</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4620602393</td>
+  <td>HYX85859</td>
+  <td>R$ 221,92</td>
+  <td>R$ 187,00</td>
+  <td class="neg">-R$ 6,09</td>
+  <td class="neg">R$ 6,09</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646508058</td>
+  <td>HYX86941</td>
+  <td>R$ 233,13</td>
+  <td>R$ 197,00</td>
+  <td class="neg">-R$ 5,95</td>
+  <td class="neg">R$ 5,95</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6587836774</td>
+  <td>HYX85971</td>
+  <td>R$ 277,47</td>
+  <td>R$ 92,67</td>
+  <td class="neg">-R$ 5,18</td>
+  <td class="neg">R$ 5,18</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646507072</td>
+  <td>HYX84976</td>
+  <td>R$ 268,49</td>
+  <td>R$ 229,00</td>
+  <td class="neg">-R$ 5,14</td>
+  <td class="neg">R$ 5,14</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612539901</td>
+  <td>HYX83589</td>
+  <td>R$ 371,45</td>
+  <td>R$ 320,00</td>
+  <td class="neg">-R$ 4,53</td>
+  <td class="neg">R$ 4,53</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6650868432</td>
+  <td>HYX7808</td>
+  <td>R$ 137,20</td>
+  <td>R$ 114,00</td>
+  <td class="neg">-R$ 4,53</td>
+  <td class="neg">R$ 4,53</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612599799</td>
+  <td>HYX86959</td>
+  <td>R$ 278,56</td>
+  <td>R$ 239,00</td>
+  <td class="neg">-R$ 4,19</td>
+  <td class="neg">R$ 4,19</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6619304628</td>
+  <td>HYX86949</td>
+  <td>R$ 100,58</td>
+  <td>R$ 81,72</td>
+  <td class="neg">-R$ 3,83</td>
+  <td class="neg">R$ 3,83</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4620840017</td>
+  <td>HYX84985</td>
+  <td>R$ 105,32</td>
+  <td>R$ 88,04</td>
+  <td class="neg">-R$ 3,47</td>
+  <td class="neg">R$ 3,47</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646508274</td>
+  <td>HYX84038</td>
+  <td>R$ 220,61</td>
+  <td>R$ 163,00</td>
+  <td class="neg">-R$ 3,23</td>
+  <td class="neg">R$ 3,23</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655262954</td>
+  <td>HYX84199</td>
+  <td>R$ 88,19</td>
+  <td>R$ 75,09</td>
+  <td class="neg">-R$ 2,88</td>
+  <td class="neg">R$ 2,88</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4620768339</td>
+  <td>HYX86957</td>
+  <td>R$ 156,65</td>
+  <td>R$ 113,00</td>
+  <td class="neg">-R$ 2,46</td>
+  <td class="neg">R$ 2,46</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646469936</td>
+  <td>HYX83556</td>
+  <td>R$ 154,04</td>
+  <td>R$ 122,00</td>
+  <td class="neg">-R$ 2,38</td>
+  <td class="neg">R$ 2,38</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4640509095</td>
+  <td>HYX83154</td>
+  <td>R$ 98,75</td>
+  <td>R$ 83,32</td>
+  <td class="neg">-R$ 2,30</td>
+  <td class="neg">R$ 2,30</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4620840041</td>
+  <td>HYX7601</td>
+  <td>R$ 320,51</td>
+  <td>R$ 305,00</td>
+  <td class="neg">-R$ 2,17</td>
+  <td class="neg">R$ 2,17</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646506834</td>
+  <td>HYX83304</td>
+  <td>R$ 163,28</td>
+  <td>R$ 144,00</td>
+  <td class="neg">-R$ 1,74</td>
+  <td class="neg">R$ 1,74</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612598749</td>
+  <td>HYX75087</td>
+  <td>R$ 137,00</td>
+  <td>R$ 123,00</td>
+  <td class="neg">-R$ 1,34</td>
+  <td class="neg">R$ 1,34</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6588226198</td>
+  <td>HYX86324</td>
+  <td>R$ 662,22</td>
+  <td>R$ 636,00</td>
+  <td class="pos">R$ 49,62</td>
+  <td class="pos">R$ 0,00</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4591812661</td>
+  <td>HYX79694</td>
+  <td>R$ 650,88</td>
+  <td>R$ 591,00</td>
+  <td class="pos">R$ 21,14</td>
+  <td class="pos">R$ 0,00</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655262940</td>
+  <td>HYX86368</td>
+  <td>R$ 233,52</td>
+  <td>R$ 205,00</td>
+  <td class="pos">R$ 0,25</td>
+  <td class="pos">R$ 0,00</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612539573</td>
+  <td>HYX22676</td>
+  <td>R$ 191,66</td>
+  <td>R$ 163,00</td>
+  <td class="pos">R$ 5,31</td>
+  <td class="pos">R$ 0,00</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6649110324</td>
+  <td>HYX84989</td>
+  <td>R$ 173,58</td>
+  <td>R$ 151,00</td>
+  <td class="pos">R$ 2,57</td>
+  <td class="pos">R$ 0,00</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4623519189</td>
+  <td>HYX74978</td>
+  <td>R$ 169,48</td>
+  <td>R$ 155,00</td>
+  <td class="pos">R$ 5,18</td>
+  <td class="pos">R$ 0,00</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4612599523</td>
+  <td>HYX63756</td>
+  <td>R$ 149,25</td>
+  <td>R$ 144,00</td>
+  <td class="pos">R$ 12,97</td>
+  <td class="pos">R$ 0,00</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4623519119</td>
+  <td>HYX87593</td>
+  <td>R$ 109,80</td>
+  <td>R$ 99,50</td>
+  <td class="pos">R$ 1,65</td>
+  <td class="pos">R$ 0,00</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4621152043</td>
+  <td>HYX86128</td>
+  <td>R$ 102,00</td>
+  <td>R$ 90,84</td>
+  <td class="pos">R$ 1,09</td>
+  <td class="pos">R$ 0,00</td>
+  <td>competing</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Bloco B <span class="pill">Auditoria (price_to_win = 0)</span></h2>
+      <div class="toolbar"><input id="searchB" placeholder="Buscar por ml_item_id, sku_local, status..." /></div>
+      <div class="table-wrap">
+        <table id="tableB">
+          <thead><tr>
+            <th>ml_item_id</th><th>sku_local</th><th>preço_atual</th><th>price_to_win</th><th>buy_box_status</th><th>updated_at</th>
+          </tr></thead>
+          <tbody>
+<tr>
+  <td>MLB6618198782</td>
+  <td>HYX84365</td>
+  <td>R$ 1.561,49</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655134320</td>
+  <td>HYX84356</td>
+  <td>R$ 1.442,60</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6682013956</td>
+  <td>HYX83814</td>
+  <td>R$ 1.292,96</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6681943378</td>
+  <td>HYX86337</td>
+  <td>R$ 1.213,83</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4640508825</td>
+  <td>HYX84491</td>
+  <td>R$ 985,93</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646508266</td>
+  <td>HYX84813</td>
+  <td>R$ 980,21</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4640509179</td>
+  <td>HYX87816</td>
+  <td>R$ 807,43</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6572969086</td>
+  <td>HYX86181</td>
+  <td>R$ 763,80</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4585709137</td>
+  <td>HYX86254</td>
+  <td>R$ 738,14</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655134272</td>
+  <td>HYX87812</td>
+  <td>R$ 673,83</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6649085110</td>
+  <td>HYX87813</td>
+  <td>R$ 565,49</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6819860280</td>
+  <td>HYX84825</td>
+  <td>R$ 471,97</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6682014694</td>
+  <td>HYX83834</td>
+  <td>R$ 333,83</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6682013314</td>
+  <td>HYX80609</td>
+  <td>R$ 311,78</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646470768</td>
+  <td>HYX85494</td>
+  <td>R$ 303,83</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4640509607</td>
+  <td>HYX84978</td>
+  <td>R$ 241,68</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6655134110</td>
+  <td>HYX36713</td>
+  <td>R$ 225,06</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646642686</td>
+  <td>HYX81138</td>
+  <td>R$ 204,74</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6572987194</td>
+  <td>HYX83010</td>
+  <td>R$ 199,45</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646381324</td>
+  <td>HYX84879</td>
+  <td>R$ 163,79</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6732245312</td>
+  <td>HYX86954</td>
+  <td>R$ 160,48</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4622928103</td>
+  <td>HYX84606</td>
+  <td>R$ 143,14</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646381536</td>
+  <td>HYX84337</td>
+  <td>R$ 129,41</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4585912283</td>
+  <td>HYX79349</td>
+  <td>R$ 104,59</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646381018</td>
+  <td>HYX86129</td>
+  <td>R$ 102,55</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB4591747155</td>
+  <td>HYX87779</td>
+  <td>R$ 102,07</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr>
+<tr>
+  <td>MLB6646507790</td>
+  <td>HYX81080</td>
+  <td>R$ 91,62</td>
+  <td>R$ 0,00</td>
+  <td>not_listed</td>
+  <td>2026-05-29T19:13:04.094313+00:00</td>
+</tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function attachSearch(inputId, tableId) {
+      const input = document.getElementById(inputId);
+      const table = document.getElementById(tableId);
+      if (!input || !table) return;
+      const rows = Array.from(table.querySelectorAll('tbody tr'));
+      input.addEventListener('input', () => {
+        const q = input.value.toLowerCase().trim();
+        rows.forEach((tr) => {
+          const txt = tr.innerText.toLowerCase();
+          tr.style.display = !q || txt.includes(q) ? '' : 'none';
+        });
+      });
+    }
+    attachSearch('searchA', 'tableA');
+    attachSearch('searchB', 'tableB');
+  </script>
+</body>
+</html>

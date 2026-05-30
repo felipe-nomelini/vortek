@@ -5,6 +5,11 @@ export type MlFiscalReleaseWindow = {
   sourcePath: string | null;
 };
 
+type ReleaseWindowInput = {
+  shipment?: any;
+  leadTime?: any;
+};
+
 function normalizeDate(value: unknown): string | null {
   if (!value) return null;
   const parsed = new Date(String(value));
@@ -13,12 +18,35 @@ function normalizeDate(value: unknown): string | null {
 }
 
 export function extractMlFiscalReleaseWindow(shipmentPayload: any): MlFiscalReleaseWindow {
-  const reason = String(shipmentPayload?.substatus || '').trim() || null;
+  const input: ReleaseWindowInput =
+    shipmentPayload && typeof shipmentPayload === 'object' && ('shipment' in shipmentPayload || 'leadTime' in shipmentPayload)
+      ? shipmentPayload as ReleaseWindowInput
+      : { shipment: shipmentPayload };
+  const shipment = input.shipment || null;
+  const leadTime = input.leadTime || null;
+
+  const reasonCandidates = [
+    shipment?.substatus,
+    leadTime?.shipping_option?.estimated_schedule_limit?.id,
+    leadTime?.shipping_option?.estimated_schedule_limit?.name,
+    leadTime?.estimated_schedule_limit?.id,
+    leadTime?.estimated_schedule_limit?.name,
+  ];
+  const reason = reasonCandidates
+    .map((value) => String(value || '').trim())
+    .find(Boolean) || null;
+
   const candidates: Array<{ path: string; value: unknown }> = [
-    { path: 'shipping_option.buffering.date', value: shipmentPayload?.shipping_option?.buffering?.date },
-    { path: 'shipping_option.estimated_schedule_limit.date', value: shipmentPayload?.shipping_option?.estimated_schedule_limit?.date },
-    { path: 'shipping_option.pickup_promise.from', value: shipmentPayload?.shipping_option?.pickup_promise?.from },
-    { path: 'shipping_option.pickup_promise.to', value: shipmentPayload?.shipping_option?.pickup_promise?.to },
+    // Fonte primária de janela operacional (SLA/lead_time)
+    { path: 'lead_time.shipping_option.buffering.date', value: leadTime?.shipping_option?.buffering?.date },
+    { path: 'lead_time.buffering.date', value: leadTime?.buffering?.date },
+    { path: 'lead_time.shipping_option.estimated_schedule_limit.date', value: leadTime?.shipping_option?.estimated_schedule_limit?.date },
+    { path: 'lead_time.estimated_schedule_limit.date', value: leadTime?.estimated_schedule_limit?.date },
+    // Fallback no payload de shipment quando aplicável
+    { path: 'shipment.shipping_option.buffering.date', value: shipment?.shipping_option?.buffering?.date },
+    { path: 'shipment.shipping_option.estimated_schedule_limit.date', value: shipment?.shipping_option?.estimated_schedule_limit?.date },
+    { path: 'shipment.shipping_option.pickup_promise.from', value: shipment?.shipping_option?.pickup_promise?.from },
+    { path: 'shipment.shipping_option.pickup_promise.to', value: shipment?.shipping_option?.pickup_promise?.to },
   ];
 
   for (const candidate of candidates) {

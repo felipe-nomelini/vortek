@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, message, Spin, Statistic } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { MenuProps, TableProps } from 'antd';
@@ -9,6 +9,7 @@ import { formatCurrency } from '@/lib/format';
 
 const { Title } = Typography;
 const PAGE_SIZE = 100;
+const NO_CATALOGO_REFRESH_JOB_STORAGE_KEY = 'catalogo_no_catalogo_refresh_job_id';
 
 export type CatalogoMode = 'no_catalogo' | 'elegiveis';
 
@@ -97,6 +98,21 @@ interface NoCatalogoResumo {
   perdendo: number;
 }
 
+type RefreshJobStatus = 'idle' | 'running' | 'done' | 'error';
+
+type RefreshStatusPayload = {
+  success?: boolean;
+  error?: string;
+  job?: {
+    id: string;
+    status: string;
+    last_event?: {
+      message?: string | null;
+    } | null;
+  } | null;
+  failures?: string[];
+};
+
 function mapStatusMlToPt(status: string | null | undefined): string {
   const normalized = String(status || '').toLowerCase();
   if (normalized === 'active') return 'Ativo';
@@ -120,7 +136,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
 
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
-  const [refreshingSnapshot, setRefreshingSnapshot] = useState(false);
+  const [refreshJobStatus, setRefreshJobStatus] = useState<RefreshJobStatus>('idle');
 
   const [noCatalogoData, setNoCatalogoData] = useState<NoCatalogoRow[]>([]);
   const [elegiveisData, setElegiveisData] = useState<ElegivelRow[]>([]);
@@ -133,6 +149,11 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
     perdendo: 0,
   });
   const [loadingResumoNoCatalogo, setLoadingResumoNoCatalogo] = useState(false);
+  const refreshPollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const refreshTerminalResetTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const refreshPollingInFlightRef = useRef(false);
+  const refreshPollingStartedAtRef = useRef<number | null>(null);
+  const refreshJobIdRef = useRef<string | null>(null);
 
   const buildParams = useCallback(() => {
     const params = new URLSearchParams();
@@ -203,28 +224,202 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
     setPage(1);
   }, [mode, search, statusMl, buyBoxFilter, eligibilityStatus, priceMin, priceMax]);
 
-  const refreshNoCatalogoSnapshot = useCallback(async () => {
-    if (mode !== 'no_catalogo' || refreshingSnapshot) return;
-    setRefreshingSnapshot(true);
-    try {
-      const res = await fetch('/api/catalogo/no-catalogo/refresh', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mode: 'incremental' }),
-      });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok || !json?.success) {
-        messageApi.error(json?.error || json?.erro || 'Falha ao atualizar snapshot do catálogo.');
+  const clearRefreshPolling = useCallback(() => {
+    if (refreshPollTimeoutRef.current) {
+      clearTimeout(refreshPollTimeoutRef.current);
+      refreshPollTimeoutRef.current = null;
+    }
+    if (refreshTerminalResetTimeoutRef.current) {
+      clearTimeout(refreshTerminalResetTimeoutRef.current);
+      refreshTerminalResetTimeoutRef.current = null;
+    }
+    refreshPollingInFlightRef.current = false;
+    refreshPollingStartedAtRef.current = null;
+    refreshJobIdRef.current = null;
+  }, []);
+
+  const clearRefreshTracking = useCallback(() => {
+    clearRefreshPolling();
+    refreshJobIdRef.current = null;
+    if (typeof window !== 'undefined') {
+      window.localStorage.removeItem(NO_CATALOGO_REFRESH_JOB_STORAGE_KEY);
+    }
+  }, [clearRefreshPolling]);
+
+  const getAdaptiveRefreshPollingInterval = useCallback(() => {
+    const startedAt = refreshPollingStartedAtRef.current;
+    if (!startedAt) return 2000;
+    const elapsed = Date.now() - startedAt;
+    if (elapsed > 180000) return 5000;
+    if (elapsed > 60000) return 4000;
+    return 2000;
+  }, []);
+
+  const fetchRefreshStatus = useCallback(async (jobId?: string): Promise<RefreshStatusPayload> => {
+    const url = jobId
+      ? `/api/catalogo/no-catalogo/refresh/status?jobId=${encodeURIComponent(jobId)}`
+      : '/api/catalogo/no-catalogo/refresh/status';
+    const res = await fetch(url);
+    const payload = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      throw new Error(payload?.error || 'Falha ao consultar status do refresh do catálogo.');
+    }
+    return payload as RefreshStatusPayload;
+  }, []);
+
+  const concludeRefreshTracking = useCallback((status: RefreshJobStatus, errorMessage?: string) => {
+    clearRefreshTracking();
+    setRefreshJobStatus(status);
+    if (status === 'error') {
+      messageApi.error(errorMessage || 'Falha ao atualizar snapshot do catálogo.');
+    }
+    if (status === 'done') {
+      void fetchData();
+    }
+    refreshTerminalResetTimeoutRef.current = setTimeout(() => {
+      setRefreshJobStatus('idle');
+      refreshTerminalResetTimeoutRef.current = null;
+    }, 800);
+  }, [clearRefreshTracking, fetchData, messageApi]);
+
+  const pollRefreshJob = useCallback(async (jobId: string) => {
+    const payload = await fetchRefreshStatus(jobId);
+    if (!payload.success || !payload.job?.id) {
+      throw new Error(payload.error || 'Job de refresh não encontrado.');
+    }
+
+    const status = payload.job.status;
+    if (status === 'pendente' || status === 'rodando') {
+      setRefreshJobStatus('running');
+      return;
+    }
+
+    if (status === 'completo' || status === 'completo_parcial') {
+      concludeRefreshTracking('done');
+      return;
+    }
+
+    const errorMessage = payload.failures?.[0] || payload.job.last_event?.message || 'Falha ao atualizar snapshot do catálogo.';
+    concludeRefreshTracking('error', errorMessage);
+  }, [concludeRefreshTracking, fetchRefreshStatus]);
+
+  const scheduleNextRefreshPoll = useCallback(() => {
+    const jobId = refreshJobIdRef.current;
+    if (!jobId) return;
+    const delay = getAdaptiveRefreshPollingInterval();
+    refreshPollTimeoutRef.current = setTimeout(() => {
+      const runningJobId = refreshJobIdRef.current;
+      if (!runningJobId) return;
+      if (refreshPollingInFlightRef.current) {
+        scheduleNextRefreshPoll();
         return;
       }
-      messageApi.success(`Snapshot atualizado: ${json.updated || 0} itens processados.`);
-      fetchData();
-    } catch {
-      messageApi.error('Erro de conexão ao atualizar snapshot.');
-    } finally {
-      setRefreshingSnapshot(false);
+
+      refreshPollingInFlightRef.current = true;
+      pollRefreshJob(runningJobId)
+        .catch((err: any) => {
+          concludeRefreshTracking('error', err?.message || 'Erro ao consultar refresh do catálogo.');
+        })
+        .finally(() => {
+          refreshPollingInFlightRef.current = false;
+          if (refreshJobIdRef.current === runningJobId) {
+            scheduleNextRefreshPoll();
+          }
+        });
+    }, delay);
+  }, [concludeRefreshTracking, getAdaptiveRefreshPollingInterval, pollRefreshJob]);
+
+  const startRefreshPolling = useCallback((jobId: string) => {
+    clearRefreshPolling();
+    refreshJobIdRef.current = jobId;
+    refreshPollingStartedAtRef.current = Date.now();
+    setRefreshJobStatus('running');
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(NO_CATALOGO_REFRESH_JOB_STORAGE_KEY, jobId);
     }
-  }, [fetchData, messageApi, mode, refreshingSnapshot]);
+    scheduleNextRefreshPoll();
+  }, [clearRefreshPolling, scheduleNextRefreshPoll]);
+
+  const resumeRefreshIfRunning = useCallback(async () => {
+    if (mode !== 'no_catalogo') return;
+    try {
+      const persistedJobId = typeof window !== 'undefined'
+        ? window.localStorage.getItem(NO_CATALOGO_REFRESH_JOB_STORAGE_KEY)
+        : null;
+
+      if (persistedJobId) {
+        const persistedPayload = await fetchRefreshStatus(persistedJobId);
+        if (persistedPayload.success && persistedPayload.job?.id) {
+          const status = persistedPayload.job.status;
+          if (status === 'pendente' || status === 'rodando') {
+            startRefreshPolling(persistedPayload.job.id);
+            await pollRefreshJob(persistedPayload.job.id);
+            return;
+          }
+          if (status === 'erro' || status === 'cancelado' || status === 'failed_auth') {
+            const errorMessage = persistedPayload.failures?.[0]
+              || persistedPayload.job.last_event?.message
+              || 'Falha ao atualizar snapshot do catálogo.';
+            concludeRefreshTracking('error', errorMessage);
+            return;
+          }
+          clearRefreshTracking();
+          setRefreshJobStatus('idle');
+          return;
+        }
+      }
+
+      const payload = await fetchRefreshStatus();
+      if (!payload.success || !payload.job?.id) {
+        setRefreshJobStatus('idle');
+        return;
+      }
+
+      const status = payload.job.status;
+      if (status === 'pendente' || status === 'rodando') {
+        startRefreshPolling(payload.job.id);
+        await pollRefreshJob(payload.job.id);
+        return;
+      }
+
+      setRefreshJobStatus('idle');
+    } catch {
+      setRefreshJobStatus('idle');
+    }
+  }, [clearRefreshTracking, concludeRefreshTracking, fetchRefreshStatus, mode, pollRefreshJob, startRefreshPolling]);
+
+  useEffect(() => {
+    if (mode !== 'no_catalogo') {
+      clearRefreshPolling();
+      setRefreshJobStatus('idle');
+      return;
+    }
+    void resumeRefreshIfRunning();
+  }, [clearRefreshPolling, mode, resumeRefreshIfRunning]);
+
+  useEffect(() => {
+    return () => {
+      clearRefreshPolling();
+    };
+  }, [clearRefreshPolling]);
+
+  const refreshNoCatalogoSnapshot = useCallback(async () => {
+    if (mode !== 'no_catalogo' || refreshJobStatus === 'running') return;
+    try {
+      const res = await fetch('/api/catalogo/no-catalogo/refresh/job', {
+        method: 'POST',
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json?.success || !json?.jobId) {
+        messageApi.error(json?.error || json?.erro || 'Falha ao iniciar atualização do snapshot.');
+        return;
+      }
+      startRefreshPolling(String(json.jobId));
+      await pollRefreshJob(String(json.jobId));
+    } catch {
+      messageApi.error('Erro de conexão ao iniciar atualização do snapshot.');
+    }
+  }, [messageApi, mode, pollRefreshJob, refreshJobStatus, startRefreshPolling]);
 
   const handleOptin = useCallback(async (row: ElegivelRow) => {
     const catalogProductId = row.catalog_product_id || '';
@@ -516,9 +711,9 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
           {mode === 'no_catalogo' && (
             <Col>
               <Button
-                icon={refreshingSnapshot ? <LoadingOutlined spin /> : <ReloadOutlined />}
+                icon={refreshJobStatus === 'running' ? <LoadingOutlined spin /> : <ReloadOutlined />}
                 onClick={refreshNoCatalogoSnapshot}
-                loading={refreshingSnapshot}
+                loading={refreshJobStatus === 'running'}
               >
                 Atualizar agora
               </Button>

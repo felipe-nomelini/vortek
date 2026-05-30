@@ -144,6 +144,9 @@ interface SummaryData {
   ticket: number;
   margem: number;
   statusCounts: Record<string, number>;
+  mlCompatibleCount: number;
+  mlCompatibleTotal: number;
+  mlCompatibleMissingPaymentData: number;
 }
 
 interface EtiquetaDuplicateDecision {
@@ -165,7 +168,17 @@ export default function PedidosPage() {
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [orders, setOrders] = useState<Order[]>([]);
-  const [summary, setSummary] = useState<SummaryData>({ count: 0, total: 0, lucroSum: 0, ticket: 0, margem: 0, statusCounts: {} });
+  const [summary, setSummary] = useState<SummaryData>({
+    count: 0,
+    total: 0,
+    lucroSum: 0,
+    ticket: 0,
+    margem: 0,
+    statusCounts: {},
+    mlCompatibleCount: 0,
+    mlCompatibleTotal: 0,
+    mlCompatibleMissingPaymentData: 0,
+  });
 
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<OrderStatus | ''>('');
@@ -243,6 +256,9 @@ export default function PedidosPage() {
           ticket: json.ticket || 0,
           margem: json.margem || 0,
           statusCounts: json.statusCounts || {},
+          mlCompatibleCount: json.mlCompatibleCount || 0,
+          mlCompatibleTotal: json.mlCompatibleTotal || 0,
+          mlCompatibleMissingPaymentData: json.mlCompatibleMissingPaymentData || 0,
         });
       }
     } catch {}
@@ -843,8 +859,12 @@ export default function PedidosPage() {
           </Col>
           <Col xs={12} md={6}>
             <Statistic
-              title={<span style={{ color: '#a0a0a0' }}>Valor Vendido</span>}
-              value={formatCurrency(summary.total)}
+              title={(
+                <Tooltip title="Compatível com ML: pagamentos aprovados no período/filtros atuais">
+                  <span style={{ color: '#a0a0a0' }}>Valor Vendido</span>
+                </Tooltip>
+              )}
+              value={formatCurrency(summary.mlCompatibleTotal)}
               valueStyle={{ color: '#52c41a', fontWeight: 700, fontSize: 24 }}
             />
           </Col>
