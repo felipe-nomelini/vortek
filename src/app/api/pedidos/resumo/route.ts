@@ -1,6 +1,22 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase';
 
+function logDbError(
+  event: string,
+  endpoint: string,
+  search: string,
+  error: { code?: string; message?: string; details?: string } | null
+) {
+  console.error('[pedidos_resumo_api_error]', {
+    event,
+    endpoint,
+    search,
+    db_code: error?.code ?? null,
+    db_message: error?.message ?? null,
+    db_details: error?.details ?? null,
+  });
+}
+
 function hasApprovedPayment(pagamentoResumo: unknown): { approved: boolean; hasValidData: boolean } {
   if (!Array.isArray(pagamentoResumo) || pagamentoResumo.length === 0) {
     return { approved: false, hasValidData: false };
@@ -30,22 +46,56 @@ export async function GET(request: Request) {
   const dateTo = searchParams.get('dateTo') || '';
   const priceMin = searchParams.get('priceMin') ? parseFloat(searchParams.get('priceMin')!) : null;
   const priceMax = searchParams.get('priceMax') ? parseFloat(searchParams.get('priceMax')!) : null;
+  const normalizedSearch = search.trim();
+  let endDateIso: string | null = null;
+
+  if (dateTo) {
+    const end = new Date(dateTo);
+    end.setHours(23, 59, 59, 999);
+    endDateIso = end.toISOString();
+  }
+
+  if (normalizedSearch) {
+    const { data: rpcData, error: rpcError } = await (supabase as any).rpc('search_pedidos_resumo', {
+      p_search: normalizedSearch,
+      p_status: status || null,
+      p_date_from: dateFrom || null,
+      p_date_to: endDateIso,
+      p_price_min: priceMin,
+      p_price_max: priceMax,
+    });
+
+    if (rpcError) {
+      logDbError('pedidos_resumo_search_rpc_failed', '/api/pedidos/resumo', normalizedSearch, rpcError);
+      return NextResponse.json({ erro: 'Falha ao gerar resumo com filtro de busca.' }, { status: 500 });
+    }
+
+    const row = Array.isArray(rpcData) ? rpcData[0] : rpcData;
+    const statusCounts = row?.status_counts && typeof row.status_counts === 'object' ? row.status_counts : {};
+
+    return NextResponse.json({
+      count: Number(row?.count ?? 0),
+      total: Number(row?.total ?? 0),
+      lucroSum: Number(row?.lucro_sum ?? 0),
+      ticket: Number(row?.ticket ?? 0),
+      margem: Number(row?.margem ?? 0),
+      statusCounts,
+      mlCompatibleCount: Number(row?.ml_compatible_count ?? 0),
+      mlCompatibleTotal: Number(row?.ml_compatible_total ?? 0),
+      mlCompatibleMissingPaymentData: Number(row?.ml_compatible_missing_payment_data ?? 0),
+    });
+  }
 
   // Build base query
   function applyFilters(query: any) {
-    if (search) {
-      query = query.or(`numero.ilike.%${search}%,contato_nome.ilike.%${search}%,ml_order_id.ilike.%${search}%,ml_pack_id.ilike.%${search}%`);
-    }
     if (status) {
       query = query.eq('situacao', status);
     }
     if (dateFrom) {
       query = query.gte('data', dateFrom);
     }
-    if (dateTo) {
-      const end = new Date(dateTo);
-      end.setHours(23, 59, 59, 999);
-      query = query.lte('data', end.toISOString());
+    if (endDateIso) {
+      query = query.lte('data', endDateIso);
     }
     if (priceMin !== null) {
       query = query.gte('total', priceMin);
@@ -59,12 +109,20 @@ export async function GET(request: Request) {
   // Count total
   let countQuery = supabase.from('pedidos').select('*', { count: 'exact', head: false }).range(0, 0);
   countQuery = applyFilters(countQuery);
-  const { count } = await countQuery;
+  const { count, error: countError } = await countQuery;
+  if (countError) {
+    logDbError('pedidos_resumo_count_query_failed', '/api/pedidos/resumo', normalizedSearch, countError);
+    return NextResponse.json({ erro: 'Falha ao contar pedidos para resumo.' }, { status: 500 });
+  }
 
   // Sum total e lucro + métrica compatível ML (pagamento aprovado)
   let sumQuery = supabase.from('pedidos').select('total, lucro, pagamento_resumo');
   sumQuery = applyFilters(sumQuery);
-  const { data: sumData } = await sumQuery;
+  const { data: sumData, error: sumError } = await sumQuery;
+  if (sumError) {
+    logDbError('pedidos_resumo_sum_query_failed', '/api/pedidos/resumo', normalizedSearch, sumError);
+    return NextResponse.json({ erro: 'Falha ao calcular totais do resumo.' }, { status: 500 });
+  }
 
   let totalSum = 0;
   let lucroSum = 0;
@@ -93,7 +151,11 @@ export async function GET(request: Request) {
     .select('situacao')
     .not('situacao', 'is', null);
   statusQuery = applyFilters(statusQuery);
-  const { data: statusData } = await statusQuery;
+  const { data: statusData, error: statusError } = await statusQuery;
+  if (statusError) {
+    logDbError('pedidos_resumo_status_query_failed', '/api/pedidos/resumo', normalizedSearch, statusError);
+    return NextResponse.json({ erro: 'Falha ao calcular status do resumo.' }, { status: 500 });
+  }
 
   const statusCounts: Record<string, number> = {};
   for (const row of statusData || []) {

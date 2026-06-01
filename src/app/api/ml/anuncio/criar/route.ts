@@ -311,11 +311,12 @@ export async function POST(req: Request) {
     }
     steps.anuncio.ok = true;
 
-    const quantityPricingOk = await setItemQuantityPricing(result.id, displayPrice);
-    if (quantityPricingOk) steps.atacado.ok = true;
+    const quantityPricingResult = await setItemQuantityPricing(result.id, displayPrice);
+    if (quantityPricingResult.ok) steps.atacado.ok = true;
     else {
-      steps.atacado = { ok: false, error: 'Falha ao atualizar preços de atacado' };
-      warnings.push('Não foi possível configurar os preços de atacado neste momento.');
+      const errorMessage = quantityPricingResult.error || 'Falha ao atualizar preços de atacado';
+      steps.atacado = { ok: false, error: errorMessage };
+      warnings.push(`Não foi possível configurar os preços de atacado neste momento. Motivo: ${errorMessage}`);
     }
 
     let mlFee = produto.ml_fee || 0.15;
@@ -421,7 +422,7 @@ export async function POST(req: Request) {
         permalink: result.permalink,
         status: result.status,
       },
-      quantity_pricing: quantityPricingOk,
+      quantity_pricing: quantityPricingResult.ok,
       fiscal: fiscalErrors.length === 0 ? 'ok' : fiscalErrors,
     });
   } catch (err: any) {

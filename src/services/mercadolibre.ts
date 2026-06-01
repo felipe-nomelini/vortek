@@ -1,4 +1,4 @@
-import { fetchML, fetchMLRaw, getValidMLToken } from './integration';
+import { fetchML, fetchMLRaw, fetchMLResult, getValidMLToken } from './integration';
 import { createServiceClient } from '@/lib/supabase';
 
 export interface MLCategoryPrediction {
@@ -330,6 +330,16 @@ export async function setItemInvoiceSaleTerm(itemId: string): Promise<boolean> {
 export interface QuantityPriceTier {
   minPurchaseUnit: number;
   amount: number;
+}
+
+export interface QuantityPricingApplyResult {
+  ok: boolean;
+  error: string | null;
+  code: string | null;
+  httpStatus: number | null;
+  providerBody: any;
+  tiersExpected: QuantityPriceTier[];
+  tiersFound: QuantityPriceTier[];
 }
 
 export interface MLItemStatus {
@@ -1073,15 +1083,15 @@ export async function reconciliarPausasEstoqueZero(
 export async function setItemQuantityPricing(
   itemId: string,
   basePrice: number
-): Promise<boolean> {
-  const tiers: QuantityPriceTier[] = [
+): Promise<QuantityPricingApplyResult> {
+  const tiersExpected: QuantityPriceTier[] = [
     { minPurchaseUnit: 3, amount: Math.round(basePrice * 0.97 * 100) / 100 },
     { minPurchaseUnit: 5, amount: Math.round(basePrice * 0.96 * 100) / 100 },
     { minPurchaseUnit: 10, amount: Math.round(basePrice * 0.95 * 100) / 100 },
   ];
 
   const payload = {
-    prices: tiers.map(tier => ({
+    prices: tiersExpected.map(tier => ({
       type: 'standard',
       amount: tier.amount,
       currency_id: 'BRL',
@@ -1092,22 +1102,124 @@ export async function setItemQuantityPricing(
     })),
   };
 
+  const parseBusinessTiers = (raw: any): QuantityPriceTier[] => {
+    const prices = Array.isArray(raw?.prices) ? raw.prices : [];
+    const tiers: QuantityPriceTier[] = [];
+    for (const price of prices) {
+      const contexts = Array.isArray(price?.conditions?.context_restrictions)
+        ? price.conditions.context_restrictions.map((value: unknown) => String(value || '').toLowerCase())
+        : [];
+      const isBusiness = contexts.includes('user_type_business');
+      const minPurchaseUnit = Number(price?.conditions?.min_purchase_unit);
+      const amount = Number(price?.amount);
+      if (!isBusiness || !Number.isFinite(minPurchaseUnit) || minPurchaseUnit <= 0 || !Number.isFinite(amount)) {
+        continue;
+      }
+      tiers.push({
+        minPurchaseUnit: Math.trunc(minPurchaseUnit),
+        amount: Math.round(amount * 100) / 100,
+      });
+    }
+    return tiers.sort((a, b) => a.minPurchaseUnit - b.minPurchaseUnit);
+  };
+
+  const tiersMatch = (found: QuantityPriceTier[], expected: QuantityPriceTier[]): boolean => {
+    if (found.length < expected.length) return false;
+    const tolerance = 0.01;
+    for (const tier of expected) {
+      const match = found.find((value) => value.minPurchaseUnit === tier.minPurchaseUnit);
+      if (!match) return false;
+      if (Math.abs(match.amount - tier.amount) > tolerance) return false;
+    }
+    return true;
+  };
+
   try {
-    const result = await fetchML<any>(`/items/${itemId}/prices/standard/quantity`, {
+    const postResult = await fetchMLResult<any>(`/items/${itemId}/prices/standard/quantity`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
 
-    if (result && result.id) {
-      console.log(`[setItemQuantityPricing] Sucesso para ${itemId}`, result.prices);
-      return true;
+    if (!postResult.ok) {
+      const errorMessage = postResult.error?.message || 'Falha ao publicar preços de atacado no ML';
+      const code = postResult.error?.code || null;
+      console.warn(`[setItemQuantityPricing] Rejeitado para ${itemId}: ${errorMessage}`);
+      return {
+        ok: false,
+        error: errorMessage,
+        code: code || 'quantity_pricing_provider_rejected',
+        httpStatus: postResult.status,
+        providerBody: postResult.error,
+        tiersExpected,
+        tiersFound: [],
+      };
     }
-    console.warn(`[setItemQuantityPricing] Resposta inesperada para ${itemId}:`, result);
-    return false;
+
+    const verifyResult = await fetchMLResult<any>(`/items/${itemId}/prices`, {
+      method: 'GET',
+      headers: {
+        'show-all-prices': 'TRUE',
+      },
+    });
+
+    if (!verifyResult.ok) {
+      const errorMessage = verifyResult.error?.message || 'Falha ao validar preços de atacado após publicação';
+      return {
+        ok: false,
+        error: errorMessage,
+        code: verifyResult.error?.code || 'quantity_pricing_validation_failed',
+        httpStatus: verifyResult.status,
+        providerBody: verifyResult.error,
+        tiersExpected,
+        tiersFound: [],
+      };
+    }
+
+    const tiersFound = parseBusinessTiers(verifyResult.data);
+    const isEffective = tiersMatch(tiersFound, tiersExpected);
+    console.log(JSON.stringify({
+      event: 'ml_quantity_pricing_validation',
+      timestamp_utc: new Date().toISOString(),
+      ml_item_id: itemId,
+      base_price: Math.round(basePrice * 100) / 100,
+      tiers_expected: tiersExpected,
+      tiers_found: tiersFound,
+      result: isEffective ? 'ok' : 'quantity_pricing_not_effective',
+    }));
+
+    if (!isEffective) {
+      return {
+        ok: false,
+        error: 'Faixas de atacado não ficaram ativas após publicação no ML.',
+        code: 'quantity_pricing_not_effective',
+        httpStatus: verifyResult.status,
+        providerBody: verifyResult.data,
+        tiersExpected,
+        tiersFound,
+      };
+    }
+
+    return {
+      ok: true,
+      error: null,
+      code: null,
+      httpStatus: verifyResult.status,
+      providerBody: verifyResult.data,
+      tiersExpected,
+      tiersFound,
+    };
   } catch (err: any) {
     console.error(`[setItemQuantityPricing] Erro para ${itemId}:`, err.message || err);
-    return false;
+    return {
+      ok: false,
+      error: err?.message || 'Erro inesperado ao publicar preços de atacado',
+      code: 'quantity_pricing_exception',
+      httpStatus: null,
+      providerBody: null,
+      tiersExpected,
+      tiersFound: [],
+    };
   }
 }
 

@@ -3,6 +3,7 @@ import { sincronizarPrecoEstoque, listarFornecedores } from '@/services/dslite';
 import { createServiceClient } from '@/lib/supabase';
 import { buildCanonicalDsliteSku } from '@/lib/sku';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
+import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 
 export const maxDuration = 300;
 
@@ -33,6 +34,10 @@ function isValidDsliteIdentity(item: any): boolean {
   const produtoIdEmpresa = String(item?.produtoid_empresa || '').trim();
   const produtoId = String(item?.produtoid || '').trim();
   return Boolean(produtoIdEmpresa || produtoId);
+}
+
+function resolveDesiredMlStatusByStock(estoque: number): 'ativo' | 'pausado' {
+  return estoque > 0 ? 'ativo' : 'pausado';
 }
 
 export async function POST(req: Request) {
@@ -141,6 +146,11 @@ export async function POST(req: Request) {
     let recordsUpdated = 0;
     let recordsMissing = 0;
     let recordsFailed = 0;
+    let mlOutboxEnqueued = 0;
+    let mlOutboxUpdatedExisting = 0;
+    let mlOutboxSkippedNoItem = 0;
+    let mlOutboxSkippedManualBlock = 0;
+    let mlOutboxFailed = 0;
 
     for (let i = 0; i < maxPagesPerRun; i += 1) {
       const response = await sincronizarPrecoEstoque(targetFornecedor, currentPage, pageSize);
@@ -208,7 +218,7 @@ export async function POST(req: Request) {
       const skus = batch.map((row) => row.sku).filter(Boolean);
       const { data: existingRows, error: existingError } = await client
         .from('produtos')
-        .select('id, sku, nome')
+        .select('id, sku, nome, ml_item_id')
         .in('sku', skus);
 
       if (existingError) {
@@ -222,6 +232,57 @@ export async function POST(req: Request) {
       }
 
       const existingBySku = new Map((existingRows || []).map((row: any) => [String(row.sku || '').toUpperCase(), row]));
+      const existingMlItemIds = Array.from(
+        new Set(
+          (existingRows || [])
+            .map((row: any) => String(row.ml_item_id || '').trim())
+            .filter(Boolean)
+        )
+      );
+      const existingSkusUpper = Array.from(
+        new Set(
+          (existingRows || [])
+            .map((row: any) => String(row.sku || '').trim().toUpperCase())
+            .filter(Boolean)
+        )
+      );
+      const manualBlockedByItemId = new Set<string>();
+      const manualBlockedBySku = new Set<string>();
+
+      const [manualByItemResp, manualBySkuResp] = await Promise.all([
+        existingMlItemIds.length > 0
+          ? client
+              .from('ml_manual_blocklist')
+              .select('ml_item_id')
+              .eq('ativo', true)
+              .in('ml_item_id', existingMlItemIds)
+          : Promise.resolve({ data: [], error: null } as any),
+        existingSkusUpper.length > 0
+          ? client
+              .from('ml_manual_blocklist')
+              .select('sku')
+              .eq('ativo', true)
+              .in('sku', existingSkusUpper)
+          : Promise.resolve({ data: [], error: null } as any),
+      ]);
+
+      if (manualByItemResp.error || manualBySkuResp.error) {
+        const message = manualByItemResp.error?.message || manualBySkuResp.error?.message || 'Falha ao consultar bloqueio manual ML';
+        errors.push({
+          code: 'ml_manual_blocklist_query_failed',
+          message,
+          context: { fornecedorId: targetFornecedor, page: currentPage },
+        });
+      } else {
+        for (const row of manualByItemResp.data || []) {
+          const mlItemId = String((row as any).ml_item_id || '').trim();
+          if (mlItemId) manualBlockedByItemId.add(mlItemId);
+        }
+        for (const row of manualBySkuResp.data || []) {
+          const skuUpper = String((row as any).sku || '').trim().toUpperCase();
+          if (skuUpper) manualBlockedBySku.add(skuUpper);
+        }
+      }
 
       for (const row of batch) {
         const existing = existingBySku.get(String(row.sku || '').toUpperCase()) as any;
@@ -253,6 +314,54 @@ export async function POST(req: Request) {
           });
         } else {
           recordsUpdated += 1;
+
+          const mlItemId = String(existing.ml_item_id || '').trim();
+          if (!mlItemId) {
+            mlOutboxSkippedNoItem += 1;
+            continue;
+          }
+
+          const skuUpper = String(row.sku || '').trim().toUpperCase();
+          const isManualBlocked = manualBlockedByItemId.has(mlItemId) || (skuUpper ? manualBlockedBySku.has(skuUpper) : false);
+          if (isManualBlocked) {
+            mlOutboxSkippedManualBlock += 1;
+            continue;
+          }
+
+          const desiredStatus = resolveDesiredMlStatusByStock(Number(row.estoque || 0));
+          const outbox = await enqueueMlPublishOutbox(client, {
+            produtoId: String(existing.id),
+            mlItemId,
+            desiredStatus,
+            desiredQuantity: Number(row.estoque || 0),
+            desiredPrice: null,
+            source: 'dslite_stock_automation',
+            dedupePending: true,
+            payload: {
+              apply_price: false,
+              apply_quantity_pricing: false,
+              apply_quantity: true,
+              apply_status: true,
+              sku: row.sku,
+              estoque_origem: Number(row.estoque || 0),
+              status_desejado: desiredStatus,
+              origin: 'api/sync/preco-estoque',
+              synced_at: row.dslite_ultima_sync,
+            },
+          });
+
+          if (!outbox.ok) {
+            mlOutboxFailed += 1;
+            errors.push({
+              code: 'ml_outbox_enqueue_failed',
+              message: outbox.error,
+              context: { fornecedorId: targetFornecedor, page: currentPage, sku: row.sku, mlItemId },
+            });
+          } else if (outbox.action === 'updated_existing') {
+            mlOutboxUpdatedExisting += 1;
+          } else {
+            mlOutboxEnqueued += 1;
+          }
         }
       }
 
@@ -289,6 +398,11 @@ export async function POST(req: Request) {
         missing: recordsMissing,
         failed: recordsFailed,
         pages: pagesProcessed,
+        ml_outbox_enqueued: mlOutboxEnqueued,
+        ml_outbox_updated_existing: mlOutboxUpdatedExisting,
+        ml_outbox_skipped_no_item: mlOutboxSkippedNoItem,
+        ml_outbox_skipped_manual_block: mlOutboxSkippedManualBlock,
+        ml_outbox_failed: mlOutboxFailed,
       },
       errors,
       duration: { ms: Date.now() - startedAt },
@@ -299,8 +413,13 @@ export async function POST(req: Request) {
       not_found: recordsMissing,
       erros: recordsFailed,
       with_ml_sync: false,
+      ml_outbox_enqueued: mlOutboxEnqueued,
+      ml_outbox_updated_existing: mlOutboxUpdatedExisting,
+      ml_outbox_skipped_no_item: mlOutboxSkippedNoItem,
+      ml_outbox_skipped_manual_block: mlOutboxSkippedManualBlock,
+      ml_outbox_failed: mlOutboxFailed,
       next_cursor: nextCursor,
-      message: 'Sync DSLite de preço/estoque concluído sem acoplamento com ML',
+      message: 'Sync DSLite de preço/estoque concluído com enfileiramento ML por outbox',
     });
   } catch (err: any) {
     errors.push({

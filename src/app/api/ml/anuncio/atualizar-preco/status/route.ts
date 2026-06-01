@@ -4,6 +4,7 @@ import { fetchMLResult } from '@/services/integration';
 
 type PublishOutboxStatus = 'pending' | 'processing' | 'retry' | 'failed' | 'done';
 type PublishPhase = 'enfileirado' | 'processando' | 'erro' | 'concluido';
+type QuantityPricingState = 'active' | 'absent' | 'failed_validation' | 'provider_rejected';
 
 type QuantityPricingTier = {
   min_purchase_unit: number;
@@ -37,6 +38,37 @@ function extractLastOperationFromError(lastError: string | null): string | null 
   const close = raw.indexOf(']');
   if (close <= 1) return null;
   return raw.slice(1, close).trim() || null;
+}
+
+function extractFailedOperationCode(lastError: string | null): string | null {
+  const raw = String(lastError || '').trim();
+  if (!raw.startsWith('[')) return null;
+  const close = raw.indexOf(']');
+  if (close <= 1) return null;
+  const marker = raw.slice(1, close).trim();
+  const parts = marker.split(':');
+  if (parts.length < 2) return null;
+  return String(parts[1] || '').trim() || null;
+}
+
+function mapQuantityPricingState(hasQuantityPricing: boolean, operationCode: string | null): QuantityPricingState {
+  if (hasQuantityPricing) return 'active';
+  const code = String(operationCode || '').toLowerCase();
+  if (
+    code.includes('quantity_pricing_not_effective')
+    || code.includes('quantity_pricing_validation_failed')
+  ) {
+    return 'failed_validation';
+  }
+  if (
+    code.includes('quantity_pricing_provider_rejected')
+    || code.includes('item_not_eligible')
+    || code.includes('forbidden')
+    || code.includes('auth')
+  ) {
+    return 'provider_rejected';
+  }
+  return 'absent';
 }
 
 function normalizeAmount(value: unknown): number | null {
@@ -131,6 +163,7 @@ export async function GET(request: Request) {
   const status = normalizeOutboxStatus(outboxRow.status);
   const phase = mapStatusToPhase(status);
   const lastError = outboxRow.last_error ? String(outboxRow.last_error) : null;
+  const failedOperationCode = extractFailedOperationCode(lastError);
   const payload = outboxRow.payload && typeof outboxRow.payload === 'object'
     ? outboxRow.payload as Record<string, any>
     : {};
@@ -168,6 +201,8 @@ export async function GET(request: Request) {
       quantity_pricing: [],
       has_quantity_pricing: false,
       suggested_quantity_pricing: [],
+      quantity_pricing_state: 'absent' as QuantityPricingState,
+      quantity_pricing_last_error: null,
       warnings: ['Outbox concluído sem ml_item_id para conferência final.'],
     };
     return NextResponse.json(response);
@@ -197,12 +232,18 @@ export async function GET(request: Request) {
   }
 
   const hasQuantityPricing = quantityPricing.length > 0;
+  const quantityPricingState = mapQuantityPricingState(hasQuantityPricing, failedOperationCode);
   const suggestedQuantityPricing = buildSuggestedQuantityPricing(itemPrice);
+  const quantityPricingLastError = quantityPricingState === 'active'
+    ? null
+    : (lastError || null);
 
   response.result = {
     item_price: itemPrice,
     quantity_pricing: quantityPricing,
     has_quantity_pricing: hasQuantityPricing,
+    quantity_pricing_state: quantityPricingState,
+    quantity_pricing_last_error: quantityPricingLastError,
     suggested_quantity_pricing: suggestedQuantityPricing,
     warnings,
   };

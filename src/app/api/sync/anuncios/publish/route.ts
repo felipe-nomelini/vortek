@@ -21,6 +21,13 @@ function toMlStatus(value: unknown): 'active' | 'paused' | null {
   return null;
 }
 
+function mapMlStatusToLocalStatus(value: unknown): 'ativo' | 'pausado' | 'sem_anuncio' {
+  const raw = String(value || '').trim().toLowerCase();
+  if (raw === 'active') return 'ativo';
+  if (raw === 'paused') return 'pausado';
+  return 'sem_anuncio';
+}
+
 function wantsQuantityPricing(payload: unknown): boolean {
   if (!payload || typeof payload !== 'object') return false;
   const raw = (payload as Record<string, unknown>).update_quantity_pricing;
@@ -232,7 +239,7 @@ export async function POST(request: Request) {
         } as any)
         .eq('id', outboxId) as any);
 
-      const operations: Array<{ op: string; ok: boolean; error?: string }> = [];
+      const operations: Array<{ op: string; ok: boolean; error?: string; code?: string | null }> = [];
 
       if (!mlItemId) {
         await updateProcessingMarker('validate');
@@ -281,11 +288,14 @@ export async function POST(request: Request) {
               error: 'Preço base inválido para publicar atacado',
             });
           } else {
-            const quantityPricingOk = await setItemQuantityPricing(mlItemId, Number(basePrice));
+            const quantityPricingResult = await setItemQuantityPricing(mlItemId, Number(basePrice));
             operations.push({
               op: 'quantity_pricing',
-              ok: quantityPricingOk,
-              error: quantityPricingOk ? undefined : 'Falha ao publicar preços de atacado no ML',
+              ok: quantityPricingResult.ok,
+              error: quantityPricingResult.ok
+                ? undefined
+                : (quantityPricingResult.error || 'Falha ao publicar preços de atacado no ML'),
+              code: quantityPricingResult.code,
             });
           }
         }
@@ -350,6 +360,48 @@ export async function POST(request: Request) {
             updated_at: new Date().toISOString(),
           } as any)
           .eq('id', outboxId) as any);
+
+        const itemStateResult = await fetchMLResult<any>(`/items/${mlItemId}`);
+        if (!itemStateResult.ok || !itemStateResult.data) {
+          errors.push({
+            code: 'ml_publish_reconcile_status_failed',
+            message: itemStateResult.error?.message || 'Falha ao consultar estado final do anúncio no ML',
+            context: { outboxId, mlItemId, operation: 'status_reconcile' },
+          });
+        } else {
+          const resolvedLocalStatus = mapMlStatusToLocalStatus(itemStateResult.data?.status);
+
+          const produtoUpdate = row.produto_id
+            ? await client
+                .from('produtos')
+                .update({ ml_status: resolvedLocalStatus } as any)
+                .eq('id', String(row.produto_id))
+            : await client
+                .from('produtos')
+                .update({ ml_status: resolvedLocalStatus } as any)
+                .eq('ml_item_id', mlItemId);
+
+          if (produtoUpdate.error) {
+            errors.push({
+              code: 'ml_publish_reconcile_produto_update_failed',
+              message: produtoUpdate.error.message,
+              context: { outboxId, mlItemId, localStatus: resolvedLocalStatus },
+            });
+          }
+
+          const anuncioUpdate = await client
+            .from('anuncios_ml')
+            .update({ status: resolvedLocalStatus } as any)
+            .eq('ml_item_id', mlItemId);
+
+          if (anuncioUpdate.error) {
+            errors.push({
+              code: 'ml_publish_reconcile_anuncio_update_failed',
+              message: anuncioUpdate.error.message,
+              context: { outboxId, mlItemId, localStatus: resolvedLocalStatus },
+            });
+          }
+        }
       } else {
         const isHardFail = attempts >= MAX_RETRY_ATTEMPTS;
         if (isHardFail) failed += 1;
@@ -359,7 +411,7 @@ export async function POST(request: Request) {
           .from('anuncios_ml_outbox' as any)
           .update({
             status: isHardFail ? 'failed' : 'retry',
-            last_error: `[${failedOperation.op}] ${failedOperation.error || 'Falha na publicação ML'}`,
+            last_error: `[${failedOperation.op}${failedOperation.code ? `:${failedOperation.code}` : ''}] ${failedOperation.error || 'Falha na publicação ML'}`,
             payload: withPublishProgress(outboxPayloadBase, {
               state: isHardFail ? 'failed' : 'retry',
               last_operation: failedOperation.op,

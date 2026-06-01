@@ -156,6 +156,8 @@ type MlPublishStatusResponse = {
   result?: {
     item_price?: number | null;
     has_quantity_pricing?: boolean;
+    quantity_pricing_state?: 'active' | 'absent' | 'failed_validation' | 'provider_rejected';
+    quantity_pricing_last_error?: string | null;
     quantity_pricing?: Array<{
       min_purchase_unit: number;
       amount: number;
@@ -226,6 +228,8 @@ function buildMlPublishSteps(statusPayload: MlPublishStatusResponse | null): Pro
   const result = statusPayload?.result || null;
   const quantityPricing = Array.isArray(result?.quantity_pricing) ? result?.quantity_pricing : [];
   const hasQuantityPricing = quantityPricing.length > 0;
+  const quantityPricingState = String(result?.quantity_pricing_state || (hasQuantityPricing ? 'active' : 'absent'));
+  const quantityPricingLastError = String(result?.quantity_pricing_last_error || '').trim();
   const suggestedQuantityPricing = Array.isArray(result?.suggested_quantity_pricing) ? result.suggested_quantity_pricing : [];
   const warnings = Array.isArray(result?.warnings) ? result.warnings : [];
 
@@ -235,6 +239,14 @@ function buildMlPublishSteps(statusPayload: MlPublishStatusResponse | null): Pro
   const atacadoSugeridoDetail = suggestedQuantityPricing.length > 0
     ? `Sugestão: ${suggestedQuantityPricing.map((tier) => `${tier.min_purchase_unit}+ (-${tier.discount_percent}%) = ${formatCurrency(Number(tier.amount || 0))}`).join(' | ')}`
     : 'Sem sugestões disponíveis.';
+  const diagnosticReason = quantityPricingState === 'failed_validation'
+    ? 'Diagnóstico: o ML aceitou a chamada, mas as faixas não ficaram ativas.'
+    : quantityPricingState === 'provider_rejected'
+      ? 'Diagnóstico: o ML rejeitou a aplicação de atacado para este anúncio.'
+      : quantityPricingState === 'absent' && !hasQuantityPricing
+        ? 'Diagnóstico: anúncio sem faixas de atacado ativas no momento.'
+        : '';
+  const technicalReason = quantityPricingLastError ? ` Detalhe técnico: ${quantityPricingLastError}` : '';
 
   return [
     {
@@ -273,7 +285,7 @@ function buildMlPublishSteps(statusPayload: MlPublishStatusResponse | null): Pro
           ? 'warning'
           : 'pending',
       detail: currentStatus === 'done'
-        ? `${atacadoAtivoDetail} ${atacadoSugeridoDetail}${warnings.length > 0 ? ` | Aviso: ${warnings.join(' | ')}` : ''}`
+        ? `${atacadoAtivoDetail} ${atacadoSugeridoDetail}${diagnosticReason ? ` ${diagnosticReason}` : ''}${technicalReason}${warnings.length > 0 ? ` | Aviso: ${warnings.join(' | ')}` : ''}`
         : 'Aguardando confirmação final do ML.',
     },
   ];
