@@ -5,6 +5,7 @@ import { calculateOrderProfit } from '@/services/orders';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import type { Database } from '@/types/database';
 import { getExpectedCfopByUf } from '@/lib/fiscal/cfop';
+import { resolveDestIePolicy } from '@/lib/fiscal/ie-policy';
 import { resolveCodMunicipio } from '@/lib/fiscal/municipio-ibge';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
@@ -34,6 +35,8 @@ interface BillingSnapshot {
     state_name: string;
     zip_code: string;
     country_id?: string;
+    taxpayer_type_ml_raw?: string | null;
+    ie_policy_resolved?: 'contribuinte' | 'nao_contribuinte' | null;
   };
 }
 
@@ -676,7 +679,14 @@ function buildOrderSnapshot(params: {
     pendencias.push('empresa_uf_emitente_ausente');
   }
   if (billingSnapshot.tipoPessoa === 'J' && !billingSnapshot.ie) {
-    pendencias.push('billing_ie_ausente_cnpj');
+    const iePolicy = resolveDestIePolicy({
+      documento: normalizeDocument(billingSnapshot.documento),
+      billingIe: billingSnapshot.ie,
+      taxpayerTypeMlRaw: billingSnapshot.endereco?.taxpayer_type_ml_raw || null,
+    });
+    if (iePolicy.ieRequired) {
+      pendencias.push('billing_ie_ausente_cnpj');
+    }
   }
   if (items.some((it) => !it.ncm)) pendencias.push('item_sem_ncm');
 
@@ -807,6 +817,14 @@ async function processOrder(params: {
       const documento = normalizeDocument(resolvedBilling.documento);
       const tipoPessoa = resolvedBilling.tipoPessoa || detectTipoPessoaFromDoc(documento);
       const normalizedIe = normalizeIe(resolvedBilling.ie) || existingBillingIe || '';
+      const taxpayerTypeMlRaw = String(parsedV2?.taxpayerType || '').trim()
+        || String((existingBillingEndereco as any)?.taxpayer_type_ml_raw || '').trim()
+        || null;
+      const iePolicy = resolveDestIePolicy({
+        documento,
+        billingIe: normalizedIe,
+        taxpayerTypeMlRaw,
+      });
       const municipio = await resolveCodMunicipio({
         client: serviceClient as any,
         uf: resolvedBilling.endereco.state_id,
@@ -828,6 +846,8 @@ async function processOrder(params: {
         state_name: resolvedBilling.endereco.state_name,
         zip_code: normalizeZip(resolvedBilling.endereco.zip_code),
         country_id: resolvedBilling.endereco.country_id,
+        taxpayer_type_ml_raw: iePolicy.taxpayerTypeMlRaw,
+        ie_policy_resolved: iePolicy.iePolicyResolved,
       };
 
       const enderecoParts = [
@@ -865,6 +885,8 @@ async function processOrder(params: {
             ie_source: resolvedBilling.fieldSources.ie,
             cod_municipio_source: municipio.source,
             cod_municipio_reason: municipio.reason || null,
+            taxpayer_type_ml_raw: iePolicy.taxpayerTypeMlRaw,
+            ie_policy_resolved: iePolicy.iePolicyResolved,
           },
         },
         statusResultante: 'billing_resolved',
@@ -885,6 +907,17 @@ async function processOrder(params: {
   }
   if (!billingSnapshot.ie && existingBillingIe) {
     billingSnapshot.ie = existingBillingIe;
+  }
+  if (!billingSnapshot.endereco?.taxpayer_type_ml_raw) {
+    billingSnapshot.endereco.taxpayer_type_ml_raw = String((existingBillingEndereco as any)?.taxpayer_type_ml_raw || '').trim() || null;
+  }
+  if (!billingSnapshot.endereco?.ie_policy_resolved) {
+    const iePolicy = resolveDestIePolicy({
+      documento: normalizeDocument(billingSnapshot.documento),
+      billingIe: billingSnapshot.ie,
+      taxpayerTypeMlRaw: billingSnapshot.endereco?.taxpayer_type_ml_raw || null,
+    });
+    billingSnapshot.endereco.ie_policy_resolved = iePolicy.iePolicyResolved;
   }
 
   // 3. Claims: buscar reclamações via endpoint de search
@@ -1053,6 +1086,11 @@ async function processOrder(params: {
           total_calculado_sem_frete: snapshot.totais.total_calculado_sem_frete,
           total_final_ml: snapshot.totais.total_final,
           tolerancia: SNAPSHOT_TOTAL_TOLERANCE,
+        },
+        destinatario_ie_policy: {
+          taxpayer_type_ml_raw: snapshot.billing.endereco?.taxpayer_type_ml_raw || null,
+          ie_policy_resolved: snapshot.billing.endereco?.ie_policy_resolved || null,
+          ie_present: Boolean(snapshot.billing.ie),
         },
       },
       statusResultante: 'started',

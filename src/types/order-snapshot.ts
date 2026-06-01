@@ -14,6 +14,8 @@ export interface BillingSnapshot {
     state_name: string;
     zip_code: string;
     country_id?: string;
+    taxpayer_type_ml_raw?: string | null;
+    ie_policy_resolved?: 'contribuinte' | 'nao_contribuinte' | null;
   };
 }
 

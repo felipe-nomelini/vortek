@@ -79,6 +79,7 @@ export async function POST(req: Request) {
       payload: {
         source,
         target_price_received: targetPrice,
+        update_quantity_pricing: true,
       },
     });
 
@@ -96,6 +97,8 @@ export async function POST(req: Request) {
       target_price_received: targetPrice,
       base_price: basePrice,
       queued_publish: outbox.ok,
+      quantity_pricing_queued: outbox.ok,
+      outbox_id: outbox.ok ? outbox.outboxId : null,
       success: outbox.ok,
     }));
 
@@ -107,8 +110,12 @@ export async function POST(req: Request) {
       source,
       target_price_received: targetPrice,
       queued_publish: outbox.ok,
+      quantity_pricing_queued: outbox.ok,
+      outboxId: outbox.ok ? outbox.outboxId : null,
+      price_updated: false,
+      quantity_pricing_updated: false,
       message: outbox.ok
-        ? 'Preço desejado salvo e publicação enfileirada para o sync de anúncios'
+        ? 'Preço desejado salvo e publicação (preço + atacado) enfileirada para o sync de anúncios'
         : 'Preço desejado salvo, mas falhou ao enfileirar publicação',
       errors,
     });

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { fetchML } from '@/services/integration';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
+import { resolveDestIePolicy } from '@/lib/fiscal/ie-policy';
 import { resolveCodMunicipio } from '@/lib/fiscal/municipio-ibge';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 
@@ -204,6 +205,7 @@ export async function POST(request: Request) {
       const v2Address = v2?.address || {};
       const v2State = v2Address?.state || {};
       const v2Identification = v2?.identification || {};
+      const taxpayerTypeMlRaw = String(v2?.taxes?.taxpayer_type?.description || v2?.taxes?.taxpayer_type || '').trim() || null;
 
       const documento = normalizeDocument(
         v2Identification?.number
@@ -225,6 +227,11 @@ export async function POST(request: Request) {
       const cityName = firstNonEmpty(v2Address?.city_name, getAdditionalInfoValue(additionalInfo, 'CITY_NAME'));
       const businessName = firstNonEmpty(v2?.business_name, `${v2?.name || ''} ${v2?.last_name || ''}`.trim(), getAdditionalInfoValue(additionalInfo, 'BUSINESS_NAME'));
       const tipoPessoa = documento.length === 14 ? 'J' : documento.length === 11 ? 'F' : (pedido.billing_tipo_pessoa || null);
+      const iePolicy = resolveDestIePolicy({
+        documento,
+        billingIe: ie,
+        taxpayerTypeMlRaw,
+      });
 
       const currentAddress = (pedido.billing_endereco && typeof pedido.billing_endereco === 'object')
         ? { ...pedido.billing_endereco }
@@ -241,6 +248,8 @@ export async function POST(request: Request) {
         state_name: stateName || currentAddress.state_name || '',
         zip_code: zip || currentAddress.zip_code || '',
         country_id: firstNonEmpty(v2Address?.country_id, getAdditionalInfoValue(additionalInfo, 'COUNTRY_ID'), currentAddress.country_id) || undefined,
+        taxpayer_type_ml_raw: iePolicy.taxpayerTypeMlRaw,
+        ie_policy_resolved: iePolicy.iePolicyResolved,
       };
       const municipio = await resolveCodMunicipio({
         client: serviceClient as any,
@@ -265,7 +274,7 @@ export async function POST(request: Request) {
       const enderecoIncompleto = !nextAddress.state_id || !nextAddress.zip_code || !nextAddress.city_name;
       if (enderecoIncompleto) pendencias.push('billing_endereco_incompleto');
       if (!String(nextAddress.cod_municipio || '').trim()) pendencias.push('billing_cod_municipio_ausente');
-      if (tipoPessoa === 'J' && !ie) pendencias.push('billing_ie_ausente_cnpj');
+      if (tipoPessoa === 'J' && iePolicy.ieRequired && !ie) pendencias.push('billing_ie_ausente_cnpj');
       if (!(itensCount && itensCount > 0)) pendencias.push('pedido_sem_itens');
 
       const snapshotIncompleto = pendencias.length > 0;
@@ -295,6 +304,8 @@ export async function POST(request: Request) {
           source: 'ml_live',
           pendencias,
           ie_atualizada: Boolean(ie),
+          taxpayer_type_ml_raw: iePolicy.taxpayerTypeMlRaw,
+          ie_policy_resolved: iePolicy.iePolicyResolved,
           cod_municipio_source: municipio.source,
           cod_municipio_reason: municipio.reason || null,
         },

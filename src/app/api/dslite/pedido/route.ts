@@ -17,7 +17,6 @@ import { createServiceClient } from '@/lib/supabase';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import {
   buscarNotaBrasilNfePorIdentificadorInterno,
-  checkBrasilNfeChaveExists,
   getFiscalProvider,
   obterXmlBrasilNfePorChave,
   parseBrasilNfeDuplicateIdentifier,
@@ -29,6 +28,12 @@ import {
   extractEmitDestUfFromXml,
   validateCfopForDslite,
 } from '@/lib/fiscal/cfop';
+import { extractTaxpayerTypeFromBillingAddress, resolveDestIePolicy } from '@/lib/fiscal/ie-policy';
+import {
+  extractXmlTag,
+  reconcileLocalNfeSnapshotFromXml,
+  validateXmlNfeProducao as validateXmlNfeProducaoShared,
+} from '@/lib/fiscal/nfe-local-reconciliation';
 
 const TRANSPORTADORA_PADRAO_CORREIOS = 31;
 const WAIT_AUTH_TIMEOUT_MS = 180_000;
@@ -42,7 +47,6 @@ const SYNC_ORDER_TIMEOUT_MS = 120_000;
 const SYNC_ORDER_LOCK_RETRY_ATTEMPTS = 6;
 const SYNC_ORDER_LOCK_RETRY_INTERVAL_MS = 2_000;
 const STRICT_NFE_VALIDATION = String(process.env.STRICT_NFE_VALIDATION || 'true').toLowerCase() === 'true';
-const HOMOLOG_DEST_NAME_MARKER = 'NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL';
 const ITEM_TOTAL_TOLERANCE = 0.01;
 
 type StrictIssue = {
@@ -59,15 +63,6 @@ type ModFreteDecision = {
   expectedOnly?: 0 | 2;
   degraded: boolean;
 };
-
-function normalizeForCompare(value: string | null | undefined): string {
-  return String(value || '')
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/\s+/g, ' ')
-    .trim()
-    .toUpperCase();
-}
 
 function roundMoney(value: number): number {
   return Number((Number.isFinite(value) ? value : 0).toFixed(2));
@@ -407,21 +402,7 @@ function extrairChaveAcessoDoXml(xml: string): string | null {
 }
 
 function extrairTagDoXml(xml: string, tag: string): string | null {
-  try {
-    const escaped = tag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(`<${escaped}>([^<]+)</${escaped}>`);
-    const match = xml.match(regex);
-    if (match?.[1]) return match[1].trim();
-  } catch {}
-  return null;
-}
-
-function extrairDestinatarioNomeDoXml(xml: string): string | null {
-  try {
-    const match = xml.match(/<dest>[\s\S]*?<xNome>([^<]+)<\/xNome>/i);
-    if (match?.[1]) return match[1].trim();
-  } catch {}
-  return null;
+  return extractXmlTag(xml, tag);
 }
 
 function validarXmlNfeProducao(xml: string): {
@@ -431,36 +412,7 @@ function validarXmlNfeProducao(xml: string): {
   marcadorHomologacao: boolean;
   message?: string;
 } {
-  const tpAmb = extrairTagDoXml(xml, 'tpAmb');
-  const destinatarioNome = extrairDestinatarioNomeDoXml(xml);
-  const marcadorHomologacao = normalizeForCompare(destinatarioNome).includes(normalizeForCompare(HOMOLOG_DEST_NAME_MARKER));
-
-  if (tpAmb !== '1') {
-    return {
-      ok: false,
-      tpAmb,
-      destinatarioNome,
-      marcadorHomologacao,
-      message: 'NF-e em ambiente de homologação ou sem tpAmb=1. Emissão em produção é obrigatória.',
-    };
-  }
-
-  if (marcadorHomologacao) {
-    return {
-      ok: false,
-      tpAmb,
-      destinatarioNome,
-      marcadorHomologacao,
-      message: 'NF-e com destinatário de homologação detectado no XML. Emissão em produção com dados reais é obrigatória.',
-    };
-  }
-
-  return {
-    ok: true,
-    tpAmb,
-    destinatarioNome,
-    marcadorHomologacao,
-  };
+  return validateXmlNfeProducaoShared(xml);
 }
 
 function isNfeAuthorizedStatus(status: string | null | undefined): boolean {
@@ -702,11 +654,22 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
   const destZip = String(addr.zip_code || '').replace(/\D/g, '');
   const billingIe = String((pedido as any).billing_ie || '').trim();
   const isCnpjDest = doc.length === 14;
-  const indicadorIe = isCnpjDest ? (billingIe ? 1 : 2) : 9;
-  if (isCnpjDest && !billingIe) {
+  const taxpayerTypeMlRaw = extractTaxpayerTypeFromBillingAddress(addr);
+  const iePolicy = resolveDestIePolicy({
+    documento: doc,
+    billingIe,
+    taxpayerTypeMlRaw,
+  });
+  const indicadorIe = iePolicy.indicadorIe;
+  if (isCnpjDest && iePolicy.ieRequired && !billingIe) {
     return {
       ok: false as const,
-      error: 'Destinatário com CNPJ sem Inscrição Estadual (IE). Preencha a IE no pedido e sincronize novamente antes de emitir.',
+      error: 'Destinatário com CNPJ classificado como contribuinte sem Inscrição Estadual (IE). Sincronize/ajuste os dados fiscais do comprador.',
+      reason: 'cnpj_contribuinte_sem_ie',
+      taxpayerTypeMlRaw: iePolicy.taxpayerTypeMlRaw,
+      iePolicyResolved: iePolicy.iePolicyResolved,
+      indicadorIeEnviado: indicadorIe,
+      iePresent: false,
     };
   }
   const emitUfDecision = resolveEmitUfFromEmpresa(empresa);
@@ -804,7 +767,7 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
       CpfCnpj: doc,
       NmCliente: String((pedido as any).billing_nome || 'Cliente'),
       IndicadorIe: indicadorIe,
-      ...(isCnpjDest ? { IE: billingIe || 'ISENTO' } : {}),
+      ...(isCnpjDest && indicadorIe === 1 && billingIe ? { IE: billingIe } : {}),
       Endereco: {
         Logradouro: String(addr.street_name || 'Não informado'),
         Numero: String(addr.street_number || 'S/N'),
@@ -838,6 +801,10 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
     emitUf,
     emitUfSource: emitUfDecision.source,
     destUf,
+    taxpayerTypeMlRaw: iePolicy.taxpayerTypeMlRaw,
+    iePolicyResolved: iePolicy.iePolicyResolved,
+    indicadorIeEnviado: indicadorIe,
+    iePresent: iePolicy.iePresent,
   };
 }
 
@@ -1092,7 +1059,7 @@ async function runDsliteCreateJob(
 
     const { data: pedidoRow, error: pedidoRowError } = await client
       .from('pedidos')
-      .select('nfe_xml,nfe_status,dslite_id,dslite_etiqueta_enviada,ml_shipment_id,ml_pack_id,nfe_danfe_url')
+      .select('nfe_xml,nfe_status,nfe_chave,nota_fiscal_numero,nfe_protocolo,nfe_cfop,dslite_id,dslite_etiqueta_enviada,ml_shipment_id,ml_pack_id,nfe_danfe_url')
       .eq('id', pedidoId)
       .maybeSingle();
     if (pedidoRowError) {
@@ -1224,117 +1191,72 @@ async function runDsliteCreateJob(
     }
 
     let nfeStatusAtual = pedidoRow?.nfe_status || null;
-    if (xml && !isNfeAuthorizedStatus(nfeStatusAtual) && selectedProvider === 'brasilnfe') {
-      const chaveXml = extrairChaveAcessoDoXml(xml);
-      const cStatXml = extrairTagDoXml(xml, 'cStat');
-      const xMotivoXml = extrairTagDoXml(xml, 'xMotivo');
-      const tpAmbTag = extrairTagDoXml(xml, 'tpAmb');
-      const tpAmbXml: 1 | 2 | null = tpAmbTag === '1' ? 1 : (tpAmbTag === '2' ? 2 : null);
-
-      await registrarEventoNfAuditoria({
-        pedidoId,
-        mlOrderId: mlOrderId ? String(mlOrderId) : null,
-        evento: 'nfe_local_consistencia_check',
-        respostaMl: {
-          nfe_status_local_antes: nfeStatusAtual,
-          chave_xml: chaveXml,
-          tpAmb_xml: tpAmbXml,
-          tpAmb_xml_recebido: tpAmbTag,
-          cStat_xml: cStatXml,
-          xMotivo_xml: xMotivoXml,
-        },
-        statusResultante: 'checking',
-      });
-
+    if (xml && selectedProvider === 'brasilnfe') {
       try {
-        const clearGhostNf = async () => {
-          await client
+        const reconciliation = reconcileLocalNfeSnapshotFromXml({
+          nfe_status: nfeStatusAtual,
+          nfe_xml: xml,
+          nfe_chave: pedidoRow?.nfe_chave || null,
+          nota_fiscal_numero: pedidoRow?.nota_fiscal_numero || null,
+          nfe_protocolo: pedidoRow?.nfe_protocolo || null,
+          nfe_cfop: pedidoRow?.nfe_cfop || null,
+        });
+
+        await registrarEventoNfAuditoria({
+          pedidoId,
+          mlOrderId: mlOrderId ? String(mlOrderId) : null,
+          evento: 'nfe_local_consistencia_check',
+          respostaMl: {
+            nfe_status_local_antes: reconciliation.statusAnterior,
+            cStat_xml: reconciliation.xmlFields.cStat,
+            tpAmb_xml_recebido: reconciliation.xmlFields.tpAmb,
+            destinatario_xml: reconciliation.xmlFields.destinatarioNome,
+            marcador_homologacao_detectado: reconciliation.xmlFields.marcadorHomologacao,
+            nfe_chave_xml: reconciliation.xmlFields.chNFe,
+            nNF_xml: reconciliation.xmlFields.nNF,
+            nProt_xml: reconciliation.xmlFields.nProt,
+            should_update: reconciliation.shouldUpdate,
+            xml_authorized_production: reconciliation.xmlAuthorizedProduction,
+          },
+          statusResultante: 'checking',
+        });
+
+        if (reconciliation.shouldUpdate) {
+          const { error: reconcileErr } = await client
             .from('pedidos')
             .update({
-              nfe_xml: null,
-              nfe_chave: null,
-              nfe_status: null,
-              nfe_external_id: null,
-              nfe_protocolo: null,
-              nota_fiscal_numero: null,
-              nfe_danfe_url: null,
-              nfe_cfop: null,
+              ...reconciliation.updates,
+              nfe_provider: 'brasilnfe',
               nfe_last_sync_at: now(),
             } as any)
             .eq('id', pedidoId);
-          xml = null;
-          nfeStatusAtual = null;
-        };
 
-        if (cStatXml === '100' && chaveXml && tpAmbXml) {
-          const check = await checkBrasilNfeChaveExists(chaveXml, tpAmbXml);
-          if (check.exists) {
-            await client
-              .from('pedidos')
-              .update({
-                nfe_status: 'authorized',
-                nfe_chave: chaveXml,
-                nfe_provider: 'brasilnfe',
-                nfe_last_sync_at: now(),
-              } as any)
-              .eq('id', pedidoId);
-            nfeStatusAtual = 'authorized';
+          if (!reconcileErr) {
+            nfeStatusAtual = reconciliation.updates.nfe_status || nfeStatusAtual;
             await registrarEventoNfAuditoria({
               pedidoId,
               mlOrderId: mlOrderId ? String(mlOrderId) : null,
-              evento: 'nfe_local_autocorrecao_status',
+              evento: 'nfe_local_status_reconciliado',
               respostaMl: {
-                nfe_status_local_antes: pedidoRow?.nfe_status || null,
-                chave_xml: chaveXml,
-                tpAmb_xml: tpAmbXml,
-                tpAmb_xml_recebido: tpAmbTag,
-                cStat_xml: cStatXml,
-                found_in_brasilnfe: true,
-                acao: 'autocorrigir',
-                check_raw: check.raw,
+                nfe_status_anterior: reconciliation.statusAnterior,
+                nfe_status_corrigido: reconciliation.updates.nfe_status || reconciliation.statusCorrigido,
+                nNF_xml: reconciliation.xmlFields.nNF,
+                nProt_xml: reconciliation.xmlFields.nProt,
+                chNFe_xml: reconciliation.xmlFields.chNFe,
+                tpAmb_xml: reconciliation.xmlFields.tpAmb,
+                cStat_xml: reconciliation.xmlFields.cStat,
+                updates_aplicados: reconciliation.updates,
               },
-              statusResultante: 'autocorrected',
+              statusResultante: 'reconciled',
             });
           } else {
-            await clearGhostNf();
-            await registrarEventoNfAuditoria({
-              pedidoId,
-              mlOrderId: mlOrderId ? String(mlOrderId) : null,
-              evento: 'nfe_local_cleanup_ghost_xml',
-              respostaMl: {
-                nfe_status_local_antes: pedidoRow?.nfe_status || null,
-                chave_xml: chaveXml,
-                tpAmb_xml: tpAmbXml,
-                tpAmb_xml_recebido: tpAmbTag,
-                cStat_xml: cStatXml,
-                found_in_brasilnfe: false,
-                acao: 'limpar_e_reemitir',
-                check_raw: check.raw,
-              },
-              statusResultante: 'cleaned',
-            });
+            nfeStatusAtual = reconciliation.statusCorrigido || nfeStatusAtual;
           }
         } else {
-          await clearGhostNf();
-          await registrarEventoNfAuditoria({
-            pedidoId,
-            mlOrderId: mlOrderId ? String(mlOrderId) : null,
-            evento: 'nfe_local_cleanup_ghost_xml',
-            respostaMl: {
-              nfe_status_local_antes: pedidoRow?.nfe_status || null,
-              chave_xml: chaveXml,
-              tpAmb_xml: tpAmbXml,
-              tpAmb_xml_recebido: tpAmbTag,
-              cStat_xml: cStatXml,
-              found_in_brasilnfe: false,
-              acao: 'limpar_e_reemitir',
-              motivo: 'xml_sem_autorizacao_ou_sem_chave',
-            },
-            statusResultante: 'cleaned',
-          });
+          nfeStatusAtual = reconciliation.statusCorrigido || nfeStatusAtual;
         }
       } catch (consistencyErr: any) {
-        const msg = 'Inconsistência fiscal local detectada. Falha ao reconciliar com Brasil NFe. Tente novamente.';
+        const msg = 'Inconsistência fiscal local detectada. Falha ao reconciliar estado da NF. Tente novamente.';
         await registrarEventoNfAuditoria({
           pedidoId,
           mlOrderId: mlOrderId ? String(mlOrderId) : null,
@@ -1471,6 +1393,10 @@ async function runDsliteCreateJob(
       let emitUfValue: string | null = null;
       let destUfValue: string | null = null;
       let emitUfSource: 'empresa.uf_fiscal' | 'endereco_fallback' | 'missing' | null = null;
+      let taxpayerTypeMlRawValue: string | null = null;
+      let iePolicyResolvedValue: 'contribuinte' | 'nao_contribuinte' | null = null;
+      let indicadorIeEnviadoValue: number | null = null;
+      let iePresentValue = false;
       if (!payloadToEmit && selectedProvider === 'brasilnfe') {
         const built = await buildBrasilNfePayloadFromSnapshot({ client, pedidoId });
         if (!built.ok) {
@@ -1497,6 +1423,10 @@ async function runDsliteCreateJob(
               dest_uf_value: (built as any)?.destUf || String((pedidoDiag as any)?.billing_endereco?.state_id || '').trim().toUpperCase() || null,
               brasilnfe_tipo_ambiente_raw: (built as any)?.brasilnfeTipoAmbienteRaw ?? null,
               tipo_ambiente_interpretado: (built as any)?.brasilnfeTipoAmbienteInterpretado ?? null,
+              taxpayer_type_ml_raw: (built as any)?.taxpayerTypeMlRaw ?? null,
+              ie_policy_resolved: (built as any)?.iePolicyResolved ?? null,
+              indicador_ie_enviado: (built as any)?.indicadorIeEnviado ?? null,
+              ie_present: (built as any)?.iePresent ?? null,
               expected: 1,
               missing_fields: {
                 state_id: !String((pedidoDiag as any)?.billing_endereco?.state_id || '').trim(),
@@ -1558,6 +1488,10 @@ async function runDsliteCreateJob(
         emitUfValue = built.emitUf || null;
         destUfValue = built.destUf || null;
         emitUfSource = built.emitUfSource || null;
+        taxpayerTypeMlRawValue = built.taxpayerTypeMlRaw || null;
+        iePolicyResolvedValue = built.iePolicyResolved || null;
+        indicadorIeEnviadoValue = Number(built.indicadorIeEnviado ?? 0) || null;
+        iePresentValue = Boolean(built.iePresent);
         if (built.emitUfSource === 'endereco_fallback') {
           await registrarEventoNfAuditoria({
             pedidoId,
@@ -1593,6 +1527,10 @@ async function runDsliteCreateJob(
               allowed_modfrete: [0, 2],
               fonte_decisao_modfrete: modFreteSource,
               modo_degradado: modFreteDegraded,
+              taxpayer_type_ml_raw: taxpayerTypeMlRawValue,
+              ie_policy_resolved: iePolicyResolvedValue,
+              indicador_ie_enviado: indicadorIeEnviadoValue,
+              ie_present: iePresentValue,
             },
             respostaMl: {
               issues: strict.issues,
@@ -1626,6 +1564,10 @@ async function runDsliteCreateJob(
             allowed_modfrete: [0, 2],
             fonte_decisao_modfrete: modFreteSource,
             modo_degradado: modFreteDegraded,
+            taxpayer_type_ml_raw: taxpayerTypeMlRawValue,
+            ie_policy_resolved: iePolicyResolvedValue,
+            indicador_ie_enviado: indicadorIeEnviadoValue,
+            ie_present: iePresentValue,
           },
           statusResultante: 'sending',
         });
@@ -1886,7 +1828,7 @@ async function runDsliteCreateJob(
           nfe_provider: selectedProvider,
           nfe_external_id: emissao.externalId || null,
           nfe_last_sync_at: now(),
-          nfe_status: emissao.status || undefined,
+          nfe_status: emissao.status === 'already_issued' ? 'authorized' : (emissao.status || undefined),
           nfe_chave: emissao.chave || undefined,
           nfe_protocolo: emissao.protocolo || undefined,
           nota_fiscal_numero: emissao.numero || undefined,

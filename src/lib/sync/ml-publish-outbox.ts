@@ -29,7 +29,7 @@ function normalizeDesiredQuantity(value: unknown): number | null {
 export async function enqueueMlPublishOutbox(
   client: ServiceClientLike,
   input: MlPublishOutboxInput,
-): Promise<{ ok: true } | { ok: false; error: string }> {
+): Promise<{ ok: true; outboxId: string } | { ok: false; error: string }> {
   const produtoId = String(input.produtoId || '').trim();
   const mlItemId = String(input.mlItemId || '').trim();
   if (!produtoId || !mlItemId) {
@@ -40,7 +40,7 @@ export async function enqueueMlPublishOutbox(
   const desiredQuantity = normalizeDesiredQuantity(input.desiredQuantity);
   const desiredStatus = input.desiredStatus || null;
 
-  const { error } = await (client
+  const { data, error } = await (client
     .from('anuncios_ml_outbox' as any)
     .insert({
       produto_id: produtoId,
@@ -52,12 +52,18 @@ export async function enqueueMlPublishOutbox(
       payload: input.payload || {},
       status: 'pending',
       available_at: new Date().toISOString(),
-    } as any) as any);
+    } as any)
+    .select('id')
+    .single() as any);
 
   if (error) {
     return { ok: false, error: error.message };
   }
 
-  return { ok: true };
-}
+  const outboxId = String((data as any)?.id || '').trim();
+  if (!outboxId) {
+    return { ok: false, error: 'Outbox criado sem identificador retornado' };
+  }
 
+  return { ok: true, outboxId };
+}

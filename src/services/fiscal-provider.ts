@@ -272,6 +272,52 @@ export async function cancelarNotaBrasilNfePorChave(input: {
   }
 }
 
+export async function enviarCartaCorrecaoBrasilNfePorChave(input: {
+  chave: string;
+  correcao: string;
+  numeroSequencial?: number;
+  tipoAmbiente?: 1 | 2;
+}): Promise<{
+  ok: boolean;
+  protocolo?: string | null;
+  error?: string;
+  raw?: any;
+}> {
+  try {
+    const bnfe = await getBrasilNfeClient();
+    const resp: any = await bnfe.eventos.enviarCartaCorrecao({
+      ChaveNF: input.chave,
+      Correcao: input.correcao,
+      NumeroSequencial: Number(input.numeroSequencial || 1),
+      TipoAmbiente: Number(input.tipoAmbiente || 1),
+    } as any);
+
+    const status = Number(resp?.Status || 0);
+    const cod = Number(resp?.CodStatusRespostaSefaz || 0);
+    const ds = String(resp?.DsMotivo || '').toLowerCase();
+    const ok = status === 1 || [135, 136].includes(cod) || ds.includes('evento registrado');
+    if (!ok) {
+      return {
+        ok: false,
+        error: String(resp?.Error || resp?.DsMotivo || 'Falha ao enviar carta de correção na Brasil NFe'),
+        raw: resp,
+      };
+    }
+
+    return {
+      ok: true,
+      protocolo: String(resp?.NuProtocolo || resp?.NumeroProtocolo || '').trim() || null,
+      raw: resp,
+    };
+  } catch (err: any) {
+    return {
+      ok: false,
+      error: err?.message || 'Erro ao enviar carta de correção na Brasil NFe',
+      raw: err?.response?.data || null,
+    };
+  }
+}
+
 function extractFirstCfop(xml: string | null | undefined): string | null {
   if (!xml) return null;
   return extractCfopsFromXml(xml)[0] || null;

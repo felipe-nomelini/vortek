@@ -7,11 +7,12 @@ import type { TablePaginationConfig, TableProps } from 'antd';
 import type { SorterResult } from 'antd/es/table/interface';
 import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
 import { formatCurrency } from '@/lib/format';
+import { nfeTechnicalStatusLabel, type NfeTechnicalStatus } from '@/lib/fiscal/nfe-status';
 
 const { Title } = Typography;
 const { RangePicker } = DatePicker;
 
-type NFStatus = 'emitida' | 'cancelada' | 'pendente';
+type NFStatus = NfeTechnicalStatus;
 type SortOrder = 'asc' | 'desc';
 
 interface NotaFiscalRow {
@@ -33,16 +34,37 @@ interface NotaFiscalRow {
 
 const statusOptions = [
   { value: '', label: 'Todos os status' },
-  { value: 'emitida', label: 'Emitida' },
+  { value: 'autorizada', label: 'Autorizada' },
   { value: 'cancelada', label: 'Cancelada' },
   { value: 'pendente', label: 'Pendente' },
+  { value: 'interrompida', label: 'Interrompida' },
+  { value: 'rejeitada', label: 'Rejeitada' },
+  { value: 'processando', label: 'Processando' },
+  { value: 'outro', label: 'Outro' },
 ];
 
 const statusColor: Record<NFStatus, string> = {
-  emitida: 'green',
+  autorizada: 'green',
   cancelada: 'red',
   pendente: 'orange',
+  interrompida: 'gold',
+  rejeitada: 'volcano',
+  processando: 'blue',
+  outro: 'default',
 };
+
+function resolveSerieFromNfeChave(chave: string | null | undefined): string | null {
+  const normalized = String(chave || '').replace(/\D/g, '');
+  if (normalized.length !== 44) return null;
+  const serieRaw = normalized.slice(22, 25);
+  if (!/^\d{3}$/.test(serieRaw)) return null;
+  return String(Number(serieRaw));
+}
+
+function formatNumeroWithSerie(numero: string, nfeChave: string | null | undefined): string {
+  const serie = resolveSerieFromNfeChave(nfeChave);
+  return serie ? `NF ${numero} • Série ${serie}` : `NF ${numero}`;
+}
 
 export default function NotasFiscaisPage() {
   const PAGE_SIZE = 100;
@@ -64,11 +86,20 @@ export default function NotasFiscaisPage() {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [messageApi, contextHolder] = message.useMessage();
   const [sendingRowId, setSendingRowId] = useState<string | null>(null);
+  const [actionRowId, setActionRowId] = useState<string | null>(null);
   const [emailModalOpen, setEmailModalOpen] = useState(false);
   const [emailTarget, setEmailTarget] = useState<NotaFiscalRow | null>(null);
   const [emailTo, setEmailTo] = useState('');
   const [emailSubject, setEmailSubject] = useState('');
   const [emailBody, setEmailBody] = useState('');
+  const [cancelModalOpen, setCancelModalOpen] = useState(false);
+  const [cancelTarget, setCancelTarget] = useState<NotaFiscalRow | null>(null);
+  const [cancelReason, setCancelReason] = useState('Cancelamento operacional da NF-e solicitada pelo usuário');
+  const [cancelConfirmText, setCancelConfirmText] = useState('');
+  const [cceModalOpen, setCceModalOpen] = useState(false);
+  const [cceTarget, setCceTarget] = useState<NotaFiscalRow | null>(null);
+  const [cceText, setCceText] = useState('');
+  const [cceSeq, setCceSeq] = useState(1);
   const [summary, setSummary] = useState({
     total: 0,
     emitidas: 0,
@@ -185,6 +216,77 @@ export default function NotasFiscaisPage() {
     }
   }, [page, sortBy, sortOrder, lastSearch, statusFilter, dateRange, valorMin, valorMax]);
 
+  const openCancelModal = useCallback((row: NotaFiscalRow) => {
+    setCancelTarget(row);
+    setCancelReason('Cancelamento operacional da NF-e solicitada pelo usuário');
+    setCancelConfirmText('');
+    setCancelModalOpen(true);
+  }, []);
+
+  const submitCancelNfe = useCallback(async () => {
+    if (!cancelTarget) return;
+    if (cancelConfirmText.trim().toUpperCase() !== 'CANCELAR') {
+      messageApi.error('Digite CANCELAR para confirmar.');
+      return;
+    }
+    setActionRowId(cancelTarget.id);
+    try {
+      const res = await fetch(`/api/notas-fiscais/${cancelTarget.id}/cancelar`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ justificativa: cancelReason }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        messageApi.error(json?.error || 'Falha ao cancelar nota fiscal');
+        return;
+      }
+      messageApi.success(json?.alreadyCanceled ? 'Nota já estava cancelada.' : 'Nota fiscal cancelada com sucesso.');
+      setCancelModalOpen(false);
+      setCancelTarget(null);
+      await fetchNotas();
+    } finally {
+      setActionRowId(null);
+    }
+  }, [cancelTarget, cancelReason, cancelConfirmText, fetchNotas, messageApi]);
+
+  const openCceModal = useCallback((row: NotaFiscalRow) => {
+    setCceTarget(row);
+    setCceText('');
+    setCceSeq(1);
+    setCceModalOpen(true);
+  }, []);
+
+  const submitCartaCorrecao = useCallback(async () => {
+    if (!cceTarget) return;
+    if (cceText.trim().length < 15) {
+      messageApi.error('A correção deve ter no mínimo 15 caracteres.');
+      return;
+    }
+    setActionRowId(cceTarget.id);
+    try {
+      const res = await fetch(`/api/notas-fiscais/${cceTarget.id}/carta-correcao`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          correcao: cceText,
+          numeroSequencial: cceSeq,
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        messageApi.error(json?.error || 'Falha ao enviar carta de correção');
+        return;
+      }
+      messageApi.success(`Carta de correção enviada${json?.protocolo ? ` (protocolo ${json.protocolo})` : ''}.`);
+      setCceModalOpen(false);
+      setCceTarget(null);
+      await fetchNotas();
+    } finally {
+      setActionRowId(null);
+    }
+  }, [cceTarget, cceText, cceSeq, fetchNotas, messageApi]);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (search !== lastSearch) {
@@ -220,27 +322,16 @@ export default function NotasFiscaisPage() {
       ),
     },
     {
-      title: 'Pedido ML (Order ID)',
-      dataIndex: 'ml_order_id',
-      key: 'ml_order_id',
-      width: 180,
-      render: (v: string | null) => <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
-    },
-    {
-      title: 'Pack ML (Pack ID)',
-      dataIndex: 'ml_pack_id',
-      key: 'ml_pack_id',
-      width: 180,
-      render: (v: string | null) => <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
-    },
-    {
       title: 'Número',
       dataIndex: 'numero',
       key: 'numero',
       width: 130,
       sorter: true,
       render: (v: string, row: NotaFiscalRow) => {
-        if (!v || v === '—' || row.status === 'pendente') return <span style={{ fontFamily: 'monospace' }}>—</span>;
+        if (!v || v === '—' || row.status === 'pendente' || row.status === 'processando') {
+          return <span style={{ fontFamily: 'monospace' }}>—</span>;
+        }
+        const label = formatNumeroWithSerie(v, row.nfe_chave);
         return (
           <Button
             type="link"
@@ -248,7 +339,7 @@ export default function NotasFiscaisPage() {
             style={{ padding: 0, fontFamily: 'monospace' }}
             onClick={() => handleViewPdf(row)}
           >
-            {v}
+            {label}
           </Button>
         );
       },
@@ -292,14 +383,7 @@ export default function NotasFiscaisPage() {
       key: 'status',
       width: 120,
       sorter: true,
-      render: (s: NFStatus) => <Tag color={statusColor[s]}>{s.charAt(0).toUpperCase() + s.slice(1)}</Tag>,
-    },
-    {
-      title: 'Status Técnico',
-      dataIndex: 'nfe_status',
-      key: 'nfe_status',
-      width: 140,
-      render: (v: string | null | undefined) => <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
+      render: (s: NFStatus) => <Tag color={statusColor[s]}>{nfeTechnicalStatusLabel(s)}</Tag>,
     },
     {
       title: 'Ações',
@@ -313,16 +397,21 @@ export default function NotasFiscaisPage() {
               { key: 'view', label: 'Visualizar' },
               { key: 'download', label: 'Baixar PDF' },
               { key: 'email', label: 'Enviar por e-mail' },
+              { type: 'divider' },
+              { key: 'cancel', label: 'Cancelar NF-e', disabled: record.status === 'cancelada' || !record.nfe_chave },
+              { key: 'cce', label: 'Enviar Carta de Correção', disabled: record.status !== 'autorizada' || !record.nfe_chave },
             ],
             onClick: ({ key }) => {
               if (key === 'view') handleViewPdf(record);
               if (key === 'download') handleDownloadPdf(record);
               if (key === 'email') openEmailModal(record);
+              if (key === 'cancel') openCancelModal(record);
+              if (key === 'cce') openCceModal(record);
             },
           }}
           trigger={['click']}
         >
-          <Button type="text" size="small" icon={<EllipsisOutlined />} loading={sendingRowId === record.id} />
+          <Button type="text" size="small" icon={<EllipsisOutlined />} loading={sendingRowId === record.id || actionRowId === record.id} />
         </Dropdown>
       ),
     },
@@ -468,7 +557,7 @@ export default function NotasFiscaisPage() {
               showSizeChanger: false,
               showTotal: (t) => `${t} notas fiscais`,
             }}
-            scroll={{ x: 1080 }}
+            scroll={{ x: 920 }}
             style={{ background: 'transparent' }}
             size="small"
           />
@@ -502,6 +591,64 @@ export default function NotasFiscaisPage() {
             placeholder="Mensagem"
             value={emailBody}
             onChange={(e) => setEmailBody(e.target.value)}
+          />
+        </Space>
+      </Modal>
+      <Modal
+        open={cancelModalOpen}
+        title="Cancelar NF-e"
+        onCancel={() => {
+          setCancelModalOpen(false);
+          setCancelTarget(null);
+        }}
+        onOk={submitCancelNfe}
+        okText="Confirmar cancelamento"
+        okButtonProps={{ danger: true }}
+        confirmLoading={actionRowId === cancelTarget?.id}
+        destroyOnClose
+      >
+        <Space direction="vertical" style={{ width: '100%' }} size={10}>
+          <Typography.Text type="danger">
+            Esta ação é irreversível. Digite <b>CANCELAR</b> para confirmar.
+          </Typography.Text>
+          <Input.TextArea
+            rows={4}
+            placeholder="Justificativa do cancelamento"
+            value={cancelReason}
+            onChange={(e) => setCancelReason(e.target.value)}
+          />
+          <Input
+            placeholder='Digite "CANCELAR"'
+            value={cancelConfirmText}
+            onChange={(e) => setCancelConfirmText(e.target.value)}
+          />
+        </Space>
+      </Modal>
+      <Modal
+        open={cceModalOpen}
+        title="Enviar Carta de Correção"
+        onCancel={() => {
+          setCceModalOpen(false);
+          setCceTarget(null);
+        }}
+        onOk={submitCartaCorrecao}
+        okText="Enviar CC-e"
+        confirmLoading={actionRowId === cceTarget?.id}
+        destroyOnClose
+      >
+        <Space direction="vertical" style={{ width: '100%' }} size={10}>
+          <InputNumber
+            min={1}
+            value={cceSeq}
+            onChange={(v) => setCceSeq(Math.max(1, Number(v || 1)))}
+            style={{ width: 160 }}
+            placeholder="Seq. evento"
+          />
+          <Input.TextArea
+            rows={6}
+            placeholder="Descreva a correção (mínimo 15 caracteres)"
+            value={cceText}
+            onChange={(e) => setCceText(e.target.value)}
           />
         </Space>
       </Modal>

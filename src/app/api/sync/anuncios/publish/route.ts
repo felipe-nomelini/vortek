@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
+import { setItemQuantityPricing } from '@/services/mercadolibre';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 
 export const maxDuration = 300;
@@ -18,6 +19,72 @@ function toMlStatus(value: unknown): 'active' | 'paused' | null {
   if (raw === 'ativo' || raw === 'active') return 'active';
   if (raw === 'pausado' || raw === 'paused') return 'paused';
   return null;
+}
+
+function wantsQuantityPricing(payload: unknown): boolean {
+  if (!payload || typeof payload !== 'object') return false;
+  const raw = (payload as Record<string, unknown>).update_quantity_pricing;
+  return raw === true || raw === 'true' || raw === 1 || raw === '1';
+}
+
+function parseBooleanFlag(value: unknown): boolean | null {
+  if (value === true || value === 'true' || value === 1 || value === '1') return true;
+  if (value === false || value === 'false' || value === 0 || value === '0') return false;
+  return null;
+}
+
+function resolveApplyMode(row: any): {
+  applyPrice: boolean;
+  applyQuantityPricing: boolean;
+  applyQuantity: boolean;
+  applyStatus: boolean;
+  basePriceForQuantityPricing: number | null;
+} {
+  const payload = normalizeOutboxPayload(row?.payload);
+
+  const applyPriceFlag = parseBooleanFlag(payload.apply_price);
+  const applyQuantityPricingFlag = parseBooleanFlag(payload.apply_quantity_pricing);
+  const applyQuantityFlag = parseBooleanFlag(payload.apply_quantity);
+  const applyStatusFlag = parseBooleanFlag(payload.apply_status);
+
+  const hasDesiredPrice = row?.desired_price !== null && row?.desired_price !== undefined;
+  const hasDesiredQuantity = row?.desired_quantity !== null && row?.desired_quantity !== undefined;
+  const hasDesiredStatus = Boolean(toMlStatus(row?.desired_status));
+
+  const basePriceRaw = Number(payload.base_price_for_quantity_pricing);
+  const basePriceForQuantityPricing = Number.isFinite(basePriceRaw) && basePriceRaw > 0
+    ? Math.round(basePriceRaw * 100) / 100
+    : null;
+
+  return {
+    applyPrice: applyPriceFlag ?? hasDesiredPrice,
+    applyQuantityPricing: applyQuantityPricingFlag ?? wantsQuantityPricing(payload),
+    applyQuantity: applyQuantityFlag ?? hasDesiredQuantity,
+    applyStatus: applyStatusFlag ?? hasDesiredStatus,
+    basePriceForQuantityPricing,
+  };
+}
+
+function normalizeOutboxPayload(payload: unknown): Record<string, unknown> {
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) return {};
+  return payload as Record<string, unknown>;
+}
+
+function withPublishProgress(
+  payload: Record<string, unknown>,
+  progress: Record<string, unknown>,
+): Record<string, unknown> {
+  const current = payload.publish_progress && typeof payload.publish_progress === 'object' && !Array.isArray(payload.publish_progress)
+    ? payload.publish_progress as Record<string, unknown>
+    : {};
+  return {
+    ...payload,
+    publish_progress: {
+      ...current,
+      ...progress,
+      updated_at: new Date().toISOString(),
+    },
+  };
 }
 
 export async function POST(request: Request) {
@@ -96,7 +163,7 @@ export async function POST(request: Request) {
 
     const { data: outboxRows, error: outboxError } = await (client
       .from('anuncios_ml_outbox' as any)
-      .select('id, produto_id, ml_item_id, desired_status, desired_price, desired_quantity, status, attempts')
+      .select('id, produto_id, ml_item_id, desired_status, desired_price, desired_quantity, status, attempts, payload')
       .in('status', ['pending', 'retry'])
       .lte('available_at', new Date().toISOString())
       .order('created_at', { ascending: true })
@@ -134,12 +201,33 @@ export async function POST(request: Request) {
       const outboxId = String(row.id);
       const mlItemId = String(row.ml_item_id || '').trim();
       const attempts = Number(row.attempts || 0) + 1;
+      const outboxPayloadBase = normalizeOutboxPayload((row as any).payload);
+      let lastOperationMarker: string | null = null;
+      const updateProcessingMarker = async (operation: string) => {
+        lastOperationMarker = operation;
+        await (client
+          .from('anuncios_ml_outbox' as any)
+          .update({
+            payload: withPublishProgress(outboxPayloadBase, {
+              last_operation: operation,
+              state: 'processing',
+              attempts,
+            }) as any,
+            updated_at: new Date().toISOString(),
+          } as any)
+          .eq('id', outboxId) as any);
+      };
 
       await (client
         .from('anuncios_ml_outbox' as any)
         .update({
           status: 'processing',
           attempts,
+          payload: withPublishProgress(outboxPayloadBase, {
+            last_operation: 'processing_start',
+            state: 'processing',
+            attempts,
+          }) as any,
           updated_at: new Date().toISOString(),
         } as any)
         .eq('id', outboxId) as any);
@@ -147,9 +235,14 @@ export async function POST(request: Request) {
       const operations: Array<{ op: string; ok: boolean; error?: string }> = [];
 
       if (!mlItemId) {
+        await updateProcessingMarker('validate');
         operations.push({ op: 'validate', ok: false, error: 'ml_item_id ausente no outbox' });
       } else {
-        if (row.desired_price !== null && row.desired_price !== undefined) {
+        const applyMode = resolveApplyMode(row);
+        let pricePublishedOk = false;
+        let pricePublishedValue: number | null = null;
+        if (applyMode.applyPrice) {
+          await updateProcessingMarker('price');
           const price = Number(row.desired_price);
           if (!Number.isFinite(price) || price <= 0) {
             operations.push({ op: 'price', ok: false, error: 'Preço desejado inválido' });
@@ -164,10 +257,41 @@ export async function POST(request: Request) {
               ok: result.ok,
               error: result.ok ? undefined : (result.error?.message || 'Falha ao publicar preço no ML'),
             });
+            pricePublishedOk = result.ok;
+            pricePublishedValue = price;
           }
         }
 
-        if (row.desired_quantity !== null && row.desired_quantity !== undefined) {
+        if (applyMode.applyQuantityPricing) {
+          await updateProcessingMarker('quantity_pricing');
+          const basePrice = applyMode.basePriceForQuantityPricing
+            ?? (Number.isFinite(Number(pricePublishedValue)) ? Number(pricePublishedValue) : null)
+            ?? (Number.isFinite(Number(row.desired_price)) ? Number(row.desired_price) : null);
+
+          if (applyMode.applyPrice && !pricePublishedOk) {
+            operations.push({
+              op: 'quantity_pricing',
+              ok: false,
+              error: 'Falha ao publicar preço base antes do atacado',
+            });
+          } else if (!Number.isFinite(Number(basePrice)) || Number(basePrice) <= 0) {
+            operations.push({
+              op: 'quantity_pricing',
+              ok: false,
+              error: 'Preço base inválido para publicar atacado',
+            });
+          } else {
+            const quantityPricingOk = await setItemQuantityPricing(mlItemId, Number(basePrice));
+            operations.push({
+              op: 'quantity_pricing',
+              ok: quantityPricingOk,
+              error: quantityPricingOk ? undefined : 'Falha ao publicar preços de atacado no ML',
+            });
+          }
+        }
+
+        if (applyMode.applyQuantity) {
+          await updateProcessingMarker('quantity');
           const quantity = Math.max(0, Math.trunc(Number(row.desired_quantity)));
           const result = await fetchMLResult<any>(`/items/${mlItemId}`, {
             method: 'PUT',
@@ -182,7 +306,8 @@ export async function POST(request: Request) {
         }
 
         const statusMl = toMlStatus(row.desired_status);
-        if (statusMl) {
+        if (applyMode.applyStatus && statusMl) {
+          await updateProcessingMarker('status');
           const result = await fetchMLResult<any>(`/items/${mlItemId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -196,14 +321,31 @@ export async function POST(request: Request) {
         }
       }
 
+      console.log(JSON.stringify({
+        event: 'ml_publish_outbox_operations',
+        timestamp_utc: new Date().toISOString(),
+        outbox_id: outboxId,
+        ml_item_id: mlItemId,
+        operations,
+      }));
+
       const failedOperation = operations.find((entry) => !entry.ok);
       if (!failedOperation) {
         done += 1;
+        const lastSuccessfulOperation = operations.length > 0
+          ? operations[operations.length - 1].op
+          : (lastOperationMarker || 'done');
         await (client
           .from('anuncios_ml_outbox' as any)
           .update({
             status: 'done',
             last_error: null,
+            payload: withPublishProgress(outboxPayloadBase, {
+              state: 'done',
+              last_operation: lastSuccessfulOperation,
+              operations,
+              attempts,
+            }) as any,
             processed_at: new Date().toISOString(),
             updated_at: new Date().toISOString(),
           } as any)
@@ -217,7 +359,13 @@ export async function POST(request: Request) {
           .from('anuncios_ml_outbox' as any)
           .update({
             status: isHardFail ? 'failed' : 'retry',
-            last_error: failedOperation.error || 'Falha na publicação ML',
+            last_error: `[${failedOperation.op}] ${failedOperation.error || 'Falha na publicação ML'}`,
+            payload: withPublishProgress(outboxPayloadBase, {
+              state: isHardFail ? 'failed' : 'retry',
+              last_operation: failedOperation.op,
+              operations,
+              attempts,
+            }) as any,
             available_at: isHardFail
               ? new Date().toISOString()
               : new Date(Date.now() + Math.min(15, attempts) * 60 * 1000).toISOString(),
@@ -281,4 +429,3 @@ export async function POST(request: Request) {
     }
   }
 }
-

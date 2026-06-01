@@ -1,22 +1,46 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase';
+import { normalizeNfeTechnicalStatus, type NfeTechnicalStatus } from '@/lib/fiscal/nfe-status';
+import { reconcileLocalNfeSnapshotFromXml } from '@/lib/fiscal/nfe-local-reconciliation';
 
-type NFStatus = 'emitida' | 'cancelada' | 'pendente';
+type NFStatus = NfeTechnicalStatus;
 
 function normalizeSearch(value: string): string {
   return value.replace(/[,]/g, ' ').trim();
 }
 
-function isNfeCanceled(value: string | null | undefined): boolean {
-  const v = String(value || '').toLowerCase();
-  return v === 'cancelada' || v === 'cancelled' || v === 'canceled';
+function mapStatus(row: { nfe_status: string | null }): NFStatus {
+  return normalizeNfeTechnicalStatus(row.nfe_status);
 }
 
-function mapStatus(row: { nota_fiscal_emitida: boolean; nota_fiscal_numero: string | null; nfe_status: string | null }): NFStatus {
-  if (isNfeCanceled(row.nfe_status)) return 'cancelada';
-  const nfe = String(row.nfe_status || '').toLowerCase();
-  if (row.nota_fiscal_emitida && (nfe === 'authorized' || nfe === 'autorizada')) return 'emitida';
-  return 'pendente';
+async function reconcileRowsBestEffort(supabase: any, rows: any[]): Promise<any[]> {
+  return Promise.all((rows || []).map(async (row) => {
+    const reconciliation = reconcileLocalNfeSnapshotFromXml({
+      nfe_status: row?.nfe_status || null,
+      nfe_xml: row?.nfe_xml || null,
+      nfe_chave: row?.nfe_chave || null,
+      nota_fiscal_numero: row?.nota_fiscal_numero || null,
+      nfe_protocolo: row?.nfe_protocolo || null,
+      nfe_cfop: row?.nfe_cfop || null,
+    });
+
+    if (!reconciliation.shouldUpdate || !row?.id) {
+      return row;
+    }
+
+    await supabase
+      .from('pedidos')
+      .update({
+        ...reconciliation.updates,
+        nfe_last_sync_at: new Date().toISOString(),
+      } as any)
+      .eq('id', row.id);
+
+    return {
+      ...row,
+      ...reconciliation.updates,
+    };
+  }));
 }
 
 export async function GET(request: Request) {
@@ -41,7 +65,7 @@ export async function GET(request: Request) {
 
     let query = supabase
       .from('pedidos')
-      .select('nota_fiscal_numero, nota_fiscal_emitida, nfe_status, total, data, contato_nome, ml_order_id, ml_pack_id, numero');
+      .select('id, nota_fiscal_numero, nota_fiscal_emitida, nfe_status, nfe_chave, nfe_protocolo, nfe_cfop, nfe_xml, total, data, contato_nome, ml_order_id, ml_pack_id, numero');
 
     if (search) {
       const filters = [
@@ -55,14 +79,6 @@ export async function GET(request: Request) {
         filters.push(`numero.eq.${search}`);
       }
       query = query.or(filters.join(','));
-    }
-
-    if (status === 'cancelada') {
-      query = query.or('nfe_status.eq.cancelada,nfe_status.eq.cancelled,nfe_status.eq.canceled');
-    } else if (status === 'emitida') {
-      query = query.eq('nota_fiscal_emitida', true).or('nfe_status.eq.authorized,nfe_status.eq.autorizada');
-    } else if (status === 'pendente') {
-      query = query.eq('nota_fiscal_emitida', false);
     }
 
     if (dateFrom) {
@@ -90,15 +106,18 @@ export async function GET(request: Request) {
       return NextResponse.json({ erro: error.message }, { status: 500 });
     }
 
-    const rows = data || [];
+    let rows = await reconcileRowsBestEffort(supabase, data || []);
+    if (status) {
+      rows = rows.filter((row) => mapStatus(row) === status);
+    }
     let emitidas = 0;
     let pendentes = 0;
     let valorTotal = 0;
 
     for (const row of rows) {
       const mapped = mapStatus(row);
-      if (mapped === 'emitida') emitidas++;
-      if (mapped === 'pendente') pendentes++;
+      if (mapped === 'autorizada') emitidas++;
+      if (mapped === 'pendente' || mapped === 'processando') pendentes++;
       valorTotal += Number(row.total || 0);
     }
 

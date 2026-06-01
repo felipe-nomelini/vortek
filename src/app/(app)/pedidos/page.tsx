@@ -97,6 +97,40 @@ function formatReleaseWindow(value: string): { when: string; remaining: string |
   return { when, remaining: days > 0 ? `faltam ${days}d ${hours}h` : `faltam ${hours}h` };
 }
 
+function resolveSerieFromNfeChave(chave: string | null | undefined): string | null {
+  const normalized = String(chave || '').replace(/\D/g, '');
+  if (normalized.length !== 44) return null;
+  const serieRaw = normalized.slice(22, 25);
+  if (!/^\d{3}$/.test(serieRaw)) return null;
+  return String(Number(serieRaw));
+}
+
+function formatNumeroWithSerie(numero: string, nfeChave: string | null | undefined): string {
+  const serie = resolveSerieFromNfeChave(nfeChave);
+  return serie ? `NF ${numero} • Série ${serie}` : `NF ${numero}`;
+}
+
+function sanitizeMlTechnicalSuffix(name: string): string {
+  const raw = String(name || '').trim();
+  const match = raw.match(/^(.*)\s+\(([^)]+)\)\s*$/);
+  if (!match) return raw;
+  const base = match[1].trim();
+  const suffix = match[2].trim();
+  if (!base) return raw;
+  const hasDigits = /\d/.test(suffix);
+  const hasOnlyTechnicalChars = /^[A-Z0-9_.-]+$/.test(suffix.toUpperCase());
+  if (hasDigits || hasOnlyTechnicalChars) return base;
+  return raw;
+}
+
+function getDisplayClientName(order: Pick<Order, 'billing_nome' | 'contato'>): string {
+  const billingName = String(order.billing_nome || '').trim();
+  if (billingName) return billingName;
+  const contatoNome = String(order.contato?.nome || '').trim();
+  if (!contatoNome) return '—';
+  return sanitizeMlTechnicalSuffix(contatoNome);
+}
+
 function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Order {
   return {
     id: item.numero,
@@ -129,10 +163,12 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     ml_invoice_reported: item.ml_invoice_reported || false,
     ml_order_id: item.ml_order_id,
     ml_pack_id: item.ml_pack_id,
+    billing_nome: item.billing_nome,
     ml_fiscal_release_at: item.ml_fiscal_release_at,
     ml_fiscal_release_reason: item.ml_fiscal_release_reason,
     ml_fiscal_release_source: item.ml_fiscal_release_source,
     ml_fiscal_release_checked_at: item.ml_fiscal_release_checked_at,
+    nfe_chave: item.nfe_chave,
     nfe_status: item.nfe_status,
   };
 }
@@ -649,23 +685,24 @@ export default function PedidosPage() {
 
   const columns: TableProps<Order>['columns'] = [
     {
-      title: 'Número', dataIndex: 'numero', key: 'numero', width: 100,
+      title: 'Número', dataIndex: 'numero', key: 'numero', width: 180,
       sorter: (a, b) => a.numero - b.numero,
       render: (num: number, record: Order) => (
-        <a
-          href={`https://www.mercadolivre.com.br/vendas/${record.ml_pack_id || num}/detalhe`}
-          target="_blank"
-          rel="noopener noreferrer"
-          title={`Order ID: ${record.ml_order_id || '—'} | Pack ID: ${record.ml_pack_id || '—'}`}
-          style={{ fontFamily: 'monospace', color: '#1677ff', textDecoration: 'none' }}
-        >
-          #{String(num).padStart(6, '0')}
-        </a>
+        <div>
+          <a
+            href={`https://www.mercadolivre.com.br/vendas/${record.ml_pack_id || num}/detalhe`}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={`Order ID: ${record.ml_order_id || '—'} | Pack ID: ${record.ml_pack_id || '—'}`}
+            style={{ fontFamily: 'monospace', color: '#1677ff', textDecoration: 'none' }}
+          >
+            #{String(num).padStart(6, '0')}
+          </a>
+          <div style={{ color: '#888', fontSize: 11, fontFamily: 'monospace' }}>
+            PACK ID {record.ml_pack_id || '—'}
+          </div>
+        </div>
       ),
-    },
-    {
-      title: 'Pack', dataIndex: 'ml_pack_id', key: 'ml_pack_id', width: 180,
-      render: (v: string | null | undefined) => <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
     },
     {
       title: 'Data', dataIndex: 'data', key: 'data', width: 160,
@@ -674,7 +711,8 @@ export default function PedidosPage() {
     },
     {
       title: 'Cliente', dataIndex: ['contato', 'nome'], key: 'cliente',
-      sorter: (a, b) => a.contato.nome.localeCompare(b.contato.nome),
+      sorter: (a, b) => getDisplayClientName(a).localeCompare(getDisplayClientName(b)),
+      render: (_: string, record: Order) => getDisplayClientName(record),
     },
     {
       title: 'Total', dataIndex: 'total', key: 'total', width: 110,
@@ -718,7 +756,7 @@ export default function PedidosPage() {
       ),
     },
     {
-      title: 'Nota Fiscal', dataIndex: 'notaFiscal', key: 'notaFiscal', width: 120,
+      title: 'Nota Fiscal', dataIndex: 'notaFiscal', key: 'notaFiscal', width: 220,
       sorter: (a, b) => {
         const na = a.notaFiscal?.numero ?? '';
         const nb = b.notaFiscal?.numero ?? '';
@@ -742,7 +780,8 @@ export default function PedidosPage() {
           }
         }
         if (!nf) return <Tag>Não emitida</Tag>;
-        const tag = <Tag color={nf.emitida ? 'green' : 'orange'}>{nf.numero}</Tag>;
+        const numeroFormatado = formatNumeroWithSerie(String(nf.numero), record.nfe_chave);
+        const tag = <Tag color={nf.emitida ? 'green' : 'orange'}>{numeroFormatado}</Tag>;
         if (record.nfe_danfe_url) {
           return (
             <a href={record.nfe_danfe_url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>

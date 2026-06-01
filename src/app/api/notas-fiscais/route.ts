@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase';
+import { normalizeNfeTechnicalStatus, type NfeTechnicalStatus } from '@/lib/fiscal/nfe-status';
+import { reconcileLocalNfeSnapshotFromXml } from '@/lib/fiscal/nfe-local-reconciliation';
 
-type NFStatus = 'emitida' | 'cancelada' | 'pendente';
+type NFStatus = NfeTechnicalStatus;
 type SortOrder = 'asc' | 'desc';
 
 const PAGE_SIZE_DEFAULT = 20;
@@ -20,16 +22,96 @@ function normalizeSearch(value: string): string {
   return value.replace(/[,]/g, ' ').trim();
 }
 
-function isNfeCanceled(value: string | null | undefined): boolean {
-  const v = String(value || '').toLowerCase();
-  return v === 'cancelada' || v === 'cancelled' || v === 'canceled';
+function mapStatus(row: { nfe_status: string | null }): NFStatus {
+  return normalizeNfeTechnicalStatus(row.nfe_status);
 }
 
-function mapStatus(row: { nota_fiscal_emitida: boolean; nota_fiscal_numero: string | null; nfe_status: string | null }): NFStatus {
-  if (isNfeCanceled(row.nfe_status)) return 'cancelada';
-  const nfe = String(row.nfe_status || '').toLowerCase();
-  if (row.nota_fiscal_emitida && (nfe === 'authorized' || nfe === 'autorizada')) return 'emitida';
-  return 'pendente';
+function applyStatusFilter(query: any, status: NFStatus): any {
+  if (status === 'autorizada') return query.or('nfe_status.eq.authorized,nfe_status.eq.autorizada');
+  if (status === 'cancelada') return query.or('nfe_status.eq.cancelada,nfe_status.eq.cancelled,nfe_status.eq.canceled');
+  if (status === 'pendente') return query.or('nfe_status.eq.pendente,nfe_status.eq.pending,nfe_status.is.null');
+  if (status === 'interrompida') return query.or('nfe_status.eq.interrupted,nfe_status.eq.interrompida');
+  if (status === 'rejeitada') return query.or('nfe_status.eq.rejected,nfe_status.eq.rejeitada,nfe_status.eq.denegada');
+  if (status === 'processando') return query.or('nfe_status.eq.processing,nfe_status.eq.processando');
+  return query;
+}
+
+function applyCommonFilters(query: any, params: {
+  search: string;
+  dateFrom: string;
+  dateTo: string;
+  valorMin: string | null;
+  valorMax: string | null;
+}): any {
+  const { search, dateFrom, dateTo, valorMin, valorMax } = params;
+  let next = query;
+  if (search) {
+    const filters = [
+      `contato_nome.ilike.%${search}%`,
+      `nota_fiscal_numero.ilike.%${search}%`,
+      `ml_order_id.ilike.%${search}%`,
+      `ml_pack_id.ilike.%${search}%`,
+    ];
+    if (/^\d+$/.test(search)) {
+      filters.push(`numero.eq.${search}`);
+    }
+    next = next.or(filters.join(','));
+  }
+
+  if (dateFrom) {
+    next = next.gte('data', dateFrom);
+  }
+
+  if (dateTo) {
+    const end = new Date(dateTo);
+    end.setHours(23, 59, 59, 999);
+    next = next.lte('data', end.toISOString());
+  }
+
+  if (valorMin) {
+    const min = Number(valorMin);
+    if (!Number.isNaN(min)) {
+      next = next.gte('total', min);
+    }
+  }
+
+  if (valorMax) {
+    const max = Number(valorMax);
+    if (!Number.isNaN(max)) {
+      next = next.lte('total', max);
+    }
+  }
+
+  return next;
+}
+
+async function reconcileRowsBestEffort(supabase: any, rows: any[]): Promise<any[]> {
+  return Promise.all((rows || []).map(async (row) => {
+    const reconciliation = reconcileLocalNfeSnapshotFromXml({
+      nfe_status: row?.nfe_status || null,
+      nfe_xml: row?.nfe_xml || null,
+      nfe_chave: row?.nfe_chave || null,
+      nota_fiscal_numero: row?.nota_fiscal_numero || null,
+      nfe_protocolo: row?.nfe_protocolo || null,
+      nfe_cfop: row?.nfe_cfop || null,
+    });
+    if (!reconciliation.shouldUpdate || !row?.id) {
+      return row;
+    }
+
+    await supabase
+      .from('pedidos')
+      .update({
+        ...reconciliation.updates,
+        nfe_last_sync_at: new Date().toISOString(),
+      } as any)
+      .eq('id', row.id);
+
+    return {
+      ...row,
+      ...reconciliation.updates,
+    };
+  }));
 }
 
 export async function GET(request: Request) {
@@ -63,77 +145,48 @@ export async function GET(request: Request) {
     const from = (page - 1) * pageSize;
     const to = from + pageSize - 1;
 
+    const baseSelect = 'id, numero, ml_order_id, ml_pack_id, contato_nome, contato_documento, data, nota_fiscal_numero, nota_fiscal_emitida, nfe_status, nfe_chave, nfe_protocolo, nfe_danfe_url, nfe_cfop, nfe_xml, total';
     let countQuery = supabase.from('pedidos').select('id', { count: 'exact', head: true });
     let dataQuery = supabase
       .from('pedidos')
-      .select('id, numero, ml_order_id, ml_pack_id, contato_nome, contato_documento, data, nota_fiscal_numero, nota_fiscal_emitida, nfe_status, nfe_chave, nfe_danfe_url, total')
+      .select(baseSelect)
       .order(sortBy, { ascending: sortOrder === 'asc', nullsFirst: false })
       .range(from, to);
 
-    if (search) {
-      const filters = [
-        `contato_nome.ilike.%${search}%`,
-        `nota_fiscal_numero.ilike.%${search}%`,
-        `ml_order_id.ilike.%${search}%`,
-        `ml_pack_id.ilike.%${search}%`,
-      ];
+    countQuery = applyCommonFilters(countQuery, { search, dateFrom, dateTo, valorMin, valorMax });
+    dataQuery = applyCommonFilters(dataQuery, { search, dateFrom, dateTo, valorMin, valorMax });
 
-      if (/^\d+$/.test(search)) {
-        filters.push(`numero.eq.${search}`);
-      }
+    let data: any[] = [];
+    let count = 0;
 
-      const orFilter = filters.join(',');
-      countQuery = countQuery.or(orFilter);
-      dataQuery = dataQuery.or(orFilter);
-    }
-
-    if (status === 'cancelada') {
-      countQuery = countQuery.or('nfe_status.eq.cancelada,nfe_status.eq.cancelled,nfe_status.eq.canceled');
-      dataQuery = dataQuery.or('nfe_status.eq.cancelada,nfe_status.eq.cancelled,nfe_status.eq.canceled');
-    } else if (status === 'emitida') {
-      countQuery = countQuery.eq('nota_fiscal_emitida', true).or('nfe_status.eq.authorized,nfe_status.eq.autorizada');
-      dataQuery = dataQuery.eq('nota_fiscal_emitida', true).or('nfe_status.eq.authorized,nfe_status.eq.autorizada');
-    } else if (status === 'pendente') {
-      countQuery = countQuery.eq('nota_fiscal_emitida', false);
-      dataQuery = dataQuery.eq('nota_fiscal_emitida', false);
-    }
-
-    if (dateFrom) {
-      countQuery = countQuery.gte('data', dateFrom);
-      dataQuery = dataQuery.gte('data', dateFrom);
-    }
-
-    if (dateTo) {
-      const end = new Date(dateTo);
-      end.setHours(23, 59, 59, 999);
-      const endIso = end.toISOString();
-      countQuery = countQuery.lte('data', endIso);
-      dataQuery = dataQuery.lte('data', endIso);
-    }
-
-    if (valorMin) {
-      const min = Number(valorMin);
-      if (!Number.isNaN(min)) {
-        countQuery = countQuery.gte('total', min);
-        dataQuery = dataQuery.gte('total', min);
-      }
-    }
-
-    if (valorMax) {
-      const max = Number(valorMax);
-      if (!Number.isNaN(max)) {
-        countQuery = countQuery.lte('total', max);
-        dataQuery = dataQuery.lte('total', max);
-      }
-    }
-
-    const [{ count, error: countError }, { data, error: dataError }] = await Promise.all([countQuery, dataQuery]);
-
-    if (countError || dataError) {
-      return NextResponse.json(
-        { erro: countError?.message || dataError?.message || 'Erro ao buscar notas fiscais' },
-        { status: 500 },
+    if (status === 'outro') {
+      const fullQuery = applyCommonFilters(
+        supabase.from('pedidos').select(baseSelect).order(sortBy, { ascending: sortOrder === 'asc', nullsFirst: false }),
+        { search, dateFrom, dateTo, valorMin, valorMax },
       );
+      const { data: rawRows, error } = await fullQuery;
+      if (error) {
+        return NextResponse.json({ erro: error.message || 'Erro ao buscar notas fiscais' }, { status: 500 });
+      }
+      const reconciledRows = await reconcileRowsBestEffort(supabase, rawRows || []);
+      const filtered = reconciledRows.filter((row: any) => normalizeNfeTechnicalStatus(row.nfe_status) === 'outro');
+      count = filtered.length;
+      data = filtered.slice(from, to + 1);
+    } else {
+      if (status) {
+        countQuery = applyStatusFilter(countQuery, status);
+        dataQuery = applyStatusFilter(dataQuery, status);
+      }
+
+      const [{ count: totalCount, error: countError }, { data: rowsData, error: dataError }] = await Promise.all([countQuery, dataQuery]);
+      if (countError || dataError) {
+        return NextResponse.json(
+          { erro: countError?.message || dataError?.message || 'Erro ao buscar notas fiscais' },
+          { status: 500 },
+        );
+      }
+      count = totalCount || 0;
+      data = await reconcileRowsBestEffort(supabase, rowsData || []);
     }
 
     const rows = (data || []).map((row) => ({

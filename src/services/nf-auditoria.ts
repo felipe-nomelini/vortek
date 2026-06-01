@@ -34,6 +34,7 @@ type AuditEvent =
   | 'nfe_local_consistencia_check'
   | 'nfe_local_consistencia_check_start'
   | 'nfe_local_consistencia_check_result'
+  | 'nfe_local_status_reconciliado'
   | 'nfe_local_autocorrecao_status'
   | 'nfe_local_cleanup_ghost_xml'
   | 'nfe_local_cleanup_ghost_before_reissue'
@@ -82,6 +83,12 @@ type AuditEvent =
   | 'fiscal_provider_backfill_source'
   | 'dslite_carrier_skipped_existing'
   | 'brasilnfe_tipo_ambiente_invalido'
+  | 'nota_fiscal_cancelamento_start'
+  | 'nota_fiscal_cancelamento_success'
+  | 'nota_fiscal_cancelamento_failed'
+  | 'nota_fiscal_carta_correcao_start'
+  | 'nota_fiscal_carta_correcao_success'
+  | 'nota_fiscal_carta_correcao_failed'
   | 'step_auto_close';
 
 export async function registrarEventoNfAuditoria(input: {

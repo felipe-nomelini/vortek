@@ -1,5 +1,12 @@
 import { createServiceClient } from '@/lib/supabase';
 import { getExpectedCfopByUf } from '@/lib/fiscal/cfop';
+import { extractTaxpayerTypeFromBillingAddress, resolveDestIePolicy } from '@/lib/fiscal/ie-policy';
+import {
+  extractCfopFromXml,
+  extractXmlTag,
+  reconcileLocalNfeSnapshotFromXml,
+  validateXmlNfeProducao as validateXmlNfeProducaoShared,
+} from '@/lib/fiscal/nfe-local-reconciliation';
 import {
   buscarNotaBrasilNfePorIdentificadorInterno,
   getFiscalProvider,
@@ -13,7 +20,6 @@ const UF_CODES = new Set([
   'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN',
   'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO',
 ]);
-const HOMOLOG_DEST_NAME_MARKER = 'NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL';
 const ITEM_TOTAL_TOLERANCE = 0.01;
 
 function nowIso() {
@@ -51,15 +57,6 @@ function resolveEmitUf(empresa: any): string | null {
   return normalizeUf(empresa?.uf_fiscal) || extractUfFromAddress(empresa?.endereco || null);
 }
 
-function normalizeForCompare(value: string | null | undefined): string {
-  return String(value || '')
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/\s+/g, ' ')
-    .trim()
-    .toUpperCase();
-}
-
 function resolveBrasilNfeTipoAmbienteStrict():
   | { ok: true; value: 1; raw: string; interpreted: number }
   | { ok: false; value: null; error: string; raw: string; interpreted: number | null } {
@@ -93,22 +90,7 @@ function resolveModFrete(pedido: any): 0 | 2 | null {
 }
 
 function extractTag(xml: string, tag: string): string | null {
-  try {
-    const escaped = tag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const match = xml.match(new RegExp(`<${escaped}>([^<]+)</${escaped}>`));
-    return match?.[1]?.trim() || null;
-  } catch {
-    return null;
-  }
-}
-
-function extractDestinatarioNome(xml: string | null | undefined): string | null {
-  try {
-    const match = String(xml || '').match(/<dest>[\s\S]*?<xNome>([^<]+)<\/xNome>/i);
-    return match?.[1]?.trim() || null;
-  } catch {
-    return null;
-  }
+  return extractXmlTag(xml, tag);
 }
 
 function validateXmlNfeProducao(xml: string | null | undefined): {
@@ -118,37 +100,11 @@ function validateXmlNfeProducao(xml: string | null | undefined): {
   marcadorHomologacao: boolean;
   message?: string;
 } {
-  const rawXml = String(xml || '');
-  const tpAmb = extractTag(rawXml, 'tpAmb');
-  const destinatarioNome = extractDestinatarioNome(rawXml);
-  const marcadorHomologacao = normalizeForCompare(destinatarioNome).includes(normalizeForCompare(HOMOLOG_DEST_NAME_MARKER));
-
-  if (tpAmb !== '1') {
-    return {
-      ok: false,
-      tpAmb,
-      destinatarioNome,
-      marcadorHomologacao,
-      message: 'NF-e em ambiente de homologação ou sem tpAmb=1. Emissão em produção é obrigatória.',
-    };
-  }
-
-  if (marcadorHomologacao) {
-    return {
-      ok: false,
-      tpAmb,
-      destinatarioNome,
-      marcadorHomologacao,
-      message: 'NF-e com destinatário de homologação detectado no XML. Emissão em produção com dados reais é obrigatória.',
-    };
-  }
-
-  return { ok: true, tpAmb, destinatarioNome, marcadorHomologacao };
+  return validateXmlNfeProducaoShared(xml);
 }
 
 function extractCfop(xml: string | null): string | null {
-  if (!xml) return null;
-  return extractTag(xml, 'CFOP');
+  return extractCfopFromXml(xml);
 }
 
 function roundMoney(value: number): number {
@@ -243,11 +199,22 @@ function buildPayloadFromSnapshot(
 
   const billingIe = String(pedido.billing_ie || '').trim();
   const isCnpj = doc.length === 14;
-  const indicadorIe = isCnpj ? (billingIe ? 1 : 2) : 9;
-  if (isCnpj && !billingIe) {
+  const taxpayerTypeMlRaw = extractTaxpayerTypeFromBillingAddress(addr);
+  const iePolicy = resolveDestIePolicy({
+    documento: doc,
+    billingIe,
+    taxpayerTypeMlRaw,
+  });
+  const indicadorIe = iePolicy.indicadorIe;
+  if (isCnpj && iePolicy.ieRequired && !billingIe) {
     return {
       ok: false as const,
-      error: 'Destinatário com CNPJ sem IE. Sincronize os dados fiscais e tente novamente.',
+      error: 'Destinatário com CNPJ classificado como contribuinte sem IE. Sincronize os dados fiscais e tente novamente.',
+      reason: 'cnpj_contribuinte_sem_ie',
+      taxpayerTypeMlRaw: iePolicy.taxpayerTypeMlRaw,
+      iePolicyResolved: iePolicy.iePolicyResolved,
+      indicadorIeEnviado: indicadorIe,
+      iePresent: false,
     };
   }
 
@@ -291,7 +258,7 @@ function buildPayloadFromSnapshot(
         CpfCnpj: doc,
         NmCliente: String(pedido.billing_nome || 'Cliente'),
         IndicadorIe: indicadorIe,
-        ...(isCnpj ? { IE: billingIe || 'ISENTO' } : {}),
+        ...(isCnpj && indicadorIe === 1 && billingIe ? { IE: billingIe } : {}),
         Endereco: {
           Logradouro: String(addr.street_name || 'Não informado'),
           Numero: String(addr.street_number || 'S/N'),
@@ -306,6 +273,10 @@ function buildPayloadFromSnapshot(
       Pagamentos: [{ IndicadorPagamento: 0, FormaPagamento: '15', Valor: Number(pedido.total || 0) }],
       Transporte: { ModalidadeFrete: modFrete },
     },
+    taxpayerTypeMlRaw: iePolicy.taxpayerTypeMlRaw,
+    iePolicyResolved: iePolicy.iePolicyResolved,
+    indicadorIeEnviado: indicadorIe,
+    iePresent: iePolicy.iePresent,
   };
 }
 
@@ -368,16 +339,19 @@ export async function ensureBrasilNfeInvoice(input: {
   const client = createServiceClient();
   const { data: pedido } = await client
     .from('pedidos')
-    .select('id,numero,total,ml_order_id,ml_shipment_id,billing_nome,billing_documento,billing_ie,billing_endereco,snapshot_incompleto,nfe_xml,nfe_status,nfe_provider,nfe_chave,nfe_external_id,nfe_danfe_url,nota_fiscal_numero,nfe_cfop,totais_snapshot,pedido_itens(*)')
+    .select('id,numero,total,ml_order_id,ml_shipment_id,billing_nome,billing_documento,billing_ie,billing_endereco,snapshot_incompleto,nfe_xml,nfe_status,nfe_provider,nfe_chave,nfe_external_id,nfe_danfe_url,nota_fiscal_numero,nfe_protocolo,nfe_cfop,totais_snapshot,pedido_itens(*)')
     .eq('id', input.pedidoId)
     .maybeSingle();
 
   if (!pedido) return { ok: false, error: 'Pedido não encontrado para garantir NF Brasil NFe.' };
 
-  const statusAtual = String((pedido as any).nfe_status || '').toLowerCase();
+  let statusAtual = String((pedido as any).nfe_status || '').toLowerCase();
   const xmlAtual = String((pedido as any).nfe_xml || '');
   const providerAtual = String((pedido as any).nfe_provider || '').toLowerCase();
-  const chaveAtual = String((pedido as any).nfe_chave || '').trim();
+  let chaveAtual = String((pedido as any).nfe_chave || '').trim();
+  let numeroAtual = String((pedido as any).nota_fiscal_numero || '').trim();
+  let protocoloAtual = String((pedido as any).nfe_protocolo || '').trim();
+  let cfopAtual = String((pedido as any).nfe_cfop || '').trim();
   const externalAtual = String((pedido as any).nfe_external_id || '');
   const mlOrderId = String((pedido as any).ml_order_id || '');
 
@@ -415,57 +389,56 @@ export async function ensureBrasilNfeInvoice(input: {
     statusResultante: 'starting',
   });
 
-  if (providerAtual === 'brasilnfe' && isAuthorizedStatus(statusAtual) && xmlAtual && chaveAtual) {
-    const blockedMessage = await blockIfXmlNotProduction(xmlAtual, 'local_authorized_snapshot');
-    if (blockedMessage) return { ok: false, error: blockedMessage };
-    await registrarEventoNfAuditoria({
-      pedidoId: input.pedidoId,
-      mlOrderId,
-      evento: 'nfe_local_consistencia_check_result',
-      respostaMl: {
-        cleanup_executado: false,
-        recovered_from_external_id: false,
-        motivo: 'nfe_local_ja_autorizada',
-      },
-      statusResultante: 'ok',
-    });
-    return {
-      ok: true,
-      alreadyExisted: true,
-      status: 'authorized',
-      xml: xmlAtual,
-      chave: chaveAtual || extractTag(xmlAtual, 'chNFe'),
-      numero: String((pedido as any).nota_fiscal_numero || '') || extractTag(xmlAtual, 'nNF'),
-      externalId: externalAtual || null,
-      danfeUrl: String((pedido as any).nfe_danfe_url || '') || null,
-      cfop: String((pedido as any).nfe_cfop || '') || extractCfop(xmlAtual),
-      consistency: {
-        checked: true,
-        cleanupExecuted: false,
-        recoveredFromExternalId: false,
-      },
-    };
-  }
-
   if (providerAtual === 'brasilnfe' && xmlAtual) {
-    const chaveXml = extractTag(xmlAtual, 'chNFe');
-    const cStatXml = extractTag(xmlAtual, 'cStat');
-    if (chaveXml && cStatXml === '100') {
-      const blockedMessage = await blockIfXmlNotProduction(xmlAtual, 'local_xml_autocorrect');
-      if (blockedMessage) return { ok: false, error: blockedMessage };
-      const numeroXml = extractTag(xmlAtual, 'nNF');
-      const cfopXml = extractCfop(xmlAtual);
-      await client
+    const reconciliation = reconcileLocalNfeSnapshotFromXml({
+      nfe_status: statusAtual,
+      nfe_xml: xmlAtual,
+      nfe_chave: chaveAtual,
+      nota_fiscal_numero: numeroAtual,
+      nfe_protocolo: protocoloAtual,
+      nfe_cfop: cfopAtual,
+    });
+
+    if (reconciliation.shouldUpdate) {
+      const { error: reconcileErr } = await client
         .from('pedidos')
         .update({
-          nfe_status: 'authorized',
+          ...reconciliation.updates,
           nfe_provider: 'brasilnfe',
-          nfe_chave: chaveXml,
-          nota_fiscal_numero: numeroXml || undefined,
-          nfe_cfop: cfopXml || undefined,
           nfe_last_sync_at: nowIso(),
         } as any)
         .eq('id', input.pedidoId);
+      if (!reconcileErr) {
+        statusAtual = reconciliation.updates.nfe_status || reconciliation.statusCorrigido || statusAtual;
+        chaveAtual = reconciliation.updates.nfe_chave || chaveAtual;
+        numeroAtual = reconciliation.updates.nota_fiscal_numero || numeroAtual;
+        protocoloAtual = reconciliation.updates.nfe_protocolo || protocoloAtual;
+        cfopAtual = reconciliation.updates.nfe_cfop || cfopAtual;
+
+        await registrarEventoNfAuditoria({
+          pedidoId: input.pedidoId,
+          mlOrderId,
+          evento: 'nfe_local_status_reconciliado',
+          respostaMl: {
+            nfe_status_anterior: reconciliation.statusAnterior,
+            nfe_status_corrigido: reconciliation.updates.nfe_status || reconciliation.statusCorrigido,
+            nNF_xml: reconciliation.xmlFields.nNF,
+            nProt_xml: reconciliation.xmlFields.nProt,
+            chNFe_xml: reconciliation.xmlFields.chNFe,
+            tpAmb_xml: reconciliation.xmlFields.tpAmb,
+            cStat_xml: reconciliation.xmlFields.cStat,
+            updates_aplicados: reconciliation.updates,
+          },
+          statusResultante: 'reconciled',
+        });
+      } else {
+        statusAtual = reconciliation.statusCorrigido || statusAtual;
+      }
+    }
+
+    if (reconciliation.xmlAuthorizedProduction) {
+      const blockedMessage = await blockIfXmlNotProduction(xmlAtual, 'local_authorized_snapshot');
+      if (blockedMessage) return { ok: false, error: blockedMessage };
       await registrarEventoNfAuditoria({
         pedidoId: input.pedidoId,
         mlOrderId,
@@ -473,22 +446,22 @@ export async function ensureBrasilNfeInvoice(input: {
         respostaMl: {
           cleanup_executado: false,
           recovered_from_external_id: false,
-          motivo: 'autocorrecao_por_xml_local_autorizado',
-          chave_xml: chaveXml,
-          cstat_xml: cStatXml,
+          motivo: reconciliation.shouldUpdate ? 'autocorrecao_por_xml_local_autorizado' : 'nfe_local_ja_autorizada',
+          chave_xml: reconciliation.xmlFields.chNFe,
+          cstat_xml: reconciliation.xmlFields.cStat,
         },
-        statusResultante: 'autocorrected',
+        statusResultante: reconciliation.shouldUpdate ? 'autocorrected' : 'ok',
       });
       return {
         ok: true,
         alreadyExisted: true,
         status: 'authorized',
         xml: xmlAtual,
-        chave: chaveXml,
-        numero: numeroXml || null,
+        chave: chaveAtual || extractTag(xmlAtual, 'chNFe'),
+        numero: numeroAtual || extractTag(xmlAtual, 'nNF'),
         externalId: externalAtual || null,
         danfeUrl: String((pedido as any).nfe_danfe_url || '') || null,
-        cfop: cfopXml || null,
+        cfop: cfopAtual || extractCfop(xmlAtual),
         consistency: {
           checked: true,
           cleanupExecuted: false,
@@ -602,6 +575,25 @@ export async function ensureBrasilNfeInvoice(input: {
     input.identifierInternoOverride || null,
   );
   if (!built.ok) {
+    if ((built as any)?.reason === 'cnpj_contribuinte_sem_ie') {
+      await registrarEventoNfAuditoria({
+        pedidoId: input.pedidoId,
+        mlOrderId,
+        evento: 'payload_validacao_bloqueio',
+        payloadEnviado: {
+          provider: 'brasilnfe',
+          motivo: 'cnpj_contribuinte_sem_ie',
+          taxpayer_type_ml_raw: (built as any)?.taxpayerTypeMlRaw ?? null,
+          ie_policy_resolved: (built as any)?.iePolicyResolved ?? null,
+          indicador_ie_enviado: (built as any)?.indicadorIeEnviado ?? null,
+          ie_present: (built as any)?.iePresent ?? null,
+        },
+        respostaMl: {
+          error: built.error,
+        },
+        statusResultante: 'blocked_cnpj_contribuinte_sem_ie',
+      });
+    }
     if ((built as any)?.reason === 'tipo_ambiente_config_invalido') {
       await registrarEventoNfAuditoria({
         pedidoId: input.pedidoId,
@@ -631,6 +623,10 @@ export async function ensureBrasilNfeInvoice(input: {
       payloadEnviado: {
         provider: 'brasilnfe',
         tipo_ambiente_enviado: Number((built.payload as any)?.TipoAmbiente ?? 0) || null,
+        taxpayer_type_ml_raw: (built as any)?.taxpayerTypeMlRaw ?? null,
+        ie_policy_resolved: (built as any)?.iePolicyResolved ?? null,
+        indicador_ie_enviado: (built as any)?.indicadorIeEnviado ?? null,
+        ie_present: (built as any)?.iePresent ?? null,
       },
       respostaMl: {
         motivo: 'valor_total_item_divergente_quantidade_valor_unitario',
@@ -648,6 +644,10 @@ export async function ensureBrasilNfeInvoice(input: {
     payloadEnviado: {
       provider: 'brasilnfe',
       tipo_ambiente_enviado: Number((built.payload as any)?.TipoAmbiente ?? 0) || null,
+      taxpayer_type_ml_raw: (built as any)?.taxpayerTypeMlRaw ?? null,
+      ie_policy_resolved: (built as any)?.iePolicyResolved ?? null,
+      indicador_ie_enviado: (built as any)?.indicadorIeEnviado ?? null,
+      ie_present: (built as any)?.iePresent ?? null,
     },
     statusResultante: 'sending',
   });
@@ -785,7 +785,7 @@ export async function ensureBrasilNfeInvoice(input: {
     .update({
       nfe_provider: 'brasilnfe',
       nfe_external_id: externalId || undefined,
-      nfe_status: emissao.status || 'authorized',
+      nfe_status: emissao.status === 'already_issued' ? 'authorized' : (emissao.status || 'authorized'),
       nfe_chave: chave || undefined,
       nfe_protocolo: emissao.protocolo || undefined,
       nota_fiscal_numero: numero || undefined,
@@ -799,7 +799,7 @@ export async function ensureBrasilNfeInvoice(input: {
   return {
     ok: true,
     alreadyExisted: false,
-    status: emissao.status || 'authorized',
+    status: emissao.status === 'already_issued' ? 'authorized' : (emissao.status || 'authorized'),
     xml,
     chave: chave || null,
     numero: numero || null,

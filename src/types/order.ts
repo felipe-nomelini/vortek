@@ -56,9 +56,11 @@ export interface Order {
   ml_invoice_reported?: boolean;
   ml_order_id?: string | null;
   ml_pack_id?: string | null;
+  billing_nome?: string | null;
   ml_fiscal_release_at?: string | null;
   ml_fiscal_release_reason?: string | null;
   ml_fiscal_release_source?: string | null;
   ml_fiscal_release_checked_at?: string | null;
+  nfe_chave?: string | null;
   nfe_status?: string | null;
 }
