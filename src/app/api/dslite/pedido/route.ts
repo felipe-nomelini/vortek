@@ -43,12 +43,14 @@ const SYNC_ORDER_LOCK_RETRY_ATTEMPTS = 6;
 const SYNC_ORDER_LOCK_RETRY_INTERVAL_MS = 2_000;
 const STRICT_NFE_VALIDATION = String(process.env.STRICT_NFE_VALIDATION || 'true').toLowerCase() === 'true';
 const HOMOLOG_DEST_NAME_MARKER = 'NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL';
+const ITEM_TOTAL_TOLERANCE = 0.01;
 
 type StrictIssue = {
   campo: string;
   encontrado: string | number | null;
   esperado: string | number | null;
   motivo: string;
+  contexto?: Record<string, any>;
 };
 
 type ModFreteDecision = {
@@ -65,6 +67,18 @@ function normalizeForCompare(value: string | null | undefined): string {
     .replace(/\s+/g, ' ')
     .trim()
     .toUpperCase();
+}
+
+function roundMoney(value: number): number {
+  return Number((Number.isFinite(value) ? value : 0).toFixed(2));
+}
+
+function resolveProdutoValorTotalBruto(it: any): number {
+  const quantidade = Number(it?.quantidade || 0);
+  const valorUnitario = Number(it?.valor_unitario || 0);
+  const valorTotalBruto = Number(it?.valor_total_bruto || 0);
+  if (Number.isFinite(valorTotalBruto) && valorTotalBruto > 0) return roundMoney(valorTotalBruto);
+  return roundMoney(quantidade * valorUnitario);
 }
 
 function resolveBrasilNfeTipoAmbienteStrict():
@@ -582,6 +596,25 @@ function validateNfePayloadStrict(
     if (origem !== 2) {
       issues.push({ campo: `${pos}.OrigemProduto`, encontrado: origem, esperado: 2, motivo: 'origem_invalida' });
     }
+    const quantidade = Number(p?.Quantidade ?? 0);
+    const valorUnitario = Number(p?.ValorUnitario ?? 0);
+    const valorTotal = Number(p?.ValorTotal ?? 0);
+    const valorTotalEsperado = roundMoney(quantidade * valorUnitario);
+    if (!Number.isFinite(valorTotal) || Math.abs(valorTotal - valorTotalEsperado) > ITEM_TOTAL_TOLERANCE) {
+      issues.push({
+        campo: `${pos}.ValorTotal`,
+        encontrado: Number.isFinite(valorTotal) ? roundMoney(valorTotal) : null,
+        esperado: valorTotalEsperado,
+        motivo: 'valor_total_item_divergente_quantidade_valor_unitario',
+        contexto: {
+          quantidade: Number.isFinite(quantidade) ? quantidade : null,
+          valor_unitario: Number.isFinite(valorUnitario) ? roundMoney(valorUnitario) : null,
+          valor_total_item: Number.isFinite(valorTotal) ? roundMoney(valorTotal) : null,
+          valor_total_esperado: valorTotalEsperado,
+          tolerancia: ITEM_TOTAL_TOLERANCE,
+        },
+      });
+    }
     const pisCst = String(p?.Imposto?.PIS?.CodSituacaoTributaria || '');
     if (pisCst !== '49') {
       issues.push({ campo: `${pos}.Imposto.PIS.CodSituacaoTributaria`, encontrado: pisCst || null, esperado: '49', motivo: 'pis_cst_invalido' });
@@ -621,7 +654,7 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
       .maybeSingle(),
     client
       .from('pedido_itens')
-      .select('titulo,quantidade,valor_unitario,valor_total_liquido,ncm,cfop_sugerido,origem_fiscal,gtin,cest,csosn,seller_sku')
+      .select('titulo,quantidade,valor_unitario,valor_total_bruto,valor_total_liquido,ncm,cfop_sugerido,origem_fiscal,gtin,cest,csosn,seller_sku')
       .eq('pedido_id', pedidoId),
     client
       .from('empresa')
@@ -741,7 +774,7 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
     UnidadeComercial: 'UN',
     Quantidade: Number(it.quantidade || 0),
     ValorUnitario: Number(it.valor_unitario || 0),
-    ValorTotal: Number(it.valor_total_liquido || 0),
+    ValorTotal: resolveProdutoValorTotalBruto(it),
     OrigemProduto: 2,
     GTIN: it.gtin || undefined,
     CEST: it.cest || undefined,

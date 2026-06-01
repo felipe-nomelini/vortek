@@ -14,6 +14,7 @@ const UF_CODES = new Set([
   'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO',
 ]);
 const HOMOLOG_DEST_NAME_MARKER = 'NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL';
+const ITEM_TOTAL_TOLERANCE = 0.01;
 
 function nowIso() {
   return new Date().toISOString();
@@ -150,6 +151,51 @@ function extractCfop(xml: string | null): string | null {
   return extractTag(xml, 'CFOP');
 }
 
+function roundMoney(value: number): number {
+  return Number((Number.isFinite(value) ? value : 0).toFixed(2));
+}
+
+function resolveProdutoValorTotalBruto(it: any): number {
+  const quantidade = Number(it?.quantidade || 0);
+  const valorUnitario = Number(it?.valor_unitario || 0);
+  const valorTotalBruto = Number(it?.valor_total_bruto || 0);
+  if (Number.isFinite(valorTotalBruto) && valorTotalBruto > 0) return roundMoney(valorTotalBruto);
+  return roundMoney(quantidade * valorUnitario);
+}
+
+function validateProdutosTotalConsistency(payload: any): Array<{
+  index: number;
+  quantidade: number | null;
+  valor_unitario: number | null;
+  valor_total_item: number | null;
+  valor_total_esperado: number;
+}> {
+  const produtos = Array.isArray(payload?.Produtos) ? payload.Produtos : [];
+  const issues: Array<{
+    index: number;
+    quantidade: number | null;
+    valor_unitario: number | null;
+    valor_total_item: number | null;
+    valor_total_esperado: number;
+  }> = [];
+  produtos.forEach((p: any, idx: number) => {
+    const quantidade = Number(p?.Quantidade ?? 0);
+    const valorUnitario = Number(p?.ValorUnitario ?? 0);
+    const valorTotal = Number(p?.ValorTotal ?? 0);
+    const esperado = roundMoney(quantidade * valorUnitario);
+    if (!Number.isFinite(valorTotal) || Math.abs(valorTotal - esperado) > ITEM_TOTAL_TOLERANCE) {
+      issues.push({
+        index: idx,
+        quantidade: Number.isFinite(quantidade) ? quantidade : null,
+        valor_unitario: Number.isFinite(valorUnitario) ? roundMoney(valorUnitario) : null,
+        valor_total_item: Number.isFinite(valorTotal) ? roundMoney(valorTotal) : null,
+        valor_total_esperado: esperado,
+      });
+    }
+  });
+  return issues;
+}
+
 function buildPayloadFromSnapshot(
   pedido: any,
   itens: any[],
@@ -213,7 +259,7 @@ function buildPayloadFromSnapshot(
     UnidadeComercial: 'UN',
     Quantidade: Number(it.quantidade || 0),
     ValorUnitario: Number(it.valor_unitario || 0),
-    ValorTotal: Number(it.valor_total_liquido || 0),
+    ValorTotal: resolveProdutoValorTotalBruto(it),
     OrigemProduto: 2,
     GTIN: it.gtin || undefined,
     CEST: it.cest || undefined,
@@ -546,7 +592,7 @@ export async function ensureBrasilNfeInvoice(input: {
     .maybeSingle();
   const { data: itens } = await client
     .from('pedido_itens')
-    .select('titulo,quantidade,valor_unitario,valor_total_liquido,ncm,seller_sku,gtin,cest')
+    .select('titulo,quantidade,valor_unitario,valor_total_bruto,valor_total_liquido,ncm,seller_sku,gtin,cest')
     .eq('pedido_id', input.pedidoId);
 
   const built = buildPayloadFromSnapshot(
@@ -574,6 +620,26 @@ export async function ensureBrasilNfeInvoice(input: {
       });
     }
     return { ok: false, error: built.error };
+  }
+  const itemTotalIssues = validateProdutosTotalConsistency((built as any).payload);
+  if (itemTotalIssues.length > 0) {
+    const msg = 'Bloqueado na pré-validação fiscal: ValorTotal do item diverge de Quantidade x ValorUnitario.';
+    await registrarEventoNfAuditoria({
+      pedidoId: input.pedidoId,
+      mlOrderId,
+      evento: 'payload_validacao_bloqueio',
+      payloadEnviado: {
+        provider: 'brasilnfe',
+        tipo_ambiente_enviado: Number((built.payload as any)?.TipoAmbiente ?? 0) || null,
+      },
+      respostaMl: {
+        motivo: 'valor_total_item_divergente_quantidade_valor_unitario',
+        tolerancia: ITEM_TOTAL_TOLERANCE,
+        items: itemTotalIssues,
+      },
+      statusResultante: 'blocked_payload_validation',
+    });
+    return { ok: false, error: msg };
   }
   await registrarEventoNfAuditoria({
     pedidoId: input.pedidoId,
