@@ -74,6 +74,8 @@ interface OrderFiscalSnapshot {
     frete_total: number;
     desconto_total: number;
     total_final: number;
+    total_calculado_com_frete: number;
+    total_calculado_sem_frete: number;
   };
   incompleto: boolean;
   pendencias: string[];
@@ -678,8 +680,11 @@ function buildOrderSnapshot(params: {
   }
   if (items.some((it) => !it.ncm)) pendencias.push('item_sem_ncm');
 
-  const totalCalculado = Number((items.reduce((sum, it) => sum + (it.valor_total_liquido || 0), 0)).toFixed(2));
-  if (Math.abs(totalCalculado - totalFinal) > SNAPSHOT_TOTAL_TOLERANCE) {
+  const totalCalculadoComFrete = Number((items.reduce((sum, it) => sum + (it.valor_total_liquido || 0), 0)).toFixed(2));
+  const totalCalculadoSemFrete = Number((items.reduce((sum, it) => sum + ((it.valor_total_liquido || 0) - (it.frete_rateado_item || 0)), 0)).toFixed(2));
+  const divergeComFrete = Math.abs(totalCalculadoComFrete - totalFinal) > SNAPSHOT_TOTAL_TOLERANCE;
+  const divergeSemFrete = Math.abs(totalCalculadoSemFrete - totalFinal) > SNAPSHOT_TOTAL_TOLERANCE;
+  if (divergeComFrete && divergeSemFrete) {
     pendencias.push('divergencia_total');
   }
 
@@ -694,6 +699,8 @@ function buildOrderSnapshot(params: {
       frete_total: Number(freteTotal.toFixed(2)),
       desconto_total: descontoTotal,
       total_final: totalFinal,
+      total_calculado_com_frete: totalCalculadoComFrete,
+      total_calculado_sem_frete: totalCalculadoSemFrete,
     },
     incompleto: pendencias.length > 0,
     pendencias,
@@ -1040,6 +1047,12 @@ async function processOrder(params: {
         fields_source: {
           billing: 'billing_info',
           order: 'orders',
+        },
+        totais_diagnostico: {
+          total_calculado_com_frete: snapshot.totais.total_calculado_com_frete,
+          total_calculado_sem_frete: snapshot.totais.total_calculado_sem_frete,
+          total_final_ml: snapshot.totais.total_final,
+          tolerancia: SNAPSHOT_TOTAL_TOLERANCE,
         },
       },
       statusResultante: 'started',

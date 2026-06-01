@@ -1,6 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 
-type ResolveSource = 'ibge_exact' | 'ibge_zip' | 'none';
+type ResolveSource = 'ibge_exact' | 'ibge_zip' | 'viacep_zip' | 'none';
 const IBGE_RUNTIME_FETCH_ENABLED = String(process.env.IBGE_RUNTIME_FETCH_ENABLED || 'false').toLowerCase() === 'true';
 
 export type ResolveCodMunicipioResult = {
@@ -88,6 +88,30 @@ export async function resolveCodMunicipio(params: {
     rows = await selectRows();
   }
   if (rows.length === 0) {
+    if (zip.length === 8) {
+      try {
+        const viaCepRes = await fetch(`https://viacep.com.br/ws/${zip}/json/`);
+        if (viaCepRes.ok) {
+          const viaCep = await viaCepRes.json().catch(() => null) as any;
+          const viaCepUf = normalizeUf(viaCep?.uf);
+          const viaCepIbgeRaw = String(viaCep?.ibge || '').replace(/\D/g, '');
+          if (
+            viaCepUf === uf
+            && /^\d{7}$/.test(viaCepIbgeRaw)
+          ) {
+            return { codMunicipio: viaCepIbgeRaw, source: 'viacep_zip' };
+          }
+          if (viaCepUf && viaCepUf !== uf) {
+            return { codMunicipio: null, source: 'none', reason: 'viacep_uf_mismatch' };
+          }
+          if (viaCep?.erro) {
+            return { codMunicipio: null, source: 'none', reason: 'viacep_cep_not_found' };
+          }
+        }
+      } catch {
+        // mantém fallback original
+      }
+    }
     return {
       codMunicipio: null,
       source: 'none',
