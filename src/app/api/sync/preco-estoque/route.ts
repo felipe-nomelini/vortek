@@ -48,7 +48,7 @@ export async function POST(req: Request) {
 
   const body = await req.json().catch(() => ({}));
   const fornecedorIdsRaw: Array<number | string> = Array.isArray(body?.fornecedorIds) ? body.fornecedorIds : [];
-  const fornecedorIdSingle = body?.fornecedorId;
+  const cursorFornecedorId = String(body?.fornecedorId || '').trim();
   const startPage = parsePositiveInt(body?.page, 1);
   const pageSize = parsePositiveInt(body?.pageSize, 50);
   const maxPagesPerRun = parsePositiveInt(body?.maxPagesPerRun, 1);
@@ -108,16 +108,11 @@ export async function POST(req: Request) {
       }, { status: 502 });
     }
 
-    let fornecedorIds = fornecedorIdsRaw.map((id) => String(id).trim()).filter(Boolean);
-    if (fornecedorIdSingle !== undefined && fornecedorIdSingle !== null && String(fornecedorIdSingle).trim()) {
-      fornecedorIds = [String(fornecedorIdSingle).trim()];
-    }
-    if (fornecedorIds.length === 0) {
-      fornecedorIds = fornecedores
-        .filter((f) => String(f.crossdocking || '').toLowerCase() === 'ativo')
-        .map((f) => String(f.id));
-    }
-    fornecedorIds = Array.from(new Set(fornecedorIds));
+    const fornecedorIds = fornecedorIdsRaw.length > 0
+      ? Array.from(new Set(fornecedorIdsRaw.map((id) => String(id).trim()).filter(Boolean)))
+      : fornecedores
+          .filter((f) => String(f.crossdocking || '').toLowerCase() === 'ativo')
+          .map((f) => String(f.id));
 
     if (fornecedorIds.length === 0) {
       errors.push({ code: 'dslite_fornecedor_ids_empty', message: 'Nenhum fornecedor ativo selecionado' });
@@ -130,6 +125,7 @@ export async function POST(req: Request) {
           lock_acquired: true,
         },
         cursor: null,
+        cursor_exhausted: true,
         records: { seen: 0, updated: 0, missing: 0, failed: 0 },
         errors,
         duration: { ms: Date.now() - startedAt },
@@ -137,10 +133,9 @@ export async function POST(req: Request) {
     }
 
     const client = createServiceClient();
-    const targetFornecedor = String(fornecedorIds[0]);
-
-    let currentPage = startPage;
-    let hasMore = false;
+    const startSupplierIndex = cursorFornecedorId ? fornecedorIds.indexOf(cursorFornecedorId) : 0;
+    let supplierIndex = startSupplierIndex >= 0 ? startSupplierIndex : 0;
+    let currentPage = startSupplierIndex >= 0 && cursorFornecedorId ? startPage : 1;
     let pagesProcessed = 0;
     let recordsSeen = 0;
     let recordsUpdated = 0;
@@ -151,15 +146,22 @@ export async function POST(req: Request) {
     let mlOutboxSkippedNoItem = 0;
     let mlOutboxSkippedManualBlock = 0;
     let mlOutboxFailed = 0;
+    let remainingPagesBudget = maxPagesPerRun;
+    let nextCursor: { fornecedorId: string; page: number } | null = null;
+    let stopByBudget = false;
 
-    for (let i = 0; i < maxPagesPerRun; i += 1) {
+    while (supplierIndex < fornecedorIds.length) {
+      const targetFornecedor = String(fornecedorIds[supplierIndex]);
       const response = await sincronizarPrecoEstoque(targetFornecedor, currentPage, pageSize);
       if (!response?.produtos?.length) {
-        break;
+        supplierIndex += 1;
+        currentPage = 1;
+        continue;
       }
 
       const produtos = response.produtos;
       pagesProcessed += 1;
+      remainingPagesBudget -= 1;
       recordsSeen += produtos.length;
 
       const batch: Array<{
@@ -211,8 +213,30 @@ export async function POST(req: Request) {
       }
 
       if (batch.length === 0) {
-        hasMore = false;
-        break;
+        const totalRegistros = Number(response?.detalhesConsulta?.totalRegistros || 0);
+        const perPage = Number(response?.detalhesConsulta?.limit || produtos.length || pageSize);
+        const totalPaginas = perPage > 0 ? Math.ceil(totalRegistros / perPage) : currentPage;
+        const hasMore = currentPage < totalPaginas;
+
+        if (remainingPagesBudget <= 0) {
+          if (hasMore) {
+            nextCursor = { fornecedorId: targetFornecedor, page: currentPage + 1 };
+          } else {
+            const nextFornecedor = fornecedorIds[supplierIndex + 1];
+            nextCursor = nextFornecedor ? { fornecedorId: String(nextFornecedor), page: 1 } : null;
+          }
+          stopByBudget = true;
+          break;
+        }
+
+        if (hasMore) {
+          currentPage += 1;
+          continue;
+        }
+
+        supplierIndex += 1;
+        currentPage = 1;
+        continue;
       }
 
       const skus = batch.map((row) => row.sku).filter(Boolean);
@@ -228,6 +252,7 @@ export async function POST(req: Request) {
           context: { fornecedorId: targetFornecedor, page: currentPage },
         });
         recordsFailed += batch.length;
+        stopByBudget = true;
         break;
       }
 
@@ -368,19 +393,30 @@ export async function POST(req: Request) {
       const totalRegistros = Number(response?.detalhesConsulta?.totalRegistros || 0);
       const perPage = Number(response?.detalhesConsulta?.limit || produtos.length || pageSize);
       const totalPaginas = perPage > 0 ? Math.ceil(totalRegistros / perPage) : currentPage;
+      const hasMore = currentPage < totalPaginas;
 
-      hasMore = currentPage < totalPaginas;
-      currentPage += 1;
-      if (!hasMore) break;
+      if (remainingPagesBudget <= 0) {
+        if (hasMore) {
+          nextCursor = { fornecedorId: targetFornecedor, page: currentPage + 1 };
+        } else {
+          const nextFornecedor = fornecedorIds[supplierIndex + 1];
+          nextCursor = nextFornecedor ? { fornecedorId: String(nextFornecedor), page: 1 } : null;
+        }
+        stopByBudget = true;
+        break;
+      }
+
+      if (hasMore) {
+        currentPage += 1;
+        continue;
+      }
+
+      supplierIndex += 1;
+      currentPage = 1;
     }
 
-    let nextCursor: { fornecedorId: string; page: number } | null = null;
-    if (hasMore) {
-      nextCursor = { fornecedorId: targetFornecedor, page: currentPage };
-    } else if (fornecedorIds.length > 1) {
-      const currentIndex = fornecedorIds.indexOf(targetFornecedor);
-      const nextFornecedor = fornecedorIds[currentIndex + 1] || fornecedorIds[0];
-      nextCursor = { fornecedorId: String(nextFornecedor), page: 1 };
+    if (stopByBudget && nextCursor === null && supplierIndex < fornecedorIds.length) {
+      nextCursor = { fornecedorId: String(fornecedorIds[supplierIndex]), page: currentPage };
     }
 
     return NextResponse.json({
@@ -392,6 +428,7 @@ export async function POST(req: Request) {
         lock_acquired: true,
       },
       cursor: nextCursor,
+      cursor_exhausted: nextCursor === null,
       records: {
         seen: recordsSeen,
         updated: recordsUpdated,
@@ -435,6 +472,7 @@ export async function POST(req: Request) {
         lock_acquired: lockAcquired,
       },
       cursor: null,
+      cursor_exhausted: true,
       records: { seen: 0, updated: 0, missing: 0, failed: 0 },
       errors,
       duration: { ms: Date.now() - startedAt },

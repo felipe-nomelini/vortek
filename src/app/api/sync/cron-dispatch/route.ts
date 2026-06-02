@@ -41,16 +41,77 @@ function extractOffsetFromJobLog(log: any): number {
   return 0;
 }
 
-function extractCursorFromJobLog(log: any): { fornecedorId: string; page: number } | null {
+interface CursorExtractionResult {
+  cursor: { fornecedorId: string; page: number } | null;
+  exhausted: boolean;
+  source: 'cursor' | 'next_cursor' | 'reset' | 'legacy' | 'none';
+}
+
+function isValidFornecedorCursor(value: unknown): value is { fornecedorId: string; page: number } {
+  return Boolean(value)
+    && typeof value === 'object'
+    && !Array.isArray(value)
+    && String((value as any).fornecedorId || '').trim().length > 0
+    && Number.isFinite(Number((value as any).page))
+    && Number((value as any).page) > 0;
+}
+
+function extractCursorFromJobLog(log: any): CursorExtractionResult {
   const logs = parseLog(log);
+  let legacyCursor: { fornecedorId: string; page: number } | null = null;
+
   for (let i = logs.length - 1; i >= 0; i -= 1) {
     const entry = logs[i] || {};
-    const cursor = entry?.cursor || entry?.next_cursor;
-    if (cursor?.fornecedorId && Number.isFinite(Number(cursor?.page)) && Number(cursor.page) > 0) {
-      return { fornecedorId: String(cursor.fornecedorId), page: Number(cursor.page) };
+
+    if (!legacyCursor && isValidFornecedorCursor(entry?.cursor)) {
+      legacyCursor = {
+        fornecedorId: String(entry.cursor.fornecedorId),
+        page: Number(entry.cursor.page),
+      };
+    }
+
+    if (entry?.event_type !== 'job_stage_done') continue;
+
+    if (entry?.cursor_exhausted === true) {
+      return { cursor: null, exhausted: true, source: 'reset' };
+    }
+
+    if (isValidFornecedorCursor(entry?.cursor)) {
+      return {
+        cursor: {
+          fornecedorId: String(entry.cursor.fornecedorId),
+          page: Number(entry.cursor.page),
+        },
+        exhausted: false,
+        source: 'cursor',
+      };
+    }
+
+    if (isValidFornecedorCursor(entry?.next_cursor)) {
+      return {
+        cursor: {
+          fornecedorId: String(entry.next_cursor.fornecedorId),
+          page: Number(entry.next_cursor.page),
+        },
+        exhausted: false,
+        source: 'next_cursor',
+      };
+    }
+
+    const hasExplicitCursorState =
+      Object.prototype.hasOwnProperty.call(entry, 'cursor')
+      || Object.prototype.hasOwnProperty.call(entry, 'next_cursor');
+
+    if (hasExplicitCursorState) {
+      return { cursor: null, exhausted: true, source: 'reset' };
     }
   }
-  return null;
+
+  if (legacyCursor) {
+    return { cursor: legacyCursor, exhausted: false, source: 'legacy' };
+  }
+
+  return { cursor: null, exhausted: false, source: 'none' };
 }
 
 function consecutiveFailures(statuses: string[]): number {
@@ -146,12 +207,16 @@ export async function POST(request: Request) {
     }
 
     let offset = 0;
-    let cursor: { fornecedorId: string; page: number } | null = null;
+    let cursorInfo: CursorExtractionResult = {
+      cursor: null,
+      exhausted: false,
+      source: 'none',
+    };
     if (task.usesOffset && recent.length > 0) {
       offset = extractOffsetFromJobLog(recent[0].log);
     }
     if (task.usesCursor && recent.length > 0) {
-      cursor = extractCursorFromJobLog(recent[0].log);
+      cursorInfo = extractCursorFromJobLog(recent[0].log);
     }
 
     const initialLog = [
@@ -166,7 +231,9 @@ export async function POST(request: Request) {
         backoff_minutes: backoffMinutes,
         consecutive_failures: failureStreak,
         offset,
-        cursor,
+        cursor: cursorInfo.cursor,
+        cursor_exhausted: cursorInfo.exhausted,
+        cursor_source: cursorInfo.source,
       },
     ];
 
@@ -197,7 +264,9 @@ export async function POST(request: Request) {
     setTimeout(() => {
       const body = {
         ...(task.defaultBody || {}),
-        ...(task.usesCursor ? { fornecedorId: cursor?.fornecedorId, page: cursor?.page || 1 } : {}),
+        ...(task.usesCursor && cursorInfo.cursor
+          ? { fornecedorId: cursorInfo.cursor.fornecedorId, page: cursorInfo.cursor.page }
+          : {}),
       };
       const query = task.usesOffset ? { offset } : undefined;
 
@@ -213,15 +282,17 @@ export async function POST(request: Request) {
       });
     }, 0);
 
-    results.push({
-      task: task.key,
-      action: 'dispatched',
-      jobId: insertedJob.id,
-      interval_minutes: intervalMinutes,
-      backoff_minutes: backoffMinutes,
-      offset,
-      cursor,
-    });
+      results.push({
+        task: task.key,
+        action: 'dispatched',
+        jobId: insertedJob.id,
+        interval_minutes: intervalMinutes,
+        backoff_minutes: backoffMinutes,
+        offset,
+        cursor: cursorInfo.cursor,
+        cursor_exhausted: cursorInfo.exhausted,
+        cursor_source: cursorInfo.source,
+      });
   }
 
   return NextResponse.json({
@@ -233,4 +304,3 @@ export async function POST(request: Request) {
     results,
   });
 }
-

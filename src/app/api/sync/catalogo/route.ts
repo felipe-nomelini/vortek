@@ -322,6 +322,7 @@ export async function POST(req: Request) {
         lock_acquired: true,
       },
       cursor: nextCursor,
+      cursor_exhausted: nextCursor === null,
       records: {
         seen: recordsSeen,
         upserted: recordsUpserted,
@@ -352,6 +353,7 @@ export async function POST(req: Request) {
         lock_acquired: lockAcquired,
       },
       cursor: null,
+      cursor_exhausted: true,
       records: { seen: 0, upserted: 0, suppliers: 0 },
       errors,
       duration: { ms: Date.now() - startedAt },

@@ -463,6 +463,8 @@ function mapearStatusShipment(shipmentStatus: string, shipmentSubstatus?: string
       if (shipmentSubstatus === 'printed') return 'etiqueta_impressa';
       if (shipmentSubstatus === 'dropped_off') return 'coletado';
       if (shipmentSubstatus === 'picked_up') return 'coletado';
+      if (shipmentSubstatus === 'authorized_by_carrier') return 'coletado';
+      if (shipmentSubstatus === 'in_hub') return 'coletado';
       return 'pronto_envio';
     case 'shipped':
       if (shipmentSubstatus === 'out_for_delivery') return 'saiu_entrega';
@@ -951,6 +953,7 @@ async function processOrder(params: {
   let shipmentDetail: any = null;
   let releaseWindowCheckOk = false;
   let releaseWindow = extractMlFiscalReleaseWindow({ shipment: null, leadTime: null });
+  const situacaoAnteriorShipment = situacao;
 
   try {
     const shipmentFetch = await fetchMLResultWithRetry<any>(`/orders/${o.id}/shipments`);
@@ -981,6 +984,18 @@ async function processOrder(params: {
         const shipSubstatus = shipmentDetail.substatus;
         if (shipStatus) {
           situacao = mapearStatusShipment(shipStatus, shipSubstatus);
+          if (situacao !== situacaoAnteriorShipment) {
+            console.log(JSON.stringify({
+              event: 'sync_pedidos_shipment_status_transition',
+              pedido: String(o.id),
+              shipment_id: mlShipmentId,
+              shipment_status: shipStatus,
+              shipment_substatus: shipSubstatus || null,
+              situacao_anterior: situacaoAnteriorShipment,
+              situacao_nova: situacao,
+              timestamp_utc: new Date().toISOString(),
+            }));
+          }
         }
       }
     } else if (!shipmentResult.ok && shipmentResult.error?.status === 404) {

@@ -42,6 +42,15 @@ function eventLog(
   };
 }
 
+function isValidFornecedorCursor(value: unknown): value is { fornecedorId: string; page: number } {
+  return Boolean(value)
+    && typeof value === 'object'
+    && !Array.isArray(value)
+    && String((value as any).fornecedorId || '').trim().length > 0
+    && Number.isFinite(Number((value as any).page))
+    && Number((value as any).page) > 0;
+}
+
 async function updateJob(jobId: string, data: JobsUpdate) {
   const serviceClient = createServiceClient();
   await serviceClient.from('jobs').update(data).eq('id', jobId);
@@ -125,6 +134,27 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
     const errorCode = raw?.code || raw?.error_code || primaryError?.code || null;
     const errorCategory = raw?.category || primaryError?.category || null;
     const upstreamStatus = raw?.upstream_status ?? primaryError?.upstream_status ?? null;
+    const previousCursor = isValidFornecedorCursor(body)
+      ? {
+          fornecedorId: String(body.fornecedorId),
+          page: Number(body.page),
+        }
+      : null;
+    const effectiveNextCursor = isValidFornecedorCursor(raw?.cursor)
+      ? {
+          fornecedorId: String(raw.cursor.fornecedorId),
+          page: Number(raw.cursor.page),
+        }
+      : isValidFornecedorCursor(raw?.next_cursor)
+        ? {
+            fornecedorId: String(raw.next_cursor.fornecedorId),
+            page: Number(raw.next_cursor.page),
+          }
+        : null;
+    const cursorExhausted = raw?.cursor_exhausted === true || (!effectiveNextCursor && (Object.prototype.hasOwnProperty.call(raw, 'cursor') || Object.prototype.hasOwnProperty.call(raw, 'next_cursor')));
+    const cursorSource = effectiveNextCursor
+      ? (isValidFornecedorCursor(raw?.cursor) ? 'cursor' : 'next_cursor')
+      : (cursorExhausted ? 'reset' : 'none');
 
     logs.push({
       event_type: 'job_stage_done',
@@ -139,6 +169,10 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
       error_code: errorCode,
       error_category: errorCategory,
       upstream_status: upstreamStatus,
+      cursor_previous: previousCursor,
+      cursor_effective_next: effectiveNextCursor,
+      cursor_exhausted: cursorExhausted,
+      cursor_source: cursorSource,
       ...raw,
     });
 
