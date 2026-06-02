@@ -65,6 +65,23 @@ export async function GET(request: Request) {
   const priceMin = parsedPriceMin !== null && Number.isFinite(parsedPriceMin) ? parsedPriceMin : null;
   const priceMax = parsedPriceMax !== null && Number.isFinite(parsedPriceMax) ? parsedPriceMax : null;
   const hasPriceFilter = priceMin !== null || priceMax !== null;
+  const rawSortBy = searchParams.get('sortBy') || 'sku';
+  const rawSortOrder = searchParams.get('sortOrder') || 'asc';
+  const allowedSortBy = new Set([
+    'sku',
+    'nome',
+    'fornecedor',
+    'estoque',
+    'custo',
+    'ml_fee',
+    'ml_shipping',
+    'suggested_price',
+    'profit',
+    'ml_status',
+  ]);
+  const sortBy = allowedSortBy.has(rawSortBy) ? rawSortBy : 'sku';
+  const sortOrder = rawSortOrder === 'desc' ? 'desc' : 'asc';
+  const requiresInMemorySort = sortBy === 'suggested_price' || sortBy === 'profit';
 
   function computeDerived(item: any): { displayPrice: number; profit: number | null } {
     try {
@@ -108,6 +125,60 @@ export async function GET(request: Request) {
     return true;
   }
 
+  function sortRows(rows: any[]) {
+    const direction = sortOrder === 'asc' ? 1 : -1;
+    rows.sort((left, right) => {
+      const leftDerived = computeDerived(left);
+      const rightDerived = computeDerived(right);
+      let comparison = 0;
+
+      switch (sortBy) {
+        case 'sku':
+          comparison = String(left.sku || '').localeCompare(String(right.sku || ''), 'pt-BR');
+          break;
+        case 'nome':
+          comparison = String(left.nome || '').localeCompare(String(right.nome || ''), 'pt-BR');
+          break;
+        case 'fornecedor':
+          comparison = String(left.fornecedor || '').localeCompare(String(right.fornecedor || ''), 'pt-BR');
+          break;
+        case 'estoque':
+          comparison = Number(left.estoque || 0) - Number(right.estoque || 0);
+          break;
+        case 'custo':
+          comparison = Number(left.custo || 0) - Number(right.custo || 0);
+          break;
+        case 'ml_fee':
+          comparison = Number(left.ml_fee || 0) - Number(right.ml_fee || 0);
+          break;
+        case 'ml_shipping':
+          comparison = Number(left.ml_shipping || 0) - Number(right.ml_shipping || 0);
+          break;
+        case 'suggested_price':
+          comparison = leftDerived.displayPrice - rightDerived.displayPrice;
+          break;
+        case 'profit': {
+          const leftProfit = leftDerived.profit;
+          const rightProfit = rightDerived.profit;
+          if (leftProfit === null && rightProfit === null) comparison = 0;
+          else if (leftProfit === null) comparison = 1;
+          else if (rightProfit === null) comparison = -1;
+          else comparison = leftProfit - rightProfit;
+          break;
+        }
+        case 'ml_status':
+          comparison = String(left.ml_status || '').localeCompare(String(right.ml_status || ''), 'pt-BR');
+          break;
+        default:
+          comparison = String(left.sku || '').localeCompare(String(right.sku || ''), 'pt-BR');
+          break;
+      }
+
+      if (comparison !== 0) return comparison * direction;
+      return String(left.sku || '').localeCompare(String(right.sku || ''), 'pt-BR');
+    });
+  }
+
   // Helper to apply common DB filters to a query
   function applyFilters(query: any) {
     if (search) {
@@ -129,7 +200,7 @@ export async function GET(request: Request) {
 
   let data: any[] = [];
   let total = 0;
-  if (hasPriceFilter) {
+  if (hasPriceFilter || requiresInMemorySort) {
     // With derived price/profit filters we need to apply filtering over the full filtered dataset.
     const chunkSize = 1000;
     const allRows: any[] = [];
@@ -150,6 +221,7 @@ export async function GET(request: Request) {
     }
 
     const filteredRows = allRows.filter(matchesPriceFilter);
+    sortRows(filteredRows);
     total = filteredRows.length;
     data = filteredRows.slice(from, to + 1);
   } else {
@@ -162,8 +234,18 @@ export async function GET(request: Request) {
     // Data query with pagination
     let dataQuery = supabase.from('produtos').select('*');
     dataQuery = applyFilters(dataQuery);
+    const dbSortMap: Record<string, string> = {
+      sku: 'sku',
+      nome: 'nome',
+      fornecedor: 'fornecedor',
+      estoque: 'estoque',
+      custo: 'custo',
+      ml_fee: 'ml_fee',
+      ml_shipping: 'ml_shipping',
+      ml_status: 'ml_status',
+    };
     const { data: pageData, error } = await dataQuery
-      .order('sku', { ascending: true })
+      .order(dbSortMap[sortBy] || 'sku', { ascending: sortOrder === 'asc' })
       .range(from, to);
 
     if (error) return NextResponse.json({ erro: error.message }, { status: 500 });

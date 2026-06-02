@@ -84,9 +84,21 @@ export async function GET(request: Request) {
   const priceMin = searchParams.get('priceMin') ? parseFloat(searchParams.get('priceMin')!) : null;
   const priceMax = searchParams.get('priceMax') ? parseFloat(searchParams.get('priceMax')!) : null;
   const normalizedSearch = search.trim();
-
-  const from = (page - 1) * pageSize;
-  const to = from + pageSize - 1;
+  const rawSortBy = searchParams.get('sortBy') || 'data';
+  const rawSortOrder = searchParams.get('sortOrder') || 'desc';
+  const allowedSortBy = new Set([
+    'numero',
+    'data',
+    'cliente',
+    'total',
+    'rastreio',
+    'situacao',
+    'nota_fiscal_numero',
+    'pedido_compra',
+    'lucro',
+  ]);
+  const sortBy = allowedSortBy.has(rawSortBy) ? rawSortBy : 'data';
+  const sortOrder = rawSortOrder === 'asc' ? 'asc' : 'desc';
   let endDateIso: string | null = null;
 
   if (dateTo) {
@@ -95,80 +107,31 @@ export async function GET(request: Request) {
     endDateIso = end.toISOString();
   }
 
-  if (normalizedSearch) {
-    const { data: rpcData, error: rpcError } = await (supabase as any).rpc('search_pedidos_paginated', {
-      p_search: normalizedSearch,
-      p_status: status || null,
-      p_date_from: dateFrom || null,
-      p_date_to: endDateIso,
-      p_price_min: priceMin,
-      p_price_max: priceMax,
-      p_page: page,
-      p_page_size: pageSize,
-    });
+  const { data: rpcData, error: rpcError } = await (supabase as any).rpc('search_pedidos_paginated', {
+    p_search: normalizedSearch || null,
+    p_status: status || null,
+    p_date_from: dateFrom || null,
+    p_date_to: endDateIso,
+    p_price_min: priceMin,
+    p_price_max: priceMax,
+    p_page: page,
+    p_page_size: pageSize,
+    p_sort_by: sortBy,
+    p_sort_order: sortOrder,
+  });
 
-    if (rpcError) {
-      logDbError('pedidos_search_rpc_failed', '/api/pedidos', normalizedSearch, rpcError);
-      return NextResponse.json({ erro: 'Falha ao buscar pedidos com filtro de busca.' }, { status: 500 });
-    }
-
-    const rows = Array.isArray(rpcData?.data) ? rpcData.data : [];
-    const total = Number(rpcData?.total ?? 0) || 0;
-    const reconciledRows = await persistReconciledPedidos(rows);
-
-    return NextResponse.json({
-      data: reconciledRows,
-      total,
-      page,
-      pageSize,
-    });
+  if (rpcError) {
+    logDbError('pedidos_search_rpc_failed', '/api/pedidos', normalizedSearch, rpcError);
+    return NextResponse.json({ erro: 'Falha ao buscar pedidos filtrados.' }, { status: 500 });
   }
 
-  // Build base query
-  function applyFilters(query: any) {
-    if (status) {
-      query = query.eq('situacao', status);
-    }
-    if (dateFrom) {
-      query = query.gte('data', dateFrom);
-    }
-    if (endDateIso) {
-      query = query.lte('data', endDateIso);
-    }
-    if (priceMin !== null) {
-      query = query.gte('total', priceMin);
-    }
-    if (priceMax !== null) {
-      query = query.lte('total', priceMax);
-    }
-    return query;
-  }
-
-  // Count query
-  let countQuery = supabase.from('pedidos').select('*', { count: 'exact', head: false }).range(0, 0);
-  countQuery = applyFilters(countQuery);
-  const { count, error: countError } = await countQuery;
-  if (countError) {
-    logDbError('pedidos_count_query_failed', '/api/pedidos', normalizedSearch, countError);
-    return NextResponse.json({ erro: 'Falha ao contar pedidos filtrados.' }, { status: 500 });
-  }
-
-  // Data query
-  let dataQuery = supabase.from('pedidos').select('*');
-  dataQuery = applyFilters(dataQuery);
-  const { data, error } = await dataQuery
-    .order('data', { ascending: false })
-    .range(from, to);
-
-  if (error) {
-    logDbError('pedidos_data_query_failed', '/api/pedidos', normalizedSearch, error);
-    return NextResponse.json({ erro: 'Falha ao carregar pedidos.' }, { status: 500 });
-  }
-  const reconciledRows = await persistReconciledPedidos(data || []);
+  const rows = Array.isArray(rpcData?.data) ? rpcData.data : [];
+  const total = Number(rpcData?.total ?? 0) || 0;
+  const reconciledRows = await persistReconciledPedidos(rows);
 
   return NextResponse.json({
     data: reconciledRows,
-    total: count || 0,
+    total,
     page,
     pageSize,
   });

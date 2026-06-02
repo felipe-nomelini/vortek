@@ -7,6 +7,7 @@ import QualidadeModal from '@/components/QualidadeModal';
 import type { TableProps } from 'antd';
 import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
 import { formatCurrency } from '@/lib/format';
+import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 
 const { Title } = Typography;
 
@@ -17,6 +18,7 @@ interface Anuncio {
   sku: string;
   produto: string;
   precoML: number;
+  lucro: number | null;
   vendidos: number;
   visitas: number;
   qualidade: number;
@@ -37,6 +39,7 @@ function mapDBtoAnuncio(item: any): Anuncio {
     sku: item.sku || '',
     produto: item.titulo || '',
     precoML: item.preco_ml || 0,
+    lucro: typeof item.lucro === 'number' ? item.lucro : null,
     vendidos: item.vendidos || 0,
     visitas: item.visitas || 0,
     qualidade: item.qualidade || 0,
@@ -51,6 +54,7 @@ export default function AnunciosPage() {
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
+  const [sort, setSort] = useState<RemoteSortState>({ sortBy: 'titulo', sortOrder: 'asc' });
 
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<ListingStatus | ''>('');
@@ -71,12 +75,13 @@ export default function AnunciosPage() {
   const buildParams = useCallback(() => {
     const params = new URLSearchParams();
     params.set('page', String(page));
+    appendRemoteSortParams(params, sort);
     if (search) params.set('search', search);
     if (statusFilter) params.set('status', statusFilter);
     if (mlMin !== null) params.set('priceMin', String(mlMin));
     if (mlMax !== null) params.set('priceMax', String(mlMax));
     return params;
-  }, [page, search, statusFilter, mlMin, mlMax]);
+  }, [page, sort, search, statusFilter, mlMin, mlMax]);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -121,28 +126,44 @@ export default function AnunciosPage() {
   const columns: TableProps<Anuncio>['columns'] = [
     {
       title: 'SKU', dataIndex: 'sku', key: 'sku', width: 110,
-      sorter: (a, b) => a.sku.localeCompare(b.sku),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('sku', sort),
     },
     {
-      title: 'Produto', dataIndex: 'produto', key: 'produto',
-      sorter: (a, b) => a.produto.localeCompare(b.produto),
+      title: 'Produto', dataIndex: 'produto', key: 'titulo',
+      sorter: true,
+      sortOrder: getRemoteSortOrder('titulo', sort),
     },
     {
-      title: 'Preço ML', dataIndex: 'precoML', key: 'precoML', width: 110,
-      sorter: (a, b) => a.precoML - b.precoML,
+      title: 'Preço ML', dataIndex: 'precoML', key: 'preco_ml', width: 110,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('preco_ml', sort),
       render: (v: number) => v ? formatCurrency(v) : <span style={{ color: '#666' }}>—</span>,
     },
     {
+      title: 'Lucro', dataIndex: 'lucro', key: 'lucro', width: 110,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('lucro', sort),
+      render: (v: number | null) => {
+        if (v === null) return <span style={{ color: '#666' }}>—</span>;
+        const color = v > 0 ? '#52c41a' : v < 0 ? '#ff4d4f' : '#d9d9d9';
+        return <span style={{ color, fontWeight: 600 }}>{formatCurrency(v)}</span>;
+      },
+    },
+    {
       title: 'Vendidos', dataIndex: 'vendidos', key: 'vendidos', width: 90,
-      sorter: (a, b) => a.vendidos - b.vendidos,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('vendidos', sort),
     },
     {
       title: 'Visitas', dataIndex: 'visitas', key: 'visitas', width: 80,
-      sorter: (a, b) => a.visitas - b.visitas,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('visitas', sort),
     },
     {
       title: 'Qualidade', dataIndex: 'qualidade', key: 'qualidade', width: 100,
-      sorter: (a, b) => a.qualidade - b.qualidade,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('qualidade', sort),
       render: (v: number, record: Anuncio) => (
         <a
           onClick={() => {
@@ -165,14 +186,16 @@ export default function AnunciosPage() {
     },
     {
       title: 'Status', dataIndex: 'status', key: 'status', width: 100,
-      sorter: (a, b) => a.status.localeCompare(b.status),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('status', sort),
       render: (s: ListingStatus) => (
         <Tag color={s === 'ativo' ? 'green' : 'orange'}>{s.charAt(0).toUpperCase() + s.slice(1)}</Tag>
       ),
     },
     {
       title: 'Catálogo', dataIndex: 'catalogo', key: 'catalogo', width: 90,
-      sorter: (a, b) => Number(a.catalogo) - Number(b.catalogo),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('catalogo', sort),
       render: (v: boolean) => v
         ? <Tag color="green">SIM</Tag>
         : <Tag color="default">NÃO</Tag>,
@@ -197,6 +220,13 @@ export default function AnunciosPage() {
       ),
     },
   ];
+
+  const handleTableChange: TableProps<Anuncio>['onChange'] = (pagination, _filters, sorter) => {
+    const nextSort = resolveRemoteSortState(sorter, { sortBy: 'titulo', sortOrder: 'asc' });
+    const sortChanged = nextSort.sortBy !== sort.sortBy || nextSort.sortOrder !== sort.sortOrder;
+    setSort(nextSort);
+    setPage(sortChanged ? 1 : (pagination.current || 1));
+  };
 
   return (
     <div>
@@ -284,9 +314,9 @@ export default function AnunciosPage() {
               total,
               showSizeChanger: false,
               showTotal: (t) => `${t} anúncios`,
-              onChange: (p) => setPage(p),
             }}
-            scroll={{ x: 1200 }}
+            onChange={handleTableChange}
+            scroll={{ x: 1310 }}
             style={{ background: 'transparent' }}
             size="small"
           />

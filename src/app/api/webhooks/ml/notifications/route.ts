@@ -4,6 +4,7 @@ import { fetchML, fetchMLResult } from '@/services/integration';
 import { calculateOrderProfit } from '@/services/orders';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import { extractMlFiscalReleaseWindow } from '@/lib/ml/fiscal-release';
+import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 
 async function resolveFiscalReleaseWindow(shipment: any | null): Promise<{
   shipmentFetched: boolean;
@@ -207,7 +208,33 @@ export async function POST(request: Request) {
     }
 
     if (topic === 'items') {
-      // Notificações de alterações em anúncios — serão processadas sob demanda
+      const itemResult = await fetchMLResult<any>(resourcePath);
+      if (!itemResult.ok || !itemResult.data) {
+        console.warn(JSON.stringify({
+          event: 'ml_items_webhook_fetch_failed',
+          timestamp_utc: new Date().toISOString(),
+          resource,
+          resource_path: resourcePath,
+          status: itemResult.status,
+          error: itemResult.error?.message || 'Falha ao consultar item do ML após webhook',
+        }));
+      } else {
+        const reconcileResult = await reconcileAnuncioMlFromItem(
+          serviceClient,
+          itemResult.data,
+          'items_webhook',
+        );
+        if (!reconcileResult.ok) {
+          console.error(JSON.stringify({
+            event: 'ml_items_webhook_reconcile_failed',
+            timestamp_utc: new Date().toISOString(),
+            resource,
+            resource_path: resourcePath,
+            ml_item_id: reconcileResult.mlItemId,
+            error: reconcileResult.error,
+          }));
+        }
+      }
     }
 
     if (topic === 'shipments' || topic === 'shipment_update') {

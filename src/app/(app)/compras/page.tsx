@@ -8,6 +8,7 @@ import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
 import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
 import { formatCurrency } from '@/lib/format';
+import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 
 const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
@@ -60,6 +61,7 @@ export default function ComprasPage() {
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [compras, setCompras] = useState<Compra[]>([]);
+  const [sort, setSort] = useState<RemoteSortState>({ sortBy: 'data_criacao', sortOrder: 'desc' });
 
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
@@ -80,12 +82,13 @@ export default function ComprasPage() {
     const params = new URLSearchParams();
     params.set('page', String(page));
     params.set('limit', '50');
+    appendRemoteSortParams(params, sort);
     if (search) params.set('search', search);
     if (statusFilter) params.set('status', statusFilter);
     if (dateRange[0]) params.set('dateFrom', dateRange[0]);
     if (dateRange[1]) params.set('dateTo', dateRange[1]);
     return params;
-  }, [page, search, statusFilter, dateRange]);
+  }, [page, sort, search, statusFilter, dateRange]);
 
   const buildSummaryParams = useCallback(() => {
     const params = new URLSearchParams();
@@ -143,7 +146,8 @@ export default function ComprasPage() {
   const columns: TableProps<Compra>['columns'] = [
     {
       title: 'Número', dataIndex: 'dsid', key: 'dsid', width: 100,
-      sorter: (a, b) => Number(a.dsid) - Number(b.dsid),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('dsid', sort),
       render: (dsid: string) => (
         <span style={{ fontFamily: 'monospace', color: '#1677ff' }}>
           #{String(dsid).padStart(6, '0')}
@@ -152,11 +156,8 @@ export default function ComprasPage() {
     },
     {
       title: 'Pedido (vendas)', dataIndex: 'pedido_vendas_numero', key: 'pedido_vendas_numero', width: 140,
-      sorter: (a, b) => {
-        const aNum = a.pedido_vendas_numero ?? Number.MAX_SAFE_INTEGER;
-        const bNum = b.pedido_vendas_numero ?? Number.MAX_SAFE_INTEGER;
-        return aNum - bNum;
-      },
+      sorter: true,
+      sortOrder: getRemoteSortOrder('pedido_vendas_numero', sort),
       render: (numero: number | null) => numero ? (
         <a
           href={`https://www.mercadolivre.com.br/vendas/${numero}/detalhe`}
@@ -172,11 +173,14 @@ export default function ComprasPage() {
     },
     {
       title: 'Data', dataIndex: 'data_criacao', key: 'data_criacao', width: 160,
-      sorter: (a, b) => new Date(a.data_criacao || 0).getTime() - new Date(b.data_criacao || 0).getTime(),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('data_criacao', sort),
       render: (d: string) => d ? new Date(d).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—',
     },
     {
-      title: 'Destinatário', dataIndex: 'destinatario_nome', key: 'destinatario',
+      title: 'Destinatário', dataIndex: 'destinatario_nome', key: 'destinatario_nome',
+      sorter: true,
+      sortOrder: getRemoteSortOrder('destinatario_nome', sort),
       render: (nome: string, record: Compra) => (
         <div>
           <div style={{ color: '#e0e0e0', fontSize: 13 }}>{nome || '—'}</div>
@@ -187,7 +191,9 @@ export default function ComprasPage() {
       ),
     },
     {
-      title: 'Produto', dataIndex: 'produto_descricao', key: 'produto',
+      title: 'Produto', dataIndex: 'produto_descricao', key: 'produto_descricao',
+      sorter: true,
+      sortOrder: getRemoteSortOrder('produto_descricao', sort),
       render: (desc: string, record: Compra) => (
         <div>
           <div style={{ color: '#e0e0e0', fontSize: 13 }}>{desc || '—'}</div>
@@ -199,17 +205,20 @@ export default function ComprasPage() {
     },
     {
       title: 'Qtd', dataIndex: 'quantidade', key: 'quantidade', width: 60,
-      sorter: (a, b) => (a.quantidade || 0) - (b.quantidade || 0),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('quantidade', sort),
       render: (v: number) => <span style={{ color: '#e0e0e0' }}>{v || 1}</span>,
     },
     {
       title: 'Total', dataIndex: 'valor_total', key: 'valor_total', width: 110,
-      sorter: (a, b) => (a.valor_total || 0) - (b.valor_total || 0),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('valor_total', sort),
       render: (v: number) => formatCurrency(v || 0),
     },
     {
       title: 'Status', dataIndex: 'status', key: 'status', width: 140,
-      sorter: (a, b) => (a.status || '').localeCompare(b.status || ''),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('status', sort),
       render: (status: string) => (
         <Tag color={statusColor[status] || 'default'} style={{ fontSize: 12 }}>
           {status || '—'}
@@ -218,6 +227,8 @@ export default function ComprasPage() {
     },
     {
       title: 'NF', dataIndex: 'nf_numero', key: 'nf_numero', width: 100,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('nf_numero', sort),
       render: (nf: string | null) => nf ? (
         <Tag color="green" style={{ fontFamily: 'monospace', fontSize: 12 }}>{nf}</Tag>
       ) : (
@@ -246,6 +257,13 @@ export default function ComprasPage() {
       },
     },
   ];
+
+  const handleTableChange: TableProps<Compra>['onChange'] = (pagination, _filters, sorter) => {
+    const nextSort = resolveRemoteSortState(sorter, { sortBy: 'data_criacao', sortOrder: 'desc' });
+    const sortChanged = nextSort.sortBy !== sort.sortBy || nextSort.sortOrder !== sort.sortOrder;
+    setSort(nextSort);
+    setPage(sortChanged ? 1 : (pagination.current || 1));
+  };
 
   return (
     <div>
@@ -352,8 +370,8 @@ export default function ComprasPage() {
               total,
               showSizeChanger: false,
               showTotal: (t) => `${t} compras`,
-              onChange: (p) => setPage(p),
             }}
+            onChange={handleTableChange}
             scroll={{ x: 910 }}
             style={{ background: 'transparent' }}
             size="small"

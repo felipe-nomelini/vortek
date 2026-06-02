@@ -68,10 +68,13 @@ export interface FiscalProvider {
   type: NfeProvider;
   emitirNota(ctx: FiscalEmitContext): Promise<EmitResult>;
   consultarNota(externalIdOrOrderId: string): Promise<ConsultResult>;
-  obterXml(externalIdOrOrderId: string): Promise<XmlResult>;
+  obterXml(
+    externalIdOrOrderId: string,
+    options?: { chaveNf?: string | null },
+  ): Promise<XmlResult>;
   obterDanfe(
     _externalIdOrOrderId: string,
-    options?: { storagePath?: string | null; signedUrlTtlSeconds?: number },
+    options?: { storagePath?: string | null; signedUrlTtlSeconds?: number; chaveNf?: string | null },
   ): Promise<{ url: string | null; path?: string | null; error?: string }>;
 }
 
@@ -418,14 +421,32 @@ class BrasilNfeFiscalProvider implements FiscalProvider {
     }
   }
 
-  async obterXml(externalIdOrOrderId: string): Promise<XmlResult> {
+  async obterXml(externalIdOrOrderId: string, options?: { chaveNf?: string | null }): Promise<XmlResult> {
     try {
       const bnfe = await this.getClient();
-      const buffer: Buffer = await bnfe.arquivos.pegarArquivo({
-        NumeroRecibo: externalIdOrOrderId,
-        FileType: 1,
-      } as any);
+      const chaveNf = String(options?.chaveNf || '').trim();
+      const requests = chaveNf
+        ? [
+          { ChaveNF: chaveNf, FileType: 1, TipoDocumentoFiscal: 1 },
+          { NumeroRecibo: externalIdOrOrderId, FileType: 1 },
+        ]
+        : [
+          { NumeroRecibo: externalIdOrOrderId, FileType: 1 },
+        ];
+      let buffer: Buffer | null = null;
+      let lastError: any = null;
+      for (const payload of requests) {
+        try {
+          buffer = await bnfe.arquivos.pegarArquivo(payload as any);
+          if (buffer?.length) break;
+        } catch (err: any) {
+          lastError = err;
+        }
+      }
       const xml = buffer?.toString('utf-8') || null;
+      if (!xml && lastError) {
+        return { xml: null, error: lastError?.message || 'Erro ao obter XML no Brasil NFe', temporary: true };
+      }
       return { xml };
     } catch (err: any) {
       return { xml: null, error: err?.message || 'Erro ao obter XML no Brasil NFe', temporary: true };
@@ -434,14 +455,29 @@ class BrasilNfeFiscalProvider implements FiscalProvider {
 
   async obterDanfe(
     externalIdOrOrderId: string,
-    options?: { storagePath?: string | null; signedUrlTtlSeconds?: number },
+    options?: { storagePath?: string | null; signedUrlTtlSeconds?: number; chaveNf?: string | null },
   ): Promise<{ url: string | null; path?: string | null; error?: string }> {
     try {
       const bnfe = await this.getClient();
-      const buffer: Buffer = await bnfe.arquivos.pegarArquivo({
-        NumeroRecibo: externalIdOrOrderId,
-        FileType: 2,
-      } as any);
+      const chaveNf = String(options?.chaveNf || '').trim();
+      const requests = chaveNf
+        ? [
+          { ChaveNF: chaveNf, FileType: 2, TipoDocumentoFiscal: 1 },
+          { NumeroRecibo: externalIdOrOrderId, FileType: 2 },
+        ]
+        : [
+          { NumeroRecibo: externalIdOrOrderId, FileType: 2 },
+        ];
+      let buffer: Buffer | null = null;
+      let lastError: any = null;
+      for (const payload of requests) {
+        try {
+          buffer = await bnfe.arquivos.pegarArquivo(payload as any);
+          if (buffer?.length) break;
+        } catch (err: any) {
+          lastError = err;
+        }
+      }
       if (!buffer || !buffer.length) return { url: null, error: 'DANFE não retornado' };
 
       const serviceClient = createServiceClient();

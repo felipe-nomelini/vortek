@@ -361,6 +361,7 @@ export async function ensureBrasilNfeInvoice(input: {
   const ensureAuthorizedDanfeAndFlags = async (params: {
     numero: string | null;
     externalId: string | null;
+    chaveNf?: string | null;
     source: string;
     danfeUrlAtual?: string | null;
     extraUpdates?: Record<string, any>;
@@ -377,6 +378,7 @@ export async function ensureBrasilNfeInvoice(input: {
           numero: (pedido as any).numero,
           nota_fiscal_numero: notaNumero,
           nfe_external_id: externalId,
+          nfe_chave: params.chaveNf || chaveAtual || null,
           nota_fiscal_emitida: true,
         },
         pedidoId: input.pedidoId,
@@ -484,6 +486,7 @@ export async function ensureBrasilNfeInvoice(input: {
       const resolvedDanfeUrl = await ensureAuthorizedDanfeAndFlags({
         numero: numeroAtual || extractTag(xmlAtual, 'nNF'),
         externalId: externalAtual || null,
+        chaveNf: chaveAtual || extractTag(xmlAtual, 'chNFe'),
         source: 'ensure_local_authorized_snapshot',
         danfeUrlAtual: String((pedido as any).nfe_danfe_url || '') || null,
       });
@@ -551,6 +554,7 @@ export async function ensureBrasilNfeInvoice(input: {
       const resolvedDanfeUrl = await ensureAuthorizedDanfeAndFlags({
         numero,
         externalId: externalAtual,
+        chaveNf: chave,
         source: 'ensure_external_id_recovery',
         danfeUrlAtual: String((pedido as any).nfe_danfe_url || '') || null,
       });
@@ -839,6 +843,7 @@ export async function ensureBrasilNfeInvoice(input: {
   const resolvedDanfeUrl = await ensureAuthorizedDanfeAndFlags({
     numero,
     externalId,
+    chaveNf: chave,
     source: 'ensure_post_emission',
     danfeUrlAtual: danfeUrl,
     extraUpdates: {

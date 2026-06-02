@@ -3,6 +3,7 @@ import { createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 import { setItemQuantityPricing } from '@/services/mercadolibre';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
+import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 
 export const maxDuration = 300;
 
@@ -370,6 +371,8 @@ export async function POST(request: Request) {
           });
         } else {
           const resolvedLocalStatus = mapMlStatusToLocalStatus(itemStateResult.data?.status);
+          const reconciledMlPrice = Number(itemStateResult.data?.price);
+          const desiredPrice = Number(row.desired_price);
 
           const produtoUpdate = row.produto_id
             ? await client
@@ -389,17 +392,48 @@ export async function POST(request: Request) {
             });
           }
 
-          const anuncioUpdate = await client
-            .from('anuncios_ml')
-            .update({ status: resolvedLocalStatus } as any)
-            .eq('ml_item_id', mlItemId);
-
-          if (anuncioUpdate.error) {
+          const anuncioReconcile = await reconcileAnuncioMlFromItem(
+            client,
+            itemStateResult.data,
+            'publish_reconcile',
+          );
+          if (!anuncioReconcile.ok) {
             errors.push({
               code: 'ml_publish_reconcile_anuncio_update_failed',
-              message: anuncioUpdate.error.message,
+              message: anuncioReconcile.error,
               context: { outboxId, mlItemId, localStatus: resolvedLocalStatus },
             });
+          }
+
+          if (Number.isFinite(desiredPrice) && Number.isFinite(reconciledMlPrice)) {
+            const roundedDesiredPrice = Math.round(desiredPrice * 100) / 100;
+            const roundedMlPrice = Math.round(reconciledMlPrice * 100) / 100;
+            if (Math.abs(roundedDesiredPrice - roundedMlPrice) > 0.009) {
+              const mismatchPayload = withPublishProgress(outboxPayloadBase, {
+                state: 'done',
+                last_operation: 'price_reconcile_mismatch',
+                operations,
+                attempts,
+                desired_price: roundedDesiredPrice,
+                reconciled_item_price: roundedMlPrice,
+              });
+              await (client
+                .from('anuncios_ml_outbox' as any)
+                .update({
+                  last_error: `[price_reconcile_mismatch] preço final no ML (${roundedMlPrice}) difere do desejado (${roundedDesiredPrice})`,
+                  payload: mismatchPayload as any,
+                  updated_at: new Date().toISOString(),
+                } as any)
+                .eq('id', outboxId) as any);
+              console.warn(JSON.stringify({
+                event: 'ml_publish_price_reconcile_mismatch',
+                timestamp_utc: new Date().toISOString(),
+                outbox_id: outboxId,
+                ml_item_id: mlItemId,
+                desired_price: roundedDesiredPrice,
+                reconciled_item_price: roundedMlPrice,
+              }));
+            }
           }
         }
       } else {

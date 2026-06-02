@@ -7,6 +7,7 @@ import type { TableProps } from 'antd';
 import { useRouter } from 'next/navigation';
 import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
 import type { Database } from '@/types/database';
+import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 
 const { Title } = Typography;
 
@@ -35,6 +36,7 @@ export default function ClientesPage() {
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
+  const [sort, setSort] = useState<RemoteSortState>({ sortBy: 'nome', sortOrder: 'asc' });
 
   const [search, setSearch] = useState('');
   const [lastSearch, setLastSearch] = useState('');
@@ -47,6 +49,7 @@ export default function ClientesPage() {
     setLoading(true);
     try {
       const params = new URLSearchParams({ page: String(page) });
+      appendRemoteSortParams(params, sort);
       if (lastSearch) params.set('search', lastSearch);
       if (tipoFilter) params.set('tipo', tipoFilter);
       const res = await fetch(`/api/clientes?${params}`);
@@ -57,7 +60,7 @@ export default function ClientesPage() {
       }
     } catch {}
     setLoading(false);
-  }, [page, lastSearch, tipoFilter]);
+  }, [page, sort, lastSearch, tipoFilter]);
 
   const fetchStats = useCallback(async () => {
     try {
@@ -98,12 +101,14 @@ export default function ClientesPage() {
   const columns: TableProps<ClienteRow>['columns'] = [
     {
       title: 'ID ML', dataIndex: 'ml_id', key: 'ml_id', width: 100,
-      sorter: (a, b) => (a.ml_id || '').localeCompare(b.ml_id || ''),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('ml_id', sort),
       render: (v: string | null) => v || <span style={{ color: '#666' }}>—</span>,
     },
     {
       title: 'Nome', dataIndex: 'nome', key: 'nome',
-      sorter: (a, b) => a.nome.localeCompare(b.nome),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('nome', sort),
       render: (nome: string, record) => (
         <a onClick={() => router.push(`/clientes/${record.id}`)} style={{ color: '#1677ff', cursor: 'pointer' }}>
           {nome}
@@ -112,38 +117,44 @@ export default function ClientesPage() {
     },
     {
       title: 'Tipo', dataIndex: 'tipo_pessoa', key: 'tipo_pessoa', width: 90,
-      sorter: (a, b) => (a.tipo_pessoa || '').localeCompare(b.tipo_pessoa || ''),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('tipo_pessoa', sort),
       render: (t: string | null) => (
         <Tag color={t === 'J' ? 'purple' : 'blue'}>{t === 'J' ? 'PJ' : t === 'F' ? 'PF' : '—'}</Tag>
       ),
     },
     {
       title: 'Documento', dataIndex: 'documento', key: 'documento', width: 160,
-      sorter: (a, b) => (a.documento || '').localeCompare(b.documento || ''),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('documento', sort),
       render: (doc: string) => (
         <span style={{ fontFamily: 'monospace' }}>{formatDoc(doc)}</span>
       ),
     },
     {
       title: 'Endereço', dataIndex: 'endereco', key: 'endereco',
-      sorter: (a, b) => (a.endereco || '').localeCompare(b.endereco || ''),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('endereco', sort),
       render: (end: string) => (
         <span style={{ fontSize: 13 }}>{end || '—'}</span>
       ),
     },
     {
       title: 'E-mail', dataIndex: 'email', key: 'email',
-      sorter: (a, b) => (a.email || '').localeCompare(b.email || ''),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('email', sort),
       render: (v: string) => <span>{v || '—'}</span>,
     },
     {
       title: 'Telefone', dataIndex: 'telefone', key: 'telefone', width: 180,
-      sorter: (a, b) => (a.telefone || '').localeCompare(b.telefone || ''),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('telefone', sort),
       render: (v: string) => <span>{v || '—'}</span>,
     },
     {
       title: 'Pedidos', dataIndex: 'total_vendas', key: 'total_vendas', width: 90,
-      sorter: (a, b) => (a.total_vendas || 0) - (b.total_vendas || 0),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('total_vendas', sort),
       render: (v: number | null) => <span style={{ fontWeight: 600, color: '#1677ff' }}>{v ?? 0}</span>,
     },
     {
@@ -167,6 +178,13 @@ export default function ClientesPage() {
       ),
     },
   ];
+
+  const handleTableChange: TableProps<ClienteRow>['onChange'] = (pagination, _filters, sorter) => {
+    const nextSort = resolveRemoteSortState(sorter, { sortBy: 'nome', sortOrder: 'asc' });
+    const sortChanged = nextSort.sortBy !== sort.sortBy || nextSort.sortOrder !== sort.sortOrder;
+    setSort(nextSort);
+    setPage(sortChanged ? 1 : (pagination.current || 1));
+  };
 
   return (
     <div>
@@ -240,8 +258,8 @@ export default function ClientesPage() {
               total,
               showSizeChanger: false,
               showTotal: (t) => `${t} clientes`,
-              onChange: (p) => setPage(p),
             }}
+            onChange={handleTableChange}
             scroll={{ x: 1200 }}
             style={{ background: 'transparent' }}
             size="small"

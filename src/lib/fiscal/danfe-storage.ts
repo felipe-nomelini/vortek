@@ -13,6 +13,7 @@ type PedidoDanfeRef = {
   numero: number | string;
   nota_fiscal_numero: string | number | null;
   nfe_external_id?: string | null;
+  nfe_chave?: string | null;
   nota_fiscal_emitida?: boolean | null;
 };
 
@@ -119,6 +120,8 @@ export async function ensureDanfeStoredForPedido(input: EnsureDanfeStoredInput):
         storage_path: canonicalPath,
         used_legacy_fallback: false,
         action: 'reuse_existing',
+        download_mode: 'storage_existing',
+        nfe_chave: input.pedido.nfe_chave || null,
       },
       respostaMl: {
         success: true,
@@ -134,8 +137,9 @@ export async function ensureDanfeStoredForPedido(input: EnsureDanfeStoredInput):
     };
   }
 
+  const chaveNf = normalizeDanfeSegment(input.pedido.nfe_chave);
   const externalId = normalizeDanfeSegment(input.pedido.nfe_external_id);
-  if (!externalId) {
+  if (!externalId && !chaveNf) {
     await registrarEventoNfAuditoria({
       pedidoId: input.pedidoId || input.pedido.id || null,
       mlOrderId: input.mlOrderId || null,
@@ -143,11 +147,13 @@ export async function ensureDanfeStoredForPedido(input: EnsureDanfeStoredInput):
       payloadEnviado: {
         source: input.source,
         storage_path: canonicalPath,
+        download_mode: chaveNf ? 'chave_nf' : 'legacy_external_id',
+        nfe_chave: chaveNf,
       },
       respostaMl: {
-        success: false,
-        reason: 'provider_pdf_not_found',
-        detail: 'nfe_external_id ausente',
+        provider_fetch_success: false,
+        provider_fetch_failed_reason: 'provider_pdf_not_found',
+        detail: 'nfe_external_id e nfe_chave ausentes',
       },
       statusResultante: 'failed',
     });
@@ -156,11 +162,15 @@ export async function ensureDanfeStoredForPedido(input: EnsureDanfeStoredInput):
       canonicalPath,
       signedUrl: null,
       usedLegacyFallback: false,
-      error: 'nfe_external_id ausente para recuperar DANFE',
+      error: 'nfe_external_id e nfe_chave ausentes para recuperar DANFE',
     };
   }
 
-  const providerDanfe = await input.provider.obterDanfe(externalId, { storagePath: canonicalPath });
+  const downloadMode = chaveNf ? 'chave_nf' : 'legacy_external_id';
+  const providerDanfe = await input.provider.obterDanfe(externalId || chaveNf || '', {
+    storagePath: canonicalPath,
+    chaveNf,
+  });
   if (!providerDanfe.url) {
     await registrarEventoNfAuditoria({
       pedidoId: input.pedidoId || input.pedido.id || null,
@@ -169,11 +179,12 @@ export async function ensureDanfeStoredForPedido(input: EnsureDanfeStoredInput):
       payloadEnviado: {
         source: input.source,
         storage_path: canonicalPath,
+        download_mode: downloadMode,
+        nfe_chave: chaveNf,
       },
       respostaMl: {
-        success: false,
-        reason: 'provider_pdf_not_found',
-        provider_error: providerDanfe.error || null,
+        provider_fetch_success: false,
+        provider_fetch_failed_reason: providerDanfe.error || 'provider_pdf_not_found',
       },
       statusResultante: 'failed',
     });
@@ -195,9 +206,11 @@ export async function ensureDanfeStoredForPedido(input: EnsureDanfeStoredInput):
       storage_path: canonicalPath,
       used_legacy_fallback: false,
       action: 'download_and_store',
+      download_mode: downloadMode,
+      nfe_chave: chaveNf,
     },
     respostaMl: {
-      success: true,
+      provider_fetch_success: true,
       signed_url_generated: true,
       provider_storage_path: providerDanfe.path || canonicalPath,
     },

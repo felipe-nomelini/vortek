@@ -4,6 +4,7 @@ import { fetchML, fetchMLResult, getMLAuthDiagnostics } from '@/services/integra
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
 import { buildCatalogEnrichment } from '@/lib/catalogo/no-catalogo';
+import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 
 export const maxDuration = 300;
 
@@ -343,6 +344,47 @@ export async function POST(request: Request) {
           errors,
           duration: { ms: Date.now() - startedAt },
         }, { status: 500 });
+      }
+
+      const { data: existingAnuncios, error: existingAnunciosError } = await (serviceClient
+        .from('anuncios_ml')
+        .select('id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail')
+        .in('ml_item_id', snapshots.map((snapshot) => String(snapshot.ml_item_id))) as any);
+
+      if (existingAnunciosError) {
+        errors.push({
+          code: 'anuncios_ml_existing_query_failed',
+          message: existingAnunciosError.message,
+        });
+      } else {
+        const existingByItemId = new Map<string, any>(
+          (existingAnuncios || []).map((row: any) => [String(row.ml_item_id), row]),
+        );
+
+        await runPool(snapshots, CONCURRENCY, async (snapshot) => {
+          const existing = existingByItemId.get(String(snapshot.ml_item_id));
+          if (!existing) return;
+          const reconcileResult = await reconcileAnuncioMlFromItem(
+            serviceClient,
+            {
+              id: snapshot.ml_item_id,
+              price: snapshot.price,
+              status: snapshot.status,
+              title: snapshot.title,
+              permalink: snapshot.permalink,
+              thumbnail: snapshot.thumbnail,
+            },
+            'observed_sync',
+            existing,
+          );
+          if (!reconcileResult.ok) {
+            errors.push({
+              code: 'anuncios_ml_reconcile_failed',
+              message: reconcileResult.error,
+              context: { mlItemId: snapshot.ml_item_id, source: 'observed_sync' },
+            });
+          }
+        });
       }
     }
 

@@ -915,6 +915,7 @@ async function runDsliteCreateJob(
     pedidoNumero: string | number | null | undefined;
     notaFiscalNumero: string | number | null | undefined;
     externalId: string | number | null | undefined;
+    chaveNf?: string | null;
     source: string;
     danfeUrlAtual?: string | null;
     extraUpdates?: Record<string, any>;
@@ -932,6 +933,7 @@ async function runDsliteCreateJob(
           numero: params.pedidoNumero || '',
           nota_fiscal_numero: notaFiscalNumero,
           nfe_external_id: externalId,
+          nfe_chave: params.chaveNf || null,
           nota_fiscal_emitida: true,
         },
         pedidoId,
@@ -1434,6 +1436,7 @@ async function runDsliteCreateJob(
         pedidoNumero: (pedidoRow as any)?.numero,
         notaFiscalNumero: numeroLocalAutorizado,
         externalId: externalIdLocalAutorizado,
+        chaveNf: String((pedidoRow as any)?.nfe_chave || '').trim() || extractXmlTag(xml, 'chNFe'),
         source: 'dslite_local_authorized_snapshot',
         danfeUrlAtual,
       });
@@ -2010,6 +2013,7 @@ async function runDsliteCreateJob(
           pedidoNumero: (pedidoRow as any)?.numero,
           notaFiscalNumero: emissao.numero || extractXmlTag(xml || '', 'nNF'),
           externalId: invoiceId,
+          chaveNf: emissao.chave || extractXmlTag(xml || '', 'chNFe'),
           source: 'dslite_post_emission_fetch_danfe',
           danfeUrlAtual,
         });
@@ -2041,6 +2045,7 @@ async function runDsliteCreateJob(
           pedidoNumero: (pedidoRow as any)?.numero,
           notaFiscalNumero: emissao.numero || extractXmlTag(xml || '', 'nNF'),
           externalId: invoiceId,
+          chaveNf: emissao.chave || extractXmlTag(xml || '', 'chNFe'),
           source: 'dslite_authorized_backfill',
           danfeUrlAtual,
         });

@@ -12,6 +12,7 @@ import ProgressModal, { ProgressStep } from '@/components/modals/ProgressModal';
 import { formatCurrency } from '@/lib/format';
 import type { Database } from '@/types/database';
 import type { Order, OrderStatus } from '@/types/order';
+import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 
 const { Title } = Typography;
 const { RangePicker } = DatePicker;
@@ -204,6 +205,7 @@ export default function PedidosPage() {
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [orders, setOrders] = useState<Order[]>([]);
+  const [sort, setSort] = useState<RemoteSortState>({ sortBy: 'data', sortOrder: 'desc' });
   const [summary, setSummary] = useState<SummaryData>({
     count: 0,
     total: 0,
@@ -259,6 +261,7 @@ export default function PedidosPage() {
   const buildParams = useCallback(() => {
     const params = new URLSearchParams();
     params.set('page', String(page));
+    appendRemoteSortParams(params, sort);
     if (search) params.set('search', search);
     if (statusFilter) params.set('status', statusFilter);
     if (dateRange[0]) params.set('dateFrom', dateRange[0]);
@@ -266,7 +269,7 @@ export default function PedidosPage() {
     if (priceMin !== null) params.set('priceMin', String(priceMin));
     if (priceMax !== null) params.set('priceMax', String(priceMax));
     return params;
-  }, [page, search, statusFilter, dateRange, priceMin, priceMax]);
+  }, [page, sort, search, statusFilter, dateRange, priceMin, priceMax]);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -706,7 +709,8 @@ export default function PedidosPage() {
   const columns: TableProps<Order>['columns'] = [
     {
       title: 'Número', dataIndex: 'numero', key: 'numero', width: 180,
-      sorter: (a, b) => a.numero - b.numero,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('numero', sort),
       render: (num: number, record: Order) => (
         <div>
           <a
@@ -726,22 +730,26 @@ export default function PedidosPage() {
     },
     {
       title: 'Data', dataIndex: 'data', key: 'data', width: 160,
-      sorter: (a, b) => new Date(a.data).getTime() - new Date(b.data).getTime(),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('data', sort),
       render: (d: string) => new Date(d).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
     },
     {
       title: 'Cliente', dataIndex: ['contato', 'nome'], key: 'cliente',
-      sorter: (a, b) => getDisplayClientName(a).localeCompare(getDisplayClientName(b)),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('cliente', sort),
       render: (_: string, record: Order) => getDisplayClientName(record),
     },
     {
       title: 'Total', dataIndex: 'total', key: 'total', width: 110,
-      sorter: (a, b) => a.total - b.total,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('total', sort),
       render: (v: number) => formatCurrency(v),
     },
     {
       title: 'Rastreio', dataIndex: 'rastreio', key: 'rastreio', width: 130,
-      sorter: (a, b) => (a.rastreio ?? '').localeCompare(b.rastreio ?? ''),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('rastreio', sort),
       render: (v: string | null, record: Order) => {
         if (!v) return <span style={{ color: '#666' }}>—</span>;
         if (record.ml_shipment_id) {
@@ -764,8 +772,9 @@ export default function PedidosPage() {
       },
     },
     {
-      title: 'Status', dataIndex: ['situacao', 'valor'], key: 'status', width: 140,
-      sorter: (a, b) => a.situacao.valor.localeCompare(b.situacao.valor),
+      title: 'Status', dataIndex: ['situacao', 'valor'], key: 'situacao', width: 140,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('situacao', sort),
       render: (status: OrderStatus, record: Order) => (
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <Tag color={statusColor[status]}>{statusLabel[status]}</Tag>
@@ -776,12 +785,9 @@ export default function PedidosPage() {
       ),
     },
     {
-      title: 'Nota Fiscal', dataIndex: 'notaFiscal', key: 'notaFiscal', width: 220,
-      sorter: (a, b) => {
-        const na = a.notaFiscal?.numero ?? '';
-        const nb = b.notaFiscal?.numero ?? '';
-        return na.localeCompare(nb);
-      },
+      title: 'Nota Fiscal', dataIndex: 'notaFiscal', key: 'nota_fiscal_numero', width: 220,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('nota_fiscal_numero', sort),
       render: (nf: { numero: string; emitida: boolean } | null, record: Order) => {
         if (record.ml_fiscal_release_at) {
           const releaseAt = new Date(record.ml_fiscal_release_at);
@@ -821,15 +827,12 @@ export default function PedidosPage() {
     },
     {
       title: 'Pedido Compra',
-      key: 'pedidoCompra',
+      key: 'pedido_compra',
       dataIndex: 'dslite_id',
       width: 120,
       align: 'center',
-      sorter: (a, b) => {
-        const va = isValidDsliteId(a.dslite_id) ? 1 : 0;
-        const vb = isValidDsliteId(b.dslite_id) ? 1 : 0;
-        return va - vb;
-      },
+      sorter: true,
+      sortOrder: getRemoteSortOrder('pedido_compra', sort),
       render: (_: string | null, record: Order) => {
         const hasPurchaseOrder = !!isValidDsliteId(record.dslite_id);
         if (!hasPurchaseOrder) return <Tag color="orange">NÃO</Tag>;
@@ -839,7 +842,8 @@ export default function PedidosPage() {
     },
     {
       title: 'Lucro', dataIndex: 'lucro', key: 'lucro', width: 110,
-      sorter: (a, b) => (a.lucro ?? -Infinity) - (b.lucro ?? -Infinity),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('lucro', sort),
       render: (v: number | null) => {
         if (v === null) return <span style={{ color: '#666' }}>—</span>;
         return (
@@ -907,6 +911,13 @@ export default function PedidosPage() {
       },
     },
   ];
+
+  const handleTableChange: TableProps<Order>['onChange'] = (pagination, _filters, sorter) => {
+    const nextSort = resolveRemoteSortState(sorter, { sortBy: 'data', sortOrder: 'desc' });
+    const sortChanged = nextSort.sortBy !== sort.sortBy || nextSort.sortOrder !== sort.sortOrder;
+    setSort(nextSort);
+    setPage(sortChanged ? 1 : (pagination.current || 1));
+  };
 
   return (
     <div>
@@ -1013,8 +1024,8 @@ export default function PedidosPage() {
               total,
               showSizeChanger: false,
               showTotal: (t) => `${t} pedidos`,
-              onChange: (p) => setPage(p),
             }}
+            onChange={handleTableChange}
             scroll={{ x: 900 }}
             style={{ background: 'transparent' }}
             size="small"

@@ -13,6 +13,7 @@ import type { Product, MLStatus } from '@/types/product';
 import type { Database } from '@/types/database';
 import ResizableTable from '@/components/ResizableTable';
 import ProgressModal, { type ProgressStep } from '@/components/modals/ProgressModal';
+import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 
 type ProdutoRow = Database['public']['Tables']['produtos']['Row'];
 
@@ -292,6 +293,7 @@ export default function ProductsPage() {
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
+  const [sort, setSort] = useState<RemoteSortState>({ sortBy: 'sku', sortOrder: 'asc' });
 
   const [search, setSearch] = useState('');
   const [lastSearch, setLastSearch] = useState('');
@@ -952,6 +954,7 @@ export default function ProductsPage() {
     setLoading(true);
     try {
       const params = new URLSearchParams({ page: String(page) });
+      appendRemoteSortParams(params, sort);
       if (lastSearch) params.set('search', lastSearch);
       if (filterFornecedores.length > 0) params.set('fornecedores', filterFornecedores.join(','));
       if (filterMLStatus) params.set('ml_status', filterMLStatus);
@@ -973,7 +976,7 @@ export default function ProductsPage() {
       }
     } catch {}
     setLoading(false);
-  }, [page, lastSearch, filterFornecedores, filterMLStatus, filterEstoque, priceMin, priceMax, priceField]);
+  }, [page, sort, lastSearch, filterFornecedores, filterMLStatus, filterEstoque, priceMin, priceMax, priceField]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -1071,11 +1074,13 @@ export default function ProductsPage() {
   const columns: TableProps<ProductRow>['columns'] = [
     {
       title: 'SKU', dataIndex: ['product', 'sku'], key: 'sku', width: 130,
-      sorter: (a, b) => a.product.sku.localeCompare(b.product.sku),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('sku', sort),
     },
     {
-      title: 'Produto', dataIndex: ['product', 'name'], key: 'name',
-      sorter: (a, b) => a.product.name.localeCompare(b.product.name),
+      title: 'Produto', dataIndex: ['product', 'name'], key: 'nome',
+      sorter: true,
+      sortOrder: getRemoteSortOrder('nome', sort),
       render: (name: string, record) => (
         <a
           onClick={() => router.push(`/produtos/${record.product.id}`)}
@@ -1087,36 +1092,42 @@ export default function ProductsPage() {
     },
     {
       title: 'Fornecedor', dataIndex: ['product', 'fornecedor'], key: 'fornecedor', width: 140,
-      sorter: (a, b) => (a.product.fornecedor || '').localeCompare(b.product.fornecedor || ''),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('fornecedor', sort),
       render: (v: string | null) => v
         ? <Tag color="default">{v}</Tag>
         : <span style={{ color: '#666' }}>—</span>,
     },
     {
-      title: 'Estoque', dataIndex: ['product', 'stock'], key: 'stock', width: 90,
-      sorter: (a, b) => a.product.stock - b.product.stock,
+      title: 'Estoque', dataIndex: ['product', 'stock'], key: 'estoque', width: 90,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('estoque', sort),
       render: (stock: number) => (
         <span style={{ color: stock === 0 ? '#ff4d4f' : undefined }}>{stock}</span>
       ),
     },
     {
-      title: 'Custo', dataIndex: ['product', 'cost'], key: 'cost', width: 110,
-      sorter: (a, b) => a.product.cost - b.product.cost,
+      title: 'Custo', dataIndex: ['product', 'cost'], key: 'custo', width: 110,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('custo', sort),
       render: (v: number) => formatCurrency(v),
     },
     {
-      title: 'Taxa ML', dataIndex: ['product', 'mlFee'], key: 'mlFee', width: 90,
-      sorter: (a, b) => a.product.mlFee - b.product.mlFee,
+      title: 'Taxa ML', dataIndex: ['product', 'mlFee'], key: 'ml_fee', width: 90,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('ml_fee', sort),
       render: (v: number) => formatPercent(v),
     },
     {
-      title: 'Frete ML', dataIndex: ['product', 'mlShipping'], key: 'mlShipping', width: 110,
-      sorter: (a, b) => a.product.mlShipping - b.product.mlShipping,
+      title: 'Frete ML', dataIndex: ['product', 'mlShipping'], key: 'ml_shipping', width: 110,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('ml_shipping', sort),
       render: (v: number) => formatCurrency(v),
     },
     {
-      title: 'Sugerido', key: 'suggestedPrice', width: 160,
-      sorter: (a, b) => a.displayPrice - b.displayPrice,
+      title: 'Sugerido', key: 'suggested_price', width: 160,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('suggested_price', sort),
       render: (_, record) => {
         const val = record.product.customPrice;
         const isSaving = Boolean(savingCustomPriceById[record.product.id]);
@@ -1150,7 +1161,8 @@ export default function ProductsPage() {
     },
     {
       title: 'Lucro', key: 'profit', width: 130,
-      sorter: (a, b) => (a.profit ?? -Infinity) - (b.profit ?? -Infinity),
+      sorter: true,
+      sortOrder: getRemoteSortOrder('profit', sort),
       render: (_, record) => {
         if (record.profit === null) {
           return <span style={{ color: '#666' }}>—</span>;
@@ -1163,8 +1175,9 @@ export default function ProductsPage() {
       },
     },
     {
-      title: 'Status ML', dataIndex: ['product', 'mlStatus'], key: 'mlStatus', width: 130,
-      sorter: (a, b) => a.product.mlStatus.localeCompare(b.product.mlStatus),
+      title: 'Status ML', dataIndex: ['product', 'mlStatus'], key: 'ml_status', width: 130,
+      sorter: true,
+      sortOrder: getRemoteSortOrder('ml_status', sort),
       render: (status: MLStatus) => (
         <Tag color={mlStatusColor[status]}>{mlStatusLabel[status]}</Tag>
       ),
@@ -1211,6 +1224,13 @@ export default function ProductsPage() {
       },
     },
   ];
+
+  const handleTableChange: TableProps<ProductRow>['onChange'] = (pagination, _filters, sorter) => {
+    const nextSort = resolveRemoteSortState(sorter, { sortBy: 'sku', sortOrder: 'asc' });
+    const sortChanged = nextSort.sortBy !== sort.sortBy || nextSort.sortOrder !== sort.sortOrder;
+    setSort(nextSort);
+    setPage(sortChanged ? 1 : (pagination.current || 1));
+  };
 
   return (
     <div>
@@ -1325,8 +1345,8 @@ export default function ProductsPage() {
               total,
               showSizeChanger: false,
               showTotal: (t) => `${t} produtos`,
-              onChange: (p) => setPage(p),
             }}
+            onChange={handleTableChange}
             scroll={{ x: 1200 }}
             style={{ background: 'transparent' }}
             size="small"

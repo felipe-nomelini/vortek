@@ -22,7 +22,7 @@ export async function GET(_request: Request, context: { params: { id: string } }
   const serviceClient = createServiceClient();
   const { data: pedido, error } = await serviceClient
     .from('pedidos')
-    .select('id, numero, nota_fiscal_numero, nfe_external_id, ml_order_id')
+    .select('id, numero, nota_fiscal_numero, nfe_external_id, nfe_chave, ml_order_id')
     .eq('id', id)
     .maybeSingle();
 
