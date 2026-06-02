@@ -356,7 +356,6 @@ export async function ensureBrasilNfeInvoice(input: {
   let cfopAtual = String((pedido as any).nfe_cfop || '').trim();
   const externalAtual = String((pedido as any).nfe_external_id || '');
   const mlOrderId = String((pedido as any).ml_order_id || '');
-  const notaFiscalEmitidaAtual = Boolean((pedido as any).nota_fiscal_emitida);
 
   const provider = getFiscalProvider('brasilnfe');
   const ensureAuthorizedDanfeAndFlags = async (params: {
@@ -368,7 +367,7 @@ export async function ensureBrasilNfeInvoice(input: {
   }): Promise<string | null> => {
     const notaNumero = String(params.numero || '').trim();
     const externalId = String(params.externalId || '').trim();
-    let signedUrl = String(params.danfeUrlAtual || '').trim() || null;
+    let signedUrl: string | null = null;
     if (notaNumero && externalId) {
       const danfeResult = await ensureDanfeStoredForPedido({
         client,
@@ -390,9 +389,9 @@ export async function ensureBrasilNfeInvoice(input: {
     await client
       .from('pedidos')
       .update({
-        nota_fiscal_emitida: true,
+        nota_fiscal_emitida: Boolean(signedUrl),
         nfe_last_sync_at: nowIso(),
-        ...(signedUrl ? { nfe_danfe_url: signedUrl } : {}),
+        nfe_danfe_url: signedUrl || null,
         ...(params.extraUpdates || {}),
       } as any)
       .eq('id', input.pedidoId);
@@ -544,7 +543,7 @@ export async function ensureBrasilNfeInvoice(input: {
           nfe_chave: chave || undefined,
           nfe_external_id: externalAtual,
           nota_fiscal_numero: numero || undefined,
-          nota_fiscal_emitida: true,
+          nota_fiscal_emitida: false,
           nfe_cfop: cfop || undefined,
           nfe_last_sync_at: nowIso(),
         } as any)
@@ -735,7 +734,7 @@ export async function ensureBrasilNfeInvoice(input: {
                 nfe_provider: 'brasilnfe',
                 nfe_chave: found.nota.chave,
                 nota_fiscal_numero: numeroXml || found.nota.numero || undefined,
-                nota_fiscal_emitida: true,
+                nota_fiscal_emitida: false,
                 nfe_cfop: cfopXml || undefined,
                 nfe_last_sync_at: nowIso(),
               } as any)
@@ -862,7 +861,7 @@ export async function ensureBrasilNfeInvoice(input: {
       nfe_chave: chave || undefined,
       nfe_protocolo: emissao.protocolo || undefined,
       nota_fiscal_numero: numero || undefined,
-      nota_fiscal_emitida: true,
+      nota_fiscal_emitida: Boolean(resolvedDanfeUrl),
       nfe_xml: xml || undefined,
       nfe_danfe_url: resolvedDanfeUrl || undefined,
       nfe_cfop: cfop || undefined,

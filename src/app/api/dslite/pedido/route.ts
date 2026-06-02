@@ -921,7 +921,7 @@ async function runDsliteCreateJob(
   }): Promise<string | null> => {
     const notaFiscalNumero = String(params.notaFiscalNumero || '').trim();
     const externalId = String(params.externalId || '').trim();
-    let signedUrl = String(params.danfeUrlAtual || '').trim() || null;
+    let signedUrl: string | null = null;
 
     if (notaFiscalNumero && externalId) {
       const danfeResult = await ensureDanfeStoredForPedido({
@@ -944,9 +944,9 @@ async function runDsliteCreateJob(
     await client
       .from('pedidos')
       .update({
-        nota_fiscal_emitida: true,
+        nota_fiscal_emitida: Boolean(signedUrl),
         nfe_last_sync_at: now(),
-        ...(signedUrl ? { nfe_danfe_url: signedUrl } : {}),
+        nfe_danfe_url: signedUrl || null,
         ...(params.extraUpdates || {}),
       } as any)
       .eq('id', pedidoId);
@@ -1892,7 +1892,7 @@ async function runDsliteCreateJob(
           nfe_chave: emissao.chave || undefined,
           nfe_protocolo: emissao.protocolo || undefined,
           nota_fiscal_numero: emissao.numero || undefined,
-          nota_fiscal_emitida: true,
+          nota_fiscal_emitida: false,
           nfe_danfe_url: danfeInicial || undefined,
           ...(emissao.xml ? { nfe_xml: emissao.xml } : {}),
           ...(emissao.cfop ? { nfe_cfop: emissao.cfop } : {}),
@@ -1987,7 +1987,7 @@ async function runDsliteCreateJob(
                 nfe_provider: selectedProvider,
                 nfe_external_id: String(invoiceId),
                 nfe_last_sync_at: now(),
-                nota_fiscal_emitida: true,
+                nota_fiscal_emitida: false,
                 nfe_cfop: extractCfopsFromXml(xmlFetch.xml)[0] || null,
               } as any)
               .eq('id', pedidoId);

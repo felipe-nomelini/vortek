@@ -27,18 +27,15 @@ function reconcileNotaFiscalEmitidaRow(row: any) {
     nfe_protocolo: row?.nfe_protocolo,
     nfe_cfop: row?.nfe_cfop,
   });
-  const shouldMarkEmitted = Boolean(
-    reconciliation.xmlAuthorizedProduction
-    || String(row?.nfe_status || '').trim().toLowerCase() === 'authorized',
-  );
+  const shouldKeepEmitida = Boolean(row?.nota_fiscal_emitida && String(row?.nfe_danfe_url || '').trim());
   const nextRow = {
     ...row,
     ...reconciliation.updates,
-    nota_fiscal_emitida: shouldMarkEmitted ? true : Boolean(row?.nota_fiscal_emitida),
+    nota_fiscal_emitida: shouldKeepEmitida,
   };
   const needsPersistence = Boolean(
-    (shouldMarkEmitted && !row?.nota_fiscal_emitida)
-    || Object.keys(reconciliation.updates || {}).length > 0,
+    Object.keys(reconciliation.updates || {}).length > 0
+    || Boolean(row?.nota_fiscal_emitida) !== shouldKeepEmitida,
   );
   return {
     row: nextRow,
@@ -64,6 +61,7 @@ async function persistReconciledPedidos(rows: any[]) {
         nota_fiscal_numero: row.nota_fiscal_numero || undefined,
         nfe_protocolo: row.nfe_protocolo || undefined,
         nfe_cfop: row.nfe_cfop || undefined,
+        nfe_danfe_url: row.nfe_danfe_url || null,
       } as any)
       .eq('id', row.id)),
   );

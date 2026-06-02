@@ -76,18 +76,23 @@ export async function createDanfeSignedUrl(
 export async function resolveDanfeStoragePath(
   client: ServiceClient,
   pedido: PedidoDanfeRef,
-): Promise<{ path: string | null; usedLegacyFallback: boolean }> {
+): Promise<{
+  path: string | null;
+  usedLegacyFallback: boolean;
+  canonicalPath: string | null;
+  legacyPath: string | null;
+}> {
   const canonicalPath = buildCanonicalDanfePath(pedido.numero, pedido.nota_fiscal_numero);
   if (canonicalPath && await fileExists(client, canonicalPath)) {
-    return { path: canonicalPath, usedLegacyFallback: false };
+    return { path: canonicalPath, usedLegacyFallback: false, canonicalPath, legacyPath: null };
   }
 
   const legacyPath = buildLegacyDanfePath(pedido.nfe_external_id);
   if (legacyPath && await fileExists(client, legacyPath)) {
-    return { path: legacyPath, usedLegacyFallback: true };
+    return { path: legacyPath, usedLegacyFallback: true, canonicalPath, legacyPath };
   }
 
-  return { path: canonicalPath || legacyPath || null, usedLegacyFallback: false };
+  return { path: null, usedLegacyFallback: false, canonicalPath, legacyPath };
 }
 
 export async function ensureDanfeStoredForPedido(input: EnsureDanfeStoredInput): Promise<EnsureDanfeStoredResult> {
