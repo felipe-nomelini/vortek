@@ -113,6 +113,15 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
     const startedAtMs = Date.now();
     let res: Response;
     try {
+      logs.push(eventLog('job_stage_done', 'Requisição interna do job iniciada', {
+        stage: tipo,
+        type: 'info',
+        event_type: 'job_http_request_started',
+        path,
+        request_timeout_ms: requestTimeoutMs,
+      }));
+      await updateJob(jobId, { log: logs });
+
       res = await fetch(url.toString(), {
         method: 'POST',
         headers: {
@@ -125,6 +134,16 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
     } finally {
       clearTimeout(timeout);
     }
+
+    logs.push(eventLog('job_stage_done', 'Resposta HTTP recebida da rota interna', {
+      stage: tipo,
+      type: 'info',
+      event_type: 'job_http_response_received',
+      path,
+      http_status: res.status,
+      duration_ms: Date.now() - startedAtMs,
+    }));
+    await updateJob(jobId, { log: logs });
 
     const raw = await res.json().catch(() => ({}));
     const ok = res.ok && raw?.success !== false && raw?.ok !== false;
@@ -201,6 +220,8 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
     logs.push(eventLog('job_start_failed', `Falha ao executar job: ${err?.message || 'erro desconhecido'}`, {
       job_id: jobId,
       tipo,
+      error_name: err?.name || null,
+      abort: err?.name === 'AbortError',
     }));
 
     await updateJob(jobId, {

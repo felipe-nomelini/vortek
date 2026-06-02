@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { runMlSingleStageJob } from '@/services/sync-ml-job';
+import { DEFAULT_STALE_JOB_THRESHOLD_MINUTES, isJobStale, markJobAsStale } from '@/lib/sync/stale-jobs';
 
 export const maxDuration = 300;
 
@@ -15,7 +16,7 @@ export async function POST() {
 
   const { data: runningJob } = await serviceClient
     .from('jobs')
-    .select('id, status')
+    .select('id, tipo, status, created_at, finished_at, log')
     .eq('tipo', 'sync_ml_listings_observed')
     .eq('created_by', user.id)
     .in('status', ['pendente', 'rodando'])
@@ -24,14 +25,26 @@ export async function POST() {
     .maybeSingle();
 
   if (runningJob?.id) {
-    return NextResponse.json({
-      success: true,
-      reused: true,
-      jobId: runningJob.id,
-      status: runningJob.status,
-    });
+    if (isJobStale(runningJob as any, DEFAULT_STALE_JOB_THRESHOLD_MINUTES)) {
+      await markJobAsStale(runningJob as any);
+    } else {
+      return NextResponse.json({
+        success: true,
+        reused: true,
+        jobId: runningJob.id,
+        status: runningJob.status,
+      });
+    }
   }
 
+  if (runningJob?.id) {
+    return NextResponse.json({
+      success: true,
+      recoveredStale: true,
+      staleThresholdMinutes: DEFAULT_STALE_JOB_THRESHOLD_MINUTES,
+      previousJobId: runningJob.id,
+    });
+  }
   const { data: insertedJob, error: jobInsertError } = await serviceClient
     .from('jobs')
     .insert({

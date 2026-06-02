@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useMemo, useCallback, useEffect } from 'react';
-import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, Spin, Statistic } from 'antd';
+import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, Spin, Statistic, message } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import QualidadeModal from '@/components/QualidadeModal';
-import type { TableProps } from 'antd';
+import type { MenuProps, TableProps } from 'antd';
 import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
 import { formatCurrency } from '@/lib/format';
 import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
@@ -15,6 +15,8 @@ type ListingStatus = 'ativo' | 'pausado';
 
 interface Anuncio {
   id: string;
+  produtoId: string | null;
+  permalink: string | null;
   sku: string;
   produto: string;
   precoML: number;
@@ -36,6 +38,8 @@ const statusOptions = [
 function mapDBtoAnuncio(item: any): Anuncio {
   return {
     id: item.ml_item_id || '',
+    produtoId: item.produto_id || null,
+    permalink: item.permalink || null,
     sku: item.sku || '',
     produto: item.titulo || '',
     precoML: item.preco_ml || 0,
@@ -62,6 +66,7 @@ export default function AnunciosPage() {
   const [mlMax, setMlMax] = useState<number | null>(null);
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const [updatingActionItemId, setUpdatingActionItemId] = useState<string | null>(null);
   const [modalQualidade, setModalQualidade] = useState<{ open: boolean; score: number; itens: any[]; dica: string; titulo: string }>({ open: false, score: 0, itens: [], dica: '', titulo: '' });
   const [summary, setSummary] = useState({
     total: 0,
@@ -122,6 +127,53 @@ export default function AnunciosPage() {
   useEffect(() => {
     setPage(1);
   }, [search, statusFilter, mlMin, mlMax]);
+
+  const handleViewOnMl = useCallback((record: Anuncio) => {
+    if (!record.permalink) {
+      message.warning('Link do anúncio no Mercado Livre indisponível para este registro.');
+      return;
+    }
+    window.open(record.permalink, '_blank', 'noopener,noreferrer');
+  }, []);
+
+  const handleToggleStatus = useCallback(async (record: Anuncio) => {
+    if (!record.produtoId) {
+      message.warning('Este anúncio não possui vínculo local com produto para alterar o status.');
+      return;
+    }
+
+    const nextStatus: ListingStatus = record.status === 'ativo' ? 'pausado' : 'ativo';
+    setUpdatingActionItemId(record.id);
+
+    try {
+      const response = await fetch(`/api/produtos/${encodeURIComponent(record.produtoId)}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ml_status: nextStatus }),
+      });
+      const payload = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Falha ao enfileirar alteração de status do anúncio.');
+      }
+
+      message.success(
+        nextStatus === 'ativo'
+          ? 'Ativação do anúncio enfileirada para publicação no ML.'
+          : 'Pausa do anúncio enfileirada para publicação no ML.',
+      );
+
+      if (payload?.warning) {
+        message.warning(payload.warning);
+      }
+
+      await fetchData();
+    } catch (error: any) {
+      message.error(error?.message || 'Falha ao alterar status do anúncio no Mercado Livre.');
+    } finally {
+      setUpdatingActionItemId(null);
+    }
+  }, [fetchData]);
 
   const columns: TableProps<Anuncio>['columns'] = [
     {
@@ -202,22 +254,48 @@ export default function AnunciosPage() {
     },
     {
       title: 'Ações', key: 'actions', width: 60, fixed: 'right',
-      render: (_, record) => (
-        <Dropdown
-          menu={{
-            items: [
-              { key: 'view', label: 'Visualizar no ML' },
-              ...(record.status === 'ativo' ? [{ key: 'pause', label: 'Pausar Anúncio' }] : [{ key: 'activate', label: 'Ativar Anúncio' }]),
-              { key: 'updatePrice', label: 'Atualizar Preço' },
-              { key: 'optimize', label: 'Otimizar com IA' },
-            ],
-            onClick: ({ key }) => { /* TODO: implementar ação */ },
-          }}
-          trigger={['click']}
-        >
-          <Button type="text" size="small" icon={<EllipsisOutlined />} />
-        </Dropdown>
-      ),
+      render: (_, record) => {
+        const isUpdatingCurrent = updatingActionItemId === record.id;
+        const menuItems: MenuProps['items'] = [
+          {
+            key: 'view',
+            label: 'Visualizar no ML',
+            disabled: !record.permalink,
+          },
+          record.status === 'ativo'
+            ? {
+                key: 'pause',
+                label: 'Pausar Anúncio',
+                disabled: !record.produtoId || isUpdatingCurrent,
+              }
+            : {
+                key: 'activate',
+                label: 'Ativar Anúncio',
+                disabled: !record.produtoId || isUpdatingCurrent,
+              },
+        ];
+
+        return (
+          <Dropdown
+            menu={{
+              items: menuItems,
+              onClick: ({ key }) => {
+                if (key === 'view') handleViewOnMl(record);
+                if (key === 'pause' || key === 'activate') void handleToggleStatus(record);
+              },
+            }}
+            trigger={['click']}
+          >
+            <Button
+              type="text"
+              size="small"
+              icon={isUpdatingCurrent ? <LoadingOutlined spin /> : <EllipsisOutlined />}
+              loading={isUpdatingCurrent}
+              disabled={Boolean(updatingActionItemId && !isUpdatingCurrent)}
+            />
+          </Dropdown>
+        );
+      },
     },
   ];
 

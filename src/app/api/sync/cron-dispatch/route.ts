@@ -3,6 +3,7 @@ import { createServiceClient } from '@/lib/supabase';
 import { runMlSingleStageJob } from '@/services/sync-ml-job';
 import { getMLAuthDiagnostics } from '@/services/integration';
 import { SYNC_TASKS, getIntervalMinutesForTask, getSaoPauloHour } from '@/lib/sync/registry';
+import { DEFAULT_STALE_JOB_THRESHOLD_MINUTES, isJobStale, markJobAsStale } from '@/lib/sync/stale-jobs';
 
 export const maxDuration = 300;
 
@@ -162,7 +163,7 @@ export async function POST(request: Request) {
 
     const { data: running } = await serviceClient
       .from('jobs')
-      .select('id, status')
+      .select('id, tipo, status, created_at, finished_at, log')
       .eq('tipo', task.jobTipo)
       .in('status', ['pendente', 'rodando'])
       .order('created_at', { ascending: false })
@@ -170,12 +171,23 @@ export async function POST(request: Request) {
       .maybeSingle();
 
     if (running?.id) {
-      results.push({
-        task: task.key,
-        action: 'skipped_running',
-        jobId: running.id,
-      });
-      continue;
+      if (isJobStale(running, DEFAULT_STALE_JOB_THRESHOLD_MINUTES)) {
+        await markJobAsStale(running as any);
+        results.push({
+          task: task.key,
+          action: 'stale_job_detected',
+          jobId: running.id,
+          stale_threshold_minutes: DEFAULT_STALE_JOB_THRESHOLD_MINUTES,
+        });
+      } else {
+        results.push({
+          task: task.key,
+          action: 'skipped_running_fresh',
+          jobId: running.id,
+          stale_threshold_minutes: DEFAULT_STALE_JOB_THRESHOLD_MINUTES,
+        });
+        continue;
+      }
     }
 
     const { data: recentJobs } = await serviceClient

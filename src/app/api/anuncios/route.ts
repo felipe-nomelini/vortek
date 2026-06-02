@@ -142,7 +142,21 @@ export async function GET(request: Request) {
   let offset = 0;
 
   while (true) {
-    let dataQuery = supabase.from('anuncios_ml').select('*, produtos(custo, ml_fee, ml_shipping)');
+    let dataQuery = supabase.from('anuncios_ml').select(`
+      ml_item_id,
+      produto_id,
+      permalink,
+      sku,
+      titulo,
+      preco_ml,
+      vendidos,
+      visitas,
+      qualidade,
+      qualidade_info,
+      status,
+      catalogo,
+      produtos(custo, ml_fee, ml_shipping)
+    `);
     dataQuery = applyFilters(dataQuery);
     const { data, error } = await dataQuery
       .order('titulo', { ascending: true })

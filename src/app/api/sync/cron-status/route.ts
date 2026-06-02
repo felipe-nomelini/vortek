@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { getMLAuthDiagnostics } from '@/services/integration';
 import { SYNC_TASKS, getIntervalMinutesForTask, getSaoPauloHour } from '@/lib/sync/registry';
+import { DEFAULT_STALE_JOB_THRESHOLD_MINUTES, isJobStale } from '@/lib/sync/stale-jobs';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -79,6 +80,8 @@ export async function GET() {
       kind: task.kind,
       interval_minutes: interval,
       running: running || null,
+      running_is_stale: isJobStale(running as any, DEFAULT_STALE_JOB_THRESHOLD_MINUTES),
+      stale_threshold_minutes: DEFAULT_STALE_JOB_THRESHOLD_MINUTES,
       last: last ? {
         id: last.id,
         status: last.status,
