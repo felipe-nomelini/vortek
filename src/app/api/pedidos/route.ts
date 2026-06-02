@@ -6,7 +6,8 @@ function logDbError(
   event: string,
   endpoint: string,
   search: string,
-  error: { code?: string; message?: string; details?: string } | null
+  error: { code?: string; message?: string; details?: string } | null,
+  context?: Record<string, unknown>,
 ) {
   console.error('[pedidos_api_error]', {
     event,
@@ -15,6 +16,7 @@ function logDbError(
     db_code: error?.code ?? null,
     db_message: error?.message ?? null,
     db_details: error?.details ?? null,
+    ...(context || {}),
   });
 }
 
@@ -69,6 +71,67 @@ async function persistReconciledPedidos(rows: any[]) {
   return rows.map((row) => reconcileNotaFiscalEmitidaRow(row).row);
 }
 
+function applyPedidoFilters(query: any, filters: {
+  status: string;
+  dateFrom: string;
+  endDateIso: string | null;
+  priceMin: number | null;
+  priceMax: number | null;
+}) {
+  const {
+    status,
+    dateFrom,
+    endDateIso,
+    priceMin,
+    priceMax,
+  } = filters;
+
+  if (status) {
+    query = query.eq('situacao', status);
+  }
+  if (dateFrom) {
+    query = query.gte('data', dateFrom);
+  }
+  if (endDateIso) {
+    query = query.lte('data', endDateIso);
+  }
+  if (priceMin !== null) {
+    query = query.gte('total', priceMin);
+  }
+  if (priceMax !== null) {
+    query = query.lte('total', priceMax);
+  }
+  return query;
+}
+
+function applyPedidoSort(query: any, sortBy: string, sortOrder: 'asc' | 'desc') {
+  const ascending = sortOrder === 'asc';
+
+  switch (sortBy) {
+    case 'numero':
+      return query.order('numero', { ascending });
+    case 'cliente':
+      return query
+        .order('billing_nome', { ascending, nullsFirst: false })
+        .order('contato_nome', { ascending, nullsFirst: false });
+    case 'total':
+      return query.order('total', { ascending });
+    case 'rastreio':
+      return query.order('rastreio', { ascending, nullsFirst: false });
+    case 'situacao':
+      return query.order('situacao', { ascending });
+    case 'nota_fiscal_numero':
+      return query.order('nota_fiscal_numero', { ascending, nullsFirst: false });
+    case 'pedido_compra':
+      return query.order('dslite_id', { ascending, nullsFirst: false });
+    case 'lucro':
+      return query.order('lucro', { ascending });
+    case 'data':
+    default:
+      return query.order('data', { ascending });
+  }
+}
+
 export async function GET(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -99,6 +162,8 @@ export async function GET(request: Request) {
   ]);
   const sortBy = allowedSortBy.has(rawSortBy) ? rawSortBy : 'data';
   const sortOrder = rawSortOrder === 'asc' ? 'asc' : 'desc';
+  const from = (page - 1) * pageSize;
+  const to = from + pageSize - 1;
   let endDateIso: string | null = null;
 
   if (dateTo) {
@@ -107,31 +172,86 @@ export async function GET(request: Request) {
     endDateIso = end.toISOString();
   }
 
-  const { data: rpcData, error: rpcError } = await (supabase as any).rpc('search_pedidos_paginated', {
-    p_search: normalizedSearch || null,
-    p_status: status || null,
-    p_date_from: dateFrom || null,
-    p_date_to: endDateIso,
-    p_price_min: priceMin,
-    p_price_max: priceMax,
-    p_page: page,
-    p_page_size: pageSize,
-    p_sort_by: sortBy,
-    p_sort_order: sortOrder,
-  });
+  if (normalizedSearch) {
+    const { data: rpcData, error: rpcError } = await (supabase as any).rpc('search_pedidos_paginated', {
+      p_search: normalizedSearch,
+      p_status: status || null,
+      p_date_from: dateFrom || null,
+      p_date_to: endDateIso,
+      p_price_min: priceMin,
+      p_price_max: priceMax,
+      p_page: page,
+      p_page_size: pageSize,
+      p_sort_by: sortBy,
+      p_sort_order: sortOrder,
+    });
 
-  if (rpcError) {
-    logDbError('pedidos_search_rpc_failed', '/api/pedidos', normalizedSearch, rpcError);
-    return NextResponse.json({ erro: 'Falha ao buscar pedidos filtrados.' }, { status: 500 });
+    if (rpcError) {
+      logDbError('pedidos_search_rpc_failed', '/api/pedidos', normalizedSearch, rpcError, {
+        rpc_name: 'search_pedidos_paginated',
+        sortBy,
+        sortOrder,
+        search_present: true,
+        fallback_used: false,
+      });
+      return NextResponse.json({ erro: 'Falha ao buscar pedidos com filtro de busca.' }, { status: 500 });
+    }
+
+    const rows = Array.isArray(rpcData?.data) ? rpcData.data : [];
+    const total = Number(rpcData?.total ?? 0) || 0;
+    const reconciledRows = await persistReconciledPedidos(rows);
+
+    return NextResponse.json({
+      data: reconciledRows,
+      total,
+      page,
+      pageSize,
+    });
   }
 
-  const rows = Array.isArray(rpcData?.data) ? rpcData.data : [];
-  const total = Number(rpcData?.total ?? 0) || 0;
-  const reconciledRows = await persistReconciledPedidos(rows);
+  const filterContext = {
+    status,
+    dateFrom,
+    endDateIso,
+    priceMin,
+    priceMax,
+  };
+
+  let countQuery = supabase.from('pedidos').select('*', { count: 'exact', head: false }).range(0, 0);
+  countQuery = applyPedidoFilters(countQuery, filterContext);
+  const { count, error: countError } = await countQuery;
+
+  if (countError) {
+    logDbError('pedidos_count_query_failed', '/api/pedidos', normalizedSearch, countError, {
+      sortBy,
+      sortOrder,
+      search_present: false,
+      fallback_used: true,
+    });
+    return NextResponse.json({ erro: 'Falha ao contar pedidos filtrados.' }, { status: 500 });
+  }
+
+  let dataQuery = supabase.from('pedidos').select('*');
+  dataQuery = applyPedidoFilters(dataQuery, filterContext);
+  dataQuery = applyPedidoSort(dataQuery, sortBy, sortOrder);
+
+  const { data, error } = await dataQuery.range(from, to);
+
+  if (error) {
+    logDbError('pedidos_data_query_failed', '/api/pedidos', normalizedSearch, error, {
+      sortBy,
+      sortOrder,
+      search_present: false,
+      fallback_used: true,
+    });
+    return NextResponse.json({ erro: 'Falha ao carregar pedidos.' }, { status: 500 });
+  }
+
+  const reconciledRows = await persistReconciledPedidos(data || []);
 
   return NextResponse.json({
     data: reconciledRows,
-    total,
+    total: count || 0,
     page,
     pageSize,
   });
