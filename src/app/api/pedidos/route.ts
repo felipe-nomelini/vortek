@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { createClient, createServiceClient } from '@/lib/supabase';
+import { reconcileLocalNfeSnapshotFromXml } from '@/lib/fiscal/nfe-local-reconciliation';
 
 function logDbError(
   event: string,
@@ -15,6 +16,59 @@ function logDbError(
     db_message: error?.message ?? null,
     db_details: error?.details ?? null,
   });
+}
+
+function reconcileNotaFiscalEmitidaRow(row: any) {
+  const reconciliation = reconcileLocalNfeSnapshotFromXml({
+    nfe_status: row?.nfe_status,
+    nfe_xml: row?.nfe_xml,
+    nfe_chave: row?.nfe_chave,
+    nota_fiscal_numero: row?.nota_fiscal_numero,
+    nfe_protocolo: row?.nfe_protocolo,
+    nfe_cfop: row?.nfe_cfop,
+  });
+  const shouldMarkEmitted = Boolean(
+    reconciliation.xmlAuthorizedProduction
+    || String(row?.nfe_status || '').trim().toLowerCase() === 'authorized',
+  );
+  const nextRow = {
+    ...row,
+    ...reconciliation.updates,
+    nota_fiscal_emitida: shouldMarkEmitted ? true : Boolean(row?.nota_fiscal_emitida),
+  };
+  const needsPersistence = Boolean(
+    (shouldMarkEmitted && !row?.nota_fiscal_emitida)
+    || Object.keys(reconciliation.updates || {}).length > 0,
+  );
+  return {
+    row: nextRow,
+    needsPersistence,
+  };
+}
+
+async function persistReconciledPedidos(rows: any[]) {
+  const pending = rows
+    .map(reconcileNotaFiscalEmitidaRow)
+    .filter((entry) => entry.needsPersistence && entry.row?.id);
+
+  if (!pending.length) return rows.map((row) => reconcileNotaFiscalEmitidaRow(row).row);
+
+  const serviceClient = createServiceClient();
+  await Promise.allSettled(
+    pending.map(({ row }) => serviceClient
+      .from('pedidos')
+      .update({
+        nota_fiscal_emitida: row.nota_fiscal_emitida,
+        nfe_status: row.nfe_status || undefined,
+        nfe_chave: row.nfe_chave || undefined,
+        nota_fiscal_numero: row.nota_fiscal_numero || undefined,
+        nfe_protocolo: row.nfe_protocolo || undefined,
+        nfe_cfop: row.nfe_cfop || undefined,
+      } as any)
+      .eq('id', row.id)),
+  );
+
+  return rows.map((row) => reconcileNotaFiscalEmitidaRow(row).row);
 }
 
 export async function GET(request: Request) {
@@ -62,9 +116,10 @@ export async function GET(request: Request) {
 
     const rows = Array.isArray(rpcData?.data) ? rpcData.data : [];
     const total = Number(rpcData?.total ?? 0) || 0;
+    const reconciledRows = await persistReconciledPedidos(rows);
 
     return NextResponse.json({
-      data: rows,
+      data: reconciledRows,
       total,
       page,
       pageSize,
@@ -111,9 +166,10 @@ export async function GET(request: Request) {
     logDbError('pedidos_data_query_failed', '/api/pedidos', normalizedSearch, error);
     return NextResponse.json({ erro: 'Falha ao carregar pedidos.' }, { status: 500 });
   }
+  const reconciledRows = await persistReconciledPedidos(data || []);
 
   return NextResponse.json({
-    data: data || [],
+    data: reconciledRows,
     total: count || 0,
     page,
     pageSize,

@@ -89,6 +89,7 @@ type AuditEvent =
   | 'nota_fiscal_carta_correcao_start'
   | 'nota_fiscal_carta_correcao_success'
   | 'nota_fiscal_carta_correcao_failed'
+  | 'nfe_danfe_persistencia'
   | 'step_auto_close';
 
 export async function registrarEventoNfAuditoria(input: {

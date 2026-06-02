@@ -13,6 +13,7 @@ import {
   obterXmlBrasilNfePorChave,
   parseBrasilNfeDuplicateIdentifier,
 } from '@/services/fiscal-provider';
+import { ensureDanfeStoredForPedido } from '@/lib/fiscal/danfe-storage';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 
 const UF_CODES = new Set([
@@ -324,6 +325,7 @@ async function cleanupGhostNfeSnapshot(client: ReturnType<typeof createServiceCl
       nfe_external_id: null,
       nfe_protocolo: null,
       nota_fiscal_numero: null,
+      nota_fiscal_emitida: false,
       nfe_danfe_url: null,
       nfe_cfop: null,
       nfe_last_sync_at: nowIso(),
@@ -339,7 +341,7 @@ export async function ensureBrasilNfeInvoice(input: {
   const client = createServiceClient();
   const { data: pedido } = await client
     .from('pedidos')
-    .select('id,numero,total,ml_order_id,ml_shipment_id,billing_nome,billing_documento,billing_ie,billing_endereco,snapshot_incompleto,nfe_xml,nfe_status,nfe_provider,nfe_chave,nfe_external_id,nfe_danfe_url,nota_fiscal_numero,nfe_protocolo,nfe_cfop,totais_snapshot,pedido_itens(*)')
+    .select('id,numero,total,ml_order_id,ml_shipment_id,billing_nome,billing_documento,billing_ie,billing_endereco,snapshot_incompleto,nfe_xml,nfe_status,nfe_provider,nfe_chave,nfe_external_id,nfe_danfe_url,nota_fiscal_numero,nota_fiscal_emitida,nfe_protocolo,nfe_cfop,totais_snapshot,pedido_itens(*)')
     .eq('id', input.pedidoId)
     .maybeSingle();
 
@@ -354,8 +356,49 @@ export async function ensureBrasilNfeInvoice(input: {
   let cfopAtual = String((pedido as any).nfe_cfop || '').trim();
   const externalAtual = String((pedido as any).nfe_external_id || '');
   const mlOrderId = String((pedido as any).ml_order_id || '');
+  const notaFiscalEmitidaAtual = Boolean((pedido as any).nota_fiscal_emitida);
 
   const provider = getFiscalProvider('brasilnfe');
+  const ensureAuthorizedDanfeAndFlags = async (params: {
+    numero: string | null;
+    externalId: string | null;
+    source: string;
+    danfeUrlAtual?: string | null;
+    extraUpdates?: Record<string, any>;
+  }): Promise<string | null> => {
+    const notaNumero = String(params.numero || '').trim();
+    const externalId = String(params.externalId || '').trim();
+    let signedUrl = String(params.danfeUrlAtual || '').trim() || null;
+    if (notaNumero && externalId) {
+      const danfeResult = await ensureDanfeStoredForPedido({
+        client,
+        provider,
+        pedido: {
+          id: input.pedidoId,
+          numero: (pedido as any).numero,
+          nota_fiscal_numero: notaNumero,
+          nfe_external_id: externalId,
+          nota_fiscal_emitida: true,
+        },
+        pedidoId: input.pedidoId,
+        mlOrderId,
+        source: params.source,
+      });
+      if (danfeResult.signedUrl) signedUrl = danfeResult.signedUrl;
+    }
+
+    await client
+      .from('pedidos')
+      .update({
+        nota_fiscal_emitida: true,
+        nfe_last_sync_at: nowIso(),
+        ...(signedUrl ? { nfe_danfe_url: signedUrl } : {}),
+        ...(params.extraUpdates || {}),
+      } as any)
+      .eq('id', input.pedidoId);
+
+    return signedUrl;
+  };
   const blockIfXmlNotProduction = async (xmlToCheck: string | null | undefined, stage: string) => {
     if (!String(xmlToCheck || '').trim()) return null;
     const check = validateXmlNfeProducao(xmlToCheck);
@@ -439,6 +482,12 @@ export async function ensureBrasilNfeInvoice(input: {
     if (reconciliation.xmlAuthorizedProduction) {
       const blockedMessage = await blockIfXmlNotProduction(xmlAtual, 'local_authorized_snapshot');
       if (blockedMessage) return { ok: false, error: blockedMessage };
+      const resolvedDanfeUrl = await ensureAuthorizedDanfeAndFlags({
+        numero: numeroAtual || extractTag(xmlAtual, 'nNF'),
+        externalId: externalAtual || null,
+        source: 'ensure_local_authorized_snapshot',
+        danfeUrlAtual: String((pedido as any).nfe_danfe_url || '') || null,
+      });
       await registrarEventoNfAuditoria({
         pedidoId: input.pedidoId,
         mlOrderId,
@@ -460,7 +509,7 @@ export async function ensureBrasilNfeInvoice(input: {
         chave: chaveAtual || extractTag(xmlAtual, 'chNFe'),
         numero: numeroAtual || extractTag(xmlAtual, 'nNF'),
         externalId: externalAtual || null,
-        danfeUrl: String((pedido as any).nfe_danfe_url || '') || null,
+        danfeUrl: resolvedDanfeUrl,
         cfop: cfopAtual || extractCfop(xmlAtual),
         consistency: {
           checked: true,
@@ -495,10 +544,17 @@ export async function ensureBrasilNfeInvoice(input: {
           nfe_chave: chave || undefined,
           nfe_external_id: externalAtual,
           nota_fiscal_numero: numero || undefined,
+          nota_fiscal_emitida: true,
           nfe_cfop: cfop || undefined,
           nfe_last_sync_at: nowIso(),
         } as any)
         .eq('id', input.pedidoId);
+      const resolvedDanfeUrl = await ensureAuthorizedDanfeAndFlags({
+        numero,
+        externalId: externalAtual,
+        source: 'ensure_external_id_recovery',
+        danfeUrlAtual: String((pedido as any).nfe_danfe_url || '') || null,
+      });
       await registrarEventoNfAuditoria({
         pedidoId: input.pedidoId,
         mlOrderId,
@@ -518,7 +574,7 @@ export async function ensureBrasilNfeInvoice(input: {
         chave: chave || null,
         numero: numero || null,
         externalId: externalAtual,
-        danfeUrl: String((pedido as any).nfe_danfe_url || '') || null,
+        danfeUrl: resolvedDanfeUrl,
         cfop,
         consistency: {
           checked: true,
@@ -679,6 +735,7 @@ export async function ensureBrasilNfeInvoice(input: {
                 nfe_provider: 'brasilnfe',
                 nfe_chave: found.nota.chave,
                 nota_fiscal_numero: numeroXml || found.nota.numero || undefined,
+                nota_fiscal_emitida: true,
                 nfe_cfop: cfopXml || undefined,
                 nfe_last_sync_at: nowIso(),
               } as any)
@@ -780,6 +837,22 @@ export async function ensureBrasilNfeInvoice(input: {
   const chave = emissao.chave || extractTag(xml || '', 'chNFe');
   const numero = emissao.numero || extractTag(xml || '', 'nNF');
   const cfop = emissao.cfop || extractCfop(xml);
+  const resolvedDanfeUrl = await ensureAuthorizedDanfeAndFlags({
+    numero,
+    externalId,
+    source: 'ensure_post_emission',
+    danfeUrlAtual: danfeUrl,
+    extraUpdates: {
+      nfe_provider: 'brasilnfe',
+      nfe_external_id: externalId || undefined,
+      nfe_status: emissao.status === 'already_issued' ? 'authorized' : (emissao.status || 'authorized'),
+      nfe_chave: chave || undefined,
+      nfe_protocolo: emissao.protocolo || undefined,
+      nota_fiscal_numero: numero || undefined,
+      nfe_xml: xml || undefined,
+      nfe_cfop: cfop || undefined,
+    },
+  });
   await client
     .from('pedidos')
     .update({
@@ -789,8 +862,9 @@ export async function ensureBrasilNfeInvoice(input: {
       nfe_chave: chave || undefined,
       nfe_protocolo: emissao.protocolo || undefined,
       nota_fiscal_numero: numero || undefined,
+      nota_fiscal_emitida: true,
       nfe_xml: xml || undefined,
-      nfe_danfe_url: danfeUrl || undefined,
+      nfe_danfe_url: resolvedDanfeUrl || undefined,
       nfe_cfop: cfop || undefined,
       nfe_last_sync_at: nowIso(),
     } as any)
@@ -804,7 +878,7 @@ export async function ensureBrasilNfeInvoice(input: {
     chave: chave || null,
     numero: numero || null,
     externalId,
-    danfeUrl,
+    danfeUrl: resolvedDanfeUrl,
     cfop: cfop || null,
     consistency: {
       checked: true,

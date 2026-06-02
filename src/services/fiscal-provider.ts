@@ -69,7 +69,10 @@ export interface FiscalProvider {
   emitirNota(ctx: FiscalEmitContext): Promise<EmitResult>;
   consultarNota(externalIdOrOrderId: string): Promise<ConsultResult>;
   obterXml(externalIdOrOrderId: string): Promise<XmlResult>;
-  obterDanfe(_externalIdOrOrderId: string): Promise<{ url: string | null; error?: string }>;
+  obterDanfe(
+    _externalIdOrOrderId: string,
+    options?: { storagePath?: string | null; signedUrlTtlSeconds?: number },
+  ): Promise<{ url: string | null; path?: string | null; error?: string }>;
 }
 
 async function getBrasilNfeClient() {
@@ -429,7 +432,10 @@ class BrasilNfeFiscalProvider implements FiscalProvider {
     }
   }
 
-  async obterDanfe(externalIdOrOrderId: string): Promise<{ url: string | null; error?: string }> {
+  async obterDanfe(
+    externalIdOrOrderId: string,
+    options?: { storagePath?: string | null; signedUrlTtlSeconds?: number },
+  ): Promise<{ url: string | null; path?: string | null; error?: string }> {
     try {
       const bnfe = await this.getClient();
       const buffer: Buffer = await bnfe.arquivos.pegarArquivo({
@@ -440,15 +446,17 @@ class BrasilNfeFiscalProvider implements FiscalProvider {
 
       const serviceClient = createServiceClient();
       const fileName = `${externalIdOrOrderId}.pdf`;
-      const filePath = `brasilnfe/${fileName}`;
+      const filePath = String(options?.storagePath || `brasilnfe/${fileName}`).trim();
       const up = await serviceClient.storage
         .from('danfes')
         .upload(filePath, buffer, { contentType: 'application/pdf', upsert: true });
       if (up.error) return { url: null, error: up.error.message };
 
-      const signed = await serviceClient.storage.from('danfes').createSignedUrl(filePath, 60 * 60);
+      const signed = await serviceClient.storage
+        .from('danfes')
+        .createSignedUrl(filePath, Number(options?.signedUrlTtlSeconds || 60 * 60));
       if (signed.error || !signed.data?.signedUrl) return { url: null, error: signed.error?.message || 'Falha ao assinar URL da DANFE' };
-      return { url: signed.data.signedUrl };
+      return { url: signed.data.signedUrl, path: filePath };
     } catch (err: any) {
       return { url: null, error: err?.message || 'Erro ao obter DANFE no Brasil NFe' };
     }

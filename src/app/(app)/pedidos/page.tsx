@@ -316,6 +316,26 @@ export default function PedidosPage() {
     if (dslitePollRef.current) clearTimeout(dslitePollRef.current);
   }, []);
 
+  const resolveNotaFiscalPdfUrl = useCallback(async (order: Order): Promise<string | null> => {
+    if (!order.dbId) {
+      messageApi.error('Pedido sem referência interna para localizar a DANFE');
+      return null;
+    }
+    const res = await fetch(`/api/notas-fiscais/${order.dbId}/pdf`);
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || !json?.url) {
+      messageApi.error(json?.error || 'Não foi possível localizar o PDF da nota fiscal');
+      return null;
+    }
+    return String(json.url);
+  }, [messageApi]);
+
+  const handleOpenNotaFiscalPdf = useCallback(async (order: Order) => {
+    const url = await resolveNotaFiscalPdfUrl(order);
+    if (!url) return;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }, [resolveNotaFiscalPdfUrl]);
+
   const criarPedidoDslite = async (order: Order, nfeProvider: 'brasilnfe' = 'brasilnfe') => {
     const steps: ProgressStep[] = [
       { label: 'Sincronizando pedido no Mercado Livre', status: 'loading', detail: 'Atualizando snapshot fiscal e itens do pedido' },
@@ -782,9 +802,16 @@ export default function PedidosPage() {
         if (!nf) return <Tag>Não emitida</Tag>;
         const numeroFormatado = formatNumeroWithSerie(String(nf.numero), record.nfe_chave);
         const tag = <Tag color={nf.emitida ? 'green' : 'orange'}>{numeroFormatado}</Tag>;
-        if (record.nfe_danfe_url) {
+        if (nf.emitida && record.dbId) {
           return (
-            <a href={record.nfe_danfe_url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+            <a
+              href="#"
+              onClick={(event) => {
+                event.preventDefault();
+                handleOpenNotaFiscalPdf(record);
+              }}
+              style={{ textDecoration: 'none' }}
+            >
               {tag}
             </a>
           );

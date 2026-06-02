@@ -34,6 +34,7 @@ import {
   reconcileLocalNfeSnapshotFromXml,
   validateXmlNfeProducao as validateXmlNfeProducaoShared,
 } from '@/lib/fiscal/nfe-local-reconciliation';
+import { ensureDanfeStoredForPedido } from '@/lib/fiscal/danfe-storage';
 
 const TRANSPORTADORA_PADRAO_CORREIOS = 31;
 const WAIT_AUTH_TIMEOUT_MS = 180_000;
@@ -910,6 +911,48 @@ async function runDsliteCreateJob(
   const completeAsSkipped = async (key: string, reason: string) => {
     await setStep(key, 'success', `Etapa pulada: ${reason}`);
   };
+  const ensureAuthorizedDanfeAndFlags = async (params: {
+    pedidoNumero: string | number | null | undefined;
+    notaFiscalNumero: string | number | null | undefined;
+    externalId: string | number | null | undefined;
+    source: string;
+    danfeUrlAtual?: string | null;
+    extraUpdates?: Record<string, any>;
+  }): Promise<string | null> => {
+    const notaFiscalNumero = String(params.notaFiscalNumero || '').trim();
+    const externalId = String(params.externalId || '').trim();
+    let signedUrl = String(params.danfeUrlAtual || '').trim() || null;
+
+    if (notaFiscalNumero && externalId) {
+      const danfeResult = await ensureDanfeStoredForPedido({
+        client,
+        provider,
+        pedido: {
+          id: pedidoId,
+          numero: params.pedidoNumero || '',
+          nota_fiscal_numero: notaFiscalNumero,
+          nfe_external_id: externalId,
+          nota_fiscal_emitida: true,
+        },
+        pedidoId,
+        mlOrderId: mlOrderId ? String(mlOrderId) : null,
+        source: params.source,
+      });
+      if (danfeResult.signedUrl) signedUrl = danfeResult.signedUrl;
+    }
+
+    await client
+      .from('pedidos')
+      .update({
+        nota_fiscal_emitida: true,
+        nfe_last_sync_at: now(),
+        ...(signedUrl ? { nfe_danfe_url: signedUrl } : {}),
+        ...(params.extraUpdates || {}),
+      } as any)
+      .eq('id', pedidoId);
+
+    return signedUrl;
+  };
 
   try {
     await syncJob();
@@ -1059,7 +1102,7 @@ async function runDsliteCreateJob(
 
     const { data: pedidoRow, error: pedidoRowError } = await client
       .from('pedidos')
-      .select('nfe_xml,nfe_status,nfe_chave,nota_fiscal_numero,nfe_protocolo,nfe_cfop,dslite_id,dslite_etiqueta_enviada,ml_shipment_id,ml_pack_id,nfe_danfe_url')
+      .select('numero,nfe_xml,nfe_status,nfe_chave,nota_fiscal_numero,nota_fiscal_emitida,nfe_external_id,nfe_protocolo,nfe_cfop,dslite_id,dslite_etiqueta_enviada,ml_shipment_id,ml_pack_id,nfe_danfe_url')
       .eq('id', pedidoId)
       .maybeSingle();
     if (pedidoRowError) {
@@ -1314,6 +1357,7 @@ async function runDsliteCreateJob(
           nfe_external_id: null,
           nfe_protocolo: null,
           nota_fiscal_numero: null,
+          nota_fiscal_emitida: false,
           nfe_danfe_url: null,
           nfe_cfop: null,
           nfe_last_sync_at: now(),
@@ -1377,6 +1421,22 @@ async function runDsliteCreateJob(
         danfeUrlAtual = null;
         await setStep('emit_nf_provider', 'loading', 'NF local em homologação detectada; limpando snapshot e reemitindo em produção');
       }
+    }
+
+    if (selectedProvider === 'brasilnfe' && xml) {
+      const numeroLocalAutorizado = String(
+        pedidoRow?.nota_fiscal_numero
+        || extractXmlTag(xml, 'nNF')
+        || '',
+      ).trim() || null;
+      const externalIdLocalAutorizado = String((pedidoRow as any)?.nfe_external_id || '').trim() || null;
+      danfeUrlAtual = await ensureAuthorizedDanfeAndFlags({
+        pedidoNumero: (pedidoRow as any)?.numero,
+        notaFiscalNumero: numeroLocalAutorizado,
+        externalId: externalIdLocalAutorizado,
+        source: 'dslite_local_authorized_snapshot',
+        danfeUrlAtual,
+      });
     }
 
     if (xml) {
@@ -1832,6 +1892,7 @@ async function runDsliteCreateJob(
           nfe_chave: emissao.chave || undefined,
           nfe_protocolo: emissao.protocolo || undefined,
           nota_fiscal_numero: emissao.numero || undefined,
+          nota_fiscal_emitida: true,
           nfe_danfe_url: danfeInicial || undefined,
           ...(emissao.xml ? { nfe_xml: emissao.xml } : {}),
           ...(emissao.cfop ? { nfe_cfop: emissao.cfop } : {}),
@@ -1926,6 +1987,7 @@ async function runDsliteCreateJob(
                 nfe_provider: selectedProvider,
                 nfe_external_id: String(invoiceId),
                 nfe_last_sync_at: now(),
+                nota_fiscal_emitida: true,
                 nfe_cfop: extractCfopsFromXml(xmlFetch.xml)[0] || null,
               } as any)
               .eq('id', pedidoId);
@@ -1944,16 +2006,14 @@ async function runDsliteCreateJob(
       }
 
       if (selectedProvider === 'brasilnfe' && !danfeInicial && invoiceId) {
-        const danfe = await provider.obterDanfe(String(invoiceId));
-        if (danfe.url) {
-            await client
-              .from('pedidos')
-              .update({
-                nfe_danfe_url: danfe.url,
-                nfe_last_sync_at: now(),
-              } as any)
-              .eq('id', pedidoId);
-            danfeUrlAtual = danfe.url;
+        danfeUrlAtual = await ensureAuthorizedDanfeAndFlags({
+          pedidoNumero: (pedidoRow as any)?.numero,
+          notaFiscalNumero: emissao.numero || extractXmlTag(xml || '', 'nNF'),
+          externalId: invoiceId,
+          source: 'dslite_post_emission_fetch_danfe',
+          danfeUrlAtual,
+        });
+        if (danfeUrlAtual) {
             await registrarEventoNfAuditoria({
               pedidoId,
               mlOrderId,
@@ -1966,10 +2026,24 @@ async function runDsliteCreateJob(
             pedidoId,
             mlOrderId,
             evento: 'download_danfe',
-            respostaMl: { source: 'provider_obterDanfe', success: false, error: danfe.error || null },
+            respostaMl: {
+              source: 'provider_obterDanfe',
+              success: false,
+              error: 'Falha ao persistir DANFE canônica após autorização da NF',
+            },
             statusResultante: 'warning',
           });
         }
+      }
+
+      if (selectedProvider === 'brasilnfe' && invoiceId) {
+        danfeUrlAtual = await ensureAuthorizedDanfeAndFlags({
+          pedidoNumero: (pedidoRow as any)?.numero,
+          notaFiscalNumero: emissao.numero || extractXmlTag(xml || '', 'nNF'),
+          externalId: invoiceId,
+          source: 'dslite_authorized_backfill',
+          danfeUrlAtual,
+        });
       }
     }
 

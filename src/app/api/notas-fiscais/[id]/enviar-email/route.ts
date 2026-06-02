@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { sendEmail } from '@/services/email';
-
-const DANFE_BUCKET = 'danfes';
-const SIGNED_URL_TTL_SECONDS = 60 * 10;
+import { createDanfeSignedUrl, resolveDanfeStoragePath, DANFE_BUCKET, DANFE_SIGNED_URL_TTL_SECONDS } from '@/lib/fiscal/danfe-storage';
 
 function normalizeDocument(value: string | null | undefined): string {
   return String(value || '').replace(/\D/g, '');
@@ -44,7 +42,7 @@ export async function POST(request: Request, context: { params: { id: string } }
   const serviceClient = createServiceClient();
   const { data: pedido, error: pedidoError } = await serviceClient
     .from('pedidos')
-    .select('id, numero, contato_nome, contato_documento, nota_fiscal_numero')
+    .select('id, numero, contato_nome, contato_documento, nota_fiscal_numero, nfe_external_id')
     .eq('id', id)
     .maybeSingle();
 
@@ -78,18 +76,18 @@ export async function POST(request: Request, context: { params: { id: string } }
     return NextResponse.json({ error: 'E-mail do destinatário não encontrado. Informe manualmente.' }, { status: 422 });
   }
 
-  const filePath = `${pedido.numero}/${pedido.nota_fiscal_numero}.pdf`;
-  const { data: signedData, error: signedError } = await serviceClient.storage
-    .from(DANFE_BUCKET)
-    .createSignedUrl(filePath, SIGNED_URL_TTL_SECONDS);
-
-  if (signedError || !signedData?.signedUrl) {
+  const resolved = await resolveDanfeStoragePath(serviceClient, pedido);
+  if (!resolved.path) {
+    return NextResponse.json({ error: 'PDF da DANFE não encontrado para envio' }, { status: 404 });
+  }
+  const signedUrl = await createDanfeSignedUrl(serviceClient, resolved.path, DANFE_SIGNED_URL_TTL_SECONDS);
+  if (!signedUrl) {
     return NextResponse.json({ error: 'PDF da DANFE não encontrado para envio' }, { status: 404 });
   }
 
   const { data: pdfData, error: pdfError } = await serviceClient.storage
     .from(DANFE_BUCKET)
-    .download(filePath);
+    .download(resolved.path);
 
   if (pdfError || !pdfData) {
     return NextResponse.json({ error: 'Falha ao baixar PDF da DANFE' }, { status: 500 });
@@ -103,7 +101,7 @@ export async function POST(request: Request, context: { params: { id: string } }
       `Olá ${pedido.contato_nome || ''},`,
       '',
       `Segue em anexo a DANFE da NF-e ${pedido.nota_fiscal_numero}.`,
-      `Você também pode acessar pelo link temporário: ${signedData.signedUrl}`,
+      `Você também pode acessar pelo link temporário: ${signedUrl}`,
       '',
       'Mensagem automática Vortek.',
     ].join('\n');
