@@ -10,7 +10,6 @@ import { resolveCodMunicipio } from '@/lib/fiscal/municipio-ibge';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
 import { extractMlFiscalReleaseWindow } from '@/lib/ml/fiscal-release';
-import { extractSellerShippingCost } from '@/lib/ml/shipment-costs';
 
 export const maxDuration = 300;
 
@@ -952,8 +951,6 @@ async function processOrder(params: {
   // 6. Shipment: buscar ml_shipment_id e status detalhado (uma única chamada por pedido)
   let mlShipmentId: string | null = null;
   let shipmentDetail: any = null;
-  let shipmentCostsPayload: any = null;
-  let sellerShippingCost: number | null = null;
   let releaseWindowCheckOk = false;
   let releaseWindow = extractMlFiscalReleaseWindow({ shipment: null, leadTime: null });
   const situacaoAnteriorShipment = situacao;
@@ -966,16 +963,6 @@ async function processOrder(params: {
     if (shipmentResult.ok && shipmentResult.data?.id) {
       shipmentDetail = shipmentResult.data;
       mlShipmentId = String(shipmentDetail.id);
-
-      const shipmentCostsFetch = await fetchMLResultWithRetry<any>(`/shipments/${mlShipmentId}/costs`);
-      retriesTransient += shipmentCostsFetch.retries;
-      if (shipmentCostsFetch.result.ok && shipmentCostsFetch.result.data) {
-        shipmentCostsPayload = shipmentCostsFetch.result.data;
-        sellerShippingCost = extractSellerShippingCost(shipmentCostsPayload, shipmentDetail?.sender_id);
-      } else if (shipmentCostsFetch.result.error?.category === 'auth_fatal') {
-        authFailures++;
-        authFatal = true;
-      }
 
       const leadTimeFetch = await fetchMLResultWithRetry<any>(`/shipments/${mlShipmentId}/lead_time`);
       retriesTransient += leadTimeFetch.retries;
@@ -1022,11 +1009,7 @@ async function processOrder(params: {
   }
 
   // 7. Lucro real: não refazer chamada de shipment quando já tratada acima
-  const { lucro, rastreio } = await calculateOrderProfit(detail, shipmentDetail, {
-    allowShipmentFetch: false,
-    sellerShippingCost,
-    shipmentCostsPayload,
-  });
+  const { lucro, rastreio } = await calculateOrderProfit(detail, shipmentDetail, { allowShipmentFetch: false });
 
   // 8. Claim: usar dados da busca ou detalhe do pedido
   let mlClaimId: string | null = claimIdFromSearch;
@@ -1043,13 +1026,7 @@ async function processOrder(params: {
     // ignora falha pontual
   }
 
-  const freteTotal = Number(
-    sellerShippingCost
-    ?? shipmentDetail?.shipping_option?.cost
-    ?? sourceOrder?.shipping_cost
-    ?? o.shipping_cost
-    ?? 0,
-  );
+  const freteTotal = Number(shipmentDetail?.shipping_option?.cost || sourceOrder?.shipping_cost || o.shipping_cost || 0);
   const destUf = String(billingSnapshot.endereco.state_id || '').trim().toUpperCase() || null;
   const { data: empresaData } = await serviceClient
     .from('empresa')

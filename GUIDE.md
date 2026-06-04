@@ -52,24 +52,18 @@ Mercado Livre ←→ Vortek ERP ←→ DSLite (dropshipping + catálogo)
 **Preço:** R$ **49,90**/mês — emissão **ilimitada** NF-e (modelo 55) + NFC-e (modelo 65)
 **Testado em homologação:** ✅ NF-e emitida e autorizada pela SEFAZ
 
-| Funcionalidade | Endpoint API | Fluxo/Rota Vortek |
+| Funcionalidade | Endpoint API | Rota Vortek |
 |---|---|---|
-| Garantir emissão/autorização NF-e | Brasil NFe | `POST /api/dslite/pedido` + `ensure-brasilnfe-invoice` |
-| Cancelar NF-e | `POST /services/fiscal/CancelarNotaFiscal` | `POST /api/notas-fiscais/[id]/cancelar` |
-| Carta de Correção (CC-e) | Brasil NFe | `POST /api/notas-fiscais/[id]/carta-correcao` |
-| Visualizar DANFE | Brasil NFe + Storage | `GET /api/notas-fiscais/[id]/pdf` |
-| Enviar DANFE por e-mail | SMTP + Brasil NFe/Storage | `POST /api/notas-fiscais/[id]/enviar-email` |
+| Emitir NF-e | `POST /services/fiscal/EnviarNotaFiscal` | `POST /api/nfe/emitir` |
+| Cancelar NF-e | `POST /services/fiscal/CancelarNotaFiscal` | `POST /api/nfe/cancelar` |
+| Status SEFAZ | `POST /services/statusSefaz` | `GET /api/nfe/status` |
 | SDK oficial | `npm install brasilnfe` (TypeScript) | ✅ Instalado |
 
 ### 🔵 Mercado Livre OAuth2
 
 - ✅ OAuth2 (connect + callback + refresh)
-- ✅ Sincronizar anúncios (observado + publicação)
+- ✅ Sincronizar anúncios
 - ✅ Sincronizar pedidos
-- ✅ Criar anúncio
-- ✅ Ativar/Pausar anúncio
-- ✅ Atualizar preço e atacado
-- ✅ Webhook de notificações (`topic=items`, pedidos e claims)
 
 ---
 
@@ -77,115 +71,104 @@ Mercado Livre ←→ Vortek ERP ←→ DSLite (dropshipping + catálogo)
 
 ---
 
-## Fase 4 — Limpeza e Organização do Código 🟡 (Parcialmente Concluída)
+## Fase 4 — Limpeza e Organização do Código (NOVA)
 
-**Estado atual:** a maior parte da limpeza estrutural já foi feita, mas ainda restam pendências pontuais de tipagem, documentação e ações stub em telas específicas.
+**Validado via Context7:** Ant Design 5, Next.js 14 App Router, Supabase JS v2.
 
-### 4.1 — Código morto removido ✅
+### 4.1 — Remover código morto (5 arquivos)
 
-Os arquivos abaixo já não existem mais no projeto:
-
-| Arquivo | Status |
+| Arquivo | Motivo |
 |---|---|
-| `src/components/Header.tsx` | ✅ Removido |
-| `src/components/ProgressModal.tsx` | ✅ Removido |
-| `src/lib/AntdRegistry.tsx` | ✅ Removido |
-| `src/lib/api-key.ts` | ✅ Removido |
-| `src/lib/theme.ts` | ✅ Removido |
+| `src/components/Header.tsx` | Nunca importado |
+| `src/components/ProgressModal.tsx` | Nunca importado |
+| `src/lib/AntdRegistry.tsx` | Duplicado no `Providers.tsx` |
+| `src/lib/api-key.ts` | `validateApiKey` nunca usada |
+| `src/lib/theme.ts` | Tema duplicado no `Providers.tsx` |
 
-### 4.2 — `globals.css` e tema Ant Design ajustados ✅
+### 4.2 — Consertar globals.css (validado pelo Ant Design 5 docs via Context7)
 
-- O CSS global não força mais altura com `!important` em `Input`, `Select` e `InputNumber`.
-- O tema atual está centralizado no `ConfigProvider` em `src/lib/Providers.tsx`.
-- Tokens de `Input`, `InputNumber` e `Select` já estão configurados no provider raiz.
+**Problema:** `globals.css` força `min-height: 38px !important` em Input, Select e InputNumber, ignorando o `size` prop do Ant Design.
 
-### 4.3 — Tipos do Supabase gerados e em uso 🟡
+**Solução:** Remover as linhas 12-27 do `globals.css`. O Ant Design 5 controla altura via **Component Tokens** no `ConfigProvider`:
 
-- `src/types/database.ts` existe e está ativo no projeto.
-- A base já não depende de tipagem manual para as tabelas principais.
-- Ainda existem usos residuais de `any` fora do arquivo gerado, principalmente em integrações, jobs e helpers fiscais.
+```tsx
+// lib/Providers.tsx
+<ConfigProvider theme={{
+  components: {
+    Input: { controlHeight: 32 },
+    Select: { controlHeight: 32 },
+    InputNumber: { controlHeight: 32 },
+  },
+}}>
+```
 
-### 4.4 — Extrações e deduplicações parciais ✅
+### 4.3 — Gerar tipos TypeScript do Supabase (validado pelo Supabase JS docs via Context7)
 
-| Item | Estado atual |
+**Problema:** 44 usos de `any` em todo o código.
+
+**Solução:** Rodar comando oficial do Supabase CLI:
+```bash
+supabase gen types typescript --linked > src/types/database.ts
+```
+
+Depois registrar no `createClient<Database>()` no `lib/supabase.ts`. TypeScript infere **todos** os tipos automaticamente — zero `any` manual.
+
+### 4.4 — Extrair lógica duplicada
+
+| Duplicata | Solução |
 |---|---|
-| `lib/fetch-all.ts` | ✅ Existe |
-| `lib/mocks/clientes.ts` | ✅ Existe |
-| `refreshMLToken()` duplicada | ✅ Consolidada no fluxo com `getValidMLToken()` |
+| `fetchAll()` em `api/clientes` e `api/pedidos` | Criar `lib/fetch-all.ts` |
+| `mockClients` em `clientes/page` e `clientes/[id]` | Criar `lib/mocks/clientes.ts` |
+| `refreshMLToken()` duplicata de `getValidMLToken()` | Remover função duplicada |
 
-### 4.5 — Ações stub restantes 🟡
+### 4.5 — Substituir stubs de dropdown por ações reais
 
-Ainda existem ações visuais sem integração completa em pontos específicos:
+| Onde | Qtde | Problema |
+|---|---|---|
+| Dropdowns em 8 páginas | 8 | `console.log(key + id)` em vez de ação real |
+| Webhook ML | 4 | `console.log` sem estrutura |
 
-| Onde | Estado atual |
-|---|---|
-| `perguntas/page.tsx` | 🟡 Mock + ação stub/TODO |
-| `reclamacoes/page.tsx` | 🟡 Mock + ação stub |
-| `fornecedores/page.tsx` | 🟡 ação residual com `console.log` |
-| `clientes/page.tsx` | 🟡 comentário `TODO: editar` |
+### 4.6 — Documentar código (comentários)
 
-### 4.6 — Documentação técnica 🟡
-
-- O projeto já possui comentários úteis em serviços e fluxos mais complexos.
-- Ainda não foi concluída a padronização total de JSDoc em serviços, rotas, tipos, componentes e páginas.
+| Escopo | Qtde | O que fazer |
+|---|---|---|
+| Serviços (`services/*.ts`) | 4 | JSDoc completo (`@param`, `@returns`) |
+| Rotas (`api/**/route.ts`) | 21 | 1 linha descritiva no topo |
+| Tipos (`types/*.ts`) | 3 | JSDoc em cada interface |
+| Componentes (`components/*.tsx`) | 3 | JSDoc no componente e props |
+| Páginas (`(app)/**/page.tsx`) | 15 | 1 linha descritiva no topo |
 
 ---
 
-## Fase 5 — Funcionalidades do Produto (Status Real)
+## Fase 5 — Funcionalidades Completas (pendentes)
 
-### ✅ Já concluído
+| Ação | API | Prioridade |
+|---|---|---|
+| Conectar páginas mock ao backend | — | 🔴 Alta |
+| Criar anúncio ML | `POST /items` | 🔴 Alta |
+| Ativar/Pausar anúncio ML | `PUT /items/{id}` | 🟡 Média |
+| Atualizar preço no ML | `PUT /items/{id}` | 🟡 Média |
+| Responder perguntas ML | `POST /answers` | 🟡 Média |
+| Mapear produto (DE/PARA) DSLite | `PUT /Catalogo/{id}/{produtoId}` | 🔴 Alta |
+| Cancelar NF-e na UI | Brasil NFe | 🔜 |
+| Carta de Correção CC-e | Brasil NFe | 🔜 |
 
-| Funcionalidade | Estado atual |
-|---|---|
-| Criar anúncio ML | ✅ Implementado (`/api/ml/anuncio/criar`) |
-| Ativar/Pausar anúncio ML | ✅ Implementado via produto/anúncio |
-| Atualizar preço no ML | ✅ Implementado (`/api/ml/anuncio/atualizar-preco`) |
-| Sync observado/publicação de anúncios ML | ✅ Implementado |
-| Webhook ML de notificações | ✅ Implementado |
-| Cancelar NF-e na UI | ✅ Implementado (`/api/notas-fiscais/[id]/cancelar`) |
-| Carta de Correção CC-e | ✅ Implementado (`/api/notas-fiscais/[id]/carta-correcao`) |
-| Dashboard com dados reais | ✅ Implementado |
-| Notas Fiscais com dados reais | ✅ Implementado |
-| Clientes com dados reais | ✅ Implementado |
-| Fornecedores com dados reais | ✅ Implementado |
-| Produtos detalhe com backend real | ✅ Implementado |
-| Reputação ML com dados reais | ✅ Implementado |
+### Páginas para migrar de mock para dados reais
 
-### 🟡 Parcialmente concluído
+| Página | Dados mock | API destino |
+|---|---|---|
+| `produtos/[id]/page.tsx` | 10 produtos | `GET /api/produtos?id=X` |
+| `clientes/page.tsx` | 15 clientes | `GET /api/clientes` |
+| `clientes/[id]/page.tsx` | 15 clientes | `GET /api/clientes?id=X` |
+| `fornecedores/page.tsx` | 8 fornecedores | DSLite + Supabase |
+| `catalogo/page.tsx` | 10 itens | Produtos + fornecedor |
+| `perguntas/page.tsx` | 12 perguntas | `GET /questions/search` (ML) |
+| `reclamacoes/page.tsx` | 6 reclamações | `GET /claims` (ML) |
+| `reputacao/page.tsx` | 1 objeto | `GET /users/me` (ML) |
+| `notas-fiscais/page.tsx` | 12 notas | Tabela `pedidos` (nfe_*) |
+| `dashboard/page.tsx` | Gráficos mock | Dados reais de vendas/pedidos |
 
-| Funcionalidade | Estado atual |
-|---|---|
-| Mapear produto (DE/PARA) DSLite | 🟡 Fluxos de vínculo e catálogo existem, mas vale revisar se falta uma operação explícita de mapeamento manual fim-a-fim |
-| Catálogo | 🟡 Fluxo real existe em `catalogo/elegiveis` e `catalogo/no-catalogo`; `catalogo/page.tsx` hoje redireciona para esse fluxo |
-| Análises e sincronizações ML/DSLite | 🟡 Operacionais, mas ainda exigem acompanhamento e hardening contínuo |
-
-### 🔴 Pendências reais
-
-| Funcionalidade | Estado atual |
-|---|---|
-| Perguntas ML | 🔴 Tela ainda usa mock e ação stub |
-| Reclamações ML | 🔴 Tela ainda usa mock e ação stub |
-| Ações residuais de UI | 🔴 Restam `console.log` / `TODO` pontuais |
-
-### Páginas ainda dependentes de mock ou integração incompleta
-
-| Página | Estado atual |
-|---|---|
-| `perguntas/page.tsx` | `mockPerguntas` + ações stub |
-| `reclamacoes/page.tsx` | `mockReclamacoes` + ações stub |
-
-### Páginas já conectadas ao backend real
-
-| Página | Estado atual |
-|---|---|
-| `produtos/[id]/page.tsx` | `GET/PATCH /api/produtos/[id]` |
-| `clientes/page.tsx` | `GET /api/clientes` + resumo |
-| `clientes/[id]/page.tsx` | `GET/PATCH /api/clientes/[id]` |
-| `fornecedores/page.tsx` | `GET /api/fornecedores` |
-| `dashboard/page.tsx` | `GET /api/dashboard/resumo` |
-| `notas-fiscais/page.tsx` | `GET /api/notas-fiscais` + resumo + ações |
-| `reputacao/page.tsx` | `GET /api/ml/reputacao` |
-| `catalogo/page.tsx` | redireciona para o fluxo real de catálogo |
+---
 
 ## Fase 6 — Deploy no Easypanel
 
@@ -212,48 +195,6 @@ Ainda existem ações visuais sem integração completa em pontos específicos:
 - Rodar `npm run check:build-secrets` antes de deploy; deve retornar `[OK]`.
 
 ---
-
-## O que falta para concluir o projeto
-
-### Pendências funcionais principais
-
-1. Integrar `Perguntas ML` com API real e resposta real.
-2. Integrar `Reclamações ML` com API real e resposta/ação real.
-3. Finalizar ações stub residuais em UI (`fornecedores`, `clientes` e pontos menores relacionados).
-
-### Pendências técnicas secundárias
-
-1. Reduzir usos residuais de `any` fora de `src/types/database.ts`.
-2. Concluir a padronização de JSDoc/documentação técnica onde isso ainda fizer sentido como critério de qualidade.
-3. Revisar se o produto precisa de uma tela unificada de catálogo além dos fluxos atuais `elegíveis` / `no catálogo`.
-
-### Ordem recomendada de implementação
-
-**Prioridade padrão:** primeiro fechamos lacunas funcionais visíveis ao usuário, depois eliminamos stubs residuais e, por fim, tratamos dívida técnica e refinamento documental.
-
-1. **Perguntas ML**
-   Integrar `perguntas/page.tsx` com API real do Mercado Livre, substituindo `mockPerguntas`, busca local e ação stub de resposta.
-   Critério de conclusão: listar perguntas reais, responder pela UI e refletir o estado atualizado.
-
-2. **Reclamações ML**
-   Integrar `reclamacoes/page.tsx` com API real do Mercado Livre, substituindo `mockReclamacoes` e a ação stub de resposta/atendimento.
-   Critério de conclusão: listar reclamações reais e executar ação real pela interface.
-
-3. **Ações stub residuais de UI**
-   Remover `console.log` e `TODO` remanescentes em telas já conectadas, principalmente `fornecedores` e `clientes`.
-   Critério de conclusão: nenhuma ação visível ao usuário fica sem comportamento real.
-
-4. **Redução de `any` residual**
-   Atacar usos de `any` fora de `src/types/database.ts`, priorizando integrações, jobs e helpers mais críticos.
-   Critério de conclusão: redução substancial nos pontos operacionais centrais, sem reescrita ampla.
-
-5. **Padronização de documentação/JSDoc**
-   Documentar serviços, fluxos e contratos realmente críticos para manutenção.
-   Critério de conclusão: integrações e rotas sensíveis ficam autoexplicativas para manutenção futura.
-
-6. **Decisão final sobre catálogo**
-   Avaliar se o produto precisa de uma tela unificada de catálogo ou se os fluxos atuais `elegíveis` / `no catálogo` já fecham o escopo.
-   Critério de conclusão: decisão registrada no guia, com `não necessário` ou `implementar depois`.
 
 ## Notas Técnicas
 

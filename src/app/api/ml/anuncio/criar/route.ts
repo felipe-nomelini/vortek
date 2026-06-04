@@ -4,7 +4,6 @@ import { fetchML } from '@/services/integration';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { createServiceClient } from '@/lib/supabase';
 import { fiscalStrictSchema, mapOriginType, normalizeNcm } from '@/lib/fiscal-strict';
-import { reconcileProdutoMlFinancials } from '@/lib/ml/reconcile-produto-financials';
 
 type StepResult = { ok: boolean; error?: string };
 type AttrInput = { id: string; value_name?: string; value_id?: string };
@@ -320,17 +319,31 @@ export async function POST(req: Request) {
       warnings.push(`Não foi possível configurar os preços de atacado neste momento. Motivo: ${errorMessage}`);
     }
 
-    await supabase
-      .from('produtos')
-      .update({ ml_item_id: result.id, ml_status: 'ativo' })
-      .eq('id', produtoId);
+    let mlFee = produto.ml_fee || 0.15;
+    let mlShipping = produto.ml_shipping || 0;
 
-    await reconcileProdutoMlFinancials(supabase, {
-      produtoId,
-      mlItemId: String(result.id),
-      item: result,
-      source: 'listing_create',
-    });
+    try {
+      const listingPrices = await fetchML<any>(`/sites/MLB/listing_prices?price=${displayPrice}&category_id=${categoriaId}&listing_type_id=${listingType || 'gold_pro'}`);
+      if (listingPrices?.sale_fee_details?.percentage_fee) mlFee = listingPrices.sale_fee_details.percentage_fee / 100;
+      else if (listingPrices?.sale_fee_details?.meli_percentage_fee) mlFee = listingPrices.sale_fee_details.meli_percentage_fee / 100;
+    } catch {}
+
+    try {
+      const me = await fetchML<any>('/users/me');
+      const sellerZip = me?.address?.zip_code || '';
+      if (sellerZip) {
+        const shipping = await fetchML<any>(`/items/${result.id}/shipping_options?zip_code=${sellerZip}`);
+        const options = shipping?.options || [];
+        const freeOption = options.find((o: any) => o.cost === 0);
+        if (freeOption?.list_cost) mlShipping = freeOption.list_cost;
+        else {
+          const firstOption = options.find((o: any) => typeof o.list_cost === 'number');
+          if (firstOption?.list_cost) mlShipping = firstOption.list_cost;
+        }
+      }
+    } catch {}
+
+    await supabase.from('produtos').update({ ml_item_id: result.id, ml_status: 'ativo', ml_fee: mlFee, ml_shipping: mlShipping }).eq('id', produtoId);
 
     await supabase.from('anuncios_ml').upsert({
       ml_item_id: result.id,

@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, Modal, message, Spin, Statistic, Tabs } from 'antd';
+import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, message, Spin, Statistic, Tabs } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { MenuProps, TableProps } from 'antd';
 import { SearchOutlined, EllipsisOutlined, LoadingOutlined, ReloadOutlined } from '@ant-design/icons';
@@ -39,15 +39,10 @@ type NoCatalogoRow = {
 
 type ElegivelRow = {
   ml_item_id: string;
-  titulo: string;
   title: string;
   seller_sku: string | null;
-  sku_local: string | null;
-  produto_id: string | null;
   status: string | null;
-  preco_atual: number;
   price: number;
-  motivo: string;
   permalink: string | null;
   thumbnail: string | null;
   category_id: string | null;
@@ -57,8 +52,6 @@ type ElegivelRow = {
   buy_box_eligible: boolean;
   eligibility_reason: string | null;
   variation_eligibility: Array<{ id?: number; status?: string; buy_box_eligible?: boolean }>;
-  catalog_forewarning_status?: 'date_defined' | 'date_not_defined' | 'date_expired' | null;
-  catalog_forewarning_moderation_date?: string | null;
   last_updated: string | null;
 };
 
@@ -203,56 +196,6 @@ function mapStatusMlToPt(status: string | null | undefined): string {
   return status || '—';
 }
 
-function formatDateTimeBR(value: string | null | undefined): string {
-  const raw = String(value || '').trim();
-  if (!raw) return '—';
-  const date = new Date(raw);
-  if (Number.isNaN(date.getTime())) return raw;
-  return new Intl.DateTimeFormat('pt-BR', {
-    dateStyle: 'short',
-    timeStyle: 'short',
-    timeZone: 'America/Sao_Paulo',
-  }).format(date);
-}
-
-function formatCatalogForewarning(row: Pick<ElegivelRow, 'catalog_forewarning_status' | 'catalog_forewarning_moderation_date'>): string {
-  if (row.catalog_forewarning_status === 'date_defined' && row.catalog_forewarning_moderation_date) {
-    return formatDateTimeBR(row.catalog_forewarning_moderation_date);
-  }
-  if (row.catalog_forewarning_status === 'date_expired' && row.catalog_forewarning_moderation_date) {
-    return `Vencido em ${formatDateTimeBR(row.catalog_forewarning_moderation_date)}`;
-  }
-  return '—';
-}
-
-function mapCatalogSituation(row: Pick<ElegivelRow, 'eligibility_status' | 'buy_box_eligible' | 'catalog_forewarning_status'>): { label: string; color: string } {
-  const eligibilityStatus = String(row.eligibility_status || '').toUpperCase();
-
-  if (eligibilityStatus === 'READY_FOR_OPTIN' && row.buy_box_eligible) {
-    return { label: 'Pronto para catálogo', color: 'green' };
-  }
-  if (eligibilityStatus === 'ALREADY_OPTED_IN') {
-    return { label: 'Já enviado ao catálogo', color: 'blue' };
-  }
-  if (eligibilityStatus === 'NOT_ELIGIBLE') {
-    return { label: 'Não elegível', color: 'red' };
-  }
-  if (eligibilityStatus === 'PRODUCT_INACTIVE') {
-    return { label: 'Produto inativo', color: 'orange' };
-  }
-  if (eligibilityStatus === 'CLOSED') {
-    return { label: 'Anúncio encerrado', color: 'default' };
-  }
-  if (eligibilityStatus === 'COMPETING') {
-    return { label: 'Já competindo', color: 'gold' };
-  }
-  if (row.catalog_forewarning_status === 'date_defined' || row.catalog_forewarning_status === 'date_expired') {
-    return { label: 'Catálogo obrigatório', color: 'volcano' };
-  }
-
-  return { label: 'Aguardando retorno do ML', color: 'default' };
-}
-
 function classLabel(classe: AnaliseClasse): string {
   if (classe === 'ajustar_para_ganhar_sem_prejuizo') return 'Ajustar para ganhar';
   if (classe === 'nao_viavel_ganhar_sem_prejuizo') return 'Não viável sem prejuízo';
@@ -375,7 +318,6 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
   const [analiseRefreshStatus, setAnaliseRefreshStatus] = useState<string | null>(null);
   const [analiseUltimaExecucao, setAnaliseUltimaExecucao] = useState<string | null>(null);
   const [updatingPriceByItem, setUpdatingPriceByItem] = useState<Record<string, boolean>>({});
-  const [optingInByItem, setOptingInByItem] = useState<Record<string, boolean>>({});
   const [mlPublishModalOpen, setMlPublishModalOpen] = useState(false);
   const [mlPublishModalSteps, setMlPublishModalSteps] = useState<ProgressStep[]>(buildMlPublishSteps(null));
   const [mlPublishOutboxId, setMlPublishOutboxId] = useState<string | null>(null);
@@ -742,7 +684,6 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
   }, [messageApi, mode, pollRefreshJob, refreshJobStatus, startRefreshPolling]);
 
   const handleOptin = useCallback(async (row: ElegivelRow) => {
-    const itemKey = String(row.ml_item_id || '');
     const catalogProductId = row.catalog_product_id || '';
     if (!catalogProductId) {
       messageApi.error('Item sem catalog_product_id. Opt-in não pode ser feito automaticamente.');
@@ -753,94 +694,21 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       ? row.variation_eligibility.find((v) => String(v.status || '').toUpperCase() === 'READY_FOR_OPTIN' && v.buy_box_eligible)?.id
       : undefined;
 
-    setOptingInByItem((prev) => ({ ...prev, [itemKey]: true }));
-    try {
-      const res = await fetch('/api/catalogo/optin', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ itemId: row.ml_item_id, catalogProductId, variationId }),
-      });
-      const json = await res.json().catch(() => ({}));
+    const res = await fetch('/api/catalogo/optin', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ itemId: row.ml_item_id, catalogProductId, variationId }),
+    });
+    const json = await res.json().catch(() => ({}));
 
-      if (!res.ok) {
-        messageApi.error(json?.erro || 'Falha ao criar anúncio de catálogo');
-        return;
-      }
-
-      messageApi.success('Opt-in de catálogo executado com sucesso');
-      fetchData();
-    } catch {
-      messageApi.error('Erro de conexão ao criar anúncio de catálogo');
-    } finally {
-      setOptingInByItem((prev) => ({ ...prev, [itemKey]: false }));
-    }
-  }, [fetchData, messageApi]);
-
-  const handleViewMl = useCallback((row: ElegivelRow) => {
-    if (!row.permalink) {
-      messageApi.error('Anúncio sem permalink disponível no Mercado Livre.');
+    if (!res.ok) {
+      messageApi.error(json?.erro || 'Falha ao criar anúncio de catálogo');
       return;
     }
 
-    window.open(row.permalink, '_blank', 'noopener,noreferrer');
-  }, [messageApi]);
-
-  const handleShowForewarning = useCallback((row: ElegivelRow) => {
-    const status = row.catalog_forewarning_status || 'date_not_defined';
-    const moderationDate = row.catalog_forewarning_moderation_date;
-    const content = (
-      <div style={{ display: 'grid', gap: 8 }}>
-        <div><strong>Situação no catálogo:</strong> {mapCatalogSituation(row).label}</div>
-        <div>
-          <strong>Prazo:</strong>{' '}
-          {status === 'date_defined' && moderationDate
-            ? formatDateTimeBR(moderationDate)
-            : status === 'date_expired' && moderationDate
-              ? `Vencido em ${formatDateTimeBR(moderationDate)}`
-              : 'Sem pré-aviso ativo'}
-        </div>
-      </div>
-    );
-
-    Modal.info({
-      title: `Prazo do catálogo - ${row.ml_item_id}`,
-      content,
-      okText: 'Fechar',
-      centered: true,
-    });
-  }, []);
-
-  const handleShowCatalogDetails = useCallback((row: ElegivelRow) => {
-    const content = (
-      <div style={{ display: 'grid', gap: 8 }}>
-        <div><strong>Situação no catálogo:</strong> {mapCatalogSituation(row).label}</div>
-        {row.eligibility_status ? <div><strong>Status técnico:</strong> {row.eligibility_status}</div> : null}
-        <div><strong>Buy Box elegível:</strong> {row.buy_box_eligible ? 'Sim' : 'Não'}</div>
-        {row.eligibility_reason ? <div><strong>Motivo técnico:</strong> {row.eligibility_reason}</div> : null}
-        {row.catalog_product_id ? <div><strong>Catalog Product ID:</strong> {row.catalog_product_id}</div> : null}
-        {Array.isArray(row.variation_eligibility) && row.variation_eligibility.length > 0 ? (
-          <div>
-            <strong>Variações:</strong>{' '}
-            {row.variation_eligibility.map((variation) => {
-              const parts = [
-                variation.id ? `ID ${variation.id}` : null,
-                variation.status ? `status ${variation.status}` : null,
-                typeof variation.buy_box_eligible === 'boolean' ? (variation.buy_box_eligible ? 'elegível' : 'não elegível') : null,
-              ].filter(Boolean);
-              return parts.join(' · ');
-            }).join(' | ')}
-          </div>
-        ) : null}
-      </div>
-    );
-
-    Modal.info({
-      title: `Detalhes do catálogo - ${row.ml_item_id}`,
-      content,
-      okText: 'Fechar',
-      centered: true,
-    });
-  }, []);
+    messageApi.success('Opt-in de catálogo executado com sucesso');
+    fetchData();
+  }, [fetchData, messageApi]);
 
   const executeMlPriceUpdate = useCallback(async (context: PublishActionContext) => {
     if (mode !== 'no_catalogo') return;
@@ -1069,21 +937,11 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       render: (v) => {
         if (v === null) return '—';
         const n = Number(v || 0);
-        return <span>{formatCurrency(n)}</span>;
+        const color = n > 0 ? '#faad14' : n < 0 ? '#52c41a' : '#a0a0a0';
+        return <span style={{ color }}>{formatCurrency(n)}</span>;
       },
     },
-    {
-      title: 'Lucro Estimado',
-      dataIndex: 'lucro_unitario_estimado',
-      key: 'lucro_unitario_estimado',
-      width: 130,
-      render: (v) => {
-        if (v === null) return '—';
-        const n = Number(v || 0);
-        const color = n > 0 ? '#52c41a' : n < 0 ? '#ff4d4f' : undefined;
-        return <span style={color ? { color, fontWeight: 600 } : undefined}>{formatCurrency(n)}</span>;
-      },
-    },
+    { title: 'Lucro Estimado', dataIndex: 'lucro_unitario_estimado', key: 'lucro_unitario_estimado', width: 130, render: (v) => (v === null ? '—' : formatCurrency(Number(v))) },
     {
       title: 'Classe',
       dataIndex: 'classe',
@@ -1218,75 +1076,47 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
   ]), [handleAtualizarPrecoParaGanhar, updatingPriceByItem]);
 
   const columnsElegiveis: TableProps<ElegivelRow>['columns'] = useMemo(() => ([
+    { title: 'Seller SKU', dataIndex: 'seller_sku', key: 'seller_sku', width: 130, render: (v) => v || '—' },
+    { title: 'ML Item', dataIndex: 'ml_item_id', key: 'ml_item_id', width: 130, render: (v) => <span style={{ fontFamily: 'monospace' }}>{v}</span> },
+    { title: 'Título', dataIndex: 'title', key: 'title', width: 300 },
+    { title: 'Status ML', dataIndex: 'status', key: 'status', width: 110, render: (v) => <Tag color={v === 'active' ? 'green' : v === 'paused' ? 'orange' : 'default'}>{v || '—'}</Tag> },
+    { title: 'Preço', dataIndex: 'price', key: 'price', width: 110, render: (v) => formatCurrency(Number(v || 0)) },
+    { title: 'Category', dataIndex: 'category_id', key: 'category_id', width: 110, render: (v) => v || '—' },
+    { title: 'Domain', dataIndex: 'domain_id', key: 'domain_id', width: 120, render: (v) => v || '—' },
+    { title: 'Catalog Product', dataIndex: 'catalog_product_id', key: 'catalog_product_id', width: 160, render: (v) => v || '—' },
     {
-      title: 'Anúncio',
-      dataIndex: 'ml_item_id',
-      key: 'ml_item_id',
-      width: 140,
-      render: (v, record) => record.permalink
-        ? <a href={record.permalink} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'monospace' }}>{v || '—'}</a>
-        : <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
+      title: 'Elegibilidade', dataIndex: 'eligibility_status', key: 'eligibility_status', width: 170,
+      render: (v) => <Tag color={eligibilityColor[String(v || '').toUpperCase()] || 'default'}>{v || '—'}</Tag>,
     },
-    { title: 'Título', dataIndex: 'titulo', key: 'titulo', width: 280, render: (v) => v || '—' },
-    { title: 'SKU', dataIndex: 'sku_local', key: 'sku_local', width: 120, render: (v) => v || '—' },
-    { title: 'Preço Atual', dataIndex: 'preco_atual', key: 'preco_atual', width: 120, render: (v) => formatCurrency(Number(v || 0)) },
+    { title: 'Buy Box', dataIndex: 'buy_box_eligible', key: 'buy_box_eligible', width: 90, render: (v) => <Tag color={v ? 'green' : 'red'}>{v ? 'SIM' : 'NÃO'}</Tag> },
+    { title: 'Motivo', dataIndex: 'eligibility_reason', key: 'eligibility_reason', width: 220, render: (v) => v || '—' },
+    { title: 'Variações aptas', dataIndex: 'variation_eligibility', key: 'variation_eligibility', width: 120, render: (v) => Array.isArray(v) ? v.filter((x) => String(x?.status || '').toUpperCase() === 'READY_FOR_OPTIN').length : 0 },
+    { title: 'Atualizado', dataIndex: 'last_updated', key: 'last_updated', width: 160, render: (v) => v ? new Date(v).toLocaleString('pt-BR') : '—' },
     {
-      title: 'Status ML',
-      dataIndex: 'status',
-      key: 'status',
-      width: 120,
-      render: (v) => <Tag>{mapStatusMlToPt(v)}</Tag>,
-    },
-    {
-      title: 'Situação no catálogo',
-      key: 'catalog_situation',
-      width: 180,
-      render: (_, record) => {
-        const situation = mapCatalogSituation(record);
-        return <Tag color={situation.color}>{situation.label}</Tag>;
-      },
+      title: 'Link', dataIndex: 'permalink', key: 'permalink', width: 90,
+      render: (v) => v ? <a href={v} target="_blank" rel="noopener noreferrer">Abrir</a> : '—',
     },
     {
-      title: 'Prazo',
-      dataIndex: 'catalog_forewarning_moderation_date',
-      key: 'catalog_forewarning_moderation_date',
-      width: 190,
-      render: (_, record) => {
-        const label = formatCatalogForewarning(record);
-        const isExpired = record.catalog_forewarning_status === 'date_expired';
-        return <span style={isExpired ? { color: '#ff7875', fontWeight: 600 } : undefined}>{label}</span>;
-      },
+      title: 'Ações', key: 'actions', width: 60, fixed: 'right',
+      render: (_, record) => (
+        <Dropdown
+          menu={{
+            items: [
+              { key: 'view', label: 'Ver no ML' },
+              { key: 'optin', label: 'Criar anúncio de catálogo' },
+            ],
+            onClick: ({ key }) => {
+              if (key === 'view' && record.permalink) window.open(record.permalink, '_blank');
+              if (key === 'optin') handleOptin(record);
+            },
+          }}
+          trigger={['click']}
+        >
+          <Button type="text" size="small" icon={<EllipsisOutlined />} />
+        </Dropdown>
+      ),
     },
-    {
-      title: 'Ações', key: 'actions', width: 70, fixed: 'right',
-      render: (_, record) => {
-        const itemKey = String(record.ml_item_id || '');
-        const optingIn = Boolean(optingInByItem[itemKey]);
-
-        return (
-          <Dropdown
-            menu={{
-              items: [
-                { key: 'optin', label: optingIn ? 'Criando...' : 'Criar anúncio de catálogo', disabled: optingIn },
-                { key: 'view_ml', label: 'Visualizar no ML', disabled: !record.permalink || optingIn },
-                { key: 'forewarning', label: 'Ver prazo', disabled: optingIn },
-                { key: 'details', label: 'Ver detalhes', disabled: optingIn },
-              ],
-              onClick: ({ key }) => {
-                if (key === 'optin') handleOptin(record);
-                if (key === 'view_ml') handleViewMl(record);
-                if (key === 'forewarning') handleShowForewarning(record);
-                if (key === 'details') handleShowCatalogDetails(record);
-              },
-            }}
-            trigger={['click']}
-          >
-            <Button type="text" size="small" icon={<EllipsisOutlined />} loading={optingIn} />
-          </Dropdown>
-        );
-      },
-    },
-  ]), [handleOptin, handleShowCatalogDetails, handleShowForewarning, handleViewMl, optingInByItem]);
+  ]), [handleOptin]);
 
   const anunciosTabContent = (
     <>

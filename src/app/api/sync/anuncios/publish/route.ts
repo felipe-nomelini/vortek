@@ -4,7 +4,6 @@ import { fetchMLResult } from '@/services/integration';
 import { setItemQuantityPricing } from '@/services/mercadolibre';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
-import { reconcileProdutoMlFinancials } from '@/lib/ml/reconcile-produto-financials';
 
 export const maxDuration = 300;
 
@@ -390,20 +389,6 @@ export async function POST(request: Request) {
               code: 'ml_publish_reconcile_produto_update_failed',
               message: produtoUpdate.error.message,
               context: { outboxId, mlItemId, localStatus: resolvedLocalStatus },
-            });
-          }
-
-          const produtoFinancialsReconcile = await reconcileProdutoMlFinancials(client, {
-            produtoId: row.produto_id ? String(row.produto_id) : null,
-            mlItemId,
-            item: itemStateResult.data,
-            source: 'publish_reconcile',
-          });
-          if (!produtoFinancialsReconcile.ok) {
-            errors.push({
-              code: 'ml_publish_reconcile_produto_financials_failed',
-              message: produtoFinancialsReconcile.error,
-              context: { outboxId, mlItemId },
             });
           }
 

@@ -85,17 +85,10 @@ export async function GET(request: Request) {
 
   function computeDerived(item: any): { displayPrice: number; profit: number | null } {
     try {
-      const mlFeeRate = Number(item.ml_fee ?? NaN);
-      if (!Number.isFinite(mlFeeRate) || mlFeeRate < 0) {
-        return {
-          displayPrice: Math.round(((item.custom_price ?? item.custo) || 0) * 100) / 100,
-          profit: null,
-        };
-      }
       const result = calculateSuggestedPrice({
         cost: item.custo || 0,
         shipping: item.ml_shipping || 0,
-        mlFee: mlFeeRate,
+        mlFee: item.ml_fee || 0.15,
       });
       const displayPrice = Math.round((item.custom_price ?? result.suggestedPrice) * 100) / 100;
 
@@ -104,7 +97,7 @@ export async function GET(request: Request) {
       }
 
       const tax = displayPrice * 0.04;
-      const mlFeeAmount = displayPrice * mlFeeRate;
+      const mlFeeAmount = displayPrice * (item.ml_fee || 0.15);
       const netProfit = displayPrice - (item.custo || 0) - (item.ml_shipping || 0) - tax - mlFeeAmount;
       return { displayPrice, profit: Math.round(netProfit * 100) / 100 };
     } catch {
