@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
+import { reconcileProdutoMlFinancials } from '@/lib/ml/reconcile-produto-financials';
 
 export async function POST(req: Request) {
   try {
@@ -42,6 +43,24 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'A atualização de preço só é permitida para anúncio ativo' }, { status: 422 });
     }
 
+    const produtoFinancials = produto.ml_item_id
+      ? await reconcileProdutoMlFinancials(supabase, {
+          produtoId: produto.id,
+          mlItemId: String(produto.ml_item_id),
+          source: 'price_update',
+        })
+      : null;
+
+    const reconciledFinancials = produtoFinancials?.ok && produtoFinancials.found
+      ? produtoFinancials.financials
+      : null;
+    const effectiveMlFee = reconciledFinancials?.mlFee !== null && reconciledFinancials?.mlFee !== undefined
+      ? reconciledFinancials.mlFee
+      : Number(produto.ml_fee || 0.15);
+    const effectiveMlShipping = reconciledFinancials?.mlShipping !== null && reconciledFinancials?.mlShipping !== undefined
+      ? reconciledFinancials.mlShipping
+      : Number(produto.ml_shipping || 0);
+
     let basePrice: number;
     if (targetPrice !== null) {
       basePrice = targetPrice;
@@ -51,8 +70,8 @@ export async function POST(req: Request) {
       } else {
         const calc = calculateSuggestedPrice({
           cost: Number(produto.custo || 0),
-          shipping: Number(produto.ml_shipping || 0),
-          mlFee: Number(produto.ml_fee || 0.15),
+          shipping: effectiveMlShipping,
+          mlFee: effectiveMlFee,
         });
         basePrice = calc.suggestedPrice;
       }

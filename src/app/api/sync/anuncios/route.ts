@@ -5,6 +5,7 @@ import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
 import { buildCatalogEnrichment } from '@/lib/catalogo/no-catalogo';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
+import { reconcileProdutoMlFinancials } from '@/lib/ml/reconcile-produto-financials';
 
 export const maxDuration = 300;
 
@@ -383,6 +384,22 @@ export async function POST(request: Request) {
               message: reconcileResult.error,
               context: { mlItemId: snapshot.ml_item_id, source: 'observed_sync' },
             });
+          }
+
+          if (snapshot.produto_id) {
+            const produtoFinancialsReconcile = await reconcileProdutoMlFinancials(serviceClient, {
+              produtoId: String(snapshot.produto_id),
+              mlItemId: String(snapshot.ml_item_id),
+              item: { id: snapshot.ml_item_id },
+              source: 'observed_sync',
+            });
+            if (!produtoFinancialsReconcile.ok) {
+              errors.push({
+                code: 'produto_financials_reconcile_failed',
+                message: produtoFinancialsReconcile.error,
+                context: { mlItemId: snapshot.ml_item_id, produtoId: snapshot.produto_id, source: 'observed_sync' },
+              });
+            }
           }
         });
       }

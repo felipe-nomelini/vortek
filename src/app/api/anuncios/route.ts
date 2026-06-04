@@ -26,10 +26,11 @@ function computeListingProfit(item: any): number | null {
   const custo = Number(item?.produtos?.custo ?? NaN);
   if (!Number.isFinite(precoMl) || precoMl <= 0 || !Number.isFinite(custo)) return null;
 
-  const mlFeeRate = Number(item?.produtos?.ml_fee ?? 0.15);
+  const mlFeeRate = Number(item?.produtos?.ml_fee ?? NaN);
   const shipping = Number(item?.produtos?.ml_shipping ?? 0);
+  if (!Number.isFinite(mlFeeRate) || mlFeeRate < 0) return null;
   const imposto = precoMl * 0.04;
-  const taxaMl = precoMl * (Number.isFinite(mlFeeRate) ? mlFeeRate : 0.15);
+  const taxaMl = precoMl * mlFeeRate;
   return round2(precoMl - custo - shipping - imposto - taxaMl);
 }
 

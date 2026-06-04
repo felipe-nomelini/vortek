@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import type { Database } from '@/types/database';
+import { buildCatalogPriceAnalysis, classPriority, type CatalogPriceAnalysisResult, type ClasseAnalise } from '@/lib/catalogo/price-analysis';
 import { POST as refreshNoCatalogSnapshot } from '@/app/api/catalogo/no-catalogo/refresh/route';
 
 type SnapshotRow = Pick<
@@ -13,47 +14,9 @@ type ProdutoRow = Pick<
   'id' | 'sku' | 'nome' | 'custo' | 'ml_fee' | 'ml_shipping' | 'custom_price'
 >;
 
-type ClasseAnalise =
-  | 'ajustar_para_ganhar_sem_prejuizo'
-  | 'nao_viavel_ganhar_sem_prejuizo'
-  | 'dados_insuficientes';
-
-interface AnaliseRow {
-  ml_item_id: string;
-  permalink: string | null;
-  titulo: string;
-  sku_local: string | null;
-  produto_id: string | null;
-  preco_atual: number;
-  price_to_win: number | null;
-  preco_piso_sem_prejuizo: number | null;
-  preco_recomendado: number | null;
-  delta_preco: number | null;
-  lucro_unitario_estimado: number | null;
-  classe: ClasseAnalise;
-  motivo: string;
-}
-
-const TAXA_IMPOSTO = 0.04;
-const TAXA_ML_DEFAULT = 0.15;
 const DEFAULT_TOP_N = 50;
 const MAX_TOP_N = 500;
 const PAGE_SIZE = 1000;
-
-function round2(value: number): number {
-  return Math.round(value * 100) / 100;
-}
-
-function toFiniteNumber(value: unknown): number | null {
-  const parsed = Number(value);
-  return Number.isFinite(parsed) ? parsed : null;
-}
-
-function classPriority(classe: ClasseAnalise): number {
-  if (classe === 'ajustar_para_ganhar_sem_prejuizo') return 0;
-  if (classe === 'nao_viavel_ganhar_sem_prejuizo') return 1;
-  return 2;
-}
 
 async function runRefresh(request: Request, mode: 'incremental' | 'full') {
   const refreshUrl = new URL('/api/catalogo/no-catalogo/refresh', request.url);
@@ -149,98 +112,21 @@ export async function POST(request: Request) {
     }
   }
 
-  const report: AnaliseRow[] = snapshotRows.map((row) => {
-    const precoAtual = round2(toFiniteNumber(row.price) || 0);
-    const priceToWin = toFiniteNumber(row.price_to_win);
+  const report: CatalogPriceAnalysisResult[] = snapshotRows.map((row) => {
     const produto = row.produto_id ? produtoMap.get(row.produto_id) : null;
-
-    if (!row.produto_id || !produto) {
-      return {
-        ml_item_id: row.ml_item_id,
-        permalink: row.permalink || null,
-        titulo: row.title || '',
-        sku_local: row.sku_local,
-        produto_id: row.produto_id || null,
-        preco_atual: precoAtual,
-        price_to_win: priceToWin !== null ? round2(priceToWin) : null,
-        preco_piso_sem_prejuizo: null,
-        preco_recomendado: null,
-        delta_preco: null,
-        lucro_unitario_estimado: null,
-        classe: 'dados_insuficientes',
-        motivo: 'produto_id_ausente_ou_sem_vinculo_local',
-      };
-    }
-
-    const taxaMl = toFiniteNumber(produto.ml_fee);
-    const frete = toFiniteNumber(produto.ml_shipping);
-    const custo = toFiniteNumber(produto.custo);
-
-    const taxaMlAplicada = taxaMl !== null ? taxaMl : TAXA_ML_DEFAULT;
-    const freteAplicado = frete !== null ? frete : 0;
-    const custoAplicado = custo !== null ? custo : 0;
-    const denominador = 1 - (TAXA_IMPOSTO + taxaMlAplicada);
-
-    if (!(denominador > 0) || priceToWin === null || priceToWin <= 0) {
-      return {
-        ml_item_id: row.ml_item_id,
-        permalink: row.permalink || null,
-        titulo: row.title || produto.nome || '',
-        sku_local: row.sku_local || produto.sku || null,
-        produto_id: row.produto_id,
-        preco_atual: precoAtual,
-        price_to_win: priceToWin !== null ? round2(priceToWin) : null,
-        preco_piso_sem_prejuizo: denominador > 0 ? round2((custoAplicado + freteAplicado) / denominador) : null,
-        preco_recomendado: null,
-        delta_preco: null,
-        lucro_unitario_estimado: null,
-        classe: 'dados_insuficientes',
-        motivo: priceToWin === null || priceToWin <= 0 ? 'sem_preco_alvo_ml' : 'taxas_invalidas_para_calculo',
-      };
-    }
-
-    const pisoSemPrejuizo = round2((custoAplicado + freteAplicado) / denominador);
-    const priceToWinRounded = round2(priceToWin);
-
-    if (priceToWinRounded >= pisoSemPrejuizo) {
-      const recomendado = priceToWinRounded;
-      const delta = round2(recomendado - precoAtual);
-      const lucro = round2((recomendado * denominador) - custoAplicado - freteAplicado);
-      return {
-        ml_item_id: row.ml_item_id,
-        permalink: row.permalink || null,
-        titulo: row.title || produto.nome || '',
-        sku_local: row.sku_local || produto.sku || null,
-        produto_id: row.produto_id,
-        preco_atual: precoAtual,
-        price_to_win: priceToWinRounded,
-        preco_piso_sem_prejuizo: pisoSemPrejuizo,
-        preco_recomendado: recomendado,
-        delta_preco: delta,
-        lucro_unitario_estimado: lucro,
-        classe: 'ajustar_para_ganhar_sem_prejuizo',
-        motivo: 'price_to_win_maior_ou_igual_ao_piso',
-      };
-    }
-
-    const recomendado = pisoSemPrejuizo;
-    const delta = round2(recomendado - precoAtual);
-    const lucro = round2((recomendado * denominador) - custoAplicado - freteAplicado);
-    return {
+    return buildCatalogPriceAnalysis({
       ml_item_id: row.ml_item_id,
       permalink: row.permalink || null,
-      titulo: row.title || produto.nome || '',
-      sku_local: row.sku_local || produto.sku || null,
-      produto_id: row.produto_id,
-      preco_atual: precoAtual,
-      price_to_win: priceToWinRounded,
-      preco_piso_sem_prejuizo: pisoSemPrejuizo,
-      preco_recomendado: recomendado,
-      delta_preco: delta,
-      lucro_unitario_estimado: lucro,
-      classe: 'nao_viavel_ganhar_sem_prejuizo',
-      motivo: 'price_to_win_abaixo_do_piso',
-    };
+      titulo: row.title || produto?.nome || '',
+      sku_local: row.sku_local || produto?.sku || null,
+      produto_id: row.produto_id || null,
+      preco_atual: Number(row.price || 0),
+      price_to_win: row.price_to_win ?? null,
+      produto_nome: produto?.nome || null,
+      custo: produto?.custo ?? null,
+      ml_fee: produto?.ml_fee ?? null,
+      ml_shipping: produto?.ml_shipping ?? null,
+    });
   });
 
   const sorted = [...report].sort((a, b) => {
