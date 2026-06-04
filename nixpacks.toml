@@ -4,7 +4,7 @@ NEXT_TELEMETRY_DISABLED = "1"
 
 [phases.install]
 dependsOn = ["setup"]
-cmds = ["npm ci"]
+cmds = ["npm ci --no-audit --prefer-offline --progress=false"]
 onlyIncludeFiles = ["package.json", "package-lock.json"]
 
 [phases.build]
