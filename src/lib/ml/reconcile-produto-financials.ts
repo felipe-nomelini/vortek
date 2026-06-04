@@ -1,5 +1,5 @@
 import type { Database } from '@/types/database';
-import { fetchML, fetchMLResult } from '@/services/integration';
+import { fetchMLResult } from '@/services/integration';
 
 type ServiceClientLike = {
   from: (table: string) => any;
@@ -29,6 +29,8 @@ type FinancialSnapshot = {
   listingTypeId: string | null;
   logisticType: string | null;
   sellerZip: string | null;
+  feeSourceStatus: 'resolved' | 'unavailable';
+  shippingSourceStatus: 'resolved' | 'unavailable';
 };
 
 const DEFAULT_LISTING_TYPE = 'gold_pro';
@@ -99,6 +101,7 @@ export async function resolveMlListingFinancialSnapshot(
   const logisticType = item.shipping?.logistic_type ? String(item.shipping.logistic_type).trim() : null;
 
   let mlFee: number | null = null;
+  let feeSourceStatus: FinancialSnapshot['feeSourceStatus'] = 'unavailable';
   if (price !== null && categoryId) {
     const listingPriceParams = new URLSearchParams({
       price: String(price),
@@ -107,23 +110,92 @@ export async function resolveMlListingFinancialSnapshot(
     });
     if (logisticType) listingPriceParams.set('logistic_type', logisticType);
 
-    const listingPrices = await fetchML<any>(`/sites/MLB/listing_prices?${listingPriceParams.toString()}`);
-    mlFee = normalizeFeeRate(
-      listingPrices?.sale_fee_details?.percentage_fee
-      ?? listingPrices?.sale_fee_details?.meli_percentage_fee
-      ?? null,
-    );
+    const listingPricesResult = await fetchMLResult<any>(`/sites/MLB/listing_prices?${listingPriceParams.toString()}`);
+    if (listingPricesResult.ok && listingPricesResult.data) {
+      mlFee = normalizeFeeRate(
+        listingPricesResult.data?.sale_fee_details?.percentage_fee
+        ?? listingPricesResult.data?.sale_fee_details?.meli_percentage_fee
+        ?? null,
+      );
+      if (mlFee !== null) {
+        feeSourceStatus = 'resolved';
+      } else {
+        console.warn(JSON.stringify({
+          event: 'ml_produto_financials_fee_unavailable',
+          timestamp_utc: new Date().toISOString(),
+          ml_item_id: mlItemId,
+          reason: 'missing_percentage_fee',
+          listing_type_id: listingTypeId,
+          category_id: categoryId,
+          logistic_type: logisticType,
+        }));
+      }
+    } else {
+      console.warn(JSON.stringify({
+        event: 'ml_produto_financials_fee_unavailable',
+        timestamp_utc: new Date().toISOString(),
+        ml_item_id: mlItemId,
+        reason: listingPricesResult.error?.code || 'listing_prices_failed',
+        message: listingPricesResult.error?.message || 'Falha ao consultar listing_prices',
+        upstream_status: listingPricesResult.status,
+        listing_type_id: listingTypeId,
+        category_id: categoryId,
+        logistic_type: logisticType,
+      }));
+    }
+  } else {
+    console.warn(JSON.stringify({
+      event: 'ml_produto_financials_fee_unavailable',
+      timestamp_utc: new Date().toISOString(),
+      ml_item_id: mlItemId,
+      reason: 'missing_item_context',
+      has_price: price !== null,
+      has_category_id: Boolean(categoryId),
+      listing_type_id: listingTypeId,
+      logistic_type: logisticType,
+    }));
   }
 
   const sellerZip = await getSellerZipCode();
   let mlShipping: number | null = null;
+  let shippingSourceStatus: FinancialSnapshot['shippingSourceStatus'] = 'unavailable';
   if (sellerZip) {
-    const shipping = await fetchML<any>(`/items/${mlItemId}/shipping_options?zip_code=${encodeURIComponent(sellerZip)}`);
-    const options = Array.isArray(shipping?.options) ? shipping.options : [];
-    const preferred = options.find((option: any) => Number(option?.cost) === 0 && Number.isFinite(Number(option?.list_cost)))
-      || options.find((option: any) => Number.isFinite(Number(option?.list_cost)))
-      || null;
-    mlShipping = preferred ? round2(Number(preferred.list_cost)) : null;
+    const shippingResult = await fetchMLResult<any>(`/items/${mlItemId}/shipping_options?zip_code=${encodeURIComponent(sellerZip)}`);
+    if (shippingResult.ok && shippingResult.data) {
+      const options = Array.isArray(shippingResult.data?.options) ? shippingResult.data.options : [];
+      const preferred = options.find((option: any) => Number(option?.cost) === 0 && Number.isFinite(Number(option?.list_cost)))
+        || options.find((option: any) => Number.isFinite(Number(option?.list_cost)))
+        || null;
+      mlShipping = preferred ? round2(Number(preferred.list_cost)) : null;
+      if (mlShipping !== null) {
+        shippingSourceStatus = 'resolved';
+      } else {
+        console.warn(JSON.stringify({
+          event: 'ml_produto_financials_shipping_unavailable',
+          timestamp_utc: new Date().toISOString(),
+          ml_item_id: mlItemId,
+          reason: 'shipping_options_without_list_cost',
+          zip_code: sellerZip,
+        }));
+      }
+    } else {
+      console.warn(JSON.stringify({
+        event: 'ml_produto_financials_shipping_unavailable',
+        timestamp_utc: new Date().toISOString(),
+        ml_item_id: mlItemId,
+        reason: shippingResult.error?.code || 'shipping_options_failed',
+        message: shippingResult.error?.message || 'Falha ao consultar shipping_options',
+        upstream_status: shippingResult.status,
+        zip_code: sellerZip,
+      }));
+    }
+  } else {
+    console.warn(JSON.stringify({
+      event: 'ml_produto_financials_shipping_unavailable',
+      timestamp_utc: new Date().toISOString(),
+      ml_item_id: mlItemId,
+      reason: 'seller_zip_unavailable',
+    }));
   }
 
   return {
@@ -134,6 +206,8 @@ export async function resolveMlListingFinancialSnapshot(
     listingTypeId,
     logisticType,
     sellerZip,
+    feeSourceStatus,
+    shippingSourceStatus,
   };
 }
 
@@ -143,7 +217,7 @@ export async function reconcileProdutoMlFinancials(
     produtoId?: string | null;
     mlItemId?: string | null;
     item?: MlListingLike | null;
-    source: 'listing_create' | 'publish_reconcile' | 'observed_sync' | 'price_update';
+    source: 'listing_create' | 'publish_reconcile' | 'observed_sync' | 'price_update' | 'financial_backfill';
   },
 ): Promise<
   | { ok: true; found: false; updated: false; mlItemId: string; financials: FinancialSnapshot | null }

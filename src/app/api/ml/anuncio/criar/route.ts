@@ -325,12 +325,22 @@ export async function POST(req: Request) {
       .update({ ml_item_id: result.id, ml_status: 'ativo' })
       .eq('id', produtoId);
 
-    await reconcileProdutoMlFinancials(supabase, {
+    const financialsReconcile = await reconcileProdutoMlFinancials(supabase, {
       produtoId,
       mlItemId: String(result.id),
       item: result,
       source: 'listing_create',
     });
+    if (!financialsReconcile.ok) {
+      warnings.push(`Não foi possível reconciliar taxa/frete do ML após criar o anúncio. Motivo: ${financialsReconcile.error}`);
+    } else {
+      if (financialsReconcile.financials?.feeSourceStatus === 'unavailable') {
+        warnings.push('Taxa do Mercado Livre não pôde ser reconciliada após a criação do anúncio.');
+      }
+      if (financialsReconcile.financials?.shippingSourceStatus === 'unavailable') {
+        warnings.push('Frete do Mercado Livre não pôde ser reconciliado após a criação do anúncio.');
+      }
+    }
 
     await supabase.from('anuncios_ml').upsert({
       ml_item_id: result.id,
