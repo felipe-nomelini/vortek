@@ -1,2 +1,16 @@
 [variables]
 NIXPACKS_NODE_VERSION = "22"
+NEXT_TELEMETRY_DISABLED = "1"
+
+[phases.install]
+dependsOn = ["setup"]
+cmds = ["npm ci"]
+onlyIncludeFiles = ["package.json", "package-lock.json"]
+
+[phases.build]
+dependsOn = ["install"]
+cmds = ["npm run build"]
+cacheDirectories = [".next/cache", "node_modules/.cache"]
+
+[start]
+cmd = "npm run start"
