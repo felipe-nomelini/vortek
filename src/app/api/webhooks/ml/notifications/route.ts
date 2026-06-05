@@ -1,10 +1,209 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { fetchML, fetchMLResult } from '@/services/integration';
-import { calculateOrderProfit } from '@/services/orders';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import { extractMlFiscalReleaseWindow } from '@/lib/ml/fiscal-release';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
+import { runMlSingleStageJob } from '@/services/sync-ml-job';
+
+const WEBHOOK_STUB_PENDING_TAGS = ['pedido_sem_itens', 'webhook_hydration_pending', 'snapshot_origem_webhook_stub'];
+
+function normalizeResourcePath(resource: string): string {
+  return String(resource || '').replace('https://api.mercadolibre.com', '');
+}
+
+function extractOrderIdFromResourcePath(resourcePath: string): string | null {
+  const match = String(resourcePath || '').match(/^\/orders\/([^/?]+)/i);
+  return match?.[1] ? String(match[1]).trim() : null;
+}
+
+function mergePendingTags(current: unknown, next: string[]): string[] {
+  const currentTags = Array.isArray(current)
+    ? current.map((value) => String(value || '').trim()).filter(Boolean)
+    : [];
+  return Array.from(new Set([...currentTags, ...next]));
+}
+
+function buildWebhookStubPayload(order: any, existing: any) {
+  const needsHydration = !existing?.id || Boolean(existing?.snapshot_incompleto) || !existing?.sincronizado_em;
+  return {
+    numero: Number(order.id) || 0,
+    numero_loja: String(order.id || ''),
+    data: order.date_created || new Date().toISOString(),
+    contato_nome: order.buyer?.nickname || existing?.contato_nome || 'Desconhecido',
+    contato_documento: String(order.buyer?.identification?.number || existing?.contato_documento || ''),
+    total: order.total_amount || existing?.total || 0,
+    situacao: order.status === 'paid' ? 'aberto' : 'atendido' as any,
+    ml_order_id: String(order.id || ''),
+    ml_pack_id: order.pack_id ? String(order.pack_id) : null,
+    ...(needsHydration
+      ? {
+          snapshot_incompleto: true,
+          snapshot_pendencias: mergePendingTags(existing?.snapshot_pendencias, WEBHOOK_STUB_PENDING_TAGS),
+          sincronizado_em: null,
+        }
+      : {}),
+  };
+}
+
+async function persistWebhookOrderStub(params: {
+  serviceClient: ReturnType<typeof createServiceClient>;
+  order: any;
+  existing: any;
+}) {
+  const { serviceClient, order, existing } = params;
+  const mlOrderId = String(order?.id || '').trim();
+  if (!mlOrderId) return null;
+
+  const payload = buildWebhookStubPayload(order, existing);
+  const shouldHydrate = !existing?.id || Boolean(existing?.snapshot_incompleto) || !existing?.sincronizado_em;
+
+  if (existing?.id) {
+    await serviceClient
+      .from('pedidos')
+      .update(payload)
+      .eq('id', existing.id);
+    return {
+      pedidoId: String(existing.id),
+      action: 'updated' as const,
+      shouldHydrate,
+    };
+  }
+
+  const { data: inserted, error } = await serviceClient
+    .from('pedidos')
+    .insert(payload)
+    .select('id')
+    .single();
+
+  if (error || !inserted?.id) {
+    throw new Error(error?.message || 'Falha ao criar pedido stub do webhook');
+  }
+
+  return {
+    pedidoId: String(inserted.id),
+    action: 'inserted' as const,
+    shouldHydrate: true,
+  };
+}
+
+async function queueOrderHydrationJob(params: {
+  serviceClient: ReturnType<typeof createServiceClient>;
+  mlOrderId: string;
+  resourcePath: string;
+  receivedAt: string;
+  pedidoId?: string | null;
+}) {
+  const { serviceClient, mlOrderId, resourcePath, receivedAt, pedidoId } = params;
+
+  const initialLog = [
+    {
+      event_type: 'webhook_dispatch',
+      type: 'info',
+      message: `Hidratacao assíncrona enfileirada para pedido ${mlOrderId}`,
+      timestamp: new Date().toISOString(),
+      source: 'webhook_orders_v2',
+      ml_order_id: mlOrderId,
+      resource_path: resourcePath,
+      received_at: receivedAt,
+      attempt: 1,
+    },
+  ];
+
+  const { data: insertedJob, error } = await serviceClient
+    .from('jobs')
+    .insert({
+      tipo: 'ml_orders_v2_hydration',
+      status: 'pendente',
+      progresso: 0,
+      total: 1,
+      processados: 0,
+      log: initialLog,
+      cancelado: false,
+      created_by: null,
+    })
+    .select('id, status')
+    .single();
+
+  if (error || !insertedJob?.id) {
+    throw new Error(error?.message || 'Falha ao enfileirar job de hidratacao do webhook');
+  }
+
+  setTimeout(() => {
+    void (async () => {
+      await registrarEventoNfAuditoria({
+        pedidoId: pedidoId || null,
+        mlOrderId,
+        mlPackId: null,
+        evento: 'webhook_deferred_processing_started',
+        respostaMl: {
+          source: 'webhook_orders_v2',
+          resource_path: resourcePath,
+          job_id: insertedJob.id,
+          job_tipo: 'ml_orders_v2_hydration',
+          received_at: receivedAt,
+          hydration_target: 'sync_pedidos',
+          trigger_source: 'webhook_async',
+          attempt: 1,
+        },
+        statusResultante: 'queued',
+      });
+
+      try {
+        const result = await runMlSingleStageJob({
+          jobId: insertedJob.id,
+          tipo: 'ml_orders_v2_hydration',
+          path: '/api/sync/pedidos',
+          label: 'ML Orders V2 Hydration',
+          query: { mlOrderId },
+          body: {
+            mlOrderId,
+            triggerSource: 'webhook_async',
+            source: 'webhook_orders_v2',
+          },
+        });
+
+        await registrarEventoNfAuditoria({
+          pedidoId: pedidoId || null,
+          mlOrderId,
+          mlPackId: null,
+          evento: result.status === 'completo' ? 'webhook_deferred_processing_success' : 'webhook_deferred_processing_failed',
+          respostaMl: {
+            source: 'webhook_orders_v2',
+            resource_path: resourcePath,
+            job_id: insertedJob.id,
+            job_tipo: 'ml_orders_v2_hydration',
+            hydration_target: 'sync_pedidos',
+            trigger_source: 'webhook_async',
+            job_status: result.status,
+            processados: result.processados,
+            total: result.total,
+          },
+          statusResultante: result.status,
+        });
+      } catch (err: any) {
+        await registrarEventoNfAuditoria({
+          pedidoId: pedidoId || null,
+          mlOrderId,
+          mlPackId: null,
+          evento: 'webhook_deferred_processing_failed',
+          respostaMl: {
+            source: 'webhook_orders_v2',
+            resource_path: resourcePath,
+            job_id: insertedJob.id,
+            job_tipo: 'ml_orders_v2_hydration',
+            hydration_target: 'sync_pedidos',
+            trigger_source: 'webhook_async',
+            error: err?.message || 'erro_desconhecido',
+          },
+          statusResultante: 'erro',
+        });
+      }
+    })();
+  }, 0);
+
+  return insertedJob.id;
+}
 
 async function resolveFiscalReleaseWindow(shipment: any | null): Promise<{
   shipmentFetched: boolean;
@@ -41,6 +240,7 @@ async function resolveFiscalReleaseWindow(shipment: any | null): Promise<{
 }
 
 export async function POST(request: Request) {
+  const startedAtMs = Date.now();
   try {
     const body = await request.json();
     const { topic, resource } = body;
@@ -50,157 +250,85 @@ export async function POST(request: Request) {
     }
 
     const serviceClient = createServiceClient();
-    const resourcePath = resource.replace('https://api.mercadolibre.com', '');
+    const resourcePath = normalizeResourcePath(resource);
 
     if (topic === 'orders_v2') {
-      const order = await fetchML<any>(resourcePath);
-      if (order) {
-        const shipment = await fetchML<any>(`/orders/${order.id}/shipments`).catch(() => null);
-        const releaseInfo = await resolveFiscalReleaseWindow(shipment);
-        const shipmentFetched = releaseInfo.shipmentFetched;
-        const releaseCheckOk = releaseInfo.releaseCheckOk;
-        const fiscalRelease = releaseInfo.releaseWindow;
-        const hasFutureRelease = Boolean(fiscalRelease.releaseAt && fiscalRelease.isBlockedNow);
-        const { data: existing } = await serviceClient
-          .from('pedidos')
-          .select('id,snapshot_incompleto,snapshot_pendencias,ml_fiscal_release_at')
-          .eq('ml_order_id', String(order.id))
-          .maybeSingle();
-
-        // Buscar detalhes completos do pedido (inclui order_items para cálculo de lucro)
-        const detail = await fetchML<any>(`/orders/${order.id}`).catch(() => null);
-
-        // Calcular lucro
-        const { lucro, rastreio } = await calculateOrderProfit(detail);
-
-        const pedidoPayload: any = {
-          numero: Number(order.id) || 0,
-          numero_loja: String(order.id || ''),
-          data: order.date_created || new Date().toISOString(),
-          contato_nome: order.buyer?.nickname || 'Desconhecido',
-          contato_documento: String(order.buyer?.identification?.number || ''),
-          total: order.total_amount || 0,
-          situacao: order.status === 'paid' ? 'aberto' : 'atendido' as any,
-          ml_order_id: String(order.id || ''),
-          ml_pack_id: order.pack_id ? String(order.pack_id) : null,
-          lucro,
-          rastreio,
-          ...(shipmentFetched ? { ml_shipment_id: String(shipment.id) } : {}),
-          ...(shipmentFetched && releaseCheckOk
-            ? {
-                ml_fiscal_release_at: hasFutureRelease ? fiscalRelease.releaseAt : null,
-                ml_fiscal_release_reason: hasFutureRelease ? (fiscalRelease.reason || 'buffered') : null,
-                ml_fiscal_release_source: hasFutureRelease ? (fiscalRelease.sourcePath || 'orders_shipments') : null,
-                ml_fiscal_release_checked_at: new Date().toISOString(),
-              }
-            : {}),
-        };
-
-        if (existing) {
-          const { count: itensCount } = await serviceClient
-            .from('pedido_itens')
-            .select('*', { head: true, count: 'exact' })
-            .eq('pedido_id', existing.id);
-          const hasSnapshotItems = Boolean(itensCount && itensCount > 0);
-          if (!hasSnapshotItems) {
-            pedidoPayload.snapshot_incompleto = true;
-            pedidoPayload.snapshot_pendencias = ['pedido_sem_itens', 'snapshot_origem_webhook_parcial'];
-            pedidoPayload.sincronizado_em = null;
-          }
-          await serviceClient.from('pedidos').update(pedidoPayload).eq('id', existing.id);
-          const hadReleaseBefore = Boolean(existing.ml_fiscal_release_at);
-          if (shipmentFetched && releaseCheckOk && hasFutureRelease) {
-            await registrarEventoNfAuditoria({
-              pedidoId: String(existing.id),
-              mlOrderId: String(order.id || ''),
-              mlPackId: order.pack_id ? String(order.pack_id) : null,
-              evento: hadReleaseBefore ? 'ml_fiscal_release_window_updated' : 'ml_fiscal_release_window_detected',
-              respostaMl: {
-                release_at: fiscalRelease.releaseAt,
-                reason: fiscalRelease.reason || null,
-                source_path: fiscalRelease.sourcePath,
-                checked_at: pedidoPayload.ml_fiscal_release_checked_at,
-                now_utc: new Date().toISOString(),
-                blocked_now: true,
-                source: 'orders_v2',
-              },
-              statusResultante: 'blocked',
-            });
-          } else if (shipmentFetched && releaseCheckOk && hadReleaseBefore) {
-            await registrarEventoNfAuditoria({
-              pedidoId: String(existing.id),
-              mlOrderId: String(order.id || ''),
-              mlPackId: order.pack_id ? String(order.pack_id) : null,
-              evento: 'ml_fiscal_release_window_cleared',
-              respostaMl: {
-                release_at: null,
-                reason: fiscalRelease.reason || null,
-                source_path: fiscalRelease.sourcePath,
-                checked_at: pedidoPayload.ml_fiscal_release_checked_at,
-                now_utc: new Date().toISOString(),
-                blocked_now: false,
-                source: 'orders_v2',
-              },
-              statusResultante: 'cleared',
-            });
-          }
-          if (!hasSnapshotItems) {
-            await registrarEventoNfAuditoria({
-              pedidoId: String(existing.id),
-              mlOrderId: String(order.id || ''),
-              mlPackId: order.pack_id ? String(order.pack_id) : null,
-              evento: 'sync_snapshot_partial',
-              respostaMl: {
-                source: 'webhook_orders_v2',
-                motivo: 'webhook_partial_order',
-                pendencias: ['pedido_sem_itens', 'snapshot_origem_webhook_parcial'],
-              },
-              statusResultante: 'partial',
-            });
-          }
-        } else {
-          pedidoPayload.snapshot_incompleto = true;
-          pedidoPayload.snapshot_pendencias = ['pedido_sem_itens', 'snapshot_origem_webhook_parcial'];
-          pedidoPayload.sincronizado_em = null;
-          const { data: inserted } = await serviceClient
+      const receivedAt = new Date().toISOString();
+      const mlOrderIdFromResource = extractOrderIdFromResourcePath(resourcePath);
+      const orderResult = await fetchMLResult<any>(resourcePath);
+      const order = orderResult.ok ? orderResult.data : null;
+      const mlOrderId = String(order?.id || mlOrderIdFromResource || '').trim();
+      const { data: existingPedido } = mlOrderId
+        ? await serviceClient
             .from('pedidos')
-            .insert(pedidoPayload)
-            .select('id')
-            .single();
-          if (inserted?.id && shipmentFetched && releaseCheckOk && hasFutureRelease) {
-            await registrarEventoNfAuditoria({
-              pedidoId: String(inserted.id),
-              mlOrderId: String(order.id || ''),
-              mlPackId: order.pack_id ? String(order.pack_id) : null,
-              evento: 'ml_fiscal_release_window_detected',
-              respostaMl: {
-                release_at: fiscalRelease.releaseAt,
-                reason: fiscalRelease.reason || null,
-                source_path: fiscalRelease.sourcePath,
-                checked_at: pedidoPayload.ml_fiscal_release_checked_at,
-                now_utc: new Date().toISOString(),
-                blocked_now: true,
-                source: 'orders_v2',
-              },
-              statusResultante: 'blocked',
-            });
-          }
-          if (inserted?.id) {
-            await registrarEventoNfAuditoria({
-              pedidoId: String(inserted.id),
-              mlOrderId: String(order.id || ''),
-              mlPackId: order.pack_id ? String(order.pack_id) : null,
-              evento: 'sync_snapshot_partial',
-              respostaMl: {
-                source: 'webhook_orders_v2',
-                motivo: 'webhook_partial_order',
-                pendencias: ['pedido_sem_itens', 'snapshot_origem_webhook_parcial'],
-              },
-              statusResultante: 'partial',
-            });
-          }
-        }
+            .select('id,contato_nome,contato_documento,total,snapshot_incompleto,snapshot_pendencias,sincronizado_em,ml_pack_id')
+            .eq('ml_order_id', mlOrderId)
+            .maybeSingle()
+        : { data: null };
+
+      if (mlOrderId) {
+        void registrarEventoNfAuditoria({
+          pedidoId: null,
+          mlOrderId,
+          mlPackId: order?.pack_id ? String(order.pack_id) : null,
+          evento: 'webhook_received',
+          respostaMl: {
+            topic,
+            resource,
+            resource_path: resourcePath,
+            source: 'webhook_orders_v2',
+            received_at: receivedAt,
+            fetch_order_ok: orderResult.ok,
+            upstream_status: orderResult.status,
+          },
+          statusResultante: 'received',
+        });
       }
+
+      let pedidoId: string | null = null;
+      let shouldHydrate = Boolean(mlOrderId) && (!existingPedido?.id || Boolean(existingPedido?.snapshot_incompleto) || !existingPedido?.sincronizado_em);
+      if (order) {
+        const stubResult = await persistWebhookOrderStub({
+          serviceClient,
+          order,
+          existing: existingPedido,
+        });
+        pedidoId = stubResult?.pedidoId || null;
+        shouldHydrate = stubResult?.shouldHydrate ?? shouldHydrate;
+      }
+
+      if (mlOrderId && shouldHydrate) {
+        await queueOrderHydrationJob({
+          serviceClient,
+          mlOrderId,
+          resourcePath,
+          receivedAt,
+          pedidoId,
+        });
+      }
+
+      if (mlOrderId) {
+        void registrarEventoNfAuditoria({
+          pedidoId,
+          mlOrderId,
+          mlPackId: order?.pack_id ? String(order.pack_id) : null,
+          evento: 'webhook_acked',
+          respostaMl: {
+            topic,
+            resource,
+            resource_path: resourcePath,
+            source: 'webhook_orders_v2',
+            ack_duration_ms: Date.now() - startedAtMs,
+            fetch_order_ok: orderResult.ok,
+            upstream_status: orderResult.status,
+            stub_persisted: Boolean(pedidoId),
+            hydration_queued: Boolean(mlOrderId && shouldHydrate),
+          },
+          statusResultante: 'acked',
+        });
+      }
+
+      return NextResponse.json({ ok: true, queued: Boolean(mlOrderId && shouldHydrate), mlOrderId: mlOrderId || null });
     }
 
     if (topic === 'questions') {

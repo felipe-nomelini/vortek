@@ -1,6 +1,11 @@
 import { createServiceClient } from '@/lib/supabase';
 
 type AuditEvent =
+  | 'webhook_received'
+  | 'webhook_acked'
+  | 'webhook_deferred_processing_started'
+  | 'webhook_deferred_processing_success'
+  | 'webhook_deferred_processing_failed'
   | 'pre_validacao'
   | 'envio'
   | 'retorno_ml'
