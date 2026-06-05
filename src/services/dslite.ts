@@ -156,6 +156,37 @@ export interface DslitePedidoRetorno {
   nf_numero: string;
 }
 
+export type DsliteProductLookupFailureReason =
+  | 'produto_nao_encontrado_por_id_direto'
+  | 'produto_nao_encontrado_por_produtoid_empresa'
+  | 'catalogo_paginado_sem_match'
+  | 'falha_http_dslite_catalogo';
+
+export type DsliteProductLookupMethod =
+  | 'direct_produtoid'
+  | 'catalog_scan_produtoid_empresa'
+  | 'catalog_scan_produtoid';
+
+export interface DsliteProductLookupResult {
+  product: DsliteProduto | null;
+  method: DsliteProductLookupMethod | null;
+  failureReason: DsliteProductLookupFailureReason | null;
+  diagnostics: {
+    fornecedorId: string;
+    dsliteProdutoId: string | null;
+    skuLocal: string;
+    skuSemPrefixo: string;
+    attempts: Array<{
+      method: DsliteProductLookupMethod;
+      success: boolean;
+      status: 'found' | 'not_found' | 'http_error';
+      page?: number;
+      produtoid?: string | null;
+      produtoid_empresa?: string | null;
+    }>;
+  };
+}
+
 export interface DsliteCriarPedidoResponse {
   total: number;
   sucesso: number;
@@ -192,7 +223,11 @@ export async function obterProdutoEspecifico(
   produtoId: number | string
 ): Promise<DsliteProduto | null> {
   const data = await fetchDslite<any>(`/v1/CrossDocking/Catalogo/${fornecedorId}/${produtoId}`);
-  return data?.produto ?? null;
+  if (data?.produto) return data.produto;
+  if (Array.isArray(data?.produtos) && data.produtos.length > 0) {
+    return data.produtos[0] ?? null;
+  }
+  return null;
 }
 
 export async function sincronizarPrecoEstoque(
@@ -322,6 +357,152 @@ export async function buscarProdutoPorSku(
     if (page >= totalPaginas) return null;
     page++;
   }
+}
+
+export async function resolverProdutoMapeadoDslite(params: {
+  fornecedorId: number | string;
+  dsliteProdutoId?: number | string | null;
+  skuLocal: string;
+  skuSemPrefixo: string;
+}): Promise<DsliteProductLookupResult> {
+  const fornecedorId = String(params.fornecedorId || '').trim();
+  const dsliteProdutoId = String(params.dsliteProdutoId || '').trim() || null;
+  const skuLocal = String(params.skuLocal || '').trim();
+  const skuSemPrefixo = String(params.skuSemPrefixo || '').trim();
+  const attempts: DsliteProductLookupResult['diagnostics']['attempts'] = [];
+
+  const diagnostics = {
+    fornecedorId,
+    dsliteProdutoId,
+    skuLocal,
+    skuSemPrefixo,
+    attempts,
+  };
+
+  if (dsliteProdutoId) {
+    const directProduct = await obterProdutoEspecifico(fornecedorId, dsliteProdutoId);
+    if (directProduct) {
+      attempts.push({
+        method: 'direct_produtoid',
+        success: true,
+        status: 'found',
+        produtoid: String(directProduct.produtoid || ''),
+        produtoid_empresa: String(directProduct.produtoid_empresa || ''),
+      });
+      return {
+        product: directProduct,
+        method: 'direct_produtoid',
+        failureReason: null,
+        diagnostics,
+      };
+    }
+
+    attempts.push({
+      method: 'direct_produtoid',
+      success: false,
+      status: 'not_found',
+      produtoid: dsliteProdutoId,
+      produtoid_empresa: null,
+    });
+  }
+
+  let page = 1;
+  let sawHttpFailure = false;
+
+  while (true) {
+    const data = await fetchDslite<DsliteCatalogoResponse>(
+      `/v1/CrossDocking/Catalogo/${fornecedorId}?page=${page}&limit=100`
+    );
+
+    if (!data) {
+      sawHttpFailure = true;
+      attempts.push({
+        method: 'catalog_scan_produtoid_empresa',
+        success: false,
+        status: 'http_error',
+        page,
+        produtoid: dsliteProdutoId,
+        produtoid_empresa: skuLocal,
+      });
+      return {
+        product: null,
+        method: null,
+        failureReason: 'falha_http_dslite_catalogo',
+        diagnostics,
+      };
+    }
+
+    if (!data.produtos?.length) break;
+
+    const byProdutoIdEmpresa = data.produtos.find((item) => String(item.produtoid_empresa) === skuLocal);
+    if (byProdutoIdEmpresa) {
+      attempts.push({
+        method: 'catalog_scan_produtoid_empresa',
+        success: true,
+        status: 'found',
+        page,
+        produtoid: String(byProdutoIdEmpresa.produtoid || ''),
+        produtoid_empresa: String(byProdutoIdEmpresa.produtoid_empresa || ''),
+      });
+      return {
+        product: byProdutoIdEmpresa,
+        method: 'catalog_scan_produtoid_empresa',
+        failureReason: null,
+        diagnostics,
+      };
+    }
+
+    if (page === 1) {
+      attempts.push({
+        method: 'catalog_scan_produtoid_empresa',
+        success: false,
+        status: 'not_found',
+        page,
+        produtoid: dsliteProdutoId,
+        produtoid_empresa: skuLocal,
+      });
+    }
+
+    const byProdutoId = data.produtos.find((item) => String(item.produtoid) === skuSemPrefixo);
+    if (byProdutoId) {
+      attempts.push({
+        method: 'catalog_scan_produtoid',
+        success: true,
+        status: 'found',
+        page,
+        produtoid: String(byProdutoId.produtoid || ''),
+        produtoid_empresa: String(byProdutoId.produtoid_empresa || ''),
+      });
+      return {
+        product: byProdutoId,
+        method: 'catalog_scan_produtoid',
+        failureReason: null,
+        diagnostics,
+      };
+    }
+
+    const totalRegistros = data.detalhesConsulta?.totalRegistros || 0;
+    const registrosRetornados = data.detalhesConsulta?.registrosRetornados || data.produtos.length;
+    const totalPaginas = Math.ceil(totalRegistros / registrosRetornados);
+
+    if (page >= totalPaginas) break;
+    page++;
+  }
+
+  return {
+    product: null,
+    method: null,
+    failureReason: sawHttpFailure
+      ? 'falha_http_dslite_catalogo'
+      : attempts.some((attempt) => attempt.method === 'catalog_scan_produtoid' && attempt.status === 'found')
+        ? null
+        : attempts.some((attempt) => attempt.method === 'catalog_scan_produtoid_empresa' && attempt.status === 'not_found')
+          ? 'catalogo_paginado_sem_match'
+          : attempts.some((attempt) => attempt.method === 'direct_produtoid' && attempt.status === 'not_found')
+            ? 'produto_nao_encontrado_por_id_direto'
+            : 'produto_nao_encontrado_por_produtoid_empresa',
+    diagnostics,
+  };
 }
 
 export async function informarFornecedorPedido(

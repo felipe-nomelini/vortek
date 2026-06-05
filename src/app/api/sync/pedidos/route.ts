@@ -10,6 +10,7 @@ import { resolveCodMunicipio } from '@/lib/fiscal/municipio-ibge';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
 import { extractMlFiscalReleaseWindow } from '@/lib/ml/fiscal-release';
+import { resolveOrderSaleDate, type SaleDateSource } from '@/lib/ml/order-sale-date';
 
 export const maxDuration = 300;
 
@@ -45,6 +46,7 @@ interface PaymentSnapshot {
   status: string | null;
   payment_type: string | null;
   total_paid_amount: number;
+  date_approved: string | null;
 }
 
 interface OrderItemSnapshot {
@@ -69,6 +71,10 @@ interface OrderItemSnapshot {
 interface OrderFiscalSnapshot {
   source: 'ml_live' | 'local_fallback';
   buyerMlId: string | null;
+  saleDate: {
+    value: string | null;
+    source: SaleDateSource;
+  };
   billing: BillingSnapshot;
   pagamentos: PaymentSnapshot[];
   itens: OrderItemSnapshot[];
@@ -661,7 +667,9 @@ function buildOrderSnapshot(params: {
     status: p?.status ? String(p.status) : null,
     payment_type: p?.payment_type || p?.payment_method_id || null,
     total_paid_amount: Number(p?.total_paid_amount || p?.transaction_amount || 0),
+    date_approved: p?.date_approved ? String(p.date_approved) : null,
   }));
+  const saleDate = resolveOrderSaleDate(detail);
 
   const totalProdutos = Number(items.reduce((sum, it) => sum + (it.valor_total_bruto || 0), 0).toFixed(2));
   const descontoTotal = Number(items.reduce((sum, it) => sum + (it.desconto_item || 0), 0).toFixed(2));
@@ -703,6 +711,7 @@ function buildOrderSnapshot(params: {
   return {
     source,
     buyerMlId: detail?.buyer?.id ? String(detail.buyer.id) : null,
+    saleDate,
     billing: billingSnapshot,
     pagamentos,
     itens: items,
@@ -1102,6 +1111,10 @@ async function processOrder(params: {
           total_final_ml: snapshot.totais.total_final,
           tolerancia: SNAPSHOT_TOTAL_TOLERANCE,
         },
+        data_venda: {
+          value: snapshot.saleDate.value,
+          source: snapshot.saleDate.source,
+        },
         destinatario_ie_policy: {
           taxpayer_type_ml_raw: snapshot.billing.endereco?.taxpayer_type_ml_raw || null,
           ie_policy_resolved: snapshot.billing.endereco?.ie_policy_resolved || null,
@@ -1121,6 +1134,8 @@ async function processOrder(params: {
     numero: sourceOrder?.id || o.id,
     numero_loja: String(sourceOrder?.id || o.id),
     data: sourceOrder?.date_created || o.date_created,
+    data_venda: snapshot?.saleDate.value || sourceOrder?.date_closed || sourceOrder?.date_created || o.date_closed || o.date_created || null,
+    data_venda_source: snapshot?.saleDate.source || resolveOrderSaleDate(sourceOrder || o).source,
     contato_nome: contatoNome,
     total: sourceOrder?.total_amount || o.total_amount || 0,
     situacao,

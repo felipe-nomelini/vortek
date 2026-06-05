@@ -21,6 +21,7 @@ export interface Order {
   numero: number;
   numeroLoja: string;
   data: string;
+  dataCriacao?: string | null;
   dataSaida: string | null;
   dataPrevista: string | null;
   contato: {

@@ -20,6 +20,10 @@ function logDbError(
   });
 }
 
+function isMissingSaleDateColumnError(error: { code?: string; message?: string } | null | undefined): boolean {
+  return error?.code === '42703' && String(error?.message || '').includes('data_venda');
+}
+
 function reconcileNotaFiscalEmitidaRow(row: any) {
   const reconciliation = reconcileLocalNfeSnapshotFromXml({
     nfe_status: row?.nfe_status,
@@ -77,6 +81,7 @@ function applyPedidoFilters(query: any, filters: {
   endDateIso: string | null;
   priceMin: number | null;
   priceMax: number | null;
+  useSaleDate?: boolean;
 }) {
   const {
     status,
@@ -84,16 +89,18 @@ function applyPedidoFilters(query: any, filters: {
     endDateIso,
     priceMin,
     priceMax,
+    useSaleDate = true,
   } = filters;
+  const dateColumn = useSaleDate ? 'data_venda' : 'data';
 
   if (status) {
     query = query.eq('situacao', status);
   }
   if (dateFrom) {
-    query = query.gte('data', dateFrom);
+    query = query.gte(dateColumn, dateFrom);
   }
   if (endDateIso) {
-    query = query.lte('data', endDateIso);
+    query = query.lte(dateColumn, endDateIso);
   }
   if (priceMin !== null) {
     query = query.gte('total', priceMin);
@@ -105,6 +112,10 @@ function applyPedidoFilters(query: any, filters: {
 }
 
 function applyPedidoSort(query: any, sortBy: string, sortOrder: 'asc' | 'desc') {
+  return applyPedidoSortWithMode(query, sortBy, sortOrder, true);
+}
+
+function applyPedidoSortWithMode(query: any, sortBy: string, sortOrder: 'asc' | 'desc', useSaleDate: boolean) {
   const ascending = sortOrder === 'asc';
 
   switch (sortBy) {
@@ -128,7 +139,11 @@ function applyPedidoSort(query: any, sortBy: string, sortOrder: 'asc' | 'desc') 
       return query.order('lucro', { ascending });
     case 'data':
     default:
-      return query.order('data', { ascending });
+      return useSaleDate
+        ? query
+            .order('data_venda', { ascending, nullsFirst: false })
+            .order('data', { ascending })
+        : query.order('data', { ascending });
   }
 }
 
@@ -217,32 +232,56 @@ export async function GET(request: Request) {
     priceMax,
   };
 
-  let countQuery = supabase.from('pedidos').select('*', { count: 'exact', head: false }).range(0, 0);
-  countQuery = applyPedidoFilters(countQuery, filterContext);
-  const { count, error: countError } = await countQuery;
+  async function runListQueries(useSaleDate: boolean) {
+    let countQuery = supabase.from('pedidos').select('*', { count: 'exact', head: false }).range(0, 0);
+    countQuery = applyPedidoFilters(countQuery, { ...filterContext, useSaleDate });
+    const countResult = await countQuery;
+
+    let dataQuery = supabase.from('pedidos').select('*');
+    dataQuery = applyPedidoFilters(dataQuery, { ...filterContext, useSaleDate });
+    dataQuery = applyPedidoSortWithMode(dataQuery, sortBy, sortOrder, useSaleDate);
+    const dataResult = await dataQuery.range(from, to);
+
+    return { countResult, dataResult };
+  }
+
+  let {
+    countResult: { count, error: countError },
+    dataResult: { data, error },
+  } = await runListQueries(true);
+
+  const missingSaleDateColumn = isMissingSaleDateColumnError(countError) || isMissingSaleDateColumnError(error);
+  if (missingSaleDateColumn) {
+    logDbError('pedidos_schema_drift_fallback_data', '/api/pedidos', normalizedSearch, countError || error, {
+      sortBy,
+      sortOrder,
+      search_present: false,
+      fallback_used: true,
+      fallback_reason: 'missing_data_venda_column',
+    });
+
+    ({
+      countResult: { count, error: countError },
+      dataResult: { data, error },
+    } = await runListQueries(false));
+  }
 
   if (countError) {
     logDbError('pedidos_count_query_failed', '/api/pedidos', normalizedSearch, countError, {
       sortBy,
       sortOrder,
       search_present: false,
-      fallback_used: true,
+      fallback_used: missingSaleDateColumn,
     });
     return NextResponse.json({ erro: 'Falha ao contar pedidos filtrados.' }, { status: 500 });
   }
-
-  let dataQuery = supabase.from('pedidos').select('*');
-  dataQuery = applyPedidoFilters(dataQuery, filterContext);
-  dataQuery = applyPedidoSort(dataQuery, sortBy, sortOrder);
-
-  const { data, error } = await dataQuery.range(from, to);
 
   if (error) {
     logDbError('pedidos_data_query_failed', '/api/pedidos', normalizedSearch, error, {
       sortBy,
       sortOrder,
       search_present: false,
-      fallback_used: true,
+      fallback_used: missingSaleDateColumn,
     });
     return NextResponse.json({ erro: 'Falha ao carregar pedidos.' }, { status: 500 });
   }

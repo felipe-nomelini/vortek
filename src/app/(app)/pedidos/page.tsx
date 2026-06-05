@@ -138,7 +138,8 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     dbId: item.id,
     numero: item.numero,
     numeroLoja: item.numero_loja || '',
-    data: item.data || new Date().toISOString(),
+    data: item.data_venda || item.data || new Date().toISOString(),
+    dataCriacao: item.data || null,
     dataSaida: item.data_saida,
     dataPrevista: item.data_prevista,
     contato: {
@@ -732,7 +733,28 @@ export default function PedidosPage() {
       title: 'Data', dataIndex: 'data', key: 'data', width: 160,
       sorter: true,
       sortOrder: getRemoteSortOrder('data', sort),
-      render: (d: string) => new Date(d).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+      render: (d: string, record: Order) => {
+        const display = new Date(d).toLocaleDateString('pt-BR', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+        });
+        if (!record.dataCriacao || record.dataCriacao === d) return display;
+        const createdAt = new Date(record.dataCriacao).toLocaleDateString('pt-BR', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+        });
+        return (
+          <Tooltip title={`Criado em ${createdAt}`}>
+            <span>{display}</span>
+          </Tooltip>
+        );
+      },
     },
     {
       title: 'Cliente', dataIndex: ['contato', 'nome'], key: 'cliente',

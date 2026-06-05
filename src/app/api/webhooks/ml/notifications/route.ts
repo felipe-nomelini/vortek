@@ -5,6 +5,7 @@ import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import { extractMlFiscalReleaseWindow } from '@/lib/ml/fiscal-release';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { runMlSingleStageJob } from '@/services/sync-ml-job';
+import { resolveOrderSaleDate } from '@/lib/ml/order-sale-date';
 
 const WEBHOOK_STUB_PENDING_TAGS = ['pedido_sem_itens', 'webhook_hydration_pending', 'snapshot_origem_webhook_stub'];
 
@@ -26,10 +27,13 @@ function mergePendingTags(current: unknown, next: string[]): string[] {
 
 function buildWebhookStubPayload(order: any, existing: any) {
   const needsHydration = !existing?.id || Boolean(existing?.snapshot_incompleto) || !existing?.sincronizado_em;
+  const saleDate = resolveOrderSaleDate(order);
   return {
     numero: Number(order.id) || 0,
     numero_loja: String(order.id || ''),
     data: order.date_created || new Date().toISOString(),
+    data_venda: saleDate.value || order.date_created || new Date().toISOString(),
+    data_venda_source: saleDate.source,
     contato_nome: order.buyer?.nickname || existing?.contato_nome || 'Desconhecido',
     contato_documento: String(order.buyer?.identification?.number || existing?.contato_documento || ''),
     total: order.total_amount || existing?.total || 0,

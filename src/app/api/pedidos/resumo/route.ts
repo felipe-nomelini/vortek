@@ -17,6 +17,10 @@ function logDbError(
   });
 }
 
+function isMissingSaleDateColumnError(error: { code?: string; message?: string; details?: string } | null | undefined): boolean {
+  return error?.code === '42703' && String(error?.message || '').includes('data_venda');
+}
+
 function hasApprovedPayment(pagamentoResumo: unknown): { approved: boolean; hasValidData: boolean } {
   if (!Array.isArray(pagamentoResumo) || pagamentoResumo.length === 0) {
     return { approved: false, hasValidData: false };
@@ -87,15 +91,16 @@ export async function GET(request: Request) {
   }
 
   // Build base query
-  function applyFilters(query: any) {
+  function applyFilters(query: any, useSaleDate: boolean) {
+    const dateColumn = useSaleDate ? 'data_venda' : 'data';
     if (status) {
       query = query.eq('situacao', status);
     }
     if (dateFrom) {
-      query = query.gte('data', dateFrom);
+      query = query.gte(dateColumn, dateFrom);
     }
     if (endDateIso) {
-      query = query.lte('data', endDateIso);
+      query = query.lte(dateColumn, endDateIso);
     }
     if (priceMin !== null) {
       query = query.gte('total', priceMin);
@@ -107,18 +112,45 @@ export async function GET(request: Request) {
   }
 
   // Count total
-  let countQuery = supabase.from('pedidos').select('*', { count: 'exact', head: false }).range(0, 0);
-  countQuery = applyFilters(countQuery);
-  const { count, error: countError } = await countQuery;
+  async function runSummaryQueries(useSaleDate: boolean) {
+    let countQuery = supabase.from('pedidos').select('*', { count: 'exact', head: false }).range(0, 0);
+    countQuery = applyFilters(countQuery, useSaleDate);
+    const countResult = await countQuery;
+
+    let sumQuery = supabase.from('pedidos').select('total, lucro, pagamento_resumo');
+    sumQuery = applyFilters(sumQuery, useSaleDate);
+    const sumResult = await sumQuery;
+
+    let statusQuery = supabase
+      .from('pedidos')
+      .select('situacao')
+      .not('situacao', 'is', null);
+    statusQuery = applyFilters(statusQuery, useSaleDate);
+    const statusResult = await statusQuery;
+
+    return { countResult, sumResult, statusResult };
+  }
+
+  let {
+    countResult: { count, error: countError },
+    sumResult: { data: sumData, error: sumError },
+    statusResult: { data: statusData, error: statusError },
+  } = await runSummaryQueries(true);
+
+  const missingSaleDateColumn = isMissingSaleDateColumnError(countError) || isMissingSaleDateColumnError(sumError) || isMissingSaleDateColumnError(statusError);
+  if (missingSaleDateColumn) {
+    logDbError('pedidos_resumo_schema_drift_fallback_data', '/api/pedidos/resumo', normalizedSearch, countError || sumError || statusError,);
+    ({
+      countResult: { count, error: countError },
+      sumResult: { data: sumData, error: sumError },
+      statusResult: { data: statusData, error: statusError },
+    } = await runSummaryQueries(false));
+  }
+
   if (countError) {
     logDbError('pedidos_resumo_count_query_failed', '/api/pedidos/resumo', normalizedSearch, countError);
     return NextResponse.json({ erro: 'Falha ao contar pedidos para resumo.' }, { status: 500 });
   }
-
-  // Sum total e lucro + métrica compatível ML (pagamento aprovado)
-  let sumQuery = supabase.from('pedidos').select('total, lucro, pagamento_resumo');
-  sumQuery = applyFilters(sumQuery);
-  const { data: sumData, error: sumError } = await sumQuery;
   if (sumError) {
     logDbError('pedidos_resumo_sum_query_failed', '/api/pedidos/resumo', normalizedSearch, sumError);
     return NextResponse.json({ erro: 'Falha ao calcular totais do resumo.' }, { status: 500 });
@@ -146,12 +178,6 @@ export async function GET(request: Request) {
   }
 
   // Status counts via RPC ou group by
-  let statusQuery = supabase
-    .from('pedidos')
-    .select('situacao')
-    .not('situacao', 'is', null);
-  statusQuery = applyFilters(statusQuery);
-  const { data: statusData, error: statusError } = await statusQuery;
   if (statusError) {
     logDbError('pedidos_resumo_status_query_failed', '/api/pedidos/resumo', normalizedSearch, statusError);
     return NextResponse.json({ erro: 'Falha ao calcular status do resumo.' }, { status: 500 });

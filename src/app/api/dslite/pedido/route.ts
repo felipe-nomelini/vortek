@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 import {
   criarPedidoDropshipping,
-  buscarProdutoPorSku,
   informarFornecedorPedido,
   consultarPedidoPorChaveAcesso,
   definirTransportadoraPedido,
   enviarEtiqueta,
+  resolverProdutoMapeadoDslite,
 } from '@/services/dslite';
 import {
   baixarEtiquetaML,
@@ -49,6 +49,28 @@ const SYNC_ORDER_LOCK_RETRY_ATTEMPTS = 6;
 const SYNC_ORDER_LOCK_RETRY_INTERVAL_MS = 2_000;
 const STRICT_NFE_VALIDATION = String(process.env.STRICT_NFE_VALIDATION || 'true').toLowerCase() === 'true';
 const ITEM_TOTAL_TOLERANCE = 0.01;
+
+function buildDsliteProductLookupErrorMessage(input: {
+  failureReason: string | null;
+  fornecedorId: string;
+  dsliteProdutoId: string | null;
+  skuLocal: string;
+  skuSemPrefixo: string;
+}) {
+  const { failureReason, fornecedorId, dsliteProdutoId, skuLocal, skuSemPrefixo } = input;
+
+  switch (failureReason) {
+    case 'produto_nao_encontrado_por_id_direto':
+      return `Produto DSLite não encontrado por ID direto. fornecedor=${fornecedorId}, dslite_produto_id=${dsliteProdutoId || '(vazio)'}, sku_local=${skuLocal}, sku_sem_prefixo=${skuSemPrefixo}`;
+    case 'produto_nao_encontrado_por_produtoid_empresa':
+      return `Produto DSLite não encontrado por produtoid_empresa. fornecedor=${fornecedorId}, sku_local=${skuLocal}, sku_sem_prefixo=${skuSemPrefixo}`;
+    case 'falha_http_dslite_catalogo':
+      return `Falha HTTP ao consultar catálogo DSLite. fornecedor=${fornecedorId}, dslite_produto_id=${dsliteProdutoId || '(vazio)'}, sku_local=${skuLocal}`;
+    case 'catalogo_paginado_sem_match':
+    default:
+      return `Produto DSLite não encontrado após fallback no catálogo. fornecedor=${fornecedorId}, dslite_produto_id=${dsliteProdutoId || '(vazio)'}, sku_local=${skuLocal}, sku_sem_prefixo=${skuSemPrefixo}`;
+  }
+}
 
 type StrictIssue = {
   campo: string;
@@ -2311,7 +2333,7 @@ async function runDsliteCreateJob(
 
     const { data: produtoLocal } = await client
       .from('produtos')
-      .select('dslite_fornecedor_id')
+      .select('dslite_fornecedor_id,dslite_produto_id')
       .eq('sku', skuComPrefixo)
       .maybeSingle();
 
@@ -2324,14 +2346,43 @@ async function runDsliteCreateJob(
 
     const fornecedorId = produtoLocal.dslite_fornecedor_id;
     const skuSemPrefixo = removerPrefixoSku(skuComPrefixo);
-    const produto = await buscarProdutoPorSku(fornecedorId, skuSemPrefixo);
+    const produtoLookup = await resolverProdutoMapeadoDslite({
+      fornecedorId,
+      dsliteProdutoId: produtoLocal.dslite_produto_id || null,
+      skuLocal: skuComPrefixo,
+      skuSemPrefixo,
+    });
+    const produto = produtoLookup.product;
+
+    await registrarEventoNfAuditoria({
+      pedidoId,
+      mlOrderId,
+      mlPackId: (pedidoRow as any)?.ml_pack_id ? String((pedidoRow as any).ml_pack_id) : null,
+      evento: 'dslite_product_lookup_result',
+      respostaMl: {
+        ...produtoLookup.diagnostics,
+        failure_reason: produtoLookup.failureReason,
+        lookup_method: produtoLookup.method,
+        produtoid_resolvido: produto ? String(produto.produtoid || '') : null,
+        produtoid_empresa_resolvido: produto ? String(produto.produtoid_empresa || '') : null,
+      },
+      statusResultante: produto ? 'success' : 'failed',
+    });
+
     if (!produto) {
-      await setStep('find_product_dslite', 'error', undefined, `Produto ${skuSemPrefixo} não encontrado no fornecedor ${fornecedorId}`);
+      const lookupError = buildDsliteProductLookupErrorMessage({
+        failureReason: produtoLookup.failureReason,
+        fornecedorId: String(fornecedorId),
+        dsliteProdutoId: String(produtoLocal.dslite_produto_id || '').trim() || null,
+        skuLocal: skuComPrefixo,
+        skuSemPrefixo,
+      });
+      await setStep('find_product_dslite', 'error', undefined, lookupError);
       state = 'error';
       await syncJob();
       return;
     }
-    await setStep('find_product_dslite', 'success', `${produto.titulo} (ID: ${produto.produtoid})`);
+    await setStep('find_product_dslite', 'success', `${produto.titulo} (ID: ${produto.produtoid}, lookup: ${produtoLookup.method})`);
 
     const cfopsDetectados = extractCfopsFromXml(xml);
     const { emitUf, destUf } = extractEmitDestUfFromXml(xml);

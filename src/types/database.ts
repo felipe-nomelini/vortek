@@ -504,6 +504,8 @@ export type Database = {
           contato_nome: string
           created_at: string
           data: string
+          data_venda: string | null
+          data_venda_source: string | null
           data_prevista: string | null
           data_saida: string | null
           dslite_id: string | null
@@ -559,6 +561,8 @@ export type Database = {
           contato_nome: string
           created_at?: string
           data?: string
+          data_venda?: string | null
+          data_venda_source?: string | null
           data_prevista?: string | null
           data_saida?: string | null
           dslite_id?: string | null
@@ -614,6 +618,8 @@ export type Database = {
           contato_nome?: string
           created_at?: string
           data?: string
+          data_venda?: string | null
+          data_venda_source?: string | null
           data_prevista?: string | null
           data_saida?: string | null
           dslite_id?: string | null
