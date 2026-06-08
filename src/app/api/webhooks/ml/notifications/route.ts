@@ -6,6 +6,7 @@ import { extractMlFiscalReleaseWindow } from '@/lib/ml/fiscal-release';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { runMlSingleStageJob } from '@/services/sync-ml-job';
 import { resolveOrderSaleDate } from '@/lib/ml/order-sale-date';
+import { mapearStatusShipment } from '@/lib/ml/shipment-status';
 
 const WEBHOOK_STUB_PENDING_TAGS = ['pedido_sem_itens', 'webhook_hydration_pending', 'snapshot_origem_webhook_stub'];
 
@@ -482,32 +483,5 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   } catch (err) {
     return NextResponse.json({ error: err instanceof Error ? err.message : 'Erro desconhecido' }, { status: 500 });
-  }
-}
-
-function mapearStatusShipment(shipmentStatus: string, shipmentSubstatus?: string): string {
-  switch (shipmentStatus) {
-    case 'pending':
-      return 'pendente';
-    case 'handling':
-      return 'preparando';
-    case 'ready_to_ship':
-      if (shipmentSubstatus === 'printed') return 'etiqueta_impressa';
-      if (shipmentSubstatus === 'dropped_off') return 'coletado';
-      if (shipmentSubstatus === 'picked_up') return 'coletado';
-      return 'pronto_envio';
-    case 'shipped':
-      if (shipmentSubstatus === 'out_for_delivery') return 'saiu_entrega';
-      if (shipmentSubstatus === 'receiver_absent') return 'dest_ausente';
-      return 'em_transito';
-    case 'delivered':
-      return 'entregue';
-    case 'not_delivered':
-      if (shipmentSubstatus === 'refused_delivery') return 'recusado';
-      return 'dest_ausente';
-    case 'cancelled':
-      return 'cancelado';
-    default:
-      return 'aberto';
   }
 }

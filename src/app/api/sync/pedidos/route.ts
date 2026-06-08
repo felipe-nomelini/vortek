@@ -11,6 +11,7 @@ import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
 import { extractMlFiscalReleaseWindow } from '@/lib/ml/fiscal-release';
 import { resolveOrderSaleDate, type SaleDateSource } from '@/lib/ml/order-sale-date';
+import { mapearStatusShipment } from '@/lib/ml/shipment-status';
 
 export const maxDuration = 300;
 
@@ -457,35 +458,6 @@ function determinarSituacao(status: string, tags: string[], isDevolvido: boolean
   if (tags.includes('not_delivered') && status === 'cancelled') return 'cancelado';
   if (status === 'cancelled') return 'cancelado';
   return 'aberto';
-}
-
-function mapearStatusShipment(shipmentStatus: string, shipmentSubstatus?: string): Database['public']['Enums']['pedido_status'] {
-  switch (shipmentStatus) {
-    case 'pending':
-      return 'pendente';
-    case 'handling':
-      return 'preparando';
-    case 'ready_to_ship':
-      if (shipmentSubstatus === 'printed') return 'etiqueta_impressa';
-      if (shipmentSubstatus === 'dropped_off') return 'coletado';
-      if (shipmentSubstatus === 'picked_up') return 'coletado';
-      if (shipmentSubstatus === 'authorized_by_carrier') return 'coletado';
-      if (shipmentSubstatus === 'in_hub') return 'coletado';
-      return 'pronto_envio';
-    case 'shipped':
-      if (shipmentSubstatus === 'out_for_delivery') return 'saiu_entrega';
-      if (shipmentSubstatus === 'receiver_absent') return 'dest_ausente';
-      return 'em_transito';
-    case 'delivered':
-      return 'entregue';
-    case 'not_delivered':
-      if (shipmentSubstatus === 'refused_delivery') return 'recusado';
-      return 'dest_ausente';
-    case 'cancelled':
-      return 'cancelado';
-    default:
-      return 'aberto';
-  }
 }
 
 async function buscarClaims(orderId: string | number): Promise<{ id: string | null; status: string | null; isDevolvido: boolean }> {
