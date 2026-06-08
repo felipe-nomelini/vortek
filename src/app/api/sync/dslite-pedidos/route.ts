@@ -50,9 +50,13 @@ interface DslitePedidosResponse {
 
 function parseDataCriacao(dataStr: string): string | undefined {
   try {
-    const [datePart, timePart] = dataStr.split(' ');
+    const [datePart, timePart] = String(dataStr || '').trim().split(' ');
     const [day, month, year] = datePart.split('/');
-    return `${year}-${month}-${day}T${timePart}`;
+    if (!day || !month || !year || !timePart) return undefined;
+
+    // A DSLite retorna data/hora em horario local do Brasil sem offset.
+    // Persistimos com -03:00 para evitar que o banco trate a string como UTC.
+    return `${year}-${month}-${day}T${timePart}-03:00`;
   } catch {
     return undefined;
   }

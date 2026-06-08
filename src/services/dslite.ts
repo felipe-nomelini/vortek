@@ -156,6 +156,32 @@ export interface DslitePedidoRetorno {
   nf_numero: string;
 }
 
+export type DsliteCreateOrderFailureType =
+  | 'http_error'
+  | 'timeout'
+  | 'invalid_response'
+  | 'cancelled';
+
+export type DsliteCreateOrderMode = 'with_supplier' | 'without_supplier';
+
+export type DsliteCreateOrderResult =
+  | ({
+      success: true;
+      raw: DsliteCriarPedidoResponse;
+      createMode: DsliteCreateOrderMode;
+      endpointPath: string;
+    } & DslitePedidoRetorno)
+  | {
+      success: false;
+      failureType: DsliteCreateOrderFailureType;
+      statusHttp: number | null;
+      responseText: string | null;
+      parsedBody: unknown;
+      message: string;
+      createMode: DsliteCreateOrderMode;
+      endpointPath: string;
+    };
+
 export type DsliteProductLookupFailureReason =
   | 'produto_nao_encontrado_por_id_direto'
   | 'produto_nao_encontrado_por_produtoid_empresa'
@@ -252,11 +278,29 @@ export async function mapearProduto(
   return result !== null;
 }
 
-export async function criarPedidoDropshipping(
-  xmlConteudo: string
-): Promise<DslitePedidoRetorno | null> {
+async function criarPedidoDropshippingBase(
+  xmlConteudo: string,
+  params: { fornecedorId?: number | string | null }
+): Promise<DsliteCreateOrderResult> {
   const cfg = await getConfig();
-  if (!cfg) return null;
+  const hasSupplier = String(params.fornecedorId || '').trim().length > 0;
+  const createMode: DsliteCreateOrderMode = hasSupplier ? 'with_supplier' : 'without_supplier';
+  const endpointPath = hasSupplier
+    ? `/v1/DropShipping/fornecedor/${encodeURIComponent(String(params.fornecedorId).trim())}`
+    : '/v1/DropShipping';
+
+  if (!cfg) {
+    return {
+      success: false,
+      failureType: 'invalid_response',
+      statusHttp: null,
+      responseText: null,
+      parsedBody: null,
+      message: 'Integração DSLite não configurada',
+      createMode,
+      endpointPath,
+    };
+  }
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 60000);
@@ -266,7 +310,7 @@ export async function criarPedidoDropshipping(
     const blob = new Blob([xmlConteudo], { type: 'application/xml' });
     formData.append('files', blob, 'nota.xml');
 
-    const res = await fetch(`${cfg.url}/v1/DropShipping`, {
+    const res = await fetch(`${cfg.url}${endpointPath}`, {
       method: 'POST',
       signal: controller.signal,
       headers: {
@@ -276,31 +320,88 @@ export async function criarPedidoDropshipping(
       body: formData,
     });
 
-    if (!res.ok) {
-      const errText = await res.text().catch(() => '');
-      console.error(`[dslite] Erro ao criar pedido: HTTP ${res.status} — ${errText.substring(0, 500)}`);
-      return null;
+    const responseText = await res.text().catch(() => '');
+    let parsedBody: unknown = null;
+    if (responseText) {
+      try {
+        parsedBody = JSON.parse(responseText);
+      } catch {
+        parsedBody = null;
+      }
     }
 
-    const data: DsliteCriarPedidoResponse = await res.json();
-    const log = data.logs?.[0];
+    if (!res.ok) {
+      const message = `HTTP ${res.status}: ${responseText.substring(0, 500) || 'resposta vazia da DSLite'}`;
+      console.error(`[dslite] Erro ao criar pedido: ${message}`);
+      return {
+        success: false,
+        failureType: 'http_error',
+        statusHttp: res.status,
+        responseText,
+        parsedBody,
+        message,
+        createMode,
+        endpointPath,
+      };
+    }
+
+    const data = parsedBody as DsliteCriarPedidoResponse | null;
+    const log = data?.logs?.[0];
     if (!log?.dsid) {
-      console.error(`[dslite] Resposta sem dsid:`, JSON.stringify(data, null, 2));
-      return null;
+      const message = 'Resposta DSLite sem dsid no payload de criação';
+      console.error(`[dslite] ${message}:`, JSON.stringify(data, null, 2));
+      return {
+        success: false,
+        failureType: 'invalid_response',
+        statusHttp: res.status,
+        responseText,
+        parsedBody,
+        message,
+        createMode,
+        endpointPath,
+      };
     }
 
     return {
+      success: true,
       dsid: log.dsid,
       status: log.status,
       chave_acesso: log.chave_acesso,
       nf_numero: log.nf_numero,
+      raw: data as DsliteCriarPedidoResponse,
+      createMode,
+      endpointPath,
     };
   } catch (err: any) {
+    const failureType: DsliteCreateOrderFailureType = err?.name === 'AbortError' ? 'timeout' : 'cancelled';
+    const message = err?.message || 'Erro inesperado ao criar pedido na DSLite';
     console.error(`[dslite] Erro inesperado ao criar pedido:`, err);
-    return null;
+    return {
+      success: false,
+      failureType,
+      statusHttp: null,
+      responseText: null,
+      parsedBody: null,
+      message,
+      createMode,
+      endpointPath,
+    };
   } finally {
     clearTimeout(timeout);
   }
+}
+
+export async function criarPedidoDropshipping(
+  xmlConteudo: string
+): Promise<DsliteCreateOrderResult> {
+  return criarPedidoDropshippingBase(xmlConteudo, { fornecedorId: null });
+}
+
+export async function criarPedidoDropshippingComFornecedor(
+  xmlConteudo: string,
+  fornecedorId: number | string
+): Promise<DsliteCreateOrderResult> {
+  return criarPedidoDropshippingBase(xmlConteudo, { fornecedorId });
 }
 
 export async function consultarPedido(dsid: number | string): Promise<DslitePedidoRetorno | null> {
