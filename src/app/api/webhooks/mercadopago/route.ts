@@ -172,6 +172,39 @@ async function upsertPaymentEvent(params: {
   return { matchedSupplier, topupCreated };
 }
 
+async function upsertPaymentLookupFailed(params: {
+  paymentId: string;
+  webhookBody: Record<string, unknown>;
+  errorMessage: string;
+}) {
+  const service = createServiceClient();
+  const { error } = await service
+    .from('mercadopago_account_movements')
+    .upsert({
+      external_id: `payment:${params.paymentId}`,
+      movement_date: new Date().toISOString(),
+      description: 'Mercado Pago payment lookup failed',
+      reference: params.paymentId,
+      amount: 0,
+      movement_type: 'payment_lookup_failed',
+      currency: null,
+      raw_payload: jsonPayload({
+        source: 'webhook_payment_lookup_failed',
+        webhook: params.webhookBody,
+        error: params.errorMessage,
+      }),
+      matched_supplier: null,
+      updated_at: new Date().toISOString(),
+    }, { onConflict: 'external_id' });
+
+  if (error) throw new Error(`Falha ao salvar falha de lookup Mercado Pago: ${error.message}`);
+}
+
+function isMercadoPagoPaymentNotFound(err: unknown) {
+  const message = err instanceof Error ? err.message : String(err || '');
+  return message.includes('Mercado Pago HTTP 404');
+}
+
 export async function POST(request: Request) {
   const secret = process.env.MERCADOPAGO_WEBHOOK_SECRET?.trim();
   if (!secret) {
@@ -206,11 +239,31 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'data.id ausente' }, { status: 400 });
   }
 
+  const liveMode = body.live_mode;
+  const isSimulation = liveMode === false || dataId === '123456';
+  if (isSimulation) {
+    return NextResponse.json({ success: true, simulation: true, paymentId: dataId });
+  }
+
   try {
     const payment = await getMercadoPagoPayment(dataId);
     const result = await upsertPaymentEvent({ paymentId: dataId, webhookBody: body, payment });
     return NextResponse.json({ success: true, paymentId: dataId, ...result });
   } catch (err: any) {
+    if (isMercadoPagoPaymentNotFound(err)) {
+      await upsertPaymentLookupFailed({
+        paymentId: dataId,
+        webhookBody: body,
+        errorMessage: err?.message || 'Mercado Pago payment not found',
+      });
+      return NextResponse.json({
+        success: true,
+        paymentId: dataId,
+        lookupFailed: true,
+        error: err?.message || 'Mercado Pago payment not found',
+      });
+    }
+
     return NextResponse.json({
       success: false,
       paymentId: dataId,
