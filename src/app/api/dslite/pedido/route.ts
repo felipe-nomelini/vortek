@@ -36,6 +36,7 @@ import {
   type SupplierPaymentMode,
 } from '@/lib/produto-fornecedor';
 import { recordSupplierPurchaseDebit } from '@/lib/supplier-balance';
+import { getSkuLookupVariants } from '@/lib/sku';
 import { extractTaxpayerTypeFromBillingAddress, resolveDestIePolicy } from '@/lib/fiscal/ie-policy';
 import {
   extractXmlTag,
@@ -129,10 +130,12 @@ async function resolvePedidoSupplierOffer(params: {
   fallbackDsliteProdutoId?: string | null;
 }) {
   const { client, sku, fallbackSupplierId, fallbackDsliteProdutoId } = params;
+  const skuVariants = getSkuLookupVariants(sku);
   let { data: productRow } = await client
     .from('produtos')
     .select('id,sku,oferta_preferencial_id,dslite_fornecedor_id,dslite_produto_id')
-    .eq('sku', sku)
+    .in('sku', skuVariants.length > 0 ? skuVariants : [sku])
+    .limit(1)
     .maybeSingle();
 
   if (!productRow?.id) {
@@ -140,13 +143,13 @@ async function resolvePedidoSupplierOffer(params: {
       client
         .from('produto_fornecedor_ofertas')
         .select('produto_id')
-        .eq('sku_oferta', sku)
+        .in('sku_oferta', skuVariants.length > 0 ? skuVariants : [sku])
         .limit(1)
         .maybeSingle(),
       client
         .from('produto_fornecedor_ofertas')
         .select('produto_id')
-        .eq('sku_fornecedor', sku)
+        .in('sku_fornecedor', skuVariants.length > 0 ? skuVariants : [sku])
         .limit(1)
         .maybeSingle(),
     ]);
@@ -1199,7 +1202,7 @@ async function runDsliteCreateJob(
       return;
     }
 
-    const [{ data: pedidoSync }, { count: pedidoItensCount }] = await Promise.all([
+    const [{ data: pedidoSync }, { count: pedidoItensCount }, { data: itensSnapshot }] = await Promise.all([
       client
         .from('pedidos')
         .select('snapshot_incompleto,snapshot_pendencias')
@@ -1209,12 +1212,23 @@ async function runDsliteCreateJob(
         .from('pedido_itens')
         .select('*', { head: true, count: 'exact' })
         .eq('pedido_id', pedidoId),
+      client
+        .from('pedido_itens')
+        .select('seller_sku,ncm')
+        .eq('pedido_id', pedidoId),
     ]);
 
     const snapshotIncompletoPosSync = Boolean((pedidoSync as any)?.snapshot_incompleto);
     const itensCountPosSync = pedidoItensCount || 0;
     if (snapshotIncompletoPosSync || itensCountPosSync <= 0) {
-      const msg = 'Falha ao sincronizar pedido automaticamente. Tente novamente.';
+      const pendenciasPosSync = ((pedidoSync as any)?.snapshot_pendencias || []) as string[];
+      const skusSemNcm = ((itensSnapshot || []) as any[])
+        .filter((item) => !String(item?.ncm || '').trim())
+        .map((item) => String(item?.seller_sku || '').trim())
+        .filter(Boolean);
+      const msg = pendenciasPosSync.includes('item_sem_ncm') && skusSemNcm.length > 0
+        ? `Produto ${skusSemNcm.join(', ')} não encontrado fiscalmente ou sem NCM`
+        : 'Falha ao sincronizar pedido automaticamente. Tente novamente.';
       await registrarEventoNfAuditoria({
         pedidoId,
         mlOrderId: syncMlOrderId,
@@ -1227,7 +1241,8 @@ async function runDsliteCreateJob(
           failure_reason: snapshotIncompletoPosSync ? 'snapshot_incompleto_pos_sync' : 'pedido_sem_itens_pos_sync',
           pedido_itens_count: itensCountPosSync,
           snapshot_incompleto: snapshotIncompletoPosSync,
-          snapshot_pendencias: (pedidoSync as any)?.snapshot_pendencias || null,
+          snapshot_pendencias: pendenciasPosSync,
+          skus_sem_ncm: skusSemNcm,
         },
         statusResultante: 'failed',
       });
@@ -1238,7 +1253,7 @@ async function runDsliteCreateJob(
         message: msg,
         pedido_itens_count: itensCountPosSync,
         snapshot_incompleto: snapshotIncompletoPosSync,
-        snapshot_pendencias: (pedidoSync as any)?.snapshot_pendencias || [],
+        snapshot_pendencias: pendenciasPosSync,
       };
       await syncJob();
       return;

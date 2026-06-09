@@ -12,6 +12,7 @@ import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync
 import { extractMlFiscalReleaseWindow } from '@/lib/ml/fiscal-release';
 import { resolveOrderSaleDate, type SaleDateSource } from '@/lib/ml/order-sale-date';
 import { mapearStatusShipment } from '@/lib/ml/shipment-status';
+import { getSkuLookupVariants } from '@/lib/sku';
 
 export const maxDuration = 300;
 
@@ -564,6 +565,7 @@ async function buildOrderItemsSnapshot(params: {
   const { serviceClient, orderItems, emitUf, destUf, freteTotal } = params;
   const itemIds = Array.from(new Set(orderItems.map((it) => String(it?.item?.id || '')).filter(Boolean)));
   const skus = Array.from(new Set(orderItems.map((it) => String(it?.item?.seller_sku || '').trim()).filter(Boolean)));
+  const skuLookupVariants = Array.from(new Set(skus.flatMap((sku) => getSkuLookupVariants(sku))));
 
   let productsByMlItem = new Map<string, any>();
   let productsBySku = new Map<string, any>();
@@ -575,22 +577,22 @@ async function buildOrderItemsSnapshot(params: {
       .in('ml_item_id', itemIds);
     productsByMlItem = new Map((data || []).map((p: any) => [String(p.ml_item_id || ''), p]));
   }
-  if (skus.length > 0) {
+  if (skuLookupVariants.length > 0) {
     const { data } = await serviceClient
       .from('produtos')
       .select('ml_item_id,sku,ncm,cest,gtin,origem_fiscal,csosn')
-      .in('sku', skus);
+      .in('sku', skuLookupVariants);
     productsBySku = new Map((data || []).map((p: any) => [String(p.sku || ''), p]));
 
     const [{ data: offersBySku }, { data: offersBySupplierSku }] = await Promise.all([
       serviceClient
         .from('produto_fornecedor_ofertas')
         .select('produto_id,sku_oferta')
-        .in('sku_oferta', skus),
+        .in('sku_oferta', skuLookupVariants),
       serviceClient
         .from('produto_fornecedor_ofertas')
         .select('produto_id,sku_fornecedor')
-        .in('sku_fornecedor', skus),
+        .in('sku_fornecedor', skuLookupVariants),
     ]);
     const offerProductIds = Array.from(new Set([
       ...((offersBySku || []) as any[]).map((row) => String(row.produto_id || '').trim()),
@@ -606,11 +608,21 @@ async function buildOrderItemsSnapshot(params: {
 
       for (const offer of (offersBySku || []) as any[]) {
         const product = productsById.get(String(offer.produto_id || ''));
-        if (product) productsBySku.set(String(offer.sku_oferta || ''), product);
+        if (!product) continue;
+        const offerSku = String(offer.sku_oferta || '');
+        productsBySku.set(offerSku, product);
+        for (const sku of skus) {
+          if (getSkuLookupVariants(sku).includes(offerSku)) productsBySku.set(sku, product);
+        }
       }
       for (const offer of (offersBySupplierSku || []) as any[]) {
         const product = productsById.get(String(offer.produto_id || ''));
-        if (product) productsBySku.set(String(offer.sku_fornecedor || ''), product);
+        if (!product) continue;
+        const offerSku = String(offer.sku_fornecedor || '');
+        productsBySku.set(offerSku, product);
+        for (const sku of skus) {
+          if (getSkuLookupVariants(sku).includes(offerSku)) productsBySku.set(sku, product);
+        }
       }
     }
   }
@@ -631,8 +643,10 @@ async function buildOrderItemsSnapshot(params: {
       ? Number(((freteTotal * quantidade) / totalQtd).toFixed(2))
       : 0;
 
+    const skuVariants = getSkuLookupVariants(sellerSku);
     const produto = (mlItemId && productsByMlItem.get(mlItemId))
       || (sellerSku && productsBySku.get(sellerSku))
+      || skuVariants.map((variant) => productsBySku.get(variant)).find(Boolean)
       || null;
 
     return {

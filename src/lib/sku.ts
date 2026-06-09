@@ -33,3 +33,14 @@ export function stripKnownSkuPrefix(sku: string): string {
   }
   return normalized;
 }
+
+export function getSkuLookupVariants(input: unknown): string[] {
+  const normalized = normalizeSku(input);
+  if (!normalized) return [];
+
+  const variants = new Set<string>([normalized]);
+  const withoutPrefix = stripKnownSkuPrefix(normalized);
+  if (withoutPrefix) variants.add(withoutPrefix);
+
+  return Array.from(variants);
+}
