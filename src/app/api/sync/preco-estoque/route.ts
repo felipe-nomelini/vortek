@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { sincronizarPrecoEstoque, listarFornecedores } from '@/services/dslite';
 import { createServiceClient } from '@/lib/supabase';
 import { buildCanonicalDsliteSku } from '@/lib/sku';
+import { inferSupplierPaymentMode, syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 
@@ -113,6 +114,10 @@ export async function POST(req: Request) {
       : fornecedores
           .filter((f) => String(f.crossdocking || '').toLowerCase() === 'ativo')
           .map((f) => String(f.id));
+    const fornecedorMap = new Map<number, string>();
+    for (const fornecedor of fornecedores) {
+      fornecedorMap.set(Number(fornecedor.id), String(fornecedor.apelido || fornecedor.id));
+    }
 
     if (fornecedorIds.length === 0) {
       errors.push({ code: 'dslite_fornecedor_ids_empty', message: 'Nenhum fornecedor ativo selecionado' });
@@ -152,6 +157,7 @@ export async function POST(req: Request) {
 
     while (supplierIndex < fornecedorIds.length) {
       const targetFornecedor = String(fornecedorIds[supplierIndex]);
+      const targetFornecedorNome = fornecedorMap.get(Number(targetFornecedor)) || targetFornecedor;
       const response = await sincronizarPrecoEstoque(targetFornecedor, currentPage, pageSize);
       if (!response?.produtos?.length) {
         supplierIndex += 1;
@@ -167,6 +173,9 @@ export async function POST(req: Request) {
       const batch: Array<{
         sku: string;
         nome: string;
+        fornecedor_nome: string;
+        dslite_produto_id: string;
+        produtoid_empresa: string;
         custo: number;
         estoque: number;
         dslite_ultima_sync: string;
@@ -206,6 +215,9 @@ export async function POST(req: Request) {
         batch.push({
           sku,
           nome: fallbackNome(item?.titulo, sku),
+          fornecedor_nome: targetFornecedorNome,
+          dslite_produto_id: String(item?.produtoid || '').trim(),
+          produtoid_empresa: String(item?.produtoid_empresa || '').trim(),
           custo: normalizeCost(item?.preco_crossdocking || item?.preco_normal || 0),
           estoque: normalizeStock(item?.estoque || 0),
           dslite_ultima_sync: new Date().toISOString(),
@@ -240,15 +252,23 @@ export async function POST(req: Request) {
       }
 
       const skus = batch.map((row) => row.sku).filter(Boolean);
-      const { data: existingRows, error: existingError } = await client
-        .from('produtos')
-        .select('id, sku, nome, ml_item_id')
-        .in('sku', skus);
+      const dsliteProdutoIds = batch.map((row) => String((row as any).dslite_produto_id || '').trim()).filter(Boolean);
+      const [existingOffersResp, existingRowsResp] = await Promise.all([
+        client
+          .from('produto_fornecedor_ofertas')
+          .select('id,produto_id,dslite_fornecedor_id,dslite_produto_id')
+          .eq('dslite_fornecedor_id', targetFornecedor)
+          .in('dslite_produto_id', dsliteProdutoIds),
+        client
+          .from('produtos')
+          .select('id, sku, nome, ml_item_id')
+          .in('sku', skus),
+      ]);
 
-      if (existingError) {
+      if (existingOffersResp.error || existingRowsResp.error) {
         errors.push({
           code: 'price_existing_select_failed',
-          message: existingError.message,
+          message: existingOffersResp.error?.message || existingRowsResp.error?.message || 'Falha ao consultar ofertas/produtos existentes',
           context: { fornecedorId: targetFornecedor, page: currentPage },
         });
         recordsFailed += batch.length;
@@ -256,18 +276,89 @@ export async function POST(req: Request) {
         break;
       }
 
-      const existingBySku = new Map((existingRows || []).map((row: any) => [String(row.sku || '').toUpperCase(), row]));
+      const existingOffersByIdentity = new Map(
+        ((existingOffersResp.data || []) as any[]).map((row: any) => [
+          `${String(row.dslite_fornecedor_id || '')}:${String(row.dslite_produto_id || '')}`,
+          row,
+        ]),
+      );
+      const existingBySku = new Map((existingRowsResp.data || []).map((row: any) => [String(row.sku || '').toUpperCase(), row]));
+      const offerUpserts: Array<Record<string, unknown>> = [];
+      const touchedProductIds = new Set<string>();
+
+      for (let index = 0; index < batch.length; index += 1) {
+        const row = batch[index];
+        const dsliteProdutoId = String((row as any).dslite_produto_id || '').trim();
+        const identityKey = `${targetFornecedor}:${dsliteProdutoId}`;
+        const existingOffer = existingOffersByIdentity.get(identityKey) as any;
+        const legacyProduct = existingBySku.get(String(row.sku || '').trim().toUpperCase()) as any;
+        const productId = String(existingOffer?.produto_id || legacyProduct?.id || '').trim();
+
+        if (!productId) {
+          recordsMissing += 1;
+          continue;
+        }
+
+        touchedProductIds.add(productId);
+        offerUpserts.push({
+          produto_id: productId,
+          dslite_fornecedor_id: targetFornecedor,
+          fornecedor_nome: String((row as any).fornecedor_nome || targetFornecedorNome),
+          dslite_produto_id: dsliteProdutoId,
+          sku_oferta: String(row.sku || '').trim(),
+          sku_fornecedor: String(row.sku || '').trim(),
+          custo: normalizeCost(row.custo),
+          estoque: normalizeStock(row.estoque),
+          ativo: true,
+          prioridade: 100,
+          payment_mode: inferSupplierPaymentMode(targetFornecedor),
+          last_sync_at: row.dslite_ultima_sync,
+          updated_at: new Date().toISOString(),
+        });
+      }
+
+      if (offerUpserts.length > 0) {
+        const { error: offerUpsertError } = await client
+          .from('produto_fornecedor_ofertas')
+          .upsert(offerUpserts as any, { onConflict: 'dslite_fornecedor_id,dslite_produto_id' });
+
+        if (offerUpsertError) {
+          errors.push({
+            code: 'price_offer_upsert_failed',
+            message: offerUpsertError.message,
+            context: { fornecedorId: targetFornecedor, page: currentPage },
+          });
+          recordsFailed += offerUpserts.length;
+          stopByBudget = true;
+          break;
+        }
+      }
+
+      let changedSnapshots: Awaited<ReturnType<typeof syncPreferredProductSnapshot>> = [];
+      try {
+        changedSnapshots = await syncPreferredProductSnapshot(client, Array.from(touchedProductIds));
+      } catch (err: any) {
+        errors.push({
+          code: 'price_preferred_snapshot_failed',
+          message: err?.message || 'Falha ao recalcular snapshot preferencial do produto',
+          context: { fornecedorId: targetFornecedor, page: currentPage },
+        });
+        recordsFailed += offerUpserts.length;
+        stopByBudget = true;
+        break;
+      }
+
       const existingMlItemIds = Array.from(
         new Set(
-          (existingRows || [])
-            .map((row: any) => String(row.ml_item_id || '').trim())
+          changedSnapshots
+            .map((row) => String(row.previous.ml_item_id || '').trim())
             .filter(Boolean)
         )
       );
       const existingSkusUpper = Array.from(
         new Set(
-          (existingRows || [])
-            .map((row: any) => String(row.sku || '').trim().toUpperCase())
+          changedSnapshots
+            .map((row) => String(row.previous.sku || '').trim().toUpperCase())
             .filter(Boolean)
         )
       );
@@ -309,84 +400,57 @@ export async function POST(req: Request) {
         }
       }
 
-      for (const row of batch) {
-        const existing = existingBySku.get(String(row.sku || '').toUpperCase()) as any;
-        if (!existing?.id) {
-          recordsMissing += 1;
+      recordsUpdated += changedSnapshots.length;
+
+      for (const snapshot of changedSnapshots) {
+        const mlItemId = String(snapshot.previous.ml_item_id || '').trim();
+        if (!mlItemId) {
+          mlOutboxSkippedNoItem += 1;
           continue;
         }
 
-        const patch: Record<string, unknown> = {
-          custo: normalizeCost(row.custo),
-          estoque: normalizeStock(row.estoque),
-          dslite_ultima_sync: row.dslite_ultima_sync,
-        };
-        if (!String(existing.nome || '').trim()) {
-          patch.nome = row.nome;
+        const skuUpper = String(snapshot.previous.sku || '').trim().toUpperCase();
+        const isManualBlocked = manualBlockedByItemId.has(mlItemId) || (skuUpper ? manualBlockedBySku.has(skuUpper) : false);
+        if (isManualBlocked) {
+          mlOutboxSkippedManualBlock += 1;
+          continue;
         }
 
-        const { error: updateError } = await client
-          .from('produtos')
-          .update(patch as any)
-          .eq('id', String(existing.id));
+        const desiredStatus = resolveDesiredMlStatusByStock(Number(snapshot.next.estoque || 0));
+        const outbox = await enqueueMlPublishOutbox(client, {
+          produtoId: String(snapshot.productId),
+          mlItemId,
+          desiredStatus,
+          desiredQuantity: Number(snapshot.next.estoque || 0),
+          desiredPrice: null,
+          source: 'dslite_stock_automation',
+          dedupePending: true,
+          payload: {
+            apply_price: false,
+            apply_quantity_pricing: false,
+            apply_quantity: true,
+            apply_status: true,
+            sku: snapshot.previous.sku,
+            estoque_origem: Number(snapshot.next.estoque || 0),
+            status_desejado: desiredStatus,
+            fornecedor_preferencial: snapshot.next.fornecedor,
+            fornecedor_dslite_id: snapshot.next.dslite_fornecedor_id,
+            origin: 'api/sync/preco-estoque',
+            synced_at: snapshot.next.dslite_ultima_sync,
+          },
+        });
 
-        if (updateError) {
-          recordsFailed += 1;
+        if (!outbox.ok) {
+          mlOutboxFailed += 1;
           errors.push({
-            code: 'price_update_failed',
-            message: updateError.message,
-            context: { fornecedorId: targetFornecedor, page: currentPage, sku: row.sku },
+            code: 'ml_outbox_enqueue_failed',
+            message: outbox.error,
+            context: { fornecedorId: targetFornecedor, page: currentPage, sku: snapshot.previous.sku, mlItemId },
           });
+        } else if (outbox.action === 'updated_existing') {
+          mlOutboxUpdatedExisting += 1;
         } else {
-          recordsUpdated += 1;
-
-          const mlItemId = String(existing.ml_item_id || '').trim();
-          if (!mlItemId) {
-            mlOutboxSkippedNoItem += 1;
-            continue;
-          }
-
-          const skuUpper = String(row.sku || '').trim().toUpperCase();
-          const isManualBlocked = manualBlockedByItemId.has(mlItemId) || (skuUpper ? manualBlockedBySku.has(skuUpper) : false);
-          if (isManualBlocked) {
-            mlOutboxSkippedManualBlock += 1;
-            continue;
-          }
-
-          const desiredStatus = resolveDesiredMlStatusByStock(Number(row.estoque || 0));
-          const outbox = await enqueueMlPublishOutbox(client, {
-            produtoId: String(existing.id),
-            mlItemId,
-            desiredStatus,
-            desiredQuantity: Number(row.estoque || 0),
-            desiredPrice: null,
-            source: 'dslite_stock_automation',
-            dedupePending: true,
-            payload: {
-              apply_price: false,
-              apply_quantity_pricing: false,
-              apply_quantity: true,
-              apply_status: true,
-              sku: row.sku,
-              estoque_origem: Number(row.estoque || 0),
-              status_desejado: desiredStatus,
-              origin: 'api/sync/preco-estoque',
-              synced_at: row.dslite_ultima_sync,
-            },
-          });
-
-          if (!outbox.ok) {
-            mlOutboxFailed += 1;
-            errors.push({
-              code: 'ml_outbox_enqueue_failed',
-              message: outbox.error,
-              context: { fornecedorId: targetFornecedor, page: currentPage, sku: row.sku, mlItemId },
-            });
-          } else if (outbox.action === 'updated_existing') {
-            mlOutboxUpdatedExisting += 1;
-          } else {
-            mlOutboxEnqueued += 1;
-          }
+          mlOutboxEnqueued += 1;
         }
       }
 

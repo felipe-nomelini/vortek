@@ -1,4 +1,5 @@
 const SKU_PREFIXOS: Record<string, string> = {
+  '2': 'HYX',
   '27': 'FJ',
   '39': 'NMC',
   '81': 'VO',
@@ -17,9 +18,9 @@ export function buildCanonicalDsliteSku(
   produtoIdEmpresa: unknown,
   produtoId?: unknown,
 ): string {
-  const prefixo = getFornecedorSkuPrefix(fornecedorId);
-  const base = produtoIdEmpresa || produtoId || `PROD-${String(produtoId ?? '')}`;
-  return normalizeSku(`${prefixo}${String(base ?? '')}`);
+  const rawBase = produtoIdEmpresa || produtoId || `PROD-${String(produtoId ?? '')}`;
+  const normalizedBase = stripKnownSkuPrefix(normalizeSku(rawBase));
+  return normalizeSku(normalizedBase);
 }
 
 export function stripKnownSkuPrefix(sku: string): string {
@@ -32,4 +33,3 @@ export function stripKnownSkuPrefix(sku: string): string {
   }
   return normalized;
 }
-

@@ -7,10 +7,11 @@ export type SyncTaskKey =
   | 'sync_ml_listings_observed'
   | 'sync_ml_listings_publish'
   | 'sync_reconcile_fiscal'
+  | 'sync_mercadopago_account_money'
   | 'sync_pack_id_backfill'
   | 'sync_municipios_seed';
 
-export type SyncTaskKind = 'dslite' | 'ml' | 'fiscal' | 'infra';
+export type SyncTaskKind = 'dslite' | 'ml' | 'fiscal' | 'finance' | 'infra';
 
 export interface SyncTaskDefinition {
   key: SyncTaskKey;
@@ -125,6 +126,17 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     kind: 'fiscal',
   },
   {
+    key: 'sync_mercadopago_account_money',
+    jobTipo: 'sync_mercadopago_account_money',
+    label: 'Mercado Pago Dinheiro em Conta',
+    path: '/api/sync/mercadopago-account-money',
+    domain: 'financeiro:mercadopago',
+    lockTtlSeconds: 20 * 60,
+    kind: 'finance',
+    schedule: { businessMinutes: 180, offHoursMinutes: 360 },
+    defaultBody: { windowDays: 7 },
+  },
+  {
     key: 'sync_pack_id_backfill',
     jobTipo: 'sync_pack_id_backfill',
     label: 'Backfill Pack ID',
@@ -187,6 +199,9 @@ export function mapLegacyTipoToTaskKey(tipo: string): SyncTaskKey | 'todos' | nu
     anuncios: 'sync_ml_listings_observed',
     anuncios_publish: 'sync_ml_listings_publish',
     reconcile_fiscal: 'sync_reconcile_fiscal',
+    mercadopago_account_money: 'sync_mercadopago_account_money',
+    mercado_pago: 'sync_mercadopago_account_money',
+    mercado_pago_extrato: 'sync_mercadopago_account_money',
     pack_backfill: 'sync_pack_id_backfill',
     municipios_seed: 'sync_municipios_seed',
     // Compatibilidade com taxonomy legada

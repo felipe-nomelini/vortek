@@ -1,47 +1,23 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
-import { buildCanonicalDsliteSku, normalizeSku, stripKnownSkuPrefix, getFornecedorSkuPrefix } from '@/lib/sku';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
-
-function coerceDsliteIdentity(payload: Record<string, any>): { ok: true; payload: Record<string, any> } | { ok: false; error: string } {
-  const fornecedorId = payload.dslite_fornecedor_id != null ? String(payload.dslite_fornecedor_id).trim() : '';
-  const produtoId = payload.dslite_produto_id != null ? String(payload.dslite_produto_id).trim() : '';
-  const hasFornecedor = Boolean(fornecedorId);
-  const hasProdutoId = Boolean(produtoId);
-  if (!hasFornecedor && !hasProdutoId) return { ok: true, payload };
-
-  if (hasFornecedor && !getFornecedorSkuPrefix(fornecedorId)) {
-    return { ok: false, error: `Fornecedor DSLite ${fornecedorId} não possui prefixo SKU configurado.` };
-  }
-
-  const skuProvided = 'sku' in payload ? normalizeSku(payload.sku) : '';
-  const baseFromSku = skuProvided ? stripKnownSkuPrefix(skuProvided) : '';
-  const baseId = produtoId || baseFromSku;
-  if (!baseId) {
-    return { ok: false, error: 'Para produto DSLite, informe dslite_produto_id ou SKU válido.' };
-  }
-
-  const canonicalSku = buildCanonicalDsliteSku(fornecedorId, baseId, baseId);
-  if (skuProvided && skuProvided !== canonicalSku) {
-    return { ok: false, error: `SKU incompatível com fornecedor DSLite. Esperado: ${canonicalSku}` };
-  }
-
-  return {
-    ok: true,
-    payload: {
-      ...payload,
-      sku: canonicalSku,
-      dslite_fornecedor_id: fornecedorId || payload.dslite_fornecedor_id,
-      dslite_produto_id: produtoId || baseId,
-    },
-  };
-}
+import { assertVortekSku } from '@/lib/product-master-sku';
+import {
+  buildOffersByProductId,
+  fetchAllTableRows,
+  listActiveSupplierOptions,
+  mapSupplierFilterIdsToDsliteIds,
+  matchesProductMasterFilters,
+  type ProdutoFilterOfferRow,
+  type SupplierFilterOption,
+} from '@/lib/produto-filtering';
 
 export async function GET(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+  const serviceClient = createServiceClient();
 
   const { searchParams } = new URL(request.url);
   const page = Math.max(1, parseInt(searchParams.get('page') || '1'));
@@ -50,7 +26,7 @@ export async function GET(request: Request) {
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
 
-  const fornecedorFilter = searchParams.get('fornecedores')?.split(',').filter(Boolean) || [];
+  const fornecedorFilterIds = searchParams.get('fornecedores')?.split(',').filter(Boolean) || [];
   const mlStatus = searchParams.get('ml_status') || '';
   const estoque = searchParams.get('estoque') || '';
   const priceFieldParam = searchParams.get('priceField') || 'cost';
@@ -81,24 +57,23 @@ export async function GET(request: Request) {
   ]);
   const sortBy = allowedSortBy.has(rawSortBy) ? rawSortBy : 'sku';
   const sortOrder = rawSortOrder === 'desc' ? 'desc' : 'asc';
-  const requiresInMemorySort = sortBy === 'suggested_price' || sortBy === 'profit';
 
-  function computeDerived(item: any): { displayPrice: number; profit: number | null } {
+  function computeDerived(item: Record<string, any>): { displayPrice: number; profit: number | null } {
     try {
       const result = calculateSuggestedPrice({
-        cost: item.custo || 0,
-        shipping: item.ml_shipping || 0,
-        mlFee: item.ml_fee || 0.15,
+        cost: Number(item.custo || 0),
+        shipping: Number(item.ml_shipping || 0),
+        mlFee: Number(item.ml_fee || 0.15),
       });
-      const displayPrice = Math.round((item.custom_price ?? result.suggestedPrice) * 100) / 100;
+      const displayPrice = Math.round(((item.custom_price ?? result.suggestedPrice) || 0) * 100) / 100;
 
       if (item.ml_status === 'sem_anuncio') {
         return { displayPrice, profit: null };
       }
 
       const tax = displayPrice * 0.04;
-      const mlFeeAmount = displayPrice * (item.ml_fee || 0.15);
-      const netProfit = displayPrice - (item.custo || 0) - (item.ml_shipping || 0) - tax - mlFeeAmount;
+      const mlFeeAmount = displayPrice * Number(item.ml_fee || 0.15);
+      const netProfit = displayPrice - Number(item.custo || 0) - Number(item.ml_shipping || 0) - tax - mlFeeAmount;
       return { displayPrice, profit: Math.round(netProfit * 100) / 100 };
     } catch {
       return {
@@ -108,7 +83,18 @@ export async function GET(request: Request) {
     }
   }
 
-  function matchesPriceFilter(item: any): boolean {
+  function matchesFilters(item: Record<string, any>, offers: ProdutoFilterOfferRow[]): boolean {
+    if (!matchesProductMasterFilters({
+      product: item,
+      offers,
+      search,
+      supplierFilterIds: supplierFilterDsliteIds,
+      mlStatus,
+      estoque,
+    })) {
+      return false;
+    }
+
     const { displayPrice, profit } = computeDerived(item);
     let value = 0;
     if (priceField === 'cost') {
@@ -125,7 +111,7 @@ export async function GET(request: Request) {
     return true;
   }
 
-  function sortRows(rows: any[]) {
+  function sortRows(rows: Array<Record<string, any>>) {
     const direction = sortOrder === 'asc' ? 1 : -1;
     rows.sort((left, right) => {
       const leftDerived = computeDerived(left);
@@ -178,94 +164,83 @@ export async function GET(request: Request) {
       return String(left.sku || '').localeCompare(String(right.sku || ''), 'pt-BR');
     });
   }
-
-  // Helper to apply common DB filters to a query
-  function applyFilters(query: any) {
-    if (search) {
-      query = query.or(`nome.ilike.%${search}%,sku.ilike.%${search}%`);
-    }
-    if (fornecedorFilter.length > 0) {
-      query = query.in('fornecedor', fornecedorFilter);
-    }
-    if (mlStatus) {
-      query = query.eq('ml_status', mlStatus);
-    }
-    if (estoque === 'com_estoque') {
-      query = query.gt('estoque', 0);
-    } else if (estoque === 'sem_estoque') {
-      query = query.eq('estoque', 0);
-    }
-    return query;
+  let rows: Array<Record<string, any>> = [];
+  let allOffers: ProdutoFilterOfferRow[] = [];
+  let supplierOptions: SupplierFilterOption[] = [];
+  try {
+    [rows, allOffers, supplierOptions] = await Promise.all([
+      fetchAllTableRows<Record<string, any>>(serviceClient, 'produtos', '*', [{ column: 'created_at', ascending: false }]),
+      fetchAllTableRows<ProdutoFilterOfferRow>(
+        serviceClient,
+        'produto_fornecedor_ofertas',
+        'id,produto_id,dslite_fornecedor_id,fornecedor_nome,sku_oferta,sku_fornecedor,nome',
+        [
+          { column: 'produto_id', ascending: true },
+          { column: 'id', ascending: true },
+        ],
+      ),
+      listActiveSupplierOptions(serviceClient),
+    ]);
+  } catch (error: any) {
+    console.error('[api/produtos] Falha ao carregar produtos mestres:', error?.message || error);
+    return NextResponse.json({ erro: error?.message || 'Falha ao carregar produtos' }, { status: 500 });
   }
 
-  let data: any[] = [];
-  let total = 0;
-  if (hasPriceFilter || requiresInMemorySort) {
-    // With derived price/profit filters we need to apply filtering over the full filtered dataset.
-    const chunkSize = 1000;
-    const allRows: any[] = [];
-    let offset = 0;
+  const supplierFilterDsliteIds = mapSupplierFilterIdsToDsliteIds(fornecedorFilterIds, supplierOptions);
 
-    while (true) {
-      let chunkQuery = supabase.from('produtos').select('*');
-      chunkQuery = applyFilters(chunkQuery);
-      const { data: chunk, error } = await chunkQuery
-        .order('sku', { ascending: true })
-        .range(offset, offset + chunkSize - 1);
+  const offersByProductId = buildOffersByProductId(allOffers);
+  const filteredRows = rows.filter((item) => (
+    matchesFilters(item, offersByProductId.get(String(item.id || '').trim()) || [])
+  ));
+  sortRows(filteredRows);
+  const total = filteredRows.length;
+  const pageRows = filteredRows.slice(from, to + 1);
 
-      if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
-      const rows = chunk || [];
-      allRows.push(...rows);
-      if (rows.length < chunkSize) break;
-      offset += chunkSize;
+  const pageProductIds = pageRows.map((item) => String(item.id || '').trim()).filter(Boolean);
+  let pageOffersByProductId = new Map<string, any[]>();
+
+  if (pageProductIds.length > 0) {
+    const { data: offers, error: offersError } = await serviceClient
+      .from('produto_fornecedor_ofertas')
+      .select('id,produto_id,fornecedor_nome,sku_oferta,custo,estoque,ativo,payment_mode,dslite_fornecedor_id,dslite_produto_id')
+      .in('produto_id', pageProductIds);
+
+    if (offersError) {
+      return NextResponse.json({ erro: offersError.message }, { status: 500 });
     }
 
-    const filteredRows = allRows.filter(matchesPriceFilter);
-    sortRows(filteredRows);
-    total = filteredRows.length;
-    data = filteredRows.slice(from, to + 1);
-  } else {
-    // Count query (exact, via DB)
-    let countQuery = supabase.from('produtos').select('id', { count: 'exact', head: false }).range(0, 0);
-    countQuery = applyFilters(countQuery);
-    const { count } = await countQuery;
-    total = count || 0;
+    pageOffersByProductId = new Map<string, any[]>();
+    for (const offer of offers || []) {
+      const key = String((offer as any).produto_id || '').trim();
+      if (!key) continue;
+      const list = pageOffersByProductId.get(key) || [];
+      list.push(offer as any);
+      pageOffersByProductId.set(key, list);
+    }
+  }
 
-    // Data query with pagination
-    let dataQuery = supabase.from('produtos').select('*');
-    dataQuery = applyFilters(dataQuery);
-    const dbSortMap: Record<string, string> = {
-      sku: 'sku',
-      nome: 'nome',
-      fornecedor: 'fornecedor',
-      estoque: 'estoque',
-      custo: 'custo',
-      ml_fee: 'ml_fee',
-      ml_shipping: 'ml_shipping',
-      ml_status: 'ml_status',
+  const data = pageRows.map((product) => {
+    const offers = pageOffersByProductId.get(String(product.id || '').trim()) || [];
+    const preferredOffer = offers.find((offer) => {
+      const explicitPreferred = String(product.oferta_preferencial_id || '').trim();
+      if (explicitPreferred) return explicitPreferred === String((offer as any).id || '').trim();
+      return String(product.dslite_fornecedor_id || '').trim() === String((offer as any).dslite_fornecedor_id || '').trim()
+        && String(product.dslite_produto_id || '').trim() === String((offer as any).dslite_produto_id || '').trim();
+    }) || null;
+
+    return {
+      product,
+      preferredOffer,
+      offersCount: offers.length,
     };
-    const { data: pageData, error } = await dataQuery
-      .order(dbSortMap[sortBy] || 'sku', { ascending: sortOrder === 'asc' })
-      .range(from, to);
-
-    if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
-    data = pageData || [];
-  }
-
-  // Get distinct fornecedores via RPC
-  const serviceClient = createServiceClient();
-  const { data: fornData } = await serviceClient.rpc('get_fornecedores');
-  const fornecedoresSet = new Set<string>();
-  for (const item of fornData || []) {
-    if (item.fornecedor) fornecedoresSet.add(item.fornecedor);
-  }
+  });
 
   return NextResponse.json({
-    data: data || [],
+    data,
     total,
     page,
     pageSize,
-    fornecedores: Array.from(fornecedoresSet).sort(),
+    fornecedores: supplierOptions,
   });
 }
 
@@ -277,13 +252,16 @@ export async function POST(request: Request) {
   const body = await request.json();
   let payload = { ...body } as Record<string, any>;
   if ('sku' in payload) {
-    payload.sku = normalizeSku(payload.sku);
+    try {
+      payload.sku = assertVortekSku(payload.sku);
+    } catch (error: any) {
+      return NextResponse.json({ erro: error?.message || 'SKU mestre inválido' }, { status: 422 });
+    }
+  } else {
+    delete payload.sku;
   }
-  const normalized = coerceDsliteIdentity(payload);
-  if (!normalized.ok) {
-    return NextResponse.json({ erro: normalized.error }, { status: 422 });
-  }
-  payload = normalized.payload;
+  if ('dslite_fornecedor_id' in payload) payload.dslite_fornecedor_id = String(payload.dslite_fornecedor_id || '').trim();
+  if ('dslite_produto_id' in payload) payload.dslite_produto_id = String(payload.dslite_produto_id || '').trim();
 
   const { data, error } = await supabase.from('produtos').insert(payload).select().single();
 

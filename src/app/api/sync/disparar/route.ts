@@ -144,6 +144,14 @@ function buildBody(taskKey: SyncTaskKey, taskDefaultBody: Record<string, unknown
     if (requestBody.seedFromProducts !== undefined) payload.seedFromProducts = Boolean(requestBody.seedFromProducts);
   }
 
+  if (taskKey === 'sync_mercadopago_account_money') {
+    if (requestBody.windowDays !== undefined) payload.windowDays = parsePositiveInt(requestBody.windowDays, 7);
+    if (requestBody.beginDate !== undefined) payload.beginDate = requestBody.beginDate;
+    if (requestBody.endDate !== undefined) payload.endDate = requestBody.endDate;
+    if (requestBody.taskId !== undefined) payload.taskId = requestBody.taskId;
+    if (requestBody.fileName !== undefined) payload.fileName = requestBody.fileName;
+  }
+
   return payload;
 }
 

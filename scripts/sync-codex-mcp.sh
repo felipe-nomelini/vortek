@@ -20,7 +20,7 @@ if [ ! -f "$MCP_FILE" ]; then
   exit 1
 fi
 
-declare -a REQUIRED=("vortek-dataset" "firecrawl" "supabase")
+declare -a REQUIRED=("vortek-dataset" "firecrawl" "supabase" "mercadopago-mcp-server")
 
 read_env_fallback() {
   local key="$1"

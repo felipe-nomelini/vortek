@@ -1,46 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
-import { buildCanonicalDsliteSku, normalizeSku, stripKnownSkuPrefix, getFornecedorSkuPrefix } from '@/lib/sku';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
-
-function coerceDsliteIdentity(updateData: Record<string, any>): { ok: true; payload: Record<string, any> } | { ok: false; error: string } {
-  const fornecedorId = updateData.dslite_fornecedor_id != null ? String(updateData.dslite_fornecedor_id).trim() : '';
-  const produtoId = updateData.dslite_produto_id != null ? String(updateData.dslite_produto_id).trim() : '';
-  const hasFornecedor = Boolean(fornecedorId);
-  const hasProdutoId = Boolean(produtoId);
-  const hasSku = 'sku' in updateData && Boolean(normalizeSku(updateData.sku));
-
-  if (!hasFornecedor && !hasProdutoId && !hasSku) return { ok: true, payload: updateData };
-  if (hasFornecedor && !getFornecedorSkuPrefix(fornecedorId)) {
-    return { ok: false, error: `Fornecedor DSLite ${fornecedorId} não possui prefixo SKU configurado.` };
-  }
-
-  const skuProvided = hasSku ? normalizeSku(updateData.sku) : '';
-  const baseFromSku = skuProvided ? stripKnownSkuPrefix(skuProvided) : '';
-  const baseId = produtoId || baseFromSku;
-
-  if (hasFornecedor && !baseId) {
-    return { ok: false, error: 'Para produto DSLite, informe dslite_produto_id ou SKU válido.' };
-  }
-
-  if (hasFornecedor && baseId) {
-    const canonicalSku = buildCanonicalDsliteSku(fornecedorId, baseId, baseId);
-    if (skuProvided && skuProvided !== canonicalSku) {
-      return { ok: false, error: `SKU incompatível com fornecedor DSLite. Esperado: ${canonicalSku}` };
-    }
-    return {
-      ok: true,
-      payload: {
-        ...updateData,
-        sku: canonicalSku,
-        dslite_fornecedor_id: fornecedorId,
-        dslite_produto_id: produtoId || baseId,
-      },
-    };
-  }
-
-  return { ok: true, payload: { ...updateData, sku: skuProvided || updateData.sku } };
-}
+import { assertVortekSku } from '@/lib/product-master-sku';
 
 export async function GET(
   _req: Request,
@@ -91,7 +52,13 @@ export async function PATCH(
     // Mapear campos do frontend (camelCase) para o banco (snake_case)
     const updateData: Record<string, any> = {};
 
-    if ('sku' in body) updateData.sku = normalizeSku(body.sku);
+    if ('sku' in body) {
+      try {
+        updateData.sku = assertVortekSku(body.sku);
+      } catch (error: any) {
+        return NextResponse.json({ error: error?.message || 'SKU mestre inválido' }, { status: 422 });
+      }
+    }
     if ('nome' in body) updateData.nome = body.nome;
     if ('marca' in body) updateData.marca = body.marca;
     if ('gtin' in body) updateData.gtin = body.gtin;
@@ -114,14 +81,8 @@ export async function PATCH(
     if ('dslite_fornecedor_id' in body) updateData.dslite_fornecedor_id = body.dslite_fornecedor_id;
     if ('dslite_produto_id' in body) updateData.dslite_produto_id = body.dslite_produto_id;
 
-    const normalized = coerceDsliteIdentity(updateData);
-    if (!normalized.ok) {
-      return NextResponse.json(
-        { error: normalized.error },
-        { status: 422 }
-      );
-    }
-    Object.assign(updateData, normalized.payload);
+    if ('dslite_fornecedor_id' in updateData) updateData.dslite_fornecedor_id = String(updateData.dslite_fornecedor_id || '').trim();
+    if ('dslite_produto_id' in updateData) updateData.dslite_produto_id = String(updateData.dslite_produto_id || '').trim();
 
     const { data, error } = await supabase
       .from('produtos')

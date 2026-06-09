@@ -581,6 +581,38 @@ async function buildOrderItemsSnapshot(params: {
       .select('ml_item_id,sku,ncm,cest,gtin,origem_fiscal,csosn')
       .in('sku', skus);
     productsBySku = new Map((data || []).map((p: any) => [String(p.sku || ''), p]));
+
+    const [{ data: offersBySku }, { data: offersBySupplierSku }] = await Promise.all([
+      serviceClient
+        .from('produto_fornecedor_ofertas')
+        .select('produto_id,sku_oferta')
+        .in('sku_oferta', skus),
+      serviceClient
+        .from('produto_fornecedor_ofertas')
+        .select('produto_id,sku_fornecedor')
+        .in('sku_fornecedor', skus),
+    ]);
+    const offerProductIds = Array.from(new Set([
+      ...((offersBySku || []) as any[]).map((row) => String(row.produto_id || '').trim()),
+      ...((offersBySupplierSku || []) as any[]).map((row) => String(row.produto_id || '').trim()),
+    ].filter(Boolean)));
+
+    if (offerProductIds.length > 0) {
+      const { data: offerProducts } = await serviceClient
+        .from('produtos')
+        .select('id,ml_item_id,sku,ncm,cest,gtin,origem_fiscal,csosn')
+        .in('id', offerProductIds);
+      const productsById = new Map((offerProducts || []).map((p: any) => [String(p.id || ''), p]));
+
+      for (const offer of (offersBySku || []) as any[]) {
+        const product = productsById.get(String(offer.produto_id || ''));
+        if (product) productsBySku.set(String(offer.sku_oferta || ''), product);
+      }
+      for (const offer of (offersBySupplierSku || []) as any[]) {
+        const product = productsById.get(String(offer.produto_id || ''));
+        if (product) productsBySku.set(String(offer.sku_fornecedor || ''), product);
+      }
+    }
   }
 
   const totalQtd = orderItems.reduce((sum, it) => sum + Number(it?.quantity || 0), 0);

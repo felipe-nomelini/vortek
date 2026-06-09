@@ -205,7 +205,7 @@ export async function POST(request: Request) {
     if (priceToWinRounded >= pisoSemPrejuizo) {
       const recomendado = priceToWinRounded;
       const delta = round2(recomendado - precoAtual);
-      const lucro = round2((recomendado * denominador) - custoAplicado - freteAplicado);
+      const lucro = round2((priceToWinRounded * denominador) - custoAplicado - freteAplicado);
       return {
         ml_item_id: row.ml_item_id,
         permalink: row.permalink || null,
@@ -225,7 +225,7 @@ export async function POST(request: Request) {
 
     const recomendado = pisoSemPrejuizo;
     const delta = round2(recomendado - precoAtual);
-    const lucro = round2((recomendado * denominador) - custoAplicado - freteAplicado);
+    const lucro = round2((priceToWinRounded * denominador) - custoAplicado - freteAplicado);
     return {
       ml_item_id: row.ml_item_id,
       permalink: row.permalink || null,

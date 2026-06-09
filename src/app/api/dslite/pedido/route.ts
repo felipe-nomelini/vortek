@@ -29,6 +29,13 @@ import {
   extractEmitDestUfFromXml,
   validateCfopForDslite,
 } from '@/lib/fiscal/cfop';
+import {
+  inferSupplierPaymentMode,
+  resolvePreferredOfferForProduct,
+  resolveCompraStatus,
+  type SupplierPaymentMode,
+} from '@/lib/produto-fornecedor';
+import { recordSupplierPurchaseDebit } from '@/lib/supplier-balance';
 import { extractTaxpayerTypeFromBillingAddress, resolveDestIePolicy } from '@/lib/fiscal/ie-policy';
 import {
   extractXmlTag,
@@ -50,6 +57,19 @@ const SYNC_ORDER_LOCK_RETRY_ATTEMPTS = 6;
 const SYNC_ORDER_LOCK_RETRY_INTERVAL_MS = 2_000;
 const STRICT_NFE_VALIDATION = String(process.env.STRICT_NFE_VALIDATION || 'true').toLowerCase() === 'true';
 const ITEM_TOTAL_TOLERANCE = 0.01;
+const STATUS_AGUARDANDO_PAGAMENTO_FORNECEDOR = 'Aguardando Pagamento Fornecedor';
+
+function normalizeSupplierPaymentMode(value: unknown, fornecedorId?: string | number | null): SupplierPaymentMode {
+  const raw = String(value || '').trim();
+  if (raw === 'balance_account' || raw === 'prepaid_pix' || raw === 'postpaid') return raw;
+  return inferSupplierPaymentMode(fornecedorId);
+}
+
+function extractFirstItemQuantityFromXml(xml: string | null | undefined): number {
+  const qCom = extractXmlTag(String(xml || ''), 'qCom');
+  const parsed = Number(String(qCom || '').replace(',', '.'));
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
+}
 
 function summarizeDsliteResponseText(value: string | null | undefined, max = 240): string | null {
   const normalized = String(value || '').replace(/\s+/g, ' ').trim();
@@ -100,6 +120,90 @@ function buildDsliteProductLookupErrorMessage(input: {
     default:
       return `Produto DSLite não encontrado após fallback no catálogo. fornecedor=${fornecedorId}, dslite_produto_id=${dsliteProdutoId || '(vazio)'}, sku_local=${skuLocal}, sku_sem_prefixo=${skuSemPrefixo}`;
   }
+}
+
+async function resolvePedidoSupplierOffer(params: {
+  client: ReturnType<typeof createServiceClient>;
+  sku: string;
+  fallbackSupplierId?: string | null;
+  fallbackDsliteProdutoId?: string | null;
+}) {
+  const { client, sku, fallbackSupplierId, fallbackDsliteProdutoId } = params;
+  let { data: productRow } = await client
+    .from('produtos')
+    .select('id,sku,oferta_preferencial_id,dslite_fornecedor_id,dslite_produto_id')
+    .eq('sku', sku)
+    .maybeSingle();
+
+  if (!productRow?.id) {
+    const [{ data: byOfferSku }, { data: bySupplierSku }] = await Promise.all([
+      client
+        .from('produto_fornecedor_ofertas')
+        .select('produto_id')
+        .eq('sku_oferta', sku)
+        .limit(1)
+        .maybeSingle(),
+      client
+        .from('produto_fornecedor_ofertas')
+        .select('produto_id')
+        .eq('sku_fornecedor', sku)
+        .limit(1)
+        .maybeSingle(),
+    ]);
+
+    const offerProductId = String((byOfferSku as any)?.produto_id || (bySupplierSku as any)?.produto_id || '').trim();
+    if (offerProductId) {
+      const { data: productByOffer } = await client
+        .from('produtos')
+        .select('id,sku,oferta_preferencial_id,dslite_fornecedor_id,dslite_produto_id')
+        .eq('id', offerProductId)
+        .maybeSingle();
+      productRow = productByOffer;
+    }
+  }
+
+  if (!productRow?.id) {
+    return {
+      productId: null,
+      offer: null,
+    };
+  }
+
+  const { data: offers } = await client
+    .from('produto_fornecedor_ofertas')
+    .select('*')
+    .eq('produto_id', String(productRow.id));
+
+  const preferred = resolvePreferredOfferForProduct((offers || []) as any[], (productRow as any)?.oferta_preferencial_id);
+  if (preferred) {
+    return {
+      productId: String(productRow.id),
+      offer: preferred,
+    };
+  }
+
+  if (productRow.dslite_fornecedor_id) {
+    return {
+      productId: String(productRow.id),
+      offer: {
+        produto_id: String(productRow.id),
+        dslite_fornecedor_id: String(fallbackSupplierId || productRow.dslite_fornecedor_id),
+        dslite_produto_id: String(fallbackDsliteProdutoId || productRow.dslite_produto_id || ''),
+        fornecedor_nome: null,
+        custo: 0,
+        estoque: 0,
+        ativo: true,
+        prioridade: 100,
+        payment_mode: inferSupplierPaymentMode(fallbackSupplierId || productRow.dslite_fornecedor_id),
+        last_sync_at: null,
+      },
+    };
+  }
+
+  return {
+    productId: String(productRow.id),
+    offer: null,
+  };
 }
 
 type StrictIssue = {
@@ -867,6 +971,7 @@ async function runDsliteCreateJob(
   mlOrderId: string | null,
   requestedProvider: NfeProvider,
   nfePayload?: Record<string, any> | null,
+  options?: { resumeAfterSupplierPayment?: boolean },
 ) {
   const client = createServiceClient();
   const selectedProvider = requestedProvider;
@@ -888,6 +993,7 @@ async function runDsliteCreateJob(
   let invoiceId: string | number | null = null;
   let danfeUrlAtual: string | null = null;
   const externalWarnings: string[] = [];
+  const resumeAfterSupplierPayment = Boolean(options?.resumeAfterSupplierPayment);
 
   const syncJob = async () => {
     if (state !== 'running') {
@@ -1156,7 +1262,7 @@ async function runDsliteCreateJob(
 
     const { data: pedidoRow, error: pedidoRowError } = await client
       .from('pedidos')
-      .select('numero,nfe_xml,nfe_status,nfe_chave,nota_fiscal_numero,nota_fiscal_emitida,nfe_external_id,nfe_protocolo,nfe_cfop,dslite_id,dslite_etiqueta_enviada,ml_shipment_id,ml_pack_id,nfe_danfe_url')
+      .select('numero,total,frete,billing_nome,billing_documento,nfe_xml,nfe_status,nfe_chave,nota_fiscal_numero,nota_fiscal_emitida,nfe_external_id,nfe_protocolo,nfe_cfop,dslite_id,dslite_etiqueta_enviada,ml_shipment_id,ml_pack_id,nfe_danfe_url')
       .eq('id', pedidoId)
       .maybeSingle();
     if (pedidoRowError) {
@@ -2321,7 +2427,29 @@ async function runDsliteCreateJob(
 
     const chaveAcesso = extrairChaveAcessoDoXml(xml);
     let dsidAtual: number | null = null;
-    if (chaveAcesso) {
+    const existingDsliteId = String((pedidoRow as any)?.dslite_id || '').trim();
+    const { data: existingCompra } = existingDsliteId
+      ? await client
+          .from('compras')
+          .select('id,dsid,fornecedor_id,fornecedor_nome,supplier_payment_mode,supplier_payment_status')
+          .eq('dsid', existingDsliteId)
+          .maybeSingle()
+      : { data: null as any };
+
+    if (resumeAfterSupplierPayment && existingCompra?.supplier_payment_mode === 'prepaid_pix' && existingCompra?.supplier_payment_status !== 'paid') {
+      const msg = 'O pagamento ao fornecedor ainda não foi confirmado. Confirme o PIX antes de retomar o fluxo.';
+      await setStep('validate_fiscal_prechecks', 'error', undefined, msg);
+      state = 'error';
+      result = {
+        stage: 'supplier_payment_pending',
+        message: msg,
+        dslite_id: existingDsliteId || null,
+      };
+      await syncJob();
+      return;
+    }
+
+    if (chaveAcesso && !(resumeAfterSupplierPayment && existingDsliteId)) {
       const existente = await consultarPedidoPorChaveAcesso(chaveAcesso);
       if (existente) {
         const msg = `Já existe pedido na DSLite para esta mesma nota fiscal (chave ${chaveAcesso}, dsid: ${existente.dsid}). Gere nova NF antes de tentar novamente.`;
@@ -2352,67 +2480,100 @@ async function runDsliteCreateJob(
     }
 
     await setStep('validate_fiscal_prechecks', 'success', 'Pré-checagens e vínculo fiscal concluídos');
-    await setStep('find_product_dslite', 'loading');
+    let fornecedorId = '';
+    let fornecedorNomeResolved: string | null = null;
+    let supplierPaymentMode: SupplierPaymentMode = 'postpaid';
+    let supplierPaymentAmount: number | null = null;
+    let produtoLookupMethod: string | null = null;
+    let produtoFornecedorOfertaId: string | null = null;
+    let produto: any = null;
     const skuComPrefixo = extrairSkuDoXml(xml);
-    if (!skuComPrefixo) {
-      await setStep('find_product_dslite', 'error', undefined, 'Não foi possível extrair o SKU do XML');
-      state = 'error';
-      await syncJob();
-      return;
-    }
-
-    const { data: produtoLocal } = await client
-      .from('produtos')
-      .select('dslite_fornecedor_id,dslite_produto_id')
-      .eq('sku', skuComPrefixo)
-      .maybeSingle();
-
-    if (!produtoLocal?.dslite_fornecedor_id) {
-      await setStep('find_product_dslite', 'error', undefined, `Produto com SKU ${skuComPrefixo} sem mapeamento DSLite`);
-      state = 'error';
-      await syncJob();
-      return;
-    }
-
-    const fornecedorId = produtoLocal.dslite_fornecedor_id;
-    const skuSemPrefixo = removerPrefixoSku(skuComPrefixo);
-    const produtoLookup = await resolverProdutoMapeadoDslite({
-      fornecedorId,
-      dsliteProdutoId: produtoLocal.dslite_produto_id || null,
-      skuLocal: skuComPrefixo,
-      skuSemPrefixo,
-    });
-    const produto = produtoLookup.product;
-
-    await registrarEventoNfAuditoria({
-      pedidoId,
-      mlOrderId,
-      mlPackId: (pedidoRow as any)?.ml_pack_id ? String((pedidoRow as any).ml_pack_id) : null,
-      evento: 'dslite_product_lookup_result',
-      respostaMl: {
-        ...produtoLookup.diagnostics,
-        failure_reason: produtoLookup.failureReason,
-        lookup_method: produtoLookup.method,
-        produtoid_resolvido: produto ? String(produto.produtoid || '') : null,
-        produtoid_empresa_resolvido: produto ? String(produto.produtoid_empresa || '') : null,
-      },
-      statusResultante: produto ? 'success' : 'failed',
+    const skuSemPrefixo = skuComPrefixo ? removerPrefixoSku(skuComPrefixo) : '';
+    const produtoContext = () => ({
+      produtoid: produto?.produtoid ? String(produto.produtoid) : '',
+      produtoid_empresa: produto?.produtoid_empresa ? String(produto.produtoid_empresa) : '',
+      titulo: produto?.titulo ? String(produto.titulo) : null,
     });
 
-    if (!produto) {
-      const lookupError = buildDsliteProductLookupErrorMessage({
-        failureReason: produtoLookup.failureReason,
-        fornecedorId: String(fornecedorId),
-        dsliteProdutoId: String(produtoLocal.dslite_produto_id || '').trim() || null,
+    if (resumeAfterSupplierPayment && existingDsliteId) {
+      dsidAtual = Number(existingDsliteId);
+      fornecedorId = String(existingCompra?.fornecedor_id || '').trim();
+      fornecedorNomeResolved = existingCompra?.fornecedor_nome ? String(existingCompra.fornecedor_nome) : null;
+      supplierPaymentMode = normalizeSupplierPaymentMode(existingCompra?.supplier_payment_mode, fornecedorId);
+
+      if (!fornecedorId) {
+        await setStep('find_product_dslite', 'error', undefined, 'Não foi possível identificar o fornecedor da compra DSLite já criada');
+        state = 'error';
+        await syncJob();
+        return;
+      }
+
+      await completeAsSkipped('find_product_dslite', 'fornecedor resolvido a partir da compra DSLite existente');
+      await completeAsSkipped('create_order_dslite', `pedido DSLite já criado anteriormente (dsid: ${existingDsliteId})`);
+    } else {
+      await setStep('find_product_dslite', 'loading');
+      if (!skuComPrefixo) {
+        await setStep('find_product_dslite', 'error', undefined, 'Não foi possível extrair o SKU do XML');
+        state = 'error';
+        await syncJob();
+        return;
+      }
+
+      const selectedOffer = await resolvePedidoSupplierOffer({ client, sku: skuComPrefixo });
+      if (!selectedOffer?.offer?.dslite_fornecedor_id) {
+        await setStep('find_product_dslite', 'error', undefined, `Produto com SKU ${skuComPrefixo} sem oferta DSLite selecionável`);
+        state = 'error';
+        await syncJob();
+        return;
+      }
+
+      fornecedorId = String(selectedOffer.offer.dslite_fornecedor_id);
+      fornecedorNomeResolved = selectedOffer.offer.fornecedor_nome ? String(selectedOffer.offer.fornecedor_nome) : null;
+      produtoFornecedorOfertaId = selectedOffer.offer.id ? String(selectedOffer.offer.id) : null;
+      supplierPaymentMode = normalizeSupplierPaymentMode(selectedOffer.offer.payment_mode, fornecedorId);
+      supplierPaymentAmount = Number(selectedOffer.offer.custo || 0) * extractFirstItemQuantityFromXml(xml);
+
+      const produtoLookup = await resolverProdutoMapeadoDslite({
+        fornecedorId,
+        dsliteProdutoId: String(selectedOffer.offer.dslite_produto_id || '').trim() || null,
         skuLocal: skuComPrefixo,
         skuSemPrefixo,
       });
-      await setStep('find_product_dslite', 'error', undefined, lookupError);
-      state = 'error';
-      await syncJob();
-      return;
+      produtoLookupMethod = produtoLookup.method;
+      produto = produtoLookup.product;
+
+      await registrarEventoNfAuditoria({
+        pedidoId,
+        mlOrderId,
+        mlPackId: (pedidoRow as any)?.ml_pack_id ? String((pedidoRow as any).ml_pack_id) : null,
+        evento: 'dslite_product_lookup_result',
+        respostaMl: {
+          ...produtoLookup.diagnostics,
+          selected_offer_supplier_id: fornecedorId,
+          selected_offer_payment_mode: supplierPaymentMode,
+          failure_reason: produtoLookup.failureReason,
+          lookup_method: produtoLookup.method,
+          produtoid_resolvido: produto ? String(produto.produtoid || '') : null,
+          produtoid_empresa_resolvido: produto ? String(produto.produtoid_empresa || '') : null,
+        },
+        statusResultante: produto ? 'success' : 'failed',
+      });
+
+      if (!produto) {
+        const lookupError = buildDsliteProductLookupErrorMessage({
+          failureReason: produtoLookup.failureReason,
+          fornecedorId: String(fornecedorId),
+          dsliteProdutoId: String(selectedOffer.offer.dslite_produto_id || '').trim() || null,
+          skuLocal: skuComPrefixo,
+          skuSemPrefixo,
+        });
+        await setStep('find_product_dslite', 'error', undefined, lookupError);
+        state = 'error';
+        await syncJob();
+        return;
+      }
+      await setStep('find_product_dslite', 'success', `${produto.titulo} (ID: ${produto.produtoid}, lookup: ${produtoLookup.method})`);
     }
-    await setStep('find_product_dslite', 'success', `${produto.titulo} (ID: ${produto.produtoid}, lookup: ${produtoLookup.method})`);
 
     const cfopsDetectados = extractCfopsFromXml(xml);
     const { emitUf, destUf } = extractEmitDestUfFromXml(xml);
@@ -2433,9 +2594,9 @@ async function runDsliteCreateJob(
         pedidoId,
         mlOrderId: mlOrderId ? String(mlOrderId) : null,
         evento: 'pre_validacao',
-        respostaMl: {
-          cfops_detectados: cfopCheck.cfopsDetectados,
-          cfops_invalidos: cfopCheck.cfopsInvalidos,
+          respostaMl: {
+            cfops_detectados: cfopCheck.cfopsDetectados,
+            cfops_invalidos: cfopCheck.cfopsInvalidos,
           cfops_permitidos: ALLOWED_CFOP_DSLITE,
           emit_uf: emitUf,
           dest_uf: destUf,
@@ -2462,9 +2623,14 @@ async function runDsliteCreateJob(
 
     let pedidoStatusFinal = 'criado';
     let supplierDefinedAtCreation = false;
-    await setStep('create_order_dslite', 'loading');
     const createAttempts: any[] = [];
-    const createWithSupplierResult = await criarPedidoDropshippingComFornecedor(xml, fornecedorId);
+    if (!resumeAfterSupplierPayment || !dsidAtual) {
+      await setStep('create_order_dslite', 'loading');
+    }
+    const createWithSupplierResult = (!resumeAfterSupplierPayment || !dsidAtual)
+      ? await criarPedidoDropshippingComFornecedor(xml, fornecedorId)
+      : null;
+    if (createWithSupplierResult) {
     createAttempts.push({
       mode: createWithSupplierResult.createMode,
       endpoint_path: createWithSupplierResult.endpointPath,
@@ -2473,9 +2639,11 @@ async function runDsliteCreateJob(
       status_http: createWithSupplierResult.success ? null : createWithSupplierResult.statusHttp,
       response_excerpt: createWithSupplierResult.success ? null : summarizeDsliteResponseText(createWithSupplierResult.responseText),
     });
+    }
 
-    let pedidoResult = createWithSupplierResult;
-    if (!pedidoResult.success) {
+    let pedidoResult = createWithSupplierResult as any;
+    if (pedidoResult && !pedidoResult.success) {
+      const produtoInfo = produtoContext();
       await registrarEventoNfAuditoria({
         pedidoId,
         mlOrderId: mlOrderId ? String(mlOrderId) : null,
@@ -2483,8 +2651,8 @@ async function runDsliteCreateJob(
         evento: 'dslite_create_with_supplier_failed',
         respostaMl: {
           fornecedorId: String(fornecedorId),
-          produtoid: String(produto.produtoid || ''),
-          produtoid_empresa: String(produto.produtoid_empresa || ''),
+          produtoid: produtoInfo.produtoid,
+          produtoid_empresa: produtoInfo.produtoid_empresa,
           nfe_chave: chaveAcesso || null,
           dslite_failure_type: pedidoResult.failureType,
           dslite_http_status: pedidoResult.statusHttp,
@@ -2515,8 +2683,8 @@ async function runDsliteCreateJob(
           evento: 'dslite_create_without_supplier_fallback_success',
           respostaMl: {
             fornecedorId: String(fornecedorId),
-            produtoid: String(produto.produtoid || ''),
-            produtoid_empresa: String(produto.produtoid_empresa || ''),
+            produtoid: produtoInfo.produtoid,
+            produtoid_empresa: produtoInfo.produtoid_empresa,
             nfe_chave: chaveAcesso || null,
             endpoint_path: fallbackResult.endpointPath,
             dsid: fallbackResult.dsid,
@@ -2532,8 +2700,8 @@ async function runDsliteCreateJob(
           evento: 'dslite_create_without_supplier_fallback_failed',
           respostaMl: {
             fornecedorId: String(fornecedorId),
-            produtoid: String(produto.produtoid || ''),
-            produtoid_empresa: String(produto.produtoid_empresa || ''),
+            produtoid: produtoInfo.produtoid,
+            produtoid_empresa: produtoInfo.produtoid_empresa,
             nfe_chave: chaveAcesso || null,
             dslite_failure_type: fallbackResult.failureType,
             dslite_http_status: fallbackResult.statusHttp,
@@ -2546,8 +2714,9 @@ async function runDsliteCreateJob(
           statusResultante: fallbackResult.failureType,
         });
       }
-    } else {
+    } else if (pedidoResult) {
       supplierDefinedAtCreation = true;
+      const produtoInfo = produtoContext();
       await registrarEventoNfAuditoria({
         pedidoId,
         mlOrderId: mlOrderId ? String(mlOrderId) : null,
@@ -2555,8 +2724,8 @@ async function runDsliteCreateJob(
         evento: 'dslite_create_with_supplier_success',
         respostaMl: {
           fornecedorId: String(fornecedorId),
-          produtoid: String(produto.produtoid || ''),
-          produtoid_empresa: String(produto.produtoid_empresa || ''),
+          produtoid: produtoInfo.produtoid,
+          produtoid_empresa: produtoInfo.produtoid_empresa,
           nfe_chave: chaveAcesso || null,
           endpoint_path: pedidoResult.endpointPath,
           dsid: pedidoResult.dsid,
@@ -2566,7 +2735,8 @@ async function runDsliteCreateJob(
       });
     }
 
-    if (!pedidoResult.success) {
+    if (pedidoResult && !pedidoResult.success) {
+      const produtoInfo = produtoContext();
       const dsliteErrorMessage = buildDsliteCreateOrderErrorMessage({
         failureType: pedidoResult.failureType,
         statusHttp: pedidoResult.statusHttp,
@@ -2580,8 +2750,8 @@ async function runDsliteCreateJob(
         evento: 'dslite_create_order_failed',
         respostaMl: {
           fornecedorId: String(fornecedorId),
-          produtoid: String(produto.produtoid || ''),
-          produtoid_empresa: String(produto.produtoid_empresa || ''),
+          produtoid: produtoInfo.produtoid,
+          produtoid_empresa: produtoInfo.produtoid_empresa,
           nfe_chave: chaveAcesso || null,
           dslite_failure_type: pedidoResult.failureType,
           dslite_http_status: pedidoResult.statusHttp,
@@ -2599,8 +2769,8 @@ async function runDsliteCreateJob(
         stage: 'create_order_dslite',
         message: dsliteErrorMessage,
         fornecedor_id: String(fornecedorId),
-        produtoid: String(produto.produtoid || ''),
-        produtoid_empresa: String(produto.produtoid_empresa || ''),
+        produtoid: produtoInfo.produtoid,
+        produtoid_empresa: produtoInfo.produtoid_empresa,
         nfe_chave: chaveAcesso || null,
         dslite_failure_type: pedidoResult.failureType,
         dslite_http_status: pedidoResult.statusHttp,
@@ -2613,29 +2783,116 @@ async function runDsliteCreateJob(
       return;
     }
 
-    if (pedidoResult.status?.toLowerCase().includes('cancelado')) {
+    if (pedidoResult && pedidoResult.status?.toLowerCase().includes('cancelado')) {
       await setStep('create_order_dslite', 'error', undefined, `DSLite retornou pedido cancelado (dsid: ${pedidoResult.dsid})`);
       state = 'error';
       await syncJob();
       return;
     }
-    dsidAtual = Number(pedidoResult.dsid);
-    pedidoStatusFinal = pedidoResult.status || 'criado';
-    await setStep('create_order_dslite', 'success', `Pedido Nº ${pedidoResult.dsid}${supplierDefinedAtCreation ? ' (com fornecedor)' : ' (fallback sem fornecedor)'}`);
-    await registrarEventoNfAuditoria({
-      pedidoId,
-      mlOrderId: mlOrderId ? String(mlOrderId) : null,
-      evento: 'dslite_purchase_created_with_brasilnfe_xml',
-      respostaMl: {
-        dsid: pedidoResult.dsid,
-        nfe_chave: chaveAcesso || null,
-        provider: selectedProvider,
-        create_mode: pedidoResult.createMode,
-        endpoint_path: pedidoResult.endpointPath,
-        create_attempts: createAttempts,
-      },
-      statusResultante: 'success',
-    });
+    if (pedidoResult) {
+      dsidAtual = Number(pedidoResult.dsid);
+      pedidoStatusFinal = pedidoResult.status || 'criado';
+      await setStep('create_order_dslite', 'success', `Pedido Nº ${pedidoResult.dsid}${supplierDefinedAtCreation ? ' (com fornecedor)' : ' (fallback sem fornecedor)'}`);
+      await registrarEventoNfAuditoria({
+        pedidoId,
+        mlOrderId: mlOrderId ? String(mlOrderId) : null,
+        evento: 'dslite_purchase_created_with_brasilnfe_xml',
+        respostaMl: {
+          dsid: pedidoResult.dsid,
+          nfe_chave: chaveAcesso || null,
+          provider: selectedProvider,
+          create_mode: pedidoResult.createMode,
+          endpoint_path: pedidoResult.endpointPath,
+          create_attempts: createAttempts,
+          supplier_payment_mode: supplierPaymentMode,
+        },
+        statusResultante: 'success',
+      });
+    }
+
+    if (dsidAtual) {
+      const compraPayload = {
+        dsid: String(dsidAtual),
+        status: resolveCompraStatus({
+          baseStatus: pedidoStatusFinal,
+          supplierPaymentMode,
+          supplierPaymentStatus: supplierPaymentMode === 'prepaid_pix' && !resumeAfterSupplierPayment ? 'pending' : (existingCompra?.supplier_payment_status || null),
+        }),
+        status_dslite: pedidoStatusFinal,
+        nf_chave: chaveAcesso || null,
+        valor_total: Number((pedidoRow as any)?.total || 0),
+        valor_frete: Number((pedidoRow as any)?.frete || 0),
+        data_criacao: new Date().toISOString(),
+        fornecedor_id: fornecedorId || null,
+        fornecedor_nome: fornecedorNomeResolved,
+        destinatario_nome: String((pedidoRow as any)?.billing_nome || '').trim() || null,
+        destinatario_documento: String((pedidoRow as any)?.billing_documento || '').trim() || null,
+        produto_fornecedor_oferta_id: produtoFornecedorOfertaId,
+        supplier_payment_mode: supplierPaymentMode,
+        supplier_payment_status: supplierPaymentMode === 'prepaid_pix'
+          ? (resumeAfterSupplierPayment ? 'paid' : 'pending')
+          : null,
+        supplier_payment_amount: supplierPaymentAmount && supplierPaymentAmount > 0 ? supplierPaymentAmount : null,
+      };
+
+      if (existingCompra?.id) {
+        await client
+          .from('compras')
+          .update(compraPayload as any)
+          .eq('id', String(existingCompra.id));
+      } else {
+        await client
+          .from('compras')
+          .insert(compraPayload as any);
+      }
+
+      if (supplierPaymentMode === 'balance_account') {
+        const { data: compraForBalance, error: compraForBalanceError } = await client
+          .from('compras')
+          .select('id,dsid')
+          .eq('dsid', String(dsidAtual))
+          .maybeSingle();
+
+        if (!compraForBalanceError && compraForBalance?.id) {
+          await recordSupplierPurchaseDebit({
+            client,
+            fornecedorId,
+            fornecedorNome: fornecedorNomeResolved,
+            compraId: String(compraForBalance.id),
+            dsid: String(dsidAtual),
+            amount: supplierPaymentAmount || 0,
+            reference: `Compra DSLite ${dsidAtual}`,
+            notes: `Débito automático por compra criada no pedido ML ${mlOrderId || pedidoId}`,
+          });
+        }
+      }
+    }
+
+    if (supplierPaymentMode === 'prepaid_pix' && !resumeAfterSupplierPayment) {
+      await client
+        .from('pedidos')
+        .update({
+          dslite_id: String(dsidAtual),
+          dslite_status: pedidoStatusFinal,
+          nfe_chave: chaveAcesso || undefined,
+          nfe_provider: selectedProvider,
+          nfe_last_sync_at: now(),
+          nfe_cfop: extractCfopsFromXml(xml)[0] || null,
+        })
+        .eq('id', pedidoId);
+      await setStep('set_supplier_dslite', 'warning', 'Compra criada e aguardando confirmação manual do PIX ao fornecedor');
+      state = 'warning';
+      result = {
+        stage: 'await_supplier_payment',
+        message: 'Pedido criado na DSLite e aguardando pagamento ao fornecedor para continuar o fluxo.',
+        dsid: dsidAtual,
+        fornecedor_id: fornecedorId,
+        supplier_payment_mode: supplierPaymentMode,
+        supplier_payment_status: 'pending',
+      };
+      await syncJob();
+      return;
+    }
 
     const pendencias: string[] = [...externalWarnings];
 
@@ -2860,11 +3117,11 @@ async function runDsliteCreateJob(
     result = {
       dsid: dsidAtual,
       status: pedidoStatusFinal,
-      produto: {
+      produto: produto ? {
         produtoid: produto.produtoid,
         produtoid_empresa: produto.produtoid_empresa,
         titulo: produto.titulo,
-      },
+      } : null,
       etiquetaStatus,
       etiquetaError,
       pendencias,
@@ -2887,7 +3144,7 @@ async function runDsliteCreateJob(
 
 export async function POST(req: Request) {
   try {
-    const { pedidoId, mlOrderId, nfeProvider, nfePayload } = await req.json();
+    const { pedidoId, mlOrderId, nfeProvider, nfePayload, resumeAfterSupplierPayment } = await req.json();
     if (nfeProvider === 'mercadolivre') {
       await registrarEventoNfAuditoria({
         pedidoId: pedidoId ? String(pedidoId) : null,
@@ -2953,6 +3210,7 @@ export async function POST(req: Request) {
             mlOrderId: mlOrderId ? String(mlOrderId) : null,
             nfeProvider: provider,
             hasNfePayload: Boolean(nfePayload),
+            resumeAfterSupplierPayment: Boolean(resumeAfterSupplierPayment),
           },
         },
       ])),
@@ -2964,6 +3222,7 @@ export async function POST(req: Request) {
       mlOrderId ? String(mlOrderId) : null,
       provider,
       nfePayload || null,
+      { resumeAfterSupplierPayment: Boolean(resumeAfterSupplierPayment) },
     );
 
     return NextResponse.json({ success: true, jobId }, { status: 202 });

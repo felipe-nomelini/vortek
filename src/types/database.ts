@@ -808,8 +808,17 @@ export type Database = {
           destinatario_nome: string | null
           destinatario_documento: string | null
           produto_descricao: string | null
+          produto_fornecedor_oferta_id: string | null
           produto_sku: string | null
           quantidade: number
+          supplier_payment_amount: number | null
+          supplier_payment_confirmed_at: string | null
+          supplier_payment_confirmed_by: string | null
+          supplier_payment_mode: string | null
+          supplier_payment_notes: string | null
+          supplier_payment_receipt_url: string | null
+          supplier_payment_reference: string | null
+          supplier_payment_status: string | null
           created_at: string
         }
         Insert: {
@@ -829,8 +838,17 @@ export type Database = {
           destinatario_nome?: string | null
           destinatario_documento?: string | null
           produto_descricao?: string | null
+          produto_fornecedor_oferta_id?: string | null
           produto_sku?: string | null
           quantidade?: number
+          supplier_payment_amount?: number | null
+          supplier_payment_confirmed_at?: string | null
+          supplier_payment_confirmed_by?: string | null
+          supplier_payment_mode?: string | null
+          supplier_payment_notes?: string | null
+          supplier_payment_receipt_url?: string | null
+          supplier_payment_reference?: string | null
+          supplier_payment_status?: string | null
           created_at?: string
         }
         Update: {
@@ -850,11 +868,220 @@ export type Database = {
           destinatario_nome?: string | null
           destinatario_documento?: string | null
           produto_descricao?: string | null
+          produto_fornecedor_oferta_id?: string | null
           produto_sku?: string | null
           quantidade?: number
+          supplier_payment_amount?: number | null
+          supplier_payment_confirmed_at?: string | null
+          supplier_payment_confirmed_by?: string | null
+          supplier_payment_mode?: string | null
+          supplier_payment_notes?: string | null
+          supplier_payment_receipt_url?: string | null
+          supplier_payment_reference?: string | null
+          supplier_payment_status?: string | null
           created_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "compras_produto_fornecedor_oferta_id_fkey"
+            columns: ["produto_fornecedor_oferta_id"]
+            isOneToOne: false
+            referencedRelation: "produto_fornecedor_ofertas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      produto_fornecedor_ofertas: {
+        Row: {
+          ativo: boolean
+          cest: string | null
+          created_at: string
+          custo: number
+          descricao: string
+          dslite_fornecedor_id: string
+          dslite_produto_id: string
+          estoque: number
+          fornecedor_nome: string | null
+          gtin: string | null
+          id: string
+          imagens: Json
+          last_sync_at: string | null
+          lead_time_dias: number | null
+          marca: string | null
+          nome: string
+          ncm: string | null
+          payment_mode: string
+          prioridade: number
+          produto_id: string
+          sku_oferta: string
+          sku_fornecedor: string | null
+          updated_at: string
+        }
+        Insert: {
+          ativo?: boolean
+          cest?: string | null
+          created_at?: string
+          custo?: number
+          descricao?: string
+          dslite_fornecedor_id: string
+          dslite_produto_id: string
+          estoque?: number
+          fornecedor_nome?: string | null
+          gtin?: string | null
+          id?: string
+          imagens?: Json
+          last_sync_at?: string | null
+          lead_time_dias?: number | null
+          marca?: string | null
+          nome: string
+          ncm?: string | null
+          payment_mode?: string
+          prioridade?: number
+          produto_id: string
+          sku_oferta: string
+          sku_fornecedor?: string | null
+          updated_at?: string
+        }
+        Update: {
+          ativo?: boolean
+          cest?: string | null
+          created_at?: string
+          custo?: number
+          descricao?: string
+          dslite_fornecedor_id?: string
+          dslite_produto_id?: string
+          estoque?: number
+          fornecedor_nome?: string | null
+          gtin?: string | null
+          id?: string
+          imagens?: Json
+          last_sync_at?: string | null
+          lead_time_dias?: number | null
+          marca?: string | null
+          nome?: string
+          ncm?: string | null
+          payment_mode?: string
+          prioridade?: number
+          produto_id?: string
+          sku_oferta?: string
+          sku_fornecedor?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "produto_fornecedor_ofertas_produto_id_fkey"
+            columns: ["produto_id"]
+            isOneToOne: false
+            referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mercadopago_account_movements: {
+        Row: {
+          id: string
+          external_id: string
+          movement_date: string | null
+          description: string | null
+          reference: string | null
+          amount: number
+          movement_type: string | null
+          currency: string | null
+          raw_payload: Json
+          matched_supplier: string | null
+          supplier_balance_movement_id: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          external_id: string
+          movement_date?: string | null
+          description?: string | null
+          reference?: string | null
+          amount?: number
+          movement_type?: string | null
+          currency?: string | null
+          raw_payload?: Json
+          matched_supplier?: string | null
+          supplier_balance_movement_id?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          external_id?: string
+          movement_date?: string | null
+          description?: string | null
+          reference?: string | null
+          amount?: number
+          movement_type?: string | null
+          currency?: string | null
+          raw_payload?: Json
+          matched_supplier?: string | null
+          supplier_balance_movement_id?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mercadopago_account_movements_supplier_balance_movement_id_fkey"
+            columns: ["supplier_balance_movement_id"]
+            isOneToOne: false
+            referencedRelation: "supplier_balance_movements"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      supplier_balance_movements: {
+        Row: {
+          id: string
+          fornecedor_id: string
+          fornecedor_nome: string | null
+          movement_type: string
+          amount: number
+          reference: string | null
+          compra_id: string | null
+          notes: string | null
+          created_by: string | null
+          movement_key: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          fornecedor_id: string
+          fornecedor_nome?: string | null
+          movement_type: string
+          amount: number
+          reference?: string | null
+          compra_id?: string | null
+          notes?: string | null
+          created_by?: string | null
+          movement_key?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          fornecedor_id?: string
+          fornecedor_nome?: string | null
+          movement_type?: string
+          amount?: number
+          reference?: string | null
+          compra_id?: string | null
+          notes?: string | null
+          created_by?: string | null
+          movement_key?: string | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "supplier_balance_movements_compra_id_fkey"
+            columns: ["compra_id"]
+            isOneToOne: false
+            referencedRelation: "compras"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       produtos: {
         Row: {
@@ -883,6 +1110,7 @@ export type Database = {
           ml_status: Database["public"]["Enums"]["ml_status"]
           ncm: string | null
           nome: string
+          oferta_preferencial_id: string | null
           origem_fiscal: string | null
           origem_uf: string | null
           peso_bruto: number
@@ -917,6 +1145,7 @@ export type Database = {
           ml_status?: Database["public"]["Enums"]["ml_status"]
           ncm?: string | null
           nome: string
+          oferta_preferencial_id?: string | null
           origem_fiscal?: string | null
           origem_uf?: string | null
           peso_bruto?: number
@@ -951,6 +1180,7 @@ export type Database = {
           ml_status?: Database["public"]["Enums"]["ml_status"]
           ncm?: string | null
           nome?: string
+          oferta_preferencial_id?: string | null
           origem_fiscal?: string | null
           origem_uf?: string | null
           peso_bruto?: number
@@ -959,7 +1189,15 @@ export type Database = {
           sku?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "produtos_oferta_preferencial_id_fkey"
+            columns: ["oferta_preferencial_id"]
+            isOneToOne: false
+            referencedRelation: "produto_fornecedor_ofertas"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -1024,7 +1262,7 @@ export type Database = {
       }
     }
     Enums: {
-      integracao_tipo: "mercadolivre" | "bling" | "dslite" | "brasilnfe"
+      integracao_tipo: "mercadolivre" | "bling" | "dslite" | "brasilnfe" | "mercadopago"
       ml_status: "ativo" | "pausado" | "sem_anuncio"
       pedido_status:
         | "aberto"

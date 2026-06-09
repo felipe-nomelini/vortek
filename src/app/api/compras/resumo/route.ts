@@ -6,6 +6,7 @@ export const revalidate = 0;
 
 const PENDING_STATUSES = new Set([
   'Aguardando Informações',
+  'Aguardando Pagamento Fornecedor',
   'Iniciado',
   'Aguardando Etiqueta',
   'Solicitado',

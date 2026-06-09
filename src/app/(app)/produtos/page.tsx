@@ -16,6 +16,7 @@ import ProgressModal, { type ProgressStep } from '@/components/modals/ProgressMo
 import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 
 type ProdutoRow = Database['public']['Tables']['produtos']['Row'];
+type ProdutoOfertaRow = Database['public']['Tables']['produto_fornecedor_ofertas']['Row'];
 
 const { Title, Text } = Typography;
 
@@ -38,13 +39,25 @@ const priceFieldOptions = [
   { value: 'profit', label: 'Lucro' },
 ];
 
-const FORNECEDORES = ["FLORATTA JOIAS", "HAYAMAX-PR", "NOVA CENTER", "VITRINE OUTLET"];
+interface ProductMasterListItem {
+  product: Product;
+  preferredOffer: ProdutoOfertaRow | null;
+  offersCount: number;
+}
 
 interface ProductRow {
   key: string;
   product: Product;
+  preferredOffer: ProdutoOfertaRow | null;
+  offersCount: number;
   displayPrice: number;
   profit: number | null;
+}
+
+interface SupplierOption {
+  id: string;
+  label: string;
+  apelido: string;
 }
 
 type MlPublishStatusResponse = {
@@ -150,10 +163,14 @@ function withNotApplicableOption(values: MlCategoryAttributeOption[] = []) {
   return [{ id: NOT_APPLICABLE_ID, name: 'Não se aplica' }, ...values];
 }
 
-function computeDerived(product: Product): { displayPrice: number; profit: number | null } {
+function computeDerived(item: Product | ProductMasterListItem): { displayPrice: number; profit: number | null } {
+  const product = 'product' in item ? item.product : item;
+  const cost = 'preferredOffer' in item
+    ? Number(item.preferredOffer?.custo ?? item.product.cost)
+    : item.cost;
   try {
     const result = calculateSuggestedPrice({
-      cost: product.cost,
+      cost,
       shipping: product.mlShipping,
       mlFee: product.mlFee,
     });
@@ -166,11 +183,11 @@ function computeDerived(product: Product): { displayPrice: number; profit: numbe
 
     const tax = displayPrice * 0.04;
     const mlFeeAmount = displayPrice * product.mlFee;
-    const netProfit = displayPrice - product.cost - product.mlShipping - tax - mlFeeAmount;
+    const netProfit = displayPrice - cost - product.mlShipping - tax - mlFeeAmount;
 
     return { displayPrice, profit: Math.round(netProfit * 100) / 100 };
   } catch {
-    return { displayPrice: Math.round((product.customPrice ?? product.cost) * 100) / 100, profit: null };
+    return { displayPrice: Math.round((product.customPrice ?? cost) * 100) / 100, profit: null };
   }
 }
 
@@ -289,8 +306,9 @@ function mapDBtoProduct(item: ProdutoRow): Product {
 
 export default function ProductsPage() {
   const router = useRouter();
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductMasterListItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [listError, setListError] = useState<string | null>(null);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState<RemoteSortState>({ sortBy: 'sku', sortOrder: 'asc' });
@@ -299,7 +317,7 @@ export default function ProductsPage() {
   const [lastSearch, setLastSearch] = useState('');
   const [filterMLStatus, setFilterMLStatus] = useState<MLStatus | ''>('');
   const [filterFornecedores, setFilterFornecedores] = useState<string[]>([]);
-  const [fornecedorOptions, setFornecedorOptions] = useState<string[]>(FORNECEDORES);
+  const [fornecedorOptions, setFornecedorOptions] = useState<SupplierOption[]>([]);
   const [filterEstoque, setFilterEstoque] = useState<string>('todos');
   const [priceField, setPriceField] = useState<string>('cost');
   const [priceMin, setPriceMin] = useState<number | null>(null);
@@ -314,6 +332,8 @@ export default function ProductsPage() {
   const [mlPublishRetryContext, setMlPublishRetryContext] = useState<MlPublishContext | null>(null);
   const [mlPublishApplyingWholesale, setMlPublishApplyingWholesale] = useState(false);
   const mlPublishPollingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const productsRequestRef = useRef(0);
+  const statsRequestRef = useRef(0);
   const [savingCustomPriceById, setSavingCustomPriceById] = useState<Record<string, boolean>>({});
   const [persistedCustomPriceById, setPersistedCustomPriceById] = useState<Record<string, number | null>>({});
   const [mlModal, setMlModal] = useState<{
@@ -951,7 +971,10 @@ export default function ProductsPage() {
   };
 
   const fetchProducts = useCallback(async () => {
+    const requestId = productsRequestRef.current + 1;
+    productsRequestRef.current = requestId;
     setLoading(true);
+    setListError(null);
     try {
       const params = new URLSearchParams({ page: String(page) });
       appendRemoteSortParams(params, sort);
@@ -963,20 +986,47 @@ export default function ProductsPage() {
       if (priceMax !== null) params.set('priceMax', String(priceMax));
       params.set('priceField', priceField);
       const res = await fetch(`/api/produtos?${params}`);
-      if (res.ok) {
-        const json = await res.json();
-        const data = json.data || [];
-        const mapped: Product[] = data.map(mapDBtoProduct);
-        setProducts(mapped);
-        setPersistedCustomPriceById(Object.fromEntries(
-          mapped.map((p) => [p.id, p.customPrice ?? null])
-        ));
-        setTotal(json.total || 0);
-        if (json.fornecedores?.length) setFornecedorOptions(json.fornecedores);
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(json?.erro || json?.error || 'Erro ao carregar produtos');
       }
-    } catch {}
-    setLoading(false);
-  }, [page, sort, lastSearch, filterFornecedores, filterMLStatus, filterEstoque, priceMin, priceMax, priceField]);
+      const data = json.data || [];
+      const mapped: ProductMasterListItem[] = data.map((item: any) => ({
+        product: mapDBtoProduct(item.product),
+        preferredOffer: item.preferredOffer ? {
+          ...item.preferredOffer,
+          custo: Number(item.preferredOffer.custo || 0),
+          estoque: Number(item.preferredOffer.estoque || 0),
+          ativo: Boolean(item.preferredOffer.ativo),
+        } : null,
+        offersCount: Number(item.offersCount || 0),
+      }));
+      if (productsRequestRef.current !== requestId) return;
+      setProducts(mapped);
+      setPersistedCustomPriceById(Object.fromEntries(
+        mapped.map((item) => [item.product.id, item.product.customPrice ?? null])
+      ));
+      setTotal(json.total || 0);
+      setFornecedorOptions(
+        Array.isArray(json.fornecedores)
+          ? json.fornecedores.map((item: any) => ({
+            id: String(item?.id || ''),
+            label: String(item?.label || item?.apelido || ''),
+            apelido: String(item?.apelido || item?.label || ''),
+          })).filter((item: SupplierOption) => item.id && item.label)
+          : [],
+      );
+    } catch (error: any) {
+      if (productsRequestRef.current !== requestId) return;
+      setProducts([]);
+      setTotal(0);
+      setListError(error?.message || 'Erro ao carregar produtos');
+      messageApi.error(error?.message || 'Erro ao carregar produtos');
+    } finally {
+      if (productsRequestRef.current !== requestId) return;
+      setLoading(false);
+    }
+  }, [page, sort, lastSearch, filterFornecedores, filterMLStatus, filterEstoque, priceMin, priceMax, priceField, messageApi]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -993,6 +1043,8 @@ export default function ProductsPage() {
   }, [filterMLStatus, filterEstoque, filterFornecedores, priceField, priceMin, priceMax]);
 
   const fetchStats = useCallback(async () => {
+    const requestId = statsRequestRef.current + 1;
+    statsRequestRef.current = requestId;
     try {
       const params = new URLSearchParams();
       if (lastSearch) params.set('search', lastSearch);
@@ -1003,17 +1055,22 @@ export default function ProductsPage() {
       if (priceMax !== null) params.set('priceMax', String(priceMax));
       params.set('priceField', priceField);
       const res = await fetch(`/api/produtos/resumo?${params}`);
-      if (res.ok) {
-        const json = await res.json();
-        setStats({
-          total: json.total || 0,
-          comEstoque: json.comEstoque || 0,
-          semAnuncio: json.semAnuncio || 0,
-          lucroMedio: json.lucroMedio || 0,
-          receitaPotencial: json.receitaPotencial || 0,
-        });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(json?.erro || json?.error || 'Erro ao carregar resumo de produtos');
       }
-    } catch {}
+      if (statsRequestRef.current !== requestId) return;
+      setStats({
+        total: json.total || 0,
+        comEstoque: json.comEstoque || 0,
+        semAnuncio: json.semAnuncio || 0,
+        lucroMedio: json.lucroMedio || 0,
+        receitaPotencial: json.receitaPotencial || 0,
+      });
+    } catch (error: any) {
+      if (statsRequestRef.current !== requestId) return;
+      console.error('[produtos/page] Falha ao carregar resumo:', error?.message || error);
+    }
   }, [lastSearch, filterFornecedores, filterMLStatus, filterEstoque, priceMin, priceMax, priceField]);
 
   useEffect(() => {
@@ -1035,7 +1092,11 @@ export default function ProductsPage() {
 
     if (normalized !== null && normalized < 0) {
       messageApi.warning('Preço sugerido não pode ser negativo.');
-      setProducts((prev) => prev.map((p) => (p.id === productId ? { ...p, customPrice: persisted } : p)));
+      setProducts((prev) => prev.map((item) => (
+        item.product.id === productId
+          ? { ...item, product: { ...item.product, customPrice: persisted } }
+          : item
+      )));
       return;
     }
 
@@ -1052,20 +1113,35 @@ export default function ProductsPage() {
       if (!res.ok) {
         throw new Error(json?.error || json?.erro || 'Falha ao salvar preço sugerido');
       }
-      setProducts((prev) => prev.map((p) => (p.id === productId ? { ...p, customPrice: normalized } : p)));
+      setProducts((prev) => prev.map((item) => (
+        item.product.id === productId
+          ? { ...item, product: { ...item.product, customPrice: normalized } }
+          : item
+      )));
       setPersistedCustomPriceById((prev) => ({ ...prev, [productId]: normalized }));
     } catch (error: any) {
       messageApi.error(error?.message || 'Erro ao salvar preço sugerido');
-      setProducts((prev) => prev.map((p) => (p.id === productId ? { ...p, customPrice: previousPersisted } : p)));
+      setProducts((prev) => prev.map((item) => (
+        item.product.id === productId
+          ? { ...item, product: { ...item.product, customPrice: previousPersisted } }
+          : item
+      )));
     } finally {
       setSavingCustomPriceById((prev) => ({ ...prev, [productId]: false }));
     }
   }, [messageApi, persistedCustomPriceById]);
 
   const rows: ProductRow[] = useMemo(() => {
-    return products.map(p => {
-      const { displayPrice, profit } = computeDerived(p);
-      return { key: p.id, product: p, displayPrice, profit };
+    return products.map(item => {
+      const { displayPrice, profit } = computeDerived(item);
+      return {
+        key: item.product.id,
+        product: item.product,
+        preferredOffer: item.preferredOffer,
+        offersCount: item.offersCount,
+        displayPrice,
+        profit,
+      };
     });
   }, [products]);
 
@@ -1073,7 +1149,7 @@ export default function ProductsPage() {
 
   const columns: TableProps<ProductRow>['columns'] = [
     {
-      title: 'SKU', dataIndex: ['product', 'sku'], key: 'sku', width: 130,
+      title: 'SKU', dataIndex: ['product', 'sku'], key: 'sku', width: 150,
       sorter: true,
       sortOrder: getRemoteSortOrder('sku', sort),
     },
@@ -1081,22 +1157,40 @@ export default function ProductsPage() {
       title: 'Produto', dataIndex: ['product', 'name'], key: 'nome',
       sorter: true,
       sortOrder: getRemoteSortOrder('nome', sort),
-      render: (name: string, record) => (
-        <a
-          onClick={() => router.push(`/produtos/${record.product.id}`)}
-          style={{ color: '#1677ff', cursor: 'pointer' }}
-        >
-          {name}
-        </a>
+      render: (_: string, record) => (
+        <div>
+          <a
+            onClick={() => router.push(`/produtos/${record.product.id}`)}
+            style={{ color: '#1677ff', cursor: 'pointer' }}
+          >
+            {record.product.name}
+          </a>
+          <div style={{ marginTop: 4 }}>
+            <Space size={6} wrap>
+              {record.preferredOffer && <Tag color="green" icon={<StarOutlined />}>Oferta ativa</Tag>}
+              {record.preferredOffer && record.preferredOffer.ativo === false && <Tag>Oferta inativa</Tag>}
+              {record.preferredOffer && (
+                <Tag color={record.preferredOffer.payment_mode === 'balance_account' ? 'blue' : record.preferredOffer.payment_mode === 'prepaid_pix' ? 'orange' : 'default'}>
+                  {record.preferredOffer.payment_mode === 'balance_account' ? 'Saldo Hayamax' : record.preferredOffer.payment_mode === 'prepaid_pix' ? 'PIX antecipado' : 'Pós-pago'}
+                </Tag>
+              )}
+              <Tag color="default">{record.offersCount} oferta{record.offersCount === 1 ? '' : 's'}</Tag>
+            </Space>
+          </div>
+        </div>
       ),
     },
     {
-      title: 'Fornecedor', dataIndex: ['product', 'fornecedor'], key: 'fornecedor', width: 140,
+      title: 'Fornecedor Atual', dataIndex: ['product', 'fornecedor'], key: 'fornecedor', width: 170,
       sorter: true,
       sortOrder: getRemoteSortOrder('fornecedor', sort),
-      render: (v: string | null) => v
+      render: (v: string | null, record) => v
         ? <Tag color="default">{v}</Tag>
-        : <span style={{ color: '#666' }}>—</span>,
+        : (
+          <span style={{ color: '#666' }}>
+            {record.preferredOffer?.fornecedor_nome || '—'}
+          </span>
+        ),
     },
     {
       title: 'Estoque', dataIndex: ['product', 'stock'], key: 'estoque', width: 90,
@@ -1107,7 +1201,7 @@ export default function ProductsPage() {
       ),
     },
     {
-      title: 'Custo', dataIndex: ['product', 'cost'], key: 'custo', width: 110,
+      title: 'Custo Atual', dataIndex: ['product', 'cost'], key: 'custo', width: 120,
       sorter: true,
       sortOrder: getRemoteSortOrder('custo', sort),
       render: (v: number) => formatCurrency(v),
@@ -1132,30 +1226,34 @@ export default function ProductsPage() {
         const val = record.product.customPrice;
         const isSaving = Boolean(savingCustomPriceById[record.product.id]);
         return (
-          <InputNumber
-            size="small"
-            style={{ width: 140 }}
-            disabled={isSaving}
-            status={isSaving ? 'warning' : undefined}
-            value={val ?? record.displayPrice}
-            onChange={v => {
-              const newProducts = products.map(p =>
-                p.id === record.product.id ? { ...p, customPrice: v ?? null } : p
-              );
-              setProducts(newProducts);
-            }}
-            onBlur={() => {
-              const latest = products.find((p) => p.id === record.product.id);
-              if (!latest) return;
-              persistCustomPrice(record.product.id, latest.customPrice ?? null);
-            }}
-            formatter={(v) => v !== undefined ? formatCurrency(typeof v === 'string' ? parseFloat(v) : v) : ''}
-            parser={(v) => {
-              if (!v || !String(v).trim()) return null as any;
-              const parsed = parseFloat(String(v).replace(/R\$\s?/g, '').replace(/\./g, '').replace(',', '.'));
-              return Number.isNaN(parsed) ? null as any : parsed;
-            }}
-          />
+          <div>
+            <InputNumber
+              size="small"
+              style={{ width: 140 }}
+              disabled={isSaving}
+              status={isSaving ? 'warning' : undefined}
+              value={val ?? record.displayPrice}
+              onChange={v => {
+                const newProducts = products.map(item =>
+                  item.product.id === record.product.id
+                    ? { ...item, product: { ...item.product, customPrice: v ?? null } }
+                    : item
+                );
+                setProducts(newProducts);
+              }}
+              onBlur={() => {
+                const latest = products.find((item) => item.product.id === record.product.id);
+                if (!latest) return;
+                persistCustomPrice(record.product.id, latest.product.customPrice ?? null);
+              }}
+              formatter={(v) => v !== undefined ? formatCurrency(typeof v === 'string' ? parseFloat(v) : v) : ''}
+              parser={(v) => {
+                if (!v || !String(v).trim()) return null as any;
+                const parsed = parseFloat(String(v).replace(/R\$\s?/g, '').replace(/\./g, '').replace(',', '.'));
+                return Number.isNaN(parsed) ? null as any : parsed;
+              }}
+            />
+          </div>
         );
       },
     },
@@ -1188,6 +1286,7 @@ export default function ProductsPage() {
         const isUpdatingCurrent = updatingPriceProductId === record.product.id;
         const items: { key: string; label: React.ReactNode; icon?: React.ReactNode }[] = [
           { key: 'edit', label: 'Editar', icon: <EditOutlined /> },
+          { key: 'offers', label: 'Ver ofertas', icon: <StarOutlined /> },
         ];
         if (record.product.mlStatus === 'sem_anuncio') {
           items.push({ key: 'criarAnuncio', label: 'Criar Anúncio ML', icon: <PlusOutlined /> });
@@ -1206,6 +1305,7 @@ export default function ProductsPage() {
               selectable: false,
               onClick: ({ key }) => {
                 if (key === 'edit') router.push(`/produtos/${record.product.id}`);
+                if (key === 'offers') router.push(`/produtos/ofertas?search=${encodeURIComponent(record.product.sku)}`);
                 if (key === 'criarAnuncio') abrirCriarAnuncioML(record.product);
                 if (key === 'atualizarPrecoMl') atualizarPrecoMl(record.product);
               },
@@ -1235,7 +1335,12 @@ export default function ProductsPage() {
   return (
     <div>
       {contextHolder}
-      <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Produtos</Title>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+        <Title level={4} style={{ color: '#e0e0e0', marginBottom: 0 }}>Produtos</Title>
+        <Button onClick={() => router.push('/produtos/ofertas')}>
+          Ver Ofertas
+        </Button>
+      </div>
 
       {/* Mini Dashboard */}
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
@@ -1311,7 +1416,7 @@ export default function ProductsPage() {
             }}
             options={[
               ...(filterFornecedores.length === 0 ? [{ value: '__all__', label: 'Todos' }] : []),
-              ...fornecedorOptions.map(f => ({ value: f, label: f })),
+              ...fornecedorOptions.map((fornecedor) => ({ value: fornecedor.id, label: fornecedor.label })),
             ]}
             style={{ minWidth: 180, maxWidth: 250 }}
             maxTagCount={2}
@@ -1333,6 +1438,15 @@ export default function ProductsPage() {
       </div>
       <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
         <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
+          {listError && (
+            <Alert
+              type="error"
+              showIcon
+              message="Falha ao carregar a lista de produtos"
+              description={listError}
+              style={{ marginBottom: 16, background: '#2a1215', borderColor: '#ff4d4f' }}
+            />
+          )}
           <ResizableTable<ProductRow>
             storageKey="produtos"
             dataSource={rows}
@@ -1344,7 +1458,7 @@ export default function ProductsPage() {
               pageSize: 100,
               total,
               showSizeChanger: false,
-              showTotal: (t) => `${t} produtos`,
+              showTotal: (t) => `${t} ofertas`,
             }}
             onChange={handleTableChange}
             scroll={{ x: 1200 }}
@@ -1378,7 +1492,7 @@ export default function ProductsPage() {
       >
         {mlModal.loading && mlModal.categorias.length === 0 ? (
           <div style={{ textAlign: 'center', padding: 20 }}>
-            <LoadingOutlined style={{ fontSize: 24 }} />
+            <LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />
             <p style={{ marginTop: 8, color: '#a0a0a0' }}>Buscando categorias...</p>
           </div>
         ) : (

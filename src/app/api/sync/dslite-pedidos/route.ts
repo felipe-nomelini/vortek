@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { fetchDslite } from '@/services/dslite';
 import { createServiceClient } from '@/lib/supabase';
+import { inferSupplierPaymentMode, resolveCompraStatus } from '@/lib/produto-fornecedor';
+import { recordSupplierPurchaseDebit } from '@/lib/supplier-balance';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 
 export const maxDuration = 300;
@@ -167,6 +169,7 @@ export async function POST(request: Request) {
         recordsSeen += 1;
         try {
           const item = pedido.items?.[0];
+          const supplierPaymentMode = inferSupplierPaymentMode(pedido.fornecedor?.fornecedorid ? String(pedido.fornecedor.fornecedorid) : '');
           const payload = {
             dsid: String(pedido.dsid),
             status: pedido.status,
@@ -185,18 +188,33 @@ export async function POST(request: Request) {
             produto_descricao: item?.nf_descricao || undefined,
             produto_sku: item?.nf_produtoid || undefined,
             quantidade: item?.quantidade || 1,
+            supplier_payment_mode: supplierPaymentMode,
+            supplier_payment_status: supplierPaymentMode === 'prepaid_pix' ? 'pending' : null,
+            supplier_payment_amount: Number(pedido.valor_total || 0) || null,
           };
 
           const { data: existente } = await client
             .from('compras')
-            .select('id')
+            .select('id,supplier_payment_mode,supplier_payment_status')
             .eq('dsid', String(pedido.dsid))
             .maybeSingle();
 
           if (existente?.id) {
+            const existingPaymentMode = String((existente as any)?.supplier_payment_mode || '').trim() || null;
+            const existingPaymentStatus = String((existente as any)?.supplier_payment_status || '').trim() || null;
+            const updatePayload = {
+              ...payload,
+              status: resolveCompraStatus({
+                baseStatus: pedido.status,
+                supplierPaymentMode: existingPaymentMode || supplierPaymentMode,
+                supplierPaymentStatus: existingPaymentStatus || (supplierPaymentMode === 'prepaid_pix' ? 'pending' : null),
+              }),
+              supplier_payment_mode: existingPaymentMode || supplierPaymentMode,
+              supplier_payment_status: existingPaymentStatus || (supplierPaymentMode === 'prepaid_pix' ? 'pending' : null),
+            };
             const { error: updateError } = await client
               .from('compras')
-              .update(payload as any)
+              .update(updatePayload as any)
               .eq('id', existente.id);
             if (updateError) {
               failed += 1;
@@ -209,9 +227,17 @@ export async function POST(request: Request) {
               updated += 1;
             }
           } else {
+            const insertPayload = {
+              ...payload,
+              status: resolveCompraStatus({
+                baseStatus: pedido.status,
+                supplierPaymentMode,
+                supplierPaymentStatus: supplierPaymentMode === 'prepaid_pix' ? 'pending' : null,
+              }),
+            };
             const { error: insertError } = await client
               .from('compras')
-              .insert(payload as any);
+              .insert(insertPayload as any);
             if (insertError) {
               failed += 1;
               errors.push({
@@ -221,6 +247,27 @@ export async function POST(request: Request) {
               });
             } else {
               inserted += 1;
+            }
+          }
+
+          if (supplierPaymentMode === 'balance_account') {
+            const { data: compraBalance } = await client
+              .from('compras')
+              .select('id,dsid')
+              .eq('dsid', String(pedido.dsid))
+              .maybeSingle();
+
+            if (compraBalance?.id) {
+              await recordSupplierPurchaseDebit({
+                client,
+                fornecedorId: pedido.fornecedor?.fornecedorid ? String(pedido.fornecedor.fornecedorid) : '',
+                fornecedorNome: pedido.fornecedor?.nome || pedido.fornecedor?.apelido || null,
+                compraId: String(compraBalance.id),
+                dsid: String(pedido.dsid),
+                amount: Number(pedido.valor_total || 0) || 0,
+                reference: `Compra DSLite ${pedido.dsid}`,
+                notes: 'Débito automático por sync de compras DSLite',
+              });
             }
           }
 

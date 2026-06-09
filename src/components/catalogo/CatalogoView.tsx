@@ -941,7 +941,18 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
         return <span style={{ color }}>{formatCurrency(n)}</span>;
       },
     },
-    { title: 'Lucro Estimado', dataIndex: 'lucro_unitario_estimado', key: 'lucro_unitario_estimado', width: 130, render: (v) => (v === null ? '—' : formatCurrency(Number(v))) },
+    {
+      title: 'Lucro/Prejuízo Estimado',
+      dataIndex: 'lucro_unitario_estimado',
+      key: 'lucro_unitario_estimado',
+      width: 170,
+      render: (v) => {
+        if (v === null) return '—';
+        const n = Number(v);
+        const color = n > 0 ? '#52c41a' : n < 0 ? '#ff4d4f' : '#a0a0a0';
+        return <span style={{ color }}>{formatCurrency(n)}</span>;
+      },
+    },
     {
       title: 'Classe',
       dataIndex: 'classe',
@@ -1121,7 +1132,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
   const anunciosTabContent = (
     <>
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
-        <Spin spinning={loadingResumoNoCatalogo} indicator={<LoadingOutlined style={{ fontSize: 20, color: '#1677ff' }} spin />}>
+        <Spin spinning={loadingResumoNoCatalogo} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
           <Row gutter={[16, 16]}>
             <Col xs={24} sm={12} md={8} lg={4}>
               <Statistic title={<span style={{ color: '#a0a0a0' }}>Total</span>} value={resumoNoCatalogo.total} valueStyle={{ color: '#1677ff', fontWeight: 700, fontSize: 24 }} />
@@ -1192,7 +1203,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       </div>
 
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-        <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 24, color: '#1677ff' }} spin />}>
+        <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
           <ResizableTable<NoCatalogoRow>
             storageKey="catalogo-no-catalogo"
             rowKey="ml_item_id"
@@ -1274,7 +1285,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       </div>
 
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-        <Spin spinning={analiseLoading} indicator={<LoadingOutlined style={{ fontSize: 24, color: '#1677ff' }} spin />}>
+        <Spin spinning={analiseLoading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
           <ResizableTable<AnalisePrecoRow>
             storageKey="catalogo-no-catalogo-reanalise"
             rowKey="ml_item_id"
@@ -1344,7 +1355,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
           </div>
 
           <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-            <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 24, color: '#1677ff' }} spin />}>
+            <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
               <ResizableTable<ElegivelRow>
                 storageKey="catalogo-elegiveis"
                 rowKey="ml_item_id"

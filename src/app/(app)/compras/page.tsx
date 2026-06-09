@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useMemo, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import {
-  Input, Select, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic,
+  Input, InputNumber, Select, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic,
 } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
@@ -26,16 +26,24 @@ interface Compra {
   data_criacao: string;
   rastreio: string | null;
   fornecedor_nome: string | null;
+  fornecedor_id: string | null;
   destinatario_nome: string | null;
   destinatario_documento: string | null;
   produto_descricao: string | null;
   produto_sku: string | null;
   quantidade: number;
+  supplier_payment_mode: 'postpaid' | 'prepaid_pix' | 'balance_account' | null;
+  supplier_payment_status: 'pending' | 'paid' | 'failed' | 'cancelled' | null;
+  supplier_payment_amount: number | null;
+  supplier_payment_reference: string | null;
+  supplier_payment_receipt_url: string | null;
+  supplier_payment_notes: string | null;
 }
 
 const statusOptions = [
   { value: '', label: 'Todos' },
   { value: 'Aguardando Informações', label: 'Aguardando Informações' },
+  { value: 'Aguardando Pagamento Fornecedor', label: 'Aguardando Pagamento Fornecedor' },
   { value: 'Iniciado', label: 'Iniciado' },
   { value: 'Aguardando Etiqueta', label: 'Aguardando Etiqueta' },
   { value: 'Solicitado', label: 'Solicitado' },
@@ -47,6 +55,7 @@ const statusOptions = [
 
 const statusColor: Record<string, string> = {
   'Aguardando Informações': 'orange',
+  'Aguardando Pagamento Fornecedor': 'gold',
   'Iniciado': 'blue',
   'Aguardando Etiqueta': 'cyan',
   'Solicitado': 'geekblue',
@@ -68,6 +77,20 @@ export default function ComprasPage() {
   const [dateRange, setDateRange] = useState<[string | null, string | null]>([null, null]);
 
   const [messageApi, contextHolder] = message.useMessage();
+  const [paymentModalOpen, setPaymentModalOpen] = useState(false);
+  const [selectedCompra, setSelectedCompra] = useState<Compra | null>(null);
+  const [confirmingPayment, setConfirmingPayment] = useState(false);
+  const [paymentReference, setPaymentReference] = useState('');
+  const [paymentReceiptUrl, setPaymentReceiptUrl] = useState('');
+  const [paymentNotes, setPaymentNotes] = useState('');
+  const [hayamaxBalance, setHayamaxBalance] = useState<number | null>(null);
+  const [hayamaxLowBalance, setHayamaxLowBalance] = useState(false);
+  const [hayamaxLastTopup, setHayamaxLastTopup] = useState<{ amount: number; source: string; reference: string | null } | null>(null);
+  const [topupModalOpen, setTopupModalOpen] = useState(false);
+  const [topupAmount, setTopupAmount] = useState<number | null>(1000);
+  const [topupReference, setTopupReference] = useState('');
+  const [topupNotes, setTopupNotes] = useState('');
+  const [savingTopup, setSavingTopup] = useState(false);
   const [summary, setSummary] = useState({
     total: 0,
     pendentes: 0,
@@ -129,6 +152,19 @@ export default function ComprasPage() {
       } else {
         messageApi.error('Erro ao carregar resumo de compras');
       }
+
+      const balanceRes = await fetch('/api/fornecedores/saldo-hayamax');
+      if (balanceRes.ok) {
+        const json = await balanceRes.json();
+        setHayamaxBalance(Number(json.balance || 0));
+        setHayamaxLowBalance(Boolean(json.lowBalance));
+        const lastTopup = (json.movements || []).find((movement: any) => movement?.movement_type === 'topup');
+        setHayamaxLastTopup(lastTopup ? {
+          amount: Number(lastTopup.amount || 0),
+          source: String(lastTopup.created_by || '').startsWith('mercadopago') ? 'Mercado Pago' : 'Manual',
+          reference: lastTopup.reference || null,
+        } : null);
+      }
     } catch {
       messageApi.error('Erro ao conectar');
     }
@@ -142,6 +178,101 @@ export default function ComprasPage() {
   useEffect(() => {
     setPage(1);
   }, [search, statusFilter, dateRange]);
+
+  const openPaymentModal = (compra: Compra) => {
+    setSelectedCompra(compra);
+    setPaymentReference(compra.supplier_payment_reference || '');
+    setPaymentReceiptUrl(compra.supplier_payment_receipt_url || '');
+    setPaymentNotes(compra.supplier_payment_notes || '');
+    setPaymentModalOpen(true);
+  };
+
+  const closePaymentModal = () => {
+    if (confirmingPayment) return;
+    setPaymentModalOpen(false);
+    setSelectedCompra(null);
+    setPaymentReference('');
+    setPaymentReceiptUrl('');
+    setPaymentNotes('');
+  };
+
+  const handleConfirmSupplierPayment = async () => {
+    if (!selectedCompra) return;
+    setConfirmingPayment(true);
+    try {
+      const res = await fetch(`/api/compras/${selectedCompra.id}/confirmar-pagamento`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          supplier_payment_reference: paymentReference,
+          supplier_payment_receipt_url: paymentReceiptUrl,
+          supplier_payment_notes: paymentNotes,
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(json.error || 'Erro ao confirmar pagamento do fornecedor');
+      }
+      messageApi.success(
+        json.jobId
+          ? `Pagamento confirmado. Fluxo DSLite retomado no job ${json.jobId}.`
+          : 'Pagamento confirmado com sucesso.',
+      );
+      closePaymentModal();
+      await fetchData();
+    } catch (err: any) {
+      messageApi.error(err.message || 'Erro ao confirmar pagamento do fornecedor');
+    } finally {
+      setConfirmingPayment(false);
+    }
+  };
+
+  const handleRegisterHayamaxTopup = async () => {
+    setSavingTopup(true);
+    try {
+      const res = await fetch('/api/fornecedores/saldo-hayamax', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: topupAmount,
+          reference: topupReference,
+          notes: topupNotes,
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(json.error || 'Erro ao registrar boleto Hayamax');
+      setHayamaxBalance(Number(json.balance || 0));
+      setHayamaxLowBalance(Number(json.balance || 0) < 1000);
+      setTopupModalOpen(false);
+      setTopupAmount(1000);
+      setTopupReference('');
+      setTopupNotes('');
+      messageApi.success('Boleto Hayamax registrado.');
+    } catch (err: any) {
+      messageApi.error(err.message || 'Erro ao registrar boleto Hayamax');
+    } finally {
+      setSavingTopup(false);
+    }
+  };
+
+  const renderSupplierPaymentTag = (record: Compra) => {
+    if (record.supplier_payment_mode === 'balance_account') {
+      return <Tag color="blue">Saldo Hayamax</Tag>;
+    }
+    if (record.supplier_payment_mode !== 'prepaid_pix') {
+      return <span style={{ color: '#666' }}>—</span>;
+    }
+    if (record.supplier_payment_status === 'paid') {
+      return <Tag color="green">PIX pago</Tag>;
+    }
+    if (record.supplier_payment_status === 'failed') {
+      return <Tag color="red">PIX falhou</Tag>;
+    }
+    if (record.supplier_payment_status === 'cancelled') {
+      return <Tag color="default">PIX cancelado</Tag>;
+    }
+    return <Tag color="gold">PIX pendente</Tag>;
+  };
 
   const columns: TableProps<Compra>['columns'] = [
     {
@@ -191,6 +322,19 @@ export default function ComprasPage() {
       ),
     },
     {
+      title: 'Fornecedor', dataIndex: 'fornecedor_nome', key: 'fornecedor_nome', width: 180,
+      render: (fornecedorNome: string | null, record: Compra) => (
+        <div>
+          <div style={{ color: '#e0e0e0', fontSize: 13 }}>{fornecedorNome || '—'}</div>
+          {record.fornecedor_id && (
+            <div style={{ color: '#888', fontSize: 11, fontFamily: 'monospace' }}>
+              fornecedor {record.fornecedor_id}
+            </div>
+          )}
+        </div>
+      ),
+    },
+    {
       title: 'Produto', dataIndex: 'produto_descricao', key: 'produto_descricao',
       sorter: true,
       sortOrder: getRemoteSortOrder('produto_descricao', sort),
@@ -214,6 +358,19 @@ export default function ComprasPage() {
       sorter: true,
       sortOrder: getRemoteSortOrder('valor_total', sort),
       render: (v: number) => formatCurrency(v || 0),
+    },
+    {
+      title: 'Pagto. Fornecedor', dataIndex: 'supplier_payment_status', key: 'supplier_payment_status', width: 170,
+      render: (_: string | null, record: Compra) => (
+        <div>
+          {renderSupplierPaymentTag(record)}
+          {(record.supplier_payment_mode === 'prepaid_pix' || record.supplier_payment_mode === 'balance_account') && (
+            <div style={{ color: '#888', fontSize: 11 }}>
+              {record.supplier_payment_amount ? formatCurrency(record.supplier_payment_amount) : 'Valor não informado'}
+            </div>
+          )}
+        </div>
+      ),
     },
     {
       title: 'Status', dataIndex: 'status', key: 'status', width: 140,
@@ -241,12 +398,18 @@ export default function ComprasPage() {
         const items = [
           { key: 'view', label: 'Ver Detalhes' },
           { key: 'track', label: 'Rastrear' },
+          ...(record.supplier_payment_mode === 'prepaid_pix' && record.supplier_payment_status === 'pending'
+            ? [{ key: 'confirm_supplier_payment', label: 'Confirmar pagamento do fornecedor' }]
+            : []),
         ];
         return (
           <Dropdown
             menu={{ items, onClick: ({ key }) => {
               if (key === 'track' && record.rastreio) {
                 window.open(`https://www.linkcorreios.com.br/?id=${record.rastreio}`, '_blank');
+              }
+              if (key === 'confirm_supplier_payment') {
+                openPaymentModal(record);
               }
             }}}
             trigger={['click']}
@@ -324,6 +487,34 @@ export default function ComprasPage() {
         </Row>
       </div>
 
+      <div style={{ background: '#141414', border: `1px solid ${hayamaxLowBalance ? '#faad14' : '#303030'}`, borderRadius: 8, padding: 16, marginBottom: 16 }}>
+        <Row gutter={[16, 16]} align="middle">
+          <Col flex="auto">
+            <Statistic
+              title={<span style={{ color: '#a0a0a0' }}>Saldo Hayamax</span>}
+              value={hayamaxBalance === null ? '—' : formatCurrency(hayamaxBalance)}
+              valueStyle={{ color: hayamaxLowBalance ? '#faad14' : '#73d13d', fontWeight: 700, fontSize: 24 }}
+            />
+            {hayamaxLowBalance && (
+              <Text style={{ color: '#faad14' }}>Saldo baixo. Pague boleto Hayamax de R$ 1.000 ou mais.</Text>
+            )}
+            {hayamaxLastTopup && (
+              <div style={{ marginTop: 4 }}>
+                <Text style={{ color: '#8c8c8c', fontSize: 12 }}>
+                  Último crédito: {formatCurrency(hayamaxLastTopup.amount)} · Origem: {hayamaxLastTopup.source}
+                  {hayamaxLastTopup.reference ? ` · ${hayamaxLastTopup.reference}` : ''}
+                </Text>
+              </div>
+            )}
+          </Col>
+          <Col>
+            <Button type="primary" onClick={() => setTopupModalOpen(true)}>
+              Registrar boleto Hayamax
+            </Button>
+          </Col>
+        </Row>
+      </div>
+
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
         <Row gutter={[8, 8]} align="middle">
           <Col>
@@ -378,6 +569,91 @@ export default function ComprasPage() {
           />
         </div>
       </Spin>
+
+      <Modal
+        title="Confirmar pagamento do fornecedor"
+        open={paymentModalOpen}
+        onCancel={closePaymentModal}
+        onOk={() => void handleConfirmSupplierPayment()}
+        okText="Confirmar pagamento"
+        cancelText="Cancelar"
+        confirmLoading={confirmingPayment}
+      >
+        <Space direction="vertical" size={12} style={{ width: '100%' }}>
+          <div>
+            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Compra</div>
+            <div style={{ color: '#e0e0e0' }}>
+              {selectedCompra ? `#${String(selectedCompra.dsid).padStart(6, '0')}` : '—'}
+            </div>
+          </div>
+          <div>
+            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Fornecedor</div>
+            <div style={{ color: '#e0e0e0' }}>{selectedCompra?.fornecedor_nome || '—'}</div>
+          </div>
+          <div>
+            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Valor esperado</div>
+            <div style={{ color: '#e0e0e0' }}>
+              {selectedCompra?.supplier_payment_amount ? formatCurrency(selectedCompra.supplier_payment_amount) : '—'}
+            </div>
+          </div>
+          <div>
+            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Referência do pagamento</div>
+            <Input
+              value={paymentReference}
+              onChange={(e) => setPaymentReference(e.target.value)}
+              placeholder="Ex.: PIX 123456 / ID da transação"
+            />
+          </div>
+          <div>
+            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>URL do comprovante</div>
+            <Input
+              value={paymentReceiptUrl}
+              onChange={(e) => setPaymentReceiptUrl(e.target.value)}
+              placeholder="https://..."
+            />
+          </div>
+          <div>
+            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Observações</div>
+            <Input.TextArea
+              rows={3}
+              value={paymentNotes}
+              onChange={(e) => setPaymentNotes(e.target.value)}
+              placeholder="Observações internas do pagamento"
+            />
+          </div>
+        </Space>
+      </Modal>
+
+      <Modal
+        title="Registrar boleto Hayamax"
+        open={topupModalOpen}
+        onCancel={() => setTopupModalOpen(false)}
+        onOk={() => void handleRegisterHayamaxTopup()}
+        okText="Registrar"
+        cancelText="Cancelar"
+        confirmLoading={savingTopup}
+      >
+        <Space direction="vertical" size={12} style={{ width: '100%' }}>
+          <div>
+            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Valor pago</div>
+            <InputNumber
+              min={1000}
+              value={topupAmount}
+              onChange={(value) => setTopupAmount(Number(value || 0))}
+              formatter={(value) => `R$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+              style={{ width: '100%' }}
+            />
+          </div>
+          <div>
+            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Referência do boleto</div>
+            <Input value={topupReference} onChange={(event) => setTopupReference(event.target.value)} placeholder="Código, banco ou identificação" />
+          </div>
+          <div>
+            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Observações</div>
+            <Input.TextArea rows={3} value={topupNotes} onChange={(event) => setTopupNotes(event.target.value)} />
+          </div>
+        </Space>
+      </Modal>
     </div>
   );
 }

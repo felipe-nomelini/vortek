@@ -5,7 +5,7 @@ import {
   Card, Row, Col, Statistic, Tag, Typography, Table, Progress, Button, Space, message, DatePicker, Spin, Select,
 } from 'antd';
 import {
-  ArrowUpOutlined, ArrowDownOutlined, TrophyFilled, SyncOutlined,
+  ArrowUpOutlined, ArrowDownOutlined, LoadingOutlined, TrophyFilled, SyncOutlined,
 } from '@ant-design/icons';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { formatCurrency } from '@/lib/format';
@@ -578,7 +578,7 @@ export default function DashboardPage() {
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
           height: '60vh', gap: 16,
         }}>
-          <Spin size="large" />
+          <Spin indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />} />
           <Text style={{ color: '#e0e0e0', fontSize: 16 }}>Token do Mercado Livre expirado</Text>
           <Text style={{ color: '#888', fontSize: 13 }}>Redirecionando para reconexão automática...</Text>
         </div>
@@ -608,7 +608,7 @@ export default function DashboardPage() {
           </Space>
         </div>
 
-      <Spin spinning={loading}>
+      <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
         <Row gutter={[16, 16]} style={{ marginBottom: 20 }}>
           {[
             { title: 'Faturamento', value: dashboard?.faturamento ?? 0, prefix: 'R$', color: '#1677ff' },

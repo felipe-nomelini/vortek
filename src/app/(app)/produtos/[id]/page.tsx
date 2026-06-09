@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import {
   Card, Row, Col, Tag, Image, Typography, Button, Breadcrumb,
-  Input, InputNumber, Spin, message,
+  Input, InputNumber, Spin, message, Select, Switch, Space,
 } from 'antd';
 import { ArrowLeftOutlined, LoadingOutlined, SaveOutlined } from '@ant-design/icons';
 import { formatCurrency, currencyFormatter, currencyParser } from '@/lib/format';
@@ -32,6 +32,9 @@ const sectionTitle = {
 };
 
 type ProdutoRow = Database['public']['Tables']['produtos']['Row'];
+type ProductSupplierOffer = Database['public']['Tables']['produto_fornecedor_ofertas']['Row'] & {
+  preferred?: boolean;
+};
 
 function mapDBtoProduct(item: ProdutoRow): Product {
   return {
@@ -71,6 +74,9 @@ export default function ProductDetailPage() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasChanges, setHasChanges] = useState(false);
+  const [supplierOffers, setSupplierOffers] = useState<ProductSupplierOffer[]>([]);
+  const [supplierOffersLoading, setSupplierOffersLoading] = useState(false);
+  const [savingOfferId, setSavingOfferId] = useState<string | null>(null);
 
   const fetchProduct = useCallback(async () => {
     setLoading(true);
@@ -93,9 +99,30 @@ export default function ProductDetailPage() {
     }
   }, [id]);
 
+  const fetchSupplierOffers = useCallback(async () => {
+    setSupplierOffersLoading(true);
+    try {
+      const res = await fetch(`/api/produtos/${id}/fornecedores`);
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}));
+        throw new Error(json.error || 'Erro ao carregar fornecedores do produto');
+      }
+      const json = await res.json();
+      setSupplierOffers(Array.isArray(json.data) ? json.data : []);
+    } catch (err: any) {
+      message.error(err.message || 'Erro ao carregar fornecedores do produto');
+    } finally {
+      setSupplierOffersLoading(false);
+    }
+  }, [id]);
+
   useEffect(() => {
     fetchProduct();
   }, [fetchProduct]);
+
+  useEffect(() => {
+    fetchSupplierOffers();
+  }, [fetchSupplierOffers]);
 
   // Detectar mudanças comparando com original
   useEffect(() => {
@@ -154,6 +181,41 @@ export default function ProductDetailPage() {
       message.error(err.message || 'Erro ao salvar produto');
     } finally {
       setSaving(false);
+    }
+  };
+
+  const patchOffer = (offerId: string, diff: Partial<ProductSupplierOffer>) => {
+    setSupplierOffers((prev) => prev.map((offer) => (
+      offer.id === offerId ? { ...offer, ...diff } : offer
+    )));
+  };
+
+  const persistOffer = async (offerId: string, diff: Partial<ProductSupplierOffer>) => {
+    setSavingOfferId(offerId);
+    try {
+      const res = await fetch(`/api/produtos/${id}/fornecedores`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          offerId,
+          ativo: diff.ativo,
+          prioridade: diff.prioridade,
+          payment_mode: diff.payment_mode,
+          preferred: diff.preferred,
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(json.error || 'Erro ao salvar oferta do fornecedor');
+      }
+      setSupplierOffers(Array.isArray(json.data) ? json.data : []);
+      await fetchProduct();
+      message.success('Oferta do fornecedor atualizada');
+    } catch (err: any) {
+      message.error(err.message || 'Erro ao salvar oferta do fornecedor');
+      await fetchSupplierOffers();
+    } finally {
+      setSavingOfferId(null);
     }
   };
 
@@ -247,7 +309,7 @@ export default function ProductDetailPage() {
             <Title level={5} style={sectionTitle}>Identificação</Title>
             <Row gutter={[16, 12]}>
               <Col span={24}>
-                <div style={labelStyle}>SKU</div>
+                <div style={labelStyle}>SKU Vortek</div>
                 <Input size="small" value={product.sku} onChange={e => patch({ sku: e.target.value })} style={inputStyle} />
               </Col>
               <Col span={12}>
@@ -271,6 +333,114 @@ export default function ProductDetailPage() {
                   : <Text type="secondary" style={{ fontSize: 13 }}>Sem categoria</Text>}
               </Col>
             </Row>
+          </Card>
+
+          <Card styles={{ body: { padding: 16 } }} style={{ ...cardStyle, marginBottom: 24 }}>
+            <Title level={5} style={sectionTitle}>Fornecedores do Produto</Title>
+            <Spin spinning={supplierOffersLoading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
+              {supplierOffers.length === 0 ? (
+                <div style={{ color: '#666', padding: 16 }}>Nenhuma oferta de fornecedor vinculada a este produto.</div>
+              ) : (
+                <Space direction="vertical" style={{ width: '100%' }} size={12}>
+                  {supplierOffers.map((offer) => {
+                    const isSavingOffer = savingOfferId === offer.id;
+                    return (
+                      <Card
+                        key={offer.id}
+                        size="small"
+                        style={{ background: '#1f1f1f', border: '1px solid #303030' }}
+                        styles={{ body: { padding: 12 } }}
+                      >
+                        <Row gutter={[12, 12]} align="middle">
+                          <Col span={24}>
+                            <Space wrap>
+                              <Tag color={offer.preferred ? 'green' : 'default'}>
+                                {offer.preferred ? 'Fornecedor preferencial atual' : 'Oferta alternativa'}
+                              </Tag>
+                              <Tag color={offer.ativo ? 'blue' : 'default'}>
+                                {offer.ativo ? 'Ativo' : 'Inativo'}
+                              </Tag>
+                              <Tag color={offer.payment_mode === 'balance_account' ? 'blue' : offer.payment_mode === 'prepaid_pix' ? 'orange' : 'default'}>
+                                {offer.payment_mode === 'balance_account' ? 'Saldo Hayamax' : offer.payment_mode === 'prepaid_pix' ? 'PIX antecipado' : 'Pós-pago'}
+                              </Tag>
+                            </Space>
+                          </Col>
+                          <Col xs={24} md={10}>
+                            <div style={labelStyle}>Fornecedor</div>
+                            <div style={{ color: '#e0e0e0', fontWeight: 600 }}>{offer.fornecedor_nome || offer.dslite_fornecedor_id}</div>
+                            <div style={{ color: '#888', fontSize: 12 }}>
+                              DSLite fornecedor {offer.dslite_fornecedor_id} | produto {offer.dslite_produto_id}
+                            </div>
+                          </Col>
+                          <Col xs={12} md={4}>
+                            <div style={labelStyle}>Custo</div>
+                            <div style={{ color: '#e0e0e0' }}>{formatCurrency(Number(offer.custo || 0))}</div>
+                          </Col>
+                          <Col xs={12} md={4}>
+                            <div style={labelStyle}>Estoque</div>
+                            <div style={{ color: Number(offer.estoque || 0) > 0 ? '#e0e0e0' : '#ff4d4f' }}>{Number(offer.estoque || 0)}</div>
+                          </Col>
+                          <Col xs={12} md={3}>
+                            <div style={labelStyle}>Prioridade</div>
+                            <InputNumber
+                              size="small"
+                              min={0}
+                              value={offer.prioridade}
+                              disabled={isSavingOffer}
+                              onChange={(value) => patchOffer(offer.id, { prioridade: Number(value || 0) })}
+                              onBlur={() => persistOffer(offer.id, { prioridade: offer.prioridade })}
+                              style={{ width: '100%' }}
+                            />
+                          </Col>
+                          <Col xs={12} md={3}>
+                            <div style={labelStyle}>Ativo</div>
+                            <div>
+                              <Switch
+                                checked={offer.ativo}
+                                disabled={isSavingOffer}
+                                onChange={(checked) => {
+                                  patchOffer(offer.id, { ativo: checked });
+                                  void persistOffer(offer.id, { ativo: checked });
+                                }}
+                              />
+                            </div>
+                          </Col>
+                          <Col xs={24} md={6}>
+                            <div style={labelStyle}>Pagamento</div>
+                            <Select
+                              size="small"
+                              value={offer.payment_mode}
+                              disabled={isSavingOffer}
+                              onChange={(value) => {
+                                patchOffer(offer.id, { payment_mode: value as any });
+                                void persistOffer(offer.id, { payment_mode: value as any });
+                              }}
+                              style={{ width: '100%' }}
+                              options={[
+                                { value: 'balance_account', label: 'Saldo Hayamax' },
+                                { value: 'postpaid', label: 'Pós-pago' },
+                                { value: 'prepaid_pix', label: 'PIX antecipado' },
+                              ]}
+                            />
+                          </Col>
+                          <Col xs={24} md={6}>
+                            <div style={labelStyle}>Preferencial</div>
+                            <Button
+                              size="small"
+                              type={offer.preferred ? 'default' : 'primary'}
+                              disabled={isSavingOffer || offer.preferred}
+                              onClick={() => { void persistOffer(offer.id, { preferred: true } as any); }}
+                            >
+                              {offer.preferred ? 'Oferta atual' : 'Tornar preferencial'}
+                            </Button>
+                          </Col>
+                        </Row>
+                      </Card>
+                    );
+                  })}
+                </Space>
+              )}
+            </Spin>
           </Card>
 
           <Card styles={{ body: { padding: 16 } }} style={{ ...cardStyle, marginBottom: 24 }}>

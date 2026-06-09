@@ -40,6 +40,7 @@ type AuditEvent =
   | 'dslite_create_with_supplier_failed'
   | 'dslite_create_without_supplier_fallback_success'
   | 'dslite_create_without_supplier_fallback_failed'
+  | 'supplier_payment_confirmed_manual'
   | 'nfe_homologacao_bloqueada'
   | 'nfe_homologacao_auto_remediada'
   | 'nfe_local_consistencia_check'

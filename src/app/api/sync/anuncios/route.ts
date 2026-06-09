@@ -166,7 +166,32 @@ export async function POST(request: Request) {
             .maybeSingle()
         : { data: null } as any;
 
-      const produto = byItem || bySku.data || null;
+      let produto = byItem || bySku.data || null;
+      if (!produto?.id && sku) {
+        const [{ data: byOfferSku }, { data: bySupplierSku }] = await Promise.all([
+          serviceClient
+            .from('produto_fornecedor_ofertas')
+            .select('produto_id')
+            .eq('sku_oferta', sku)
+            .limit(1)
+            .maybeSingle(),
+          serviceClient
+            .from('produto_fornecedor_ofertas')
+            .select('produto_id')
+            .eq('sku_fornecedor', sku)
+            .limit(1)
+            .maybeSingle(),
+        ]);
+        const productId = String((byOfferSku as any)?.produto_id || (bySupplierSku as any)?.produto_id || '').trim();
+        if (productId) {
+          const { data: productByOffer } = await serviceClient
+            .from('produtos')
+            .select('id, sku')
+            .eq('id', productId)
+            .maybeSingle();
+          produto = productByOffer || null;
+        }
+      }
       if (produto?.id) {
         produtoId = String(produto.id);
         skuLocal = String(produto.sku || '') || null;

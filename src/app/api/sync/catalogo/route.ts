@@ -2,6 +2,11 @@ import { NextResponse } from 'next/server';
 import { sincronizarCatalogo, listarFornecedores } from '@/services/dslite';
 import { createServiceClient } from '@/lib/supabase';
 import { buildCanonicalDsliteSku } from '@/lib/sku';
+import {
+  inferSupplierPaymentMode,
+  normalizeGtin,
+  syncPreferredProductSnapshot,
+} from '@/lib/produto-fornecedor';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 
 export const maxDuration = 300;
@@ -206,13 +211,14 @@ export async function POST(req: Request) {
         recordsSeen += produtos.length;
 
         const batch = produtos.map((item) => {
-          const sku = buildCanonicalDsliteSku(fornecedorId, item.produtoid_empresa, item.produtoid);
+          const supplierSku = buildCanonicalDsliteSku(fornecedorId, item.produtoid_empresa, item.produtoid);
+          const normalizedGtin = normalizeGtin(item.ean11);
           return {
-            sku,
-            nome: fallbackNome(item.titulo, sku),
+            sku_fornecedor: supplierSku,
+            nome: fallbackNome(item.titulo, supplierSku),
             marca: item.marca || '',
             fornecedor: fornecedorNome,
-            gtin: item.ean11 || '',
+            gtin: normalizedGtin,
             ncm: item.ncm || null,
             cest: item.cest || null,
             origem_fiscal: item.origem || null,
@@ -230,62 +236,219 @@ export async function POST(req: Request) {
             imagens: extractImageUrls(item),
             dslite_fornecedor_id: String(fornecedorId),
             dslite_produto_id: String(item.produtoid || ''),
+            produtoid_empresa: String(item.produtoid_empresa || ''),
             dslite_ultima_sync: new Date().toISOString(),
           };
         });
 
         const dsliteProdutoIds = batch.map((row) => row.dslite_produto_id).filter(Boolean);
-        const { data: existentes, error: existentesError } = await client
-          .from('produtos')
-          .select('descricao, imagens, dslite_fornecedor_id, dslite_produto_id')
-          .eq('dslite_fornecedor_id', String(fornecedorId))
-          .in('dslite_produto_id', dsliteProdutoIds);
+        const gtins = Array.from(new Set(batch.map((row) => String(row.gtin || '').trim()).filter(Boolean)));
+        const [existingOffersResp, existingProductsResp, gtinProductsResp] = await Promise.all([
+          client
+            .from('produto_fornecedor_ofertas')
+            .select('id,produto_id,dslite_fornecedor_id,dslite_produto_id')
+            .eq('dslite_fornecedor_id', String(fornecedorId))
+            .in('dslite_produto_id', dsliteProdutoIds),
+          client
+            .from('produtos')
+            .select('id,sku,nome,marca,gtin,descricao,imagens,dslite_fornecedor_id,dslite_produto_id')
+            .eq('dslite_fornecedor_id', String(fornecedorId))
+            .in('dslite_produto_id', dsliteProdutoIds),
+          gtins.length > 0
+            ? client
+                .from('produtos')
+                .select('id,sku,nome,marca,gtin,descricao,imagens')
+                .in('gtin', gtins)
+            : Promise.resolve({ data: [], error: null } as any),
+        ]);
 
-        if (existentesError) {
+        if (existingOffersResp.error || existingProductsResp.error || gtinProductsResp.error) {
           errors.push({
             code: 'catalog_existing_select_failed',
-            message: existentesError.message,
+            message: existingOffersResp.error?.message || existingProductsResp.error?.message || gtinProductsResp.error?.message || 'Falha ao consultar produtos/ofertas existentes',
             context: { fornecedorId, page },
           });
           break;
         }
 
-        const existentesMap = new Map(
-          (existentes || []).map((row: any) => [
+        const offerByDsliteIdentity = new Map(
+          ((existingOffersResp.data || []) as any[]).map((row: any) => [
             `${String(row.dslite_fornecedor_id || '')}:${String(row.dslite_produto_id || '')}`,
             row,
           ]),
         );
+        const existingProductByDsliteIdentity = new Map(
+          ((existingProductsResp.data || []) as any[]).map((row: any) => [
+            `${String(row.dslite_fornecedor_id || '')}:${String(row.dslite_produto_id || '')}`,
+            row,
+          ]),
+        );
+        const productsByGtin = new Map<string, any[]>();
+        for (const row of (gtinProductsResp.data || []) as any[]) {
+          const gtin = String(row?.gtin || '').trim();
+          if (!gtin) continue;
+          const list = productsByGtin.get(gtin) || [];
+          list.push(row);
+          productsByGtin.set(gtin, list);
+        }
 
-        const merged = batch.map((row) => {
-          const existing = existentesMap.get(`${String(row.dslite_fornecedor_id)}:${String(row.dslite_produto_id)}`) as any;
-          const existingDescricao = normalizeText(existing?.descricao);
-          const existingImagens = Array.isArray(existing?.imagens)
-            ? existing.imagens.map((v: unknown) => normalizeText(v)).filter(Boolean)
-            : [];
-          return {
-            ...row,
-            descricao: row.descricao || existingDescricao,
-            imagens: row.imagens.length > 0 ? row.imagens : existingImagens,
-          };
-        });
+        const productRowsToCreate: Array<Record<string, unknown>> = [];
+        const pendingOfferRows: Array<Record<string, unknown>> = [];
+        const productKeysToCreate = new Set<string>();
+        const touchedProductIds = new Set<string>();
 
-        for (const payload of chunk(merged, UPSERT_CHUNK_SIZE)) {
-          const { error: upsertError } = await client
-            .from('produtos')
-            .upsert(payload as any, { onConflict: 'sku' });
+        for (const row of batch) {
+          const identityKey = `${String(row.dslite_fornecedor_id)}:${String(row.dslite_produto_id)}`;
+          const existingOffer = offerByDsliteIdentity.get(identityKey) as any;
+          const legacyProduct = existingProductByDsliteIdentity.get(identityKey) as any;
+          const gtinMatches = String(row.gtin || '').trim() ? productsByGtin.get(String(row.gtin || '').trim()) || [] : [];
+          const matchedByGtin = gtinMatches[0] || null;
+          const resolvedProductId = String(
+            existingOffer?.produto_id
+            || matchedByGtin?.id
+            || legacyProduct?.id
+            || '',
+          ).trim();
 
-          if (upsertError) {
+          let productId = resolvedProductId;
+          if (!productId) {
+            const productKey = String(row.gtin || '').trim()
+              ? `gtin:${String(row.gtin || '').trim()}`
+              : `dslite:${identityKey}`;
+            const insertPayload = {
+              _product_key: productKey,
+              nome: row.nome,
+              marca: row.marca || '',
+              fornecedor: row.fornecedor,
+              gtin: row.gtin || '',
+              ncm: row.ncm || null,
+              cest: row.cest || null,
+              origem_fiscal: row.origem_fiscal || null,
+              origem_uf: row.origem_uf || null,
+              categoria: row.categoria || null,
+              custo: Number(row.custo || 0),
+              estoque: Number(row.estoque || 0),
+              ml_fee: Number(row.ml_fee || 0.15),
+              peso_liq: Number(row.peso_liq || 0),
+              peso_bruto: Number(row.peso_bruto || 0),
+              largura: Number(row.largura || 0),
+              altura: Number(row.altura || 0),
+              profundidade: Number(row.profundidade || 0),
+              descricao: row.descricao || '',
+              imagens: row.imagens,
+              dslite_fornecedor_id: row.dslite_fornecedor_id,
+              dslite_produto_id: row.dslite_produto_id,
+              dslite_ultima_sync: row.dslite_ultima_sync,
+            };
+            if (!productKeysToCreate.has(productKey)) {
+              productKeysToCreate.add(productKey);
+              productRowsToCreate.push(insertPayload);
+            }
+          } else {
+            touchedProductIds.add(productId);
+          }
+
+          pendingOfferRows.push({
+            produto_id: productId || null,
+            dslite_fornecedor_id: row.dslite_fornecedor_id,
+            fornecedor_nome: row.fornecedor,
+            dslite_produto_id: row.dslite_produto_id,
+            sku_oferta: row.sku_fornecedor,
+            sku_fornecedor: row.sku_fornecedor,
+            nome: row.nome,
+            descricao: row.descricao || '',
+            marca: row.marca || '',
+            imagens: row.imagens,
+            gtin: row.gtin || '',
+            ncm: row.ncm || null,
+            cest: row.cest || null,
+            _product_key: String(row.gtin || '').trim()
+              ? `gtin:${String(row.gtin || '').trim()}`
+              : `dslite:${identityKey}`,
+            custo: Number(row.custo || 0),
+            estoque: Number(row.estoque || 0),
+            ativo: true,
+            prioridade: 100,
+            payment_mode: inferSupplierPaymentMode(row.dslite_fornecedor_id),
+            last_sync_at: row.dslite_ultima_sync,
+            updated_at: new Date().toISOString(),
+          });
+        }
+
+        if (productRowsToCreate.length > 0) {
+          for (const payload of chunk(productRowsToCreate, UPSERT_CHUNK_SIZE)) {
+            const insertPayload = payload.map((row) => {
+              const { _product_key, ...clean } = row;
+              return clean;
+            });
+            const { data: insertedRows, error: upsertError } = await client
+              .from('produtos')
+              .insert(insertPayload as any)
+              .select('id,sku');
+
+            if (upsertError) {
+              errors.push({
+                code: 'catalog_upsert_failed',
+                message: upsertError.message,
+                context: { fornecedorId, page, batchSize: payload.length },
+              });
+              break;
+            }
+
+            for (let index = 0; index < (insertedRows || []).length; index += 1) {
+              const inserted = (insertedRows || [])[index] as any;
+              const productKey = String((payload[index] as any)?._product_key || '').trim();
+              if (productKey) {
+                for (const offerRow of pendingOfferRows) {
+                  if (String((offerRow as any)._product_key || '') === productKey) {
+                    offerRow.produto_id = String(inserted.id);
+                  }
+                }
+              }
+              touchedProductIds.add(String(inserted.id));
+            }
+
+            recordsUpserted += payload.length;
+          }
+        }
+
+        const offerPayload = pendingOfferRows
+          .filter((row) => String(row.produto_id || '').trim())
+          .map((row) => {
+            const {
+              _product_key,
+              ...payload
+            } = row as Record<string, unknown>;
+            return payload;
+          });
+
+        if (offerPayload.length > 0) {
+          const { error: offerUpsertError } = await client
+            .from('produto_fornecedor_ofertas')
+            .upsert(offerPayload as any, { onConflict: 'dslite_fornecedor_id,dslite_produto_id' });
+
+          if (offerUpsertError) {
             errors.push({
-              code: 'catalog_upsert_failed',
-              message: upsertError.message,
-              context: { fornecedorId, page, batchSize: payload.length },
+              code: 'catalog_offer_upsert_failed',
+              message: offerUpsertError.message,
+              context: { fornecedorId, page, batchSize: offerPayload.length },
             });
             break;
           }
-
-          recordsUpserted += payload.length;
         }
+
+        try {
+          await syncPreferredProductSnapshot(client, Array.from(touchedProductIds));
+        } catch (err: any) {
+          errors.push({
+            code: 'catalog_preferred_snapshot_failed',
+            message: err?.message || 'Falha ao sincronizar fornecedor preferencial do produto',
+            context: { fornecedorId, page },
+          });
+          break;
+        }
+
+        recordsUpserted += Math.max(0, offerPayload.length);
 
         const totalRegistros = Number(response?.detalhesConsulta?.totalRegistros || 0);
         const perPage = Number(response?.detalhesConsulta?.limit || produtos.length || pageSize);
