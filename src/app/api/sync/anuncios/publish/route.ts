@@ -372,6 +372,7 @@ export async function POST(request: Request) {
         } else {
           const resolvedLocalStatus = mapMlStatusToLocalStatus(itemStateResult.data?.status);
           const reconciledMlPrice = Number(itemStateResult.data?.price);
+          const hasDesiredPriceForReconcile = row.desired_price !== null && row.desired_price !== undefined;
           const desiredPrice = Number(row.desired_price);
 
           const produtoUpdate = row.produto_id
@@ -405,7 +406,7 @@ export async function POST(request: Request) {
             });
           }
 
-          if (Number.isFinite(desiredPrice) && Number.isFinite(reconciledMlPrice)) {
+          if (hasDesiredPriceForReconcile && Number.isFinite(desiredPrice) && Number.isFinite(reconciledMlPrice)) {
             const roundedDesiredPrice = Math.round(desiredPrice * 100) / 100;
             const roundedMlPrice = Math.round(reconciledMlPrice * 100) / 100;
             if (Math.abs(roundedDesiredPrice - roundedMlPrice) > 0.009) {

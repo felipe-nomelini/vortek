@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import {
   Card, Row, Col, Tag, Image, Typography, Button, Breadcrumb,
   Input, InputNumber, Spin, message, Select, Switch, Space,
+  Table,
 } from 'antd';
 import { ArrowLeftOutlined, LoadingOutlined, SaveOutlined } from '@ant-design/icons';
 import { formatCurrency, currencyFormatter, currencyParser } from '@/lib/format';
@@ -39,6 +40,7 @@ type ProductSupplierOffer = Database['public']['Tables']['produto_fornecedor_ofe
 function mapDBtoProduct(item: ProdutoRow): Product {
   return {
     id: item.id,
+    active: item.ativo !== false,
     sku: item.sku,
     name: item.nome,
     brand: item.marca || '',
@@ -147,6 +149,7 @@ export default function ProductDetailPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           sku: product.sku,
+          ativo: product.active,
           nome: product.name,
           marca: product.brand,
           gtin: product.gtin,
@@ -309,6 +312,17 @@ export default function ProductDetailPage() {
             <Title level={5} style={sectionTitle}>Identificação</Title>
             <Row gutter={[16, 12]}>
               <Col span={24}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+                  <div>
+                    <div style={labelStyle}>Produto ativo</div>
+                    <Text type="secondary" style={{ fontSize: 12 }}>
+                      Inativo bloqueia uso novo e pausa o anúncio ML ao salvar.
+                    </Text>
+                  </div>
+                  <Switch checked={product.active} onChange={checked => patch({ active: checked })} />
+                </div>
+              </Col>
+              <Col span={24}>
                 <div style={labelStyle}>SKU Vortek</div>
                 <Input size="small" value={product.sku} onChange={e => patch({ sku: e.target.value })} style={inputStyle} />
               </Col>
@@ -341,104 +355,63 @@ export default function ProductDetailPage() {
               {supplierOffers.length === 0 ? (
                 <div style={{ color: '#666', padding: 16 }}>Nenhuma oferta de fornecedor vinculada a este produto.</div>
               ) : (
-                <Space direction="vertical" style={{ width: '100%' }} size={12}>
-                  {supplierOffers.map((offer) => {
-                    const isSavingOffer = savingOfferId === offer.id;
-                    return (
-                      <Card
-                        key={offer.id}
-                        size="small"
-                        style={{ background: '#1f1f1f', border: '1px solid #303030' }}
-                        styles={{ body: { padding: 12 } }}
-                      >
-                        <Row gutter={[12, 12]} align="middle">
-                          <Col span={24}>
-                            <Space wrap>
-                              <Tag color={offer.preferred ? 'green' : 'default'}>
-                                {offer.preferred ? 'Fornecedor preferencial atual' : 'Oferta alternativa'}
-                              </Tag>
-                              <Tag color={offer.ativo ? 'blue' : 'default'}>
-                                {offer.ativo ? 'Ativo' : 'Inativo'}
-                              </Tag>
-                              <Tag color={offer.payment_mode === 'balance_account' ? 'blue' : offer.payment_mode === 'prepaid_pix' ? 'orange' : 'default'}>
-                                {offer.payment_mode === 'balance_account' ? 'Saldo Hayamax' : offer.payment_mode === 'prepaid_pix' ? 'PIX antecipado' : 'Pós-pago'}
-                              </Tag>
-                            </Space>
-                          </Col>
-                          <Col xs={24} md={10}>
-                            <div style={labelStyle}>Fornecedor</div>
-                            <div style={{ color: '#e0e0e0', fontWeight: 600 }}>{offer.fornecedor_nome || offer.dslite_fornecedor_id}</div>
-                            <div style={{ color: '#888', fontSize: 12 }}>
-                              DSLite fornecedor {offer.dslite_fornecedor_id} | produto {offer.dslite_produto_id}
-                            </div>
-                          </Col>
-                          <Col xs={12} md={4}>
-                            <div style={labelStyle}>Custo</div>
-                            <div style={{ color: '#e0e0e0' }}>{formatCurrency(Number(offer.custo || 0))}</div>
-                          </Col>
-                          <Col xs={12} md={4}>
-                            <div style={labelStyle}>Estoque</div>
-                            <div style={{ color: Number(offer.estoque || 0) > 0 ? '#e0e0e0' : '#ff4d4f' }}>{Number(offer.estoque || 0)}</div>
-                          </Col>
-                          <Col xs={12} md={3}>
-                            <div style={labelStyle}>Prioridade</div>
-                            <InputNumber
-                              size="small"
-                              min={0}
-                              value={offer.prioridade}
-                              disabled={isSavingOffer}
-                              onChange={(value) => patchOffer(offer.id, { prioridade: Number(value || 0) })}
-                              onBlur={() => persistOffer(offer.id, { prioridade: offer.prioridade })}
-                              style={{ width: '100%' }}
-                            />
-                          </Col>
-                          <Col xs={12} md={3}>
-                            <div style={labelStyle}>Ativo</div>
-                            <div>
-                              <Switch
-                                checked={offer.ativo}
-                                disabled={isSavingOffer}
-                                onChange={(checked) => {
-                                  patchOffer(offer.id, { ativo: checked });
-                                  void persistOffer(offer.id, { ativo: checked });
-                                }}
-                              />
-                            </div>
-                          </Col>
-                          <Col xs={24} md={6}>
-                            <div style={labelStyle}>Pagamento</div>
-                            <Select
-                              size="small"
-                              value={offer.payment_mode}
-                              disabled={isSavingOffer}
-                              onChange={(value) => {
-                                patchOffer(offer.id, { payment_mode: value as any });
-                                void persistOffer(offer.id, { payment_mode: value as any });
-                              }}
-                              style={{ width: '100%' }}
-                              options={[
-                                { value: 'balance_account', label: 'Saldo Hayamax' },
-                                { value: 'postpaid', label: 'Pós-pago' },
-                                { value: 'prepaid_pix', label: 'PIX antecipado' },
-                              ]}
-                            />
-                          </Col>
-                          <Col xs={24} md={6}>
-                            <div style={labelStyle}>Preferencial</div>
-                            <Button
-                              size="small"
-                              type={offer.preferred ? 'default' : 'primary'}
-                              disabled={isSavingOffer || offer.preferred}
-                              onClick={() => { void persistOffer(offer.id, { preferred: true } as any); }}
-                            >
-                              {offer.preferred ? 'Oferta atual' : 'Tornar preferencial'}
-                            </Button>
-                          </Col>
-                        </Row>
-                      </Card>
-                    );
-                  })}
-                </Space>
+                <Table<ProductSupplierOffer>
+                  size="small"
+                  rowKey="id"
+                  pagination={false}
+                  dataSource={supplierOffers}
+                  columns={[
+                    {
+                      title: 'Fornecedor',
+                      key: 'fornecedor',
+                      render: (_, offer) => (
+                        <div>
+                          <div style={{ color: '#e0e0e0', fontWeight: 600 }}>{offer.fornecedor_nome || offer.dslite_fornecedor_id}</div>
+                          <div style={{ color: '#888', fontSize: 12 }}>
+                            SKU {offer.sku_oferta || '—'}
+                          </div>
+                        </div>
+                      ),
+                    },
+                    {
+                      title: 'Estoque',
+                      dataIndex: 'estoque',
+                      width: 100,
+                      render: (value) => (
+                        <span style={{ color: Number(value || 0) > 0 ? '#e0e0e0' : '#ff4d4f' }}>
+                          {Number(value || 0)}
+                        </span>
+                      ),
+                    },
+                    {
+                      title: 'Custo',
+                      dataIndex: 'custo',
+                      width: 120,
+                      render: (value) => formatCurrency(Number(value || 0)),
+                    },
+                    {
+                      title: 'Principal',
+                      key: 'preferred',
+                      width: 160,
+                      render: (_, offer) => {
+                        const isSavingOffer = savingOfferId === offer.id;
+                        return offer.preferred ? (
+                          <Tag color="green">Atual</Tag>
+                        ) : (
+                          <Button
+                            size="small"
+                            type="primary"
+                            disabled={isSavingOffer}
+                            loading={isSavingOffer}
+                            onClick={() => { void persistOffer(offer.id, { preferred: true } as any); }}
+                          >
+                            Tornar principal
+                          </Button>
+                        );
+                      },
+                    },
+                  ]}
+                />
               )}
             </Spin>
           </Card>

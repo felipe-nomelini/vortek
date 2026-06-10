@@ -59,6 +59,7 @@ const SYNC_ORDER_LOCK_RETRY_INTERVAL_MS = 2_000;
 const STRICT_NFE_VALIDATION = String(process.env.STRICT_NFE_VALIDATION || 'true').toLowerCase() === 'true';
 const ITEM_TOTAL_TOLERANCE = 0.01;
 const STATUS_AGUARDANDO_PAGAMENTO_FORNECEDOR = 'Aguardando Pagamento Fornecedor';
+const STOCK_STALE_THRESHOLD_MS = 2 * 60 * 60 * 1000;
 
 function normalizeSupplierPaymentMode(value: unknown, fornecedorId?: string | number | null): SupplierPaymentMode {
   const raw = String(value || '').trim();
@@ -70,6 +71,16 @@ function extractFirstItemQuantityFromXml(xml: string | null | undefined): number
   const qCom = extractXmlTag(String(xml || ''), 'qCom');
   const parsed = Number(String(qCom || '').replace(',', '.'));
   return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
+}
+
+function hasReliableSupplierStock(offer: any): boolean {
+  const stock = Number(offer?.estoque || 0);
+  if (!Number.isFinite(stock) || stock <= 0) return false;
+  const rawLastSync = String(offer?.last_sync_at || '').trim();
+  if (!rawLastSync) return false;
+  const lastSyncAt = new Date(rawLastSync).getTime();
+  if (!Number.isFinite(lastSyncAt)) return false;
+  return Date.now() - lastSyncAt <= STOCK_STALE_THRESHOLD_MS;
 }
 
 function summarizeDsliteResponseText(value: string | null | undefined, max = 240): string | null {
@@ -133,7 +144,7 @@ async function resolvePedidoSupplierOffer(params: {
   const skuVariants = getSkuLookupVariants(sku);
   let { data: productRow } = await client
     .from('produtos')
-    .select('id,sku,oferta_preferencial_id,dslite_fornecedor_id,dslite_produto_id')
+    .select('id,sku,ativo,oferta_preferencial_id,dslite_fornecedor_id,dslite_produto_id')
     .in('sku', skuVariants.length > 0 ? skuVariants : [sku])
     .limit(1)
     .maybeSingle();
@@ -158,7 +169,7 @@ async function resolvePedidoSupplierOffer(params: {
     if (offerProductId) {
       const { data: productByOffer } = await client
         .from('produtos')
-        .select('id,sku,oferta_preferencial_id,dslite_fornecedor_id,dslite_produto_id')
+        .select('id,sku,ativo,oferta_preferencial_id,dslite_fornecedor_id,dslite_produto_id')
         .eq('id', offerProductId)
         .maybeSingle();
       productRow = productByOffer;
@@ -168,6 +179,14 @@ async function resolvePedidoSupplierOffer(params: {
   if (!productRow?.id) {
     return {
       productId: null,
+      offer: null,
+    };
+  }
+
+  if ((productRow as any).ativo === false) {
+    return {
+      productId: String(productRow.id),
+      inactive: true,
       offer: null,
     };
   }
@@ -2535,8 +2554,20 @@ async function runDsliteCreateJob(
       }
 
       const selectedOffer = await resolvePedidoSupplierOffer({ client, sku: skuComPrefixo });
+      if ((selectedOffer as any)?.inactive) {
+        await setStep('find_product_dslite', 'error', undefined, `Produto com SKU ${skuComPrefixo} está inativo no Vortek`);
+        state = 'error';
+        await syncJob();
+        return;
+      }
       if (!selectedOffer?.offer?.dslite_fornecedor_id) {
         await setStep('find_product_dslite', 'error', undefined, `Produto com SKU ${skuComPrefixo} sem oferta DSLite selecionável`);
+        state = 'error';
+        await syncJob();
+        return;
+      }
+      if (!hasReliableSupplierStock(selectedOffer.offer)) {
+        await setStep('find_product_dslite', 'error', undefined, `Produto com SKU ${skuComPrefixo} sem estoque confiável na DSLite`);
         state = 'error';
         await syncJob();
         return;

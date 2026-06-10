@@ -2,6 +2,7 @@ export type MLStatus = 'ativo' | 'pausado' | 'sem_anuncio';
 
 export interface Product {
   id: string;
+  active: boolean;
   sku: string;
   name: string;
   brand: string;

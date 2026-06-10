@@ -33,6 +33,12 @@ const estoqueOptions = [
   { value: 'sem_estoque', label: 'Sem Estoque' },
 ];
 
+const productActiveOptions = [
+  { value: 'ativo', label: 'Ativos' },
+  { value: 'inativo', label: 'Inativos' },
+  { value: 'todos', label: 'Ambos' },
+];
+
 const priceFieldOptions = [
   { value: 'cost', label: 'Custo' },
   { value: 'suggestedPrice', label: 'Sugerido' },
@@ -280,6 +286,7 @@ function buildMlPublishSteps(statusPayload: MlPublishStatusResponse | null): Pro
 function mapDBtoProduct(item: ProdutoRow): Product {
   return {
     id: item.id,
+    active: item.ativo !== false,
     sku: item.sku,
     name: item.nome,
     brand: item.marca || '',
@@ -318,6 +325,7 @@ export default function ProductsPage() {
   const [filterMLStatus, setFilterMLStatus] = useState<MLStatus | ''>('');
   const [filterFornecedores, setFilterFornecedores] = useState<string[]>([]);
   const [fornecedorOptions, setFornecedorOptions] = useState<SupplierOption[]>([]);
+  const [filterProductActive, setFilterProductActive] = useState<string>('ativo');
   const [filterEstoque, setFilterEstoque] = useState<string>('todos');
   const [priceField, setPriceField] = useState<string>('cost');
   const [priceMin, setPriceMin] = useState<number | null>(null);
@@ -980,6 +988,7 @@ export default function ProductsPage() {
       appendRemoteSortParams(params, sort);
       if (lastSearch) params.set('search', lastSearch);
       if (filterFornecedores.length > 0) params.set('fornecedores', filterFornecedores.join(','));
+      if (filterProductActive !== 'ativo') params.set('ativo', filterProductActive);
       if (filterMLStatus) params.set('ml_status', filterMLStatus);
       if (filterEstoque !== 'todos') params.set('estoque', filterEstoque);
       if (priceMin !== null) params.set('priceMin', String(priceMin));
@@ -1026,7 +1035,7 @@ export default function ProductsPage() {
       if (productsRequestRef.current !== requestId) return;
       setLoading(false);
     }
-  }, [page, sort, lastSearch, filterFornecedores, filterMLStatus, filterEstoque, priceMin, priceMax, priceField, messageApi]);
+  }, [page, sort, lastSearch, filterFornecedores, filterProductActive, filterMLStatus, filterEstoque, priceMin, priceMax, priceField, messageApi]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -1040,7 +1049,7 @@ export default function ProductsPage() {
 
   useEffect(() => {
     setPage(1);
-  }, [filterMLStatus, filterEstoque, filterFornecedores, priceField, priceMin, priceMax]);
+  }, [filterMLStatus, filterEstoque, filterFornecedores, filterProductActive, priceField, priceMin, priceMax]);
 
   const fetchStats = useCallback(async () => {
     const requestId = statsRequestRef.current + 1;
@@ -1049,6 +1058,7 @@ export default function ProductsPage() {
       const params = new URLSearchParams();
       if (lastSearch) params.set('search', lastSearch);
       if (filterFornecedores.length > 0) params.set('fornecedores', filterFornecedores.join(','));
+      if (filterProductActive !== 'ativo') params.set('ativo', filterProductActive);
       if (filterMLStatus) params.set('ml_status', filterMLStatus);
       if (filterEstoque !== 'todos') params.set('estoque', filterEstoque);
       if (priceMin !== null) params.set('priceMin', String(priceMin));
@@ -1071,7 +1081,7 @@ export default function ProductsPage() {
       if (statsRequestRef.current !== requestId) return;
       console.error('[produtos/page] Falha ao carregar resumo:', error?.message || error);
     }
-  }, [lastSearch, filterFornecedores, filterMLStatus, filterEstoque, priceMin, priceMax, priceField]);
+  }, [lastSearch, filterFornecedores, filterProductActive, filterMLStatus, filterEstoque, priceMin, priceMax, priceField]);
 
   useEffect(() => {
     fetchProducts();
@@ -1165,17 +1175,21 @@ export default function ProductsPage() {
           >
             {record.product.name}
           </a>
-          <div style={{ marginTop: 4 }}>
-            <Space size={6} wrap>
-              {record.preferredOffer && <Tag color="green" icon={<StarOutlined />}>Oferta ativa</Tag>}
-              {record.preferredOffer && record.preferredOffer.ativo === false && <Tag>Oferta inativa</Tag>}
-              {record.preferredOffer && (
-                <Tag color={record.preferredOffer.payment_mode === 'balance_account' ? 'blue' : record.preferredOffer.payment_mode === 'prepaid_pix' ? 'orange' : 'default'}>
-                  {record.preferredOffer.payment_mode === 'balance_account' ? 'Saldo Hayamax' : record.preferredOffer.payment_mode === 'prepaid_pix' ? 'PIX antecipado' : 'Pós-pago'}
-                </Tag>
-              )}
-              <Tag color="default">{record.offersCount} oferta{record.offersCount === 1 ? '' : 's'}</Tag>
-            </Space>
+          <div style={{ marginTop: 5, color: '#8c8c8c', fontSize: 12, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+              <span
+                aria-hidden
+                style={{
+                  width: 7,
+                  height: 7,
+                  borderRadius: '50%',
+                  background: record.product.active ? '#52c41a' : '#ff4d4f',
+                  display: 'inline-block',
+                }}
+              />
+              {record.product.active ? 'Ativo' : 'Inativo'}
+            </span>
+            <span>{record.offersCount} fornecedor{record.offersCount === 1 ? '' : 'es'}</span>
           </div>
         </div>
       ),
@@ -1288,10 +1302,10 @@ export default function ProductsPage() {
           { key: 'edit', label: 'Editar', icon: <EditOutlined /> },
           { key: 'offers', label: 'Ver ofertas', icon: <StarOutlined /> },
         ];
-        if (record.product.mlStatus === 'sem_anuncio') {
+        if (record.product.active && record.product.mlStatus === 'sem_anuncio') {
           items.push({ key: 'criarAnuncio', label: 'Criar Anúncio ML', icon: <PlusOutlined /> });
         }
-        if (record.product.mlStatus === 'ativo') {
+        if (record.product.active && record.product.mlStatus === 'ativo') {
           items.push({
             key: 'atualizarPrecoMl',
             label: isUpdatingCurrent ? 'Atualizando preço...' : 'Atualizar Preço ML',
@@ -1398,6 +1412,13 @@ export default function ProductsPage() {
             onClear={() => { setSearch(''); setLastSearch(''); setPage(1); }}
           />
           <Select
+            placeholder="Status Produto"
+            value={filterProductActive}
+            onChange={setFilterProductActive}
+            options={productActiveOptions}
+            style={{ width: 150 }}
+          />
+          <Select
             placeholder="Status ML"
             value={filterMLStatus || undefined}
             onChange={v => setFilterMLStatus(v as MLStatus | '')}
@@ -1458,7 +1479,7 @@ export default function ProductsPage() {
               pageSize: 100,
               total,
               showSizeChanger: false,
-              showTotal: (t) => `${t} ofertas`,
+              showTotal: (t) => `${t} produtos`,
             }}
             onChange={handleTableChange}
             scroll={{ x: 1200 }}

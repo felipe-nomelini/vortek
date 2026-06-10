@@ -38,7 +38,7 @@ export async function PATCH(
 
     const { data: current, error: currentError } = await supabase
       .from('produtos')
-      .select('id, ml_item_id, custom_price, estoque, ml_status')
+      .select('id, ml_item_id, custom_price, estoque, ml_status, ativo')
       .eq('id', params.id)
       .maybeSingle();
 
@@ -59,6 +59,7 @@ export async function PATCH(
         return NextResponse.json({ error: error?.message || 'SKU mestre inválido' }, { status: 422 });
       }
     }
+    if ('ativo' in body) updateData.ativo = Boolean(body.ativo);
     if ('nome' in body) updateData.nome = body.nome;
     if ('marca' in body) updateData.marca = body.marca;
     if ('gtin' in body) updateData.gtin = body.gtin;
@@ -111,27 +112,32 @@ export async function PATCH(
       );
     }
 
-    const shouldEnqueueMlPublish = ['custom_price', 'estoque', 'ml_status'].some((field) => field in body);
+    const shouldPauseByProductInactive = body.ativo === false
+      && current.ativo !== false
+      && String(data?.ml_item_id || '').trim();
+    const shouldEnqueueMlPublish = ['custom_price', 'estoque', 'ml_status'].some((field) => field in body) || shouldPauseByProductInactive;
     let outboxWarning: string | null = null;
 
     if (shouldEnqueueMlPublish && String(data?.ml_item_id || '').trim()) {
       const outbox = await enqueueMlPublishOutbox(supabase, {
         produtoId: String(data.id),
         mlItemId: String(data.ml_item_id),
-        desiredStatus: (data.ml_status || null) as any,
+        desiredStatus: shouldPauseByProductInactive ? 'pausado' : (data.ml_status || null) as any,
         desiredPrice: typeof data.custom_price === 'number' ? data.custom_price : null,
         desiredQuantity: typeof data.estoque === 'number' ? data.estoque : null,
-        source: 'produto_patch',
+        source: shouldPauseByProductInactive ? 'produto_inativo' : 'produto_patch',
         payload: {
           previous: {
             custom_price: current.custom_price,
             estoque: current.estoque,
             ml_status: current.ml_status,
+            ativo: current.ativo,
           },
           next: {
             custom_price: data.custom_price,
             estoque: data.estoque,
-            ml_status: data.ml_status,
+            ml_status: shouldPauseByProductInactive ? 'pausado' : data.ml_status,
+            ativo: data.ativo,
           },
         },
       });

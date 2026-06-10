@@ -116,10 +116,11 @@ export function matchesProductMasterFilters(params: {
   offers: ProdutoFilterOfferRow[];
   search: string;
   supplierFilterIds: string[];
+  productActiveStatus?: string;
   mlStatus: string;
   estoque: string;
 }) {
-  const { product, offers, search, supplierFilterIds, mlStatus, estoque } = params;
+  const { product, offers, search, supplierFilterIds, productActiveStatus, mlStatus, estoque } = params;
 
   if (search) {
     const term = search.toLowerCase();
@@ -150,6 +151,14 @@ export function matchesProductMasterFilters(params: {
     if (!supplierFilterIds.some((supplierId) => supplierIds.has(String(supplierId || '').trim()))) {
       return false;
     }
+  }
+
+  if (productActiveStatus === 'ativo' && product.ativo === false) {
+    return false;
+  }
+
+  if (productActiveStatus === 'inativo' && product.ativo !== false) {
+    return false;
   }
 
   if (mlStatus && String(product.ml_status || '') !== mlStatus) {

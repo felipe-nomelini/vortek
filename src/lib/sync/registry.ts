@@ -67,8 +67,8 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     schedule: { businessMinutes: 2, offHoursMinutes: 2 },
     usesCursor: true,
     defaultBody: {
-      pageSize: 50,
-      maxPagesPerRun: 1,
+      pageSize: 1000,
+      maxPagesPerRun: 2,
       withMlSync: false,
     },
   },

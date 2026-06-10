@@ -8,9 +8,21 @@ import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 
 export const maxDuration = 300;
 
+const STOCK_STALE_THRESHOLD_MS = 2 * 60 * 60 * 1000;
+const STALE_GUARD_LIMIT = 100;
+
 function fallbackNome(input: unknown, sku: string): string {
   const nome = String(input ?? '').trim();
   return nome || `Produto ${sku}`;
+}
+
+function extractErrorMessage(error: unknown): string {
+  if (!error) return 'Erro desconhecido';
+  if (typeof error === 'string') return error;
+  if (typeof error === 'object' && 'message' in error) {
+    return String((error as { message?: unknown }).message || 'Erro desconhecido');
+  }
+  return 'Erro desconhecido';
 }
 
 function parsePositiveInt(input: unknown, fallback: number): number {
@@ -41,11 +53,20 @@ function resolveDesiredMlStatusByStock(estoque: number): 'ativo' | 'pausado' {
   return estoque > 0 ? 'ativo' : 'pausado';
 }
 
+function isOlderThanThreshold(value: unknown, thresholdMs = STOCK_STALE_THRESHOLD_MS): boolean {
+  const raw = String(value || '').trim();
+  if (!raw) return true;
+  const time = new Date(raw).getTime();
+  if (!Number.isFinite(time)) return true;
+  return Date.now() - time > thresholdMs;
+}
+
 export async function POST(req: Request) {
   const startedAt = Date.now();
   const errors: Array<{ code: string; message: string; context?: Record<string, unknown> }> = [];
   let lockOwnerToken = '';
   let lockAcquired = false;
+  let fatalSyncError = false;
 
   const body = await req.json().catch(() => ({}));
   const fornecedorIdsRaw: Array<number | string> = Array.isArray(body?.fornecedorIds) ? body.fornecedorIds : [];
@@ -54,6 +75,7 @@ export async function POST(req: Request) {
   const pageSize = parsePositiveInt(body?.pageSize, 50);
   const maxPagesPerRun = parsePositiveInt(body?.maxPagesPerRun, 1);
   const withMlSync = Boolean(body?.withMlSync);
+  const runStaleGuard = body?.runStaleGuard !== false;
 
   const jobContext = {
     key: 'sync_dslite_preco_estoque',
@@ -151,9 +173,13 @@ export async function POST(req: Request) {
     let mlOutboxSkippedNoItem = 0;
     let mlOutboxSkippedManualBlock = 0;
     let mlOutboxFailed = 0;
+    let recordsUpdatedSeen = 0;
+    let mlOutboxPausedZeroStock = 0;
+    let mlOutboxPausedStaleStock = 0;
     let remainingPagesBudget = maxPagesPerRun;
     let nextCursor: { fornecedorId: string; page: number } | null = null;
     let stopByBudget = false;
+    let staleGuardRan = false;
 
     while (supplierIndex < fornecedorIds.length) {
       const targetFornecedor = String(fornecedorIds[supplierIndex]);
@@ -266,6 +292,7 @@ export async function POST(req: Request) {
       ]);
 
       if (existingOffersResp.error || existingRowsResp.error) {
+        fatalSyncError = true;
         errors.push({
           code: 'price_existing_select_failed',
           message: existingOffersResp.error?.message || existingRowsResp.error?.message || 'Falha ao consultar ofertas/produtos existentes',
@@ -304,6 +331,7 @@ export async function POST(req: Request) {
           produto_id: productId,
           dslite_fornecedor_id: targetFornecedor,
           fornecedor_nome: String((row as any).fornecedor_nome || targetFornecedorNome),
+          nome: fallbackNome(row.nome, String(row.sku || '').trim()),
           dslite_produto_id: dsliteProdutoId,
           sku_oferta: String(row.sku || '').trim(),
           sku_fornecedor: String(row.sku || '').trim(),
@@ -317,35 +345,81 @@ export async function POST(req: Request) {
         });
       }
 
+      const successfullyUpsertedProductIds = new Set<string>();
+
       if (offerUpserts.length > 0) {
         const { error: offerUpsertError } = await client
           .from('produto_fornecedor_ofertas')
           .upsert(offerUpserts as any, { onConflict: 'dslite_fornecedor_id,dslite_produto_id' });
 
         if (offerUpsertError) {
-          errors.push({
-            code: 'price_offer_upsert_failed',
-            message: offerUpsertError.message,
-            context: { fornecedorId: targetFornecedor, page: currentPage },
-          });
-          recordsFailed += offerUpserts.length;
-          stopByBudget = true;
-          break;
+          // Fallback linha-a-linha: uma oferta ruim não pode travar o sync inteiro.
+          for (const offerUpsert of offerUpserts) {
+            const { error: rowError } = await client
+              .from('produto_fornecedor_ofertas')
+              .upsert(offerUpsert as any, { onConflict: 'dslite_fornecedor_id,dslite_produto_id' });
+
+            if (rowError) {
+              recordsFailed += 1;
+              errors.push({
+                code: 'price_offer_row_upsert_failed',
+                message: extractErrorMessage(rowError),
+                context: {
+                  fornecedorId: targetFornecedor,
+                  page: currentPage,
+                  sku: String(offerUpsert.sku_oferta || ''),
+                  dslite_produto_id: String(offerUpsert.dslite_produto_id || ''),
+                },
+              });
+              continue;
+            }
+
+            const productId = String(offerUpsert.produto_id || '').trim();
+            if (productId) {
+              successfullyUpsertedProductIds.add(productId);
+              recordsUpdatedSeen += 1;
+            }
+          }
+
+          if (successfullyUpsertedProductIds.size === 0) {
+            fatalSyncError = true;
+            errors.push({
+              code: 'price_offer_upsert_failed',
+              message: offerUpsertError.message,
+              context: { fornecedorId: targetFornecedor, page: currentPage },
+            });
+            stopByBudget = true;
+            break;
+          }
+        } else {
+          for (const productId of touchedProductIds) {
+            successfullyUpsertedProductIds.add(productId);
+          }
+          recordsUpdatedSeen += offerUpserts.length;
         }
+      }
+
+      const snapshotProductIds = successfullyUpsertedProductIds.size > 0
+        ? Array.from(successfullyUpsertedProductIds)
+        : Array.from(touchedProductIds);
+
+      if (snapshotProductIds.length === 0) {
+        recordsUpdated += 0;
       }
 
       let changedSnapshots: Awaited<ReturnType<typeof syncPreferredProductSnapshot>> = [];
       try {
-        changedSnapshots = await syncPreferredProductSnapshot(client, Array.from(touchedProductIds));
+        changedSnapshots = await syncPreferredProductSnapshot(client, snapshotProductIds);
       } catch (err: any) {
-        errors.push({
-          code: 'price_preferred_snapshot_failed',
-          message: err?.message || 'Falha ao recalcular snapshot preferencial do produto',
-          context: { fornecedorId: targetFornecedor, page: currentPage },
-        });
-        recordsFailed += offerUpserts.length;
-        stopByBudget = true;
-        break;
+          fatalSyncError = true;
+          errors.push({
+            code: 'price_preferred_snapshot_failed',
+            message: err?.message || 'Falha ao recalcular snapshot preferencial do produto',
+            context: { fornecedorId: targetFornecedor, page: currentPage },
+          });
+          recordsFailed += snapshotProductIds.length;
+          stopByBudget = true;
+          break;
       }
 
       const existingMlItemIds = Array.from(
@@ -417,6 +491,7 @@ export async function POST(req: Request) {
         }
 
         const desiredStatus = resolveDesiredMlStatusByStock(Number(snapshot.next.estoque || 0));
+        if (desiredStatus === 'pausado') mlOutboxPausedZeroStock += 1;
         const outbox = await enqueueMlPublishOutbox(client, {
           produtoId: String(snapshot.productId),
           mlItemId,
@@ -454,6 +529,119 @@ export async function POST(req: Request) {
         }
       }
 
+      if (runStaleGuard && !staleGuardRan) {
+        staleGuardRan = true;
+        const staleCutoffIso = new Date(Date.now() - STOCK_STALE_THRESHOLD_MS).toISOString();
+        const { data: staleProducts, error: staleProductsError } = await client
+          .from('produtos')
+          .select('id,sku,ml_item_id,ml_status,dslite_ultima_sync,dslite_fornecedor_id,fornecedor')
+          .eq('ativo', true)
+          .not('ml_item_id', 'is', null)
+          .or(`dslite_ultima_sync.is.null,dslite_ultima_sync.lt.${staleCutoffIso}`)
+          .in('dslite_fornecedor_id', fornecedorIds)
+          .limit(STALE_GUARD_LIMIT);
+
+        if (staleProductsError) {
+          errors.push({
+            code: 'stock_stale_guard_select_failed',
+            message: staleProductsError.message,
+            context: { threshold_minutes: STOCK_STALE_THRESHOLD_MS / 60000 },
+          });
+        } else if (Array.isArray(staleProducts) && staleProducts.length > 0) {
+          const staleMlItemIds = Array.from(new Set(
+            staleProducts.map((row: any) => String(row.ml_item_id || '').trim()).filter(Boolean)
+          ));
+          const staleSkusUpper = Array.from(new Set(
+            staleProducts.map((row: any) => String(row.sku || '').trim().toUpperCase()).filter(Boolean)
+          ));
+
+          const [manualStaleByItemResp, manualStaleBySkuResp] = await Promise.all([
+            staleMlItemIds.length > 0
+              ? client
+                  .from('ml_manual_blocklist')
+                  .select('ml_item_id')
+                  .eq('ativo', true)
+                  .in('ml_item_id', staleMlItemIds)
+              : Promise.resolve({ data: [], error: null } as any),
+            staleSkusUpper.length > 0
+              ? client
+                  .from('ml_manual_blocklist')
+                  .select('sku')
+                  .eq('ativo', true)
+                  .in('sku', staleSkusUpper)
+              : Promise.resolve({ data: [], error: null } as any),
+          ]);
+
+          const manualStaleByItemId = new Set<string>();
+          const manualStaleBySku = new Set<string>();
+          if (manualStaleByItemResp.error || manualStaleBySkuResp.error) {
+            errors.push({
+              code: 'stock_stale_guard_blocklist_failed',
+              message: manualStaleByItemResp.error?.message || manualStaleBySkuResp.error?.message || 'Falha ao consultar bloqueio manual ML no stale guard',
+            });
+          } else {
+            for (const row of manualStaleByItemResp.data || []) {
+              const mlItemId = String((row as any).ml_item_id || '').trim();
+              if (mlItemId) manualStaleByItemId.add(mlItemId);
+            }
+            for (const row of manualStaleBySkuResp.data || []) {
+              const skuUpper = String((row as any).sku || '').trim().toUpperCase();
+              if (skuUpper) manualStaleBySku.add(skuUpper);
+            }
+          }
+
+          for (const product of staleProducts as any[]) {
+            const mlItemId = String(product.ml_item_id || '').trim();
+            const skuUpper = String(product.sku || '').trim().toUpperCase();
+            if (!mlItemId) continue;
+            if (manualStaleByItemId.has(mlItemId) || (skuUpper && manualStaleBySku.has(skuUpper))) {
+              mlOutboxSkippedManualBlock += 1;
+              continue;
+            }
+
+            const outbox = await enqueueMlPublishOutbox(client, {
+              produtoId: String(product.id),
+              mlItemId,
+              desiredStatus: 'pausado',
+              desiredQuantity: 0,
+              desiredPrice: null,
+              source: 'stock_stale_guard',
+              dedupePending: true,
+              payload: {
+                apply_price: false,
+                apply_quantity_pricing: false,
+                apply_quantity: true,
+                apply_status: true,
+                sku: product.sku,
+                estoque_origem: null,
+                status_desejado: 'pausado',
+                fornecedor_preferencial: product.fornecedor,
+                fornecedor_dslite_id: product.dslite_fornecedor_id,
+                origin: 'api/sync/preco-estoque',
+                guard: 'stock_stale_guard',
+                stale_threshold_minutes: STOCK_STALE_THRESHOLD_MS / 60000,
+                last_seen_at: product.dslite_ultima_sync || null,
+                checked_at: new Date().toISOString(),
+              },
+            });
+
+            if (!outbox.ok) {
+              mlOutboxFailed += 1;
+              errors.push({
+                code: 'stock_stale_guard_enqueue_failed',
+                message: outbox.error,
+                context: { sku: product.sku, mlItemId, produtoId: product.id },
+              });
+              continue;
+            }
+
+            mlOutboxPausedStaleStock += 1;
+            if (outbox.action === 'updated_existing') mlOutboxUpdatedExisting += 1;
+            else mlOutboxEnqueued += 1;
+          }
+        }
+      }
+
       const totalRegistros = Number(response?.detalhesConsulta?.totalRegistros || 0);
       const perPage = Number(response?.detalhesConsulta?.limit || produtos.length || pageSize);
       const totalPaginas = perPage > 0 ? Math.ceil(totalRegistros / perPage) : currentPage;
@@ -484,7 +672,7 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({
-      success: errors.length === 0,
+      success: !fatalSyncError,
       domain: jobContext.domain,
       job: {
         ...jobContext,
@@ -504,6 +692,10 @@ export async function POST(req: Request) {
         ml_outbox_skipped_no_item: mlOutboxSkippedNoItem,
         ml_outbox_skipped_manual_block: mlOutboxSkippedManualBlock,
         ml_outbox_failed: mlOutboxFailed,
+        updated_seen: recordsUpdatedSeen,
+        paused_zero_stock: mlOutboxPausedZeroStock,
+        paused_stale_stock: mlOutboxPausedStaleStock,
+        row_failed: recordsFailed,
       },
       errors,
       duration: { ms: Date.now() - startedAt },
@@ -519,6 +711,10 @@ export async function POST(req: Request) {
       ml_outbox_skipped_no_item: mlOutboxSkippedNoItem,
       ml_outbox_skipped_manual_block: mlOutboxSkippedManualBlock,
       ml_outbox_failed: mlOutboxFailed,
+      updated_seen: recordsUpdatedSeen,
+      paused_zero_stock: mlOutboxPausedZeroStock,
+      paused_stale_stock: mlOutboxPausedStaleStock,
+      row_failed: recordsFailed,
       next_cursor: nextCursor,
       message: 'Sync DSLite de preço/estoque concluído com enfileiramento ML por outbox',
     });

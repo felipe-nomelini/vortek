@@ -27,6 +27,10 @@ export async function GET(request: Request) {
   const to = from + pageSize - 1;
 
   const fornecedorFilterIds = searchParams.get('fornecedores')?.split(',').filter(Boolean) || [];
+  const productActiveStatusParam = searchParams.get('ativo') || 'ativo';
+  const productActiveStatus = productActiveStatusParam === 'inativo' || productActiveStatusParam === 'todos'
+    ? productActiveStatusParam
+    : 'ativo';
   const mlStatus = searchParams.get('ml_status') || '';
   const estoque = searchParams.get('estoque') || '';
   const priceFieldParam = searchParams.get('priceField') || 'cost';
@@ -89,6 +93,7 @@ export async function GET(request: Request) {
       offers,
       search,
       supplierFilterIds: supplierFilterDsliteIds,
+      productActiveStatus,
       mlStatus,
       estoque,
     })) {
