@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { createClient, createServiceClient } from '@/lib/supabase';
 
 export async function GET(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+  const serviceClient = createServiceClient();
 
   const { searchParams } = new URL(request.url);
   const dateFrom = searchParams.get('dateFrom') || '';
@@ -21,12 +22,12 @@ export async function GET(request: Request) {
   }
 
   // 1. Total de pedidos no período
-  let countQuery = supabase.from('pedidos').select('*', { count: 'exact', head: false }).range(0, 0);
+  let countQuery = serviceClient.from('pedidos').select('*', { count: 'exact', head: false }).range(0, 0);
   countQuery = applyDateFilter(countQuery);
   const { count: totalPedidos } = await countQuery;
 
   // 2. Faturamento e lucro no período
-  let sumQuery = supabase.from('pedidos').select('total, lucro');
+  let sumQuery = serviceClient.from('pedidos').select('total, lucro');
   sumQuery = applyDateFilter(sumQuery);
   const { data: sumData } = await sumQuery;
 
@@ -38,7 +39,7 @@ export async function GET(request: Request) {
   }
 
   // 3. Vendas diárias
-  let dailyQuery = supabase.from('pedidos').select('data, total');
+  let dailyQuery = serviceClient.from('pedidos').select('data, total');
   dailyQuery = applyDateFilter(dailyQuery);
   const { data: dailyData } = await dailyQuery;
 
@@ -57,7 +58,7 @@ export async function GET(request: Request) {
     .map(([dia, receita]) => ({ dia, receita: Math.round(receita * 100) / 100 }));
 
   // 4. Status dos pedidos no período
-  let statusQuery = supabase.from('pedidos').select('situacao');
+  let statusQuery = serviceClient.from('pedidos').select('situacao');
   statusQuery = applyDateFilter(statusQuery);
   const { data: statusData } = await statusQuery;
 
@@ -68,7 +69,7 @@ export async function GET(request: Request) {
   }
 
   // 5. Pedidos recentes (últimos 5)
-  let recentQuery = supabase.from('pedidos').select('*');
+  let recentQuery = serviceClient.from('pedidos').select('*');
   recentQuery = applyDateFilter(recentQuery);
   const { data: recentData } = await recentQuery
     .order('data', { ascending: false })
@@ -83,7 +84,7 @@ export async function GET(request: Request) {
   }));
 
   // 6. Top produtos: usa anuncios_ml.vendidos agregado por produto
-  const { data: anunciosData } = await supabase
+  const { data: anunciosData } = await serviceClient
     .from('anuncios_ml')
     .select('titulo, vendidos, preco_ml')
     .order('vendidos', { ascending: false })
@@ -99,13 +100,13 @@ export async function GET(request: Request) {
     .slice(0, 5);
 
   // 7. Produtos ativos (independente de período)
-  const { count: produtosAtivos } = await supabase
+  const { count: produtosAtivos } = await serviceClient
     .from('produtos')
     .select('*', { count: 'exact', head: false })
     .range(0, 0)
     .eq('ml_status', 'ativo');
 
-  const { count: totalProdutos } = await supabase
+  const { count: totalProdutos } = await serviceClient
     .from('produtos')
     .select('*', { count: 'exact', head: false })
     .range(0, 0);

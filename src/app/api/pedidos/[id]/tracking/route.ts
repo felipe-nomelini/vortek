@@ -1,16 +1,17 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchML } from '@/services/integration';
 
 export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+  const serviceClient = createServiceClient();
 
   const { id } = await params;
 
   // Buscar pedido no banco
-  const { data: pedido, error } = await supabase
+  const { data: pedido, error } = await serviceClient
     .from('pedidos')
     .select('ml_order_id, ml_shipment_id, ml_claim_id, ml_claim_status, rastreio')
     .eq('id', id)

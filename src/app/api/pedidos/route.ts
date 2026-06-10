@@ -151,6 +151,7 @@ export async function GET(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+  const serviceClient = createServiceClient();
 
   const { searchParams } = new URL(request.url);
   const page = Math.max(1, parseInt(searchParams.get('page') || '1'));
@@ -188,7 +189,7 @@ export async function GET(request: Request) {
   }
 
   if (normalizedSearch) {
-    const { data: rpcData, error: rpcError } = await (supabase as any).rpc('search_pedidos_paginated', {
+    const { data: rpcData, error: rpcError } = await (serviceClient as any).rpc('search_pedidos_paginated', {
       p_search: normalizedSearch,
       p_status: status || null,
       p_date_from: dateFrom || null,
@@ -233,11 +234,11 @@ export async function GET(request: Request) {
   };
 
   async function runListQueries(useSaleDate: boolean) {
-    let countQuery = supabase.from('pedidos').select('*', { count: 'exact', head: false }).range(0, 0);
+    let countQuery = serviceClient.from('pedidos').select('*', { count: 'exact', head: false }).range(0, 0);
     countQuery = applyPedidoFilters(countQuery, { ...filterContext, useSaleDate });
     const countResult = await countQuery;
 
-    let dataQuery = supabase.from('pedidos').select('*');
+    let dataQuery = serviceClient.from('pedidos').select('*');
     dataQuery = applyPedidoFilters(dataQuery, { ...filterContext, useSaleDate });
     dataQuery = applyPedidoSortWithMode(dataQuery, sortBy, sortOrder, useSaleDate);
     const dataResult = await dataQuery.range(from, to);
@@ -300,9 +301,10 @@ export async function POST(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+  const serviceClient = createServiceClient();
 
   const body = await request.json();
-  const { data, error } = await supabase.from('pedidos').insert(body).select().single();
+  const { data, error } = await serviceClient.from('pedidos').insert(body).select().single();
 
   if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
   return NextResponse.json(data, { status: 201 });

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { createClient, createServiceClient } from '@/lib/supabase';
 
 const CONFIG_ROW_ID = '00000000-0000-0000-0000-000000000001';
 
@@ -7,6 +7,7 @@ export async function PATCH(req: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+  const serviceClient = createServiceClient();
 
   const body = await req.json().catch(() => ({}));
   const provider = String(body?.defaultProvider || '').trim().toLowerCase();
@@ -14,7 +15,7 @@ export async function PATCH(req: Request) {
     return NextResponse.json({ erro: 'defaultProvider inválido. Use brasilnfe.' }, { status: 422 });
   }
 
-  const { data, error } = await supabase
+  const { data, error } = await serviceClient
     .from('configuracoes')
     .upsert({ id: CONFIG_ROW_ID, nfe_provider_default: provider } as any)
     .select('id, nfe_provider_default')

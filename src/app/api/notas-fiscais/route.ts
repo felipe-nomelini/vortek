@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { createClient, createServiceClient } from '@/lib/supabase';
 import { normalizeNfeTechnicalStatus, type NfeTechnicalStatus } from '@/lib/fiscal/nfe-status';
 import { reconcileLocalNfeSnapshotFromXml } from '@/lib/fiscal/nfe-local-reconciliation';
 
@@ -123,6 +123,7 @@ export async function GET(request: Request) {
   if (!user) {
     return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
   }
+  const serviceClient = createServiceClient();
 
   try {
     const { searchParams } = new URL(request.url);
@@ -146,8 +147,8 @@ export async function GET(request: Request) {
     const to = from + pageSize - 1;
 
     const baseSelect = 'id, numero, ml_order_id, ml_pack_id, contato_nome, contato_documento, data, nota_fiscal_numero, nota_fiscal_emitida, nfe_status, nfe_chave, nfe_protocolo, nfe_danfe_url, nfe_cfop, nfe_xml, total';
-    let countQuery = supabase.from('pedidos').select('id', { count: 'exact', head: true });
-    let dataQuery = supabase
+    let countQuery = serviceClient.from('pedidos').select('id', { count: 'exact', head: true });
+    let dataQuery = serviceClient
       .from('pedidos')
       .select(baseSelect)
       .order(sortBy, { ascending: sortOrder === 'asc', nullsFirst: false })
@@ -161,14 +162,14 @@ export async function GET(request: Request) {
 
     if (status === 'outro') {
       const fullQuery = applyCommonFilters(
-        supabase.from('pedidos').select(baseSelect).order(sortBy, { ascending: sortOrder === 'asc', nullsFirst: false }),
+        serviceClient.from('pedidos').select(baseSelect).order(sortBy, { ascending: sortOrder === 'asc', nullsFirst: false }),
         { search, dateFrom, dateTo, valorMin, valorMax },
       );
       const { data: rawRows, error } = await fullQuery;
       if (error) {
         return NextResponse.json({ erro: error.message || 'Erro ao buscar notas fiscais' }, { status: 500 });
       }
-      const reconciledRows = await reconcileRowsBestEffort(supabase, rawRows || []);
+      const reconciledRows = await reconcileRowsBestEffort(serviceClient, rawRows || []);
       const filtered = reconciledRows.filter((row: any) => normalizeNfeTechnicalStatus(row.nfe_status) === 'outro');
       count = filtered.length;
       data = filtered.slice(from, to + 1);
@@ -186,7 +187,7 @@ export async function GET(request: Request) {
         );
       }
       count = totalCount || 0;
-      data = await reconcileRowsBestEffort(supabase, rowsData || []);
+      data = await reconcileRowsBestEffort(serviceClient, rowsData || []);
     }
 
     const rows = (data || []).map((row) => ({

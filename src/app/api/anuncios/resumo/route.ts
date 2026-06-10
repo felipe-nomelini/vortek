@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { createClient, createServiceClient } from '@/lib/supabase';
 
 export async function GET(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+  const serviceClient = createServiceClient();
 
   const { searchParams } = new URL(request.url);
   const search = searchParams.get('search') || '';
@@ -28,7 +29,7 @@ export async function GET(request: Request) {
     return query;
   }
 
-  let query = supabase.from('anuncios_ml').select('status, qualidade');
+  let query = serviceClient.from('anuncios_ml').select('status, qualidade');
   query = applyFilters(query);
 
   const { data, error } = await query;

@@ -248,6 +248,7 @@ export async function POST(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+  const serviceClient = createServiceClient();
 
   const body = await request.json();
   let payload = { ...body } as Record<string, any>;
@@ -263,7 +264,7 @@ export async function POST(request: Request) {
   if ('dslite_fornecedor_id' in payload) payload.dslite_fornecedor_id = String(payload.dslite_fornecedor_id || '').trim();
   if ('dslite_produto_id' in payload) payload.dslite_produto_id = String(payload.dslite_produto_id || '').trim();
 
-  const { data, error } = await supabase.from('produtos').insert(payload).select().single();
+  const { data, error } = await serviceClient.from('produtos').insert(payload).select().single();
 
   if (error) {
     const msg = error.message || '';

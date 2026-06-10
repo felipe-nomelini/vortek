@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { createClient, createServiceClient } from '@/lib/supabase';
 
 function logDbError(
   event: string,
@@ -42,6 +42,7 @@ export async function GET(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+  const serviceClient = createServiceClient();
 
   const { searchParams } = new URL(request.url);
   const search = searchParams.get('search') || '';
@@ -60,7 +61,7 @@ export async function GET(request: Request) {
   }
 
   if (normalizedSearch) {
-    const { data: rpcData, error: rpcError } = await (supabase as any).rpc('search_pedidos_resumo', {
+    const { data: rpcData, error: rpcError } = await (serviceClient as any).rpc('search_pedidos_resumo', {
       p_search: normalizedSearch,
       p_status: status || null,
       p_date_from: dateFrom || null,
@@ -113,15 +114,15 @@ export async function GET(request: Request) {
 
   // Count total
   async function runSummaryQueries(useSaleDate: boolean) {
-    let countQuery = supabase.from('pedidos').select('*', { count: 'exact', head: false }).range(0, 0);
+    let countQuery = serviceClient.from('pedidos').select('*', { count: 'exact', head: false }).range(0, 0);
     countQuery = applyFilters(countQuery, useSaleDate);
     const countResult = await countQuery;
 
-    let sumQuery = supabase.from('pedidos').select('total, lucro, pagamento_resumo');
+    let sumQuery = serviceClient.from('pedidos').select('total, lucro, pagamento_resumo');
     sumQuery = applyFilters(sumQuery, useSaleDate);
     const sumResult = await sumQuery;
 
-    let statusQuery = supabase
+    let statusQuery = serviceClient
       .from('pedidos')
       .select('situacao')
       .not('situacao', 'is', null);

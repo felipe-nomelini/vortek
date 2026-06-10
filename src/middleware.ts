@@ -29,9 +29,18 @@ export async function middleware(request: NextRequest) {
 
   const apiKey = request.headers.get('x-api-key');
   const isSyncRoute = pathname.startsWith('/api/sync/');
+  const isApiRoute = pathname.startsWith('/api/');
+  const isPublicApiRoute =
+    pathname.startsWith('/api/auth/')
+    || pathname.startsWith('/api/webhooks/')
+    || pathname === '/api/ops/health';
 
   if (isSyncRoute && apiKey === process.env.API_SECRET_KEY) {
     return supabaseResponse;
+  }
+
+  if (!user && isApiRoute && !isPublicApiRoute) {
+    return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
   }
 
   if (!user && !pathname.startsWith('/login') && !pathname.startsWith('/api/')) {

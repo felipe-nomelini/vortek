@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { createClient, createServiceClient } from '@/lib/supabase';
 import { normalizeNfeTechnicalStatus, type NfeTechnicalStatus } from '@/lib/fiscal/nfe-status';
 import { reconcileLocalNfeSnapshotFromXml } from '@/lib/fiscal/nfe-local-reconciliation';
 
@@ -52,6 +52,7 @@ export async function GET(request: Request) {
   if (!user) {
     return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
   }
+  const serviceClient = createServiceClient();
 
   try {
     const { searchParams } = new URL(request.url);
@@ -63,7 +64,7 @@ export async function GET(request: Request) {
     const valorMin = searchParams.get('valorMin');
     const valorMax = searchParams.get('valorMax');
 
-    let query = supabase
+    let query = serviceClient
       .from('pedidos')
       .select('id, nota_fiscal_numero, nota_fiscal_emitida, nfe_status, nfe_chave, nfe_protocolo, nfe_cfop, nfe_xml, total, data, contato_nome, ml_order_id, ml_pack_id, numero');
 
@@ -106,7 +107,7 @@ export async function GET(request: Request) {
       return NextResponse.json({ erro: error.message }, { status: 500 });
     }
 
-    let rows = await reconcileRowsBestEffort(supabase, data || []);
+    let rows = await reconcileRowsBestEffort(serviceClient, data || []);
     if (status) {
       rows = rows.filter((row) => mapStatus(row) === status);
     }

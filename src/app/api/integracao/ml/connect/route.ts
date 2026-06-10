@@ -1,12 +1,13 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { createClient, createServiceClient } from '@/lib/supabase';
 
 export async function GET() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+  const serviceClient = createServiceClient();
 
-  const { data: integracao } = await supabase
+  const { data: integracao } = await serviceClient
     .from('integracoes')
     .select('*')
     .eq('tipo', 'mercadolivre')
