@@ -200,7 +200,11 @@ export async function POST(request: Request) {
     const recent = recentJobs || [];
     const statuses = recent.map((j: any) => String(j.status || ''));
     const failureStreak = consecutiveFailures(statuses);
-    const backoffMinutes = shouldApplyBackoff(statuses) && failureStreak > 0 ? 10 : 0;
+    const backoffMinutes = task.key === 'sync_dslite_preco_estoque'
+      ? 0
+      : shouldApplyBackoff(statuses) && failureStreak > 0
+        ? 10
+        : 0;
 
     const lastFinished = recent.find((j: any) => Boolean(j.finished_at));
     if (lastFinished?.finished_at) {

@@ -140,7 +140,7 @@ function buildBody(taskKey: SyncTaskKey, taskDefaultBody: Record<string, unknown
   }
 
   if (taskKey === 'sync_ml_listings_publish') {
-    if (requestBody.limit !== undefined) payload.limit = Math.min(200, parsePositiveInt(requestBody.limit, 50));
+    if (requestBody.limit !== undefined) payload.limit = Math.min(50, parsePositiveInt(requestBody.limit, 10));
     if (requestBody.seedFromProducts !== undefined) payload.seedFromProducts = Boolean(requestBody.seedFromProducts);
   }
 

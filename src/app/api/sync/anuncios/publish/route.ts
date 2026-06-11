@@ -103,7 +103,7 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json().catch(() => ({}));
-  const limit = Math.min(200, parsePositiveInt(body?.limit, 50));
+  const limit = Math.min(50, parsePositiveInt(body?.limit, 10));
   const seedFromProducts = Boolean(body?.seedFromProducts);
 
   let lockOwnerToken = '';
@@ -139,6 +139,16 @@ export async function POST(request: Request) {
     }
 
     const client = createServiceClient();
+
+    await (client
+      .from('anuncios_ml_outbox' as any)
+      .update({
+        status: 'cancelled',
+        last_error: 'Cancelado: stock_stale_guard removido; não pausar por falha/atraso de sync',
+        updated_at: new Date().toISOString(),
+      } as any)
+      .eq('source', 'stock_stale_guard')
+      .in('status', ['pending', 'retry', 'processing']) as any);
 
     if (seedFromProducts) {
       const { data: produtos } = await client

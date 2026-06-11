@@ -6,6 +6,7 @@ import {
   consultarPedidoPorChaveAcesso,
   definirTransportadoraPedido,
   enviarEtiqueta,
+  obterProdutoEspecifico,
   resolverProdutoMapeadoDslite,
 } from '@/services/dslite';
 import {
@@ -33,6 +34,7 @@ import {
   inferSupplierPaymentMode,
   resolvePreferredOfferForProduct,
   resolveCompraStatus,
+  syncPreferredProductSnapshot,
   type SupplierPaymentMode,
 } from '@/lib/produto-fornecedor';
 import { recordSupplierPurchaseDebit } from '@/lib/supplier-balance';
@@ -59,7 +61,7 @@ const SYNC_ORDER_LOCK_RETRY_INTERVAL_MS = 2_000;
 const STRICT_NFE_VALIDATION = String(process.env.STRICT_NFE_VALIDATION || 'true').toLowerCase() === 'true';
 const ITEM_TOTAL_TOLERANCE = 0.01;
 const STATUS_AGUARDANDO_PAGAMENTO_FORNECEDOR = 'Aguardando Pagamento Fornecedor';
-const STOCK_STALE_THRESHOLD_MS = 2 * 60 * 60 * 1000;
+const STOCK_REFRESH_THRESHOLD_MS = 2 * 60 * 60 * 1000;
 
 function normalizeSupplierPaymentMode(value: unknown, fornecedorId?: string | number | null): SupplierPaymentMode {
   const raw = String(value || '').trim();
@@ -73,14 +75,71 @@ function extractFirstItemQuantityFromXml(xml: string | null | undefined): number
   return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
 }
 
-function hasReliableSupplierStock(offer: any): boolean {
+function shouldRefreshSupplierStockBeforePurchase(offer: any): boolean {
   const stock = Number(offer?.estoque || 0);
-  if (!Number.isFinite(stock) || stock <= 0) return false;
+  if (!Number.isFinite(stock) || stock <= 0) return true;
   const rawLastSync = String(offer?.last_sync_at || '').trim();
-  if (!rawLastSync) return false;
+  if (!rawLastSync) return true;
   const lastSyncAt = new Date(rawLastSync).getTime();
-  if (!Number.isFinite(lastSyncAt)) return false;
-  return Date.now() - lastSyncAt <= STOCK_STALE_THRESHOLD_MS;
+  if (!Number.isFinite(lastSyncAt)) return true;
+  return Date.now() - lastSyncAt > STOCK_REFRESH_THRESHOLD_MS;
+}
+
+async function confirmSupplierStockWithDslite(params: {
+  client: ReturnType<typeof createServiceClient>;
+  offer: any;
+  requiredQuantity: number;
+}): Promise<{
+  ok: boolean;
+  stock: number | null;
+  lastSyncAt: string | null;
+  reason: 'confirmed' | 'zero_stock' | 'insufficient_stock' | 'missing_identity' | 'provider_unavailable';
+}> {
+  const { client, offer, requiredQuantity } = params;
+  const fornecedorId = String(offer?.dslite_fornecedor_id || '').trim();
+  const dsliteProdutoId = String(offer?.dslite_produto_id || '').trim();
+  const ofertaId = String(offer?.id || '').trim();
+  const produtoId = String(offer?.produto_id || '').trim();
+
+  if (!fornecedorId || !dsliteProdutoId || !ofertaId) {
+    return { ok: false, stock: null, lastSyncAt: null, reason: 'missing_identity' };
+  }
+
+  const liveProduct = await obterProdutoEspecifico(fornecedorId, dsliteProdutoId);
+  if (!liveProduct) {
+    return { ok: false, stock: null, lastSyncAt: null, reason: 'provider_unavailable' };
+  }
+
+  const liveStock = Math.max(0, Math.trunc(Number(liveProduct.estoque_total ?? liveProduct.estoque ?? 0)));
+  const liveProductAny = liveProduct as any;
+  const liveCost = Number(liveProductAny.preco_revenda || liveProduct.preco_crossdocking || liveProduct.preco_normal || offer?.custo || 0);
+  const syncedAt = new Date().toISOString();
+
+  await client
+    .from('produto_fornecedor_ofertas')
+    .update({
+      estoque: liveStock,
+      custo: Number.isFinite(liveCost) && liveCost >= 0 ? liveCost : Number(offer?.custo || 0),
+      last_sync_at: syncedAt,
+      updated_at: syncedAt,
+    } as any)
+    .eq('id', ofertaId);
+
+  if (produtoId) {
+    await syncPreferredProductSnapshot(client, [produtoId]).catch(() => []);
+  }
+
+  if (liveStock <= 0) {
+    return { ok: false, stock: liveStock, lastSyncAt: syncedAt, reason: 'zero_stock' };
+  }
+  if (liveStock < requiredQuantity) {
+    return { ok: false, stock: liveStock, lastSyncAt: syncedAt, reason: 'insufficient_stock' };
+  }
+
+  offer.estoque = liveStock;
+  offer.custo = Number.isFinite(liveCost) && liveCost >= 0 ? liveCost : Number(offer?.custo || 0);
+  offer.last_sync_at = syncedAt;
+  return { ok: true, stock: liveStock, lastSyncAt: syncedAt, reason: 'confirmed' };
 }
 
 function summarizeDsliteResponseText(value: string | null | undefined, max = 240): string | null {
@@ -2566,18 +2625,31 @@ async function runDsliteCreateJob(
         await syncJob();
         return;
       }
-      if (!hasReliableSupplierStock(selectedOffer.offer)) {
-        await setStep('find_product_dslite', 'error', undefined, `Produto com SKU ${skuComPrefixo} sem estoque confiável na DSLite`);
-        state = 'error';
-        await syncJob();
-        return;
+      const requestedQuantity = extractFirstItemQuantityFromXml(xml);
+      if (shouldRefreshSupplierStockBeforePurchase(selectedOffer.offer)) {
+        const stockCheck = await confirmSupplierStockWithDslite({
+          client,
+          offer: selectedOffer.offer,
+          requiredQuantity: requestedQuantity,
+        });
+
+        if (!stockCheck.ok) {
+          const stockWarningMessage = stockCheck.reason === 'zero_stock'
+            ? `Aviso: DSLite informou estoque 0 para ${skuComPrefixo}; seguindo criação pois a venda já foi feita`
+            : stockCheck.reason === 'insufficient_stock'
+              ? `Aviso: DSLite informou estoque insuficiente para ${skuComPrefixo} (${stockCheck.stock ?? 0} unidades); seguindo criação pois a venda já foi feita`
+              : 'Aviso: não foi possível confirmar estoque na DSLite agora; seguindo criação pois a venda já foi feita';
+          await setStep('find_product_dslite', 'loading', stockWarningMessage);
+        } else {
+          await setStep('find_product_dslite', 'loading', `Estoque DSLite confirmado: ${stockCheck.stock} unidades`);
+        }
       }
 
       fornecedorId = String(selectedOffer.offer.dslite_fornecedor_id);
       fornecedorNomeResolved = selectedOffer.offer.fornecedor_nome ? String(selectedOffer.offer.fornecedor_nome) : null;
       produtoFornecedorOfertaId = selectedOffer.offer.id ? String(selectedOffer.offer.id) : null;
       supplierPaymentMode = normalizeSupplierPaymentMode(selectedOffer.offer.payment_mode, fornecedorId);
-      supplierPaymentAmount = Number(selectedOffer.offer.custo || 0) * extractFirstItemQuantityFromXml(xml);
+      supplierPaymentAmount = Number(selectedOffer.offer.custo || 0) * requestedQuantity;
 
       const produtoLookup = await resolverProdutoMapeadoDslite({
         fornecedorId,

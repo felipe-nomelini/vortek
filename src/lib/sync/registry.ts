@@ -67,8 +67,8 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     schedule: { businessMinutes: 2, offHoursMinutes: 2 },
     usesCursor: true,
     defaultBody: {
-      pageSize: 1000,
-      maxPagesPerRun: 2,
+      pageSize: 100,
+      maxPagesPerRun: 1,
       withMlSync: false,
     },
   },
@@ -114,7 +114,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     lockTtlSeconds: 20 * 60,
     kind: 'ml',
     schedule: { businessMinutes: 1, offHoursMinutes: 1 },
-    defaultBody: { limit: 50 },
+    defaultBody: { limit: 10 },
   },
   {
     key: 'sync_reconcile_fiscal',
