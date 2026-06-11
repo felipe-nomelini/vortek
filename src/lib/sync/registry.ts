@@ -114,7 +114,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     lockTtlSeconds: 20 * 60,
     kind: 'ml',
     schedule: { businessMinutes: 1, offHoursMinutes: 1 },
-    defaultBody: { limit: 10 },
+    defaultBody: { limit: 20 },
   },
   {
     key: 'sync_reconcile_fiscal',

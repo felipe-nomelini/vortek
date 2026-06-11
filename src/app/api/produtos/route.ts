@@ -1,15 +1,10 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
-import { calculateSuggestedPrice } from '@/services/pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { assertVortekSku } from '@/lib/product-master-sku';
 import {
-  buildOffersByProductId,
-  fetchAllTableRows,
   listActiveSupplierOptions,
   mapSupplierFilterIdsToDsliteIds,
-  matchesProductMasterFilters,
-  type ProdutoFilterOfferRow,
   type SupplierFilterOption,
 } from '@/lib/produto-filtering';
 
@@ -23,8 +18,6 @@ export async function GET(request: Request) {
   const page = Math.max(1, parseInt(searchParams.get('page') || '1'));
   const search = searchParams.get('search') || '';
   const pageSize = 100;
-  const from = (page - 1) * pageSize;
-  const to = from + pageSize - 1;
 
   const fornecedorFilterIds = searchParams.get('fornecedores')?.split(',').filter(Boolean) || [];
   const productActiveStatusParam = searchParams.get('ativo') || 'ativo';
@@ -62,189 +55,42 @@ export async function GET(request: Request) {
   const sortBy = allowedSortBy.has(rawSortBy) ? rawSortBy : 'sku';
   const sortOrder = rawSortOrder === 'desc' ? 'desc' : 'asc';
 
-  function computeDerived(item: Record<string, any>): { displayPrice: number; profit: number | null } {
-    try {
-      const result = calculateSuggestedPrice({
-        cost: Number(item.custo || 0),
-        shipping: Number(item.ml_shipping || 0),
-        mlFee: Number(item.ml_fee || 0.15),
-      });
-      const displayPrice = Math.round(((item.custom_price ?? result.suggestedPrice) || 0) * 100) / 100;
-
-      if (item.ml_status === 'sem_anuncio') {
-        return { displayPrice, profit: null };
-      }
-
-      const tax = displayPrice * 0.04;
-      const mlFeeAmount = displayPrice * Number(item.ml_fee || 0.15);
-      const netProfit = displayPrice - Number(item.custo || 0) - Number(item.ml_shipping || 0) - tax - mlFeeAmount;
-      return { displayPrice, profit: Math.round(netProfit * 100) / 100 };
-    } catch {
-      return {
-        displayPrice: Math.round(((item.custom_price ?? item.custo) || 0) * 100) / 100,
-        profit: null,
-      };
-    }
-  }
-
-  function matchesFilters(item: Record<string, any>, offers: ProdutoFilterOfferRow[]): boolean {
-    if (!matchesProductMasterFilters({
-      product: item,
-      offers,
-      search,
-      supplierFilterIds: supplierFilterDsliteIds,
-      productActiveStatus,
-      mlStatus,
-      estoque,
-    })) {
-      return false;
-    }
-
-    const { displayPrice, profit } = computeDerived(item);
-    let value = 0;
-    if (priceField === 'cost') {
-      value = Number(item.custo || 0);
-    } else if (priceField === 'suggestedPrice') {
-      value = displayPrice;
-    } else {
-      if (profit === null) return false;
-      value = profit;
-    }
-
-    if (priceMin !== null && value < priceMin) return false;
-    if (priceMax !== null && value > priceMax) return false;
-    return true;
-  }
-
-  function sortRows(rows: Array<Record<string, any>>) {
-    const direction = sortOrder === 'asc' ? 1 : -1;
-    rows.sort((left, right) => {
-      const leftDerived = computeDerived(left);
-      const rightDerived = computeDerived(right);
-      let comparison = 0;
-
-      switch (sortBy) {
-        case 'sku':
-          comparison = String(left.sku || '').localeCompare(String(right.sku || ''), 'pt-BR');
-          break;
-        case 'nome':
-          comparison = String(left.nome || '').localeCompare(String(right.nome || ''), 'pt-BR');
-          break;
-        case 'fornecedor':
-          comparison = String(left.fornecedor || '').localeCompare(String(right.fornecedor || ''), 'pt-BR');
-          break;
-        case 'estoque':
-          comparison = Number(left.estoque || 0) - Number(right.estoque || 0);
-          break;
-        case 'custo':
-          comparison = Number(left.custo || 0) - Number(right.custo || 0);
-          break;
-        case 'ml_fee':
-          comparison = Number(left.ml_fee || 0) - Number(right.ml_fee || 0);
-          break;
-        case 'ml_shipping':
-          comparison = Number(left.ml_shipping || 0) - Number(right.ml_shipping || 0);
-          break;
-        case 'suggested_price':
-          comparison = leftDerived.displayPrice - rightDerived.displayPrice;
-          break;
-        case 'profit': {
-          const leftProfit = leftDerived.profit;
-          const rightProfit = rightDerived.profit;
-          if (leftProfit === null && rightProfit === null) comparison = 0;
-          else if (leftProfit === null) comparison = 1;
-          else if (rightProfit === null) comparison = -1;
-          else comparison = leftProfit - rightProfit;
-          break;
-        }
-        case 'ml_status':
-          comparison = String(left.ml_status || '').localeCompare(String(right.ml_status || ''), 'pt-BR');
-          break;
-        default:
-          comparison = String(left.sku || '').localeCompare(String(right.sku || ''), 'pt-BR');
-          break;
-      }
-
-      if (comparison !== 0) return comparison * direction;
-      return String(left.sku || '').localeCompare(String(right.sku || ''), 'pt-BR');
-    });
-  }
-  let rows: Array<Record<string, any>> = [];
-  let allOffers: ProdutoFilterOfferRow[] = [];
   let supplierOptions: SupplierFilterOption[] = [];
   try {
-    [rows, allOffers, supplierOptions] = await Promise.all([
-      fetchAllTableRows<Record<string, any>>(serviceClient, 'produtos', '*', [{ column: 'created_at', ascending: false }]),
-      fetchAllTableRows<ProdutoFilterOfferRow>(
-        serviceClient,
-        'produto_fornecedor_ofertas',
-        'id,produto_id,dslite_fornecedor_id,fornecedor_nome,sku_oferta,sku_fornecedor,nome',
-        [
-          { column: 'produto_id', ascending: true },
-          { column: 'id', ascending: true },
-        ],
-      ),
-      listActiveSupplierOptions(serviceClient),
-    ]);
+    supplierOptions = await listActiveSupplierOptions(serviceClient);
   } catch (error: any) {
-    console.error('[api/produtos] Falha ao carregar produtos mestres:', error?.message || error);
-    return NextResponse.json({ erro: error?.message || 'Falha ao carregar produtos' }, { status: 500 });
+    console.error('[api/produtos] Falha ao carregar fornecedores:', error?.message || error);
+    return NextResponse.json({ erro: error?.message || 'Falha ao carregar fornecedores' }, { status: 500 });
   }
 
   const supplierFilterDsliteIds = mapSupplierFilterIdsToDsliteIds(fornecedorFilterIds, supplierOptions);
-
-  const offersByProductId = buildOffersByProductId(allOffers);
-  const filteredRows = rows.filter((item) => (
-    matchesFilters(item, offersByProductId.get(String(item.id || '').trim()) || [])
-  ));
-  sortRows(filteredRows);
-  const total = filteredRows.length;
-  const pageRows = filteredRows.slice(from, to + 1);
-
-  const pageProductIds = pageRows.map((item) => String(item.id || '').trim()).filter(Boolean);
-  let pageOffersByProductId = new Map<string, any[]>();
-
-  if (pageProductIds.length > 0) {
-    const { data: offers, error: offersError } = await serviceClient
-      .from('produto_fornecedor_ofertas')
-      .select('id,produto_id,fornecedor_nome,sku_oferta,custo,estoque,ativo,payment_mode,dslite_fornecedor_id,dslite_produto_id')
-      .in('produto_id', pageProductIds);
-
-    if (offersError) {
-      return NextResponse.json({ erro: offersError.message }, { status: 500 });
-    }
-
-    pageOffersByProductId = new Map<string, any[]>();
-    for (const offer of offers || []) {
-      const key = String((offer as any).produto_id || '').trim();
-      if (!key) continue;
-      const list = pageOffersByProductId.get(key) || [];
-      list.push(offer as any);
-      pageOffersByProductId.set(key, list);
-    }
-  }
-
-  const data = pageRows.map((product) => {
-    const offers = pageOffersByProductId.get(String(product.id || '').trim()) || [];
-    const preferredOffer = offers.find((offer) => {
-      const explicitPreferred = String(product.oferta_preferencial_id || '').trim();
-      if (explicitPreferred) return explicitPreferred === String((offer as any).id || '').trim();
-      return String(product.dslite_fornecedor_id || '').trim() === String((offer as any).dslite_fornecedor_id || '').trim()
-        && String(product.dslite_produto_id || '').trim() === String((offer as any).dslite_produto_id || '').trim();
-    }) || null;
-
-    return {
-      product,
-      preferredOffer,
-      offersCount: offers.length,
-    };
+  const { data: rpcResult, error: rpcError } = await serviceClient.rpc('search_produtos_paginated', {
+    p_search: search || null,
+    p_supplier_dslite_ids: supplierFilterDsliteIds,
+    p_product_active_status: productActiveStatus,
+    p_ml_status: mlStatus || null,
+    p_estoque: estoque || null,
+    p_price_min: priceMin,
+    p_price_max: priceMax,
+    p_price_field: priceField,
+    p_page: page,
+    p_page_size: pageSize,
+    p_sort_by: sortBy,
+    p_sort_order: sortOrder,
   });
 
+  if (rpcError) {
+    console.error('[api/produtos] Falha na RPC search_produtos_paginated:', rpcError.message);
+    return NextResponse.json({ erro: rpcError.message || 'Falha ao carregar produtos' }, { status: 500 });
+  }
+
+  const result = (rpcResult || {}) as Record<string, any>;
+
   return NextResponse.json({
-    data,
-    total,
-    page,
-    pageSize,
+    data: result.data || [],
+    total: Number(result.total || 0),
+    page: Number(result.page || page),
+    pageSize: Number(result.pageSize || pageSize),
     fornecedores: supplierOptions,
   });
 }

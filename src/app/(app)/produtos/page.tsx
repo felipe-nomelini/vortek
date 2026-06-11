@@ -34,9 +34,9 @@ const estoqueOptions = [
 ];
 
 const productActiveOptions = [
+  { value: 'todos', label: 'Todos' },
   { value: 'ativo', label: 'Ativos' },
   { value: 'inativo', label: 'Inativos' },
-  { value: 'todos', label: 'Ambos' },
 ];
 
 const priceFieldOptions = [
@@ -325,8 +325,8 @@ export default function ProductsPage() {
   const [filterMLStatus, setFilterMLStatus] = useState<MLStatus | ''>('');
   const [filterFornecedores, setFilterFornecedores] = useState<string[]>([]);
   const [fornecedorOptions, setFornecedorOptions] = useState<SupplierOption[]>([]);
-  const [filterProductActive, setFilterProductActive] = useState<string>('ativo');
-  const [filterEstoque, setFilterEstoque] = useState<string>('todos');
+  const [filterProductActive, setFilterProductActive] = useState<string>('');
+  const [filterEstoque, setFilterEstoque] = useState<string>('');
   const [priceField, setPriceField] = useState<string>('cost');
   const [priceMin, setPriceMin] = useState<number | null>(null);
   const [priceMax, setPriceMax] = useState<number | null>(null);
@@ -988,9 +988,9 @@ export default function ProductsPage() {
       appendRemoteSortParams(params, sort);
       if (lastSearch) params.set('search', lastSearch);
       if (filterFornecedores.length > 0) params.set('fornecedores', filterFornecedores.join(','));
-      if (filterProductActive !== 'ativo') params.set('ativo', filterProductActive);
+      params.set('ativo', filterProductActive || 'todos');
       if (filterMLStatus) params.set('ml_status', filterMLStatus);
-      if (filterEstoque !== 'todos') params.set('estoque', filterEstoque);
+      if (filterEstoque) params.set('estoque', filterEstoque);
       if (priceMin !== null) params.set('priceMin', String(priceMin));
       if (priceMax !== null) params.set('priceMax', String(priceMax));
       params.set('priceField', priceField);
@@ -1058,9 +1058,9 @@ export default function ProductsPage() {
       const params = new URLSearchParams();
       if (lastSearch) params.set('search', lastSearch);
       if (filterFornecedores.length > 0) params.set('fornecedores', filterFornecedores.join(','));
-      if (filterProductActive !== 'ativo') params.set('ativo', filterProductActive);
+      params.set('ativo', filterProductActive || 'todos');
       if (filterMLStatus) params.set('ml_status', filterMLStatus);
-      if (filterEstoque !== 'todos') params.set('estoque', filterEstoque);
+      if (filterEstoque) params.set('estoque', filterEstoque);
       if (priceMin !== null) params.set('priceMin', String(priceMin));
       if (priceMax !== null) params.set('priceMax', String(priceMax));
       params.set('priceField', priceField);
@@ -1300,7 +1300,6 @@ export default function ProductsPage() {
         const isUpdatingCurrent = updatingPriceProductId === record.product.id;
         const items: { key: string; label: React.ReactNode; icon?: React.ReactNode }[] = [
           { key: 'edit', label: 'Editar', icon: <EditOutlined /> },
-          { key: 'offers', label: 'Ver ofertas', icon: <StarOutlined /> },
         ];
         if (record.product.active && record.product.mlStatus === 'sem_anuncio') {
           items.push({ key: 'criarAnuncio', label: 'Criar Anúncio ML', icon: <PlusOutlined /> });
@@ -1319,7 +1318,6 @@ export default function ProductsPage() {
               selectable: false,
               onClick: ({ key }) => {
                 if (key === 'edit') router.push(`/produtos/${record.product.id}`);
-                if (key === 'offers') router.push(`/produtos/ofertas?search=${encodeURIComponent(record.product.sku)}`);
                 if (key === 'criarAnuncio') abrirCriarAnuncioML(record.product);
                 if (key === 'atualizarPrecoMl') atualizarPrecoMl(record.product);
               },
@@ -1351,9 +1349,6 @@ export default function ProductsPage() {
       {contextHolder}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
         <Title level={4} style={{ color: '#e0e0e0', marginBottom: 0 }}>Produtos</Title>
-        <Button onClick={() => router.push('/produtos/ofertas')}>
-          Ver Ofertas
-        </Button>
       </div>
 
       {/* Mini Dashboard */}
@@ -1413,10 +1408,12 @@ export default function ProductsPage() {
           />
           <Select
             placeholder="Status Produto"
-            value={filterProductActive}
+            value={filterProductActive || undefined}
             onChange={setFilterProductActive}
             options={productActiveOptions}
             style={{ width: 150 }}
+            allowClear
+            onClear={() => setFilterProductActive('')}
           />
           <Select
             placeholder="Status ML"
@@ -1445,10 +1442,13 @@ export default function ProductsPage() {
             onClear={() => setFilterFornecedores([])}
           />
           <Select
-            value={filterEstoque}
+            placeholder="Estoque"
+            value={filterEstoque || undefined}
             onChange={v => setFilterEstoque(v)}
             options={estoqueOptions}
             style={{ width: 150 }}
+            allowClear
+            onClear={() => setFilterEstoque('')}
           />
           <Space.Compact>
             <Select value={priceField} onChange={setPriceField} options={priceFieldOptions} style={{ width: 130 }} />

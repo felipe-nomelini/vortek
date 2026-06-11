@@ -8,6 +8,7 @@ import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 export const maxDuration = 300;
 
 const MAX_RETRY_ATTEMPTS = 5;
+const CONFLICT_RETRY_BACKOFF_MINUTES = 3;
 
 function parsePositiveInt(input: unknown, fallback: number): number {
   const n = Number(input);
@@ -95,6 +96,11 @@ function withPublishProgress(
   };
 }
 
+function isMlConflictError(operation: { error?: string; code?: string | null }): boolean {
+  const raw = `${operation.code || ''} ${operation.error || ''}`.toLowerCase();
+  return raw.includes('409') || raw.includes('conflict');
+}
+
 export async function POST(request: Request) {
   const startedAt = Date.now();
   const apiKey = request.headers.get('x-api-key');
@@ -103,7 +109,7 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json().catch(() => ({}));
-  const limit = Math.min(50, parsePositiveInt(body?.limit, 10));
+  const limit = Math.min(50, parsePositiveInt(body?.limit, 20));
   const seedFromProducts = Boolean(body?.seedFromProducts);
 
   let lockOwnerToken = '';
@@ -449,6 +455,10 @@ export async function POST(request: Request) {
         }
       } else {
         const isHardFail = attempts >= MAX_RETRY_ATTEMPTS;
+        const isConflictRetry = isMlConflictError(failedOperation);
+        const retryDelayMinutes = isConflictRetry
+          ? CONFLICT_RETRY_BACKOFF_MINUTES
+          : Math.min(15, attempts);
         if (isHardFail) failed += 1;
         else retry += 1;
 
@@ -465,7 +475,7 @@ export async function POST(request: Request) {
             }) as any,
             available_at: isHardFail
               ? new Date().toISOString()
-              : new Date(Date.now() + Math.min(15, attempts) * 60 * 1000).toISOString(),
+              : new Date(Date.now() + retryDelayMinutes * 60 * 1000).toISOString(),
             updated_at: new Date().toISOString(),
           } as any)
           .eq('id', outboxId) as any);
@@ -478,8 +488,12 @@ export async function POST(request: Request) {
       }
     }
 
+    const hasProgress = done > 0;
+    const hasOnlyRetriableFailures = failed === 0 && retry > 0;
+    const success = errors.length === 0 || (hasProgress && hasOnlyRetriableFailures);
+
     return NextResponse.json({
-      success: errors.length === 0,
+      success,
       domain,
       job: {
         key: 'sync_ml_listings_publish',
@@ -496,7 +510,7 @@ export async function POST(request: Request) {
       },
       errors,
       duration: { ms: Date.now() - startedAt },
-      ok: errors.length === 0,
+      ok: success,
       processados: rows.length,
       publicados: done,
       reprocessar: retry,
