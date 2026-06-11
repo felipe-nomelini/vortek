@@ -9,6 +9,11 @@ import { createServiceClient } from '@/lib/supabase';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import { ensureBrasilNfeInvoice } from '@/lib/fiscal/ensure-brasilnfe-invoice';
 import { cancelarNotaBrasilNfePorChave } from '@/services/fiscal-provider';
+import {
+  DSLITE_PLACEHOLDER_LABEL_FILE_NAME,
+  DSLITE_PLACEHOLDER_LABEL_SOURCE,
+  loadDslitePlaceholderLabel,
+} from '@/lib/dslite/placeholder-label';
 
 const LABEL_RETRY_INTERVAL_MS = 5000;
 const LABEL_WAIT_TIMEOUT_MS = 60000;
@@ -236,12 +241,12 @@ export async function POST(req: Request) {
         minute: '2-digit',
         hour12: false,
       });
-      const msg = `Pedido aguardando liberação do ML até ${releaseLabel}. Tente novamente após esse horário.`;
+      const msg = `Etiqueta ML ainda não liberada até ${releaseLabel}; usando etiqueta padrão Hayamax.`;
       await registrarEventoNfAuditoria({
         pedidoId: String(pedidoId),
         mlOrderId,
         mlPackId: (pedido as any).ml_pack_id ? String((pedido as any).ml_pack_id) : null,
-        evento: 'ml_fiscal_release_window_blocked',
+        evento: 'ml_fiscal_release_window_placeholder_label_selected',
         respostaMl: {
           release_at: releaseAt.toISOString(),
           reason: releaseReasonRaw || null,
@@ -249,44 +254,109 @@ export async function POST(req: Request) {
           now_utc: new Date().toISOString(),
           blocked_now: true,
           stage: 'etiqueta_auto_precheck',
+          label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
         },
-        statusResultante: 'blocked',
+        statusResultante: 'placeholder_label',
       });
       updateStep(steps, 'check_ml_invoice_xml', {
         status: 'warning',
         detail: msg,
       });
       updateStep(steps, 'ensure_brasilnfe_invoice', {
-        status: 'warning',
-        detail: 'Etapa não executada por janela de liberação do ML',
+        status: 'skipped',
+        detail: 'Etapa pulada: etiqueta padrão não altera a NF',
       });
       updateStep(steps, 'upload_invoice_ml', {
-        status: 'warning',
-        detail: 'Etapa não executada por janela de liberação do ML',
+        status: 'skipped',
+        detail: 'Etapa pulada: etiqueta ML ainda não liberada',
       });
       updateStep(steps, 'download_label_ml', {
         status: 'warning',
-        detail: 'Etapa não executada por janela de liberação do ML',
+        detail: msg,
       });
-      updateStep(steps, 'set_carrier_dslite', {
-        status: 'warning',
-        detail: 'Etapa não executada por janela de liberação do ML',
+
+      const etiquetaPdf = await loadDslitePlaceholderLabel().catch((err: any) => {
+        updateStep(steps, 'download_label_ml', {
+          status: 'error',
+          error: err?.message || 'Falha ao carregar etiqueta padrão DSLite',
+        });
+        return null;
       });
-      updateStep(steps, 'send_label_dslite', {
-        status: 'warning',
-        detail: 'Etapa não executada por janela de liberação do ML',
-      });
-      return NextResponse.json({
-        success: false,
-        step: 'check_ml_invoice_xml',
-        error: msg,
-        reason: 'ml_release_window_blocked',
-        details: {
-          reason: 'ml_release_window_blocked',
-          releaseAt: releaseAt.toISOString(),
+      if (!etiquetaPdf) {
+        return stepError(
+          steps,
+          'download_label_ml',
+          'Falha ao carregar etiqueta padrão DSLite',
+          { reason: 'placeholder_label_load_failed', releaseAt: releaseAt.toISOString() },
+        );
+      }
+
+      updateStep(steps, 'set_carrier_dslite', { status: 'loading' });
+      const pedidoDslite = await consultarPedido(dsid);
+      const carrierId = Number((pedidoDslite as any)?.transportadora?.transportadoraid || 0);
+      if (carrierId > 0) {
+        updateStep(steps, 'set_carrier_dslite', {
+          status: 'skipped',
+          detail: `Etapa pulada: transportadora já definida (id ${carrierId})`,
+        });
+      } else {
+        const transportadoraResult = await definirTransportadoraPedido(dsid, TRANSPORTADORA_PADRAO_CORREIOS);
+        if (!transportadoraResult?.success) {
+          return stepError(
+            steps,
+            'set_carrier_dslite',
+            transportadoraResult?.message || 'Falha ao definir transportadora na DSLite',
+            { reason: 'set_carrier_failed', dsid: String(dsid) },
+          );
+        }
+        updateStep(steps, 'set_carrier_dslite', { status: 'success', detail: 'Transportadora definida com sucesso' });
+      }
+
+      updateStep(steps, 'send_label_dslite', { status: 'loading' });
+      const envioResult = await enviarEtiqueta(dsid, etiquetaPdf, DSLITE_PLACEHOLDER_LABEL_FILE_NAME);
+      if (!envioResult?.success) {
+        await registrarEventoNfAuditoria({
+          pedidoId: String(pedidoId),
+          mlOrderId,
+          evento: 'placeholder_label_send_failed',
+          respostaMl: {
+            release_at: releaseAt.toISOString(),
+            label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
+            error: envioResult?.message || 'Falha ao enviar etiqueta padrão para DSLite',
+          },
+          statusResultante: 'failed',
+        });
+        return stepError(
+          steps,
+          'send_label_dslite',
+          envioResult?.message || 'Falha ao enviar etiqueta padrão para DSLite',
+          { reason: 'placeholder_label_send_failed', releaseAt: releaseAt.toISOString() },
+        );
+      }
+
+      await client
+        .from('pedidos')
+        .update({ dslite_etiqueta_enviada: true } as any)
+        .eq('id', pedidoId);
+
+      updateStep(steps, 'send_label_dslite', { status: 'success', detail: 'Etiqueta padrão Hayamax enviada com sucesso para DSLite' });
+      await registrarEventoNfAuditoria({
+        pedidoId: String(pedidoId),
+        mlOrderId,
+        evento: 'placeholder_label_send_success',
+        respostaMl: {
+          release_at: releaseAt.toISOString(),
+          label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
+          file_name: DSLITE_PLACEHOLDER_LABEL_FILE_NAME,
+          bytes: etiquetaPdf.length,
         },
-        data: { steps },
-      }, { status: 422 });
+        statusResultante: 'success',
+      });
+      return finalizeSuccess(steps, {
+        partial: true,
+        labelSource: DSLITE_PLACEHOLDER_LABEL_SOURCE,
+        message: 'Etiqueta padrão Hayamax enviada porque a etiqueta ML ainda não foi liberada.',
+      });
     }
 
     if (Boolean((pedido as any).dslite_etiqueta_enviada)) {
