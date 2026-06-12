@@ -83,6 +83,12 @@ function normalizeInt(value: unknown): number | null {
   return Math.trunc(n);
 }
 
+function minutesSince(value: unknown): number | null {
+  const time = new Date(String(value || '')).getTime();
+  if (!Number.isFinite(time)) return null;
+  return (Date.now() - time) / 60_000;
+}
+
 function extractQuantityPricingTiers(raw: any): QuantityPricingTier[] {
   const source = Array.isArray(raw?.prices) ? raw.prices : Array.isArray(raw) ? raw : [];
   const tiers: QuantityPricingTier[] = [];
@@ -160,7 +166,14 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'Outbox não encontrado' }, { status: 404 });
   }
 
-  const status = normalizeOutboxStatus(outboxRow.status);
+  let status = normalizeOutboxStatus(outboxRow.status);
+  const processingAgeMinutes = status === 'processing'
+    ? minutesSince(outboxRow.updated_at || outboxRow.created_at)
+    : null;
+  const isStaleProcessing = processingAgeMinutes !== null && processingAgeMinutes > 10;
+  if (isStaleProcessing) {
+    status = 'failed';
+  }
   const phase = mapStatusToPhase(status);
   const lastError = outboxRow.last_error ? String(outboxRow.last_error) : null;
   const failedOperationCode = extractFailedOperationCode(lastError);
@@ -177,7 +190,9 @@ export async function GET(request: Request) {
     status,
     phase,
     attempts: Number(outboxRow.attempts || 0),
-    last_error: lastError,
+    last_error: isStaleProcessing
+      ? 'Publicação ficou presa no worker por mais de 10 minutos. Tente novamente.'
+      : lastError,
     ml_item_id: outboxRow.ml_item_id || null,
     created_at: outboxRow.created_at || null,
     updated_at: outboxRow.updated_at || null,

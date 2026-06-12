@@ -3,6 +3,36 @@ import { createServiceClient } from '@/lib/supabase';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 
+async function triggerImmediatePublish(req: Request, outboxId: string) {
+  const apiKey = process.env.API_SECRET_KEY;
+  if (!apiKey) {
+    return { ok: false, error: 'API_SECRET_KEY ausente para disparar publicador ML' };
+  }
+
+  try {
+    const origin = new URL(req.url).origin;
+    const response = await fetch(`${origin}/api/sync/anuncios/publish`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+      },
+      body: JSON.stringify({ outboxId, limit: 1, source: 'ml_anuncio_atualizar_preco_immediate' }),
+      cache: 'no-store',
+      signal: AbortSignal.timeout(90_000),
+    });
+    const payload = await response.json().catch(() => ({}));
+    return {
+      ok: response.ok && payload?.success !== false,
+      status: response.status,
+      payload,
+      error: response.ok ? null : (payload?.error || payload?.errors?.[0]?.message || `HTTP ${response.status}`),
+    };
+  } catch (err: any) {
+    return { ok: false, error: err?.message || 'Falha ao disparar publicador ML' };
+  }
+}
+
 export async function POST(req: Request) {
   try {
     const body = await req.json().catch(() => ({}));
@@ -88,6 +118,10 @@ export async function POST(req: Request) {
       errors.push(`Falha ao enfileirar publicação no ML: ${outbox.error}`);
     }
 
+    const immediatePublish = outbox.ok
+      ? await triggerImmediatePublish(req, outbox.outboxId)
+      : { ok: false, error: 'outbox não criado' };
+
     console.log(JSON.stringify({
       event: 'ml_anuncio_atualizar_preco',
       timestamp_utc: new Date().toISOString(),
@@ -97,6 +131,7 @@ export async function POST(req: Request) {
       target_price_received: targetPrice,
       base_price: basePrice,
       queued_publish: outbox.ok,
+      immediate_publish: immediatePublish.ok,
       quantity_pricing_queued: outbox.ok,
       outbox_id: outbox.ok ? outbox.outboxId : null,
       success: outbox.ok,
@@ -110,6 +145,7 @@ export async function POST(req: Request) {
       source,
       target_price_received: targetPrice,
       queued_publish: outbox.ok,
+      immediate_publish: immediatePublish,
       quantity_pricing_queued: outbox.ok,
       outboxId: outbox.ok ? outbox.outboxId : null,
       price_updated: false,

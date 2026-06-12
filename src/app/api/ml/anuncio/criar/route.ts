@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { createListing, getCategoryAttributes, setItemQuantityPricing, updateListingFiscalData } from '@/services/mercadolibre';
-import { fetchML } from '@/services/integration';
+import { createListing, getCategoryAttributes, searchItemBySellerSku, setItemQuantityPricing, updateListingFiscalData } from '@/services/mercadolibre';
+import { fetchML, fetchMLResult } from '@/services/integration';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { createServiceClient } from '@/lib/supabase';
 import { fiscalStrictSchema, mapOriginType, normalizeNcm } from '@/lib/fiscal-strict';
@@ -100,6 +100,57 @@ function pickWarrantyValueId(values: Array<{ id: string; name: string }>) {
   return String((hit12 || values[0]).id);
 }
 
+function formatPackageWeightFromKg(weightKg: unknown) {
+  const grams = Math.round(Number(weightKg || 0) * 1000);
+  return grams > 0 ? `${grams} g` : '';
+}
+
+async function pauseCreatedListing(itemId: string) {
+  const result = await fetchMLResult<any>(`/items/${encodeURIComponent(itemId)}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status: 'paused' }),
+  });
+  return { ok: result.ok, error: result.error?.message };
+}
+
+async function getListingSnapshot(itemId: string) {
+  return fetchML<any>(`/items/${encodeURIComponent(itemId)}`);
+}
+
+async function persistListingLink(params: {
+  supabase: ReturnType<typeof createServiceClient>;
+  produto: any;
+  produtoId: string;
+  item: any;
+  mlFee: number;
+  mlShipping: number;
+  mlStatus: 'ativo' | 'pausado';
+}) {
+  const { supabase, produto, produtoId, item, mlFee, mlShipping, mlStatus } = params;
+  await supabase
+    .from('produtos')
+    .update({
+      ml_item_id: item.id,
+      ml_status: mlStatus,
+      ml_fee: mlFee,
+      ml_shipping: mlShipping,
+    })
+    .eq('id', produtoId);
+
+  await supabase.from('anuncios_ml').upsert({
+    ml_item_id: item.id,
+    sku: produto.sku,
+    produto_id: produto.id,
+    titulo: item.title,
+    preco_ml: item.price,
+    vendidos: 0,
+    status: mlStatus,
+    thumbnail: item.thumbnail || null,
+    permalink: item.permalink,
+  }, { onConflict: 'ml_item_id' });
+}
+
 export async function POST(req: Request) {
   try {
     const {
@@ -139,6 +190,12 @@ export async function POST(req: Request) {
     }
     if (!Number.isFinite(Number(produto.custo)) || Number(produto.custo) <= 0) {
       return NextResponse.json({ error: 'Produto com custo inválido. Ajuste o custo antes de criar anúncio.' }, { status: 422 });
+    }
+    if (!Number.isFinite(Number(produto.estoque)) || Number(produto.estoque) <= 0) {
+      return NextResponse.json({ error: 'Produto sem estoque. Sincronize estoque ou aguarde disponibilidade antes de anunciar.' }, { status: 422 });
+    }
+    if (String(produto.ml_item_id || '').trim()) {
+      return NextResponse.json({ error: 'Produto já possui anúncio vinculado no Mercado Livre.' }, { status: 409 });
     }
 
     const steps: Record<'categoria' | 'atributos' | 'anuncio' | 'atacado' | 'fiscal', StepResult> = {
@@ -197,6 +254,10 @@ export async function POST(req: Request) {
       if (String(current.value_id || '') === NOT_APPLICABLE_ID) continue;
       if (current.value_id && Array.isArray(attr.values) && attr.values.length > 0) {
         const valid = attr.values.some((v: any) => String(v.id) === String(current.value_id));
+        if (!valid && attr.value_type === 'string' && current.value_name) {
+          attributesMap.set(attr.id, { id: attr.id, value_name: current.value_name });
+          continue;
+        }
         if (!valid) {
           return NextResponse.json({
             success: false,
@@ -220,12 +281,72 @@ export async function POST(req: Request) {
       }, { status: 422 });
     }
 
+    const ncmFinal = fiscal?.ncm ?? produto.ncm;
+    const gtinFinal = fiscal?.gtin ?? produto.gtin;
+    const cestFinal = fiscal?.cest ?? produto.cest;
+    const csosnFinal = fiscal?.csosn ?? produto.csosn;
+    const origemFinal = fiscal?.origem_fiscal ?? produto.origem_fiscal;
+    const fiscalParsed = fiscalStrictSchema.safeParse({
+      ncm: ncmFinal,
+      origem_fiscal: origemFinal,
+      csosn: csosnFinal,
+      sku: produto.sku,
+      title: produto.nome,
+    });
+
+    if (!fiscalParsed.success) {
+      steps.fiscal = { ok: false, error: fiscalParsed.error.issues.map((i) => i.message).join(' | ') };
+      return NextResponse.json({
+        success: false,
+        steps,
+        warnings,
+        missing_required_attributes: missingRequiredAttributes,
+        error: 'Dados fiscais obrigatórios inválidos. Corrija antes de criar o anúncio.',
+      }, { status: 422 });
+    }
+
+    const existingItemId = await searchItemBySellerSku(String(produto.sku));
+    if (existingItemId) {
+      const existingItem = await getListingSnapshot(existingItemId);
+      if (!existingItem?.id) {
+        return NextResponse.json({ error: 'Anúncio existente encontrado por SKU, mas não foi possível carregar detalhes no Mercado Livre.' }, { status: 502 });
+      }
+      await persistListingLink({
+        supabase,
+        produto,
+        produtoId,
+        item: existingItem,
+        mlFee: produto.ml_fee || 0.15,
+        mlShipping: produto.ml_shipping || 0,
+        mlStatus: String(existingItem.status || '').toLowerCase() === 'active' ? 'ativo' : 'pausado',
+      });
+      steps.anuncio.ok = true;
+      steps.fiscal.ok = true;
+      return NextResponse.json({
+        success: true,
+        linked_existing: true,
+        steps,
+        warnings: ['Anúncio já existia no Mercado Livre para este SKU e foi vinculado ao produto.'],
+        missing_required_attributes: missingRequiredAttributes,
+        categoria: { id: categoriaId, descoberta: false },
+        anuncio: {
+          id: existingItem.id,
+          title: existingItem.title,
+          price: existingItem.price,
+          permalink: existingItem.permalink,
+          status: existingItem.status,
+        },
+        quantity_pricing: false,
+        fiscal: 'ok',
+      });
+    }
+
     // Enforce SKU + package defaults
     attributesMap.set('SELLER_SKU', { id: 'SELLER_SKU', value_id: undefined, value_name: produto.sku });
     if (produto.altura) attributesMap.set('SELLER_PACKAGE_HEIGHT', { id: 'SELLER_PACKAGE_HEIGHT', value_id: undefined, value_name: `${produto.altura} cm` });
     if (produto.largura) attributesMap.set('SELLER_PACKAGE_WIDTH', { id: 'SELLER_PACKAGE_WIDTH', value_id: undefined, value_name: `${produto.largura} cm` });
     if (produto.profundidade) attributesMap.set('SELLER_PACKAGE_LENGTH', { id: 'SELLER_PACKAGE_LENGTH', value_id: undefined, value_name: `${produto.profundidade} cm` });
-    if (produto.peso_bruto) attributesMap.set('SELLER_PACKAGE_WEIGHT', { id: 'SELLER_PACKAGE_WEIGHT', value_id: undefined, value_name: `${produto.peso_bruto} g` });
+    if (produto.peso_bruto) attributesMap.set('SELLER_PACKAGE_WEIGHT', { id: 'SELLER_PACKAGE_WEIGHT', value_id: undefined, value_name: formatPackageWeightFromKg(produto.peso_bruto) });
     steps.atributos.ok = true;
 
     const categoryInfo = await fetchML<any>(`/categories/${categoriaId}`);
@@ -279,7 +400,7 @@ export async function POST(req: Request) {
       familyName: useFamilyName ? familyName : undefined,
       categoryId: categoriaId,
       price: displayPrice,
-      availableQuantity: Math.max(1, Number(produto.estoque || 0)),
+      availableQuantity: Number(produto.estoque || 0),
       condition: 'new',
       listingTypeId: listingType || 'gold_pro',
       description: buildDescription(produto, description),
@@ -343,70 +464,56 @@ export async function POST(req: Request) {
       }
     } catch {}
 
-    await supabase.from('produtos').update({ ml_item_id: result.id, ml_status: 'ativo', ml_fee: mlFee, ml_shipping: mlShipping }).eq('id', produtoId);
-
-    await supabase.from('anuncios_ml').upsert({
-      ml_item_id: result.id,
-      sku: produto.sku,
-      produto_id: produto.id,
-      titulo: result.title,
-      preco_ml: result.price,
-      vendidos: 0,
-      status: 'ativo',
-      thumbnail: result.thumbnail || null,
-      permalink: result.permalink,
-    }, { onConflict: 'ml_item_id' });
-
-    const fiscalErrors: string[] = [];
-    const ncmFinal = fiscal?.ncm ?? produto.ncm;
-    const gtinFinal = fiscal?.gtin ?? produto.gtin;
-    const cestFinal = fiscal?.cest ?? produto.cest;
-    const csosnFinal = fiscal?.csosn ?? produto.csosn;
-    const origemFinal = fiscal?.origem_fiscal ?? produto.origem_fiscal;
-
-    const fiscalParsed = fiscalStrictSchema.safeParse({
-      ncm: ncmFinal,
-      origem_fiscal: origemFinal,
-      csosn: csosnFinal,
-      sku: produto.sku,
-      title: produto.nome,
+    await persistListingLink({
+      supabase,
+      produto,
+      produtoId,
+      item: result,
+      mlFee,
+      mlShipping,
+      mlStatus: 'ativo',
     });
 
-    if (fiscalParsed.success) {
-      const originType = mapOriginType(fiscalParsed.data.origem_fiscal);
+    const fiscalErrors: string[] = [];
+    const originType = mapOriginType(fiscalParsed.data.origem_fiscal);
 
-      const fiscalResult = await updateListingFiscalData({
-        itemId: result.id,
-        sku: fiscalParsed.data.sku,
-        title: fiscalParsed.data.title,
-        ncm: normalizeNcm(fiscalParsed.data.ncm),
-        origin_type: originType,
-        origin_detail: fiscalParsed.data.origem_fiscal,
-        gtin: gtinFinal || undefined,
-        cest: cestFinal || undefined,
-        csosn: fiscalParsed.data.csosn,
-        net_weight: produto.peso_liq || undefined,
-        gross_weight: produto.peso_bruto || undefined,
-        measurement_unit: 'UN',
-        cost: produto.custo,
-      });
+    const fiscalResult = await updateListingFiscalData({
+      itemId: result.id,
+      sku: fiscalParsed.data.sku,
+      title: fiscalParsed.data.title,
+      ncm: normalizeNcm(fiscalParsed.data.ncm),
+      origin_type: originType,
+      origin_detail: fiscalParsed.data.origem_fiscal,
+      gtin: gtinFinal || undefined,
+      cest: cestFinal || undefined,
+      csosn: fiscalParsed.data.csosn,
+      net_weight: produto.peso_liq || undefined,
+      gross_weight: produto.peso_bruto || undefined,
+      measurement_unit: 'UN',
+      cost: produto.custo,
+    });
 
-      if (!fiscalResult.success) fiscalErrors.push(`${fiscalResult.step}: ${fiscalResult.error}`);
-    } else {
-      steps.fiscal = { ok: false, error: fiscalParsed.error.issues.map((i) => i.message).join(' | ') };
-      return NextResponse.json({
-        success: false,
-        steps,
-        warnings,
-        missing_required_attributes: missingRequiredAttributes,
-        error: 'Dados fiscais obrigatórios inválidos. Emissão fiscal bloqueada.',
-      }, { status: 422 });
-    }
+    if (!fiscalResult.success) fiscalErrors.push(`${fiscalResult.step}: ${fiscalResult.error}`);
 
     if (fiscalErrors.length === 0) {
       steps.fiscal.ok = true;
     } else {
       steps.fiscal = { ok: false, error: fiscalErrors.join(' | ') };
+      const pauseResult = await pauseCreatedListing(result.id);
+      if (pauseResult.ok) {
+        await persistListingLink({
+          supabase,
+          produto,
+          produtoId,
+          item: { ...result, status: 'paused' },
+          mlFee,
+          mlShipping,
+          mlStatus: 'pausado',
+        });
+        warnings.push('Anúncio criado, mas pausado porque a atualização fiscal no ML falhou.');
+      } else {
+        warnings.push(`Falha fiscal no ML e não foi possível pausar automaticamente: ${pauseResult.error || 'erro desconhecido'}`);
+      }
     }
 
     return NextResponse.json({
@@ -420,7 +527,7 @@ export async function POST(req: Request) {
         title: result.title,
         price: result.price,
         permalink: result.permalink,
-        status: result.status,
+        status: fiscalErrors.length === 0 ? result.status : 'paused',
       },
       quantity_pricing: quantityPricingResult.ok,
       fiscal: fiscalErrors.length === 0 ? 'ok' : fiscalErrors,

@@ -8,6 +8,7 @@ import {
   syncPreferredProductSnapshot,
 } from '@/lib/produto-fornecedor';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
+import { shouldProductBeInactiveByCost } from '@/lib/product-activity';
 
 export const maxDuration = 300;
 
@@ -245,19 +246,19 @@ export async function POST(req: Request) {
         const gtins = Array.from(new Set(batch.map((row) => String(row.gtin || '').trim()).filter(Boolean)));
         const [existingOffersResp, existingProductsResp, gtinProductsResp] = await Promise.all([
           client
-            .from('produto_fornecedor_ofertas')
-            .select('id,produto_id,dslite_fornecedor_id,dslite_produto_id')
+          .from('produto_fornecedor_ofertas')
+            .select('id,produto_id,dslite_fornecedor_id,dslite_produto_id,product:produtos!produto_fornecedor_ofertas_produto_id_fkey(ativo)')
             .eq('dslite_fornecedor_id', String(fornecedorId))
             .in('dslite_produto_id', dsliteProdutoIds),
           client
             .from('produtos')
-            .select('id,sku,nome,marca,gtin,descricao,imagens,dslite_fornecedor_id,dslite_produto_id')
+            .select('id,sku,nome,marca,gtin,descricao,imagens,dslite_fornecedor_id,dslite_produto_id,ativo')
             .eq('dslite_fornecedor_id', String(fornecedorId))
             .in('dslite_produto_id', dsliteProdutoIds),
           gtins.length > 0
             ? client
                 .from('produtos')
-                .select('id,sku,nome,marca,gtin,descricao,imagens')
+                .select('id,sku,nome,marca,gtin,descricao,imagens,ativo')
                 .in('gtin', gtins)
             : Promise.resolve({ data: [], error: null } as any),
         ]);
@@ -311,12 +312,19 @@ export async function POST(req: Request) {
           ).trim();
 
           let productId = resolvedProductId;
+          const resolvedProductActive = existingOffer?.product?.ativo ?? matchedByGtin?.ativo ?? legacyProduct?.ativo;
+          if (productId && resolvedProductActive === false) {
+            continue;
+          }
+
           if (!productId) {
             const productKey = String(row.gtin || '').trim()
               ? `gtin:${String(row.gtin || '').trim()}`
               : `dslite:${identityKey}`;
+            const inactiveByCost = shouldProductBeInactiveByCost(row.custo);
             const insertPayload = {
               _product_key: productKey,
+              ativo: !inactiveByCost,
               nome: row.nome,
               marca: row.marca || '',
               fornecedor: row.fornecedor,
@@ -367,7 +375,7 @@ export async function POST(req: Request) {
               : `dslite:${identityKey}`,
             custo: Number(row.custo || 0),
             estoque: Number(row.estoque || 0),
-            ativo: true,
+            ativo: !shouldProductBeInactiveByCost(row.custo),
             prioridade: 100,
             payment_mode: inferSupplierPaymentMode(row.dslite_fornecedor_id),
             last_sync_at: row.dslite_ultima_sync,

@@ -68,6 +68,49 @@ export interface MLCreateItemResult {
   status: string;
 }
 
+function sanitizeMlAttributes(
+  attrs: Array<{ id: string; value_name?: string; value_id?: string }>,
+): Array<{ id: string; value_name?: string; value_id?: string }> {
+  const byId = new Map<string, { id: string; value_name?: string; value_id?: string }>();
+  for (const attr of attrs || []) {
+    const id = String(attr?.id || '').trim().toUpperCase();
+    if (!id) continue;
+
+    const valueId = attr?.value_id !== undefined && attr?.value_id !== null
+      ? String(attr.value_id).trim()
+      : '';
+    const valueName = attr?.value_name !== undefined && attr?.value_name !== null
+      ? String(attr.value_name).trim()
+      : '';
+    if (!valueId && !valueName) continue;
+
+    byId.set(id, {
+      id,
+      ...(valueId ? { value_id: valueId } : {}),
+      ...(valueName ? { value_name: valueName } : {}),
+    });
+  }
+  return Array.from(byId.values());
+}
+
+function sanitizeMlSaleTerms(
+  terms: Array<{ id: string; value_name?: string; value_id?: string }>,
+): Array<{ id: string; value_name?: string; value_id?: string }> {
+  return (terms || [])
+    .map((term) => {
+      const id = String(term?.id || '').trim().toUpperCase();
+      const valueId = term?.value_id !== undefined && term?.value_id !== null ? String(term.value_id).trim() : '';
+      const valueName = term?.value_name !== undefined && term?.value_name !== null ? String(term.value_name).trim() : '';
+      if (!id || (!valueId && !valueName)) return null;
+      return {
+        id,
+        ...(valueId ? { value_id: valueId } : {}),
+        ...(valueName ? { value_name: valueName } : {}),
+      };
+    })
+    .filter(Boolean) as Array<{ id: string; value_name?: string; value_id?: string }>;
+}
+
 export async function predictCategory(title: string, limit: number = 3): Promise<MLCategoryPrediction[] | null> {
   const encoded = encodeURIComponent(title);
   return fetchML<MLCategoryPrediction[]>(
@@ -96,6 +139,9 @@ export async function createListing(input: MLCreateItemInput): Promise<MLCreateI
     }
   }
 
+  const sanitizedAttributes = sanitizeMlAttributes(attributes);
+  const sanitizedSaleTerms = sanitizeMlSaleTerms(saleTerms);
+
   const payload: Record<string, any> = {
     category_id: input.categoryId,
     price: input.price,
@@ -106,9 +152,9 @@ export async function createListing(input: MLCreateItemInput): Promise<MLCreateI
     condition: input.condition,
     description: { plain_text: input.description },
     pictures: input.pictures.map(url => ({ source: url })),
-    attributes,
+    attributes: sanitizedAttributes,
     seller_custom_field: input.sellerCustomField || undefined,
-    sale_terms: saleTerms.length > 0 ? saleTerms : undefined,
+    sale_terms: sanitizedSaleTerms.length > 0 ? sanitizedSaleTerms : undefined,
     shipping: input.shipping
       ? {
           mode: input.shipping.mode || 'me2',

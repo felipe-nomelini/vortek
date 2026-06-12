@@ -111,6 +111,7 @@ export async function POST(request: Request) {
   const body = await request.json().catch(() => ({}));
   const limit = Math.min(50, parsePositiveInt(body?.limit, 20));
   const seedFromProducts = Boolean(body?.seedFromProducts);
+  const targetOutboxId = String(body?.outboxId || '').trim();
 
   let lockOwnerToken = '';
   let lockAcquired = false;
@@ -185,13 +186,21 @@ export async function POST(request: Request) {
       }
     }
 
-    const { data: outboxRows, error: outboxError } = await (client
+    let outboxQuery = client
       .from('anuncios_ml_outbox' as any)
       .select('id, produto_id, ml_item_id, desired_status, desired_price, desired_quantity, status, attempts, payload')
-      .in('status', ['pending', 'retry'])
-      .lte('available_at', new Date().toISOString())
-      .order('created_at', { ascending: true })
-      .limit(limit) as any);
+      .in('status', ['pending', 'retry']);
+
+    if (targetOutboxId) {
+      outboxQuery = outboxQuery.eq('id', targetOutboxId).limit(1);
+    } else {
+      outboxQuery = outboxQuery
+        .lte('available_at', new Date().toISOString())
+        .order('created_at', { ascending: true })
+        .limit(limit);
+    }
+
+    const { data: outboxRows, error: outboxError } = await (outboxQuery as any);
 
     if (outboxError) {
       throw new Error(`Falha ao consultar outbox de anúncios: ${outboxError.message}`);

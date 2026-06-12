@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { fetchML } from '@/services/integration';
-import { getCategoryAttributes } from '@/services/mercadolibre';
+import { getCategoryAttributes, predictCategory } from '@/services/mercadolibre';
 import { calculateSuggestedPrice } from '@/services/pricing';
 
 function normalizeStr(v: unknown): string {
@@ -47,8 +47,44 @@ function initialAttributeValue(attr: any, produto: any): { value_id?: string; va
   if (attrId === 'SELLER_PACKAGE_HEIGHT' && produto.altura) return { value_name: `${produto.altura} cm` };
   if (attrId === 'SELLER_PACKAGE_WIDTH' && produto.largura) return { value_name: `${produto.largura} cm` };
   if (attrId === 'SELLER_PACKAGE_LENGTH' && produto.profundidade) return { value_name: `${produto.profundidade} cm` };
-  if (attrId === 'SELLER_PACKAGE_WEIGHT' && produto.peso_bruto) return { value_name: `${produto.peso_bruto} g` };
+  if (attrId === 'SELLER_PACKAGE_WEIGHT' && produto.peso_bruto) return { value_name: `${Math.round(Number(produto.peso_bruto) * 1000)} g` };
   return {};
+}
+
+function applyRuleBasedAttributeValue(attr: any, produto: any): { value_id?: string; value_name?: string } {
+  const attrId = String(attr.id || '').toUpperCase();
+  const haystack = `${produto?.nome || ''} ${produto?.descricao || ''} ${produto?.categoria || ''}`.toLowerCase();
+
+  if (attrId === 'RECOMMENDED_INSTRUMENT' && haystack.includes('contrabaixo')) {
+    return { value_name: 'Contrabaixo' };
+  }
+  if ((attrId === 'STRING_NUMBER' || attrId === 'NUMBER_OF_STRINGS') && /\b4\s*cordas?\b/i.test(haystack)) {
+    return { value_name: '4' };
+  }
+  if (attrId === 'STRING_GAUGE' || attrId === 'GAUGE' || attrId === 'CALIBER') {
+    const range = haystack.match(/\.0?\d{2,3}\s*[-–]\s*\.0?\d{2,3}/i);
+    if (range?.[0]) return { value_name: range[0].replace(/\s+/g, ' ') };
+  }
+  if (attrId === 'MATERIALS' && /(a[cç]o|niquel|níquel|metal)/i.test(haystack)) {
+    const metalValue = (attr.values || []).find((v: any) => String(v.name || '').toLowerCase() === 'metal');
+    return metalValue ? { value_id: String(metalValue.id), value_name: String(metalValue.name) } : { value_name: 'Aço niquelado' };
+  }
+
+  return {};
+}
+
+async function predictionAttributes(categoriaId: string, produto: any): Promise<Map<string, { value_id?: string; value_name?: string }>> {
+  const title = produto?.marca ? `${produto.nome} ${produto.marca}` : produto?.nome;
+  const predictions = await predictCategory(String(title || ''), 5).catch(() => null);
+  const match = (predictions || []).find((p) => String(p.category_id) === String(categoriaId));
+  const result = new Map<string, { value_id?: string; value_name?: string }>();
+  for (const attr of match?.attributes || []) {
+    result.set(String(attr.id).toUpperCase(), {
+      value_id: attr.value_id ? String(attr.value_id) : undefined,
+      value_name: attr.value_name ? String(attr.value_name) : undefined,
+    });
+  }
+  return result;
 }
 
 function normalizeBase(v: unknown): string {
@@ -100,8 +136,14 @@ export async function POST(req: Request) {
       suggestedPrice = Number(produto.custom_price ?? produto.custo ?? 0);
     }
 
+    const predictionByAttr = await predictionAttributes(categoriaId, produto);
+
     const prefillAttributes = attrs.map((attr: any) => {
-      const pre = initialAttributeValue(attr, produto);
+      const pre = {
+        ...initialAttributeValue(attr, produto),
+        ...applyRuleBasedAttributeValue(attr, produto),
+        ...(predictionByAttr.get(String(attr.id).toUpperCase()) || {}),
+      };
       return {
         id: attr.id,
         name: attr.name,

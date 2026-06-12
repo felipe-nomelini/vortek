@@ -5,6 +5,7 @@ import { buildCanonicalDsliteSku } from '@/lib/sku';
 import { inferSupplierPaymentMode, syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
+import { shouldProductBeInactiveByCost } from '@/lib/product-activity';
 
 export const maxDuration = 300;
 
@@ -156,6 +157,8 @@ export async function POST(req: Request) {
     let recordsUpdated = 0;
     let recordsMissing = 0;
     let recordsFailed = 0;
+    let recordsSkippedInactive = 0;
+    let recordsInactivatedByCost = 0;
     let mlOutboxEnqueued = 0;
     let mlOutboxUpdatedExisting = 0;
     let mlOutboxSkippedNoItem = 0;
@@ -270,12 +273,12 @@ export async function POST(req: Request) {
       const [existingOffersResp, existingRowsResp] = await Promise.all([
         client
           .from('produto_fornecedor_ofertas')
-          .select('id,produto_id,dslite_fornecedor_id,dslite_produto_id')
+          .select('id,produto_id,dslite_fornecedor_id,dslite_produto_id,product:produtos!produto_fornecedor_ofertas_produto_id_fkey(ativo,ml_item_id,sku)')
           .eq('dslite_fornecedor_id', targetFornecedor)
           .in('dslite_produto_id', dsliteProdutoIds),
         client
           .from('produtos')
-          .select('id, sku, nome, ml_item_id')
+          .select('id, sku, nome, ml_item_id, ativo')
           .in('sku', skus),
       ]);
 
@@ -300,6 +303,7 @@ export async function POST(req: Request) {
       const existingBySku = new Map((existingRowsResp.data || []).map((row: any) => [String(row.sku || '').toUpperCase(), row]));
       const offerUpserts: Array<Record<string, unknown>> = [];
       const touchedProductIds = new Set<string>();
+      const productsToInactivateByCost = new Map<string, { mlItemId: string; sku: string }>();
 
       for (let index = 0; index < batch.length; index += 1) {
         const row = batch[index];
@@ -308,9 +312,26 @@ export async function POST(req: Request) {
         const existingOffer = existingOffersByIdentity.get(identityKey) as any;
         const legacyProduct = existingBySku.get(String(row.sku || '').trim().toUpperCase()) as any;
         const productId = String(existingOffer?.produto_id || legacyProduct?.id || '').trim();
+        const existingProductActive = existingOffer?.product?.ativo ?? legacyProduct?.ativo;
+        const existingProductMlItemId = String(existingOffer?.product?.ml_item_id || legacyProduct?.ml_item_id || '').trim();
+        const existingProductSku = String(existingOffer?.product?.sku || legacyProduct?.sku || row.sku || '').trim();
 
         if (!productId) {
           recordsMissing += 1;
+          continue;
+        }
+
+        if (existingProductActive === false) {
+          recordsSkippedInactive += 1;
+          continue;
+        }
+
+        if (shouldProductBeInactiveByCost(row.custo)) {
+          productsToInactivateByCost.set(productId, {
+            mlItemId: existingProductMlItemId,
+            sku: existingProductSku,
+          });
+          recordsInactivatedByCost += 1;
           continue;
         }
 
@@ -325,7 +346,7 @@ export async function POST(req: Request) {
           sku_fornecedor: String(row.sku || '').trim(),
           custo: normalizeCost(row.custo),
           estoque: normalizeStock(row.estoque),
-          ativo: true,
+          ativo: !shouldProductBeInactiveByCost(row.custo),
           prioridade: 100,
           payment_mode: inferSupplierPaymentMode(targetFornecedor),
           last_sync_at: row.dslite_ultima_sync,
@@ -334,6 +355,60 @@ export async function POST(req: Request) {
       }
 
       const successfullyUpsertedProductIds = new Set<string>();
+
+      if (productsToInactivateByCost.size > 0) {
+        const ids = Array.from(productsToInactivateByCost.keys());
+        const { error: inactiveError } = await client
+          .from('produtos')
+          .update({ ativo: false } as any)
+          .in('id', ids);
+
+        if (inactiveError) {
+          recordsFailed += ids.length;
+          errors.push({
+            code: 'price_cost_threshold_inactivate_failed',
+            message: inactiveError.message,
+            context: { fornecedorId: targetFornecedor, page: currentPage, count: ids.length },
+          });
+        } else {
+          for (const [productId, product] of productsToInactivateByCost.entries()) {
+            if (!product.mlItemId) {
+              mlOutboxSkippedNoItem += 1;
+              continue;
+            }
+            const outbox = await enqueueMlPublishOutbox(client, {
+              produtoId: productId,
+              mlItemId: product.mlItemId,
+              desiredStatus: 'pausado',
+              desiredQuantity: 0,
+              desiredPrice: null,
+              source: 'produto_cost_threshold_inactive',
+              dedupePending: true,
+              payload: {
+                apply_price: false,
+                apply_quantity_pricing: false,
+                apply_quantity: true,
+                apply_status: true,
+                sku: product.sku,
+                origin: 'api/sync/preco-estoque',
+                threshold: 2000,
+              },
+            });
+            if (!outbox.ok) {
+              mlOutboxFailed += 1;
+              errors.push({
+                code: 'ml_outbox_cost_threshold_enqueue_failed',
+                message: outbox.error,
+                context: { fornecedorId: targetFornecedor, page: currentPage, sku: product.sku, mlItemId: product.mlItemId },
+              });
+            } else if (outbox.action === 'updated_existing') {
+              mlOutboxUpdatedExisting += 1;
+            } else {
+              mlOutboxEnqueued += 1;
+            }
+          }
+        }
+      }
 
       if (offerUpserts.length > 0) {
         const { error: offerUpsertError } = await client
@@ -568,6 +643,8 @@ export async function POST(req: Request) {
         updated_seen: recordsUpdatedSeen,
         paused_zero_stock: mlOutboxPausedZeroStock,
         row_failed: recordsFailed,
+        skipped_inactive: recordsSkippedInactive,
+        inactivated_by_cost: recordsInactivatedByCost,
       },
       errors,
       duration: { ms: Date.now() - startedAt },
@@ -586,6 +663,8 @@ export async function POST(req: Request) {
       updated_seen: recordsUpdatedSeen,
       paused_zero_stock: mlOutboxPausedZeroStock,
       row_failed: recordsFailed,
+      skipped_inactive: recordsSkippedInactive,
+      inactivated_by_cost: recordsInactivatedByCost,
       next_cursor: nextCursor,
       message: 'Sync DSLite de preço/estoque concluído com enfileiramento ML por outbox',
     });

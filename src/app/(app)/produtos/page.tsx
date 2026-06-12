@@ -2,10 +2,10 @@
 
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import {
-  Input, Select, InputNumber, Tag, Typography, Space, Spin, Modal, Button, message, Dropdown, Row, Col, Statistic, Divider, Radio, Alert,
+  Input, Select, InputNumber, Tag, Typography, Space, Spin, Modal, Button, message, Dropdown, Row, Col, Statistic, Divider, Radio, Alert, Tooltip,
 } from 'antd';
 import type { TableProps } from 'antd';
-import { SearchOutlined, LoadingOutlined, EllipsisOutlined, EditOutlined, PlusOutlined, StarOutlined } from '@ant-design/icons';
+import { SearchOutlined, LoadingOutlined, EllipsisOutlined, EditOutlined, PlusOutlined, StarOutlined, LinkOutlined } from '@ant-design/icons';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { formatCurrency, formatPercent } from '@/lib/format';
 import { useRouter } from 'next/navigation';
@@ -115,6 +115,8 @@ interface MlRequiredAttribute {
   required?: boolean;
   value_id?: string;
   value_name?: string;
+  source_urls?: string[];
+  evidence?: string;
 }
 
 interface MlCategoryOption {
@@ -132,6 +134,8 @@ interface MlSaleTermField {
   values: MlCategoryAttributeOption[];
   value_id?: string;
   value_name?: string;
+  source_urls?: string[];
+  evidence?: string;
 }
 
 interface CategorySchemaResponse {
@@ -167,6 +171,12 @@ function isNegativeChoice(valueId?: string, valueName?: string) {
 function withNotApplicableOption(values: MlCategoryAttributeOption[] = []) {
   if (values.some((v) => String(v.id) === NOT_APPLICABLE_ID)) return values;
   return [{ id: NOT_APPLICABLE_ID, name: 'Não se aplica' }, ...values];
+}
+
+function formatWeightFromKg(weightKg: number) {
+  if (!Number.isFinite(weightKg) || weightKg <= 0) return '';
+  const grams = Math.round(weightKg * 1000);
+  return grams >= 1000 ? `${String(weightKg).replace('.', ',')} kg` : `${grams} g`;
 }
 
 function computeDerived(item: Product | ProductMasterListItem): { displayPrice: number; profit: number | null } {
@@ -359,7 +369,7 @@ export default function ProductsPage() {
       origem_fiscal: string;
       csosn: string;
     };
-    editableAttributes: Array<{ id: string; name: string; value_name?: string; value_id?: string }>;
+    editableAttributes: MlRequiredAttribute[];
     optionalAttributes: MlRequiredAttribute[];
     saleTerms: MlSaleTermField[];
     description: string;
@@ -474,7 +484,7 @@ export default function ProductsPage() {
         ...prev,
         selectedCategory: categoryId,
         editableAttributes: cached.required_attributes.map((a) => ({
-          id: a.id, name: a.name, value_id: a.value_id || '', value_name: a.value_name || '',
+          id: a.id, name: a.name, value_type: a.value_type, values: a.values || [], value_id: a.value_id || '', value_name: a.value_name || '',
         })),
         optionalAttributes: cached.optional_attributes,
         saleTerms: cached.sale_terms,
@@ -510,7 +520,7 @@ export default function ProductsPage() {
         selectedCategory: categoryId,
         categorySchemaCache: { ...prev.categorySchemaCache, [categoryId]: schema },
         editableAttributes: schema.required_attributes.map((a) => ({
-          id: a.id, name: a.name, value_id: a.value_id || '', value_name: a.value_name || '',
+          id: a.id, name: a.name, value_type: a.value_type, values: a.values || [], value_id: a.value_id || '', value_name: a.value_name || '',
         })),
         optionalAttributes: schema.optional_attributes,
         saleTerms: schema.sale_terms,
@@ -540,6 +550,7 @@ export default function ProductsPage() {
             value_type: field.value_type,
             allowed_values: field.values || [],
           },
+          target,
           currentForm: {
             required_attributes: mlModal.editableAttributes,
             optional_attributes: mlModal.optionalAttributes,
@@ -551,32 +562,77 @@ export default function ProductsPage() {
       });
       const data = await res.json();
       if (!res.ok || !data?.success) {
-        messageApi.warning(data?.error || 'Não foi possível sugerir valor');
+        messageApi.warning(data?.ignored ? 'Sem evidência confiável para preencher este atributo.' : (data?.error || 'Não foi possível sugerir valor'));
         return;
       }
       const suggestion = data.suggestion || {};
+      const generatedDescription = String(suggestion.value_name || '').trim();
+
+      if (target === 'description' && generatedDescription) {
+        const saveRes = await fetch(`/api/produtos/${mlModal.produtoId}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ descricao: generatedDescription }),
+        });
+        const saveData = await saveRes.json().catch(() => ({}));
+        if (!saveRes.ok) {
+          messageApi.warning(saveData?.error || 'Descrição gerada, mas não foi possível salvar no produto.');
+        } else {
+          messageApi.success('Descrição melhorada e salva no produto.');
+          setProducts((prev) => prev.map((item) => (
+            item.product.id === mlModal.produtoId
+              ? { ...item, product: { ...item.product, description: generatedDescription } }
+              : item
+          )));
+        }
+      }
 
       setMlModal(prev => {
         if (target === 'required' && typeof index === 'number') {
           const next = [...prev.editableAttributes];
-          next[index] = { ...next[index], value_id: suggestion.value_id || '', value_name: suggestion.value_name || '' };
+          next[index] = {
+            ...next[index],
+            value_id: suggestion.value_id || '',
+            value_name: suggestion.value_name || '',
+            source_urls: suggestion.source_urls || [],
+            evidence: suggestion.evidence || '',
+          };
           return applyDependencyRules({ ...prev, editableAttributes: next });
         }
         if (target === 'optional' && typeof index === 'number') {
           const next = [...prev.optionalAttributes];
-          next[index] = { ...next[index], value_id: suggestion.value_id || '', value_name: suggestion.value_name || '' };
+          next[index] = {
+            ...next[index],
+            value_id: suggestion.value_id || '',
+            value_name: suggestion.value_name || '',
+            source_urls: suggestion.source_urls || [],
+            evidence: suggestion.evidence || '',
+          };
           return applyDependencyRules({ ...prev, optionalAttributes: next });
         }
         if (target === 'sale_term' && typeof index === 'number') {
           const next = [...prev.saleTerms];
-          next[index] = { ...next[index], value_id: suggestion.value_id || '', value_name: suggestion.value_name || '' };
+          next[index] = {
+            ...next[index],
+            value_id: suggestion.value_id || '',
+            value_name: suggestion.value_name || '',
+            source_urls: suggestion.source_urls || [],
+            evidence: suggestion.evidence || '',
+          };
           return { ...prev, saleTerms: next };
         }
         if (target === 'description') {
-          return { ...prev, description: suggestion.value_name || prev.description };
+          return {
+            ...prev,
+            description: generatedDescription || prev.description,
+            product: prev.product ? { ...prev.product, description: generatedDescription || prev.product.description } : prev.product,
+          };
         }
         return prev;
       });
+      if (suggestion.source_urls?.length) {
+        messageApi.success(`Sugestão aplicada com ${suggestion.source_urls.length} fonte(s).`);
+      }
     } catch {
       messageApi.warning('Falha ao solicitar sugestão da IA');
     } finally {
@@ -644,7 +700,9 @@ export default function ProductsPage() {
     }));
 
     let successCount = 0;
+    let ignoredCount = 0;
     let failedCount = 0;
+    let researchedCount = 0;
 
     try {
       for (const field of candidates) {
@@ -661,6 +719,7 @@ export default function ProductsPage() {
                 value_type: field.value_type,
                 allowed_values: field.values || [],
               },
+              target: section,
               currentForm: {
                 required_attributes: mlModal.editableAttributes,
                 optional_attributes: mlModal.optionalAttributes,
@@ -673,14 +732,17 @@ export default function ProductsPage() {
 
           const data = await res.json();
           if (!res.ok || !data?.success) {
-            failedCount += 1;
+            if (data?.ignored) ignoredCount += 1;
+            else failedCount += 1;
+            if (data?.searched_web || data?.suggestion?.searched_web) researchedCount += 1;
             continue;
           }
 
           const suggestion = data.suggestion || {};
+          if (data?.searched_web || suggestion.searched_web) researchedCount += 1;
           const hasValue = Boolean(suggestion.value_id) || Boolean(String(suggestion.value_name || '').trim());
           if (!hasValue) {
-            failedCount += 1;
+            ignoredCount += 1;
             continue;
           }
 
@@ -691,6 +753,8 @@ export default function ProductsPage() {
                 ...next[field.index],
                 value_id: suggestion.value_id || '',
                 value_name: suggestion.value_name || '',
+                source_urls: suggestion.source_urls || [],
+                evidence: suggestion.evidence || '',
               };
               return applyDependencyRules({ ...prev, editableAttributes: next });
             }
@@ -700,6 +764,8 @@ export default function ProductsPage() {
               ...next[field.index],
               value_id: suggestion.value_id || '',
               value_name: suggestion.value_name || '',
+              source_urls: suggestion.source_urls || [],
+              evidence: suggestion.evidence || '',
             };
             return applyDependencyRules({ ...prev, optionalAttributes: next });
           });
@@ -712,7 +778,8 @@ export default function ProductsPage() {
       const totalProcessado = candidates.length;
       messageApi.info(
         `Preenchimento IA (${section === 'required' ? 'obrigatórios' : 'secundários'}): ` +
-        `${successCount} preenchidos, ${alreadyFilledCount} ignorados, ${failedCount} falhas (total processado: ${totalProcessado}).`
+        `${successCount} preenchidos, ${researchedCount} pesquisados, ${ignoredCount} ignorados sem evidência, ` +
+        `${failedCount} falhas reais, ${alreadyFilledCount} já preenchidos (total: ${totalProcessado}).`
       );
     } finally {
       setMlModal(prev => ({
@@ -766,11 +833,13 @@ export default function ProductsPage() {
       });
       const data = await res.json();
       if (data.success) {
-        messageApi.success(`Anúncio criado! ${data.anuncio.permalink}`);
+        const actionLabel = data.linked_existing ? 'Anúncio vinculado' : 'Anúncio criado';
+        messageApi.success(`${actionLabel}! ${data.anuncio.permalink || ''}`.trim());
         if (Array.isArray(data.warnings) && data.warnings.length > 0) {
           messageApi.warning(`Pendências: ${data.warnings.join(' | ')}`);
         }
         setMlModal(prev => ({ ...prev, open: false }));
+        await Promise.all([fetchProducts(), fetchStats()]);
       } else {
         if (Array.isArray(data.missing_required_attributes) && data.missing_required_attributes.length > 0) {
           messageApi.error(`Atributos obrigatórios pendentes: ${data.missing_required_attributes.map((a: any) => a.name).join(', ')}`);
@@ -1301,7 +1370,7 @@ export default function ProductsPage() {
         const items: { key: string; label: React.ReactNode; icon?: React.ReactNode }[] = [
           { key: 'edit', label: 'Editar', icon: <EditOutlined /> },
         ];
-        if (record.product.active && record.product.mlStatus === 'sem_anuncio') {
+        if (record.product.active && record.product.mlStatus === 'sem_anuncio' && record.product.stock > 0) {
           items.push({ key: 'criarAnuncio', label: 'Criar Anúncio ML', icon: <PlusOutlined /> });
         }
         if (record.product.active && record.product.mlStatus === 'ativo') {
@@ -1583,7 +1652,7 @@ export default function ProductsPage() {
                         {p.height > 0 && p.width > 0 && p.depth > 0
                           ? `${p.height} × ${p.width} × ${p.depth} cm`
                           : '—'}
-                        {p.grossWeight > 0 ? ` | ${p.grossWeight}g` : ''}
+                        {p.grossWeight > 0 ? ` | ${formatWeightFromKg(p.grossWeight)}` : ''}
                       </Text>
                     </Col>
                     <Col span={12}>
@@ -1685,7 +1754,7 @@ export default function ProductsPage() {
               if (!mlModal.editableFiscal.cest) avisos.push('Produto sem CEST cadastrado.');
               if (!mlModal.editableFiscal.gtin) avisos.push('Produto sem GTIN cadastrado.');
               if (p.images.length === 0) avisos.push('Produto sem imagens. O anúncio será criado sem fotos.');
-              if (p.stock === 0) avisos.push('Produto com estoque zero. O anúncio será criado como indisponível.');
+              if (p.stock === 0) avisos.push('Produto com estoque zero. O anúncio não será criado até haver estoque.');
               if (avisos.length === 0) return null;
               return (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -1753,8 +1822,16 @@ export default function ProductsPage() {
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 10 }}>
                   {mlModal.editableAttributes.map((attr, idx) => (
                     <div key={attr.id} style={{ display: 'grid', gridTemplateColumns: '220px 1fr auto', gap: 8, alignItems: 'center' }}>
-                      <Text style={{ color: '#a0a0a0' }}>{attr.name}</Text>
-                      {Array.isArray(mlModal.categorias.find(c => c.id === mlModal.selectedCategory)?.requiredAttributes?.find(a => a.id === attr.id)?.values) &&
+                      <Text style={{ color: '#a0a0a0' }}>
+                        {attr.name}
+                        {attr.source_urls?.length ? (
+                          <Tooltip title={attr.source_urls.join('\n')}>
+                            <LinkOutlined style={{ marginLeft: 6, color: '#1677ff' }} />
+                          </Tooltip>
+                        ) : null}
+                      </Text>
+                      {attr.value_type !== 'string' &&
+                      Array.isArray(mlModal.categorias.find(c => c.id === mlModal.selectedCategory)?.requiredAttributes?.find(a => a.id === attr.id)?.values) &&
                       (mlModal.categorias.find(c => c.id === mlModal.selectedCategory)?.requiredAttributes?.find(a => a.id === attr.id)?.values?.length || 0) > 0 ? (
                         <Select
                           size="small"
@@ -1779,7 +1856,7 @@ export default function ProductsPage() {
                             const value = e.target.value;
                             setMlModal(prev => {
                               const next = [...prev.editableAttributes];
-                              next[idx] = { ...next[idx], value_name: value };
+                              next[idx] = { ...next[idx], value_id: '', value_name: value };
                               return { ...prev, editableAttributes: next };
                             });
                           }}
@@ -1822,8 +1899,15 @@ export default function ProductsPage() {
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 10 }}>
                   {mlModal.optionalAttributes.map((attr, idx) => (
                     <div key={attr.id} style={{ display: 'grid', gridTemplateColumns: '220px 1fr auto', gap: 8, alignItems: 'center' }}>
-                      <Text style={{ color: '#a0a0a0' }}>{attr.name}</Text>
-                      {attr.values?.length ? (
+                      <Text style={{ color: '#a0a0a0' }}>
+                        {attr.name}
+                        {attr.source_urls?.length ? (
+                          <Tooltip title={attr.source_urls.join('\n')}>
+                            <LinkOutlined style={{ marginLeft: 6, color: '#1677ff' }} />
+                          </Tooltip>
+                        ) : null}
+                      </Text>
+                      {attr.value_type !== 'string' && attr.values?.length ? (
                         <Select
                           size="small"
                           value={attr.value_id || undefined}
@@ -1846,7 +1930,7 @@ export default function ProductsPage() {
                             const value = e.target.value;
                             setMlModal(prev => {
                               const next = [...prev.optionalAttributes];
-                              next[idx] = { ...next[idx], value_name: value };
+                              next[idx] = { ...next[idx], value_id: '', value_name: value };
                               return { ...prev, optionalAttributes: next };
                             });
                           }}
@@ -1877,7 +1961,9 @@ export default function ProductsPage() {
                   icon={<StarOutlined />}
                   loading={mlModal.suggestingFieldId === 'description:DESCRIPTION'}
                   onClick={() => void sugerirCampoIA({ id: 'DESCRIPTION', name: 'Descrição', value_type: 'string', values: [] }, 'description')}
-                />
+                >
+                  Melhorar descrição com IA
+                </Button>
               </div>
             </div>
 
@@ -1887,7 +1973,14 @@ export default function ProductsPage() {
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 10 }}>
                   {mlModal.saleTerms.map((term, idx) => (
                     <div key={term.id} style={{ display: 'grid', gridTemplateColumns: '220px 1fr auto', gap: 8, alignItems: 'center' }}>
-                      <Text style={{ color: '#a0a0a0' }}>{term.name}</Text>
+                      <Text style={{ color: '#a0a0a0' }}>
+                        {term.name}
+                        {term.source_urls?.length ? (
+                          <Tooltip title={term.source_urls.join('\n')}>
+                            <LinkOutlined style={{ marginLeft: 6, color: '#1677ff' }} />
+                          </Tooltip>
+                        ) : null}
+                      </Text>
                       {term.values?.length ? (
                         <Select
                           size="small"
