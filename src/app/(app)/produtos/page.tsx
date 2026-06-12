@@ -156,7 +156,6 @@ interface CategorySchemaResponse {
   };
 }
 
-const NOT_APPLICABLE_ID = '-1';
 const DEPENDENT_FIELDS: Record<string, string[]> = {
   WITH_CLOSING: ['CLASP_TYPE'],
   WITH_GEMSTONE: ['GEMSTONE_TYPE', 'GEMSTONE_COLOR'],
@@ -169,8 +168,24 @@ function isNegativeChoice(valueId?: string, valueName?: string) {
 }
 
 function withNotApplicableOption(values: MlCategoryAttributeOption[] = []) {
-  if (values.some((v) => String(v.id) === NOT_APPLICABLE_ID)) return values;
-  return [{ id: NOT_APPLICABLE_ID, name: 'Não se aplica' }, ...values];
+  return values;
+}
+
+function isNotApplicableOptionName(value: unknown) {
+  const text = String(value || '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  return text.includes('nao se aplica') || text.includes('nao aplicavel') || text === 'n/a';
+}
+
+function sanitizeMlFieldValue(value: unknown) {
+  const raw = String(value ?? '').trim();
+  const normalized = raw.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  return !raw || normalized === 'null' || normalized === 'undefined' || normalized === 'n/a' || normalized === 'na'
+    ? ''
+    : raw;
+}
+
+function findOfficialNotApplicableOption(values: MlCategoryAttributeOption[] = []) {
+  return values.find((value) => isNotApplicableOptionName(value.name)) || null;
 }
 
 function formatWeightFromKg(weightKg: number) {
@@ -377,6 +392,7 @@ export default function ProductsPage() {
     suggestingFieldId: string | null;
     suggestingRequiredBulk: boolean;
     suggestingOptionalBulk: boolean;
+    suggestingSmartFill: boolean;
     loading: boolean;
   }>({
     open: false,
@@ -395,6 +411,7 @@ export default function ProductsPage() {
     suggestingFieldId: null,
     suggestingRequiredBulk: false,
     suggestingOptionalBulk: false,
+    suggestingSmartFill: false,
     loading: false,
   });
 
@@ -412,11 +429,21 @@ export default function ProductsPage() {
       for (const childId of children) {
         if (requiredMap.has(childId)) {
           const current = requiredMap.get(childId)!;
-          requiredMap.set(childId, { ...current, value_id: NOT_APPLICABLE_ID, value_name: 'Não se aplica' });
+          const notApplicable = findOfficialNotApplicableOption(current.values || []);
+          requiredMap.set(childId, {
+            ...current,
+            value_id: notApplicable?.id || '',
+            value_name: notApplicable?.name || '',
+          });
         }
         if (optionalMap.has(childId)) {
           const current = optionalMap.get(childId)!;
-          optionalMap.set(childId, { ...current, value_id: NOT_APPLICABLE_ID, value_name: 'Não se aplica' });
+          const notApplicable = findOfficialNotApplicableOption(current.values || []);
+          optionalMap.set(childId, {
+            ...current,
+            value_id: notApplicable?.id || '',
+            value_name: notApplicable?.name || '',
+          });
         }
       }
     }
@@ -454,6 +481,7 @@ export default function ProductsPage() {
       suggestingFieldId: null,
       suggestingRequiredBulk: false,
       suggestingOptionalBulk: false,
+      suggestingSmartFill: false,
       loading: true,
     });
     try {
@@ -562,11 +590,13 @@ export default function ProductsPage() {
       });
       const data = await res.json();
       if (!res.ok || !data?.success) {
-        messageApi.warning(data?.ignored ? 'Sem evidência confiável para preencher este atributo.' : (data?.error || 'Não foi possível sugerir valor'));
+        messageApi.warning(data?.error || (data?.ignored ? 'Sem evidência confiável para preencher este atributo.' : 'Não foi possível sugerir valor'));
         return;
       }
       const suggestion = data.suggestion || {};
-      const generatedDescription = String(suggestion.value_name || '').trim();
+      const suggestionValueId = sanitizeMlFieldValue(suggestion.value_id);
+      const suggestionValueName = sanitizeMlFieldValue(suggestion.value_name);
+      const generatedDescription = String(suggestionValueName || '').trim();
 
       if (target === 'description' && generatedDescription) {
         const saveRes = await fetch(`/api/produtos/${mlModal.produtoId}`, {
@@ -592,8 +622,8 @@ export default function ProductsPage() {
           const next = [...prev.editableAttributes];
           next[index] = {
             ...next[index],
-            value_id: suggestion.value_id || '',
-            value_name: suggestion.value_name || '',
+            value_id: suggestionValueId,
+            value_name: suggestionValueName,
             source_urls: suggestion.source_urls || [],
             evidence: suggestion.evidence || '',
           };
@@ -603,8 +633,8 @@ export default function ProductsPage() {
           const next = [...prev.optionalAttributes];
           next[index] = {
             ...next[index],
-            value_id: suggestion.value_id || '',
-            value_name: suggestion.value_name || '',
+            value_id: suggestionValueId,
+            value_name: suggestionValueName,
             source_urls: suggestion.source_urls || [],
             evidence: suggestion.evidence || '',
           };
@@ -614,8 +644,8 @@ export default function ProductsPage() {
           const next = [...prev.saleTerms];
           next[index] = {
             ...next[index],
-            value_id: suggestion.value_id || '',
-            value_name: suggestion.value_name || '',
+            value_id: suggestionValueId,
+            value_name: suggestionValueName,
             source_urls: suggestion.source_urls || [],
             evidence: suggestion.evidence || '',
           };
@@ -700,6 +730,9 @@ export default function ProductsPage() {
     }));
 
     let successCount = 0;
+    let ruleCount = 0;
+    let aiResearchCount = 0;
+    let officialNaCount = 0;
     let ignoredCount = 0;
     let failedCount = 0;
     let researchedCount = 0;
@@ -740,7 +773,9 @@ export default function ProductsPage() {
 
           const suggestion = data.suggestion || {};
           if (data?.searched_web || suggestion.searched_web) researchedCount += 1;
-          const hasValue = Boolean(suggestion.value_id) || Boolean(String(suggestion.value_name || '').trim());
+          const suggestionValueId = sanitizeMlFieldValue(suggestion.value_id);
+          const suggestionValueName = sanitizeMlFieldValue(suggestion.value_name);
+          const hasValue = Boolean(suggestionValueId) || Boolean(suggestionValueName);
           if (!hasValue) {
             ignoredCount += 1;
             continue;
@@ -751,8 +786,8 @@ export default function ProductsPage() {
               const next = [...prev.editableAttributes];
               next[field.index] = {
                 ...next[field.index],
-                value_id: suggestion.value_id || '',
-                value_name: suggestion.value_name || '',
+                value_id: suggestionValueId,
+                value_name: suggestionValueName,
                 source_urls: suggestion.source_urls || [],
                 evidence: suggestion.evidence || '',
               };
@@ -762,14 +797,18 @@ export default function ProductsPage() {
             const next = [...prev.optionalAttributes];
             next[field.index] = {
               ...next[field.index],
-              value_id: suggestion.value_id || '',
-              value_name: suggestion.value_name || '',
+              value_id: suggestionValueId,
+              value_name: suggestionValueName,
               source_urls: suggestion.source_urls || [],
               evidence: suggestion.evidence || '',
             };
             return applyDependencyRules({ ...prev, optionalAttributes: next });
           });
           successCount += 1;
+          const reason = String(suggestion.reason || '');
+          if (reason === 'rule_based_not_applicable') officialNaCount += 1;
+          else if (reason.startsWith('rule_based') || reason === 'ml_domain_prediction') ruleCount += 1;
+          else aiResearchCount += 1;
         } catch {
           failedCount += 1;
         }
@@ -778,8 +817,9 @@ export default function ProductsPage() {
       const totalProcessado = candidates.length;
       messageApi.info(
         `Preenchimento IA (${section === 'required' ? 'obrigatórios' : 'secundários'}): ` +
-        `${successCount} preenchidos, ${researchedCount} pesquisados, ${ignoredCount} ignorados sem evidência, ` +
-        `${failedCount} falhas reais, ${alreadyFilledCount} já preenchidos (total: ${totalProcessado}).`
+        `${successCount} preenchidos (${ruleCount} regra/ML, ${aiResearchCount} IA/pesquisa, ${officialNaCount} não se aplica oficial), ` +
+        `${researchedCount} pesquisados, ${ignoredCount} omitidos sem evidência, ${failedCount} falhas reais, ` +
+        `${alreadyFilledCount} já preenchidos (total: ${totalProcessado}).`
       );
     } finally {
       setMlModal(prev => ({
@@ -787,6 +827,69 @@ export default function ProductsPage() {
         suggestingRequiredBulk: section === 'required' ? false : prev.suggestingRequiredBulk,
         suggestingOptionalBulk: section === 'optional' ? false : prev.suggestingOptionalBulk,
       }));
+    }
+  };
+
+  const preencherAnuncioInteligente = async () => {
+    if (!mlModal.produtoId || !mlModal.selectedCategory) {
+      messageApi.warning('Selecione uma categoria primeiro.');
+      return;
+    }
+
+    setMlModal(prev => ({ ...prev, suggestingSmartFill: true }));
+    try {
+      const res = await fetch('/api/ml/anuncio/preencher-inteligente', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          produtoId: mlModal.produtoId,
+          categoriaId: mlModal.selectedCategory,
+          required_attributes: mlModal.editableAttributes,
+          optional_attributes: mlModal.optionalAttributes,
+          description: mlModal.description,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data?.success) {
+        messageApi.error(data?.error || 'Falha ao preencher anúncio com IA');
+        return;
+      }
+
+      setMlModal(prev => applyDependencyRules({
+        ...prev,
+        editableAttributes: Array.isArray(data.required_attributes) ? data.required_attributes : prev.editableAttributes,
+        optionalAttributes: Array.isArray(data.optional_attributes) ? data.optional_attributes : prev.optionalAttributes,
+        description: data.description || prev.description,
+        product: prev.product && data.description ? { ...prev.product, description: data.description } : prev.product,
+      }));
+
+      if (data.description) {
+        const saveRes = await fetch(`/api/produtos/${mlModal.produtoId}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ descricao: data.description }),
+        });
+        if (saveRes.ok) {
+          setProducts((prev) => prev.map((item) => (
+            item.product.id === mlModal.produtoId
+              ? { ...item, product: { ...item.product, description: data.description } }
+              : item
+          )));
+        }
+      }
+
+      const summary = data.summary || {};
+      const warnings = Array.isArray(data.warnings) ? data.warnings : [];
+      messageApi.success(
+        `IA completa: ${summary.filled ?? 0} preenchidos, ${summary.corrected ?? 0} corrigidos, ${summary.empty ?? 0} sem evidência.`
+      );
+      if (warnings.length > 0) {
+        messageApi.warning(warnings.slice(0, 3).join(' | '));
+      }
+    } catch {
+      messageApi.error('Erro ao preencher anúncio com IA');
+    } finally {
+      setMlModal(prev => ({ ...prev, suggestingSmartFill: false }));
     }
   };
 
@@ -1801,6 +1904,20 @@ export default function ProductsPage() {
               </Radio.Group>
             </div>
 
+            {mlModal.selectedCategory && (
+              <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button
+                  type="primary"
+                  icon={<StarOutlined />}
+                  loading={mlModal.suggestingSmartFill}
+                  disabled={mlModal.suggestingRequiredBulk || mlModal.suggestingOptionalBulk || Boolean(mlModal.suggestingFieldId)}
+                  onClick={() => void preencherAnuncioInteligente()}
+                >
+                  Preencher anúncio com IA
+                </Button>
+              </div>
+            )}
+
             {/* Atributos obrigatórios da categoria */}
             {mlModal.selectedCategory && mlModal.editableAttributes.length > 0 && (
               <div style={{ background: '#1a1a1a', border: '1px solid #303030', borderRadius: 6, padding: 16 }}>
@@ -1841,7 +1958,7 @@ export default function ProductsPage() {
                             const selectedVal = selectedDef?.values?.find(v => v.id === value);
                             setMlModal(prev => {
                               const next = [...prev.editableAttributes];
-                              next[idx] = { ...next[idx], value_id: value, value_name: selectedVal?.name || (value === NOT_APPLICABLE_ID ? 'Não se aplica' : '') };
+                            next[idx] = { ...next[idx], value_id: value, value_name: selectedVal?.name || '' };
                               return applyDependencyRules({ ...prev, editableAttributes: next });
                             });
                           }}
@@ -1915,7 +2032,7 @@ export default function ProductsPage() {
                             const selectedVal = withNotApplicableOption(attr.values || []).find(v => v.id === value);
                             setMlModal(prev => {
                               const next = [...prev.optionalAttributes];
-                              next[idx] = { ...next[idx], value_id: value, value_name: selectedVal?.name || (value === NOT_APPLICABLE_ID ? 'Não se aplica' : '') };
+                              next[idx] = { ...next[idx], value_id: value, value_name: selectedVal?.name || '' };
                               return applyDependencyRules({ ...prev, optionalAttributes: next });
                             });
                           }}

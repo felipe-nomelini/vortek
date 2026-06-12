@@ -1,5 +1,6 @@
 import { fetchML, fetchMLRaw, fetchMLResult, getValidMLToken } from './integration';
 import { createServiceClient } from '@/lib/supabase';
+import { normalizeMlSaleTerms } from '@/lib/ml-sale-terms';
 
 export interface MLCategoryPrediction {
   domain_id: string;
@@ -96,7 +97,7 @@ function sanitizeMlAttributes(
 function sanitizeMlSaleTerms(
   terms: Array<{ id: string; value_name?: string; value_id?: string }>,
 ): Array<{ id: string; value_name?: string; value_id?: string }> {
-  return (terms || [])
+  const sanitized = (terms || [])
     .map((term) => {
       const id = String(term?.id || '').trim().toUpperCase();
       const valueId = term?.value_id !== undefined && term?.value_id !== null ? String(term.value_id).trim() : '';
@@ -109,6 +110,8 @@ function sanitizeMlSaleTerms(
       };
     })
     .filter(Boolean) as Array<{ id: string; value_name?: string; value_id?: string }>;
+
+  return normalizeMlSaleTerms(sanitized);
 }
 
 export async function predictCategory(title: string, limit: number = 3): Promise<MLCategoryPrediction[] | null> {

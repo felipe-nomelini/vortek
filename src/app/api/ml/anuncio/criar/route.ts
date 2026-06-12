@@ -4,6 +4,7 @@ import { fetchML, fetchMLResult } from '@/services/integration';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { createServiceClient } from '@/lib/supabase';
 import { fiscalStrictSchema, mapOriginType, normalizeNcm } from '@/lib/fiscal-strict';
+import { DEFAULT_ML_WARRANTY_TIME, normalizeMlSaleTerms, normalizeMlWarrantyTime } from '@/lib/ml-sale-terms';
 
 type StepResult = { ok: boolean; error?: string };
 type AttrInput = { id: string; value_name?: string; value_id?: string };
@@ -13,11 +14,24 @@ type MappedAttr = { id: string; value_name?: string; value_id?: string };
 const NOT_APPLICABLE_ID = '-1';
 const NO_IDS = new Set(['242084']);
 
+function normalizeText(input: unknown) {
+  return String(input ?? '').replace(/\s+/g, ' ').trim();
+}
+
+function normalizeAttrText(input: unknown) {
+  return normalizeText(input).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+function isInvalidLiteralValue(input: unknown) {
+  const txt = normalizeAttrText(input);
+  return !txt || txt === 'null' || txt === 'undefined' || txt === 'n/a' || txt === 'na';
+}
+
 function normalizeAttr(attr: AttrInput) {
   return {
     id: String(attr.id),
-    value_id: attr.value_id === NOT_APPLICABLE_ID ? NOT_APPLICABLE_ID : (attr.value_id ? String(attr.value_id) : undefined),
-    value_name: attr.value_name ? String(attr.value_name) : undefined,
+    value_id: isInvalidLiteralValue(attr.value_id) ? undefined : String(attr.value_id),
+    value_name: isInvalidLiteralValue(attr.value_name) ? undefined : String(attr.value_name),
   };
 }
 
@@ -25,8 +39,15 @@ function hasValue(attr: { value_name?: string; value_id?: string }) {
   return Boolean((attr.value_id && String(attr.value_id).trim()) || (attr.value_name && String(attr.value_name).trim()));
 }
 
-function normalizeText(input: unknown) {
-  return String(input ?? '').replace(/\s+/g, ' ').trim();
+function isNotApplicableLabel(input: unknown) {
+  const txt = normalizeAttrText(input);
+  return txt.includes('nao se aplica') || txt.includes('nao aplicavel') || txt === 'n/a';
+}
+
+function findOfficialNotApplicableValue(attr: any): { id: string; name: string } | null {
+  const values = Array.isArray(attr?.values) ? attr.values : [];
+  const hit = values.find((value: any) => isNotApplicableLabel(value?.name));
+  return hit ? { id: String(hit.id), name: String(hit.name) } : null;
 }
 
 function stripHtmlToText(input: unknown): string {
@@ -70,8 +91,8 @@ function isNegative(value?: MappedAttr) {
 
 function sanitizeAttributesByDependencies(
   attributesMap: Map<string, MappedAttr>,
+  categoryAttrsById: Map<string, any>,
   warnings: string[],
-  mode: 'set_na' | 'omit'
 ) {
   const apply = (parentId: string, childIds: string[]) => {
     const parent = attributesMap.get(parentId);
@@ -79,12 +100,13 @@ function sanitizeAttributesByDependencies(
 
     for (const childId of childIds) {
       if (!attributesMap.has(childId)) continue;
-      if (mode === 'set_na') {
-        attributesMap.set(childId, { id: childId, value_id: NOT_APPLICABLE_ID, value_name: undefined });
-        console.warn(JSON.stringify({ event: 'ml_attr_sanitized', attr_id: childId, parent_attr_id: parentId, action: 'set_na' }));
+      const notApplicable = findOfficialNotApplicableValue(categoryAttrsById.get(childId));
+      if (notApplicable) {
+        attributesMap.set(childId, { id: childId, value_id: notApplicable.id, value_name: undefined });
+        console.warn(JSON.stringify({ event: 'ml_attr_sanitized', attr_id: childId, parent_attr_id: parentId, action: 'set_official_na' }));
       } else {
         attributesMap.delete(childId);
-        console.warn(JSON.stringify({ event: 'ml_attr_sanitized', attr_id: childId, parent_attr_id: parentId, action: 'omit_na' }));
+        console.warn(JSON.stringify({ event: 'ml_attr_sanitized', attr_id: childId, parent_attr_id: parentId, action: 'omit_na_unavailable_in_api' }));
       }
       warnings.push(`Atributo ${childId} ajustado por consistência com ${parentId}.`);
     }
@@ -231,6 +253,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Não foi possível carregar atributos da categoria' }, { status: 422 });
     }
     steps.categoria.ok = true;
+    const categoryAttrsById = new Map((attrs || []).map((attr: any) => [String(attr.id), attr]));
 
     const attributesMap = new Map<string, { id: string; value_name?: string; value_id?: string }>();
     if (Array.isArray(editedAttributes)) {
@@ -239,19 +262,20 @@ export async function POST(req: Request) {
       }
     }
 
-    const required = attrs.filter((a: any) => (a.tags?.required || a.tags?.catalog_required) && !a.tags?.fixed);
-    for (const attr of required) {
-      const existing = attributesMap.get(attr.id);
-      if (!existing || !hasValue(existing)) {
-        missingRequiredAttributes.push({ id: attr.id, name: attr.name });
-      }
-    }
-
     // Validate list values if value_id is provided
     for (const attr of attrs) {
       const current = attributesMap.get(attr.id);
       if (!current) continue;
-      if (String(current.value_id || '') === NOT_APPLICABLE_ID) continue;
+      if (String(current.value_id || '') === NOT_APPLICABLE_ID || isNotApplicableLabel(current.value_name)) {
+        const notApplicable = findOfficialNotApplicableValue(attr);
+        if (notApplicable) {
+          attributesMap.set(attr.id, { id: attr.id, value_id: notApplicable.id, value_name: undefined });
+        } else {
+          attributesMap.delete(attr.id);
+          warnings.push(`Atributo ${attr.name} omitido: "Não se aplica" não existe na API oficial da categoria.`);
+        }
+        continue;
+      }
       if (current.value_id && Array.isArray(attr.values) && attr.values.length > 0) {
         const valid = attr.values.some((v: any) => String(v.id) === String(current.value_id));
         if (!valid && attr.value_type === 'string' && current.value_name) {
@@ -267,6 +291,16 @@ export async function POST(req: Request) {
             error: `Valor inválido para atributo ${attr.name}`,
           }, { status: 422 });
         }
+      }
+    }
+
+    sanitizeAttributesByDependencies(attributesMap, categoryAttrsById, warnings);
+
+    const required = attrs.filter((a: any) => (a.tags?.required || a.tags?.catalog_required) && !a.tags?.fixed);
+    for (const attr of required) {
+      const existing = attributesMap.get(attr.id);
+      if (!existing || !hasValue(existing)) {
+        missingRequiredAttributes.push({ id: attr.id, name: attr.name });
       }
     }
 
@@ -356,7 +390,7 @@ export async function POST(req: Request) {
       ? warrantySchema.values.map((v: any) => ({ id: String(v.id), name: String(v.name) }))
       : [];
 
-    const saleTerms = Array.isArray(editedSaleTerms)
+    const saleTermsInput = Array.isArray(editedSaleTerms)
       ? (editedSaleTerms as SaleTermInput[])
         .filter((term) => term?.id)
         .map((term) => {
@@ -368,17 +402,22 @@ export async function POST(req: Request) {
             const fallbackId = pickWarrantyValueId(warrantyValues);
             return { id, value_id: fallbackId, value_name: undefined };
           }
-          return { id, value_id: term.value_id ? String(term.value_id) : undefined, value_name: term.value_name ? String(term.value_name) : undefined };
+          return {
+            id,
+            value_id: term.value_id ? String(term.value_id) : undefined,
+            value_name: term.value_name ? (id === 'WARRANTY_TIME' ? normalizeMlWarrantyTime(term.value_name) : String(term.value_name)) : undefined,
+          };
         })
       : [];
 
-    if (!saleTerms.find((t) => t.id === 'WARRANTY_TIME')) {
+    if (!saleTermsInput.find((t) => t.id === 'WARRANTY_TIME')) {
       if (warrantyValues.length > 0) {
-        saleTerms.push({ id: 'WARRANTY_TIME', value_id: pickWarrantyValueId(warrantyValues), value_name: undefined });
+        saleTermsInput.push({ id: 'WARRANTY_TIME', value_id: pickWarrantyValueId(warrantyValues), value_name: undefined });
       } else {
-        saleTerms.push({ id: 'WARRANTY_TIME', value_id: undefined, value_name: '12 meses de fábrica' });
+        saleTermsInput.push({ id: 'WARRANTY_TIME', value_id: undefined, value_name: DEFAULT_ML_WARRANTY_TIME });
       }
     }
+    const saleTerms = normalizeMlSaleTerms(saleTermsInput);
 
     const imagens = produto.imagens || [];
     const pictures = imagens.length > 0 ? imagens : ['https://via.placeholder.com/400'];
@@ -392,8 +431,6 @@ export async function POST(req: Request) {
       const me = await fetchML<any>('/users/me?attributes=tags');
       useFamilyName = me?.tags?.includes('user_product_seller') ?? false;
     } catch {}
-
-    sanitizeAttributesByDependencies(attributesMap, warnings, 'set_na');
 
     let listingPayload: Parameters<typeof createListing>[0] = {
       title: useFamilyName ? undefined : titulo,
@@ -414,17 +451,6 @@ export async function POST(req: Request) {
     };
 
     let result = await createListing(listingPayload);
-    if (!result) {
-      const hadNA = listingPayload.attributes.some((a) => String(a.value_id || '') === NOT_APPLICABLE_ID);
-      if (hadNA) {
-        const retryMap = new Map(listingPayload.attributes.map((a) => [a.id, a]));
-        sanitizeAttributesByDependencies(retryMap, warnings, 'omit');
-        listingPayload = { ...listingPayload, attributes: Array.from(retryMap.values()) };
-        result = await createListing(listingPayload);
-        warnings.push('n_a_fallback_to_omit');
-        console.warn(JSON.stringify({ event: 'ml_attr_sanitized', action: 'retry_without_na' }));
-      }
-    }
 
     if (!result) {
       steps.anuncio = { ok: false, error: 'Falha ao criar anúncio no ML' };

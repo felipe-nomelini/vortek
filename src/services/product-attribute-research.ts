@@ -17,6 +17,7 @@ type ResearchInput = {
   field: { id: string; name: string };
   categoriaId?: string;
   supplierSkus?: string[];
+  supplierEvidence?: string;
 };
 
 const CACHE_TTL_MS = 10 * 60 * 1000;
@@ -67,6 +68,7 @@ function buildQuery(input: ResearchInput): string {
     normalize(produto.nome),
     normalize(produto.gtin),
     ...(input.supplierSkus || []).slice(0, 3),
+    normalize(input.supplierEvidence).slice(0, 120),
     normalize(input.field.name),
   ].filter(Boolean);
 
@@ -112,6 +114,7 @@ export async function researchProductAttribute(input: ResearchInput): Promise<Pr
     fieldId: input.field.id,
     name: input.produto?.nome,
     gtin: input.produto?.gtin,
+    supplierEvidence: input.supplierEvidence?.slice(0, 80),
   });
   const cached = cache.get(cacheKey);
   if (cached && cached.expiresAt > Date.now()) return cached.result;

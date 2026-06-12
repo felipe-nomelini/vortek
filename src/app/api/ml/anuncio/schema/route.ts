@@ -3,9 +3,16 @@ import { createServiceClient } from '@/lib/supabase';
 import { fetchML } from '@/services/integration';
 import { getCategoryAttributes, predictCategory } from '@/services/mercadolibre';
 import { calculateSuggestedPrice } from '@/services/pricing';
+import { DEFAULT_ML_WARRANTY_TIME, DEFAULT_ML_WARRANTY_TYPE_ID, DEFAULT_ML_WARRANTY_TYPE_NAME } from '@/lib/ml-sale-terms';
+import { applyProductFactsToMlAttribute, extractMlProductFacts } from '@/lib/ml-product-facts';
 
 function normalizeStr(v: unknown): string {
   return String(v ?? '').trim();
+}
+
+function isInvalidLiteralValue(v: unknown) {
+  const txt = String(v ?? '').trim().toLowerCase();
+  return !txt || txt === 'null' || txt === 'undefined' || txt === 'n/a' || txt === 'na';
 }
 
 function stripHtmlToText(input: unknown): string {
@@ -52,6 +59,14 @@ function initialAttributeValue(attr: any, produto: any): { value_id?: string; va
 }
 
 function applyRuleBasedAttributeValue(attr: any, produto: any): { value_id?: string; value_name?: string } {
+  const facts = extractMlProductFacts(produto);
+  const factSuggestion = applyProductFactsToMlAttribute(attr, facts);
+  if (factSuggestion?.value_name) {
+    const normalizeValue = (v: unknown) => String(v ?? '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const hit = (attr.values || []).find((v: any) => normalizeValue(v.name) === normalizeValue(factSuggestion.value_name));
+    return hit ? { value_id: String(hit.id), value_name: String(hit.name) } : factSuggestion;
+  }
+
   const attrId = String(attr.id || '').toUpperCase();
   const haystack = `${produto?.nome || ''} ${produto?.descricao || ''} ${produto?.categoria || ''}`.toLowerCase();
 
@@ -61,13 +76,38 @@ function applyRuleBasedAttributeValue(attr: any, produto: any): { value_id?: str
   if ((attrId === 'STRING_NUMBER' || attrId === 'NUMBER_OF_STRINGS') && /\b4\s*cordas?\b/i.test(haystack)) {
     return { value_name: '4' };
   }
-  if (attrId === 'STRING_GAUGE' || attrId === 'GAUGE' || attrId === 'CALIBER') {
-    const range = haystack.match(/\.0?\d{2,3}\s*[-–]\s*\.0?\d{2,3}/i);
-    if (range?.[0]) return { value_name: range[0].replace(/\s+/g, ' ') };
+  if (attrId === 'UNITS_PER_PACK') {
+    return { value_name: '1' };
+  }
+  if (attrId === 'STRING_GAUGE' || attrId === 'GAUGE' || attrId === 'GAUGES' || attrId === 'CALIBER') {
+    const range = haystack.match(/\.?0?\d{2,3}\s*(?:[-–/]|a)\s*\.?0?\d{2,3}/i);
+    if (range?.[0]) {
+      const numbers = range[0].match(/0?\d{2,3}/g) || [];
+      const firstGauge = numbers[0] || '';
+      const lastGauge = numbers[1] || '';
+      return {
+        value_name: numbers.length >= 2
+          ? `.${firstGauge.replace(/^0+/, '').padStart(3, '0')} - .${lastGauge.replace(/^0+/, '').padStart(3, '0')}`
+          : range[0].replace(/\s+/g, ' '),
+      };
+    }
   }
   if (attrId === 'MATERIALS' && /(a[cç]o|niquel|níquel|metal)/i.test(haystack)) {
     const metalValue = (attr.values || []).find((v: any) => String(v.name || '').toLowerCase() === 'metal');
     return metalValue ? { value_id: String(metalValue.id), value_name: String(metalValue.name) } : { value_name: 'Aço niquelado' };
+  }
+  if (attrId === 'LINE') {
+    if (/extra\s*(light|leve)/i.test(haystack)) return { value_name: 'Extra Light' };
+    if (/super\s*(light|leve)/i.test(haystack)) return { value_name: 'Super Light' };
+    if (/\b(light|leve)\b/i.test(haystack)) return { value_name: 'Light' };
+    if (/\b(medium|m[eé]dia)\b/i.test(haystack)) return { value_name: 'Medium' };
+    if (/\b(heavy|pesada)\b/i.test(haystack)) return { value_name: 'Heavy' };
+  }
+  if (attrId === 'TENSION') {
+    if (/extra\s*(light|leve)/i.test(haystack)) return { value_name: 'Extra Light' };
+    if (/\b(light|leve)\b/i.test(haystack)) return { value_name: 'Light' };
+    if (/\b(medium|m[eé]dia)\b/i.test(haystack)) return { value_name: 'Média' };
+    if (/\b(high|alta)\b/i.test(haystack)) return { value_name: 'Alta' };
   }
 
   return {};
@@ -144,6 +184,9 @@ export async function POST(req: Request) {
         ...applyRuleBasedAttributeValue(attr, produto),
         ...(predictionByAttr.get(String(attr.id).toUpperCase()) || {}),
       };
+      if (isInvalidLiteralValue(pre.value_name) && !pre.value_id) {
+        delete pre.value_name;
+      }
       return {
         id: attr.id,
         name: attr.name,
@@ -176,7 +219,7 @@ export async function POST(req: Request) {
           value_type: term.value_type || 'string',
           required: Boolean(term.tags?.required),
           values,
-          value_name: '12 meses de fábrica',
+          value_name: DEFAULT_ML_WARRANTY_TIME,
         };
       }
       return {
@@ -188,15 +231,28 @@ export async function POST(req: Request) {
       };
     });
 
-    const hasWarranty = saleTerms.some((t) => t.id === 'WARRANTY_TIME');
-    if (!hasWarranty) {
+    const hasWarrantyType = saleTerms.some((t) => t.id === 'WARRANTY_TYPE');
+    if (!hasWarrantyType) {
+      saleTerms.push({
+        id: 'WARRANTY_TYPE',
+        name: 'Tipo de garantia',
+        value_type: 'list',
+        required: false,
+        values: [{ id: DEFAULT_ML_WARRANTY_TYPE_ID, name: DEFAULT_ML_WARRANTY_TYPE_NAME }],
+        value_id: DEFAULT_ML_WARRANTY_TYPE_ID,
+        value_name: DEFAULT_ML_WARRANTY_TYPE_NAME,
+      });
+    }
+
+    const hasWarrantyTime = saleTerms.some((t) => t.id === 'WARRANTY_TIME');
+    if (!hasWarrantyTime) {
       saleTerms.push({
         id: 'WARRANTY_TIME',
-        name: 'Garantia',
-        value_type: 'string',
+        name: 'Tempo de garantia',
+        value_type: 'number_unit',
         required: false,
         values: [],
-        value_name: '12 meses de fábrica',
+        value_name: DEFAULT_ML_WARRANTY_TIME,
       });
     }
 
