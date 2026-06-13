@@ -138,6 +138,15 @@ function pickWarrantyDefaultValueId(values: Array<{ id: string; name: string }>)
   return String(values[0].id);
 }
 
+function extractMlFee(listingPrices: any): number | null {
+  const fee = Number(
+    listingPrices?.sale_fee_details?.percentage_fee
+    ?? listingPrices?.sale_fee_details?.meli_percentage_fee,
+  );
+  if (!Number.isFinite(fee) || fee <= 0) return null;
+  return fee / 100;
+}
+
 export async function POST(req: Request) {
   try {
     const { produtoId, categoriaId, listingType = 'gold_pro' } = await req.json();
@@ -166,11 +175,19 @@ export async function POST(req: Request) {
 
     let suggestedPrice = 0;
     try {
-      const pricing = calculateSuggestedPrice({
-        cost: Number(produto.custo || 0),
-        shipping: Number(produto.ml_shipping || 0),
-        mlFee: Number(produto.ml_fee || 0.15),
+      const cost = Number(produto.custo || 0);
+      const shipping = Number(produto.ml_shipping || 0);
+      let mlFee = Number(produto.ml_fee || 0.15);
+      const provisional = calculateSuggestedPrice({
+        cost,
+        shipping,
+        mlFee,
       });
+      const listingPrices = await fetchML<any>(
+        `/sites/MLB/listing_prices?price=${provisional.suggestedPrice}&category_id=${categoriaId}&listing_type_id=${listingType}`,
+      );
+      mlFee = extractMlFee(listingPrices) ?? mlFee;
+      const pricing = calculateSuggestedPrice({ cost, shipping, mlFee });
       suggestedPrice = Number(produto.custom_price ?? pricing.suggestedPrice);
     } catch {
       suggestedPrice = Number(produto.custom_price ?? produto.custo ?? 0);

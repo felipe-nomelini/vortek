@@ -156,6 +156,41 @@ interface CategorySchemaResponse {
   };
 }
 
+type MlCreateListingResult = {
+  success?: boolean;
+  linked_existing?: boolean;
+  error?: string;
+  warnings?: string[];
+  steps?: Record<string, { ok: boolean; error?: string }>;
+  anuncio?: {
+    id?: string;
+    title?: string;
+    price?: number;
+    permalink?: string;
+    status?: string;
+    sub_status?: string[];
+  };
+  quantity_pricing?: boolean;
+  pricing_correction?: {
+    initial_price?: number;
+    final_price?: number | null;
+    ml_shipping?: number | null;
+    ml_fee?: number | null;
+    status?: 'not_needed' | 'corrected' | 'pending';
+    error?: string;
+    outbox_id?: string;
+  };
+  fiscal?: 'ok' | string[];
+  fiscal_details?: Array<{
+    step?: string;
+    statusHttp?: number | null;
+    endpoint?: string | null;
+    error?: string;
+    fields?: Array<{ field: string; message: string; error_code: string }> | null;
+  }>;
+  missing_required_attributes?: Array<{ id: string; name: string }>;
+};
+
 const DEPENDENT_FIELDS: Record<string, string[]> = {
   WITH_CLOSING: ['CLASP_TYPE'],
   WITH_GEMSTONE: ['GEMSTONE_TYPE', 'GEMSTONE_COLOR'],
@@ -192,6 +227,29 @@ function formatWeightFromKg(weightKg: number) {
   if (!Number.isFinite(weightKg) || weightKg <= 0) return '';
   const grams = Math.round(weightKg * 1000);
   return grams >= 1000 ? `${String(weightKg).replace('.', ',')} kg` : `${grams} g`;
+}
+
+function priceToEditableText(value: number | null | undefined) {
+  if (value === null || value === undefined || !Number.isFinite(Number(value))) return '';
+  return String(Math.round(Number(value) * 100) / 100).replace('.', ',');
+}
+
+function parseEditablePriceText(input: string): number | null {
+  const raw = String(input || '').trim();
+  if (!raw) return null;
+  const cleaned = raw.replace(/[^\d,.-]/g, '');
+  if (!cleaned) return null;
+
+  const lastComma = cleaned.lastIndexOf(',');
+  const lastDot = cleaned.lastIndexOf('.');
+  const decimalSeparator = lastComma > lastDot ? ',' : lastDot >= 0 ? '.' : '';
+  const normalized = decimalSeparator
+    ? cleaned
+      .replace(new RegExp(`\\${decimalSeparator === ',' ? '.' : ','}`, 'g'), '')
+      .replace(decimalSeparator, '.')
+    : cleaned;
+  const parsed = Number(normalized);
+  return Number.isFinite(parsed) ? Math.round(parsed * 100) / 100 : null;
 }
 
 function computeDerived(item: Product | ProductMasterListItem): { displayPrice: number; profit: number | null } {
@@ -369,6 +427,8 @@ export default function ProductsPage() {
   const statsRequestRef = useRef(0);
   const [savingCustomPriceById, setSavingCustomPriceById] = useState<Record<string, boolean>>({});
   const [persistedCustomPriceById, setPersistedCustomPriceById] = useState<Record<string, number | null>>({});
+  const [editingPriceTextById, setEditingPriceTextById] = useState<Record<string, string>>({});
+  const [mlModalPriceText, setMlModalPriceText] = useState('');
   const [mlModal, setMlModal] = useState<{
     open: boolean;
     produtoId: string;
@@ -394,6 +454,7 @@ export default function ProductsPage() {
     suggestingOptionalBulk: boolean;
     suggestingSmartFill: boolean;
     loading: boolean;
+    result: MlCreateListingResult | null;
   }>({
     open: false,
     produtoId: '',
@@ -413,6 +474,7 @@ export default function ProductsPage() {
     suggestingOptionalBulk: false,
     suggestingSmartFill: false,
     loading: false,
+    result: null,
   });
 
   const [stats, setStats] = useState({ total: 0, comEstoque: 0, semAnuncio: 0, lucroMedio: 0, receitaPotencial: 0 });
@@ -483,7 +545,9 @@ export default function ProductsPage() {
       suggestingOptionalBulk: false,
       suggestingSmartFill: false,
       loading: true,
+      result: null,
     });
+    setMlModalPriceText(priceToEditableText(basePrice));
     try {
       const res = await fetch('/api/ml/anuncio/categorias', {
         method: 'POST',
@@ -508,6 +572,7 @@ export default function ProductsPage() {
 
     const cached = mlModal.categorySchemaCache[categoryId];
     if (cached) {
+      setMlModalPriceText(priceToEditableText(cached.prefill.base_price));
       setMlModal(prev => ({
         ...prev,
         selectedCategory: categoryId,
@@ -542,6 +607,7 @@ export default function ProductsPage() {
       }
 
       const schema = data.schema as CategorySchemaResponse;
+      setMlModalPriceText(priceToEditableText(schema.prefill.base_price));
       setMlModal(prev => ({
         ...prev,
         loading: false,
@@ -830,13 +896,18 @@ export default function ProductsPage() {
     }
   };
 
-  const preencherAnuncioInteligente = async () => {
+  const preencherAnuncioInteligente = async (section?: 'required' | 'optional') => {
     if (!mlModal.produtoId || !mlModal.selectedCategory) {
       messageApi.warning('Selecione uma categoria primeiro.');
       return;
     }
 
-    setMlModal(prev => ({ ...prev, suggestingSmartFill: true }));
+    setMlModal(prev => ({
+      ...prev,
+      suggestingSmartFill: !section,
+      suggestingRequiredBulk: section === 'required' ? true : prev.suggestingRequiredBulk,
+      suggestingOptionalBulk: section === 'optional' ? true : prev.suggestingOptionalBulk,
+    }));
     try {
       const res = await fetch('/api/ml/anuncio/preencher-inteligente', {
         method: 'POST',
@@ -857,13 +928,17 @@ export default function ProductsPage() {
 
       setMlModal(prev => applyDependencyRules({
         ...prev,
-        editableAttributes: Array.isArray(data.required_attributes) ? data.required_attributes : prev.editableAttributes,
-        optionalAttributes: Array.isArray(data.optional_attributes) ? data.optional_attributes : prev.optionalAttributes,
-        description: data.description || prev.description,
+        editableAttributes: !section || section === 'required'
+          ? (Array.isArray(data.required_attributes) ? data.required_attributes : prev.editableAttributes)
+          : prev.editableAttributes,
+        optionalAttributes: !section || section === 'optional'
+          ? (Array.isArray(data.optional_attributes) ? data.optional_attributes : prev.optionalAttributes)
+          : prev.optionalAttributes,
+        description: section ? prev.description : (data.description || prev.description),
         product: prev.product && data.description ? { ...prev.product, description: data.description } : prev.product,
       }));
 
-      if (data.description) {
+      if (!section && data.description) {
         const saveRes = await fetch(`/api/produtos/${mlModal.produtoId}`, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
@@ -881,7 +956,7 @@ export default function ProductsPage() {
       const summary = data.summary || {};
       const warnings = Array.isArray(data.warnings) ? data.warnings : [];
       messageApi.success(
-        `IA completa: ${summary.filled ?? 0} preenchidos, ${summary.corrected ?? 0} corrigidos, ${summary.empty ?? 0} sem evidência.`
+        `IA ${section ? 'da seção' : 'completa'}: ${summary.filled ?? 0} preenchidos, ${summary.corrected ?? 0} corrigidos, ${summary.empty ?? 0} sem evidência.`
       );
       if (warnings.length > 0) {
         messageApi.warning(warnings.slice(0, 3).join(' | '));
@@ -889,7 +964,12 @@ export default function ProductsPage() {
     } catch {
       messageApi.error('Erro ao preencher anúncio com IA');
     } finally {
-      setMlModal(prev => ({ ...prev, suggestingSmartFill: false }));
+      setMlModal(prev => ({
+        ...prev,
+        suggestingSmartFill: false,
+        suggestingRequiredBulk: section === 'required' ? false : prev.suggestingRequiredBulk,
+        suggestingOptionalBulk: section === 'optional' ? false : prev.suggestingOptionalBulk,
+      }));
     }
   };
 
@@ -936,24 +1016,19 @@ export default function ProductsPage() {
       });
       const data = await res.json();
       if (data.success) {
-        const actionLabel = data.linked_existing ? 'Anúncio vinculado' : 'Anúncio criado';
-        messageApi.success(`${actionLabel}! ${data.anuncio.permalink || ''}`.trim());
-        if (Array.isArray(data.warnings) && data.warnings.length > 0) {
-          messageApi.warning(`Pendências: ${data.warnings.join(' | ')}`);
-        }
-        setMlModal(prev => ({ ...prev, open: false }));
+        setMlModal(prev => ({ ...prev, loading: false, result: data }));
         await Promise.all([fetchProducts(), fetchStats()]);
       } else {
+        setMlModal(prev => ({ ...prev, loading: false, result: data }));
         if (Array.isArray(data.missing_required_attributes) && data.missing_required_attributes.length > 0) {
           messageApi.error(`Atributos obrigatórios pendentes: ${data.missing_required_attributes.map((a: any) => a.name).join(', ')}`);
         } else {
           messageApi.error(data.error || 'Erro ao criar anúncio');
         }
-        setMlModal(prev => ({ ...prev, loading: false }));
       }
     } catch {
       messageApi.error('Erro ao criar anúncio');
-      setMlModal(prev => ({ ...prev, loading: false }));
+      setMlModal(prev => ({ ...prev, loading: false, result: { success: false, error: 'Erro ao criar anúncio' } }));
     }
   };
 
@@ -1313,6 +1388,50 @@ export default function ProductsPage() {
     }
   }, [messageApi, persistedCustomPriceById]);
 
+  const commitCustomPriceText = useCallback((productId: string) => {
+    const text = editingPriceTextById[productId];
+    if (text === undefined) return;
+    const parsed = parseEditablePriceText(text);
+    if (text.trim() && parsed === null) {
+      messageApi.warning('Preço sugerido inválido.');
+      setEditingPriceTextById((prev) => {
+        const next = { ...prev };
+        delete next[productId];
+        return next;
+      });
+      return;
+    }
+    if (parsed !== null && parsed < 0) {
+      messageApi.warning('Preço sugerido não pode ser negativo.');
+      setEditingPriceTextById((prev) => {
+        const next = { ...prev };
+        delete next[productId];
+        return next;
+      });
+      return;
+    }
+    const nextPrice = text.trim() ? parsed : null;
+    setProducts((prev) => prev.map((item) => (
+      item.product.id === productId
+        ? { ...item, product: { ...item.product, customPrice: nextPrice } }
+        : item
+    )));
+    setEditingPriceTextById((prev) => {
+      const next = { ...prev };
+      delete next[productId];
+      return next;
+    });
+    void persistCustomPrice(productId, nextPrice ?? null);
+  }, [editingPriceTextById, messageApi, persistCustomPrice]);
+
+  const cancelCustomPriceText = useCallback((productId: string) => {
+    setEditingPriceTextById((prev) => {
+      const next = { ...prev };
+      delete next[productId];
+      return next;
+    });
+  }, []);
+
   const rows: ProductRow[] = useMemo(() => {
     return products.map(item => {
       const { displayPrice, profit } = computeDerived(item);
@@ -1411,32 +1530,39 @@ export default function ProductsPage() {
       render: (_, record) => {
         const val = record.product.customPrice;
         const isSaving = Boolean(savingCustomPriceById[record.product.id]);
+        const productId = record.product.id;
+        const editingValue = editingPriceTextById[productId];
+        const displayValue = editingValue ?? formatCurrency(val ?? record.displayPrice);
         return (
           <div>
-            <InputNumber
+            <Input
               size="small"
               style={{ width: 140 }}
               disabled={isSaving}
               status={isSaving ? 'warning' : undefined}
-              value={val ?? record.displayPrice}
-              onChange={v => {
-                const newProducts = products.map(item =>
-                  item.product.id === record.product.id
-                    ? { ...item, product: { ...item.product, customPrice: v ?? null } }
-                    : item
-                );
-                setProducts(newProducts);
+              value={displayValue}
+              onFocus={() => {
+                setEditingPriceTextById((prev) => ({
+                  ...prev,
+                  [productId]: priceToEditableText(val ?? record.displayPrice),
+                }));
+              }}
+              onChange={(event) => {
+                const value = event.target.value;
+                setEditingPriceTextById((prev) => ({ ...prev, [productId]: value }));
               }}
               onBlur={() => {
-                const latest = products.find((item) => item.product.id === record.product.id);
-                if (!latest) return;
-                persistCustomPrice(record.product.id, latest.product.customPrice ?? null);
+                commitCustomPriceText(productId);
               }}
-              formatter={(v) => v !== undefined ? formatCurrency(typeof v === 'string' ? parseFloat(v) : v) : ''}
-              parser={(v) => {
-                if (!v || !String(v).trim()) return null as any;
-                const parsed = parseFloat(String(v).replace(/R\$\s?/g, '').replace(/\./g, '').replace(',', '.'));
-                return Number.isNaN(parsed) ? null as any : parsed;
+              onPressEnter={(event) => {
+                event.currentTarget.blur();
+              }}
+              onKeyDown={(event) => {
+                if (event.key === 'Escape') {
+                  event.preventDefault();
+                  cancelCustomPriceText(productId);
+                  event.currentTarget.blur();
+                }
               }}
             />
           </div>
@@ -1683,7 +1809,133 @@ export default function ProductsPage() {
         footer={null}
         width={560}
       >
-        {mlModal.loading && mlModal.categorias.length === 0 ? (
+        {mlModal.result ? (() => {
+          const result = mlModal.result;
+          const anuncio = result.anuncio || {};
+          const warnings = Array.isArray(result.warnings) ? result.warnings : [];
+          const fiscalDetails = Array.isArray(result.fiscal_details) ? result.fiscal_details : [];
+          const pricingCorrection = result.pricing_correction;
+          const fiscalOk = result.fiscal === 'ok';
+          const imagePending = Array.isArray(anuncio.sub_status) && anuncio.sub_status.includes('picture_download_pending');
+          const created = Boolean(result.success && anuncio.id);
+          const statusText = !result.success
+            ? 'Falhou'
+            : warnings.length > 0 || !fiscalOk || imagePending
+              ? 'Criado com pendências'
+              : 'Criado';
+          const statusType = !result.success ? 'error' : statusText === 'Criado' ? 'success' : 'warning';
+          const fiscalMessage = fiscalOk
+            ? 'Fiscal ML vinculado com sucesso.'
+            : fiscalDetails[0]?.fields?.map((field) => `${field.field}: ${field.message}`).join(' | ')
+              || (Array.isArray(result.fiscal) ? result.fiscal.join(' | ') : 'Fiscal ML pendente.');
+          const visibleWarnings = warnings.filter((warning) => !/^Atributo GEMSTONE_/i.test(warning));
+          const pricingStatus = pricingCorrection?.status;
+          const pricingCorrectionOk = !pricingStatus || pricingStatus === 'not_needed' || pricingStatus === 'corrected';
+          const descriptionStep = result.steps?.descricao;
+          const descriptionOk = Boolean(descriptionStep?.ok);
+          const pricingDescription = pricingCorrection
+            ? [
+                typeof pricingCorrection.initial_price === 'number' ? `Inicial: ${formatCurrency(pricingCorrection.initial_price)}` : null,
+                typeof pricingCorrection.ml_shipping === 'number' ? `Frete ML: ${formatCurrency(pricingCorrection.ml_shipping)}` : null,
+                typeof pricingCorrection.ml_fee === 'number' ? `Taxa ML: ${(pricingCorrection.ml_fee * 100).toFixed(2)}%` : null,
+                typeof pricingCorrection.final_price === 'number' ? `Final: ${formatCurrency(pricingCorrection.final_price)}` : null,
+                pricingCorrection.status === 'corrected' ? 'Preço corrigido automaticamente.' : null,
+                pricingCorrection.status === 'not_needed' ? 'Sem ajuste necessário.' : null,
+                pricingCorrection.status === 'pending' ? `Correção pendente${pricingCorrection.error ? `: ${pricingCorrection.error}` : '.'}` : null,
+              ].filter(Boolean).join(' | ')
+            : 'Sem ajuste de preço retornado.';
+
+          return (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              <Alert
+                type={statusType}
+                showIcon
+                message={`Resultado do anúncio: ${statusText}`}
+                description={result.error || (created ? `Anúncio ${anuncio.id} ${result.linked_existing ? 'vinculado' : 'criado'} no Mercado Livre.` : 'Não foi possível criar o anúncio.')}
+              />
+
+              {created && (
+                <div style={{ background: '#1a1a1a', border: '1px solid #303030', borderRadius: 6, padding: 16 }}>
+                  <Title level={5} style={{ color: '#e0e0e0', marginTop: 0 }}>Anúncio</Title>
+                  <div style={{ display: 'grid', gap: 8 }}>
+                    <Text style={{ color: '#a0a0a0' }}>ID: <Text style={{ color: '#e0e0e0' }}>{anuncio.id}</Text></Text>
+                    <Text style={{ color: '#a0a0a0' }}>Status ML: <Text style={{ color: '#e0e0e0' }}>{anuncio.status || '—'}</Text></Text>
+                    {typeof anuncio.price === 'number' && (
+                      <Text style={{ color: '#a0a0a0' }}>Preço: <Text style={{ color: '#e0e0e0' }}>{formatCurrency(anuncio.price)}</Text></Text>
+                    )}
+                    {anuncio.permalink && (
+                      <Button size="small" type="link" href={anuncio.permalink} target="_blank" style={{ padding: 0, width: 'fit-content' }}>
+                        Abrir anúncio no ML
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              <div style={{ display: 'grid', gap: 8 }}>
+                <Alert
+                  type={created ? 'success' : 'error'}
+                  showIcon
+                  message="Anúncio"
+                  description={created ? 'Item criado/vinculado no Mercado Livre.' : (result.error || 'Falha ao criar item no ML.')}
+                />
+                <Alert
+                  type={descriptionOk ? 'success' : 'warning'}
+                  showIcon
+                  message="Descrição"
+                  description={descriptionOk ? 'Descrição enviada ao Mercado Livre.' : (descriptionStep?.error || 'Descrição não confirmada no Mercado Livre.')}
+                />
+                <Alert
+                  type={imagePending ? 'warning' : 'success'}
+                  showIcon
+                  message="Imagens"
+                  description={imagePending ? 'ML está processando imagens; isso costuma liberar automaticamente.' : 'Sem pendência de imagem retornada pelo ML.'}
+                />
+                <Alert
+                  type={pricingCorrectionOk ? 'success' : 'warning'}
+                  showIcon
+                  message="Preço pós-frete"
+                  description={pricingDescription}
+                />
+                <Alert
+                  type={fiscalOk ? 'success' : 'warning'}
+                  showIcon
+                  message="Fiscal ML"
+                  description={fiscalMessage}
+                />
+                <Alert
+                  type={result.quantity_pricing ? 'success' : 'warning'}
+                  showIcon
+                  message="Preços de atacado"
+                  description={result.quantity_pricing ? 'Preços de atacado configurados.' : 'Preços de atacado não confirmados.'}
+                />
+              </div>
+
+              {visibleWarnings.length > 0 && (
+                <Alert
+                  type="warning"
+                  showIcon
+                  message="Pendências"
+                  description={visibleWarnings.join(' | ')}
+                />
+              )}
+
+              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 12 }}>
+                <Button onClick={() => router.push(`/produtos/${mlModal.produtoId}`)}>
+                  Ver produto
+                </Button>
+                {anuncio.permalink && (
+                  <Button onClick={() => window.open(anuncio.permalink, '_blank', 'noopener,noreferrer')}>
+                    Abrir anúncio
+                  </Button>
+                )}
+                <Button type="primary" onClick={() => setMlModal(prev => ({ ...prev, open: false }))}>
+                  Fechar
+                </Button>
+              </div>
+            </div>
+          );
+        })() : mlModal.loading && mlModal.categorias.length === 0 ? (
           <div style={{ textAlign: 'center', padding: 20 }}>
             <LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />
             <p style={{ marginTop: 8, color: '#a0a0a0' }}>Buscando categorias...</p>
@@ -1722,15 +1974,28 @@ export default function ProductsPage() {
                     </Col>
                     <Col span={12}>
                       <Text style={{ color: '#888' }}>Preço: </Text>
-                      <InputNumber
+                      <Input
                         size="small"
-                        min={0.01}
-                        value={price}
-                        onChange={(v) => setMlModal(prev => ({ ...prev, editablePrice: typeof v === 'number' ? v : prev.editablePrice }))}
-                        formatter={(v) => v !== undefined ? formatCurrency(typeof v === 'string' ? parseFloat(v) : v) : ''}
-                        parser={(v) => {
-                          if (!v) return 0;
-                          return parseFloat(v.replace(/R\$\s?/g, '').replace(/\./g, '').replace(',', '.'));
+                        value={mlModalPriceText}
+                        onChange={(event) => setMlModalPriceText(event.target.value)}
+                        onFocus={() => setMlModalPriceText(priceToEditableText(mlModal.editablePrice ?? price))}
+                        onBlur={() => {
+                          const parsed = parseEditablePriceText(mlModalPriceText);
+                          if (parsed === null || parsed <= 0) {
+                            messageApi.warning('Preço do anúncio inválido.');
+                            setMlModalPriceText(priceToEditableText(price));
+                            return;
+                          }
+                          setMlModal(prev => ({ ...prev, editablePrice: parsed }));
+                          setMlModalPriceText(priceToEditableText(parsed));
+                        }}
+                        onPressEnter={(event) => event.currentTarget.blur()}
+                        onKeyDown={(event) => {
+                          if (event.key === 'Escape') {
+                            event.preventDefault();
+                            setMlModalPriceText(priceToEditableText(price));
+                            event.currentTarget.blur();
+                          }
                         }}
                         style={{ width: 180 }}
                       />
@@ -1925,7 +2190,7 @@ export default function ProductsPage() {
                   <Title level={5} style={{ color: '#e0e0e0', margin: 0 }}>Atributos Obrigatórios</Title>
                   <Button
                     size="small"
-                    onClick={() => void sugerirSecaoIA('required')}
+                    onClick={() => void preencherAnuncioInteligente('required')}
                     loading={mlModal.suggestingRequiredBulk}
                     disabled={
                       !mlModal.selectedCategory ||
@@ -2002,7 +2267,7 @@ export default function ProductsPage() {
                   <Title level={5} style={{ color: '#e0e0e0', margin: 0 }}>Atributos Secundários</Title>
                   <Button
                     size="small"
-                    onClick={() => void sugerirSecaoIA('optional')}
+                    onClick={() => void preencherAnuncioInteligente('optional')}
                     loading={mlModal.suggestingOptionalBulk}
                     disabled={
                       !mlModal.selectedCategory ||

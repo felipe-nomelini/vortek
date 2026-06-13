@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { getCategoryAttributes, predictCategory } from '@/services/mercadolibre';
+import { researchProductAttribute } from '@/services/product-attribute-research';
 import { applyProductFactsToMlAttribute, extractMlProductFacts, type MlProductFacts } from '@/lib/ml-product-facts';
 
 type AttributeInput = {
@@ -17,6 +18,7 @@ type SmartAttribute = AttributeInput & {
   evidence?: string;
   confidence?: number;
   warning?: string;
+  reason?: string;
 };
 
 function normalize(input: unknown) {
@@ -29,6 +31,20 @@ function normalize(input: unknown) {
 
 function hasValue(attr: AttributeInput) {
   return Boolean(String(attr.value_id || '').trim() || String(attr.value_name || '').trim());
+}
+
+function safeJsonParse(text: string): any | null {
+  try {
+    return JSON.parse(text);
+  } catch {
+    const match = text.match(/\{[\s\S]*\}/);
+    if (!match) return null;
+    try {
+      return JSON.parse(match[0]);
+    } catch {
+      return null;
+    }
+  }
 }
 
 function selectAllowed(values: Array<{ id: string; name: string }> = [], valueName: string) {
@@ -58,6 +74,22 @@ function clearValue(attr: AttributeInput, warning: string): SmartAttribute {
     confidence: 1,
     warning,
   };
+}
+
+function invalidLiteral(value: unknown) {
+  const text = normalize(value);
+  return !text || text === 'null' || text === 'undefined' || text === 'n/a' || text === 'na';
+}
+
+function isGoldPlatedText(input: unknown) {
+  const text = normalize(input);
+  return text.includes('ouro') && (
+    text.includes('banhado')
+    || text.includes('banhada')
+    || text.includes('folheado')
+    || text.includes('folheada')
+    || text.includes('banho de ouro')
+  );
 }
 
 function mergeCategoryDefinition(attr: AttributeInput, categoryAttrsById: Map<string, any>) {
@@ -111,7 +143,7 @@ function fillAttribute(attr: AttributeInput, facts: MlProductFacts, predictionMa
     return clearValue(attr, 'MP3 removido: conflito com produto de guitarra/instrumento.');
   }
 
-  if (hasValue(attr)) return { ...attr, source: 'existing', confidence: 0.9 };
+  if (hasValue(attr)) return validateObviousErrors({ ...attr, source: 'existing', confidence: 0.9 }, [], produto);
 
   const prediction = predictionMap.get(id);
   if (prediction?.value_id || prediction?.value_name) {
@@ -159,6 +191,98 @@ function buildSmartDescription(produto: any, attrs: SmartAttribute[], facts: MlP
   ].join('\n').slice(0, 2200);
 }
 
+function buildPrompt(params: {
+  produto: any;
+  categoriaId: string;
+  categoryAttrs: any[];
+  required: AttributeInput[];
+  optional: AttributeInput[];
+  facts: MlProductFacts;
+  supplierEvidence: string;
+  webEvidence: string;
+}) {
+  const { produto, categoriaId, categoryAttrs, required, optional, facts, supplierEvidence, webEvidence } = params;
+  const attributeContract = categoryAttrs.map((attr: any) => ({
+    id: attr.id,
+    name: attr.name,
+    value_type: attr.value_type,
+    tags: attr.tags || {},
+    values: (attr.values || []).slice(0, 40).map((value: any) => ({ id: value.id, name: value.name })),
+    allowed_units: attr.allowed_units || [],
+  }));
+
+  return [
+    'Você é um especialista em cadastro de anúncios no Mercado Livre.',
+    'Preencha o anúncio inteiro com base nas evidências abaixo.',
+    'Use primeiro os dados internos do Vortek e fornecedor. Use pesquisa web apenas como apoio.',
+    'Não invente. Se não houver evidência para um atributo, deixe value_id e value_name vazios.',
+    'Respeite exatamente os ids dos atributos e valores permitidos da categoria ML.',
+    'Dados internos claros vencem sugestão/predição do Mercado Livre.',
+    'Retorne APENAS JSON válido neste formato:',
+    '{"attributes":[{"id":"ATTR_ID","value_id":"","value_name":"","reason":"","confidence":0.0,"evidence":""}],"description":"descrição completa","warnings":[]}',
+    'Validações importantes:',
+    '- Gênero de conector deve ser Macho ou Fêmea; nunca Jack.',
+    '- Conector pode ser Jack/P10; gênero é separado.',
+    '- Se título disser 7,62m, não use outro comprimento.',
+    '- Em joias, Ouro significa material principal/maciço; produto banhado/folheado deve usar Banhado em ouro 18k ou ficar vazio.',
+    '- Em joias, gere Modelo curto: tipo + elemento visual + acabamento. Não copie título truncado.',
+    '- Se não souber, deixe vazio.',
+    `Categoria ML: ${categoriaId}`,
+    `Produto Vortek: ${JSON.stringify({
+      sku: produto.sku,
+      nome: produto.nome,
+      marca: produto.marca,
+      descricao: produto.descricao,
+      gtin: produto.gtin,
+      ncm: produto.ncm,
+      peso_bruto: produto.peso_bruto,
+      largura: produto.largura,
+      altura: produto.altura,
+      profundidade: produto.profundidade,
+      categoria: produto.categoria,
+    })}`,
+    `Fatos óbvios extraídos: ${JSON.stringify(facts)}`,
+    `Atributos oficiais ML: ${JSON.stringify(attributeContract)}`,
+    `Atributos atuais: ${JSON.stringify([...required, ...optional])}`,
+    `Evidência dos fornecedores: ${supplierEvidence}`,
+    `Pesquisa web: ${webEvidence}`,
+  ].join('\n');
+}
+
+function applyAiAttributes(attrs: SmartAttribute[], aiAttributes: any[], warnings: string[], produto: any) {
+  const aiById = new Map((Array.isArray(aiAttributes) ? aiAttributes : []).map((attr: any) => [String(attr?.id || '').toUpperCase(), attr]));
+  return attrs.map((attr) => {
+    const ai = aiById.get(String(attr.id).toUpperCase());
+    if (!ai) return attr;
+    const valueName = String(ai.value_name || '').trim();
+    const valueId = String(ai.value_id || '').trim();
+    if (invalidLiteral(valueName) && !valueId) return attr;
+    const next = valueName ? applyValue(attr, valueName, 'ai_full_context', String(ai.evidence || ai.reason || 'IA com contexto completo')) : { ...attr };
+    if (valueId && !next.value_id) next.value_id = valueId;
+    next.reason = String(ai.reason || '');
+    next.confidence = Number(ai.confidence || 0.75);
+    return validateObviousErrors(next, warnings, produto);
+  });
+}
+
+function validateObviousErrors(attr: SmartAttribute, warnings: string[], produto?: any) {
+  const id = String(attr.id || '').toUpperCase();
+  const value = normalize(attr.value_name);
+  if ((id === 'INPUT_CONNECTOR_GENDER' || id === 'OUTPUT_CONNECTOR_GENDER') && value === 'jack') {
+    warnings.push(`${attr.name}: gênero não pode ser Jack; corrigido para Macho.`);
+    return { ...attr, value_id: '', value_name: 'Macho', source: 'obvious_error_fix', confidence: 1 };
+  }
+  if (id === 'CONNECTOR_COATING_MATERIAL' && value.includes('aco')) {
+    warnings.push(`${attr.name}: aço/ZAMAC não é valor oficial confiável para revestimento; campo limpo.`);
+    return clearValue(attr, 'Material de revestimento sem valor oficial confiável.');
+  }
+  if (id === 'MATERIAL' && value === 'ouro' && isGoldPlatedText(`${produto?.nome || ''} ${produto?.descricao || ''}`)) {
+    warnings.push('Material corrigido: produto banhado não é ouro maciço.');
+    return { ...attr, value_id: '', value_name: 'Banhado em ouro 18k', source: 'obvious_error_fix', confidence: 1 };
+  }
+  return attr;
+}
+
 export async function POST(req: Request) {
   try {
     const { produtoId, categoriaId, required_attributes = [], optional_attributes = [], description = '' } = await req.json();
@@ -172,7 +296,18 @@ export async function POST(req: Request) {
 
     const categoryAttrs = (await getCategoryAttributes(categoriaId)) || [];
     const categoryAttrsById = new Map(categoryAttrs.map((attr: any) => [String(attr.id).toUpperCase(), attr]));
-    const facts = extractMlProductFacts(produto);
+    const supplierRows = (await supabase
+      .from('produto_fornecedor_ofertas')
+      .select('sku_oferta, sku_fornecedor, nome, descricao, marca')
+      .eq('produto_id', produtoId)
+      .limit(5)).data || [];
+    const supplierEvidence = supplierRows
+      .map((row: any) => [row.nome, row.marca, row.descricao].filter(Boolean).join(' '))
+      .filter(Boolean)
+      .join('\n')
+      .slice(0, 2500);
+    const produtoWithEvidence = { ...produto, descricao: [produto.descricao, supplierEvidence].filter(Boolean).join('\n') };
+    const facts = extractMlProductFacts(produtoWithEvidence);
     const predictionMap = await getPredictionMap(categoriaId, produto);
     const warnings: string[] = [];
 
@@ -183,15 +318,72 @@ export async function POST(req: Request) {
       return filled;
     });
 
-    const required = fillList(required_attributes);
-    const optional = fillList(optional_attributes);
+    let required = fillList(required_attributes);
+    let optional = fillList(optional_attributes);
+    let aiDescription = '';
+
+    const apiKey = process.env.OPENROUTER_API_KEY;
+    if (apiKey) {
+      const research = await researchProductAttribute({
+        produto: produtoWithEvidence,
+        field: { id: 'ALL_ATTRIBUTES', name: 'Todos os atributos do anúncio' },
+        categoriaId,
+        supplierEvidence,
+      });
+      const prompt = buildPrompt({
+        produto: produtoWithEvidence,
+        categoriaId,
+        categoryAttrs,
+        required,
+        optional,
+        facts,
+        supplierEvidence,
+        webEvidence: research.summary,
+      });
+      const openRouterBaseUrl = (process.env.OPENROUTER_BASE_URL || 'https://openrouter.ai/api/v1').replace(/\/+$/, '');
+      const resp = await fetch(`${openRouterBaseUrl}/chat/completions`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: process.env.OPENROUTER_MODEL || 'openai/gpt-4o-mini',
+          temperature: 0.1,
+          messages: [
+            { role: 'system', content: 'Responda somente JSON válido.' },
+            { role: 'user', content: prompt },
+          ],
+        }),
+      });
+      if (resp.ok) {
+        const payload = await resp.json();
+        const parsed = safeJsonParse(payload?.choices?.[0]?.message?.content || '');
+        if (parsed?.attributes) {
+          required = applyAiAttributes(required, parsed.attributes, warnings, produtoWithEvidence);
+          optional = applyAiAttributes(optional, parsed.attributes, warnings, produtoWithEvidence);
+        }
+        if (parsed?.description && String(parsed.description).trim().length >= 600) {
+          aiDescription = String(parsed.description).trim();
+        }
+        if (Array.isArray(parsed?.warnings)) warnings.push(...parsed.warnings.map((w: unknown) => String(w)));
+      } else {
+        warnings.push(`IA indisponível: OpenRouter HTTP ${resp.status}. Usado preenchimento por dados internos.`);
+      }
+    }
+
+    required = required.map((attr) => validateObviousErrors(attr, warnings, produtoWithEvidence));
+    optional = optional.map((attr) => validateObviousErrors(attr, warnings, produtoWithEvidence));
     const allAttrs = [...required, ...optional];
     const filledCount = allAttrs.filter(hasValue).length;
-    const correctedCount = allAttrs.filter((attr) => attr.source === 'product_facts_conflict_fix' || attr.source === 'consistency_review').length;
+    const correctedCount = allAttrs.filter((attr) => (
+      attr.source === 'product_facts_conflict_fix'
+      || attr.source === 'consistency_review'
+      || attr.source === 'obvious_error_fix'
+    )).length;
     const emptyCount = allAttrs.filter((attr) => !hasValue(attr)).length;
-    const nextDescription = description && String(description).trim().length >= 600
-      ? description
-      : buildSmartDescription(produto, allAttrs, facts);
+    const nextDescription = aiDescription || (
+      description && String(description).trim().length >= 600
+        ? description
+        : buildSmartDescription(produto, allAttrs, facts)
+    );
 
     return NextResponse.json({
       success: true,

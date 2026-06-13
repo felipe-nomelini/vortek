@@ -568,14 +568,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Produto não encontrado' }, { status: 404 });
     }
 
-    const apiKey = process.env.OPENROUTER_API_KEY;
-    const model = process.env.OPENROUTER_MODEL || 'openai/gpt-4o-mini';
-    const baseUrl = process.env.OPENROUTER_BASE_URL || 'https://openrouter.ai/api/v1';
-
-    if (!apiKey) {
-      return NextResponse.json({ success: false, error: 'OPENROUTER_API_KEY não configurada' }, { status: 500 });
-    }
-
     const allowed = Array.isArray(field.allowed_values) ? field.allowed_values : [];
     const supplierSkusResult = await supabase
       .from('produto_fornecedor_ofertas')
@@ -623,6 +615,17 @@ export async function POST(req: Request) {
     const predictionDecision = await evaluatePredictionRule(categoriaId, field, produtoWithEvidence, allowed);
     if (predictionDecision && (predictionDecision.value_id || predictionDecision.value_name)) {
       return successResponse(predictionDecision);
+    }
+
+    const apiKey = process.env.OPENROUTER_API_KEY;
+    const model = process.env.OPENROUTER_MODEL || 'openai/gpt-4o-mini';
+    const baseUrl = process.env.OPENROUTER_BASE_URL || 'https://openrouter.ai/api/v1';
+
+    if (!apiKey) {
+      return ignoredResponse('Sem evidência local suficiente e OPENROUTER_API_KEY não configurada', {
+        reason: 'openrouter_missing_after_local_rules',
+        confidence: 0,
+      });
     }
 
     const dangerous = isDangerousField(field);

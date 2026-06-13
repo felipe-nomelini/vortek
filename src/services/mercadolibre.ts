@@ -182,6 +182,62 @@ export async function createListing(input: MLCreateItemInput): Promise<MLCreateI
   });
 }
 
+export type MLDescriptionResult =
+  | { ok: true; chars: number; method: 'POST' | 'PUT' }
+  | { ok: false; error: string; statusHttp?: number | null; method?: 'POST' | 'PUT'; code?: string | null };
+
+function summarizeMlError(result: Awaited<ReturnType<typeof fetchMLResult<any>>>) {
+  return result.error?.message || (result.status ? `HTTP ${result.status}` : 'Falha de comunicação com o Mercado Livre');
+}
+
+export async function getListingDescription(itemId: string): Promise<{ plain_text?: string } | null> {
+  return fetchML<{ plain_text?: string }>(`/items/${encodeURIComponent(itemId)}/description`);
+}
+
+export async function upsertListingDescription(itemId: string, plainText: string): Promise<MLDescriptionResult> {
+  const text = String(plainText || '').trim();
+  if (!itemId) return { ok: false, error: 'itemId ausente' };
+  if (!text) return { ok: false, error: 'Descrição vazia' };
+
+  const path = `/items/${encodeURIComponent(itemId)}/description`;
+  const payload = JSON.stringify({ plain_text: text.slice(0, 5000) });
+  const headers = { 'Content-Type': 'application/json' };
+
+  const current = await fetchMLResult<{ plain_text?: string }>(path);
+  const preferredMethod: 'POST' | 'PUT' = current.ok ? 'PUT' : 'POST';
+  let method = preferredMethod;
+  let result = await fetchMLResult<any>(path, { method, headers, body: payload });
+
+  if (!result.ok && method === 'POST' && [400, 409].includes(Number(result.status || 0))) {
+    method = 'PUT';
+    result = await fetchMLResult<any>(path, { method, headers, body: payload });
+  }
+
+  if (!result.ok) {
+    return {
+      ok: false,
+      method,
+      statusHttp: result.status,
+      code: result.error?.code || null,
+      error: summarizeMlError(result),
+    };
+  }
+
+  const validation = await fetchMLResult<{ plain_text?: string }>(path);
+  const savedText = String(validation.data?.plain_text || '').trim();
+  if (!validation.ok || savedText.length === 0) {
+    return {
+      ok: false,
+      method,
+      statusHttp: validation.status,
+      code: validation.error?.code || null,
+      error: validation.ok ? 'Descrição enviada, mas não confirmada no ML' : summarizeMlError(validation),
+    };
+  }
+
+  return { ok: true, method, chars: savedText.length };
+}
+
 export async function upsertItemFiscalData(data: FiscalDataInput): Promise<FiscalApiResult<any>> {
   const result = await sendItemFiscalData(data);
   if (!result.success && result.status === 409) {
@@ -212,9 +268,36 @@ export interface UpdateFiscalDataInput {
   tax_rule_id?: number;
 }
 
+type FiscalFailure = {
+  success: false;
+  step: string;
+  error: string;
+  statusHttp?: number | null;
+  endpoint?: string;
+  fields?: Array<{ field: string; message: string; error_code: string }>;
+  rawBody?: any;
+};
+
+function summarizeFiscalError(result: Extract<FiscalApiResult<any>, { success: false }>, endpoint: string) {
+  const fieldErrors = (result.fields || [])
+    .map((field) => `${field.field}: ${field.message}`)
+    .join(' | ');
+  return {
+    statusHttp: result.status,
+    endpoint,
+    fields: result.fields,
+    rawBody: result.rawBody,
+    error: [
+      result.error,
+      fieldErrors,
+      result.code ? `code=${result.code}` : '',
+    ].filter(Boolean).join(' | '),
+  };
+}
+
 export async function updateListingFiscalData(
   data: UpdateFiscalDataInput
-): Promise<{ success: boolean; step?: string; error?: string; fields?: Array<{ field: string; message: string; error_code: string }> }> {
+): Promise<{ success: true } | FiscalFailure> {
   const fiscalPayload: FiscalDataInput = {
     sku: data.sku,
     title: data.title,
@@ -227,7 +310,6 @@ export async function updateListingFiscalData(
       origin_detail: data.origin_detail,
       ean: data.gtin,
       cest: data.cest,
-      csosn: data.csosn,
       net_weight: data.net_weight,
       gross_weight: data.gross_weight,
       fci: data.fci,
@@ -238,12 +320,30 @@ export async function updateListingFiscalData(
 
   const upsertResult = await upsertItemFiscalData(fiscalPayload);
   if (!upsertResult.success) {
-    return { success: false, step: 'criar_dados_fiscais', error: upsertResult.error, fields: upsertResult.fields };
+    return {
+      success: false,
+      step: 'criar_dados_fiscais',
+      ...summarizeFiscalError(upsertResult, '/items/fiscal_information'),
+    };
+  }
+
+  const skuCheckResult = await getFiscalDataBySku(data.sku);
+  if (!skuCheckResult.success) {
+    return {
+      success: false,
+      step: 'validar_sku_fiscal',
+      ...summarizeFiscalError(skuCheckResult, `/items/fiscal_information/${data.sku}`),
+      error: `SKU fiscal não encontrado/criado no ML após upsert: ${summarizeFiscalError(skuCheckResult, `/items/fiscal_information/${data.sku}`).error}`,
+    };
   }
 
   const linkResult = await linkFiscalDataToItem(data.sku, data.itemId);
   if (!linkResult.success) {
-    return { success: false, step: 'vincular_sku', error: linkResult.error };
+    return {
+      success: false,
+      step: 'vincular_sku',
+      ...summarizeFiscalError(linkResult, '/items/fiscal_information/items'),
+    };
   }
 
   const invoiceResult = await setItemInvoiceSaleTerm(data.itemId);
@@ -279,7 +379,14 @@ export interface FiscalDataInput {
 
 export type FiscalApiResult<T> =
   | { success: true; data: T }
-  | { success: false; status: number; error: string; fields?: Array<{ field: string; message: string; error_code: string }> };
+  | {
+      success: false;
+      status: number | null;
+      error: string;
+      code?: string | null;
+      fields?: Array<{ field: string; message: string; error_code: string }>;
+      rawBody?: any;
+    };
 
 async function fiscalApiFetch<T>(path: string, options: RequestInit): Promise<FiscalApiResult<T>> {
   const token = await getValidMLToken();
@@ -315,14 +422,22 @@ async function fiscalApiFetch<T>(path: string, options: RequestInit): Promise<Fi
     }
   }
 
-  const body = await res.json();
+  const rawText = await res.text().catch(() => '');
+  let body: any = null;
+  try {
+    body = rawText ? JSON.parse(rawText) : null;
+  } catch {
+    body = rawText;
+  }
 
   if (!res.ok) {
     return {
       success: false,
       status: res.status,
-      error: body.message || `HTTP ${res.status}`,
-      fields: body.fields,
+      error: typeof body === 'object' && body ? (body.message || body.error || `HTTP ${res.status}`) : (rawText || `HTTP ${res.status}`),
+      code: typeof body === 'object' && body ? (body.code || body.error_code || body.error || null) : null,
+      fields: typeof body === 'object' && body ? body.fields : undefined,
+      rawBody: body,
     };
   }
 
@@ -333,6 +448,12 @@ export async function sendItemFiscalData(data: FiscalDataInput): Promise<FiscalA
   return fiscalApiFetch('/items/fiscal_information', {
     method: 'POST',
     body: JSON.stringify(data),
+  });
+}
+
+export async function getFiscalDataBySku(sku: string): Promise<FiscalApiResult<any>> {
+  return fiscalApiFetch(`/items/fiscal_information/${encodeURIComponent(sku)}`, {
+    method: 'GET',
   });
 }
 

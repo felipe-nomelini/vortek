@@ -68,8 +68,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Produto sem anúncio no Mercado Livre' }, { status: 422 });
     }
 
-    if (produto.ml_status !== 'ativo') {
-      return NextResponse.json({ error: 'A atualização de preço só é permitida para anúncio ativo' }, { status: 422 });
+    if (!['ativo', 'pausado'].includes(String(produto.ml_status || ''))) {
+      return NextResponse.json({ error: 'A atualização de preço só é permitida para anúncio ativo ou pausado' }, { status: 422 });
     }
 
     let basePrice: number;
@@ -109,6 +109,10 @@ export async function POST(req: Request) {
       payload: {
         source,
         target_price_received: targetPrice,
+        apply_status: false,
+        apply_price: true,
+        apply_quantity: false,
+        apply_quantity_pricing: true,
         update_quantity_pricing: true,
       },
     });

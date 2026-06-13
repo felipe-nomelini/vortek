@@ -72,6 +72,30 @@ function extractStringGauges(text: string): string | undefined {
   return `.${firstGauge} - .${lastGauge}`;
 }
 
+function extractJewelryModel(text: string): string | undefined {
+  const isEarring = text.includes('brinco');
+  if (!isEarring) return undefined;
+
+  const parts: string[] = [];
+  if (text.includes('argola')) parts.push('Argola');
+  if (text.includes('paz')) parts.push('Paz');
+  if (text.includes('coracao')) parts.push('Coração');
+  if (text.includes('pingente')) parts.push('Pingente');
+  if (text.includes('banhado') && text.includes('ouro')) parts.push('Banhado Ouro 18k');
+  if (parts.length >= 2) return parts.join(' ').slice(0, 60);
+  return undefined;
+}
+
+function extractJewelryMaterial(text: string): string | undefined {
+  if (/(banhad[oa]|folhead[oa]|banho de ouro|ouro 18k banhad[oa])/.test(text) && text.includes('ouro')) {
+    return 'Banhado em ouro 18k';
+  }
+  if (/(ouro macico|ouro maciço|ouro 18k macico|ouro 18k maciço)/.test(text)) {
+    return 'Ouro';
+  }
+  return undefined;
+}
+
 export function extractMlProductFacts(produto: any): MlProductFacts {
   const rawText = `${produto?.nome || ''} ${produto?.descricao || ''} ${produto?.categoria || ''}`;
   const text = normalizeText(rawText);
@@ -82,7 +106,11 @@ export function extractMlProductFacts(produto: any): MlProductFacts {
   const isString = text.includes('encordoamento') || text.includes('cordas') || text.includes('calibre');
   const isBattery = text.includes('pilha') || text.includes('bateria');
 
-  const model = text.match(/\bmn\s*1500\b/i)
+  const jewelryModel = extractJewelryModel(text);
+  const jewelryMaterial = extractJewelryMaterial(text);
+  const model = jewelryModel
+    ? jewelryModel
+    : text.match(/\bmn\s*1500\b/i)
     ? 'MN1500'
     : isCable && text.includes('ninja')
       ? 'Ninja P'
@@ -90,9 +118,9 @@ export function extractMlProductFacts(produto: any): MlProductFacts {
   const batterySize = /\baa\b/i.test(rawText) ? 'AA' : /\baaa\b/i.test(rawText) ? 'AAA' : undefined;
   const nominalVoltage = extractVoltage(text);
   const batteryComposition = text.includes('alcalina') || text.includes('alcalino') ? 'Alcalina' : undefined;
-  const color = text.includes('preto') ? 'Preto' : text.includes('branco') ? 'Branco' : undefined;
-  const cableLength = extractCableLength(rawText);
   const hasJackOrP10 = text.includes('p10') || text.includes('jack') || text.includes('guitarra') || text.includes('instrumento');
+  const color = text.includes('preto') ? 'Preto' : text.includes('branco') ? 'Branco' : undefined;
+  const cableLength = isCable ? extractCableLength(rawText) : undefined;
   const recommendedInstrument = text.includes('contrabaixo') || text.includes('contra baixo') || text.includes('contra-baixo')
     ? 'Contrabaixo'
     : text.includes('guitarra')
@@ -128,7 +156,7 @@ export function extractMlProductFacts(produto: any): MlProductFacts {
     recommendedInstrument,
     stringsNumber,
     gauges,
-    material: isString && (text.includes('aco') || text.includes('niquel') || text.includes('metal')) ? 'Metal' : undefined,
+    material: jewelryMaterial || (isString && (text.includes('aco') || text.includes('niquel') || text.includes('metal')) ? 'Metal' : undefined),
     tension,
   };
 }
@@ -174,17 +202,17 @@ export function applyProductFactsToMlAttribute(
   if ((id === 'PRODUCT_TYPE' || name.includes('tipo de produto')) && facts.productType) {
     return { value_name: facts.productType };
   }
-  if ((id === 'INPUT_CONNECTOR' || name.includes('conector de entrada')) && facts.inputConnector) {
-    return { value_name: facts.inputConnector };
-  }
-  if ((id === 'OUTPUT_CONNECTOR' || name.includes('conector de saida')) && facts.outputConnector) {
-    return { value_name: facts.outputConnector };
-  }
   if ((id === 'INPUT_CONNECTOR_GENDER' || name.includes('genero do conector de entrada')) && facts.inputConnectorGender) {
     return { value_name: facts.inputConnectorGender };
   }
   if ((id === 'OUTPUT_CONNECTOR_GENDER' || name.includes('genero do conector de saida')) && facts.outputConnectorGender) {
     return { value_name: facts.outputConnectorGender };
+  }
+  if ((id === 'INPUT_CONNECTOR' || name.includes('conector de entrada')) && facts.inputConnector) {
+    return { value_name: facts.inputConnector };
+  }
+  if ((id === 'OUTPUT_CONNECTOR' || name.includes('conector de saida')) && facts.outputConnector) {
+    return { value_name: facts.outputConnector };
   }
   if ((id === 'INPUT_CONNECTORS_NUMBER' || name.includes('quantidade de conectores de entrada')) && facts.inputConnectorsNumber) {
     return { value_name: String(facts.inputConnectorsNumber) };
@@ -201,7 +229,7 @@ export function applyProductFactsToMlAttribute(
   if ((id === 'GAUGES' || name.includes('calibres')) && facts.gauges) {
     return { value_name: facts.gauges };
   }
-  if ((id === 'MATERIALS' || name.includes('materiais')) && facts.material) {
+  if ((id === 'MATERIAL' || id === 'MATERIALS' || name.includes('material')) && facts.material) {
     return { value_name: facts.material };
   }
   if ((id === 'TENSION' || name.includes('tensao')) && facts.tension) {

@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
-import { createListing, getCategoryAttributes, searchItemBySellerSku, setItemQuantityPricing, updateListingFiscalData } from '@/services/mercadolibre';
+import { createListing, getCategoryAttributes, searchItemBySellerSku, setItemQuantityPricing, updateListingFiscalData, upsertListingDescription } from '@/services/mercadolibre';
 import { fetchML, fetchMLResult } from '@/services/integration';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { createServiceClient } from '@/lib/supabase';
 import { fiscalStrictSchema, mapOriginType, normalizeNcm } from '@/lib/fiscal-strict';
 import { DEFAULT_ML_WARRANTY_TIME, normalizeMlSaleTerms, normalizeMlWarrantyTime } from '@/lib/ml-sale-terms';
+import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 
 type StepResult = { ok: boolean; error?: string };
 type AttrInput = { id: string; value_name?: string; value_id?: string };
@@ -42,6 +43,17 @@ function hasValue(attr: { value_name?: string; value_id?: string }) {
 function isNotApplicableLabel(input: unknown) {
   const txt = normalizeAttrText(input);
   return txt.includes('nao se aplica') || txt.includes('nao aplicavel') || txt === 'n/a';
+}
+
+function isGoldPlatedText(input: unknown) {
+  const txt = normalizeAttrText(input);
+  return txt.includes('ouro') && (
+    txt.includes('banhado')
+    || txt.includes('banhada')
+    || txt.includes('folheado')
+    || txt.includes('folheada')
+    || txt.includes('banho de ouro')
+  );
 }
 
 function findOfficialNotApplicableValue(attr: any): { id: string; name: string } | null {
@@ -108,7 +120,9 @@ function sanitizeAttributesByDependencies(
         attributesMap.delete(childId);
         console.warn(JSON.stringify({ event: 'ml_attr_sanitized', attr_id: childId, parent_attr_id: parentId, action: 'omit_na_unavailable_in_api' }));
       }
-      warnings.push(`Atributo ${childId} ajustado por consistência com ${parentId}.`);
+      if (parentId !== 'WITH_GEMSTONE') {
+        warnings.push(`Atributo ${childId} ajustado por consistência com ${parentId}.`);
+      }
     }
   };
 
@@ -127,6 +141,47 @@ function formatPackageWeightFromKg(weightKg: unknown) {
   return grams > 0 ? `${grams} g` : '';
 }
 
+function extractMlFee(listingPrices: any): number | null {
+  const fee = Number(
+    listingPrices?.sale_fee_details?.percentage_fee
+    ?? listingPrices?.sale_fee_details?.meli_percentage_fee,
+  );
+  if (!Number.isFinite(fee) || fee <= 0) return null;
+  return fee / 100;
+}
+
+function roundMoney(value: number) {
+  return Math.round(value * 100) / 100;
+}
+
+async function calculateSafeListingPrice(params: {
+  produto: any;
+  categoriaId: string;
+  listingType: string;
+  requestedPrice?: number;
+}) {
+  const cost = Number(params.produto.custo || 0);
+  const shipping = Number(params.produto.ml_shipping || 0);
+  let mlFee = Number(params.produto.ml_fee || 0.15);
+  const provisional = calculateSuggestedPrice({ cost, shipping, mlFee });
+  const listingPrices = await fetchML<any>(
+    `/sites/MLB/listing_prices?price=${provisional.suggestedPrice}&category_id=${params.categoriaId}&listing_type_id=${params.listingType}`,
+  );
+  mlFee = extractMlFee(listingPrices) ?? mlFee;
+  const pricing = calculateSuggestedPrice({ cost, shipping, mlFee });
+  const suggestedPrice = Math.round(pricing.suggestedPrice * 100) / 100;
+  const requestedPrice = Number(params.requestedPrice || 0);
+  const hasRequestedPrice = Number.isFinite(requestedPrice) && requestedPrice > 0;
+  const roundedRequested = hasRequestedPrice ? Math.round(requestedPrice * 100) / 100 : 0;
+  const price = hasRequestedPrice ? Math.max(roundedRequested, suggestedPrice) : suggestedPrice;
+  return {
+    price,
+    mlFee,
+    suggestedPrice,
+    adjusted: hasRequestedPrice && roundedRequested < suggestedPrice,
+  };
+}
+
 async function pauseCreatedListing(itemId: string) {
   const result = await fetchMLResult<any>(`/items/${encodeURIComponent(itemId)}`, {
     method: 'PUT',
@@ -136,8 +191,43 @@ async function pauseCreatedListing(itemId: string) {
   return { ok: result.ok, error: result.error?.message };
 }
 
+async function updateCreatedListingPrice(itemId: string, price: number) {
+  const result = await fetchMLResult<any>(`/items/${encodeURIComponent(itemId)}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ price }),
+  });
+  return {
+    ok: result.ok,
+    error: result.error?.message,
+    status: result.status,
+  };
+}
+
 async function getListingSnapshot(itemId: string) {
   return fetchML<any>(`/items/${encodeURIComponent(itemId)}`);
+}
+
+function mapMlItemStatus(item: any): 'ativo' | 'pausado' {
+  return String(item?.status || '').toLowerCase() === 'active' ? 'ativo' : 'pausado';
+}
+
+function getMlSubStatuses(item: any): string[] {
+  return Array.isArray(item?.sub_status) ? item.sub_status.map((s: any) => String(s)) : [];
+}
+
+function addListingStatusWarnings(item: any, warnings: string[]) {
+  const status = String(item?.status || '').toLowerCase();
+  const subStatuses = getMlSubStatuses(item);
+  const message = 'ML está processando imagens; isso costuma liberar automaticamente.';
+  if (status === 'paused' && subStatuses.includes('picture_download_pending') && !warnings.includes(message)) {
+    warnings.push(message);
+  }
+}
+
+function applyKnownCorrectedPrice(item: any, pricingCorrection: { status?: string; final_price?: number | null }) {
+  if (pricingCorrection.status !== 'corrected' || typeof pricingCorrection.final_price !== 'number') return item;
+  return { ...item, price: pricingCorrection.final_price };
 }
 
 async function persistListingLink(params: {
@@ -220,10 +310,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Produto já possui anúncio vinculado no Mercado Livre.' }, { status: 409 });
     }
 
-    const steps: Record<'categoria' | 'atributos' | 'anuncio' | 'atacado' | 'fiscal', StepResult> = {
+    const steps: Record<'categoria' | 'atributos' | 'anuncio' | 'descricao' | 'atacado' | 'fiscal', StepResult> = {
       categoria: { ok: false },
       atributos: { ok: false },
       anuncio: { ok: false },
+      descricao: { ok: false },
       atacado: { ok: false },
       fiscal: { ok: false },
     };
@@ -231,22 +322,19 @@ export async function POST(req: Request) {
     const warnings: string[] = [];
     const missingRequiredAttributes: Array<{ id: string; name: string }> = [];
 
-    let displayPrice: number;
-    if (typeof basePrice === 'number' && Number.isFinite(basePrice) && basePrice > 0) {
-      displayPrice = basePrice;
-    } else {
-      try {
-        const pricing = calculateSuggestedPrice({
-          cost: produto.custo || 0,
-          shipping: produto.ml_shipping || 0,
-          mlFee: produto.ml_fee || 0.15,
-        });
-        displayPrice = produto.custom_price ?? pricing.suggestedPrice;
-      } catch {
-        displayPrice = produto.custom_price ?? produto.custo ?? 0;
-      }
+    const safePrice = await calculateSafeListingPrice({
+      produto,
+      categoriaId,
+      listingType: listingType || 'gold_pro',
+      requestedPrice: typeof basePrice === 'number' && Number.isFinite(basePrice) && basePrice > 0
+        ? basePrice
+        : (typeof produto.custom_price === 'number' ? produto.custom_price : undefined),
+    });
+    const displayPrice = safePrice.price;
+    const initialPrice = roundMoney(displayPrice);
+    if (safePrice.adjusted) {
+      warnings.push(`Preço ajustado automaticamente para R$ ${safePrice.suggestedPrice.toFixed(2)} para evitar frete/taxa desatualizados.`);
     }
-    displayPrice = Math.round(displayPrice * 100) / 100;
 
     const attrs = await getCategoryAttributes(categoriaId);
     if (!attrs || attrs.length === 0) {
@@ -295,6 +383,16 @@ export async function POST(req: Request) {
     }
 
     sanitizeAttributesByDependencies(attributesMap, categoryAttrsById, warnings);
+
+    const materialAttr = attributesMap.get('MATERIAL');
+    if (normalizeAttrText(materialAttr?.value_name) === 'ouro' && isGoldPlatedText(`${produto.nome || ''} ${produto.descricao || ''}`)) {
+      attributesMap.set('MATERIAL', {
+        id: 'MATERIAL',
+        value_id: undefined,
+        value_name: 'Banhado em ouro 18k',
+      });
+      warnings.push('Material corrigido: produto banhado não é ouro maciço.');
+    }
 
     const required = attrs.filter((a: any) => (a.tags?.required || a.tags?.catalog_required) && !a.tags?.fixed);
     for (const attr of required) {
@@ -352,9 +450,10 @@ export async function POST(req: Request) {
         item: existingItem,
         mlFee: produto.ml_fee || 0.15,
         mlShipping: produto.ml_shipping || 0,
-        mlStatus: String(existingItem.status || '').toLowerCase() === 'active' ? 'ativo' : 'pausado',
+        mlStatus: mapMlItemStatus(existingItem),
       });
       steps.anuncio.ok = true;
+      steps.descricao = { ok: false, error: 'Anúncio existente vinculado; descrição não reenviada nesta etapa.' };
       steps.fiscal.ok = true;
       return NextResponse.json({
         success: true,
@@ -432,6 +531,8 @@ export async function POST(req: Request) {
       useFamilyName = me?.tags?.includes('user_product_seller') ?? false;
     } catch {}
 
+    const listingDescription = buildDescription(produto, description);
+
     let listingPayload: Parameters<typeof createListing>[0] = {
       title: useFamilyName ? undefined : titulo,
       familyName: useFamilyName ? familyName : undefined,
@@ -440,7 +541,7 @@ export async function POST(req: Request) {
       availableQuantity: Number(produto.estoque || 0),
       condition: 'new',
       listingTypeId: listingType || 'gold_pro',
-      description: buildDescription(produto, description),
+      description: listingDescription,
       pictures,
       attributes: Array.from(attributesMap.values()),
       saleTerms,
@@ -450,7 +551,7 @@ export async function POST(req: Request) {
       },
     };
 
-    let result = await createListing(listingPayload);
+    const result = await createListing(listingPayload);
 
     if (!result) {
       steps.anuncio = { ok: false, error: 'Falha ao criar anúncio no ML' };
@@ -458,16 +559,41 @@ export async function POST(req: Request) {
     }
     steps.anuncio.ok = true;
 
-    const quantityPricingResult = await setItemQuantityPricing(result.id, displayPrice);
-    if (quantityPricingResult.ok) steps.atacado.ok = true;
-    else {
-      const errorMessage = quantityPricingResult.error || 'Falha ao atualizar preços de atacado';
-      steps.atacado = { ok: false, error: errorMessage };
-      warnings.push(`Não foi possível configurar os preços de atacado neste momento. Motivo: ${errorMessage}`);
+    const descriptionResult = await upsertListingDescription(result.id, listingDescription);
+    if (descriptionResult.ok) {
+      steps.descricao = { ok: true };
+    } else {
+      steps.descricao = {
+        ok: false,
+        error: [
+          descriptionResult.statusHttp ? `HTTP ${descriptionResult.statusHttp}` : '',
+          descriptionResult.error,
+        ].filter(Boolean).join(': '),
+      };
+      warnings.push(`Descrição pendente no ML: ${steps.descricao.error}`);
     }
 
-    let mlFee = produto.ml_fee || 0.15;
+    let latestItem = await getListingSnapshot(result.id) || result;
+    addListingStatusWarnings(latestItem, warnings);
+
+    let mlFee = safePrice.mlFee || produto.ml_fee || 0.15;
     let mlShipping = produto.ml_shipping || 0;
+    let finalSuggestedPrice = initialPrice;
+    const pricingCorrection: {
+      initial_price: number;
+      final_price: number | null;
+      ml_shipping: number | null;
+      ml_fee: number | null;
+      status: 'not_needed' | 'corrected' | 'pending';
+      error?: string;
+      outbox_id?: string;
+    } = {
+      initial_price: initialPrice,
+      final_price: null,
+      ml_shipping: null,
+      ml_fee: null,
+      status: 'not_needed',
+    };
 
     try {
       const listingPrices = await fetchML<any>(`/sites/MLB/listing_prices?price=${displayPrice}&category_id=${categoriaId}&listing_type_id=${listingType || 'gold_pro'}`);
@@ -490,17 +616,90 @@ export async function POST(req: Request) {
       }
     } catch {}
 
+    pricingCorrection.ml_shipping = roundMoney(Number(mlShipping || 0));
+    pricingCorrection.ml_fee = roundMoney(Number(mlFee || 0));
+
+    if (Number.isFinite(Number(mlShipping)) && Number(mlShipping) > 0) {
+      try {
+        const finalPricing = calculateSuggestedPrice({
+          cost: Number(produto.custo || 0),
+          shipping: Number(mlShipping || 0),
+          mlFee: Number(mlFee || 0.15),
+        });
+        finalSuggestedPrice = roundMoney(finalPricing.suggestedPrice);
+        pricingCorrection.final_price = finalSuggestedPrice;
+
+        if (Math.abs(finalSuggestedPrice - initialPrice) >= 0.01) {
+          const priceUpdate = await updateCreatedListingPrice(result.id, finalSuggestedPrice);
+          if (priceUpdate.ok) {
+            pricingCorrection.status = 'corrected';
+            warnings.push(`Preço corrigido automaticamente após frete real: R$ ${initialPrice.toFixed(2)} → R$ ${finalSuggestedPrice.toFixed(2)}.`);
+            latestItem = { ...(await getListingSnapshot(result.id) || latestItem), price: finalSuggestedPrice };
+          } else {
+            const outbox = await enqueueMlPublishOutbox(supabase, {
+              produtoId: String(produto.id),
+              mlItemId: String(result.id),
+              desiredStatus: null,
+              desiredPrice: finalSuggestedPrice,
+              desiredQuantity: null,
+              source: 'ml_listing_create_price_correction',
+              dedupePending: true,
+              payload: {
+                apply_status: false,
+                apply_price: true,
+                apply_quantity: false,
+                apply_quantity_pricing: true,
+                update_quantity_pricing: true,
+                initial_price: initialPrice,
+                final_price: finalSuggestedPrice,
+                ml_shipping: mlShipping,
+                ml_fee: mlFee,
+                error: priceUpdate.error || null,
+              },
+            });
+            pricingCorrection.status = 'pending';
+            pricingCorrection.error = priceUpdate.error || `HTTP ${priceUpdate.status || ''}`.trim() || 'Falha ao atualizar preço no ML';
+            if (outbox.ok) pricingCorrection.outbox_id = outbox.outboxId;
+            warnings.push(`Preço final calculado, mas atualização ficou pendente: ${pricingCorrection.error}`);
+          }
+        }
+      } catch (err: any) {
+        pricingCorrection.status = 'pending';
+        pricingCorrection.error = err?.message || 'Falha ao recalcular preço final';
+        warnings.push(`Não foi possível recalcular preço final após frete real: ${pricingCorrection.error}`);
+      }
+    } else {
+      pricingCorrection.status = 'pending';
+      pricingCorrection.error = 'Frete ML real não retornado após criação';
+      warnings.push('Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente.');
+    }
+
+    const quantityPricingBasePrice = pricingCorrection.final_price || finalSuggestedPrice || displayPrice;
+    const quantityPricingResult = await setItemQuantityPricing(result.id, quantityPricingBasePrice);
+    if (quantityPricingResult.ok) steps.atacado.ok = true;
+    else {
+      const errorMessage = quantityPricingResult.error || 'Falha ao atualizar preços de atacado';
+      steps.atacado = { ok: false, error: errorMessage };
+      warnings.push(`Não foi possível configurar os preços de atacado neste momento. Motivo: ${errorMessage}`);
+    }
+
     await persistListingLink({
       supabase,
       produto,
       produtoId,
-      item: result,
+      item: latestItem,
       mlFee,
       mlShipping,
-      mlStatus: 'ativo',
+      mlStatus: mapMlItemStatus(latestItem),
     });
 
+    await supabase
+      .from('produtos')
+      .update({ custom_price: pricingCorrection.final_price || finalSuggestedPrice } as any)
+      .eq('id', produto.id);
+
     const fiscalErrors: string[] = [];
+    const fiscalErrorDetails: any[] = [];
     const originType = mapOriginType(fiscalParsed.data.origem_fiscal);
 
     const fiscalResult = await updateListingFiscalData({
@@ -519,27 +718,69 @@ export async function POST(req: Request) {
       cost: produto.custo,
     });
 
-    if (!fiscalResult.success) fiscalErrors.push(`${fiscalResult.step}: ${fiscalResult.error}`);
+    if (!fiscalResult.success) {
+      const fiscalMessage = [
+        fiscalResult.step,
+        fiscalResult.statusHttp ? `HTTP ${fiscalResult.statusHttp}` : '',
+        fiscalResult.error,
+      ].filter(Boolean).join(': ');
+      fiscalErrors.push(fiscalMessage);
+      fiscalErrorDetails.push({
+        step: fiscalResult.step,
+        statusHttp: fiscalResult.statusHttp ?? null,
+        endpoint: fiscalResult.endpoint ?? null,
+        error: fiscalResult.error,
+        fields: fiscalResult.fields ?? null,
+        rawBody: fiscalResult.rawBody ?? null,
+      });
+    }
 
     if (fiscalErrors.length === 0) {
       steps.fiscal.ok = true;
     } else {
       steps.fiscal = { ok: false, error: fiscalErrors.join(' | ') };
-      const pauseResult = await pauseCreatedListing(result.id);
-      if (pauseResult.ok) {
+      warnings.push(`Fiscal não vinculado no ML: ${steps.fiscal.error}`);
+
+      latestItem = await getListingSnapshot(result.id) || latestItem;
+      if (mapMlItemStatus(latestItem) === 'ativo') {
+        const pauseResult = await pauseCreatedListing(result.id);
+        if (pauseResult.ok) {
+          latestItem = await getListingSnapshot(result.id) || { ...latestItem, status: 'paused' };
+          warnings.push('Anúncio criado, mas pausado porque o fiscal ainda não foi vinculado no ML.');
+        } else {
+          warnings.push(`Fiscal pendente no ML e não foi possível pausar automaticamente: ${pauseResult.error || 'erro desconhecido'}`);
+        }
+      } else {
+        addListingStatusWarnings(latestItem, warnings);
+      }
+
+      if (latestItem?.id) {
+        latestItem = applyKnownCorrectedPrice(latestItem, pricingCorrection);
         await persistListingLink({
           supabase,
           produto,
           produtoId,
-          item: { ...result, status: 'paused' },
+          item: latestItem,
           mlFee,
           mlShipping,
-          mlStatus: 'pausado',
+          mlStatus: mapMlItemStatus(latestItem),
         });
-        warnings.push('Anúncio criado, mas pausado porque a atualização fiscal no ML falhou.');
-      } else {
-        warnings.push(`Falha fiscal no ML e não foi possível pausar automaticamente: ${pauseResult.error || 'erro desconhecido'}`);
       }
+    }
+
+    latestItem = await getListingSnapshot(result.id) || latestItem || result;
+    latestItem = applyKnownCorrectedPrice(latestItem, pricingCorrection);
+    addListingStatusWarnings(latestItem, warnings);
+    if (latestItem?.id) {
+      await persistListingLink({
+        supabase,
+        produto,
+        produtoId,
+        item: latestItem,
+        mlFee,
+        mlShipping,
+        mlStatus: mapMlItemStatus(latestItem),
+      });
     }
 
     return NextResponse.json({
@@ -550,13 +791,16 @@ export async function POST(req: Request) {
       categoria: { id: categoriaId, descoberta: false },
       anuncio: {
         id: result.id,
-        title: result.title,
-        price: result.price,
-        permalink: result.permalink,
-        status: fiscalErrors.length === 0 ? result.status : 'paused',
+        title: latestItem?.title || result.title,
+        price: latestItem?.price || result.price,
+        permalink: latestItem?.permalink || result.permalink,
+        status: latestItem?.status || result.status,
+        sub_status: getMlSubStatuses(latestItem),
       },
       quantity_pricing: quantityPricingResult.ok,
+      pricing_correction: pricingCorrection,
       fiscal: fiscalErrors.length === 0 ? 'ok' : fiscalErrors,
+      fiscal_details: fiscalErrorDetails,
     });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
