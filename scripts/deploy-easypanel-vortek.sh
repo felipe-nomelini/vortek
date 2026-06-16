@@ -23,6 +23,8 @@ Optional env:
   EASYPANEL_DEPLOY_HTTP_METHOD=POST|GET
   EASYPANEL_DEPLOY_EXPECTED_BRANCH=main
   EASYPANEL_DEPLOY_ENV_FILE=.env.deploy.local
+  EASYPANEL_DEPLOY_CONNECT_TIMEOUT=10
+  EASYPANEL_DEPLOY_MAX_TIME=60
 USAGE
       exit 0
       ;;
@@ -44,6 +46,8 @@ fi
 WEBHOOK_URL="${EASYPANEL_DEPLOY_WEBHOOK_URL:-}"
 METHOD="${EASYPANEL_DEPLOY_HTTP_METHOD:-POST}"
 EXPECTED_BRANCH="${EASYPANEL_DEPLOY_EXPECTED_BRANCH:-main}"
+CONNECT_TIMEOUT="${EASYPANEL_DEPLOY_CONNECT_TIMEOUT:-10}"
+MAX_TIME="${EASYPANEL_DEPLOY_MAX_TIME:-60}"
 
 if [ -z "$WEBHOOK_URL" ]; then
   echo "[deploy:easypanel] missing EASYPANEL_DEPLOY_WEBHOOK_URL" >&2
@@ -81,11 +85,18 @@ fi
 
 tmp_body="$(mktemp)"
 trap 'rm -f "$tmp_body"' EXIT
+curl_args=(
+  -sS
+  --connect-timeout "$CONNECT_TIMEOUT"
+  --max-time "$MAX_TIME"
+  -o "$tmp_body"
+  -w '%{http_code}'
+)
 
 if [ "$METHOD" = "POST" ]; then
-  status="$(curl -sS -o "$tmp_body" -w '%{http_code}' -X POST "$WEBHOOK_URL")"
+  status="$(curl "${curl_args[@]}" -X POST "$WEBHOOK_URL")"
 else
-  status="$(curl -sS -o "$tmp_body" -w '%{http_code}' "$WEBHOOK_URL")"
+  status="$(curl "${curl_args[@]}" "$WEBHOOK_URL")"
 fi
 
 if [ "$status" -lt 200 ] || [ "$status" -ge 300 ]; then

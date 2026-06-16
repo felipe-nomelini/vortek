@@ -11,6 +11,8 @@ Deploy normal de apps gerenciados pelo Easypanel deve passar pelo Deploy Webhook
 ```bash
 EASYPANEL_DEPLOY_WEBHOOK_URL=https://...
 EASYPANEL_DEPLOY_HTTP_METHOD=POST
+EASYPANEL_DEPLOY_CONNECT_TIMEOUT=10
+EASYPANEL_DEPLOY_MAX_TIME=60
 ```
 
 ## Uso
