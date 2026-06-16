@@ -1135,26 +1135,40 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
   ]), [handleAtualizarPrecoParaGanhar, updatingPriceByItem]);
 
   const columnsElegiveis: TableProps<ElegivelRow>['columns'] = useMemo(() => ([
-    { title: 'Seller SKU', dataIndex: 'seller_sku', key: 'seller_sku', width: 130, render: (v) => v || '—' },
-    { title: 'ML Item', dataIndex: 'ml_item_id', key: 'ml_item_id', width: 130, render: (v) => <span style={{ fontFamily: 'monospace' }}>{v}</span> },
+    { title: 'SKU', dataIndex: 'seller_sku', key: 'seller_sku', width: 130, render: (v) => v || '—' },
+    {
+      title: 'Anúncio',
+      dataIndex: 'ml_item_id',
+      key: 'ml_item_id',
+      width: 140,
+      render: (v, record) => record.permalink
+        ? <a href={record.permalink} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'monospace' }}>{v}</a>
+        : <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
+    },
+    {
+      title: 'Produto Catálogo',
+      dataIndex: 'catalog_product_id',
+      key: 'catalog_product_id',
+      width: 160,
+      render: (v) => v ? <span style={{ fontFamily: 'monospace' }}>{v}</span> : '—',
+    },
     { title: 'Título', dataIndex: 'title', key: 'title', width: 300 },
-    { title: 'Status ML', dataIndex: 'status', key: 'status', width: 110, render: (v) => <Tag color={v === 'active' ? 'green' : v === 'paused' ? 'orange' : 'default'}>{v || '—'}</Tag> },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      width: 120,
+      render: (v) => <Tag color={v === 'active' ? 'green' : v === 'paused' ? 'orange' : 'default'}>{mapStatusMlToPt(v)}</Tag>,
+    },
+    {
+      title: 'Buy Box?',
+      dataIndex: 'buy_box_eligible',
+      key: 'buy_box_eligible',
+      width: 120,
+      render: (v) => <Tag color={v ? 'green' : 'red'}>{v ? 'Apto' : 'Não apto'}</Tag>,
+    },
     { title: 'Preço', dataIndex: 'price', key: 'price', width: 110, render: (v) => formatCurrency(Number(v || 0)) },
-    { title: 'Category', dataIndex: 'category_id', key: 'category_id', width: 110, render: (v) => v || '—' },
-    { title: 'Domain', dataIndex: 'domain_id', key: 'domain_id', width: 120, render: (v) => v || '—' },
-    { title: 'Catalog Product', dataIndex: 'catalog_product_id', key: 'catalog_product_id', width: 160, render: (v) => v || '—' },
-    {
-      title: 'Elegibilidade', dataIndex: 'eligibility_status', key: 'eligibility_status', width: 170,
-      render: (v) => <Tag color={eligibilityColor[String(v || '').toUpperCase()] || 'default'}>{v || '—'}</Tag>,
-    },
-    { title: 'Buy Box', dataIndex: 'buy_box_eligible', key: 'buy_box_eligible', width: 90, render: (v) => <Tag color={v ? 'green' : 'red'}>{v ? 'SIM' : 'NÃO'}</Tag> },
-    { title: 'Motivo', dataIndex: 'eligibility_reason', key: 'eligibility_reason', width: 220, render: (v) => v || '—' },
-    { title: 'Variações aptas', dataIndex: 'variation_eligibility', key: 'variation_eligibility', width: 120, render: (v) => Array.isArray(v) ? v.filter((x) => String(x?.status || '').toUpperCase() === 'READY_FOR_OPTIN').length : 0 },
-    { title: 'Atualizado', dataIndex: 'last_updated', key: 'last_updated', width: 160, render: (v) => v ? new Date(v).toLocaleString('pt-BR') : '—' },
-    {
-      title: 'Link', dataIndex: 'permalink', key: 'permalink', width: 90,
-      render: (v) => v ? <a href={v} target="_blank" rel="noopener noreferrer">Abrir</a> : '—',
-    },
+    { title: 'Preço p/ Ganhar', key: 'price_to_win', width: 140, render: () => '—' },
     {
       title: 'Ações', key: 'actions', width: 60, fixed: 'right',
       render: (_, record) => (
@@ -1426,7 +1440,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
                   },
                   showTotal: (t) => `${t} anúncios`,
                 }}
-                scroll={{ x: 2200 }}
+                scroll={{ x: 1300 }}
                 size="small"
                 style={{ background: 'transparent' }}
               />
