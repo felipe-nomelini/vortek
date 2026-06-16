@@ -84,7 +84,7 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
     };
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+  const baseUrl = process.env.INTERNAL_APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
   const apiKey = process.env.API_SECRET_KEY || '';
   const requestTimeoutMs = Number(process.env.INTERNAL_SYNC_TIMEOUT_MS || 120000);
   const logs = parseJobLog(job.log);

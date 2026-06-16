@@ -101,6 +101,12 @@ function isMlConflictError(operation: { error?: string; code?: string | null }):
   return raw.includes('409') || raw.includes('conflict');
 }
 
+function isMlNonPublishableStateError(operation: { error?: string; code?: string | null }): boolean {
+  const raw = `${operation.code || ''} ${operation.error || ''}`.toLowerCase();
+  return raw.includes('cannot update item')
+    && (raw.includes('status:closed') || raw.includes('status:under_review'));
+}
+
 export async function POST(request: Request) {
   const startedAt = Date.now();
   const apiKey = request.headers.get('x-api-key');
@@ -463,7 +469,8 @@ export async function POST(request: Request) {
           }
         }
       } else {
-        const isHardFail = attempts >= MAX_RETRY_ATTEMPTS;
+        const isNonPublishableState = isMlNonPublishableStateError(failedOperation);
+        const isHardFail = isNonPublishableState || attempts >= MAX_RETRY_ATTEMPTS;
         const isConflictRetry = isMlConflictError(failedOperation);
         const retryDelayMinutes = isConflictRetry
           ? CONFLICT_RETRY_BACKOFF_MINUTES

@@ -3,11 +3,20 @@ import { createClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 
 const DETAIL_CONCURRENCY = 6;
+const ELIGIBILITY_CHUNK_SIZE = 20;
 
 async function runPool<T>(items: T[], limit: number, worker: (item: T) => Promise<void>) {
   for (let i = 0; i < items.length; i += limit) {
     await Promise.all(items.slice(i, i + limit).map(worker));
   }
+}
+
+function chunk<T>(items: T[], size: number): T[][] {
+  const chunks: T[][] = [];
+  for (let i = 0; i < items.length; i += size) {
+    chunks.push(items.slice(i, i + size));
+  }
+  return chunks;
 }
 
 export async function GET(request: Request) {
@@ -45,12 +54,14 @@ export async function GET(request: Request) {
 
   const eligibilityMap = new Map<string, any>();
   if (itemIds.length > 0) {
-    const multiResult = await fetchMLResult<any>(`/multiget/catalog_listing_eligibility?ids=${itemIds.join(',')}`);
-    if (multiResult.ok && Array.isArray(multiResult.data)) {
-      for (const row of multiResult.data) {
-        const itemId = String(row?.id || row?.body?.item_id || '').trim();
-        if (!itemId) continue;
-        eligibilityMap.set(itemId, row?.body || row);
+    for (const itemIdChunk of chunk(itemIds, ELIGIBILITY_CHUNK_SIZE)) {
+      const multiResult = await fetchMLResult<any>(`/multiget/catalog_listing_eligibility?ids=${itemIdChunk.join(',')}`);
+      if (multiResult.ok && Array.isArray(multiResult.data)) {
+        for (const row of multiResult.data) {
+          const itemId = String(row?.id || row?.body?.item_id || '').trim();
+          if (!itemId) continue;
+          eligibilityMap.set(itemId, row?.body || row);
+        }
       }
     }
   }

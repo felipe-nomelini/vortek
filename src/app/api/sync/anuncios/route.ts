@@ -426,7 +426,8 @@ export async function POST(request: Request) {
       if (shouldTriggerRefresh) {
         await setSyncRuntimeConfigValue(CATALOG_REFRESH_TRIGGER_KEY, new Date().toISOString());
         catalogRefreshTriggered = true;
-        const refreshUrl = new URL('/api/catalogo/no-catalogo/refresh', new URL(request.url).origin).toString();
+        const internalBaseUrl = process.env.INTERNAL_APP_URL || new URL(request.url).origin;
+        const refreshUrl = new URL('/api/catalogo/no-catalogo/refresh', internalBaseUrl).toString();
 
         setTimeout(() => {
           void fetch(refreshUrl, {
