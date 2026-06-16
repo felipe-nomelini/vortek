@@ -120,17 +120,35 @@ export async function POST(req: Request) {
       }, { status: 502 });
     }
 
+    const client = createServiceClient();
+    const { data: fornecedoresAtivosLocal, error: fornecedoresAtivosError } = await client
+      .from('fornecedores')
+      .select('dslite_id')
+      .eq('ativo', true)
+      .not('dslite_id', 'is', null);
+
+    if (fornecedoresAtivosError) {
+      throw new Error(`Falha ao consultar fornecedores ativos locais: ${fornecedoresAtivosError.message}`);
+    }
+
+    const fornecedoresAtivosLocalIds = new Set(
+      (fornecedoresAtivosLocal || [])
+        .map((row) => String(row.dslite_id || '').trim())
+        .filter(Boolean),
+    );
+
     const fornecedorIds = fornecedorIdsRaw.length > 0
       ? Array.from(new Set(fornecedorIdsRaw.map((id) => String(id).trim()).filter(Boolean)))
       : fornecedores
           .filter((f) => String(f.crossdocking || '').toLowerCase() === 'ativo')
           .map((f) => String(f.id));
+    const fornecedorIdsAtivos = fornecedorIds.filter((id) => fornecedoresAtivosLocalIds.has(String(id)));
     const fornecedorMap = new Map<number, string>();
     for (const fornecedor of fornecedores) {
       fornecedorMap.set(Number(fornecedor.id), String(fornecedor.apelido || fornecedor.id));
     }
 
-    if (fornecedorIds.length === 0) {
+    if (fornecedorIdsAtivos.length === 0) {
       errors.push({ code: 'dslite_fornecedor_ids_empty', message: 'Nenhum fornecedor ativo selecionado' });
       return NextResponse.json({
         success: false,
@@ -148,8 +166,7 @@ export async function POST(req: Request) {
       }, { status: 400 });
     }
 
-    const client = createServiceClient();
-    const startSupplierIndex = cursorFornecedorId ? fornecedorIds.indexOf(cursorFornecedorId) : 0;
+    const startSupplierIndex = cursorFornecedorId ? fornecedorIdsAtivos.indexOf(cursorFornecedorId) : 0;
     let supplierIndex = startSupplierIndex >= 0 ? startSupplierIndex : 0;
     let currentPage = startSupplierIndex >= 0 && cursorFornecedorId ? startPage : 1;
     let pagesProcessed = 0;
@@ -170,12 +187,12 @@ export async function POST(req: Request) {
     let nextCursor: { fornecedorId: string; page: number } | null = null;
     let stopByBudget = false;
 
-    while (supplierIndex < fornecedorIds.length) {
-      const targetFornecedor = String(fornecedorIds[supplierIndex]);
+    while (supplierIndex < fornecedorIdsAtivos.length) {
+      const targetFornecedor = String(fornecedorIdsAtivos[supplierIndex]);
       const targetFornecedorNome = fornecedorMap.get(Number(targetFornecedor)) || targetFornecedor;
       const response = await sincronizarPrecoEstoque(targetFornecedor, currentPage, pageSize);
       if (!response?.produtos?.length) {
-        const nextFornecedor = fornecedorIds[supplierIndex + 1];
+        const nextFornecedor = fornecedorIdsAtivos[supplierIndex + 1];
         nextCursor = nextFornecedor ? { fornecedorId: String(nextFornecedor), page: 1 } : null;
         stopByBudget = true;
         break;
@@ -250,7 +267,7 @@ export async function POST(req: Request) {
           if (hasMore) {
             nextCursor = { fornecedorId: targetFornecedor, page: currentPage + 1 };
           } else {
-            const nextFornecedor = fornecedorIds[supplierIndex + 1];
+            const nextFornecedor = fornecedorIdsAtivos[supplierIndex + 1];
             nextCursor = nextFornecedor ? { fornecedorId: String(nextFornecedor), page: 1 } : null;
           }
           stopByBudget = true;
@@ -262,7 +279,7 @@ export async function POST(req: Request) {
           continue;
         }
 
-        const nextFornecedor = fornecedorIds[supplierIndex + 1];
+        const nextFornecedor = fornecedorIdsAtivos[supplierIndex + 1];
         nextCursor = nextFornecedor ? { fornecedorId: String(nextFornecedor), page: 1 } : null;
         stopByBudget = true;
         break;
@@ -601,7 +618,7 @@ export async function POST(req: Request) {
         if (hasMore) {
           nextCursor = { fornecedorId: targetFornecedor, page: currentPage + 1 };
         } else {
-          const nextFornecedor = fornecedorIds[supplierIndex + 1];
+          const nextFornecedor = fornecedorIdsAtivos[supplierIndex + 1];
           nextCursor = nextFornecedor ? { fornecedorId: String(nextFornecedor), page: 1 } : null;
         }
         stopByBudget = true;
@@ -613,7 +630,7 @@ export async function POST(req: Request) {
         continue;
       }
 
-      const nextFornecedor = fornecedorIds[supplierIndex + 1];
+      const nextFornecedor = fornecedorIdsAtivos[supplierIndex + 1];
       nextCursor = nextFornecedor ? { fornecedorId: String(nextFornecedor), page: 1 } : null;
       stopByBudget = true;
       break;

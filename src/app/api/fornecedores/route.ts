@@ -16,6 +16,7 @@ const allowedSortColumns = new Set([
   'telefone',
   'dslite_ultima_sync',
   'created_at',
+  'ativo',
 ]);
 
 function normalizeSearch(value: string): string {

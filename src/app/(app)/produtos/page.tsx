@@ -1235,7 +1235,7 @@ export default function ProductsPage() {
       appendRemoteSortParams(params, sort);
       if (lastSearch) params.set('search', lastSearch);
       if (filterFornecedores.length > 0) params.set('fornecedores', filterFornecedores.join(','));
-      params.set('ativo', filterProductActive || 'todos');
+      params.set('ativo', filterProductActive || 'ativo');
       if (filterMLStatus) params.set('ml_status', filterMLStatus);
       if (filterEstoque) params.set('estoque', filterEstoque);
       if (priceMin !== null) params.set('priceMin', String(priceMin));
@@ -1305,7 +1305,7 @@ export default function ProductsPage() {
       const params = new URLSearchParams();
       if (lastSearch) params.set('search', lastSearch);
       if (filterFornecedores.length > 0) params.set('fornecedores', filterFornecedores.join(','));
-      params.set('ativo', filterProductActive || 'todos');
+      params.set('ativo', filterProductActive || 'ativo');
       if (filterMLStatus) params.set('ml_status', filterMLStatus);
       if (filterEstoque) params.set('estoque', filterEstoque);
       if (priceMin !== null) params.set('priceMin', String(priceMin));

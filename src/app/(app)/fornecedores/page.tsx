@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
-import { Input, Button, Dropdown, Typography, Row, Col, Select, Tag, Spin } from 'antd';
+import { Input, Button, Dropdown, Typography, Row, Col, Select, Tag, Spin, Modal, message } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TablePaginationConfig, TableProps } from 'antd';
 import type { SorterResult } from 'antd/es/table/interface';
@@ -36,8 +36,10 @@ function statusBadgeColor(value: string): string {
 }
 
 export default function FornecedoresPage() {
+  const [messageApi, contextHolder] = message.useMessage();
   const [rows, setRows] = useState<FornecedorRow[]>([]);
   const [loading, setLoading] = useState(true);
+  const [statusChangingId, setStatusChangingId] = useState<string | null>(null);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(20);
@@ -110,6 +112,87 @@ export default function FornecedoresPage() {
     fetchFornecedores();
   }, [fetchFornecedores]);
 
+  const toggleFornecedorStatus = useCallback(async (record: FornecedorRow, ativo: boolean) => {
+    const fornecedorLabel = record.apelido || record.nome || record.dslite_id || 'fornecedor';
+
+    const executeToggle = async () => {
+      setStatusChangingId(record.id);
+      try {
+        const res = await fetch(`/api/fornecedores/${record.id}/status`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ativo }),
+        });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok && res.status !== 207) {
+          throw new Error(json?.error || 'Falha ao atualizar fornecedor');
+        }
+
+        if (ativo) {
+          messageApi.success(`Fornecedor ${fornecedorLabel} ativado. Produtos continuam inativos até ativação manual.`);
+        } else {
+          const records = json?.records || {};
+          const paused = Number(records.ml_pause_enqueued || 0) + Number(records.ml_pause_updated_existing || 0);
+          messageApi.success(
+            `Fornecedor ${fornecedorLabel} inativado. ${records.products_inactivated || 0} produtos inativados; ${paused} pausas ML enfileiradas.`,
+          );
+          if (Number(records.ml_pause_failed || 0) > 0) {
+            messageApi.warning(`${records.ml_pause_failed} anúncios não entraram na fila de pausa. Verifique logs.`);
+          }
+        }
+
+        await fetchFornecedores();
+      } catch (err: any) {
+        messageApi.error(err?.message || 'Erro ao atualizar fornecedor');
+      } finally {
+        setStatusChangingId(null);
+      }
+    };
+
+    if (ativo) {
+      Modal.confirm({
+        title: `Ativar fornecedor ${fornecedorLabel}?`,
+        content: 'Os produtos vinculados continuarão inativos. A ativação deles será manual.',
+        okText: 'Ativar',
+        cancelText: 'Cancelar',
+        onOk: executeToggle,
+      });
+      return;
+    }
+
+    setStatusChangingId(record.id);
+    try {
+      const impactRes = await fetch(`/api/fornecedores/${record.id}/status`);
+      const impactJson = await impactRes.json().catch(() => ({}));
+      if (!impactRes.ok) {
+        throw new Error(impactJson?.error || 'Falha ao calcular impacto do fornecedor');
+      }
+      const impact = impactJson?.impact || {};
+      Modal.confirm({
+        title: `Inativar fornecedor ${fornecedorLabel}?`,
+        content: (
+          <div>
+            <p>Isso vai inativar produtos vinculados a este fornecedor.</p>
+            <p>
+              Produtos encontrados: <strong>{impact.products_found || 0}</strong><br />
+              Produtos ativos afetados: <strong>{impact.products_active || 0}</strong><br />
+              Anúncios ML que serão pausados: <strong>{impact.ml_pause_candidates || 0}</strong>
+            </p>
+            <p>Se o fornecedor voltar, os produtos continuarão inativos até ativação manual.</p>
+          </div>
+        ),
+        okText: 'Inativar',
+        okButtonProps: { danger: true },
+        cancelText: 'Cancelar',
+        onOk: executeToggle,
+      });
+    } catch (err: any) {
+      messageApi.error(err?.message || 'Erro ao calcular impacto do fornecedor');
+    } finally {
+      setStatusChangingId(null);
+    }
+  }, [fetchFornecedores, messageApi]);
+
   const columns: TableProps<FornecedorRow>['columns'] = [
     {
       title: 'ID DSLite',
@@ -139,6 +222,16 @@ export default function FornecedoresPage() {
           <Tag color={statusBadgeColor(record.crossdocking)}>Cross: {record.crossdocking || '—'}</Tag>
           <Tag color={statusBadgeColor(record.dropshipping)}>Drop: {record.dropshipping || '—'}</Tag>
         </div>
+      ),
+    },
+    {
+      title: 'Status Vortek',
+      dataIndex: 'ativo',
+      key: 'ativo',
+      width: 130,
+      sorter: true,
+      render: (ativo: boolean | null) => (
+        <Tag color={ativo === false ? 'red' : 'green'}>{ativo === false ? 'Inativo' : 'Ativo'}</Tag>
       ),
     },
     {
@@ -186,16 +279,30 @@ export default function FornecedoresPage() {
             items: [
               { key: 'view', label: 'Visualizar payload DSLite' },
               { key: 'dslite', label: 'Ver no DSLite' },
+              {
+                type: 'divider',
+              },
+              {
+                key: record.ativo === false ? 'activate' : 'deactivate',
+                label: record.ativo === false ? 'Ativar fornecedor' : 'Inativar fornecedor',
+                danger: record.ativo !== false,
+              },
             ],
             onClick: ({ key }) => {
               if (key === 'view') {
                 window.console.log('[fornecedor payload]', record.payload_dslite);
               }
+              if (key === 'activate') {
+                toggleFornecedorStatus(record, true);
+              }
+              if (key === 'deactivate') {
+                toggleFornecedorStatus(record, false);
+              }
             },
           }}
           trigger={['click']}
         >
-          <Button type="text" size="small" icon={<EllipsisOutlined />} />
+          <Button type="text" size="small" icon={<EllipsisOutlined />} loading={statusChangingId === record.id} />
         </Dropdown>
       ),
     },
@@ -218,6 +325,7 @@ export default function FornecedoresPage() {
 
   return (
     <div>
+      {contextHolder}
       <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Fornecedores</Title>
 
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>

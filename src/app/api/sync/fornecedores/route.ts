@@ -164,20 +164,32 @@ export async function POST(request: Request) {
     const dsliteIds = mapped.map((item) => item.dslite_id);
     const { data: existingRows, error: existingError } = await client
       .from('fornecedores')
-      .select('id, dslite_id')
+      .select('id, dslite_id, ativo')
       .in('dslite_id', dsliteIds);
 
     if (existingError) {
       throw new Error(`Falha ao consultar fornecedores existentes: ${existingError.message}`);
     }
 
-    const existingIds = new Set((existingRows || []).map((row) => row.dslite_id).filter(Boolean));
+    const existingByDsliteId = new Map(
+      (existingRows || [])
+        .filter((row) => row.dslite_id)
+        .map((row) => [String(row.dslite_id), row]),
+    );
+    const existingIds = new Set(existingByDsliteId.keys());
+    const mappedPreservingManualStatus = mapped.map((row) => {
+      const existing = existingByDsliteId.get(String(row.dslite_id));
+      return {
+        ...row,
+        ativo: existing ? existing.ativo !== false : true,
+      };
+    });
     const inseridos = mapped.filter((row) => !existingIds.has(row.dslite_id)).length;
     const atualizados = mapped.length - inseridos;
 
     const { error: upsertError } = await client
       .from('fornecedores')
-      .upsert(mapped as any, { onConflict: 'dslite_id' });
+      .upsert(mappedPreservingManualStatus as any, { onConflict: 'dslite_id' });
 
     if (upsertError) {
       throw new Error(`Falha no upsert dos fornecedores: ${upsertError.message}`);
@@ -265,4 +277,3 @@ export async function POST(request: Request) {
     }
   }
 }
-

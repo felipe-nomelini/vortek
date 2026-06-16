@@ -155,6 +155,22 @@ export async function POST(req: Request) {
       }, { status: 502 });
     }
 
+    const { data: fornecedoresAtivosLocal, error: fornecedoresAtivosError } = await client
+      .from('fornecedores')
+      .select('dslite_id')
+      .eq('ativo', true)
+      .not('dslite_id', 'is', null);
+
+    if (fornecedoresAtivosError) {
+      throw new Error(`Falha ao consultar fornecedores ativos locais: ${fornecedoresAtivosError.message}`);
+    }
+
+    const fornecedoresAtivosLocalIds = new Set(
+      (fornecedoresAtivosLocal || [])
+        .map((row) => String(row.dslite_id || '').trim())
+        .filter(Boolean),
+    );
+
     const fornecedorIdsRaw: Array<string | number> = Array.isArray(body?.fornecedorIds) ? body.fornecedorIds : [];
     const fornecedorMap = new Map<number, string>();
     for (const fornecedor of fornecedores) {
@@ -166,8 +182,9 @@ export async function POST(req: Request) {
       : fornecedores
           .filter((f) => String(f.crossdocking || '').toLowerCase() === 'ativo')
           .map((f) => String(f.id));
+    const fornecedorIdsAtivos = fornecedorIds.filter((id) => fornecedoresAtivosLocalIds.has(String(id)));
 
-    if (fornecedorIds.length === 0) {
+    if (fornecedorIdsAtivos.length === 0) {
       errors.push({ code: 'dslite_fornecedor_ids_empty', message: 'Nenhum fornecedor ativo selecionado para catálogo' });
       return NextResponse.json({
         success: false,
@@ -190,14 +207,14 @@ export async function POST(req: Request) {
     let pagesProcessed = 0;
     let nextCursor: { fornecedorId: string; page: number } | null = null;
     let remainingPagesBudget = maxPagesPerRun;
-    const startSupplierIndex = cursorFornecedorId ? fornecedorIds.indexOf(cursorFornecedorId) : 0;
+    const startSupplierIndex = cursorFornecedorId ? fornecedorIdsAtivos.indexOf(cursorFornecedorId) : 0;
 
     let supplierIndex = startSupplierIndex >= 0 ? startSupplierIndex : 0;
     let page = startSupplierIndex >= 0 && cursorFornecedorId ? cursorPage : 1;
     let stopByBudget = false;
 
-    while (supplierIndex < fornecedorIds.length) {
-      const fornecedorId = fornecedorIds[supplierIndex];
+    while (supplierIndex < fornecedorIdsAtivos.length) {
+      const fornecedorId = fornecedorIdsAtivos[supplierIndex];
       const fornecedorNome = fornecedorMap.get(Number(fornecedorId)) || fornecedorId;
 
       while (remainingPagesBudget > 0) {
@@ -466,7 +483,7 @@ export async function POST(req: Request) {
           if (hasMore) {
             nextCursor = { fornecedorId: String(fornecedorId), page: page + 1 };
           } else {
-            const nextSupplierId = fornecedorIds[supplierIndex + 1];
+            const nextSupplierId = fornecedorIdsAtivos[supplierIndex + 1];
             nextCursor = nextSupplierId ? { fornecedorId: String(nextSupplierId), page: 1 } : null;
           }
           stopByBudget = true;
