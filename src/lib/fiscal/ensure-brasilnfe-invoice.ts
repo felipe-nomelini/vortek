@@ -857,7 +857,7 @@ export async function ensureBrasilNfeInvoice(input: {
       nfe_cfop: cfop || undefined,
     },
   });
-  await client
+  const { error: updateError } = await client
     .from('pedidos')
     .update({
       nfe_provider: 'brasilnfe',
@@ -874,6 +874,22 @@ export async function ensureBrasilNfeInvoice(input: {
     } as any)
     .eq('id', input.pedidoId);
 
+  if (updateError) {
+    await registrarEventoNfAuditoria({
+      pedidoId: input.pedidoId,
+      mlOrderId,
+      evento: 'brasilnfe_invoice_ensure_failed',
+      respostaMl: {
+        source: 'ensure_post_emission',
+        identificador_interno: String((built.payload as any)?.IdentificadorInterno || '').trim() || null,
+        nfe_chave_encontrada: chave,
+        error: updateError.message,
+      },
+      statusResultante: 'local_update_failed',
+    });
+    return { ok: false, error: 'Falha ao salvar snapshot local da NF Brasil NFe.' };
+  }
+
   return {
     ok: true,
     alreadyExisted: false,
@@ -888,6 +904,174 @@ export async function ensureBrasilNfeInvoice(input: {
       checked: true,
       cleanupExecuted: shouldCheckGhost,
       recoveredFromExternalId: false,
+    },
+  };
+}
+
+export async function reconcileBrasilNfeExistingInvoice(input: {
+  pedidoId: string;
+  identifierInternoOverride?: string | null;
+}): Promise<EnsureBrasilNfeInvoiceResult> {
+  const client = createServiceClient();
+  const { data: pedido } = await client
+    .from('pedidos')
+    .select('id,numero,ml_order_id,nota_fiscal_numero,nfe_status,nfe_provider,nfe_chave,nfe_external_id,nfe_danfe_url,nfe_xml,nfe_protocolo,nfe_cfop')
+    .eq('id', input.pedidoId)
+    .maybeSingle();
+
+  if (!pedido) return { ok: false, error: 'Pedido não encontrado para reconciliar NF Brasil NFe.' };
+
+  const mlOrderId = String((pedido as any).ml_order_id || '');
+  const identificadorInterno = String(input.identifierInternoOverride || `VORTEK-${String((pedido as any).numero || pedido.id)}`).trim();
+
+  await registrarEventoNfAuditoria({
+    pedidoId: input.pedidoId,
+    mlOrderId,
+    evento: 'brasilnfe_invoice_ensure_start',
+    payloadEnviado: {
+      source: 'brasilnfe_existing_invoice_backfill',
+      identificador_interno: identificadorInterno,
+    },
+    statusResultante: 'lookup_started',
+  });
+
+  const found = await buscarNotaBrasilNfePorIdentificadorInterno({ identificadorInterno });
+  if (!found.ok || !found.nota?.chave) {
+    await registrarEventoNfAuditoria({
+      pedidoId: input.pedidoId,
+      mlOrderId,
+      evento: 'brasilnfe_invoice_ensure_failed',
+      respostaMl: {
+        source: 'brasilnfe_existing_invoice_backfill',
+        identificador_interno: identificadorInterno,
+        error: found.error || 'NF autorizada não encontrada por identificador interno',
+      },
+      statusResultante: 'not_found',
+    });
+    return {
+      ok: false,
+      error: found.error || 'NF autorizada não encontrada por identificador interno',
+      existingNfe: null,
+    };
+  }
+
+  const xmlByKey = await obterXmlBrasilNfePorChave(found.nota.chave);
+  if (!xmlByKey.ok || !xmlByKey.xml) {
+    await registrarEventoNfAuditoria({
+      pedidoId: input.pedidoId,
+      mlOrderId,
+      evento: 'brasilnfe_invoice_ensure_failed',
+      respostaMl: {
+        source: 'brasilnfe_existing_invoice_backfill',
+        identificador_interno: identificadorInterno,
+        nfe_chave_encontrada: found.nota.chave,
+        error: xmlByKey.error || 'XML não retornado por chave na Brasil NFe',
+      },
+      statusResultante: 'xml_not_found',
+    });
+    return {
+      ok: false,
+      error: xmlByKey.error || 'XML não retornado por chave na Brasil NFe',
+      existingNfe: {
+        chave: found.nota.chave,
+        numero: found.nota.numero,
+        status: found.nota.status,
+        dataEmissao: found.nota.dtEmissao,
+        numeroProtocolo: found.nota.numeroProtocolo || null,
+        linkInterno: null,
+      },
+    };
+  }
+
+  const xmlValidation = validateXmlNfeProducaoShared(xmlByKey.xml);
+  if (!xmlValidation.ok) {
+    await registrarEventoNfAuditoria({
+      pedidoId: input.pedidoId,
+      mlOrderId,
+      evento: 'nfe_homologacao_bloqueada',
+      respostaMl: {
+        source: 'brasilnfe_existing_invoice_backfill',
+        identificador_interno: identificadorInterno,
+        nfe_chave_encontrada: found.nota.chave,
+        tpAmb_xml_recebido: xmlValidation.tpAmb,
+        destinatario_xml: xmlValidation.destinatarioNome,
+        marcador_homologacao_detectado: xmlValidation.marcadorHomologacao,
+      },
+      statusResultante: 'blocked_homologation',
+    });
+    return { ok: false, error: xmlValidation.message || 'NF-e inválida para fluxo fiscal.' };
+  }
+
+  const chave = extractTag(xmlByKey.xml, 'chNFe') || found.nota.chave;
+  const numero = extractTag(xmlByKey.xml, 'nNF') || (found.nota.numero ? String(found.nota.numero) : null);
+  const protocolo = extractTag(xmlByKey.xml, 'nProt') || found.nota.numeroProtocolo || null;
+  const cfop = extractCfop(xmlByKey.xml);
+  const provider = getFiscalProvider('brasilnfe');
+  const danfeResult = await ensureDanfeStoredForPedido({
+    client,
+    provider,
+    pedido: {
+      id: input.pedidoId,
+      numero: (pedido as any).numero,
+      nota_fiscal_numero: numero,
+      nfe_external_id: null,
+      nfe_chave: chave,
+      nota_fiscal_emitida: true,
+    },
+    pedidoId: input.pedidoId,
+    mlOrderId,
+    source: 'brasilnfe_existing_invoice_backfill',
+  });
+
+  await client
+    .from('pedidos')
+    .update({
+      nfe_provider: 'brasilnfe',
+      nfe_external_id: null,
+      nfe_status: 'authorized',
+      nfe_chave: chave || undefined,
+      nfe_protocolo: protocolo || undefined,
+      nota_fiscal_numero: numero || undefined,
+      nota_fiscal_emitida: Boolean(danfeResult.signedUrl),
+      nfe_xml: xmlByKey.xml,
+      nfe_danfe_url: danfeResult.signedUrl || undefined,
+      nfe_cfop: cfop || undefined,
+      nfe_last_sync_at: nowIso(),
+    } as any)
+    .eq('id', input.pedidoId);
+
+  await registrarEventoNfAuditoria({
+    pedidoId: input.pedidoId,
+    mlOrderId,
+    evento: 'brasilnfe_invoice_ensure_success',
+    respostaMl: {
+      source: 'brasilnfe_existing_invoice_backfill',
+      identificador_interno: identificadorInterno,
+      nfe_chave_encontrada: chave,
+      nfe_numero_encontrado: numero,
+      danfe_recovered: Boolean(danfeResult.signedUrl),
+      danfe_error: danfeResult.error || null,
+    },
+    statusResultante: 'reconciled_existing',
+  });
+
+  return {
+    ok: true,
+    alreadyExisted: true,
+    status: 'authorized',
+    xml: xmlByKey.xml,
+    chave,
+    numero,
+    externalId: null,
+    danfeUrl: danfeResult.signedUrl,
+    cfop,
+    existingNfe: {
+      chave,
+      numero: found.nota.numero,
+      status: found.nota.status,
+      dataEmissao: found.nota.dtEmissao,
+      numeroProtocolo: protocolo,
+      linkInterno: `/api/notas-fiscais/${input.pedidoId}/pdf`,
     },
   };
 }

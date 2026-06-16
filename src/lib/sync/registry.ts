@@ -7,6 +7,7 @@ export type SyncTaskKey =
   | 'sync_ml_listings_observed'
   | 'sync_ml_listings_publish'
   | 'sync_reconcile_fiscal'
+  | 'sync_reconcile_brasilnfe'
   | 'sync_mercadopago_account_money'
   | 'sync_pack_id_backfill'
   | 'sync_municipios_seed';
@@ -126,6 +127,17 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     kind: 'fiscal',
   },
   {
+    key: 'sync_reconcile_brasilnfe',
+    jobTipo: 'sync_reconcile_brasilnfe',
+    label: 'Reconciliar NF Brasil NFe',
+    path: '/api/sync/nf/reconciliar-brasilnfe',
+    domain: 'pedidos:brasilnfe',
+    lockTtlSeconds: 15 * 60,
+    kind: 'fiscal',
+    schedule: { businessMinutes: 15, offHoursMinutes: 60 },
+    defaultBody: { limit: 5 },
+  },
+  {
     key: 'sync_mercadopago_account_money',
     jobTipo: 'sync_mercadopago_account_money',
     label: 'Mercado Pago Dinheiro em Conta',
@@ -199,6 +211,9 @@ export function mapLegacyTipoToTaskKey(tipo: string): SyncTaskKey | 'todos' | nu
     anuncios: 'sync_ml_listings_observed',
     anuncios_publish: 'sync_ml_listings_publish',
     reconcile_fiscal: 'sync_reconcile_fiscal',
+    reconcile_brasilnfe: 'sync_reconcile_brasilnfe',
+    brasilnfe: 'sync_reconcile_brasilnfe',
+    nfe_brasilnfe: 'sync_reconcile_brasilnfe',
     mercadopago_account_money: 'sync_mercadopago_account_money',
     mercado_pago: 'sync_mercadopago_account_money',
     mercado_pago_extrato: 'sync_mercadopago_account_money',

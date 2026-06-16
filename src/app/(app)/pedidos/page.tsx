@@ -72,6 +72,17 @@ const statusLabel: Record<OrderStatus, string> = {
   cancelado: 'Cancelado',
 };
 
+const nfeExpectedStatuses = new Set<OrderStatus>([
+  'etiqueta_impressa',
+  'coletado',
+  'em_transito',
+  'saiu_entrega',
+  'dest_ausente',
+  'atendido',
+  'faturado',
+  'entregue',
+]);
+
 function isValidDsliteId(val: string | null | undefined): string | null {
   if (!val || val === 'undefined' || val === 'null' || val.trim() === '') return null;
   return val;
@@ -827,7 +838,17 @@ export default function PedidosPage() {
             );
           }
         }
-        if (!nf) return <Tag>Não emitida</Tag>;
+        if (!nf) {
+          const nfeStatus = String(record.nfe_status || '').toLowerCase();
+          if (nfeExpectedStatuses.has(record.situacao.valor) && (!nfeStatus || nfeStatus === 'pendente')) {
+            return (
+              <Tooltip title="Pedido já avançou, mas o snapshot local da NF ainda não foi reconciliado com a Brasil NFe.">
+                <Tag color="orange">NF pendente sync</Tag>
+              </Tooltip>
+            );
+          }
+          return <Tag>Não emitida</Tag>;
+        }
         const numeroFormatado = formatNumeroWithSerie(String(nf.numero), record.nfe_chave);
         const tag = <Tag color={nf.emitida ? 'green' : 'orange'}>{numeroFormatado}</Tag>;
         if (nf.emitida && record.dbId) {

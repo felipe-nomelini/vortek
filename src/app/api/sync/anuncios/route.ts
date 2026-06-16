@@ -10,6 +10,7 @@ export const maxDuration = 300;
 
 const CONCURRENCY = 3;
 const CATALOG_ENRICH_CONCURRENCY = 4;
+const VISITS_CONCURRENCY = 3;
 const CATALOG_REFRESH_TRIGGER_KEY = 'catalog_no_catalogo_refresh_last_trigger_at';
 const CATALOG_REFRESH_TRIGGER_INTERVAL_MS = 10 * 60 * 1000;
 
@@ -35,6 +36,76 @@ async function runPool<T>(items: T[], limit: number, worker: (item: T) => Promis
   await Promise.all(runners);
 }
 
+function normalizeMetric(value: unknown): number | null {
+  if (value === null || value === undefined || value === '') return null;
+  const n = Number(value);
+  if (!Number.isFinite(n)) return null;
+  return Math.max(0, Math.floor(n));
+}
+
+function parseVisitsPayload(payload: any): Map<string, number> {
+  const rows = Array.isArray(payload)
+    ? payload
+    : Array.isArray(payload?.results)
+      ? payload.results
+      : Array.isArray(payload?.visits)
+        ? payload.visits
+        : payload?.item_id
+          ? [payload]
+          : [];
+  const byItemId = new Map<string, number>();
+
+  for (const row of rows) {
+    const itemId = String(row?.item_id || row?.id || '').trim();
+    if (!itemId) continue;
+    const total = normalizeMetric(row?.total_visits ?? row?.visits ?? row?.quantity);
+    if (total !== null) byItemId.set(itemId, total);
+  }
+
+  return byItemId;
+}
+
+function formatMlVisitsDate(value: Date): string {
+  return value.toISOString().slice(0, 10);
+}
+
+async function fetchVisitsByItemId(
+  items: Array<{ itemId: string; startTime: string | null }>,
+  warnings: Array<{ code: string; message: string; context?: Record<string, unknown> }>,
+): Promise<Map<string, number>> {
+  const visitsByItemId = new Map<string, number>();
+  const dateTo = formatMlVisitsDate(new Date());
+
+  await runPool(items, VISITS_CONCURRENCY, async (item) => {
+    if (!item.itemId) return;
+    const startMs = item.startTime && !Number.isNaN(new Date(item.startTime).getTime())
+      ? new Date(item.startTime).getTime()
+      : Date.now() - 365 * 24 * 60 * 60 * 1000;
+    const dateFrom = formatMlVisitsDate(new Date(startMs));
+    const path = `/items/${encodeURIComponent(item.itemId)}/visits?date_from=${encodeURIComponent(dateFrom)}&date_to=${encodeURIComponent(dateTo)}`;
+    const result = await fetchMLResult<any>(path);
+    if (!result.ok || !result.data) {
+      warnings.push({
+        code: 'ml_item_visits_fetch_failed',
+        message: result.error?.message || 'Falha ao carregar visitas dos anúncios no ML',
+        context: {
+          itemId: item.itemId,
+          status: result.status || null,
+          category: result.error?.category || null,
+          code: result.error?.code || null,
+        },
+      });
+      return;
+    }
+
+    for (const [itemId, visits] of parseVisitsPayload(result.data)) {
+      visitsByItemId.set(itemId, visits);
+    }
+  });
+
+  return visitsByItemId;
+}
+
 export async function POST(request: Request) {
   const startedAt = Date.now();
   const apiKey = request.headers.get('x-api-key') || '';
@@ -47,6 +118,7 @@ export async function POST(request: Request) {
   const limit = Math.max(1, Math.min(100, Number(searchParams.get('limit') || 100)));
 
   const errors: Array<{ code: string; message: string; context?: Record<string, unknown> }> = [];
+  const warnings: Array<{ code: string; message: string; context?: Record<string, unknown> }> = [];
   let lockOwnerToken = '';
   let lockAcquired = false;
   const domain = 'anuncios:ml_pull';
@@ -122,6 +194,7 @@ export async function POST(request: Request) {
         cursor: { offset, limit },
         records: { seen: 0, snapshot_upserted: 0, failed: 0 },
         errors,
+        warnings,
         duration: { ms: Date.now() - startedAt },
         total: Number(search?.paging?.total || 0),
         proximo: offset,
@@ -132,6 +205,7 @@ export async function POST(request: Request) {
     const serviceClient = createServiceClient();
     const snapshots: any[] = [];
     const catalogItemsBase: Array<{ id: string; item: any }> = [];
+    const listingMetricsByItemId = new Map<string, { soldQuantity: unknown; startTime: string | null }>();
     let recordsFailed = 0;
 
     await runPool(itemIds, CONCURRENCY, async (itemId) => {
@@ -201,6 +275,10 @@ export async function POST(request: Request) {
       if (isCatalogListing) {
         catalogItemsBase.push({ id: String(item.id), item });
       }
+      listingMetricsByItemId.set(String(item.id), {
+        soldQuantity: item.sold_quantity,
+        startTime: item.start_time || null,
+      });
 
       snapshots.push({
         ml_item_id: String(item.id),
@@ -226,6 +304,14 @@ export async function POST(request: Request) {
         synced_at: new Date().toISOString(),
       });
     });
+
+    const visitsByItemId = await fetchVisitsByItemId(
+      Array.from(listingMetricsByItemId.entries()).map(([itemId, metrics]) => ({
+        itemId,
+        startTime: metrics.startTime,
+      })),
+      warnings,
+    );
 
     const previousSnapshotByItemId = new Map<string, {
       related_item_id: string | null;
@@ -367,13 +453,14 @@ export async function POST(request: Request) {
           cursor: null,
           records: { seen: itemIds.length, snapshot_upserted: 0, failed: recordsFailed + snapshots.length },
           errors,
+          warnings,
           duration: { ms: Date.now() - startedAt },
         }, { status: 500 });
       }
 
       const { data: existingAnuncios, error: existingAnunciosError } = await (serviceClient
         .from('anuncios_ml')
-        .select('id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail')
+        .select('id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas')
         .in('ml_item_id', snapshots.map((snapshot) => String(snapshot.ml_item_id))) as any);
 
       if (existingAnunciosError) {
@@ -398,6 +485,8 @@ export async function POST(request: Request) {
               title: snapshot.title,
               permalink: snapshot.permalink,
               thumbnail: snapshot.thumbnail,
+              sold_quantity: listingMetricsByItemId.get(String(snapshot.ml_item_id))?.soldQuantity,
+              visits: visitsByItemId.get(String(snapshot.ml_item_id)),
             },
             'observed_sync',
             existing,
@@ -465,6 +554,7 @@ export async function POST(request: Request) {
         failed: recordsFailed,
       },
       errors,
+      warnings,
       duration: { ms: Date.now() - startedAt },
       // Compatibilidade:
       ok: errors.length === 0,

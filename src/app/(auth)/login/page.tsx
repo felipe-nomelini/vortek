@@ -16,17 +16,23 @@ export default function LoginPage() {
   const handleLogin = async () => {
     if (!email || !senha) { message.warning('Preencha todos os campos'); return; }
     setLoading(true);
-    const supabase = createClient();
-    const { error } = await supabase.auth.signInWithPassword({ email, password: senha });
-    setLoading(false);
+    try {
+      const supabase = createClient();
+      const { error } = await supabase.auth.signInWithPassword({ email, password: senha });
 
-    if (error) {
-      message.error('Credenciais inválidas');
-      return;
+      if (error) {
+        message.error('Credenciais inválidas');
+        return;
+      }
+
+      router.push('/dashboard');
+      router.refresh();
+    } catch (error) {
+      console.error('[auth.login] signInWithPassword failed', error);
+      message.error('Não foi possível conectar ao Supabase. Verifique a configuração do sistema.');
+    } finally {
+      setLoading(false);
     }
-
-    router.push('/dashboard');
-    router.refresh();
   };
 
   return (

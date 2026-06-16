@@ -6,7 +6,7 @@ type ServiceClientLike = {
 
 type ExistingAnuncioRow = Pick<
   Database['public']['Tables']['anuncios_ml']['Row'],
-  'id' | 'ml_item_id' | 'preco_ml' | 'status' | 'titulo' | 'permalink' | 'thumbnail'
+  'id' | 'ml_item_id' | 'preco_ml' | 'status' | 'titulo' | 'permalink' | 'thumbnail' | 'vendidos' | 'visitas'
 >;
 
 type MlListingLike = {
@@ -16,6 +16,8 @@ type MlListingLike = {
   title?: string | null;
   permalink?: string | null;
   thumbnail?: string | null;
+  sold_quantity?: unknown;
+  visits?: unknown;
 };
 
 function mapMlStatusToLocalStatus(value: unknown): Database['public']['Enums']['ml_status'] {
@@ -29,6 +31,30 @@ function normalizePrice(value: unknown): number {
   const n = Number(value);
   if (!Number.isFinite(n)) return 0;
   return Math.round(n * 100) / 100;
+}
+
+function normalizeMlReferenceQuantity(value: unknown): number | null {
+  if (value === null || value === undefined || value === '') return null;
+  if (typeof value === 'number' && Number.isFinite(value)) return Math.max(0, Math.floor(value));
+
+  const raw = String(value || '').trim().toUpperCase();
+  const numeric = Number(raw);
+  if (Number.isFinite(numeric)) return Math.max(0, Math.floor(numeric));
+
+  const reference: Record<string, number> = {
+    RANGO_6_25: 5,
+    RANGO_26_50: 25,
+    RANGO_51_100: 50,
+    RANGO_101_150: 100,
+    RANGO_151_200: 150,
+    RANGO_201_250: 200,
+    RANGO_251_500: 250,
+    'RANGO 251 500': 250,
+    RANGO_501_5000: 500,
+    RANGO_5001_50000: 5000,
+    RANGO_50001_500000: 50000,
+  };
+  return reference[raw] ?? null;
 }
 
 function toNullableString(value: unknown): string | null {
@@ -60,7 +86,7 @@ export async function reconcileAnuncioMlFromItem(
   if (!current) {
     const { data, error } = await (client
       .from('anuncios_ml')
-      .select('id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail')
+      .select('id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas')
       .eq('ml_item_id', mlItemId)
       .maybeSingle() as any);
 
@@ -80,6 +106,8 @@ export async function reconcileAnuncioMlFromItem(
   const nextTitle = toNullableString(item?.title);
   const nextPermalink = toNullableString(item?.permalink);
   const nextThumbnail = toNullableString(item?.thumbnail);
+  const nextSoldQuantity = normalizeMlReferenceQuantity(item?.sold_quantity);
+  const nextVisits = normalizeMlReferenceQuantity(item?.visits);
 
   const patch: Database['public']['Tables']['anuncios_ml']['Update'] = {};
   if (normalizePrice(current.preco_ml) !== nextPrice) patch.preco_ml = nextPrice;
@@ -87,6 +115,8 @@ export async function reconcileAnuncioMlFromItem(
   if (isDifferentNullableString(current.titulo, nextTitle)) patch.titulo = nextTitle || '';
   if (isDifferentNullableString(current.permalink, nextPermalink)) patch.permalink = nextPermalink;
   if (isDifferentNullableString(current.thumbnail, nextThumbnail)) patch.thumbnail = nextThumbnail;
+  if (nextSoldQuantity !== null && Number(current.vendidos || 0) !== nextSoldQuantity) patch.vendidos = nextSoldQuantity;
+  if (nextVisits !== null && Number(current.visitas || 0) !== nextVisits) patch.visitas = nextVisits;
 
   if (Object.keys(patch).length === 0) {
     return {
@@ -119,6 +149,10 @@ export async function reconcileAnuncioMlFromItem(
     preco_ml_novo: nextPrice,
     status_anterior: current.status,
     status_novo: nextStatus,
+    vendidos_anterior: Number(current.vendidos || 0),
+    vendidos_novo: nextSoldQuantity,
+    visitas_anterior: Number(current.visitas || 0),
+    visitas_novo: nextVisits,
   }));
 
   return {
