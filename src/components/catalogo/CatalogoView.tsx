@@ -42,13 +42,16 @@ type ElegivelRow = {
   title: string;
   seller_sku: string | null;
   status: string | null;
+  status_label?: string | null;
   price: number;
   permalink: string | null;
   thumbnail: string | null;
   category_id: string | null;
   domain_id: string | null;
   catalog_product_id: string | null;
+  catalog_product_status?: string | null;
   eligibility_status: string | null;
+  eligibility_label?: string | null;
   buy_box_eligible: boolean;
   eligibility_reason: string | null;
   variation_eligibility: Array<{ id?: number; status?: string; buy_box_eligible?: boolean }>;
@@ -68,12 +71,6 @@ const buyBoxOptions = [
   { value: 'perdendo', label: 'Perdendo' },
 ];
 
-const elegiveisBuyBoxOptions = [
-  { value: 'all', label: 'Todos Buy Box' },
-  { value: 'apto', label: 'Aptos Buy Box' },
-  { value: 'nao_apto', label: 'Não aptos Buy Box' },
-];
-
 interface CatalogoViewProps {
   mode: CatalogoMode;
 }
@@ -90,9 +87,8 @@ interface ElegiveisResumo {
   totalMl: number;
   carregados: number;
   ativos: number;
-  pausados: number;
-  buyBoxAptos: number;
-  precoMedio: number;
+  pendentesCatalogo: number;
+  semSku: number;
 }
 
 type RefreshJobStatus = 'idle' | 'running' | 'done' | 'error';
@@ -367,7 +363,6 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
     if (search.trim()) params.set('search', search.trim());
     if (statusMl !== 'all') params.set('statusMl', statusMl);
     if (mode === 'no_catalogo' && buyBoxFilter !== 'all') params.set('buyBox', buyBoxFilter);
-    if (mode === 'elegiveis' && buyBoxFilter !== 'all') params.set('buyBox', buyBoxFilter);
     if (priceMin !== null) params.set('priceMin', String(priceMin));
     if (priceMax !== null) params.set('priceMax', String(priceMax));
     return params.toString();
@@ -431,14 +426,12 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
 
   const resumoElegiveis = useMemo<ElegiveisResumo>(() => {
     const carregados = elegiveisData.length;
-    const totalPreco = elegiveisData.reduce((acc, row) => acc + Number(row.price || 0), 0);
     return {
       totalMl: total,
       carregados,
       ativos: elegiveisData.filter((row) => row.status === 'active').length,
-      pausados: elegiveisData.filter((row) => row.status === 'paused').length,
-      buyBoxAptos: elegiveisData.filter((row) => row.buy_box_eligible).length,
-      precoMedio: carregados > 0 ? totalPreco / carregados : 0,
+      pendentesCatalogo: elegiveisData.filter((row) => row.status_label === 'Pendente de catálogo').length,
+      semSku: elegiveisData.filter((row) => !String(row.seller_sku || '').trim()).length,
     };
   }, [elegiveisData, total]);
 
@@ -725,7 +718,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
     }
 
     const variationId = Array.isArray(row.variation_eligibility)
-      ? row.variation_eligibility.find((v) => String(v.status || '').toUpperCase() === 'READY_FOR_OPTIN' && v.buy_box_eligible)?.id
+      ? row.variation_eligibility.find((v) => String(v.status || '').toUpperCase() === 'READY_FOR_OPTIN')?.id
       : undefined;
 
     const res = await fetch('/api/catalogo/optin', {
@@ -1166,17 +1159,13 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       dataIndex: 'status',
       key: 'status',
       width: 120,
-      render: (v) => <Tag color={v === 'active' ? 'green' : v === 'paused' ? 'orange' : 'default'}>{mapStatusMlToPt(v)}</Tag>,
-    },
-    {
-      title: 'Buy Box?',
-      dataIndex: 'buy_box_eligible',
-      key: 'buy_box_eligible',
-      width: 120,
-      render: (v) => <Tag color={v ? 'green' : 'red'}>{v ? 'Apto' : 'Não apto'}</Tag>,
+      render: (v, record) => {
+        const label = record.status_label || mapStatusMlToPt(v);
+        const color = label === 'Pendente de catálogo' ? 'orange' : v === 'active' ? 'green' : v === 'paused' ? 'orange' : 'default';
+        return <Tag color={color}>{label}</Tag>;
+      },
     },
     { title: 'Preço', dataIndex: 'price', key: 'price', width: 110, render: (v) => formatCurrency(Number(v || 0)) },
-    { title: 'Preço p/ Ganhar', key: 'price_to_win', width: 140, render: () => '—' },
     {
       title: 'Ações', key: 'actions', width: 60, fixed: 'right',
       render: (_, record) => (
@@ -1407,13 +1396,10 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
                   <Statistic title={<span style={{ color: '#a0a0a0' }}>Ativos</span>} value={resumoElegiveis.ativos} valueStyle={{ color: '#52c41a', fontWeight: 700, fontSize: 24 }} />
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={4}>
-                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Pausados</span>} value={resumoElegiveis.pausados} valueStyle={{ color: '#faad14', fontWeight: 700, fontSize: 24 }} />
+                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Pendentes Catálogo</span>} value={resumoElegiveis.pendentesCatalogo} valueStyle={{ color: '#faad14', fontWeight: 700, fontSize: 24 }} />
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={4}>
-                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Buy Box Aptos</span>} value={resumoElegiveis.buyBoxAptos} valueStyle={{ color: '#52c41a', fontWeight: 700, fontSize: 24 }} />
-                </Col>
-                <Col xs={24} sm={12} md={8} lg={4}>
-                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Preço Médio</span>} value={resumoElegiveis.precoMedio} precision={2} prefix="R$" valueStyle={{ color: '#13c2c2', fontWeight: 700, fontSize: 24 }} />
+                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Sem SKU</span>} value={resumoElegiveis.semSku} valueStyle={{ color: '#ff4d4f', fontWeight: 700, fontSize: 24 }} />
                 </Col>
               </Row>
             </Spin>
@@ -1437,17 +1423,6 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
                   onChange={setStatusMl}
                   options={statusMlOptions}
                   style={{ width: 180 }}
-                />
-              </Col>
-              <Col>
-                <Select
-                  placeholder="Buy Box"
-                  value={buyBoxFilter === 'all' ? undefined : buyBoxFilter}
-                  onChange={setBuyBoxFilter}
-                  options={elegiveisBuyBoxOptions}
-                  style={{ width: 170 }}
-                  allowClear
-                  onClear={() => setBuyBoxFilter('all')}
                 />
               </Col>
               <Col>
