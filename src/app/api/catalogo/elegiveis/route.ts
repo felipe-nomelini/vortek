@@ -30,6 +30,7 @@ export async function GET(request: Request) {
   const search = (searchParams.get('search') || '').trim().toLowerCase();
   const eligibilityStatus = (searchParams.get('eligibilityStatus') || 'all').trim().toUpperCase();
   const statusMl = (searchParams.get('statusMl') || 'all').trim().toLowerCase();
+  const buyBox = (searchParams.get('buyBox') || 'all').trim().toLowerCase();
   const priceMin = searchParams.get('priceMin');
   const priceMax = searchParams.get('priceMax');
 
@@ -104,6 +105,9 @@ export async function GET(request: Request) {
     rows = rows.filter((r) => String(r.eligibility_status || '').toUpperCase() === eligibilityStatus);
   }
 
+  if (buyBox === 'apto') rows = rows.filter((r) => Boolean(r.buy_box_eligible));
+  if (buyBox === 'nao_apto') rows = rows.filter((r) => !Boolean(r.buy_box_eligible));
+
   if (search) {
     rows = rows.filter((row) => {
       const fields = [row.ml_item_id, row.title, row.seller_sku, row.catalog_product_id, row.category_id, row.domain_id, row.eligibility_status, row.eligibility_reason].map((v) => String(v || '').toLowerCase());
@@ -116,7 +120,7 @@ export async function GET(request: Request) {
   if (min !== null && !Number.isNaN(min)) rows = rows.filter((r) => Number(r.price || 0) >= min);
   if (max !== null && !Number.isNaN(max)) rows = rows.filter((r) => Number(r.price || 0) <= max);
 
-  console.log(JSON.stringify({ event: 'catalog_fetch_elegiveis', seller_id: sellerId, page, page_size: pageSize, total_ml: total, returned: rows.length, eligibility_status: eligibilityStatus, timestamp_utc: new Date().toISOString() }));
+  console.log(JSON.stringify({ event: 'catalog_fetch_elegiveis', seller_id: sellerId, page, page_size: pageSize, total_ml: total, returned: rows.length, eligibility_status: eligibilityStatus, buy_box: buyBox, timestamp_utc: new Date().toISOString() }));
 
   return NextResponse.json({ data: rows, total, page, pageSize });
 }

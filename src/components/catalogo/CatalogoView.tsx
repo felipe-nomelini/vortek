@@ -68,24 +68,11 @@ const buyBoxOptions = [
   { value: 'perdendo', label: 'Perdendo' },
 ];
 
-const eligibilityStatusOptions = [
-  { value: 'all', label: 'Todos os status' },
-  { value: 'READY_FOR_OPTIN', label: 'Ready for opt-in' },
-  { value: 'ALREADY_OPTED_IN', label: 'Already opted-in' },
-  { value: 'NOT_ELIGIBLE', label: 'Not eligible' },
-  { value: 'PRODUCT_INACTIVE', label: 'Product inactive' },
-  { value: 'CLOSED', label: 'Closed' },
-  { value: 'COMPETING', label: 'Competing' },
+const elegiveisBuyBoxOptions = [
+  { value: 'all', label: 'Todos Buy Box' },
+  { value: 'apto', label: 'Aptos Buy Box' },
+  { value: 'nao_apto', label: 'Não aptos Buy Box' },
 ];
-
-const eligibilityColor: Record<string, string> = {
-  READY_FOR_OPTIN: 'green',
-  ALREADY_OPTED_IN: 'blue',
-  NOT_ELIGIBLE: 'red',
-  PRODUCT_INACTIVE: 'orange',
-  CLOSED: 'default',
-  COMPETING: 'gold',
-};
 
 interface CatalogoViewProps {
   mode: CatalogoMode;
@@ -97,6 +84,15 @@ interface NoCatalogoResumo {
   pausados: number;
   ganhando: number;
   perdendo: number;
+}
+
+interface ElegiveisResumo {
+  totalMl: number;
+  carregados: number;
+  ativos: number;
+  pausados: number;
+  buyBoxAptos: number;
+  precoMedio: number;
 }
 
 type RefreshJobStatus = 'idle' | 'running' | 'done' | 'error';
@@ -322,7 +318,6 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
   const [search, setSearch] = useState('');
   const [statusMl, setStatusMl] = useState('all');
   const [buyBoxFilter, setBuyBoxFilter] = useState('all');
-  const [eligibilityStatus, setEligibilityStatus] = useState('all');
   const [priceMin, setPriceMin] = useState<number | null>(null);
   const [priceMax, setPriceMax] = useState<number | null>(null);
 
@@ -372,11 +367,11 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
     if (search.trim()) params.set('search', search.trim());
     if (statusMl !== 'all') params.set('statusMl', statusMl);
     if (mode === 'no_catalogo' && buyBoxFilter !== 'all') params.set('buyBox', buyBoxFilter);
+    if (mode === 'elegiveis' && buyBoxFilter !== 'all') params.set('buyBox', buyBoxFilter);
     if (priceMin !== null) params.set('priceMin', String(priceMin));
     if (priceMax !== null) params.set('priceMax', String(priceMax));
-    if (mode === 'elegiveis' && eligibilityStatus !== 'all') params.set('eligibilityStatus', eligibilityStatus);
     return params.toString();
-  }, [buyBoxFilter, eligibilityStatus, mode, page, priceMax, priceMin, search, statusMl]);
+  }, [buyBoxFilter, mode, page, priceMax, priceMin, search, statusMl]);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -432,7 +427,20 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
 
   useEffect(() => {
     setPage(1);
-  }, [mode, search, statusMl, buyBoxFilter, eligibilityStatus, priceMin, priceMax]);
+  }, [mode, search, statusMl, buyBoxFilter, priceMin, priceMax]);
+
+  const resumoElegiveis = useMemo<ElegiveisResumo>(() => {
+    const carregados = elegiveisData.length;
+    const totalPreco = elegiveisData.reduce((acc, row) => acc + Number(row.price || 0), 0);
+    return {
+      totalMl: total,
+      carregados,
+      ativos: elegiveisData.filter((row) => row.status === 'active').length,
+      pausados: elegiveisData.filter((row) => row.status === 'paused').length,
+      buyBoxAptos: elegiveisData.filter((row) => row.buy_box_eligible).length,
+      precoMedio: carregados > 0 ? totalPreco / carregados : 0,
+    };
+  }, [elegiveisData, total]);
 
   const clearRefreshPolling = useCallback(() => {
     if (refreshPollTimeoutRef.current) {
@@ -1387,6 +1395,31 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       ) : (
         <>
           <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
+            <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
+              <Row gutter={[16, 16]}>
+                <Col xs={24} sm={12} md={8} lg={4}>
+                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Total ML</span>} value={resumoElegiveis.totalMl} valueStyle={{ color: '#1677ff', fontWeight: 700, fontSize: 24 }} />
+                </Col>
+                <Col xs={24} sm={12} md={8} lg={4}>
+                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Carregados</span>} value={resumoElegiveis.carregados} valueStyle={{ color: '#d9d9d9', fontWeight: 700, fontSize: 24 }} />
+                </Col>
+                <Col xs={24} sm={12} md={8} lg={4}>
+                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Ativos</span>} value={resumoElegiveis.ativos} valueStyle={{ color: '#52c41a', fontWeight: 700, fontSize: 24 }} />
+                </Col>
+                <Col xs={24} sm={12} md={8} lg={4}>
+                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Pausados</span>} value={resumoElegiveis.pausados} valueStyle={{ color: '#faad14', fontWeight: 700, fontSize: 24 }} />
+                </Col>
+                <Col xs={24} sm={12} md={8} lg={4}>
+                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Buy Box Aptos</span>} value={resumoElegiveis.buyBoxAptos} valueStyle={{ color: '#52c41a', fontWeight: 700, fontSize: 24 }} />
+                </Col>
+                <Col xs={24} sm={12} md={8} lg={4}>
+                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Preço Médio</span>} value={resumoElegiveis.precoMedio} precision={2} prefix="R$" valueStyle={{ color: '#13c2c2', fontWeight: 700, fontSize: 24 }} />
+                </Col>
+              </Row>
+            </Spin>
+          </div>
+
+          <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
             <Row gutter={[8, 8]} align="middle">
               <Col>
                 <Input
@@ -1408,10 +1441,13 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
               </Col>
               <Col>
                 <Select
-                  value={eligibilityStatus}
-                  onChange={setEligibilityStatus}
-                  options={eligibilityStatusOptions}
-                  style={{ width: 210 }}
+                  placeholder="Buy Box"
+                  value={buyBoxFilter === 'all' ? undefined : buyBoxFilter}
+                  onChange={setBuyBoxFilter}
+                  options={elegiveisBuyBoxOptions}
+                  style={{ width: 170 }}
+                  allowClear
+                  onClear={() => setBuyBoxFilter('all')}
                 />
               </Col>
               <Col>
