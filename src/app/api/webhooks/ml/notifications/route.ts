@@ -349,6 +349,9 @@ export async function POST(request: Request) {
           resource,
           resource_path: resourcePath,
           status: itemResult.status,
+          error_code: itemResult.error?.code || null,
+          error_category: itemResult.error?.category || null,
+          trace_id: itemResult.error?.traceId || null,
           error: itemResult.error?.message || 'Falha ao consultar item do ML após webhook',
         }));
       } else {

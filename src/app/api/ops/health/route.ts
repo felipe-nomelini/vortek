@@ -35,6 +35,13 @@ export async function GET() {
     last_refresh_error: null as string | null,
     last_refresh_error_code: null as string | null,
     conectado: false,
+    read_ok: false,
+    read_error: null as string | null,
+    has_access_token: false,
+    has_refresh_token: false,
+    token_expires_at: null as string | null,
+    token_expired: null as boolean | null,
+    token_expires_in_minutes: null as number | null,
   };
   try {
     const client = createServiceClient();

@@ -36,6 +36,22 @@ const FATAL_REFRESH_ERROR_CODES = ['invalid_grant', 'invalid_client', 'unauthori
 let inflightForcedRefresh: Promise<string | null> | null = null;
 let authBlockedUntilMs = 0;
 
+class IntegracaoReadError extends Error {
+  code: string;
+  details: string | null;
+
+  constructor(message: string, code: string, details?: string | null) {
+    super(message);
+    this.name = 'IntegracaoReadError';
+    this.code = code;
+    this.details = details || null;
+  }
+}
+
+function isIntegracaoReadError(error: unknown): error is IntegracaoReadError {
+  return error instanceof IntegracaoReadError || (error as any)?.name === 'IntegracaoReadError';
+}
+
 function logMlAuthEvent(payload: Record<string, any>) {
   console.log(JSON.stringify({
     event: 'ml_oauth_refresh',
@@ -178,13 +194,29 @@ function logMLFailure(method: string, path: string, status: number, body: string
 
 async function getIntegracao(tipo: IntegracaoTipo): Promise<IntegracaoRow | null> {
   const client = createServiceClient();
-  const { data } = await client
+  const { data, error } = await client
     .from('integracoes')
     .select('*')
     .eq('tipo', tipo)
     .order('updated_at', { ascending: false })
     .limit(1)
     .maybeSingle();
+  if (error) {
+    const payload = {
+      event: 'integracao_read_failed',
+      timestamp_utc: new Date().toISOString(),
+      tipo,
+      code: error.code || 'supabase_read_failed',
+      message: error.message,
+      details: error.details || null,
+    };
+    console.error(JSON.stringify(payload));
+    throw new IntegracaoReadError(
+      `Falha ao ler integração ${tipo}`,
+      error.code || 'supabase_read_failed',
+      error.message,
+    );
+  }
   return data || null;
 }
 
@@ -406,7 +438,26 @@ export async function fetchMLResult<T>(path: string, options?: RequestInit): Pro
     };
   }
 
-  let token = await getValidMLToken();
+  let token: string | null = null;
+  try {
+    token = await getValidMLToken();
+  } catch (err: any) {
+    if (isIntegracaoReadError(err)) {
+      return {
+        ok: false,
+        status: 503,
+        data: null,
+        error: {
+          status: 503,
+          code: 'supabase_read_failed',
+          message: 'Falha ao ler integração Mercado Livre no Supabase',
+          category: 'retryable',
+          traceId: null,
+        },
+      };
+    }
+    throw err;
+  }
   if (!token) {
     return {
       ok: false,
@@ -499,6 +550,17 @@ export async function fetchMLResult<T>(path: string, options?: RequestInit): Pro
       error,
     };
   } catch (err: any) {
+    if (isIntegracaoReadError(err)) {
+      const error: MLRequestError = {
+        status: 503,
+        code: 'supabase_read_failed',
+        message: 'Falha ao ler integração Mercado Livre no Supabase',
+        category: 'retryable',
+        traceId: null,
+      };
+      console.warn(`[ML API] ${method} ${path} → exception (${error.category}): ${error.message}`);
+      return { ok: false, status: 503, data: null, error };
+    }
     const message = err?.name === 'AbortError' ? 'timeout' : (err?.message || 'network_error');
     const error: MLRequestError = {
       status: 0,
@@ -543,7 +605,21 @@ export async function fetchMLRaw(path: string, options?: RequestInit): Promise<{
     };
   }
 
-  let token = await getValidMLToken();
+  let token: string | null = null;
+  try {
+    token = await getValidMLToken();
+  } catch (err: any) {
+    if (isIntegracaoReadError(err)) {
+      return {
+        status: 503,
+        body: JSON.stringify({
+          code: 'supabase_read_failed',
+          message: 'Falha ao ler integração Mercado Livre no Supabase',
+        }),
+      };
+    }
+    throw err;
+  }
   if (!token) {
     return {
       status: 401,
@@ -601,6 +677,15 @@ export async function fetchMLRaw(path: string, options?: RequestInit): Promise<{
     }
     return { status: res.status, body };
   } catch (err: any) {
+    if (isIntegracaoReadError(err)) {
+      return {
+        status: 503,
+        body: JSON.stringify({
+          code: 'supabase_read_failed',
+          message: 'Falha ao ler integração Mercado Livre no Supabase',
+        }),
+      };
+    }
     console.warn(`[ML API] ${method} ${path} → exception (retryable): ${err?.message || err}`);
     return null;
   } finally {
@@ -628,15 +713,32 @@ export async function getMLAuthDiagnostics(): Promise<{
   last_refresh_error: string | null;
   last_refresh_error_code: string | null;
   conectado: boolean;
+  read_ok: boolean;
+  read_error: string | null;
+  has_access_token: boolean;
+  has_refresh_token: boolean;
+  token_expires_at: string | null;
+  token_expired: boolean | null;
+  token_expires_in_minutes: number | null;
 }> {
-  const integracao = await getIntegracao('mercadolivre');
+  let integracao: IntegracaoRow | null = null;
+  let readError: string | null = null;
+  try {
+    integracao = await getIntegracao('mercadolivre');
+  } catch (err: any) {
+    readError = err?.message || 'Falha ao ler integração Mercado Livre';
+  }
   const blockedUntil = getAuthFatalBlockedUntil();
   const lastErrorCode = integracao?.last_refresh_error_code || null;
   const isFatalErrorCode = FATAL_REFRESH_ERROR_CODES.includes(lastErrorCode || '');
   const reauthRequired = !integracao?.conectado || isFatalErrorCode;
+  const expiresAtMs = integracao?.token_expires_at ? new Date(integracao.token_expires_at).getTime() : null;
+  const tokenExpired = expiresAtMs ? expiresAtMs - Date.now() < 300000 : null;
 
   let state: MLAuthState = 'ok';
-  if (reauthRequired) {
+  if (readError) {
+    state = 'degraded';
+  } else if (reauthRequired) {
     state = 'reauth_required';
   } else if (lastErrorCode) {
     state = 'degraded';
@@ -649,6 +751,13 @@ export async function getMLAuthDiagnostics(): Promise<{
     last_refresh_error: integracao?.last_refresh_error || null,
     last_refresh_error_code: lastErrorCode,
     conectado: Boolean(integracao?.conectado),
+    read_ok: !readError,
+    read_error: readError,
+    has_access_token: Boolean(integracao?.access_token),
+    has_refresh_token: Boolean(integracao?.refresh_token),
+    token_expires_at: integracao?.token_expires_at || null,
+    token_expired: tokenExpired,
+    token_expires_in_minutes: expiresAtMs ? Math.round((expiresAtMs - Date.now()) / 60000) : null,
   };
 }
 
