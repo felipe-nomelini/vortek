@@ -143,6 +143,8 @@ type AnalisePrecoResponse = {
   refresh?: {
     status?: string;
   };
+  snapshot_max_synced_at?: string | null;
+  snapshot_age_seconds?: number | null;
   data?: AnalisePrecoRow[];
   erro?: string;
 };
@@ -338,6 +340,8 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
   const [analiseTotal, setAnaliseTotal] = useState(0);
   const [analiseClasses, setAnaliseClasses] = useState<Partial<Record<AnaliseClasse, number>>>({});
   const [analiseRefreshStatus, setAnaliseRefreshStatus] = useState<string | null>(null);
+  const [analiseSnapshotSyncedAt, setAnaliseSnapshotSyncedAt] = useState<string | null>(null);
+  const [analiseSnapshotAgeSeconds, setAnaliseSnapshotAgeSeconds] = useState<number | null>(null);
   const [analiseUltimaExecucao, setAnaliseUltimaExecucao] = useState<string | null>(null);
   const [updatingPriceByItem, setUpdatingPriceByItem] = useState<Record<string, boolean>>({});
   const [mlPublishModalOpen, setMlPublishModalOpen] = useState(false);
@@ -757,6 +761,22 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
         return;
       }
 
+      if (data?.price_updated) {
+        const warnings = Array.isArray(data?.warnings) ? data.warnings.filter(Boolean) : [];
+        if (data?.quantity_pricing_updated) {
+          messageApi.success('Preço e atacado atualizados no Mercado Livre.');
+        } else if (data?.quantity_pricing_queued || data?.quantity_pricing_outbox_id) {
+          messageApi.warning('Preço atualizado no Mercado Livre. Atacado ficou em fila para retry.');
+        } else {
+          messageApi.success('Preço atualizado no Mercado Livre.');
+        }
+        if (warnings.length > 0) {
+          messageApi.warning(warnings.join(' | '));
+        }
+        fetchData();
+        return;
+      }
+
       const queued = Boolean(data?.queued_publish);
       const outboxId = String(data?.outboxId || '').trim();
       if (!queued || !outboxId) {
@@ -786,7 +806,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           topN: Number.isFinite(analiseTopN) ? Math.max(1, Math.floor(analiseTopN)) : 50,
-          refreshMode: 'incremental',
+          refreshMode: 'none',
         }),
       });
       const json = await res.json().catch(() => ({})) as AnalisePrecoResponse;
@@ -801,6 +821,8 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       setAnaliseTotal(Number(json.total_analisado || 0));
       setAnaliseClasses(json.classes || {});
       setAnaliseRefreshStatus(json.refresh?.status || null);
+      setAnaliseSnapshotSyncedAt(json.snapshot_max_synced_at || null);
+      setAnaliseSnapshotAgeSeconds(typeof json.snapshot_age_seconds === 'number' ? json.snapshot_age_seconds : null);
       setAnaliseUltimaExecucao(new Date().toISOString());
       messageApi.success('Reanálise de preço concluída.');
     } catch {
@@ -1282,7 +1304,14 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
           </Col>
           <Col>
             <span style={{ color: '#a0a0a0', fontSize: 12 }}>
-              Refresh: {analiseRefreshStatus || '—'}
+              Fonte: {analiseRefreshStatus === 'skipped' ? 'snapshot local' : (analiseRefreshStatus || '—')}
+            </span>
+          </Col>
+          <Col>
+            <span style={{ color: '#a0a0a0', fontSize: 12 }}>
+              Snapshot: {analiseSnapshotSyncedAt
+                ? `${new Date(analiseSnapshotSyncedAt).toLocaleString('pt-BR')}${analiseSnapshotAgeSeconds !== null ? ` (${Math.floor(analiseSnapshotAgeSeconds / 60)} min)` : ''}`
+                : '—'}
             </span>
           </Col>
         </Row>

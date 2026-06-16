@@ -39,6 +39,7 @@ const TAXA_ML_DEFAULT = 0.15;
 const DEFAULT_TOP_N = 50;
 const MAX_TOP_N = 500;
 const PAGE_SIZE = 1000;
+type RefreshMode = 'none' | 'incremental' | 'full';
 
 function round2(value: number): number {
   return Math.round(value * 100) / 100;
@@ -83,6 +84,13 @@ async function runRefresh(request: Request, mode: 'incremental' | 'full') {
 }
 
 export async function POST(request: Request) {
+  const startedAt = Date.now();
+  let refreshMs = 0;
+  let snapshotQueryMs = 0;
+  let maxSyncedQueryMs = 0;
+  let produtosQueryMs = 0;
+  let calculationMs = 0;
+
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
@@ -92,9 +100,23 @@ export async function POST(request: Request) {
   const topN = Number.isFinite(topNRaw) ? Math.min(MAX_TOP_N, Math.max(1, Math.floor(topNRaw))) : DEFAULT_TOP_N;
   const sellerIdRaw = body?.sellerId;
   const sellerId = sellerIdRaw === undefined || sellerIdRaw === null ? null : Number(sellerIdRaw);
-  const refreshMode = body?.refreshMode === 'full' ? 'full' : 'incremental';
+  const refreshMode: RefreshMode = body?.refreshMode === 'full'
+    ? 'full'
+    : body?.refreshMode === 'incremental'
+      ? 'incremental'
+      : 'none';
 
-  const refresh = await runRefresh(request, refreshMode);
+  const refreshStartedAt = Date.now();
+  const refresh = refreshMode === 'none'
+    ? {
+      ok: true,
+      status: 'skipped',
+      body: { success: true, skipped: true, reason: 'using_local_snapshot' },
+      httpStatus: 200,
+    }
+    : await runRefresh(request, refreshMode);
+  refreshMs = Date.now() - refreshStartedAt;
+
   if (!refresh.ok) {
     return NextResponse.json({
       success: false,
@@ -105,8 +127,10 @@ export async function POST(request: Request) {
 
   const service = createServiceClient();
   const snapshotRows: SnapshotRow[] = [];
+  let snapshotMaxSyncedAt: string | null = null;
   let from = 0;
 
+  const snapshotQueryStartedAt = Date.now();
   while (true) {
     const to = from + PAGE_SIZE - 1;
     let query: any = service
@@ -131,10 +155,32 @@ export async function POST(request: Request) {
     if (chunk.length < PAGE_SIZE) break;
     from += PAGE_SIZE;
   }
+  snapshotQueryMs = Date.now() - snapshotQueryStartedAt;
+
+  const maxSyncedQueryStartedAt = Date.now();
+  const maxSyncedQuery = service
+    .from('catalogo_ml_snapshot')
+    .select('synced_at')
+    .eq('catalog_listing', true)
+    .eq('status', 'active')
+    .order('synced_at', { ascending: false, nullsFirst: false })
+    .limit(1);
+
+  if (sellerId !== null && Number.isFinite(sellerId)) {
+    maxSyncedQuery.eq('seller_id', sellerId);
+  }
+
+  const { data: maxSyncedRows } = await maxSyncedQuery;
+  maxSyncedQueryMs = Date.now() - maxSyncedQueryStartedAt;
+  snapshotMaxSyncedAt = String(maxSyncedRows?.[0]?.synced_at || '').trim() || null;
+  const snapshotAgeSeconds = snapshotMaxSyncedAt
+    ? Math.max(0, Math.floor((Date.now() - new Date(snapshotMaxSyncedAt).getTime()) / 1000))
+    : null;
 
   const produtoIds = Array.from(new Set(snapshotRows.map((row) => row.produto_id).filter((id): id is string => Boolean(id))));
   const produtoMap = new Map<string, ProdutoRow>();
 
+  const produtosQueryStartedAt = Date.now();
   for (let i = 0; i < produtoIds.length; i += PAGE_SIZE) {
     const idsChunk = produtoIds.slice(i, i + PAGE_SIZE);
     const { data, error } = await service
@@ -148,7 +194,9 @@ export async function POST(request: Request) {
       produtoMap.set(row.id, row);
     }
   }
+  produtosQueryMs = Date.now() - produtosQueryStartedAt;
 
+  const calculationStartedAt = Date.now();
   const report: AnaliseRow[] = snapshotRows.map((row) => {
     const precoAtual = round2(toFiniteNumber(row.price) || 0);
     const priceToWin = toFiniteNumber(row.price_to_win);
@@ -257,6 +305,27 @@ export async function POST(request: Request) {
     acc[row.classe] = (acc[row.classe] || 0) + 1;
     return acc;
   }, {} as Record<ClasseAnalise, number>);
+  calculationMs = Date.now() - calculationStartedAt;
+
+  console.log(JSON.stringify({
+    event: 'catalog_no_catalogo_analise_preco_performance',
+    timestamp_utc: new Date().toISOString(),
+    refresh_mode: refreshMode,
+    refresh_status: refresh.status,
+    seller_id: sellerId,
+    snapshot_rows: snapshotRows.length,
+    produto_ids: produtoIds.length,
+    produtos_loaded: produtoMap.size,
+    top_n: topN,
+    durations_ms: {
+      refresh: refreshMs,
+      snapshot_query: snapshotQueryMs,
+      max_synced_query: maxSyncedQueryMs,
+      produtos_query: produtosQueryMs,
+      calculation: calculationMs,
+      total: Date.now() - startedAt,
+    },
+  }));
 
   return NextResponse.json({
     success: true,
@@ -265,6 +334,8 @@ export async function POST(request: Request) {
       mode: refreshMode,
       details: refresh.body,
     },
+    snapshot_max_synced_at: snapshotMaxSyncedAt,
+    snapshot_age_seconds: snapshotAgeSeconds,
     total_analisado: report.length,
     top_n: topN,
     classes,

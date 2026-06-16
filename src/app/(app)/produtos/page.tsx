@@ -1136,6 +1136,22 @@ export default function ProductsPage() {
         return;
       }
 
+      if (data?.price_updated) {
+        const warnings = Array.isArray(data?.warnings) ? data.warnings.filter(Boolean) : [];
+        if (data?.quantity_pricing_updated) {
+          messageApi.success('Preço e atacado atualizados no Mercado Livre.');
+        } else if (data?.quantity_pricing_queued || data?.quantity_pricing_outbox_id) {
+          messageApi.warning('Preço atualizado no Mercado Livre. Atacado ficou em fila para retry.');
+        } else {
+          messageApi.success('Preço atualizado no Mercado Livre.');
+        }
+        if (warnings.length > 0) {
+          messageApi.warning(warnings.join(' | '));
+        }
+        await fetchProducts();
+        return;
+      }
+
       const queued = Boolean(data?.queued_publish);
       const outboxId = String(data?.outboxId || '').trim();
       if (!queued || !outboxId) {
