@@ -26,14 +26,14 @@ function parsePositiveInt(value: unknown, fallback: number) {
 }
 
 function hayamaxMatchers() {
-  return (process.env.MERCADOPAGO_HAYAMAX_MATCHERS || 'hayamax')
+  return (process.env.MERCADOPAGO_HAYAMAX_MATCHERS || 'hayamax,01.725.627/0001-72,01725627000172,creddropship,credropship,2744298')
     .split(',')
     .map((entry) => entry.trim().toLowerCase())
     .filter(Boolean);
 }
 
-function isHayamaxTopupCandidate(row: MercadoPagoMovementRow) {
-  const text = [
+function rowSearchText(row: MercadoPagoMovementRow) {
+  return [
     row.description,
     row.reference,
     row.movementType,
@@ -42,10 +42,26 @@ function isHayamaxTopupCandidate(row: MercadoPagoMovementRow) {
     .filter(Boolean)
     .join(' ')
     .toLowerCase();
+}
 
-  const matchedByText = hayamaxMatchers().some((token) => text.includes(token));
+function isHayamaxTopupCandidate(row: MercadoPagoMovementRow) {
+  const text = rowSearchText(row);
+  const digits = text.replace(/\D+/g, '');
+  const matchedByText = hayamaxMatchers().some((token) => {
+    const clean = token.trim().toLowerCase();
+    if (!clean) return false;
+    const tokenDigits = clean.replace(/\D+/g, '');
+    return text.includes(clean) || (tokenDigits.length >= 8 && digits.includes(tokenDigits));
+  });
   const enoughValue = Math.abs(row.amount) >= 1000;
   return matchedByText && enoughValue;
+}
+
+function isReviewRequiredCandidate(row: MercadoPagoMovementRow) {
+  const text = rowSearchText(row);
+  const enoughValue = Math.abs(row.amount) >= 1000;
+  const looksLikeOutgoingBill = row.amount < 0 || /boleto|conta|pagamento|bill|invoice/.test(text);
+  return enoughValue && looksLikeOutgoingBill;
 }
 
 async function importCsv(fileName: string) {
@@ -58,7 +74,11 @@ async function importCsv(fileName: string) {
   const errors: string[] = [];
 
   for (const row of rows) {
-    const matchedSupplier = isHayamaxTopupCandidate(row) ? 'HAYAMAX' : null;
+    const matchedSupplier = isHayamaxTopupCandidate(row)
+      ? 'HAYAMAX'
+      : isReviewRequiredCandidate(row)
+        ? 'REVIEW_REQUIRED'
+        : null;
     const amount = normalizeMoneyAmount(row.amount);
 
     const { data: rawMovement, error: rawError } = await service
@@ -84,7 +104,7 @@ async function importCsv(fileName: string) {
     }
 
     imported += 1;
-    if (!matchedSupplier || rawMovement?.supplier_balance_movement_id) continue;
+    if (matchedSupplier !== 'HAYAMAX' || rawMovement?.supplier_balance_movement_id) continue;
 
     const topupAmount = Math.abs(amount);
     const movementKey = `mercadopago:${row.externalId}`;

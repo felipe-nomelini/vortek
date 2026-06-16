@@ -62,7 +62,14 @@ function textFromPayload(value: unknown) {
 
 function hasHayamaxIdentity(payment: Record<string, unknown>) {
   const text = textFromPayload(payment);
-  return text.includes('hayamax') || text.includes('01.725.627/0001-72') || text.includes('01725627000172');
+  const digits = text.replace(/\D+/g, '');
+  return text.includes('hayamax')
+    || text.includes('creddropship')
+    || text.includes('credropship')
+    || text.includes('2744298')
+    || text.includes('01.725.627/0001-72')
+    || text.includes('01725627000172')
+    || digits.includes('01725627000172');
 }
 
 function isBillPaymentCandidate(payment: Record<string, unknown>) {

@@ -208,6 +208,28 @@ function classColor(classe: AnaliseClasse): string {
   return 'default';
 }
 
+function classPriority(classe: AnaliseClasse): number {
+  if (classe === 'ajustar_para_ganhar_sem_prejuizo') return 0;
+  if (classe === 'nao_viavel_ganhar_sem_prejuizo') return 1;
+  return 2;
+}
+
+function compareText(left: unknown, right: unknown): number {
+  return String(left || '').localeCompare(String(right || ''), 'pt-BR', { numeric: true, sensitivity: 'base' });
+}
+
+function compareNumberNullable(left: unknown, right: unknown): number {
+  const leftNumber = Number(left);
+  const rightNumber = Number(right);
+  const leftValid = Number.isFinite(leftNumber);
+  const rightValid = Number.isFinite(rightNumber);
+
+  if (!leftValid && !rightValid) return 0;
+  if (!leftValid) return 1;
+  if (!rightValid) return -1;
+  return leftNumber - rightNumber;
+}
+
 function parseOutboxStepLabel(operation: string | null | undefined): string {
   const op = String(operation || '').trim().toLowerCase();
   if (!op) return 'Aguardando worker';
@@ -921,19 +943,21 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       dataIndex: 'ml_item_id',
       key: 'ml_item_id',
       width: 140,
+      sorter: (a, b) => compareText(a.ml_item_id, b.ml_item_id),
       render: (v, record) => record.permalink
         ? <a href={record.permalink} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'monospace' }}>{v || '—'}</a>
         : <span style={{ fontFamily: 'monospace' }}>{v || '—'}</span>,
     },
-    { title: 'Título', dataIndex: 'titulo', key: 'titulo', width: 280, render: (v) => v || '—' },
-    { title: 'SKU', dataIndex: 'sku_local', key: 'sku_local', width: 120, render: (v) => v || '—' },
-    { title: 'Preço Atual', dataIndex: 'preco_atual', key: 'preco_atual', width: 120, render: (v) => formatCurrency(Number(v || 0)) },
-    { title: 'Preço p/ Ganhar', dataIndex: 'price_to_win', key: 'price_to_win', width: 130, render: (v) => (v === null ? '—' : formatCurrency(Number(v))) },
+    { title: 'Título', dataIndex: 'titulo', key: 'titulo', width: 280, sorter: (a, b) => compareText(a.titulo, b.titulo), render: (v) => v || '—' },
+    { title: 'SKU', dataIndex: 'sku_local', key: 'sku_local', width: 120, sorter: (a, b) => compareText(a.sku_local, b.sku_local), render: (v) => v || '—' },
+    { title: 'Preço Atual', dataIndex: 'preco_atual', key: 'preco_atual', width: 120, sorter: (a, b) => compareNumberNullable(a.preco_atual, b.preco_atual), render: (v) => formatCurrency(Number(v || 0)) },
+    { title: 'Preço p/ Ganhar', dataIndex: 'price_to_win', key: 'price_to_win', width: 130, sorter: (a, b) => compareNumberNullable(a.price_to_win, b.price_to_win), render: (v) => (v === null ? '—' : formatCurrency(Number(v))) },
     {
       title: 'Diferença',
       dataIndex: 'delta_preco',
       key: 'delta_preco',
       width: 120,
+      sorter: (a, b) => compareNumberNullable(a.delta_preco, b.delta_preco),
       render: (v) => {
         if (v === null) return '—';
         const n = Number(v || 0);
@@ -946,6 +970,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       dataIndex: 'lucro_unitario_estimado',
       key: 'lucro_unitario_estimado',
       width: 170,
+      sorter: (a, b) => compareNumberNullable(a.lucro_unitario_estimado, b.lucro_unitario_estimado),
       render: (v) => {
         if (v === null) return '—';
         const n = Number(v);
@@ -958,6 +983,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       dataIndex: 'classe',
       key: 'classe',
       width: 200,
+      sorter: (a, b) => classPriority(a.classe) - classPriority(b.classe),
       render: (v) => <Tag color={classColor(v)}>{classLabel(v)}</Tag>,
     },
     {

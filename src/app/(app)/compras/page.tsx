@@ -40,6 +40,16 @@ interface Compra {
   supplier_payment_notes: string | null;
 }
 
+interface MercadoPagoPendingMovement {
+  id: string;
+  external_id: string;
+  movement_date: string | null;
+  description: string | null;
+  reference: string | null;
+  amount: number;
+  movement_type: string | null;
+}
+
 const statusOptions = [
   { value: '', label: 'Todos' },
   { value: 'Aguardando Informações', label: 'Aguardando Informações' },
@@ -86,6 +96,9 @@ export default function ComprasPage() {
   const [hayamaxBalance, setHayamaxBalance] = useState<number | null>(null);
   const [hayamaxLowBalance, setHayamaxLowBalance] = useState(false);
   const [hayamaxLastTopup, setHayamaxLastTopup] = useState<{ amount: number; source: string; reference: string | null } | null>(null);
+  const [hayamaxMpLastSync, setHayamaxMpLastSync] = useState<string | null>(null);
+  const [hayamaxMpPending, setHayamaxMpPending] = useState<MercadoPagoPendingMovement[]>([]);
+  const [approvingMpMovementId, setApprovingMpMovementId] = useState<string | null>(null);
   const [topupModalOpen, setTopupModalOpen] = useState(false);
   const [topupAmount, setTopupAmount] = useState<number | null>(1000);
   const [topupReference, setTopupReference] = useState('');
@@ -164,6 +177,11 @@ export default function ComprasPage() {
           source: String(lastTopup.created_by || '').startsWith('mercadopago') ? 'Mercado Pago' : 'Manual',
           reference: lastTopup.reference || null,
         } : null);
+        setHayamaxMpLastSync(json.mercadoPago?.lastMovementDate || null);
+        setHayamaxMpPending((json.mercadoPago?.pendingReview || []).map((movement: any) => ({
+          ...movement,
+          amount: Number(movement.amount || 0),
+        })));
       }
     } catch {
       messageApi.error('Erro ao conectar');
@@ -252,6 +270,25 @@ export default function ComprasPage() {
       messageApi.error(err.message || 'Erro ao registrar boleto Hayamax');
     } finally {
       setSavingTopup(false);
+    }
+  };
+
+  const handleApproveMercadoPagoMovement = async (movementId: string) => {
+    setApprovingMpMovementId(movementId);
+    try {
+      const res = await fetch('/api/fornecedores/saldo-hayamax/aprovar-mercadopago', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ movementId }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(json.error || 'Erro ao aprovar crédito Mercado Pago');
+      messageApi.success('Crédito Mercado Pago aprovado no saldo Hayamax.');
+      await fetchData();
+    } catch (err: any) {
+      messageApi.error(err.message || 'Erro ao aprovar crédito Mercado Pago');
+    } finally {
+      setApprovingMpMovementId(null);
     }
   };
 
@@ -506,6 +543,11 @@ export default function ComprasPage() {
                 </Text>
               </div>
             )}
+            <div style={{ marginTop: 4 }}>
+              <Text style={{ color: '#8c8c8c', fontSize: 12 }}>
+                Mercado Pago: {hayamaxMpLastSync ? `último movimento importado em ${new Date(hayamaxMpLastSync).toLocaleDateString('pt-BR')}` : 'sem importação recente'}
+              </Text>
+            </div>
           </Col>
           <Col>
             <Button type="primary" onClick={() => setTopupModalOpen(true)}>
@@ -513,6 +555,48 @@ export default function ComprasPage() {
             </Button>
           </Col>
         </Row>
+        {hayamaxMpPending.length > 0 && (
+          <div style={{ marginTop: 12, borderTop: '1px solid #303030', paddingTop: 12 }}>
+            <Text style={{ color: '#faad14', fontSize: 12, display: 'block', marginBottom: 8 }}>
+              Mercado Pago tem {hayamaxMpPending.length} movimento(s) grande(s) pendente(s) de revisão.
+            </Text>
+            <Space direction="vertical" size={8} style={{ width: '100%' }}>
+              {hayamaxMpPending.map((movement) => (
+                <div
+                  key={movement.id}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: 12,
+                    background: '#1f1f1f',
+                    border: '1px solid #303030',
+                    borderRadius: 6,
+                    padding: '8px 10px',
+                  }}
+                >
+                  <div>
+                    <Text style={{ color: '#e0e0e0', fontSize: 12 }}>
+                      {formatCurrency(Math.abs(movement.amount))} · {movement.description || movement.reference || movement.external_id}
+                    </Text>
+                    <div>
+                      <Text style={{ color: '#8c8c8c', fontSize: 11 }}>
+                        {movement.movement_date ? new Date(movement.movement_date).toLocaleString('pt-BR') : 'sem data'} · confirmar se é boleto Hayamax
+                      </Text>
+                    </div>
+                  </div>
+                  <Button
+                    size="small"
+                    loading={approvingMpMovementId === movement.id}
+                    onClick={() => void handleApproveMercadoPagoMovement(movement.id)}
+                  >
+                    Aprovar crédito
+                  </Button>
+                </div>
+              ))}
+            </Space>
+          </div>
+        )}
       </div>
 
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>

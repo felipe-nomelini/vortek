@@ -13,7 +13,7 @@ export const revalidate = 0;
 export async function GET() {
   const service = createServiceClient();
 
-  const [{ data: movements, error }, balance] = await Promise.all([
+  const [{ data: movements, error }, balance, { data: pendingReview }, { data: lastMpMovement }] = await Promise.all([
     service
       .from('supplier_balance_movements')
       .select('*')
@@ -21,6 +21,18 @@ export async function GET() {
       .order('created_at', { ascending: false })
       .limit(50),
     getSupplierBalance(service, HAYAMAX_FORNECEDOR_ID),
+    service
+      .from('mercadopago_account_movements')
+      .select('id,external_id,movement_date,description,reference,amount,movement_type,matched_supplier')
+      .eq('matched_supplier', 'REVIEW_REQUIRED')
+      .is('supplier_balance_movement_id', null)
+      .order('movement_date', { ascending: false, nullsFirst: false })
+      .limit(5),
+    service
+      .from('mercadopago_account_movements')
+      .select('movement_date,updated_at')
+      .order('movement_date', { ascending: false, nullsFirst: false })
+      .limit(1),
   ]);
 
   if (error) {
@@ -33,6 +45,11 @@ export async function GET() {
     balance,
     lowBalance: balance < HAYAMAX_MIN_TOPUP_AMOUNT,
     movements: movements || [],
+    mercadoPago: {
+      lastMovementDate: lastMpMovement?.[0]?.movement_date || null,
+      pendingReview: pendingReview || [],
+      pendingReviewCount: pendingReview?.length || 0,
+    },
   });
 }
 

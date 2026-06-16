@@ -23,6 +23,58 @@ export async function getSupplierBalance(client: any, fornecedorId = HAYAMAX_FOR
   return (data || []).reduce((sum: number, row: any) => sum + Number(row.amount || 0), 0);
 }
 
+function skuLookupVariants(value: unknown) {
+  const raw = String(value || '').trim();
+  const compact = raw.replace(/\s+/g, '');
+  const withoutKnownPrefix = compact.replace(/^(HYX|VTK|FJ)/i, '');
+  return Array.from(new Set([raw, compact, withoutKnownPrefix].filter(Boolean)));
+}
+
+export async function resolveSupplierPurchaseDebitAmount(params: {
+  client: any;
+  fornecedorId: string | number | null | undefined;
+  offerId?: string | null;
+  dsliteProdutoId?: string | number | null;
+  sku?: string | null;
+  quantity?: number | null;
+}) {
+  const fornecedorId = String(params.fornecedorId || '').trim();
+  const quantity = Math.max(1, Number(params.quantity || 1) || 1);
+  const offerId = String(params.offerId || '').trim();
+  const dsliteProdutoId = String(params.dsliteProdutoId || '').trim();
+  const skuVariants = skuLookupVariants(params.sku);
+
+  let query = params.client
+    .from('produto_fornecedor_ofertas')
+    .select('id,custo,dslite_fornecedor_id,dslite_produto_id,sku_oferta,sku_fornecedor')
+    .eq('dslite_fornecedor_id', fornecedorId)
+    .limit(1);
+
+  if (offerId) {
+    query = query.eq('id', offerId);
+  } else if (dsliteProdutoId) {
+    query = query.eq('dslite_produto_id', dsliteProdutoId);
+  } else if (skuVariants.length > 0) {
+    query = query.or(`sku_oferta.in.(${skuVariants.join(',')}),sku_fornecedor.in.(${skuVariants.join(',')})`);
+  } else {
+    return { amount: null, offerId: null, reason: 'missing_lookup' as const };
+  }
+
+  const { data, error } = await query.maybeSingle();
+  if (error) throw new Error(error.message);
+
+  const unitCost = Number(data?.custo || 0);
+  if (!data?.id || !Number.isFinite(unitCost) || unitCost <= 0) {
+    return { amount: null, offerId: data?.id || null, reason: 'missing_cost' as const };
+  }
+
+  return {
+    amount: normalizeMoneyAmount(unitCost * quantity),
+    offerId: String(data.id),
+    reason: 'offer_cost' as const,
+  };
+}
+
 export async function recordSupplierPurchaseDebit(params: {
   client: any;
   fornecedorId: string | number | null | undefined;
