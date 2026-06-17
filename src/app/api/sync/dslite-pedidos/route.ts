@@ -68,6 +68,17 @@ function normalizeNfeKey(value: unknown): string {
   return String(value || '').replace(/\D/g, '');
 }
 
+function buildDslitePurchaseQuery(dataInicial: string, dataFinal: string, page: number) {
+  const params = new URLSearchParams({
+    data_criacao_inicial: `${dataInicial}T00:00:00`,
+    data_criacao_final: `${dataFinal}T23:59:59`,
+    limit: '100',
+    page: String(page),
+  });
+
+  return `/v1/DropShipping?${params.toString()}`;
+}
+
 export async function POST(request: Request) {
   const startedAt = Date.now();
   const apiKey = request.headers.get('x-api-key') || '';
@@ -158,7 +169,7 @@ export async function POST(request: Request) {
 
     while (true) {
       const data = await fetchDslite<DslitePedidosResponse>(
-        `/v1/DropShipping?data_criacao_inicial=${dataInicial}&data_criacao_final=${dataFinal}&limit=100&page=${page}`,
+        buildDslitePurchaseQuery(dataInicial, dataFinal, page),
       );
 
       if (!data?.pedidos?.length) {
