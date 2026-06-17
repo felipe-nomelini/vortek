@@ -41,7 +41,7 @@ export async function resolveSupplierPurchaseDebitAmount(params: {
   const fornecedorId = String(params.fornecedorId || '').trim();
   const quantity = Math.max(1, Number(params.quantity || 1) || 1);
   const offerId = String(params.offerId || '').trim();
-  const dsliteProdutoId = String(params.dsliteProdutoId || '').trim();
+  const dsliteProdutoIdVariants = skuLookupVariants(params.dsliteProdutoId);
   const skuVariants = skuLookupVariants(params.sku);
 
   let query = params.client
@@ -52,8 +52,8 @@ export async function resolveSupplierPurchaseDebitAmount(params: {
 
   if (offerId) {
     query = query.eq('id', offerId);
-  } else if (dsliteProdutoId) {
-    query = query.eq('dslite_produto_id', dsliteProdutoId);
+  } else if (dsliteProdutoIdVariants.length > 0) {
+    query = query.in('dslite_produto_id', dsliteProdutoIdVariants);
   } else if (skuVariants.length > 0) {
     query = query.or(`sku_oferta.in.(${skuVariants.join(',')}),sku_fornecedor.in.(${skuVariants.join(',')})`);
   } else {

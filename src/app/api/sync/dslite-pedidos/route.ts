@@ -181,10 +181,18 @@ export async function POST(request: Request) {
         try {
           const item = pedido.items?.[0];
           const supplierPaymentMode = inferSupplierPaymentMode(pedido.fornecedor?.fornecedorid ? String(pedido.fornecedor.fornecedorid) : '');
+
+          const { data: existente } = await client
+            .from('compras')
+            .select('id,supplier_payment_mode,supplier_payment_status,supplier_payment_amount,produto_fornecedor_oferta_id')
+            .eq('dsid', String(pedido.dsid))
+            .maybeSingle();
+
           const resolvedSupplierPaymentAmount = supplierPaymentMode === 'balance_account'
             ? await resolveSupplierPurchaseDebitAmount({
               client,
               fornecedorId: pedido.fornecedor?.fornecedorid ? String(pedido.fornecedor.fornecedorid) : '',
+              offerId: (existente as any)?.produto_fornecedor_oferta_id || null,
               dsliteProdutoId: item?.nf_produtoid || null,
               sku: item?.nf_produtoid || null,
               quantity: item?.quantidade || 1,
@@ -211,14 +219,8 @@ export async function POST(request: Request) {
             quantidade: item?.quantidade || 1,
             supplier_payment_mode: supplierPaymentMode,
             supplier_payment_status: supplierPaymentMode === 'prepaid_pix' ? 'pending' : null,
-            supplier_payment_amount: resolvedSupplierPaymentAmount.amount,
+            supplier_payment_amount: resolvedSupplierPaymentAmount.amount ?? (existente as any)?.supplier_payment_amount ?? null,
           };
-
-          const { data: existente } = await client
-            .from('compras')
-            .select('id,supplier_payment_mode,supplier_payment_status')
-            .eq('dsid', String(pedido.dsid))
-            .maybeSingle();
 
           if (existente?.id) {
             const existingPaymentMode = String((existente as any)?.supplier_payment_mode || '').trim() || null;
