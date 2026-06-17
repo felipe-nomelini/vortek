@@ -87,6 +87,72 @@ function chunk<T>(arr: T[], size: number): T[][] {
   return out;
 }
 
+function isProductSkuUniqueViolation(error: any): boolean {
+  const text = `${error?.message || ''} ${(error as any)?.details || ''}`.toLowerCase();
+  return text.includes('produtos_sku_key') || text.includes('produtos_sku_upper_unique');
+}
+
+async function getNextVortekSkuStart(client: any): Promise<number> {
+  const { data, error } = await client
+    .from('produtos')
+    .select('sku')
+    .like('sku', 'VTK%')
+    .order('sku', { ascending: false })
+    .limit(1000);
+
+  if (error) {
+    throw new Error(`Falha ao gerar SKU mestre: ${error.message}`);
+  }
+
+  let max = 0;
+  for (const row of data || []) {
+    const numberPart = /^VTK(\d{6})$/.exec(String(row?.sku || ''))?.[1];
+    if (!numberPart) continue;
+    max = Math.max(max, Number(numberPart));
+  }
+  return max + 1;
+}
+
+async function insertProductRowsWithGeneratedSkus(
+  client: any,
+  payload: Array<Record<string, unknown>>,
+): Promise<{ data: any[] | null; error: any | null }> {
+  let nextSkuNumber = await getNextVortekSkuStart(client);
+
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    if (nextSkuNumber + payload.length - 1 > 999999) {
+      return {
+        data: null,
+        error: new Error('Faixa de SKU mestre VTK###### esgotada'),
+      };
+    }
+
+    const insertPayload = payload.map((row, index) => {
+      const { _product_key, ...clean } = row;
+      return {
+        ...clean,
+        sku: `VTK${String(nextSkuNumber + index).padStart(6, '0')}`,
+      };
+    });
+
+    const result = await client
+      .from('produtos')
+      .insert(insertPayload as any)
+      .select('id,sku');
+
+    if (!result.error || !isProductSkuUniqueViolation(result.error)) {
+      return result;
+    }
+
+    nextSkuNumber = await getNextVortekSkuStart(client);
+  }
+
+  return {
+    data: null,
+    error: new Error('Falha ao gerar SKU mestre único após múltiplas tentativas'),
+  };
+}
+
 export async function POST(req: Request) {
   const startedAt = Date.now();
   const errors: Array<{ code: string; message: string; context?: Record<string, unknown> }> = [];
@@ -402,14 +468,7 @@ export async function POST(req: Request) {
 
         if (productRowsToCreate.length > 0) {
           for (const payload of chunk(productRowsToCreate, UPSERT_CHUNK_SIZE)) {
-            const insertPayload = payload.map((row) => {
-              const { _product_key, ...clean } = row;
-              return clean;
-            });
-            const { data: insertedRows, error: upsertError } = await client
-              .from('produtos')
-              .insert(insertPayload as any)
-              .select('id,sku');
+            const { data: insertedRows, error: upsertError } = await insertProductRowsWithGeneratedSkus(client, payload);
 
             if (upsertError) {
               errors.push({

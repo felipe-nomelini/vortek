@@ -1,7 +1,7 @@
 import type { PricingParams, PricingResult } from '@/types/pricing';
 
 const TAX_RATE = 0.04;
-const DEFAULT_MARGIN = 0.30;
+const DEFAULT_MARGIN = 0.10;
 
 /**
  * Calcula o preço sugerido de venda baseado na fórmula Vortek.
@@ -12,13 +12,13 @@ const DEFAULT_MARGIN = 0.30;
  * Onde:
  *   - Imposto: 4% fixo (0.04)
  *   - Taxa ML: variável conforme categoria/tipo de anúncio no Mercado Livre
- *   - Margem: padrão 30% (0.30), ajustável pelo usuário
+ *   - Margem: padrão 10% (0.10), ajustável pelo usuário
  *
  * @param params - Parâmetros de precificação
  * @param params.cost - Custo do produto
  * @param params.shipping - Valor do frete
  * @param params.mlFee - Taxa do Mercado Livre em decimal (ex: 0.15 para 15%)
- * @param params.margin - Margem de lucro desejada em decimal (padrão: 0.30)
+ * @param params.margin - Margem de lucro desejada em decimal (padrão: 0.10)
  * @returns Resultado da precificação com valores detalhados
  * @throws {Error} Se a soma de impostos + taxas + margem for >= 1
  */

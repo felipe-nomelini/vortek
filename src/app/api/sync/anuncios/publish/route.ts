@@ -107,6 +107,15 @@ function isMlNonPublishableStateError(operation: { error?: string; code?: string
     && (raw.includes('status:closed') || raw.includes('status:under_review'));
 }
 
+function isMlPermanentAuthorizationError(operation: { error?: string; code?: string | null }): boolean {
+  const raw = `${operation.code || ''} ${operation.error || ''}`.toLowerCase();
+  return raw.includes('not authorized')
+    || raw.includes('unauthorized')
+    || raw.includes('forbidden')
+    || raw.includes('caller is not authorized')
+    || raw.includes('access this resource');
+}
+
 export async function POST(request: Request) {
   const startedAt = Date.now();
   const apiKey = request.headers.get('x-api-key');
@@ -123,6 +132,7 @@ export async function POST(request: Request) {
   let lockAcquired = false;
   const domain = 'anuncios:ml_push';
   const errors: Array<{ code: string; message: string; context?: Record<string, unknown> }> = [];
+  const warnings: Array<{ code: string; message: string; context?: Record<string, unknown> }> = [];
 
   try {
     const lock = await acquireDomainLock({
@@ -235,6 +245,7 @@ export async function POST(request: Request) {
     let done = 0;
     let retry = 0;
     let failed = 0;
+    let permanentFailed = 0;
 
     for (const row of rows) {
       const outboxId = String(row.id);
@@ -470,13 +481,16 @@ export async function POST(request: Request) {
         }
       } else {
         const isNonPublishableState = isMlNonPublishableStateError(failedOperation);
-        const isHardFail = isNonPublishableState || attempts >= MAX_RETRY_ATTEMPTS;
+        const isPermanentAuthorization = isMlPermanentAuthorizationError(failedOperation);
+        const isPermanentFailure = isNonPublishableState || isPermanentAuthorization;
+        const isHardFail = isPermanentFailure || attempts >= MAX_RETRY_ATTEMPTS;
         const isConflictRetry = isMlConflictError(failedOperation);
         const retryDelayMinutes = isConflictRetry
           ? CONFLICT_RETRY_BACKOFF_MINUTES
           : Math.min(15, attempts);
         if (isHardFail) failed += 1;
         else retry += 1;
+        if (isPermanentFailure) permanentFailed += 1;
 
         await (client
           .from('anuncios_ml_outbox' as any)
@@ -496,17 +510,30 @@ export async function POST(request: Request) {
           } as any)
           .eq('id', outboxId) as any);
 
-        errors.push({
+        const issue = {
           code: 'ml_publish_operation_failed',
           message: failedOperation.error || 'Falha na publicação',
-          context: { outboxId, mlItemId, operation: failedOperation.op, attempts },
-        });
+          context: {
+            outboxId,
+            mlItemId,
+            operation: failedOperation.op,
+            attempts,
+            permanent: isPermanentFailure,
+          },
+        };
+
+        if (isPermanentFailure) {
+          warnings.push(issue);
+        } else {
+          errors.push(issue);
+        }
       }
     }
 
     const hasProgress = done > 0;
     const hasOnlyRetriableFailures = failed === 0 && retry > 0;
-    const success = errors.length === 0 || (hasProgress && hasOnlyRetriableFailures);
+    const hasOnlyPermanentItemFailures = errors.length === 0 && retry === 0 && failed > 0 && permanentFailed === failed;
+    const success = errors.length === 0 || (hasProgress && hasOnlyRetriableFailures) || hasOnlyPermanentItemFailures;
 
     return NextResponse.json({
       success,
@@ -523,8 +550,10 @@ export async function POST(request: Request) {
         done,
         retry,
         failed,
+        permanent_failed: permanentFailed,
       },
       errors,
+      warnings,
       duration: { ms: Date.now() - startedAt },
       ok: success,
       processados: rows.length,
