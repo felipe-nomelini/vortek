@@ -92,6 +92,60 @@ async function persistWebhookOrderStub(params: {
   };
 }
 
+async function persistWebhookOrderPendingStub(params: {
+  serviceClient: ReturnType<typeof createServiceClient>;
+  mlOrderId: string;
+  existing: any;
+}) {
+  const { serviceClient, mlOrderId, existing } = params;
+  const normalizedMlOrderId = String(mlOrderId || '').trim();
+  if (!normalizedMlOrderId) return null;
+
+  const now = new Date().toISOString();
+  const payload = {
+    numero: Number(normalizedMlOrderId) || 0,
+    numero_loja: normalizedMlOrderId,
+    data: existing?.data || now,
+    data_venda: existing?.data_venda || now,
+    data_venda_source: existing?.data_venda_source || 'webhook_resource_pending',
+    contato_nome: existing?.contato_nome || 'Desconhecido',
+    contato_documento: String(existing?.contato_documento || ''),
+    total: existing?.total || 0,
+    situacao: existing?.situacao || 'aberto',
+    ml_order_id: normalizedMlOrderId,
+    snapshot_incompleto: true,
+    snapshot_pendencias: mergePendingTags(existing?.snapshot_pendencias, WEBHOOK_STUB_PENDING_TAGS),
+    snapshot_source: 'webhook_orders_v2_pending',
+    sincronizado_em: null,
+  };
+
+  if (existing?.id) {
+    await serviceClient
+      .from('pedidos')
+      .update(payload)
+      .eq('id', existing.id);
+    return {
+      pedidoId: String(existing.id),
+      action: 'updated' as const,
+    };
+  }
+
+  const { data: inserted, error } = await serviceClient
+    .from('pedidos')
+    .insert(payload as any)
+    .select('id')
+    .single();
+
+  if (error || !inserted?.id) {
+    throw new Error(error?.message || 'Falha ao criar pedido pendente do webhook');
+  }
+
+  return {
+    pedidoId: String(inserted.id),
+    action: 'inserted' as const,
+  };
+}
+
 async function queueOrderHydrationJob(params: {
   serviceClient: ReturnType<typeof createServiceClient>;
   mlOrderId: string;
@@ -300,6 +354,15 @@ export async function POST(request: Request) {
         });
         pedidoId = stubResult?.pedidoId || null;
         shouldHydrate = stubResult?.shouldHydrate ?? shouldHydrate;
+      } else if (mlOrderId) {
+        const stubResult = await persistWebhookOrderPendingStub({
+          serviceClient,
+          mlOrderId,
+          existing: existingPedido,
+        });
+        pedidoId = stubResult?.pedidoId || null;
+        // O ML pode notificar antes de liberar /orders/{id}; evita jobs imediatos que falham e deixa o cron hidratar.
+        shouldHydrate = false;
       }
 
       if (mlOrderId && shouldHydrate) {
