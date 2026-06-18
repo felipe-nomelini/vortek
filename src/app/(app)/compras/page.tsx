@@ -83,6 +83,7 @@ export default function ComprasPage() {
   const [sort, setSort] = useState<RemoteSortState>({ sortBy: 'data_criacao', sortOrder: 'desc' });
 
   const [search, setSearch] = useState('');
+  const [urlSearchReady, setUrlSearchReady] = useState(false);
   const [statusFilter, setStatusFilter] = useState('');
   const [dateRange, setDateRange] = useState<[string | null, string | null]>([null, null]);
 
@@ -196,11 +197,13 @@ export default function ComprasPage() {
   useEffect(() => {
     const urlSearch = new URLSearchParams(window.location.search).get('search')?.trim();
     if (urlSearch) setSearch(urlSearch);
+    setUrlSearchReady(true);
   }, []);
 
   useEffect(() => {
+    if (!urlSearchReady) return;
     fetchData();
-  }, [fetchData]);
+  }, [fetchData, urlSearchReady]);
 
   useEffect(() => {
     setPage(1);
