@@ -11,6 +11,7 @@ import {
   downloadShippingLabelFromStorage,
   storeShippingLabelForPedido,
 } from '@/lib/shipping-label-storage';
+import { DSLITE_PLACEHOLDER_LABEL_FILE_NAME, loadDslitePlaceholderLabel } from '@/lib/dslite/placeholder-label';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -201,7 +202,7 @@ async function ensureInvoiceDataIfNeeded(params: {
 
 export async function POST(request: Request, { params }: { params: { id: string } }) {
   try {
-    const { phoneNumber } = await request.json().catch(() => ({}));
+    const { phoneNumber, usePlaceholderLabel } = await request.json().catch(() => ({}));
     const chatId = normalizeWhatsappChatId(String(phoneNumber || ''));
     const client = createServiceClient();
 
@@ -223,14 +224,18 @@ export async function POST(request: Request, { params }: { params: { id: string 
       ? await client.from('compras').select('*').eq('dsid', dsid).maybeSingle()
       : { data: null };
 
-    let labelPdf = await downloadShippingLabelFromStorage(client, (pedido as any).ml_label_storage_path);
-    let labelSource: 'storage' | 'mercado_livre' = labelPdf ? 'storage' : 'mercado_livre';
+    let labelPdf = usePlaceholderLabel
+      ? await loadDslitePlaceholderLabel()
+      : await downloadShippingLabelFromStorage(client, (pedido as any).ml_label_storage_path);
+    let labelSource: 'storage' | 'mercado_livre' | 'placeholder' = usePlaceholderLabel
+      ? 'placeholder'
+      : labelPdf ? 'storage' : 'mercado_livre';
     let labelAttempts = 0;
     let uploadedInvoice = false;
     let skippedInvoiceUpload = false;
     let invoiceNumber = String((pedido as any).nota_fiscal_numero || '').trim();
 
-    if (!labelPdf) {
+    if (!labelPdf && !usePlaceholderLabel) {
       const invoice = await ensureInvoiceDataIfNeeded({ pedido, pedidoId, mlOrderId, shipmentId });
       uploadedInvoice = invoice.uploadedInvoice;
       skippedInvoiceUpload = invoice.skippedInvoiceUpload;
@@ -252,7 +257,9 @@ export async function POST(request: Request, { params }: { params: { id: string 
 
     if (!labelPdf) return NextResponse.json({ error: 'Etiqueta não encontrada ou indisponível' }, { status: 422 });
 
-    const filename = `etiqueta_ml_${String((pedido as any).numero || mlOrderId || shipmentId)}.pdf`;
+    const filename = usePlaceholderLabel
+      ? DSLITE_PLACEHOLDER_LABEL_FILE_NAME
+      : `etiqueta_ml_${String((pedido as any).numero || mlOrderId || shipmentId)}.pdf`;
     const valorCompra = formatCurrencyBRL((compra as any)?.valor_total);
     const caption = [
       'Etiqueta Mercado Livre',
@@ -267,6 +274,7 @@ export async function POST(request: Request, { params }: { params: { id: string 
       (compra as any)?.quantidade ? `Quantidade: ${(compra as any).quantidade}` : null,
       valorCompra ? `Valor compra: ${valorCompra}` : null,
       labelSource === 'storage' ? 'Etiqueta: arquivo já salvo no sistema' : null,
+      labelSource === 'placeholder' ? 'Etiqueta: genérica para teste' : null,
     ].filter(Boolean).join('\n');
 
     const wahaResponse = await sendWahaFile({
@@ -287,6 +295,7 @@ export async function POST(request: Request, { params }: { params: { id: string 
         uploaded_invoice: uploadedInvoice,
         skipped_invoice_upload: skippedInvoiceUpload,
         label_source: labelSource,
+        test_placeholder_label: Boolean(usePlaceholderLabel),
         label_bytes: labelPdf.length,
         label_attempts: labelAttempts,
         chat_id_suffix: chatId.slice(-8),

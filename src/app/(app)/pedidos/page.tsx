@@ -248,6 +248,7 @@ export default function PedidosPage() {
   const [whatsappPhone, setWhatsappPhone] = useState('');
   const [sendingWhatsappLabel, setSendingWhatsappLabel] = useState(false);
   const [whatsappOrder, setWhatsappOrder] = useState<Order | null>(null);
+  const [whatsappUsePlaceholderLabel, setWhatsappUsePlaceholderLabel] = useState(false);
 
   const [dsliteProgressOpen, setDsliteProgressOpen] = useState(false);
   const dslitePollRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -337,8 +338,9 @@ export default function PedidosPage() {
     if (dslitePollRef.current) clearTimeout(dslitePollRef.current);
   }, []);
 
-  const openWhatsappLabelModal = (order: Order) => {
+  const openWhatsappLabelModal = (order: Order, usePlaceholderLabel = false) => {
     setWhatsappOrder(order);
+    setWhatsappUsePlaceholderLabel(usePlaceholderLabel);
     setWhatsappModalOpen(true);
   };
 
@@ -346,6 +348,7 @@ export default function PedidosPage() {
     if (sendingWhatsappLabel) return;
     setWhatsappModalOpen(false);
     setWhatsappOrder(null);
+    setWhatsappUsePlaceholderLabel(false);
   };
 
   const handleSendWhatsappLabel = async () => {
@@ -361,7 +364,7 @@ export default function PedidosPage() {
       const res = await fetch(`/api/pedidos/${whatsappOrder.dbId}/enviar-etiqueta-whatsapp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber }),
+        body: JSON.stringify({ phoneNumber, usePlaceholderLabel: whatsappUsePlaceholderLabel }),
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(json.error || 'Erro ao enviar etiqueta por WhatsApp');
@@ -982,6 +985,11 @@ export default function PedidosPage() {
             label: 'Enviar etiqueta ML por WhatsApp',
             icon: <UploadOutlined />,
           });
+          items.push({
+            key: 'send_whatsapp_placeholder_label',
+            label: 'Enviar etiqueta genérica por WhatsApp',
+            icon: <UploadOutlined />,
+          });
         }
         if (hasDsliteId && isDsliteRejected(record.dslite_status)) {
           items.push({
@@ -1003,6 +1011,7 @@ export default function PedidosPage() {
                 if (key === 'dslite') criarPedidoDslite(record, 'brasilnfe');
                 if (key === 'etiqueta') enviarEtiquetaAutomatica(record);
                 if (key === 'send_whatsapp_label') openWhatsappLabelModal(record);
+                if (key === 'send_whatsapp_placeholder_label') openWhatsappLabelModal(record, true);
                 if (key === 'desvincular_dslite') desvincularCompraDslite(record);
               },
             }}
@@ -1142,7 +1151,7 @@ export default function PedidosPage() {
         orderStatus={trackingOrderStatus}
       />
       <Modal
-        title="Enviar etiqueta ML por WhatsApp"
+        title={whatsappUsePlaceholderLabel ? 'Enviar etiqueta genérica por WhatsApp' : 'Enviar etiqueta ML por WhatsApp'}
         open={whatsappModalOpen}
         onCancel={closeWhatsappLabelModal}
         onOk={handleSendWhatsappLabel}
@@ -1155,6 +1164,7 @@ export default function PedidosPage() {
           <Text style={{ color: '#a0a0a0' }}>
             Pedido venda #{whatsappOrder?.numero || '—'}.
             {whatsappOrder?.dslite_id ? ` Pedido DSLite #${whatsappOrder.dslite_id}.` : ' Sem pedido DSLite vinculado.'}
+            {whatsappUsePlaceholderLabel ? ' Será enviada a etiqueta genérica de teste.' : ''}
             {' '}Informe o número de WhatsApp do destinatário.
           </Text>
           <Input
