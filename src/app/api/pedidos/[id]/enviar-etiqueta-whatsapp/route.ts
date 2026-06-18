@@ -287,21 +287,41 @@ export async function POST(request: Request, { params }: { params: { id: string 
     const appBaseUrl = resolveAppBaseUrl(request);
     const danfeUrl = invoiceNumber ? buildPublicNfeUrl(appBaseUrl, pedidoId, 'danfe') : null;
     const xmlUrl = nfeKey ? buildPublicNfeUrl(appBaseUrl, pedidoId, 'xml') : null;
+    const fornecedorNome = limitText((compra as any)?.fornecedor_nome, 80);
+    const clienteNome = limitText((pedido as any).billing_nome || (pedido as any).contato_nome, 80);
+    const produtoDescricao = limitText((compra as any)?.produto_descricao, 120);
+    const labelStatus = labelSource === 'storage'
+      ? 'arquivo ja salvo no sistema'
+      : labelSource === 'placeholder'
+        ? 'generica para teste'
+        : 'baixada do Mercado Livre';
     const caption = [
-      'Etiqueta Mercado Livre',
-      `Pedido venda: #${(pedido as any).numero}`,
-      dsid ? `Pedido DSLite: #${dsid}` : null,
-      limitText((compra as any)?.fornecedor_nome, 80) ? `Fornecedor: ${limitText((compra as any)?.fornecedor_nome, 80)}` : null,
+      '*ETIQUETA MERCADO LIVRE*',
+      dsid ? `*Pedido DSLite:* #${dsid}` : '*Pedido DSLite:* nao vinculado',
+      labelDownloadUrl ? `*Link da etiqueta:*\n${labelDownloadUrl}` : null,
+
+      '*PEDIDO*',
+      `Venda ML: #${(pedido as any).numero}`,
       `Envio ML: ${shipmentId}`,
-      invoiceNumber ? `NF: ${invoiceNumber}${danfeUrl ? ` - ${danfeUrl}` : ''}` : null,
-      nfeKey ? `Chave NF-e: ${nfeKey}${xmlUrl ? ` - ${xmlUrl}` : ''}` : null,
-      limitText((pedido as any).billing_nome || (pedido as any).contato_nome, 80) ? `Cliente: ${limitText((pedido as any).billing_nome || (pedido as any).contato_nome, 80)}` : null,
-      limitText((compra as any)?.produto_descricao, 120) ? `Produto: ${limitText((compra as any)?.produto_descricao, 120)}` : null,
+      fornecedorNome ? `Fornecedor: ${fornecedorNome}` : null,
+
+      '*NOTA FISCAL*',
+      invoiceNumber ? `NF: ${invoiceNumber}` : null,
+      danfeUrl ? `DANFE PDF:\n${danfeUrl}` : null,
+      nfeKey ? `Chave NF-e: ${nfeKey}` : null,
+      xmlUrl ? `XML:\n${xmlUrl}` : null,
+
+      '*CLIENTE*',
+      clienteNome || null,
+
+      '*PRODUTO*',
+      produtoDescricao || null,
       (compra as any)?.quantidade ? `Quantidade: ${(compra as any).quantidade}` : null,
       valorCompra ? `Valor compra: ${valorCompra}` : null,
-      labelSource === 'storage' ? 'Etiqueta: arquivo já salvo no sistema' : null,
-      labelSource === 'placeholder' ? 'Etiqueta: genérica para teste' : null,
-    ].filter(Boolean).join('\n');
+
+      '*OBSERVACAO*',
+      `Etiqueta: ${labelStatus}`,
+    ].filter(Boolean).join('\n\n');
 
     let wahaResponse: unknown = null;
     let whatsappSendMode: 'file' | 'text_link' = 'file';
@@ -319,7 +339,7 @@ export async function POST(request: Request, { params }: { params: { id: string 
       whatsappSendMode = 'text_link';
       wahaResponse = await sendWahaText({
         chatId,
-        text: `${caption}\n\nArquivo PDF: ${labelDownloadUrl}`,
+        text: caption,
       });
     }
 
