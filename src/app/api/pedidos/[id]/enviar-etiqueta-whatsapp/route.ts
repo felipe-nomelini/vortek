@@ -8,12 +8,13 @@ import {
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import { normalizeWhatsappChatId, sendWahaFile, sendWahaText } from '@/services/waha';
 import {
-  createShippingLabelSignedUrl,
   downloadShippingLabelFromStorage,
   storeShippingLabelForPedido,
 } from '@/lib/shipping-label-storage';
 import { DSLITE_PLACEHOLDER_LABEL_FILE_NAME, loadDslitePlaceholderLabel } from '@/lib/dslite/placeholder-label';
 import { buildPublicNfeUrl } from '@/lib/public-nfe-links';
+import { buildPublicShippingLabelUrl } from '@/lib/public-shipping-label-links';
+import { createShortLink } from '@/lib/short-links';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -250,6 +251,7 @@ export async function POST(request: Request, { params }: { params: { id: string 
     let invoiceNumber = String((pedido as any).nota_fiscal_numero || '').trim();
     const nfeKey = String((pedido as any).nfe_chave || '').trim();
     let labelDownloadUrl: string | null = null;
+    let labelStoragePath = String((pedido as any).ml_label_storage_path || '').trim();
 
     if (!labelPdf && !usePlaceholderLabel) {
       const invoice = await ensureInvoiceDataIfNeeded({ pedido, pedidoId, mlOrderId, shipmentId });
@@ -269,24 +271,45 @@ export async function POST(request: Request, { params }: { params: { id: string 
         pdf: label.pdf,
         source: 'pedidos_whatsapp',
       });
-      labelDownloadUrl = stored.signedUrl || null;
+      labelStoragePath = stored.storagePath || labelStoragePath;
     }
 
     if (!labelPdf) return NextResponse.json({ error: 'Etiqueta não encontrada ou indisponível' }, { status: 422 });
 
+    const appBaseUrl = resolveAppBaseUrl(request);
     if (usePlaceholderLabel) {
-      labelDownloadUrl = `${resolveAppBaseUrl(request)}/dslite/labels/etiqueta-frete-terceiros-posterior.pdf`;
-    } else if (!labelDownloadUrl && (pedido as any).ml_label_storage_path) {
-      labelDownloadUrl = await createShippingLabelSignedUrl(client, String((pedido as any).ml_label_storage_path));
+      labelDownloadUrl = `${appBaseUrl}/dslite/labels/etiqueta-frete-terceiros-posterior.pdf`;
+    } else if (labelStoragePath) {
+      labelDownloadUrl = buildPublicShippingLabelUrl(appBaseUrl, pedidoId);
     }
 
     const filename = usePlaceholderLabel
       ? DSLITE_PLACEHOLDER_LABEL_FILE_NAME
       : `etiqueta_ml_${String((pedido as any).numero || mlOrderId || shipmentId)}.pdf`;
     const valorCompra = formatCurrencyBRL((compra as any)?.valor_total);
-    const appBaseUrl = resolveAppBaseUrl(request);
-    const danfeUrl = invoiceNumber ? buildPublicNfeUrl(appBaseUrl, pedidoId, 'danfe') : null;
-    const xmlUrl = nfeKey ? buildPublicNfeUrl(appBaseUrl, pedidoId, 'xml') : null;
+    const danfeUrlRaw = invoiceNumber ? buildPublicNfeUrl(appBaseUrl, pedidoId, 'danfe') : null;
+    const xmlUrlRaw = nfeKey ? buildPublicNfeUrl(appBaseUrl, pedidoId, 'xml') : null;
+    const labelShortUrl = await createShortLink({
+      client,
+      baseUrl: appBaseUrl,
+      targetUrl: labelDownloadUrl,
+      purpose: 'ml_label',
+      metadata: { pedidoId, mlOrderId, shipmentId },
+    });
+    const danfeUrl = await createShortLink({
+      client,
+      baseUrl: appBaseUrl,
+      targetUrl: danfeUrlRaw,
+      purpose: 'danfe',
+      metadata: { pedidoId, mlOrderId, invoiceNumber },
+    });
+    const xmlUrl = await createShortLink({
+      client,
+      baseUrl: appBaseUrl,
+      targetUrl: xmlUrlRaw,
+      purpose: 'xml',
+      metadata: { pedidoId, mlOrderId, nfeKey },
+    });
     const fornecedorNome = limitText((compra as any)?.fornecedor_nome, 80);
     const clienteNome = limitText((pedido as any).billing_nome || (pedido as any).contato_nome, 80);
     const produtoDescricao = limitText((compra as any)?.produto_descricao, 120);
@@ -295,32 +318,29 @@ export async function POST(request: Request, { params }: { params: { id: string 
       : labelSource === 'placeholder'
         ? 'generica para teste'
         : 'baixada do Mercado Livre';
+    const productLabel = produtoDescricao || 'produto';
     const caption = [
-      '*ETIQUETA MERCADO LIVRE*',
-      dsid ? `*Pedido DSLite:* #${dsid}` : '*Pedido DSLite:* nao vinculado',
-      labelDownloadUrl ? `*Link da etiqueta:*\n${labelDownloadUrl}` : null,
-
-      '*PEDIDO*',
+      '*Etiqueta Liberada!*',
+      `A etiqueta do produto *${productLabel}* foi liberada e esta no link abaixo:`,
+      labelShortUrl,
+      '------------------------',
+      '*DADOS DA NOTA*',
+      invoiceNumber ? `NF: ${invoiceNumber}` : null,
+      nfeKey ? `Chave: ${nfeKey}` : null,
+      danfeUrl ? `DANFE: ${danfeUrl}` : null,
+      xmlUrl ? `XML: ${xmlUrl}` : null,
+      '------------------------',
+      '*PEDIDO DE COMPRA*',
+      dsid ? `DSLite: #${dsid}` : 'DSLite: nao vinculado',
+      fornecedorNome ? `Fornecedor: ${fornecedorNome}` : null,
+      valorCompra ? `Valor compra: ${valorCompra}` : null,
+      '------------------------',
+      '*PEDIDO DE VENDA*',
       `Venda ML: #${(pedido as any).numero}`,
       `Envio ML: ${shipmentId}`,
-      fornecedorNome ? `Fornecedor: ${fornecedorNome}` : null,
-
-      '*NOTA FISCAL*',
-      invoiceNumber ? `NF: ${invoiceNumber}` : null,
-      danfeUrl ? `DANFE PDF:\n${danfeUrl}` : null,
-      nfeKey ? `Chave NF-e: ${nfeKey}` : null,
-      xmlUrl ? `XML:\n${xmlUrl}` : null,
-
-      '*CLIENTE*',
-      clienteNome || null,
-
-      '*PRODUTO*',
-      produtoDescricao || null,
+      clienteNome ? `Cliente: ${clienteNome}` : null,
       (compra as any)?.quantidade ? `Quantidade: ${(compra as any).quantidade}` : null,
-      valorCompra ? `Valor compra: ${valorCompra}` : null,
-
-      '*OBSERVACAO*',
-      `Etiqueta: ${labelStatus}`,
+      `Origem da etiqueta: ${labelStatus}`,
     ].filter(Boolean).join('\n\n');
 
     let wahaResponse: unknown = null;
@@ -335,7 +355,7 @@ export async function POST(request: Request, { params }: { params: { id: string 
       });
     } catch (err) {
       if (!isWahaPlusOnlyError(err)) throw err;
-      if (!labelDownloadUrl) throw new Error('WAHA Core não envia arquivos e não foi possível gerar link da etiqueta.');
+      if (!labelShortUrl) throw new Error('WAHA Core não envia arquivos e não foi possível gerar link da etiqueta.');
       whatsappSendMode = 'text_link';
       wahaResponse = await sendWahaText({
         chatId,
