@@ -105,10 +105,6 @@ export default function ComprasPage() {
   const [topupReference, setTopupReference] = useState('');
   const [topupNotes, setTopupNotes] = useState('');
   const [savingTopup, setSavingTopup] = useState(false);
-  const [whatsappModalOpen, setWhatsappModalOpen] = useState(false);
-  const [whatsappPhone, setWhatsappPhone] = useState('');
-  const [sendingWhatsappLabel, setSendingWhatsappLabel] = useState(false);
-  const [whatsappCompra, setWhatsappCompra] = useState<Compra | null>(null);
   const [summary, setSummary] = useState({
     total: 0,
     pendentes: 0,
@@ -304,43 +300,6 @@ export default function ComprasPage() {
     }
   };
 
-  const openWhatsappLabelModal = (compra: Compra) => {
-    setWhatsappCompra(compra);
-    setWhatsappModalOpen(true);
-  };
-
-  const closeWhatsappLabelModal = () => {
-    if (sendingWhatsappLabel) return;
-    setWhatsappModalOpen(false);
-    setWhatsappCompra(null);
-  };
-
-  const handleSendWhatsappLabel = async () => {
-    if (!whatsappCompra) return;
-    const phoneNumber = whatsappPhone.replace(/\D/g, '');
-    if (!phoneNumber) {
-      messageApi.warning('Informe o número de WhatsApp do destinatário.');
-      return;
-    }
-
-    setSendingWhatsappLabel(true);
-    try {
-      const res = await fetch(`/api/compras/${whatsappCompra.id}/enviar-etiqueta-whatsapp`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber }),
-      });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(json.error || 'Erro ao enviar etiqueta por WhatsApp');
-      messageApi.success(json.message || 'Etiqueta enviada por WhatsApp.');
-      closeWhatsappLabelModal();
-    } catch (err: any) {
-      messageApi.error(err.message || 'Erro ao enviar etiqueta por WhatsApp');
-    } finally {
-      setSendingWhatsappLabel(false);
-    }
-  };
-
   const renderSupplierPaymentTag = (record: Compra) => {
     if (record.supplier_payment_mode === 'balance_account') {
       return <Tag color="blue">Saldo Hayamax</Tag>;
@@ -484,7 +443,6 @@ export default function ComprasPage() {
         const items = [
           { key: 'view', label: 'Ver Detalhes' },
           { key: 'track', label: 'Rastrear' },
-          { key: 'send_whatsapp_label', label: 'Enviar etiqueta ML por WhatsApp' },
           ...(record.supplier_payment_mode === 'prepaid_pix' && record.supplier_payment_status === 'pending'
             ? [{ key: 'confirm_supplier_payment', label: 'Confirmar pagamento do fornecedor' }]
             : []),
@@ -497,9 +455,6 @@ export default function ComprasPage() {
               }
               if (key === 'confirm_supplier_payment') {
                 openPaymentModal(record);
-              }
-              if (key === 'send_whatsapp_label') {
-                openWhatsappLabelModal(record);
               }
             }}}
             trigger={['click']}
@@ -706,30 +661,6 @@ export default function ComprasPage() {
           />
         </div>
       </Spin>
-
-      <Modal
-        title="Enviar etiqueta ML por WhatsApp"
-        open={whatsappModalOpen}
-        onCancel={closeWhatsappLabelModal}
-        onOk={handleSendWhatsappLabel}
-        okText="Enviar"
-        cancelText="Cancelar"
-        confirmLoading={sendingWhatsappLabel}
-        destroyOnClose
-      >
-        <Space direction="vertical" style={{ width: '100%' }} size={12}>
-          <Text style={{ color: '#a0a0a0' }}>
-            Compra #{whatsappCompra?.dsid ? String(whatsappCompra.dsid).padStart(6, '0') : '—'}.
-            Informe o número de WhatsApp do destinatário. Use DDD + número ou 55 + DDD + número.
-          </Text>
-          <Input
-            placeholder="Ex.: 11999999999"
-            value={whatsappPhone}
-            onChange={(event) => setWhatsappPhone(event.target.value)}
-            disabled={sendingWhatsappLabel}
-          />
-        </Space>
-      </Modal>
 
       <Modal
         title="Confirmar pagamento do fornecedor"

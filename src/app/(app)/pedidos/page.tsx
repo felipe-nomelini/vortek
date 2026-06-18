@@ -15,7 +15,7 @@ import type { Database } from '@/types/database';
 import type { Order, OrderStatus } from '@/types/order';
 import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
 
 const statusOptions = [
@@ -182,6 +182,7 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     ml_fiscal_release_reason: item.ml_fiscal_release_reason,
     ml_fiscal_release_source: item.ml_fiscal_release_source,
     ml_fiscal_release_checked_at: item.ml_fiscal_release_checked_at,
+    ml_label_storage_path: item.ml_label_storage_path,
     nfe_chave: item.nfe_chave,
     nfe_status: item.nfe_status,
   };
@@ -243,6 +244,10 @@ export default function PedidosPage() {
   const [trackingModalOpen, setTrackingModalOpen] = useState(false);
   const [trackingOrderId, setTrackingOrderId] = useState<string>('');
   const [trackingOrderStatus, setTrackingOrderStatus] = useState<OrderStatus>('aberto');
+  const [whatsappModalOpen, setWhatsappModalOpen] = useState(false);
+  const [whatsappPhone, setWhatsappPhone] = useState('');
+  const [sendingWhatsappLabel, setSendingWhatsappLabel] = useState(false);
+  const [whatsappOrder, setWhatsappOrder] = useState<Order | null>(null);
 
   const [dsliteProgressOpen, setDsliteProgressOpen] = useState(false);
   const dslitePollRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -331,6 +336,43 @@ export default function PedidosPage() {
   useEffect(() => () => {
     if (dslitePollRef.current) clearTimeout(dslitePollRef.current);
   }, []);
+
+  const openWhatsappLabelModal = (order: Order) => {
+    setWhatsappOrder(order);
+    setWhatsappModalOpen(true);
+  };
+
+  const closeWhatsappLabelModal = () => {
+    if (sendingWhatsappLabel) return;
+    setWhatsappModalOpen(false);
+    setWhatsappOrder(null);
+  };
+
+  const handleSendWhatsappLabel = async () => {
+    if (!whatsappOrder) return;
+    const phoneNumber = whatsappPhone.replace(/\D/g, '');
+    if (!phoneNumber) {
+      messageApi.warning('Informe o número de WhatsApp do destinatário.');
+      return;
+    }
+
+    setSendingWhatsappLabel(true);
+    try {
+      const res = await fetch(`/api/pedidos/${whatsappOrder.dbId}/enviar-etiqueta-whatsapp`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phoneNumber }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(json.error || 'Erro ao enviar etiqueta por WhatsApp');
+      messageApi.success(json.message || 'Etiqueta enviada por WhatsApp.');
+      closeWhatsappLabelModal();
+    } catch (err: any) {
+      messageApi.error(err.message || 'Erro ao enviar etiqueta por WhatsApp');
+    } finally {
+      setSendingWhatsappLabel(false);
+    }
+  };
 
   const resolveNotaFiscalPdfUrl = useCallback(async (order: Order): Promise<string | null> => {
     if (!order.dbId) {
@@ -934,6 +976,13 @@ export default function PedidosPage() {
             icon: <UploadOutlined />,
           });
         }
+        if (record.ml_shipment_id || record.ml_order_id || record.ml_label_storage_path) {
+          items.push({
+            key: 'send_whatsapp_label',
+            label: 'Enviar etiqueta ML por WhatsApp',
+            icon: <UploadOutlined />,
+          });
+        }
         if (hasDsliteId && isDsliteRejected(record.dslite_status)) {
           items.push({
             key: 'desvincular_dslite',
@@ -953,6 +1002,7 @@ export default function PedidosPage() {
                 }
                 if (key === 'dslite') criarPedidoDslite(record, 'brasilnfe');
                 if (key === 'etiqueta') enviarEtiquetaAutomatica(record);
+                if (key === 'send_whatsapp_label') openWhatsappLabelModal(record);
                 if (key === 'desvincular_dslite') desvincularCompraDslite(record);
               },
             }}
@@ -1091,6 +1141,30 @@ export default function PedidosPage() {
         orderId={trackingOrderId}
         orderStatus={trackingOrderStatus}
       />
+      <Modal
+        title="Enviar etiqueta ML por WhatsApp"
+        open={whatsappModalOpen}
+        onCancel={closeWhatsappLabelModal}
+        onOk={handleSendWhatsappLabel}
+        okText="Enviar"
+        cancelText="Cancelar"
+        confirmLoading={sendingWhatsappLabel}
+        destroyOnClose
+      >
+        <Space direction="vertical" style={{ width: '100%' }} size={12}>
+          <Text style={{ color: '#a0a0a0' }}>
+            Pedido venda #{whatsappOrder?.numero || '—'}.
+            {whatsappOrder?.dslite_id ? ` Pedido DSLite #${whatsappOrder.dslite_id}.` : ' Sem pedido DSLite vinculado.'}
+            {' '}Informe o número de WhatsApp do destinatário.
+          </Text>
+          <Input
+            placeholder="Ex.: 11999999999"
+            value={whatsappPhone}
+            onChange={(event) => setWhatsappPhone(event.target.value)}
+            disabled={sendingWhatsappLabel}
+          />
+        </Space>
+      </Modal>
       <ProgressModal
         open={dsliteProgressOpen}
         title="Criando Pedido DSLite"

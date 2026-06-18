@@ -51,6 +51,19 @@ export async function createShippingLabelSignedUrl(
   return data.signedUrl;
 }
 
+export async function downloadShippingLabelFromStorage(
+  client: ServiceClient,
+  filePath: string | null | undefined,
+): Promise<Buffer | null> {
+  const path = String(filePath || '').trim();
+  if (!path) return null;
+  const { data, error } = await client.storage
+    .from(SHIPPING_LABEL_BUCKET)
+    .download(path);
+  if (error || !data) return null;
+  return Buffer.from(await data.arrayBuffer());
+}
+
 export async function storeShippingLabelForPedido(input: StoreShippingLabelInput): Promise<StoreShippingLabelResult> {
   const storagePath = buildShippingLabelPath(input.pedidoNumero, input.shipmentId);
   if (!storagePath) {
