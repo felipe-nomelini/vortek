@@ -284,7 +284,7 @@ export async function POST(request: Request, { params }: { params: { id: string 
       : `etiqueta_ml_${String((pedido as any).numero || mlOrderId || shipmentId)}.pdf`;
     const valorCompra = formatCurrencyBRL((compra as any)?.valor_total);
     const appBaseUrl = resolveAppBaseUrl(request);
-    const danfeUrl = invoiceNumber ? `${appBaseUrl}/api/notas-fiscais/${pedidoId}/pdf` : null;
+    const danfeUrl = invoiceNumber ? `${appBaseUrl}/api/notas-fiscais/${pedidoId}/pdf/download` : null;
     const xmlUrl = nfeKey ? `${appBaseUrl}/api/notas-fiscais/${pedidoId}/xml` : null;
     const caption = [
       'Etiqueta Mercado Livre',
