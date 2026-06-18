@@ -13,6 +13,7 @@ import {
   storeShippingLabelForPedido,
 } from '@/lib/shipping-label-storage';
 import { DSLITE_PLACEHOLDER_LABEL_FILE_NAME, loadDslitePlaceholderLabel } from '@/lib/dslite/placeholder-label';
+import { buildPublicNfeUrl } from '@/lib/public-nfe-links';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -284,8 +285,8 @@ export async function POST(request: Request, { params }: { params: { id: string 
       : `etiqueta_ml_${String((pedido as any).numero || mlOrderId || shipmentId)}.pdf`;
     const valorCompra = formatCurrencyBRL((compra as any)?.valor_total);
     const appBaseUrl = resolveAppBaseUrl(request);
-    const danfeUrl = invoiceNumber ? `${appBaseUrl}/api/notas-fiscais/${pedidoId}/pdf/download` : null;
-    const xmlUrl = nfeKey ? `${appBaseUrl}/api/notas-fiscais/${pedidoId}/xml` : null;
+    const danfeUrl = invoiceNumber ? buildPublicNfeUrl(appBaseUrl, pedidoId, 'danfe') : null;
+    const xmlUrl = nfeKey ? buildPublicNfeUrl(appBaseUrl, pedidoId, 'xml') : null;
     const caption = [
       'Etiqueta Mercado Livre',
       `Pedido venda: #${(pedido as any).numero}`,
