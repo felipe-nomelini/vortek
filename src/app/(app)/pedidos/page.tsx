@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import {
   Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic, Divider, Tooltip,
 } from 'antd';
@@ -877,10 +878,19 @@ export default function PedidosPage() {
       sorter: true,
       sortOrder: getRemoteSortOrder('pedido_compra', sort),
       render: (_: string | null, record: Order) => {
-        const hasPurchaseOrder = !!isValidDsliteId(record.dslite_id);
-        if (!hasPurchaseOrder) return <Tag color="orange">NÃO</Tag>;
+        const purchaseOrderId = isValidDsliteId(record.dslite_id);
+        if (!purchaseOrderId) return <Tag color="orange">NÃO</Tag>;
         if (isDsliteRejected(record.dslite_status)) return <Tag color="red">REJEITADO</Tag>;
-        return <Tag color="green">SIM</Tag>;
+        return (
+          <Link
+            href={`/compras?search=${encodeURIComponent(purchaseOrderId)}`}
+            style={{ textDecoration: 'none' }}
+          >
+            <Tag color="green" style={{ cursor: 'pointer', marginInlineEnd: 0 }}>
+              {purchaseOrderId}
+            </Tag>
+          </Link>
+        );
       },
     },
     {

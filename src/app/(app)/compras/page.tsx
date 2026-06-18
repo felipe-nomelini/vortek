@@ -194,6 +194,11 @@ export default function ComprasPage() {
   }, [buildParams, buildSummaryParams, messageApi]);
 
   useEffect(() => {
+    const urlSearch = new URLSearchParams(window.location.search).get('search')?.trim();
+    if (urlSearch) setSearch(urlSearch);
+  }, []);
+
+  useEffect(() => {
     fetchData();
   }, [fetchData]);
 
