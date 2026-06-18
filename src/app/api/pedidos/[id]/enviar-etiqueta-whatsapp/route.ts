@@ -312,16 +312,15 @@ export async function POST(request: Request, { params }: { params: { id: string 
     });
     const fornecedorNome = limitText((compra as any)?.fornecedor_nome, 80);
     const clienteNome = limitText((pedido as any).billing_nome || (pedido as any).contato_nome, 80);
-    const produtoDescricao = limitText((compra as any)?.produto_descricao, 120);
     const labelStatus = labelSource === 'storage'
       ? 'arquivo ja salvo no sistema'
       : labelSource === 'placeholder'
         ? 'generica para teste'
         : 'baixada do Mercado Livre';
-    const productLabel = produtoDescricao || 'produto';
+    const pedidoCompraLabel = dsid ? `#${dsid}` : 'sem pedido DSLite vinculado';
     const caption = [
       '*Etiqueta Liberada!*',
-      `A etiqueta do produto *${productLabel}* foi liberada e esta no link abaixo:`,
+      `A etiqueta do pedido *${pedidoCompraLabel}* foi liberada e está no link abaixo:`,
       labelShortUrl,
       '------------------------',
       '*DADOS DA NOTA*',
