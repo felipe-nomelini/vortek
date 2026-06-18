@@ -36,8 +36,6 @@ interface AnaliseRow {
 
 const TAXA_IMPOSTO = 0.04;
 const TAXA_ML_DEFAULT = 0.15;
-const DEFAULT_TOP_N = 50;
-const MAX_TOP_N = 500;
 const PAGE_SIZE = 1000;
 type RefreshMode = 'none' | 'incremental' | 'full';
 
@@ -96,8 +94,6 @@ export async function POST(request: Request) {
   if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
 
   const body = await request.json().catch(() => ({}));
-  const topNRaw = Number(body?.topN ?? body?.top ?? DEFAULT_TOP_N);
-  const topN = Number.isFinite(topNRaw) ? Math.min(MAX_TOP_N, Math.max(1, Math.floor(topNRaw))) : DEFAULT_TOP_N;
   const sellerIdRaw = body?.sellerId;
   const sellerId = sellerIdRaw === undefined || sellerIdRaw === null ? null : Number(sellerIdRaw);
   const refreshMode: RefreshMode = body?.refreshMode === 'full'
@@ -300,8 +296,7 @@ export async function POST(request: Request) {
     return a.ml_item_id.localeCompare(b.ml_item_id);
   });
 
-  const top = sorted.slice(0, topN);
-  const classes = top.reduce((acc, row) => {
+  const classes = sorted.reduce((acc, row) => {
     acc[row.classe] = (acc[row.classe] || 0) + 1;
     return acc;
   }, {} as Record<ClasseAnalise, number>);
@@ -316,7 +311,7 @@ export async function POST(request: Request) {
     snapshot_rows: snapshotRows.length,
     produto_ids: produtoIds.length,
     produtos_loaded: produtoMap.size,
-    top_n: topN,
+    returned_rows: sorted.length,
     durations_ms: {
       refresh: refreshMs,
       snapshot_query: snapshotQueryMs,
@@ -337,8 +332,7 @@ export async function POST(request: Request) {
     snapshot_max_synced_at: snapshotMaxSyncedAt,
     snapshot_age_seconds: snapshotAgeSeconds,
     total_analisado: report.length,
-    top_n: topN,
     classes,
-    data: top,
+    data: sorted,
   });
 }

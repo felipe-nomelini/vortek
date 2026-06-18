@@ -130,7 +130,6 @@ type AnalisePrecoRow = {
 type AnalisePrecoResponse = {
   success: boolean;
   total_analisado?: number;
-  top_n?: number;
   classes?: Partial<Record<AnaliseClasse, number>>;
   refresh?: {
     status?: string;
@@ -327,7 +326,6 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
   const [analiseData, setAnaliseData] = useState<AnalisePrecoRow[]>([]);
   const [analiseLoading, setAnaliseLoading] = useState(false);
   const [analiseErro, setAnaliseErro] = useState<string | null>(null);
-  const [analiseTopN, setAnaliseTopN] = useState<number>(50);
   const [analiseTotal, setAnaliseTotal] = useState(0);
   const [analiseClasses, setAnaliseClasses] = useState<Partial<Record<AnaliseClasse, number>>>({});
   const [analiseRefreshStatus, setAnaliseRefreshStatus] = useState<string | null>(null);
@@ -806,7 +804,6 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          topN: Number.isFinite(analiseTopN) ? Math.max(1, Math.floor(analiseTopN)) : 50,
           refreshMode: 'none',
         }),
       });
@@ -833,7 +830,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
     } finally {
       setAnaliseLoading(false);
     }
-  }, [analiseLoading, analiseTopN, messageApi, mode]);
+  }, [analiseLoading, messageApi, mode]);
 
   const handleAtualizarPrecoParaGanhar = useCallback(async (row: NoCatalogoRow) => {
     if (mode !== 'no_catalogo') return;
@@ -1291,18 +1288,6 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
     <>
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
         <Row gutter={[12, 12]} align="middle">
-          <Col>
-            <Space>
-              <span style={{ color: '#a0a0a0' }}>Top N</span>
-              <InputNumber
-                min={1}
-                max={500}
-                value={analiseTopN}
-                onChange={(v) => setAnaliseTopN(Number(v || 50))}
-                style={{ width: 120 }}
-              />
-            </Space>
-          </Col>
           <Col>
             <Button type="primary" onClick={runAnalisePreco} loading={analiseLoading}>
               Reanalisar
