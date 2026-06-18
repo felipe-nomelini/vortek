@@ -32,6 +32,7 @@ export async function middleware(request: NextRequest) {
   const isApiRoute = pathname.startsWith('/api/');
   const isPublicApiRoute =
     pathname.startsWith('/api/auth/')
+    || pathname.startsWith('/api/public/')
     || pathname.startsWith('/api/webhooks/')
     || pathname === '/api/ops/health';
 
