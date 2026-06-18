@@ -25,6 +25,54 @@ function mapMlStatusToLocalStatus(value: unknown): 'ativo' | 'pausado' | 'sem_an
   return 'sem_anuncio';
 }
 
+function normalizeText(input: unknown): string {
+  return String(input ?? '')
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, ' ');
+}
+
+function getAttributeValue(source: any, attributeId: string): string | null {
+  const attr = Array.isArray(source?.attributes)
+    ? source.attributes.find((row: any) => String(row?.id || '').toUpperCase() === attributeId.toUpperCase())
+    : null;
+  const value = String(attr?.value_name || attr?.value_id || '').trim();
+  return value || null;
+}
+
+function extractColorCode(...sources: unknown[]): string | null {
+  for (const source of sources) {
+    const text = normalizeText(source);
+    if (!text) continue;
+
+    const afterColor = text.match(/\bcor\s*:?\s*([0-9]{3,5})\b/);
+    if (afterColor?.[1]) return afterColor[1];
+
+    const standalone = text.match(/\b([0-9]{3,5})\b/);
+    if (standalone?.[1]) return standalone[1];
+  }
+  return null;
+}
+
+function extractLocalColorCode(produto: any, item: any): string | null {
+  return extractColorCode(
+    getAttributeValue(item, 'COLOR'),
+    getAttributeValue(item, 'MAIN_COLOR'),
+    produto?.nome,
+    produto?.descricao,
+  );
+}
+
+function extractCatalogColorCode(catalogProduct: any): string | null {
+  return extractColorCode(
+    getAttributeValue(catalogProduct, 'COLOR'),
+    getAttributeValue(catalogProduct, 'MAIN_COLOR'),
+    catalogProduct?.name,
+  );
+}
+
 async function getRelatedPermalink(relatedItemId: string | null): Promise<string | null> {
   if (!relatedItemId) return null;
   const relatedResult = await fetchMLResult<any>(`/items/${encodeURIComponent(relatedItemId)}`);
@@ -129,11 +177,135 @@ async function syncCatalogOptinLocally(params: {
   return { ok: warnings.length === 0, warnings, produtoId, sku };
 }
 
+async function findLocalProductForItem(params: {
+  service: ReturnType<typeof createServiceClient>;
+  itemId: string;
+  item: any;
+}) {
+  const { service, itemId, item } = params;
+  const sellerSku = getSellerSkuFromItem(item);
+
+  const { data: byItem, error: byItemError } = await service
+    .from('produtos')
+    .select('id,sku,nome,gtin,descricao,ml_item_id')
+    .eq('ml_item_id', itemId)
+    .maybeSingle();
+  if (byItemError) {
+    return { produto: null, error: `Falha ao buscar produto por item ML: ${byItemError.message}` };
+  }
+  if (byItem) return { produto: byItem, error: null };
+
+  if (!sellerSku) return { produto: null, error: 'SKU do anúncio original não encontrado.' };
+
+  const { data: bySku, error: bySkuError } = await service
+    .from('produtos')
+    .select('id,sku,nome,gtin,descricao,ml_item_id')
+    .eq('sku', sellerSku)
+    .maybeSingle();
+  if (bySkuError) {
+    return { produto: null, error: `Falha ao buscar produto por SKU: ${bySkuError.message}` };
+  }
+  if (bySku) return { produto: bySku, error: null };
+
+  return { produto: null, error: `Produto local não encontrado para SKU ${sellerSku}.` };
+}
+
+async function validateCatalogCompatibility(params: {
+  service: ReturnType<typeof createServiceClient>;
+  itemId: string;
+  catalogProductId: string;
+  item: any;
+  catalogProduct: any;
+}): Promise<{ ok: boolean; statusCode: number; message?: string; details?: Record<string, any> }> {
+  const { service, itemId, catalogProductId, item, catalogProduct } = params;
+  const localLookup = await findLocalProductForItem({ service, itemId, item });
+  if (localLookup.error || !localLookup.produto) {
+    return {
+      ok: false,
+      statusCode: 422,
+      message: localLookup.error || 'Produto local não encontrado para validar catálogo.',
+    };
+  }
+
+  const produto = localLookup.produto;
+  const localColorCode = extractLocalColorCode(produto, item);
+  const catalogColorCode = extractCatalogColorCode(catalogProduct);
+  if (localColorCode && catalogColorCode && localColorCode !== catalogColorCode) {
+    return {
+      ok: false,
+      statusCode: 422,
+      message: `Catálogo incompatível: cor local ${localColorCode} diverge da cor do catálogo ${catalogColorCode}.`,
+      details: {
+        local_sku: produto.sku,
+        local_product_name: produto.nome,
+        catalog_product_id: catalogProductId,
+        catalog_product_name: catalogProduct?.name || null,
+        local_color_code: localColorCode,
+        catalog_color_code: catalogColorCode,
+      },
+    };
+  }
+
+  const { data: existingSnapshots, error: snapshotError } = await service
+    .from('catalogo_ml_snapshot')
+    .select('ml_item_id,produto_id,sku_local,seller_sku,catalog_listing')
+    .eq('catalog_product_id', catalogProductId)
+    .neq('produto_id', produto.id)
+    .limit(20);
+  if (snapshotError) {
+    return {
+      ok: false,
+      statusCode: 500,
+      message: `Falha ao validar duplicidade de catálogo: ${snapshotError.message}`,
+    };
+  }
+
+  const existingProductIds = Array.from(
+    new Set((existingSnapshots || []).map((row: any) => String(row?.produto_id || '').trim()).filter(Boolean)),
+  );
+  if (existingProductIds.length > 0) {
+    const { data: existingProducts, error: productsError } = await service
+      .from('produtos')
+      .select('id,sku,nome,gtin')
+      .in('id', existingProductIds);
+    if (productsError) {
+      return {
+        ok: false,
+        statusCode: 500,
+        message: `Falha ao validar produtos já vinculados ao catálogo: ${productsError.message}`,
+      };
+    }
+
+    const localGtin = String(produto.gtin || '').replace(/\D/g, '');
+    const conflict = (existingProducts || []).find((existing: any) => {
+      const existingGtin = String(existing?.gtin || '').replace(/\D/g, '');
+      return existingGtin && localGtin && existingGtin !== localGtin;
+    });
+    if (conflict) {
+      return {
+        ok: false,
+        statusCode: 422,
+        message: 'Catálogo incompatível: este catalog_product_id já está vinculado a outro produto local com GTIN diferente.',
+        details: {
+          catalog_product_id: catalogProductId,
+          local_sku: produto.sku,
+          local_gtin: localGtin || null,
+          conflicting_sku: conflict.sku,
+          conflicting_gtin: conflict.gtin || null,
+        },
+      };
+    }
+  }
+
+  return { ok: true, statusCode: 200 };
+}
+
 async function validateCatalogProductActive(catalogProductId: string): Promise<{
   ok: boolean;
   statusCode: number;
   status: string | null;
   message?: string;
+  product?: any;
 }> {
   const productResult = await fetchMLResult<any>(`/products/${encodeURIComponent(catalogProductId)}`);
   if (!productResult.ok || !productResult.data) {
@@ -150,6 +322,7 @@ async function validateCatalogProductActive(catalogProductId: string): Promise<{
     ok: status === 'active',
     statusCode: status === 'active' ? 200 : 422,
     status,
+    product: productResult.data,
     message: status === 'active'
       ? undefined
       : `Produto de catálogo ${catalogProductId} está ${status || 'indisponível'} no Mercado Livre`,
@@ -191,6 +364,29 @@ export async function POST(request: Request) {
       }, { status: catalogProductValidation.statusCode });
     }
 
+    const originalItemResult = await fetchMLResult<any>(`/items/${encodeURIComponent(itemId)}`);
+    if (!originalItemResult.ok || !originalItemResult.data) {
+      return NextResponse.json({
+        erro: originalItemResult.error?.message || 'Falha ao carregar anúncio original no Mercado Livre',
+      }, { status: originalItemResult.status || 500 });
+    }
+
+    const service = createServiceClient();
+    const compatibility = await validateCatalogCompatibility({
+      service,
+      itemId,
+      catalogProductId,
+      item: originalItemResult.data,
+      catalogProduct: catalogProductValidation.product,
+    });
+    if (!compatibility.ok) {
+      return NextResponse.json({
+        erro: compatibility.message || 'Produto de catálogo incompatível com o anúncio local',
+        catalog_product_id: catalogProductId,
+        details: compatibility.details || null,
+      }, { status: compatibility.statusCode });
+    }
+
     const payload: Record<string, any> = {
       item_id: itemId,
       catalog_product_id: catalogProductId,
@@ -210,7 +406,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ erro: optinResult.error?.message || 'Falha ao criar anúncio de catálogo', details: optinResult.error || null }, { status: optinResult.status || 500 });
     }
 
-    const service = createServiceClient();
     const catalogItemId = String(optinResult.data?.id || '').trim();
     const catalogItemRefresh = catalogItemId
       ? await fetchMLResult<any>(`/items/${encodeURIComponent(catalogItemId)}`)

@@ -12,3 +12,6 @@ supabase/.temp/
 .agents/tools/
 tsconfig.tsbuildinfo
 scripts/build_dataset/data/*.parquet
+public/downloads/
+reports/etiquetas-ml/
+reports/waha/
