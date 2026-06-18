@@ -311,7 +311,7 @@ export default function ComprasPage() {
     if (!whatsappCompra) return;
     const phoneNumber = whatsappPhone.replace(/\D/g, '');
     if (!phoneNumber) {
-      messageApi.warning('Informe o número de WhatsApp para teste.');
+      messageApi.warning('Informe o número de WhatsApp do destinatário.');
       return;
     }
 
@@ -476,9 +476,7 @@ export default function ComprasPage() {
         const items = [
           { key: 'view', label: 'Ver Detalhes' },
           { key: 'track', label: 'Rastrear' },
-          ...(String(record.fornecedor_nome || '').toLowerCase().includes('hayamax')
-            ? [{ key: 'send_whatsapp_label', label: 'Enviar etiqueta ML por WhatsApp' }]
-            : []),
+          { key: 'send_whatsapp_label', label: 'Enviar etiqueta ML por WhatsApp' },
           ...(record.supplier_payment_mode === 'prepaid_pix' && record.supplier_payment_status === 'pending'
             ? [{ key: 'confirm_supplier_payment', label: 'Confirmar pagamento do fornecedor' }]
             : []),
@@ -714,7 +712,7 @@ export default function ComprasPage() {
         <Space direction="vertical" style={{ width: '100%' }} size={12}>
           <Text style={{ color: '#a0a0a0' }}>
             Compra #{whatsappCompra?.dsid ? String(whatsappCompra.dsid).padStart(6, '0') : '—'}.
-            Informe o número destino para teste. Use DDD + número ou 55 + DDD + número.
+            Informe o número de WhatsApp do destinatário. Use DDD + número ou 55 + DDD + número.
           </Text>
           <Input
             placeholder="Ex.: 11999999999"

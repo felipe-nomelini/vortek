@@ -45,6 +45,18 @@ function parseInvoiceAmountFromXml(xml: string): number | null {
   return Number.isFinite(amount) && amount > 0 ? amount : null;
 }
 
+function formatCurrencyBRL(value: unknown): string | null {
+  const amount = Number(value || 0);
+  if (!Number.isFinite(amount) || amount <= 0) return null;
+  return amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
+
+function limitText(value: unknown, maxLength: number): string | null {
+  const text = String(value || '').trim();
+  if (!text) return null;
+  return text.length > maxLength ? `${text.slice(0, maxLength - 1)}...` : text;
+}
+
 async function resolveShipmentId(client: ReturnType<typeof createServiceClient>, pedido: any): Promise<string | null> {
   const existing = String(pedido?.ml_shipment_id || '').trim();
   if (existing) return existing;
@@ -131,11 +143,6 @@ export async function POST(request: Request, { params }: { params: { id: string 
     if (compraError) return NextResponse.json({ error: compraError.message }, { status: 500 });
     if (!compra) return NextResponse.json({ error: 'Compra não encontrada' }, { status: 404 });
 
-    const fornecedorNome = String((compra as any).fornecedor_nome || '').toLowerCase();
-    if (!fornecedorNome.includes('hayamax')) {
-      return NextResponse.json({ error: 'Ação permitida apenas para pedidos Hayamax' }, { status: 422 });
-    }
-
     const dsid = String((compra as any).dsid || '').trim();
     const { data: pedido, error: pedidoError } = await client
       .from('pedidos')
@@ -202,10 +209,21 @@ export async function POST(request: Request, { params }: { params: { id: string 
 
     const label = await downloadLabelWithRetry(pedidoId, mlOrderId, shipmentId);
     const filename = `etiqueta_ml_${String((pedido as any).numero || mlOrderId || shipmentId)}.pdf`;
+    const compraNumero = dsid || String((compra as any).id || '').trim();
+    const pedidoDslite = String((pedido as any).dslite_id || dsid || '').trim();
+    const valorCompra = formatCurrencyBRL((compra as any).valor_total);
     const caption = [
-      `Etiqueta ML - pedido de compra #${dsid}`,
+      'Etiqueta Mercado Livre',
+      pedidoDslite ? `Pedido DSLite: #${pedidoDslite}` : null,
+      compraNumero ? `Compra: #${compraNumero}` : null,
+      limitText((compra as any).fornecedor_nome, 80) ? `Fornecedor: ${limitText((compra as any).fornecedor_nome, 80)}` : null,
       mlOrderId ? `Pedido ML: ${mlOrderId}` : null,
-      `Shipment: ${shipmentId}`,
+      `Envio ML: ${shipmentId}`,
+      invoiceNumber ? `NF: ${invoiceNumber}` : null,
+      limitText((compra as any).destinatario_nome, 80) ? `Destinatário: ${limitText((compra as any).destinatario_nome, 80)}` : null,
+      limitText((compra as any).produto_descricao, 120) ? `Produto: ${limitText((compra as any).produto_descricao, 120)}` : null,
+      (compra as any).quantidade ? `Quantidade: ${(compra as any).quantidade}` : null,
+      valorCompra ? `Valor compra: ${valorCompra}` : null,
     ].filter(Boolean).join('\n');
 
     const wahaResponse = await sendWahaFile({
