@@ -15,6 +15,12 @@ export interface WahaSendFileInput {
   session?: string;
 }
 
+export interface WahaSendTextInput {
+  chatId: string;
+  text: string;
+  session?: string;
+}
+
 function getWahaConfig() {
   const baseUrl = String(process.env.WAHA_BASE_URL || process.env.WAHA_URL || '').trim().replace(/\/+$/, '');
   const apiKey = String(process.env.WAHA_API_KEY || '').trim();
@@ -120,6 +126,21 @@ export async function sendWahaFile(input: WahaSendFileInput) {
         filename: input.filename,
         data: input.data.toString('base64'),
       },
+    }),
+  });
+}
+
+export async function sendWahaText(input: WahaSendTextInput) {
+  const { session } = getWahaConfig();
+  const sessionName = input.session || session;
+  await ensureWahaSessionWorking(sessionName);
+
+  return wahaRequest('/api/sendText', {
+    method: 'POST',
+    body: JSON.stringify({
+      session: sessionName,
+      chatId: input.chatId,
+      text: input.text,
     }),
   });
 }

@@ -6,8 +6,9 @@ import {
   upsertInvoiceDataMLByShipment,
 } from '@/services/integration';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
-import { normalizeWhatsappChatId, sendWahaFile } from '@/services/waha';
+import { normalizeWhatsappChatId, sendWahaFile, sendWahaText } from '@/services/waha';
 import {
+  createShippingLabelSignedUrl,
   downloadShippingLabelFromStorage,
   storeShippingLabelForPedido,
 } from '@/lib/shipping-label-storage';
@@ -60,6 +61,18 @@ function limitText(value: unknown, maxLength: number): string | null {
   const text = String(value || '').trim();
   if (!text) return null;
   return text.length > maxLength ? `${text.slice(0, maxLength - 1)}...` : text;
+}
+
+function isWahaPlusOnlyError(err: unknown): boolean {
+  const message = String((err as any)?.message || err || '').toLowerCase();
+  return message.includes('plus version') || message.includes('available only in plus');
+}
+
+function resolveAppBaseUrl(request: Request): string {
+  const configured = String(process.env.NEXT_PUBLIC_APP_URL || '').trim().replace(/\/+$/, '');
+  if (configured) return configured;
+  const url = new URL(request.url);
+  return `${url.protocol}//${url.host}`;
 }
 
 async function resolveShipmentId(client: ReturnType<typeof createServiceClient>, pedido: any): Promise<string | null> {
@@ -234,6 +247,7 @@ export async function POST(request: Request, { params }: { params: { id: string 
     let uploadedInvoice = false;
     let skippedInvoiceUpload = false;
     let invoiceNumber = String((pedido as any).nota_fiscal_numero || '').trim();
+    let labelDownloadUrl: string | null = null;
 
     if (!labelPdf && !usePlaceholderLabel) {
       const invoice = await ensureInvoiceDataIfNeeded({ pedido, pedidoId, mlOrderId, shipmentId });
@@ -244,7 +258,7 @@ export async function POST(request: Request, { params }: { params: { id: string 
       const label = await downloadLabelWithRetry(pedidoId, mlOrderId, shipmentId);
       labelPdf = label.pdf;
       labelAttempts = label.attempts;
-      await storeShippingLabelForPedido({
+      const stored = await storeShippingLabelForPedido({
         client,
         pedidoId,
         pedidoNumero: (pedido as any).numero,
@@ -253,9 +267,16 @@ export async function POST(request: Request, { params }: { params: { id: string 
         pdf: label.pdf,
         source: 'pedidos_whatsapp',
       });
+      labelDownloadUrl = stored.signedUrl || null;
     }
 
     if (!labelPdf) return NextResponse.json({ error: 'Etiqueta não encontrada ou indisponível' }, { status: 422 });
+
+    if (usePlaceholderLabel) {
+      labelDownloadUrl = `${resolveAppBaseUrl(request)}/dslite/labels/etiqueta-frete-terceiros-posterior.pdf`;
+    } else if (!labelDownloadUrl && (pedido as any).ml_label_storage_path) {
+      labelDownloadUrl = await createShippingLabelSignedUrl(client, String((pedido as any).ml_label_storage_path));
+    }
 
     const filename = usePlaceholderLabel
       ? DSLITE_PLACEHOLDER_LABEL_FILE_NAME
@@ -277,13 +298,25 @@ export async function POST(request: Request, { params }: { params: { id: string 
       labelSource === 'placeholder' ? 'Etiqueta: genérica para teste' : null,
     ].filter(Boolean).join('\n');
 
-    const wahaResponse = await sendWahaFile({
-      chatId,
-      caption,
-      filename,
-      mimetype: 'application/pdf',
-      data: labelPdf,
-    });
+    let wahaResponse: unknown = null;
+    let whatsappSendMode: 'file' | 'text_link' = 'file';
+    try {
+      wahaResponse = await sendWahaFile({
+        chatId,
+        caption,
+        filename,
+        mimetype: 'application/pdf',
+        data: labelPdf,
+      });
+    } catch (err) {
+      if (!isWahaPlusOnlyError(err)) throw err;
+      if (!labelDownloadUrl) throw new Error('WAHA Core não envia arquivos e não foi possível gerar link da etiqueta.');
+      whatsappSendMode = 'text_link';
+      wahaResponse = await sendWahaText({
+        chatId,
+        text: `${caption}\n\nArquivo PDF: ${labelDownloadUrl}`,
+      });
+    }
 
     await registrarEventoNfAuditoria({
       pedidoId,
@@ -296,6 +329,8 @@ export async function POST(request: Request, { params }: { params: { id: string 
         skipped_invoice_upload: skippedInvoiceUpload,
         label_source: labelSource,
         test_placeholder_label: Boolean(usePlaceholderLabel),
+        whatsapp_send_mode: whatsappSendMode,
+        label_download_url_generated: Boolean(labelDownloadUrl),
         label_bytes: labelPdf.length,
         label_attempts: labelAttempts,
         chat_id_suffix: chatId.slice(-8),
@@ -313,6 +348,7 @@ export async function POST(request: Request, { params }: { params: { id: string 
         uploadedInvoice,
         skippedInvoiceUpload,
         labelSource,
+        whatsappSendMode,
         labelBytes: labelPdf.length,
       },
     });
