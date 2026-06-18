@@ -512,9 +512,6 @@ export async function fetchMLResult<T>(path: string, options?: RequestInit): Pro
       }
       token = freshToken;
       res = await doFetch(token);
-      if (res.status === 401) {
-        setAuthFatalCooldown('401_after_forced_refresh');
-      }
     }
 
     if (res.ok) {
@@ -658,9 +655,6 @@ export async function fetchMLRaw(path: string, options?: RequestInit): Promise<{
       }
       token = freshToken;
       res = await doFetch(token);
-      if (res.status === 401) {
-        setAuthFatalCooldown('401_after_forced_refresh_raw');
-      }
     }
 
     const body = await res.text();
@@ -1224,9 +1218,6 @@ export async function baixarEtiquetaML(shipmentId: string): Promise<{
         }
         token = freshToken;
         res = await doFetch(token);
-        if (res.status === 401) {
-          setAuthFatalCooldown('401_after_forced_refresh_label');
-        }
       }
 
       if (!res.ok) {
@@ -1236,13 +1227,16 @@ export async function baixarEtiquetaML(shipmentId: string): Promise<{
         const isNotReady = lowered.includes('invoice_pending')
           || lowered.includes('not_printable_status')
           || lowered.includes('shplab0200');
+        const isInvalidCaller = lowered.includes('invalid_shipment_caller') || lowered.includes('not printable by caller');
         const isBuffered = lowered.includes('buffered');
         const isRetryableStatus = [404, 408, 409, 423, 424, 425, 429, 500, 502, 503, 504].includes(res.status);
         return {
           pdf: null,
-          error: text ? text.substring(0, 300) : `ML retornou HTTP ${res.status}`,
+          error: isInvalidCaller
+            ? 'Etiqueta ML não é imprimível por esta conta/token do Mercado Livre (INVALID_SHIPMENT_CALLER).'
+            : text ? text.substring(0, 300) : `ML retornou HTTP ${res.status}`,
           reason: isBuffered ? 'buffered' : isNotReady ? 'not_ready' : 'http_error',
-          retryable: isBuffered || isNotReady || isRetryableStatus,
+          retryable: !isInvalidCaller && (isBuffered || isNotReady || isRetryableStatus),
           statusCode: res.status,
         };
       }
