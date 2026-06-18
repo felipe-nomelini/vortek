@@ -72,6 +72,30 @@ export async function getWahaSessionStatus(sessionName?: string): Promise<WahaSe
   return wahaRequest<WahaSession>(`/api/sessions/${name}`);
 }
 
+export async function getWahaQrPng(sessionName?: string): Promise<Buffer> {
+  const { baseUrl, apiKey, session } = getWahaConfig();
+  const name = encodeURIComponent(sessionName || session);
+  const res = await fetch(`${baseUrl}/api/${name}/auth/qr?format=image`, {
+    headers: {
+      Accept: 'application/json',
+      'X-Api-Key': apiKey,
+    },
+  });
+
+  const text = await res.text();
+  const parsed = text ? safeJson(text) : null;
+  if (!res.ok) {
+    const message = parsed?.message || parsed?.error || text || `WAHA HTTP ${res.status}`;
+    throw new Error(`WAHA: ${message}`);
+  }
+
+  const rawData = String(parsed?.data || '');
+  if (!rawData) throw new Error('WAHA não retornou QR Code');
+  const prefix = 'data:image/png;base64,';
+  const base64 = rawData.startsWith(prefix) ? rawData.slice(prefix.length) : rawData;
+  return Buffer.from(base64, 'base64');
+}
+
 export async function ensureWahaSessionWorking(sessionName?: string) {
   const session = await getWahaSessionStatus(sessionName);
   if (session.status !== 'WORKING') {
