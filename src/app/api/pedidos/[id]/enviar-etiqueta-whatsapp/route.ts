@@ -247,6 +247,7 @@ export async function POST(request: Request, { params }: { params: { id: string 
     let uploadedInvoice = false;
     let skippedInvoiceUpload = false;
     let invoiceNumber = String((pedido as any).nota_fiscal_numero || '').trim();
+    const nfeKey = String((pedido as any).nfe_chave || '').trim();
     let labelDownloadUrl: string | null = null;
 
     if (!labelPdf && !usePlaceholderLabel) {
@@ -282,14 +283,17 @@ export async function POST(request: Request, { params }: { params: { id: string 
       ? DSLITE_PLACEHOLDER_LABEL_FILE_NAME
       : `etiqueta_ml_${String((pedido as any).numero || mlOrderId || shipmentId)}.pdf`;
     const valorCompra = formatCurrencyBRL((compra as any)?.valor_total);
+    const appBaseUrl = resolveAppBaseUrl(request);
+    const danfeUrl = invoiceNumber ? `${appBaseUrl}/api/notas-fiscais/${pedidoId}/pdf` : null;
+    const xmlUrl = nfeKey ? `${appBaseUrl}/api/notas-fiscais/${pedidoId}/xml` : null;
     const caption = [
       'Etiqueta Mercado Livre',
       `Pedido venda: #${(pedido as any).numero}`,
       dsid ? `Pedido DSLite: #${dsid}` : null,
       limitText((compra as any)?.fornecedor_nome, 80) ? `Fornecedor: ${limitText((compra as any)?.fornecedor_nome, 80)}` : null,
-      mlOrderId ? `Pedido ML: ${mlOrderId}` : null,
       `Envio ML: ${shipmentId}`,
-      invoiceNumber ? `NF: ${invoiceNumber}` : null,
+      invoiceNumber ? `NF: ${invoiceNumber}${danfeUrl ? ` - ${danfeUrl}` : ''}` : null,
+      nfeKey ? `Chave NF-e: ${nfeKey}${xmlUrl ? ` - ${xmlUrl}` : ''}` : null,
       limitText((pedido as any).billing_nome || (pedido as any).contato_nome, 80) ? `Cliente: ${limitText((pedido as any).billing_nome || (pedido as any).contato_nome, 80)}` : null,
       limitText((compra as any)?.produto_descricao, 120) ? `Produto: ${limitText((compra as any)?.produto_descricao, 120)}` : null,
       (compra as any)?.quantidade ? `Quantidade: ${(compra as any).quantidade}` : null,
