@@ -66,7 +66,7 @@ interface Integracoes {
 }
 
 export default function Sidebar() {
-  const pathname = usePathname();
+  const pathname = usePathname() || '';
   const router = useRouter();
   const [profile, setProfile] = useState({ nome: 'Admin', avatar: '' });
   const [ints, setInts] = useState<Integracoes>({ ml: false, dslite: false });

@@ -19,6 +19,7 @@
     "codex:engineering": "bash scripts/codex-engineering.sh",
     "check:build-secrets": "bash scripts/check-build-secrets.sh",
     "backfill:ml-pack-id": "node scripts/backfill-ml-pack-id.js",
+    "backfill:shipping-labels": "node scripts/backfill-shipping-labels.js",
     "reconcile:nf-status": "node scripts/reconcile-nf-status.js",
     "dedupe:produtos:dry": "node scripts/dedupe-produtos.js",
     "dedupe:produtos:apply": "node scripts/dedupe-produtos.js --apply"

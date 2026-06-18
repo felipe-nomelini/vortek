@@ -51,6 +51,7 @@ import {
   DSLITE_PLACEHOLDER_LABEL_SOURCE,
   loadDslitePlaceholderLabel,
 } from '@/lib/dslite/placeholder-label';
+import { storeShippingLabelForPedido } from '@/lib/shipping-label-storage';
 
 const TRANSPORTADORA_PADRAO_CORREIOS = 31;
 const WAIT_AUTH_TIMEOUT_MS = 180_000;
@@ -3166,6 +3167,15 @@ async function runDsliteCreateJob(
         const etiquetaResult = await baixarEtiquetaML(shipmentIdForLabel);
         if (etiquetaResult.pdf) {
           etiquetaPdf = etiquetaResult.pdf;
+          await storeShippingLabelForPedido({
+            client,
+            pedidoId,
+            pedidoNumero: (pedidoRow as any)?.numero,
+            mlOrderId: mlOrderId ? String(mlOrderId) : null,
+            shipmentId: shipmentIdForLabel,
+            pdf: etiquetaResult.pdf,
+            source: 'dslite_pedido',
+          });
           await registrarEventoNfAuditoria({
             pedidoId,
             mlOrderId: mlOrderId ? String(mlOrderId) : null,

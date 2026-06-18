@@ -55,7 +55,7 @@ type ClienteRow = Database['public']['Tables']['clientes']['Row'];
 export default function ClientDetailPage() {
   const params = useParams();
   const router = useRouter();
-  const id = params.id as string;
+  const id = params?.id as string;
 
   const [cliente, setCliente] = useState<ClienteRow | null>(null);
   const [originalCliente, setOriginalCliente] = useState<ClienteRow | null>(null);

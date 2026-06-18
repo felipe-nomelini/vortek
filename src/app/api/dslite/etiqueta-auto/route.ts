@@ -14,6 +14,7 @@ import {
   DSLITE_PLACEHOLDER_LABEL_SOURCE,
   loadDslitePlaceholderLabel,
 } from '@/lib/dslite/placeholder-label';
+import { storeShippingLabelForPedido } from '@/lib/shipping-label-storage';
 
 const LABEL_RETRY_INTERVAL_MS = 5000;
 const LABEL_WAIT_TIMEOUT_MS = 60000;
@@ -949,6 +950,15 @@ export async function POST(req: Request) {
       const etiquetaResult = await baixarEtiquetaML(shipmentId);
       if (etiquetaResult.pdf) {
         etiquetaPdf = etiquetaResult.pdf;
+        await storeShippingLabelForPedido({
+          client,
+          pedidoId: String(pedidoId),
+          pedidoNumero: (pedido as any).numero,
+          mlOrderId: mlOrderId || null,
+          shipmentId,
+          pdf: etiquetaResult.pdf,
+          source: 'dslite_etiqueta_auto',
+        });
         updateStep(steps, 'download_label_ml', {
           status: 'success',
           detail: `${etiquetaResult.pdf.length.toLocaleString('pt-BR')} bytes`,

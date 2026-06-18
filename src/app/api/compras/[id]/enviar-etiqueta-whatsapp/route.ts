@@ -7,6 +7,7 @@ import {
 } from '@/services/integration';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import { normalizeWhatsappChatId, sendWahaFile } from '@/services/waha';
+import { storeShippingLabelForPedido } from '@/lib/shipping-label-storage';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -208,6 +209,15 @@ export async function POST(request: Request, { params }: { params: { id: string 
     }
 
     const label = await downloadLabelWithRetry(pedidoId, mlOrderId, shipmentId);
+    await storeShippingLabelForPedido({
+      client,
+      pedidoId,
+      pedidoNumero: (pedido as any).numero,
+      mlOrderId,
+      shipmentId,
+      pdf: label.pdf,
+      source: 'compras_whatsapp',
+    });
     const filename = `etiqueta_ml_${String((pedido as any).numero || mlOrderId || shipmentId)}.pdf`;
     const compraNumero = dsid || String((compra as any).id || '').trim();
     const pedidoDslite = String((pedido as any).dslite_id || dsid || '').trim();

@@ -28,6 +28,8 @@ type AuditEvent =
   | 'ml_label_download_retry'
   | 'ml_label_download_timeout'
   | 'ml_label_download_success'
+  | 'ml_label_storage_success'
+  | 'ml_label_storage_failed'
   | 'ml_label_send_success'
   | 'ml_label_send_failed'
   | 'ml_label_download_blocked_by_invoice'

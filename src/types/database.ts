@@ -524,6 +524,10 @@ export type Database = {
           ml_fiscal_release_reason: string | null
           ml_fiscal_release_source: string | null
           ml_fiscal_release_checked_at: string | null
+          ml_label_bytes: number | null
+          ml_label_downloaded_at: string | null
+          ml_label_storage_path: string | null
+          ml_label_url: string | null
           ml_shipment_id: string | null
           nfe_chave: string | null
           nfe_cfop: string | null
@@ -581,6 +585,10 @@ export type Database = {
           ml_fiscal_release_reason?: string | null
           ml_fiscal_release_source?: string | null
           ml_fiscal_release_checked_at?: string | null
+          ml_label_bytes?: number | null
+          ml_label_downloaded_at?: string | null
+          ml_label_storage_path?: string | null
+          ml_label_url?: string | null
           ml_shipment_id?: string | null
           nfe_chave?: string | null
           nfe_cfop?: string | null
@@ -638,6 +646,10 @@ export type Database = {
           ml_fiscal_release_reason?: string | null
           ml_fiscal_release_source?: string | null
           ml_fiscal_release_checked_at?: string | null
+          ml_label_bytes?: number | null
+          ml_label_downloaded_at?: string | null
+          ml_label_storage_path?: string | null
+          ml_label_url?: string | null
           ml_shipment_id?: string | null
           nfe_chave?: string | null
           nfe_cfop?: string | null

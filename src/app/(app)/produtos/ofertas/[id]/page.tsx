@@ -54,7 +54,7 @@ function asImageList(value: unknown): string[] {
 export default function ProductOfferDetailPage() {
   const params = useParams();
   const router = useRouter();
-  const id = params.id as string;
+  const id = params?.id as string;
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
