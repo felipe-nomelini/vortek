@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import { formatCurrency } from '@/lib/format';
+import { formatMlReleaseWindow } from '@/lib/ml/release-window-display';
 import { buildPublicSupplierReceiptUrl } from '@/lib/public-supplier-receipt-links';
 import { createShortLink } from '@/lib/short-links';
 import { normalizeWhatsappChatId, sendWahaFile, sendWahaText } from '@/services/waha';
@@ -110,6 +111,11 @@ async function sendSupplierPaymentWhatsapp(input: {
   if (!phone) return { sent: false, skipped: true, reason: 'supplier_phone_missing' };
   if (!input.receipt) return { sent: false, skipped: true, reason: 'receipt_missing' };
 
+  const releaseAt = String(input.pedido?.ml_fiscal_release_at || '').trim();
+  const release = releaseAt ? formatMlReleaseWindow(releaseAt) : null;
+  const labelStatus = release
+    ? `Etiqueta ML: prevista para ${release.when}${release.remaining ? ` (${release.remaining})` : ''}`
+    : 'Etiqueta ML: sem previsão registrada no momento';
   const receiptUrl = buildPublicSupplierReceiptUrl(input.appBaseUrl, String(input.compra.id));
   const receiptShortUrl = await createShortLink({
     client: input.service,
@@ -123,21 +129,29 @@ async function sendSupplierPaymentWhatsapp(input: {
     },
   });
   const caption = [
-    '*Pagamento confirmado*',
-    '',
-    `Pedido DSLite: #${input.compra.dsid || '—'}`,
-    input.pedido?.ml_order_id ? `Pedido ML: #${input.pedido.ml_order_id}` : null,
+    '*Comprovante PIX recebido*',
+    `O comprovante do pedido *#${input.compra.dsid || '—'}* está disponível no link abaixo:`,
+    receiptShortUrl || receiptUrl,
+    '------------------------',
+    '*STATUS DA ETIQUETA*',
+    labelStatus,
+    'Aguarde o envio da etiqueta real antes de despachar o pedido.',
+    '------------------------',
+    '*PEDIDO DSLITE*',
+    `Número: #${input.compra.dsid || '—'}`,
     `Fornecedor: ${input.compra.fornecedor_nome || '—'}`,
     `Valor pago: ${formatCurrency(Number(input.compra.supplier_payment_amount || 0))}`,
     input.reference ? `Referência PIX: ${input.reference}` : null,
-    '',
+    '------------------------',
+    '*VENDA MERCADO LIVRE*',
+    input.pedido?.ml_order_id ? `Pedido ML: #${input.pedido.ml_order_id}` : null,
+    input.pedido?.numero ? `Venda: #${input.pedido.numero}` : null,
+    '------------------------',
     '*Produto*',
     input.compra.produto_descricao || 'Produto não informado',
     `Quantidade: ${input.compra.quantidade || 1}`,
-    '',
+    '------------------------',
     input.notes ? `Observações: ${input.notes}` : null,
-    receiptShortUrl ? `Comprovante: ${receiptShortUrl}` : null,
-    'Pode seguir com o despacho do pedido.',
   ].filter(Boolean).join('\n');
 
   const chatId = normalizeWhatsappChatId(phone);
@@ -241,7 +255,7 @@ export async function POST(
 
   const { data: pedido, error: pedidoError } = await service
     .from('pedidos')
-    .select('id,ml_order_id,numero')
+    .select('id,ml_order_id,numero,ml_fiscal_release_at')
     .eq('dslite_id', String(compra.dsid))
     .maybeSingle();
 
