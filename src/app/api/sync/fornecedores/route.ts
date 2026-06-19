@@ -164,7 +164,7 @@ export async function POST(request: Request) {
     const dsliteIds = mapped.map((item) => item.dslite_id);
     const { data: existingRows, error: existingError } = await client
       .from('fornecedores')
-      .select('id, dslite_id, ativo')
+      .select('id, dslite_id, ativo, telefone, email, endereco')
       .in('dslite_id', dsliteIds);
 
     if (existingError) {
@@ -179,9 +179,15 @@ export async function POST(request: Request) {
     const existingIds = new Set(existingByDsliteId.keys());
     const mappedPreservingManualStatus = mapped.map((row) => {
       const existing = existingByDsliteId.get(String(row.dslite_id));
+      const existingTelefone = asText((existing as any)?.telefone);
+      const existingEmail = asText((existing as any)?.email);
+      const existingEndereco = asText((existing as any)?.endereco);
       return {
         ...row,
         ativo: existing ? existing.ativo !== false : true,
+        telefone: asText(row.telefone) || existingTelefone,
+        email: asText(row.email) || existingEmail,
+        endereco: asText(row.endereco) || existingEndereco,
       };
     });
     const inseridos = mapped.filter((row) => !existingIds.has(row.dslite_id)).length;
