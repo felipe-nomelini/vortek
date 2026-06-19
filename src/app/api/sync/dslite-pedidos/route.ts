@@ -188,7 +188,8 @@ export async function POST(request: Request) {
             .eq('dsid', String(pedido.dsid))
             .maybeSingle();
 
-          const resolvedSupplierPaymentAmount = supplierPaymentMode === 'balance_account'
+          const shouldResolveSupplierPaymentAmount = supplierPaymentMode === 'balance_account' || supplierPaymentMode === 'prepaid_pix';
+          const resolvedSupplierPaymentAmount = shouldResolveSupplierPaymentAmount
             ? await resolveSupplierPurchaseDebitAmount({
               client,
               fornecedorId: pedido.fornecedor?.fornecedorid ? String(pedido.fornecedor.fornecedorid) : '',
@@ -197,7 +198,7 @@ export async function POST(request: Request) {
               sku: item?.nf_produtoid || null,
               quantity: item?.quantidade || 1,
             })
-            : { amount: Number(pedido.valor_total || 0) || null, offerId: null, reason: 'not_balance_account' as const };
+            : { amount: null, offerId: null, reason: 'not_supplier_payment_required' as const };
 
           const payload = {
             dsid: String(pedido.dsid),
