@@ -49,6 +49,17 @@ function statusColor(value: string | null | undefined): string {
   return 'blue';
 }
 
+function formatBrazilPhone(value: string): string {
+  const digits = String(value || '').replace(/\D/g, '').slice(0, 13);
+  const withoutCountry = digits.startsWith('55') && digits.length > 11 ? digits.slice(2) : digits;
+  if (withoutCountry.length <= 2) return withoutCountry;
+  if (withoutCountry.length <= 6) return `(${withoutCountry.slice(0, 2)}) ${withoutCountry.slice(2)}`;
+  if (withoutCountry.length <= 10) {
+    return `(${withoutCountry.slice(0, 2)}) ${withoutCountry.slice(2, 6)}-${withoutCountry.slice(6)}`;
+  }
+  return `(${withoutCountry.slice(0, 2)}) ${withoutCountry.slice(2, 7)}-${withoutCountry.slice(7, 11)}`;
+}
+
 export default function FornecedorDetailPage() {
   const params = useParams();
   const router = useRouter();
@@ -202,7 +213,13 @@ export default function FornecedorDetailPage() {
               </Col>
               <Col xs={24} md={8}>
                 <div style={labelStyle}>Telefone / WhatsApp</div>
-                <Input value={fornecedor.telefone} onChange={(e) => patch({ telefone: e.target.value })} style={inputStyle} />
+                <Input
+                  value={formatBrazilPhone(fornecedor.telefone)}
+                  onChange={(e) => patch({ telefone: formatBrazilPhone(e.target.value) })}
+                  placeholder="(21) 99999-9999"
+                  maxLength={15}
+                  style={inputStyle}
+                />
               </Col>
               <Col xs={24}>
                 <div style={labelStyle}>Endereço</div>
