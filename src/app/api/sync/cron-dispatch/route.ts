@@ -4,6 +4,12 @@ import { runMlSingleStageJob } from '@/services/sync-ml-job';
 import { getMLAuthDiagnostics } from '@/services/integration';
 import { SYNC_TASKS, getIntervalMinutesForTask, getSaoPauloHour } from '@/lib/sync/registry';
 import { DEFAULT_STALE_JOB_THRESHOLD_MINUTES, isJobStale, markJobAsStale } from '@/lib/sync/stale-jobs';
+import {
+  alertCriticalJobs,
+  alertIntegrationStatus,
+  scanAndAlertReleasedLabels,
+  sendSalesReport,
+} from '@/services/whatsapp-alerts';
 
 export const maxDuration = 300;
 
@@ -25,6 +31,21 @@ function parseLog(log: any): any[] {
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function getSaoPauloDateParts() {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Sao_Paulo',
+    weekday: 'short',
+    day: '2-digit',
+    hour: '2-digit',
+    hour12: false,
+  }).formatToParts(new Date());
+  return {
+    weekday: parts.find((part) => part.type === 'weekday')?.value || '',
+    day: Number(parts.find((part) => part.type === 'day')?.value || '0'),
+    hour: Number(parts.find((part) => part.type === 'hour')?.value || '0'),
+  };
 }
 
 function extractOffsetFromJobLog(log: any): number {
@@ -143,6 +164,21 @@ export async function POST(request: Request) {
   const hour = getSaoPauloHour();
   const mlAuth = await getMLAuthDiagnostics();
   const results: any[] = [];
+  const alertResults: any[] = [];
+
+  await Promise.allSettled([
+    alertIntegrationStatus().then((result) => alertResults.push({ alert: 'integration_status', ...result })),
+    alertCriticalJobs().then((result) => alertResults.push({ alert: 'critical_jobs', ...result })),
+    scanAndAlertReleasedLabels().then((result) => alertResults.push({ alert: 'released_labels', ...result })),
+  ]);
+
+  const spDate = getSaoPauloDateParts();
+  if (spDate.weekday === 'Mon' && spDate.hour >= 8 && spDate.hour <= 10) {
+    await sendSalesReport('weekly').then((result) => alertResults.push({ alert: 'weekly_sales_report', ...result })).catch(() => null);
+  }
+  if (spDate.day === 1 && spDate.hour >= 8 && spDate.hour <= 10) {
+    await sendSalesReport('monthly').then((result) => alertResults.push({ alert: 'monthly_sales_report', ...result })).catch(() => null);
+  }
 
   const tasksToRun = SYNC_TASKS.filter((task) => task.schedule);
 
@@ -317,6 +353,7 @@ export async function POST(request: Request) {
     timezone: 'America/Sao_Paulo',
     hour,
     ml_auth: mlAuth,
+    alert_results: alertResults,
     results,
   });
 }

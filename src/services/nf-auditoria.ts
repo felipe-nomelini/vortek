@@ -117,6 +117,9 @@ type AuditEvent =
   | 'nfe_danfe_persistencia'
   | 'ml_account_not_allowed'
   | 'ml_token_mutation_blocked_build'
+  | 'whatsapp_alert_sent'
+  | 'whatsapp_alert_failed'
+  | 'whatsapp_alert_skipped'
   | 'step_auto_close';
 
 export async function registrarEventoNfAuditoria(input: {

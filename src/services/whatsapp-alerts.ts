@@ -1,0 +1,319 @@
+import { createServiceClient } from '@/lib/supabase';
+import { getMLAuthDiagnostics } from '@/services/integration';
+import { getWahaSessionStatus, normalizeWhatsappChatId, sendWahaText } from '@/services/waha';
+import { formatCurrency } from '@/lib/format';
+import { formatMlReleaseWindow, getMlReleaseComparableDate } from '@/lib/ml/release-window-display';
+
+type AlertType =
+  | 'new_sale'
+  | 'critical_error'
+  | 'integration_status'
+  | 'weekly_sales_report'
+  | 'monthly_sales_report'
+  | 'claim_opened'
+  | 'ml_label_released';
+
+type Severity = 'info' | 'warning' | 'critical';
+
+type AlertInput = {
+  type: AlertType;
+  severity?: Severity;
+  title: string;
+  message: string;
+  dedupeKey: string;
+  payload?: Record<string, any>;
+  dedupeTtlHours?: number;
+};
+
+const DEFAULT_ALERT_PHONES = ['21981172939', '21970066090'];
+
+function getAlertPhones(): string[] {
+  const raw = String(process.env.WHATSAPP_ALERT_PHONES || '').trim();
+  const phones = raw
+    ? raw.split(',').map((phone) => phone.trim()).filter(Boolean)
+    : DEFAULT_ALERT_PHONES;
+  return Array.from(new Set(phones.map((phone) => phone.replace(/\D/g, '')).filter(Boolean)));
+}
+
+function nowIso() {
+  return new Date().toISOString();
+}
+
+function saoPauloDateLabel(date: Date) {
+  return date.toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+}
+
+function severityLabel(severity: Severity) {
+  if (severity === 'critical') return 'CRÍTICO';
+  if (severity === 'warning') return 'ATENÇÃO';
+  return 'INFO';
+}
+
+function buildText(input: AlertInput) {
+  return [
+    `*Vortek - ${severityLabel(input.severity || 'info')}*`,
+    '',
+    `*${input.title}*`,
+    '',
+    input.message,
+    '',
+    `Data: ${new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })}`,
+  ].join('\n');
+}
+
+async function wasAlertSent(type: AlertType, dedupeKey: string, sinceIso: string): Promise<boolean> {
+  const client = createServiceClient();
+  const { data, error } = await client
+    .from('nf_auditoria_eventos')
+    .select('id')
+    .eq('evento', 'whatsapp_alert_sent')
+    .contains('resposta_ml', { alert_type: type, dedupe_key: dedupeKey })
+    .gte('created_at', sinceIso)
+    .order('created_at', { ascending: false })
+    .limit(1);
+  if (error) return false;
+  return Boolean(data?.length);
+}
+
+async function auditAlert(input: AlertInput, phone: string, status: 'sent' | 'failed' | 'skipped', extra?: Record<string, any>) {
+  const client = createServiceClient();
+  await client.from('nf_auditoria_eventos').insert({
+    evento: status === 'sent' ? 'whatsapp_alert_sent' : status === 'failed' ? 'whatsapp_alert_failed' : 'whatsapp_alert_skipped',
+    status_resultante: status,
+    resposta_ml: {
+      alert_type: input.type,
+      dedupe_key: input.dedupeKey,
+      phone_suffix: phone.slice(-4),
+      severity: input.severity || 'info',
+      payload: input.payload || null,
+      ...extra,
+    },
+  } as any);
+}
+
+export async function sendWhatsappAlert(input: AlertInput): Promise<{ sent: number; skipped: boolean; errors: number }> {
+  const ttlHours = input.dedupeTtlHours ?? 24 * 30;
+  const sinceIso = new Date(Date.now() - ttlHours * 3600000).toISOString();
+  if (await wasAlertSent(input.type, input.dedupeKey, sinceIso)) {
+    await auditAlert(input, 'all', 'skipped', { reason: 'dedupe' }).catch(() => null);
+    return { sent: 0, skipped: true, errors: 0 };
+  }
+
+  const text = buildText(input);
+  let sent = 0;
+  let errors = 0;
+  for (const phone of getAlertPhones()) {
+    try {
+      await sendWahaText({ chatId: normalizeWhatsappChatId(phone), text });
+      sent += 1;
+      await auditAlert(input, phone, 'sent');
+    } catch (err: any) {
+      errors += 1;
+      await auditAlert(input, phone, 'failed', { error: err?.message || 'Erro ao enviar alerta' }).catch(() => null);
+    }
+  }
+  return { sent, skipped: false, errors };
+}
+
+export async function alertNewSale(order: {
+  id?: string | null;
+  numero?: string | number | null;
+  ml_order_id?: string | null;
+  ml_pack_id?: string | null;
+  contato_nome?: string | null;
+  total?: number | null;
+}) {
+  const number = order.ml_order_id || order.numero || order.id || 'sem_numero';
+  return sendWhatsappAlert({
+    type: 'new_sale',
+    severity: 'info',
+    title: 'Novo pedido de venda',
+    dedupeKey: `new_sale:${number}`,
+    dedupeTtlHours: 24 * 30,
+    message: [
+      `Pedido ML: #${number}`,
+      order.ml_pack_id ? `Pack ID: ${order.ml_pack_id}` : null,
+      `Cliente: ${order.contato_nome || 'Desconhecido'}`,
+      `Valor: ${formatCurrency(Number(order.total || 0))}`,
+      `Link: ${process.env.NEXT_PUBLIC_APP_URL || 'https://app.vortek.shop'}/pedidos?search=${encodeURIComponent(String(number))}`,
+    ].filter(Boolean).join('\n'),
+    payload: order as any,
+  });
+}
+
+export async function alertClaimOpened(order: {
+  id?: string | null;
+  numero?: string | number | null;
+  ml_order_id?: string | null;
+  ml_claim_id?: string | null;
+  ml_claim_status?: string | null;
+  contato_nome?: string | null;
+}) {
+  if (!order.ml_claim_id) return { sent: 0, skipped: true, errors: 0 };
+  const orderNumber = order.ml_order_id || order.numero || order.id || 'sem_numero';
+  return sendWhatsappAlert({
+    type: 'claim_opened',
+    severity: 'critical',
+    title: 'Reclamação aberta no Mercado Livre',
+    dedupeKey: `claim_opened:${order.ml_claim_id}`,
+    dedupeTtlHours: 24 * 90,
+    message: [
+      `Pedido ML: #${orderNumber}`,
+      `Claim: ${order.ml_claim_id}`,
+      `Status: ${order.ml_claim_status || 'não informado'}`,
+      `Cliente: ${order.contato_nome || 'Desconhecido'}`,
+      `Link: ${process.env.NEXT_PUBLIC_APP_URL || 'https://app.vortek.shop'}/pedidos?search=${encodeURIComponent(String(orderNumber))}`,
+    ].join('\n'),
+    payload: order as any,
+  });
+}
+
+export async function alertMlLabelReleased(order: {
+  id?: string | null;
+  numero?: string | number | null;
+  ml_order_id?: string | null;
+  ml_shipment_id?: string | null;
+  ml_fiscal_release_at?: string | null;
+  contato_nome?: string | null;
+  total?: number | null;
+  dslite_id?: string | null;
+}) {
+  const orderNumber = order.ml_order_id || order.numero || order.id || 'sem_numero';
+  return sendWhatsappAlert({
+    type: 'ml_label_released',
+    severity: 'warning',
+    title: 'Etiqueta Mercado Livre liberada',
+    dedupeKey: `ml_label_released:${orderNumber}`,
+    dedupeTtlHours: 24 * 30,
+    message: [
+      `Pedido ML: #${orderNumber}`,
+      order.dslite_id ? `Pedido DSLite: #${order.dslite_id}` : null,
+      order.ml_shipment_id ? `Envio ML: ${order.ml_shipment_id}` : null,
+      `Cliente: ${order.contato_nome || 'Desconhecido'}`,
+      `Valor: ${formatCurrency(Number(order.total || 0))}`,
+      order.ml_fiscal_release_at ? `Janela prevista: ${formatMlReleaseWindow(order.ml_fiscal_release_at).when}` : null,
+      `Ação: subir XML, baixar etiqueta real e enviar ao fornecedor.`,
+      `Link: ${process.env.NEXT_PUBLIC_APP_URL || 'https://app.vortek.shop'}/pedidos?search=${encodeURIComponent(String(orderNumber))}`,
+    ].filter(Boolean).join('\n'),
+    payload: order as any,
+  });
+}
+
+export async function scanAndAlertReleasedLabels(limit = 20) {
+  const client = createServiceClient();
+  const { data } = await client
+    .from('pedidos')
+    .select('id,numero,ml_order_id,ml_shipment_id,ml_fiscal_release_at,contato_nome,total,dslite_id,ml_label_downloaded_at')
+    .not('ml_fiscal_release_at', 'is', null)
+    .is('ml_label_downloaded_at', null)
+    .order('ml_fiscal_release_at', { ascending: true })
+    .limit(limit);
+  let alerted = 0;
+  for (const row of data || []) {
+    const comparable = row.ml_fiscal_release_at ? getMlReleaseComparableDate(row.ml_fiscal_release_at) : null;
+    if (!comparable || comparable.getTime() > Date.now()) continue;
+    const result = await alertMlLabelReleased(row as any);
+    alerted += result.sent > 0 ? 1 : 0;
+  }
+  return { checked: data?.length || 0, alerted };
+}
+
+export async function alertIntegrationStatus() {
+  const ml = await getMLAuthDiagnostics();
+  let wahaStatus = 'unknown';
+  try {
+    wahaStatus = (await getWahaSessionStatus()).status;
+  } catch (err: any) {
+    wahaStatus = `error:${err?.message || 'unknown'}`;
+  }
+
+  const problems: string[] = [];
+  if (ml.state !== 'ok') problems.push(`Mercado Livre: ${ml.state}${ml.last_refresh_error ? ` (${ml.last_refresh_error})` : ''}`);
+  if (wahaStatus !== 'WORKING') problems.push(`WAHA: ${wahaStatus}`);
+
+  const stateKey = problems.length ? problems.join('|') : 'ok';
+  return sendWhatsappAlert({
+    type: 'integration_status',
+    severity: problems.length ? 'critical' : 'info',
+    title: problems.length ? 'Integração com problema' : 'Integrações operando normalmente',
+    dedupeKey: `integration_status:${stateKey}`,
+    dedupeTtlHours: problems.length ? 6 : 24,
+    message: problems.length ? problems.join('\n') : 'Mercado Livre e WAHA estão conectados.',
+    payload: { ml, wahaStatus },
+  });
+}
+
+export async function alertCriticalJobs() {
+  const client = createServiceClient();
+  const since = new Date(Date.now() - 30 * 60 * 1000).toISOString();
+  const { data } = await client
+    .from('jobs')
+    .select('id,tipo,status,created_at,finished_at,log')
+    .in('status', ['erro', 'failed_auth'])
+    .gte('finished_at', since)
+    .order('finished_at', { ascending: false })
+    .limit(10);
+  let alerted = 0;
+  for (const job of data || []) {
+    const result = await sendWhatsappAlert({
+      type: 'critical_error',
+      severity: 'critical',
+      title: 'Job crítico falhou',
+      dedupeKey: `job_error:${job.id}:${job.status}`,
+      dedupeTtlHours: 24 * 7,
+      message: [
+        `Job: ${job.tipo}`,
+        `Status: ${job.status}`,
+        `Finalizado: ${job.finished_at || 'não informado'}`,
+        `Link: ${process.env.NEXT_PUBLIC_APP_URL || 'https://app.vortek.shop'}/dashboard`,
+      ].join('\n'),
+      payload: { id: job.id, tipo: job.tipo, status: job.status },
+    });
+    alerted += result.sent > 0 ? 1 : 0;
+  }
+  return { checked: data?.length || 0, alerted };
+}
+
+export async function sendSalesReport(kind: 'weekly' | 'monthly', reference = new Date()) {
+  const client = createServiceClient();
+  const end = new Date(reference);
+  const start = new Date(reference);
+  if (kind === 'weekly') start.setDate(start.getDate() - 7);
+  else start.setMonth(start.getMonth() - 1);
+
+  const { data } = await client
+    .from('pedidos')
+    .select('id,total,lucro,situacao,data_venda,data,ml_claim_id')
+    .gte('data_venda', start.toISOString())
+    .lte('data_venda', end.toISOString());
+
+  const rows = data || [];
+  const count = rows.length;
+  const total = rows.reduce((sum: number, row: any) => sum + Number(row.total || 0), 0);
+  const lucro = rows.reduce((sum: number, row: any) => sum + Number(row.lucro || 0), 0);
+  const claims = rows.filter((row: any) => row.ml_claim_id).length;
+  const statusCounts = rows.reduce((acc: Record<string, number>, row: any) => {
+    const key = String(row.situacao || 'sem_status');
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {});
+
+  const periodLabel = `${saoPauloDateLabel(start)} a ${saoPauloDateLabel(end)}`;
+  return sendWhatsappAlert({
+    type: kind === 'weekly' ? 'weekly_sales_report' : 'monthly_sales_report',
+    severity: 'info',
+    title: kind === 'weekly' ? 'Relatório semanal de vendas' : 'Relatório mensal de vendas',
+    dedupeKey: `${kind}_sales_report:${start.toISOString().slice(0, 10)}:${end.toISOString().slice(0, 10)}`,
+    dedupeTtlHours: 24 * 45,
+    message: [
+      `Período: ${periodLabel}`,
+      `Pedidos: ${count}`,
+      `Faturamento: ${formatCurrency(total)}`,
+      `Lucro: ${formatCurrency(lucro)}`,
+      `Ticket médio: ${formatCurrency(count ? total / count : 0)}`,
+      `Reclamações no período: ${claims}`,
+      `Status: ${Object.entries(statusCounts).map(([k, v]) => `${k}=${v}`).join(', ') || 'sem pedidos'}`,
+    ].join('\n'),
+    payload: { kind, start: start.toISOString(), end: end.toISOString(), count, total, lucro, claims, statusCounts },
+  });
+}

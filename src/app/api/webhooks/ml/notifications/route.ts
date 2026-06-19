@@ -7,6 +7,7 @@ import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { runMlSingleStageJob } from '@/services/sync-ml-job';
 import { resolveOrderSaleDate } from '@/lib/ml/order-sale-date';
 import { mapearStatusShipment } from '@/lib/ml/shipment-status';
+import { alertMlLabelReleased, alertNewSale } from '@/services/whatsapp-alerts';
 
 const WEBHOOK_STUB_PENDING_TAGS = ['pedido_sem_itens', 'webhook_hydration_pending', 'snapshot_origem_webhook_stub'];
 
@@ -354,6 +355,16 @@ export async function POST(request: Request) {
         });
         pedidoId = stubResult?.pedidoId || null;
         shouldHydrate = stubResult?.shouldHydrate ?? shouldHydrate;
+        if (stubResult?.action === 'inserted') {
+          void alertNewSale({
+            id: pedidoId,
+            numero: order.id,
+            ml_order_id: String(order.id || ''),
+            ml_pack_id: order.pack_id ? String(order.pack_id) : null,
+            contato_nome: order.buyer?.nickname || 'Desconhecido',
+            total: Number(order.total_amount || 0),
+          });
+        }
       } else if (mlOrderId) {
         const stubResult = await persistWebhookOrderPendingStub({
           serviceClient,
@@ -361,6 +372,15 @@ export async function POST(request: Request) {
           existing: existingPedido,
         });
         pedidoId = stubResult?.pedidoId || null;
+        if (stubResult?.action === 'inserted') {
+          void alertNewSale({
+            id: pedidoId,
+            numero: mlOrderId,
+            ml_order_id: mlOrderId,
+            contato_nome: existingPedido?.contato_nome || 'Desconhecido',
+            total: Number(existingPedido?.total || 0),
+          });
+        }
         // O ML pode notificar antes de liberar /orders/{id}; evita jobs imediatos que falham e deixa o cron hidratar.
         shouldHydrate = false;
       }
@@ -505,6 +525,13 @@ export async function POST(request: Request) {
                   source: 'shipments_topic',
                 },
                 statusResultante: 'cleared',
+              });
+              void alertMlLabelReleased({
+                id: String((pedido as any).id),
+                numero: String(orderId),
+                ml_order_id: String(orderId),
+                ml_shipment_id: String(shipment.id),
+                ml_fiscal_release_at: (pedido as any).ml_fiscal_release_at || null,
               });
             }
           }

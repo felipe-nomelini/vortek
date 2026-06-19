@@ -5,6 +5,17 @@ export type MlFiscalReleaseWindow = {
   sourcePath: string | null;
 };
 
+function releaseComparableTime(value: string): number {
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return Number.NaN;
+  const isUtcMidnight = parsed.getUTCHours() === 0
+    && parsed.getUTCMinutes() === 0
+    && parsed.getUTCSeconds() === 0
+    && parsed.getUTCMilliseconds() === 0;
+  if (!isUtcMidnight) return parsed.getTime();
+  return Date.UTC(parsed.getUTCFullYear(), parsed.getUTCMonth(), parsed.getUTCDate(), 3, 0, 0, 0);
+}
+
 type ReleaseWindowInput = {
   shipment?: any;
   leadTime?: any;
@@ -52,7 +63,8 @@ export function extractMlFiscalReleaseWindow(shipmentPayload: any): MlFiscalRele
   for (const candidate of candidates) {
     const releaseAt = normalizeDate(candidate.value);
     if (!releaseAt) continue;
-    const isBlockedNow = Date.now() < new Date(releaseAt).getTime();
+    const comparableTime = releaseComparableTime(releaseAt);
+    const isBlockedNow = Date.now() < comparableTime;
     return {
       releaseAt: isBlockedNow ? releaseAt : null,
       reason,

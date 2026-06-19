@@ -13,6 +13,7 @@ import { extractMlFiscalReleaseWindow } from '@/lib/ml/fiscal-release';
 import { resolveOrderSaleDate, type SaleDateSource } from '@/lib/ml/order-sale-date';
 import { mapearStatusShipment } from '@/lib/ml/shipment-status';
 import { getSkuLookupVariants } from '@/lib/sku';
+import { alertClaimOpened, alertMlLabelReleased, alertNewSale } from '@/services/whatsapp-alerts';
 
 export const maxDuration = 300;
 
@@ -762,7 +763,7 @@ async function processOrder(params: {
 
   const { data: existingPedido } = await serviceClient
     .from('pedidos')
-    .select('id, ml_pack_id, billing_ie, billing_endereco, ml_fiscal_release_at')
+    .select('id, ml_pack_id, billing_ie, billing_endereco, ml_fiscal_release_at, ml_claim_id')
     .eq('ml_order_id', String(o.id))
     .maybeSingle();
   existingPackId = existingPedido?.ml_pack_id ? String(existingPedido.ml_pack_id) : null;
@@ -1188,6 +1189,28 @@ async function processOrder(params: {
     } : {}),
   } as any, { onConflict: 'ml_order_id' }).select('id').maybeSingle();
 
+  if (!error && upsertedPedido?.id && !existingPedidoId) {
+    void alertNewSale({
+      id: String(upsertedPedido.id),
+      numero: sourceOrder?.id || o.id,
+      ml_order_id: String(o.id),
+      ml_pack_id: mlPackId,
+      contato_nome: contatoNome,
+      total: Number(sourceOrder?.total_amount || o.total_amount || 0),
+    });
+  }
+
+  if (!error && upsertedPedido?.id && mlClaimId && !(existingPedido as any)?.ml_claim_id) {
+    void alertClaimOpened({
+      id: String(upsertedPedido.id),
+      numero: sourceOrder?.id || o.id,
+      ml_order_id: String(o.id),
+      ml_claim_id: mlClaimId,
+      ml_claim_status: mlClaimStatus,
+      contato_nome: contatoNome,
+    });
+  }
+
   if (!mlPackId) {
     await registrarEventoNfAuditoria({
       pedidoId: upsertedPedido?.id || existingPedidoId || null,
@@ -1235,6 +1258,15 @@ async function processOrder(params: {
           source: 'sync_pedidos',
         },
         statusResultante: 'cleared',
+      });
+      void alertMlLabelReleased({
+        id: String(upsertedPedido.id),
+        numero: sourceOrder?.id || o.id,
+        ml_order_id: String(o.id),
+        ml_shipment_id: mlShipmentId,
+        ml_fiscal_release_at: (existingPedido as any)?.ml_fiscal_release_at || null,
+        contato_nome: contatoNome,
+        total: Number(sourceOrder?.total_amount || o.total_amount || 0),
       });
     }
   }

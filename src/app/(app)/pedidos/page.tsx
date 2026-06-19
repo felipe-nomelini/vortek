@@ -14,6 +14,7 @@ import { formatCurrency } from '@/lib/format';
 import type { Database } from '@/types/database';
 import type { Order, OrderStatus } from '@/types/order';
 import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
+import { formatMlReleaseWindow, getMlReleaseComparableDate } from '@/lib/ml/release-window-display';
 
 const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
@@ -108,20 +109,7 @@ function isDsliteRejected(status: string | null | undefined): boolean {
 }
 
 function formatReleaseWindow(value: string): { when: string; remaining: string | null } {
-  const dt = new Date(value);
-  const when = dt.toLocaleString('pt-BR', {
-    day: '2-digit',
-    month: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-  }).replace(',', '');
-  const ms = dt.getTime() - Date.now();
-  if (ms <= 0) return { when, remaining: null };
-  const totalHours = Math.floor(ms / 3600000);
-  const days = Math.floor(totalHours / 24);
-  const hours = totalHours % 24;
-  return { when, remaining: days > 0 ? `faltam ${days}d ${hours}h` : `faltam ${hours}h` };
+  return formatMlReleaseWindow(value);
 }
 
 function resolveSerieFromNfeChave(chave: string | null | undefined): string | null {
@@ -946,8 +934,8 @@ export default function PedidosPage() {
       sortOrder: getRemoteSortOrder('nota_fiscal_numero', sort),
       render: (nf: { numero: string; emitida: boolean } | null, record: Order) => {
         if (record.ml_fiscal_release_at) {
-          const releaseAt = new Date(record.ml_fiscal_release_at);
-          if (!Number.isNaN(releaseAt.getTime()) && releaseAt.getTime() > Date.now()) {
+          const releaseAt = getMlReleaseComparableDate(record.ml_fiscal_release_at);
+          if (releaseAt && releaseAt.getTime() > Date.now()) {
             const formatted = formatReleaseWindow(record.ml_fiscal_release_at);
             const content = (
               <Tag color="orange">
