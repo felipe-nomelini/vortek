@@ -104,7 +104,13 @@ function isMlConflictError(operation: { error?: string; code?: string | null }):
 function isMlNonPublishableStateError(operation: { error?: string; code?: string | null }): boolean {
   const raw = `${operation.code || ''} ${operation.error || ''}`.toLowerCase();
   return raw.includes('cannot update item')
-    && (raw.includes('status:closed') || raw.includes('status:under_review'));
+    && (
+      raw.includes('status:closed')
+      || raw.includes('status:under_review')
+      || raw.includes('status:inactive')
+      || raw.includes('deleted')
+      || raw.includes('forbidden')
+    );
 }
 
 function isMlPermanentAuthorizationError(operation: { error?: string; code?: string | null }): boolean {
@@ -114,6 +120,58 @@ function isMlPermanentAuthorizationError(operation: { error?: string; code?: str
     || raw.includes('forbidden')
     || raw.includes('caller is not authorized')
     || raw.includes('access this resource');
+}
+
+async function reconcileItemStateAfterPermanentFailure(
+  client: ReturnType<typeof createServiceClient>,
+  params: {
+    row: any;
+    outboxId: string;
+    mlItemId: string;
+    warnings: Array<{ code: string; message: string; context?: Record<string, unknown> }>;
+  },
+) {
+  const itemStateResult = await fetchMLResult<any>(`/items/${params.mlItemId}`);
+  if (!itemStateResult.ok || !itemStateResult.data) {
+    params.warnings.push({
+      code: 'ml_publish_permanent_reconcile_status_failed',
+      message: itemStateResult.error?.message || 'Falha ao consultar estado final do anúncio no ML',
+      context: { outboxId: params.outboxId, mlItemId: params.mlItemId, operation: 'permanent_failure_reconcile' },
+    });
+    return;
+  }
+
+  const resolvedLocalStatus = mapMlStatusToLocalStatus(itemStateResult.data?.status);
+  const produtoUpdate = params.row.produto_id
+    ? await client
+        .from('produtos')
+        .update({ ml_status: resolvedLocalStatus } as any)
+        .eq('id', String(params.row.produto_id))
+    : await client
+        .from('produtos')
+        .update({ ml_status: resolvedLocalStatus } as any)
+        .eq('ml_item_id', params.mlItemId);
+
+  if (produtoUpdate.error) {
+    params.warnings.push({
+      code: 'ml_publish_permanent_reconcile_produto_update_failed',
+      message: produtoUpdate.error.message,
+      context: { outboxId: params.outboxId, mlItemId: params.mlItemId, localStatus: resolvedLocalStatus },
+    });
+  }
+
+  const anuncioReconcile = await reconcileAnuncioMlFromItem(
+    client,
+    itemStateResult.data,
+    'publish_reconcile',
+  );
+  if (!anuncioReconcile.ok) {
+    params.warnings.push({
+      code: 'ml_publish_permanent_reconcile_anuncio_update_failed',
+      message: anuncioReconcile.error,
+      context: { outboxId: params.outboxId, mlItemId: params.mlItemId, localStatus: resolvedLocalStatus },
+    });
+  }
 }
 
 export async function POST(request: Request) {
@@ -491,6 +549,15 @@ export async function POST(request: Request) {
         if (isHardFail) failed += 1;
         else retry += 1;
         if (isPermanentFailure) permanentFailed += 1;
+
+        if (isPermanentFailure && mlItemId) {
+          await reconcileItemStateAfterPermanentFailure(client, {
+            row,
+            outboxId,
+            mlItemId,
+            warnings,
+          });
+        }
 
         await (client
           .from('anuncios_ml_outbox' as any)

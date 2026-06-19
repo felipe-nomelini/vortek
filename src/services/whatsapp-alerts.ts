@@ -67,6 +67,14 @@ function isActionableLabelRelease(order: {
   return true;
 }
 
+function jobLogIncludes(job: { log?: unknown }, pattern: string): boolean {
+  try {
+    return JSON.stringify(job.log || '').includes(pattern);
+  } catch {
+    return false;
+  }
+}
+
 function buildText(input: AlertInput) {
   return [
     `*Vortek - ${severityLabel(input.severity || 'info')}*`,
@@ -306,6 +314,8 @@ export async function alertCriticalJobs() {
     .limit(10);
   let alerted = 0;
   for (const job of data || []) {
+    if (jobLogIncludes(job, 'domain_lock_conflict')) continue;
+
     const result = await sendWhatsappAlert({
       type: 'critical_error',
       severity: 'critical',

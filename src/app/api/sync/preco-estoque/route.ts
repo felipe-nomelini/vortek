@@ -180,6 +180,7 @@ export async function POST(req: Request) {
     let mlOutboxUpdatedExisting = 0;
     let mlOutboxSkippedNoItem = 0;
     let mlOutboxSkippedManualBlock = 0;
+    let mlOutboxSkippedNoListing = 0;
     let mlOutboxFailed = 0;
     let recordsUpdatedSeen = 0;
     let mlOutboxPausedZeroStock = 0;
@@ -570,6 +571,11 @@ export async function POST(req: Request) {
           continue;
         }
 
+        if (String(snapshot.previous.ml_status || '').trim().toLowerCase() === 'sem_anuncio') {
+          mlOutboxSkippedNoListing += 1;
+          continue;
+        }
+
         const desiredStatus = resolveDesiredMlStatusByStock(Number(snapshot.next.estoque || 0));
         if (desiredStatus === 'pausado') mlOutboxPausedZeroStock += 1;
         const outbox = await enqueueMlPublishOutbox(client, {
@@ -656,6 +662,7 @@ export async function POST(req: Request) {
         ml_outbox_updated_existing: mlOutboxUpdatedExisting,
         ml_outbox_skipped_no_item: mlOutboxSkippedNoItem,
         ml_outbox_skipped_manual_block: mlOutboxSkippedManualBlock,
+        ml_outbox_skipped_no_listing: mlOutboxSkippedNoListing,
         ml_outbox_failed: mlOutboxFailed,
         updated_seen: recordsUpdatedSeen,
         paused_zero_stock: mlOutboxPausedZeroStock,
