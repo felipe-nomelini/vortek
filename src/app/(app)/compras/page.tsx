@@ -249,8 +249,8 @@ export default function ComprasPage() {
 
   const handleConfirmSupplierPayment = async () => {
     if (!selectedCompra) return;
-    if (!paymentReceiptFile && !selectedCompra.supplier_payment_receipt_path && !paymentReceiptUrl) {
-      messageApi.warning('Anexe o comprovante do PIX antes de confirmar.');
+    if (!paymentReceiptFile && !selectedCompra.supplier_payment_receipt_path) {
+      messageApi.warning('Anexe o comprovante do PIX antes de enviar ao fornecedor.');
       return;
     }
     setConfirmingPayment(true);
@@ -271,8 +271,8 @@ export default function ComprasPage() {
       }
       messageApi.success(
         json.jobId
-          ? `Pagamento confirmado. WhatsApp ${json.whatsapp?.sent ? 'enviado' : 'não enviado'}. Fluxo DSLite retomado no job ${json.jobId}.`
-          : 'Pagamento confirmado com sucesso.',
+          ? `Comprovante processado. WhatsApp ${json.whatsapp?.sent ? 'enviado' : 'não enviado'}. Fluxo DSLite retomado no job ${json.jobId}.`
+          : 'Comprovante processado com sucesso.',
       );
       closePaymentModal();
       await fetchData();
@@ -455,6 +455,17 @@ export default function ComprasPage() {
               Confirmar PIX
             </Button>
           )}
+          {record.supplier_payment_mode === 'prepaid_pix' && record.supplier_payment_status === 'paid' && (
+            <Button
+              size="small"
+              type="primary"
+              ghost
+              style={{ marginTop: 6 }}
+              onClick={() => openPaymentModal(record)}
+            >
+              {record.supplier_payment_receipt_path ? 'Reenviar comprovante' : 'Anexar comprovante'}
+            </Button>
+          )}
         </div>
       ),
     },
@@ -484,8 +495,13 @@ export default function ComprasPage() {
         const items = [
           { key: 'view', label: 'Ver Detalhes' },
           { key: 'track', label: 'Rastrear' },
-          ...(record.supplier_payment_mode === 'prepaid_pix' && record.supplier_payment_status === 'pending'
-            ? [{ key: 'confirm_supplier_payment', label: 'Confirmar pagamento do fornecedor' }]
+          ...(record.supplier_payment_mode === 'prepaid_pix' && record.supplier_payment_status !== 'cancelled'
+            ? [{
+              key: 'confirm_supplier_payment',
+              label: record.supplier_payment_status === 'paid'
+                ? (record.supplier_payment_receipt_path ? 'Reenviar comprovante' : 'Anexar comprovante')
+                : 'Confirmar pagamento do fornecedor',
+            }]
             : []),
         ];
         return (
@@ -721,11 +737,11 @@ export default function ComprasPage() {
       </Spin>
 
       <Modal
-        title="Confirmar pagamento do fornecedor"
+        title={selectedCompra?.supplier_payment_status === 'paid' ? 'Enviar comprovante ao fornecedor' : 'Confirmar pagamento do fornecedor'}
         open={paymentModalOpen}
         onCancel={closePaymentModal}
         onOk={() => void handleConfirmSupplierPayment()}
-        okText="Confirmar pagamento"
+        okText={selectedCompra?.supplier_payment_status === 'paid' ? 'Enviar comprovante' : 'Confirmar pagamento'}
         cancelText="Cancelar"
         confirmLoading={confirmingPayment}
       >

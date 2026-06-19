@@ -151,7 +151,7 @@ export async function POST(
   const service = createServiceClient();
   const { data: compra, error: compraError } = await service
     .from('compras')
-    .select('id,dsid,fornecedor_id,fornecedor_nome,supplier_payment_mode,supplier_payment_status,status,status_dslite,supplier_payment_amount,produto_descricao,quantidade,supplier_payment_receipt_path')
+    .select('id,dsid,fornecedor_id,fornecedor_nome,supplier_payment_mode,supplier_payment_status,status,status_dslite,supplier_payment_amount,produto_descricao,quantidade,supplier_payment_reference,supplier_payment_receipt_url,supplier_payment_receipt_path,supplier_payment_notes,supplier_payment_confirmed_at,supplier_payment_confirmed_by')
     .eq('id', compraId)
     .maybeSingle();
 
@@ -164,12 +164,14 @@ export async function POST(
   if (compra.supplier_payment_mode !== 'prepaid_pix') {
     return NextResponse.json({ error: 'Esta compra não exige confirmação manual de pagamento' }, { status: 422 });
   }
-  if (compra.supplier_payment_status === 'paid') {
-    return NextResponse.json({ error: 'O pagamento desta compra já foi confirmado' }, { status: 409 });
+
+  const alreadyPaid = compra.supplier_payment_status === 'paid';
+  if (!parsed.receiptFile && !(compra as any).supplier_payment_receipt_path) {
+    return NextResponse.json({ error: 'Anexe o comprovante para enviar ao fornecedor' }, { status: 422 });
   }
 
-  const confirmedAt = new Date().toISOString();
-  const confirmedBy = user?.email || user?.id || 'dslite_order_flow';
+  const confirmedAt = (compra as any).supplier_payment_confirmed_at || new Date().toISOString();
+  const confirmedBy = (compra as any).supplier_payment_confirmed_by || user?.email || user?.id || 'dslite_order_flow';
   const nextStatus = String(compra.status_dslite || compra.status || 'Iniciado');
   const uploadedReceipt = parsed.receiptFile
     ? await uploadReceiptFile({
@@ -189,10 +191,10 @@ export async function POST(
       supplier_payment_status: 'paid',
       supplier_payment_confirmed_at: confirmedAt,
       supplier_payment_confirmed_by: confirmedBy,
-      supplier_payment_reference: supplierPaymentReference,
-      supplier_payment_receipt_url: supplierPaymentReceiptUrl,
+      supplier_payment_reference: supplierPaymentReference ?? (compra as any).supplier_payment_reference ?? null,
+      supplier_payment_receipt_url: supplierPaymentReceiptUrl ?? (compra as any).supplier_payment_receipt_url ?? null,
       supplier_payment_receipt_path: uploadedReceipt?.path || (compra as any).supplier_payment_receipt_path || null,
-      supplier_payment_notes: supplierPaymentNotes,
+      supplier_payment_notes: supplierPaymentNotes ?? (compra as any).supplier_payment_notes ?? null,
       status: nextStatus,
     } as any)
     .eq('id', compraId);
@@ -223,6 +225,7 @@ export async function POST(
       dslite_id: compra.dsid,
       fornecedor_id: compra.fornecedor_id || null,
       fornecedor_nome: compra.fornecedor_nome || null,
+      already_paid: alreadyPaid,
       confirmed_at: confirmedAt,
       confirmed_by: confirmedBy,
       supplier_payment_reference: supplierPaymentReference,
