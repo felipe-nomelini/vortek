@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { reconcileLocalNfeSnapshotFromXml } from '@/lib/fiscal/nfe-local-reconciliation';
+import { getSupplierPixKey } from '@/lib/supplier-payment';
 
 function logDbError(
   event: string,
@@ -73,6 +74,50 @@ async function persistReconciledPedidos(rows: any[]) {
   );
 
   return rows.map((row) => reconcileNotaFiscalEmitidaRow(row).row);
+}
+
+async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<typeof createServiceClient>) {
+  const dsids = Array.from(new Set(
+    rows
+      .map((row) => String(row?.dslite_id || '').trim())
+      .filter(Boolean),
+  ));
+  if (!dsids.length) return rows;
+
+  const compras: any[] = [];
+  for (let index = 0; index < dsids.length; index += 500) {
+    const chunk = dsids.slice(index, index + 500);
+    const { data, error } = await serviceClient
+      .from('compras')
+      .select('id,dsid,fornecedor_id,fornecedor_nome,supplier_payment_mode,supplier_payment_status,supplier_payment_amount,supplier_payment_receipt_path,supplier_payment_reference,supplier_payment_notes')
+      .in('dsid', chunk);
+
+    if (error) {
+      logDbError('pedidos_compras_enrich_failed', '/api/pedidos', '', error, {
+        dsids_count: dsids.length,
+      });
+      return rows;
+    }
+    compras.push(...(data || []));
+  }
+
+  const comprasByDsid = new Map(compras.map((compra) => [String(compra.dsid), compra]));
+  return rows.map((row) => {
+    const compra = comprasByDsid.get(String(row?.dslite_id || ''));
+    if (!compra) return row;
+    return {
+      ...row,
+      compra_id: compra.id || null,
+      fornecedor_nome: compra.fornecedor_nome || null,
+      supplier_payment_mode: compra.supplier_payment_mode || null,
+      supplier_payment_status: compra.supplier_payment_status || null,
+      supplier_payment_amount: compra.supplier_payment_amount ?? null,
+      supplier_payment_receipt_path: compra.supplier_payment_receipt_path || null,
+      supplier_payment_reference: compra.supplier_payment_reference || null,
+      supplier_payment_notes: compra.supplier_payment_notes || null,
+      supplier_pix_key: getSupplierPixKey(compra.fornecedor_id),
+    };
+  });
 }
 
 function applyPedidoFilters(query: any, filters: {
@@ -216,9 +261,10 @@ export async function GET(request: Request) {
     const rows = Array.isArray(rpcData?.data) ? rpcData.data : [];
     const total = Number(rpcData?.total ?? 0) || 0;
     const reconciledRows = await persistReconciledPedidos(rows);
+    const enrichedRows = await enrichPedidosWithCompras(reconciledRows, serviceClient);
 
     return NextResponse.json({
-      data: reconciledRows,
+      data: enrichedRows,
       total,
       page,
       pageSize,
@@ -288,9 +334,10 @@ export async function GET(request: Request) {
   }
 
   const reconciledRows = await persistReconciledPedidos(data || []);
+  const enrichedRows = await enrichPedidosWithCompras(reconciledRows, serviceClient);
 
   return NextResponse.json({
-    data: reconciledRows,
+    data: enrichedRows,
     total: count || 0,
     page,
     pageSize,

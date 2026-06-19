@@ -52,6 +52,15 @@ export interface Order {
   dslite_id: string | null;
   dslite_status?: string | null;
   dslite_etiqueta_enviada?: boolean;
+  compra_id?: string | null;
+  supplier_payment_mode?: 'postpaid' | 'prepaid_pix' | 'balance_account' | null;
+  supplier_payment_status?: 'pending' | 'paid' | 'failed' | 'cancelled' | string | null;
+  supplier_payment_amount?: number | null;
+  supplier_payment_receipt_path?: string | null;
+  supplier_payment_reference?: string | null;
+  supplier_payment_notes?: string | null;
+  fornecedor_nome?: string | null;
+  supplier_pix_key?: string | null;
   ml_claim_id: string | null;
   ml_shipment_id: string | null;
   ml_invoice_reported?: boolean;

@@ -174,6 +174,15 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     dslite_id: isValidDsliteId(item.dslite_id),
     dslite_status: item.dslite_status,
     dslite_etiqueta_enviada: item.dslite_etiqueta_enviada || false,
+    compra_id: (item as any).compra_id || null,
+    fornecedor_nome: (item as any).fornecedor_nome || null,
+    supplier_payment_mode: (item as any).supplier_payment_mode || null,
+    supplier_payment_status: (item as any).supplier_payment_status || null,
+    supplier_payment_amount: (item as any).supplier_payment_amount ?? null,
+    supplier_payment_receipt_path: (item as any).supplier_payment_receipt_path || null,
+    supplier_payment_reference: (item as any).supplier_payment_reference || null,
+    supplier_payment_notes: (item as any).supplier_payment_notes || null,
+    supplier_pix_key: (item as any).supplier_pix_key || null,
     ml_claim_id: item.ml_claim_id,
     ml_shipment_id: item.ml_shipment_id,
     ml_invoice_reported: item.ml_invoice_reported || false,
@@ -220,6 +229,7 @@ interface DslitePaymentPrompt {
   order: Order;
   compraId: string;
   dsid: string;
+  resumeAfterConfirm?: boolean;
   fornecedorNome?: string | null;
   supplierPaymentAmount?: number | null;
   supplierPixKey?: string | null;
@@ -533,6 +543,7 @@ export default function PedidosPage() {
           order,
           compraId: String(payload.compra_id),
           dsid: String(payload.dsid || order.dslite_id || ''),
+          resumeAfterConfirm: true,
           fornecedorNome: payload.fornecedor_nome || null,
           supplierPaymentAmount: Number(payload.supplier_payment_amount || 0) || null,
           supplierPixKey: payload.supplier_pix_key || null,
@@ -628,6 +639,28 @@ export default function PedidosPage() {
     setDsliteProgressOpen(false);
   };
 
+  const abrirConfirmacaoPixPedido = (order: Order) => {
+    if (!order.compra_id || !order.dslite_id) {
+      messageApi.error('Compra DSLite vinculada não encontrada para confirmar PIX.');
+      return;
+    }
+    setDslitePaymentPrompt({
+      order,
+      compraId: order.compra_id,
+      dsid: order.dslite_id,
+      resumeAfterConfirm: false,
+      fornecedorNome: order.fornecedor_nome || null,
+      supplierPaymentAmount: order.supplier_payment_amount ?? null,
+      supplierPixKey: order.supplier_pix_key || null,
+      supplierPixKeyMissing: !order.supplier_pix_key,
+      supplierPhoneMissing: false,
+    });
+    setDslitePaymentReference(order.supplier_payment_reference || '');
+    setDslitePaymentNotes(order.supplier_payment_notes || '');
+    setDslitePaymentReceiptFile(null);
+    setDslitePaymentModalOpen(true);
+  };
+
   const confirmarPagamentoDsliteNoFluxo = async () => {
     if (!dslitePaymentPrompt) return;
     if (!dslitePaymentReceiptFile) {
@@ -638,7 +671,7 @@ export default function PedidosPage() {
     setConfirmingDslitePayment(true);
     try {
       const form = new FormData();
-      form.append('resume_dslite_flow', 'true');
+      form.append('resume_dslite_flow', dslitePaymentPrompt.resumeAfterConfirm ? 'true' : 'false');
       form.append('receipt', dslitePaymentReceiptFile);
       if (dslitePaymentReference.trim()) {
         form.append('supplier_payment_reference', dslitePaymentReference.trim());
@@ -652,7 +685,7 @@ export default function PedidosPage() {
         body: form,
       });
       const json = await res.json().catch(() => ({}));
-      if (!res.ok || !json?.success || !json?.jobId) {
+      if (!res.ok || !json?.success) {
         throw new Error(json?.error || 'Falha ao confirmar PIX e retomar fluxo DSLite');
       }
 
@@ -661,8 +694,16 @@ export default function PedidosPage() {
       setDslitePaymentReceiptFile(null);
       setDslitePaymentReference('');
       setDslitePaymentNotes('');
-      messageApi.success('PIX confirmado. Fluxo DSLite retomado.');
-      await pollDsliteJob(String(json.jobId), dslitePaymentPrompt.order);
+      if (dslitePaymentPrompt.resumeAfterConfirm && json.jobId) {
+        messageApi.success('PIX confirmado. Fluxo DSLite retomado.');
+        await pollDsliteJob(String(json.jobId), dslitePaymentPrompt.order);
+      } else {
+        const whatsappDetail = json.whatsapp?.sent
+          ? 'WhatsApp enviado.'
+          : `WhatsApp não enviado${json.whatsapp?.reason ? `: ${json.whatsapp.reason}` : ''}.`;
+        messageApi.success(`Comprovante processado. ${whatsappDetail}`);
+        fetchData();
+      }
     } catch (err: any) {
       messageApi.error(err?.message || 'Erro ao confirmar PIX');
     } finally {
@@ -1132,6 +1173,15 @@ export default function PedidosPage() {
             icon: <UploadOutlined />,
           });
         }
+        if (hasDsliteId && record.supplier_payment_mode === 'prepaid_pix') {
+          items.push({
+            key: 'confirm_supplier_payment',
+            label: record.supplier_payment_status === 'paid'
+              ? (record.supplier_payment_receipt_path ? 'Reenviar comprovante PIX' : 'Anexar comprovante PIX')
+              : 'Confirmar PIX do fornecedor',
+            icon: <UploadOutlined />,
+          });
+        }
         if (record.ml_shipment_id || record.ml_order_id || record.ml_label_storage_path) {
           items.push({
             key: 'send_whatsapp_label',
@@ -1163,6 +1213,7 @@ export default function PedidosPage() {
                 }
                 if (key === 'dslite') criarPedidoDslite(record, 'brasilnfe');
                 if (key === 'etiqueta') enviarEtiquetaAutomatica(record);
+                if (key === 'confirm_supplier_payment') abrirConfirmacaoPixPedido(record);
                 if (key === 'send_whatsapp_label') openWhatsappLabelModal(record);
                 if (key === 'send_whatsapp_placeholder_label') openWhatsappLabelModal(record, true);
                 if (key === 'desvincular_dslite') desvincularCompraDslite(record);
@@ -1345,18 +1396,20 @@ export default function PedidosPage() {
         showCloseButton={whatsappSteps.some(s => s.status === 'error' || s.status === 'success' || s.status === 'warning')}
       />
       <Modal
-        title="Confirmar PIX do fornecedor"
+        title={dslitePaymentPrompt?.resumeAfterConfirm === false ? 'Enviar comprovante PIX ao fornecedor' : 'Confirmar PIX do fornecedor'}
         open={dslitePaymentModalOpen}
         onCancel={() => setDslitePaymentModalOpen(false)}
         onOk={confirmarPagamentoDsliteNoFluxo}
-        okText="Confirmar PIX e continuar"
+        okText={dslitePaymentPrompt?.resumeAfterConfirm === false ? 'Enviar comprovante' : 'Confirmar PIX e continuar'}
         cancelText="Depois"
         confirmLoading={confirmingDslitePayment}
         maskClosable={false}
       >
         <Space direction="vertical" size={14} style={{ width: '100%' }}>
           <Text style={{ color: '#a0a0a0' }}>
-            O pedido DSLite foi criado e precisa da confirmação do PIX para continuar etiqueta/transportadora.
+            {dslitePaymentPrompt?.resumeAfterConfirm === false
+              ? 'Envie ou reenvie o comprovante PIX ao fornecedor sem retomar etapas de etiqueta.'
+              : 'O pedido DSLite foi criado e precisa da confirmação do PIX para continuar etiqueta/transportadora.'}
           </Text>
           {(dslitePaymentPrompt?.supplierPixKeyMissing || dslitePaymentPrompt?.supplierPhoneMissing) && (
             <div style={{ background: '#2a1f00', border: '1px solid #faad1444', borderRadius: 8, padding: 12 }}>
