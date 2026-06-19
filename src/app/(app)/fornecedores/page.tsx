@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
+import Link from 'next/link';
 import { Input, Button, Dropdown, Typography, Row, Col, Select, Tag, Spin, Modal, message } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TablePaginationConfig, TableProps } from 'antd';
@@ -208,7 +209,11 @@ export default function FornecedoresPage() {
       key: 'apelido',
       width: 180,
       sorter: true,
-      render: (v: string) => v || '—',
+      render: (v: string, record: FornecedorRow) => (
+        <Link href={`/fornecedores/${record.id}`} style={{ color: '#1677ff' }}>
+          {v || record.nome || record.dslite_id || '—'}
+        </Link>
+      ),
     },
     {
       title: 'Capacidades',
@@ -240,7 +245,11 @@ export default function FornecedoresPage() {
       key: 'nome',
       width: 220,
       sorter: true,
-      render: (v: string) => v || '—',
+      render: (v: string, record: FornecedorRow) => (
+        <Link href={`/fornecedores/${record.id}`} style={{ color: '#1677ff' }}>
+          {v || record.apelido || record.dslite_id || '—'}
+        </Link>
+      ),
     },
     {
       title: 'Contato',
@@ -277,6 +286,7 @@ export default function FornecedoresPage() {
         <Dropdown
           menu={{
             items: [
+              { key: 'details', label: 'Ver / editar detalhes' },
               { key: 'view', label: 'Visualizar payload DSLite' },
               { key: 'dslite', label: 'Ver no DSLite' },
               {
@@ -289,6 +299,9 @@ export default function FornecedoresPage() {
               },
             ],
             onClick: ({ key }) => {
+              if (key === 'details') {
+                window.location.href = `/fornecedores/${record.id}`;
+              }
               if (key === 'view') {
                 window.console.log('[fornecedor payload]', record.payload_dslite);
               }
