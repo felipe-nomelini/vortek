@@ -3021,6 +3021,13 @@ async function runDsliteCreateJob(
     }
 
     if (supplierPaymentMode === 'prepaid_pix' && !resumeAfterSupplierPayment) {
+      const supplierPixKey = getSupplierPixKey(fornecedorId);
+      const { data: fornecedorCadastro } = await client
+        .from('fornecedores')
+        .select('telefone')
+        .eq('dslite_id', String(fornecedorId || ''))
+        .maybeSingle();
+      const supplierPhoneDigits = String((fornecedorCadastro as any)?.telefone || '').replace(/\D/g, '');
       await client
         .from('pedidos')
         .update({
@@ -3044,7 +3051,9 @@ async function runDsliteCreateJob(
         compra_id: compraAtual?.id || existingCompra?.id || null,
         fornecedor_nome: fornecedorNomeResolved,
         supplier_payment_amount: compraAtual?.supplier_payment_amount ?? supplierPaymentAmount ?? null,
-        supplier_pix_key: getSupplierPixKey(fornecedorId),
+        supplier_pix_key: supplierPixKey,
+        supplier_pix_key_missing: !supplierPixKey,
+        supplier_phone_missing: !supplierPhoneDigits,
       };
       await syncJob();
       return;
@@ -3053,13 +3062,12 @@ async function runDsliteCreateJob(
     const pendencias: string[] = [...externalWarnings];
     let etiquetaStatus: 'enviada' | 'nao_disponivel' | 'erro' = 'nao_disponivel';
     let etiquetaError: string | undefined;
+    const isRealLabelPendingForNonHayamax = Boolean(
+      isMlLabelReleasePending && releaseAt && fornecedorId !== HAYAMAX_FORNECEDOR_ID,
+    );
 
     if (supplierDefinedAtCreation) {
       await completeAsSkipped('set_supplier_dslite', 'fornecedor já informado na criação do pedido');
-    } else if (isMlLabelReleasePending && releaseAt && fornecedorId !== HAYAMAX_FORNECEDOR_ID) {
-      etiquetaStatus = 'nao_disponivel';
-      etiquetaError = 'Etiqueta ML ainda não liberada; etiqueta genérica bloqueada para fornecedor diferente da Hayamax';
-      pendencias.push(`Etiqueta: ${etiquetaError}`);
     } else {
       await setStep('set_supplier_dslite', 'loading');
       const fornecedorResult = await informarFornecedorPedido(dsidAtual as number, fornecedorId);
@@ -3089,6 +3097,12 @@ async function runDsliteCreateJob(
       etiquetaStatus = 'enviada';
       await completeAsSkipped('download_label_ml', 'etiqueta já enviada anteriormente');
       await completeAsSkipped('send_label_dslite', 'etiqueta já enviada anteriormente');
+    } else if (isRealLabelPendingForNonHayamax && releaseAt) {
+      etiquetaStatus = 'nao_disponivel';
+      etiquetaError = `Etiqueta ML ainda não liberada até ${placeholderReleaseLabel}; pedido DSLite criado com etiqueta pendente`;
+      pendencias.push(`Etiqueta: ${etiquetaError}`);
+      await setStep('download_label_ml', 'warning', etiquetaError);
+      await setStep('send_label_dslite', 'warning', 'Etapa não executada: use "Completar etiqueta DSLite" quando o ML liberar a etiqueta real');
     } else if (usePlaceholderLabel && releaseAt) {
       try {
         const etiquetaPdf = await loadDslitePlaceholderLabel();

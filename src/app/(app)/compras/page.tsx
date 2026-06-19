@@ -269,11 +269,10 @@ export default function ComprasPage() {
       if (!res.ok) {
         throw new Error(json.error || 'Erro ao confirmar pagamento do fornecedor');
       }
-      messageApi.success(
-        json.jobId
-          ? `Comprovante processado. WhatsApp ${json.whatsapp?.sent ? 'enviado' : 'não enviado'}. Fluxo DSLite retomado no job ${json.jobId}.`
-          : 'Comprovante processado com sucesso.',
-      );
+      const whatsappDetail = json.whatsapp?.sent
+        ? 'WhatsApp enviado.'
+        : `WhatsApp não enviado${json.whatsapp?.reason ? `: ${json.whatsapp.reason}` : ''}.`;
+      messageApi.success(`Comprovante processado. ${whatsappDetail}`);
       closePaymentModal();
       await fetchData();
     } catch (err: any) {

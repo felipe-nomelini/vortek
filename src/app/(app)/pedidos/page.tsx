@@ -223,6 +223,8 @@ interface DslitePaymentPrompt {
   fornecedorNome?: string | null;
   supplierPaymentAmount?: number | null;
   supplierPixKey?: string | null;
+  supplierPixKeyMissing?: boolean;
+  supplierPhoneMissing?: boolean;
 }
 
 export default function PedidosPage() {
@@ -534,6 +536,8 @@ export default function PedidosPage() {
           fornecedorNome: payload.fornecedor_nome || null,
           supplierPaymentAmount: Number(payload.supplier_payment_amount || 0) || null,
           supplierPixKey: payload.supplier_pix_key || null,
+          supplierPixKeyMissing: Boolean(payload.supplier_pix_key_missing),
+          supplierPhoneMissing: Boolean(payload.supplier_phone_missing),
         });
         setDslitePaymentReference('');
         setDslitePaymentNotes('');
@@ -634,6 +638,7 @@ export default function PedidosPage() {
     setConfirmingDslitePayment(true);
     try {
       const form = new FormData();
+      form.append('resume_dslite_flow', 'true');
       form.append('receipt', dslitePaymentReceiptFile);
       if (dslitePaymentReference.trim()) {
         form.append('supplier_payment_reference', dslitePaymentReference.trim());
@@ -1123,7 +1128,7 @@ export default function PedidosPage() {
         if (hasDsliteId && !record.dslite_etiqueta_enviada) {
           items.push({
             key: 'etiqueta',
-            label: 'Enviar Etiqueta DSLite',
+            label: 'Completar etiqueta DSLite',
             icon: <UploadOutlined />,
           });
         }
@@ -1353,6 +1358,20 @@ export default function PedidosPage() {
           <Text style={{ color: '#a0a0a0' }}>
             O pedido DSLite foi criado e precisa da confirmação do PIX para continuar etiqueta/transportadora.
           </Text>
+          {(dslitePaymentPrompt?.supplierPixKeyMissing || dslitePaymentPrompt?.supplierPhoneMissing) && (
+            <div style={{ background: '#2a1f00', border: '1px solid #faad1444', borderRadius: 8, padding: 12 }}>
+              {dslitePaymentPrompt?.supplierPixKeyMissing && (
+                <Text style={{ color: '#faad14', display: 'block' }}>
+                  Chave PIX não cadastrada para este fornecedor.
+                </Text>
+              )}
+              {dslitePaymentPrompt?.supplierPhoneMissing && (
+                <Text style={{ color: '#faad14', display: 'block' }}>
+                  WhatsApp do fornecedor não cadastrado. O comprovante será salvo, mas não será enviado automaticamente.
+                </Text>
+              )}
+            </div>
+          )}
           <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 12 }}>
             <Space direction="vertical" size={4} style={{ width: '100%' }}>
               <Text><b>Pedido DSLite:</b> #{dslitePaymentPrompt?.dsid || '—'}</Text>

@@ -32,6 +32,7 @@ async function parsePaymentConfirmationRequest(request: Request) {
       supplierPaymentReference: String(form.get('supplier_payment_reference') || '').trim() || null,
       supplierPaymentReceiptUrl: String(form.get('supplier_payment_receipt_url') || '').trim() || null,
       supplierPaymentNotes: String(form.get('supplier_payment_notes') || '').trim() || null,
+      resumeDsliteFlow: String(form.get('resume_dslite_flow') || '').trim() === 'true',
       receiptFile: receipt instanceof File && receipt.size > 0 ? receipt : null,
     };
   }
@@ -41,6 +42,7 @@ async function parsePaymentConfirmationRequest(request: Request) {
     supplierPaymentReference: String(body?.supplier_payment_reference || '').trim() || null,
     supplierPaymentReceiptUrl: String(body?.supplier_payment_receipt_url || '').trim() || null,
     supplierPaymentNotes: String(body?.supplier_payment_notes || '').trim() || null,
+    resumeDsliteFlow: Boolean(body?.resume_dslite_flow),
     receiptFile: null as File | null,
   };
 }
@@ -147,6 +149,7 @@ export async function POST(
   const supplierPaymentReference = parsed.supplierPaymentReference;
   const supplierPaymentReceiptUrl = parsed.supplierPaymentReceiptUrl;
   const supplierPaymentNotes = parsed.supplierPaymentNotes;
+  const resumeDsliteFlow = Boolean(parsed.resumeDsliteFlow);
 
   const service = createServiceClient();
   const { data: compra, error: compraError } = await service
@@ -279,27 +282,30 @@ export async function POST(
     });
   }
 
-  const origin = new URL(request.url).origin;
-  const resumeResponse = await fetch(`${origin}/api/dslite/pedido`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      ...(process.env.API_SECRET_KEY ? { 'x-api-key': process.env.API_SECRET_KEY } : {}),
-    },
-    body: JSON.stringify({
-      pedidoId: String(pedido.id),
-      mlOrderId: String(pedido.ml_order_id),
-      nfeProvider: 'brasilnfe',
-      resumeAfterSupplierPayment: true,
-    }),
-  });
+  let resumeJson: any = null;
+  if (resumeDsliteFlow) {
+    const origin = new URL(request.url).origin;
+    const resumeResponse = await fetch(`${origin}/api/dslite/pedido`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(process.env.API_SECRET_KEY ? { 'x-api-key': process.env.API_SECRET_KEY } : {}),
+      },
+      body: JSON.stringify({
+        pedidoId: String(pedido.id),
+        mlOrderId: String(pedido.ml_order_id),
+        nfeProvider: 'brasilnfe',
+        resumeAfterSupplierPayment: true,
+      }),
+    });
 
-  const resumeJson = await resumeResponse.json().catch(() => ({}));
-  if (!resumeResponse.ok) {
-    return NextResponse.json(
-      { error: resumeJson?.error || 'Falha ao retomar o fluxo DSLite após confirmar o pagamento' },
-      { status: resumeResponse.status || 500 },
-    );
+    resumeJson = await resumeResponse.json().catch(() => ({}));
+    if (!resumeResponse.ok) {
+      return NextResponse.json(
+        { error: resumeJson?.error || 'Falha ao retomar o fluxo DSLite após confirmar o pagamento' },
+        { status: resumeResponse.status || 500 },
+      );
+    }
   }
 
   return NextResponse.json({
