@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
+import { validateMercadoLivreTokenOwner } from '@/lib/ml-account-guard';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -42,9 +43,29 @@ export async function GET(request: Request) {
       return NextResponse.json({ erro: `Erro ao obter token: ${tokenData.error || tokenData.message || 'desconhecido'}` }, { status: 400 });
     }
 
+    const account = await validateMercadoLivreTokenOwner(tokenData.access_token);
+    if (!account.ok) {
+      await serviceClient
+        .from('integracoes')
+        .update({
+          access_token: null,
+          refresh_token: null,
+          token_expires_at: null,
+          conectado: false,
+          last_refresh_at: new Date().toISOString(),
+          last_refresh_error: `Conta Mercado Livre não permitida: ${account.nickname || account.userId || account.error}`,
+          last_refresh_error_code: 'ml_account_not_allowed',
+          updated_at: new Date().toISOString(),
+        })
+        .eq('tipo', 'mercadolivre');
+
+      return NextResponse.json({
+        erro: `Conta Mercado Livre não permitida. Conecte apenas a conta Vortek. Conta detectada: ${account.nickname || account.userId || 'desconhecida'}`,
+      }, { status: 403 });
+    }
+
     const expiresAt = new Date(Date.now() + (tokenData.expires_in || 10800) * 1000).toISOString();
 
-    const serviceClient = createServiceClient();
     await serviceClient
       .from('integracoes')
       .update({
@@ -52,6 +73,9 @@ export async function GET(request: Request) {
         refresh_token: tokenData.refresh_token,
         token_expires_at: expiresAt,
         conectado: true,
+        last_refresh_at: new Date().toISOString(),
+        last_refresh_error: null,
+        last_refresh_error_code: null,
         updated_at: new Date().toISOString(),
       })
       .eq('tipo', 'mercadolivre');

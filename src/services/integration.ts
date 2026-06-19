@@ -5,6 +5,7 @@
  */
 import { randomUUID } from 'crypto';
 import { createServiceClient } from '@/lib/supabase';
+import { validateMercadoLivreTokenOwner } from '@/lib/ml-account-guard';
 import type { Database } from '@/types/database';
 
 type IntegracaoRow = Database['public']['Tables']['integracoes']['Row'];
@@ -35,6 +36,7 @@ const AUTH_FATAL_COOLDOWN_MS = 10 * 60 * 1000;
 const FATAL_REFRESH_ERROR_CODES = ['invalid_grant', 'invalid_client', 'unauthorized_client', 'unauthorized_application'];
 let inflightForcedRefresh: Promise<string | null> | null = null;
 let authBlockedUntilMs = 0;
+let verifiedAccessToken: string | null = null;
 
 class IntegracaoReadError extends Error {
   code: string;
@@ -277,6 +279,40 @@ async function markRefreshFailure(
   });
 }
 
+async function clearMercadoLivreTokens(reason: string) {
+  verifiedAccessToken = null;
+  await updateIntegracao('mercadolivre', {
+    access_token: null,
+    refresh_token: null,
+    token_expires_at: null,
+    conectado: false,
+    last_refresh_at: new Date().toISOString(),
+    last_refresh_error: reason,
+    last_refresh_error_code: 'ml_account_not_allowed',
+  });
+}
+
+async function ensureAllowedMercadoLivreToken(accessToken: string): Promise<boolean> {
+  if (verifiedAccessToken === accessToken) return true;
+
+  const account = await validateMercadoLivreTokenOwner(accessToken);
+  if (account.ok) {
+    verifiedAccessToken = accessToken;
+    return true;
+  }
+
+  const identity = account.nickname || account.userId || account.error || 'desconhecida';
+  await clearMercadoLivreTokens(`Conta Mercado Livre não permitida: ${identity}`);
+  console.error(JSON.stringify({
+    event: 'ml_account_not_allowed',
+    timestamp_utc: new Date().toISOString(),
+    user_id: account.userId,
+    nickname: account.nickname,
+    error: account.error,
+  }));
+  return false;
+}
+
 function isFatalAuthRefreshError(errorCode: string | null): boolean {
   return FATAL_REFRESH_ERROR_CODES.includes(errorCode || '');
 }
@@ -286,7 +322,8 @@ async function waitTokenFromOtherRefresher(): Promise<string | null> {
     await delay(REFRESH_WAIT_MS);
     const current = await getIntegracao('mercadolivre');
     if (current?.access_token && !isExpired(current.token_expires_at)) {
-      return current.access_token;
+      const allowed = await ensureAllowedMercadoLivreToken(current.access_token);
+      return allowed ? current.access_token : null;
     }
   }
   return null;
@@ -298,7 +335,8 @@ async function refreshMLTokenFromDB(force: boolean): Promise<string | null> {
   if (!initial?.refresh_token) return null;
 
   if (!force && initial.access_token && !isExpired(initial.token_expires_at)) {
-    return initial.access_token;
+    const allowed = await ensureAllowedMercadoLivreToken(initial.access_token);
+    return allowed ? initial.access_token : null;
   }
 
   const owner = randomUUID();
@@ -313,7 +351,8 @@ async function refreshMLTokenFromDB(force: boolean): Promise<string | null> {
     if (!latest?.refresh_token) return null;
 
     if (!force && latest.access_token && !isExpired(latest.token_expires_at)) {
-      return latest.access_token;
+      const allowed = await ensureAllowedMercadoLivreToken(latest.access_token);
+      return allowed ? latest.access_token : null;
     }
 
     const res = await fetch('https://api.mercadolibre.com/oauth/token', {
@@ -360,6 +399,12 @@ async function refreshMLTokenFromDB(force: boolean): Promise<string | null> {
       return null;
     }
 
+    const allowed = await ensureAllowedMercadoLivreToken(accessToken);
+    if (!allowed) {
+      setAuthFatalCooldown('ml_account_not_allowed');
+      return null;
+    }
+
     await updateTokens('mercadolivre', accessToken, refreshToken, payload?.expires_in || 10800);
     clearAuthFatalCooldown();
     logMlAuthEvent({
@@ -389,7 +434,8 @@ export async function getValidMLToken(force = false): Promise<string | null> {
   if (!integracao?.refresh_token) return null;
 
   if (!force && integracao.access_token && !isExpired(integracao.token_expires_at)) {
-    return integracao.access_token;
+    const allowed = await ensureAllowedMercadoLivreToken(integracao.access_token);
+    return allowed ? integracao.access_token : null;
   }
 
   if (!force) {
