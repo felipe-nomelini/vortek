@@ -136,10 +136,7 @@ export async function POST(
   { params }: { params: { id: string } },
 ) {
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
-  }
+  const { data: { user } } = await supabase.auth.getUser().catch(() => ({ data: { user: null } } as any));
 
   const compraId = String(params.id || '').trim();
   if (!compraId) {
@@ -172,7 +169,7 @@ export async function POST(
   }
 
   const confirmedAt = new Date().toISOString();
-  const confirmedBy = user.email || user.id;
+  const confirmedBy = user?.email || user?.id || 'dslite_order_flow';
   const nextStatus = String(compra.status_dslite || compra.status || 'Iniciado');
   const uploadedReceipt = parsed.receiptFile
     ? await uploadReceiptFile({

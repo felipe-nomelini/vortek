@@ -52,6 +52,7 @@ import {
   loadDslitePlaceholderLabel,
 } from '@/lib/dslite/placeholder-label';
 import { storeShippingLabelForPedido } from '@/lib/shipping-label-storage';
+import { getSupplierPixKey } from '@/lib/supplier-payment';
 
 const TRANSPORTADORA_PADRAO_CORREIOS = 31;
 const WAIT_AUTH_TIMEOUT_MS = 180_000;
@@ -2951,6 +2952,8 @@ async function runDsliteCreateJob(
       });
     }
 
+    let compraAtual: { id: string; supplier_payment_amount: number | null } | null = null;
+
     if (dsidAtual) {
       const compraPayload = {
         dsid: String(dsidAtual),
@@ -2975,16 +2978,24 @@ async function runDsliteCreateJob(
           : null,
         supplier_payment_amount: supplierPaymentAmount && supplierPaymentAmount > 0 ? supplierPaymentAmount : null,
       };
-
       if (existingCompra?.id) {
         await client
           .from('compras')
           .update(compraPayload as any)
           .eq('id', String(existingCompra.id));
-      } else {
-        await client
+        const { data } = await client
           .from('compras')
-          .insert(compraPayload as any);
+          .select('id,supplier_payment_amount')
+          .eq('id', String(existingCompra.id))
+          .maybeSingle();
+        compraAtual = data as any;
+      } else {
+        const { data } = await client
+          .from('compras')
+          .insert(compraPayload as any)
+          .select('id,supplier_payment_amount')
+          .maybeSingle();
+        compraAtual = data as any;
       }
 
       if (supplierPaymentMode === 'balance_account') {
@@ -3030,6 +3041,10 @@ async function runDsliteCreateJob(
         fornecedor_id: fornecedorId,
         supplier_payment_mode: supplierPaymentMode,
         supplier_payment_status: 'pending',
+        compra_id: compraAtual?.id || existingCompra?.id || null,
+        fornecedor_nome: fornecedorNomeResolved,
+        supplier_payment_amount: compraAtual?.supplier_payment_amount ?? supplierPaymentAmount ?? null,
+        supplier_pix_key: getSupplierPixKey(fornecedorId),
       };
       await syncJob();
       return;

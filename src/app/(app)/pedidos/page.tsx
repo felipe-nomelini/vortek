@@ -3,7 +3,7 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import {
-  Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic, Divider, Tooltip,
+  Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic, Divider, Tooltip, Upload,
 } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
@@ -216,6 +216,15 @@ interface EtiquetaDuplicateDecision {
   identificadorInterno?: string | null;
 }
 
+interface DslitePaymentPrompt {
+  order: Order;
+  compraId: string;
+  dsid: string;
+  fornecedorNome?: string | null;
+  supplierPaymentAmount?: number | null;
+  supplierPixKey?: string | null;
+}
+
 export default function PedidosPage() {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -257,6 +266,12 @@ export default function PedidosPage() {
 
   const [dsliteProgressOpen, setDsliteProgressOpen] = useState(false);
   const dslitePollRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [dslitePaymentPrompt, setDslitePaymentPrompt] = useState<DslitePaymentPrompt | null>(null);
+  const [dslitePaymentModalOpen, setDslitePaymentModalOpen] = useState(false);
+  const [dslitePaymentReference, setDslitePaymentReference] = useState('');
+  const [dslitePaymentNotes, setDslitePaymentNotes] = useState('');
+  const [dslitePaymentReceiptFile, setDslitePaymentReceiptFile] = useState<File | null>(null);
+  const [confirmingDslitePayment, setConfirmingDslitePayment] = useState(false);
   const [dsliteSteps, setDsliteSteps] = useState<ProgressStep[]>([
     { label: 'Sincronizando pedido no Mercado Livre', status: 'loading', detail: 'Atualizando snapshot fiscal e itens do pedido' },
     { label: 'Emitindo NF na Brasil NFe', status: 'pending' },
@@ -469,6 +484,79 @@ export default function PedidosPage() {
     window.open(url, '_blank', 'noopener,noreferrer');
   }, [resolveNotaFiscalPdfUrl]);
 
+  const pollDsliteJob = async (jobId: string, order: Order) => {
+    const res = await fetch(`/api/dslite/pedido/status?jobId=${encodeURIComponent(jobId)}`);
+    const data = await res.json();
+    if (!res.ok || !data?.success) {
+      throw new Error(data?.error || 'Falha ao consultar status do job DSLite');
+    }
+
+    const mapped: ProgressStep[] = (data.steps || []).map((s: any) => ({
+      label: s.label,
+      status: s.status,
+      detail: s.detail,
+      error: s.error,
+    }));
+    if (mapped.length) setDsliteSteps(mapped);
+
+    const state = data.state as string;
+    if (state === 'running') {
+      dslitePollRef.current = setTimeout(() => {
+        pollDsliteJob(jobId, order).catch((err) => {
+          setDsliteSteps((prev) => {
+            const updated = [...prev];
+            const firstPending = updated.findIndex(s => s.status === 'pending' || s.status === 'loading');
+            const idx = firstPending >= 0 ? firstPending : updated.length - 1;
+            updated[idx] = { ...updated[idx], status: 'error', error: err.message || 'Erro ao acompanhar job' };
+            return updated;
+          });
+        });
+      }, 1500);
+      return;
+    }
+
+    if (state === 'success' || state === 'warning') {
+      const payload = data.data || {};
+      if (payload.dsid) {
+        setOrders(prev => prev.map(o =>
+          o.id === order.id ? {
+            ...o,
+            dslite_id: String(payload.dsid),
+            dslite_etiqueta_enviada: payload.etiquetaStatus === 'enviada'
+          } : o
+        ));
+      }
+      if (state === 'warning' && payload.stage === 'await_supplier_payment' && payload.compra_id) {
+        setDslitePaymentPrompt({
+          order,
+          compraId: String(payload.compra_id),
+          dsid: String(payload.dsid || order.dslite_id || ''),
+          fornecedorNome: payload.fornecedor_nome || null,
+          supplierPaymentAmount: Number(payload.supplier_payment_amount || 0) || null,
+          supplierPixKey: payload.supplier_pix_key || null,
+        });
+        setDslitePaymentReference('');
+        setDslitePaymentNotes('');
+        setDslitePaymentReceiptFile(null);
+        setDslitePaymentModalOpen(true);
+      }
+      return;
+    }
+
+    if (state === 'error') {
+      setDsliteSteps((prev) => {
+        const updated = [...prev];
+        const idx = updated.findIndex(s => s.status === 'error');
+        if (idx === -1) {
+          const fallback = updated.findIndex(s => s.status === 'loading');
+          const pos = fallback >= 0 ? fallback : updated.length - 1;
+          updated[pos] = { ...updated[pos], status: 'error', error: (data.data?.error || 'Falha ao criar pedido DSLite') };
+        }
+        return updated;
+      });
+    }
+  };
+
   const criarPedidoDslite = async (order: Order, nfeProvider: 'brasilnfe' = 'brasilnfe') => {
     const steps: ProgressStep[] = [
       { label: 'Sincronizando pedido no Mercado Livre', status: 'loading', detail: 'Atualizando snapshot fiscal e itens do pedido' },
@@ -485,6 +573,11 @@ export default function PedidosPage() {
     ];
     setDsliteSteps(steps);
     setDsliteProgressOpen(true);
+    setDslitePaymentModalOpen(false);
+    setDslitePaymentPrompt(null);
+    setDslitePaymentReference('');
+    setDslitePaymentNotes('');
+    setDslitePaymentReceiptFile(null);
 
     try {
       const startRes = await fetch('/api/dslite/pedido', {
@@ -501,66 +594,7 @@ export default function PedidosPage() {
         throw new Error(startData?.error || 'Falha ao iniciar criação do pedido DSLite');
       }
 
-      const poll = async () => {
-        const res = await fetch(`/api/dslite/pedido/status?jobId=${encodeURIComponent(startData.jobId)}`);
-        const data = await res.json();
-        if (!res.ok || !data?.success) {
-          throw new Error(data?.error || 'Falha ao consultar status do job DSLite');
-        }
-
-        const mapped: ProgressStep[] = (data.steps || []).map((s: any) => ({
-          label: s.label,
-          status: s.status,
-          detail: s.detail,
-          error: s.error,
-        }));
-        if (mapped.length) setDsliteSteps(mapped);
-
-        const state = data.state as string;
-        if (state === 'running') {
-          dslitePollRef.current = setTimeout(() => {
-            poll().catch((err) => {
-              setDsliteSteps((prev) => {
-                const updated = [...prev];
-                const firstPending = updated.findIndex(s => s.status === 'pending' || s.status === 'loading');
-                const idx = firstPending >= 0 ? firstPending : updated.length - 1;
-                updated[idx] = { ...updated[idx], status: 'error', error: err.message || 'Erro ao acompanhar job' };
-                return updated;
-              });
-            });
-          }, 1500);
-          return;
-        }
-
-        if (state === 'success' || state === 'warning') {
-          const payload = data.data || {};
-          if (payload.dsid) {
-            setOrders(prev => prev.map(o =>
-              o.id === order.id ? {
-                ...o,
-                dslite_id: String(payload.dsid),
-                dslite_etiqueta_enviada: payload.etiquetaStatus === 'enviada'
-              } : o
-            ));
-          }
-          return;
-        }
-
-        if (state === 'error') {
-          setDsliteSteps((prev) => {
-            const updated = [...prev];
-            const idx = updated.findIndex(s => s.status === 'error');
-            if (idx === -1) {
-              const fallback = updated.findIndex(s => s.status === 'loading');
-              const pos = fallback >= 0 ? fallback : updated.length - 1;
-              updated[pos] = { ...updated[pos], status: 'error', error: (data.data?.error || 'Falha ao criar pedido DSLite') };
-            }
-            return updated;
-          });
-        }
-      };
-
-      await poll();
+      await pollDsliteJob(startData.jobId, order);
     } catch (err: any) {
       setDsliteSteps(prev => {
         const updated = [...prev];
@@ -582,11 +616,53 @@ export default function PedidosPage() {
   const fecharModalDslite = () => {
     pararPollingDslite();
     setDsliteProgressOpen(false);
+    setDslitePaymentModalOpen(false);
   };
 
   const tentarNovamenteDslite = () => {
     pararPollingDslite();
     setDsliteProgressOpen(false);
+  };
+
+  const confirmarPagamentoDsliteNoFluxo = async () => {
+    if (!dslitePaymentPrompt) return;
+    if (!dslitePaymentReceiptFile) {
+      messageApi.warning('Anexe o comprovante do PIX para continuar o fluxo.');
+      return;
+    }
+
+    setConfirmingDslitePayment(true);
+    try {
+      const form = new FormData();
+      form.append('receipt', dslitePaymentReceiptFile);
+      if (dslitePaymentReference.trim()) {
+        form.append('supplier_payment_reference', dslitePaymentReference.trim());
+      }
+      if (dslitePaymentNotes.trim()) {
+        form.append('supplier_payment_notes', dslitePaymentNotes.trim());
+      }
+
+      const res = await fetch(`/api/compras/${dslitePaymentPrompt.compraId}/confirmar-pagamento`, {
+        method: 'POST',
+        body: form,
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json?.success || !json?.jobId) {
+        throw new Error(json?.error || 'Falha ao confirmar PIX e retomar fluxo DSLite');
+      }
+
+      setDslitePaymentModalOpen(false);
+      setDslitePaymentPrompt(null);
+      setDslitePaymentReceiptFile(null);
+      setDslitePaymentReference('');
+      setDslitePaymentNotes('');
+      messageApi.success('PIX confirmado. Fluxo DSLite retomado.');
+      await pollDsliteJob(String(json.jobId), dslitePaymentPrompt.order);
+    } catch (err: any) {
+      messageApi.error(err?.message || 'Erro ao confirmar PIX');
+    } finally {
+      setConfirmingDslitePayment(false);
+    }
   };
 
   const enviarEtiquetaAutomatica = async (
@@ -1263,6 +1339,77 @@ export default function PedidosPage() {
         }}
         showCloseButton={whatsappSteps.some(s => s.status === 'error' || s.status === 'success' || s.status === 'warning')}
       />
+      <Modal
+        title="Confirmar PIX do fornecedor"
+        open={dslitePaymentModalOpen}
+        onCancel={() => setDslitePaymentModalOpen(false)}
+        onOk={confirmarPagamentoDsliteNoFluxo}
+        okText="Confirmar PIX e continuar"
+        cancelText="Depois"
+        confirmLoading={confirmingDslitePayment}
+        maskClosable={false}
+      >
+        <Space direction="vertical" size={14} style={{ width: '100%' }}>
+          <Text style={{ color: '#a0a0a0' }}>
+            O pedido DSLite foi criado e precisa da confirmação do PIX para continuar etiqueta/transportadora.
+          </Text>
+          <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 12 }}>
+            <Space direction="vertical" size={4} style={{ width: '100%' }}>
+              <Text><b>Pedido DSLite:</b> #{dslitePaymentPrompt?.dsid || '—'}</Text>
+              <Text><b>Fornecedor:</b> {dslitePaymentPrompt?.fornecedorNome || '—'}</Text>
+              <Text><b>Valor PIX:</b> {formatCurrency(Number(dslitePaymentPrompt?.supplierPaymentAmount || 0))}</Text>
+              <Space>
+                <Text><b>Chave PIX:</b> {dslitePaymentPrompt?.supplierPixKey || 'Não cadastrada'}</Text>
+                {dslitePaymentPrompt?.supplierPixKey && (
+                  <Button
+                    size="small"
+                    onClick={() => {
+                      navigator.clipboard?.writeText(dslitePaymentPrompt.supplierPixKey || '');
+                      messageApi.success('Chave PIX copiada');
+                    }}
+                  >
+                    Copiar
+                  </Button>
+                )}
+              </Space>
+            </Space>
+          </div>
+          <Input
+            placeholder="Referência do PIX (opcional)"
+            value={dslitePaymentReference}
+            onChange={(event) => setDslitePaymentReference(event.target.value)}
+            disabled={confirmingDslitePayment}
+          />
+          <Input.TextArea
+            placeholder="Observações para o fornecedor (opcional)"
+            value={dslitePaymentNotes}
+            onChange={(event) => setDslitePaymentNotes(event.target.value)}
+            disabled={confirmingDslitePayment}
+            rows={3}
+          />
+          <Upload
+            accept=".pdf,.jpg,.jpeg,.png,.webp,application/pdf,image/jpeg,image/png,image/webp"
+            maxCount={1}
+            beforeUpload={(file) => {
+              setDslitePaymentReceiptFile(file);
+              return false;
+            }}
+            onRemove={() => {
+              setDslitePaymentReceiptFile(null);
+            }}
+            fileList={dslitePaymentReceiptFile ? [{
+              uid: 'supplier-payment-receipt',
+              name: dslitePaymentReceiptFile.name,
+              status: 'done' as const,
+            }] : []}
+            disabled={confirmingDslitePayment}
+          >
+            <Button icon={<UploadOutlined />} disabled={confirmingDslitePayment}>
+              Anexar comprovante
+            </Button>
+          </Upload>
+        </Space>
+      </Modal>
       <ProgressModal
         open={dsliteProgressOpen}
         title="Criando Pedido DSLite"
