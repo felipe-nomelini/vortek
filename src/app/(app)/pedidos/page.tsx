@@ -18,6 +18,7 @@ import { formatMlReleaseWindow, getMlReleaseComparableDate } from '@/lib/ml/rele
 
 const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
+const HAYAMAX_FORNECEDOR_ID = '2';
 
 const statusOptions = [
   { value: '', label: 'Todos os status' },
@@ -196,6 +197,8 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     dslite_etiqueta_enviada: item.dslite_etiqueta_enviada || false,
     compra_id: (item as any).compra_id || null,
     fornecedor_nome: (item as any).fornecedor_nome || null,
+    fornecedor_id: (item as any).fornecedor_id || null,
+    fornecedor_telefone: (item as any).fornecedor_telefone || null,
     supplier_payment_mode: (item as any).supplier_payment_mode || null,
     supplier_payment_status: (item as any).supplier_payment_status || null,
     supplier_payment_amount: (item as any).supplier_payment_amount ?? null,
@@ -403,6 +406,7 @@ export default function PedidosPage() {
   const openWhatsappLabelModal = (order: Order, usePlaceholderLabel = false) => {
     setWhatsappOrder(order);
     setWhatsappUsePlaceholderLabel(usePlaceholderLabel);
+    setWhatsappPhone(order.fornecedor_telefone || '');
     setWhatsappModalOpen(true);
   };
 
@@ -411,6 +415,7 @@ export default function PedidosPage() {
     setWhatsappModalOpen(false);
     setWhatsappOrder(null);
     setWhatsappUsePlaceholderLabel(false);
+    setWhatsappPhone('');
   };
 
   const handleSendWhatsappLabel = async () => {
@@ -1197,6 +1202,9 @@ export default function PedidosPage() {
         }
         const hasDsliteId = !!isValidDsliteId(record.dslite_id);
         const nextAction = record.dslite_next_action;
+        const isHayamaxOrder = String(record.fornecedor_id || '') === HAYAMAX_FORNECEDOR_ID;
+        const releaseAt = record.ml_fiscal_release_at ? getMlReleaseComparableDate(record.ml_fiscal_release_at) : null;
+        const mlLabelStillBlocked = Boolean(releaseAt && releaseAt.getTime() > Date.now());
         if ((!hasDsliteId || nextAction === 'create_dslite_order') && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
           items.push({
             key: 'dslite',
@@ -1218,15 +1226,10 @@ export default function PedidosPage() {
             icon: <UploadOutlined />,
           });
         }
-        if (record.ml_shipment_id || record.ml_order_id || record.ml_label_storage_path) {
+        if (isHayamaxOrder && !mlLabelStillBlocked && (record.ml_shipment_id || record.ml_order_id || record.ml_label_storage_path)) {
           items.push({
             key: 'send_whatsapp_label',
-            label: 'Enviar etiqueta ML por WhatsApp',
-            icon: <UploadOutlined />,
-          });
-          items.push({
-            key: 'send_whatsapp_placeholder_label',
-            label: 'Enviar etiqueta genérica por WhatsApp',
+            label: 'Enviar etiqueta real Hayamax',
             icon: <UploadOutlined />,
           });
         }
@@ -1251,7 +1254,6 @@ export default function PedidosPage() {
                 if (key === 'etiqueta') enviarEtiquetaAutomatica(record);
                 if (key === 'confirm_supplier_payment') abrirConfirmacaoPixPedido(record);
                 if (key === 'send_whatsapp_label') openWhatsappLabelModal(record);
-                if (key === 'send_whatsapp_placeholder_label') openWhatsappLabelModal(record, true);
                 if (key === 'desvincular_dslite') desvincularCompraDslite(record);
               },
             }}
@@ -1391,7 +1393,7 @@ export default function PedidosPage() {
         orderStatus={trackingOrderStatus}
       />
       <Modal
-        title={whatsappUsePlaceholderLabel ? 'Enviar etiqueta genérica por WhatsApp' : 'Enviar etiqueta ML por WhatsApp'}
+        title={whatsappUsePlaceholderLabel ? 'Enviar etiqueta genérica por WhatsApp' : 'Enviar etiqueta real Hayamax'}
         open={whatsappModalOpen}
         onCancel={closeWhatsappLabelModal}
         onOk={handleSendWhatsappLabel}
@@ -1405,7 +1407,7 @@ export default function PedidosPage() {
             Pedido venda #{whatsappOrder?.numero || '—'}.
             {whatsappOrder?.dslite_id ? ` Pedido DSLite #${whatsappOrder.dslite_id}.` : ' Sem pedido DSLite vinculado.'}
             {whatsappUsePlaceholderLabel ? ' Será enviada a etiqueta genérica de teste.' : ''}
-            {' '}Informe o número de WhatsApp do destinatário.
+            {' '}Confirme o WhatsApp da Hayamax para envio da etiqueta real.
           </Text>
           <Input
             placeholder="Ex.: 11999999999"

@@ -102,6 +102,22 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
   }
 
   const comprasByDsid = new Map(compras.map((compra) => [String(compra.dsid), compra]));
+  const fornecedorIds = Array.from(new Set(
+    compras
+      .map((compra) => String(compra?.fornecedor_id || '').trim())
+      .filter(Boolean),
+  ));
+  const fornecedores: any[] = [];
+  for (let index = 0; index < fornecedorIds.length; index += 500) {
+    const chunk = fornecedorIds.slice(index, index + 500);
+    const { data } = await serviceClient
+      .from('fornecedores')
+      .select('dslite_id,telefone')
+      .in('dslite_id', chunk);
+    fornecedores.push(...(data || []));
+  }
+  const fornecedorByDsliteId = new Map(fornecedores.map((fornecedor) => [String(fornecedor.dslite_id), fornecedor]));
+
   return rows.map((row) => {
     const compra = comprasByDsid.get(String(row?.dslite_id || ''));
     if (!compra) {
@@ -117,6 +133,7 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
     const paymentStatus = String(compra.supplier_payment_status || '');
     const hasReceipt = Boolean(compra.supplier_payment_receipt_path);
     const labelSent = Boolean(row?.dslite_etiqueta_enviada);
+    const fornecedor = fornecedorByDsliteId.get(String(compra.fornecedor_id || ''));
     let nextAction = 'done';
     let nextActionLabel = 'OK';
 
@@ -137,7 +154,9 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
     return {
       ...row,
       compra_id: compra.id || null,
+      fornecedor_id: compra.fornecedor_id || null,
       fornecedor_nome: compra.fornecedor_nome || null,
+      fornecedor_telefone: fornecedor?.telefone || null,
       supplier_payment_mode: compra.supplier_payment_mode || null,
       supplier_payment_status: compra.supplier_payment_status || null,
       supplier_payment_amount: compra.supplier_payment_amount ?? null,
