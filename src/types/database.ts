@@ -828,6 +828,7 @@ export type Database = {
           supplier_payment_confirmed_by: string | null
           supplier_payment_mode: string | null
           supplier_payment_notes: string | null
+          supplier_payment_receipt_path: string | null
           supplier_payment_receipt_url: string | null
           supplier_payment_reference: string | null
           supplier_payment_status: string | null
@@ -858,6 +859,7 @@ export type Database = {
           supplier_payment_confirmed_by?: string | null
           supplier_payment_mode?: string | null
           supplier_payment_notes?: string | null
+          supplier_payment_receipt_path?: string | null
           supplier_payment_receipt_url?: string | null
           supplier_payment_reference?: string | null
           supplier_payment_status?: string | null
@@ -888,6 +890,7 @@ export type Database = {
           supplier_payment_confirmed_by?: string | null
           supplier_payment_mode?: string | null
           supplier_payment_notes?: string | null
+          supplier_payment_receipt_path?: string | null
           supplier_payment_receipt_url?: string | null
           supplier_payment_reference?: string | null
           supplier_payment_status?: string | null

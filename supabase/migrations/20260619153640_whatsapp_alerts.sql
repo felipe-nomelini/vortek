@@ -1,5 +1,5 @@
 create table if not exists public.whatsapp_alert_settings (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default gen_random_uuid(),
   alert_type text not null,
   phone text not null,
   enabled boolean not null default true,
@@ -9,7 +9,7 @@ create table if not exists public.whatsapp_alert_settings (
 );
 
 create table if not exists public.whatsapp_alert_events (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default gen_random_uuid(),
   alert_type text not null,
   dedupe_key text not null,
   phone text not null,

@@ -43,6 +43,8 @@ type AuditEvent =
   | 'dslite_create_without_supplier_fallback_success'
   | 'dslite_create_without_supplier_fallback_failed'
   | 'supplier_payment_confirmed_manual'
+  | 'supplier_payment_whatsapp_sent'
+  | 'supplier_payment_whatsapp_failed'
   | 'nfe_homologacao_bloqueada'
   | 'nfe_homologacao_auto_remediada'
   | 'nfe_local_consistencia_check'

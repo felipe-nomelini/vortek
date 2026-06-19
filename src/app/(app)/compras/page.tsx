@@ -2,11 +2,11 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import {
-  Alert, Input, InputNumber, Select, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic,
+  Alert, Input, InputNumber, Select, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic, Upload,
 } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
-import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
+import { SearchOutlined, EllipsisOutlined, LoadingOutlined, UploadOutlined } from '@ant-design/icons';
 import { formatCurrency } from '@/lib/format';
 import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 
@@ -37,6 +37,7 @@ interface Compra {
   supplier_payment_amount: number | null;
   supplier_payment_reference: string | null;
   supplier_payment_receipt_url: string | null;
+  supplier_payment_receipt_path: string | null;
   supplier_payment_notes: string | null;
   supplier_pix_key: string | null;
 }
@@ -99,6 +100,7 @@ export default function ComprasPage() {
   const [confirmingPayment, setConfirmingPayment] = useState(false);
   const [paymentReference, setPaymentReference] = useState('');
   const [paymentReceiptUrl, setPaymentReceiptUrl] = useState('');
+  const [paymentReceiptFile, setPaymentReceiptFile] = useState<File | null>(null);
   const [paymentNotes, setPaymentNotes] = useState('');
   const [hayamaxBalance, setHayamaxBalance] = useState<number | null>(null);
   const [hayamaxLowBalance, setHayamaxLowBalance] = useState(false);
@@ -221,6 +223,7 @@ export default function ComprasPage() {
     setSelectedCompra(compra);
     setPaymentReference(compra.supplier_payment_reference || '');
     setPaymentReceiptUrl(compra.supplier_payment_receipt_url || '');
+    setPaymentReceiptFile(null);
     setPaymentNotes(compra.supplier_payment_notes || '');
     setPaymentModalOpen(true);
   };
@@ -231,6 +234,7 @@ export default function ComprasPage() {
     setSelectedCompra(null);
     setPaymentReference('');
     setPaymentReceiptUrl('');
+    setPaymentReceiptFile(null);
     setPaymentNotes('');
   };
 
@@ -245,16 +249,21 @@ export default function ComprasPage() {
 
   const handleConfirmSupplierPayment = async () => {
     if (!selectedCompra) return;
+    if (!paymentReceiptFile && !selectedCompra.supplier_payment_receipt_path && !paymentReceiptUrl) {
+      messageApi.warning('Anexe o comprovante do PIX antes de confirmar.');
+      return;
+    }
     setConfirmingPayment(true);
     try {
+      const formData = new FormData();
+      formData.append('supplier_payment_reference', paymentReference);
+      formData.append('supplier_payment_receipt_url', paymentReceiptUrl);
+      formData.append('supplier_payment_notes', paymentNotes);
+      if (paymentReceiptFile) formData.append('receipt', paymentReceiptFile);
+
       const res = await fetch(`/api/compras/${selectedCompra.id}/confirmar-pagamento`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          supplier_payment_reference: paymentReference,
-          supplier_payment_receipt_url: paymentReceiptUrl,
-          supplier_payment_notes: paymentNotes,
-        }),
+        body: formData,
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok) {
@@ -262,7 +271,7 @@ export default function ComprasPage() {
       }
       messageApi.success(
         json.jobId
-          ? `Pagamento confirmado. Fluxo DSLite retomado no job ${json.jobId}.`
+          ? `Pagamento confirmado. WhatsApp ${json.whatsapp?.sent ? 'enviado' : 'não enviado'}. Fluxo DSLite retomado no job ${json.jobId}.`
           : 'Pagamento confirmado com sucesso.',
       );
       closePaymentModal();
@@ -772,12 +781,34 @@ export default function ComprasPage() {
             />
           </div>
           <div>
-            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>URL do comprovante</div>
-            <Input
-              value={paymentReceiptUrl}
-              onChange={(e) => setPaymentReceiptUrl(e.target.value)}
-              placeholder="https://..."
-            />
+            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Comprovante do PIX</div>
+            <Upload
+              maxCount={1}
+              fileList={paymentReceiptFile ? [{
+                uid: 'supplier-payment-receipt',
+                name: paymentReceiptFile.name,
+                status: 'done',
+              }] as any : []}
+              accept="application/pdf,image/jpeg,image/png,image/webp"
+              beforeUpload={(file) => {
+                if (file.size > 10 * 1024 * 1024) {
+                  messageApi.error('Comprovante maior que 10MB.');
+                  return Upload.LIST_IGNORE;
+                }
+                setPaymentReceiptFile(file as File);
+                return false;
+              }}
+              onRemove={() => {
+                setPaymentReceiptFile(null);
+              }}
+            >
+              <Button icon={<UploadOutlined />}>Selecionar comprovante</Button>
+            </Upload>
+            {(selectedCompra?.supplier_payment_receipt_path || selectedCompra?.supplier_payment_receipt_url) && !paymentReceiptFile ? (
+              <Text style={{ color: '#8c8c8c', fontSize: 12 }}>
+                Comprovante já anexado. Envie outro arquivo apenas se quiser substituir.
+              </Text>
+            ) : null}
           </div>
           <div>
             <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Observações</div>
