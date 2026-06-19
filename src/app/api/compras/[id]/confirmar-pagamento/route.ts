@@ -2,7 +2,9 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import { formatCurrency } from '@/lib/format';
-import { normalizeWhatsappChatId, sendWahaFile } from '@/services/waha';
+import { buildPublicSupplierReceiptUrl } from '@/lib/public-supplier-receipt-links';
+import { createShortLink } from '@/lib/short-links';
+import { normalizeWhatsappChatId, sendWahaFile, sendWahaText } from '@/services/waha';
 
 const RECEIPTS_BUCKET = 'supplier-payment-receipts';
 const MAX_RECEIPT_SIZE_BYTES = 10 * 1024 * 1024;
@@ -95,6 +97,8 @@ async function downloadReceiptFile(input: {
 }
 
 async function sendSupplierPaymentWhatsapp(input: {
+  service: ReturnType<typeof createServiceClient>;
+  appBaseUrl: string;
   compra: any;
   pedido: any;
   fornecedorTelefone: string | null;
@@ -106,6 +110,18 @@ async function sendSupplierPaymentWhatsapp(input: {
   if (!phone) return { sent: false, skipped: true, reason: 'supplier_phone_missing' };
   if (!input.receipt) return { sent: false, skipped: true, reason: 'receipt_missing' };
 
+  const receiptUrl = buildPublicSupplierReceiptUrl(input.appBaseUrl, String(input.compra.id));
+  const receiptShortUrl = await createShortLink({
+    client: input.service,
+    baseUrl: input.appBaseUrl,
+    targetUrl: receiptUrl,
+    purpose: 'supplier_payment_receipt',
+    metadata: {
+      compraId: input.compra.id,
+      dsid: input.compra.dsid || null,
+      fornecedorId: input.compra.fornecedor_id || null,
+    },
+  });
   const caption = [
     '*Pagamento confirmado*',
     '',
@@ -120,17 +136,34 @@ async function sendSupplierPaymentWhatsapp(input: {
     `Quantidade: ${input.compra.quantidade || 1}`,
     '',
     input.notes ? `Observações: ${input.notes}` : null,
-    'Comprovante em anexo. Pode seguir com o despacho do pedido.',
+    receiptShortUrl ? `Comprovante: ${receiptShortUrl}` : null,
+    'Pode seguir com o despacho do pedido.',
   ].filter(Boolean).join('\n');
 
-  await sendWahaFile({
-    chatId: normalizeWhatsappChatId(phone),
-    caption,
-    filename: input.receipt.filename,
-    mimetype: input.receipt.mimetype,
-    data: input.receipt.buffer,
-  });
-  return { sent: true, skipped: false };
+  const chatId = normalizeWhatsappChatId(phone);
+  try {
+    await sendWahaFile({
+      chatId,
+      caption,
+      filename: input.receipt.filename,
+      mimetype: input.receipt.mimetype,
+      data: input.receipt.buffer,
+    });
+    return { sent: true, skipped: false, mode: 'file' };
+  } catch (err: any) {
+    const message = String(err?.message || err || '');
+    const plusOnly = message.toLowerCase().includes('plus version') || message.toLowerCase().includes('available only in plus');
+    if (!plusOnly) throw err;
+    await sendWahaText({ chatId, text: caption });
+    return { sent: true, skipped: false, mode: 'text_link', fallbackReason: 'waha_file_plus_only' };
+  }
+}
+
+function resolveAppBaseUrl(request: Request): string {
+  const configured = String(process.env.NEXT_PUBLIC_APP_URL || '').trim().replace(/\/+$/, '');
+  if (configured) return configured;
+  const url = new URL(request.url);
+  return `${url.protocol}//${url.host}`;
 }
 
 export async function POST(
@@ -246,6 +279,8 @@ export async function POST(
   let whatsappResult: Record<string, unknown> | null = null;
   try {
     whatsappResult = await sendSupplierPaymentWhatsapp({
+      service,
+      appBaseUrl: resolveAppBaseUrl(request),
       compra,
       pedido,
       fornecedorTelefone: (fornecedor as any)?.telefone || null,
