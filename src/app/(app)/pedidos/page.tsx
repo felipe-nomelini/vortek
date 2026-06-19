@@ -809,10 +809,20 @@ export default function PedidosPage() {
             o.id === order.id ? { ...o, dslite_etiqueta_enviada: true } : o
           ));
         }
+        const operationStatus = String(data?.data?.operationStatus || '');
+        if (operationStatus === 'label_sent') {
+          messageApi.success(data?.data?.message || 'Etiqueta real enviada para DSLite.');
+        } else if (operationStatus === 'placeholder_label_sent') {
+          messageApi.warning(data?.data?.message || 'Etiqueta genérica Hayamax enviada. Etiqueta real ainda ficará pendente.');
+        } else if (operationStatus === 'waiting_ml_label') {
+          messageApi.warning(data?.data?.message || 'Etiqueta ainda não liberada pelo Mercado Livre.');
+        } else if (operationStatus === 'already_done') {
+          messageApi.info('Etiqueta já havia sido enviada anteriormente.');
+        }
       } else {
         const step = String(data?.step || '');
         const actionRequired = String(data?.actionRequired || data?.details?.actionRequired || '');
-        const errMsg = data?.error || 'Falha no envio automático de etiqueta';
+        const errMsg = data?.error || 'Falha ao completar etiqueta DSLite';
         const errorType = String(data?.errorType || data?.details?.errorType || '');
         const dbCode = String(data?.details?.db_code || '');
         const isDbSchemaError = errorType === 'db_schema' || dbCode === '42703';
@@ -1533,7 +1543,7 @@ export default function PedidosPage() {
       />
       <ProgressModal
         open={etiquetaProgressOpen}
-        title="Enviando Etiqueta"
+        title="Completando Etiqueta DSLite"
         steps={etiquetaSteps}
         onClose={() => {
           setEtiquetaProgressOpen(false);

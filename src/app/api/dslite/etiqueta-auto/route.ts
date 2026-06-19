@@ -100,10 +100,17 @@ function parseInvoiceAmountFromXml(xml: string | null | undefined): number | nul
 }
 
 function finalizeSuccess(steps: StepState[], data: Record<string, any> = {}) {
+  const labelSent = steps.some((step) => step.key === 'send_label_dslite' && step.status === 'success');
+  const waitingMl = steps.some((step) => step.key === 'download_label_ml' && step.status === 'warning');
+  const operationStatus = labelSent ? 'label_sent' : waitingMl ? 'waiting_ml_label' : 'completed';
+  const nextAction = labelSent ? 'done' : waitingMl ? 'wait_ml_label' : 'review';
   return NextResponse.json({
     success: true,
     data: {
       steps,
+      operation: 'complete_dslite_label',
+      operationStatus,
+      nextAction,
       ...data,
     },
   });
@@ -296,6 +303,8 @@ export async function POST(req: Request) {
           labelSource: 'mercado_livre_pending',
           blockedPlaceholder: true,
           fornecedorId: fornecedorId || null,
+          operationStatus: 'waiting_ml_label',
+          nextAction: 'wait_ml_label',
           message: msg,
         });
       }
@@ -413,6 +422,8 @@ export async function POST(req: Request) {
       return finalizeSuccess(steps, {
         partial: true,
         labelSource: DSLITE_PLACEHOLDER_LABEL_SOURCE,
+        operationStatus: 'placeholder_label_sent',
+        nextAction: 'wait_real_ml_label',
         message: 'Etiqueta padrão Hayamax enviada porque a etiqueta ML ainda não foi liberada.',
       });
     }
@@ -424,6 +435,8 @@ export async function POST(req: Request) {
       return finalizeSuccess(steps, {
         partial: false,
         skippedBecauseAlreadyDone: true,
+        operationStatus: 'already_done',
+        nextAction: 'done',
       });
     }
 
@@ -976,6 +989,8 @@ export async function POST(req: Request) {
       });
       return finalizeSuccess(steps, {
         partial: true,
+        operationStatus: 'waiting_ml_label',
+        nextAction: 'wait_ml_label',
         message: 'Etiqueta ainda indisponível no ML. A NF foi emitida somente na Brasil NFe.',
       });
     }
@@ -1102,6 +1117,8 @@ export async function POST(req: Request) {
       });
       return finalizeSuccess(steps, {
         partial: true,
+        operationStatus: 'waiting_ml_label',
+        nextAction: 'wait_ml_label',
         message: 'Etiqueta ainda indisponível no ML. A NF foi emitida somente na Brasil NFe.',
         details: {
           reason: lastReason,
@@ -1193,6 +1210,9 @@ export async function POST(req: Request) {
       etiquetaBaixada: true,
       etiquetaBytes: etiquetaPdf.length,
       etiquetaEnviada: true,
+      operationStatus: 'label_sent',
+      nextAction: 'done',
+      message: 'Etiqueta real enviada para DSLite.',
     });
   } catch (err: any) {
     return stepError(steps, 'check_ml_invoice_xml', err?.message || 'Erro interno ao enviar etiqueta', undefined, 500);
