@@ -146,6 +146,26 @@ function getDisplayClientName(order: Pick<Order, 'billing_nome' | 'contato'>): s
   return sanitizeMlTechnicalSuffix(contatoNome);
 }
 
+function getDsliteActionTag(action: Order['dslite_next_action']) {
+  switch (action) {
+    case 'confirm_supplier_payment':
+      return { color: 'gold', label: 'PIX pendente' };
+    case 'send_supplier_receipt':
+      return { color: 'orange', label: 'Comprovante pendente' };
+    case 'wait_ml_label':
+      return { color: 'cyan', label: 'Aguardando ML' };
+    case 'complete_dslite_label':
+      return { color: 'blue', label: 'Etiqueta pendente' };
+    case 'done':
+      return { color: 'green', label: 'OK' };
+    case 'blocked':
+      return { color: 'red', label: 'Bloqueado' };
+    case 'create_dslite_order':
+    default:
+      return { color: 'orange', label: 'Criar compra' };
+  }
+}
+
 function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Order {
   return {
     id: item.numero,
@@ -183,6 +203,8 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     supplier_payment_reference: (item as any).supplier_payment_reference || null,
     supplier_payment_notes: (item as any).supplier_payment_notes || null,
     supplier_pix_key: (item as any).supplier_pix_key || null,
+    dslite_next_action: (item as any).dslite_next_action || undefined,
+    dslite_next_action_label: (item as any).dslite_next_action_label || null,
     ml_claim_id: item.ml_claim_id,
     ml_shipment_id: item.ml_shipment_id,
     ml_invoice_reported: item.ml_invoice_reported || false,
@@ -1118,17 +1140,32 @@ export default function PedidosPage() {
       sortOrder: getRemoteSortOrder('pedido_compra', sort),
       render: (_: string | null, record: Order) => {
         const purchaseOrderId = isValidDsliteId(record.dslite_id);
-        if (!purchaseOrderId) return <Tag color="orange">NÃO</Tag>;
+        const actionTag = getDsliteActionTag(record.dslite_next_action);
+        if (!purchaseOrderId) {
+          return (
+            <Space direction="vertical" size={2} align="center">
+              <Tag color="orange" style={{ marginInlineEnd: 0 }}>NÃO</Tag>
+              <Tag color={actionTag.color} style={{ marginInlineEnd: 0, fontSize: 11 }}>
+                {actionTag.label}
+              </Tag>
+            </Space>
+          );
+        }
         if (isDsliteRejected(record.dslite_status)) return <Tag color="red">REJEITADO</Tag>;
         return (
-          <Link
-            href={`/compras?search=${encodeURIComponent(purchaseOrderId)}`}
-            style={{ textDecoration: 'none' }}
-          >
-            <Tag color="green" style={{ cursor: 'pointer', marginInlineEnd: 0 }}>
-              {purchaseOrderId}
+          <Space direction="vertical" size={2} align="center">
+            <Link
+              href={`/compras?search=${encodeURIComponent(purchaseOrderId)}`}
+              style={{ textDecoration: 'none' }}
+            >
+              <Tag color="green" style={{ cursor: 'pointer', marginInlineEnd: 0 }}>
+                {purchaseOrderId}
+              </Tag>
+            </Link>
+            <Tag color={actionTag.color} style={{ marginInlineEnd: 0, fontSize: 11 }}>
+              {actionTag.label}
             </Tag>
-          </Link>
+          </Space>
         );
       },
     },
@@ -1159,26 +1196,25 @@ export default function PedidosPage() {
           });
         }
         const hasDsliteId = !!isValidDsliteId(record.dslite_id);
-        if (!hasDsliteId && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
+        const nextAction = record.dslite_next_action;
+        if ((!hasDsliteId || nextAction === 'create_dslite_order') && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
           items.push({
             key: 'dslite',
             label: 'Criar Pedido DSLite (Brasil NFe)',
             icon: <CarOutlined />,
           });
         }
-        if (hasDsliteId && !record.dslite_etiqueta_enviada) {
+        if (hasDsliteId && nextAction === 'complete_dslite_label') {
           items.push({
             key: 'etiqueta',
             label: 'Completar etiqueta DSLite',
             icon: <UploadOutlined />,
           });
         }
-        if (hasDsliteId && record.supplier_payment_mode === 'prepaid_pix') {
+        if (hasDsliteId && (nextAction === 'confirm_supplier_payment' || nextAction === 'send_supplier_receipt')) {
           items.push({
             key: 'confirm_supplier_payment',
-            label: record.supplier_payment_status === 'paid'
-              ? (record.supplier_payment_receipt_path ? 'Reenviar comprovante PIX' : 'Anexar comprovante PIX')
-              : 'Confirmar PIX do fornecedor',
+            label: nextAction === 'send_supplier_receipt' ? 'Anexar comprovante PIX' : 'Confirmar PIX do fornecedor',
             icon: <UploadOutlined />,
           });
         }

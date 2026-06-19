@@ -61,6 +61,15 @@ export interface Order {
   supplier_payment_notes?: string | null;
   fornecedor_nome?: string | null;
   supplier_pix_key?: string | null;
+  dslite_next_action?:
+    | 'create_dslite_order'
+    | 'confirm_supplier_payment'
+    | 'send_supplier_receipt'
+    | 'wait_ml_label'
+    | 'complete_dslite_label'
+    | 'done'
+    | 'blocked';
+  dslite_next_action_label?: string | null;
   ml_claim_id: string | null;
   ml_shipment_id: string | null;
   ml_invoice_reported?: boolean;

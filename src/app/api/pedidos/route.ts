@@ -104,7 +104,36 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
   const comprasByDsid = new Map(compras.map((compra) => [String(compra.dsid), compra]));
   return rows.map((row) => {
     const compra = comprasByDsid.get(String(row?.dslite_id || ''));
-    if (!compra) return row;
+    if (!compra) {
+      return {
+        ...row,
+        dslite_next_action: row?.dslite_id ? 'complete_dslite_label' : 'create_dslite_order',
+        dslite_next_action_label: row?.dslite_id ? 'Completar etiqueta DSLite' : 'Criar pedido DSLite',
+      };
+    }
+    const releaseAt = row?.ml_fiscal_release_at ? new Date(row.ml_fiscal_release_at) : null;
+    const labelPendingByMl = Boolean(releaseAt && !Number.isNaN(releaseAt.getTime()) && releaseAt.getTime() > Date.now());
+    const paymentMode = String(compra.supplier_payment_mode || '');
+    const paymentStatus = String(compra.supplier_payment_status || '');
+    const hasReceipt = Boolean(compra.supplier_payment_receipt_path);
+    const labelSent = Boolean(row?.dslite_etiqueta_enviada);
+    let nextAction = 'done';
+    let nextActionLabel = 'OK';
+
+    if (paymentMode === 'prepaid_pix' && paymentStatus !== 'paid') {
+      nextAction = 'confirm_supplier_payment';
+      nextActionLabel = 'Confirmar PIX';
+    } else if (paymentMode === 'prepaid_pix' && paymentStatus === 'paid' && !hasReceipt) {
+      nextAction = 'send_supplier_receipt';
+      nextActionLabel = 'Anexar comprovante';
+    } else if (!labelSent && labelPendingByMl) {
+      nextAction = 'wait_ml_label';
+      nextActionLabel = 'Aguardando ML';
+    } else if (!labelSent) {
+      nextAction = 'complete_dslite_label';
+      nextActionLabel = 'Completar etiqueta';
+    }
+
     return {
       ...row,
       compra_id: compra.id || null,
@@ -116,6 +145,8 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
       supplier_payment_reference: compra.supplier_payment_reference || null,
       supplier_payment_notes: compra.supplier_payment_notes || null,
       supplier_pix_key: getSupplierPixKey(compra.fornecedor_id),
+      dslite_next_action: nextAction,
+      dslite_next_action_label: nextActionLabel,
     };
   });
 }
