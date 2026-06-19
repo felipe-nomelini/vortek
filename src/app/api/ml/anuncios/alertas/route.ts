@@ -12,9 +12,11 @@ export async function GET() {
   }
 
   const service = createServiceClient();
+  const recentAuthFailureSince = new Date(Date.now() - 60 * 60 * 1000).toISOString();
   const [
     activeZeroStockResp,
-    authFailuresResp,
+    retryAuthFailuresResp,
+    recentFailedAuthFailuresResp,
   ] = await Promise.all([
     service
       .from('produtos')
@@ -27,7 +29,15 @@ export async function GET() {
     (service
       .from('anuncios_ml_outbox' as any) as any)
       .select('id,ml_item_id,desired_status,desired_quantity,status,last_error,updated_at,payload', { count: 'exact' })
-      .in('status', ['failed', 'retry'])
+      .eq('status', 'retry')
+      .ilike('last_error', '%not authorized%')
+      .order('updated_at', { ascending: false })
+      .limit(10),
+    (service
+      .from('anuncios_ml_outbox' as any) as any)
+      .select('id,ml_item_id,desired_status,desired_quantity,status,last_error,updated_at,payload', { count: 'exact' })
+      .eq('status', 'failed')
+      .gte('updated_at', recentAuthFailureSince)
       .ilike('last_error', '%not authorized%')
       .order('updated_at', { ascending: false })
       .limit(10),
@@ -36,8 +46,16 @@ export async function GET() {
   if (activeZeroStockResp.error) {
     return NextResponse.json({ error: activeZeroStockResp.error.message }, { status: 500 });
   }
-  if (authFailuresResp.error) {
-    return NextResponse.json({ error: authFailuresResp.error.message }, { status: 500 });
+  if (retryAuthFailuresResp.error || recentFailedAuthFailuresResp.error) {
+    return NextResponse.json(
+      { error: retryAuthFailuresResp.error?.message || recentFailedAuthFailuresResp.error?.message },
+      { status: 500 },
+    );
+  }
+
+  const authFailureItemsById = new Map<string, any>();
+  for (const item of [...(retryAuthFailuresResp.data || []), ...(recentFailedAuthFailuresResp.data || [])]) {
+    authFailureItemsById.set(String((item as any).id), item);
   }
 
   return NextResponse.json({
@@ -46,8 +64,8 @@ export async function GET() {
       items: activeZeroStockResp.data || [],
     },
     mlPublishAuthFailures: {
-      count: authFailuresResp.count || 0,
-      items: authFailuresResp.data || [],
+      count: (retryAuthFailuresResp.count || 0) + (recentFailedAuthFailuresResp.count || 0),
+      items: Array.from(authFailureItemsById.values()).slice(0, 10),
     },
   });
 }
