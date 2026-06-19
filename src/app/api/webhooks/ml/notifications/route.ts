@@ -532,6 +532,7 @@ export async function POST(request: Request) {
                 ml_order_id: String(orderId),
                 ml_shipment_id: String(shipment.id),
                 ml_fiscal_release_at: (pedido as any).ml_fiscal_release_at || null,
+                situacao: (pedido as any).situacao || null,
               });
             }
           }

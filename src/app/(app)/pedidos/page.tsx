@@ -282,6 +282,13 @@ export default function PedidosPage() {
     { label: 'Enviando etiqueta para DSLite', status: 'pending' },
   ]);
 
+  useEffect(() => {
+    const initialSearch = new URLSearchParams(window.location.search).get('search')?.trim();
+    if (!initialSearch) return;
+    setSearch(initialSearch);
+    setPage(1);
+  }, []);
+
   const buildParams = useCallback(() => {
     const params = new URLSearchParams();
     params.set('page', String(page));

@@ -1267,6 +1267,7 @@ async function processOrder(params: {
         ml_fiscal_release_at: (existingPedido as any)?.ml_fiscal_release_at || null,
         contato_nome: contatoNome,
         total: Number(sourceOrder?.total_amount || o.total_amount || 0),
+        situacao,
       });
     }
   }

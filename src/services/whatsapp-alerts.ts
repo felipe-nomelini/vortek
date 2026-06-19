@@ -26,6 +26,8 @@ type AlertInput = {
 };
 
 const DEFAULT_ALERT_PHONES = ['21981172939', '21970066090'];
+const LABEL_RELEASE_SCAN_LOOKBACK_DAYS = 10;
+const NON_ACTIONABLE_LABEL_STATUSES = new Set(['cancelado', 'cancelled', 'entregue', 'devolvido', 'recusado']);
 
 function getAlertPhones(): string[] {
   const raw = String(process.env.WHATSAPP_ALERT_PHONES || '').trim();
@@ -47,6 +49,22 @@ function severityLabel(severity: Severity) {
   if (severity === 'critical') return 'CRÍTICO';
   if (severity === 'warning') return 'ATENÇÃO';
   return 'INFO';
+}
+
+function normalizeStatus(value: string | null | undefined): string {
+  return String(value || '').trim().toLowerCase();
+}
+
+function isActionableLabelRelease(order: {
+  ml_shipment_id?: string | null;
+  situacao?: string | null;
+  status?: string | null;
+  ml_fiscal_release_at?: string | null;
+}): boolean {
+  if (!order.ml_shipment_id) return false;
+  const status = normalizeStatus(order.situacao || order.status);
+  if (status && NON_ACTIONABLE_LABEL_STATUSES.has(status)) return false;
+  return true;
 }
 
 function buildText(input: AlertInput) {
@@ -177,7 +195,28 @@ export async function alertMlLabelReleased(order: {
   contato_nome?: string | null;
   total?: number | null;
   dslite_id?: string | null;
+  situacao?: string | null;
 }) {
+  if (!isActionableLabelRelease(order)) {
+    const skippedInput: AlertInput = {
+      type: 'ml_label_released',
+      severity: 'warning',
+      title: 'Etiqueta Mercado Livre liberada',
+      dedupeKey: `ml_label_released_skipped:${order.ml_order_id || order.numero || order.id || 'sem_numero'}`,
+      dedupeTtlHours: 24,
+      message: 'Pedido sem envio ML ativo ou com status não acionável para etiqueta.',
+      payload: {
+        id: order.id || null,
+        numero: order.numero || null,
+        ml_order_id: order.ml_order_id || null,
+        ml_shipment_id: order.ml_shipment_id || null,
+        situacao: order.situacao || null,
+      },
+    };
+    await auditAlert(skippedInput, 'all', 'skipped', { reason: 'not_actionable_label_release' }).catch(() => null);
+    return { sent: 0, skipped: true, errors: 0 };
+  }
+
   const orderNumber = order.ml_order_id || order.numero || order.id || 'sem_numero';
   return sendWhatsappAlert({
     type: 'ml_label_released',
@@ -195,21 +234,33 @@ export async function alertMlLabelReleased(order: {
       `Ação: subir XML, baixar etiqueta real e enviar ao fornecedor.`,
       `Link: ${process.env.NEXT_PUBLIC_APP_URL || 'https://app.vortek.shop'}/pedidos?search=${encodeURIComponent(String(orderNumber))}`,
     ].filter(Boolean).join('\n'),
-    payload: order as any,
+    payload: {
+      id: order.id || null,
+      numero: order.numero || null,
+      ml_order_id: order.ml_order_id || null,
+      ml_shipment_id: order.ml_shipment_id || null,
+      ml_fiscal_release_at: order.ml_fiscal_release_at || null,
+      dslite_id: order.dslite_id || null,
+      situacao: order.situacao || null,
+    },
   });
 }
 
 export async function scanAndAlertReleasedLabels(limit = 20) {
   const client = createServiceClient();
+  const minReleaseAt = new Date(Date.now() - LABEL_RELEASE_SCAN_LOOKBACK_DAYS * 24 * 3600000).toISOString();
   const { data } = await client
     .from('pedidos')
-    .select('id,numero,ml_order_id,ml_shipment_id,ml_fiscal_release_at,contato_nome,total,dslite_id,ml_label_downloaded_at')
+    .select('id,numero,ml_order_id,ml_shipment_id,ml_fiscal_release_at,contato_nome,total,dslite_id,ml_label_downloaded_at,situacao')
     .not('ml_fiscal_release_at', 'is', null)
+    .not('ml_shipment_id', 'is', null)
     .is('ml_label_downloaded_at', null)
+    .gte('ml_fiscal_release_at', minReleaseAt)
     .order('ml_fiscal_release_at', { ascending: true })
     .limit(limit);
   let alerted = 0;
   for (const row of data || []) {
+    if (!isActionableLabelRelease(row as any)) continue;
     const comparable = row.ml_fiscal_release_at ? getMlReleaseComparableDate(row.ml_fiscal_release_at) : null;
     if (!comparable || comparable.getTime() > Date.now()) continue;
     const result = await alertMlLabelReleased(row as any);
