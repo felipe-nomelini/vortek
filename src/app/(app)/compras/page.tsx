@@ -38,6 +38,7 @@ interface Compra {
   supplier_payment_reference: string | null;
   supplier_payment_receipt_url: string | null;
   supplier_payment_notes: string | null;
+  supplier_pix_key: string | null;
 }
 
 interface MercadoPagoPendingMovement {
@@ -231,6 +232,15 @@ export default function ComprasPage() {
     setPaymentReference('');
     setPaymentReceiptUrl('');
     setPaymentNotes('');
+  };
+
+  const copyToClipboard = async (value: string, successMessage: string) => {
+    try {
+      await navigator.clipboard?.writeText(value);
+      messageApi.success(successMessage);
+    } catch {
+      messageApi.error('Não foi possível copiar automaticamente');
+    }
   };
 
   const handleConfirmSupplierPayment = async () => {
@@ -723,9 +733,35 @@ export default function ComprasPage() {
           </div>
           <div>
             <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Valor esperado</div>
-            <div style={{ color: '#e0e0e0' }}>
-              {selectedCompra?.supplier_payment_amount ? formatCurrency(selectedCompra.supplier_payment_amount) : '—'}
-            </div>
+            <Space.Compact style={{ width: '100%' }}>
+              <Input
+                readOnly
+                value={selectedCompra?.supplier_payment_amount ? formatCurrency(selectedCompra.supplier_payment_amount) : '—'}
+              />
+              {selectedCompra?.supplier_payment_amount ? (
+                <Button
+                  onClick={() => void copyToClipboard(String(selectedCompra.supplier_payment_amount), 'Valor do PIX copiado')}
+                >
+                  Copiar
+                </Button>
+              ) : null}
+            </Space.Compact>
+          </div>
+          <div>
+            <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Chave PIX do fornecedor</div>
+            <Space.Compact style={{ width: '100%' }}>
+              <Input
+                readOnly
+                value={selectedCompra?.supplier_pix_key || 'Chave PIX não cadastrada'}
+              />
+              {selectedCompra?.supplier_pix_key ? (
+                <Button
+                  onClick={() => void copyToClipboard(String(selectedCompra.supplier_pix_key), 'Chave PIX copiada')}
+                >
+                  Copiar
+                </Button>
+              ) : null}
+            </Space.Compact>
           </div>
           <div>
             <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Referência do pagamento</div>

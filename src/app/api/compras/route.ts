@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
+import { getSupplierPixKey } from '@/lib/supplier-payment';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -157,6 +158,7 @@ export async function GET(request: Request) {
     const comprasEnriquecidas = allCompras.map((item: any) => ({
       ...item,
       pedido_vendas_numero: pedidoNumeroPorDsliteId.get(String(item.dsid)) ?? null,
+      supplier_pix_key: getSupplierPixKey(item.fornecedor_id),
     }));
 
     sortCompras(comprasEnriquecidas, sortBy, sortOrder);
