@@ -15,6 +15,7 @@ import {
   loadDslitePlaceholderLabel,
 } from '@/lib/dslite/placeholder-label';
 import { storeShippingLabelForPedido } from '@/lib/shipping-label-storage';
+import { HAYAMAX_FORNECEDOR_ID } from '@/lib/supplier-balance';
 
 const LABEL_RETRY_INTERVAL_MS = 5000;
 const LABEL_WAIT_TIMEOUT_MS = 60000;
@@ -242,6 +243,62 @@ export async function POST(req: Request) {
         minute: '2-digit',
         hour12: false,
       });
+      const { data: compraVinculada } = await client
+        .from('compras')
+        .select('fornecedor_id,fornecedor_nome')
+        .eq('dsid', String(dsid))
+        .maybeSingle();
+      const fornecedorId = String((compraVinculada as any)?.fornecedor_id || '').trim();
+      if (fornecedorId !== HAYAMAX_FORNECEDOR_ID) {
+        const msg = `Etiqueta ML ainda não liberada até ${releaseLabel}; etiqueta genérica permitida apenas para Hayamax.`;
+        await registrarEventoNfAuditoria({
+          pedidoId: String(pedidoId),
+          mlOrderId,
+          mlPackId: (pedido as any).ml_pack_id ? String((pedido as any).ml_pack_id) : null,
+          evento: 'placeholder_label_blocked_non_hayamax',
+          respostaMl: {
+            release_at: releaseAt.toISOString(),
+            reason: releaseReasonRaw || null,
+            fornecedor_id: fornecedorId || null,
+            fornecedor_nome: (compraVinculada as any)?.fornecedor_nome || null,
+            allowed_fornecedor_id: HAYAMAX_FORNECEDOR_ID,
+            stage: 'etiqueta_auto_precheck',
+            label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
+          },
+          statusResultante: 'blocked',
+        });
+        updateStep(steps, 'check_ml_invoice_xml', {
+          status: 'warning',
+          detail: msg,
+        });
+        updateStep(steps, 'ensure_brasilnfe_invoice', {
+          status: 'skipped',
+          detail: 'Etapa pulada: etiqueta real ainda não liberada',
+        });
+        updateStep(steps, 'upload_invoice_ml', {
+          status: 'skipped',
+          detail: 'Etapa pulada: etiqueta real ainda não liberada',
+        });
+        updateStep(steps, 'download_label_ml', {
+          status: 'warning',
+          detail: msg,
+        });
+        updateStep(steps, 'set_carrier_dslite', {
+          status: 'skipped',
+          detail: 'Etapa pulada: aguardando etiqueta real do Mercado Livre',
+        });
+        updateStep(steps, 'send_label_dslite', {
+          status: 'warning',
+          detail: 'Etapa não executada: etiqueta genérica bloqueada para fornecedor diferente da Hayamax',
+        });
+        return finalizeSuccess(steps, {
+          partial: true,
+          labelSource: 'mercado_livre_pending',
+          blockedPlaceholder: true,
+          fornecedorId: fornecedorId || null,
+          message: msg,
+        });
+      }
       const msg = `Etiqueta ML ainda não liberada até ${releaseLabel}; usando etiqueta padrão Hayamax.`;
       await registrarEventoNfAuditoria({
         pedidoId: String(pedidoId),

@@ -530,10 +530,18 @@ export async function POST(request: Request) {
       }
     }
 
+    const hasPermanentAuthorizationFailures = warnings.some((warning) => {
+      const raw = `${warning.message || ''} ${warning.context?.operation || ''}`.toLowerCase();
+      return raw.includes('not authorized')
+        || raw.includes('unauthorized')
+        || raw.includes('forbidden')
+        || raw.includes('access this resource');
+    });
     const hasProgress = done > 0;
     const hasOnlyRetriableFailures = failed === 0 && retry > 0;
     const hasOnlyPermanentItemFailures = errors.length === 0 && retry === 0 && failed > 0 && permanentFailed === failed;
-    const success = errors.length === 0 || (hasProgress && hasOnlyRetriableFailures) || hasOnlyPermanentItemFailures;
+    const success = !hasPermanentAuthorizationFailures
+      && (errors.length === 0 || (hasProgress && hasOnlyRetriableFailures) || hasOnlyPermanentItemFailures);
 
     return NextResponse.json({
       success,
@@ -560,6 +568,7 @@ export async function POST(request: Request) {
       publicados: done,
       reprocessar: retry,
       falhas: failed,
+      auth_failure: hasPermanentAuthorizationFailures,
     });
   } catch (err: any) {
     return NextResponse.json({

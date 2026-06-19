@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import {
-  Input, InputNumber, Select, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic,
+  Alert, Input, InputNumber, Select, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic,
 } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
@@ -48,6 +48,11 @@ interface MercadoPagoPendingMovement {
   reference: string | null;
   amount: number;
   movement_type: string | null;
+}
+
+interface MlAnunciosAlertas {
+  activeZeroStock: { count: number; items: Array<{ sku: string; nome: string; ml_item_id: string }> };
+  mlPublishAuthFailures: { count: number; items: Array<{ ml_item_id: string; last_error: string | null }> };
 }
 
 const statusOptions = [
@@ -105,6 +110,7 @@ export default function ComprasPage() {
   const [topupReference, setTopupReference] = useState('');
   const [topupNotes, setTopupNotes] = useState('');
   const [savingTopup, setSavingTopup] = useState(false);
+  const [mlAnunciosAlertas, setMlAnunciosAlertas] = useState<MlAnunciosAlertas | null>(null);
   const [summary, setSummary] = useState({
     total: 0,
     pendentes: 0,
@@ -139,9 +145,10 @@ export default function ComprasPage() {
   const fetchData = useCallback(async () => {
     setLoading(true);
     try {
-      const [listRes, summaryRes] = await Promise.all([
+      const [listRes, summaryRes, mlAlertsRes] = await Promise.all([
         fetch(`/api/compras?${buildParams()}`),
         fetch(`/api/compras/resumo?${buildSummaryParams()}`),
+        fetch('/api/ml/anuncios/alertas'),
       ]);
 
       if (listRes.ok) {
@@ -165,6 +172,10 @@ export default function ComprasPage() {
         });
       } else {
         messageApi.error('Erro ao carregar resumo de compras');
+      }
+
+      if (mlAlertsRes.ok) {
+        setMlAnunciosAlertas(await mlAlertsRes.json());
       }
 
       const balanceRes = await fetch('/api/fornecedores/saldo-hayamax');
@@ -414,6 +425,17 @@ export default function ComprasPage() {
               {record.supplier_payment_amount ? formatCurrency(record.supplier_payment_amount) : 'Valor não informado'}
             </div>
           )}
+          {record.supplier_payment_mode === 'prepaid_pix' && record.supplier_payment_status === 'pending' && (
+            <Button
+              size="small"
+              type="primary"
+              ghost
+              style={{ marginTop: 6 }}
+              onClick={() => openPaymentModal(record)}
+            >
+              Confirmar PIX
+            </Button>
+          )}
         </div>
       ),
     },
@@ -477,6 +499,23 @@ export default function ComprasPage() {
     <div>
       {contextHolder}
       <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Compras DSLite</Title>
+
+      {mlAnunciosAlertas && (mlAnunciosAlertas.activeZeroStock.count > 0 || mlAnunciosAlertas.mlPublishAuthFailures.count > 0) && (
+        <Alert
+          type="warning"
+          showIcon
+          style={{ marginBottom: 16 }}
+          message="Atenção em anúncios ML"
+          description={[
+            mlAnunciosAlertas.activeZeroStock.count > 0
+              ? `${mlAnunciosAlertas.activeZeroStock.count} anúncio(s) ativo(s) com estoque local zero.`
+              : null,
+            mlAnunciosAlertas.mlPublishAuthFailures.count > 0
+              ? `${mlAnunciosAlertas.mlPublishAuthFailures.count} publicação(ões) ML com falha de autorização.`
+              : null,
+          ].filter(Boolean).join(' ')}
+        />
+      )}
 
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
         <Row gutter={[16, 16]}>

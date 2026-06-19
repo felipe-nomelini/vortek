@@ -37,7 +37,7 @@ import {
   syncPreferredProductSnapshot,
   type SupplierPaymentMode,
 } from '@/lib/produto-fornecedor';
-import { recordSupplierPurchaseDebit } from '@/lib/supplier-balance';
+import { HAYAMAX_FORNECEDOR_ID, recordSupplierPurchaseDebit } from '@/lib/supplier-balance';
 import { getSkuLookupVariants } from '@/lib/sku';
 import { extractTaxpayerTypeFromBillingAddress, resolveDestIePolicy } from '@/lib/fiscal/ie-policy';
 import {
@@ -1439,8 +1439,9 @@ async function runDsliteCreateJob(
       });
     }
     const releaseAt = releaseAtRaw ? new Date(releaseAtRaw) : null;
-    const usePlaceholderLabel = Boolean(releaseAt && !Number.isNaN(releaseAt.getTime()) && releaseAt.getTime() > Date.now());
-    const placeholderReleaseLabel = usePlaceholderLabel && releaseAt
+    const isMlLabelReleasePending = Boolean(releaseAt && !Number.isNaN(releaseAt.getTime()) && releaseAt.getTime() > Date.now());
+    let usePlaceholderLabel = false;
+    const placeholderReleaseLabel = isMlLabelReleasePending && releaseAt
       ? releaseAt.toLocaleString('pt-BR', {
         day: '2-digit',
         month: '2-digit',
@@ -1450,12 +1451,12 @@ async function runDsliteCreateJob(
         hour12: false,
       })
       : null;
-    if (usePlaceholderLabel && releaseAt) {
+    if (isMlLabelReleasePending && releaseAt) {
       await registrarEventoNfAuditoria({
         pedidoId,
         mlOrderId: mlOrderId ? String(mlOrderId) : null,
         mlPackId: (pedidoRow as any)?.ml_pack_id ? String((pedidoRow as any).ml_pack_id) : null,
-        evento: 'ml_fiscal_release_window_placeholder_label_selected',
+        evento: 'ml_fiscal_release_window_detected',
         respostaMl: {
           release_at: releaseAt.toISOString(),
           reason: releaseReasonRaw || null,
@@ -1463,9 +1464,8 @@ async function runDsliteCreateJob(
           now_utc: new Date().toISOString(),
           blocked_now: true,
           stage: 'dslite_pedido_precheck',
-          label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
         },
-        statusResultante: 'placeholder_label',
+        statusResultante: 'detected',
       });
     }
 
@@ -2592,6 +2592,7 @@ async function runDsliteCreateJob(
     if (resumeAfterSupplierPayment && existingDsliteId) {
       dsidAtual = Number(existingDsliteId);
       fornecedorId = String(existingCompra?.fornecedor_id || '').trim();
+      usePlaceholderLabel = isMlLabelReleasePending && fornecedorId === HAYAMAX_FORNECEDOR_ID;
       fornecedorNomeResolved = existingCompra?.fornecedor_nome ? String(existingCompra.fornecedor_nome) : null;
       supplierPaymentMode = normalizeSupplierPaymentMode(existingCompra?.supplier_payment_mode, fornecedorId);
 
@@ -2647,6 +2648,7 @@ async function runDsliteCreateJob(
       }
 
       fornecedorId = String(selectedOffer.offer.dslite_fornecedor_id);
+      usePlaceholderLabel = isMlLabelReleasePending && fornecedorId === HAYAMAX_FORNECEDOR_ID;
       fornecedorNomeResolved = selectedOffer.offer.fornecedor_nome ? String(selectedOffer.offer.fornecedor_nome) : null;
       produtoFornecedorOfertaId = selectedOffer.offer.id ? String(selectedOffer.offer.id) : null;
       supplierPaymentMode = normalizeSupplierPaymentMode(selectedOffer.offer.payment_mode, fornecedorId);
@@ -2738,6 +2740,26 @@ async function runDsliteCreateJob(
       };
       await syncJob();
       return;
+    }
+
+    if (isMlLabelReleasePending && releaseAt && fornecedorId !== HAYAMAX_FORNECEDOR_ID) {
+      const msg = `Etiqueta ML ainda não liberada até ${placeholderReleaseLabel}; etiqueta genérica permitida apenas para Hayamax.`;
+      await registrarEventoNfAuditoria({
+        pedidoId,
+        mlOrderId: mlOrderId ? String(mlOrderId) : null,
+        mlPackId: (pedidoRow as any)?.ml_pack_id ? String((pedidoRow as any).ml_pack_id) : null,
+        evento: 'placeholder_label_blocked_non_hayamax',
+        respostaMl: {
+          release_at: releaseAt.toISOString(),
+          fornecedor_id: fornecedorId || null,
+          fornecedor_nome: fornecedorNomeResolved || null,
+          allowed_fornecedor_id: HAYAMAX_FORNECEDOR_ID,
+          label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
+        },
+        statusResultante: 'blocked',
+      });
+      await setStep('download_label_ml', 'warning', msg);
+      await setStep('send_label_dslite', 'warning', 'Etapa não executada: aguardando etiqueta real do Mercado Livre');
     }
 
     let pedidoStatusFinal = 'criado';
@@ -3014,9 +3036,15 @@ async function runDsliteCreateJob(
     }
 
     const pendencias: string[] = [...externalWarnings];
+    let etiquetaStatus: 'enviada' | 'nao_disponivel' | 'erro' = 'nao_disponivel';
+    let etiquetaError: string | undefined;
 
     if (supplierDefinedAtCreation) {
       await completeAsSkipped('set_supplier_dslite', 'fornecedor já informado na criação do pedido');
+    } else if (isMlLabelReleasePending && releaseAt && fornecedorId !== HAYAMAX_FORNECEDOR_ID) {
+      etiquetaStatus = 'nao_disponivel';
+      etiquetaError = 'Etiqueta ML ainda não liberada; etiqueta genérica bloqueada para fornecedor diferente da Hayamax';
+      pendencias.push(`Etiqueta: ${etiquetaError}`);
     } else {
       await setStep('set_supplier_dslite', 'loading');
       const fornecedorResult = await informarFornecedorPedido(dsidAtual as number, fornecedorId);
@@ -3042,8 +3070,6 @@ async function runDsliteCreateJob(
     }
 
     await setStep('download_label_ml', 'loading');
-    let etiquetaStatus: 'enviada' | 'nao_disponivel' | 'erro' = 'nao_disponivel';
-    let etiquetaError: string | undefined;
     if (dsliteEtiquetaEnviada) {
       etiquetaStatus = 'enviada';
       await completeAsSkipped('download_label_ml', 'etiqueta já enviada anteriormente');

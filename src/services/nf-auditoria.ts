@@ -85,6 +85,7 @@ type AuditEvent =
   | 'ml_fiscal_release_window_cleared'
   | 'ml_fiscal_release_window_blocked'
   | 'ml_fiscal_release_window_placeholder_label_selected'
+  | 'placeholder_label_blocked_non_hayamax'
   | 'placeholder_label_load_failed'
   | 'placeholder_label_send_success'
   | 'placeholder_label_send_failed'
