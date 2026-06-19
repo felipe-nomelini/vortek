@@ -284,6 +284,7 @@ export async function POST(
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      ...(process.env.API_SECRET_KEY ? { 'x-api-key': process.env.API_SECRET_KEY } : {}),
     },
     body: JSON.stringify({
       pedidoId: String(pedido.id),
