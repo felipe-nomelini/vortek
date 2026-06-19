@@ -8,6 +8,7 @@
  */
 
 const { createClient } = require('@supabase/supabase-js');
+const { assertAllowedMercadoLivreToken } = require('./lib/ml-token-guard');
 
 async function getValidMLToken(sb, force = false) {
   const { data: integracao } = await sb
@@ -20,7 +21,10 @@ async function getValidMLToken(sb, force = false) {
 
   if (!force && integracao.access_token && integracao.token_expires_at) {
     const expiresAt = new Date(integracao.token_expires_at).getTime();
-    if (expiresAt - Date.now() > 300000) return integracao.access_token;
+    if (expiresAt - Date.now() > 300000) {
+      await assertAllowedMercadoLivreToken(integracao.access_token, 'backfill-ml-pack-id:cached');
+      return integracao.access_token;
+    }
   }
 
   const res = await fetch('https://api.mercadolibre.com/oauth/token', {
@@ -37,6 +41,7 @@ async function getValidMLToken(sb, force = false) {
   if (!res.ok) return null;
   const data = await res.json();
   if (!data?.access_token || !data?.refresh_token) return null;
+  await assertAllowedMercadoLivreToken(data.access_token, 'backfill-ml-pack-id');
 
   await sb.from('integracoes').update({
     access_token: data.access_token,

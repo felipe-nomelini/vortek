@@ -1,5 +1,10 @@
 import { NextResponse } from 'next/server';
+import { randomUUID } from 'crypto';
 import { createClient, createServiceClient } from '@/lib/supabase';
+import { getMercadoLivreRedirectUri } from '@/lib/ml-oauth-config';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function GET() {
   const supabase = await createClient();
@@ -17,8 +22,8 @@ export async function GET() {
     return NextResponse.json({ erro: 'Configure o Client ID do ML nas Configurações primeiro' }, { status: 400 });
   }
 
-  const redirectUri = integracao.redirect_uri || `${process.env.NEXT_PUBLIC_APP_URL}/api/integracao/ml/callback`;
-  const state = Math.random().toString(36).substring(2, 18);
+  const redirectUri = getMercadoLivreRedirectUri();
+  const state = randomUUID();
 
   const url = new URL('https://auth.mercadolivre.com.br/authorization');
   url.searchParams.set('response_type', 'code');
@@ -26,5 +31,13 @@ export async function GET() {
   url.searchParams.set('redirect_uri', redirectUri);
   url.searchParams.set('state', state);
 
-  return NextResponse.redirect(url.toString());
+  const response = NextResponse.redirect(url.toString());
+  response.cookies.set('ml_oauth_state', state, {
+    httpOnly: true,
+    sameSite: 'lax',
+    secure: true,
+    path: '/',
+    maxAge: 10 * 60,
+  });
+  return response;
 }

@@ -55,7 +55,7 @@ export default function ConfiguracoesPage() {
   });
   const patchEmpresa = (d: Partial<typeof empresa>) => setEmpresa(p => ({ ...p, ...d }));
 
-  const [ml, setMl] = useState({ clientId: '', clientSecret: '', redirectUri: '', conectado: false, lastError: '', lastErrorCode: '' });
+  const [ml, setMl] = useState({ clientId: '', clientSecret: '', conectado: false, lastError: '', lastErrorCode: '' });
   const [dslite, setDslite] = useState({ url: '', token: '', conectado: false });
   const [brasilNfe, setBrasilNfe] = useState({ token: '', userToken: '', url: '', conectado: false });
   const [defaultNfeProvider, setDefaultNfeProvider] = useState<'brasilnfe'>('brasilnfe');
@@ -92,7 +92,6 @@ export default function ConfiguracoesPage() {
             setMl({
               clientId: i.client_id || '',
               clientSecret: i.client_secret || '',
-              redirectUri: i.redirect_uri || '',
               conectado: i.conectado,
               lastError: i.last_refresh_error || '',
               lastErrorCode: i.last_refresh_error_code || '',
@@ -186,12 +185,11 @@ export default function ConfiguracoesPage() {
   }, [ml.conectado, dslite.conectado]);
 
 const conectarML = async () => {
-  if (!ml.clientId || !ml.redirectUri) { messageApi.warning('Preencha Client ID e Redirect URI'); return; }
+  if (!ml.clientId || !ml.clientSecret) { messageApi.warning('Preencha Client ID e Client Secret'); return; }
   try {
     await saveIntegracao('mercadolivre', {
       client_id: ml.clientId,
       client_secret: ml.clientSecret,
-      redirect_uri: ml.redirectUri,
     });
     window.location.href = '/api/integracao/ml/connect';
   } catch (err: any) {
@@ -317,7 +315,6 @@ const testarDslite = async () => {
         <>
           <Input size="small" placeholder="Client ID (App ID)" value={ml.clientId} onChange={e => setMl(p => ({ ...p, clientId: e.target.value }))} onBlur={() => saveIntegracao('mercadolivre', { client_id: ml.clientId })} style={inputStyle} />
           <Input size="small" placeholder="Client Secret" type="password" value={ml.clientSecret} onChange={e => setMl(p => ({ ...p, clientSecret: e.target.value }))} onBlur={() => saveIntegracao('mercadolivre', { client_secret: ml.clientSecret })} style={inputStyle} />
-          <Input size="small" placeholder="Redirect URI" value={ml.redirectUri} onChange={e => setMl(p => ({ ...p, redirectUri: e.target.value }))} onBlur={() => saveIntegracao('mercadolivre', { redirect_uri: ml.redirectUri })} style={inputStyle} />
           {ml.lastError ? (
             <Text type="danger" style={{ fontSize: 12 }}>
               {ml.lastErrorCode === 'ml_account_not_allowed'

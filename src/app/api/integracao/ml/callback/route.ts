@@ -1,14 +1,32 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { validateMercadoLivreTokenOwner } from '@/lib/ml-account-guard';
+import { getMercadoLivreRedirectUri } from '@/lib/ml-oauth-config';
+import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const code = searchParams.get('code');
   const error = searchParams.get('error');
+  const state = searchParams.get('state');
+  const expectedState = request.headers
+    .get('cookie')
+    ?.split(';')
+    .map((part) => part.trim())
+    .find((part) => part.startsWith('ml_oauth_state='))
+    ?.split('=')
+    .slice(1)
+    .join('=');
 
   if (error || !code) {
     return NextResponse.json({ erro: 'Autorização negada ou código ausente' }, { status: 400 });
+  }
+
+  if (!state || !expectedState || state !== decodeURIComponent(expectedState)) {
+    return NextResponse.json({ erro: 'Estado OAuth inválido. Inicie a conexão novamente.' }, { status: 400 });
   }
 
   const serviceClient = createServiceClient();
@@ -22,7 +40,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ erro: 'Credenciais do ML não configuradas' }, { status: 400 });
   }
 
-  const redirectUri = integracao.redirect_uri || `${process.env.NEXT_PUBLIC_APP_URL}/api/integracao/ml/callback`;
+  const redirectUri = getMercadoLivreRedirectUri();
 
   try {
     const tokenResponse = await fetch('https://api.mercadolibre.com/oauth/token', {
@@ -45,6 +63,7 @@ export async function GET(request: Request) {
 
     const account = await validateMercadoLivreTokenOwner(tokenData.access_token);
     if (!account.ok) {
+      const identity = account.nickname || account.userId || account.error || 'desconhecida';
       await serviceClient
         .from('integracoes')
         .update({
@@ -53,14 +72,27 @@ export async function GET(request: Request) {
           token_expires_at: null,
           conectado: false,
           last_refresh_at: new Date().toISOString(),
-          last_refresh_error: `Conta Mercado Livre não permitida: ${account.nickname || account.userId || account.error}`,
+          last_refresh_error: `Conta Mercado Livre não permitida: ${identity}`,
           last_refresh_error_code: 'ml_account_not_allowed',
           updated_at: new Date().toISOString(),
         })
         .eq('tipo', 'mercadolivre');
 
+      await registrarEventoNfAuditoria({
+        evento: 'ml_account_not_allowed',
+        respostaMl: {
+          source: 'oauth_callback',
+          action: 'cleared_tokens',
+          user_id: account.userId,
+          nickname: account.nickname,
+          error: account.error,
+          timestamp_utc: new Date().toISOString(),
+        },
+        statusResultante: 'cleared_tokens',
+      });
+
       return NextResponse.json({
-        erro: `Conta Mercado Livre não permitida. Conecte apenas a conta Vortek. Conta detectada: ${account.nickname || account.userId || 'desconhecida'}`,
+        erro: `Conta Mercado Livre não permitida. Conecte apenas a conta Vortek. Conta detectada: ${identity}`,
       }, { status: 403 });
     }
 
@@ -80,7 +112,9 @@ export async function GET(request: Request) {
       })
       .eq('tipo', 'mercadolivre');
 
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP_URL}/configuracoes?tab=integracoes`);
+    const response = NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP_URL}/configuracoes?tab=integracoes`);
+    response.cookies.delete('ml_oauth_state');
+    return response;
   } catch (err) {
     return NextResponse.json({ erro: 'Erro de rede ao conectar com ML' }, { status: 502 });
   }

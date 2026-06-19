@@ -6,7 +6,6 @@ const INTEGRATION_TYPES = new Set(['mercadolivre', 'dslite', 'brasilnfe', 'merca
 const ALLOWED_UPDATE_FIELDS = new Set([
   'client_id',
   'client_secret',
-  'redirect_uri',
   'url',
   'access_token',
   'refresh_token',

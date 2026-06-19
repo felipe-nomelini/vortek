@@ -4,6 +4,7 @@
  */
 
 const { createClient } = require('@supabase/supabase-js');
+const { assertAllowedMercadoLivreToken } = require('./lib/ml-token-guard');
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -27,6 +28,7 @@ async function getValidMLToken(force = false) {
   if (!force && integracao.access_token && integracao.token_expires_at) {
     const expiresAt = new Date(integracao.token_expires_at).getTime();
     if (expiresAt - Date.now() > 300000) {
+      await assertAllowedMercadoLivreToken(integracao.access_token, 'test-tracking:cached');
       return integracao.access_token;
     }
   }
@@ -44,6 +46,7 @@ async function getValidMLToken(force = false) {
 
   if (!res.ok) return null;
   const data = await res.json();
+  await assertAllowedMercadoLivreToken(data.access_token, 'test-tracking');
 
   await supabase.from('integracoes').update({
     access_token: data.access_token,

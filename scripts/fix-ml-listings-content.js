@@ -2,6 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const { createClient } = require('@supabase/supabase-js');
+const { assertAllowedMercadoLivreToken } = require('./lib/ml-token-guard');
 
 const PREFIX_RE = /^(FJ|HYX|NMC|VO)/i;
 const REPORTS_DIR = path.join(process.cwd(), 'reports');
@@ -194,6 +195,7 @@ async function main() {
     if (!res.ok || !payload?.access_token) {
       throw new Error(`Falha no refresh ML: HTTP ${res.status} ${payload?.error || payload?.message || ''}`);
     }
+    await assertAllowedMercadoLivreToken(payload.access_token, 'fix-ml-listings-content');
     const expiresAt = new Date(Date.now() + Number(payload.expires_in || 10800) * 1000).toISOString();
     await sb
       .from('integracoes')
@@ -215,6 +217,7 @@ async function main() {
     const integ = await getMLIntegration();
     const exp = integ.token_expires_at ? new Date(integ.token_expires_at).getTime() : 0;
     if (!force && integ.access_token && exp > Date.now() + 60_000) {
+      await assertAllowedMercadoLivreToken(integ.access_token, 'fix-ml-listings-content:cached');
       cachedToken = integ.access_token;
       return cachedToken;
     }

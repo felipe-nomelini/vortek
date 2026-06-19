@@ -6,6 +6,7 @@
 import { randomUUID } from 'crypto';
 import { createServiceClient } from '@/lib/supabase';
 import { validateMercadoLivreTokenOwner } from '@/lib/ml-account-guard';
+import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import type { Database } from '@/types/database';
 
 type IntegracaoRow = Database['public']['Tables']['integracoes']['Row'];
@@ -37,6 +38,18 @@ const FATAL_REFRESH_ERROR_CODES = ['invalid_grant', 'invalid_client', 'unauthori
 let inflightForcedRefresh: Promise<string | null> | null = null;
 let authBlockedUntilMs = 0;
 let verifiedAccessToken: string | null = null;
+
+function isNextProductionBuildPhase() {
+  return process.env.NEXT_PHASE === 'phase-production-build';
+}
+
+function getStackOrigin() {
+  return new Error().stack
+    ?.split('\n')
+    .slice(2, 8)
+    .map((line) => line.trim())
+    .join(' | ') || null;
+}
 
 class IntegracaoReadError extends Error {
   code: string;
@@ -228,6 +241,16 @@ async function updateIntegracao(tipo: IntegracaoTipo, values: Database['public']
 }
 
 async function updateTokens(tipo: IntegracaoTipo, accessToken: string, refreshToken: string, expiresIn: number) {
+  if (tipo === 'mercadolivre' && isNextProductionBuildPhase()) {
+    const payload = {
+      source: 'refresh_update_tokens',
+      reason: 'next_build_phase',
+      stack_origin: getStackOrigin(),
+      timestamp_utc: new Date().toISOString(),
+    };
+    console.error(JSON.stringify({ event: 'ml_token_mutation_blocked_build', ...payload }));
+    return;
+  }
   const expiresAt = new Date(Date.now() + expiresIn * 1000).toISOString();
   await updateIntegracao(tipo, {
     access_token: accessToken,
@@ -270,7 +293,21 @@ async function markRefreshFailure(
   fatalAuth: boolean,
   errorCode: string | null,
   errorMessage: string | null,
+  source = 'refresh_failure',
 ) {
+  if (isNextProductionBuildPhase()) {
+    const payload = {
+      source,
+      reason: 'next_build_phase',
+      error_code: errorCode,
+      error_message: errorMessage,
+      fatal_auth: fatalAuth,
+      stack_origin: getStackOrigin(),
+      timestamp_utc: new Date().toISOString(),
+    };
+    console.error(JSON.stringify({ event: 'ml_token_mutation_blocked_build', ...payload }));
+    return;
+  }
   await updateIntegracao('mercadolivre', {
     conectado: fatalAuth ? false : true,
     last_refresh_at: new Date().toISOString(),
@@ -279,8 +316,44 @@ async function markRefreshFailure(
   });
 }
 
-async function clearMercadoLivreTokens(reason: string) {
+async function auditMlAccountNotAllowed(input: {
+  source: string;
+  reason: string;
+  account: Awaited<ReturnType<typeof validateMercadoLivreTokenOwner>>;
+  action: 'cleared_tokens' | 'blocked_build_mutation';
+}) {
+  const payload = {
+    source: input.source,
+    reason: input.reason,
+    action: input.action,
+    user_id: input.account.userId,
+    nickname: input.account.nickname,
+    error: input.account.error,
+    stack_origin: getStackOrigin(),
+    timestamp_utc: new Date().toISOString(),
+  };
+  console.error(JSON.stringify({ event: 'ml_account_not_allowed', ...payload }));
+  if (isNextProductionBuildPhase()) return;
+  await registrarEventoNfAuditoria({
+    evento: 'ml_account_not_allowed',
+    respostaMl: payload,
+    statusResultante: input.action,
+  });
+}
+
+async function clearMercadoLivreTokens(reason: string, source: string, account: Awaited<ReturnType<typeof validateMercadoLivreTokenOwner>>) {
   verifiedAccessToken = null;
+  if (isNextProductionBuildPhase()) {
+    const payload = {
+      source,
+      reason,
+      stack_origin: getStackOrigin(),
+      timestamp_utc: new Date().toISOString(),
+    };
+    console.error(JSON.stringify({ event: 'ml_token_mutation_blocked_build', ...payload }));
+    await auditMlAccountNotAllowed({ source, reason, account, action: 'blocked_build_mutation' });
+    return;
+  }
   await updateIntegracao('mercadolivre', {
     access_token: null,
     refresh_token: null,
@@ -290,9 +363,10 @@ async function clearMercadoLivreTokens(reason: string) {
     last_refresh_error: reason,
     last_refresh_error_code: 'ml_account_not_allowed',
   });
+  await auditMlAccountNotAllowed({ source, reason, account, action: 'cleared_tokens' });
 }
 
-async function ensureAllowedMercadoLivreToken(accessToken: string): Promise<boolean> {
+async function ensureAllowedMercadoLivreToken(accessToken: string, source = 'unknown'): Promise<boolean> {
   if (verifiedAccessToken === accessToken) return true;
 
   const account = await validateMercadoLivreTokenOwner(accessToken);
@@ -302,14 +376,7 @@ async function ensureAllowedMercadoLivreToken(accessToken: string): Promise<bool
   }
 
   const identity = account.nickname || account.userId || account.error || 'desconhecida';
-  await clearMercadoLivreTokens(`Conta Mercado Livre não permitida: ${identity}`);
-  console.error(JSON.stringify({
-    event: 'ml_account_not_allowed',
-    timestamp_utc: new Date().toISOString(),
-    user_id: account.userId,
-    nickname: account.nickname,
-    error: account.error,
-  }));
+  await clearMercadoLivreTokens(`Conta Mercado Livre não permitida: ${identity}`, source, account);
   return false;
 }
 
@@ -322,7 +389,7 @@ async function waitTokenFromOtherRefresher(): Promise<string | null> {
     await delay(REFRESH_WAIT_MS);
     const current = await getIntegracao('mercadolivre');
     if (current?.access_token && !isExpired(current.token_expires_at)) {
-      const allowed = await ensureAllowedMercadoLivreToken(current.access_token);
+      const allowed = await ensureAllowedMercadoLivreToken(current.access_token, 'wait_token_from_other_refresher');
       return allowed ? current.access_token : null;
     }
   }
@@ -335,7 +402,7 @@ async function refreshMLTokenFromDB(force: boolean): Promise<string | null> {
   if (!initial?.refresh_token) return null;
 
   if (!force && initial.access_token && !isExpired(initial.token_expires_at)) {
-    const allowed = await ensureAllowedMercadoLivreToken(initial.access_token);
+    const allowed = await ensureAllowedMercadoLivreToken(initial.access_token, 'refresh_initial_cached_token');
     return allowed ? initial.access_token : null;
   }
 
@@ -351,7 +418,7 @@ async function refreshMLTokenFromDB(force: boolean): Promise<string | null> {
     if (!latest?.refresh_token) return null;
 
     if (!force && latest.access_token && !isExpired(latest.token_expires_at)) {
-      const allowed = await ensureAllowedMercadoLivreToken(latest.access_token);
+      const allowed = await ensureAllowedMercadoLivreToken(latest.access_token, 'refresh_latest_cached_token');
       return allowed ? latest.access_token : null;
     }
 
@@ -372,7 +439,7 @@ async function refreshMLTokenFromDB(force: boolean): Promise<string | null> {
       const code = payload?.error || payload?.code || null;
       const message = payload?.error_description || payload?.message || `OAuth refresh HTTP ${res.status}`;
       const fatalAuth = isFatalAuthRefreshError(code);
-      await markRefreshFailure(fatalAuth, code, message);
+      await markRefreshFailure(fatalAuth, code, message, 'refresh_http_failure');
       logMlAuthEvent({
         result: 'failure',
         error_code: code,
@@ -389,7 +456,7 @@ async function refreshMLTokenFromDB(force: boolean): Promise<string | null> {
     const accessToken = payload?.access_token;
     const refreshToken = payload?.refresh_token;
     if (!accessToken || !refreshToken) {
-      await markRefreshFailure(false, 'invalid_refresh_payload', 'Resposta de refresh sem access_token/refresh_token');
+      await markRefreshFailure(false, 'invalid_refresh_payload', 'Resposta de refresh sem access_token/refresh_token', 'refresh_invalid_payload');
       logMlAuthEvent({
         result: 'failure',
         error_code: 'invalid_refresh_payload',
@@ -399,7 +466,7 @@ async function refreshMLTokenFromDB(force: boolean): Promise<string | null> {
       return null;
     }
 
-    const allowed = await ensureAllowedMercadoLivreToken(accessToken);
+    const allowed = await ensureAllowedMercadoLivreToken(accessToken, 'refresh_payload_token');
     if (!allowed) {
       setAuthFatalCooldown('ml_account_not_allowed');
       return null;
@@ -415,7 +482,7 @@ async function refreshMLTokenFromDB(force: boolean): Promise<string | null> {
     });
     return accessToken;
   } catch (err: any) {
-    await markRefreshFailure(false, 'refresh_exception', err?.message || 'Erro de rede ao atualizar token');
+    await markRefreshFailure(false, 'refresh_exception', err?.message || 'Erro de rede ao atualizar token', 'refresh_exception');
     logMlAuthEvent({
       result: 'failure',
       error_code: 'refresh_exception',
@@ -434,7 +501,7 @@ export async function getValidMLToken(force = false): Promise<string | null> {
   if (!integracao?.refresh_token) return null;
 
   if (!force && integracao.access_token && !isExpired(integracao.token_expires_at)) {
-    const allowed = await ensureAllowedMercadoLivreToken(integracao.access_token);
+    const allowed = await ensureAllowedMercadoLivreToken(integracao.access_token, 'get_valid_cached_token');
     return allowed ? integracao.access_token : null;
   }
 
