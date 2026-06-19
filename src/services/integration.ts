@@ -733,17 +733,33 @@ export async function fetchMLRaw(path: string, options?: RequestInit): Promise<{
   }
 }
 
-export async function getMLConnectionStatus(): Promise<{ conectado: boolean; precisaReconectar: boolean; erro?: string }> {
+export async function getMLConnectionStatus(): Promise<{
+  conectado: boolean;
+  precisaReconectar: boolean;
+  erro?: string;
+  reason?: 'not_connected' | 'account_not_allowed' | 'auth_fatal' | 'transient';
+}> {
+  const integracao = await getIntegracao('mercadolivre');
+  if (!integracao?.access_token || !integracao?.refresh_token || !integracao.conectado) {
+    const accountBlocked = integracao?.last_refresh_error_code === 'ml_account_not_allowed';
+    return {
+      conectado: false,
+      precisaReconectar: true,
+      erro: integracao?.last_refresh_error || 'Mercado Livre desconectado',
+      reason: accountBlocked ? 'account_not_allowed' : 'not_connected',
+    };
+  }
+
   const me = await fetchMLResult<{ id?: number }>('/users/me');
   if (me.ok && me.data?.id) {
     return { conectado: true, precisaReconectar: false };
   }
 
   if (me.error?.category === 'auth_fatal') {
-    return { conectado: false, precisaReconectar: true, erro: me.error.message };
+    return { conectado: false, precisaReconectar: true, erro: me.error.message, reason: 'auth_fatal' };
   }
 
-  return { conectado: true, precisaReconectar: false, erro: me.error?.message || 'Falha transitória ao validar conexão ML' };
+  return { conectado: true, precisaReconectar: false, erro: me.error?.message || 'Falha transitória ao validar conexão ML', reason: 'transient' };
 }
 
 export async function getMLAuthDiagnostics(): Promise<{

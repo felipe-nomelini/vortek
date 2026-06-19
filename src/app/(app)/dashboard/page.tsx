@@ -436,13 +436,16 @@ export default function DashboardPage() {
   useEffect(() => {
     fetch('/api/ml/estado')
       .then(r => r.json())
-      .then(({ conectado, precisaReconectar, erro }) => {
+      .then(({ conectado, precisaReconectar, erro, reason }) => {
         if (precisaReconectar) {
-          setRedirecting(true);
-          messageApi.warning('Token do Mercado Livre expirado. Redirecionando para reconexão...');
-          setTimeout(() => {
-            window.location.href = '/api/integracao/ml/connect';
-          }, 2000);
+          if (reason === 'account_not_allowed') {
+            messageApi.error(erro || 'Conta Mercado Livre não permitida. Conecte a conta Vortek em Configurações.');
+          } else if (reason === 'not_connected') {
+            messageApi.warning('Mercado Livre desconectado. Conecte em Configurações > Integrações.');
+          } else {
+            messageApi.warning('Mercado Livre precisa de reconexão. Conecte em Configurações > Integrações.');
+          }
+          fetchData();
         } else {
           if (erro && conectado) {
             messageApi.warning('Mercado Livre instável no momento. Tentando novamente em background.');
@@ -579,8 +582,8 @@ export default function DashboardPage() {
           height: '60vh', gap: 16,
         }}>
           <Spin indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />} />
-          <Text style={{ color: '#e0e0e0', fontSize: 16 }}>Token do Mercado Livre expirado</Text>
-          <Text style={{ color: '#888', fontSize: 13 }}>Redirecionando para reconexão automática...</Text>
+          <Text style={{ color: '#e0e0e0', fontSize: 16 }}>Mercado Livre precisa de reconexão</Text>
+          <Text style={{ color: '#888', fontSize: 13 }}>Acesse Configurações &gt; Integrações para conectar novamente.</Text>
         </div>
       ) : (
         <>

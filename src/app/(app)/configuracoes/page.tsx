@@ -55,7 +55,7 @@ export default function ConfiguracoesPage() {
   });
   const patchEmpresa = (d: Partial<typeof empresa>) => setEmpresa(p => ({ ...p, ...d }));
 
-  const [ml, setMl] = useState({ clientId: '', clientSecret: '', redirectUri: '', conectado: false });
+  const [ml, setMl] = useState({ clientId: '', clientSecret: '', redirectUri: '', conectado: false, lastError: '', lastErrorCode: '' });
   const [dslite, setDslite] = useState({ url: '', token: '', conectado: false });
   const [brasilNfe, setBrasilNfe] = useState({ token: '', userToken: '', url: '', conectado: false });
   const [defaultNfeProvider, setDefaultNfeProvider] = useState<'brasilnfe'>('brasilnfe');
@@ -84,12 +84,23 @@ export default function ConfiguracoesPage() {
         });
       }
 
-      const { data: integracoes } = await supabase.from('integracoes').select('*');
-      if (!integracoes) return;
-      for (const i of integracoes) {
-        if (i.tipo === 'mercadolivre') setMl({ clientId: i.client_id || '', clientSecret: i.client_secret || '', redirectUri: i.redirect_uri || '', conectado: i.conectado });
-        if (i.tipo === 'dslite') setDslite({ url: i.url || '', token: i.access_token || '', conectado: i.conectado });
-        if (i.tipo === 'brasilnfe') setBrasilNfe({ token: i.access_token || '', userToken: i.refresh_token || '', url: i.url || '', conectado: i.conectado });
+      const integracoesRes = await fetch('/api/integracoes/config');
+      if (integracoesRes.ok) {
+        const integracoesJson = await integracoesRes.json();
+        for (const i of integracoesJson.integracoes || []) {
+          if (i.tipo === 'mercadolivre') {
+            setMl({
+              clientId: i.client_id || '',
+              clientSecret: i.client_secret || '',
+              redirectUri: i.redirect_uri || '',
+              conectado: i.conectado,
+              lastError: i.last_refresh_error || '',
+              lastErrorCode: i.last_refresh_error_code || '',
+            });
+          }
+          if (i.tipo === 'dslite') setDslite({ url: i.url || '', token: i.access_token || '', conectado: i.conectado });
+          if (i.tipo === 'brasilnfe') setBrasilNfe({ token: i.access_token || '', userToken: i.refresh_token || '', url: i.url || '', conectado: i.conectado });
+        }
       }
       const configRes = await fetch('/api/configuracoes');
       if (configRes.ok) {
@@ -160,24 +171,43 @@ export default function ConfiguracoesPage() {
   }, [empresa, empresaId, messageApi]);
 
   const saveIntegracao = useCallback(async (tipo: string, data: Record<string, any>) => {
-    const supabase = createClient();
-    await supabase.from('integracoes').update(data).eq('tipo', tipo);
+    const res = await fetch('/api/integracoes/config', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tipo, values: data }),
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(json?.erro || 'Falha ao salvar integração');
+    return json.integracao;
   }, []);
 
   useEffect(() => {
     saveIntegrations(ml.conectado, dslite.conectado);
   }, [ml.conectado, dslite.conectado]);
 
-const conectarML = () => {
+const conectarML = async () => {
   if (!ml.clientId || !ml.redirectUri) { messageApi.warning('Preencha Client ID e Redirect URI'); return; }
-  window.location.href = '/api/integracao/ml/connect';
+  try {
+    await saveIntegracao('mercadolivre', {
+      client_id: ml.clientId,
+      client_secret: ml.clientSecret,
+      redirect_uri: ml.redirectUri,
+    });
+    window.location.href = '/api/integracao/ml/connect';
+  } catch (err: any) {
+    messageApi.error(err?.message || 'Falha ao salvar credenciais do Mercado Livre');
+  }
 };
 
-const testarDslite = () => {
+const testarDslite = async () => {
     if (!dslite.url || !dslite.token) { messageApi.warning('Preencha a URL e o Token'); return; }
-    setDslite(p => ({ ...p, conectado: true }));
-    saveIntegracao('dslite', { url: dslite.url, access_token: dslite.token, conectado: true });
-    messageApi.success('Conexão testada com sucesso!');
+    try {
+      setDslite(p => ({ ...p, conectado: true }));
+      await saveIntegracao('dslite', { url: dslite.url, access_token: dslite.token, conectado: true });
+      messageApi.success('Conexão testada com sucesso!');
+    } catch (err: any) {
+      messageApi.error(err?.message || 'Falha ao salvar DSLite');
+    }
   };
 
   const salvarDefaultProvider = useCallback(async (provider: 'brasilnfe') => {
@@ -195,16 +225,20 @@ const testarDslite = () => {
     messageApi.success('Provedor fiscal padrão atualizado');
   }, [messageApi]);
 
-  const testarBrasilNfe = () => {
+  const testarBrasilNfe = async () => {
     if (!brasilNfe.token) { messageApi.warning('Preencha o Token da Brasil NFe'); return; }
-    setBrasilNfe((p) => ({ ...p, conectado: true }));
-    saveIntegracao('brasilnfe', {
-      access_token: brasilNfe.token,
-      refresh_token: brasilNfe.userToken || null,
-      url: brasilNfe.url || null,
-      conectado: true,
-    });
-    messageApi.success('Configuração da Brasil NFe salva!');
+    try {
+      setBrasilNfe((p) => ({ ...p, conectado: true }));
+      await saveIntegracao('brasilnfe', {
+        access_token: brasilNfe.token,
+        refresh_token: brasilNfe.userToken || null,
+        url: brasilNfe.url || null,
+        conectado: true,
+      });
+      messageApi.success('Configuração da Brasil NFe salva!');
+    } catch (err: any) {
+      messageApi.error(err?.message || 'Falha ao salvar Brasil NFe');
+    }
   };
 
   const [usuarios, setUsuarios] = useState<Usuario[]>([
@@ -284,6 +318,13 @@ const testarDslite = () => {
           <Input size="small" placeholder="Client ID (App ID)" value={ml.clientId} onChange={e => setMl(p => ({ ...p, clientId: e.target.value }))} onBlur={() => saveIntegracao('mercadolivre', { client_id: ml.clientId })} style={inputStyle} />
           <Input size="small" placeholder="Client Secret" type="password" value={ml.clientSecret} onChange={e => setMl(p => ({ ...p, clientSecret: e.target.value }))} onBlur={() => saveIntegracao('mercadolivre', { client_secret: ml.clientSecret })} style={inputStyle} />
           <Input size="small" placeholder="Redirect URI" value={ml.redirectUri} onChange={e => setMl(p => ({ ...p, redirectUri: e.target.value }))} onBlur={() => saveIntegracao('mercadolivre', { redirect_uri: ml.redirectUri })} style={inputStyle} />
+          {ml.lastError ? (
+            <Text type="danger" style={{ fontSize: 12 }}>
+              {ml.lastErrorCode === 'ml_account_not_allowed'
+                ? ml.lastError
+                : `Último erro ML: ${ml.lastErrorCode || ml.lastError}`}
+            </Text>
+          ) : null}
         </>
       ),
       action: { label: 'Conectar com ML', onClick: conectarML },
