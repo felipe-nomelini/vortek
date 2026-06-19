@@ -265,6 +265,7 @@ export default function PedidosPage() {
   const [whatsappUsePlaceholderLabel, setWhatsappUsePlaceholderLabel] = useState(false);
   const [whatsappProgressOpen, setWhatsappProgressOpen] = useState(false);
   const [whatsappSteps, setWhatsappSteps] = useState<ProgressStep[]>(initWhatsappLabelSteps());
+  const whatsappPollRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [dsliteProgressOpen, setDsliteProgressOpen] = useState(false);
   const dslitePollRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -352,6 +353,7 @@ export default function PedidosPage() {
 
   useEffect(() => () => {
     if (dslitePollRef.current) clearTimeout(dslitePollRef.current);
+    if (whatsappPollRef.current) clearTimeout(whatsappPollRef.current);
   }, []);
 
   const openWhatsappLabelModal = (order: Order, usePlaceholderLabel = false) => {
@@ -386,19 +388,54 @@ export default function PedidosPage() {
         body: JSON.stringify({ phoneNumber, usePlaceholderLabel: whatsappUsePlaceholderLabel }),
       });
       const json = await res.json().catch(() => ({}));
-      const returnedSteps = json.steps || json.data?.steps;
-      if (Array.isArray(returnedSteps) && returnedSteps.length) {
-        setWhatsappSteps(returnedSteps.map((step: any) => ({
+      if (!res.ok || !json?.jobId) throw new Error(json.error || 'Erro ao iniciar envio de etiqueta por WhatsApp');
+
+      const poll = async () => {
+        const statusRes = await fetch(`/api/pedidos/${whatsappOrder.dbId}/enviar-etiqueta-whatsapp/status?jobId=${encodeURIComponent(json.jobId)}`);
+        const statusData = await statusRes.json().catch(() => ({}));
+        if (!statusRes.ok || !statusData?.success) {
+          throw new Error(statusData?.error || 'Falha ao consultar status do envio por WhatsApp');
+        }
+
+        const mapped: ProgressStep[] = (statusData.steps || []).map((step: any) => ({
           label: step.label,
           status: step.status,
           detail: step.detail,
           error: step.error,
-        })));
-      }
-      if (!res.ok) throw new Error(json.error || 'Erro ao enviar etiqueta por WhatsApp');
-      messageApi.success(json.message || 'Etiqueta enviada por WhatsApp.');
-      setWhatsappOrder(null);
-      setWhatsappUsePlaceholderLabel(false);
+        }));
+        if (mapped.length) setWhatsappSteps(mapped);
+
+        const state = String(statusData.state || '');
+        if (state === 'running') {
+          whatsappPollRef.current = setTimeout(() => {
+            poll().catch((err) => {
+              setWhatsappSteps(prev => {
+                const updated = [...prev];
+                const firstActive = updated.findIndex(s => s.status === 'loading' || s.status === 'pending');
+                const idx = firstActive >= 0 ? firstActive : updated.length - 1;
+                updated[idx] = { ...updated[idx], status: 'error', error: err.message || 'Erro ao acompanhar envio por WhatsApp' };
+                return updated;
+              });
+              setSendingWhatsappLabel(false);
+            });
+          }, 1200);
+          return;
+        }
+
+        setSendingWhatsappLabel(false);
+        if (state === 'success' || state === 'warning') {
+          messageApi.success(statusData.data?.message || 'Etiqueta enviada por WhatsApp.');
+          setWhatsappOrder(null);
+          setWhatsappUsePlaceholderLabel(false);
+          return;
+        }
+
+        if (state === 'error') {
+          throw new Error(statusData.data?.error || 'Erro ao enviar etiqueta por WhatsApp');
+        }
+      };
+
+      await poll();
     } catch (err: any) {
       setWhatsappSteps(prev => {
         const updated = [...prev];
@@ -412,8 +449,8 @@ export default function PedidosPage() {
         ));
       });
       messageApi.error(err.message || 'Erro ao enviar etiqueta por WhatsApp');
-    } finally {
       setSendingWhatsappLabel(false);
+    } finally {
     }
   };
 
@@ -1220,7 +1257,12 @@ export default function PedidosPage() {
         title="Enviando Etiqueta por WhatsApp"
         steps={whatsappSteps}
         onClose={() => {
+          if (whatsappPollRef.current) {
+            clearTimeout(whatsappPollRef.current);
+            whatsappPollRef.current = null;
+          }
           setWhatsappProgressOpen(false);
+          setSendingWhatsappLabel(false);
           setWhatsappSteps(initWhatsappLabelSteps());
           fetchData();
         }}

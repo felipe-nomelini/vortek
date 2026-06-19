@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { fetchMLResult, getMLConnectionStatus } from '@/services/integration';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const desconectado = {
   reclamacoes: null, atrasos: null, cancelamentos: null, positivas: null,
   nivel: 'Desconectado', nivelCor: '#888', nivelKey: '',
