@@ -94,6 +94,7 @@ type AuditEvent =
   | 'whatsapp_label_download_success'
   | 'whatsapp_label_download_failed'
   | 'whatsapp_label_send_success'
+  | 'whatsapp_label_send_failed'
   | 'sync_order_snapshot_start'
   | 'sync_order_snapshot_success'
   | 'sync_order_snapshot_failed'

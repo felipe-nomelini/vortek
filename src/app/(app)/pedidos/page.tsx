@@ -89,6 +89,20 @@ function isValidDsliteId(val: string | null | undefined): string | null {
   return val;
 }
 
+function initWhatsappLabelSteps(): ProgressStep[] {
+  return [
+    { label: 'Validando pedido e WhatsApp', status: 'loading', detail: 'Validando número de destino e pedido de venda' },
+    { label: 'Localizando envio Mercado Livre', status: 'pending' },
+    { label: 'Buscando pedido de compra vinculado', status: 'pending' },
+    { label: 'Localizando etiqueta salva', status: 'pending' },
+    { label: 'Vinculando XML da NF no Mercado Livre', status: 'pending' },
+    { label: 'Baixando etiqueta do Mercado Livre', status: 'pending' },
+    { label: 'Salvando etiqueta no sistema', status: 'pending' },
+    { label: 'Gerando links públicos da etiqueta e NF', status: 'pending' },
+    { label: 'Enviando mensagem pelo WhatsApp', status: 'pending' },
+  ];
+}
+
 function isDsliteRejected(status: string | null | undefined): boolean {
   return String(status || '').toLowerCase().includes('rejeitado');
 }
@@ -249,6 +263,8 @@ export default function PedidosPage() {
   const [sendingWhatsappLabel, setSendingWhatsappLabel] = useState(false);
   const [whatsappOrder, setWhatsappOrder] = useState<Order | null>(null);
   const [whatsappUsePlaceholderLabel, setWhatsappUsePlaceholderLabel] = useState(false);
+  const [whatsappProgressOpen, setWhatsappProgressOpen] = useState(false);
+  const [whatsappSteps, setWhatsappSteps] = useState<ProgressStep[]>(initWhatsappLabelSteps());
 
   const [dsliteProgressOpen, setDsliteProgressOpen] = useState(false);
   const dslitePollRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -360,6 +376,9 @@ export default function PedidosPage() {
     }
 
     setSendingWhatsappLabel(true);
+    setWhatsappSteps(initWhatsappLabelSteps());
+    setWhatsappProgressOpen(true);
+    setWhatsappModalOpen(false);
     try {
       const res = await fetch(`/api/pedidos/${whatsappOrder.dbId}/enviar-etiqueta-whatsapp`, {
         method: 'POST',
@@ -367,10 +386,31 @@ export default function PedidosPage() {
         body: JSON.stringify({ phoneNumber, usePlaceholderLabel: whatsappUsePlaceholderLabel }),
       });
       const json = await res.json().catch(() => ({}));
+      const returnedSteps = json.steps || json.data?.steps;
+      if (Array.isArray(returnedSteps) && returnedSteps.length) {
+        setWhatsappSteps(returnedSteps.map((step: any) => ({
+          label: step.label,
+          status: step.status,
+          detail: step.detail,
+          error: step.error,
+        })));
+      }
       if (!res.ok) throw new Error(json.error || 'Erro ao enviar etiqueta por WhatsApp');
       messageApi.success(json.message || 'Etiqueta enviada por WhatsApp.');
-      closeWhatsappLabelModal();
+      setWhatsappOrder(null);
+      setWhatsappUsePlaceholderLabel(false);
     } catch (err: any) {
+      setWhatsappSteps(prev => {
+        const updated = [...prev];
+        const firstActive = updated.findIndex(s => s.status === 'loading' || s.status === 'pending');
+        const idx = firstActive >= 0 ? firstActive : updated.length - 1;
+        updated[idx] = { ...updated[idx], status: 'error', error: err.message || 'Erro ao enviar etiqueta por WhatsApp' };
+        return updated.map((step, stepIdx) => (
+          stepIdx > idx && step.status === 'pending'
+            ? { ...step, status: 'warning', detail: 'Não executada por encerramento antecipado' }
+            : step
+        ));
+      });
       messageApi.error(err.message || 'Erro ao enviar etiqueta por WhatsApp');
     } finally {
       setSendingWhatsappLabel(false);
@@ -1175,6 +1215,17 @@ export default function PedidosPage() {
           />
         </Space>
       </Modal>
+      <ProgressModal
+        open={whatsappProgressOpen}
+        title="Enviando Etiqueta por WhatsApp"
+        steps={whatsappSteps}
+        onClose={() => {
+          setWhatsappProgressOpen(false);
+          setWhatsappSteps(initWhatsappLabelSteps());
+          fetchData();
+        }}
+        showCloseButton={whatsappSteps.some(s => s.status === 'error' || s.status === 'success' || s.status === 'warning')}
+      />
       <ProgressModal
         open={dsliteProgressOpen}
         title="Criando Pedido DSLite"

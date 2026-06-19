@@ -23,6 +23,51 @@ export const maxDuration = 90;
 const LABEL_RETRY_INTERVAL_MS = 5000;
 const LABEL_WAIT_TIMEOUT_MS = 60000;
 
+type WhatsappLabelStepStatus = 'pending' | 'loading' | 'success' | 'error' | 'warning';
+
+type WhatsappLabelStep = {
+  key: string;
+  label: string;
+  status: WhatsappLabelStepStatus;
+  detail?: string;
+  error?: string;
+};
+
+function initWhatsappLabelSteps(): WhatsappLabelStep[] {
+  return [
+    { key: 'validate_input', label: 'Validando pedido e WhatsApp', status: 'pending' },
+    { key: 'resolve_shipment', label: 'Localizando envio Mercado Livre', status: 'pending' },
+    { key: 'load_purchase', label: 'Buscando pedido de compra vinculado', status: 'pending' },
+    { key: 'load_label', label: 'Localizando etiqueta salva', status: 'pending' },
+    { key: 'upload_invoice_ml', label: 'Vinculando XML da NF no Mercado Livre', status: 'pending' },
+    { key: 'download_label_ml', label: 'Baixando etiqueta do Mercado Livre', status: 'pending' },
+    { key: 'store_label', label: 'Salvando etiqueta no sistema', status: 'pending' },
+    { key: 'build_links', label: 'Gerando links públicos da etiqueta e NF', status: 'pending' },
+    { key: 'send_whatsapp', label: 'Enviando mensagem pelo WhatsApp', status: 'pending' },
+  ];
+}
+
+function updateStep(
+  steps: WhatsappLabelStep[],
+  key: string,
+  status: WhatsappLabelStepStatus,
+  detail?: string,
+  error?: string,
+) {
+  const idx = steps.findIndex((step) => step.key === key);
+  if (idx < 0) return;
+  steps[idx] = { ...steps[idx], status, detail, error };
+}
+
+function failPendingSteps(steps: WhatsappLabelStep[]) {
+  for (const step of steps) {
+    if (step.status === 'pending') {
+      step.status = 'warning';
+      step.detail = 'Não executada por encerramento antecipado';
+    }
+  }
+}
+
 function extractXmlTag(xml: string | null | undefined, tag: string): string | null {
   const raw = String(xml || '');
   if (!raw) return null;
@@ -216,9 +261,14 @@ async function ensureInvoiceDataIfNeeded(params: {
 }
 
 export async function POST(request: Request, { params }: { params: { id: string } }) {
+  const steps = initWhatsappLabelSteps();
+  let pedidoIdForError: string | null = null;
+  let mlOrderIdForError: string | null = null;
   try {
+    updateStep(steps, 'validate_input', 'loading', 'Validando número de destino e pedido de venda');
     const { phoneNumber, usePlaceholderLabel } = await request.json().catch(() => ({}));
     const chatId = normalizeWhatsappChatId(String(phoneNumber || ''));
+    updateStep(steps, 'validate_input', 'success', `Destino normalizado: ${chatId.slice(-8)}`);
     const client = createServiceClient();
 
     const { data: pedido, error: pedidoError } = await client
@@ -226,19 +276,44 @@ export async function POST(request: Request, { params }: { params: { id: string 
       .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,billing_nome,contato_nome,ml_label_storage_path,ml_label_bytes')
       .eq('id', params.id)
       .maybeSingle();
-    if (pedidoError) return NextResponse.json({ error: pedidoError.message }, { status: 500 });
-    if (!pedido) return NextResponse.json({ error: 'Pedido de venda não encontrado' }, { status: 404 });
+    if (pedidoError) {
+      updateStep(steps, 'validate_input', 'error', undefined, pedidoError.message);
+      failPendingSteps(steps);
+      return NextResponse.json({ error: pedidoError.message, steps }, { status: 500 });
+    }
+    if (!pedido) {
+      updateStep(steps, 'validate_input', 'error', undefined, 'Pedido de venda não encontrado');
+      failPendingSteps(steps);
+      return NextResponse.json({ error: 'Pedido de venda não encontrado', steps }, { status: 404 });
+    }
 
     const pedidoId = String((pedido as any).id);
     const mlOrderId = String((pedido as any).ml_order_id || '').trim() || null;
+    pedidoIdForError = pedidoId;
+    mlOrderIdForError = mlOrderId;
+
+    updateStep(steps, 'resolve_shipment', 'loading', 'Verificando ml_shipment_id no pedido');
     const shipmentId = await resolveShipmentId(client, pedido);
-    if (!shipmentId) return NextResponse.json({ error: 'Pedido sem shipment ML para baixar etiqueta' }, { status: 422 });
+    if (!shipmentId) {
+      updateStep(steps, 'resolve_shipment', 'error', undefined, 'Pedido sem shipment ML para baixar etiqueta');
+      failPendingSteps(steps);
+      return NextResponse.json({ error: 'Pedido sem shipment ML para baixar etiqueta', steps }, { status: 422 });
+    }
+    updateStep(steps, 'resolve_shipment', 'success', `Envio ML ${shipmentId}`);
 
     const dsid = String((pedido as any).dslite_id || '').trim();
+    updateStep(steps, 'load_purchase', 'loading', dsid ? `Buscando compra DSLite #${dsid}` : 'Pedido sem DSLite vinculado');
     const { data: compra } = dsid
       ? await client.from('compras').select('*').eq('dsid', dsid).maybeSingle()
       : { data: null };
+    updateStep(
+      steps,
+      'load_purchase',
+      dsid ? (compra ? 'success' : 'warning') : 'warning',
+      dsid ? (compra ? `Compra #${dsid} encontrada` : `Compra #${dsid} não encontrada localmente`) : 'Sem pedido DSLite vinculado',
+    );
 
+    updateStep(steps, 'load_label', 'loading', usePlaceholderLabel ? 'Carregando etiqueta genérica de teste' : 'Procurando etiqueta já salva');
     let labelPdf = usePlaceholderLabel
       ? await loadDslitePlaceholderLabel()
       : await downloadShippingLabelFromStorage(client, (pedido as any).ml_label_storage_path);
@@ -252,16 +327,34 @@ export async function POST(request: Request, { params }: { params: { id: string 
     const nfeKey = String((pedido as any).nfe_chave || '').trim();
     let labelDownloadUrl: string | null = null;
     let labelStoragePath = String((pedido as any).ml_label_storage_path || '').trim();
+    updateStep(
+      steps,
+      'load_label',
+      labelPdf ? 'success' : 'warning',
+      labelPdf
+        ? (usePlaceholderLabel ? 'Etiqueta genérica carregada' : 'Etiqueta já estava salva no sistema')
+        : 'Etiqueta ainda não salva; será necessário baixar no ML',
+    );
 
     if (!labelPdf && !usePlaceholderLabel) {
+      updateStep(steps, 'upload_invoice_ml', 'loading', 'Consultando vínculo fiscal e enviando XML se necessário');
       const invoice = await ensureInvoiceDataIfNeeded({ pedido, pedidoId, mlOrderId, shipmentId });
       uploadedInvoice = invoice.uploadedInvoice;
       skippedInvoiceUpload = invoice.skippedInvoiceUpload;
       invoiceNumber = invoice.invoiceNumber || invoiceNumber;
+      updateStep(
+        steps,
+        'upload_invoice_ml',
+        'success',
+        skippedInvoiceUpload ? 'Etapa pulada: XML/NF já vinculado no ML' : 'XML da NF vinculado no Mercado Livre',
+      );
 
+      updateStep(steps, 'download_label_ml', 'loading', 'Baixando PDF da etiqueta liberada no Mercado Livre');
       const label = await downloadLabelWithRetry(pedidoId, mlOrderId, shipmentId);
       labelPdf = label.pdf;
       labelAttempts = label.attempts;
+      updateStep(steps, 'download_label_ml', 'success', `Etiqueta baixada após ${labelAttempts} tentativa(s)`);
+      updateStep(steps, 'store_label', 'loading', 'Salvando PDF no bucket de etiquetas');
       const stored = await storeShippingLabelForPedido({
         client,
         pedidoId,
@@ -272,10 +365,20 @@ export async function POST(request: Request, { params }: { params: { id: string 
         source: 'pedidos_whatsapp',
       });
       labelStoragePath = stored.storagePath || labelStoragePath;
+      updateStep(steps, 'store_label', 'success', 'Etiqueta salva no sistema');
+    } else {
+      updateStep(steps, 'upload_invoice_ml', 'warning', usePlaceholderLabel ? 'Pulada: envio de teste com etiqueta genérica' : 'Pulada: etiqueta já salva');
+      updateStep(steps, 'download_label_ml', 'warning', usePlaceholderLabel ? 'Pulada: envio de teste' : 'Pulada: usando etiqueta salva');
+      updateStep(steps, 'store_label', 'warning', usePlaceholderLabel ? 'Pulada: etiqueta genérica não é salva como etiqueta ML' : 'Pulada: arquivo já salvo');
     }
 
-    if (!labelPdf) return NextResponse.json({ error: 'Etiqueta não encontrada ou indisponível' }, { status: 422 });
+    if (!labelPdf) {
+      updateStep(steps, 'download_label_ml', 'error', undefined, 'Etiqueta não encontrada ou indisponível');
+      failPendingSteps(steps);
+      return NextResponse.json({ error: 'Etiqueta não encontrada ou indisponível', steps }, { status: 422 });
+    }
 
+    updateStep(steps, 'build_links', 'loading', 'Criando links curtos públicos para WhatsApp');
     const appBaseUrl = resolveAppBaseUrl(request);
     if (usePlaceholderLabel) {
       labelDownloadUrl = `${appBaseUrl}/dslite/labels/etiqueta-frete-terceiros-posterior.pdf`;
@@ -310,6 +413,7 @@ export async function POST(request: Request, { params }: { params: { id: string 
       purpose: 'xml',
       metadata: { pedidoId, mlOrderId, nfeKey },
     });
+    updateStep(steps, 'build_links', 'success', 'Links públicos gerados');
     const fornecedorNome = limitText((compra as any)?.fornecedor_nome, 80);
     const clienteNome = limitText((pedido as any).billing_nome || (pedido as any).contato_nome, 80);
     const labelStatus = labelSource === 'storage'
@@ -344,6 +448,7 @@ export async function POST(request: Request, { params }: { params: { id: string 
 
     let wahaResponse: unknown = null;
     let whatsappSendMode: 'file' | 'text_link' = 'file';
+    updateStep(steps, 'send_whatsapp', 'loading', 'Enviando PDF pelo WAHA');
     try {
       wahaResponse = await sendWahaFile({
         chatId,
@@ -356,11 +461,18 @@ export async function POST(request: Request, { params }: { params: { id: string 
       if (!isWahaPlusOnlyError(err)) throw err;
       if (!labelShortUrl) throw new Error('WAHA Core não envia arquivos e não foi possível gerar link da etiqueta.');
       whatsappSendMode = 'text_link';
+      updateStep(steps, 'send_whatsapp', 'loading', 'WAHA Core não envia arquivo; enviando mensagem com link');
       wahaResponse = await sendWahaText({
         chatId,
         text: caption,
       });
     }
+    updateStep(
+      steps,
+      'send_whatsapp',
+      'success',
+      whatsappSendMode === 'file' ? 'Mensagem com PDF enviada' : 'Mensagem com link enviada',
+    );
 
     await registrarEventoNfAuditoria({
       pedidoId,
@@ -394,9 +506,27 @@ export async function POST(request: Request, { params }: { params: { id: string 
         labelSource,
         whatsappSendMode,
         labelBytes: labelPdf.length,
+        steps,
       },
     });
   } catch (err: any) {
-    return NextResponse.json({ error: err?.message || 'Erro ao enviar etiqueta por WhatsApp' }, { status: 500 });
+    const message = err?.message || 'Erro ao enviar etiqueta por WhatsApp';
+    const loadingIdx = steps.findIndex((step) => step.status === 'loading');
+    const pendingIdx = steps.findIndex((step) => step.status === 'pending');
+    const idx = loadingIdx >= 0 ? loadingIdx : pendingIdx;
+    if (idx >= 0) {
+      steps[idx] = { ...steps[idx], status: 'error', error: message };
+    }
+    failPendingSteps(steps);
+    if (pedidoIdForError || mlOrderIdForError) {
+      await registrarEventoNfAuditoria({
+        pedidoId: pedidoIdForError || undefined,
+        mlOrderId: mlOrderIdForError,
+        evento: 'whatsapp_label_send_failed',
+        respostaMl: { error: message, steps },
+        statusResultante: 'failed',
+      }).catch(() => undefined);
+    }
+    return NextResponse.json({ error: message, steps }, { status: 500 });
   }
 }
