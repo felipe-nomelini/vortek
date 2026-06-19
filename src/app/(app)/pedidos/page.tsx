@@ -703,7 +703,7 @@ export default function PedidosPage() {
       supplierPaymentAmount: order.supplier_payment_amount ?? null,
       supplierPixKey: order.supplier_pix_key || null,
       supplierPixKeyMissing: !order.supplier_pix_key,
-      supplierPhoneMissing: false,
+      supplierPhoneMissing: !String(order.fornecedor_telefone || '').replace(/\D/g, ''),
     });
     setDslitePaymentReference(order.supplier_payment_reference || '');
     setDslitePaymentNotes(order.supplier_payment_notes || '');

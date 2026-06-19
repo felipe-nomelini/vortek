@@ -2526,7 +2526,7 @@ async function runDsliteCreateJob(
     const { data: existingCompra } = existingDsliteId
       ? await client
           .from('compras')
-          .select('id,dsid,fornecedor_id,fornecedor_nome,supplier_payment_mode,supplier_payment_status')
+          .select('id,dsid,status,status_dslite,fornecedor_id,fornecedor_nome,produto_fornecedor_oferta_id,supplier_payment_mode,supplier_payment_status,supplier_payment_amount')
           .eq('dsid', existingDsliteId)
           .maybeSingle()
       : { data: null as any };
@@ -2955,14 +2955,23 @@ async function runDsliteCreateJob(
     let compraAtual: { id: string; supplier_payment_amount: number | null } | null = null;
 
     if (dsidAtual) {
+      const existingPaymentAmount = Number((existingCompra as any)?.supplier_payment_amount || 0);
+      const resolvedPaymentAmount = supplierPaymentAmount && supplierPaymentAmount > 0
+        ? supplierPaymentAmount
+        : existingPaymentAmount > 0
+          ? existingPaymentAmount
+          : null;
+      const resolvedDsliteStatus = resumeAfterSupplierPayment && (existingCompra as any)?.status_dslite
+        ? String((existingCompra as any).status_dslite)
+        : pedidoStatusFinal;
       const compraPayload = {
         dsid: String(dsidAtual),
         status: resolveCompraStatus({
-          baseStatus: pedidoStatusFinal,
+          baseStatus: resolvedDsliteStatus,
           supplierPaymentMode,
           supplierPaymentStatus: supplierPaymentMode === 'prepaid_pix' && !resumeAfterSupplierPayment ? 'pending' : (existingCompra?.supplier_payment_status || null),
         }),
-        status_dslite: pedidoStatusFinal,
+        status_dslite: resolvedDsliteStatus,
         nf_chave: chaveAcesso || null,
         valor_total: Number((pedidoRow as any)?.total || 0),
         valor_frete: Number((pedidoRow as any)?.frete || 0),
@@ -2971,12 +2980,12 @@ async function runDsliteCreateJob(
         fornecedor_nome: fornecedorNomeResolved,
         destinatario_nome: String((pedidoRow as any)?.billing_nome || '').trim() || null,
         destinatario_documento: String((pedidoRow as any)?.billing_documento || '').trim() || null,
-        produto_fornecedor_oferta_id: produtoFornecedorOfertaId,
+        produto_fornecedor_oferta_id: produtoFornecedorOfertaId || (existingCompra as any)?.produto_fornecedor_oferta_id || null,
         supplier_payment_mode: supplierPaymentMode,
         supplier_payment_status: supplierPaymentMode === 'prepaid_pix'
           ? (resumeAfterSupplierPayment ? 'paid' : 'pending')
           : null,
-        supplier_payment_amount: supplierPaymentAmount && supplierPaymentAmount > 0 ? supplierPaymentAmount : null,
+        supplier_payment_amount: resolvedPaymentAmount,
       };
       if (existingCompra?.id) {
         await client
