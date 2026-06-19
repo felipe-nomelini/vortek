@@ -167,6 +167,29 @@ function getDsliteActionTag(action: Order['dslite_next_action']) {
   }
 }
 
+function formatSupplierWhatsappReason(reason: unknown): string {
+  switch (String(reason || '')) {
+    case 'supplier_phone_missing':
+      return 'WhatsApp do fornecedor não cadastrado';
+    case 'receipt_missing':
+      return 'Comprovante não encontrado';
+    case 'supplier_not_found':
+      return 'Fornecedor não encontrado';
+    default:
+      return String(reason || 'motivo não informado');
+  }
+}
+
+function getSupplierSetupWarning(order: Order): string | null {
+  if (order.supplier_payment_mode !== 'prepaid_pix') return null;
+  const pixMissing = !String(order.supplier_pix_key || '').trim();
+  const phoneMissing = !String(order.fornecedor_telefone || '').replace(/\D/g, '');
+  if (pixMissing && phoneMissing) return 'Chave PIX e WhatsApp do fornecedor não cadastrados';
+  if (pixMissing) return 'Chave PIX do fornecedor não cadastrada';
+  if (phoneMissing) return 'WhatsApp do fornecedor não cadastrado';
+  return null;
+}
+
 function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Order {
   return {
     id: item.numero,
@@ -727,7 +750,7 @@ export default function PedidosPage() {
       } else {
         const whatsappDetail = json.whatsapp?.sent
           ? 'WhatsApp enviado.'
-          : `WhatsApp não enviado${json.whatsapp?.reason ? `: ${json.whatsapp.reason}` : ''}.`;
+          : `WhatsApp não enviado${json.whatsapp?.reason ? `: ${formatSupplierWhatsappReason(json.whatsapp.reason)}` : ''}.`;
         messageApi.success(`Comprovante processado. ${whatsappDetail}`);
         fetchData();
       }
@@ -777,7 +800,7 @@ export default function PedidosPage() {
     }
 
     try {
-      const res = await fetch('/api/dslite/etiqueta-auto', {
+      const res = await fetch('/api/dslite/completar-etiqueta', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1156,6 +1179,14 @@ export default function PedidosPage() {
       render: (_: string | null, record: Order) => {
         const purchaseOrderId = isValidDsliteId(record.dslite_id);
         const actionTag = getDsliteActionTag(record.dslite_next_action);
+        const supplierWarning = getSupplierSetupWarning(record);
+        const supplierWarningTag = supplierWarning ? (
+          <Tooltip title={supplierWarning}>
+            <Tag color="red" style={{ marginInlineEnd: 0, fontSize: 11 }}>
+              Fornecedor incompleto
+            </Tag>
+          </Tooltip>
+        ) : null;
         if (!purchaseOrderId) {
           return (
             <Space direction="vertical" size={2} align="center">
@@ -1163,6 +1194,7 @@ export default function PedidosPage() {
               <Tag color={actionTag.color} style={{ marginInlineEnd: 0, fontSize: 11 }}>
                 {actionTag.label}
               </Tag>
+              {supplierWarningTag}
             </Space>
           );
         }
@@ -1180,6 +1212,7 @@ export default function PedidosPage() {
             <Tag color={actionTag.color} style={{ marginInlineEnd: 0, fontSize: 11 }}>
               {actionTag.label}
             </Tag>
+            {supplierWarningTag}
           </Space>
         );
       },

@@ -82,6 +82,19 @@ const statusColor: Record<string, string> = {
   'Revisão': 'magenta',
 };
 
+function formatSupplierWhatsappReason(reason: unknown): string {
+  switch (String(reason || '')) {
+    case 'supplier_phone_missing':
+      return 'WhatsApp do fornecedor não cadastrado';
+    case 'receipt_missing':
+      return 'Comprovante não encontrado';
+    case 'supplier_not_found':
+      return 'Fornecedor não encontrado';
+    default:
+      return String(reason || 'motivo não informado');
+  }
+}
+
 export default function ComprasPage() {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -271,7 +284,7 @@ export default function ComprasPage() {
       }
       const whatsappDetail = json.whatsapp?.sent
         ? 'WhatsApp enviado.'
-        : `WhatsApp não enviado${json.whatsapp?.reason ? `: ${json.whatsapp.reason}` : ''}.`;
+        : `WhatsApp não enviado${json.whatsapp?.reason ? `: ${formatSupplierWhatsappReason(json.whatsapp.reason)}` : ''}.`;
       messageApi.success(`Comprovante processado. ${whatsappDetail}`);
       closePaymentModal();
       await fetchData();

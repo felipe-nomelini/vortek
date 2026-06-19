@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import {
-  Breadcrumb, Button, Card, Col, Input, Row, Space, Spin, Switch, Tag, Typography, message,
+  Alert, Breadcrumb, Button, Card, Col, Input, Row, Space, Spin, Switch, Tag, Typography, message,
 } from 'antd';
 import { ArrowLeftOutlined, LoadingOutlined, SaveOutlined } from '@ant-design/icons';
 import type { Database } from '@/types/database';
@@ -147,6 +147,8 @@ export default function FornecedorDetailPage() {
     );
   }
 
+  const telefoneDigits = String(fornecedor.telefone || '').replace(/\D/g, '');
+
   return (
     <div>
       <Breadcrumb
@@ -189,6 +191,16 @@ export default function FornecedorDetailPage() {
           Salvar Alterações
         </Button>
       </div>
+
+      {!telefoneDigits && (
+        <Alert
+          type="warning"
+          showIcon
+          style={{ marginBottom: 16 }}
+          message="WhatsApp do fornecedor não cadastrado"
+          description="Pedidos pré-pago salvam o comprovante, mas o envio automático ao fornecedor só funciona com telefone preenchido."
+        />
+      )}
 
       <Row gutter={[16, 16]}>
         <Col xs={24} lg={16}>

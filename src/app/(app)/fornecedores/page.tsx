@@ -264,7 +264,7 @@ export default function FornecedoresPage() {
             E-mail: {record.email || '—'}
           </div>
           <div style={{ color: '#a6a6a6', fontSize: 12 }}>
-            Telefone: {record.telefone || '—'}
+            Telefone: {record.telefone || <Tag color="red" style={{ marginInlineStart: 4 }}>Sem WhatsApp</Tag>}
           </div>
         </div>
       ),
