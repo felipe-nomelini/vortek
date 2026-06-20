@@ -2,12 +2,14 @@ import { NextResponse } from 'next/server';
 import {
   criarPedidoDropshipping,
   criarPedidoDropshippingComFornecedor,
+  consultarPedido,
   informarFornecedorPedido,
   consultarPedidoPorChaveAcesso,
   definirTransportadoraPedido,
   enviarEtiqueta,
   obterProdutoEspecifico,
   resolverProdutoMapeadoDslite,
+  vincularProdutoItem,
 } from '@/services/dslite';
 import {
   baixarEtiquetaML,
@@ -2953,6 +2955,7 @@ async function runDsliteCreateJob(
     }
 
     let compraAtual: { id: string; supplier_payment_amount: number | null } | null = null;
+    const supplierItemLinkWarnings: string[] = [];
 
     if (dsidAtual) {
       const existingPaymentAmount = Number((existingCompra as any)?.supplier_payment_amount || 0);
@@ -3029,6 +3032,89 @@ async function runDsliteCreateJob(
       }
     }
 
+    if (dsidAtual) {
+      let produtoIdParaVinculo = String(produto?.produtoid || produto?.produtoid_empresa || '').trim();
+      const ofertaIdParaVinculo = produtoFornecedorOfertaId || (existingCompra as any)?.produto_fornecedor_oferta_id || null;
+
+      if (!produtoIdParaVinculo && ofertaIdParaVinculo) {
+        const { data: ofertaParaVinculo } = await client
+          .from('produto_fornecedor_ofertas')
+          .select('dslite_produto_id')
+          .eq('id', String(ofertaIdParaVinculo))
+          .maybeSingle();
+        produtoIdParaVinculo = String((ofertaParaVinculo as any)?.dslite_produto_id || '').trim();
+      }
+
+      if (produtoIdParaVinculo) {
+        const pedidoDsliteAtual = await consultarPedido(dsidAtual as number);
+        const itemsDslite = Array.isArray((pedidoDsliteAtual as any)?.items) ? (pedidoDsliteAtual as any).items : [];
+        const itemDslite = itemsDslite.find((item: any) => String(item?.nf_produtoid || '').trim() === skuComPrefixo)
+          || (itemsDslite.length === 1 ? itemsDslite[0] : null)
+          || itemsDslite.find((item: any) => Number(item?.item) === 1)
+          || itemsDslite[0];
+        const itemNumero = itemDslite?.item;
+        const fornecedorProdutoIdAtual = String(itemDslite?.fornecedor_produtoid || '').trim();
+
+        if (fornecedorProdutoIdAtual) {
+          await registrarEventoNfAuditoria({
+            pedidoId,
+            mlOrderId: mlOrderId ? String(mlOrderId) : null,
+            evento: 'dslite_item_link_skipped_existing',
+            respostaMl: {
+              dsid: dsidAtual,
+              item: itemNumero || null,
+              fornecedor_produtoid: fornecedorProdutoIdAtual,
+            },
+            statusResultante: 'skipped',
+          });
+        } else if (itemNumero) {
+          const vinculoResult = await vincularProdutoItem(dsidAtual as number, itemNumero, produtoIdParaVinculo);
+          if (!vinculoResult?.success) {
+            const msg = vinculoResult?.message || 'Falha ao vincular produto fornecedor ao item DSLite';
+            supplierItemLinkWarnings.push(`Produto fornecedor: ${msg}`);
+            await registrarEventoNfAuditoria({
+              pedidoId,
+              mlOrderId: mlOrderId ? String(mlOrderId) : null,
+              evento: 'dslite_item_link_failed',
+              respostaMl: {
+                dsid: dsidAtual,
+                item: itemNumero,
+                produtoid: produtoIdParaVinculo,
+                error: msg,
+              },
+              statusResultante: 'failed',
+            });
+          } else {
+            await registrarEventoNfAuditoria({
+              pedidoId,
+              mlOrderId: mlOrderId ? String(mlOrderId) : null,
+              evento: 'dslite_item_link_success',
+              respostaMl: {
+                dsid: dsidAtual,
+                item: itemNumero,
+                produtoid: produtoIdParaVinculo,
+              },
+              statusResultante: 'success',
+            });
+          }
+        } else {
+          const msg = 'Pedido DSLite sem item identificável para vincular produto fornecedor';
+          supplierItemLinkWarnings.push(`Produto fornecedor: ${msg}`);
+          await registrarEventoNfAuditoria({
+            pedidoId,
+            mlOrderId: mlOrderId ? String(mlOrderId) : null,
+            evento: 'dslite_item_link_failed',
+            respostaMl: {
+              dsid: dsidAtual,
+              produtoid: produtoIdParaVinculo,
+              error: msg,
+            },
+            statusResultante: 'missing_item',
+          });
+        }
+      }
+    }
+
     if (supplierPaymentMode === 'prepaid_pix' && !resumeAfterSupplierPayment) {
       const supplierPixKey = getSupplierPixKey(fornecedorId);
       const { data: fornecedorCadastro } = await client
@@ -3068,7 +3154,7 @@ async function runDsliteCreateJob(
       return;
     }
 
-    const pendencias: string[] = [...externalWarnings];
+    const pendencias: string[] = [...externalWarnings, ...supplierItemLinkWarnings];
     let etiquetaStatus: 'enviada' | 'nao_disponivel' | 'erro' = 'nao_disponivel';
     let etiquetaError: string | undefined;
     const isRealLabelPendingForNonHayamax = Boolean(
