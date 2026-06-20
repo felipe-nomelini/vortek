@@ -8,6 +8,7 @@ const editableFields = new Set([
   'cnpj',
   'email',
   'telefone',
+  'supplier_pix_key',
   'endereco',
   'status_dslite',
   'crossdocking',

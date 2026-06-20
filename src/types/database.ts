@@ -315,6 +315,7 @@ export type Database = {
           nome: string
           payload_dslite: Json
           status_dslite: string
+          supplier_pix_key: string
           telefone: string
           crossdocking: string
           updated_at: string
@@ -333,6 +334,7 @@ export type Database = {
           nome: string
           payload_dslite?: Json
           status_dslite?: string
+          supplier_pix_key?: string
           telefone?: string
           crossdocking?: string
           updated_at?: string
@@ -351,6 +353,7 @@ export type Database = {
           nome?: string
           payload_dslite?: Json
           status_dslite?: string
+          supplier_pix_key?: string
           telefone?: string
           crossdocking?: string
           updated_at?: string

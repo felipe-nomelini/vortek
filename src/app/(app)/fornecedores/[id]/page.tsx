@@ -111,6 +111,7 @@ export default function FornecedorDetailPage() {
           cnpj: fornecedor.cnpj,
           email: fornecedor.email,
           telefone: fornecedor.telefone,
+          supplier_pix_key: fornecedor.supplier_pix_key,
           endereco: fornecedor.endereco,
           status_dslite: fornecedor.status_dslite,
           crossdocking: fornecedor.crossdocking,
@@ -201,6 +202,15 @@ export default function FornecedorDetailPage() {
           description="Pedidos pré-pago salvam o comprovante, mas o envio automático ao fornecedor só funciona com telefone preenchido."
         />
       )}
+      {fornecedor.supplier_pix_key === '' && (
+        <Alert
+          type="warning"
+          showIcon
+          style={{ marginBottom: 16 }}
+          message="Chave PIX do fornecedor não cadastrada"
+          description="Fornecedores pré-pago precisam da chave PIX cadastrada para liberar o fluxo de confirmação de pagamento."
+        />
+      )}
 
       <Row gutter={[16, 16]}>
         <Col xs={24} lg={16}>
@@ -230,6 +240,15 @@ export default function FornecedorDetailPage() {
                   onChange={(e) => patch({ telefone: formatBrazilPhone(e.target.value) })}
                   placeholder="(21) 99999-9999"
                   maxLength={15}
+                  style={inputStyle}
+                />
+              </Col>
+              <Col xs={24} md={8}>
+                <div style={labelStyle}>Chave PIX</div>
+                <Input
+                  value={fornecedor.supplier_pix_key}
+                  onChange={(e) => patch({ supplier_pix_key: e.target.value })}
+                  placeholder="CPF, CNPJ, telefone, e-mail ou chave aleatória"
                   style={inputStyle}
                 />
               </Col>

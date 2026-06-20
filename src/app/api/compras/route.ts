@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
-import { getSupplierPixKey } from '@/lib/supplier-payment';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -155,10 +154,31 @@ export async function GET(request: Request) {
       );
     }
 
+    const fornecedorIds = Array.from(new Set(
+      allCompras
+        .map((item: any) => String(item.fornecedor_id || '').trim())
+        .filter(Boolean),
+    ));
+    const fornecedores: any[] = [];
+    for (let index = 0; index < fornecedorIds.length; index += 500) {
+      const chunk = fornecedorIds.slice(index, index + 500);
+      const { data, error } = await client
+        .from('fornecedores')
+        .select('dslite_id,supplier_pix_key')
+        .in('dslite_id', chunk);
+
+      if (error) {
+        console.error('[api/compras] Erro ao buscar fornecedores:', error);
+        return NextResponse.json({ error: error.message }, { status: 500 });
+      }
+      fornecedores.push(...(data || []));
+    }
+    const fornecedorByDsliteId = new Map(fornecedores.map((fornecedor: any) => [String(fornecedor.dslite_id), fornecedor]));
+
     const comprasEnriquecidas = allCompras.map((item: any) => ({
       ...item,
       pedido_vendas_numero: pedidoNumeroPorDsliteId.get(String(item.dsid)) ?? null,
-      supplier_pix_key: getSupplierPixKey(item.fornecedor_id),
+      supplier_pix_key: fornecedorByDsliteId.get(String(item.fornecedor_id || ''))?.supplier_pix_key || null,
     }));
 
     sortCompras(comprasEnriquecidas, sortBy, sortOrder);

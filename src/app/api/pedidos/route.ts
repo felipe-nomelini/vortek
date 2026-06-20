@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { reconcileLocalNfeSnapshotFromXml } from '@/lib/fiscal/nfe-local-reconciliation';
-import { getSupplierPixKey } from '@/lib/supplier-payment';
 
 function logDbError(
   event: string,
@@ -112,7 +111,7 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
     const chunk = fornecedorIds.slice(index, index + 500);
     const { data } = await serviceClient
       .from('fornecedores')
-      .select('dslite_id,telefone')
+      .select('dslite_id,telefone,supplier_pix_key')
       .in('dslite_id', chunk);
     fornecedores.push(...(data || []));
   }
@@ -163,7 +162,7 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
       supplier_payment_receipt_path: compra.supplier_payment_receipt_path || null,
       supplier_payment_reference: compra.supplier_payment_reference || null,
       supplier_payment_notes: compra.supplier_payment_notes || null,
-      supplier_pix_key: getSupplierPixKey(compra.fornecedor_id),
+      supplier_pix_key: fornecedor?.supplier_pix_key || null,
       dslite_next_action: nextAction,
       dslite_next_action_label: nextActionLabel,
     };

@@ -54,7 +54,6 @@ import {
   loadDslitePlaceholderLabel,
 } from '@/lib/dslite/placeholder-label';
 import { storeShippingLabelForPedido } from '@/lib/shipping-label-storage';
-import { getSupplierPixKey } from '@/lib/supplier-payment';
 
 const TRANSPORTADORA_PADRAO_CORREIOS = 31;
 const WAIT_AUTH_TIMEOUT_MS = 180_000;
@@ -3116,12 +3115,12 @@ async function runDsliteCreateJob(
     }
 
     if (supplierPaymentMode === 'prepaid_pix' && !resumeAfterSupplierPayment) {
-      const supplierPixKey = getSupplierPixKey(fornecedorId);
       const { data: fornecedorCadastro } = await client
         .from('fornecedores')
-        .select('telefone')
+        .select('telefone,supplier_pix_key')
         .eq('dslite_id', String(fornecedorId || ''))
         .maybeSingle();
+      const supplierPixKey = String((fornecedorCadastro as any)?.supplier_pix_key || '').trim();
       const supplierPhoneDigits = String((fornecedorCadastro as any)?.telefone || '').replace(/\D/g, '');
       await client
         .from('pedidos')
@@ -3146,7 +3145,7 @@ async function runDsliteCreateJob(
         compra_id: compraAtual?.id || existingCompra?.id || null,
         fornecedor_nome: fornecedorNomeResolved,
         supplier_payment_amount: compraAtual?.supplier_payment_amount ?? supplierPaymentAmount ?? null,
-        supplier_pix_key: supplierPixKey,
+        supplier_pix_key: supplierPixKey || null,
         supplier_pix_key_missing: !supplierPixKey,
         supplier_phone_missing: !supplierPhoneDigits,
       };
