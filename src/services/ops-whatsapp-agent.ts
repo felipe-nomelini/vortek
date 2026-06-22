@@ -11,6 +11,7 @@ import {
 
 type OpsIntent =
   | 'list_errors'
+  | 'pending_approval'
   | 'details'
   | 'approve'
   | 'reject'
@@ -28,6 +29,13 @@ type ParsedCommand = {
 type ProcessInput = {
   text: string;
   phone?: string | null;
+  history?: Array<{
+    direction?: 'in' | 'out' | string | null;
+    command?: string | null;
+    message?: string | null;
+    action?: string | null;
+    issueNumber?: number | null;
+  }>;
 };
 
 function normalize(input: unknown) {
@@ -63,6 +71,17 @@ function parseCommandFallback(text: string): ParsedCommand {
     || normalized.includes('registrar')
   ) {
     return { intent: 'add_error', issueNumber };
+  }
+
+  if (
+    normalized.includes('preciso aprovar')
+    || normalized.includes('tenho que aprovar')
+    || normalized.includes('tem algo para aprovar')
+    || normalized.includes('correcao pendente')
+    || normalized.includes('correcoes pendentes')
+    || normalized.includes('aprovacao pendente')
+  ) {
+    return { intent: 'pending_approval', issueNumber };
   }
 
   if (
@@ -106,6 +125,39 @@ function parseCommandFallback(text: string): ParsedCommand {
   }
 
   return { intent: 'unknown', issueNumber };
+}
+
+function isAffirmative(text: string) {
+  const normalized = normalize(text);
+  return ['sim', 's', 'pode', 'isso', 'ok', 'confirma', 'confirmo'].includes(normalized)
+    || normalized.startsWith('sim ')
+    || normalized.startsWith('pode ');
+}
+
+function getLastOutgoing(history: ProcessInput['history']) {
+  return (history || []).find((item) => item.direction === 'out') || null;
+}
+
+function extractIssueFromText(text: string | null | undefined) {
+  const match = String(text || '').match(/issue\s*#?(\d{1,7})|#(\d{1,7})/i);
+  if (!match) return null;
+  const value = Number(match[1] || match[2]);
+  return Number.isFinite(value) && value > 0 ? value : null;
+}
+
+function inferApprovalFromHistory(text: string, history: ProcessInput['history']): ParsedCommand | null {
+  if (!isAffirmative(text)) return null;
+  const lastOutgoing = getLastOutgoing(history);
+  if (!lastOutgoing) return null;
+
+  const outgoingText = `${lastOutgoing.message || ''}\n${lastOutgoing.command || ''}`;
+  const issueNumber = lastOutgoing.issueNumber
+    || extractIssueFromText(outgoingText);
+  const canApprove = normalize(outgoingText).includes('aprovar')
+    || normalize(outgoingText).includes('pendente');
+
+  if (!issueNumber || !canApprove) return null;
+  return { intent: 'approve', issueNumber };
 }
 
 function wantsCommandList(text: string) {
@@ -198,7 +250,7 @@ async function parseCommandWithAi(text: string): Promise<ParsedCommand | null> {
             'Você é a IA operacional da Vortek no WhatsApp.',
             'Converse de forma curta, direta e natural em português do Brasil.',
             'Retorne apenas JSON válido no formato {"intent":"...","issueNumber":123|null,"reply":"..."}',
-            'Intenções permitidas: list_errors, details, approve, reject, request_details, add_error, help, unknown.',
+            'Intenções permitidas: list_errors, pending_approval, details, approve, reject, request_details, add_error, help, unknown.',
             'Extraia issueNumber quando houver número de issue.',
             'Não invente número de issue.',
             'Use add_error quando o usuário pedir para incluir, registrar ou adicionar um erro/alerta em uma issue.',
@@ -207,6 +259,7 @@ async function parseCommandWithAi(text: string): Promise<ParsedCommand | null> {
             'Em reply, explique o que você entendeu e o próximo passo. Máximo 500 caracteres.',
             'Não liste comandos, exceto quando o usuário perguntar explicitamente por comandos, ajuda ou menu.',
             'Não diga que executou algo se a intent não for uma ação operacional clara.',
+            'Use o histórico recente para interpretar respostas curtas como "sim".',
           ].join('\n'),
         },
         { role: 'user', content: text },
@@ -272,8 +325,22 @@ function formatDispatchResult(dispatch: unknown) {
 }
 
 export async function processOpsWhatsappCommand(input: ProcessInput) {
-  const aiCommand = await parseCommandWithAi(input.text).catch(() => null);
-  const command = aiCommand || parseCommandFallback(input.text);
+  const contextualCommand = inferApprovalFromHistory(input.text, input.history);
+  const fallbackCommand = parseCommandFallback(input.text);
+  const aiText = [
+    input.text,
+    input.history?.length ? '\n[HISTORICO_RECENTE]' : '',
+    ...(input.history || []).slice(0, 8).map((item) => [
+      item.direction === 'out' ? 'Assistente' : 'Usuario',
+      item.action ? `acao=${item.action}` : null,
+      item.issueNumber ? `issue=${item.issueNumber}` : null,
+      item.message || item.command || '',
+    ].filter(Boolean).join(' | ')),
+  ].filter(Boolean).join('\n');
+  const aiCommand = contextualCommand
+    || (fallbackCommand.intent !== 'unknown' ? fallbackCommand : null)
+    || await parseCommandWithAi(aiText).catch(() => null);
+  const command = aiCommand || fallbackCommand;
 
   if (command.intent === 'help') {
     if (!wantsCommandList(input.text) && command.reply) {
@@ -326,6 +393,35 @@ export async function processOpsWhatsappCommand(input: ProcessInput) {
       ...issues.map((issue) => `#${issue.number} - ${issue.title}\n${issue.url}`),
     ].join('\n\n');
     return { command, text, status: 'ok' as const };
+  }
+
+  if (command.intent === 'pending_approval') {
+    const issues = await listOpsIssues(8);
+    if (issues.length === 0) {
+      return {
+        command,
+        text: 'Não encontrei nenhuma issue operacional aberta para aprovação agora.',
+        status: 'ok' as const,
+      };
+    }
+
+    const [first] = issues;
+    const text = [
+      issues.length === 1
+        ? `Sim. Existe 1 issue operacional aberta: #${first.number} - ${first.title}`
+        : `Sim. Existem ${issues.length} issues operacionais abertas:`,
+      '',
+      ...issues.map((issue) => `#${issue.number} - ${issue.title}\n${issue.url}`),
+      '',
+      issues.length === 1
+        ? `Se quiser aprovar, responda "sim" ou "aprovar issue ${first.number}".`
+        : 'Para aprovar, responda com o número. Ex.: "aprovar issue 1".',
+    ].join('\n');
+    return {
+      command: { ...command, issueNumber: issues.length === 1 ? first.number : command.issueNumber },
+      text,
+      status: 'ok' as const,
+    };
   }
 
   if (command.intent === 'details') {

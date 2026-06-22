@@ -39,6 +39,8 @@ Atualize quando uma regra, incidente ou decisao operacional importante mudar.
 - WAHA pode enviar remetente como `@lid`, nao apenas telefone. O ID `57462518468760` corresponde ao Felipe no fluxo atual.
 - O bot deve conversar naturalmente. So listar comandos se o usuario pedir ajuda/menu/comandos.
 - O bot pode criar issue a partir de alerta critico ou comentar em issue existente.
+- O bot precisa usar historico recente por chat para entender continuacoes como "sim", "pode" e "aprovar essa".
+- Perguntas como "preciso aprovar alguma correcao?" devem consultar issues abertas reais, nao responder com orientacao generica.
 
 ## Workflow Ops Autofix
 

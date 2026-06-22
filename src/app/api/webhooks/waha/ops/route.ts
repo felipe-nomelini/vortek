@@ -115,6 +115,24 @@ async function auditEvent(input: {
   } as any);
 }
 
+async function getRecentHistory(chatId: string) {
+  const client = createServiceClient();
+  const { data } = await (client as any)
+    .from('ops_whatsapp_events')
+    .select('direction, command, action, issue_number, message, created_at')
+    .eq('chat_id', chatId)
+    .order('created_at', { ascending: false })
+    .limit(10);
+
+  return (data || []).map((item: any) => ({
+    direction: item.direction || null,
+    command: item.command || null,
+    action: item.action || null,
+    issueNumber: item.issue_number || null,
+    message: item.message || null,
+  }));
+}
+
 export async function POST(req: Request) {
   if (!checkWebhookSecret(req)) {
     return NextResponse.json({ ok: false, error: 'unauthorized_webhook' }, { status: 401 });
@@ -151,6 +169,7 @@ export async function POST(req: Request) {
     const result = await processOpsWhatsappCommand({
       text: incoming.text,
       phone: incoming.phone,
+      history: await getRecentHistory(incoming.chatId).catch(() => []),
     });
 
     await sendWahaText({ chatId: incoming.chatId, text: result.text });
