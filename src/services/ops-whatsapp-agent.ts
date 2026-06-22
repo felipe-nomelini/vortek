@@ -23,8 +23,23 @@ type OpsIntent =
 type ParsedCommand = {
   intent: OpsIntent;
   issueNumber?: number | null;
+  issueNumbers?: number[] | null;
   reply?: string | null;
 };
+
+type OpenOpsIssue = Awaited<ReturnType<typeof listOpsIssues>>[number];
+
+const ALLOWED_INTENTS = new Set<OpsIntent>([
+  'list_errors',
+  'pending_approval',
+  'details',
+  'approve',
+  'reject',
+  'request_details',
+  'add_error',
+  'help',
+  'unknown',
+]);
 
 type ProcessInput = {
   text: string;
@@ -51,6 +66,13 @@ function extractIssueNumber(text: string) {
   if (!match) return null;
   const number = Number(match[1]);
   return Number.isFinite(number) && number > 0 ? number : null;
+}
+
+function extractIssueNumbers(text: string) {
+  const matches = Array.from(String(text || '').matchAll(/#?\b(\d{1,7})\b/g));
+  return Array.from(new Set(matches
+    .map((match) => Number(match[1]))
+    .filter((number) => Number.isFinite(number) && number > 0)));
 }
 
 function parseCommandFallback(text: string): ParsedCommand {
@@ -223,12 +245,29 @@ function safeJsonParse(text: string): any | null {
   }
 }
 
-async function parseCommandWithAi(text: string): Promise<ParsedCommand | null> {
+async function parseCommandWithAiContext(input: {
+  text: string;
+  history?: ProcessInput['history'];
+  openIssues?: OpenOpsIssue[];
+}): Promise<ParsedCommand | null> {
   const apiKey = String(process.env.OPENROUTER_API_KEY || '').trim();
   if (!apiKey) return null;
   const baseUrl = String(process.env.OPENROUTER_BASE_URL || 'https://openrouter.ai/api/v1')
     .trim()
     .replace(/\/+$/, '');
+  const historyText = (input.history || [])
+    .slice()
+    .reverse()
+    .map((item) => [
+      item.direction === 'out' ? 'Assistente' : 'Usuario',
+      item.action ? `acao=${item.action}` : null,
+      item.issueNumber ? `issue=${item.issueNumber}` : null,
+      item.message || item.command || '',
+    ].filter(Boolean).join(' | '))
+    .join('\n') || 'Sem historico.';
+  const openIssuesText = (input.openIssues || [])
+    .map((issue) => `#${issue.number} - ${issue.title} | labels=${issue.labels.join(', ') || '-'} | ${issue.url}`)
+    .join('\n') || 'Nenhuma issue operacional aberta.';
 
   const response = await fetch(`${baseUrl}/chat/completions`, {
     method: 'POST',
@@ -243,26 +282,44 @@ async function parseCommandWithAi(text: string): Promise<ParsedCommand | null> {
         || process.env.OPENROUTER_MODEL
         || 'openai/gpt-5.4-mini',
       temperature: 0,
+      response_format: { type: 'json_object' },
       messages: [
         {
           role: 'system',
           content: [
-            'Você é a IA operacional da Vortek no WhatsApp.',
-            'Converse de forma curta, direta e natural em português do Brasil.',
-            'Retorne apenas JSON válido no formato {"intent":"...","issueNumber":123|null,"reply":"..."}',
+            'Voce e a IA operacional da Vortek no WhatsApp. Aja como assistente conversacional, nao como menu de comandos.',
+            'Entenda linguagem natural, contexto recente e referencias como "essa", "a ultima", "as 3", "todas", "pode seguir".',
+            'Retorne apenas JSON valido no formato {"intent":"...","issueNumber":123|null,"issueNumbers":[123],"reply":"..."}',
             'Intenções permitidas: list_errors, pending_approval, details, approve, reject, request_details, add_error, help, unknown.',
-            'Extraia issueNumber quando houver número de issue.',
-            'Não invente número de issue.',
+            'Use issueNumbers quando o usuario pedir acao em varias issues.',
+            'Se ele disser "as 3" apos voce listar 3 issues abertas, isso significa todas as 3 issues. Se disser "#3" ou "issue 3", significa issue numero 3.',
+            'Se o usuario disser "todas", use todas as issues abertas informadas.',
+            'Nao invente numero de issue. Use apenas issues abertas informadas ou numero explicito do usuario.',
+            'Se a intencao for clara, retorne a acao. Se faltar dado, retorne unknown ou reply perguntando objetivamente.',
             'Use add_error quando o usuário pedir para incluir, registrar ou adicionar um erro/alerta em uma issue.',
-            'Use help para saudação, pedido de ajuda ou conversa geral sobre o que você consegue fazer.',
+            'Use help somente quando o usuario pedir ajuda, menu, comandos ou perguntar o que voce consegue fazer.',
             'Use unknown quando a mensagem não tiver relação operacional com Vortek.',
             'Em reply, explique o que você entendeu e o próximo passo. Máximo 500 caracteres.',
-            'Não liste comandos, exceto quando o usuário perguntar explicitamente por comandos, ajuda ou menu.',
+            'Nao liste comandos, exceto quando o usuario perguntar explicitamente por comandos, ajuda ou menu.',
             'Não diga que executou algo se a intent não for uma ação operacional clara.',
-            'Use o histórico recente para interpretar respostas curtas como "sim".',
+            'Para "preciso aprovar alguma correcao?", "tem algo pendente?", use pending_approval.',
+            'Para "quais issues/erros estao abertos?", use list_errors.',
+            'Para "pode seguir", "aprova", "manda rodar", use approve se o alvo estiver claro pelo texto ou historico.',
           ].join('\n'),
         },
-        { role: 'user', content: text },
+        {
+          role: 'user',
+          content: [
+            'Mensagem atual:',
+            input.text,
+            '',
+            'Historico recente do chat:',
+            historyText,
+            '',
+            'Issues operacionais abertas agora:',
+            openIssuesText,
+          ].join('\n'),
+        },
       ],
     }),
   });
@@ -272,9 +329,16 @@ async function parseCommandWithAi(text: string): Promise<ParsedCommand | null> {
   const outputText = data?.choices?.[0]?.message?.content || '';
   const parsed = safeJsonParse(String(outputText || ''));
   if (!parsed?.intent) return null;
+  const intent = String(parsed.intent || '') as OpsIntent;
+  if (!ALLOWED_INTENTS.has(intent)) return null;
   return {
-    intent: parsed.intent,
+    intent,
     issueNumber: Number.isFinite(Number(parsed.issueNumber)) ? Number(parsed.issueNumber) : null,
+    issueNumbers: Array.isArray(parsed.issueNumbers)
+      ? Array.from(new Set(parsed.issueNumbers
+        .map((value: unknown) => Number(value))
+        .filter((number: number) => Number.isFinite(number) && number > 0)))
+      : null,
     reply: typeof parsed.reply === 'string' && parsed.reply.trim()
       ? parsed.reply.trim().slice(0, 800)
       : null,
@@ -303,6 +367,45 @@ function requireIssueNumber(command: ParsedCommand) {
   return null;
 }
 
+function getCommandIssueNumbers(command: ParsedCommand) {
+  const numbers = command.issueNumbers?.length
+    ? command.issueNumbers
+    : command.issueNumber
+      ? [command.issueNumber]
+      : [];
+  return Array.from(new Set(numbers.filter((number) => Number.isFinite(number) && number > 0)));
+}
+
+function hydrateIssueReferences(command: ParsedCommand, text: string, openIssues: OpenOpsIssue[]) {
+  const normalized = normalize(text);
+  const explicitNumbers = extractIssueNumbers(text);
+  const openNumbers = new Set(openIssues.map((issue) => issue.number));
+  const quantityReference = normalized.match(/\b(?:as|os|todas as|todos os)\s+(\d{1,2})\b/);
+
+  if (!command.issueNumbers?.length && explicitNumbers.length > 1) {
+    command.issueNumbers = explicitNumbers.filter((number) => openNumbers.size === 0 || openNumbers.has(number));
+  }
+
+  if (!command.issueNumber && !command.issueNumbers?.length && explicitNumbers.length === 1) {
+    command.issueNumber = explicitNumbers[0];
+  }
+
+  if (
+    (command.intent === 'approve' || command.intent === 'reject' || command.intent === 'request_details')
+    && (
+      normalized.includes('todas')
+      || normalized.includes('todos')
+      || (quantityReference && Number(quantityReference[1]) === openIssues.length)
+    )
+    && openIssues.length
+  ) {
+    command.issueNumbers = openIssues.map((issue) => issue.number);
+    command.issueNumber = null;
+  }
+
+  return command;
+}
+
 function formatIssueSummary(issue: Awaited<ReturnType<typeof getOpsIssue>>) {
   return [
     `*Issue #${issue.number}*`,
@@ -325,22 +428,22 @@ function formatDispatchResult(dispatch: unknown) {
 }
 
 export async function processOpsWhatsappCommand(input: ProcessInput) {
-  const contextualCommand = inferApprovalFromHistory(input.text, input.history);
   const fallbackCommand = parseCommandFallback(input.text);
-  const aiText = [
+  const openIssues = await listOpsIssues(10).catch(() => []);
+  const contextualCommand = inferApprovalFromHistory(input.text, input.history);
+  const aiCommand = await parseCommandWithAiContext({
+    text: input.text,
+    history: input.history,
+    openIssues,
+  }).catch(() => null);
+  const commandSource = aiCommand?.intent && aiCommand.intent !== 'unknown'
+    ? aiCommand
+    : contextualCommand || fallbackCommand;
+  const command = hydrateIssueReferences(
+    commandSource,
     input.text,
-    input.history?.length ? '\n[HISTORICO_RECENTE]' : '',
-    ...(input.history || []).slice(0, 8).map((item) => [
-      item.direction === 'out' ? 'Assistente' : 'Usuario',
-      item.action ? `acao=${item.action}` : null,
-      item.issueNumber ? `issue=${item.issueNumber}` : null,
-      item.message || item.command || '',
-    ].filter(Boolean).join(' | ')),
-  ].filter(Boolean).join('\n');
-  const aiCommand = contextualCommand
-    || (fallbackCommand.intent !== 'unknown' ? fallbackCommand : null)
-    || await parseCommandWithAi(aiText).catch(() => null);
-  const command = aiCommand || fallbackCommand;
+    openIssues,
+  );
 
   if (command.intent === 'help') {
     if (!wantsCommandList(input.text) && command.reply) {
@@ -383,7 +486,7 @@ export async function processOpsWhatsappCommand(input: ProcessInput) {
   }
 
   if (command.intent === 'list_errors') {
-    const issues = await listOpsIssues(8);
+    const issues = openIssues.slice(0, 8);
     if (issues.length === 0) {
       return { command, text: 'Nenhuma issue operacional aberta encontrada.', status: 'ok' as const };
     }
@@ -396,7 +499,7 @@ export async function processOpsWhatsappCommand(input: ProcessInput) {
   }
 
   if (command.intent === 'pending_approval') {
-    const issues = await listOpsIssues(8);
+    const issues = openIssues.slice(0, 8);
     if (issues.length === 0) {
       return {
         command,
@@ -432,49 +535,67 @@ export async function processOpsWhatsappCommand(input: ProcessInput) {
   }
 
   if (command.intent === 'approve') {
-    const missing = requireIssueNumber(command);
+    const issueNumbers = getCommandIssueNumbers(command);
+    const missing = issueNumbers.length === 0 ? requireIssueNumber(command) : null;
     if (missing) return { command, text: missing, status: 'needs_input' as const };
-    const result = await approveOpsIssue(command.issueNumber!, input.phone || undefined);
-    const dispatchText = formatDispatchResult(result.dispatch);
+    const results = [];
+    for (const issueNumber of issueNumbers) {
+      const result = await approveOpsIssue(issueNumber, input.phone || undefined);
+      results.push(`#${issueNumber}: ${formatDispatchResult(result.dispatch)}`);
+    }
     return {
       command,
       status: 'ok' as const,
       text: [
-        `Issue #${command.issueNumber} aprovada via WhatsApp.`,
-        dispatchText,
-        getGitHubIssueUrl(command.issueNumber!),
+        issueNumbers.length === 1
+          ? `Issue #${issueNumbers[0]} aprovada via WhatsApp.`
+          : `Aprovei ${issueNumbers.length} issues via WhatsApp.`,
+        ...results,
+        ...issueNumbers.map((issueNumber) => getGitHubIssueUrl(issueNumber)),
       ].join('\n'),
     };
   }
 
   if (command.intent === 'reject') {
-    const missing = requireIssueNumber(command);
+    const issueNumbers = getCommandIssueNumbers(command);
+    const missing = issueNumbers.length === 0 ? requireIssueNumber(command) : null;
     if (missing) return { command, text: missing, status: 'needs_input' as const };
-    const result = await rejectOpsIssue(command.issueNumber!, input.phone || undefined);
-    const dispatchText = formatDispatchResult(result.dispatch);
+    const results = [];
+    for (const issueNumber of issueNumbers) {
+      const result = await rejectOpsIssue(issueNumber, input.phone || undefined);
+      results.push(`#${issueNumber}: ${formatDispatchResult(result.dispatch)}`);
+    }
     return {
       command,
       status: 'ok' as const,
       text: [
-        `Issue #${command.issueNumber} reprovada via WhatsApp.`,
-        dispatchText,
-        getGitHubIssueUrl(command.issueNumber!),
+        issueNumbers.length === 1
+          ? `Issue #${issueNumbers[0]} reprovada via WhatsApp.`
+          : `Reprovei ${issueNumbers.length} issues via WhatsApp.`,
+        ...results,
+        ...issueNumbers.map((issueNumber) => getGitHubIssueUrl(issueNumber)),
       ].join('\n'),
     };
   }
 
   if (command.intent === 'request_details') {
-    const missing = requireIssueNumber(command);
+    const issueNumbers = getCommandIssueNumbers(command);
+    const missing = issueNumbers.length === 0 ? requireIssueNumber(command) : null;
     if (missing) return { command, text: missing, status: 'needs_input' as const };
-    const result = await requestOpsIssueDetails(command.issueNumber!, input.phone || undefined);
-    const dispatchText = formatDispatchResult(result.dispatch);
+    const results = [];
+    for (const issueNumber of issueNumbers) {
+      const result = await requestOpsIssueDetails(issueNumber, input.phone || undefined);
+      results.push(`#${issueNumber}: ${formatDispatchResult(result.dispatch)}`);
+    }
     return {
       command,
       status: 'ok' as const,
       text: [
-        `Mais detalhes solicitados na issue #${command.issueNumber}.`,
-        dispatchText,
-        getGitHubIssueUrl(command.issueNumber!),
+        issueNumbers.length === 1
+          ? `Mais detalhes solicitados na issue #${issueNumbers[0]}.`
+          : `Solicitei mais detalhes em ${issueNumbers.length} issues.`,
+        ...results,
+        ...issueNumbers.map((issueNumber) => getGitHubIssueUrl(issueNumber)),
       ].join('\n'),
     };
   }

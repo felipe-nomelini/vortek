@@ -38,6 +38,9 @@ Atualize quando uma regra, incidente ou decisao operacional importante mudar.
   - `GITHUB_OPS_WORKFLOW_REF`
 - WAHA pode enviar remetente como `@lid`, nao apenas telefone. O ID `57462518468760` corresponde ao Felipe no fluxo atual.
 - O bot deve conversar naturalmente. So listar comandos se o usuario pedir ajuda/menu/comandos.
+- O WhatsApp Ops deve ser agent-first: chamar a IA com historico recente e issues abertas reais antes de qualquer parser fixo.
+- Parsers por frase so podem existir como fallback quando a IA falhar ou devolver `unknown`.
+- Frases contextuais como "pode seguir com as 3" devem ser interpretadas pelo contexto: se foram listadas 3 issues abertas, agir nas 3, nao apenas na issue #3.
 - O bot pode criar issue a partir de alerta critico ou comentar em issue existente.
 - O bot precisa usar historico recente por chat para entender continuacoes como "sim", "pode" e "aprovar essa".
 - Perguntas como "preciso aprovar alguma correcao?" devem consultar issues abertas reais, nao responder com orientacao generica.
