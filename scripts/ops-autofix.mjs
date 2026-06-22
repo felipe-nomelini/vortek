@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 
 const repo = process.env.GITHUB_REPOSITORY || '';
 const token = process.env.GITHUB_TOKEN || '';
@@ -53,6 +53,50 @@ function truncate(value, max = 6000) {
   return text.length > max ? `${text.slice(0, max)}\n...[truncated]` : text;
 }
 
+function readIfExists(file, max = 6000) {
+  if (!existsSync(file)) return '';
+  return truncate(readFileSync(file, 'utf8'), max);
+}
+
+function normalizeWhatsappChatId(phone) {
+  const digits = String(phone || '').replace(/\D/g, '');
+  if (!digits) return null;
+  const withCountry = digits.startsWith('55') ? digits : `55${digits}`;
+  return `${withCountry}@c.us`;
+}
+
+async function notifyOps(message) {
+  const baseUrl = String(process.env.WAHA_BASE_URL || '').trim().replace(/\/+$/, '');
+  const apiKey = String(process.env.WAHA_API_KEY || '').trim();
+  const session = String(process.env.WAHA_SESSION || 'default').trim() || 'default';
+  const phones = String(process.env.OPS_NOTIFY_PHONES || '21981172939,21970066090')
+    .split(',')
+    .map((phone) => phone.trim())
+    .filter(Boolean);
+
+  if (!baseUrl || !apiKey || phones.length === 0) {
+    console.log('WAHA notification skipped: missing config');
+    return;
+  }
+
+  for (const phone of phones) {
+    const chatId = normalizeWhatsappChatId(phone);
+    if (!chatId) continue;
+    const res = await fetch(`${baseUrl}/api/sendText`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'X-Api-Key': apiKey,
+      },
+      body: JSON.stringify({ session, chatId, text: message }),
+    });
+    if (!res.ok) {
+      console.warn(`WAHA notification failed for ${phone.slice(-4)}: HTTP ${res.status}`);
+    }
+  }
+}
+
 function safeJsonParse(text) {
   try {
     return JSON.parse(text);
@@ -82,6 +126,21 @@ function repoContext() {
     .slice(0, 500);
 
   return [
+    'AGENTS.md:',
+    readIfExists('AGENTS.md', 9000),
+    '',
+    'RTK.md:',
+    readIfExists('RTK.md', 2000),
+    '',
+    'docs/ops-memory.md:',
+    readIfExists('docs/ops-memory.md', 12000),
+    '',
+    'docs/ops-whatsapp-bot.md:',
+    readIfExists('docs/ops-whatsapp-bot.md', 7000),
+    '',
+    'docs/runtime-unblock-playbook.md:',
+    readIfExists('docs/runtime-unblock-playbook.md', 5000),
+    '',
     'package.json:',
     truncate(readFileSync('package.json', 'utf8'), 3000),
     '',
@@ -102,19 +161,23 @@ async function askOpenRouter(issue, comments) {
     };
   }
 
-  const model = process.env.OPENROUTER_OPS_AUTOFIX_MODEL || 'openai/gpt-5.4-mini';
+  const model = process.env.OPENROUTER_OPS_AUTOFIX_MODEL || 'openai/gpt-5.5';
+  const reasoningEffort = process.env.OPENROUTER_OPS_AUTOFIX_REASONING_EFFORT || 'medium';
   const prompt = [
-    'Você é um agente de engenharia do projeto Vortek.',
+    'Você é um agente de engenharia do projeto Vortek, operando com memória versionada do repositório.',
     'Analise a issue operacional e, se houver uma correção pequena e segura, gere um patch unified diff.',
     'Responda somente JSON válido:',
     '{"status":"patch|needs_human|no_change","summary":"...","root_cause":"...","validation":"...","patch":"..."}',
     '',
     'Regras:',
     '- Não invente contexto.',
-    '- Só gere patch se o erro apontar causa provável no código listado.',
+    '- Use AGENTS.md, docs/ops-memory.md, docs e arquivos do repositório como memória obrigatória.',
+    '- Respeite regras do Vortek: investigação antes de implementação, menor correção possível, sem chute.',
+    '- Só gere patch se o erro apontar causa provável no código/contexto fornecido.',
     '- Patch precisa ser unified diff aplicável por git apply.',
     '- Mudança deve ser mínima.',
-    '- Se precisar de logs, credenciais ou decisão humana, use needs_human.',
+    '- Se precisar de logs, credenciais, acesso externo ou decisão humana, use needs_human e explique exatamente a ação necessária.',
+    '- Se a issue tiver informação insuficiente, use needs_human.',
     '',
     'Issue:',
     `#${issue.number} ${issue.title}`,
@@ -137,6 +200,10 @@ async function askOpenRouter(issue, comments) {
     body: JSON.stringify({
       model,
       temperature: 0,
+      reasoning: {
+        effort: reasoningEffort,
+        exclude: true,
+      },
       messages: [
         { role: 'system', content: 'Responda somente JSON válido.' },
         { role: 'user', content: prompt },
@@ -204,6 +271,7 @@ async function main() {
 
   if (action === 'rejected') {
     await commentIssue(`Workflow Ops Autofix não executado: issue rejeitada via ${source}.`);
+    await notifyOps(`Vortek Ops\n\nIssue #${issueNumber} rejeitada. Nenhuma ação automática executada.`);
     return;
   }
 
@@ -213,11 +281,13 @@ async function main() {
       '',
       'Para permitir correção automática, inclua logs completos, rota/job afetado, erro exato e comportamento esperado.',
     ].join('\n'));
+    await notifyOps(`Vortek Ops\n\nIssue #${issueNumber}: mais detalhes foram solicitados. Ação sua necessária: incluir logs/erro/contexto na issue.\nhttps://github.com/${owner}/${repoName}/issues/${issueNumber}`);
     return;
   }
 
   if (action !== 'approved') {
     await commentIssue(`Ação não suportada pelo workflow: ${action}`);
+    await notifyOps(`Vortek Ops\n\nIssue #${issueNumber}: ação não suportada pelo workflow: ${action}`);
     return;
   }
 
@@ -234,6 +304,16 @@ async function main() {
       '',
       `Validação sugerida: ${analysis.validation || 'Não informada.'}`,
     ].join('\n'));
+    await notifyOps([
+      'Vortek Ops',
+      '',
+      `Issue #${issueNumber}: análise concluída sem PR automático.`,
+      `Status: ${analysis.status}`,
+      `Resumo: ${analysis.summary || 'Sem resumo.'}`,
+      '',
+      'Ação sua necessária: revisar/complementar a issue ou pedir correção manual.',
+      `https://github.com/${owner}/${repoName}/issues/${issueNumber}`,
+    ].join('\n'));
     return;
   }
 
@@ -241,11 +321,20 @@ async function main() {
     const changed = applyPatch(analysis.patch);
     if (!changed) {
       await commentIssue('Ops Autofix recebeu patch, mas ele não gerou alterações.');
+      await notifyOps(`Vortek Ops\n\nIssue #${issueNumber}: IA gerou patch sem alterações. Ação sua necessária: revisar a issue.`);
       return;
     }
     run('npm', ['run', 'typecheck'], { stdio: 'inherit' });
     const pr = await createPullRequest(issue, analysis);
     await commentIssue(`Ops Autofix criou PR: ${pr.html_url}`);
+    await notifyOps([
+      'Vortek Ops',
+      '',
+      `Issue #${issueNumber}: PR automático criado.`,
+      pr.html_url,
+      '',
+      'Ação sua necessária: revisar e aprovar/mergear o PR.',
+    ].join('\n'));
   } catch (err) {
     await commentIssue([
       'Ops Autofix tentou aplicar correção, mas falhou.',
@@ -254,6 +343,15 @@ async function main() {
       '',
       'Nenhum PR foi criado.',
     ].join('\n'));
+    await notifyOps([
+      'Vortek Ops',
+      '',
+      `Issue #${issueNumber}: autofix falhou.`,
+      `Erro: ${err?.message || err}`,
+      '',
+      'Ação sua necessária: revisar logs do GitHub Actions ou pedir correção manual.',
+      `https://github.com/${owner}/${repoName}/issues/${issueNumber}`,
+    ].join('\n'));
     throw err;
   }
 }
@@ -261,6 +359,7 @@ async function main() {
 main().catch(async (err) => {
   try {
     await commentIssue(`Ops Autofix falhou: ${err?.message || err}`);
+    await notifyOps(`Vortek Ops\n\nOps Autofix falhou na issue #${issueNumber}: ${err?.message || err}`);
   } catch {
     // ignore secondary failure
   }

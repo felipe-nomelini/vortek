@@ -88,16 +88,19 @@ Secrets/vars necessários no GitHub:
 
 ```text
 OPENROUTER_API_KEY
-OPENROUTER_OPS_AUTOFIX_MODEL=openai/gpt-5.4-mini
+WAHA_API_KEY
+OPENROUTER_OPS_AUTOFIX_MODEL=openai/gpt-5.5
 ```
 
 Fluxo do workflow:
 
 1. Lê a issue operacional aprovada.
-2. Pede análise para OpenRouter.
+2. Carrega `AGENTS.md`, `docs/ops-memory.md`, docs operacionais e lista de arquivos do repositório.
+3. Pede análise para OpenRouter com `openai/gpt-5.5` e reasoning médio.
 3. Se a IA devolver patch seguro e aplicável, roda `npm run typecheck`.
 4. Se passar, cria branch e pull request.
 5. Se não houver patch seguro, comenta a análise na issue.
+6. Avisa o WhatsApp quando criar PR, precisar de ação humana ou falhar.
 
 ## Fluxo
 
