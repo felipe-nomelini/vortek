@@ -37,6 +37,7 @@ interface AnaliseRow {
 const TAXA_IMPOSTO = 0.04;
 const TAXA_ML_DEFAULT = 0.15;
 const PAGE_SIZE = 1000;
+const SUPABASE_IN_CHUNK_SIZE = 100;
 type RefreshMode = 'none' | 'incremental' | 'full';
 
 function round2(value: number): number {
@@ -177,8 +178,8 @@ export async function POST(request: Request) {
   const produtoMap = new Map<string, ProdutoRow>();
 
   const produtosQueryStartedAt = Date.now();
-  for (let i = 0; i < produtoIds.length; i += PAGE_SIZE) {
-    const idsChunk = produtoIds.slice(i, i + PAGE_SIZE);
+  for (let i = 0; i < produtoIds.length; i += SUPABASE_IN_CHUNK_SIZE) {
+    const idsChunk = produtoIds.slice(i, i + SUPABASE_IN_CHUNK_SIZE);
     const { data, error } = await service
       .from('produtos')
       .select('id,sku,nome,custo,ml_fee,ml_shipping,custom_price')
