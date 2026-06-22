@@ -20,8 +20,14 @@ on:
         required: false
         type: string
         default: whatsapp
+      chain_depth:
+        description: "Profundidade de execução encadeada"
+        required: false
+        type: string
+        default: "0"
 
 permissions:
+  actions: write
   contents: write
   issues: write
   pull-requests: write
@@ -53,6 +59,7 @@ jobs:
           OPS_ISSUE_NUMBER: ${{ inputs.issue_number }}
           OPS_SOURCE: ${{ inputs.source }}
           OPS_RUN_ID: ${{ github.run_id }}
+          OPS_CHAIN_DEPTH: ${{ inputs.chain_depth }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           OPENROUTER_OPS_AUTOFIX_MODEL: ${{ vars.OPENROUTER_OPS_AUTOFIX_MODEL || 'openai/gpt-5.5' }}
           OPENROUTER_OPS_AUTOFIX_REASONING_EFFORT: medium

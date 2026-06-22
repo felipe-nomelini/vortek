@@ -7,6 +7,8 @@ const action = process.env.OPS_ACTION || '';
 const issueNumber = Number(process.env.OPS_ISSUE_NUMBER || 0);
 const source = process.env.OPS_SOURCE || 'whatsapp';
 const runId = process.env.OPS_RUN_ID || String(Date.now());
+const chainDepth = Math.max(0, Number(process.env.OPS_CHAIN_DEPTH || 0) || 0);
+const maxChainDepth = Math.max(0, Number(process.env.OPS_MAX_CHAIN_DEPTH || 2) || 2);
 
 if (!repo.includes('/')) throw new Error('GITHUB_REPOSITORY inválido');
 if (!token) throw new Error('GITHUB_TOKEN ausente');
@@ -247,6 +249,26 @@ function normalizeMemoryUpdate(value) {
     .slice(0, 3000);
 }
 
+function normalizeDiscoveredIssues(value) {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((item) => ({
+      title: String(item?.title || '').trim().slice(0, 180),
+      summary: String(item?.summary || item?.message || '').trim().slice(0, 4000),
+      evidence: String(item?.evidence || '').trim().slice(0, 4000),
+      severity: String(item?.severity || 'warning').trim().toLowerCase() === 'critical' ? 'critical' : 'warning',
+      dedupe_key: String(item?.dedupe_key || item?.dedupeKey || item?.title || '').trim().slice(0, 240),
+      can_autofix: item?.can_autofix === true || item?.canAutofix === true,
+    }))
+    .filter((item) => item.title && item.summary && item.dedupe_key)
+    .slice(0, 5);
+}
+
+function discoveredFingerprint(issue, item) {
+  const raw = `${issue.number}:${item.dedupe_key}`.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9:_./-]/g, '').slice(0, 180);
+  return `vortek-discovered:${raw}`;
+}
+
 async function askOpenRouter(issue, comments) {
   const apiKey = process.env.OPENROUTER_API_KEY || '';
   if (!apiKey) {
@@ -265,7 +287,7 @@ async function askOpenRouter(issue, comments) {
     'Você é um agente de engenharia do projeto Vortek, operando com memória versionada do repositório.',
     'Analise a issue operacional e, se houver uma correção pequena e segura, gere um patch unified diff.',
     'Responda somente JSON válido:',
-    '{"status":"patch|needs_human|no_change","summary":"...","root_cause":"...","validation":"...","patch":"...","memory_update":"..."}',
+    '{"status":"patch|needs_human|no_change","summary":"...","root_cause":"...","validation":"...","patch":"...","memory_update":"...","secondary_issues":[{"title":"...","summary":"...","evidence":"...","severity":"warning|critical","dedupe_key":"...","can_autofix":true}]}',
     '',
     'Regras:',
     '- Não invente contexto.',
@@ -279,6 +301,9 @@ async function askOpenRouter(issue, comments) {
     '- Se a issue tiver informação insuficiente, use needs_human.',
     '- Em memory_update, sugira aprendizado persistente apenas se houver regra/erro/decisao nova que ajude execucoes futuras.',
     '- Se nao houver aprendizado novo, use memory_update vazio.',
+    '- Se encontrar outro problema real separado da issue principal, inclua em secondary_issues com evidência objetiva.',
+    '- secondary_issues deve conter apenas problemas acionáveis e diferentes da causa principal; não inclua ideias genéricas.',
+    '- Use can_autofix=true somente quando houver contexto de código suficiente para tentar correção automática sem decisão humana.',
     '',
     'Issue:',
     `#${issue.number} ${issue.title}`,
@@ -415,6 +440,118 @@ async function triggerDeployIfConfigured(commit) {
   return { triggered: true, commit, status: res.status };
 }
 
+async function dispatchAutofix(issueToRun, parentIssueNumber) {
+  const workflow = process.env.GITHUB_OPS_WORKFLOW || 'ops-autofix.yml';
+  await github(`/repos/${owner}/${repoName}/actions/workflows/${encodeURIComponent(workflow)}/dispatches`, {
+    method: 'POST',
+    body: {
+      ref: 'main',
+      inputs: {
+        action: 'approved',
+        issue_number: String(issueToRun.number),
+        source: `autofix-chain:${parentIssueNumber}`,
+        chain_depth: String(chainDepth + 1),
+      },
+    },
+  });
+}
+
+async function createOrUpdateDiscoveredIssue(parentIssue, item) {
+  const fingerprint = discoveredFingerprint(parentIssue, item);
+  const searchQuery = encodeURIComponent(`repo:${owner}/${repoName} is:issue is:open "${fingerprint}"`);
+  const search = await github(`/search/issues?q=${searchQuery}&per_page=1`);
+  const existing = search.items?.[0] || null;
+  const body = [
+    `## ${item.title}`,
+    '',
+    item.summary,
+    '',
+    '## Evidência',
+    '',
+    item.evidence || 'Sem evidência adicional informada.',
+    '',
+    '## Origem',
+    '',
+    `- Descoberta durante autofix da issue #${parentIssue.number}`,
+    `- Severidade: ${item.severity}`,
+    `- Pode tentar autofix: ${item.can_autofix ? 'sim' : 'não'}`,
+    `- Fingerprint: ${fingerprint}`,
+    `- Criado em: ${new Date().toISOString()}`,
+  ].join('\n');
+
+  if (existing?.number) {
+    await github(`/repos/${owner}/${repoName}/issues/${existing.number}/comments`, {
+      method: 'POST',
+      body: {
+        body: [
+          `Problema secundário reencontrado durante autofix da issue #${parentIssue.number}.`,
+          '',
+          item.summary,
+          '',
+          `Fingerprint: ${fingerprint}`,
+        ].join('\n'),
+      },
+    });
+    return { created: false, number: existing.number, url: existing.html_url };
+  }
+
+  const created = await github(`/repos/${owner}/${repoName}/issues`, {
+    method: 'POST',
+    body: {
+      title: `[${item.severity.toUpperCase()}] ${item.title}`,
+      body,
+      labels: [
+        'ops:error',
+        `severity:${item.severity}`,
+        'auto-triage',
+      ],
+    },
+  });
+  return { created: true, number: created.number, url: created.html_url };
+}
+
+async function processDiscoveredIssues(parentIssue, analysis) {
+  const discovered = normalizeDiscoveredIssues(analysis.secondary_issues);
+  if (discovered.length === 0) return [];
+
+  const results = [];
+  for (const item of discovered) {
+    const issue = await createOrUpdateDiscoveredIssue(parentIssue, item);
+    let dispatched = false;
+    let dispatchError = null;
+    if (item.can_autofix && chainDepth < maxChainDepth) {
+      try {
+        await dispatchAutofix(issue, parentIssue.number);
+        dispatched = true;
+      } catch (err) {
+        dispatchError = err?.message || String(err);
+      }
+    }
+    results.push({
+      ...issue,
+      title: item.title,
+      severity: item.severity,
+      can_autofix: item.can_autofix,
+      dispatched,
+      dispatchError,
+    });
+  }
+  return results;
+}
+
+function formatDiscoveredResults(results) {
+  if (!results.length) return '';
+  return [
+    '## Problemas secundários detectados',
+    '',
+    ...results.map((item) => [
+      `- Issue #${item.number}: ${item.title}`,
+      `  URL: ${item.url}`,
+      `  Autofix: ${item.dispatched ? 'disparado' : item.can_autofix ? `não disparado (${item.dispatchError || 'limite de encadeamento atingido'})` : 'não aplicável'}`,
+    ].join('\n')),
+  ].join('\n');
+}
+
 async function createMemoryPullRequest(issue, analysis) {
   const changed = appendMemoryUpdate(issue, analysis);
   if (!changed) return null;
@@ -475,6 +612,10 @@ async function main() {
 
   const analysis = await askOpenRouter(issue, comments);
   if (analysis.status !== 'patch') {
+    const discoveredResults = await processDiscoveredIssues(issue, analysis).catch(async (err) => {
+      await commentIssue(`Ops Autofix tentou registrar problemas secundários, mas falhou: ${err?.message || err}`);
+      return [];
+    });
     const memoryPr = await createMemoryPullRequest(issue, analysis).catch(async (err) => {
       await commentIssue(`Ops Autofix tentou criar PR de memoria, mas falhou: ${err?.message || err}`);
       return null;
@@ -490,8 +631,10 @@ async function main() {
       '',
       `Validação sugerida: ${analysis.validation || 'Não informada.'}`,
       '',
+      formatDiscoveredResults(discoveredResults),
+      '',
       memoryPr ? `PR de memoria sugerida: ${memoryPr.html_url}` : 'Sem atualização de memoria sugerida.',
-    ].join('\n'));
+    ].filter(Boolean).join('\n'));
     await notifyOps([
       'Vortek Ops',
       '',
@@ -499,6 +642,9 @@ async function main() {
       `Status: ${analysis.status}`,
       `Resumo: ${analysis.summary || 'Sem resumo.'}`,
       '',
+      discoveredResults.length ? `Problemas secundários: ${discoveredResults.length}` : null,
+      ...discoveredResults.map((item) => `#${item.number}: ${item.dispatched ? 'autofix disparado' : 'registrada'} - ${item.url}`),
+      discoveredResults.length ? '' : null,
       'Sem patch seguro. A issue foi comentada com o motivo; se for falta de contexto do workflow, corrija a automação antes de reenviar.',
       memoryPr ? `PR de memoria sugerida: ${memoryPr.html_url}` : null,
       `https://github.com/${owner}/${repoName}/issues/${issueNumber}`,
@@ -517,13 +663,19 @@ async function main() {
     run('npm', ['run', 'typecheck'], { stdio: 'inherit' });
     const commit = await pushDirectFix(issue, analysis);
     const deploy = await triggerDeployIfConfigured(commit);
+    const discoveredResults = await processDiscoveredIssues(issue, analysis).catch(async (err) => {
+      await commentIssue(`Ops Autofix aplicou a correção principal, mas falhou ao registrar problemas secundários: ${err?.message || err}`);
+      return [];
+    });
     await commentIssue([
       `Ops Autofix aplicou correção direto na main: ${commit}`,
       '',
       deploy.triggered
         ? `Deploy Easypanel disparado: HTTP ${deploy.status}`
         : `Deploy não disparado: ${deploy.reason}`,
-    ].join('\n'));
+      '',
+      formatDiscoveredResults(discoveredResults),
+    ].filter(Boolean).join('\n'));
     await closeIssue('completed');
     await notifyOps([
       'Vortek Ops',
@@ -535,7 +687,10 @@ async function main() {
       deploy.triggered
         ? `Deploy Easypanel disparado: HTTP ${deploy.status}`
         : `Deploy não disparado: ${deploy.reason}`,
-    ].join('\n'));
+      discoveredResults.length ? '' : null,
+      discoveredResults.length ? `Problemas secundários: ${discoveredResults.length}` : null,
+      ...discoveredResults.map((item) => `#${item.number}: ${item.dispatched ? 'autofix disparado' : 'registrada'} - ${item.url}`),
+    ].filter(Boolean).join('\n'));
   } catch (err) {
     await commentIssue([
       'Ops Autofix tentou aplicar correção, mas falhou.',

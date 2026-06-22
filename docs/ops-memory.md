@@ -63,6 +63,7 @@ Atualize quando uma regra, incidente ou decisao operacional importante mudar.
 - O workflow nao deve aplicar patch se a issue nao tiver informacao suficiente.
 - Quando issue aprovada via WhatsApp gerar patch seguro e `npm run typecheck` passar, o autofix deve commitar direto na `main` e disparar deploy Easypanel, sem exigir PR intermediario.
 - Quando patch automático for aplicado na `main`, o workflow deve comentar, disparar deploy e fechar a issue como concluída.
+- Se o Ops Autofix encontrar outro problema real durante a correção, deve criar issue secundária com evidência, vincular à issue mãe e disparar autofix automático quando `can_autofix=true` e dentro do limite de encadeamento.
 - PR deve ser reservado para memoria, incerteza, revisao humana ou quando a IA nao conseguir gerar patch seguro.
 - Issues criadas por alerta de job critico precisam incluir log resumido do job (`log_summary`/`last_log`), senao o autofix fica sem evidencia tecnica e tende a pedir acao humana.
 - O Ops Autofix precisa enviar conteudo dos arquivos relevantes ao modelo, nao apenas a lista de caminhos. Para jobs conhecidos, inferir arquivos por `tipo`/rota no corpo da issue.
