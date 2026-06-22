@@ -51,6 +51,44 @@ function resolveDesiredMlStatusByStock(estoque: number): 'ativo' | 'pausado' {
   return estoque > 0 ? 'ativo' : 'pausado';
 }
 
+type PreferredSnapshot = Awaited<ReturnType<typeof syncPreferredProductSnapshot>>[number];
+
+async function loadMlPublishTargetsByProduct(
+  client: ReturnType<typeof createServiceClient>,
+  snapshots: PreferredSnapshot[],
+) {
+  const productIds = Array.from(new Set(snapshots.map((snapshot) => String(snapshot.productId || '').trim()).filter(Boolean)));
+  const targetsByProductId = new Map<string, string[]>();
+
+  for (const snapshot of snapshots) {
+    const productId = String(snapshot.productId || '').trim();
+    const mlItemId = String(snapshot.previous.ml_item_id || '').trim();
+    if (productId && mlItemId) targetsByProductId.set(productId, [mlItemId]);
+  }
+
+  if (productIds.length === 0) return targetsByProductId;
+
+  const { data, error } = await client
+    .from('anuncios_ml')
+    .select('produto_id,ml_item_id')
+    .in('produto_id', productIds);
+
+  if (error) {
+    throw new Error(`Falha ao carregar anúncios ML vinculados aos produtos: ${error.message}`);
+  }
+
+  for (const row of data || []) {
+    const productId = String((row as any).produto_id || '').trim();
+    const mlItemId = String((row as any).ml_item_id || '').trim();
+    if (!productId || !mlItemId) continue;
+    const current = targetsByProductId.get(productId) || [];
+    if (!current.includes(mlItemId)) current.push(mlItemId);
+    targetsByProductId.set(productId, current);
+  }
+
+  return targetsByProductId;
+}
+
 export async function POST(req: Request) {
   const startedAt = Date.now();
   const errors: Array<{ code: string; message: string; context?: Record<string, unknown> }> = [];
@@ -503,11 +541,10 @@ export async function POST(req: Request) {
           break;
       }
 
+      const mlTargetsByProduct = await loadMlPublishTargetsByProduct(client, changedSnapshots);
       const existingMlItemIds = Array.from(
         new Set(
-          changedSnapshots
-            .map((row) => String(row.previous.ml_item_id || '').trim())
-            .filter(Boolean)
+          Array.from(mlTargetsByProduct.values()).flat()
         )
       );
       const existingSkusUpper = Array.from(
@@ -558,19 +595,13 @@ export async function POST(req: Request) {
       recordsUpdated += changedSnapshots.length;
 
       for (const snapshot of changedSnapshots) {
-        const mlItemId = String(snapshot.previous.ml_item_id || '').trim();
-        if (!mlItemId) {
+        const mlItemIds = mlTargetsByProduct.get(String(snapshot.productId)) || [];
+        if (mlItemIds.length === 0) {
           mlOutboxSkippedNoItem += 1;
           continue;
         }
 
         const skuUpper = String(snapshot.previous.sku || '').trim().toUpperCase();
-        const isManualBlocked = manualBlockedByItemId.has(mlItemId) || (skuUpper ? manualBlockedBySku.has(skuUpper) : false);
-        if (isManualBlocked) {
-          mlOutboxSkippedManualBlock += 1;
-          continue;
-        }
-
         if (String(snapshot.previous.ml_status || '').trim().toLowerCase() === 'sem_anuncio') {
           mlOutboxSkippedNoListing += 1;
           continue;
@@ -578,40 +609,49 @@ export async function POST(req: Request) {
 
         const desiredStatus = resolveDesiredMlStatusByStock(Number(snapshot.next.estoque || 0));
         if (desiredStatus === 'pausado') mlOutboxPausedZeroStock += 1;
-        const outbox = await enqueueMlPublishOutbox(client, {
-          produtoId: String(snapshot.productId),
-          mlItemId,
-          desiredStatus,
-          desiredQuantity: Number(snapshot.next.estoque || 0),
-          desiredPrice: null,
-          source: 'dslite_stock_automation',
-          dedupePending: true,
-          payload: {
-            apply_price: false,
-            apply_quantity_pricing: false,
-            apply_quantity: true,
-            apply_status: true,
-            sku: snapshot.previous.sku,
-            estoque_origem: Number(snapshot.next.estoque || 0),
-            status_desejado: desiredStatus,
-            fornecedor_preferencial: snapshot.next.fornecedor,
-            fornecedor_dslite_id: snapshot.next.dslite_fornecedor_id,
-            origin: 'api/sync/preco-estoque',
-            synced_at: snapshot.next.dslite_ultima_sync,
-          },
-        });
 
-        if (!outbox.ok) {
-          mlOutboxFailed += 1;
-          errors.push({
-            code: 'ml_outbox_enqueue_failed',
-            message: outbox.error,
-            context: { fornecedorId: targetFornecedor, page: currentPage, sku: snapshot.previous.sku, mlItemId },
+        for (const mlItemId of mlItemIds) {
+          const isManualBlocked = manualBlockedByItemId.has(mlItemId) || (skuUpper ? manualBlockedBySku.has(skuUpper) : false);
+          if (isManualBlocked) {
+            mlOutboxSkippedManualBlock += 1;
+            continue;
+          }
+
+          const outbox = await enqueueMlPublishOutbox(client, {
+            produtoId: String(snapshot.productId),
+            mlItemId,
+            desiredStatus,
+            desiredQuantity: Number(snapshot.next.estoque || 0),
+            desiredPrice: null,
+            source: 'dslite_stock_automation',
+            dedupePending: true,
+            payload: {
+              apply_price: false,
+              apply_quantity_pricing: false,
+              apply_quantity: true,
+              apply_status: true,
+              sku: snapshot.previous.sku,
+              estoque_origem: Number(snapshot.next.estoque || 0),
+              status_desejado: desiredStatus,
+              fornecedor_preferencial: snapshot.next.fornecedor,
+              fornecedor_dslite_id: snapshot.next.dslite_fornecedor_id,
+              origin: 'api/sync/preco-estoque',
+              synced_at: snapshot.next.dslite_ultima_sync,
+            },
           });
-        } else if (outbox.action === 'updated_existing') {
-          mlOutboxUpdatedExisting += 1;
-        } else {
-          mlOutboxEnqueued += 1;
+
+          if (!outbox.ok) {
+            mlOutboxFailed += 1;
+            errors.push({
+              code: 'ml_outbox_enqueue_failed',
+              message: outbox.error,
+              context: { fornecedorId: targetFornecedor, page: currentPage, sku: snapshot.previous.sku, mlItemId },
+            });
+          } else if (outbox.action === 'updated_existing' || outbox.action === 'reopened_failed') {
+            mlOutboxUpdatedExisting += 1;
+          } else {
+            mlOutboxEnqueued += 1;
+          }
         }
       }
 

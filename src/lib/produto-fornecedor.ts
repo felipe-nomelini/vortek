@@ -72,7 +72,16 @@ export function resolvePreferredOfferForProduct<T extends {
   const explicitPreferredId = String(preferredOfferId || '').trim();
   if (explicitPreferredId) {
     const explicitPreferred = offers.find((offer) => String(offer.id || '').trim() === explicitPreferredId) || null;
-    if (explicitPreferred && explicitPreferred.ativo !== false) {
+    const hasActiveStockAlternative = offers.some((offer) => (
+      String(offer.id || '').trim() !== explicitPreferredId
+      && offer.ativo !== false
+      && Number(offer.estoque || 0) > 0
+    ));
+    if (
+      explicitPreferred
+      && explicitPreferred.ativo !== false
+      && (Number(explicitPreferred.estoque || 0) > 0 || !hasActiveStockAlternative)
+    ) {
       return explicitPreferred;
     }
   }
