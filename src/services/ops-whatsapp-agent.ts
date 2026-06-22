@@ -115,7 +115,20 @@ function parseCommandFallback(text: string): ParsedCommand {
     return { intent: 'list_errors' };
   }
 
-  if (normalized.includes('aprovar') || normalized.startsWith('ok ') || normalized.startsWith('sim ')) {
+  if (
+    normalized.includes('aprovar')
+    || normalized.startsWith('ok ')
+    || normalized.startsWith('sim ')
+    || normalized.includes('resolver')
+    || normalized.includes('resolva')
+    || normalized.includes('corrigir')
+    || normalized.includes('corrija')
+    || normalized.includes('consertar')
+    || normalized.includes('conserte')
+    || normalized.includes('arrumar')
+    || normalized.includes('arrume')
+    || normalized.includes('autofix')
+  ) {
     return { intent: 'approve', issueNumber };
   }
 
@@ -305,6 +318,7 @@ async function parseCommandWithAiContext(input: {
             'Para "preciso aprovar alguma correcao?", "tem algo pendente?", use pending_approval.',
             'Para "quais issues/erros estao abertos?", use list_errors.',
             'Para "pode seguir", "aprova", "manda rodar", use approve se o alvo estiver claro pelo texto ou historico.',
+            'Para "resolver a issue 4", "resolva a 4", "corrija a issue 4", "conserte a 4", use approve. No Vortek, resolver issue operacional significa aprovar o workflow de autofix.',
           ].join('\n'),
         },
         {
@@ -406,6 +420,19 @@ function hydrateIssueReferences(command: ParsedCommand, text: string, openIssues
   return command;
 }
 
+function wantsAutofix(text: string) {
+  const normalized = normalize(text);
+  return normalized.includes('resolver')
+    || normalized.includes('resolva')
+    || normalized.includes('corrigir')
+    || normalized.includes('corrija')
+    || normalized.includes('consertar')
+    || normalized.includes('conserte')
+    || normalized.includes('arrumar')
+    || normalized.includes('arrume')
+    || normalized.includes('autofix');
+}
+
 function formatIssueSummary(issue: Awaited<ReturnType<typeof getOpsIssue>>) {
   return [
     `*Issue #${issue.number}*`,
@@ -444,6 +471,9 @@ export async function processOpsWhatsappCommand(input: ProcessInput) {
     input.text,
     openIssues,
   );
+  if (wantsAutofix(input.text) && command.issueNumber && command.intent === 'details') {
+    command.intent = 'approve';
+  }
 
   if (command.intent === 'help') {
     if (!wantsCommandList(input.text) && command.reply) {

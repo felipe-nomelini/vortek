@@ -41,6 +41,7 @@ Atualize quando uma regra, incidente ou decisao operacional importante mudar.
 - O WhatsApp Ops deve ser agent-first: chamar a IA com historico recente e issues abertas reais antes de qualquer parser fixo.
 - Parsers por frase so podem existir como fallback quando a IA falhar ou devolver `unknown`.
 - Frases contextuais como "pode seguir com as 3" devem ser interpretadas pelo contexto: se foram listadas 3 issues abertas, agir nas 3, nao apenas na issue #3.
+- No WhatsApp Ops, "resolver/corrigir/consertar/arrumar a issue X" significa aprovar o workflow de autofix da issue X, nao mostrar detalhes.
 - O bot pode criar issue a partir de alerta critico ou comentar em issue existente.
 - O bot precisa usar historico recente por chat para entender continuacoes como "sim", "pode" e "aprovar essa".
 - Perguntas como "preciso aprovar alguma correcao?" devem consultar issues abertas reais, nao responder com orientacao generica.
