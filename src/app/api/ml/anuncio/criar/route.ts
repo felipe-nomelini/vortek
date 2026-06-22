@@ -44,10 +44,10 @@ function normalizeChartDomain(domainId: unknown) {
   return String(domainId || '').replace(/^MLB-/, '').trim();
 }
 
-async function findFashionSizeGridId(params: {
+async function findFashionSizeGrid(params: {
   categoryInfo: any;
   attributesMap: Map<string, MappedAttr>;
-}) {
+}): Promise<{ gridId: string; rowId: string | null } | null> {
   const domainId = normalizeChartDomain(params.categoryInfo?.settings?.catalog_domain);
   const brand = params.attributesMap.get('BRAND');
   const gender = params.attributesMap.get('GENDER');
@@ -92,7 +92,24 @@ async function findFashionSizeGridId(params: {
   }
 
   const chart = Array.isArray(result.data?.charts) ? result.data.charts[0] : null;
-  return chart?.id ? String(chart.id) : null;
+  if (!chart?.id) return null;
+
+  let rowId: string | null = null;
+  const chartDetails = await fetchMLResult<any>(`/catalog/charts/${encodeURIComponent(String(chart.id))}`, {
+    headers: { 'x-caller-id': String(sellerId) },
+  });
+  if (chartDetails.ok && Array.isArray(chartDetails.data?.rows)) {
+    const size = normalizeAttrText(params.attributesMap.get('SIZE')?.value_name);
+    const row = chartDetails.data.rows.find((candidate: any) => {
+      const attrs = Array.isArray(candidate?.attributes) ? candidate.attributes : [];
+      const rowSize = attrs.find((attr: any) => String(attr?.id) === 'SIZE');
+      const value = rowSize?.values?.[0]?.name || rowSize?.values?.[0]?.id || '';
+      return !size || normalizeAttrText(value) === size;
+    }) || chartDetails.data.rows[0];
+    if (row?.id) rowId = String(row.id);
+  }
+
+  return { gridId: String(chart.id), rowId };
 }
 
 function isNotApplicableLabel(input: unknown) {
@@ -452,10 +469,13 @@ export async function POST(req: Request) {
     const categoryInfo = await fetchML<any>(`/categories/${categoriaId}`);
     const hasSizeGridAttribute = categoryAttrsById.has('SIZE_GRID_ID');
     if (hasSizeGridAttribute && !hasValue(attributesMap.get('SIZE_GRID_ID') || { id: 'SIZE_GRID_ID' })) {
-      const sizeGridId = await findFashionSizeGridId({ categoryInfo, attributesMap });
-      if (sizeGridId) {
-        attributesMap.set('SIZE_GRID_ID', { id: 'SIZE_GRID_ID', value_name: sizeGridId });
-        warnings.push(`Guia de tamanhos ML vinculado automaticamente: ${sizeGridId}.`);
+      const sizeGrid = await findFashionSizeGrid({ categoryInfo, attributesMap });
+      if (sizeGrid) {
+        attributesMap.set('SIZE_GRID_ID', { id: 'SIZE_GRID_ID', value_name: sizeGrid.gridId });
+        if (sizeGrid.rowId) {
+          attributesMap.set('SIZE_GRID_ROW_ID', { id: 'SIZE_GRID_ROW_ID', value_name: sizeGrid.rowId });
+        }
+        warnings.push(`Guia de tamanhos ML vinculado automaticamente: ${sizeGrid.gridId}${sizeGrid.rowId ? ` / ${sizeGrid.rowId}` : ''}.`);
       } else {
         return NextResponse.json({
           success: false,
