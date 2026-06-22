@@ -149,6 +149,18 @@ function repoContext() {
   ].join('\n');
 }
 
+function normalizeMemoryUpdate(value) {
+  const text = String(value || '').trim();
+  if (!text || text.toLowerCase() === 'null' || text.toLowerCase() === 'none') return '';
+  return text
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => line.replace(/^-+\s*/, '- '))
+    .join('\n')
+    .slice(0, 3000);
+}
+
 async function askOpenRouter(issue, comments) {
   const apiKey = process.env.OPENROUTER_API_KEY || '';
   if (!apiKey) {
@@ -167,7 +179,7 @@ async function askOpenRouter(issue, comments) {
     'Você é um agente de engenharia do projeto Vortek, operando com memória versionada do repositório.',
     'Analise a issue operacional e, se houver uma correção pequena e segura, gere um patch unified diff.',
     'Responda somente JSON válido:',
-    '{"status":"patch|needs_human|no_change","summary":"...","root_cause":"...","validation":"...","patch":"..."}',
+    '{"status":"patch|needs_human|no_change","summary":"...","root_cause":"...","validation":"...","patch":"...","memory_update":"..."}',
     '',
     'Regras:',
     '- Não invente contexto.',
@@ -178,6 +190,8 @@ async function askOpenRouter(issue, comments) {
     '- Mudança deve ser mínima.',
     '- Se precisar de logs, credenciais, acesso externo ou decisão humana, use needs_human e explique exatamente a ação necessária.',
     '- Se a issue tiver informação insuficiente, use needs_human.',
+    '- Em memory_update, sugira aprendizado persistente apenas se houver regra/erro/decisao nova que ajude execucoes futuras.',
+    '- Se nao houver aprendizado novo, use memory_update vazio.',
     '',
     'Issue:',
     `#${issue.number} ${issue.title}`,
@@ -219,6 +233,26 @@ async function askOpenRouter(issue, comments) {
   const parsed = safeJsonParse(payload?.choices?.[0]?.message?.content || '');
   if (!parsed?.status) throw new Error('Resposta IA inválida');
   return parsed;
+}
+
+function appendMemoryUpdate(issue, analysis) {
+  const memoryUpdate = normalizeMemoryUpdate(analysis.memory_update);
+  if (!memoryUpdate) return false;
+
+  const file = 'docs/ops-memory.md';
+  const current = readIfExists(file, 30000);
+  const entry = [
+    '',
+    `### Issue #${issue.number} - ${new Date().toISOString()}`,
+    '',
+    memoryUpdate,
+    '',
+    `Referencia: https://github.com/${owner}/${repoName}/issues/${issue.number}`,
+    '',
+  ].join('\n');
+
+  writeFileSync(file, `${current.trimEnd()}\n${entry}`);
+  return true;
 }
 
 function applyPatch(patch) {
@@ -265,6 +299,38 @@ async function createPullRequest(issue, analysis) {
   return pr;
 }
 
+async function createMemoryPullRequest(issue, analysis) {
+  const changed = appendMemoryUpdate(issue, analysis);
+  if (!changed) return null;
+
+  const branch = `ops/memory-issue-${issue.number}-${runId}`;
+  run('git', ['config', 'user.name', 'vortek-ops-bot']);
+  run('git', ['config', 'user.email', 'actions@github.com']);
+  run('git', ['checkout', '-b', branch]);
+  run('git', ['add', 'docs/ops-memory.md']);
+  run('git', ['commit', '-m', `docs: update ops memory for issue ${issue.number}`]);
+  run('git', ['push', 'origin', `HEAD:${branch}`]);
+
+  return github(`/repos/${owner}/${repoName}/pulls`, {
+    method: 'POST',
+    body: {
+      title: `docs: update ops memory for issue #${issue.number}`,
+      head: branch,
+      base: 'main',
+      body: [
+        'Atualizacao automatica de memoria operacional sugerida pelo Ops Autofix.',
+        '',
+        `Issue: #${issue.number}`,
+        '',
+        'Resumo:',
+        analysis.summary || 'Sem resumo.',
+        '',
+        'Ação necessária: revisar se o aprendizado é correto antes de mergear.',
+      ].join('\n'),
+    },
+  });
+}
+
 async function main() {
   const issue = await github(`/repos/${owner}/${repoName}/issues/${issueNumber}`);
   const comments = await github(`/repos/${owner}/${repoName}/issues/${issueNumber}/comments?per_page=20`);
@@ -293,6 +359,10 @@ async function main() {
 
   const analysis = await askOpenRouter(issue, comments);
   if (analysis.status !== 'patch') {
+    const memoryPr = await createMemoryPullRequest(issue, analysis).catch(async (err) => {
+      await commentIssue(`Ops Autofix tentou criar PR de memoria, mas falhou: ${err?.message || err}`);
+      return null;
+    });
     await commentIssue([
       'Ops Autofix analisou a issue, mas não criou PR.',
       '',
@@ -303,6 +373,8 @@ async function main() {
       `Causa provável: ${analysis.root_cause || 'Não informada.'}`,
       '',
       `Validação sugerida: ${analysis.validation || 'Não informada.'}`,
+      '',
+      memoryPr ? `PR de memoria sugerida: ${memoryPr.html_url}` : 'Sem atualização de memoria sugerida.',
     ].join('\n'));
     await notifyOps([
       'Vortek Ops',
@@ -312,8 +384,9 @@ async function main() {
       `Resumo: ${analysis.summary || 'Sem resumo.'}`,
       '',
       'Ação sua necessária: revisar/complementar a issue ou pedir correção manual.',
+      memoryPr ? `PR de memoria sugerida: ${memoryPr.html_url}` : null,
       `https://github.com/${owner}/${repoName}/issues/${issueNumber}`,
-    ].join('\n'));
+    ].filter(Boolean).join('\n'));
     return;
   }
 
@@ -324,6 +397,7 @@ async function main() {
       await notifyOps(`Vortek Ops\n\nIssue #${issueNumber}: IA gerou patch sem alterações. Ação sua necessária: revisar a issue.`);
       return;
     }
+    appendMemoryUpdate(issue, analysis);
     run('npm', ['run', 'typecheck'], { stdio: 'inherit' });
     const pr = await createPullRequest(issue, analysis);
     await commentIssue(`Ops Autofix criou PR: ${pr.html_url}`);

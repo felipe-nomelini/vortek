@@ -46,8 +46,11 @@ Atualize quando uma regra, incidente ou decisao operacional importante mudar.
 - Script: `scripts/ops-autofix.mjs`.
 - Modelo esperado: `openai/gpt-5.5`.
 - Reasoning esperado: medio (`reasoning.effort=medium`, `exclude=true`).
+- O workflow deve sugerir atualizacoes de memoria quando identificar aprendizado operacional novo.
+- Atualizacao de memoria deve entrar por PR em `docs/ops-memory.md`, nao direto na `main`.
 - O workflow deve notificar WhatsApp quando:
   - criar PR;
+  - criar PR de memoria;
   - nao criar PR e precisar de acao humana;
   - falhar;
   - solicitar mais detalhes.
