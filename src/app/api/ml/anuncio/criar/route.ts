@@ -40,6 +40,61 @@ function hasValue(attr: { value_name?: string; value_id?: string }) {
   return Boolean((attr.value_id && String(attr.value_id).trim()) || (attr.value_name && String(attr.value_name).trim()));
 }
 
+function normalizeChartDomain(domainId: unknown) {
+  return String(domainId || '').replace(/^MLB-/, '').trim();
+}
+
+async function findFashionSizeGridId(params: {
+  categoryInfo: any;
+  attributesMap: Map<string, MappedAttr>;
+}) {
+  const domainId = normalizeChartDomain(params.categoryInfo?.settings?.catalog_domain);
+  const brand = params.attributesMap.get('BRAND');
+  const gender = params.attributesMap.get('GENDER');
+  const brandName = normalizeText(brand?.value_name);
+  const genderValue = {
+    ...(gender?.value_id ? { id: String(gender.value_id) } : {}),
+    ...(gender?.value_name ? { name: String(gender.value_name) } : {}),
+  };
+
+  if (!domainId || !brandName || (!genderValue.id && !genderValue.name)) return null;
+
+  const me = await fetchML<any>('/users/me?attributes=id');
+  const sellerId = Number(me?.id);
+  if (!Number.isFinite(sellerId) || sellerId <= 0) return null;
+
+  const result = await fetchMLResult<any>('/catalog/charts/search', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-caller-id': String(sellerId),
+    },
+    body: JSON.stringify({
+      seller_id: sellerId,
+      site_id: 'MLB',
+      domain_id: domainId,
+      attributes: [
+        { id: 'GENDER', values: [genderValue] },
+        { id: 'BRAND', values: [{ name: brandName }] },
+      ],
+    }),
+  });
+
+  if (!result.ok) {
+    console.warn(JSON.stringify({
+      event: 'ml_size_grid_search_failed',
+      domain_id: domainId,
+      brand: brandName,
+      status: result.status,
+      error: result.error?.message || null,
+    }));
+    return null;
+  }
+
+  const chart = Array.isArray(result.data?.charts) ? result.data.charts[0] : null;
+  return chart?.id ? String(chart.id) : null;
+}
+
 function isNotApplicableLabel(input: unknown) {
   const txt = normalizeAttrText(input);
   return txt.includes('nao se aplica') || txt.includes('nao aplicavel') || txt === 'n/a';
@@ -394,6 +449,24 @@ export async function POST(req: Request) {
       warnings.push('Material corrigido: produto banhado não é ouro maciço.');
     }
 
+    const categoryInfo = await fetchML<any>(`/categories/${categoriaId}`);
+    const hasSizeGridAttribute = categoryAttrsById.has('SIZE_GRID_ID');
+    if (hasSizeGridAttribute && !hasValue(attributesMap.get('SIZE_GRID_ID') || { id: 'SIZE_GRID_ID' })) {
+      const sizeGridId = await findFashionSizeGridId({ categoryInfo, attributesMap });
+      if (sizeGridId) {
+        attributesMap.set('SIZE_GRID_ID', { id: 'SIZE_GRID_ID', value_name: sizeGridId });
+        warnings.push(`Guia de tamanhos ML vinculado automaticamente: ${sizeGridId}.`);
+      } else {
+        return NextResponse.json({
+          success: false,
+          steps: { ...steps, atributos: { ok: false, error: 'Categoria de moda exige guia de tamanhos, mas nenhum guia compatível foi encontrado para marca/gênero/domínio.' } },
+          warnings,
+          missing_required_attributes: missingRequiredAttributes,
+          error: 'Guia de tamanhos ML não encontrado. Cadastre uma guia de tamanhos compatível no Mercado Livre ou vincule SIZE_GRID_ID antes de criar o anúncio.',
+        }, { status: 422 });
+      }
+    }
+
     const required = attrs.filter((a: any) => (a.tags?.required || a.tags?.catalog_required) && !a.tags?.fixed);
     for (const attr of required) {
       const existing = attributesMap.get(attr.id);
@@ -482,7 +555,6 @@ export async function POST(req: Request) {
     if (produto.peso_bruto) attributesMap.set('SELLER_PACKAGE_WEIGHT', { id: 'SELLER_PACKAGE_WEIGHT', value_id: undefined, value_name: formatPackageWeightFromKg(produto.peso_bruto) });
     steps.atributos.ok = true;
 
-    const categoryInfo = await fetchML<any>(`/categories/${categoriaId}`);
     const categorySaleTerms = Array.isArray(categoryInfo?.sale_terms) ? categoryInfo.sale_terms : [];
     const warrantySchema = categorySaleTerms.find((t: any) => String(t.id) === 'WARRANTY_TIME');
     const warrantyValues = Array.isArray(warrantySchema?.values)
