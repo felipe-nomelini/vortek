@@ -47,7 +47,19 @@ GITHUB_OPS_WORKFLOW_REF=main
 
 Sem `OPENROUTER_API_KEY`, o bot funciona com comandos fixos.
 
-## Comandos
+## Conversa e Comandos
+
+Com `OPENROUTER_API_KEY`, o bot interpreta mensagens naturais e responde como IA operacional.
+Exemplos:
+
+```text
+ola
+quais erros críticos estão abertos?
+me mostra detalhes da issue 123
+aprova a issue 123
+```
+
+Sem `OPENROUTER_API_KEY`, ou se a IA falhar, o bot usa comandos fixos:
 
 ```text
 LISTAR ERROS

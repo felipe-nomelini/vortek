@@ -19,6 +19,7 @@ type OpsIntent =
 type ParsedCommand = {
   intent: OpsIntent;
   issueNumber?: number | null;
+  reply?: string | null;
 };
 
 type ProcessInput = {
@@ -131,11 +132,16 @@ async function parseCommandWithAi(text: string): Promise<ParsedCommand | null> {
         {
           role: 'system',
           content: [
-            'Você interpreta comandos curtos de WhatsApp para operação do sistema Vortek.',
-            'Retorne apenas JSON válido no formato {"intent":"...","issueNumber":123|null}.',
+            'Você é a IA operacional da Vortek no WhatsApp.',
+            'Converse de forma curta, direta e natural em português do Brasil.',
+            'Retorne apenas JSON válido no formato {"intent":"...","issueNumber":123|null,"reply":"..."}',
             'Intenções permitidas: list_errors, details, approve, reject, request_details, help, unknown.',
             'Extraia issueNumber quando houver número de issue.',
             'Não invente número de issue.',
+            'Use help para saudação, pedido de ajuda ou conversa geral sobre o que você consegue fazer.',
+            'Use unknown quando a mensagem não tiver relação operacional com Vortek.',
+            'Em reply, explique o que você entendeu e o próximo passo. Máximo 500 caracteres.',
+            'Não diga que executou algo se a intent não for uma ação operacional clara.',
           ].join('\n'),
         },
         { role: 'user', content: text },
@@ -151,6 +157,9 @@ async function parseCommandWithAi(text: string): Promise<ParsedCommand | null> {
   return {
     intent: parsed.intent,
     issueNumber: Number.isFinite(Number(parsed.issueNumber)) ? Number(parsed.issueNumber) : null,
+    reply: typeof parsed.reply === 'string' && parsed.reply.trim()
+      ? parsed.reply.trim().slice(0, 800)
+      : null,
   };
 }
 
@@ -202,7 +211,11 @@ export async function processOpsWhatsappCommand(input: ProcessInput) {
   const command = aiCommand || parseCommandFallback(input.text);
 
   if (command.intent === 'help') {
-    return { command, text: formatHelp(), status: 'ok' as const };
+    return {
+      command,
+      text: command.reply ? `${command.reply}\n\n${formatHelp()}` : formatHelp(),
+      status: 'ok' as const,
+    };
   }
 
   if (command.intent === 'list_errors') {
@@ -276,8 +289,8 @@ export async function processOpsWhatsappCommand(input: ProcessInput) {
   return {
     command,
     status: 'unknown' as const,
-    text: [
-      'Não entendi o comando.',
+    text: command.reply || [
+      'Não entendi o que você quer fazer.',
       '',
       formatHelp(),
     ].join('\n'),
