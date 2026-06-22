@@ -248,8 +248,10 @@ async function validateCatalogCompatibility(params: {
 
   const { data: existingSnapshots, error: snapshotError } = await service
     .from('catalogo_ml_snapshot')
-    .select('ml_item_id,produto_id,sku_local,seller_sku,catalog_listing')
+    .select('ml_item_id,produto_id,sku_local,seller_sku,catalog_listing,status')
     .eq('catalog_product_id', catalogProductId)
+    .eq('catalog_listing', true)
+    .eq('status', 'active')
     .neq('produto_id', produto.id)
     .limit(20);
   if (snapshotError) {
