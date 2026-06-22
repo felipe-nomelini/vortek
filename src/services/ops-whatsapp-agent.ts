@@ -1,5 +1,7 @@
 import {
   approveOpsIssue,
+  commentOpsIssue,
+  createOrUpdateOpsIssue,
   getOpsIssue,
   getGitHubIssueUrl,
   listOpsIssues,
@@ -13,6 +15,7 @@ type OpsIntent =
   | 'approve'
   | 'reject'
   | 'request_details'
+  | 'add_error'
   | 'help'
   | 'unknown';
 
@@ -49,6 +52,17 @@ function parseCommandFallback(text: string): ParsedCommand {
 
   if (!raw || normalized === 'ajuda' || normalized === 'help' || normalized === 'menu') {
     return { intent: 'help' };
+  }
+
+  if (
+    normalized.includes('inclua')
+    || normalized.includes('incluir')
+    || normalized.includes('adicione')
+    || normalized.includes('adicionar')
+    || normalized.includes('registra')
+    || normalized.includes('registrar')
+  ) {
+    return { intent: 'add_error', issueNumber };
   }
 
   if (
@@ -94,6 +108,55 @@ function parseCommandFallback(text: string): ParsedCommand {
   return { intent: 'unknown', issueNumber };
 }
 
+function wantsCommandList(text: string) {
+  const normalized = normalize(text);
+  return normalized === 'ajuda'
+    || normalized === 'help'
+    || normalized === 'menu'
+    || normalized.includes('comandos')
+    || normalized.includes('o que voce consegue')
+    || normalized.includes('o que voce faz');
+}
+
+function looksLikeOperationalAlert(text: string) {
+  const normalized = normalize(text);
+  return normalized.includes('vortek - critico')
+    || normalized.includes('job critico falhou')
+    || normalized.includes('status: erro')
+    || normalized.includes('job:');
+}
+
+function parseOperationalAlert(text: string) {
+  const job = text.match(/Job:\s*([^\n\r]+)/i)?.[1]?.trim();
+  const status = text.match(/Status:\s*([^\n\r]+)/i)?.[1]?.trim();
+  const finished = text.match(/Finalizado:\s*([^\n\r]+)/i)?.[1]?.trim();
+  const title = job ? `Job crítico falhou: ${job}` : 'Erro operacional reportado via WhatsApp';
+  const dedupeKey = job ? `whatsapp_job:${job}` : `whatsapp_alert:${Buffer.from(text).toString('base64').slice(0, 80)}`;
+
+  return {
+    type: 'critical_error',
+    severity: 'critical',
+    title,
+    message: [
+      'Erro incluído via WhatsApp operacional.',
+      '',
+      job ? `Job: ${job}` : null,
+      status ? `Status: ${status}` : null,
+      finished ? `Finalizado: ${finished}` : null,
+      '',
+      'Mensagem original:',
+      text.slice(0, 3000),
+    ].filter(Boolean).join('\n'),
+    dedupeKey,
+    payload: {
+      source: 'whatsapp_ops',
+      job: job || null,
+      status: status || null,
+      finished: finished || null,
+    },
+  };
+}
+
 function safeJsonParse(text: string): any | null {
   try {
     return JSON.parse(text);
@@ -135,12 +198,14 @@ async function parseCommandWithAi(text: string): Promise<ParsedCommand | null> {
             'Você é a IA operacional da Vortek no WhatsApp.',
             'Converse de forma curta, direta e natural em português do Brasil.',
             'Retorne apenas JSON válido no formato {"intent":"...","issueNumber":123|null,"reply":"..."}',
-            'Intenções permitidas: list_errors, details, approve, reject, request_details, help, unknown.',
+            'Intenções permitidas: list_errors, details, approve, reject, request_details, add_error, help, unknown.',
             'Extraia issueNumber quando houver número de issue.',
             'Não invente número de issue.',
+            'Use add_error quando o usuário pedir para incluir, registrar ou adicionar um erro/alerta em uma issue.',
             'Use help para saudação, pedido de ajuda ou conversa geral sobre o que você consegue fazer.',
             'Use unknown quando a mensagem não tiver relação operacional com Vortek.',
             'Em reply, explique o que você entendeu e o próximo passo. Máximo 500 caracteres.',
+            'Não liste comandos, exceto quando o usuário perguntar explicitamente por comandos, ajuda ou menu.',
             'Não diga que executou algo se a intent não for uma ação operacional clara.',
           ].join('\n'),
         },
@@ -211,10 +276,42 @@ export async function processOpsWhatsappCommand(input: ProcessInput) {
   const command = aiCommand || parseCommandFallback(input.text);
 
   if (command.intent === 'help') {
+    if (!wantsCommandList(input.text) && command.reply) {
+      return { command, text: command.reply, status: 'ok' as const };
+    }
     return {
       command,
       text: command.reply ? `${command.reply}\n\n${formatHelp()}` : formatHelp(),
       status: 'ok' as const,
+    };
+  }
+
+  if (command.intent === 'add_error') {
+    const alert = parseOperationalAlert(input.text);
+    if (command.issueNumber) {
+      await commentOpsIssue(command.issueNumber, alert.message);
+      return {
+        command,
+        status: 'ok' as const,
+        text: `Incluí esse erro como comentário na issue #${command.issueNumber}.\n${getGitHubIssueUrl(command.issueNumber)}`,
+      };
+    }
+
+    if (!looksLikeOperationalAlert(input.text)) {
+      return {
+        command,
+        status: 'needs_input' as const,
+        text: 'Pode me enviar o alerta completo ou informar o número da issue onde devo incluir?',
+      };
+    }
+
+    const issue = await createOrUpdateOpsIssue(alert);
+    return {
+      command: { ...command, issueNumber: issue.number },
+      status: 'ok' as const,
+      text: issue.created
+        ? `Criei a issue #${issue.number} para esse erro.\n${issue.url}`
+        : `Incluí esse erro na issue já aberta #${issue.number}.\n${issue.url}`,
     };
   }
 

@@ -57,6 +57,8 @@ ola
 quais erros críticos estão abertos?
 me mostra detalhes da issue 123
 aprova a issue 123
+inclua esse erro na issue 123
+inclua esse alerta
 ```
 
 Sem `OPENROUTER_API_KEY`, ou se a IA falhar, o bot usa comandos fixos:
@@ -67,6 +69,7 @@ DETALHES 123
 APROVAR 123
 REPROVAR 123
 MAIS DETALHES 123
+INCLUA ESSE ERRO NA ISSUE 123
 AJUDA
 ```
 
