@@ -133,9 +133,12 @@ export default function FornecedoresPage() {
           messageApi.success(`Fornecedor ${fornecedorLabel} ativado. Produtos continuam inativos até ativação manual.`);
         } else {
           const records = json?.records || {};
-          const paused = Number(records.ml_pause_enqueued || 0) + Number(records.ml_pause_updated_existing || 0);
+          const paused =
+            Number(records.ml_pause_enqueued || 0)
+            + Number(records.ml_pause_updated_existing || 0)
+            + Number(records.ml_pause_reopened_failed || 0);
           messageApi.success(
-            `Fornecedor ${fornecedorLabel} inativado. ${records.products_inactivated || 0} produtos inativados; ${paused} pausas ML enfileiradas.`,
+            `Fornecedor ${fornecedorLabel} inativado. ${records.products_inactivated || 0} produtos e ${records.supplier_offers_inactivated || 0} ofertas inativadas; ${paused} pausas ML enfileiradas.`,
           );
           if (Number(records.ml_pause_failed || 0) > 0) {
             messageApi.warning(`${records.ml_pause_failed} anúncios não entraram na fila de pausa. Verifique logs.`);
@@ -177,6 +180,7 @@ export default function FornecedoresPage() {
             <p>
               Produtos encontrados: <strong>{impact.products_found || 0}</strong><br />
               Produtos ativos afetados: <strong>{impact.products_active || 0}</strong><br />
+              Ofertas ativas afetadas: <strong>{impact.supplier_offers_active || 0}</strong><br />
               Anúncios ML que serão pausados: <strong>{impact.ml_pause_candidates || 0}</strong>
             </p>
             <p>Se o fornecedor voltar, os produtos continuarão inativos até ativação manual.</p>

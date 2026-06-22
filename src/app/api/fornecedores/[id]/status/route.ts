@@ -10,6 +10,11 @@ type ImpactProduct = {
   ativo: boolean | null;
 };
 
+type ImpactOffer = {
+  id: string;
+  ativo: boolean | null;
+};
+
 const SUPABASE_IN_FILTER_CHUNK_SIZE = 100;
 
 function chunk<T>(items: T[], size: number): T[][] {
@@ -63,7 +68,7 @@ async function loadImpactedProducts(client: any, dsliteFornecedorId: string): Pr
   const legacyProducts = await fetchAllRowsPaginated<ImpactProduct>((from, to) => (
     client
       .from('produtos')
-      .select('id,sku,ml_item_id,ativo')
+      .select('id,sku,ml_item_id,ativo,ml_status')
       .eq('dslite_fornecedor_id', dsliteFornecedorId)
       .range(from, to)
   ));
@@ -80,7 +85,7 @@ async function loadImpactedProducts(client: any, dsliteFornecedorId: string): Pr
   for (const idsChunk of chunk(ids, SUPABASE_IN_FILTER_CHUNK_SIZE)) {
     const { data, error } = await client
       .from('produtos')
-      .select('id,sku,ml_item_id,ativo')
+      .select('id,sku,ml_item_id,ativo,ml_status')
       .in('id', idsChunk);
 
     if (error) throw new Error(error.message);
@@ -90,13 +95,29 @@ async function loadImpactedProducts(client: any, dsliteFornecedorId: string): Pr
   return products;
 }
 
-function buildImpact(products: ImpactProduct[]) {
+async function loadImpactedOffers(client: any, dsliteFornecedorId: string): Promise<ImpactOffer[]> {
+  if (!dsliteFornecedorId) return [];
+
+  return fetchAllRowsPaginated<ImpactOffer>((from, to) => (
+    client
+      .from('produto_fornecedor_ofertas')
+      .select('id,ativo')
+      .eq('dslite_fornecedor_id', dsliteFornecedorId)
+      .range(from, to)
+  ));
+}
+
+function buildImpact(products: ImpactProduct[], offers: ImpactOffer[]) {
   const activeProducts = products.filter((product) => product.ativo !== false);
+  const activeOffers = offers.filter((offer) => offer.ativo !== false);
   return {
     products_found: products.length,
     products_active: activeProducts.length,
     products_already_inactive: products.length - activeProducts.length,
-    ml_pause_candidates: activeProducts.filter((product) => String(product.ml_item_id || '').trim()).length,
+    supplier_offers_found: offers.length,
+    supplier_offers_active: activeOffers.length,
+    supplier_offers_already_inactive: offers.length - activeOffers.length,
+    ml_pause_candidates: products.filter((product) => String(product.ml_item_id || '').trim()).length,
   };
 }
 
@@ -113,10 +134,14 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
       return NextResponse.json({ error: 'Fornecedor não encontrado' }, { status: 404 });
     }
 
-    const products = await loadImpactedProducts(client, String(fornecedor.dslite_id || '').trim());
+    const dsliteFornecedorId = String(fornecedor.dslite_id || '').trim();
+    const [products, offers] = await Promise.all([
+      loadImpactedProducts(client, dsliteFornecedorId),
+      loadImpactedOffers(client, dsliteFornecedorId),
+    ]);
     return NextResponse.json({
       fornecedor,
-      impact: buildImpact(products),
+      impact: buildImpact(products, offers),
     });
   } catch (err: any) {
     return NextResponse.json({ error: toPublicError(err, 'Erro ao calcular impacto do fornecedor') }, { status: 500 });
@@ -162,19 +187,31 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
           ml_pause_updated_existing: 0,
           ml_pause_skipped_no_item: 0,
           ml_pause_failed: 0,
+          supplier_offers_found: 0,
+          supplier_offers_inactivated: 0,
         },
       });
     }
 
-    const products = await loadImpactedProducts(client, String(fornecedor.dslite_id || '').trim());
+    const dsliteFornecedorId = String(fornecedor.dslite_id || '').trim();
+    const [products, offers] = await Promise.all([
+      loadImpactedProducts(client, dsliteFornecedorId),
+      loadImpactedOffers(client, dsliteFornecedorId),
+    ]);
     const activeProducts = products.filter((product) => product.ativo !== false);
     const activeProductIds = activeProducts.map((product) => product.id);
+    const mlProductIds = products
+      .filter((product) => String(product.ml_item_id || '').trim())
+      .map((product) => product.id);
+    const activeOfferIds = offers
+      .filter((offer) => offer.ativo !== false)
+      .map((offer) => offer.id);
 
     let productsInactivated = 0;
     for (const idsChunk of chunk(activeProductIds, SUPABASE_IN_FILTER_CHUNK_SIZE)) {
       const { error } = await client
         .from('produtos')
-        .update({ ativo: false } as any)
+        .update({ ativo: false, estoque: 0 } as any)
         .in('id', idsChunk);
 
       if (error) {
@@ -183,13 +220,40 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
       productsInactivated += idsChunk.length;
     }
 
+    let productsMlMarkedPaused = 0;
+    for (const idsChunk of chunk(mlProductIds, SUPABASE_IN_FILTER_CHUNK_SIZE)) {
+      const { error } = await client
+        .from('produtos')
+        .update({ ml_status: 'pausado', estoque: 0 } as any)
+        .in('id', idsChunk);
+
+      if (error) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
+      }
+      productsMlMarkedPaused += idsChunk.length;
+    }
+
+    let supplierOffersInactivated = 0;
+    for (const idsChunk of chunk(activeOfferIds, SUPABASE_IN_FILTER_CHUNK_SIZE)) {
+      const { error } = await client
+        .from('produto_fornecedor_ofertas')
+        .update({ ativo: false, estoque: 0 } as any)
+        .in('id', idsChunk);
+
+      if (error) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
+      }
+      supplierOffersInactivated += idsChunk.length;
+    }
+
     let mlPauseEnqueued = 0;
     let mlPauseUpdatedExisting = 0;
+    let mlPauseReopenedFailed = 0;
     let mlPauseSkippedNoItem = 0;
     let mlPauseFailed = 0;
     const errors: Array<{ product_id: string; sku: string; ml_item_id: string; error: string }> = [];
 
-    for (const product of activeProducts) {
+    for (const product of products) {
       const mlItemId = String(product.ml_item_id || '').trim();
       const sku = String(product.sku || '').trim();
       if (!mlItemId) {
@@ -223,6 +287,8 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         errors.push({ product_id: product.id, sku, ml_item_id: mlItemId, error: outbox.error });
       } else if (outbox.action === 'updated_existing') {
         mlPauseUpdatedExisting += 1;
+      } else if (outbox.action === 'reopened_failed') {
+        mlPauseReopenedFailed += 1;
       } else {
         mlPauseEnqueued += 1;
       }
@@ -235,8 +301,12 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
       records: {
         products_found: products.length,
         products_inactivated: productsInactivated,
+        products_ml_marked_paused: productsMlMarkedPaused,
+        supplier_offers_found: offers.length,
+        supplier_offers_inactivated: supplierOffersInactivated,
         ml_pause_enqueued: mlPauseEnqueued,
         ml_pause_updated_existing: mlPauseUpdatedExisting,
+        ml_pause_reopened_failed: mlPauseReopenedFailed,
         ml_pause_skipped_no_item: mlPauseSkippedNoItem,
         ml_pause_failed: mlPauseFailed,
       },

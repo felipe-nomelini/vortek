@@ -31,7 +31,7 @@ export async function enqueueMlPublishOutbox(
   client: ServiceClientLike,
   input: MlPublishOutboxInput,
 ): Promise<
-  | { ok: true; outboxId: string; action: 'inserted' | 'updated_existing' }
+  | { ok: true; outboxId: string; action: 'inserted' | 'updated_existing' | 'reopened_failed' }
   | { ok: false; error: string }
 > {
   const produtoId = String(input.produtoId || '').trim();
@@ -50,10 +50,10 @@ export async function enqueueMlPublishOutbox(
   if (dedupePending) {
     const { data: existing, error: existingError } = await (client
       .from('anuncios_ml_outbox' as any)
-      .select('id, payload')
+      .select('id, status, payload')
       .eq('produto_id', produtoId)
       .eq('ml_item_id', mlItemId)
-      .in('status', ['pending', 'retry', 'processing'])
+      .in('status', ['pending', 'retry', 'processing', 'failed'])
       .order('created_at', { ascending: false })
       .limit(1)
       .maybeSingle() as any);
@@ -77,6 +77,10 @@ export async function enqueueMlPublishOutbox(
           desired_quantity: desiredQuantity,
           source,
           payload: mergedPayload,
+          status: 'pending',
+          attempts: 0,
+          last_error: null,
+          processed_at: null,
           available_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
         } as any)
@@ -86,7 +90,12 @@ export async function enqueueMlPublishOutbox(
         return { ok: false, error: updateError.message };
       }
 
-      return { ok: true, outboxId: existingId, action: 'updated_existing' };
+      const previousStatus = String((existing as any)?.status || '').trim();
+      return {
+        ok: true,
+        outboxId: existingId,
+        action: previousStatus === 'failed' ? 'reopened_failed' : 'updated_existing',
+      };
     }
   }
 
