@@ -40,7 +40,7 @@ Opcional:
 ```bash
 OPENROUTER_API_KEY=sk-or-v1-...
 OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
-OPENROUTER_OPS_WHATSAPP_MODEL=openai/gpt-4o-mini
+OPENROUTER_OPS_WHATSAPP_MODEL=openai/gpt-5.4-mini
 GITHUB_OPS_WORKFLOW=ops-autofix.yml
 GITHUB_OPS_WORKFLOW_REF=main
 ```

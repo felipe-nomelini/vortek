@@ -125,7 +125,7 @@ async function parseCommandWithAi(text: string): Promise<ParsedCommand | null> {
     body: JSON.stringify({
       model: process.env.OPENROUTER_OPS_WHATSAPP_MODEL
         || process.env.OPENROUTER_MODEL
-        || 'openai/gpt-4o-mini',
+        || 'openai/gpt-5.4-mini',
       temperature: 0,
       messages: [
         {
