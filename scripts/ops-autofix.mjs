@@ -177,6 +177,23 @@ function inferRelevantFiles(issue, comments) {
     ].forEach((file) => files.add(file));
   }
 
+  if (text.includes('sync_ml_orders_ingest') || text.includes('/api/sync/pedidos')) {
+    [
+      'src/app/api/sync/pedidos/route.ts',
+      'src/app/api/sync/pedidos/job/route.ts',
+      'src/app/api/sync/pedidos/status/route.ts',
+      'src/services/sync-ml-job.ts',
+      'src/lib/sync/stale-jobs.ts',
+      'src/lib/sync/registry.ts',
+      'src/app/api/sync/cron-dispatch/route.ts',
+      'src/app/api/sync/run/route.ts',
+      'src/app/api/sync/disparar/route.ts',
+      'src/services/integration.ts',
+      'src/services/mercadolibre.ts',
+      'src/lib/sync/domain-lock.ts',
+    ].forEach((file) => files.add(file));
+  }
+
   if (text.includes('mercado livre') || text.includes('ml_') || text.includes('shipment') || text.includes('sync_ml')) {
     [
       'src/services/integration.ts',
@@ -367,13 +384,23 @@ function appendMemoryUpdate(issue, analysis) {
   return true;
 }
 
-function applyPatch(patch) {
+function tryApplyPatch(patch) {
   const cleanPatch = String(patch || '').trim();
-  if (!cleanPatch) return false;
+  if (!cleanPatch) return { changed: false, error: null };
   writeFileSync('.ops-autofix.patch', `${cleanPatch}\n`);
-  run('git', ['apply', '--check', '.ops-autofix.patch']);
-  run('git', ['apply', '.ops-autofix.patch']);
-  return run('git', ['status', '--porcelain']).trim().length > 0;
+  try {
+    run('git', ['apply', '--check', '.ops-autofix.patch']);
+    run('git', ['apply', '.ops-autofix.patch']);
+  } catch (err) {
+    return {
+      changed: false,
+      error: err?.message || String(err),
+    };
+  }
+  return {
+    changed: run('git', ['status', '--porcelain']).trim().length > 0,
+    error: null,
+  };
 }
 
 async function createPullRequest(issue, analysis) {
@@ -653,8 +680,26 @@ async function main() {
   }
 
   try {
-    const changed = applyPatch(analysis.patch);
-    if (!changed) {
+    const patchResult = tryApplyPatch(analysis.patch);
+    if (patchResult.error) {
+      await commentIssue([
+        'Ops Autofix recebeu um patch inválido da IA.',
+        '',
+        `Erro ao validar patch: ${patchResult.error}`,
+        '',
+        'Nenhuma alteração foi aplicada. A issue continua aberta para nova tentativa.',
+      ].join('\n'));
+      await notifyOps([
+        'Vortek Ops',
+        '',
+        `Issue #${issueNumber}: IA gerou patch inválido.`,
+        `Erro: ${patchResult.error}`,
+        '',
+        `https://github.com/${owner}/${repoName}/issues/${issueNumber}`,
+      ].join('\n'));
+      return;
+    }
+    if (!patchResult.changed) {
       await commentIssue('Ops Autofix recebeu patch, mas ele não gerou alterações.');
       await notifyOps(`Vortek Ops\n\nIssue #${issueNumber}: IA gerou patch sem alterações. Ação sua necessária: revisar a issue.`);
       return;

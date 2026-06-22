@@ -67,6 +67,8 @@ Atualize quando uma regra, incidente ou decisao operacional importante mudar.
 - PR deve ser reservado para memoria, incerteza, revisao humana ou quando a IA nao conseguir gerar patch seguro.
 - Issues criadas por alerta de job critico precisam incluir log resumido do job (`log_summary`/`last_log`), senao o autofix fica sem evidencia tecnica e tende a pedir acao humana.
 - O Ops Autofix precisa enviar conteudo dos arquivos relevantes ao modelo, nao apenas a lista de caminhos. Para jobs conhecidos, inferir arquivos por `tipo`/rota no corpo da issue.
+- Patch inválido gerado pela IA deve ser tratado como resultado controlado: comentar a issue, manter aberta e não quebrar o workflow com conclusão `failure`.
+- Jobs frequentes que eram marcados como `stale` por execução background devem rodar inline no cron para gerar resposta/log real: `sync_dslite_preco_estoque`, `sync_dslite_pedidos_compra`, `sync_ml_orders_ingest`, `sync_ml_listings_publish`.
 
 ## Fluxo DSLite
 

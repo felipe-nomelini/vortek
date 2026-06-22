@@ -73,6 +73,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
       maxPagesPerRun: 1,
       withMlSync: false,
     },
+    runMode: 'inline',
   },
   {
     key: 'sync_dslite_pedidos_compra',
@@ -96,6 +97,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     kind: 'ml',
     schedule: { businessMinutes: 2, offHoursMinutes: 5 },
     usesOffset: true,
+    runMode: 'inline',
   },
   {
     key: 'sync_ml_listings_observed',
