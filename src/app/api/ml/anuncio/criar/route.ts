@@ -519,8 +519,10 @@ export async function POST(req: Request) {
     const saleTerms = normalizeMlSaleTerms(saleTermsInput);
 
     const imagens = produto.imagens || [];
-    const pictures = imagens.length > 0 ? imagens : ['https://via.placeholder.com/400'];
+    const picturesSource = imagens.length > 0 ? imagens : ['https://via.placeholder.com/400'];
+    const pictures = picturesSource.slice(0, 12);
     if (imagens.length === 0) warnings.push('Produto sem imagens locais. Será usada imagem placeholder.');
+    if (picturesSource.length > pictures.length) warnings.push(`Imagens limitadas a ${pictures.length} para respeitar o limite do Mercado Livre.`);
 
     const titulo = (produto.marca ? `${produto.nome} ${produto.marca}` : produto.nome).substring(0, 60);
     const familyName = produto.nome.substring(0, 60);
