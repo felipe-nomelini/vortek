@@ -76,6 +76,39 @@ function jobLogIncludes(job: { log?: unknown }, pattern: string): boolean {
   }
 }
 
+function parseJobLog(log: unknown): any[] {
+  if (Array.isArray(log)) return log;
+  if (typeof log === 'string') {
+    try {
+      const parsed = JSON.parse(log || '[]');
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+  return [];
+}
+
+function summarizeJobLog(log: unknown, maxEntries = 8) {
+  return parseJobLog(log)
+    .slice(-maxEntries)
+    .map((entry) => ({
+      event_type: entry?.event_type || null,
+      type: entry?.type || null,
+      stage: entry?.stage || null,
+      message: entry?.message || null,
+      timestamp: entry?.timestamp || null,
+      http_status: entry?.http_status ?? null,
+      error_code: entry?.error_code || entry?.code || null,
+      error_category: entry?.error_category || entry?.category || null,
+      request_timeout_ms: entry?.request_timeout_ms ?? null,
+      duration_ms: entry?.duration_ms ?? null,
+      age_minutes: entry?.age_minutes ?? null,
+      stale_threshold_minutes: entry?.stale_threshold_minutes ?? null,
+      path: entry?.path || null,
+    }));
+}
+
 function buildText(input: AlertInput) {
   return [
     `*Vortek - ${severityLabel(input.severity || 'info')}*`,
@@ -348,6 +381,8 @@ export async function alertCriticalJobs() {
   let alerted = 0;
   for (const job of data || []) {
     if (jobLogIncludes(job, 'domain_lock_conflict')) continue;
+    const logSummary = summarizeJobLog(job.log);
+    const lastLog = logSummary[logSummary.length - 1] || null;
 
     const result = await sendWhatsappAlert({
       type: 'critical_error',
@@ -359,9 +394,19 @@ export async function alertCriticalJobs() {
         `Job: ${job.tipo}`,
         `Status: ${job.status}`,
         `Finalizado: ${job.finished_at || 'não informado'}`,
+        lastLog?.event_type ? `Evento: ${lastLog.event_type}` : null,
+        lastLog?.message ? `Erro/log: ${lastLog.message}` : null,
         `Link: ${process.env.NEXT_PUBLIC_APP_URL || 'https://app.vortek.shop'}/dashboard`,
-      ].join('\n'),
-      payload: { id: job.id, tipo: job.tipo, status: job.status },
+      ].filter(Boolean).join('\n'),
+      payload: {
+        id: job.id,
+        tipo: job.tipo,
+        status: job.status,
+        created_at: job.created_at,
+        finished_at: job.finished_at,
+        last_log: lastLog,
+        log_summary: logSummary,
+      },
     });
     alerted += result.sent > 0 ? 1 : 0;
   }

@@ -60,4 +60,6 @@ jobs:
           WAHA_SESSION: ${{ vars.WAHA_SESSION || 'default' }}
           WAHA_API_KEY: ${{ secrets.WAHA_API_KEY }}
           OPS_NOTIFY_PHONES: ${{ vars.OPS_NOTIFY_PHONES }}
+          EASYPANEL_DEPLOY_WEBHOOK_URL: ${{ secrets.EASYPANEL_DEPLOY_WEBHOOK_URL }}
+          EASYPANEL_DEPLOY_HTTP_METHOD: ${{ vars.EASYPANEL_DEPLOY_HTTP_METHOD || 'POST' }}
         run: node scripts/ops-autofix.mjs

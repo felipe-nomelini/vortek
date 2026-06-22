@@ -299,6 +299,35 @@ async function createPullRequest(issue, analysis) {
   return pr;
 }
 
+async function pushDirectFix(issue, analysis) {
+  run('git', ['config', 'user.name', 'vortek-ops-bot']);
+  run('git', ['config', 'user.email', 'actions@github.com']);
+  run('git', ['add', '.']);
+  run('git', ['commit', '-m', `fix: ops issue ${issue.number}`]);
+  run('git', ['push', 'origin', 'HEAD:main']);
+
+  return run('git', ['rev-parse', '--short', 'HEAD']).trim();
+}
+
+async function triggerDeployIfConfigured(commit) {
+  const webhookUrl = String(process.env.EASYPANEL_DEPLOY_WEBHOOK_URL || '').trim();
+  if (!webhookUrl) {
+    return { triggered: false, reason: 'EASYPANEL_DEPLOY_WEBHOOK_URL não configurado' };
+  }
+
+  const method = String(process.env.EASYPANEL_DEPLOY_HTTP_METHOD || 'POST').trim().toUpperCase();
+  const res = await fetch(webhookUrl, { method: method === 'GET' ? 'GET' : 'POST' });
+  const text = await res.text().catch(() => '');
+  if (!res.ok) {
+    return {
+      triggered: false,
+      reason: `Deploy webhook HTTP ${res.status}: ${text.slice(0, 300)}`,
+    };
+  }
+
+  return { triggered: true, commit, status: res.status };
+}
+
 async function createMemoryPullRequest(issue, analysis) {
   const changed = appendMemoryUpdate(issue, analysis);
   if (!changed) return null;
@@ -399,15 +428,24 @@ async function main() {
     }
     appendMemoryUpdate(issue, analysis);
     run('npm', ['run', 'typecheck'], { stdio: 'inherit' });
-    const pr = await createPullRequest(issue, analysis);
-    await commentIssue(`Ops Autofix criou PR: ${pr.html_url}`);
+    const commit = await pushDirectFix(issue, analysis);
+    const deploy = await triggerDeployIfConfigured(commit);
+    await commentIssue([
+      `Ops Autofix aplicou correção direto na main: ${commit}`,
+      '',
+      deploy.triggered
+        ? `Deploy Easypanel disparado: HTTP ${deploy.status}`
+        : `Deploy não disparado: ${deploy.reason}`,
+    ].join('\n'));
     await notifyOps([
       'Vortek Ops',
       '',
-      `Issue #${issueNumber}: PR automático criado.`,
-      pr.html_url,
+      `Issue #${issueNumber}: correção automática aplicada na main.`,
+      `Commit: ${commit}`,
       '',
-      'Ação sua necessária: revisar e aprovar/mergear o PR.',
+      deploy.triggered
+        ? `Deploy Easypanel disparado: HTTP ${deploy.status}`
+        : `Deploy não disparado: ${deploy.reason}`,
     ].join('\n'));
   } catch (err) {
     await commentIssue([
