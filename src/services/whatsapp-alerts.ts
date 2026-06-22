@@ -181,7 +181,7 @@ export async function sendWhatsappAlert(input: AlertInput): Promise<{ sent: numb
         `GitHub Issue: #${issueResult.number}`,
         issueResult.url,
         '',
-        `Comandos WhatsApp: DETALHES ${issueResult.number} | APROVAR ${issueResult.number} | REPROVAR ${issueResult.number}`,
+        `Você pode responder naturalmente por WhatsApp para pedir detalhes, aprovar, reprovar ou criar contexto adicional para a issue #${issueResult.number}.`,
       ].join('\n');
     } catch (err: any) {
       await auditAlert(input, 'all', 'failed', {

@@ -1,45 +1,37 @@
+import { createHash } from 'node:crypto';
 import {
   approveOpsIssue,
   commentOpsIssue,
   createOrUpdateOpsIssue,
-  getOpsIssue,
   getGitHubIssueUrl,
+  getOpsIssue,
   listOpsIssues,
   rejectOpsIssue,
   requestOpsIssueDetails,
 } from '@/services/github-ops';
 
-type OpsIntent =
-  | 'list_errors'
+type OpsAction =
+  | 'answer'
+  | 'list_issues'
   | 'pending_approval'
-  | 'details'
-  | 'approve'
-  | 'reject'
-  | 'request_details'
-  | 'add_error'
-  | 'help'
-  | 'unknown';
+  | 'get_issue'
+  | 'approve_issues'
+  | 'reject_issues'
+  | 'request_issue_details'
+  | 'create_issue'
+  | 'comment_issue';
 
-type ParsedCommand = {
-  intent: OpsIntent;
+type AgentDecision = {
+  action: OpsAction;
   issueNumber?: number | null;
   issueNumbers?: number[] | null;
+  title?: string | null;
+  body?: string | null;
+  severity?: 'info' | 'warning' | 'critical' | null;
   reply?: string | null;
 };
 
 type OpenOpsIssue = Awaited<ReturnType<typeof listOpsIssues>>[number];
-
-const ALLOWED_INTENTS = new Set<OpsIntent>([
-  'list_errors',
-  'pending_approval',
-  'details',
-  'approve',
-  'reject',
-  'request_details',
-  'add_error',
-  'help',
-  'unknown',
-]);
 
 type ProcessInput = {
   text: string;
@@ -53,195 +45,24 @@ type ProcessInput = {
   }>;
 };
 
+const ALLOWED_ACTIONS = new Set<OpsAction>([
+  'answer',
+  'list_issues',
+  'pending_approval',
+  'get_issue',
+  'approve_issues',
+  'reject_issues',
+  'request_issue_details',
+  'create_issue',
+  'comment_issue',
+]);
+
 function normalize(input: unknown) {
   return String(input || '')
     .trim()
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '');
-}
-
-function extractIssueNumber(text: string) {
-  const match = text.match(/#?\b(\d{1,7})\b/);
-  if (!match) return null;
-  const number = Number(match[1]);
-  return Number.isFinite(number) && number > 0 ? number : null;
-}
-
-function extractIssueNumbers(text: string) {
-  const matches = Array.from(String(text || '').matchAll(/#?\b(\d{1,7})\b/g));
-  return Array.from(new Set(matches
-    .map((match) => Number(match[1]))
-    .filter((number) => Number.isFinite(number) && number > 0)));
-}
-
-function parseCommandFallback(text: string): ParsedCommand {
-  const raw = String(text || '').trim();
-  const normalized = normalize(raw);
-  const issueNumber = extractIssueNumber(raw);
-
-  if (!raw || normalized === 'ajuda' || normalized === 'help' || normalized === 'menu') {
-    return { intent: 'help' };
-  }
-
-  if (
-    normalized.includes('inclua')
-    || normalized.includes('incluir')
-    || normalized.includes('adicione')
-    || normalized.includes('adicionar')
-    || normalized.includes('registra')
-    || normalized.includes('registrar')
-  ) {
-    return { intent: 'add_error', issueNumber };
-  }
-
-  if (
-    normalized.includes('preciso aprovar')
-    || normalized.includes('tenho que aprovar')
-    || normalized.includes('tem algo para aprovar')
-    || normalized.includes('correcao pendente')
-    || normalized.includes('correcoes pendentes')
-    || normalized.includes('aprovacao pendente')
-  ) {
-    return { intent: 'pending_approval', issueNumber };
-  }
-
-  if (
-    normalized.includes('listar')
-    || normalized.includes('abertos')
-    || normalized.includes('erros')
-    || normalized.includes('criticos')
-  ) {
-    return { intent: 'list_errors' };
-  }
-
-  if (
-    normalized.includes('aprovar')
-    || normalized.startsWith('ok ')
-    || normalized.startsWith('sim ')
-    || normalized.includes('resolver')
-    || normalized.includes('resolva')
-    || normalized.includes('corrigir')
-    || normalized.includes('corrija')
-    || normalized.includes('consertar')
-    || normalized.includes('conserte')
-    || normalized.includes('arrumar')
-    || normalized.includes('arrume')
-    || normalized.includes('autofix')
-  ) {
-    return { intent: 'approve', issueNumber };
-  }
-
-  if (
-    normalized.includes('reprovar')
-    || normalized.includes('rejeitar')
-    || normalized.startsWith('nao ')
-    || normalized.includes('falso positivo')
-  ) {
-    return { intent: 'reject', issueNumber };
-  }
-
-  if (
-    normalized.includes('mais detalhes')
-    || normalized.includes('pedir detalhes')
-    || normalized.includes('detalhar melhor')
-    || normalized.includes('investigar mais')
-  ) {
-    return { intent: 'request_details', issueNumber };
-  }
-
-  if (
-    normalized.includes('detalhes')
-    || normalized.includes('detalhe')
-    || normalized.includes('mostrar')
-    || normalized.includes('ver issue')
-  ) {
-    return { intent: 'details', issueNumber };
-  }
-
-  return { intent: 'unknown', issueNumber };
-}
-
-function isAffirmative(text: string) {
-  const normalized = normalize(text);
-  return ['sim', 's', 'pode', 'isso', 'ok', 'confirma', 'confirmo'].includes(normalized)
-    || normalized.startsWith('sim ')
-    || normalized.startsWith('pode ');
-}
-
-function getLastOutgoing(history: ProcessInput['history']) {
-  return (history || []).find((item) => item.direction === 'out') || null;
-}
-
-function extractIssueFromText(text: string | null | undefined) {
-  const match = String(text || '').match(/issue\s*#?(\d{1,7})|#(\d{1,7})/i);
-  if (!match) return null;
-  const value = Number(match[1] || match[2]);
-  return Number.isFinite(value) && value > 0 ? value : null;
-}
-
-function inferApprovalFromHistory(text: string, history: ProcessInput['history']): ParsedCommand | null {
-  if (!isAffirmative(text)) return null;
-  const lastOutgoing = getLastOutgoing(history);
-  if (!lastOutgoing) return null;
-
-  const outgoingText = `${lastOutgoing.message || ''}\n${lastOutgoing.command || ''}`;
-  const issueNumber = lastOutgoing.issueNumber
-    || extractIssueFromText(outgoingText);
-  const canApprove = normalize(outgoingText).includes('aprovar')
-    || normalize(outgoingText).includes('pendente');
-
-  if (!issueNumber || !canApprove) return null;
-  return { intent: 'approve', issueNumber };
-}
-
-function wantsCommandList(text: string) {
-  const normalized = normalize(text);
-  return normalized === 'ajuda'
-    || normalized === 'help'
-    || normalized === 'menu'
-    || normalized.includes('comandos')
-    || normalized.includes('o que voce consegue')
-    || normalized.includes('o que voce faz');
-}
-
-function looksLikeOperationalAlert(text: string) {
-  const normalized = normalize(text);
-  return normalized.includes('vortek - critico')
-    || normalized.includes('job critico falhou')
-    || normalized.includes('status: erro')
-    || normalized.includes('job:');
-}
-
-function parseOperationalAlert(text: string) {
-  const job = text.match(/Job:\s*([^\n\r]+)/i)?.[1]?.trim();
-  const status = text.match(/Status:\s*([^\n\r]+)/i)?.[1]?.trim();
-  const finished = text.match(/Finalizado:\s*([^\n\r]+)/i)?.[1]?.trim();
-  const title = job ? `Job crítico falhou: ${job}` : 'Erro operacional reportado via WhatsApp';
-  const dedupeKey = job ? `whatsapp_job:${job}` : `whatsapp_alert:${Buffer.from(text).toString('base64').slice(0, 80)}`;
-
-  return {
-    type: 'critical_error',
-    severity: 'critical',
-    title,
-    message: [
-      'Erro incluído via WhatsApp operacional.',
-      '',
-      job ? `Job: ${job}` : null,
-      status ? `Status: ${status}` : null,
-      finished ? `Finalizado: ${finished}` : null,
-      '',
-      'Mensagem original:',
-      text.slice(0, 3000),
-    ].filter(Boolean).join('\n'),
-    dedupeKey,
-    payload: {
-      source: 'whatsapp_ops',
-      job: job || null,
-      status: status || null,
-      finished: finished || null,
-    },
-  };
 }
 
 function safeJsonParse(text: string): any | null {
@@ -258,17 +79,22 @@ function safeJsonParse(text: string): any | null {
   }
 }
 
-async function parseCommandWithAiContext(input: {
-  text: string;
-  history?: ProcessInput['history'];
-  openIssues?: OpenOpsIssue[];
-}): Promise<ParsedCommand | null> {
-  const apiKey = String(process.env.OPENROUTER_API_KEY || '').trim();
-  if (!apiKey) return null;
-  const baseUrl = String(process.env.OPENROUTER_BASE_URL || 'https://openrouter.ai/api/v1')
-    .trim()
-    .replace(/\/+$/, '');
-  const historyText = (input.history || [])
+function issueNumbersFromText(text: string) {
+  const matches = Array.from(String(text || '').matchAll(/(?:issue\s*)?#?(\d{1,7})\b/gi));
+  return Array.from(new Set(matches
+    .map((match) => Number(match[1]))
+    .filter((number) => Number.isFinite(number) && number > 0)));
+}
+
+function getRecentUserMessages(history: ProcessInput['history']) {
+  return (history || [])
+    .filter((item) => item.direction === 'in')
+    .map((item) => String(item.message || item.command || '').trim())
+    .filter(Boolean);
+}
+
+function buildHistoryText(history: ProcessInput['history']) {
+  const rows = (history || [])
     .slice()
     .reverse()
     .map((item) => [
@@ -276,170 +102,81 @@ async function parseCommandWithAiContext(input: {
       item.action ? `acao=${item.action}` : null,
       item.issueNumber ? `issue=${item.issueNumber}` : null,
       item.message || item.command || '',
-    ].filter(Boolean).join(' | '))
-    .join('\n') || 'Sem historico.';
-  const openIssuesText = (input.openIssues || [])
-    .map((issue) => `#${issue.number} - ${issue.title} | labels=${issue.labels.join(', ') || '-'} | ${issue.url}`)
+    ].filter(Boolean).join(' | '));
+  return rows.join('\n') || 'Sem histórico.';
+}
+
+function buildOpenIssuesText(openIssues: OpenOpsIssue[]) {
+  return openIssues
+    .map((issue) => `#${issue.number} - ${issue.title} | labels=${issue.labels.join(', ') || '-'} | atualizado=${issue.updated_at || '-'} | ${issue.url}`)
     .join('\n') || 'Nenhuma issue operacional aberta.';
-
-  const response = await fetch(`${baseUrl}/chat/completions`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-      'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL || 'https://app.vortek.shop',
-      'X-Title': 'Vortek Ops WhatsApp Bot',
-    },
-    body: JSON.stringify({
-      model: process.env.OPENROUTER_OPS_WHATSAPP_MODEL
-        || process.env.OPENROUTER_MODEL
-        || 'openai/gpt-5.4-mini',
-      temperature: 0,
-      response_format: { type: 'json_object' },
-      messages: [
-        {
-          role: 'system',
-          content: [
-            'Voce e a IA operacional da Vortek no WhatsApp. Aja como assistente conversacional, nao como menu de comandos.',
-            'Entenda linguagem natural, contexto recente e referencias como "essa", "a ultima", "as 3", "todas", "pode seguir".',
-            'Retorne apenas JSON valido no formato {"intent":"...","issueNumber":123|null,"issueNumbers":[123],"reply":"..."}',
-            'Intenções permitidas: list_errors, pending_approval, details, approve, reject, request_details, add_error, help, unknown.',
-            'Use issueNumbers quando o usuario pedir acao em varias issues.',
-            'Se ele disser "as 3" apos voce listar 3 issues abertas, isso significa todas as 3 issues. Se disser "#3" ou "issue 3", significa issue numero 3.',
-            'Se o usuario disser "todas", use todas as issues abertas informadas.',
-            'Nao invente numero de issue. Use apenas issues abertas informadas ou numero explicito do usuario.',
-            'Se a intencao for clara, retorne a acao. Se faltar dado, retorne unknown ou reply perguntando objetivamente.',
-            'Use add_error quando o usuário pedir para incluir, registrar ou adicionar um erro/alerta em uma issue.',
-            'Use help somente quando o usuario pedir ajuda, menu, comandos ou perguntar o que voce consegue fazer.',
-            'Use unknown quando a mensagem não tiver relação operacional com Vortek.',
-            'Em reply, explique o que você entendeu e o próximo passo. Máximo 500 caracteres.',
-            'Nao liste comandos, exceto quando o usuario perguntar explicitamente por comandos, ajuda ou menu.',
-            'Não diga que executou algo se a intent não for uma ação operacional clara.',
-            'Para "preciso aprovar alguma correcao?", "tem algo pendente?", use pending_approval.',
-            'Para "quais issues/erros estao abertos?", use list_errors.',
-            'Para "pode seguir", "aprova", "manda rodar", use approve se o alvo estiver claro pelo texto ou historico.',
-            'Para "resolver a issue 4", "resolva a 4", "corrija a issue 4", "conserte a 4", use approve. No Vortek, resolver issue operacional significa aprovar o workflow de autofix.',
-          ].join('\n'),
-        },
-        {
-          role: 'user',
-          content: [
-            'Mensagem atual:',
-            input.text,
-            '',
-            'Historico recente do chat:',
-            historyText,
-            '',
-            'Issues operacionais abertas agora:',
-            openIssuesText,
-          ].join('\n'),
-        },
-      ],
-    }),
-  });
-
-  if (!response.ok) return null;
-  const data = await response.json().catch(() => null);
-  const outputText = data?.choices?.[0]?.message?.content || '';
-  const parsed = safeJsonParse(String(outputText || ''));
-  if (!parsed?.intent) return null;
-  const intent = String(parsed.intent || '') as OpsIntent;
-  if (!ALLOWED_INTENTS.has(intent)) return null;
-  return {
-    intent,
-    issueNumber: Number.isFinite(Number(parsed.issueNumber)) ? Number(parsed.issueNumber) : null,
-    issueNumbers: Array.isArray(parsed.issueNumbers)
-      ? Array.from(new Set(parsed.issueNumbers
-        .map((value: unknown) => Number(value))
-        .filter((number: number) => Number.isFinite(number) && number > 0)))
-      : null,
-    reply: typeof parsed.reply === 'string' && parsed.reply.trim()
-      ? parsed.reply.trim().slice(0, 800)
-      : null,
-  };
 }
 
-function formatHelp() {
-  return [
-    '*Vortek Ops*',
-    '',
-    'Comandos:',
-    'LISTAR ERROS',
-    'DETALHES 123',
-    'APROVAR 123',
-    'REPROVAR 123',
-    'MAIS DETALHES 123',
-    '',
-    'Ações sensíveis só funcionam para números autorizados.',
-  ].join('\n');
-}
-
-function requireIssueNumber(command: ParsedCommand) {
-  if (!command.issueNumber) {
-    return 'Informe o número da issue. Exemplo: APROVAR 123';
-  }
-  return null;
-}
-
-function getCommandIssueNumbers(command: ParsedCommand) {
-  const numbers = command.issueNumbers?.length
-    ? command.issueNumbers
-    : command.issueNumber
-      ? [command.issueNumber]
-      : [];
-  return Array.from(new Set(numbers.filter((number) => Number.isFinite(number) && number > 0)));
-}
-
-function hydrateIssueReferences(command: ParsedCommand, text: string, openIssues: OpenOpsIssue[]) {
+function normalizeIssueNumbers(decision: AgentDecision, text: string, openIssues: OpenOpsIssue[]) {
+  const explicit = issueNumbersFromText(text);
   const normalized = normalize(text);
-  const explicitNumbers = extractIssueNumbers(text);
-  const openNumbers = new Set(openIssues.map((issue) => issue.number));
+  const openNumbers = openIssues.map((issue) => issue.number);
+  let numbers = Array.isArray(decision.issueNumbers)
+    ? decision.issueNumbers
+    : decision.issueNumber
+      ? [decision.issueNumber]
+      : [];
+
+  if (numbers.length === 0 && explicit.length > 0) numbers = explicit;
+
   const quantityReference = normalized.match(/\b(?:as|os|todas as|todos os)\s+(\d{1,2})\b/);
-
-  if (!command.issueNumbers?.length && explicitNumbers.length > 1) {
-    command.issueNumbers = explicitNumbers.filter((number) => openNumbers.size === 0 || openNumbers.has(number));
-  }
-
-  if (!command.issueNumber && !command.issueNumbers?.length && explicitNumbers.length === 1) {
-    command.issueNumber = explicitNumbers[0];
-  }
+  const allOpenReference = normalized.includes('todas')
+    || normalized.includes('todos')
+    || Boolean(quantityReference && Number(quantityReference[1]) === openNumbers.length);
 
   if (
-    (command.intent === 'approve' || command.intent === 'reject' || command.intent === 'request_details')
-    && (
-      normalized.includes('todas')
-      || normalized.includes('todos')
-      || (quantityReference && Number(quantityReference[1]) === openIssues.length)
-    )
-    && openIssues.length
+    ['approve_issues', 'reject_issues', 'request_issue_details'].includes(decision.action)
+    && allOpenReference
+    && openNumbers.length > 0
   ) {
-    command.issueNumbers = openIssues.map((issue) => issue.number);
-    command.issueNumber = null;
+    numbers = openNumbers;
   }
 
-  return command;
+  const unique = Array.from(new Set(numbers
+    .map((value) => Number(value))
+    .filter((number) => Number.isFinite(number) && number > 0)));
+
+  decision.issueNumbers = unique.length > 0 ? unique : null;
+  decision.issueNumber = unique.length === 1 ? unique[0] : null;
+  return decision;
 }
 
-function wantsAutofix(text: string) {
-  const normalized = normalize(text);
-  return normalized.includes('resolver')
-    || normalized.includes('resolva')
-    || normalized.includes('corrigir')
-    || normalized.includes('corrija')
-    || normalized.includes('consertar')
-    || normalized.includes('conserte')
-    || normalized.includes('arrumar')
-    || normalized.includes('arrume')
-    || normalized.includes('autofix');
+function inferIssueBodyFromHistory(input: ProcessInput, decision: AgentDecision) {
+  if (decision.body?.trim()) return decision.body.trim();
+
+  const current = String(input.text || '').trim();
+  const recentUserMessages = getRecentUserMessages(input.history);
+  const previousUseful = recentUserMessages.find((message) => message !== current && message.length > 12);
+  return previousUseful || current;
+}
+
+function titleFromText(text: string) {
+  const clean = String(text || '')
+    .replace(/^(inclua|incluir|crie|criar|registre|registrar)\s+(a\s+)?(issue|erro|alerta)?\s*:?\s*/i, '')
+    .trim();
+  return clean.slice(0, 90) || 'Solicitação operacional via WhatsApp';
+}
+
+function dedupeKeyForIssue(input: { title: string; body: string }) {
+  const hash = createHash('sha256')
+    .update(`${input.title}\n${input.body}`)
+    .digest('hex')
+    .slice(0, 24);
+  return `whatsapp_ops_manual:${hash}`;
 }
 
 function formatIssueSummary(issue: Awaited<ReturnType<typeof getOpsIssue>>) {
   return [
-    `*Issue #${issue.number}*`,
+    `Issue #${issue.number}`,
     issue.title,
     '',
     `Status: ${issue.state}`,
-    issue.labels.length ? `Labels: ${issue.labels.join(', ')}` : 'Labels: —',
+    issue.labels.length ? `Labels: ${issue.labels.join(', ')}` : 'Labels: nenhuma',
     issue.updated_at ? `Atualizada: ${new Date(issue.updated_at).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })}` : null,
     '',
     issue.body ? issue.body.slice(0, 1800) : 'Sem descrição.',
@@ -450,193 +187,335 @@ function formatIssueSummary(issue: Awaited<ReturnType<typeof getOpsIssue>>) {
 
 function formatDispatchResult(dispatch: unknown) {
   const value = dispatch as { dispatched?: boolean; workflow?: string; reason?: string; error?: string } | null;
-  if (value?.dispatched) return `Workflow disparado: ${value.workflow || 'configurado'}`;
-  return `Workflow não disparado: ${value?.reason || value?.error || 'não configurado'}`;
+  if (value?.dispatched) return `workflow disparado (${value.workflow || 'configurado'})`;
+  return `workflow não disparado: ${value?.reason || value?.error || 'não configurado'}`;
+}
+
+function missingIssueReply(action: OpsAction) {
+  if (action === 'comment_issue') return 'Em qual issue devo incluir esse comentário? Se preferir, posso criar uma nova.';
+  if (action === 'get_issue') return 'Qual issue você quer que eu abra?';
+  return 'Qual issue você quer que eu use para essa ação?';
+}
+
+function capabilitiesReply() {
+  return [
+    'Consigo conversar sobre as issues operacionais da Vortek, criar novas issues, listar abertas, ver detalhes, comentar, aprovar correções, reprovar e pedir mais informações.',
+    'Pode escrever naturalmente, por exemplo: “cria uma issue para esse alerta”, “aprova as abertas”, “me mostra a issue 12” ou “inclui isso na issue 12”.',
+  ].join('\n');
+}
+
+async function askOpsAi(input: {
+  text: string;
+  history?: ProcessInput['history'];
+  openIssues: OpenOpsIssue[];
+}): Promise<AgentDecision> {
+  const apiKey = String(process.env.OPENROUTER_API_KEY || '').trim();
+  if (!apiKey) {
+    return {
+      action: 'answer',
+      reply: 'A IA operacional não está configurada porque OPENROUTER_API_KEY está ausente.',
+    };
+  }
+
+  const baseUrl = String(process.env.OPENROUTER_BASE_URL || 'https://openrouter.ai/api/v1')
+    .trim()
+    .replace(/\/+$/, '');
+
+  const response = await fetch(`${baseUrl}/chat/completions`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+      'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL || 'https://app.vortek.shop',
+      'X-Title': 'Vortek Ops WhatsApp Agent',
+    },
+    body: JSON.stringify({
+      model: process.env.OPENROUTER_OPS_WHATSAPP_MODEL
+        || process.env.OPENROUTER_MODEL
+        || 'openai/gpt-5.4-mini',
+      temperature: 0.2,
+      response_format: { type: 'json_object' },
+      messages: [
+        {
+          role: 'system',
+          content: [
+            'Você é a IA operacional da Vortek no WhatsApp.',
+            'Converse naturalmente em português do Brasil. Não aja como menu, não mostre lista de comandos, não use fallback robótico.',
+            'Você tem ferramentas internas representadas por ações JSON. Escolha uma ação quando o usuário pedir algo operacional.',
+            'Ações disponíveis:',
+            '- answer: responder conversa geral sobre operação/issues/workflow sem executar ação.',
+            '- list_issues: listar issues operacionais abertas.',
+            '- pending_approval: dizer se há issues abertas que podem precisar de aprovação.',
+            '- get_issue: mostrar detalhes de uma issue.',
+            '- approve_issues: aprovar issues e disparar workflow de autofix.',
+            '- reject_issues: reprovar issues.',
+            '- request_issue_details: pedir mais detalhes em issues.',
+            '- create_issue: criar nova issue operacional.',
+            '- comment_issue: comentar em issue existente.',
+            'Entenda contexto do histórico. Se o usuário disser "criar uma nova" depois de uma mensagem descrevendo problema, use create_issue com a descrição anterior.',
+            'Se o usuário disser "inclua isso", "coloca isso na issue", use comment_issue quando houver número; se ele pedir nova issue, use create_issue.',
+            'Se ele pedir "resolver/corrigir/seguir/aprovar", use approve_issues quando houver issue alvo clara ou referência a todas abertas.',
+            'Nunca invente número de issue. Use números explícitos, issues abertas listadas ou contexto recente.',
+            'Retorne apenas JSON válido neste formato:',
+            '{"action":"answer|list_issues|pending_approval|get_issue|approve_issues|reject_issues|request_issue_details|create_issue|comment_issue","issueNumber":123|null,"issueNumbers":[123],"title":"...","body":"...","severity":"info|warning|critical","reply":"..."}',
+            'Para create_issue: title deve ser curto e body deve conter descrição completa. Severity default warning se houver risco operacional; critical só para parada/erro crítico.',
+            'Para answer: reply deve responder naturalmente. Se perguntarem o que você faz, explique capacidades, não comandos.',
+            'Não diga que executou ação; o sistema executará depois.',
+          ].join('\n'),
+        },
+        {
+          role: 'user',
+          content: [
+            'Mensagem atual:',
+            input.text,
+            '',
+            'Histórico recente:',
+            buildHistoryText(input.history),
+            '',
+            'Issues operacionais abertas:',
+            buildOpenIssuesText(input.openIssues),
+          ].join('\n'),
+        },
+      ],
+    }),
+  });
+
+  if (!response.ok) {
+    return {
+      action: 'answer',
+      reply: `Não consegui acessar a IA operacional agora. OpenRouter HTTP ${response.status}.`,
+    };
+  }
+
+  const data = await response.json().catch(() => null);
+  const parsed = safeJsonParse(String(data?.choices?.[0]?.message?.content || ''));
+  const action = String(parsed?.action || 'answer') as OpsAction;
+  if (!ALLOWED_ACTIONS.has(action)) {
+    return {
+      action: 'answer',
+      reply: 'Não consegui interpretar essa solicitação com segurança. Pode reformular em uma frase?',
+    };
+  }
+
+  return {
+    action,
+    issueNumber: Number.isFinite(Number(parsed?.issueNumber)) ? Number(parsed.issueNumber) : null,
+    issueNumbers: Array.isArray(parsed?.issueNumbers)
+      ? Array.from(new Set(parsed.issueNumbers
+        .map((value: unknown) => Number(value))
+        .filter((number: number) => Number.isFinite(number) && number > 0)))
+      : null,
+    title: typeof parsed?.title === 'string' ? parsed.title.trim().slice(0, 120) : null,
+    body: typeof parsed?.body === 'string' ? parsed.body.trim().slice(0, 6000) : null,
+    severity: ['info', 'warning', 'critical'].includes(String(parsed?.severity || ''))
+      ? parsed.severity
+      : null,
+    reply: typeof parsed?.reply === 'string' ? parsed.reply.trim().slice(0, 1200) : null,
+  };
 }
 
 export async function processOpsWhatsappCommand(input: ProcessInput) {
-  const fallbackCommand = parseCommandFallback(input.text);
   const openIssues = await listOpsIssues(10).catch(() => []);
-  const contextualCommand = inferApprovalFromHistory(input.text, input.history);
-  const aiCommand = await parseCommandWithAiContext({
-    text: input.text,
-    history: input.history,
-    openIssues,
-  }).catch(() => null);
-  const commandSource = aiCommand?.intent && aiCommand.intent !== 'unknown'
-    ? aiCommand
-    : contextualCommand || fallbackCommand;
-  const command = hydrateIssueReferences(
-    commandSource,
+  const decision = normalizeIssueNumbers(
+    await askOpsAi({
+      text: input.text,
+      history: input.history,
+      openIssues,
+    }),
     input.text,
     openIssues,
   );
-  if (wantsAutofix(input.text) && command.issueNumber && command.intent === 'details') {
-    command.intent = 'approve';
-  }
 
-  if (command.intent === 'help') {
-    if (!wantsCommandList(input.text) && command.reply) {
-      return { command, text: command.reply, status: 'ok' as const };
-    }
+  if (decision.action === 'answer') {
+    const wantsCapabilities = normalize(input.text).includes('o que voce')
+      || normalize(input.text).includes('comando')
+      || normalize(input.text).includes('ajuda');
     return {
-      command,
-      text: command.reply ? `${command.reply}\n\n${formatHelp()}` : formatHelp(),
+      command: {
+        intent: decision.action,
+        issueNumber: decision.issueNumber || null,
+      },
+      text: decision.reply || (wantsCapabilities ? capabilitiesReply() : 'Entendi. Como você quer que eu siga?'),
       status: 'ok' as const,
     };
   }
 
-  if (command.intent === 'add_error') {
-    const alert = parseOperationalAlert(input.text);
-    if (command.issueNumber) {
-      await commentOpsIssue(command.issueNumber, alert.message);
-      return {
-        command,
-        status: 'ok' as const,
-        text: `Incluí esse erro como comentário na issue #${command.issueNumber}.\n${getGitHubIssueUrl(command.issueNumber)}`,
-      };
-    }
-
-    if (!looksLikeOperationalAlert(input.text)) {
-      return {
-        command,
-        status: 'needs_input' as const,
-        text: 'Pode me enviar o alerta completo ou informar o número da issue onde devo incluir?',
-      };
-    }
-
-    const issue = await createOrUpdateOpsIssue(alert);
+  if (decision.action === 'list_issues') {
+    const issues = openIssues.slice(0, 8);
     return {
-      command: { ...command, issueNumber: issue.number },
+      command: { intent: decision.action, issueNumber: null },
+      status: 'ok' as const,
+      text: issues.length
+        ? [
+            `Encontrei ${issues.length} issue${issues.length === 1 ? '' : 's'} operacional${issues.length === 1 ? '' : 'is'} aberta${issues.length === 1 ? '' : 's'}:`,
+            '',
+            ...issues.map((issue) => `#${issue.number} - ${issue.title}\n${issue.url}`),
+          ].join('\n\n')
+        : 'Não encontrei issues operacionais abertas agora.',
+    };
+  }
+
+  if (decision.action === 'pending_approval') {
+    const issues = openIssues.slice(0, 8);
+    return {
+      command: {
+        intent: decision.action,
+        issueNumber: issues.length === 1 ? issues[0].number : null,
+      },
+      status: 'ok' as const,
+      text: issues.length
+        ? [
+            `Há ${issues.length} issue${issues.length === 1 ? '' : 's'} operacional${issues.length === 1 ? '' : 'is'} aberta${issues.length === 1 ? '' : 's'} para avaliar:`,
+            '',
+            ...issues.map((issue) => `#${issue.number} - ${issue.title}\n${issue.url}`),
+            '',
+            'Se quiser, posso aprovar uma específica ou todas.',
+          ].join('\n\n')
+        : 'Não há issue operacional aberta para aprovação agora.',
+    };
+  }
+
+  if (decision.action === 'get_issue') {
+    if (!decision.issueNumber) {
+      return {
+        command: { intent: decision.action, issueNumber: null },
+        status: 'needs_input' as const,
+        text: missingIssueReply(decision.action),
+      };
+    }
+    const issue = await getOpsIssue(decision.issueNumber);
+    return {
+      command: { intent: decision.action, issueNumber: decision.issueNumber },
+      status: 'ok' as const,
+      text: formatIssueSummary(issue),
+    };
+  }
+
+  if (decision.action === 'create_issue') {
+    const body = inferIssueBodyFromHistory(input, decision);
+    const title = decision.title?.trim() || titleFromText(body);
+    const severity = decision.severity || 'warning';
+    const issue = await createOrUpdateOpsIssue({
+      type: 'manual_whatsapp',
+      severity,
+      title,
+      message: [
+        'Issue criada pela IA operacional via WhatsApp.',
+        '',
+        body,
+      ].join('\n'),
+      dedupeKey: dedupeKeyForIssue({ title, body }),
+      payload: {
+        source: 'whatsapp_ops_ai',
+        phone_suffix: input.phone ? input.phone.slice(-4) : null,
+      },
+    });
+
+    return {
+      command: { intent: decision.action, issueNumber: issue.number },
       status: 'ok' as const,
       text: issue.created
-        ? `Criei a issue #${issue.number} para esse erro.\n${issue.url}`
-        : `Incluí esse erro na issue já aberta #${issue.number}.\n${issue.url}`,
+        ? `Criei a issue #${issue.number}.\n${issue.url}`
+        : `Já existia uma issue aberta para esse assunto; atualizei a #${issue.number}.\n${issue.url}`,
     };
   }
 
-  if (command.intent === 'list_errors') {
-    const issues = openIssues.slice(0, 8);
-    if (issues.length === 0) {
-      return { command, text: 'Nenhuma issue operacional aberta encontrada.', status: 'ok' as const };
-    }
-    const text = [
-      '*Erros operacionais abertos*',
-      '',
-      ...issues.map((issue) => `#${issue.number} - ${issue.title}\n${issue.url}`),
-    ].join('\n\n');
-    return { command, text, status: 'ok' as const };
-  }
-
-  if (command.intent === 'pending_approval') {
-    const issues = openIssues.slice(0, 8);
-    if (issues.length === 0) {
+  if (decision.action === 'comment_issue') {
+    if (!decision.issueNumber) {
       return {
-        command,
-        text: 'Não encontrei nenhuma issue operacional aberta para aprovação agora.',
-        status: 'ok' as const,
+        command: { intent: decision.action, issueNumber: null },
+        status: 'needs_input' as const,
+        text: missingIssueReply(decision.action),
       };
     }
-
-    const [first] = issues;
-    const text = [
-      issues.length === 1
-        ? `Sim. Existe 1 issue operacional aberta: #${first.number} - ${first.title}`
-        : `Sim. Existem ${issues.length} issues operacionais abertas:`,
+    const body = inferIssueBodyFromHistory(input, decision);
+    await commentOpsIssue(decision.issueNumber, [
+      'Comentário incluído pela IA operacional via WhatsApp.',
       '',
-      ...issues.map((issue) => `#${issue.number} - ${issue.title}\n${issue.url}`),
-      '',
-      issues.length === 1
-        ? `Se quiser aprovar, responda "sim" ou "aprovar issue ${first.number}".`
-        : 'Para aprovar, responda com o número. Ex.: "aprovar issue 1".',
-    ].join('\n');
+      body,
+    ].join('\n'));
     return {
-      command: { ...command, issueNumber: issues.length === 1 ? first.number : command.issueNumber },
-      text,
+      command: { intent: decision.action, issueNumber: decision.issueNumber },
       status: 'ok' as const,
+      text: `Incluí o comentário na issue #${decision.issueNumber}.\n${getGitHubIssueUrl(decision.issueNumber)}`,
     };
   }
 
-  if (command.intent === 'details') {
-    const missing = requireIssueNumber(command);
-    if (missing) return { command, text: missing, status: 'needs_input' as const };
-    const issue = await getOpsIssue(command.issueNumber!);
-    return { command, text: formatIssueSummary(issue), status: 'ok' as const };
-  }
-
-  if (command.intent === 'approve') {
-    const issueNumbers = getCommandIssueNumbers(command);
-    const missing = issueNumbers.length === 0 ? requireIssueNumber(command) : null;
-    if (missing) return { command, text: missing, status: 'needs_input' as const };
+  if (decision.action === 'approve_issues') {
+    const numbers = decision.issueNumbers || [];
+    if (numbers.length === 0) {
+      return {
+        command: { intent: decision.action, issueNumber: null },
+        status: 'needs_input' as const,
+        text: missingIssueReply(decision.action),
+      };
+    }
     const results = [];
-    for (const issueNumber of issueNumbers) {
+    for (const issueNumber of numbers) {
       const result = await approveOpsIssue(issueNumber, input.phone || undefined);
       results.push(`#${issueNumber}: ${formatDispatchResult(result.dispatch)}`);
     }
     return {
-      command,
+      command: { intent: decision.action, issueNumber: numbers.length === 1 ? numbers[0] : null },
       status: 'ok' as const,
       text: [
-        issueNumbers.length === 1
-          ? `Issue #${issueNumbers[0]} aprovada via WhatsApp.`
-          : `Aprovei ${issueNumbers.length} issues via WhatsApp.`,
+        numbers.length === 1 ? `Aprovei a issue #${numbers[0]}.` : `Aprovei ${numbers.length} issues.`,
         ...results,
-        ...issueNumbers.map((issueNumber) => getGitHubIssueUrl(issueNumber)),
       ].join('\n'),
     };
   }
 
-  if (command.intent === 'reject') {
-    const issueNumbers = getCommandIssueNumbers(command);
-    const missing = issueNumbers.length === 0 ? requireIssueNumber(command) : null;
-    if (missing) return { command, text: missing, status: 'needs_input' as const };
+  if (decision.action === 'reject_issues') {
+    const numbers = decision.issueNumbers || [];
+    if (numbers.length === 0) {
+      return {
+        command: { intent: decision.action, issueNumber: null },
+        status: 'needs_input' as const,
+        text: missingIssueReply(decision.action),
+      };
+    }
     const results = [];
-    for (const issueNumber of issueNumbers) {
+    for (const issueNumber of numbers) {
       const result = await rejectOpsIssue(issueNumber, input.phone || undefined);
       results.push(`#${issueNumber}: ${formatDispatchResult(result.dispatch)}`);
     }
     return {
-      command,
+      command: { intent: decision.action, issueNumber: numbers.length === 1 ? numbers[0] : null },
       status: 'ok' as const,
       text: [
-        issueNumbers.length === 1
-          ? `Issue #${issueNumbers[0]} reprovada via WhatsApp.`
-          : `Reprovei ${issueNumbers.length} issues via WhatsApp.`,
+        numbers.length === 1 ? `Reprovei a issue #${numbers[0]}.` : `Reprovei ${numbers.length} issues.`,
         ...results,
-        ...issueNumbers.map((issueNumber) => getGitHubIssueUrl(issueNumber)),
       ].join('\n'),
     };
   }
 
-  if (command.intent === 'request_details') {
-    const issueNumbers = getCommandIssueNumbers(command);
-    const missing = issueNumbers.length === 0 ? requireIssueNumber(command) : null;
-    if (missing) return { command, text: missing, status: 'needs_input' as const };
+  if (decision.action === 'request_issue_details') {
+    const numbers = decision.issueNumbers || [];
+    if (numbers.length === 0) {
+      return {
+        command: { intent: decision.action, issueNumber: null },
+        status: 'needs_input' as const,
+        text: missingIssueReply(decision.action),
+      };
+    }
     const results = [];
-    for (const issueNumber of issueNumbers) {
+    for (const issueNumber of numbers) {
       const result = await requestOpsIssueDetails(issueNumber, input.phone || undefined);
       results.push(`#${issueNumber}: ${formatDispatchResult(result.dispatch)}`);
     }
     return {
-      command,
+      command: { intent: decision.action, issueNumber: numbers.length === 1 ? numbers[0] : null },
       status: 'ok' as const,
       text: [
-        issueNumbers.length === 1
-          ? `Mais detalhes solicitados na issue #${issueNumbers[0]}.`
-          : `Solicitei mais detalhes em ${issueNumbers.length} issues.`,
+        numbers.length === 1 ? `Pedi mais detalhes na issue #${numbers[0]}.` : `Pedi mais detalhes em ${numbers.length} issues.`,
         ...results,
-        ...issueNumbers.map((issueNumber) => getGitHubIssueUrl(issueNumber)),
       ].join('\n'),
     };
   }
 
   return {
-    command,
-    status: 'unknown' as const,
-    text: command.reply || [
-      'Não entendi o que você quer fazer.',
-      '',
-      formatHelp(),
-    ].join('\n'),
+    command: { intent: 'answer', issueNumber: null },
+    status: 'ok' as const,
+    text: decision.reply || 'Entendi. Me diga qual ação você quer fazer com essa issue.',
   };
 }

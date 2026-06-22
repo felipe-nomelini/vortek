@@ -160,7 +160,7 @@ export async function POST(req: Request) {
   if (!isAuthorized(incoming.phone)) {
     await sendWahaText({
       chatId: incoming.chatId,
-      text: 'Número não autorizado para comandos operacionais Vortek.',
+      text: 'Número não autorizado para conversar com a IA operacional da Vortek.',
     }).catch(() => null);
     return NextResponse.json({ ok: true, skipped: true, reason: 'unauthorized_phone' });
   }
@@ -192,10 +192,10 @@ export async function POST(req: Request) {
       status: result.status,
     });
   } catch (err: any) {
-    const message = err?.message || 'Erro ao processar comando operacional.';
+    const message = err?.message || 'Erro ao processar mensagem operacional.';
     await sendWahaText({
       chatId: incoming.chatId,
-      text: `Falha ao processar comando: ${message}`,
+      text: `Falha ao processar sua mensagem: ${message}`,
     }).catch(() => null);
     await auditEvent({
       chatId: incoming.chatId,
