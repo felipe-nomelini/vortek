@@ -15,6 +15,7 @@
     "lint:fix": "next lint --fix",
     "diagnose:runtime": "bash scripts/diagnose-runtime.sh",
     "deploy:easypanel": "bash scripts/deploy-easypanel-vortek.sh",
+    "sync:main": "bash scripts/sync-local-main.sh",
     "sync:codex-mcp": "bash scripts/sync-codex-mcp.sh",
     "codex:engineering": "bash scripts/codex-engineering.sh",
     "check:build-secrets": "bash scripts/check-build-secrets.sh",
