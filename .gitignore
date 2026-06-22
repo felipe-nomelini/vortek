@@ -15,3 +15,4 @@ scripts/build_dataset/data/*.parquet
 public/downloads/
 reports/etiquetas-ml/
 reports/waha/
+.ops-autofix.patch
