@@ -108,63 +108,44 @@ function safeJsonParse(text: string): any | null {
 }
 
 async function parseCommandWithAi(text: string): Promise<ParsedCommand | null> {
-  const apiKey = String(process.env.OPENAI_API_KEY || '').trim();
+  const apiKey = String(process.env.OPENROUTER_API_KEY || '').trim();
   if (!apiKey) return null;
+  const baseUrl = String(process.env.OPENROUTER_BASE_URL || 'https://openrouter.ai/api/v1')
+    .trim()
+    .replace(/\/+$/, '');
 
-  const response = await fetch('https://api.openai.com/v1/responses', {
+  const response = await fetch(`${baseUrl}/chat/completions`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
+      'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL || 'https://app.vortek.shop',
+      'X-Title': 'Vortek Ops WhatsApp Bot',
     },
     body: JSON.stringify({
-      model: process.env.OPENAI_OPS_WHATSAPP_MODEL || 'gpt-5.4-mini',
-      input: [
+      model: process.env.OPENROUTER_OPS_WHATSAPP_MODEL
+        || process.env.OPENROUTER_MODEL
+        || 'openai/gpt-4o-mini',
+      temperature: 0,
+      messages: [
         {
           role: 'system',
           content: [
             'Você interpreta comandos curtos de WhatsApp para operação do sistema Vortek.',
-            'Retorne apenas JSON válido.',
+            'Retorne apenas JSON válido no formato {"intent":"...","issueNumber":123|null}.',
             'Intenções permitidas: list_errors, details, approve, reject, request_details, help, unknown.',
             'Extraia issueNumber quando houver número de issue.',
             'Não invente número de issue.',
           ].join('\n'),
         },
-        {
-          role: 'user',
-          content: text,
-        },
+        { role: 'user', content: text },
       ],
-      text: {
-        format: {
-          type: 'json_schema',
-          name: 'ops_whatsapp_command',
-          strict: true,
-          schema: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-              intent: {
-                type: 'string',
-                enum: ['list_errors', 'details', 'approve', 'reject', 'request_details', 'help', 'unknown'],
-              },
-              issueNumber: {
-                anyOf: [{ type: 'integer' }, { type: 'null' }],
-              },
-            },
-            required: ['intent', 'issueNumber'],
-          },
-        },
-      },
     }),
   });
 
   if (!response.ok) return null;
   const data = await response.json().catch(() => null);
-  const outputText = data?.output_text
-    || data?.output?.flatMap?.((item: any) => item?.content || [])
-      ?.map?.((content: any) => content?.text || '')
-      ?.join?.('');
+  const outputText = data?.choices?.[0]?.message?.content || '';
   const parsed = safeJsonParse(String(outputText || ''));
   if (!parsed?.intent) return null;
   return {

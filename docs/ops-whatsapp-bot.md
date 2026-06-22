@@ -38,13 +38,14 @@ Token GitHub fine-grained recomendado:
 Opcional:
 
 ```bash
-OPENAI_API_KEY=...
-OPENAI_OPS_WHATSAPP_MODEL=gpt-5.4-mini
+OPENROUTER_API_KEY=sk-or-v1-...
+OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
+OPENROUTER_OPS_WHATSAPP_MODEL=openai/gpt-4o-mini
 GITHUB_OPS_WORKFLOW=ops-autofix.yml
 GITHUB_OPS_WORKFLOW_REF=main
 ```
 
-Sem `OPENAI_API_KEY`, o bot funciona com comandos fixos.
+Sem `OPENROUTER_API_KEY`, o bot funciona com comandos fixos.
 
 ## Comandos
 
