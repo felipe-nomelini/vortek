@@ -1,0 +1,58 @@
+name: Ops Autofix
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Ação aprovada via WhatsApp"
+        required: true
+        type: choice
+        options:
+          - approved
+          - rejected
+          - details_requested
+      issue_number:
+        description: "Número da issue operacional"
+        required: true
+        type: string
+      source:
+        description: "Origem da aprovação"
+        required: false
+        type: string
+        default: whatsapp
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  ops-autofix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ops autofix
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          OPS_ACTION: ${{ inputs.action }}
+          OPS_ISSUE_NUMBER: ${{ inputs.issue_number }}
+          OPS_SOURCE: ${{ inputs.source }}
+          OPS_RUN_ID: ${{ github.run_id }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENROUTER_OPS_AUTOFIX_MODEL: ${{ vars.OPENROUTER_OPS_AUTOFIX_MODEL || 'openai/gpt-5.4-mini' }}
+        run: node scripts/ops-autofix.mjs

@@ -26,6 +26,8 @@ GITHUB_OPS_TOKEN=github_pat_...
 GITHUB_OWNER=felipe-nomelini
 GITHUB_REPO=vortek
 GITHUB_OPS_ERROR_LABELS=ops:error
+GITHUB_OPS_WORKFLOW=ops-autofix.yml
+GITHUB_OPS_WORKFLOW_REF=main
 ```
 
 Token GitHub fine-grained recomendado:
@@ -41,8 +43,6 @@ Opcional:
 OPENROUTER_API_KEY=sk-or-v1-...
 OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
 OPENROUTER_OPS_WHATSAPP_MODEL=openai/gpt-5.4-mini
-GITHUB_OPS_WORKFLOW=ops-autofix.yml
-GITHUB_OPS_WORKFLOW_REF=main
 ```
 
 Sem `OPENROUTER_API_KEY`, o bot funciona com comandos fixos.
@@ -79,6 +79,25 @@ AJUDA
 - Toda entrada e resposta é registrada em `ops_whatsapp_events`.
 - Aprovação via WhatsApp adiciona labels na issue e comenta a ação.
 - Workflow GitHub só dispara se `GITHUB_OPS_WORKFLOW` estiver configurado.
+
+## GitHub Actions
+
+O workflow `.github/workflows/ops-autofix.yml` é disparado quando uma issue é aprovada pelo WhatsApp.
+
+Secrets/vars necessários no GitHub:
+
+```text
+OPENROUTER_API_KEY
+OPENROUTER_OPS_AUTOFIX_MODEL=openai/gpt-5.4-mini
+```
+
+Fluxo do workflow:
+
+1. Lê a issue operacional aprovada.
+2. Pede análise para OpenRouter.
+3. Se a IA devolver patch seguro e aplicável, roda `npm run typecheck`.
+4. Se passar, cria branch e pull request.
+5. Se não houver patch seguro, comenta a análise na issue.
 
 ## Fluxo
 
