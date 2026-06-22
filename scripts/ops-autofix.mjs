@@ -136,6 +136,26 @@ function inferRelevantFiles(issue, comments) {
     'src/services/whatsapp-alerts.ts',
   ]);
 
+  const mentionsMlListingsObserved = text.includes('sync_ml_listings_observed')
+    || /(^|[^a-z0-9_/-])\/api\/sync\/anuncios($|[^a-z0-9_/-])/u.test(text);
+
+  if (mentionsMlListingsObserved) {
+    [
+      'src/app/api/sync/anuncios/route.ts',
+      'src/app/api/sync/anuncios/job/route.ts',
+      'src/app/api/sync/anuncios/status/route.ts',
+      'src/services/sync-ml-job.ts',
+      'src/lib/sync/stale-jobs.ts',
+      'src/lib/sync/registry.ts',
+      'src/app/api/sync/cron-dispatch/route.ts',
+      'src/app/api/sync/run/route.ts',
+      'src/app/api/sync/disparar/route.ts',
+      'src/services/mercadolibre.ts',
+      'src/services/integration.ts',
+      'src/lib/sync/domain-lock.ts',
+    ].forEach((file) => files.add(file));
+  }
+
   if (text.includes('sync_ml_listings_publish') || text.includes('/api/sync/anuncios/publish')) {
     [
       'src/app/api/sync/anuncios/publish/route.ts',
