@@ -105,9 +105,11 @@ async function findFashionSizeGrid(params: {
       const rowSize = attrs.find((attr: any) => String(attr?.id) === 'SIZE');
       const value = rowSize?.values?.[0]?.name || rowSize?.values?.[0]?.id || '';
       return !size || normalizeAttrText(value) === size;
-    }) || chartDetails.data.rows[0];
+    });
     if (row?.id) rowId = String(row.id);
   }
+
+  if (!rowId) return null;
 
   return { gridId: String(chart.id), rowId };
 }
