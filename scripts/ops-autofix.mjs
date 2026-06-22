@@ -111,7 +111,71 @@ function safeJsonParse(text) {
   }
 }
 
-function repoContext() {
+function inferRelevantFiles(issue, comments) {
+  const text = [
+    issue?.title || '',
+    issue?.body || '',
+    ...(comments || []).map((comment) => comment?.body || ''),
+  ].join('\n').toLowerCase();
+
+  const files = new Set([
+    'scripts/ops-autofix.mjs',
+    'src/services/github-ops.ts',
+    'src/services/whatsapp-alerts.ts',
+  ]);
+
+  if (text.includes('sync_ml_listings_publish') || text.includes('/api/sync/anuncios/publish')) {
+    [
+      'src/app/api/sync/anuncios/publish/route.ts',
+      'src/services/sync-ml-job.ts',
+      'src/lib/sync/stale-jobs.ts',
+      'src/lib/sync/registry.ts',
+      'src/app/api/sync/cron-dispatch/route.ts',
+      'src/app/api/sync/run/route.ts',
+      'src/app/api/sync/disparar/route.ts',
+      'src/services/mercadolibre.ts',
+      'src/services/integration.ts',
+      'src/lib/sync/domain-lock.ts',
+    ].forEach((file) => files.add(file));
+  }
+
+  if (text.includes('sync_dslite_pedidos_compra') || text.includes('/api/sync/dslite-pedidos')) {
+    [
+      'src/app/api/sync/dslite-pedidos/route.ts',
+      'src/services/sync-ml-job.ts',
+      'src/lib/sync/stale-jobs.ts',
+      'src/lib/sync/registry.ts',
+      'src/app/api/sync/cron-dispatch/route.ts',
+      'src/app/api/sync/run/route.ts',
+      'src/app/api/sync/disparar/route.ts',
+      'src/services/dslite.ts',
+      'src/lib/sync/domain-lock.ts',
+    ].forEach((file) => files.add(file));
+  }
+
+  if (text.includes('sync_dslite_preco_estoque') || text.includes('/api/sync/preco-estoque')) {
+    [
+      'src/app/api/sync/preco-estoque/route.ts',
+      'src/services/sync-ml-job.ts',
+      'src/lib/sync/stale-jobs.ts',
+      'src/lib/sync/registry.ts',
+      'src/app/api/sync/cron-dispatch/route.ts',
+      'src/services/dslite.ts',
+      'src/lib/sync/ml-publish-outbox.ts',
+    ].forEach((file) => files.add(file));
+  }
+
+  if (text.includes('mercado livre') || text.includes('ml_') || text.includes('shipment') || text.includes('sync_ml')) {
+    [
+      'src/services/integration.ts',
+      'src/services/mercadolibre.ts',
+    ].forEach((file) => files.add(file));
+  }
+
+  return Array.from(files).filter((file) => existsSync(file));
+}
+
+function repoContext(issue, comments) {
   const files = run('git', ['ls-files'])
     .split('\n')
     .filter(Boolean)
@@ -124,6 +188,15 @@ function repoContext() {
       || file.startsWith('.github/')
     ))
     .slice(0, 500);
+  const relevantFiles = inferRelevantFiles(issue, comments);
+  const relevantContents = relevantFiles
+    .map((file) => [
+      `FILE: ${file}`,
+      '```',
+      readIfExists(file, 22000),
+      '```',
+    ].join('\n'))
+    .join('\n\n');
 
   return [
     'AGENTS.md:',
@@ -143,6 +216,9 @@ function repoContext() {
     '',
     'package.json:',
     truncate(readFileSync('package.json', 'utf8'), 3000),
+    '',
+    'Arquivos relevantes com conteudo:',
+    relevantContents || 'Nenhum arquivo relevante inferido.',
     '',
     'Arquivos relevantes do repositório:',
     files.join('\n'),
@@ -185,6 +261,7 @@ async function askOpenRouter(issue, comments) {
     '- Não invente contexto.',
     '- Use AGENTS.md, docs/ops-memory.md, docs e arquivos do repositório como memória obrigatória.',
     '- Respeite regras do Vortek: investigação antes de implementação, menor correção possível, sem chute.',
+    '- Use os arquivos relevantes com conteudo incluídos abaixo antes de concluir que falta contexto.',
     '- Só gere patch se o erro apontar causa provável no código/contexto fornecido.',
     '- Patch precisa ser unified diff aplicável por git apply.',
     '- Mudança deve ser mínima.',
@@ -200,7 +277,7 @@ async function askOpenRouter(issue, comments) {
     'Comentários recentes:',
     truncate(comments.map((comment) => `- ${comment.user?.login}: ${comment.body}`).join('\n\n'), 8000),
     '',
-    repoContext(),
+    repoContext(issue, comments),
   ].join('\n');
 
   const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
@@ -412,7 +489,7 @@ async function main() {
       `Status: ${analysis.status}`,
       `Resumo: ${analysis.summary || 'Sem resumo.'}`,
       '',
-      'Ação sua necessária: revisar/complementar a issue ou pedir correção manual.',
+      'Sem patch seguro. A issue foi comentada com o motivo; se for falta de contexto do workflow, corrija a automação antes de reenviar.',
       memoryPr ? `PR de memoria sugerida: ${memoryPr.html_url}` : null,
       `https://github.com/${owner}/${repoName}/issues/${issueNumber}`,
     ].filter(Boolean).join('\n'));
