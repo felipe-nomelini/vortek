@@ -46,6 +46,7 @@ const statusOptions = [
   { value: 'pendente', label: 'Pendente' },
   { value: 'respondida', label: 'Respondida' },
 ];
+const PAGE_SIZE = 100;
 
 function formatDate(value: string | null) {
   if (!value) return null;
@@ -79,6 +80,7 @@ export default function PerguntasPage() {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [questions, setQuestions] = useState<Pergunta[]>([]);
   const [total, setTotal] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [answerModalOpen, setAnswerModalOpen] = useState(false);
@@ -86,17 +88,21 @@ export default function PerguntasPage() {
   const [activeQuestion, setActiveQuestion] = useState<Pergunta | null>(null);
   const [answerText, setAnswerText] = useState('');
 
-  const loadQuestions = async () => {
+  const loadQuestions = async (page = currentPage) => {
     setLoading(true);
     setError(null);
     try {
-      const params = new URLSearchParams({ limit: '100', offset: '0' });
+      const params = new URLSearchParams({
+        limit: String(PAGE_SIZE),
+        offset: String((page - 1) * PAGE_SIZE),
+      });
       if (statusFilter) params.set('status', statusFilter);
       const response = await fetch(`/api/perguntas?${params.toString()}`, { cache: 'no-store' });
       const data = await response.json().catch(() => ({})) as PerguntasResponse;
       if (!response.ok) throw new Error(data.error || 'Falha ao carregar perguntas');
       setQuestions(data.items || []);
       setTotal(data.total || data.items?.length || 0);
+      setCurrentPage(page);
     } catch (err: any) {
       setError(err?.message || 'Erro ao carregar perguntas');
       setQuestions([]);
@@ -107,7 +113,8 @@ export default function PerguntasPage() {
   };
 
   useEffect(() => {
-    loadQuestions();
+    setCurrentPage(1);
+    loadQuestions(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusFilter]);
 
@@ -180,7 +187,7 @@ export default function PerguntasPage() {
       setAnswerModalOpen(false);
       setActiveQuestion(null);
       setAnswerText('');
-      await loadQuestions();
+      await loadQuestions(currentPage);
     } catch (err: any) {
       message.error(err?.message || 'Erro ao responder pergunta');
     } finally {
@@ -385,7 +392,7 @@ export default function PerguntasPage() {
           </Col>
           <Col flex="auto" />
           <Col>
-            <Button icon={<ReloadOutlined />} onClick={loadQuestions} loading={loading}>
+            <Button icon={<ReloadOutlined />} onClick={() => loadQuestions(currentPage)} loading={loading}>
               Atualizar
             </Button>
           </Col>
@@ -430,7 +437,14 @@ export default function PerguntasPage() {
             ),
             rowExpandable: () => true,
           }}
-          pagination={{ pageSize: 20, showSizeChanger: true, showTotal: (count) => `${count} perguntas` }}
+          pagination={{
+            current: currentPage,
+            pageSize: PAGE_SIZE,
+            total,
+            showSizeChanger: false,
+            onChange: (page) => loadQuestions(page),
+            showTotal: (count) => `${count} perguntas`,
+          }}
           scroll={{ x: 1350 }}
           style={{ background: 'transparent' }}
           size="small"
