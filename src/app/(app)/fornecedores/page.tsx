@@ -6,7 +6,7 @@ import { Input, Button, Dropdown, Typography, Row, Col, Select, Tag, Spin, Modal
 import ResizableTable from '@/components/ResizableTable';
 import type { TablePaginationConfig, TableProps } from 'antd';
 import type { SorterResult } from 'antd/es/table/interface';
-import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
+import { SearchOutlined, EllipsisOutlined, LoadingOutlined, ReloadOutlined } from '@ant-design/icons';
 import type { Database } from '@/types/database';
 
 const { Title } = Typography;
@@ -40,6 +40,7 @@ export default function FornecedoresPage() {
   const [messageApi, contextHolder] = message.useMessage();
   const [rows, setRows] = useState<FornecedorRow[]>([]);
   const [loading, setLoading] = useState(true);
+  const [syncing, setSyncing] = useState(false);
   const [statusChangingId, setStatusChangingId] = useState<string | null>(null);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
@@ -112,6 +113,29 @@ export default function FornecedoresPage() {
   useEffect(() => {
     fetchFornecedores();
   }, [fetchFornecedores]);
+
+  const syncFornecedores = useCallback(async () => {
+    setSyncing(true);
+    try {
+      const res = await fetch('/api/fornecedores/sync', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || json?.success === false) {
+        throw new Error(json?.error || json?.errors?.[0]?.message || 'Falha ao atualizar fornecedores');
+      }
+
+      messageApi.success(
+        `Fornecedores atualizados: ${json.records?.inserted || json.inseridos || 0} novos, ${json.records?.updated || json.atualizados || 0} atualizados.`,
+      );
+      await fetchFornecedores();
+    } catch (err: any) {
+      messageApi.error(err?.message || 'Erro ao atualizar fornecedores');
+    } finally {
+      setSyncing(false);
+    }
+  }, [fetchFornecedores, messageApi]);
 
   const toggleFornecedorStatus = useCallback(async (record: FornecedorRow, ativo: boolean) => {
     const fornecedorLabel = record.apelido || record.nome || record.dslite_id || 'fornecedor';
@@ -391,6 +415,12 @@ export default function FornecedoresPage() {
               style={{ width: 150 }}
               allowClear
             />
+          </Col>
+          <Col flex="auto" />
+          <Col>
+            <Button icon={<ReloadOutlined />} onClick={syncFornecedores} loading={syncing}>
+              Atualizar
+            </Button>
           </Col>
         </Row>
       </div>
