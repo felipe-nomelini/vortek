@@ -3,6 +3,7 @@ import { getMLAuthDiagnostics } from '@/services/integration';
 import { getWahaSessionStatus, normalizeWhatsappChatId, sendWahaText } from '@/services/waha';
 import { formatCurrency } from '@/lib/format';
 import { formatMlReleaseWindow, getMlReleaseComparableDate } from '@/lib/ml/release-window-display';
+import { createOrUpdateOpsIssue } from '@/services/github-ops';
 
 type AlertType =
   | 'new_sale'
@@ -125,17 +126,49 @@ export async function sendWhatsappAlert(input: AlertInput): Promise<{ sent: numb
     return { sent: 0, skipped: true, errors: 0 };
   }
 
-  const text = buildText(input);
+  let issueResult: Awaited<ReturnType<typeof createOrUpdateOpsIssue>> | null = null;
+  const shouldCreateIssue = (input.severity || 'info') === 'critical'
+    && ['critical_error', 'integration_status'].includes(input.type)
+    && Boolean(String(process.env.GITHUB_OPS_TOKEN || process.env.GITHUB_TOKEN || '').trim());
+
+  const alertInput = { ...input };
+  if (shouldCreateIssue) {
+    try {
+      issueResult = await createOrUpdateOpsIssue({
+        type: input.type,
+        severity: input.severity || 'critical',
+        title: input.title,
+        message: input.message,
+        dedupeKey: input.dedupeKey,
+        payload: input.payload,
+      });
+      alertInput.message = [
+        input.message,
+        '',
+        `GitHub Issue: #${issueResult.number}`,
+        issueResult.url,
+        '',
+        `Comandos WhatsApp: DETALHES ${issueResult.number} | APROVAR ${issueResult.number} | REPROVAR ${issueResult.number}`,
+      ].join('\n');
+    } catch (err: any) {
+      await auditAlert(input, 'all', 'failed', {
+        source: 'github_issue_create',
+        error: err?.message || 'Falha ao criar issue GitHub',
+      }).catch(() => null);
+    }
+  }
+
+  const text = buildText(alertInput);
   let sent = 0;
   let errors = 0;
   for (const phone of getAlertPhones()) {
     try {
       await sendWahaText({ chatId: normalizeWhatsappChatId(phone), text });
       sent += 1;
-      await auditAlert(input, phone, 'sent');
+      await auditAlert(alertInput, phone, 'sent', issueResult ? { github_issue: issueResult } : undefined);
     } catch (err: any) {
       errors += 1;
-      await auditAlert(input, phone, 'failed', { error: err?.message || 'Erro ao enviar alerta' }).catch(() => null);
+      await auditAlert(alertInput, phone, 'failed', { error: err?.message || 'Erro ao enviar alerta', github_issue: issueResult }).catch(() => null);
     }
   }
   return { sent, skipped: false, errors };
