@@ -12,6 +12,7 @@ import {
 
 type AlertType =
   | 'new_sale'
+  | 'new_question'
   | 'critical_error'
   | 'integration_status'
   | 'weekly_sales_report'
@@ -322,6 +323,40 @@ export async function alertNewSale(order: {
       `Link: ${process.env.NEXT_PUBLIC_APP_URL || 'https://app.vortek.shop'}/pedidos?search=${encodeURIComponent(String(number))}`,
     ].filter(Boolean).join('\n'),
     payload: order as any,
+  });
+}
+
+export async function alertNewQuestion(question: {
+  id: string | number;
+  item_id?: string | null;
+  item_title?: string | null;
+  item_permalink?: string | null;
+  text?: string | null;
+  buyer_id?: string | number | null;
+  date_created?: string | null;
+  status?: string | null;
+}) {
+  const questionId = String(question.id || '').trim();
+  if (!questionId) return { sent: 0, skipped: true, errors: 0 };
+
+  return sendWhatsappAlert({
+    type: 'new_question',
+    severity: 'warning',
+    title: 'Nova pergunta no Mercado Livre',
+    dedupeKey: `new_question:${questionId}`,
+    dedupeTtlHours: 24 * 30,
+    message: [
+      `Pergunta ML: #${questionId}`,
+      question.item_title ? `Anúncio: ${question.item_title}` : question.item_id ? `Anúncio: ${question.item_id}` : null,
+      question.buyer_id ? `Cliente ML: ${question.buyer_id}` : null,
+      question.date_created ? `Recebida em: ${new Date(question.date_created).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })}` : null,
+      '',
+      question.text ? `Pergunta: ${question.text}` : 'Pergunta sem texto retornado pelo ML.',
+      '',
+      question.item_permalink ? `Link do anúncio: ${question.item_permalink}` : null,
+      `Responder no sistema: ${process.env.NEXT_PUBLIC_APP_URL || 'https://app.vortek.shop'}/perguntas`,
+    ].filter((line) => line !== null).join('\n'),
+    payload: question as any,
   });
 }
 

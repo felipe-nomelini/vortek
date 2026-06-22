@@ -7,7 +7,7 @@ import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { runMlSingleStageJob } from '@/services/sync-ml-job';
 import { resolveOrderSaleDate } from '@/lib/ml/order-sale-date';
 import { mapearStatusShipment } from '@/lib/ml/shipment-status';
-import { alertMlLabelReleased, alertNewSale } from '@/services/whatsapp-alerts';
+import { alertMlLabelReleased, alertNewQuestion, alertNewSale } from '@/services/whatsapp-alerts';
 
 const WEBHOOK_STUB_PENDING_TAGS = ['pedido_sem_itens', 'webhook_hydration_pending', 'snapshot_origem_webhook_stub'];
 
@@ -420,7 +420,48 @@ export async function POST(request: Request) {
     }
 
     if (topic === 'questions') {
-      // Notificações de perguntas — serão processadas sob demanda
+      const questionResult = await fetchMLResult<any>(resourcePath);
+      if (!questionResult.ok || !questionResult.data) {
+        console.warn(JSON.stringify({
+          event: 'ml_questions_webhook_fetch_failed',
+          timestamp_utc: new Date().toISOString(),
+          resource,
+          resource_path: resourcePath,
+          status: questionResult.status,
+          error_code: questionResult.error?.code || null,
+          error_category: questionResult.error?.category || null,
+          trace_id: questionResult.error?.traceId || null,
+          error: questionResult.error?.message || 'Falha ao consultar pergunta do ML após webhook',
+        }));
+      } else {
+        const question = questionResult.data;
+        const isUnanswered = String(question.status || '').toUpperCase() === 'UNANSWERED' && !question.answer;
+        if (isUnanswered) {
+          let itemTitle: string | null = null;
+          let itemPermalink: string | null = null;
+          const itemId = String(question.item_id || '').trim();
+          if (itemId) {
+            const itemResult = await fetchMLResult<any>(
+              `/items/${encodeURIComponent(itemId)}?attributes=id,title,permalink`,
+            );
+            if (itemResult.ok && itemResult.data) {
+              itemTitle = itemResult.data.title || null;
+              itemPermalink = itemResult.data.permalink || null;
+            }
+          }
+
+          void alertNewQuestion({
+            id: question.id,
+            item_id: question.item_id || null,
+            item_title: itemTitle,
+            item_permalink: itemPermalink,
+            text: question.text || null,
+            buyer_id: question.from?.id || null,
+            date_created: question.date_created || null,
+            status: question.status || null,
+          });
+        }
+      }
     }
 
     if (topic === 'items') {
