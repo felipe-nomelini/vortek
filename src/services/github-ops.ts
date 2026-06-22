@@ -171,6 +171,22 @@ export async function getOpsIssue(issueNumber: number) {
   };
 }
 
+export async function findOpenOpsIssueByFingerprint(fingerprint: string) {
+  const { owner, repo } = getGitHubConfig();
+  const cleanFingerprint = String(fingerprint || '').trim();
+  if (!cleanFingerprint) return null;
+  const searchQuery = encodeURIComponent(`repo:${owner}/${repo} is:issue is:open "${cleanFingerprint}"`);
+  const search = await githubRequest<{ items?: GitHubIssue[] }>(`/search/issues?q=${searchQuery}&per_page=1`);
+  const issue = search.items?.find((item) => !item.pull_request) || null;
+  if (!issue) return null;
+  return {
+    number: issue.number,
+    title: issue.title,
+    url: issue.html_url,
+    labels: (issue.labels || []).map(labelName).filter(Boolean),
+  };
+}
+
 export async function commentOpsIssue(issueNumber: number, body: string) {
   const { owner, repo } = getGitHubConfig();
   return githubRequest<{ html_url: string }>(`/repos/${owner}/${repo}/issues/${issueNumber}/comments`, {
@@ -184,6 +200,20 @@ export async function addOpsIssueLabels(issueNumber: number, labels: string[]) {
   return githubRequest<Array<{ name: string }>>(`/repos/${owner}/${repo}/issues/${issueNumber}/labels`, {
     method: 'POST',
     body: { labels },
+  });
+}
+
+export async function closeOpsIssueWithComment(issueNumber: number, comment: string, reason: 'completed' | 'not_planned' = 'completed') {
+  const { owner, repo } = getGitHubConfig();
+  if (comment.trim()) {
+    await commentOpsIssue(issueNumber, comment);
+  }
+  return githubRequest<GitHubIssue>(`/repos/${owner}/${repo}/issues/${issueNumber}`, {
+    method: 'PATCH',
+    body: {
+      state: 'closed',
+      state_reason: reason,
+    },
   });
 }
 
@@ -223,6 +253,29 @@ export async function approveOpsIssue(issueNumber: number, actorPhone?: string) 
     error: err?.message || 'Falha ao disparar workflow',
   }));
   return { issueNumber, status: 'approved', dispatch };
+}
+
+export async function autoApproveOpsIssue(issueNumber: number, reason: string) {
+  const issue = await getOpsIssue(issueNumber);
+  if (issue.labels.includes('ops:approved')) {
+    return { issueNumber, status: 'already_approved', dispatch: { dispatched: false, reason: 'issue já aprovada' } };
+  }
+
+  const comment = [
+    'Aprovado automaticamente pela automação operacional.',
+    '',
+    `Motivo: ${reason}`,
+    `Issue: #${issueNumber}`,
+    `Data: ${new Date().toISOString()}`,
+  ].join('\n');
+
+  await addOpsIssueLabels(issueNumber, ['ops:auto-approved', 'ops:approved']);
+  await commentOpsIssue(issueNumber, comment);
+  const dispatch = await dispatchOpsWorkflow('approved', issueNumber).catch((err: any) => ({
+    dispatched: false,
+    error: err?.message || 'Falha ao disparar workflow',
+  }));
+  return { issueNumber, status: 'auto_approved', dispatch };
 }
 
 export async function rejectOpsIssue(issueNumber: number, actorPhone?: string) {

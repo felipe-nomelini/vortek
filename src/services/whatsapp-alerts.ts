@@ -3,7 +3,12 @@ import { getMLAuthDiagnostics } from '@/services/integration';
 import { getWahaSessionStatus, normalizeWhatsappChatId, sendWahaText } from '@/services/waha';
 import { formatCurrency } from '@/lib/format';
 import { formatMlReleaseWindow, getMlReleaseComparableDate } from '@/lib/ml/release-window-display';
-import { createOrUpdateOpsIssue } from '@/services/github-ops';
+import {
+  autoApproveOpsIssue,
+  closeOpsIssueWithComment,
+  createOrUpdateOpsIssue,
+  findOpenOpsIssueByFingerprint,
+} from '@/services/github-ops';
 
 type AlertType =
   | 'new_sale'
@@ -109,6 +114,74 @@ function summarizeJobLog(log: unknown, maxEntries = 8) {
     }));
 }
 
+function getLastJobLogEntry(log: unknown) {
+  const entries = parseJobLog(log);
+  return entries[entries.length - 1] || null;
+}
+
+function isStaleJob(job: { log?: unknown }) {
+  const last = getLastJobLogEntry(job.log);
+  return String(last?.event_type || '') === 'job_marked_stale'
+    || JSON.stringify(last || {}).includes('job_marked_stale');
+}
+
+function buildJobIssueFingerprint(job: { id: string; status: string }) {
+  return `vortek-fingerprint:critical_error:job_error:${job.id}:${job.status}`;
+}
+
+async function findRecoveredJobAfter(client: ReturnType<typeof createServiceClient>, job: {
+  tipo: string;
+  finished_at?: string | null;
+}) {
+  const finishedAt = String(job.finished_at || '').trim();
+  if (!job.tipo || !finishedAt) return null;
+  const { data, error } = await client
+    .from('jobs')
+    .select('id,tipo,status,created_at,finished_at')
+    .eq('tipo', job.tipo)
+    .eq('status', 'completo')
+    .gt('finished_at', finishedAt)
+    .order('finished_at', { ascending: true })
+    .limit(1)
+    .maybeSingle();
+
+  if (error) return null;
+  return data || null;
+}
+
+async function closeRecoveredStaleIssueIfNeeded(client: ReturnType<typeof createServiceClient>, job: {
+  id: string;
+  tipo: string;
+  status: string;
+  created_at?: string | null;
+  finished_at?: string | null;
+  log?: unknown;
+}) {
+  if (!isStaleJob(job)) return { closed: false, reason: 'not_stale' };
+  const recovered = await findRecoveredJobAfter(client, job);
+  if (!recovered) return { closed: false, reason: 'not_recovered' };
+
+  const issue = await findOpenOpsIssueByFingerprint(buildJobIssueFingerprint(job)).catch(() => null);
+  if (!issue) return { closed: false, reason: 'issue_not_found', recovered };
+
+  await closeOpsIssueWithComment(issue.number, [
+    'Fechado automaticamente pela automação operacional.',
+    '',
+    'Motivo: o job que tinha sido marcado como stale voltou a executar com sucesso depois do erro.',
+    '',
+    `Job com erro: ${job.tipo}`,
+    `Job ID erro: ${job.id}`,
+    `Finalizado com erro: ${job.finished_at || 'não informado'}`,
+    '',
+    `Job recuperado: ${recovered.id}`,
+    `Status recuperado: ${recovered.status}`,
+    `Criado em: ${recovered.created_at}`,
+    `Finalizado em: ${recovered.finished_at || 'não informado'}`,
+  ].join('\n'));
+
+  return { closed: true, issueNumber: issue.number, recovered };
+}
+
 function buildText(input: AlertInput) {
   return [
     `*Vortek - ${severityLabel(input.severity || 'info')}*`,
@@ -181,8 +254,27 @@ export async function sendWhatsappAlert(input: AlertInput): Promise<{ sent: numb
         `GitHub Issue: #${issueResult.number}`,
         issueResult.url,
         '',
-        `Você pode responder naturalmente por WhatsApp para pedir detalhes, aprovar, reprovar ou criar contexto adicional para a issue #${issueResult.number}.`,
+        `A correção automática foi disparada para a issue #${issueResult.number}. Você pode responder naturalmente por WhatsApp se quiser pedir detalhes, complementar contexto ou interromper.`,
       ].join('\n');
+
+      if (input.type === 'critical_error' && process.env.OPS_AUTO_APPROVE_CRITICAL !== 'false') {
+        const approval = await autoApproveOpsIssue(
+          issueResult.number,
+          'issue crítica criada por alerta operacional; execução automática sem aprovação manual',
+        ).catch((err: any) => ({
+          status: 'failed',
+          dispatch: { dispatched: false, error: err?.message || 'Falha ao auto-aprovar issue' },
+        }));
+        const dispatchInfo = (approval as any).dispatch || {};
+
+        alertInput.message = [
+          alertInput.message,
+          '',
+          dispatchInfo.dispatched
+            ? 'Autofix: workflow disparado automaticamente.'
+            : `Autofix: não disparado automaticamente (${dispatchInfo.error || dispatchInfo.reason || approval.status || 'motivo desconhecido'}).`,
+        ].join('\n');
+      }
     } catch (err: any) {
       await auditAlert(input, 'all', 'failed', {
         source: 'github_issue_create',
@@ -381,6 +473,9 @@ export async function alertCriticalJobs() {
   let alerted = 0;
   for (const job of data || []) {
     if (jobLogIncludes(job, 'domain_lock_conflict')) continue;
+    const recoveredClose = await closeRecoveredStaleIssueIfNeeded(client, job as any).catch(() => ({ closed: false, reason: 'close_failed' }));
+    if (recoveredClose.closed || (recoveredClose as any).recovered) continue;
+
     const logSummary = summarizeJobLog(job.log);
     const lastLog = logSummary[logSummary.length - 1] || null;
 

@@ -171,6 +171,23 @@ function inferRelevantFiles(issue, comments) {
     ].forEach((file) => files.add(file));
   }
 
+  if (text.includes('sync_ml_listings_observed') || text.includes('/api/sync/anuncios')) {
+    [
+      'src/app/api/sync/anuncios/route.ts',
+      'src/app/api/sync/anuncios/job/route.ts',
+      'src/app/api/sync/anuncios/status/route.ts',
+      'src/app/api/sync/disparar/route.ts',
+      'src/app/api/sync/run/route.ts',
+      'src/app/api/sync/cron-dispatch/route.ts',
+      'src/services/sync-ml-job.ts',
+      'src/services/mercadolibre.ts',
+      'src/services/integration.ts',
+      'src/lib/sync/domain-lock.ts',
+      'src/lib/sync/registry.ts',
+      'src/lib/sync/stale-jobs.ts',
+    ].forEach((file) => files.add(file));
+  }
+
   if (text.includes('sync_dslite_pedidos_compra') || text.includes('/api/sync/dslite-pedidos')) {
     [
       'src/app/api/sync/dslite-pedidos/route.ts',
