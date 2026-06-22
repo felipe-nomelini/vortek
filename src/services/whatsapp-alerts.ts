@@ -1,8 +1,10 @@
+import { createHash } from 'node:crypto';
 import { createServiceClient } from '@/lib/supabase';
 import { getMLAuthDiagnostics } from '@/services/integration';
 import { getWahaSessionStatus, normalizeWhatsappChatId, sendWahaText } from '@/services/waha';
 import { formatCurrency } from '@/lib/format';
 import { formatMlReleaseWindow, getMlReleaseComparableDate } from '@/lib/ml/release-window-display';
+import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import {
   createOrUpdateOpsIssue,
 } from '@/services/github-ops';
@@ -43,6 +45,14 @@ function getAlertPhones(): string[] {
 
 function nowIso() {
   return new Date().toISOString();
+}
+
+function alertLockDomain(input: AlertInput) {
+  const hash = createHash('sha256')
+    .update(`${input.type}:${input.dedupeKey}`)
+    .digest('hex')
+    .slice(0, 32);
+  return `whatsapp_alert:${hash}`;
 }
 
 function saoPauloDateLabel(date: Date) {
@@ -157,57 +167,76 @@ async function auditAlert(input: AlertInput, phone: string, status: 'sent' | 'fa
 export async function sendWhatsappAlert(input: AlertInput): Promise<{ sent: number; skipped: boolean; errors: number }> {
   const ttlHours = input.dedupeTtlHours ?? 24 * 30;
   const sinceIso = new Date(Date.now() - ttlHours * 3600000).toISOString();
-  if (await wasAlertSent(input.type, input.dedupeKey, sinceIso)) {
-    await auditAlert(input, 'all', 'skipped', { reason: 'dedupe' }).catch(() => null);
+  const domain = alertLockDomain(input);
+  const lock = await acquireDomainLock({
+    domain,
+    ownerTask: 'whatsapp_alert',
+    ttlSeconds: 180,
+    metadata: { alert_type: input.type, dedupe_key: input.dedupeKey },
+  }).catch(() => null);
+
+  if (lock && !lock.acquired) {
+    await auditAlert(input, 'all', 'skipped', { reason: 'dedupe_lock' }).catch(() => null);
     return { sent: 0, skipped: true, errors: 0 };
   }
 
-  let issueResult: Awaited<ReturnType<typeof createOrUpdateOpsIssue>> | null = null;
-  const shouldCreateIssue = (input.severity || 'info') === 'critical'
-    && ['critical_error', 'integration_status'].includes(input.type)
-    && Boolean(String(process.env.GITHUB_OPS_TOKEN || process.env.GITHUB_TOKEN || '').trim());
+  try {
+    if (await wasAlertSent(input.type, input.dedupeKey, sinceIso)) {
+      await auditAlert(input, 'all', 'skipped', { reason: 'dedupe' }).catch(() => null);
+      return { sent: 0, skipped: true, errors: 0 };
+    }
 
-  const alertInput = { ...input };
-  if (shouldCreateIssue) {
-    try {
-      issueResult = await createOrUpdateOpsIssue({
-        type: input.type,
-        severity: input.severity || 'critical',
-        title: input.title,
-        message: input.message,
-        dedupeKey: input.dedupeKey,
-        payload: input.payload,
-      });
-      alertInput.message = [
-        input.message,
-        '',
-        `GitHub Issue: #${issueResult.number}`,
-        issueResult.url,
-        '',
-        'A issue foi criada para resolução manual posterior.',
-      ].join('\n');
-    } catch (err: any) {
-      await auditAlert(input, 'all', 'failed', {
-        source: 'github_issue_create',
-        error: err?.message || 'Falha ao criar issue GitHub',
-      }).catch(() => null);
+    let issueResult: Awaited<ReturnType<typeof createOrUpdateOpsIssue>> | null = null;
+    const shouldCreateIssue = (input.severity || 'info') === 'critical'
+      && ['critical_error', 'integration_status'].includes(input.type)
+      && Boolean(String(process.env.GITHUB_OPS_TOKEN || process.env.GITHUB_TOKEN || '').trim());
+
+    const alertInput = { ...input };
+    if (shouldCreateIssue) {
+      try {
+        issueResult = await createOrUpdateOpsIssue({
+          type: input.type,
+          severity: input.severity || 'critical',
+          title: input.title,
+          message: input.message,
+          dedupeKey: input.dedupeKey,
+          payload: input.payload,
+        });
+        alertInput.message = [
+          input.message,
+          '',
+          `GitHub Issue: #${issueResult.number}`,
+          issueResult.url,
+          '',
+          'A issue foi criada para resolução manual posterior.',
+        ].join('\n');
+      } catch (err: any) {
+        await auditAlert(input, 'all', 'failed', {
+          source: 'github_issue_create',
+          error: err?.message || 'Falha ao criar issue GitHub',
+        }).catch(() => null);
+      }
+    }
+
+    const text = buildText(alertInput);
+    let sent = 0;
+    let errors = 0;
+    for (const phone of getAlertPhones()) {
+      try {
+        await sendWahaText({ chatId: normalizeWhatsappChatId(phone), text });
+        sent += 1;
+        await auditAlert(alertInput, phone, 'sent', issueResult ? { github_issue: issueResult } : undefined);
+      } catch (err: any) {
+        errors += 1;
+        await auditAlert(alertInput, phone, 'failed', { error: err?.message || 'Erro ao enviar alerta', github_issue: issueResult }).catch(() => null);
+      }
+    }
+    return { sent, skipped: false, errors };
+  } finally {
+    if (lock?.acquired) {
+      await releaseDomainLock({ domain, ownerToken: lock.ownerToken }).catch(() => null);
     }
   }
-
-  const text = buildText(alertInput);
-  let sent = 0;
-  let errors = 0;
-  for (const phone of getAlertPhones()) {
-    try {
-      await sendWahaText({ chatId: normalizeWhatsappChatId(phone), text });
-      sent += 1;
-      await auditAlert(alertInput, phone, 'sent', issueResult ? { github_issue: issueResult } : undefined);
-    } catch (err: any) {
-      errors += 1;
-      await auditAlert(alertInput, phone, 'failed', { error: err?.message || 'Erro ao enviar alerta', github_issue: issueResult }).catch(() => null);
-    }
-  }
-  return { sent, skipped: false, errors };
 }
 
 export async function alertNewSale(order: {

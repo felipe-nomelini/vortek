@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
-import { fetchML, fetchMLResult, getMLAuthDiagnostics } from '@/services/integration';
+import { fetchMLResult, getMLAuthDiagnostics, type MLRequestResult } from '@/services/integration';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
 import { buildCatalogEnrichment } from '@/lib/catalogo/no-catalogo';
@@ -11,6 +11,8 @@ export const maxDuration = 300;
 const CONCURRENCY = 3;
 const CATALOG_ENRICH_CONCURRENCY = 4;
 const VISITS_CONCURRENCY = 3;
+const TRANSIENT_RETRY_ATTEMPTS = 3;
+const TRANSIENT_RETRY_BASE_DELAY_MS = 800;
 const CATALOG_REFRESH_TRIGGER_KEY = 'catalog_no_catalogo_refresh_last_trigger_at';
 const CATALOG_REFRESH_TRIGGER_INTERVAL_MS = 10 * 60 * 1000;
 
@@ -34,6 +36,29 @@ async function runPool<T>(items: T[], limit: number, worker: (item: T) => Promis
     }
   });
   await Promise.all(runners);
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function fetchMLResultWithRetry<T>(path: string): Promise<{ result: MLRequestResult<T>; retries: number }> {
+  let retries = 0;
+
+  for (let attempt = 0; attempt < TRANSIENT_RETRY_ATTEMPTS; attempt += 1) {
+    const result = await fetchMLResult<T>(path);
+    if (result.ok) return { result, retries };
+
+    const isRetryable = result.error?.category === 'retryable';
+    const hasNextAttempt = attempt < TRANSIENT_RETRY_ATTEMPTS - 1;
+    if (!isRetryable || !hasNextAttempt) return { result, retries };
+
+    retries += 1;
+    await sleep(TRANSIENT_RETRY_BASE_DELAY_MS * (attempt + 1));
+  }
+
+  const fallback = await fetchMLResult<T>(path);
+  return { result: fallback, retries };
 }
 
 function normalizeMetric(value: unknown): number | null {
@@ -171,14 +196,43 @@ export async function POST(request: Request) {
     }
 
     const me = meResult.data;
-    const search = await fetchML<any>(`/users/${me.id}/items/search?limit=${limit}&offset=${offset}`);
-    if (!search) {
+    const searchCheck = await fetchMLResultWithRetry<any>(`/users/${me.id}/items/search?limit=${limit}&offset=${offset}`);
+    const searchResult = searchCheck.result;
+    if (!searchResult.ok || !searchResult.data) {
+      if (searchResult.error?.category === 'auth_fatal') {
+        const auth = await getMLAuthDiagnostics();
+        return NextResponse.json({
+          success: false,
+          domain,
+          failure_reason: 'auth_fatal',
+          auth_state: auth.state,
+          auth_blocked_until: auth.blocked_until,
+          errors: [{ code: 'ml_auth_fatal', message: 'Integração ML requer reconexão para sincronizar anúncios' }],
+        }, { status: 401 });
+      }
+
+      const diagnosticError = {
+        code: searchResult.error?.code || 'ml_items_search_failed',
+        category: searchResult.error?.category || 'error',
+        upstream_status: searchResult.status,
+        trace_id: searchResult.error?.traceId || null,
+        message: searchResult.error?.message || 'Erro ao buscar anúncios no ML',
+        endpoint: '/users/{seller_id}/items/search',
+        retries: searchCheck.retries,
+      };
+
       return NextResponse.json({
         success: false,
         domain,
-        errors: [{ code: 'ml_items_search_failed', message: 'Erro ao buscar anúncios no ML' }],
-      }, { status: 502 });
+        failure_reason: 'ml_upstream_error',
+        code: diagnosticError.code,
+        category: diagnosticError.category,
+        upstream_status: diagnosticError.upstream_status,
+        errors: [diagnosticError],
+        retries_transient: searchCheck.retries,
+      }, { status: diagnosticError.category === 'retryable' ? 424 : 502 });
     }
+    const search = searchResult.data;
 
     const itemIds: string[] = Array.isArray(search.results) ? search.results : [];
     if (itemIds.length === 0) {
