@@ -48,6 +48,16 @@ async function commentIssue(body) {
   });
 }
 
+async function closeIssue(reason = 'completed') {
+  await github(`/repos/${owner}/${repoName}/issues/${issueNumber}`, {
+    method: 'PATCH',
+    body: {
+      state: 'closed',
+      state_reason: reason,
+    },
+  });
+}
+
 function truncate(value, max = 6000) {
   const text = String(value || '');
   return text.length > max ? `${text.slice(0, max)}\n...[truncated]` : text;
@@ -514,11 +524,13 @@ async function main() {
         ? `Deploy Easypanel disparado: HTTP ${deploy.status}`
         : `Deploy não disparado: ${deploy.reason}`,
     ].join('\n'));
+    await closeIssue('completed');
     await notifyOps([
       'Vortek Ops',
       '',
       `Issue #${issueNumber}: correção automática aplicada na main.`,
       `Commit: ${commit}`,
+      'Issue fechada automaticamente.',
       '',
       deploy.triggered
         ? `Deploy Easypanel disparado: HTTP ${deploy.status}`

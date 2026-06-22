@@ -151,6 +151,33 @@ function shouldApplyBackoff(lastStatuses: string[]): boolean {
   return !(firstTwo[0] === 'completo' && firstTwo[1] === 'completo');
 }
 
+async function runScheduledTask(params: {
+  jobId: string;
+  tipo: string;
+  path: string;
+  label: string;
+  query?: Record<string, string | number | boolean | null | undefined>;
+  body?: Record<string, any>;
+}) {
+  try {
+    const result = await runMlSingleStageJob({
+      jobId: params.jobId,
+      tipo: params.tipo,
+      path: params.path,
+      label: params.label,
+      query: params.query,
+      body: params.body,
+    });
+    return { ok: true, result };
+  } catch (err: any) {
+    console.error('[cron-dispatch] erro ao executar job', params.tipo, err?.message || err);
+    return {
+      ok: false,
+      error: err?.message || 'Falha ao executar job',
+    };
+  }
+}
+
 export async function POST(request: Request) {
   const apiKey = request.headers.get('x-api-key') || '';
   if (apiKey !== process.env.API_SECRET_KEY) {
@@ -313,31 +340,30 @@ export async function POST(request: Request) {
       continue;
     }
 
-    setTimeout(() => {
-      const body = {
-        ...(task.defaultBody || {}),
-        ...(task.usesCursor && cursorInfo.cursor
-          ? { fornecedorId: cursorInfo.cursor.fornecedorId, page: cursorInfo.cursor.page }
-          : {}),
-      };
-      const query = task.usesOffset ? { offset } : undefined;
+    const body = {
+      ...(task.defaultBody || {}),
+      ...(task.usesCursor && cursorInfo.cursor
+        ? { fornecedorId: cursorInfo.cursor.fornecedorId, page: cursorInfo.cursor.page }
+        : {}),
+    };
+    const query = task.usesOffset ? { offset } : undefined;
 
-      void runMlSingleStageJob({
+    if (task.runMode === 'inline') {
+      const runResult = await runScheduledTask({
         jobId: insertedJob.id,
         tipo: task.jobTipo,
         path: task.path,
         label: task.label,
         query,
         body,
-      }).catch((err: any) => {
-        console.error('[cron-dispatch] erro ao executar job', task.key, err?.message || err);
       });
-    }, 0);
 
       results.push({
         task: task.key,
-        action: 'dispatched',
+        action: runResult.ok ? 'completed_inline' : 'failed_inline',
         jobId: insertedJob.id,
+        status: runResult.ok ? runResult.result?.status : 'erro',
+        error: runResult.ok ? null : runResult.error,
         interval_minutes: intervalMinutes,
         backoff_minutes: backoffMinutes,
         offset,
@@ -345,6 +371,31 @@ export async function POST(request: Request) {
         cursor_exhausted: cursorInfo.exhausted,
         cursor_source: cursorInfo.source,
       });
+      continue;
+    }
+
+    setTimeout(() => {
+      void runScheduledTask({
+        jobId: insertedJob.id,
+        tipo: task.jobTipo,
+        path: task.path,
+        label: task.label,
+        query,
+        body,
+      });
+    }, 0);
+
+    results.push({
+      task: task.key,
+      action: 'dispatched_background',
+      jobId: insertedJob.id,
+      interval_minutes: intervalMinutes,
+      backoff_minutes: backoffMinutes,
+      offset,
+      cursor: cursorInfo.cursor,
+      cursor_exhausted: cursorInfo.exhausted,
+      cursor_source: cursorInfo.source,
+    });
   }
 
   return NextResponse.json({

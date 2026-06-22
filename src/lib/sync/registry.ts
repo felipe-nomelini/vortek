@@ -29,6 +29,7 @@ export interface SyncTaskDefinition {
   usesOffset?: boolean;
   usesCursor?: boolean;
   defaultBody?: Record<string, unknown>;
+  runMode?: 'background' | 'inline';
 }
 
 export const SYNC_TASKS: SyncTaskDefinition[] = [
@@ -83,6 +84,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     kind: 'dslite',
     schedule: { businessMinutes: 2, offHoursMinutes: 2 },
     defaultBody: { windowDays: 2 },
+    runMode: 'inline',
   },
   {
     key: 'sync_ml_orders_ingest',
@@ -115,7 +117,8 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     lockTtlSeconds: 20 * 60,
     kind: 'ml',
     schedule: { businessMinutes: 1, offHoursMinutes: 1 },
-    defaultBody: { limit: 20 },
+    defaultBody: { limit: 5 },
+    runMode: 'inline',
   },
   {
     key: 'sync_reconcile_fiscal',
