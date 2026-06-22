@@ -1,133 +1,276 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { Input, Select, Button, Dropdown, Tag, Typography, Row, Col, DatePicker } from 'antd';
+import { useEffect, useMemo, useState } from 'react';
+import { Alert, Button, Col, DatePicker, Dropdown, Input, Modal, Row, Select, Space, Statistic, Tag, Typography, message } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
-import { SearchOutlined, EllipsisOutlined } from '@ant-design/icons';
+import { EllipsisOutlined, ReloadOutlined, SearchOutlined, SendOutlined } from '@ant-design/icons';
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
 
-type QuestionStatus = 'respondida' | 'pendente';
+type QuestionStatus = 'respondida' | 'pendente' | string;
 
 interface Pergunta {
   id: number;
+  itemId: string;
   anuncio: string;
+  anuncioUrl: string | null;
+  anuncioStatus: string | null;
   cliente: string;
+  clienteId: number | null;
   pergunta: string;
   resposta: string | null;
   dataPergunta: string;
   dataResposta: string | null;
   status: QuestionStatus;
+  mlStatus: string;
+  respostaStatus: string | null;
+  hold: boolean;
+  removidaDoAnuncio: boolean;
+  tags: string[];
+  categoriasIa: string[];
+}
+
+interface PerguntasResponse {
+  items: Pergunta[];
+  total: number;
+  limit: number;
+  offset: number;
+  error?: string;
+  precisaReconectar?: boolean;
 }
 
 const statusOptions = [
   { value: '', label: 'Todos os status' },
-  { value: 'respondida', label: 'Respondida' },
   { value: 'pendente', label: 'Pendente' },
+  { value: 'respondida', label: 'Respondida' },
 ];
 
-const mockPerguntas: Pergunta[] = [
-  { id: 3957150025, anuncio: 'Fone Bluetooth X1', cliente: 'Ana Ferreira', pergunta: 'Este fone tem cancelamento de ruído ativo?', resposta: 'Olá! Sim, o fone possui cancelamento de ruído ativo com 4 microfones. Atenciosamente, Equipe Vortek.', dataPergunta: '2026-05-04T14:30:00Z', dataResposta: '2026-05-04T16:45:00Z', status: 'respondida' },
-  { id: 3957150026, anuncio: 'Capa Silicone iPhone 15', cliente: 'Carlos Lima', pergunta: 'A capa é compatível com o iPhone 15 Plus?', resposta: 'Carlos, esta capa é específica para iPhone 15 padrão (6.1"). Não compatível com a versão Plus. Temos modelo específico para o 15 Plus em nosso catálogo.', dataPergunta: '2026-05-04T10:15:00Z', dataResposta: '2026-05-04T11:30:00Z', status: 'respondida' },
-  { id: 3957150030, anuncio: 'Carregador USB-C 20W', cliente: 'Marina Costa', pergunta: 'Esse carregador suporta carregamento rápido em Samsung Galaxy?', resposta: null, dataPergunta: '2026-05-03T18:45:00Z', dataResposta: null, status: 'pendente' },
-  { id: 3957150035, anuncio: 'Película Premium Z10', cliente: 'Roberto Alves', pergunta: 'Vem com o kit de instalação?', resposta: 'Sim, acompanha lenço umedecido, flanela e espátula para instalação.', dataPergunta: '2026-05-03T09:30:00Z', dataResposta: '2026-05-03T14:20:00Z', status: 'respondida' },
-  { id: 3957150040, anuncio: 'Mouse Gamer RGB', cliente: 'Juliana Santos', pergunta: 'O mouse é ambidestro?', resposta: null, dataPergunta: '2026-05-02T16:20:00Z', dataResposta: null, status: 'pendente' },
-  { id: 3957150045, anuncio: 'Teclado Mecânico TKL', cliente: 'Pedro Martins', pergunta: 'Qual o tipo do switch? É Red, Blue ou Brown?', resposta: 'Pedro, este modelo utiliza switch Red (linear). Ideal para jogos devido à atuação suave e silenciosa.', dataPergunta: '2026-05-02T11:00:00Z', dataResposta: '2026-05-02T14:00:00Z', status: 'respondida' },
-  { id: 3957150050, anuncio: 'Suporte Articulado Monitor', cliente: 'Luciana Rocha', pergunta: 'Suporta monitor de 32 polegadas? Qual o peso máximo?', resposta: null, dataPergunta: '2026-04-30T14:00:00Z', dataResposta: null, status: 'pendente' },
-  { id: 3957150055, anuncio: 'Cabo HDMI 2.1 2m', cliente: 'Fernando Oliveira', pergunta: 'Esse cabo é certificado HDMI 2.1? Suporta 4K a 120Hz?', resposta: 'Fernando, sim! O cabo possui certificação HDMI 2.1 e suporta 4K a 120Hz, HDR10+ e eARC.', dataPergunta: '2026-04-29T09:45:00Z', dataResposta: '2026-04-29T12:30:00Z', status: 'respondida' },
-  { id: 3957150060, anuncio: 'Adaptador Bluetooth 5.3', cliente: 'Camila Barbosa', pergunta: 'Funciona no Linux?', resposta: null, dataPergunta: '2026-04-28T13:30:00Z', dataResposta: null, status: 'pendente' },
-  { id: 3957150065, anuncio: 'Caixa Som Portátil 20W', cliente: 'Diego Nunes', pergunta: 'A bateria dura quantas horas no volume máximo?', resposta: 'Diego, no volume máximo a bateria dura aproximadamente 4 horas. Em volume moderado (50%) chega a 12 horas.', dataPergunta: '2026-04-27T10:00:00Z', dataResposta: '2026-04-27T15:00:00Z', status: 'respondida' },
-  { id: 3957150070, anuncio: 'Fone Bluetooth X1', cliente: 'Tatiane Souza', pergunta: 'Tem microfone embutido para chamadas?', resposta: 'Sim, possui microfone embutido com tecnologia de redução de ruído para chamadas.', dataPergunta: '2026-04-26T15:00:00Z', dataResposta: '2026-04-26T17:30:00Z', status: 'respondida' },
-  { id: 3957150075, anuncio: 'Teclado Mecânico TKL', cliente: 'Gustavo Pereira', pergunta: 'A iluminação RGB é configurável por software?', resposta: null, dataPergunta: '2026-04-25T11:30:00Z', dataResposta: null, status: 'pendente' },
-];
+function formatDate(value: string | null) {
+  if (!value) return null;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return date.toLocaleString('pt-BR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+}
+
+function statusTag(status: QuestionStatus) {
+  if (status === 'respondida') return <Tag color="green">Respondida</Tag>;
+  if (status === 'pendente') return <Tag color="orange">Pendente</Tag>;
+  return <Tag color="blue">{String(status || 'desconhecido')}</Tag>;
+}
+
+function releaseText(text: string, max = 120) {
+  if (text.length <= max) return text;
+  return `${text.slice(0, max).trim()}...`;
+}
 
 export default function PerguntasPage() {
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<QuestionStatus | ''>('');
-  const [perguntaRange, setPerguntaRange] = useState<[string | null, string | null]>([null, null]);
-  const [respostaRange, setRespostaRange] = useState<[string | null, string | null]>([null, null]);
+  const [perguntaRange, setPerguntaRange] = useState<[Date | null, Date | null]>([null, null]);
+  const [respostaRange, setRespostaRange] = useState<[Date | null, Date | null]>([null, null]);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [replyTexts, setReplyTexts] = useState<Record<number, string>>({});
+  const [questions, setQuestions] = useState<Pergunta[]>([]);
+  const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [answerModalOpen, setAnswerModalOpen] = useState(false);
+  const [answering, setAnswering] = useState(false);
+  const [activeQuestion, setActiveQuestion] = useState<Pergunta | null>(null);
+  const [answerText, setAnswerText] = useState('');
 
-  const handleReply = (id: number) => {
-    console.log(`Reply to ${id}:`, replyTexts[id]);
+  const loadQuestions = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const params = new URLSearchParams({ limit: '100', offset: '0' });
+      if (statusFilter) params.set('status', statusFilter);
+      const response = await fetch(`/api/perguntas?${params.toString()}`, { cache: 'no-store' });
+      const data = await response.json().catch(() => ({})) as PerguntasResponse;
+      if (!response.ok) throw new Error(data.error || 'Falha ao carregar perguntas');
+      setQuestions(data.items || []);
+      setTotal(data.total || data.items?.length || 0);
+    } catch (err: any) {
+      setError(err?.message || 'Erro ao carregar perguntas');
+      setQuestions([]);
+      setTotal(0);
+    } finally {
+      setLoading(false);
+    }
   };
 
+  useEffect(() => {
+    loadQuestions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [statusFilter]);
+
+  const pendingCount = questions.filter((question) => question.status === 'pendente').length;
+  const answeredCount = questions.filter((question) => question.status === 'respondida').length;
+
   const filtered = useMemo(() => {
-    return mockPerguntas.filter(p => {
+    return questions.filter((question) => {
       if (search) {
         const q = search.toLowerCase();
-        const fields = [String(p.id), p.anuncio, p.cliente, p.pergunta];
-        if (!fields.some(f => f.toLowerCase().includes(q))) return false;
+        const fields = [
+          String(question.id),
+          question.itemId,
+          question.anuncio,
+          question.cliente,
+          question.pergunta,
+          question.resposta || '',
+        ];
+        if (!fields.some((field) => field.toLowerCase().includes(q))) return false;
       }
-      if (statusFilter && p.status !== statusFilter) return false;
-      if (perguntaRange[0] && new Date(p.dataPergunta) < new Date(perguntaRange[0])) return false;
+
+      const perguntaDate = new Date(question.dataPergunta);
+      if (perguntaRange[0] && perguntaDate < perguntaRange[0]) return false;
       if (perguntaRange[1]) {
         const end = new Date(perguntaRange[1]);
         end.setHours(23, 59, 59, 999);
-        if (new Date(p.dataPergunta) > end) return false;
+        if (perguntaDate > end) return false;
       }
-      if (respostaRange[0] && p.dataResposta && new Date(p.dataResposta) < new Date(respostaRange[0])) return false;
-      if (respostaRange[1] && p.dataResposta) {
-        const end = new Date(respostaRange[1]);
-        end.setHours(23, 59, 59, 999);
-        if (new Date(p.dataResposta) > end) return false;
+
+      if (question.dataResposta) {
+        const respostaDate = new Date(question.dataResposta);
+        if (respostaRange[0] && respostaDate < respostaRange[0]) return false;
+        if (respostaRange[1]) {
+          const end = new Date(respostaRange[1]);
+          end.setHours(23, 59, 59, 999);
+          if (respostaDate > end) return false;
+        }
+      } else if (respostaRange[0] || respostaRange[1]) {
+        return false;
       }
+
       return true;
     });
-  }, [search, statusFilter, perguntaRange, respostaRange]);
+  }, [questions, search, perguntaRange, respostaRange]);
+
+  const openAnswerModal = (question: Pergunta) => {
+    setActiveQuestion(question);
+    setAnswerText('');
+    setAnswerModalOpen(true);
+  };
+
+  const submitAnswer = async () => {
+    if (!activeQuestion) return;
+    const text = answerText.trim();
+    if (!text) {
+      message.warning('Digite a resposta antes de enviar.');
+      return;
+    }
+
+    setAnswering(true);
+    try {
+      const response = await fetch(`/api/perguntas/${activeQuestion.id}/responder`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || 'Falha ao responder pergunta');
+      message.success('Resposta enviada ao Mercado Livre.');
+      setAnswerModalOpen(false);
+      setActiveQuestion(null);
+      setAnswerText('');
+      await loadQuestions();
+    } catch (err: any) {
+      message.error(err?.message || 'Erro ao responder pergunta');
+    } finally {
+      setAnswering(false);
+    }
+  };
 
   const columns: TableProps<Pergunta>['columns'] = [
     {
-      title: 'ID', dataIndex: 'id', key: 'id', width: 70,
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'id',
+      width: 110,
       sorter: (a, b) => a.id - b.id,
+      render: (id: number) => <Text copyable style={{ color: '#1677ff' }}>{id}</Text>,
     },
     {
-      title: 'Anúncio', dataIndex: 'anuncio', key: 'anuncio',
+      title: 'Anúncio',
+      dataIndex: 'anuncio',
+      key: 'anuncio',
+      width: 280,
       sorter: (a, b) => a.anuncio.localeCompare(b.anuncio),
-    },
-    {
-      title: 'Cliente', dataIndex: 'cliente', key: 'cliente',
-      sorter: (a, b) => a.cliente.localeCompare(b.cliente),
-    },
-    {
-      title: 'Pergunta', dataIndex: 'pergunta', key: 'pergunta',
-      sorter: (a, b) => a.pergunta.localeCompare(b.pergunta),
-      render: (text: string) => (
-        <div style={{ maxWidth: 300, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={text}>
-          {text}
+      render: (text: string, record) => (
+        <div>
+          {record.anuncioUrl ? (
+            <a href={record.anuncioUrl} target="_blank" rel="noreferrer">{releaseText(text, 75)}</a>
+          ) : (
+            <Text style={{ color: '#e0e0e0' }}>{releaseText(text, 75)}</Text>
+          )}
+          <div style={{ color: '#8c8c8c', fontSize: 12 }}>{record.itemId}</div>
         </div>
       ),
     },
     {
-      title: 'Data/Pergunta', dataIndex: 'dataPergunta', key: 'dataPergunta', width: 150,
-      sorter: (a, b) => new Date(a.dataPergunta).getTime() - new Date(b.dataPergunta).getTime(),
-      render: (d: string) => new Date(d).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
-    },
-    {
-      title: 'Data/Resposta', dataIndex: 'dataResposta', key: 'dataResposta', width: 150,
-      sorter: (a, b) => {
-        if (!a.dataResposta) return 1;
-        if (!b.dataResposta) return -1;
-        return new Date(a.dataResposta).getTime() - new Date(b.dataResposta).getTime();
-      },
-      render: (d: string | null) => d
-        ? new Date(d).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-        : <span style={{ color: '#666' }}>—</span>,
-    },
-    {
-      title: 'Status', dataIndex: 'status', key: 'status', width: 110,
-      sorter: (a, b) => a.status.localeCompare(b.status),
-      render: (s: QuestionStatus) => (
-        <Tag color={s === 'respondida' ? 'green' : 'orange'}>
-          {s.charAt(0).toUpperCase() + s.slice(1)}
-        </Tag>
+      title: 'Cliente',
+      dataIndex: 'cliente',
+      key: 'cliente',
+      width: 130,
+      sorter: (a, b) => a.cliente.localeCompare(b.cliente),
+      render: (cliente: string, record) => (
+        <div>
+          <Text style={{ color: '#e0e0e0' }}>{cliente}</Text>
+          {record.clienteId ? <div style={{ color: '#8c8c8c', fontSize: 12 }}>{record.clienteId}</div> : null}
+        </div>
       ),
     },
     {
-      title: 'Velocidade', key: 'velocidade', width: 100,
+      title: 'Pergunta',
+      dataIndex: 'pergunta',
+      key: 'pergunta',
+      width: 340,
+      sorter: (a, b) => a.pergunta.localeCompare(b.pergunta),
+      render: (text: string) => (
+        <div style={{ whiteSpace: 'normal', lineHeight: 1.4 }}>
+          {releaseText(text, 180)}
+        </div>
+      ),
+    },
+    {
+      title: 'Data/Pergunta',
+      dataIndex: 'dataPergunta',
+      key: 'dataPergunta',
+      width: 155,
+      sorter: (a, b) => new Date(a.dataPergunta).getTime() - new Date(b.dataPergunta).getTime(),
+      render: (date: string) => formatDate(date) || '—',
+    },
+    {
+      title: 'Data/Resposta',
+      dataIndex: 'dataResposta',
+      key: 'dataResposta',
+      width: 155,
+      sorter: (a, b) => {
+        const ta = a.dataResposta ? new Date(a.dataResposta).getTime() : Infinity;
+        const tb = b.dataResposta ? new Date(b.dataResposta).getTime() : Infinity;
+        return ta - tb;
+      },
+      render: (date: string | null) => formatDate(date) || <span style={{ color: '#666' }}>—</span>,
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      width: 120,
+      sorter: (a, b) => String(a.status).localeCompare(String(b.status)),
+      render: statusTag,
+    },
+    {
+      title: 'Velocidade',
+      key: 'velocidade',
+      width: 110,
       sorter: (a, b) => {
         const ta = a.dataResposta ? new Date(a.dataResposta).getTime() - new Date(a.dataPergunta).getTime() : Infinity;
         const tb = b.dataResposta ? new Date(b.dataResposta).getTime() - new Date(b.dataPergunta).getTime() : Infinity;
@@ -135,27 +278,35 @@ export default function PerguntasPage() {
       },
       render: (_, record) => {
         if (!record.dataResposta) return <span style={{ color: '#666' }}>—</span>;
-        const diffMs = new Date(record.dataResposta).getTime() - new Date(record.dataPergunta).getTime();
-        const diffMin = diffMs / 60000;
-        const rapido = diffMin <= 60;
-        return (
-          <Tag color={rapido ? 'green' : 'red'}>
-            {rapido ? 'Rápido' : 'Lento'}
-          </Tag>
-        );
+        const diffMin = (new Date(record.dataResposta).getTime() - new Date(record.dataPergunta).getTime()) / 60000;
+        if (diffMin <= 60) return <Tag color="green">Rápido</Tag>;
+        if (diffMin <= 240) return <Tag color="gold">Normal</Tag>;
+        return <Tag color="red">Lento</Tag>;
       },
     },
     {
-      title: 'Ações', key: 'actions', width: 60, fixed: 'right',
+      title: 'Ações',
+      key: 'actions',
+      width: 70,
+      fixed: 'right',
       render: (_, record) => (
         <Dropdown
           menu={{
             items: [
-              ...(record.status === 'pendente' ? [{ key: 'answer', label: 'Responder' }] : [{ key: 'editAnswer', label: 'Editar Resposta' }]),
-              { key: 'viewItem', label: 'Ver Anúncio' },
-              { key: 'block', label: 'Bloquear Cliente' },
-            ],
-            onClick: ({ key }) => { /* TODO: implementar ação */ },
+              record.status === 'pendente'
+                ? { key: 'answer', label: 'Responder' }
+                : { key: 'viewAnswer', label: 'Ver resposta' },
+              record.anuncioUrl ? { key: 'viewItem', label: 'Ver anúncio' } : null,
+              { key: 'copyQuestion', label: 'Copiar pergunta' },
+            ].filter(Boolean) as any,
+            onClick: ({ key }) => {
+              if (key === 'answer') openAnswerModal(record);
+              if (key === 'viewItem' && record.anuncioUrl) window.open(record.anuncioUrl, '_blank', 'noopener,noreferrer');
+              if (key === 'copyQuestion') {
+                navigator.clipboard?.writeText(record.pergunta);
+                message.success('Pergunta copiada.');
+              }
+            },
           }}
           trigger={['click']}
         >
@@ -168,6 +319,25 @@ export default function PerguntasPage() {
   return (
     <div>
       <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Perguntas - Mercado Livre</Title>
+
+      <Row gutter={[12, 12]} style={{ marginBottom: 16 }}>
+        <Col xs={24} sm={8}>
+          <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
+            <Statistic title="Perguntas carregadas" value={filtered.length} suffix={`/ ${total}`} />
+          </div>
+        </Col>
+        <Col xs={24} sm={8}>
+          <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
+            <Statistic title="Pendentes" value={pendingCount} valueStyle={{ color: pendingCount ? '#faad14' : '#52c41a' }} />
+          </div>
+        </Col>
+        <Col xs={24} sm={8}>
+          <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
+            <Statistic title="Respondidas" value={answeredCount} valueStyle={{ color: '#52c41a' }} />
+          </div>
+        </Col>
+      </Row>
+
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
         <Row gutter={[8, 8]} align="middle">
           <Col>
@@ -175,75 +345,129 @@ export default function PerguntasPage() {
               placeholder="Buscar (ID, anúncio, cliente, pergunta)"
               prefix={<SearchOutlined />}
               value={search}
-              onChange={e => setSearch(e.target.value)}
-              style={{ width: 280 }}
+              onChange={(event) => setSearch(event.target.value)}
+              style={{ width: 300 }}
               allowClear
             />
           </Col>
           <Col>
-            <Select placeholder="Status" value={statusFilter || undefined} onChange={v => setStatusFilter(v as QuestionStatus | '')} options={statusOptions} style={{ width: 150 }} allowClear onClear={() => setStatusFilter('')} />
-          </Col>
-          <Col>
-            <RangePicker
-              onChange={(_, dateStrings) => setPerguntaRange([dateStrings[0] || null, dateStrings[1] || null])}
-              format="DD/MM/YYYY"
-              style={{ width: 230 }}
-              placeholder={['Data perg. início', 'Data perg. fim']}
+            <Select
+              placeholder="Status"
+              value={statusFilter || undefined}
+              onChange={(value) => setStatusFilter(value as QuestionStatus | '')}
+              options={statusOptions}
+              style={{ width: 160 }}
+              allowClear
+              onClear={() => setStatusFilter('')}
             />
           </Col>
           <Col>
             <RangePicker
-              onChange={(_, dateStrings) => setRespostaRange([dateStrings[0] || null, dateStrings[1] || null])}
+              onChange={(dates) => setPerguntaRange([
+                dates?.[0]?.toDate?.() || null,
+                dates?.[1]?.toDate?.() || null,
+              ])}
               format="DD/MM/YYYY"
-              style={{ width: 230 }}
-              placeholder={['Data resp. início', 'Data resp. fim']}
+              style={{ width: 250 }}
+              placeholder={['Pergunta início', 'Pergunta fim']}
             />
+          </Col>
+          <Col>
+            <RangePicker
+              onChange={(dates) => setRespostaRange([
+                dates?.[0]?.toDate?.() || null,
+                dates?.[1]?.toDate?.() || null,
+              ])}
+              format="DD/MM/YYYY"
+              style={{ width: 250 }}
+              placeholder={['Resposta início', 'Resposta fim']}
+            />
+          </Col>
+          <Col flex="auto" />
+          <Col>
+            <Button icon={<ReloadOutlined />} onClick={loadQuestions} loading={loading}>
+              Atualizar
+            </Button>
           </Col>
         </Row>
       </div>
+
+      {error ? (
+        <Alert
+          type="error"
+          showIcon
+          message="Falha ao carregar perguntas"
+          description={error}
+          style={{ marginBottom: 16 }}
+        />
+      ) : null}
+
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
         <ResizableTable<Pergunta>
           storageKey="perguntas"
           dataSource={filtered}
           columns={columns}
           rowKey="id"
+          loading={loading}
           rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
           expandable={{
             expandedRowRender: (record) => (
-              <div style={{ padding: '4px 0' }}>
-                {record.status === 'pendente' ? (
-                  <div>
-                    <Input.TextArea
-                      rows={3}
-                      placeholder="Digite sua resposta..."
-                      value={replyTexts[record.id] ?? ''}
-                      onChange={e => setReplyTexts(prev => ({ ...prev, [record.id]: e.target.value }))}
-                      style={{ background: '#1f1f1f', border: '1px solid #303030', color: '#e0e0e0', borderRadius: 6 }}
-                    />
-                    <Button
-                      type="primary"
-                      size="small"
-                      style={{ marginTop: 8 }}
-                      onClick={() => handleReply(record.id)}
-                    >
-                      Responder
-                    </Button>
-                  </div>
+              <div style={{ padding: '8px 0', color: '#c0c0c0', lineHeight: 1.7 }}>
+                <Text strong style={{ color: '#e0e0e0' }}>Pergunta:</Text>
+                <div style={{ marginBottom: 8 }}>{record.pergunta}</div>
+                <Text strong style={{ color: '#e0e0e0' }}>Resposta:</Text>
+                {record.resposta ? (
+                  <div>{record.resposta}</div>
                 ) : (
-                  <div style={{ color: '#c0c0c0', fontSize: 14, lineHeight: 1.7, padding: '4px 0' }}>
-                    {record.resposta}
-                  </div>
+                  <Space direction="vertical" style={{ width: '100%' }}>
+                    <Text type="secondary">Ainda sem resposta no Mercado Livre.</Text>
+                    <Button type="primary" size="small" icon={<SendOutlined />} onClick={() => openAnswerModal(record)}>
+                      Responder agora
+                    </Button>
+                  </Space>
                 )}
               </div>
             ),
             rowExpandable: () => true,
           }}
-          pagination={{ pageSize: 20, showSizeChanger: true, showTotal: t => `${t} perguntas` }}
-          scroll={{ x: 1100 }}
+          pagination={{ pageSize: 20, showSizeChanger: true, showTotal: (count) => `${count} perguntas` }}
+          scroll={{ x: 1350 }}
           style={{ background: 'transparent' }}
           size="small"
         />
       </div>
+
+      <Modal
+        title="Responder pergunta no Mercado Livre"
+        open={answerModalOpen}
+        onCancel={() => setAnswerModalOpen(false)}
+        onOk={submitAnswer}
+        okText="Enviar resposta"
+        cancelText="Cancelar"
+        confirmLoading={answering}
+        okButtonProps={{ icon: <SendOutlined /> }}
+      >
+        {activeQuestion ? (
+          <Space direction="vertical" size={12} style={{ width: '100%' }}>
+            <div>
+              <Text type="secondary">Anúncio</Text>
+              <div>{activeQuestion.anuncio}</div>
+            </div>
+            <div>
+              <Text type="secondary">Pergunta</Text>
+              <div style={{ color: '#e0e0e0' }}>{activeQuestion.pergunta}</div>
+            </div>
+            <Input.TextArea
+              rows={5}
+              value={answerText}
+              onChange={(event) => setAnswerText(event.target.value)}
+              placeholder="Digite a resposta que será enviada ao Mercado Livre..."
+              maxLength={2000}
+              showCount
+            />
+          </Space>
+        ) : null}
+      </Modal>
     </div>
   );
 }
