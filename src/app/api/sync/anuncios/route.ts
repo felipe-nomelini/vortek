@@ -13,6 +13,7 @@ const CATALOG_ENRICH_CONCURRENCY = 4;
 const VISITS_CONCURRENCY = 3;
 const TRANSIENT_RETRY_ATTEMPTS = 3;
 const TRANSIENT_RETRY_BASE_DELAY_MS = 800;
+const ML_ITEMS_SEARCH_MAX_OFFSET = 1000;
 const CATALOG_REFRESH_TRIGGER_KEY = 'catalog_no_catalogo_refresh_last_trigger_at';
 const CATALOG_REFRESH_TRIGGER_INTERVAL_MS = 10 * 60 * 1000;
 
@@ -196,6 +197,40 @@ export async function POST(request: Request) {
     }
 
     const me = meResult.data;
+    if (offset >= ML_ITEMS_SEARCH_MAX_OFFSET) {
+      warnings.push({
+        code: 'ml_items_search_offset_cap_reached',
+        message: 'Limite de paginação por offset do Mercado Livre atingido; ciclo reiniciado no próximo disparo.',
+        context: {
+          offset,
+          limit,
+          max_offset: ML_ITEMS_SEARCH_MAX_OFFSET,
+        },
+      });
+
+      return NextResponse.json({
+        success: true,
+        domain,
+        job: {
+          key: 'sync_ml_listings_observed',
+          started_at: new Date(startedAt).toISOString(),
+          finished_at: new Date().toISOString(),
+          lock_acquired: true,
+        },
+        cursor: null,
+        records: { seen: 0, snapshot_upserted: 0, failed: 0 },
+        errors,
+        warnings,
+        duration: { ms: Date.now() - startedAt },
+        ok: true,
+        sincronizados: 0,
+        total: null,
+        proximo: null,
+        acabou: true,
+        offset_cap_reached: true,
+      });
+    }
+
     const searchCheck = await fetchMLResultWithRetry<any>(`/users/${me.id}/items/search?limit=${limit}&offset=${offset}`);
     const searchResult = searchCheck.result;
     if (!searchResult.ok || !searchResult.data) {
@@ -558,7 +593,7 @@ export async function POST(request: Request) {
 
     const total = Number(search?.paging?.total || 0);
     const nextOffset = offset + limit;
-    const done = nextOffset >= total || itemIds.length < limit;
+    const done = nextOffset >= Math.min(total, ML_ITEMS_SEARCH_MAX_OFFSET) || itemIds.length < limit;
     let catalogRefreshTriggered = false;
 
     try {
