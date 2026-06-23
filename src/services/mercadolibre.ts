@@ -485,7 +485,11 @@ export async function searchItemBySellerSku(sku: string): Promise<string | null>
   if (!me) return null;
   const data = await fetchML<{ results: string[] }>(`/users/${me.id}/items/search?seller_sku=${encodeURIComponent(sku)}`);
   if (!data?.results?.length) return null;
-  return data.results[0];
+  for (const itemId of data.results) {
+    const item = await fetchML<{ id: string; status?: string }>(`/items/${encodeURIComponent(itemId)}?attributes=id,status`);
+    if (item?.id && String(item.status || '').toLowerCase() !== 'closed') return item.id;
+  }
+  return null;
 }
 
 export async function setItemInvoiceSaleTerm(itemId: string): Promise<boolean> {
