@@ -1,4 +1,6 @@
 import { createServiceClient } from '@/lib/supabase';
+import { releaseDomainLock } from '@/lib/sync/domain-lock';
+import { SYNC_TASKS } from '@/lib/sync/registry';
 import type { Database } from '@/types/database';
 
 type JobRow = Database['public']['Tables']['jobs']['Row'];
@@ -35,6 +37,8 @@ export async function markJobAsStale(job: Pick<JobRow, 'id' | 'tipo' | 'status' 
   const serviceClient = createServiceClient();
   const log = parseLog(job.log);
   const finishedAt = nowIso();
+  let domainLockReleased = false;
+  let domainLockReleaseSkipped: string | null = null;
 
   log.push({
     event_type: 'job_marked_stale',
@@ -62,10 +66,41 @@ export async function markJobAsStale(job: Pick<JobRow, 'id' | 'tipo' | 'status' 
     throw new Error(`Falha ao marcar job stale (${job.id}): ${error.message}`);
   }
 
+  const task = SYNC_TASKS.find((entry) => entry.jobTipo === job.tipo);
+  if (task?.domain) {
+    const createdAt = job.created_at ? new Date(job.created_at).getTime() : 0;
+    const { data: lock } = await serviceClient
+      .from('sync_domain_locks')
+      .select('domain, owner_task, owner_token, acquired_at')
+      .eq('domain', task.domain)
+      .maybeSingle();
+
+    const acquiredAt = lock?.acquired_at ? new Date(lock.acquired_at).getTime() : 0;
+    const acquiredNearJobStart = Boolean(
+      createdAt
+      && acquiredAt
+      && Math.abs(acquiredAt - createdAt) <= 5 * 60 * 1000,
+    );
+
+    if (lock?.owner_task === job.tipo && acquiredNearJobStart) {
+      domainLockReleased = await releaseDomainLock({
+        domain: task.domain,
+        ownerToken: String(lock.owner_token || ''),
+        force: true,
+      });
+    } else if (lock) {
+      domainLockReleaseSkipped = 'lock_not_owned_by_stale_job';
+    } else {
+      domainLockReleaseSkipped = 'lock_not_found';
+    }
+  }
+
   return {
     id: job.id,
     tipo: job.tipo,
     previous_status: job.status,
     finished_at: finishedAt,
+    domain_lock_released: domainLockReleased,
+    domain_lock_release_skipped: domainLockReleaseSkipped,
   };
 }
