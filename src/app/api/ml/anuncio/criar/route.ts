@@ -23,6 +23,46 @@ function normalizeAttrText(input: unknown) {
   return normalizeText(input).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
+function stripVariantFragments(input: unknown) {
+  return normalizeText(input)
+    .replace(/\b(?:cor|color)\s*:\s*[^;,|]+(?:\s*[;,|]\s*(?:(?:tamanho|tam|size)\s*:)?[^;,|]+)?/gi, ' ')
+    .replace(/\b(?:tamanho|tam|size)\s*:\s*[^;,|]+/gi, ' ')
+    .replace(/[;,|]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function appendTitlePart(parts: string[], value: unknown) {
+  const text = normalizeText(value);
+  if (!text) return;
+  const normalized = normalizeAttrText(text);
+  if (!normalized || normalized === 'u') return;
+  if (parts.some((part) => normalizeAttrText(part) === normalized)) return;
+  parts.push(text);
+}
+
+function buildListingNames(params: {
+  productName: unknown;
+  brand: unknown;
+  attributesMap: Map<string, MappedAttr>;
+}) {
+  const baseName = stripVariantFragments(params.productName) || normalizeText(params.productName);
+  const brand = normalizeText(params.brand);
+  const familyName = baseName.substring(0, 60);
+
+  const titleParts = [baseName];
+  appendTitlePart(titleParts, params.attributesMap.get('COLOR')?.value_name);
+  appendTitlePart(titleParts, params.attributesMap.get('SIZE')?.value_name);
+  if (brand && !titleParts.some((part) => normalizeAttrText(part).includes(normalizeAttrText(brand)))) {
+    titleParts.push(brand);
+  }
+
+  return {
+    title: titleParts.join(' ').substring(0, 60).trim(),
+    familyName,
+  };
+}
+
 function isInvalidLiteralValue(input: unknown) {
   const txt = normalizeAttrText(input);
   return !txt || txt === 'null' || txt === 'undefined' || txt === 'n/a' || txt === 'na';
@@ -618,8 +658,11 @@ export async function POST(req: Request) {
     if (imagens.length === 0) warnings.push('Produto sem imagens locais. Será usada imagem placeholder.');
     if (picturesSource.length > pictures.length) warnings.push(`Imagens limitadas a ${pictures.length} para respeitar o limite do Mercado Livre.`);
 
-    const titulo = (produto.marca ? `${produto.nome} ${produto.marca}` : produto.nome).substring(0, 60);
-    const familyName = produto.nome.substring(0, 60);
+    const listingNames = buildListingNames({
+      productName: produto.nome,
+      brand: produto.marca,
+      attributesMap,
+    });
 
     let useFamilyName = false;
     try {
@@ -630,8 +673,8 @@ export async function POST(req: Request) {
     const listingDescription = buildDescription(produto, description);
 
     let listingPayload: Parameters<typeof createListing>[0] = {
-      title: useFamilyName ? undefined : titulo,
-      familyName: useFamilyName ? familyName : undefined,
+      title: useFamilyName ? undefined : listingNames.title,
+      familyName: useFamilyName ? listingNames.familyName : undefined,
       categoryId: categoriaId,
       price: displayPrice,
       availableQuantity: Number(produto.estoque || 0),
