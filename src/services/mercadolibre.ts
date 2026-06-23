@@ -487,7 +487,8 @@ export async function searchItemBySellerSku(sku: string): Promise<string | null>
   if (!data?.results?.length) return null;
   for (const itemId of data.results) {
     const item = await fetchML<{ id: string; status?: string }>(`/items/${encodeURIComponent(itemId)}?attributes=id,status`);
-    if (item?.id && String(item.status || '').toLowerCase() !== 'closed') return item.id;
+    const status = String(item?.status || '').toLowerCase();
+    if (item?.id && ['active', 'paused'].includes(status)) return item.id;
   }
   return null;
 }
