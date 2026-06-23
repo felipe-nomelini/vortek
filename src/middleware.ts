@@ -30,6 +30,7 @@ export async function middleware(request: NextRequest) {
   const apiKey = request.headers.get('x-api-key');
   const isSyncRoute = pathname.startsWith('/api/sync/');
   const isInternalJobRoute = pathname === '/api/dslite/pedido';
+  const isInternalCatalogRoute = pathname === '/api/catalogo/no-catalogo/refresh';
   const isMlListingFlowRoute = [
     '/api/ml/anuncio/categorias',
     '/api/ml/anuncio/schema',
@@ -43,7 +44,7 @@ export async function middleware(request: NextRequest) {
     || pathname.startsWith('/api/webhooks/')
     || pathname === '/api/ops/health';
 
-  if ((isSyncRoute || isInternalJobRoute || isMlListingFlowRoute) && apiKey === process.env.API_SECRET_KEY) {
+  if ((isSyncRoute || isInternalJobRoute || isInternalCatalogRoute || isMlListingFlowRoute) && apiKey === process.env.API_SECRET_KEY) {
     return supabaseResponse;
   }
 
