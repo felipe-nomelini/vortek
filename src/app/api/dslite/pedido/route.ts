@@ -2765,7 +2765,7 @@ async function runDsliteCreateJob(
     }
 
     let pedidoStatusFinal = 'criado';
-    let supplierDefinedAtCreation = false;
+    let supplierDefinedAtCreation = Boolean(resumeAfterSupplierPayment && dsidAtual);
     const createAttempts: any[] = [];
     if (!resumeAfterSupplierPayment || !dsidAtual) {
       await setStep('create_order_dslite', 'loading');
