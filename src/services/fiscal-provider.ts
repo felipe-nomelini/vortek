@@ -99,14 +99,63 @@ async function getBrasilNfeClient() {
   return new BrasilNFe(token, userToken, baseUrl);
 }
 
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function getErrorCauseCode(err: any): string {
+  return String(
+    err?.cause?.code
+    || err?.code
+    || err?.errno
+    || err?.error?.cause?.code
+    || err?.response?.cause?.code
+    || '',
+  ).trim();
+}
+
+function isBrasilNfeTemporaryDnsError(err: any): boolean {
+  const code = getErrorCauseCode(err);
+  const message = String(err?.message || err?.error?.message || '').toLowerCase();
+  return code === 'EAI_AGAIN' || message.includes('getaddrinfo eai_again');
+}
+
+async function withBrasilNfeDnsRetry<T>(
+  operation: () => Promise<T>,
+  options?: { attempts?: number; delayMs?: number },
+): Promise<T> {
+  const attempts = Math.max(1, Number(options?.attempts || 3));
+  const delayMs = Math.max(100, Number(options?.delayMs || 750));
+  let lastError: any = null;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return await operation();
+    } catch (err: any) {
+      lastError = err;
+      if (!isBrasilNfeTemporaryDnsError(err) || attempt >= attempts) throw err;
+      console.warn(JSON.stringify({
+        event: 'brasilnfe_dns_retry',
+        attempt,
+        attempts,
+        error_code: getErrorCauseCode(err) || null,
+        message: err?.message || null,
+      }));
+      await sleep(delayMs * attempt);
+    }
+  }
+
+  throw lastError;
+}
+
 export async function checkBrasilNfeChaveExists(chave: string, tpAmb: 1 | 2): Promise<BrasilNfeChaveCheckResult> {
   const bnfe = await getBrasilNfeClient();
-  const resp: any = await bnfe.arquivos.obterArquivosPorRange({
+  const resp: any = await withBrasilNfeDnsRetry(() => bnfe.arquivos.obterArquivosPorRange({
     Chaves: [chave],
     TipoAmbiente: tpAmb,
     TipoNota: 1,
     Type: 1,
-  } as any);
+  } as any));
 
   const quantidade = Number(resp?.Quantidade || 0);
   const avisos = Array.isArray(resp?.Avisos) ? resp.Avisos.map((v: any) => String(v)) : [];
@@ -155,12 +204,12 @@ export async function buscarNotaBrasilNfePorIdentificadorInterno(input: {
   const bnfe = await getBrasilNfeClient();
   const dtFim = input.dtFim || new Date().toISOString();
   const dtInicio = input.dtInicio || new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
-  const resp: any = await bnfe.consultas.buscarNotaFiscal({
+  const resp: any = await withBrasilNfeDnsRetry(() => bnfe.consultas.buscarNotaFiscal({
     TipoDocumentoFiscal: 1,
     DtInicio: dtInicio,
     DtFim: dtFim,
     IndentificadorInterno: input.identificadorInterno,
-  } as any);
+  } as any));
 
   const notas = Array.isArray(resp?.Notas) ? resp.Notas : [];
   if (!notas.length) {
@@ -229,11 +278,11 @@ export async function obterXmlBrasilNfePorChave(chave: string): Promise<{
 }> {
   try {
     const bnfe = await getBrasilNfeClient();
-    const buffer: Buffer = await bnfe.arquivos.pegarArquivo({
+    const buffer: Buffer = await withBrasilNfeDnsRetry(() => bnfe.arquivos.pegarArquivo({
       ChaveNF: chave,
       FileType: 1,
       TipoDocumentoFiscal: 1,
-    } as any);
+    } as any));
     const xml = buffer?.toString('utf-8') || null;
     if (!xml) return { ok: false, xml: null, error: 'XML não retornado por chave na Brasil NFe' };
     return { ok: true, xml };
@@ -253,13 +302,13 @@ export async function cancelarNotaBrasilNfePorChave(input: {
 }> {
   try {
     const bnfe = await getBrasilNfeClient();
-    const resp: any = await bnfe.eventos.cancelarNotaFiscal({
+    const resp: any = await withBrasilNfeDnsRetry(() => bnfe.eventos.cancelarNotaFiscal({
       ChaveNF: input.chave,
       NumeroProtocolo: input.protocolo || undefined,
       Justificativa: input.justificativa || 'Cancelamento para reemissão operacional',
       TipoDocumento: 0,
       NumeroSequencial: 1,
-    } as any);
+    } as any));
 
     const status = Number(resp?.Status || 0);
     const cod = Number(resp?.CodStatusRespostaSefaz || 0);
@@ -291,12 +340,12 @@ export async function enviarCartaCorrecaoBrasilNfePorChave(input: {
 }> {
   try {
     const bnfe = await getBrasilNfeClient();
-    const resp: any = await bnfe.eventos.enviarCartaCorrecao({
+    const resp: any = await withBrasilNfeDnsRetry(() => bnfe.eventos.enviarCartaCorrecao({
       ChaveNF: input.chave,
       Correcao: input.correcao,
       NumeroSequencial: Number(input.numeroSequencial || 1),
       TipoAmbiente: Number(input.tipoAmbiente || 1),
-    } as any);
+    } as any));
 
     const status = Number(resp?.Status || 0);
     const cod = Number(resp?.CodStatusRespostaSefaz || 0);
@@ -347,7 +396,7 @@ class BrasilNfeFiscalProvider implements FiscalProvider {
 
     try {
       const bnfe = await this.getClient();
-      const resp: any = await bnfe.notaFiscal.enviarNotaFiscal(ctx.nfePayload as any);
+      const resp: any = await withBrasilNfeDnsRetry(() => bnfe.notaFiscal.enviarNotaFiscal(ctx.nfePayload as any));
       const ok = Boolean(resp?.ReturnNF?.Ok);
       const externalId = String(resp?.ReturnNF?.Id || resp?.ReturnNF?.Numero || resp?.codigo || '').trim() || undefined;
       const chave = resp?.ReturnNF?.ChaveNF || null;
@@ -406,9 +455,9 @@ class BrasilNfeFiscalProvider implements FiscalProvider {
   async consultarNota(externalIdOrOrderId: string): Promise<ConsultResult> {
     try {
       const bnfe = await this.getClient();
-      const resp: any = await bnfe.consultas.buscarNotaFiscal({
+      const resp: any = await withBrasilNfeDnsRetry(() => bnfe.consultas.buscarNotaFiscal({
         NumeroRecibo: externalIdOrOrderId,
-      } as any);
+      } as any));
       const found = resp?.ReturnNF || resp?.NotasFiscais?.[0] || null;
       if (!found) return { ok: false, error: 'NF não encontrada no Brasil NFe', temporary: true };
       return {
@@ -437,7 +486,7 @@ class BrasilNfeFiscalProvider implements FiscalProvider {
       let lastError: any = null;
       for (const payload of requests) {
         try {
-          buffer = await bnfe.arquivos.pegarArquivo(payload as any);
+          buffer = await withBrasilNfeDnsRetry(() => bnfe.arquivos.pegarArquivo(payload as any));
           if (buffer?.length) break;
         } catch (err: any) {
           lastError = err;
@@ -472,7 +521,7 @@ class BrasilNfeFiscalProvider implements FiscalProvider {
       let lastError: any = null;
       for (const payload of requests) {
         try {
-          buffer = await bnfe.arquivos.pegarArquivo(payload as any);
+          buffer = await withBrasilNfeDnsRetry(() => bnfe.arquivos.pegarArquivo(payload as any));
           if (buffer?.length) break;
         } catch (err: any) {
           lastError = err;
