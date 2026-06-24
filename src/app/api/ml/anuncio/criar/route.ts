@@ -53,12 +53,9 @@ function stripWordFragment(input: string, fragment: unknown) {
 
 function stripAutoAppendedAttributeFragments(input: string, attributesMap: Map<string, MappedAttr>) {
   let next = input;
-  for (const attrId of ['POSITION', 'SIDE_POSITION', 'COLOR', 'SIZE']) {
+  for (const attrId of ['POSITION', 'COLOR', 'SIZE']) {
     next = stripWordFragment(next, attributesMap.get(attrId)?.value_name);
   }
-  const side = normalizeAttrText(attributesMap.get('SIDE_POSITION')?.value_name);
-  if (side === 'direito') next = stripWordFragment(next, 'direita');
-  if (side === 'esquerdo') next = stripWordFragment(next, 'esquerda');
   return next || input;
 }
 
