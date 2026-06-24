@@ -101,8 +101,16 @@ export async function createOrUpdateOpsIssue(input: {
     'auto-triage',
   ]));
   const searchQuery = encodeURIComponent(`repo:${owner}/${repo} is:issue is:open "${fingerprint}"`);
-  const search = await githubRequest<{ items?: GitHubIssue[] }>(`/search/issues?q=${searchQuery}&per_page=1`);
-  const existing = search.items?.[0] || null;
+  const search = await githubRequest<{ items?: GitHubIssue[] }>(`/search/issues?q=${searchQuery}&per_page=10`);
+  let existing: GitHubIssue | null = null;
+  for (const item of search.items || []) {
+    if (item.pull_request) continue;
+    const issue = await githubRequest<GitHubIssue>(`/repos/${owner}/${repo}/issues/${item.number}`);
+    if (issue.body?.includes(fingerprint)) {
+      existing = issue;
+      break;
+    }
+  }
 
   const body = [
     `## ${input.title}`,
@@ -176,8 +184,16 @@ export async function findOpenOpsIssueByFingerprint(fingerprint: string) {
   const cleanFingerprint = String(fingerprint || '').trim();
   if (!cleanFingerprint) return null;
   const searchQuery = encodeURIComponent(`repo:${owner}/${repo} is:issue is:open "${cleanFingerprint}"`);
-  const search = await githubRequest<{ items?: GitHubIssue[] }>(`/search/issues?q=${searchQuery}&per_page=1`);
-  const issue = search.items?.find((item) => !item.pull_request) || null;
+  const search = await githubRequest<{ items?: GitHubIssue[] }>(`/search/issues?q=${searchQuery}&per_page=10`);
+  let issue: GitHubIssue | null = null;
+  for (const item of search.items || []) {
+    if (item.pull_request) continue;
+    const candidate = await githubRequest<GitHubIssue>(`/repos/${owner}/${repo}/issues/${item.number}`);
+    if (candidate.body?.includes(cleanFingerprint)) {
+      issue = candidate;
+      break;
+    }
+  }
   if (!issue) return null;
   return {
     number: issue.number,
