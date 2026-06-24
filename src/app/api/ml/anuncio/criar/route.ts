@@ -51,11 +51,42 @@ function stripWordFragment(input: string, fragment: unknown) {
     .trim();
 }
 
+function stripTextPattern(input: string, pattern: RegExp) {
+  return input.replace(pattern, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function stripColorVariants(input: string, color: unknown) {
+  const normalized = normalizeAttrText(color);
+  let next = input;
+  if (normalized === 'preto') next = stripTextPattern(next, /\bpret[ao]s?\b/gi);
+  if (normalized === 'branco') next = stripTextPattern(next, /\bbranc[ao]s?\b/gi);
+  if (normalized === 'vermelho') next = stripTextPattern(next, /\bvermelh[ao]s?\b/gi);
+  if (normalized === 'cinza') next = stripTextPattern(next, /\bcinzas?\b/gi);
+  if (normalized === 'grafite') next = stripTextPattern(next, /\bgrafites?\b/gi);
+  return next;
+}
+
+function stripPositionVariants(input: string, position: unknown) {
+  const normalized = normalizeAttrText(position);
+  let next = input;
+  if (normalized.includes('dianteira') && normalized.includes('traseira')) {
+    next = stripTextPattern(next, /\b(?:diant(?:eira)?|dian)\s*[\\/-]?\s*(?:tras(?:eira)?|traseira)\b/gi);
+    next = stripTextPattern(next, /\b(?:dianteira|traseira)\s*[\\/-]\s*(?:dianteira|traseira)\b/gi);
+  } else if (normalized === 'dianteira') {
+    next = stripTextPattern(next, /\b(?:diant(?:eira)?|dian)\b/gi);
+  } else if (normalized === 'traseira') {
+    next = stripTextPattern(next, /\b(?:tras(?:eira)?|traseira)\b/gi);
+  }
+  return next;
+}
+
 function stripAutoAppendedAttributeFragments(input: string, attributesMap: Map<string, MappedAttr>) {
   let next = input;
   for (const attrId of ['POSITION', 'COLOR', 'SIZE']) {
     next = stripWordFragment(next, attributesMap.get(attrId)?.value_name);
   }
+  next = stripColorVariants(next, attributesMap.get('COLOR')?.value_name);
+  next = stripPositionVariants(next, attributesMap.get('POSITION')?.value_name);
   return next || input;
 }
 
