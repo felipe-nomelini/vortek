@@ -6,6 +6,7 @@ import { createServiceClient } from '@/lib/supabase';
 import { fiscalStrictSchema, mapOriginType, normalizeNcm } from '@/lib/fiscal-strict';
 import { DEFAULT_ML_WARRANTY_TIME, normalizeMlSaleTerms, normalizeMlWarrantyTime } from '@/lib/ml-sale-terms';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
+import { assertAllowedMlCategoryForProduct } from '@/lib/ml-category-guard';
 
 type StepResult = { ok: boolean; error?: string };
 type AttrInput = { id: string; value_name?: string; value_id?: string };
@@ -422,6 +423,11 @@ export async function POST(req: Request) {
     }
     if (String(produto.ml_item_id || '').trim()) {
       return NextResponse.json({ error: 'Produto já possui anúncio vinculado no Mercado Livre.' }, { status: 409 });
+    }
+    try {
+      await assertAllowedMlCategoryForProduct(produto, categoriaId);
+    } catch (err: any) {
+      return NextResponse.json({ error: err.message }, { status: 422 });
     }
 
     const steps: Record<'categoria' | 'atributos' | 'anuncio' | 'descricao' | 'atacado' | 'fiscal', StepResult> = {

@@ -1,6 +1,17 @@
 import { NextResponse } from 'next/server';
 import { getCategoryAttributes, predictCategory } from '@/services/mercadolibre';
 import { createServiceClient } from '@/lib/supabase';
+import { filterPetShopPredictions, requiresPetShopCategory } from '@/lib/ml-category-guard';
+
+function uniquePredictions(predictions: any[]) {
+  const seen = new Set<string>();
+  return predictions.filter((prediction) => {
+    const categoryId = String(prediction?.category_id || '');
+    if (!categoryId || seen.has(categoryId)) return false;
+    seen.add(categoryId);
+    return true;
+  });
+}
 
 export async function POST(req: Request) {
   try {
@@ -12,7 +23,7 @@ export async function POST(req: Request) {
     const supabase = createServiceClient();
     const { data: produto, error } = await supabase
       .from('produtos')
-      .select('sku, nome, marca, categoria')
+      .select('sku, nome, marca, categoria, fornecedor, dslite_fornecedor_id')
       .eq('id', produtoId)
       .single();
 
@@ -24,7 +35,14 @@ export async function POST(req: Request) {
       ? `${produto.nome} ${produto.marca}`.substring(0, 60)
       : produto.nome.substring(0, 60);
 
-    const predictions = await predictCategory(titulo);
+    const basePredictions = await predictCategory(titulo, 8);
+    const predictions = requiresPetShopCategory(produto)
+      ? await filterPetShopPredictions(uniquePredictions([
+          ...(basePredictions || []),
+          ...((await predictCategory(`${titulo} pet cachorro gato`, 8)) || []),
+        ]))
+      : basePredictions;
+
     if (!predictions || predictions.length === 0) {
       return NextResponse.json({ error: 'Não foi possível prever a categoria' }, { status: 502 });
     }
