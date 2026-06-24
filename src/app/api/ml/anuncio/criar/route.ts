@@ -42,6 +42,26 @@ function appendTitlePart(parts: string[], value: unknown) {
   parts.push(text);
 }
 
+function stripWordFragment(input: string, fragment: unknown) {
+  const text = normalizeText(fragment);
+  if (!text) return input;
+  return input
+    .replace(new RegExp(`\\b${text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi'), ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function stripAutoAppendedAttributeFragments(input: string, attributesMap: Map<string, MappedAttr>) {
+  let next = input;
+  for (const attrId of ['POSITION', 'SIDE_POSITION', 'COLOR', 'SIZE']) {
+    next = stripWordFragment(next, attributesMap.get(attrId)?.value_name);
+  }
+  const side = normalizeAttrText(attributesMap.get('SIDE_POSITION')?.value_name);
+  if (side === 'direito') next = stripWordFragment(next, 'direita');
+  if (side === 'esquerdo') next = stripWordFragment(next, 'esquerda');
+  return next || input;
+}
+
 function buildListingNames(params: {
   productName: unknown;
   brand: unknown;
@@ -49,7 +69,7 @@ function buildListingNames(params: {
 }) {
   const baseName = stripVariantFragments(params.productName) || normalizeText(params.productName);
   const brand = normalizeText(params.brand);
-  const familyName = baseName.substring(0, 60);
+  const familyName = stripAutoAppendedAttributeFragments(baseName, params.attributesMap).substring(0, 60);
 
   const titleParts = [baseName];
   appendTitlePart(titleParts, params.attributesMap.get('COLOR')?.value_name);
