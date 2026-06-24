@@ -698,7 +698,7 @@ export default function PedidosPage() {
       order,
       compraId: order.compra_id,
       dsid: order.dslite_id,
-      resumeAfterConfirm: false,
+      resumeAfterConfirm: true,
       fornecedorNome: order.fornecedor_nome || null,
       supplierPaymentAmount: order.supplier_payment_amount ?? null,
       supplierPixKey: order.supplier_pix_key || null,
@@ -713,7 +713,8 @@ export default function PedidosPage() {
 
   const confirmarPagamentoDsliteNoFluxo = async () => {
     if (!dslitePaymentPrompt) return;
-    if (!dslitePaymentReceiptFile) {
+    const hasSavedReceipt = Boolean(dslitePaymentPrompt.order.supplier_payment_receipt_path);
+    if (!dslitePaymentReceiptFile && !hasSavedReceipt) {
       messageApi.warning('Anexe o comprovante do PIX para continuar o fluxo.');
       return;
     }
@@ -722,7 +723,9 @@ export default function PedidosPage() {
     try {
       const form = new FormData();
       form.append('resume_dslite_flow', dslitePaymentPrompt.resumeAfterConfirm ? 'true' : 'false');
-      form.append('receipt', dslitePaymentReceiptFile);
+      if (dslitePaymentReceiptFile) {
+        form.append('receipt', dslitePaymentReceiptFile);
+      }
       if (dslitePaymentReference.trim()) {
         form.append('supplier_payment_reference', dslitePaymentReference.trim());
       }
@@ -1558,9 +1561,12 @@ export default function PedidosPage() {
             disabled={confirmingDslitePayment}
           >
             <Button icon={<UploadOutlined />} disabled={confirmingDslitePayment}>
-              Anexar comprovante
+              {dslitePaymentPrompt?.order.supplier_payment_receipt_path ? 'Substituir comprovante' : 'Anexar comprovante'}
             </Button>
           </Upload>
+          {dslitePaymentPrompt?.order.supplier_payment_receipt_path && !dslitePaymentReceiptFile && (
+            <Text type="secondary">Comprovante já salvo. Você pode continuar sem anexar novamente.</Text>
+          )}
         </Space>
       </Modal>
       <ProgressModal
