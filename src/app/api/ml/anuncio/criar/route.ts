@@ -59,6 +59,17 @@ function stripAutoAppendedAttributeFragments(input: string, attributesMap: Map<s
   return next || input;
 }
 
+function truncateListingName(input: string, maxLength = 60) {
+  let text = normalizeText(input);
+  if (text.length <= maxLength) return text;
+  text = text.slice(0, maxLength).replace(/\s+\S*$/, '').trim();
+  text = text
+    .replace(/\b(?:compat[ií]vel|para|com|de|do|da|dos|das|e|ou)$/i, '')
+    .replace(/[-/,;:]+$/g, '')
+    .trim();
+  return text || normalizeText(input).slice(0, maxLength).trim();
+}
+
 function buildListingNames(params: {
   productName: unknown;
   brand: unknown;
@@ -66,7 +77,7 @@ function buildListingNames(params: {
 }) {
   const baseName = stripVariantFragments(params.productName) || normalizeText(params.productName);
   const brand = normalizeText(params.brand);
-  const familyName = stripAutoAppendedAttributeFragments(baseName, params.attributesMap).substring(0, 60);
+  const familyName = truncateListingName(stripAutoAppendedAttributeFragments(baseName, params.attributesMap));
 
   const titleParts = [baseName];
   appendTitlePart(titleParts, params.attributesMap.get('COLOR')?.value_name);
