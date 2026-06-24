@@ -2548,30 +2548,46 @@ async function runDsliteCreateJob(
     if (chaveAcesso && !(resumeAfterSupplierPayment && existingDsliteId)) {
       const existente = await consultarPedidoPorChaveAcesso(chaveAcesso);
       if (existente) {
-        const msg = `Já existe pedido na DSLite para esta mesma nota fiscal (chave ${chaveAcesso}, dsid: ${existente.dsid}). Gere nova NF antes de tentar novamente.`;
-        await registrarEventoNfAuditoria({
-          pedidoId,
-          mlOrderId: mlOrderId ? String(mlOrderId) : null,
-          evento: 'dslite_blocked_same_nfe',
-          respostaMl: {
+        if (existente.cancelado) {
+          await registrarEventoNfAuditoria({
+            pedidoId,
+            mlOrderId: mlOrderId ? String(mlOrderId) : null,
+            evento: 'dslite_blocked_same_nfe',
+            respostaMl: {
+              nfe_chave: chaveAcesso,
+              dsid_encontrado: existente.dsid,
+              status_dslite_encontrado: existente.status || null,
+              cancelado: true,
+              action: 'ignored_canceled_duplicate',
+            },
+            statusResultante: 'ignored_canceled_duplicate',
+          });
+        } else {
+          const msg = `Já existe pedido na DSLite para esta mesma nota fiscal (chave ${chaveAcesso}, dsid: ${existente.dsid}). Gere nova NF antes de tentar novamente.`;
+          await registrarEventoNfAuditoria({
+            pedidoId,
+            mlOrderId: mlOrderId ? String(mlOrderId) : null,
+            evento: 'dslite_blocked_same_nfe',
+            respostaMl: {
+              nfe_chave: chaveAcesso,
+              dsid_encontrado: existente.dsid,
+              status_dslite_encontrado: existente.status || null,
+              cancelado: Boolean(existente.cancelado),
+            },
+            statusResultante: 'blocked_same_nfe',
+          });
+          await setStep('validate_fiscal_prechecks', 'error', undefined, msg);
+          state = 'error';
+          result = {
+            stage: 'pre_validacao_nfe_duplicada_dslite',
             nfe_chave: chaveAcesso,
             dsid_encontrado: existente.dsid,
             status_dslite_encontrado: existente.status || null,
-            cancelado: Boolean(existente.cancelado),
-          },
-          statusResultante: 'blocked_same_nfe',
-        });
-        await setStep('validate_fiscal_prechecks', 'error', undefined, msg);
-        state = 'error';
-        result = {
-          stage: 'pre_validacao_nfe_duplicada_dslite',
-          nfe_chave: chaveAcesso,
-          dsid_encontrado: existente.dsid,
-          status_dslite_encontrado: existente.status || null,
-          message: msg,
-        };
-        await syncJob();
-        return;
+            message: msg,
+          };
+          await syncJob();
+          return;
+        }
       }
     }
 

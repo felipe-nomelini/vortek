@@ -68,6 +68,10 @@ function normalizeNfeKey(value: unknown): string {
   return String(value || '').replace(/\D/g, '');
 }
 
+function isDsliteCanceledStatus(value: unknown): boolean {
+  return String(value || '').trim().toLowerCase().includes('cancelado');
+}
+
 function buildDslitePurchaseQuery(dataInicial: string, dataFinal: string, page: number) {
   const params = new URLSearchParams({
     data_criacao_inicial: `${dataInicial}T00:00:00`,
@@ -151,6 +155,7 @@ export async function POST(request: Request) {
     let linkedByNfeFallback = 0;
     let withoutNfe = 0;
     let linkNotFound = 0;
+    let linkSkippedCanceled = 0;
 
     const fallbackNfeMap = new Map<string, string[]>();
     const { data: pedidosComNfe } = await client
@@ -297,7 +302,9 @@ export async function POST(request: Request) {
             }
           }
 
-          if (pedido.nf_chave) {
+          if (pedido.nf_chave && isDsliteCanceledStatus(pedido.status)) {
+            linkSkippedCanceled += 1;
+          } else if (pedido.nf_chave) {
             const { data: vinculados, error: vinculoError } = await client
               .from('pedidos')
               .update({
@@ -388,6 +395,7 @@ export async function POST(request: Request) {
         linked_by_nfe_fallback: linkedByNfeFallback,
         without_nfe: withoutNfe,
         link_not_found: linkNotFound,
+        link_skipped_canceled: linkSkippedCanceled,
         failed,
       },
       errors,
@@ -401,6 +409,7 @@ export async function POST(request: Request) {
       pedidos_vinculados_por_nfe_fallback: linkedByNfeFallback,
       pedidos_sem_nfe_chave: withoutNfe,
       vinculo_nao_encontrado_no_pedidos: linkNotFound,
+      vinculo_cancelado_ignorado: linkSkippedCanceled,
       data_inicial_usada: dataInicial,
       data_final_usada: dataFinal,
       window_days: hasExplicitRange ? null : windowDays,
