@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
+import type { MLCategoryPrediction } from '@/services/mercadolibre';
 import { getCategoryAttributes, predictCategory } from '@/services/mercadolibre';
 import { createServiceClient } from '@/lib/supabase';
-import { filterPetShopPredictions, requiresPetShopCategory } from '@/lib/ml-category-guard';
+import { filterPetShopPredictions, getPreferredPetCategoryForTitle, requiresPetShopCategory } from '@/lib/ml-category-guard';
 
 function uniquePredictions(predictions: any[]) {
   const seen = new Set<string>();
@@ -35,9 +36,20 @@ export async function POST(req: Request) {
       ? `${produto.nome} ${produto.marca}`.substring(0, 60)
       : produto.nome.substring(0, 60);
 
+    const preferredPetCategory = requiresPetShopCategory(produto) ? getPreferredPetCategoryForTitle(titulo) : null;
+    const preferredPetPrediction: MLCategoryPrediction[] = preferredPetCategory
+      ? [{
+          category_id: preferredPetCategory.id,
+          category_name: preferredPetCategory.name,
+          domain_id: '',
+          domain_name: 'Pet Shop',
+          attributes: [],
+        }]
+      : [];
     const basePredictions = await predictCategory(titulo, 8);
     const predictions = requiresPetShopCategory(produto)
       ? await filterPetShopPredictions(uniquePredictions([
+          ...preferredPetPrediction,
           ...(basePredictions || []),
           ...((await predictCategory(`${titulo} pet cachorro gato`, 8)) || []),
         ]))

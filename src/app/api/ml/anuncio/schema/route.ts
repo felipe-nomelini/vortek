@@ -70,6 +70,19 @@ function applyRuleBasedAttributeValue(attr: any, produto: any): { value_id?: str
   const attrId = String(attr.id || '').toUpperCase();
   const haystack = `${produto?.nome || ''} ${produto?.descricao || ''} ${produto?.categoria || ''}`.toLowerCase();
 
+  if (String(produto?.fornecedor || '').toLowerCase().includes('aurium') || String(produto?.dslite_fornecedor_id || '') === '100') {
+    if (attrId === 'PRODUCT_TYPE') {
+      if (/condicionador/i.test(haystack)) return { value_id: '6081794', value_name: 'Condicionador' };
+      if (/shampoo/i.test(haystack)) return { value_id: '6081793', value_name: 'Shampoo' };
+    }
+    if (attrId === 'CARE_TYPES') {
+      return { value_name: 'Higiene e cuidado dos pelos' };
+    }
+    if (attrId === 'IS_FLAMMABLE' && !/aerosol|spray/i.test(haystack)) {
+      return { value_id: '242084', value_name: 'Não' };
+    }
+  }
+
   if (attrId === 'RECOMMENDED_INSTRUMENT' && haystack.includes('contrabaixo')) {
     return { value_name: 'Contrabaixo' };
   }
