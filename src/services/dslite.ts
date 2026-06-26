@@ -10,6 +10,24 @@ interface DsliteConfig {
   token: string;
 }
 
+const DSLITE_FETCH_MAX_ATTEMPTS = 3;
+const DSLITE_FETCH_RETRY_DELAYS_MS = [750, 2000];
+const DSLITE_CREATE_ORDER_MAX_ATTEMPTS = 2;
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isRetryableDsliteStatus(status: number): boolean {
+  return status === 408 || status === 425 || status === 429 || status >= 500;
+}
+
+function isDsliteLockWaitTimeout(value: unknown): boolean {
+  return JSON.stringify(value || {})
+    .toLowerCase()
+    .includes('lock wait timeout exceeded');
+}
+
 async function getConfig(): Promise<DsliteConfig | null> {
   const client = createServiceClient();
   const { data } = await client
@@ -25,26 +43,48 @@ export async function fetchDslite<T>(path: string, options?: RequestInit): Promi
   const cfg = await getConfig();
   if (!cfg) return null;
 
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 60000);
+  for (let attempt = 1; attempt <= DSLITE_FETCH_MAX_ATTEMPTS; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 60000);
 
-  try {
-    const res = await fetch(`${cfg.url}${path}`, {
-      ...options,
-      signal: controller.signal,
-      headers: {
-        'Content-Type': 'application/json',
-        Token: cfg.token,
-        ...options?.headers,
-      },
-    });
-    if (!res.ok) return null;
-    return res.json();
-  } catch {
-    return null;
-  } finally {
-    clearTimeout(timeout);
+    try {
+      const res = await fetch(`${cfg.url}${path}`, {
+        ...options,
+        signal: controller.signal,
+        headers: {
+          'Content-Type': 'application/json',
+          Token: cfg.token,
+          ...options?.headers,
+        },
+      });
+
+      if (!res.ok) {
+        const retryable = isRetryableDsliteStatus(res.status);
+        console.warn(`[dslite] HTTP ${res.status} em ${path} (tentativa ${attempt}/${DSLITE_FETCH_MAX_ATTEMPTS})`);
+        if (retryable && attempt < DSLITE_FETCH_MAX_ATTEMPTS) {
+          await sleep(DSLITE_FETCH_RETRY_DELAYS_MS[attempt - 1] || 2000);
+          continue;
+        }
+        return null;
+      }
+
+      return res.json();
+    } catch (err: any) {
+      const isAbort = err?.name === 'AbortError';
+      console.warn(
+        `[dslite] ${isAbort ? 'timeout' : 'erro'} em ${path} (tentativa ${attempt}/${DSLITE_FETCH_MAX_ATTEMPTS}): ${err?.message || 'sem detalhe'}`,
+      );
+      if (attempt < DSLITE_FETCH_MAX_ATTEMPTS) {
+        await sleep(DSLITE_FETCH_RETRY_DELAYS_MS[attempt - 1] || 2000);
+        continue;
+      }
+      return null;
+    } finally {
+      clearTimeout(timeout);
+    }
   }
+
+  return null;
 }
 
 // ── API response types ──────────────────────────────────────
@@ -302,93 +342,122 @@ async function criarPedidoDropshippingBase(
     };
   }
 
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 60000);
+  let lastFailure: DsliteCreateOrderResult | null = null;
 
-  try {
+  for (let attempt = 1; attempt <= DSLITE_CREATE_ORDER_MAX_ATTEMPTS; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 60000);
     const formData = new FormData();
     const blob = new Blob([xmlConteudo], { type: 'application/xml' });
     formData.append('files', blob, 'nota.xml');
 
-    const res = await fetch(`${cfg.url}${endpointPath}`, {
-      method: 'POST',
-      signal: controller.signal,
-      headers: {
-        'Accept': 'application/json',
-        Token: cfg.token,
-      },
-      body: formData,
-    });
+    try {
+      const res = await fetch(`${cfg.url}${endpointPath}`, {
+        method: 'POST',
+        signal: controller.signal,
+        headers: {
+          'Accept': 'application/json',
+          Token: cfg.token,
+        },
+        body: formData,
+      });
 
-    const responseText = await res.text().catch(() => '');
-    let parsedBody: unknown = null;
-    if (responseText) {
-      try {
-        parsedBody = JSON.parse(responseText);
-      } catch {
-        parsedBody = null;
+      const responseText = await res.text().catch(() => '');
+      let parsedBody: unknown = null;
+      if (responseText) {
+        try {
+          parsedBody = JSON.parse(responseText);
+        } catch {
+          parsedBody = null;
+        }
       }
-    }
 
-    if (!res.ok) {
-      const message = `HTTP ${res.status}: ${responseText.substring(0, 500) || 'resposta vazia da DSLite'}`;
-      console.error(`[dslite] Erro ao criar pedido: ${message}`);
+      if (!res.ok) {
+        const message = `HTTP ${res.status}: ${responseText.substring(0, 500) || 'resposta vazia da DSLite'}`;
+        console.error(`[dslite] Erro ao criar pedido: ${message}`);
+        lastFailure = {
+          success: false,
+          failureType: 'http_error',
+          statusHttp: res.status,
+          responseText,
+          parsedBody,
+          message,
+          createMode,
+          endpointPath,
+        };
+        if (isRetryableDsliteStatus(res.status) && attempt < DSLITE_CREATE_ORDER_MAX_ATTEMPTS) {
+          await sleep(DSLITE_FETCH_RETRY_DELAYS_MS[attempt - 1] || 2000);
+          continue;
+        }
+        return lastFailure;
+      }
+
+      const data = parsedBody as DsliteCriarPedidoResponse | null;
+      const log = data?.logs?.[0];
+      if (!log?.dsid) {
+        const message = 'Resposta DSLite sem dsid no payload de criação';
+        console.error(`[dslite] ${message}:`, JSON.stringify(data, null, 2));
+        lastFailure = {
+          success: false,
+          failureType: 'invalid_response',
+          statusHttp: res.status,
+          responseText,
+          parsedBody,
+          message,
+          createMode,
+          endpointPath,
+        };
+        if (isDsliteLockWaitTimeout(parsedBody) && attempt < DSLITE_CREATE_ORDER_MAX_ATTEMPTS) {
+          await sleep(DSLITE_FETCH_RETRY_DELAYS_MS[attempt - 1] || 2000);
+          continue;
+        }
+        return lastFailure;
+      }
+
       return {
+        success: true,
+        dsid: log.dsid,
+        status: log.status,
+        chave_acesso: log.chave_acesso,
+        nf_numero: log.nf_numero,
+        raw: data as DsliteCriarPedidoResponse,
+        createMode,
+        endpointPath,
+      };
+    } catch (err: any) {
+      const failureType: DsliteCreateOrderFailureType = err?.name === 'AbortError' ? 'timeout' : 'cancelled';
+      const message = err?.message || 'Erro inesperado ao criar pedido na DSLite';
+      console.error(`[dslite] Erro inesperado ao criar pedido:`, err);
+      lastFailure = {
         success: false,
-        failureType: 'http_error',
-        statusHttp: res.status,
-        responseText,
-        parsedBody,
+        failureType,
+        statusHttp: null,
+        responseText: null,
+        parsedBody: null,
         message,
         createMode,
         endpointPath,
       };
+      if (attempt < DSLITE_CREATE_ORDER_MAX_ATTEMPTS) {
+        await sleep(DSLITE_FETCH_RETRY_DELAYS_MS[attempt - 1] || 2000);
+        continue;
+      }
+      return lastFailure;
+    } finally {
+      clearTimeout(timeout);
     }
-
-    const data = parsedBody as DsliteCriarPedidoResponse | null;
-    const log = data?.logs?.[0];
-    if (!log?.dsid) {
-      const message = 'Resposta DSLite sem dsid no payload de criação';
-      console.error(`[dslite] ${message}:`, JSON.stringify(data, null, 2));
-      return {
-        success: false,
-        failureType: 'invalid_response',
-        statusHttp: res.status,
-        responseText,
-        parsedBody,
-        message,
-        createMode,
-        endpointPath,
-      };
-    }
-
-    return {
-      success: true,
-      dsid: log.dsid,
-      status: log.status,
-      chave_acesso: log.chave_acesso,
-      nf_numero: log.nf_numero,
-      raw: data as DsliteCriarPedidoResponse,
-      createMode,
-      endpointPath,
-    };
-  } catch (err: any) {
-    const failureType: DsliteCreateOrderFailureType = err?.name === 'AbortError' ? 'timeout' : 'cancelled';
-    const message = err?.message || 'Erro inesperado ao criar pedido na DSLite';
-    console.error(`[dslite] Erro inesperado ao criar pedido:`, err);
-    return {
-      success: false,
-      failureType,
-      statusHttp: null,
-      responseText: null,
-      parsedBody: null,
-      message,
-      createMode,
-      endpointPath,
-    };
-  } finally {
-    clearTimeout(timeout);
   }
+
+  return lastFailure || {
+    success: false,
+    failureType: 'invalid_response',
+    statusHttp: null,
+    responseText: null,
+    parsedBody: null,
+    message: 'Falha ao criar pedido na DSLite após tentativas',
+    createMode,
+    endpointPath,
+  };
 }
 
 export async function criarPedidoDropshipping(
