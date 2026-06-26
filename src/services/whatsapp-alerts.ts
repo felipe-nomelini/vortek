@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { createServiceClient } from '@/lib/supabase';
 import { getMLAuthDiagnostics } from '@/services/integration';
-import { getWahaSessionStatus, normalizeWhatsappChatId, sendWahaText } from '@/services/waha';
+import { getWahaDiagnostics, normalizeWhatsappChatId, sendWahaText } from '@/services/waha';
 import { formatCurrency } from '@/lib/format';
 import { formatMlReleaseWindow, getMlReleaseComparableDate } from '@/lib/ml/release-window-display';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
@@ -412,8 +412,10 @@ export async function scanAndAlertReleasedLabels(limit = 20) {
 export async function alertIntegrationStatus() {
   const ml = await getMLAuthDiagnostics();
   let wahaStatus = 'unknown';
+  let waha: Record<string, unknown> | null = null;
   try {
-    wahaStatus = (await getWahaSessionStatus()).status;
+    waha = await getWahaDiagnostics();
+    wahaStatus = String(waha.status || 'unknown');
   } catch (err: any) {
     wahaStatus = `error:${err?.message || 'unknown'}`;
   }
@@ -430,7 +432,7 @@ export async function alertIntegrationStatus() {
     dedupeKey: `integration_status:${stateKey}`,
     dedupeTtlHours: problems.length ? 6 : 24,
     message: problems.length ? problems.join('\n') : 'Mercado Livre e WAHA estão conectados.',
-    payload: { ml, wahaStatus },
+    payload: { ml, wahaStatus, waha },
   });
 }
 

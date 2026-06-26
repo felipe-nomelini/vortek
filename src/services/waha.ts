@@ -4,6 +4,19 @@ export interface WahaSession {
   name: string;
   status: WahaSessionStatus;
   me?: unknown;
+  engine?: {
+    engine?: string;
+    WWebVersion?: string;
+    state?: string;
+  };
+}
+
+export interface WahaVersion {
+  version?: string;
+  engine?: string;
+  tier?: string;
+  browser?: string;
+  platform?: string;
 }
 
 export interface WahaSendFileInput {
@@ -76,6 +89,28 @@ export async function getWahaSessionStatus(sessionName?: string): Promise<WahaSe
   const { session } = getWahaConfig();
   const name = encodeURIComponent(sessionName || session);
   return wahaRequest<WahaSession>(`/api/sessions/${name}`);
+}
+
+export async function getWahaVersion(): Promise<WahaVersion> {
+  return wahaRequest<WahaVersion>('/api/version');
+}
+
+export async function getWahaDiagnostics(sessionName?: string) {
+  const [session, version] = await Promise.all([
+    getWahaSessionStatus(sessionName),
+    getWahaVersion().catch(() => null),
+  ]);
+
+  return {
+    session: session.name,
+    status: session.status,
+    engine: session.engine?.engine || version?.engine || null,
+    engineState: session.engine?.state || null,
+    version: version?.version || null,
+    tier: version?.tier || null,
+    browser: version?.browser || null,
+    platform: version?.platform || null,
+  };
 }
 
 export async function getWahaQrPng(sessionName?: string): Promise<Buffer> {

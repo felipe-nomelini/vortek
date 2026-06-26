@@ -23,7 +23,8 @@
     "backfill:shipping-labels": "node scripts/backfill-shipping-labels.js",
     "reconcile:nf-status": "node scripts/reconcile-nf-status.js",
     "dedupe:produtos:dry": "node scripts/dedupe-produtos.js",
-    "dedupe:produtos:apply": "node scripts/dedupe-produtos.js --apply"
+    "dedupe:produtos:apply": "node scripts/dedupe-produtos.js --apply",
+    "waha:gows:smoke": "node scripts/waha-gows-smoke-test.js"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.23.0",
