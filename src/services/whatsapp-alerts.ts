@@ -105,21 +105,27 @@ function parseJobLog(log: unknown): any[] {
 function summarizeJobLog(log: unknown, maxEntries = 8) {
   return parseJobLog(log)
     .slice(-maxEntries)
-    .map((entry) => ({
-      event_type: entry?.event_type || null,
-      type: entry?.type || null,
-      stage: entry?.stage || null,
-      message: entry?.message || null,
-      timestamp: entry?.timestamp || null,
-      http_status: entry?.http_status ?? null,
-      error_code: entry?.error_code || entry?.code || null,
-      error_category: entry?.error_category || entry?.category || null,
-      request_timeout_ms: entry?.request_timeout_ms ?? null,
-      duration_ms: entry?.duration_ms ?? null,
-      age_minutes: entry?.age_minutes ?? null,
-      stale_threshold_minutes: entry?.stale_threshold_minutes ?? null,
-      path: entry?.path || null,
-    }));
+    .map((entry) => {
+      const erroredStep = Array.isArray(entry?.steps)
+        ? entry.steps.find((step: any) => String(step?.status || '').toLowerCase() === 'error')
+        : null;
+
+      return {
+        event_type: entry?.event_type || entry?.event || null,
+        type: entry?.type || null,
+        stage: entry?.stage || erroredStep?.key || null,
+        message: entry?.message || erroredStep?.error || erroredStep?.detail || null,
+        timestamp: entry?.timestamp || entry?.at || erroredStep?.updatedAt || null,
+        http_status: entry?.http_status ?? null,
+        error_code: entry?.error_code || entry?.code || null,
+        error_category: entry?.error_category || entry?.category || null,
+        request_timeout_ms: entry?.request_timeout_ms ?? null,
+        duration_ms: entry?.duration_ms ?? null,
+        age_minutes: entry?.age_minutes ?? null,
+        stale_threshold_minutes: entry?.stale_threshold_minutes ?? null,
+        path: entry?.path || null,
+      };
+    });
 }
 
 function buildText(input: AlertInput) {
