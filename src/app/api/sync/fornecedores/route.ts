@@ -15,6 +15,10 @@ function extractFornecedorRecord(raw: DsliteFornecedorStatus): Record<string, un
   return raw as unknown as Record<string, unknown>;
 }
 
+function isDsliteStatusAtivo(value: unknown): boolean {
+  return asText(value).toLowerCase() === 'ativo';
+}
+
 async function buscarMetadadosFornecedorCatalogo(fornecedorId: string): Promise<{ nome: string; cnpj: string }> {
   try {
     const response = await sincronizarCatalogo(fornecedorId, 1, 1);
@@ -133,8 +137,7 @@ export async function POST(request: Request) {
 
     const enriquecimentos = await Promise.all(
       baseMapped.map(async (item) => {
-        const statusNormalizado = asText(item.status_dslite).toLowerCase();
-        if (!statusNormalizado.includes('ativo')) {
+        if (!isDsliteStatusAtivo(item.status_dslite) || !isDsliteStatusAtivo(item.crossdocking)) {
           return { dslite_id: item.dslite_id, nome: '', cnpj: '' };
         }
         return { dslite_id: item.dslite_id, ...(await buscarMetadadosFornecedorCatalogo(item.dslite_id)) };

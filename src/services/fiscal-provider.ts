@@ -120,6 +120,37 @@ function isBrasilNfeTemporaryDnsError(err: any): boolean {
   return code === 'EAI_AGAIN' || message.includes('getaddrinfo eai_again');
 }
 
+function normalizeTemporaryText(value: unknown): string {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}
+
+function isBrasilNfeTemporaryProviderMessage(value: unknown): boolean {
+  const message = normalizeTemporaryText(value);
+  return (
+    message.includes('servico paralisado momentaneamente')
+    || message.includes('paralisado momentaneamente')
+    || message.includes('tempo de processamento excedido')
+    || message.includes('timeout')
+    || message.includes('temporariamente indisponivel')
+  );
+}
+
+function extractBrasilNfeEmitError(resp: any): string | undefined {
+  return (
+    resp?.ReturnNF?.DsStatusRespostaSefaz
+    || resp?.ReturnNF?.Mensagem
+    || resp?.ReturnNF?.Msg
+    || resp?.Mensagem
+    || resp?.Message
+    || resp?.erros?.[0]?.descricao
+    || resp?.erros?.[0]?.mensagem
+    || undefined
+  );
+}
+
 async function withBrasilNfeDnsRetry<T>(
   operation: () => Promise<T>,
   options?: { attempts?: number; delayMs?: number },
@@ -396,7 +427,28 @@ class BrasilNfeFiscalProvider implements FiscalProvider {
 
     try {
       const bnfe = await this.getClient();
-      const resp: any = await withBrasilNfeDnsRetry(() => bnfe.notaFiscal.enviarNotaFiscal(ctx.nfePayload as any));
+      let resp: any = null;
+      let errorMessage: string | undefined;
+      let temporaryProviderFailure = false;
+      const attempts = 3;
+
+      for (let attempt = 1; attempt <= attempts; attempt += 1) {
+        resp = await withBrasilNfeDnsRetry(() => bnfe.notaFiscal.enviarNotaFiscal(ctx.nfePayload as any));
+        const okAttempt = Boolean(resp?.ReturnNF?.Ok);
+        errorMessage = okAttempt ? undefined : (extractBrasilNfeEmitError(resp) || 'Emissão rejeitada');
+        temporaryProviderFailure = !okAttempt && isBrasilNfeTemporaryProviderMessage(errorMessage);
+
+        if (okAttempt || !temporaryProviderFailure || attempt >= attempts) break;
+
+        console.warn(JSON.stringify({
+          event: 'brasilnfe_emit_retry',
+          attempt,
+          attempts,
+          message: errorMessage,
+        }));
+        await sleep(1500 * attempt);
+      }
+
       const ok = Boolean(resp?.ReturnNF?.Ok);
       const externalId = String(resp?.ReturnNF?.Id || resp?.ReturnNF?.Numero || resp?.codigo || '').trim() || undefined;
       const chave = resp?.ReturnNF?.ChaveNF || null;
@@ -404,22 +456,11 @@ class BrasilNfeFiscalProvider implements FiscalProvider {
       const protocolo = resp?.ReturnNF?.Numero || null;
       const xml = resp?.Base64Xml ? Buffer.from(resp.Base64Xml, 'base64').toString('utf-8') : null;
       const danfeUrl = resp?.UrlDanfe || null;
-      const errorMessage = ok
-        ? undefined
-        : (
-          resp?.ReturnNF?.DsStatusRespostaSefaz
-          || resp?.ReturnNF?.Mensagem
-          || resp?.ReturnNF?.Msg
-          || resp?.Mensagem
-          || resp?.Message
-          || resp?.erros?.[0]?.descricao
-          || resp?.erros?.[0]?.mensagem
-          || 'Emissão rejeitada'
-        );
+      errorMessage = ok ? undefined : (errorMessage || extractBrasilNfeEmitError(resp) || 'Emissão rejeitada');
 
       return {
         ok,
-        status: ok ? 'authorized' : 'rejected',
+        status: ok ? 'authorized' : (temporaryProviderFailure ? 'temporary_failure' : 'rejected'),
         externalId,
         chave,
         numero,
@@ -431,7 +472,9 @@ class BrasilNfeFiscalProvider implements FiscalProvider {
         errorDetails: ok ? null : {
           provider: 'brasilnfe',
           rawResponse: resp,
+          temporary: temporaryProviderFailure,
         },
+        temporary: temporaryProviderFailure,
       };
     } catch (err: any) {
       return {

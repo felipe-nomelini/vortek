@@ -294,6 +294,7 @@ export type EnsureBrasilNfeInvoiceResult = {
   cfop?: string | null;
   error?: string;
   errorDetails?: Record<string, any> | null;
+  temporary?: boolean;
   identificadorInterno?: string | null;
   existingNfe?: {
     chave: string;
@@ -804,6 +805,7 @@ export async function ensureBrasilNfeInvoice(input: {
       ok: false,
       error: emissao.error || 'Falha ao emitir NF na Brasil NFe.',
       errorDetails: emissao.errorDetails || null,
+      temporary: Boolean(emissao.temporary),
       consistency: {
         checked: true,
         cleanupExecuted: shouldCheckGhost,

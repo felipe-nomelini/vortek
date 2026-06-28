@@ -69,7 +69,7 @@ export async function markJobAsStale(job: Pick<JobRow, 'id' | 'tipo' | 'status' 
   const task = SYNC_TASKS.find((entry) => entry.jobTipo === job.tipo);
   if (task?.domain) {
     const createdAt = job.created_at ? new Date(job.created_at).getTime() : 0;
-    const { data: lock } = await serviceClient
+    const { data: lock } = await (serviceClient as any)
       .from('sync_domain_locks')
       .select('domain, owner_task, owner_token, acquired_at')
       .eq('domain', task.domain)
