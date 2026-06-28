@@ -146,11 +146,12 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
     await updateJob(jobId, { log: logs });
 
     const raw = await res.json().catch(() => ({}));
-    const ok = res.ok && raw?.success !== false && raw?.ok !== false;
-    const authFailure = res.status === 401 && (raw?.failure_reason === 'auth_fatal' || raw?.auth_state === 'reauth_required');
-    const statusFinal: 'completo' | 'erro' | 'failed_auth' = ok ? 'completo' : (authFailure ? 'failed_auth' : 'erro');
     const primaryError = Array.isArray(raw?.errors) && raw.errors.length > 0 ? raw.errors[0] : null;
     const errorCode = raw?.code || raw?.error_code || primaryError?.code || null;
+    const isDomainLockConflict = res.status === 409 && errorCode === 'domain_lock_conflict';
+    const ok = (res.ok && raw?.success !== false && raw?.ok !== false) || isDomainLockConflict;
+    const authFailure = res.status === 401 && (raw?.failure_reason === 'auth_fatal' || raw?.auth_state === 'reauth_required');
+    const statusFinal: 'completo' | 'erro' | 'failed_auth' = ok ? 'completo' : (authFailure ? 'failed_auth' : 'erro');
     const errorCategory = raw?.category || primaryError?.category || null;
     const upstreamStatus = raw?.upstream_status ?? primaryError?.upstream_status ?? null;
     const previousCursor = isValidFornecedorCursor(body)
@@ -180,7 +181,9 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
       type: ok ? 'success' : 'error',
       stage: tipo,
       http_status: res.status,
-      message: raw?.message || raw?.erro || raw?.error || (ok ? 'Etapa concluída' : 'Etapa falhou'),
+      message: isDomainLockConflict
+        ? 'Etapa ignorada: domínio já está em execução por outro job'
+        : (raw?.message || raw?.erro || raw?.error || (ok ? 'Etapa concluída' : 'Etapa falhou')),
       timestamp: nowIso(),
       duration_ms: Date.now() - startedAtMs,
       request_timeout_ms: requestTimeoutMs,
@@ -192,6 +195,7 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
       cursor_effective_next: effectiveNextCursor,
       cursor_exhausted: cursorExhausted,
       cursor_source: cursorSource,
+      skipped_due_to_domain_lock: isDomainLockConflict,
       ...raw,
     });
 
