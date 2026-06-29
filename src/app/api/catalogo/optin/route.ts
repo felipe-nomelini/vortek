@@ -42,35 +42,8 @@ function getAttributeValue(source: any, attributeId: string): string | null {
   return value || null;
 }
 
-function extractColorCode(...sources: unknown[]): string | null {
-  for (const source of sources) {
-    const text = normalizeText(source);
-    if (!text) continue;
-
-    const afterColor = text.match(/\bcor\s*:?\s*([0-9]{3,5})\b/);
-    if (afterColor?.[1]) return afterColor[1];
-
-    const standalone = text.match(/\b([0-9]{3,5})\b/);
-    if (standalone?.[1]) return standalone[1];
-  }
-  return null;
-}
-
-function extractLocalColorCode(produto: any, item: any): string | null {
-  return extractColorCode(
-    getAttributeValue(item, 'COLOR'),
-    getAttributeValue(item, 'MAIN_COLOR'),
-    produto?.nome,
-    produto?.descricao,
-  );
-}
-
-function extractCatalogColorCode(catalogProduct: any): string | null {
-  return extractColorCode(
-    getAttributeValue(catalogProduct, 'COLOR'),
-    getAttributeValue(catalogProduct, 'MAIN_COLOR'),
-    catalogProduct?.name,
-  );
+function getColorAttributeValue(source: any): string | null {
+  return getAttributeValue(source, 'COLOR') || getAttributeValue(source, 'MAIN_COLOR');
 }
 
 async function getRelatedPermalink(relatedItemId: string | null): Promise<string | null> {
@@ -228,20 +201,20 @@ async function validateCatalogCompatibility(params: {
   }
 
   const produto = localLookup.produto;
-  const localColorCode = extractLocalColorCode(produto, item);
-  const catalogColorCode = extractCatalogColorCode(catalogProduct);
-  if (localColorCode && catalogColorCode && localColorCode !== catalogColorCode) {
+  const localColor = getColorAttributeValue(item);
+  const catalogColor = getColorAttributeValue(catalogProduct);
+  if (localColor && catalogColor && normalizeText(localColor) !== normalizeText(catalogColor)) {
     return {
       ok: false,
       statusCode: 422,
-      message: `Catálogo incompatível: cor local ${localColorCode} diverge da cor do catálogo ${catalogColorCode}.`,
+      message: `Catálogo incompatível: cor do anúncio ${localColor} diverge da cor do catálogo ${catalogColor}.`,
       details: {
         local_sku: produto.sku,
         local_product_name: produto.nome,
         catalog_product_id: catalogProductId,
         catalog_product_name: catalogProduct?.name || null,
-        local_color_code: localColorCode,
-        catalog_color_code: catalogColorCode,
+        local_color: localColor,
+        catalog_color: catalogColor,
       },
     };
   }
