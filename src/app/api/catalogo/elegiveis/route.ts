@@ -5,6 +5,7 @@ import { fetchMLResult } from '@/services/integration';
 const DETAIL_CONCURRENCY = 6;
 const ELIGIBILITY_CHUNK_SIZE = 20;
 const PRODUCT_CONCURRENCY = 6;
+const CATALOG_FALLBACK_CONCURRENCY = 3;
 
 async function runPool<T>(items: T[], limit: number, worker: (item: T) => Promise<void>) {
   for (let i = 0; i < items.length; i += limit) {
@@ -65,15 +66,186 @@ function getEligibilityItemId(row: any): string {
   return String(row?.body?.id || row?.id || row?.body?.item_id || '').trim();
 }
 
-async function fetchCatalogProductStatuses(catalogProductIds: string[]): Promise<Map<string, string>> {
+function normalizeText(input: unknown): string {
+  return String(input ?? '')
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, ' ');
+}
+
+function getAttribute(source: any, attributeId: string): any | null {
+  return Array.isArray(source?.attributes)
+    ? source.attributes.find((row: any) => String(row?.id || '').toUpperCase() === attributeId.toUpperCase()) || null
+    : null;
+}
+
+function getAttributeValue(source: any, attributeId: string): string | null {
+  const attr = getAttribute(source, attributeId);
+  const value = String(attr?.value_name || attr?.value_id || '').trim();
+  return value || null;
+}
+
+function getAttributeNumber(source: any, attributeId: string): number | null {
+  const attr = getAttribute(source, attributeId);
+  const structNumber = Number(attr?.value_struct?.number);
+  if (Number.isFinite(structNumber)) return structNumber;
+  const value = String(attr?.value_name || '').replace(',', '.');
+  const match = value.match(/\d+(?:\.\d+)?/);
+  const parsed = match ? Number(match[0]) : NaN;
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function extractLengthMetersFromText(...values: unknown[]): number | null {
+  const text = normalizeText(values.filter(Boolean).join(' ')).replace(',', '.');
+  const match = text.match(/(\d+(?:\.\d+)?)\s*(?:m|mt|mts|metro|metros)\b/);
+  const parsed = match ? Number(match[1]) : NaN;
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function getLengthMeters(source: any): number | null {
+  return getAttributeNumber(source, 'LENGTH') ?? extractLengthMetersFromText(source?.title, source?.name);
+}
+
+function getColor(source: any): string | null {
+  return getAttributeValue(source, 'COLOR') || getAttributeValue(source, 'MAIN_COLOR');
+}
+
+function getNetworkCableCategory(source: any): string | null {
+  const attrValue = getAttributeValue(source, 'NETWORK_CABLE_CATEGORY');
+  if (attrValue) return attrValue;
+
+  const text = normalizeText([source?.title, source?.name].filter(Boolean).join(' '));
+  const match = text.match(/\bcat\s*\.?\s*(5e|5|6a|6|7|8)\b/);
+  return match ? `Categoria ${match[1].toUpperCase()}` : null;
+}
+
+function getModel(source: any): string | null {
+  return getAttributeValue(source, 'MODEL') || getAttributeValue(source, 'ALPHANUMERIC_MODELS') || getAttributeValue(source, 'MPN');
+}
+
+function buildCatalogSearchQuery(item: any): string {
+  const lengthMeters = getLengthMeters(item);
+  const parts = [
+    getAttributeValue(item, 'BRAND'),
+    getAttributeValue(item, 'MODEL'),
+    getNetworkCableCategory(item),
+    lengthMeters ? `${lengthMeters}m` : null,
+    getColor(item),
+    getAttributeValue(item, 'MPN') || getAttributeValue(item, 'ALPHANUMERIC_MODELS'),
+    item?.title,
+  ];
+  return parts.map((part) => String(part || '').trim()).filter(Boolean).join(' ');
+}
+
+function hasStrongCatalogMismatch(item: any, catalogProduct: any): boolean {
+  const itemColor = getColor(item);
+  const catalogColor = getColor(catalogProduct);
+  if (itemColor && catalogColor && normalizeText(itemColor) !== normalizeText(catalogColor)) return true;
+
+  const itemLength = getLengthMeters(item);
+  const catalogLength = getLengthMeters(catalogProduct);
+  if (itemLength !== null && catalogLength !== null && Math.abs(itemLength - catalogLength) > 0.01) return true;
+
+  const itemCategory = getNetworkCableCategory(item);
+  const catalogCategory = getNetworkCableCategory(catalogProduct);
+  if (itemCategory && catalogCategory && normalizeText(itemCategory) !== normalizeText(catalogCategory)) return true;
+
+  return false;
+}
+
+function scoreCatalogCandidate(item: any, candidate: any): number {
+  let score = 0;
+  const itemColor = getColor(item);
+  const candidateColor = getColor(candidate);
+  if (itemColor && candidateColor) {
+    if (normalizeText(itemColor) === normalizeText(candidateColor)) score += 40;
+    else score -= 80;
+  }
+
+  const itemLength = getLengthMeters(item);
+  const candidateLength = getLengthMeters(candidate);
+  if (itemLength !== null && candidateLength !== null) {
+    if (Math.abs(itemLength - candidateLength) <= 0.01) score += 40;
+    else score -= 60;
+  }
+
+  const itemCategory = getNetworkCableCategory(item);
+  const candidateCategory = getNetworkCableCategory(candidate);
+  if (itemCategory && candidateCategory) {
+    if (normalizeText(itemCategory) === normalizeText(candidateCategory)) score += 25;
+    else score -= 40;
+  }
+
+  const itemBrand = getAttributeValue(item, 'BRAND');
+  const candidateBrand = getAttributeValue(candidate, 'BRAND');
+  if (itemBrand && candidateBrand && normalizeText(itemBrand) === normalizeText(candidateBrand)) score += 15;
+
+  const itemModel = getModel(item);
+  const candidateModel = getModel(candidate);
+  if (itemModel && candidateModel && normalizeText(candidateModel).includes(normalizeText(itemModel))) score += 10;
+
+  const itemTitle = normalizeText(item?.title);
+  const candidateName = normalizeText(candidate?.name);
+  for (const token of itemTitle.split(' ').filter((part) => part.length >= 3)) {
+    if (candidateName.includes(token)) score += 1;
+  }
+
+  return score;
+}
+
+async function fetchCatalogProducts(catalogProductIds: string[]): Promise<Map<string, any>> {
   const uniqueIds = Array.from(new Set(catalogProductIds.map((id) => String(id || '').trim()).filter(Boolean)));
-  const statuses = new Map<string, string>();
+  const products = new Map<string, any>();
   await runPool(uniqueIds, PRODUCT_CONCURRENCY, async (catalogProductId) => {
     const productResult = await fetchMLResult<any>(`/products/${encodeURIComponent(catalogProductId)}`);
     if (!productResult.ok || !productResult.data) return;
-    statuses.set(catalogProductId, String(productResult.data.status || '').toLowerCase());
+    products.set(catalogProductId, productResult.data);
   });
-  return statuses;
+  return products;
+}
+
+async function findSuggestedCatalogProduct(item: any, currentProduct: any): Promise<{
+  id: string | null;
+  name: string | null;
+  score: number | null;
+  source: string | null;
+  warning: string | null;
+}> {
+  if (!currentProduct || !hasStrongCatalogMismatch(item, currentProduct)) {
+    return { id: null, name: null, score: null, source: null, warning: null };
+  }
+
+  const query = buildCatalogSearchQuery(item);
+  if (!query) return { id: null, name: null, score: null, source: null, warning: 'Catálogo ML incompatível; busca por características sem termos suficientes.' };
+
+  const domainParam = item.domain_id ? `&domain_id=${encodeURIComponent(item.domain_id)}` : '';
+  const searchResult = await fetchMLResult<any>(
+    `/products/search?site_id=MLB&status=active${domainParam}&limit=30&q=${encodeURIComponent(query)}`,
+  );
+  if (!searchResult.ok || !Array.isArray(searchResult.data?.results)) {
+    return { id: null, name: null, score: null, source: null, warning: 'Catálogo ML incompatível; fallback por características falhou.' };
+  }
+
+  const ranked = searchResult.data.results
+    .map((candidate: any) => ({
+      candidate,
+      score: scoreCatalogCandidate(item, candidate),
+    }))
+    .sort((left: any, right: any) => right.score - left.score);
+  const best = ranked[0];
+  if (!best || best.score < 80) {
+    return { id: null, name: null, score: best?.score ?? null, source: null, warning: 'Catálogo ML incompatível; nenhum catálogo alternativo confiável encontrado.' };
+  }
+
+  return {
+    id: String(best.candidate.id || ''),
+    name: best.candidate.name || null,
+    score: best.score,
+    source: 'attributes_search',
+    warning: 'ID do ML parecia incompatível; usando sugestão por características.',
+  };
 }
 
 export async function GET(request: Request) {
@@ -181,19 +353,43 @@ export async function GET(request: Request) {
   const readyForOptInBeforeFilters = rows.filter(isReadyForCatalogOptIn).length;
   rows = rows.filter(isReadyForCatalogOptIn);
 
-  const catalogProductStatuses = await fetchCatalogProductStatuses(
+  const catalogProducts = await fetchCatalogProducts(
     rows.map((row) => row.catalog_product_id).filter(Boolean),
   );
   rows = rows
     .map((row) => ({
       ...row,
-      catalog_product_status: catalogProductStatuses.get(String(row.catalog_product_id || '')) || null,
+      catalog_product_status: String(catalogProducts.get(String(row.catalog_product_id || ''))?.status || '').toLowerCase() || null,
     }))
     .filter((row) => row.catalog_product_status === 'active');
 
+  await runPool(rows, CATALOG_FALLBACK_CONCURRENCY, async (row) => {
+    const item = rowsById.get(row.ml_item_id);
+    const currentProduct = catalogProducts.get(String(row.catalog_product_id || '')) || null;
+    if (!item || !currentProduct) return;
+    const suggestion = await findSuggestedCatalogProduct(item, currentProduct);
+    row.catalog_product_id_sugerido = suggestion.id;
+    row.catalog_product_name_sugerido = suggestion.name;
+    row.catalog_product_match_source = suggestion.source;
+    row.catalog_product_match_score = suggestion.score;
+    row.catalog_product_warning = suggestion.warning;
+  });
+
   if (search) {
     rows = rows.filter((row) => {
-      const fields = [row.ml_item_id, row.title, row.seller_sku, row.catalog_product_id, row.category_id, row.domain_id, row.eligibility_status, row.eligibility_reason].map((v) => String(v || '').toLowerCase());
+      const fields = [
+        row.ml_item_id,
+        row.title,
+        row.seller_sku,
+        row.catalog_product_id,
+        row.catalog_product_id_sugerido,
+        row.catalog_product_name_sugerido,
+        row.catalog_product_warning,
+        row.category_id,
+        row.domain_id,
+        row.eligibility_status,
+        row.eligibility_reason,
+      ].map((v) => String(v || '').toLowerCase());
       return fields.some((f) => f.includes(search));
     });
   }
@@ -212,6 +408,7 @@ export async function GET(request: Request) {
     eligibility_loaded: eligibilityMap.size,
     ready_for_optin: readyForOptInBeforeFilters,
     active_catalog_products: rows.length,
+    suggested_catalog_products: rows.filter((row) => row.catalog_product_id_sugerido).length,
     returned: rows.length,
     eligibility_status: 'READY_FOR_OPTIN',
     timestamp_utc: new Date().toISOString(),

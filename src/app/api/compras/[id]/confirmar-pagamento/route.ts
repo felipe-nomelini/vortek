@@ -332,34 +332,40 @@ export async function POST(
   }
 
   let resumeJson: any = null;
+  let resumeError: string | null = null;
   if (resumeDsliteFlow) {
     const origin = new URL(request.url).origin;
-    const resumeResponse = await fetch(`${origin}/api/dslite/pedido`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        ...(process.env.API_SECRET_KEY ? { 'x-api-key': process.env.API_SECRET_KEY } : {}),
-      },
-      body: JSON.stringify({
-        pedidoId: String(pedido.id),
-        mlOrderId: String(pedido.ml_order_id),
-        nfeProvider: 'brasilnfe',
-        resumeAfterSupplierPayment: true,
-      }),
-    });
+    try {
+      const resumeResponse = await fetch(`${origin}/api/dslite/pedido`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(process.env.API_SECRET_KEY ? { 'x-api-key': process.env.API_SECRET_KEY } : {}),
+        },
+        body: JSON.stringify({
+          pedidoId: String(pedido.id),
+          mlOrderId: String(pedido.ml_order_id),
+          nfeProvider: 'brasilnfe',
+          resumeAfterSupplierPayment: true,
+        }),
+      });
 
-    resumeJson = await resumeResponse.json().catch(() => ({}));
-    if (!resumeResponse.ok) {
-      return NextResponse.json(
-        { error: resumeJson?.error || 'Falha ao retomar o fluxo DSLite após confirmar o pagamento' },
-        { status: resumeResponse.status || 500 },
-      );
+      resumeJson = await resumeResponse.json().catch(() => ({}));
+      if (!resumeResponse.ok) {
+        resumeError = resumeJson?.error || 'Falha ao retomar o fluxo DSLite após confirmar o pagamento';
+      }
+    } catch (err: any) {
+      resumeError = err?.message || 'Falha ao retomar o fluxo DSLite após confirmar o pagamento';
     }
   }
 
   return NextResponse.json({
     success: true,
     jobId: resumeJson?.jobId || null,
+    resume: resumeDsliteFlow ? {
+      started: Boolean(resumeJson?.jobId),
+      error: resumeError,
+    } : null,
     compraId,
     pedidoId: pedido.id,
     mlOrderId: pedido.ml_order_id,

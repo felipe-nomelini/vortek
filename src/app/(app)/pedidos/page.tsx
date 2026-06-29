@@ -153,6 +153,8 @@ function getDsliteActionTag(action: Order['dslite_next_action']) {
       return { color: 'gold', label: 'PIX pendente' };
     case 'send_supplier_receipt':
       return { color: 'orange', label: 'Comprovante pendente' };
+    case 'resume_dslite_flow':
+      return { color: 'gold', label: 'Retomar fluxo' };
     case 'wait_ml_label':
       return { color: 'cyan', label: 'Aguardando ML' };
     case 'complete_dslite_label':
@@ -750,6 +752,9 @@ export default function PedidosPage() {
       if (dslitePaymentPrompt.resumeAfterConfirm && json.jobId) {
         messageApi.success('PIX confirmado. Fluxo DSLite retomado.');
         await pollDsliteJob(String(json.jobId), dslitePaymentPrompt.order);
+      } else if (dslitePaymentPrompt.resumeAfterConfirm && json.resume?.error) {
+        messageApi.warning(`PIX confirmado, mas o fluxo não foi retomado: ${json.resume.error}`);
+        fetchData();
       } else {
         const whatsappDetail = json.whatsapp?.sent
           ? 'WhatsApp enviado.'
@@ -1265,10 +1270,14 @@ export default function PedidosPage() {
             icon: <UploadOutlined />,
           });
         }
-        if (hasDsliteId && (nextAction === 'confirm_supplier_payment' || nextAction === 'send_supplier_receipt')) {
+        if (hasDsliteId && (nextAction === 'confirm_supplier_payment' || nextAction === 'send_supplier_receipt' || nextAction === 'resume_dslite_flow')) {
           items.push({
             key: 'confirm_supplier_payment',
-            label: nextAction === 'send_supplier_receipt' ? 'Anexar comprovante PIX' : 'Confirmar PIX do fornecedor',
+            label: nextAction === 'resume_dslite_flow'
+              ? 'Retomar fluxo DSLite'
+              : nextAction === 'send_supplier_receipt'
+                ? 'Anexar comprovante PIX'
+                : 'Confirmar PIX do fornecedor',
             icon: <UploadOutlined />,
           });
         }

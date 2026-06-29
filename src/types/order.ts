@@ -67,6 +67,7 @@ export interface Order {
     | 'create_dslite_order'
     | 'confirm_supplier_payment'
     | 'send_supplier_receipt'
+    | 'resume_dslite_flow'
     | 'wait_ml_label'
     | 'complete_dslite_label'
     | 'done'

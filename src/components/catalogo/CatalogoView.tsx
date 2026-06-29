@@ -49,6 +49,11 @@ type ElegivelRow = {
   category_id: string | null;
   domain_id: string | null;
   catalog_product_id: string | null;
+  catalog_product_id_sugerido?: string | null;
+  catalog_product_name_sugerido?: string | null;
+  catalog_product_match_source?: string | null;
+  catalog_product_match_score?: number | null;
+  catalog_product_warning?: string | null;
   catalog_product_status?: string | null;
   eligibility_status: string | null;
   eligibility_label?: string | null;
@@ -709,7 +714,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
   }, [messageApi, mode, pollRefreshJob, refreshJobStatus, startRefreshPolling]);
 
   const handleOptin = useCallback(async (row: ElegivelRow) => {
-    const catalogProductId = row.catalog_product_id || '';
+    const catalogProductId = row.catalog_product_id_sugerido || row.catalog_product_id || '';
     if (!catalogProductId) {
       messageApi.error('Item sem catalog_product_id. Opt-in não pode ser feito automaticamente.');
       return;
@@ -1147,8 +1152,24 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       title: 'Produto Catálogo',
       dataIndex: 'catalog_product_id',
       key: 'catalog_product_id',
-      width: 160,
-      render: (v) => v ? <span style={{ fontFamily: 'monospace' }}>{v}</span> : '—',
+      width: 220,
+      render: (v, record) => {
+        const suggested = record.catalog_product_id_sugerido || null;
+        const isSuggested = Boolean(suggested && suggested !== v);
+        const value = suggested || v;
+        if (!value) return '—';
+        return (
+          <div>
+            <span style={{ fontFamily: 'monospace' }}>{value}</span>
+            {isSuggested && <Tag color="blue" style={{ marginLeft: 6 }}>Sugerido</Tag>}
+            {record.catalog_product_warning && (
+              <div style={{ color: '#faad14', fontSize: 11, marginTop: 2 }}>
+                {record.catalog_product_warning}
+              </div>
+            )}
+          </div>
+        );
+      },
     },
     { title: 'Título', dataIndex: 'title', key: 'title', width: 300 },
     {

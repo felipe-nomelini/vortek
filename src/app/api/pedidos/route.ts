@@ -142,6 +142,9 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
     } else if (paymentMode === 'prepaid_pix' && paymentStatus === 'paid' && !hasReceipt) {
       nextAction = 'send_supplier_receipt';
       nextActionLabel = 'Anexar comprovante';
+    } else if (paymentMode === 'prepaid_pix' && paymentStatus === 'paid' && hasReceipt && !labelSent) {
+      nextAction = 'resume_dslite_flow';
+      nextActionLabel = 'Retomar fluxo';
     } else if (!labelSent && labelPendingByMl) {
       nextAction = 'wait_ml_label';
       nextActionLabel = 'Aguardando ML';
