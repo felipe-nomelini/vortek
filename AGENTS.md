@@ -43,7 +43,9 @@ These rules are mandatory for this repository unless a higher-priority platform 
 4. If the direct path is blocked by missing credentials, missing access, unknown command, or ambiguous state, stop and ask for the smallest missing piece. Do not invent a workaround.
 5. Before adding process, ask: "Is this the shortest safe path the user would expect?" If not, simplify.
 6. Prefer one clear action over multi-step machinery. No mirabolant solutions.
-7. Report deviations immediately and explicitly if a higher-priority rule or tool limitation prevents the direct path.
+7. Before pushing, include all intentional project modifications in the same normal Git workflow so local `main` and GitHub `main` remain synchronized. Do not leave relevant code/config changes stranded only on the local filesystem.
+8. After every successful push, verify that the working tree has no unintended tracked changes and that `main` matches `origin/main`; only ignored local environment/cache files may remain.
+9. Report deviations immediately and explicitly if a higher-priority rule or tool limitation prevents the direct path.
 
 **Violating this rule = severe failure.**
 
