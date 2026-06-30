@@ -21,12 +21,18 @@ async function requireUser() {
   return user;
 }
 
+function normalizeBoolean(value: unknown): boolean {
+  if (typeof value === 'boolean') return value;
+  if (typeof value === 'string') return value.trim().toLowerCase() === 'true';
+  return Boolean(value);
+}
+
 function normalizePatch(body: Record<string, unknown>) {
   const patch: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(body || {})) {
     if (!editableFields.has(key)) continue;
     if (key === 'ativo') {
-      patch[key] = Boolean(value);
+      patch[key] = normalizeBoolean(value);
       continue;
     }
     patch[key] = String(value ?? '').trim();

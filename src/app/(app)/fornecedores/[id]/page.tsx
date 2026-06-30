@@ -101,11 +101,27 @@ export default function FornecedorDetailPage() {
     if (!fornecedor) return;
     setSaving(true);
     try {
+      const ativoChanged = original && fornecedor.ativo !== original.ativo;
+      if (ativoChanged) {
+        const statusRes = await fetch(`/api/fornecedores/${id}/status`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ativo: fornecedor.ativo !== false }),
+        });
+        const statusJson = await statusRes.json().catch(() => ({}));
+        if (!statusRes.ok && statusRes.status !== 207) {
+          throw new Error(statusJson.error || 'Erro ao atualizar status do fornecedor');
+        }
+        if (statusRes.status === 207 || statusJson?.success === false) {
+          const failed = Number(statusJson?.records?.ml_pause_failed || 0);
+          message.warning(`Fornecedor atualizado, mas ${failed} anúncios não entraram na fila de pausa.`);
+        }
+      }
+
       const res = await fetch(`/api/fornecedores/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ativo: fornecedor.ativo,
           apelido: fornecedor.apelido,
           nome: fornecedor.nome,
           cnpj: fornecedor.cnpj,
@@ -120,8 +136,7 @@ export default function FornecedorDetailPage() {
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(json.error || 'Erro ao salvar fornecedor');
-      setFornecedor(json.data);
-      setOriginal(json.data);
+      await fetchFornecedor();
       message.success('Fornecedor salvo com sucesso');
     } catch (err: any) {
       message.error(err.message || 'Erro ao salvar fornecedor');

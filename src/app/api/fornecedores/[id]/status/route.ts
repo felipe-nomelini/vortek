@@ -3,6 +3,8 @@ import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchAllRowsPaginated } from '@/lib/produto-filtering';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 
+export const maxDuration = 300;
+
 type ImpactProduct = {
   id: string;
   sku: string | null;
