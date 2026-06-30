@@ -180,6 +180,49 @@ function resolveAppBaseUrl(request: Request): string {
   return `${url.protocol}//${url.host}`;
 }
 
+function resolveInternalApiBaseUrl(request: Request): string {
+  const configured = String(process.env.INTERNAL_APP_URL || process.env.NEXT_INTERNAL_APP_URL || '').trim().replace(/\/+$/, '');
+  if (configured) return configured;
+  const port = String(process.env.PORT || '3000').trim() || '3000';
+  if (process.env.NODE_ENV === 'production') return `http://127.0.0.1:${port}`;
+  const url = new URL(request.url);
+  return `${url.protocol}//${url.host}`;
+}
+
+async function startDsliteResumeFlow(input: { request: Request; pedidoId: string; mlOrderId: string }) {
+  const body = JSON.stringify({
+    pedidoId: input.pedidoId,
+    mlOrderId: input.mlOrderId,
+    nfeProvider: 'brasilnfe',
+    resumeAfterSupplierPayment: true,
+  });
+  const headers = {
+    'Content-Type': 'application/json',
+    ...(process.env.API_SECRET_KEY ? { 'x-api-key': process.env.API_SECRET_KEY } : {}),
+  };
+  const urls = Array.from(new Set([
+    `${resolveInternalApiBaseUrl(input.request)}/api/dslite/pedido`,
+    `${new URL(input.request.url).origin}/api/dslite/pedido`,
+  ]));
+  let lastError: string | null = null;
+
+  for (const url of urls) {
+    try {
+      const response = await fetch(url, { method: 'POST', headers, body });
+      const json = await response.json().catch(() => ({}));
+      if (response.ok) return { json, error: null as string | null };
+      lastError = json?.error || `HTTP ${response.status}`;
+    } catch (err: any) {
+      lastError = err?.message || 'fetch failed';
+    }
+  }
+
+  return {
+    json: null as any,
+    error: lastError || 'Falha ao retomar o fluxo DSLite após confirmar o pagamento',
+  };
+}
+
 export async function POST(
   request: Request,
   { params }: { params: { id: string } },
@@ -334,29 +377,13 @@ export async function POST(
   let resumeJson: any = null;
   let resumeError: string | null = null;
   if (resumeDsliteFlow) {
-    const origin = new URL(request.url).origin;
-    try {
-      const resumeResponse = await fetch(`${origin}/api/dslite/pedido`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(process.env.API_SECRET_KEY ? { 'x-api-key': process.env.API_SECRET_KEY } : {}),
-        },
-        body: JSON.stringify({
-          pedidoId: String(pedido.id),
-          mlOrderId: String(pedido.ml_order_id),
-          nfeProvider: 'brasilnfe',
-          resumeAfterSupplierPayment: true,
-        }),
-      });
-
-      resumeJson = await resumeResponse.json().catch(() => ({}));
-      if (!resumeResponse.ok) {
-        resumeError = resumeJson?.error || 'Falha ao retomar o fluxo DSLite após confirmar o pagamento';
-      }
-    } catch (err: any) {
-      resumeError = err?.message || 'Falha ao retomar o fluxo DSLite após confirmar o pagamento';
-    }
+    const resume = await startDsliteResumeFlow({
+      request,
+      pedidoId: String(pedido.id),
+      mlOrderId: String(pedido.ml_order_id),
+    });
+    resumeJson = resume.json;
+    resumeError = resume.error;
   }
 
   return NextResponse.json({

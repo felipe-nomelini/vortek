@@ -33,6 +33,22 @@ These rules are mandatory for this repository unless a higher-priority platform 
 
 ---
 
+## Simplicity and Direct Execution Rule - MANDATORY
+
+**Always choose the simplest, most direct, least surprising path.**
+
+1. Do not create extra clones, helper repos, side workflows, abstractions, scripts, agents, or deployment paths unless strictly necessary and explicitly justified.
+2. If a normal developer workflow exists, use it exactly: edit in the project, validate, commit, push to `main`, then deploy by webhook when requested.
+3. For deploys, never modify files directly inside Easypanel. Push to GitHub `main` first, then call the configured webhook. If credentials/token are missing, ask the user before attempting alternatives.
+4. If the direct path is blocked by missing credentials, missing access, unknown command, or ambiguous state, stop and ask for the smallest missing piece. Do not invent a workaround.
+5. Before adding process, ask: "Is this the shortest safe path the user would expect?" If not, simplify.
+6. Prefer one clear action over multi-step machinery. No mirabolant solutions.
+7. Report deviations immediately and explicitly if a higher-priority rule or tool limitation prevents the direct path.
+
+**Violating this rule = severe failure.**
+
+---
+
 ## Controlled Execution Rule for GPT-5.4
 
 When using models that are not exclusively dedicated to coding, especially `gpt-5.4`, operate as an engineering agent with restricted scope.
