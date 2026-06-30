@@ -4,6 +4,7 @@
  * Os tokens são armazenados na tabela `integracoes` do Supabase.
  */
 import { randomUUID } from 'crypto';
+import { inflateRawSync } from 'zlib';
 import { createServiceClient } from '@/lib/supabase';
 import { validateMercadoLivreTokenOwner } from '@/lib/ml-account-guard';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
@@ -1298,6 +1299,50 @@ export async function upsertInvoiceDataMLByShipment(input: {
 
 export type MlLabelResponseType = 'pdf' | 'zpl2';
 
+function extractFirstTextFileFromZip(buffer: Buffer): Buffer | null {
+  const eocdSignature = 0x06054b50;
+  let eocdOffset = -1;
+  for (let i = buffer.length - 22; i >= 0 && i > buffer.length - 66000; i -= 1) {
+    if (buffer.readUInt32LE(i) === eocdSignature) {
+      eocdOffset = i;
+      break;
+    }
+  }
+  if (eocdOffset < 0) return null;
+
+  const entries = buffer.readUInt16LE(eocdOffset + 10);
+  let centralDirectoryOffset = buffer.readUInt32LE(eocdOffset + 16);
+
+  for (let entry = 0; entry < entries; entry += 1) {
+    if (centralDirectoryOffset + 46 > buffer.length || buffer.readUInt32LE(centralDirectoryOffset) !== 0x02014b50) {
+      return null;
+    }
+
+    const compressionMethod = buffer.readUInt16LE(centralDirectoryOffset + 10);
+    const compressedSize = buffer.readUInt32LE(centralDirectoryOffset + 20);
+    const fileNameLength = buffer.readUInt16LE(centralDirectoryOffset + 28);
+    const extraLength = buffer.readUInt16LE(centralDirectoryOffset + 30);
+    const commentLength = buffer.readUInt16LE(centralDirectoryOffset + 32);
+    const localHeaderOffset = buffer.readUInt32LE(centralDirectoryOffset + 42);
+    const fileName = buffer.toString('utf8', centralDirectoryOffset + 46, centralDirectoryOffset + 46 + fileNameLength);
+
+    centralDirectoryOffset += 46 + fileNameLength + extraLength + commentLength;
+    if (fileName.endsWith('/')) continue;
+    if (!/\.(txt|zpl)$/i.test(fileName)) continue;
+    if (localHeaderOffset + 30 > buffer.length || buffer.readUInt32LE(localHeaderOffset) !== 0x04034b50) return null;
+
+    const localFileNameLength = buffer.readUInt16LE(localHeaderOffset + 26);
+    const localExtraLength = buffer.readUInt16LE(localHeaderOffset + 28);
+    const dataStart = localHeaderOffset + 30 + localFileNameLength + localExtraLength;
+    const compressed = buffer.subarray(dataStart, dataStart + compressedSize);
+    if (compressionMethod === 0) return compressed;
+    if (compressionMethod === 8) return inflateRawSync(compressed);
+    return null;
+  }
+
+  return null;
+}
+
 export async function baixarEtiquetaML(
   shipmentId: string,
   options?: { responseType?: MlLabelResponseType },
@@ -1392,7 +1437,11 @@ export async function baixarEtiquetaML(
       }
 
       const arrayBuffer = await res.arrayBuffer();
-      const buffer = Buffer.from(arrayBuffer);
+      const responseBuffer = Buffer.from(arrayBuffer);
+      const isZipResponse = responseBuffer.length >= 4 && responseBuffer.readUInt32LE(0) === 0x04034b50;
+      const buffer = responseType === 'zpl2' && isZipResponse
+        ? extractFirstTextFileFromZip(responseBuffer) || responseBuffer
+        : responseBuffer;
 
       if (responseType === 'pdf' && (buffer.length < 4 || buffer.toString('ascii', 0, 4) !== '%PDF')) {
         console.error(`[baixarEtiquetaML] Resposta não é um PDF válido (tamanho: ${buffer.length})`);
@@ -1400,7 +1449,7 @@ export async function baixarEtiquetaML(
       }
 
       if (responseType === 'zpl2' && (buffer.length < 4 || !buffer.toString('utf8', 0, Math.min(buffer.length, 2048)).includes('^XA'))) {
-        console.error(`[baixarEtiquetaML] Resposta não é um ZPL válido (tamanho: ${buffer.length})`);
+        console.error(`[baixarEtiquetaML] Resposta não é um ZPL válido (tamanho: ${buffer.length}; resposta original: ${responseBuffer.length})`);
         return emptyResult({ error: 'Resposta do ML não é um ZPL válido', reason: 'invalid_zpl', retryable: true, statusCode: res.status });
       }
 

@@ -86,6 +86,22 @@ const nfeExpectedStatuses = new Set<OrderStatus>([
   'entregue',
 ]);
 
+function initDsliteOrderSteps(): ProgressStep[] {
+  return [
+    { label: 'Sincronizando pedido no Mercado Livre', status: 'loading', detail: 'Atualizando snapshot fiscal e itens do pedido' },
+    { label: 'Emitindo NF na Brasil NFe', status: 'pending' },
+    { label: 'Aguardando autorização da NF', status: 'pending' },
+    { label: 'Baixando XML da NF na Brasil NFe', status: 'pending' },
+    { label: 'Validando vínculo fiscal e pré-checagens', status: 'pending' },
+    { label: 'Buscando produto no catálogo DSLite', status: 'pending' },
+    { label: 'Criando pedido na DSLite', status: 'pending' },
+    { label: 'Informando fornecedor', status: 'pending' },
+    { label: 'Definindo transportadora (Correios)', status: 'pending' },
+    { label: 'Baixando etiqueta do Mercado Livre', status: 'pending' },
+    { label: 'Enviando etiqueta para DSLite', status: 'pending' },
+  ];
+}
+
 function isValidDsliteId(val: string | null | undefined): string | null {
   if (!val || val === 'undefined' || val === 'null' || val.trim() === '') return null;
   return val;
@@ -625,19 +641,7 @@ export default function PedidosPage() {
   };
 
   const criarPedidoDslite = async (order: Order, nfeProvider: 'brasilnfe' = 'brasilnfe') => {
-    const steps: ProgressStep[] = [
-      { label: 'Sincronizando pedido no Mercado Livre', status: 'loading', detail: 'Atualizando snapshot fiscal e itens do pedido' },
-      { label: 'Emitindo NF na Brasil NFe', status: 'pending' },
-      { label: 'Aguardando autorização da NF', status: 'pending' },
-      { label: 'Baixando XML da NF na Brasil NFe', status: 'pending' },
-      { label: 'Validando vínculo fiscal e pré-checagens', status: 'pending' },
-      { label: 'Buscando produto no catálogo DSLite', status: 'pending' },
-      { label: 'Criando pedido na DSLite', status: 'pending' },
-      { label: 'Informando fornecedor', status: 'pending' },
-      { label: 'Definindo transportadora (Correios)', status: 'pending' },
-      { label: 'Baixando etiqueta do Mercado Livre', status: 'pending' },
-      { label: 'Enviando etiqueta para DSLite', status: 'pending' },
-    ];
+    const steps = initDsliteOrderSteps();
     setDsliteSteps(steps);
     setDsliteProgressOpen(true);
     setDslitePaymentModalOpen(false);
@@ -750,6 +754,8 @@ export default function PedidosPage() {
       setDslitePaymentReference('');
       setDslitePaymentNotes('');
       if (dslitePaymentPrompt.resumeAfterConfirm && json.jobId) {
+        setDsliteSteps(initDsliteOrderSteps());
+        setDsliteProgressOpen(true);
         messageApi.success('PIX confirmado. Fluxo DSLite retomado.');
         await pollDsliteJob(String(json.jobId), dslitePaymentPrompt.order);
       } else if (dslitePaymentPrompt.resumeAfterConfirm && json.resume?.error) {
