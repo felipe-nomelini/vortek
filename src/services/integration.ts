@@ -1296,26 +1296,48 @@ export async function upsertInvoiceDataMLByShipment(input: {
   };
 }
 
-export async function baixarEtiquetaML(shipmentId: string): Promise<{
+export type MlLabelResponseType = 'pdf' | 'zpl2';
+
+export async function baixarEtiquetaML(
+  shipmentId: string,
+  options?: { responseType?: MlLabelResponseType },
+): Promise<{
   pdf: Buffer | null;
+  file: Buffer | null;
+  contentType: string;
+  extension: 'pdf' | 'zpl';
+  responseType: MlLabelResponseType;
   error?: string;
   retryable?: boolean;
-  reason?: 'buffered' | 'not_ready' | 'auth' | 'http_error' | 'invalid_pdf' | 'unknown';
+  reason?: 'buffered' | 'not_ready' | 'auth' | 'http_error' | 'invalid_pdf' | 'invalid_zpl' | 'unknown';
   statusCode?: number;
 }> {
+  const responseType: MlLabelResponseType = options?.responseType === 'zpl2' ? 'zpl2' : 'pdf';
+  const contentType = responseType === 'zpl2' ? 'text/plain' : 'application/pdf';
+  const extension: 'pdf' | 'zpl' = responseType === 'zpl2' ? 'zpl' : 'pdf';
+  const emptyResult = (extra: {
+    error?: string;
+    retryable?: boolean;
+    reason?: 'buffered' | 'not_ready' | 'auth' | 'http_error' | 'invalid_pdf' | 'invalid_zpl' | 'unknown';
+    statusCode?: number;
+  }) => ({ pdf: null, file: null, contentType, extension, responseType, ...extra });
+
   try {
     let token = await getValidMLToken();
     if (!token) {
-      return { pdf: null, error: 'Token do ML não disponível', reason: 'auth', retryable: true };
+      return emptyResult({ error: 'Token do ML não disponível', reason: 'auth', retryable: true });
     }
 
-    console.log(`[baixarEtiquetaML] Baixando etiqueta para shipment ${shipmentId}`);
+    console.log(`[baixarEtiquetaML] Baixando etiqueta ${responseType} para shipment ${shipmentId}`);
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 30000);
 
     const doFetch = async (tok: string) => {
-      return fetch(`https://api.mercadolibre.com/shipment_labels?shipment_ids=${shipmentId}`, {
+      const url = new URL('https://api.mercadolibre.com/shipment_labels');
+      url.searchParams.set('shipment_ids', shipmentId);
+      url.searchParams.set('response_type', responseType);
+      return fetch(url.toString(), {
         headers: { Authorization: `Bearer ${tok}` },
         signal: controller.signal,
       });
@@ -1332,18 +1354,18 @@ export async function baixarEtiquetaML(shipmentId: string): Promise<{
           method: 'GET',
           status: 401,
           shipment_id: shipmentId,
+          response_type: responseType,
           timestamp_utc: new Date().toISOString(),
         }));
         const freshToken = await getValidMLToken(true);
         if (!freshToken) {
           setAuthFatalCooldown('refresh_failed_label_after_401');
-          return {
-            pdf: null,
+          return emptyResult({
             error: 'Falha ao renovar token do Mercado Livre para baixar etiqueta',
             reason: 'auth',
             retryable: true,
             statusCode: 401,
-          };
+          });
         }
         token = freshToken;
         res = await doFetch(token);
@@ -1359,27 +1381,38 @@ export async function baixarEtiquetaML(shipmentId: string): Promise<{
         const isInvalidCaller = lowered.includes('invalid_shipment_caller') || lowered.includes('not printable by caller');
         const isBuffered = lowered.includes('buffered');
         const isRetryableStatus = [404, 408, 409, 423, 424, 425, 429, 500, 502, 503, 504].includes(res.status);
-        return {
-          pdf: null,
+        return emptyResult({
           error: isInvalidCaller
             ? 'Etiqueta ML não é imprimível por esta conta/token do Mercado Livre (INVALID_SHIPMENT_CALLER).'
             : text ? text.substring(0, 300) : `ML retornou HTTP ${res.status}`,
           reason: isBuffered ? 'buffered' : isNotReady ? 'not_ready' : 'http_error',
           retryable: !isInvalidCaller && (isBuffered || isNotReady || isRetryableStatus),
           statusCode: res.status,
-        };
+        });
       }
 
       const arrayBuffer = await res.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
 
-      if (buffer.length < 4 || buffer.toString('ascii', 0, 4) !== '%PDF') {
+      if (responseType === 'pdf' && (buffer.length < 4 || buffer.toString('ascii', 0, 4) !== '%PDF')) {
         console.error(`[baixarEtiquetaML] Resposta não é um PDF válido (tamanho: ${buffer.length})`);
-        return { pdf: null, error: 'Resposta do ML não é um PDF válido', reason: 'invalid_pdf', retryable: true, statusCode: res.status };
+        return emptyResult({ error: 'Resposta do ML não é um PDF válido', reason: 'invalid_pdf', retryable: true, statusCode: res.status });
       }
 
-      console.log(`[baixarEtiquetaML] Etiqueta baixada com sucesso: ${buffer.length} bytes`);
-      return { pdf: buffer, statusCode: res.status };
+      if (responseType === 'zpl2' && (buffer.length < 4 || !buffer.toString('utf8', 0, Math.min(buffer.length, 2048)).includes('^XA'))) {
+        console.error(`[baixarEtiquetaML] Resposta não é um ZPL válido (tamanho: ${buffer.length})`);
+        return emptyResult({ error: 'Resposta do ML não é um ZPL válido', reason: 'invalid_zpl', retryable: true, statusCode: res.status });
+      }
+
+      console.log(`[baixarEtiquetaML] Etiqueta ${responseType} baixada com sucesso: ${buffer.length} bytes`);
+      return {
+        pdf: responseType === 'pdf' ? buffer : null,
+        file: buffer,
+        contentType,
+        extension,
+        responseType,
+        statusCode: res.status,
+      };
     } finally {
       clearTimeout(timeout);
     }
@@ -1388,6 +1421,6 @@ export async function baixarEtiquetaML(shipmentId: string): Promise<{
     const msg = String(err?.message || 'Erro ao baixar etiqueta');
     const lowered = msg.toLowerCase();
     const buffered = lowered.includes('buffered');
-    return { pdf: null, error: msg, reason: buffered ? 'buffered' : 'unknown', retryable: true };
+    return emptyResult({ error: msg, reason: buffered ? 'buffered' : 'unknown', retryable: true });
   }
 }

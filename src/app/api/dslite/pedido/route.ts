@@ -39,7 +39,7 @@ import {
   syncPreferredProductSnapshot,
   type SupplierPaymentMode,
 } from '@/lib/produto-fornecedor';
-import { HAYAMAX_FORNECEDOR_ID, recordSupplierPurchaseDebit } from '@/lib/supplier-balance';
+import { HAYAMAX_FORNECEDOR_ID, isVanralSupplier, recordSupplierPurchaseDebit } from '@/lib/supplier-balance';
 import { getSkuLookupVariants } from '@/lib/sku';
 import { extractTaxpayerTypeFromBillingAddress, resolveDestIePolicy } from '@/lib/fiscal/ie-policy';
 import {
@@ -3304,6 +3304,10 @@ async function runDsliteCreateJob(
       resolvedShipmentId = shipmentIdForLabel;
 
       if (shipmentIdForLabel) {
+      const usarEtiquetaTermicaVanral = isVanralSupplier(fornecedorId, fornecedorNomeResolved);
+      const labelResponseType = usarEtiquetaTermicaVanral ? 'zpl2' : 'pdf';
+      const labelFileName = usarEtiquetaTermicaVanral ? 'etiqueta_ml.zpl' : 'etiqueta_ml.pdf';
+      const labelContentType = usarEtiquetaTermicaVanral ? 'text/plain' : 'application/pdf';
       const startedAt = Date.now();
       let tentativa = 0;
       let etiquetaPdf: Buffer | null = null;
@@ -3329,18 +3333,20 @@ async function runDsliteCreateJob(
           statusResultante: 'attempt',
         });
 
-        const etiquetaResult = await baixarEtiquetaML(shipmentIdForLabel);
-        if (etiquetaResult.pdf) {
-          etiquetaPdf = etiquetaResult.pdf;
-          await storeShippingLabelForPedido({
-            client,
-            pedidoId,
-            pedidoNumero: (pedidoRow as any)?.numero,
-            mlOrderId: mlOrderId ? String(mlOrderId) : null,
-            shipmentId: shipmentIdForLabel,
-            pdf: etiquetaResult.pdf,
-            source: 'dslite_pedido',
-          });
+        const etiquetaResult = await baixarEtiquetaML(shipmentIdForLabel, { responseType: labelResponseType });
+        if (etiquetaResult.file) {
+          etiquetaPdf = etiquetaResult.file;
+          if (etiquetaResult.pdf) {
+            await storeShippingLabelForPedido({
+              client,
+              pedidoId,
+              pedidoNumero: (pedidoRow as any)?.numero,
+              mlOrderId: mlOrderId ? String(mlOrderId) : null,
+              shipmentId: shipmentIdForLabel,
+              pdf: etiquetaResult.pdf,
+              source: 'dslite_pedido',
+            });
+          }
           await registrarEventoNfAuditoria({
             pedidoId,
             mlOrderId: mlOrderId ? String(mlOrderId) : null,
@@ -3351,7 +3357,11 @@ async function runDsliteCreateJob(
               elapsed_ms: Date.now() - startedAt,
               status_http: etiquetaResult.statusCode || null,
               reason: etiquetaResult.reason || null,
-              bytes: etiquetaResult.pdf.length,
+              bytes: etiquetaResult.file.length,
+              response_type: etiquetaResult.responseType,
+              file_name: labelFileName,
+              fornecedor_id: fornecedorId || null,
+              fornecedor_nome: fornecedorNomeResolved || null,
             },
             statusResultante: 'success',
           });
@@ -3415,7 +3425,11 @@ async function runDsliteCreateJob(
         await setStep('download_label_ml', 'warning', warningMessage);
         await setStep('send_label_dslite', 'warning', 'Etapa não executada por etiqueta indisponível');
       } else {
-        await setStep('download_label_ml', 'success', 'Etiqueta baixada com sucesso no Mercado Livre');
+        await setStep(
+          'download_label_ml',
+          'success',
+          usarEtiquetaTermicaVanral ? 'Etiqueta térmica ZPL2 baixada com sucesso no Mercado Livre' : 'Etiqueta baixada com sucesso no Mercado Livre',
+        );
         await setStep('send_label_dslite', 'loading');
         if (!transportadoraOk) {
           etiquetaStatus = 'erro';
@@ -3433,7 +3447,7 @@ async function runDsliteCreateJob(
           });
           await setStep('send_label_dslite', 'warning', etiquetaError);
         } else {
-          const envioEtiqueta = await enviarEtiqueta(dsidAtual as number, etiquetaPdf, 'etiqueta_ml.pdf');
+          const envioEtiqueta = await enviarEtiqueta(dsidAtual as number, etiquetaPdf, labelFileName, labelContentType);
           if (envioEtiqueta?.success) {
             etiquetaStatus = 'enviada';
             await registrarEventoNfAuditoria({
@@ -3442,10 +3456,12 @@ async function runDsliteCreateJob(
               evento: 'ml_label_send_success',
               respostaMl: {
                 ml_shipment_id: shipmentIdForLabel,
+                response_type: labelResponseType,
+                file_name: labelFileName,
               },
               statusResultante: 'success',
             });
-            await setStep('send_label_dslite', 'success', 'Etiqueta enviada com sucesso para DSLite');
+            await setStep('send_label_dslite', 'success', usarEtiquetaTermicaVanral ? 'Etiqueta térmica ZPL2 enviada com sucesso para DSLite' : 'Etiqueta enviada com sucesso para DSLite');
           } else {
             etiquetaStatus = 'erro';
             etiquetaError = envioEtiqueta?.message || 'Falha ao enviar etiqueta para DSLite';
@@ -3457,6 +3473,8 @@ async function runDsliteCreateJob(
               respostaMl: {
                 ml_shipment_id: shipmentIdForLabel,
                 error: etiquetaError,
+                response_type: labelResponseType,
+                file_name: labelFileName,
               },
               statusResultante: 'failed',
             });

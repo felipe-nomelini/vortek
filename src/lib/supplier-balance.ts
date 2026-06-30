@@ -1,10 +1,20 @@
 export const HAYAMAX_FORNECEDOR_ID = '2';
+export const VANRAL_FORNECEDOR_ID = '97';
 export const HAYAMAX_MIN_TOPUP_AMOUNT = 1000;
 
 export type SupplierBalanceMovementType = 'topup' | 'purchase_debit' | 'adjustment';
 
 export function isBalanceAccountSupplier(fornecedorId: string | number | null | undefined) {
   return String(fornecedorId || '').trim() === HAYAMAX_FORNECEDOR_ID;
+}
+
+export function isVanralSupplier(
+  fornecedorId: string | number | null | undefined,
+  fornecedorNome?: string | null,
+) {
+  const id = String(fornecedorId || '').trim();
+  if (id === VANRAL_FORNECEDOR_ID) return true;
+  return String(fornecedorNome || '').trim().toLowerCase().includes('vanral');
 }
 
 export function normalizeMoneyAmount(value: unknown): number {

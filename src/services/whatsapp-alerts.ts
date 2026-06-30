@@ -128,6 +128,37 @@ function summarizeJobLog(log: unknown, maxEntries = 8) {
     });
 }
 
+function compactSignaturePart(value: unknown, fallback: string) {
+  const raw = String(value ?? '').trim().toLowerCase();
+  return (raw || fallback)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9._:-]+/g, '_')
+    .replace(/^_+|_+$/g, '')
+    .slice(0, 120) || fallback;
+}
+
+function findRootErrorLog(logSummary: ReturnType<typeof summarizeJobLog>) {
+  for (let i = logSummary.length - 1; i >= 0; i -= 1) {
+    const entry = logSummary[i];
+    if (entry?.error_code || entry?.error_category || entry?.type === 'error') return entry;
+  }
+  return logSummary[logSummary.length - 1] || null;
+}
+
+function buildJobErrorSignature(job: { tipo?: string | null; status?: string | null }, logSummary: ReturnType<typeof summarizeJobLog>) {
+  const root = findRootErrorLog(logSummary);
+  const code = root?.error_code || root?.error_category || root?.event_type || root?.message || 'unknown_error';
+  return [
+    compactSignaturePart(job.tipo, 'unknown_job'),
+    compactSignaturePart(job.status, 'unknown_status'),
+    compactSignaturePart(root?.stage, 'unknown_stage'),
+    compactSignaturePart(code, 'unknown_error'),
+    compactSignaturePart(root?.http_status, 'no_http_status'),
+  ].join(':');
+}
+
+
 function buildText(input: AlertInput) {
   return [
     `*Vortek - ${severityLabel(input.severity || 'info')}*`,
@@ -451,42 +482,67 @@ export async function alertCriticalJobs() {
     .in('status', ['erro', 'failed_auth'])
     .gte('finished_at', since)
     .order('finished_at', { ascending: false })
-    .limit(10);
-  let alerted = 0;
+    .limit(20);
+
+  const grouped = new Map<string, Array<{ job: any; logSummary: ReturnType<typeof summarizeJobLog>; lastLog: any }>>();
   for (const job of data || []) {
     if (jobLogIncludes(job, 'domain_lock_conflict')) continue;
 
     const logSummary = summarizeJobLog(job.log);
     const lastLog = logSummary[logSummary.length - 1] || null;
+    const signature = buildJobErrorSignature(job, logSummary);
+    const current = grouped.get(signature) || [];
+    current.push({ job, logSummary, lastLog });
+    grouped.set(signature, current);
+  }
 
+  let alerted = 0;
+  let skippedTransient = 0;
+  for (const [signature, occurrences] of grouped) {
+    const latest = occurrences[0];
+    const repeatedFailure = occurrences.length >= 2;
+    const authFailure = String(latest.job.status || '') === 'failed_auth';
+    if (!repeatedFailure && !authFailure) {
+      skippedTransient += 1;
+      continue;
+    }
+
+    const rootLog = findRootErrorLog(latest.logSummary);
     const result = await sendWhatsappAlert({
       type: 'critical_error',
       severity: 'critical',
       title: 'Job crítico falhou',
-      dedupeKey: `job_error:${job.id}:${job.status}`,
+      dedupeKey: `job_error:${signature}`,
       dedupeTtlHours: 24 * 7,
       message: [
-        `Job: ${job.tipo}`,
-        `Status: ${job.status}`,
-        `Finalizado: ${job.finished_at || 'não informado'}`,
-        lastLog?.event_type ? `Evento: ${lastLog.event_type}` : null,
-        lastLog?.message ? `Erro/log: ${lastLog.message}` : null,
+        `Job: ${latest.job.tipo}`,
+        `Status: ${latest.job.status}`,
+        `Ocorrências recentes: ${occurrences.length}`,
+        `Finalizado: ${latest.job.finished_at || 'não informado'}`,
+        rootLog?.event_type ? `Evento: ${rootLog.event_type}` : latest.lastLog?.event_type ? `Evento: ${latest.lastLog.event_type}` : null,
+        rootLog?.error_code ? `Código: ${rootLog.error_code}` : null,
+        rootLog?.message ? `Erro/log: ${rootLog.message}` : latest.lastLog?.message ? `Erro/log: ${latest.lastLog.message}` : null,
         `Link: ${process.env.NEXT_PUBLIC_APP_URL || 'https://app.vortek.shop'}/dashboard`,
       ].filter(Boolean).join('\n'),
       payload: {
-        id: job.id,
-        tipo: job.tipo,
-        status: job.status,
-        created_at: job.created_at,
-        finished_at: job.finished_at,
-        last_log: lastLog,
-        log_summary: logSummary,
+        id: latest.job.id,
+        tipo: latest.job.tipo,
+        status: latest.job.status,
+        created_at: latest.job.created_at,
+        finished_at: latest.job.finished_at,
+        occurrences: occurrences.length,
+        signature,
+        root_log: rootLog,
+        last_log: latest.lastLog,
+        log_summary: latest.logSummary,
+        recent_job_ids: occurrences.map((entry) => entry.job.id).slice(0, 10),
       },
     });
     alerted += result.sent > 0 ? 1 : 0;
   }
-  return { checked: data?.length || 0, alerted };
+  return { checked: data?.length || 0, grouped: grouped.size, skipped_transient: skippedTransient, alerted };
 }
+
 
 export async function sendSalesReport(kind: 'weekly' | 'monthly', reference = new Date()) {
   const client = createServiceClient();

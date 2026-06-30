@@ -788,8 +788,9 @@ export async function definirTransportadoraPedido(
 
 export async function enviarEtiqueta(
   dsid: number | string,
-  pdfBuffer: Buffer,
-  fileName: string = 'etiqueta.pdf'
+  labelBuffer: Buffer,
+  fileName: string = 'etiqueta.pdf',
+  contentType: string = 'application/pdf'
 ): Promise<{ success: boolean; message?: string } | null> {
   const cfg = await getConfig();
   if (!cfg) return null;
@@ -798,7 +799,7 @@ export async function enviarEtiqueta(
   const timeout = setTimeout(() => controller.abort(), 60000);
 
   const formData = new FormData();
-  const blob = new Blob([new Uint8Array(pdfBuffer)], { type: 'application/pdf' });
+  const blob = new Blob([new Uint8Array(labelBuffer)], { type: contentType });
   formData.append('file', blob, fileName);
 
   try {

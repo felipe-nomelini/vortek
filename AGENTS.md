@@ -26,10 +26,34 @@ _Updated on June 9, 2026_
 
 These rules are mandatory for this repository unless a higher-priority platform instruction overrides them.
 
-1. **Always use Caveman mode for responses by default.** Keep answers concise, compressed, and technically accurate unless clarity or safety requires temporarily switching to normal style.
-2. **Always prefer `rtk` for shell commands** whenever an `rtk` equivalent exists. Use raw commands only when `rtk` does not support the workflow or when raw execution is strictly necessary.
-3. **When using shell commands, think `rtk` first.** Examples: `rtk git status`, `rtk read`, `rtk test`, `rtk ls`, `rtk grep`.
-4. **Only drop Caveman style when compression would create ambiguity, risk, or unsafe instructions**, then resume Caveman style afterward.
+1. **Always use the real Caveman mode/skill for every user-facing response by default.** Do not imitate Caveman manually if the runtime provides a Caveman skill or mode; activate/use the real mechanism first.
+2. **Keep responses concise, compressed, and technically accurate.** No verbose explanations unless needed for safety, clarity, or explicit user request.
+3. **Always prefer `rtk` for shell commands** whenever an `rtk` equivalent exists. Use raw commands only when `rtk` does not support the workflow or when raw execution is strictly necessary.
+4. **When using shell commands, think `rtk` first.** Examples: `rtk git status`, `rtk read`, `rtk test`, `rtk ls`, `rtk grep`, `rtk gh`.
+5. **If `rtk` is unavailable or lacks the needed workflow, explicitly state the fallback** and use the simplest direct alternative.
+6. **Only drop Caveman style when compression would create ambiguity, risk, or unsafe instructions**, then resume Caveman style afterward.
+7. **Do not claim Caveman or `rtk` were used unless they actually were.** Be explicit when a tool limitation forced another path.
+
+---
+
+## Direct Path and Git Sync Rule - MANDATORY
+
+These rules were added after repeated workflow failures. They are mandatory for every agent working in this repository.
+
+1. **Use the existing local project folder.** Do not create a clone, helper repo, temporary repo, side checkout, or alternate worktree unless the user explicitly asks or the current folder is unusable and the user approves.
+2. **If the local folder is not configured as the GitHub repo, configure this same folder as the Git repo instead of cloning elsewhere**, when safe and possible.
+3. **Always choose the shortest safe path the user would expect.** Normal workflow: edit local project -> validate -> commit if requested/needed -> push to `main` -> deploy webhook only when requested.
+4. **Ask for the smallest missing credential/access/info instead of inventing workaround.** Missing `gh`, token, remote, branch, sudo, SSH, deploy secret, or unclear state = stop and ask or install/configure directly with user approval.
+5. **If a standard tool is missing and installing it is the simplest path, propose/install that tool instead of building workaround machinery.** Example: install GitHub CLI `gh` when GitHub workflow needs it.
+6. **Before every push, include all intentional project modifications in the normal Git workflow.** Do not leave relevant code/config/docs changes stranded only on local filesystem.
+7. **Every push must keep local `main` and GitHub `main` synchronized.** Push all intentional tracked changes together unless user explicitly requests partial changes.
+8. **After every successful push, verify clean tracked working tree and confirm local `main` matches `origin/main`.** Only ignored env/cache files may remain.
+9. **Never edit project files directly in Easypanel.** Deployment path is GitHub `main` first, then Easypanel webhook.
+10. **Deploy webhook for `vortek-erp`:** `http://45.233.46.112:3000/api/deploy/f2f75bfaa9c228097a40066b2c41e5744a793e80df3d6cb2`.
+11. **Production/development Supabase server IP:** `192.168.0.160`. Use stored/authorized credentials only through safe tooling; never hardcode secrets into source files.
+12. **Do not over-engineer.** No mirabolant solutions, no broad process, no new abstraction, no extra service, no extra deployment path unless required and justified.
+13. **If user corrects workflow, immediately update project instructions when asked and obey from then on.**
+14. **Never lie about tool usage, actions, validation, push, deploy, or external checks.** If not done, say not done.
 
 ---
 
