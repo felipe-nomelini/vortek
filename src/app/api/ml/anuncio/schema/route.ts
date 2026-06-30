@@ -44,8 +44,21 @@ function buildDescription(produto: any): string {
   ].filter(Boolean).join('\n');
 }
 
+function supplierPartNumber(produto: any): string {
+  const dsliteId = normalizeStr(produto.dslite_produto_id);
+  const baseCode = dsliteId.match(/^(\d{5})\d{3}$/)?.[1];
+  return baseCode || dsliteId || normalizeStr(produto.sku);
+}
+
+function pickAllowedValue(attr: any, valueName: string): { value_id?: string; value_name?: string } {
+  const normalizeValue = (v: unknown) => String(v ?? '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const hit = (attr.values || []).find((v: any) => normalizeValue(v.name) === normalizeValue(valueName));
+  return hit ? { value_id: String(hit.id), value_name: String(hit.name) } : { value_name: valueName };
+}
+
 function initialAttributeValue(attr: any, produto: any): { value_id?: string; value_name?: string } {
   const attrId = String(attr.id || '').toUpperCase();
+  if (attrId === 'PART_NUMBER') return { value_name: supplierPartNumber(produto) };
   if (attrId === 'BRAND' && normalizeStr(produto.marca)) return { value_name: produto.marca };
   if (attrId === 'MODEL' && normalizeStr(produto.nome)) return { value_name: produto.nome.slice(0, 60) };
   if (attrId === 'ITEM_CONDITION') return { value_id: '2230284', value_name: 'Novo' };
@@ -69,6 +82,14 @@ function applyRuleBasedAttributeValue(attr: any, produto: any): { value_id?: str
 
   const attrId = String(attr.id || '').toUpperCase();
   const haystack = `${produto?.nome || ''} ${produto?.descricao || ''} ${produto?.categoria || ''}`.toLowerCase();
+
+  if (attrId === 'VEHICLE_TYPE') {
+    if (/\b(?:caminh|onibus|ônibus|scania|volvo|cargo|f-?4000|linha\s*pesada)\b/i.test(haystack)) return pickAllowedValue(attr, 'Linha Pesada');
+    return pickAllowedValue(attr, 'Carro/Caminhonete');
+  }
+  if (attrId === 'WRENCH_TYPE') {
+    if (/\bchave\b/i.test(haystack)) return pickAllowedValue(attr, 'Flat');
+  }
 
   if (String(produto?.fornecedor || '').toLowerCase().includes('aurium') || String(produto?.dslite_fornecedor_id || '') === '100') {
     if (attrId === 'PRODUCT_TYPE') {
