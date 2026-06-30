@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { runMlSingleStageJob } from '@/services/sync-ml-job';
 import { getMLAuthDiagnostics } from '@/services/integration';
-import { SYNC_TASKS, getIntervalMinutesForTask, getSaoPauloHour } from '@/lib/sync/registry';
+import { SYNC_TASKS, getIntervalMsForTask, getIntervalMinutesForTask, getSaoPauloHour } from '@/lib/sync/registry';
 import { DEFAULT_STALE_JOB_THRESHOLD_MINUTES, isJobStale, markJobAsStale } from '@/lib/sync/stale-jobs';
 import {
   alertCriticalJobs,
@@ -211,7 +211,8 @@ export async function POST(request: Request) {
 
   for (const task of tasksToRun) {
     const intervalMinutes = getIntervalMinutesForTask(task, hour);
-    if (!intervalMinutes || intervalMinutes <= 0) continue;
+    const intervalMs = getIntervalMsForTask(task, hour);
+    if (!intervalMs || intervalMs <= 0) continue;
 
     const isMlTask = task.kind === 'ml';
     if (isMlTask && (mlAuth.state === 'reauth_required' || Boolean(mlAuth.blocked_until))) {
@@ -272,13 +273,14 @@ export async function POST(request: Request) {
     const lastFinished = recent.find((j: any) => Boolean(j.finished_at));
     if (lastFinished?.finished_at) {
       const lastMs = new Date(lastFinished.finished_at).getTime();
-      const nextDueMs = lastMs + (intervalMinutes + backoffMinutes) * 60 * 1000;
+      const nextDueMs = lastMs + intervalMs + backoffMinutes * 60 * 1000;
       if (Date.now() < nextDueMs) {
         results.push({
           task: task.key,
           action: 'skipped_not_due',
           next_due_at: new Date(nextDueMs).toISOString(),
           interval_minutes: intervalMinutes,
+          interval_ms: intervalMs,
           backoff_minutes: backoffMinutes,
         });
         continue;
@@ -307,6 +309,7 @@ export async function POST(request: Request) {
         task: task.key,
         task_domain: task.domain,
         interval_minutes: intervalMinutes,
+        interval_ms: intervalMs,
         backoff_minutes: backoffMinutes,
         consecutive_failures: failureStreak,
         offset,

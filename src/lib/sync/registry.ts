@@ -25,6 +25,8 @@ export interface SyncTaskDefinition {
   schedule?: {
     businessMinutes: number;
     offHoursMinutes: number;
+    businessSeconds?: number;
+    offHoursSeconds?: number;
   };
   usesOffset?: boolean;
   usesCursor?: boolean;
@@ -118,8 +120,8 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'anuncios:ml_push',
     lockTtlSeconds: 20 * 60,
     kind: 'ml',
-    schedule: { businessMinutes: 1, offHoursMinutes: 1 },
-    defaultBody: { limit: 5 },
+    schedule: { businessMinutes: 1, offHoursMinutes: 1, businessSeconds: 3, offHoursSeconds: 3 },
+    defaultBody: { limit: 50 },
     runMode: 'inline',
   },
   {
@@ -201,6 +203,14 @@ export function isBusinessHour(hour: number): boolean {
 export function getIntervalMinutesForTask(task: SyncTaskDefinition, hour: number): number | null {
   if (!task.schedule) return null;
   return isBusinessHour(hour) ? task.schedule.businessMinutes : task.schedule.offHoursMinutes;
+}
+
+export function getIntervalMsForTask(task: SyncTaskDefinition, hour: number): number | null {
+  if (!task.schedule) return null;
+  const seconds = isBusinessHour(hour) ? task.schedule.businessSeconds : task.schedule.offHoursSeconds;
+  if (Number.isFinite(seconds) && Number(seconds) > 0) return Number(seconds) * 1000;
+  const minutes = getIntervalMinutesForTask(task, hour);
+  return minutes && minutes > 0 ? minutes * 60 * 1000 : null;
 }
 
 export function mapLegacyTipoToTaskKey(tipo: string): SyncTaskKey | 'todos' | null {
