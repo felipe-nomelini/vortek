@@ -49,7 +49,7 @@ These rules were added after repeated workflow failures. They are mandatory for 
 7. **Every push must keep local `main` and GitHub `main` synchronized.** Push all intentional tracked changes together unless user explicitly requests partial changes.
 8. **After every successful push, verify clean tracked working tree and confirm local `main` matches `origin/main`.** Only ignored env/cache files may remain.
 9. **Never edit project files directly in Easypanel.** Deployment path is GitHub `main` first, then Easypanel webhook.
-10. **Deploy webhook for `vortek-erp`:** `http://45.233.46.112:3000/api/deploy/f2f75bfaa9c228097a40066b2c41e5744a793e80df3d6cb2`.
+10. **Deploy webhook for `vortek-erp`:** `http://192.168.0.160:3000/api/deploy/f2f75bfaa9c228097a40066b2c41e5744a793e80df3d6cb2`.
 11. **Production/development Supabase server IP:** `192.168.0.160`. Use stored/authorized credentials only through safe tooling; never hardcode secrets into source files.
 12. **Do not over-engineer.** No mirabolant solutions, no broad process, no new abstraction, no extra service, no extra deployment path unless required and justified.
 13. **If user corrects workflow, immediately update project instructions when asked and obey from then on.**
