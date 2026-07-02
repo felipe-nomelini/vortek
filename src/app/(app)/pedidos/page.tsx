@@ -1377,13 +1377,38 @@ export default function PedidosPage() {
         </Row>
         <Divider style={{ borderColor: '#303030', margin: '12px 0' }} />
         <Row gutter={[8, 8]} align="middle">
-          {Object.entries(summary.statusCounts).map(([status, count]) => (
-            <Col key={status}>
-              <Tag color={statusColor[status as OrderStatus]} style={{ fontSize: 13, padding: '4px 10px' }}>
-                {statusLabel[status as OrderStatus]}: {count}
-              </Tag>
-            </Col>
-          ))}
+          {Object.entries(summary.statusCounts).map(([status, count]) => {
+            const typedStatus = status as OrderStatus;
+            const active = statusFilter === typedStatus;
+            return (
+              <Col key={status}>
+                <Tag
+                  color={statusColor[typedStatus]}
+                  role="button"
+                  tabIndex={0}
+                  aria-pressed={active}
+                  title={active ? 'Clique para limpar este filtro' : 'Clique para filtrar por este status'}
+                  onClick={() => setStatusFilter(active ? '' : typedStatus)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault();
+                      setStatusFilter(active ? '' : typedStatus);
+                    }
+                  }}
+                  style={{
+                    fontSize: 13,
+                    padding: '4px 10px',
+                    cursor: 'pointer',
+                    outline: active ? '1px solid #ffffff' : undefined,
+                    fontWeight: active ? 700 : 400,
+                    userSelect: 'none',
+                  }}
+                >
+                  {statusLabel[typedStatus]}: {count}
+                </Tag>
+              </Col>
+            );
+          })}
         </Row>
       </div>
 

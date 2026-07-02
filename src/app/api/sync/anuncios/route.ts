@@ -5,6 +5,8 @@ import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
 import { buildCatalogEnrichment } from '@/lib/catalogo/no-catalogo';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
+import { calculateSuggestedPrice } from '@/services/pricing';
+import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 
 export const maxDuration = 300;
 
@@ -67,6 +69,67 @@ function normalizeMetric(value: unknown): number | null {
   const n = Number(value);
   if (!Number.isFinite(n)) return null;
   return Math.max(0, Math.floor(n));
+}
+
+
+function roundMoney(value: number): number {
+  return Math.round(Number(value || 0) * 100) / 100;
+}
+
+function normalizeFee(value: unknown): number | null {
+  const n = Number(value);
+  if (!Number.isFinite(n) || n <= 0) return null;
+  return Math.round(n * 10000) / 10000;
+}
+
+function extractMlFee(listingPrices: any): number | null {
+  return normalizeFee(Number(listingPrices?.sale_fee_details?.percentage_fee ?? listingPrices?.sale_fee_details?.meli_percentage_fee) / 100);
+}
+
+async function resolveSellerZip(): Promise<{ zip: string | null; warning?: string }> {
+  const meResult = await fetchMLResult<any>('/users/me?attributes=address');
+  if (!meResult.ok) {
+    return { zip: null, warning: `Não foi possível consultar CEP do vendedor para frete ML: ${meResult.error?.message || `HTTP ${meResult.status}`}` };
+  }
+  const zip = String(meResult.data?.address?.zip_code || '').trim();
+  return zip ? { zip } : { zip: null, warning: 'CEP do vendedor ausente no Mercado Livre; frete ML não calculado.' };
+}
+
+async function resolveCurrentMlPricing(item: any, sellerZip: string | null): Promise<{
+  mlFee: number | null;
+  mlShipping: number | null;
+  warning?: string;
+}> {
+  let mlFee: number | null = null;
+  let mlShipping: number | null = null;
+  const itemId = String(item?.id || '').trim();
+  const price = Number(item?.price || 0);
+  const categoryId = String(item?.category_id || '').trim();
+  const listingType = String(item?.listing_type_id || 'gold_pro').trim();
+
+  if (price > 0 && categoryId && listingType) {
+    const listingPricesResult = await fetchMLResult<any>(
+      `/sites/MLB/listing_prices?price=${encodeURIComponent(String(price))}&category_id=${encodeURIComponent(categoryId)}&listing_type_id=${encodeURIComponent(listingType)}`,
+    );
+    if (listingPricesResult.ok) mlFee = extractMlFee(listingPricesResult.data);
+  }
+
+  if (itemId && sellerZip) {
+    const shippingResult = await fetchMLResult<any>(
+      `/items/${encodeURIComponent(itemId)}/shipping_options?zip_code=${encodeURIComponent(sellerZip)}`,
+    );
+    if (shippingResult.ok) {
+      const options = Array.isArray(shippingResult.data?.options) ? shippingResult.data.options : [];
+      const freeOption = options.find((option: any) => Number(option?.cost) === 0 && Number(option?.list_cost) > 0);
+      const pricedOption = options.find((option: any) => Number(option?.list_cost) > 0);
+      const nextShipping = Number(freeOption?.list_cost ?? pricedOption?.list_cost ?? 0);
+      if (Number.isFinite(nextShipping) && nextShipping > 0) mlShipping = roundMoney(nextShipping);
+    } else {
+      return { mlFee, mlShipping, warning: `Frete ML não retornado para ${itemId}: ${shippingResult.error?.message || `HTTP ${shippingResult.status}`}` };
+    }
+  }
+
+  return { mlFee, mlShipping };
 }
 
 function parseVisitsPayload(payload: any): Map<string, number> {
@@ -292,10 +355,15 @@ export async function POST(request: Request) {
     }
 
     const serviceClient = createServiceClient();
+    const sellerZipResult = await resolveSellerZip();
+    if (sellerZipResult.warning) warnings.push({ code: 'ml_seller_zip_unavailable', message: sellerZipResult.warning });
+
     const snapshots: any[] = [];
     const catalogItemsBase: Array<{ id: string; item: any }> = [];
     const listingMetricsByItemId = new Map<string, { soldQuantity: unknown; startTime: string | null }>();
     let recordsFailed = 0;
+    let pricingFieldsUpdated = 0;
+    let pricingCorrectionsQueued = 0;
 
     await runPool(itemIds, CONCURRENCY, async (itemId) => {
       const itemResult = await fetchMLResult<any>(`/items/${itemId}`);
@@ -317,14 +385,14 @@ export async function POST(request: Request) {
 
       const { data: byItem } = await serviceClient
         .from('produtos')
-        .select('id, sku')
+        .select('id, sku, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque')
         .eq('ml_item_id', String(item.id))
         .maybeSingle();
 
       const bySku = !byItem && sku
         ? await serviceClient
             .from('produtos')
-            .select('id, sku')
+            .select('id, sku, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque')
             .eq('sku', sku)
             .maybeSingle()
         : { data: null } as any;
@@ -349,7 +417,7 @@ export async function POST(request: Request) {
         if (productId) {
           const { data: productByOffer } = await serviceClient
             .from('produtos')
-            .select('id, sku')
+            .select('id, sku, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque')
             .eq('id', productId)
             .maybeSingle();
           produto = productByOffer || null;
@@ -358,6 +426,83 @@ export async function POST(request: Request) {
       if (produto?.id) {
         produtoId = String(produto.id);
         skuLocal = String(produto.sku || '') || null;
+
+        const pricing = await resolveCurrentMlPricing(item, sellerZipResult.zip);
+        if (pricing.warning) {
+          warnings.push({
+            code: 'ml_pricing_shipping_unavailable',
+            message: pricing.warning,
+            context: { mlItemId: String(item.id), produtoId },
+          });
+        }
+
+        const nextMlFee = pricing.mlFee ?? normalizeFee(produto.ml_fee) ?? null;
+        const nextMlShipping = pricing.mlShipping ?? (Number.isFinite(Number(produto.ml_shipping)) ? roundMoney(Number(produto.ml_shipping || 0)) : null);
+        const productPatch: Record<string, unknown> = {};
+        if (pricing.mlFee !== null && Math.abs(Number(produto.ml_fee || 0) - pricing.mlFee) >= 0.0001) productPatch.ml_fee = pricing.mlFee;
+        if (pricing.mlShipping !== null && Math.abs(Number(produto.ml_shipping || 0) - pricing.mlShipping) >= 0.01) productPatch.ml_shipping = pricing.mlShipping;
+        if (pricing.mlShipping !== null) productPatch.ml_shipping_warning = null;
+
+        if (Object.keys(productPatch).length > 0) {
+          productPatch.updated_at = new Date().toISOString();
+          const { error: pricingUpdateError } = await serviceClient
+            .from('produtos')
+            .update(productPatch as any)
+            .eq('id', produtoId);
+
+          if (pricingUpdateError) {
+            errors.push({
+              code: 'produto_ml_pricing_update_failed',
+              message: pricingUpdateError.message,
+              context: { mlItemId: String(item.id), produtoId },
+            });
+          } else {
+            pricingFieldsUpdated += 1;
+          }
+        }
+
+        const hasManualPrice = Number.isFinite(Number(produto.custom_price)) && Number(produto.custom_price) > 0;
+        if (!hasManualPrice && nextMlFee !== null && nextMlShipping !== null) {
+          try {
+            const suggested = roundMoney(calculateSuggestedPrice({
+              cost: Number(produto.custo || 0),
+              shipping: nextMlShipping,
+              mlFee: nextMlFee,
+            }).suggestedPrice);
+            const currentPrice = roundMoney(Number(item.price || 0));
+            if (suggested > 0 && currentPrice > 0 && Math.abs(suggested - currentPrice) >= 0.5) {
+              const outbox = await enqueueMlPublishOutbox(serviceClient, {
+                produtoId,
+                mlItemId: String(item.id),
+                desiredStatus: null,
+                desiredPrice: suggested,
+                desiredQuantity: null,
+                source: 'ml_pricing_observed_sync',
+                dedupePending: true,
+                payload: {
+                  apply_status: false,
+                  apply_price: true,
+                  apply_quantity: false,
+                  apply_quantity_pricing: true,
+                  update_quantity_pricing: true,
+                  initial_price: currentPrice,
+                  final_price: suggested,
+                  ml_fee: nextMlFee,
+                  ml_shipping: nextMlShipping,
+                  reason: 'ml_fee_or_shipping_changed',
+                },
+              });
+              if (outbox.ok) pricingCorrectionsQueued += 1;
+              else warnings.push({ code: 'ml_pricing_correction_enqueue_failed', message: outbox.error, context: { mlItemId: String(item.id), produtoId } });
+            }
+          } catch (err: any) {
+            warnings.push({
+              code: 'ml_pricing_correction_calculation_failed',
+              message: err?.message || 'Falha ao recalcular preço sugerido com taxa/frete ML atualizados',
+              context: { mlItemId: String(item.id), produtoId },
+            });
+          }
+        }
       }
 
       const isCatalogListing = item.catalog_listing === true;
@@ -641,6 +786,8 @@ export async function POST(request: Request) {
         seen: itemIds.length,
         snapshot_upserted: snapshots.length,
         failed: recordsFailed,
+        pricing_fields_updated: pricingFieldsUpdated,
+        pricing_corrections_queued: pricingCorrectionsQueued,
       },
       errors,
       warnings,
