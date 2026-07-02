@@ -870,6 +870,38 @@ export async function POST(req: Request) {
       warnings,
     );
 
+    const productTextForCorrections = normalizeAttrText(
+      `${produto.nome || ""} ${produto.descricao || ""} ${produto.categoria || ""}`,
+    );
+    const cutawayAttr = attributesMap.get("WITH_CUTAWAY");
+    if (cutawayAttr) {
+      const cutawayValue = normalizeAttrText(
+        cutawayAttr.value_name || cutawayAttr.value_id,
+      );
+      const isInstrument =
+        productTextForCorrections.includes("violao") ||
+        productTextForCorrections.includes("guitarra");
+      if (isInstrument && cutawayValue !== "sim" && cutawayValue !== "nao") {
+        attributesMap.set("WITH_CUTAWAY", {
+          id: "WITH_CUTAWAY",
+          value_id: undefined,
+          value_name: "Não",
+        });
+        warnings.push("Cutaway corrigido: valor inválido substituído por Não.");
+      }
+    }
+
+    for (const id of ["STRINGS_NUMBER", "STRING_NUMBER", "NUMBER_OF_STRINGS"]) {
+      const attr = attributesMap.get(id);
+      if (!attr) continue;
+      const numeric = String(attr.value_name || attr.value_id || "").match(
+        /\d+/,
+      )?.[0];
+      if (numeric) {
+        attributesMap.set(id, { id, value_id: undefined, value_name: numeric });
+      }
+    }
+
     const materialAttr = attributesMap.get("MATERIAL");
     if (
       normalizeAttrText(materialAttr?.value_name) === "ouro" &&
@@ -1190,7 +1222,23 @@ export async function POST(req: Request) {
       },
     };
 
-    const result = await createListing(listingPayload);
+    let result;
+    try {
+      result = await createListing(listingPayload);
+    } catch (err: any) {
+      const message = err?.message || "Falha ao criar anúncio no ML";
+      steps.anuncio = { ok: false, error: message };
+      return NextResponse.json(
+        {
+          success: false,
+          steps,
+          warnings,
+          missing_required_attributes: missingRequiredAttributes,
+          error: message,
+        },
+        { status: 502 },
+      );
+    }
 
     if (!result) {
       steps.anuncio = { ok: false, error: "Falha ao criar anúncio no ML" };

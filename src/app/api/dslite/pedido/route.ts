@@ -608,6 +608,56 @@ function parseInvoiceAmountFromXml(xml: string | null | undefined): number | nul
   return num;
 }
 
+async function resolveDsliteProductCodeForNfe(client: ReturnType<typeof createServiceClient>, sellerSku: string | null | undefined): Promise<string | null> {
+  const sku = String(sellerSku || '').trim();
+  if (!sku) return null;
+  const skuVariants = getSkuLookupVariants(sku);
+  const lookupSkus = skuVariants.length > 0 ? skuVariants : [sku];
+
+  let { data: productRow } = await client
+    .from('produtos')
+    .select('id,oferta_preferencial_id,dslite_produto_id')
+    .in('sku', lookupSkus)
+    .limit(1)
+    .maybeSingle();
+
+  if (!productRow?.id) {
+    const [{ data: byOfferSku }, { data: bySupplierSku }] = await Promise.all([
+      client.from('produto_fornecedor_ofertas').select('produto_id').in('sku_oferta', lookupSkus).limit(1).maybeSingle(),
+      client.from('produto_fornecedor_ofertas').select('produto_id').in('sku_fornecedor', lookupSkus).limit(1).maybeSingle(),
+    ]);
+    const productId = String((byOfferSku as any)?.produto_id || (bySupplierSku as any)?.produto_id || '').trim();
+    if (productId) {
+      const { data } = await client
+        .from('produtos')
+        .select('id,oferta_preferencial_id,dslite_produto_id')
+        .eq('id', productId)
+        .maybeSingle();
+      productRow = data as any;
+    }
+  }
+
+  if (!productRow?.id) return null;
+
+  const { data: offers } = await client
+    .from('produto_fornecedor_ofertas')
+    .select('*')
+    .eq('produto_id', String(productRow.id));
+  const preferred = resolvePreferredOfferForProduct((offers || []) as any[], (productRow as any)?.oferta_preferencial_id);
+  const code = String(preferred?.dslite_produto_id || (productRow as any)?.dslite_produto_id || '').trim();
+  return code || null;
+}
+
+async function waitForDsliteItems(dsid: number | string, attempts = 6, delayMs = 1500): Promise<any[]> {
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const pedidoDslite = await consultarPedido(dsid);
+    const items = Array.isArray((pedidoDslite as any)?.items) ? (pedidoDslite as any).items : [];
+    if (items.length > 0) return items;
+    if (attempt < attempts) await sleep(delayMs);
+  }
+  return [];
+}
+
 function initSteps(): JobStep[] {
   const ts = now();
   return STEP_DEFS.map((s) => ({ key: s.key, label: s.label, status: 'pending', updatedAt: ts }));
@@ -975,31 +1025,42 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
     };
   }
 
-  const produtos = (itens || []).map((it: any) => ({
-    CodProdutoServico: String(it.seller_sku || it.titulo || 'ITEM'),
-    NmProduto: String(it.titulo || 'Produto'),
-    NCM: String(it.ncm || ''),
-    CFOP: Number(cfopEsperado),
-    UnidadeComercial: 'UN',
-    Quantidade: Number(it.quantidade || 0),
-    ValorUnitario: Number(it.valor_unitario || 0),
-    ValorTotal: resolveProdutoValorTotalBruto(it),
-    OrigemProduto: 2,
-    GTIN: it.gtin || undefined,
-    CEST: it.cest || undefined,
-    Imposto: {
-      ICMS: { CodSituacaoTributaria: '102', AliquotaICMS: 0 },
-      PIS: { CodSituacaoTributaria: '49', Aliquota: 0, BaseCalculo: 0 },
-      COFINS: { CodSituacaoTributaria: '49', Aliquota: 0, BaseCalculo: 0 },
-      IPI: {
-        CodSituacaoTributaria: '99',
-        BaseCalculo: 0,
-        Aliquota: 0,
-        Valor: 0,
-        CodEnquadramento: '999',
+  const dsliteProductCodes = new Map<string, string>();
+  for (const it of itens || []) {
+    const sellerSku = String((it as any)?.seller_sku || '').trim();
+    const dsliteProductCode = await resolveDsliteProductCodeForNfe(client, sellerSku);
+    if (sellerSku && dsliteProductCode) dsliteProductCodes.set(sellerSku, dsliteProductCode);
+  }
+
+  const produtos = (itens || []).map((it: any) => {
+    const sellerSku = String(it.seller_sku || '').trim();
+    const productCode = dsliteProductCodes.get(sellerSku) || sellerSku || String(it.titulo || 'ITEM');
+    return {
+      CodProdutoServico: productCode,
+      NmProduto: String(it.titulo || 'Produto'),
+      NCM: String(it.ncm || ''),
+      CFOP: Number(cfopEsperado),
+      UnidadeComercial: 'UN',
+      Quantidade: Number(it.quantidade || 0),
+      ValorUnitario: Number(it.valor_unitario || 0),
+      ValorTotal: resolveProdutoValorTotalBruto(it),
+      OrigemProduto: 2,
+      GTIN: it.gtin || undefined,
+      CEST: it.cest || undefined,
+      Imposto: {
+        ICMS: { CodSituacaoTributaria: '102', AliquotaICMS: 0 },
+        PIS: { CodSituacaoTributaria: '49', Aliquota: 0, BaseCalculo: 0 },
+        COFINS: { CodSituacaoTributaria: '49', Aliquota: 0, BaseCalculo: 0 },
+        IPI: {
+          CodSituacaoTributaria: '99',
+          BaseCalculo: 0,
+          Aliquota: 0,
+          Valor: 0,
+          CodEnquadramento: '999',
+        },
       },
-    },
-  }));
+    };
+  });
 
   const payload = {
     IdentificadorInterno: `VORTEK-${String((pedido as any).numero || pedidoId)}`,
@@ -3061,8 +3122,7 @@ async function runDsliteCreateJob(
       }
 
       if (produtoIdParaVinculo) {
-        const pedidoDsliteAtual = await consultarPedido(dsidAtual as number);
-        const itemsDslite = Array.isArray((pedidoDsliteAtual as any)?.items) ? (pedidoDsliteAtual as any).items : [];
+        const itemsDslite = await waitForDsliteItems(dsidAtual as number);
         const itemDslite = itemsDslite.find((item: any) => String(item?.nf_produtoid || '').trim() === skuComPrefixo)
           || (itemsDslite.length === 1 ? itemsDslite[0] : null)
           || itemsDslite.find((item: any) => Number(item?.item) === 1)
