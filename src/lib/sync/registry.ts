@@ -4,6 +4,7 @@ export type SyncTaskKey =
   | 'sync_dslite_preco_estoque'
   | 'sync_dslite_pedidos_compra'
   | 'sync_ml_orders_ingest'
+  | 'sync_ml_cancelamentos_pos_nfe'
   | 'sync_ml_listings_observed'
   | 'sync_ml_listings_publish'
   | 'sync_reconcile_fiscal'
@@ -99,6 +100,18 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     kind: 'ml',
     schedule: { businessMinutes: 2, offHoursMinutes: 5 },
     usesOffset: true,
+    runMode: 'inline',
+  },
+  {
+    key: 'sync_ml_cancelamentos_pos_nfe',
+    jobTipo: 'sync_ml_cancelamentos_pos_nfe',
+    label: 'ML Cancelamentos Pós-NF',
+    path: '/api/sync/pedidos/cancelamentos-pos-nfe',
+    domain: 'pedidos:cancelamentos_pos_nfe',
+    lockTtlSeconds: 20 * 60,
+    kind: 'fiscal',
+    schedule: { businessMinutes: 2, offHoursMinutes: 5 },
+    defaultBody: { limit: 10 },
     runMode: 'inline',
   },
   {

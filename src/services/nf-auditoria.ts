@@ -125,6 +125,12 @@ type AuditEvent =
   | 'whatsapp_alert_sent'
   | 'whatsapp_alert_failed'
   | 'whatsapp_alert_skipped'
+  | 'ml_cancel_auto_detected'
+  | 'ml_cancel_auto_nfe_cancel_success'
+  | 'ml_cancel_auto_nfe_cancel_failed'
+  | 'ml_cancel_auto_supplier_whatsapp_sent'
+  | 'ml_cancel_auto_supplier_whatsapp_failed'
+  | 'ml_cancel_auto_supplier_whatsapp_skipped'
   | 'step_auto_close';
 
 export async function registrarEventoNfAuditoria(input: {
