@@ -823,7 +823,16 @@ export default function PedidosPage() {
           ...(duplicateAction ? { nfeDuplicateAction: duplicateAction } : {}),
         }),
       });
-      const data = await res.json();
+      const responseText = await res.text();
+      let data: any = null;
+      try {
+        data = responseText ? JSON.parse(responseText) : null;
+      } catch {
+        const isHtml = /^\s*</.test(responseText);
+        throw new Error(isHtml
+          ? `Servidor retornou HTML (${res.status}) em vez de JSON ao completar etiqueta DSLite.`
+          : `Resposta inválida ao completar etiqueta DSLite (${res.status}).`);
+      }
 
       if (data.success) {
         setEtiquetaDuplicateDecision(null);

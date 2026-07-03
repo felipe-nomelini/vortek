@@ -786,6 +786,17 @@ export async function definirTransportadoraPedido(
   }
 }
 
+function summarizeDsliteResponseText(text: string): string {
+  const trimmed = String(text || '').trim();
+  if (!trimmed) return 'resposta vazia da DSLite';
+  if (/^<!doctype\s+html/i.test(trimmed) || /^<html[\s>]/i.test(trimmed)) {
+    const title = trimmed.match(/<title[^>]*>([^<]+)<\/title>/i)?.[1]?.trim();
+    const heading = trimmed.match(/<h1[^>]*>([^<]+)<\/h1>/i)?.[1]?.trim();
+    return [title, heading].filter(Boolean).join(' - ') || 'DSLite retornou HTML em vez de JSON';
+  }
+  return trimmed.substring(0, 500);
+}
+
 export async function enviarEtiqueta(
   dsid: number | string,
   labelBuffer: Buffer,
@@ -795,32 +806,55 @@ export async function enviarEtiqueta(
   const cfg = await getConfig();
   if (!cfg) return null;
 
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 60000);
+  const sendWithField = async (fieldName: 'file' | 'files') => {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 60000);
+    const formData = new FormData();
+    const blob = new Blob([new Uint8Array(labelBuffer)], { type: contentType });
+    formData.append(fieldName, blob, fileName);
 
-  const formData = new FormData();
-  const blob = new Blob([new Uint8Array(labelBuffer)], { type: contentType });
-  formData.append('file', blob, fileName);
-
-  try {
-    const res = await fetch(`${cfg.url}/v1/DropShipping/${dsid}/etiqueta`, {
-      method: 'POST',
-      signal: controller.signal,
-      headers: {
-        Token: cfg.token,
-      },
-      body: formData,
-    });
-
-    if (!res.ok) {
-      const errText = await res.text().catch(() => '');
-      return { success: false, message: `HTTP ${res.status}: ${errText.substring(0, 300)}` };
+    try {
+      const res = await fetch(`${cfg.url}/v1/DropShipping/${dsid}/etiqueta`, {
+        method: 'POST',
+        signal: controller.signal,
+        headers: {
+          Accept: 'application/json',
+          Token: cfg.token,
+        },
+        body: formData,
+      });
+      const text = await res.text().catch(() => '');
+      return {
+        ok: res.ok,
+        status: res.status,
+        message: res.ok ? undefined : `HTTP ${res.status}: ${summarizeDsliteResponseText(text)}`,
+      };
+    } catch (err: any) {
+      return {
+        ok: false,
+        status: null,
+        message: err?.message || 'Erro ao enviar etiqueta',
+      };
+    } finally {
+      clearTimeout(timeout);
     }
+  };
 
-    return { success: true };
-  } catch (err: any) {
-    return { success: false, message: err?.message || 'Erro ao enviar etiqueta' };
-  } finally {
-    clearTimeout(timeout);
+  const primary = await sendWithField('file');
+  if (primary.ok) return { success: true };
+
+  const shouldRetryWithFiles =
+    primary.status === null ||
+    primary.status >= 500 ||
+    String(primary.message || '').toLowerCase().includes('html');
+  if (shouldRetryWithFiles) {
+    const fallback = await sendWithField('files');
+    if (fallback.ok) return { success: true };
+    return {
+      success: false,
+      message: `Falha ao enviar etiqueta na DSLite. Campo file: ${primary.message}; campo files: ${fallback.message}`,
+    };
   }
+
+  return { success: false, message: primary.message };
 }
