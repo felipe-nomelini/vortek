@@ -131,7 +131,7 @@ export default function ProgressModal({
         />
       </div>
 
-      {(hasError || allDone) && (
+      {(hasError || allDone || customActions.length > 0) && (
         <div style={{ 
           display: 'flex', 
           justifyContent: 'flex-end', 
@@ -156,9 +156,11 @@ export default function ProgressModal({
               {action.label}
             </Button>
           ))}
-          <Button type="primary" onClick={onClose} size="middle" danger={hasError && !allDone}>
-            {allDone ? 'Fechar' : 'Cancelar'}
-          </Button>
+          {(hasError || allDone) && (
+            <Button type="primary" onClick={onClose} size="middle" danger={hasError && !allDone}>
+              {allDone ? 'Fechar' : 'Cancelar'}
+            </Button>
+          )}
         </div>
       )}
     </Modal>

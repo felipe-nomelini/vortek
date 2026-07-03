@@ -328,6 +328,12 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
 
   const [noCatalogoData, setNoCatalogoData] = useState<NoCatalogoRow[]>([]);
   const [elegiveisData, setElegiveisData] = useState<ElegivelRow[]>([]);
+  const [selectedElegivelKeys, setSelectedElegivelKeys] = useState<string[]>([]);
+  const [catalogBatchModalOpen, setCatalogBatchModalOpen] = useState(false);
+  const [catalogBatchSteps, setCatalogBatchSteps] = useState<ProgressStep[]>([]);
+  const [catalogBatchRunning, setCatalogBatchRunning] = useState(false);
+  const catalogBatchAbortRef = useRef<AbortController | null>(null);
+  const catalogBatchCancelRef = useRef(false);
   const [analiseData, setAnaliseData] = useState<AnalisePrecoRow[]>([]);
   const [analiseLoading, setAnaliseLoading] = useState(false);
   const [analiseErro, setAnaliseErro] = useState<string | null>(null);
@@ -393,7 +399,10 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       }
 
       if (mode === 'no_catalogo') setNoCatalogoData(json.data || []);
-      else setElegiveisData(json.data || []);
+      else {
+        setElegiveisData(json.data || []);
+        setSelectedElegivelKeys([]);
+      }
 
       setTotal(Number(json.total || 0));
 
@@ -713,21 +722,25 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
     }
   }, [messageApi, mode, pollRefreshJob, refreshJobStatus, startRefreshPolling]);
 
-  const handleOptin = useCallback(async (row: ElegivelRow) => {
+  const getCatalogOptinPayload = useCallback((row: ElegivelRow) => {
     const catalogProductId = row.catalog_product_id_sugerido || row.catalog_product_id || '';
-    if (!catalogProductId) {
+    const variationId = Array.isArray(row.variation_eligibility)
+      ? row.variation_eligibility.find((v) => String(v.status || '').toUpperCase() === 'READY_FOR_OPTIN')?.id
+      : undefined;
+    return { itemId: row.ml_item_id, catalogProductId, variationId };
+  }, []);
+
+  const handleOptin = useCallback(async (row: ElegivelRow) => {
+    const payload = getCatalogOptinPayload(row);
+    if (!payload.catalogProductId) {
       messageApi.error('Item sem catalog_product_id. Opt-in não pode ser feito automaticamente.');
       return;
     }
 
-    const variationId = Array.isArray(row.variation_eligibility)
-      ? row.variation_eligibility.find((v) => String(v.status || '').toUpperCase() === 'READY_FOR_OPTIN')?.id
-      : undefined;
-
     const res = await fetch('/api/catalogo/optin', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ itemId: row.ml_item_id, catalogProductId, variationId }),
+      body: JSON.stringify(payload),
     });
     const json = await res.json().catch(() => ({}));
 
@@ -738,7 +751,130 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
 
     messageApi.success('Opt-in de catálogo executado com sucesso');
     fetchData();
-  }, [fetchData, messageApi]);
+  }, [fetchData, getCatalogOptinPayload, messageApi]);
+
+  const selectedElegivelRows = useMemo(() => {
+    const selected = new Set(selectedElegivelKeys.map(String));
+    return elegiveisData.filter((row) => selected.has(String(row.ml_item_id)));
+  }, [elegiveisData, selectedElegivelKeys]);
+
+  const updateCatalogBatchStep = useCallback((index: number, patch: Partial<ProgressStep>) => {
+    setCatalogBatchSteps((prev) => prev.map((step, stepIndex) => (
+      stepIndex === index ? { ...step, ...patch } : step
+    )));
+  }, []);
+
+  const cancelCatalogBatch = useCallback(() => {
+    catalogBatchCancelRef.current = true;
+    catalogBatchAbortRef.current?.abort();
+    setCatalogBatchRunning(false);
+    setCatalogBatchSteps((prev) => prev.map((step) => (
+      step.status === 'pending' || step.status === 'loading'
+        ? { ...step, status: 'warning', detail: step.status === 'loading' ? 'Cancelado pelo usuário.' : 'Não executado: lote cancelado.' }
+        : step
+    )));
+  }, []);
+
+  const closeCatalogBatchModal = useCallback(() => {
+    if (catalogBatchRunning) return;
+    setCatalogBatchModalOpen(false);
+    setCatalogBatchSteps([]);
+    catalogBatchAbortRef.current = null;
+    catalogBatchCancelRef.current = false;
+  }, [catalogBatchRunning]);
+
+  const runCatalogBatchOptin = useCallback(async () => {
+    if (mode !== 'elegiveis') return;
+    if (catalogBatchRunning) {
+      messageApi.warning('Já existe criação em massa em andamento.');
+      return;
+    }
+    if (selectedElegivelRows.length === 0) {
+      messageApi.warning('Selecione pelo menos um anúncio elegível.');
+      return;
+    }
+
+    catalogBatchCancelRef.current = false;
+    setCatalogBatchRunning(true);
+    setCatalogBatchModalOpen(true);
+    setCatalogBatchSteps(selectedElegivelRows.map((row) => {
+      const payload = getCatalogOptinPayload(row);
+      return {
+        label: `${row.seller_sku || row.ml_item_id} → catálogo`,
+        status: 'pending' as const,
+        detail: payload.catalogProductId ? `Anúncio ${row.ml_item_id} · catálogo ${payload.catalogProductId}` : 'Sem catalog_product_id',
+      };
+    }));
+
+    let successCount = 0;
+    let errorCount = 0;
+    let skippedCount = 0;
+
+    for (let index = 0; index < selectedElegivelRows.length; index += 1) {
+      if (catalogBatchCancelRef.current) {
+        skippedCount += selectedElegivelRows.length - index;
+        break;
+      }
+
+      const row = selectedElegivelRows[index];
+      const payload = getCatalogOptinPayload(row);
+      if (!payload.catalogProductId) {
+        skippedCount += 1;
+        updateCatalogBatchStep(index, { status: 'warning', error: 'Sem catalog_product_id.' });
+        continue;
+      }
+
+      updateCatalogBatchStep(index, { status: 'loading', detail: `Criando catálogo ${payload.catalogProductId} para ${row.ml_item_id}` });
+      const controller = new AbortController();
+      catalogBatchAbortRef.current = controller;
+
+      try {
+        const res = await fetch('/api/catalogo/optin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          signal: controller.signal,
+        });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          errorCount += 1;
+          updateCatalogBatchStep(index, {
+            status: 'error',
+            error: json?.erro || 'Falha ao criar anúncio de catálogo.',
+            detail: `Anúncio ${row.ml_item_id} · catálogo ${payload.catalogProductId}`,
+          });
+          continue;
+        }
+
+        successCount += 1;
+        updateCatalogBatchStep(index, {
+          status: 'success',
+          detail: `Criado: ${json?.catalog_item_id || json?.data?.id || 'ID não retornado'}${Array.isArray(json?.warnings) && json.warnings.length ? ` · Avisos: ${json.warnings.join(' | ')}` : ''}`,
+        });
+      } catch (error: any) {
+        if (catalogBatchCancelRef.current || error?.name === 'AbortError') {
+          skippedCount += 1;
+          updateCatalogBatchStep(index, { status: 'warning', detail: 'Cancelado pelo usuário.' });
+          break;
+        }
+        errorCount += 1;
+        updateCatalogBatchStep(index, { status: 'error', error: error?.message || 'Erro de conexão.' });
+      } finally {
+        catalogBatchAbortRef.current = null;
+      }
+    }
+
+    setCatalogBatchRunning(false);
+    setSelectedElegivelKeys([]);
+    void fetchData();
+    if (catalogBatchCancelRef.current) {
+      messageApi.warning(`Criação em massa cancelada. Criados: ${successCount}; erros: ${errorCount}; ignorados: ${skippedCount}.`);
+    } else if (errorCount > 0 || skippedCount > 0) {
+      messageApi.warning(`Criação em massa concluída com pendências. Criados: ${successCount}; erros: ${errorCount}; ignorados: ${skippedCount}.`);
+    } else {
+      messageApi.success(`Criação em massa concluída. Criados: ${successCount}.`);
+    }
+  }, [catalogBatchRunning, fetchData, getCatalogOptinPayload, messageApi, mode, selectedElegivelRows, updateCatalogBatchStep]);
 
   const executeMlPriceUpdate = useCallback(async (context: PublishActionContext) => {
     if (mode !== 'no_catalogo') return;
@@ -1437,6 +1573,16 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
                   <InputNumber placeholder="Preço máx" value={priceMax} onChange={(v) => setPriceMax(v ?? null)} style={{ width: 120 }} />
                 </Space.Compact>
               </Col>
+              <Col>
+                <Button
+                  type="primary"
+                  onClick={runCatalogBatchOptin}
+                  disabled={selectedElegivelKeys.length === 0 || catalogBatchRunning}
+                  loading={catalogBatchRunning}
+                >
+                  Criar catálogo em massa ({selectedElegivelKeys.length})
+                </Button>
+              </Col>
             </Row>
           </div>
 
@@ -1447,6 +1593,13 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
                 rowKey="ml_item_id"
                 dataSource={elegiveisData}
                 columns={columnsElegiveis}
+                rowSelection={{
+                  selectedRowKeys: selectedElegivelKeys,
+                  onChange: (keys) => setSelectedElegivelKeys(keys.map(String)),
+                  getCheckboxProps: (record) => ({
+                    disabled: !getCatalogOptinPayload(record).catalogProductId || catalogBatchRunning,
+                  }),
+                }}
                 pagination={{
                   current: page,
                   pageSize: PAGE_SIZE,
@@ -1457,7 +1610,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
                   },
                   showTotal: (t) => `${t} anúncios`,
                 }}
-                scroll={{ x: 1300 }}
+                scroll={{ x: 1360 }}
                 size="small"
                 style={{ background: 'transparent' }}
               />
@@ -1465,6 +1618,20 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
           </div>
         </>
       )}
+
+      <ProgressModal
+        open={catalogBatchModalOpen}
+        title="Criando anúncios de catálogo em massa"
+        steps={catalogBatchSteps}
+        onClose={closeCatalogBatchModal}
+        showCloseButton={!catalogBatchRunning}
+        customActions={catalogBatchRunning ? [{
+          key: 'cancel_catalog_batch',
+          label: 'Cancelar',
+          danger: true,
+          onClick: cancelCatalogBatch,
+        }] : []}
+      />
 
       <ProgressModal
         open={mlPublishModalOpen}
