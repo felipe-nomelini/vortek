@@ -34,16 +34,50 @@ function normalizeText(input: unknown): string {
     .replace(/\s+/g, ' ');
 }
 
-function getAttributeValue(source: any, attributeId: string): string | null {
-  const attr = Array.isArray(source?.attributes)
-    ? source.attributes.find((row: any) => String(row?.id || '').toUpperCase() === attributeId.toUpperCase())
+function getAttribute(source: any, attributeId: string): any | null {
+  return Array.isArray(source?.attributes)
+    ? source.attributes.find((row: any) => String(row?.id || '').toUpperCase() === attributeId.toUpperCase()) || null
     : null;
+}
+
+function getAttributeValue(source: any, attributeId: string): string | null {
+  const attr = getAttribute(source, attributeId);
   const value = String(attr?.value_name || attr?.value_id || '').trim();
   return value || null;
 }
 
+function getAttributeNumber(source: any, attributeId: string): number | null {
+  const attr = getAttribute(source, attributeId);
+  const structNumber = Number(attr?.value_struct?.number);
+  if (Number.isFinite(structNumber)) return structNumber;
+  const value = String(attr?.value_name || '').replace(',', '.');
+  const match = value.match(/\d+(?:\.\d+)?/);
+  const parsed = match ? Number(match[0]) : NaN;
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function extractLengthMetersFromText(...values: unknown[]): number | null {
+  const text = normalizeText(values.filter(Boolean).join(' ')).replace(',', '.');
+  const match = text.match(/(\d+(?:\.\d+)?)\s*(?:m|mt|mts|metro|metros)\b/);
+  const parsed = match ? Number(match[1]) : NaN;
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function getLengthMeters(source: any): number | null {
+  return getAttributeNumber(source, 'LENGTH') ?? extractLengthMetersFromText(source?.title, source?.name);
+}
+
 function getColorAttributeValue(source: any): string | null {
   return getAttributeValue(source, 'COLOR') || getAttributeValue(source, 'MAIN_COLOR');
+}
+
+function getNetworkCableCategory(source: any): string | null {
+  const attrValue = getAttributeValue(source, 'NETWORK_CABLE_CATEGORY');
+  if (attrValue) return attrValue;
+
+  const text = normalizeText([source?.title, source?.name].filter(Boolean).join(' '));
+  const match = text.match(/\bcat\s*\.?\s*(5e|5|6a|6|7|8)\b/);
+  return match ? `Categoria ${match[1].toUpperCase()}` : null;
 }
 
 async function getRelatedPermalink(relatedItemId: string | null): Promise<string | null> {
@@ -219,6 +253,42 @@ async function validateCatalogCompatibility(params: {
     };
   }
 
+  const itemLength = getLengthMeters(item);
+  const catalogLength = getLengthMeters(catalogProduct);
+  if (itemLength !== null && catalogLength !== null && Math.abs(itemLength - catalogLength) > 0.01) {
+    return {
+      ok: false,
+      statusCode: 422,
+      message: `Catálogo incompatível: comprimento do anúncio ${itemLength}m diverge do catálogo ${catalogLength}m.`,
+      details: {
+        local_sku: produto.sku,
+        local_product_name: produto.nome,
+        catalog_product_id: catalogProductId,
+        catalog_product_name: catalogProduct?.name || null,
+        item_length_meters: itemLength,
+        catalog_length_meters: catalogLength,
+      },
+    };
+  }
+
+  const itemCableCategory = getNetworkCableCategory(item);
+  const catalogCableCategory = getNetworkCableCategory(catalogProduct);
+  if (itemCableCategory && catalogCableCategory && normalizeText(itemCableCategory) !== normalizeText(catalogCableCategory)) {
+    return {
+      ok: false,
+      statusCode: 422,
+      message: `Catálogo incompatível: categoria do cabo ${itemCableCategory} diverge do catálogo ${catalogCableCategory}.`,
+      details: {
+        local_sku: produto.sku,
+        local_product_name: produto.nome,
+        catalog_product_id: catalogProductId,
+        catalog_product_name: catalogProduct?.name || null,
+        item_network_cable_category: itemCableCategory,
+        catalog_network_cable_category: catalogCableCategory,
+      },
+    };
+  }
+
   const { data: existingSnapshots, error: snapshotError } = await service
     .from('catalogo_ml_snapshot')
     .select('ml_item_id,produto_id,sku_local,seller_sku,catalog_listing,status')
@@ -252,23 +322,22 @@ async function validateCatalogCompatibility(params: {
     }
 
     const localGtin = String(produto.gtin || '').replace(/\D/g, '');
-    const conflict = (existingProducts || []).find((existing: any) => {
-      const existingGtin = String(existing?.gtin || '').replace(/\D/g, '');
-      return existingGtin && localGtin && existingGtin !== localGtin;
-    });
-    if (conflict) {
-      return {
-        ok: false,
-        statusCode: 422,
-        message: 'Catálogo incompatível: este catalog_product_id já está vinculado a outro produto local com GTIN diferente.',
-        details: {
-          catalog_product_id: catalogProductId,
-          local_sku: produto.sku,
-          local_gtin: localGtin || null,
-          conflicting_sku: conflict.sku,
-          conflicting_gtin: conflict.gtin || null,
-        },
-      };
+    const conflictingGtins = (existingProducts || [])
+      .map((existing: any) => ({
+        sku: existing?.sku || null,
+        gtin: String(existing?.gtin || '').replace(/\D/g, ''),
+      }))
+      .filter((existing) => existing.gtin && localGtin && existing.gtin !== localGtin);
+    if (conflictingGtins.length > 0) {
+      console.warn(JSON.stringify({
+        event: 'catalog_optin_same_catalog_different_gtin_allowed',
+        catalog_product_id: catalogProductId,
+        local_sku: produto.sku,
+        local_gtin: localGtin || null,
+        conflicts: conflictingGtins,
+        reason: 'Mercado Livre returned the same catalog_product_id; GTIN differs between local products but item/catalog attributes are compatible.',
+        timestamp_utc: new Date().toISOString(),
+      }));
     }
   }
 

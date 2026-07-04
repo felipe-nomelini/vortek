@@ -21,6 +21,16 @@ function chunk<T>(arr: T[], size: number): T[][] {
   return out;
 }
 
+function getSellerSkuFromItem(item: any): string | null {
+  const direct = String(item?.seller_custom_field || item?.seller_sku || '').trim();
+  if (direct) return direct;
+  const attr = Array.isArray(item?.attributes)
+    ? item.attributes.find((row: any) => String(row?.id || '').toUpperCase() === 'SELLER_SKU')
+    : null;
+  const attrValue = String(attr?.value_name || attr?.value_id || '').trim();
+  return attrValue || null;
+}
+
 export const maxDuration = 300;
 
 export async function POST(request: Request) {
@@ -172,7 +182,7 @@ export async function POST(request: Request) {
       buy_box_winning: enrichment.buyBoxWinning,
       permalink: item.permalink || null,
       thumbnail: item.thumbnail || null,
-      seller_sku: item.seller_custom_field || null,
+      seller_sku: getSellerSkuFromItem(item),
       catalog_product_id: item.catalog_product_id || null,
       category_id: item.category_id || null,
       domain_id: item.domain_id || null,
