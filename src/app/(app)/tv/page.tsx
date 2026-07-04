@@ -867,6 +867,9 @@ export default function TvDashboardPage() {
             >
               Som {soundEnabled ? "ON" : "OFF"}
             </Button>
+            <Button size="small" icon={<SoundFilled />} onClick={playSaleSound}>
+              Testar som
+            </Button>
             <Button
               size="small"
               icon={<FullscreenOutlined />}
