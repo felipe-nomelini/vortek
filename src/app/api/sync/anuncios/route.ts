@@ -5,8 +5,6 @@ import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
 import { buildCatalogEnrichment } from '@/lib/catalogo/no-catalogo';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
-import { calculateSuggestedPrice } from '@/services/pricing';
-import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 
 export const maxDuration = 300;
 
@@ -363,7 +361,6 @@ export async function POST(request: Request) {
     const listingMetricsByItemId = new Map<string, { soldQuantity: unknown; startTime: string | null }>();
     let recordsFailed = 0;
     let pricingFieldsUpdated = 0;
-    let pricingCorrectionsQueued = 0;
 
     await runPool(itemIds, CONCURRENCY, async (itemId) => {
       const itemResult = await fetchMLResult<any>(`/items/${itemId}`);
@@ -436,8 +433,6 @@ export async function POST(request: Request) {
           });
         }
 
-        const nextMlFee = pricing.mlFee ?? normalizeFee(produto.ml_fee) ?? null;
-        const nextMlShipping = pricing.mlShipping ?? (Number.isFinite(Number(produto.ml_shipping)) ? roundMoney(Number(produto.ml_shipping || 0)) : null);
         const productPatch: Record<string, unknown> = {};
         if (pricing.mlFee !== null && Math.abs(Number(produto.ml_fee || 0) - pricing.mlFee) >= 0.0001) productPatch.ml_fee = pricing.mlFee;
         if (pricing.mlShipping !== null && Math.abs(Number(produto.ml_shipping || 0) - pricing.mlShipping) >= 0.01) productPatch.ml_shipping = pricing.mlShipping;
@@ -461,48 +456,6 @@ export async function POST(request: Request) {
           }
         }
 
-        const hasManualPrice = Number.isFinite(Number(produto.custom_price)) && Number(produto.custom_price) > 0;
-        if (!hasManualPrice && nextMlFee !== null && nextMlShipping !== null) {
-          try {
-            const suggested = roundMoney(calculateSuggestedPrice({
-              cost: Number(produto.custo || 0),
-              shipping: nextMlShipping,
-              mlFee: nextMlFee,
-            }).suggestedPrice);
-            const currentPrice = roundMoney(Number(item.price || 0));
-            if (suggested > 0 && currentPrice > 0 && Math.abs(suggested - currentPrice) >= 0.5) {
-              const outbox = await enqueueMlPublishOutbox(serviceClient, {
-                produtoId,
-                mlItemId: String(item.id),
-                desiredStatus: null,
-                desiredPrice: suggested,
-                desiredQuantity: null,
-                source: 'ml_pricing_observed_sync',
-                dedupePending: true,
-                payload: {
-                  apply_status: false,
-                  apply_price: true,
-                  apply_quantity: false,
-                  apply_quantity_pricing: true,
-                  update_quantity_pricing: true,
-                  initial_price: currentPrice,
-                  final_price: suggested,
-                  ml_fee: nextMlFee,
-                  ml_shipping: nextMlShipping,
-                  reason: 'ml_fee_or_shipping_changed',
-                },
-              });
-              if (outbox.ok) pricingCorrectionsQueued += 1;
-              else warnings.push({ code: 'ml_pricing_correction_enqueue_failed', message: outbox.error, context: { mlItemId: String(item.id), produtoId } });
-            }
-          } catch (err: any) {
-            warnings.push({
-              code: 'ml_pricing_correction_calculation_failed',
-              message: err?.message || 'Falha ao recalcular preço sugerido com taxa/frete ML atualizados',
-              context: { mlItemId: String(item.id), produtoId },
-            });
-          }
-        }
       }
 
       const isCatalogListing = item.catalog_listing === true;
@@ -787,7 +740,6 @@ export async function POST(request: Request) {
         snapshot_upserted: snapshots.length,
         failed: recordsFailed,
         pricing_fields_updated: pricingFieldsUpdated,
-        pricing_corrections_queued: pricingCorrectionsQueued,
       },
       errors,
       warnings,
