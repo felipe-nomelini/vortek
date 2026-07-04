@@ -6,6 +6,7 @@ const DETAIL_CONCURRENCY = 6;
 const ELIGIBILITY_CHUNK_SIZE = 20;
 const PRODUCT_CONCURRENCY = 6;
 const CATALOG_FALLBACK_CONCURRENCY = 3;
+const MIN_RELIABLE_CATALOG_MATCH_SCORE = 100;
 
 async function runPool<T>(items: T[], limit: number, worker: (item: T) => Promise<void>) {
   for (let i = 0; i < items.length; i += limit) {
@@ -60,6 +61,19 @@ function hasReadyForOptInVariation(variations: unknown): boolean {
 function isReadyForCatalogOptIn(row: any): boolean {
   return String(row?.eligibility_status || '').toUpperCase() === 'READY_FOR_OPTIN'
     || hasReadyForOptInVariation(row?.variation_eligibility);
+}
+
+function hasReliableSuggestedCatalogProduct(row: any): boolean {
+  return Boolean(row?.catalog_product_id_sugerido)
+    && String(row?.catalog_product_match_source || '') === 'attributes_search'
+    && Number(row?.catalog_product_match_score || 0) >= MIN_RELIABLE_CATALOG_MATCH_SCORE;
+}
+
+function isActionableForCatalogOptIn(row: any): boolean {
+  if (!isReadyForCatalogOptIn(row)) return false;
+  if (String(row?.catalog_product_status || '').toLowerCase() !== 'active') return false;
+  if (row?.catalog_product_warning) return hasReliableSuggestedCatalogProduct(row);
+  return Boolean(row?.catalog_product_id);
 }
 
 function getEligibilityItemId(row: any): string {
@@ -235,7 +249,7 @@ async function findSuggestedCatalogProduct(item: any, currentProduct: any): Prom
     }))
     .sort((left: any, right: any) => right.score - left.score);
   const best = ranked[0];
-  if (!best || best.score < 80) {
+  if (!best || best.score < MIN_RELIABLE_CATALOG_MATCH_SCORE) {
     return { id: null, name: null, score: best?.score ?? null, source: null, warning: 'Catálogo ML incompatível; nenhum catálogo alternativo confiável encontrado.' };
   }
 
@@ -375,6 +389,10 @@ export async function GET(request: Request) {
     row.catalog_product_warning = suggestion.warning;
   });
 
+  const activeCatalogProductsBeforeActionableFilter = rows.length;
+  const suggestedCatalogProductsBeforeFilters = rows.filter((row) => row.catalog_product_id_sugerido).length;
+  rows = rows.filter(isActionableForCatalogOptIn);
+
   if (search) {
     rows = rows.filter((row) => {
       const fields = [
@@ -407,8 +425,9 @@ export async function GET(request: Request) {
     total_ml: total,
     eligibility_loaded: eligibilityMap.size,
     ready_for_optin: readyForOptInBeforeFilters,
-    active_catalog_products: rows.length,
-    suggested_catalog_products: rows.filter((row) => row.catalog_product_id_sugerido).length,
+    active_catalog_products: activeCatalogProductsBeforeActionableFilter,
+    actionable_catalog_products: rows.length,
+    suggested_catalog_products: suggestedCatalogProductsBeforeFilters,
     returned: rows.length,
     eligibility_status: 'READY_FOR_OPTIN',
     timestamp_utc: new Date().toISOString(),
