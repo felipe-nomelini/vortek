@@ -9,12 +9,13 @@ import {
   type ReactNode,
 } from "react";
 import {
+  Badge,
   Button,
-  Col,
+  Card,
   Progress,
-  Row,
   Space,
   Spin,
+  Statistic,
   Tag,
   Typography,
   message,
@@ -219,17 +220,26 @@ function MainMetric({
   trend?: number;
 }) {
   return (
-    <div className={`mainMetric ${tone}`}>
-      <div className="metricTop">
-        <span>{title}</span>
-        <span className="metricIcon">{icon}</span>
-      </div>
-      <div className="metricValue">{value}</div>
+    <Card
+      className={`mainMetric ${tone}`}
+      variant="outlined"
+      styles={{ body: { height: "100%" } }}
+    >
+      <Statistic
+        title={
+          <div className="metricTop">
+            <span>{title}</span>
+            <span className="metricIcon">{icon}</span>
+          </div>
+        }
+        value={value}
+        formatter={() => <span className="metricValue">{value}</span>}
+      />
       <div className="metricBottom">
         <span>{subtitle}</span>
         {trend !== undefined ? <TrendText value={trend} /> : null}
       </div>
-    </div>
+    </Card>
   );
 }
 
@@ -254,30 +264,9 @@ function CompactStat({
 }
 
 function playSaleSound() {
-  const AudioContextImpl =
-    window.AudioContext || (window as any).webkitAudioContext;
-  if (!AudioContextImpl) return;
-  const ctx = new AudioContextImpl();
-  [659.25, 783.99, 987.77].forEach((freq, index) => {
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = "sine";
-    osc.frequency.value = freq;
-    gain.gain.setValueAtTime(0.0001, ctx.currentTime + index * 0.1);
-    gain.gain.exponentialRampToValueAtTime(
-      0.12,
-      ctx.currentTime + index * 0.1 + 0.02,
-    );
-    gain.gain.exponentialRampToValueAtTime(
-      0.0001,
-      ctx.currentTime + index * 0.1 + 0.16,
-    );
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start(ctx.currentTime + index * 0.1);
-    osc.stop(ctx.currentTime + index * 0.1 + 0.18);
-  });
-  setTimeout(() => void ctx.close().catch(() => null), 800);
+  const audio = new Audio("/sounds/cash-register-sale.mp3");
+  audio.volume = 0.95;
+  void audio.play().catch(() => null);
 }
 
 export default function TvDashboardPage() {
@@ -314,7 +303,7 @@ export default function TvDashboardPage() {
         ) {
           const event: Celebration = {
             id: Date.now(),
-            title: "Venda nova",
+            title: "VOCÊ VENDEU!!!",
             subtitle: `Pedido #${newest.number} · ${newest.customer}`,
             amount: newest.total,
           };
@@ -438,6 +427,39 @@ export default function TvDashboardPage() {
             box-shadow: 0 0 28px rgba(22, 119, 255, 0.22);
           }
         }
+        @keyframes ambientLine {
+          0% {
+            transform: translateX(-40%);
+            opacity: 0.1;
+          }
+          50% {
+            opacity: 0.45;
+          }
+          100% {
+            transform: translateX(140%);
+            opacity: 0.1;
+          }
+        }
+        @keyframes livePulse {
+          0%,
+          100% {
+            opacity: 0.6;
+            transform: scale(0.94);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.08);
+          }
+        }
+        @keyframes logoFloat {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-3px);
+          }
+        }
         @keyframes popIn {
           0% {
             transform: translate(-50%, -45%) scale(0.82);
@@ -468,10 +490,31 @@ export default function TvDashboardPage() {
           background:
             radial-gradient(
               circle at 80% 0%,
-              rgba(22, 119, 255, 0.11),
+              rgba(22, 119, 255, 0.1),
               transparent 32%
             ),
+            radial-gradient(
+              circle at 12% 100%,
+              rgba(82, 196, 26, 0.07),
+              transparent 26%
+            ),
             #000;
+        }
+        .tvShell:before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 42%;
+          height: 2px;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(22, 119, 255, 0.9),
+            transparent
+          );
+          animation: ambientLine 7s linear infinite;
+          pointer-events: none;
         }
         .centerShell {
           display: flex;
@@ -498,22 +541,13 @@ export default function TvDashboardPage() {
           gap: 14px;
           min-width: 0;
         }
-        .brandMark {
-          width: 44px;
-          height: 44px;
-          border-radius: 14px;
-          display: grid;
-          place-items: center;
-          background: #0b1b33;
-          color: ${BLUE};
-          border: 1px solid rgba(22, 119, 255, 0.35);
-        }
-        .title {
-          margin: 0 !important;
-          color: #fff !important;
-          font-size: clamp(28px, 3.2vw, 46px) !important;
-          line-height: 1 !important;
-          letter-spacing: -0.5px;
+        .brandLogo {
+          height: clamp(42px, 5vw, 68px);
+          width: auto;
+          display: block;
+          object-fit: contain;
+          filter: drop-shadow(0 0 18px rgba(22, 119, 255, 0.2));
+          animation: logoFloat 5s ease-in-out infinite;
         }
         .subline {
           display: flex;
@@ -537,6 +571,7 @@ export default function TvDashboardPage() {
           border-radius: 50%;
           background: ${GREEN};
           box-shadow: 0 0 10px ${GREEN};
+          animation: livePulse 1.8s ease-in-out infinite;
         }
         .topMetrics {
           display: grid;
@@ -545,14 +580,17 @@ export default function TvDashboardPage() {
         }
         .mainMetric {
           min-height: clamp(132px, 19vh, 170px);
-          background: #141414;
-          border: 1px solid #242424;
+          background: #141414 !important;
+          border: 1px solid #242424 !important;
           border-radius: 22px;
-          padding: clamp(16px, 1.45vw, 22px);
+          overflow: hidden;
+          animation: softGlow 8s ease-in-out infinite;
+        }
+        .mainMetric .ant-card-body {
+          padding: clamp(16px, 1.45vw, 22px) !important;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          overflow: hidden;
         }
         .mainMetric.blue {
           border-color: rgba(22, 119, 255, 0.34);
@@ -586,6 +624,10 @@ export default function TvDashboardPage() {
           letter-spacing: -3px;
           color: #fff;
           text-shadow: 0 0 18px rgba(255, 255, 255, 0.08);
+        }
+        .mainMetric .ant-statistic-title,
+        .mainMetric .ant-statistic-content {
+          margin: 0;
         }
         .trendUp {
           color: ${GREEN};
@@ -779,15 +821,17 @@ export default function TvDashboardPage() {
           top: 50%;
           left: 50%;
           z-index: 10001;
-          width: min(620px, 82vw);
-          border-radius: 28px;
-          padding: 34px;
+          width: min(860px, 90vw);
+          border-radius: 30px;
+          padding: clamp(34px, 4vw, 58px);
           background: #141414;
-          border: 1px solid rgba(82, 196, 26, 0.45);
+          border: 1px solid rgba(82, 196, 26, 0.7);
           color: #fff;
           text-align: center;
-          box-shadow: 0 0 80px rgba(82, 196, 26, 0.28);
-          animation: popIn 5.2s ease-in-out forwards;
+          box-shadow: 0 0 120px rgba(82, 196, 26, 0.38);
+          animation:
+            popIn 5.2s ease-in-out forwards,
+            softGlow 1.4s ease-in-out infinite;
         }
         .celebrationBackdrop {
           position: fixed;
@@ -814,45 +858,53 @@ export default function TvDashboardPage() {
       {celebration ? (
         <>
           <div className="celebrationBackdrop" />
-          <div className="celebration">
-            <ShoppingCartOutlined style={{ fontSize: 58, color: GREEN }} />
+          <Card className="celebration" variant="outlined">
+            <ShoppingCartOutlined style={{ fontSize: 78, color: GREEN }} />
             <div
               style={{
-                fontSize: 48,
+                fontSize: "clamp(54px, 7vw, 112px)",
                 fontWeight: 1000,
-                lineHeight: 1,
-                marginTop: 12,
+                lineHeight: 0.92,
+                marginTop: 16,
+                letterSpacing: -2,
               }}
             >
               {celebration.title}
             </div>
             <div
               style={{
-                fontSize: 18,
-                fontWeight: 700,
-                marginTop: 12,
+                fontSize: 24,
+                fontWeight: 800,
+                marginTop: 18,
                 color: "#d9d9d9",
               }}
             >
               {celebration.subtitle}
             </div>
-            <div style={{ fontSize: 42, fontWeight: 1000, marginTop: 8 }}>
-              {formatCurrency(celebration.amount)}
-            </div>
-          </div>
+            <Statistic
+              value={formatCurrency(celebration.amount)}
+              formatter={() => (
+                <span style={{ color: GREEN, fontSize: 58, fontWeight: 1000 }}>
+                  {formatCurrency(celebration.amount)}
+                </span>
+              )}
+            />
+            <Tag style={darkTagStyle("green")}>CAIXA REGISTRADORA ATIVA</Tag>
+          </Card>
         </>
       ) : null}
 
       <div className="tvGrid">
         <header className="tvHeader">
           <div className="brand">
-            <div className="brandMark">
-              <LineChartOutlined style={{ fontSize: 24 }} />
-            </div>
+            <img className="brandLogo" src="/logo.png" alt="Vortek" />
             <div style={{ minWidth: 0 }}>
-              <Title className="title">TV ao Vivo Vortek</Title>
               <div className="subline">
-                <span className="live">AO VIVO</span>
+                <Badge
+                  status="processing"
+                  color={GREEN}
+                  text={<span className="live">AO VIVO</span>}
+                />
                 <span>Atualizado {timeLabel(data.generatedAt)}</span>
                 <span>Realtime pedidos · polling 15s</span>
               </div>
