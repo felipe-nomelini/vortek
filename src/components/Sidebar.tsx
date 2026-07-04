@@ -23,6 +23,7 @@ import {
   WarningOutlined,
   TeamOutlined,
   TruckOutlined,
+  FundProjectionScreenOutlined,
 } from '@ant-design/icons';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -31,6 +32,7 @@ const { Text } = Typography;
 
 const menuItems: MenuProps['items'] = [
   { key: '/dashboard', icon: <DashboardOutlined />, label: 'Dashboard' },
+  { key: '/tv', icon: <FundProjectionScreenOutlined />, label: 'TV ao Vivo' },
   { key: '/produtos', icon: <ShoppingCartOutlined />, label: 'Produtos' },
   { key: '/clientes', icon: <TeamOutlined />, label: 'Clientes' },
   { key: '/fornecedores', icon: <TruckOutlined />, label: 'Fornecedores' },
