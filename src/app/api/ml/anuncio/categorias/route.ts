@@ -7,6 +7,7 @@ import {
 import { createServiceClient } from "@/lib/supabase";
 import {
   filterPetShopPredictions,
+  assertAllowedMlCategoryForProduct,
   getPreferredHayamaxCategoryForProduct,
   getPreferredPetCategoryForTitle,
   isBlockedMlBrand,
@@ -87,7 +88,7 @@ export async function POST(req: Request) {
           ]
         : [];
     const basePredictions = await predictCategory(titulo, 8);
-    const predictions = requiresPetShopCategory(produto)
+    const rawPredictions = requiresPetShopCategory(produto)
       ? await filterPetShopPredictions(
           uniquePredictions([
             ...preferredPetPrediction,
@@ -100,6 +101,18 @@ export async function POST(req: Request) {
           ...preferredHayamaxPrediction,
           ...(basePredictions || []),
         ]);
+    const predictions: MLCategoryPrediction[] = [];
+    for (const prediction of rawPredictions || []) {
+      try {
+        await assertAllowedMlCategoryForProduct(
+          produto,
+          prediction.category_id,
+        );
+        predictions.push(prediction);
+      } catch {
+        // Categoria incompatível com guardrails locais; não expor para criação.
+      }
+    }
 
     if (!predictions || predictions.length === 0) {
       return NextResponse.json(

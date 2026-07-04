@@ -807,8 +807,35 @@ export async function POST(req: Request) {
 
     // Validate list values if value_id is provided
     for (const attr of attrs) {
-      const current = attributesMap.get(attr.id);
+      let current = attributesMap.get(attr.id);
       if (!current) continue;
+      if (String(attr.id).toUpperCase() === "COLOR" && current.value_name) {
+        const colorText = normalizeAttrText(current.value_name);
+        const normalizedColor =
+          colorText === "vermelha" || colorText === "vermelhas"
+            ? "Vermelho"
+            : colorText === "azul" || colorText === "azuis"
+              ? "Azul"
+              : colorText === "preta" || colorText === "pretas"
+                ? "Preto"
+                : colorText === "branca" || colorText === "brancas"
+                  ? "Branco"
+                  : "";
+        if (normalizedColor && Array.isArray(attr.values)) {
+          const official = attr.values.find(
+            (v: any) =>
+              normalizeAttrText(v.name) === normalizeAttrText(normalizedColor),
+          );
+          if (official) {
+            current = {
+              id: attr.id,
+              value_id: String(official.id),
+              value_name: String(official.name),
+            };
+            attributesMap.set(attr.id, current);
+          }
+        }
+      }
       if (
         String(current.value_id || "") === NOT_APPLICABLE_ID ||
         isNotApplicableLabel(current.value_name)
@@ -1031,6 +1058,28 @@ export async function POST(req: Request) {
               "Anúncio existente encontrado por SKU, mas não foi possível carregar detalhes no Mercado Livre.",
           },
           { status: 502 },
+        );
+      }
+      if (
+        existingItem.category_id &&
+        String(existingItem.category_id) !== String(categoriaId)
+      ) {
+        return NextResponse.json(
+          {
+            success: false,
+            steps,
+            warnings,
+            missing_required_attributes: missingRequiredAttributes,
+            error:
+              "Anúncio existente com mesmo SKU está em categoria ML diferente. Pausa/desvincule ou altere o SKU do anúncio antigo antes de recriar.",
+            existing_item: {
+              id: existingItem.id,
+              category_id: existingItem.category_id,
+              status: existingItem.status,
+              permalink: existingItem.permalink,
+            },
+          },
+          { status: 409 },
         );
       }
       const existingShipping = await resolveMlShippingCost(existingItem.id);

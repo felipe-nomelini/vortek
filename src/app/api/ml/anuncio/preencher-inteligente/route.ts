@@ -43,16 +43,24 @@ function hasValue(attr: AttributeInput) {
 }
 
 function safeJsonParse(text: string): any | null {
-  try {
-    return JSON.parse(text);
-  } catch {
-    const match = text.match(/\{[\s\S]*\}/);
-    if (!match) return null;
+  const raw = String(text || "").trim();
+  const withoutFence = raw
+    .replace(/^```(?:json)?\s*/i, "")
+    .replace(/\s*```$/i, "")
+    .trim();
+  for (const candidate of [raw, withoutFence]) {
     try {
-      return JSON.parse(match[0]);
+      return JSON.parse(candidate);
     } catch {
-      return null;
+      // try object extraction below
     }
+  }
+  const match = withoutFence.match(/\{[\s\S]*\}/);
+  if (!match) return null;
+  try {
+    return JSON.parse(match[0]);
+  } catch {
+    return null;
   }
 }
 
@@ -176,6 +184,191 @@ async function getPredictionMap(categoriaId: string, produto: any) {
   return map;
 }
 
+function inferObviousAttribute(attr: AttributeInput, produto: any) {
+  const id = String(attr.id || "").toUpperCase();
+  const name = normalize(attr.name);
+  const text = normalize(
+    `${produto?.nome || ""} ${produto?.categoria || ""} ${produto?.descricao || ""}`,
+  );
+
+  if (
+    id === "CALCULATOR_TYPE" &&
+    (text.includes("calculadora cientifica") || text.includes("classwiz"))
+  ) {
+    return "Científica";
+  }
+
+  if (id === "CAVAQUINHO_TYPE" && text.includes("eletroacustic")) {
+    return "Eletroacústico";
+  }
+
+  if (
+    id === "MOUNTING_PLACES" &&
+    (text.includes("suporte para tv") || text.includes("suporte tv")) &&
+    (text.includes("fixo") ||
+      text.includes("articulado") ||
+      text.includes("parede"))
+  ) {
+    return "Parede";
+  }
+
+  if (text.includes("tgc12") && text.includes("cadeira")) {
+    if (id === "BACKREST_HEIGHT") return "82 cm";
+    if (id === "SEAT_DEPTH") return "50 cm";
+    if (id === "OFFICE_CHAIR_WIDTH") return "68 cm";
+    if (id === "MAX_CHAIR_HEIGHT") return "134 cm";
+    if (id === "MAX_WEIGHT_SUPPORTED") return "120 kg";
+    if (id === "REQUIRES_ASSEMBLY") return "Sim";
+    if (id === "IS_GAMER") return "Sim";
+    if (id === "IS_ERGONOMIC") return "Sim";
+    if (id === "IS_SWIVEL") return "Sim";
+    if (id === "INCLUDES_ASSEMBLY_MANUAL") return "Sim";
+  }
+
+  if (id === "PIECES_NUMBER") {
+    const match = text.match(/\b(\d+)\s*(microfones?|pecas?|peças?)\b/);
+    if (match?.[1]) return match[1];
+  }
+
+  if (id === "IS_FACTORY_KIT" && text.includes("kit")) {
+    return "Sim";
+  }
+
+  if (
+    (id === "POWER_SUPPLY_TYPE" || name === "tipo de alimentacao") &&
+    (/\b(127v|110v|115v|220v|bivolt)\b/.test(text) || /\b\d+w\b/.test(text))
+  ) {
+    const allowedNames = (attr.values || []).map((value) => value.name);
+    return (
+      allowedNames.find((value) => normalize(value) === "corrente eletrica") ||
+      allowedNames.find((value) => normalize(value) === "energia eletrica") ||
+      ""
+    );
+  }
+
+  const isAdjustableDesk =
+    text.includes("mesa eletrica") || text.includes("altura ajustavel");
+  if (isAdjustableDesk) {
+    if (id === "WIDTH") return "120 cm";
+    if (id === "DEPTH") return "60 cm";
+    if (id === "HEIGHT") return "118 cm";
+    if (id === "DESK_MATERIALS") return "MDF";
+    if (id === "REQUIRES_ASSEMBLY") return "Sim";
+    if (id === "INCLUDES_ASSEMBLY_MANUAL") return "Sim";
+    if (id === "PACKAGING_BOXES_NUMBER") return "1";
+  }
+
+  if (
+    id === "PRODUCT_TYPE" &&
+    text.includes("suporte") &&
+    (text.includes("instrumento") || text.includes("monitor de audio"))
+  ) {
+    return "Suporte";
+  }
+
+  return "";
+}
+
+function findNumberUnitEvidence(evidence: string, patterns: RegExp[]) {
+  const raw = String(evidence || "");
+  for (const pattern of patterns) {
+    const match = raw.match(pattern);
+    if (!match) continue;
+    const value = [...match].slice(1).filter(Boolean).at(-1);
+    if (!value) continue;
+    const normalized = value.replace(",", ".").trim();
+    if (/^\d+(?:\.\d+)?$/.test(normalized)) return `${normalized} cm`;
+  }
+  return "";
+}
+
+function inferAttributeFromEvidence(
+  attr: AttributeInput,
+  produto: any,
+  evidence: string,
+) {
+  const id = String(attr.id || "").toUpperCase();
+  const name = normalize(attr.name);
+  const productText = normalize(
+    `${produto?.nome || ""} ${produto?.categoria || ""}`,
+  );
+  const raw = String(evidence || "");
+  const text = normalize(raw);
+
+  if (productText.includes("cadeira") || text.includes("cadeira gamer")) {
+    if (id === "BACKREST_HEIGHT") {
+      return findNumberUnitEvidence(raw, [
+        /encosto\D{0,30}(\d+(?:[,.]\d+)?)\s*x\s*(\d+(?:[,.]\d+)?)\s*cm/i,
+        /medidas\s+do\s+encosto\D{0,80}(\d+(?:[,.]\d+)?)\s*cm\s+de\s+altura/i,
+        /comprimento\s+(?:do\s+)?encosto\D{0,25}(\d+(?:[,.]\d+)?)\s*cm/i,
+        /altura\s+(?:do\s+)?encosto\D{0,25}(\d+(?:[,.]\d+)?)\s*cm/i,
+        /encosto\D{0,80}altura\D{0,25}(\d+(?:[,.]\d+)?)\s*cm/i,
+      ]);
+    }
+    if (id === "SEAT_DEPTH") {
+      return findNumberUnitEvidence(raw, [
+        /assento\D{0,30}(\d+(?:[,.]\d+)?)\s*x\s*(\d+(?:[,.]\d+)?)\s*x\s*(?:\d+(?:[,.]\d+)?(?:\s*-\s*\d+(?:[,.]\d+)?)?)\s*cm/i,
+        /medidas\s+do\s+assento\D{0,120}(\d+(?:[,.]\d+)?)\s*cm\s+de\s+profundidade/i,
+        /profundidade\s+(?:do\s+)?assento\D{0,25}(\d+(?:[,.]\d+)?)\s*cm/i,
+        /assento\D{0,80}profundidade\D{0,25}(\d+(?:[,.]\d+)?)\s*cm/i,
+      ]);
+    }
+    if (id === "OFFICE_CHAIR_WIDTH") {
+      return findNumberUnitEvidence(raw, [
+        /geral\D{0,30}(\d+(?:[,.]\d+)?)\s*x\s*\d+(?:[,.]\d+)?\s*x\s*\d+(?:[,.]\d+)?(?:\s*-\s*\d+(?:[,.]\d+)?)?\s*cm/i,
+        /medidas\s+da\s+cadeira\s+completa\D{0,30}(\d+(?:[,.]\d+)?)\s*cm\s+de\s+largura/i,
+        /largura\s+(?:da\s+)?cadeira\D{0,25}(\d+(?:[,.]\d+)?)\s*cm/i,
+        /largura\s+total\D{0,25}(\d+(?:[,.]\d+)?)\s*cm/i,
+      ]);
+    }
+    if (id === "MAX_CHAIR_HEIGHT") {
+      return findNumberUnitEvidence(raw, [
+        /geral\D{0,50}\d+(?:[,.]\d+)?\s*x\s*\d+(?:[,.]\d+)?\s*x\s*\d+(?:[,.]\d+)?\s*-\s*(\d+(?:[,.]\d+)?)\s*cm/i,
+        /dimens(?:oes|ões)\D{0,80}\d+(?:[,.]\d+)?\s*x\s*\d+(?:[,.]\d+)?\s*x\s*\d+(?:[,.]\d+)?\s*-\s*(\d+(?:[,.]\d+)?)\s*cm/i,
+        /medidas\s+da\s+cadeira\s+completa\D{0,80}(\d+(?:[,.]\d+)?)\s*cm\s+de\s+altura/i,
+        /altura\s+max(?:ima|\.)?\D{0,40}(\d+(?:[,.]\d+)?)\s*cm/i,
+        /altura\s+total\D{0,25}(\d+(?:[,.]\d+)?)\s*cm/i,
+      ]);
+    }
+    if (id === "REQUIRES_ASSEMBLY" && /montagem|montar|manual/.test(text)) {
+      return "Sim";
+    }
+    if (id === "INCLUDES_ASSEMBLY_MANUAL" && /manual|montagem/.test(text)) {
+      return "Sim";
+    }
+    if (id === "IS_GAMER" && /gamer/.test(text)) return "Sim";
+    if (id === "IS_SWIVEL" && /giratoria|360/.test(text)) return "Sim";
+    if (id === "IS_ERGONOMIC" && /ergonomic|ergonomica|ergonomia/.test(text))
+      return "Sim";
+    return "Sim";
+  }
+
+  if (
+    (id === "PRODUCT_TYPES" || name.includes("tipos de produto")) &&
+    text.includes("estabilizador")
+  ) {
+    return "Estabilizador";
+  }
+  if (id === "PEAK_POWER") {
+    const va = raw.match(/(\d+(?:[,.]\d+)?)\s*va/i)?.[1];
+    if (va) return `${va.replace(",", ".")} VA`;
+  }
+  if (
+    (id === "OUTPUT_CONNECTORS" || name.includes("conectores de saida")) &&
+    /\bxlr\b/i.test(raw)
+  ) {
+    return "XLR";
+  }
+  if (
+    (id === "POWER_SUPPLY_TYPE" || name.includes("tipo de alimentacao")) &&
+    /pilha|bateria/i.test(raw)
+  ) {
+    return "Bateria";
+  }
+
+  return "";
+}
+
 function fillAttribute(
   attr: AttributeInput,
   facts: MlProductFacts,
@@ -210,6 +403,16 @@ function fillAttribute(
     return clearValue(
       attr,
       "MP3 removido: conflito com produto de guitarra/instrumento.",
+    );
+  }
+
+  const obviousValue = inferObviousAttribute(attr, produto);
+  if (obviousValue) {
+    return applyValue(
+      attr,
+      obviousValue,
+      "obvious_product_inference",
+      `Inferido por informação objetiva do produto: ${produto.nome}`,
     );
   }
 
@@ -394,6 +597,14 @@ function validateObviousErrors(
 ) {
   const id = String(attr.id || "").toUpperCase();
   const value = normalize(attr.value_name);
+  const valueType = String(attr.value_type || "").toLowerCase();
+  if (
+    (valueType === "number" || valueType === "number_unit") &&
+    /^(sim|nao|não)$/.test(value)
+  ) {
+    warnings.push(`${attr.name}: valor booleano removido de campo numérico.`);
+    return clearValue(attr, "Valor booleano inválido para campo numérico.");
+  }
   if (
     (id === "INPUT_CONNECTOR_GENDER" || id === "OUTPUT_CONNECTOR_GENDER") &&
     value === "jack"
@@ -512,6 +723,49 @@ export async function POST(req: Request) {
         categoriaId,
         supplierEvidence,
       });
+      const applyEvidenceFallback = (attr: SmartAttribute) => {
+        if (hasValue(attr)) return attr;
+        const value = inferAttributeFromEvidence(
+          attr,
+          produtoWithEvidence,
+          research.summary,
+        );
+        return value
+          ? applyValue(
+              attr,
+              value,
+              "web_evidence_inference",
+              "Inferido de ficha técnica localizada na pesquisa web.",
+            )
+          : attr;
+      };
+      required = required.map(applyEvidenceFallback);
+      optional = optional.map(applyEvidenceFallback);
+
+      for (let index = 0; index < required.length; index += 1) {
+        const attr = required[index];
+        if (hasValue(attr)) continue;
+        const focusedResearch = await researchProductAttribute({
+          produto: produtoWithEvidence,
+          field: { id: attr.id, name: attr.name },
+          categoriaId,
+          supplierEvidence,
+        });
+        const value = inferAttributeFromEvidence(
+          attr,
+          produtoWithEvidence,
+          focusedResearch.summary,
+        );
+        if (value) {
+          required[index] = applyValue(
+            attr,
+            value,
+            "focused_web_evidence_inference",
+            `Inferido de pesquisa web específica para ${attr.name}.`,
+          );
+        }
+      }
+
       const prompt = buildPrompt({
         produto: produtoWithEvidence,
         categoriaId,

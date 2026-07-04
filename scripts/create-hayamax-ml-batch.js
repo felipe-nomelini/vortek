@@ -181,6 +181,24 @@ function categoryRejectReason(product, category, required) {
   ) {
     return "fio paralelo não deve cair em Cabos e Adaptadores";
   }
+  if (
+    (text.includes("mesa eletrica") ||
+      text.includes("altura ajustavel") ||
+      text.includes("mesa gamer")) &&
+    (categoryText.includes("lixadeira") ||
+      categoryText.includes("manicure") ||
+      categoryText.includes("pedicure"))
+  ) {
+    return "mesa Hayamax não deve cair em Lixadeiras/Manicure";
+  }
+  if (
+    text.includes("grill") &&
+    text.includes("arno") &&
+    (categoryText.includes("sanduicheira") ||
+      categoryText.includes("sanduicheiras"))
+  ) {
+    return "grill Arno não deve cair em Sanduicheiras; GTIN aponta domínio de grill/churrasqueira elétrica";
+  }
   if (text.includes("lubrificante") && categoryText.includes("pc")) {
     return "lubrificante não deve cair em categoria de PC";
   }

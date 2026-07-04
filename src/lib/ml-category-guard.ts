@@ -8,6 +8,14 @@ const HAYAMAX_ELECTRIC_WIRES_CATEGORY = {
   id: "MLB455454",
   name: "Cabos Elétricos",
 };
+const HAYAMAX_ADJUSTABLE_DESK_CATEGORY = {
+  id: "MLB193946",
+  name: "Escrivaninhas",
+};
+const HAYAMAX_ELECTRIC_GRILL_CATEGORY = {
+  id: "MLB48730",
+  name: "Churrasqueiras Elétricas",
+};
 const PREFERRED_PET_CATEGORIES: Record<string, { id: string; name: string }> = {
   coat_liquid: { id: "MLB178927", name: "Shampoo e Condicionadores" },
   coat_other: { id: "MLB434769", name: "Outros artigos para os pêlos" },
@@ -58,6 +66,19 @@ export function getPreferredHayamaxCategoryForProduct(produto: any) {
   if (text.includes("fio paralelo")) return HAYAMAX_ELECTRIC_WIRES_CATEGORY;
   if (/materiais eletricos.*cabos e fios.*fios/.test(text))
     return HAYAMAX_ELECTRIC_WIRES_CATEGORY;
+  if (
+    text.includes("mesa eletrica") ||
+    text.includes("altura ajustavel") ||
+    text.includes("mesa gamer")
+  ) {
+    return HAYAMAX_ADJUSTABLE_DESK_CATEGORY;
+  }
+  if (
+    text.includes("grill") &&
+    (text.includes("arno") || text.includes("gnox"))
+  ) {
+    return HAYAMAX_ELECTRIC_GRILL_CATEGORY;
+  }
   return null;
 }
 
@@ -147,6 +168,39 @@ export async function assertAllowedMlCategoryForProduct(
     if (!isElectricCable) {
       throw new Error(
         `Hayamax fio elétrico exige categoria ML "${HAYAMAX_ELECTRIC_WIRES_CATEGORY.name}" (${HAYAMAX_ELECTRIC_WIRES_CATEGORY.id}). Categoria recebida: ${info.path || categoryId}.`,
+      );
+    }
+  }
+
+  if (
+    (productText.includes("mesa eletrica") ||
+      productText.includes("altura ajustavel") ||
+      productText.includes("mesa gamer")) &&
+    (categoryText.includes("lixadeira") ||
+      categoryText.includes("manicure") ||
+      categoryText.includes("pedicure"))
+  ) {
+    throw new Error(
+      `Categoria ML incompatível para mesa Hayamax: ${info.path || categoryId}.`,
+    );
+  }
+
+  if (productText.includes("grill") && productText.includes("arno")) {
+    if (
+      categoryText.includes("sanduicheira") ||
+      categoryText.includes("sanduicheiras")
+    ) {
+      throw new Error(
+        `Categoria ML incompatível para grill Arno Hayamax: ${info.path || categoryId}. Use categoria/domínio de grill/churrasqueira elétrica.`,
+      );
+    }
+    if (
+      categoryId !== HAYAMAX_ELECTRIC_GRILL_CATEGORY.id &&
+      !categoryText.includes("churrasqueiras eletricas") &&
+      !categoryText.includes("electric_grills")
+    ) {
+      throw new Error(
+        `Categoria ML incompatível para grill Arno Hayamax: ${info.path || categoryId}.`,
       );
     }
   }
