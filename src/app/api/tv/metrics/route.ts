@@ -225,7 +225,7 @@ export async function GET() {
     }),
   );
 
-  const goal = Number(process.env.TV_DAILY_REVENUE_GOAL || 5000);
+  const goal = Number(process.env.TV_DAILY_REVENUE_GOAL || 7500);
   const goalProgress =
     goal > 0 ? Math.min(999, round2((today.revenue / goal) * 100)) : 0;
 
