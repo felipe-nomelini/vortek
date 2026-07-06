@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient, createServiceClient } from "@/lib/supabase";
 import { saoPauloDayBounds, saoPauloHour } from "@/lib/timezone";
+import { fetchMLResult, getMLConnectionStatus } from "@/services/integration";
 
 function round2(value: number): number {
   return Math.round(Number(value || 0) * 100) / 100;
@@ -18,6 +19,30 @@ function normalizeStatus(value: unknown): string {
 
 function toIso(value: Date): string {
   return value.toISOString();
+}
+
+function saoPauloPeriodBounds(date: Date, period: "week" | "month") {
+  const offsetMs = -180 * 60 * 1000;
+  const local = new Date(date.getTime() + offsetMs);
+  const year = local.getUTCFullYear();
+  const month = local.getUTCMonth();
+  const day = local.getUTCDate();
+  const weekday = local.getUTCDay();
+  const mondayOffset = (weekday + 6) % 7;
+  const startLocal =
+    period === "month"
+      ? new Date(Date.UTC(year, month, 1, 0, 0, 0, 0))
+      : new Date(Date.UTC(year, month, day - mondayOffset, 0, 0, 0, 0));
+  const endLocal =
+    period === "month"
+      ? new Date(Date.UTC(year, month + 1, 0, 23, 59, 59, 999))
+      : new Date(
+          Date.UTC(year, month, day - mondayOffset + 6, 23, 59, 59, 999),
+        );
+  return {
+    start: new Date(startLocal.getTime() - offsetMs),
+    end: new Date(endLocal.getTime() - offsetMs),
+  };
 }
 
 function summarizeOrders(rows: any[]) {
@@ -72,6 +97,100 @@ function actionLabel(status: string): string {
   return map[raw] || raw;
 }
 
+async function fetchQuestionNotifications(
+  service: ReturnType<typeof createServiceClient>,
+) {
+  try {
+    const connection = await getMLConnectionStatus();
+    if (!connection.conectado) {
+      return {
+        connected: false,
+        total: 0,
+        items: [],
+        error: connection.erro || "Mercado Livre desconectado",
+      };
+    }
+
+    const meResult = await fetchMLResult<{ id: number }>(
+      "/users/me?attributes=id",
+    );
+    if (!meResult.ok || !meResult.data?.id) {
+      return {
+        connected: false,
+        total: 0,
+        items: [],
+        error: meResult.error?.message || "Falha ao identificar vendedor ML",
+      };
+    }
+
+    const params = new URLSearchParams({
+      seller_id: String(meResult.data.id),
+      limit: "3",
+      offset: "0",
+      api_version: "4",
+      status: "UNANSWERED",
+      sort_fields: "date_created",
+      sort_types: "DESC",
+    });
+    const questionsResult = await fetchMLResult<{
+      total?: number;
+      questions?: any[];
+    }>(`/questions/search?${params.toString()}`);
+    if (!questionsResult.ok) {
+      return {
+        connected: true,
+        total: 0,
+        items: [],
+        error: questionsResult.error?.message || "Falha ao buscar perguntas",
+      };
+    }
+
+    const questions = questionsResult.data?.questions || [];
+    const itemIds = Array.from(
+      new Set(
+        questions
+          .map((question: any) => String(question.item_id || ""))
+          .filter(Boolean),
+      ),
+    );
+    const { data: listings } = itemIds.length
+      ? await service
+          .from("anuncios_ml")
+          .select("ml_item_id,titulo,sku")
+          .in("ml_item_id", itemIds)
+      : { data: [] as any[] };
+    const listingMap = new Map(
+      (listings || []).map((row: any) => [String(row.ml_item_id), row]),
+    );
+
+    return {
+      connected: true,
+      total: Number(questionsResult.data?.total || questions.length),
+      error: null,
+      items: questions.map((question: any) => {
+        const listing = listingMap.get(String(question.item_id || ""));
+        return {
+          id: question.id,
+          itemId: question.item_id,
+          listingTitle: listing?.titulo || question.item_id || "Anúncio",
+          sku: listing?.sku || null,
+          customerId: question.from?.id || null,
+          question: question.text || "",
+          date: question.date_created || null,
+          status: question.status || null,
+        };
+      }),
+    };
+  } catch (err: any) {
+    return {
+      connected: false,
+      total: 0,
+      items: [],
+      error: err?.message || "Erro ao buscar perguntas",
+    };
+  }
+}
+
 export async function GET() {
   const supabase = await createClient();
   const {
@@ -87,11 +206,18 @@ export async function GET() {
     new Date(todayStart.getTime() - 1),
   );
   const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
+  const { start: weekStart, end: weekEnd } = saoPauloPeriodBounds(now, "week");
+  const { start: monthStart, end: monthEnd } = saoPauloPeriodBounds(
+    now,
+    "month",
+  );
 
   const [
     todayResult,
     yesterdayResult,
     lastHourResult,
+    weekResult,
+    monthResult,
     recentResult,
     actionResult,
     activeAdsResult,
@@ -99,6 +225,9 @@ export async function GET() {
     claimsResult,
     visitsResult,
     topProductsResult,
+    claimsListResult,
+    adsStatsResult,
+    catalogWinningResult,
   ] = await Promise.all([
     service
       .from("pedidos")
@@ -120,9 +249,21 @@ export async function GET() {
       .lte("data", toIso(now)),
     service
       .from("pedidos")
-      .select("id,numero,contato_nome,total,lucro,situacao,data,ml_order_id")
+      .select("id,total,lucro,situacao,data")
+      .gte("data", toIso(weekStart))
+      .lte("data", toIso(weekEnd)),
+    service
+      .from("pedidos")
+      .select("id,total,lucro,situacao,data")
+      .gte("data", toIso(monthStart))
+      .lte("data", toIso(monthEnd)),
+    service
+      .from("pedidos")
+      .select(
+        "id,numero,contato_nome,total,lucro,situacao,data,ml_order_id,pedido_itens(titulo,quantidade)",
+      )
       .order("data", { ascending: false })
-      .limit(8),
+      .limit(5),
     service
       .from("pedidos")
       .select(
@@ -159,6 +300,22 @@ export async function GET() {
       )
       .order("vendidos", { ascending: false })
       .limit(8),
+    service
+      .from("pedidos")
+      .select(
+        "id,numero,contato_nome,total,situacao,data,ml_order_id,ml_claim_id,ml_claim_status",
+      )
+      .not("ml_claim_id", "is", null)
+      .or("ml_claim_status.is.null,ml_claim_status.neq.closed")
+      .order("data", { ascending: false })
+      .limit(3),
+    service.from("anuncios_ml").select("status,catalogo"),
+    service
+      .from("catalogo_ml_snapshot")
+      .select("*", { count: "exact", head: true })
+      .eq("catalog_listing", true)
+      .eq("status", "active")
+      .eq("buy_box_winning", true),
   ]);
 
   if (todayResult.error)
@@ -175,20 +332,31 @@ export async function GET() {
   const todayRows = todayResult.data || [];
   const yesterdayRows = yesterdayResult.data || [];
   const lastHourRows = lastHourResult.data || [];
+  const weekRows = weekResult.data || [];
+  const monthRows = monthResult.data || [];
   const today = summarizeOrders(todayRows);
   const yesterdaySummary = summarizeOrders(yesterdayRows);
   const lastHour = summarizeOrders(lastHourRows);
+  const week = summarizeOrders(weekRows);
+  const month = summarizeOrders(monthRows);
 
-  const recentOrders = (recentResult.data || []).map((row: any) => ({
-    id: row.id,
-    number: row.numero,
-    customer: row.contato_nome || "Cliente ML",
-    total: round2(row.total || 0),
-    profit: round2(row.lucro || 0),
-    status: normalizeStatus(row.situacao),
-    date: row.data,
-    mlOrderId: row.ml_order_id || null,
-  }));
+  const recentOrders = (recentResult.data || []).map((row: any) => {
+    const items = Array.isArray(row.pedido_itens) ? row.pedido_itens : [];
+    const firstItem = items[0];
+    const firstTitle = String(firstItem?.titulo || "").trim();
+    return {
+      id: row.id,
+      number: row.numero,
+      customer: row.contato_nome || "Cliente ML",
+      productName: firstTitle || "Produto não informado",
+      productCount: items.length,
+      total: round2(row.total || 0),
+      profit: round2(row.lucro || 0),
+      status: normalizeStatus(row.situacao),
+      date: row.data,
+      mlOrderId: row.ml_order_id || null,
+    };
+  });
 
   const actionQueue = (actionResult.data || []).map((row: any) => ({
     id: row.id,
@@ -225,6 +393,35 @@ export async function GET() {
     }),
   );
 
+  const questionNotifications = await fetchQuestionNotifications(service);
+  const claimNotifications = {
+    total: claimsResult.count || 0,
+    items: (claimsListResult.data || []).map((row: any) => ({
+      id: row.id,
+      number: row.numero,
+      customer: row.contato_nome || "Cliente ML",
+      total: round2(row.total || 0),
+      status: normalizeStatus(row.situacao),
+      claimId: row.ml_claim_id || null,
+      claimStatus: row.ml_claim_status || null,
+      date: row.data,
+      mlOrderId: row.ml_order_id || null,
+    })),
+  };
+
+  let adsTotal = 0;
+  let adsActive = 0;
+  let adsPaused = 0;
+  let activeCatalog = 0;
+  for (const row of adsStatsResult.data || []) {
+    adsTotal++;
+    const status = String(row.status || "").toLowerCase();
+    const isActive = status === "ativo";
+    if (isActive) adsActive++;
+    if (status === "pausado") adsPaused++;
+    if (isActive && row.catalogo === true) activeCatalog++;
+  }
+
   const goal = Number(process.env.TV_DAILY_REVENUE_GOAL || 7500);
   const goalProgress =
     goal > 0 ? Math.min(999, round2((today.revenue / goal) * 100)) : 0;
@@ -237,6 +434,8 @@ export async function GET() {
         "ML não expõe visitantes instantâneos; exibindo visitas sincronizadas dos anúncios e painéis online via Presence.",
     },
     today,
+    week,
+    month,
     yesterday: yesterdaySummary,
     lastHour,
     trends: {
@@ -265,6 +464,15 @@ export async function GET() {
     },
     hourlySales: hourlySales(todayRows),
     recentOrders,
+    questionNotifications,
+    claimNotifications,
+    ads: {
+      total: adsTotal,
+      active: adsActive,
+      paused: adsPaused,
+      activeCatalog,
+      winningCatalog: catalogWinningResult.count || 0,
+    },
     actionQueue,
     topProducts,
   });

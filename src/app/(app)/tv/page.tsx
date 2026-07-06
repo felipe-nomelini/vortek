@@ -32,8 +32,6 @@ import {
   MutedOutlined,
 } from "@ant-design/icons";
 import {
-  Area,
-  AreaChart,
   Bar,
   BarChart,
   CartesianGrid,
@@ -48,11 +46,30 @@ import { formatCurrency } from "@/lib/format";
 
 const { Text, Title } = Typography;
 const DAILY_GOAL = 7500;
+const TV_GOALS = {
+  orders: { day: 10, week: 70, month: 300 },
+  revenue: { day: DAILY_GOAL, week: DAILY_GOAL * 7, month: DAILY_GOAL * 30 },
+  profit: { day: 1500, week: 10500, month: 45000 },
+};
 const SALE_SOUND_SRC = "/sounds/dreigue.mp3";
 
 type TvMetrics = {
   generatedAt: string;
   today: {
+    orders: number;
+    revenue: number;
+    profit: number;
+    averageTicket: number;
+    statusCounts: Record<string, number>;
+  };
+  week: {
+    orders: number;
+    revenue: number;
+    profit: number;
+    averageTicket: number;
+    statusCounts: Record<string, number>;
+  };
+  month: {
     orders: number;
     revenue: number;
     profit: number;
@@ -74,12 +91,50 @@ type TvMetrics = {
     id: string;
     number: number;
     customer: string;
+    productName: string;
+    productCount: number;
     total: number;
     profit: number;
     status: string;
     date: string;
     mlOrderId: string | null;
   }>;
+  questionNotifications: {
+    connected: boolean;
+    total: number;
+    error: string | null;
+    items: Array<{
+      id: number;
+      itemId: string;
+      listingTitle: string;
+      sku: string | null;
+      customerId: number | null;
+      question: string;
+      date: string | null;
+      status: string | null;
+    }>;
+  };
+  claimNotifications: {
+    total: number;
+    items: Array<{
+      id: string;
+      number: number;
+      customer: string;
+      total: number;
+      status: string;
+      claimId: string | null;
+      claimStatus: string | null;
+      date: string;
+      mlOrderId: string | null;
+    }>;
+  };
+  ads: {
+    total: number;
+    active: number;
+    paused: number;
+    activeCatalog: number;
+    winningCatalog: number;
+  };
 };
 
 type Celebration = {
@@ -88,11 +143,6 @@ type Celebration = {
   customer: string;
   total: number;
 };
-
-function pct(value: number, total: number) {
-  if (!total) return 0;
-  return Math.max(0, Math.min(100, Math.round((value / total) * 100)));
-}
 
 function statusColor(status: string) {
   const map: Record<string, string> = {
@@ -116,6 +166,94 @@ function formatDateTime(value: string) {
     hour: "2-digit",
     minute: "2-digit",
   }).format(new Date(value));
+}
+
+function formatDateFull(value: string) {
+  if (!value) return "--";
+  return new Intl.DateTimeFormat("pt-BR", {
+    timeZone: "America/Sao_Paulo",
+    day: "2-digit",
+    month: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date(value));
+}
+
+function formatGoal(value: number, kind: "currency" | "number") {
+  if (kind === "currency") {
+    if (value >= 1000)
+      return `R$ ${(value / 1000).toFixed(1).replace(".", ",")}k`;
+    return formatCurrency(value).replace(",00", "");
+  }
+  return String(Math.round(value));
+}
+
+function GoalRow({
+  label,
+  current,
+  target,
+  kind,
+}: {
+  label: string;
+  current: number;
+  target: number;
+  kind: "currency" | "number";
+}) {
+  const safeTarget = Math.max(1, target);
+  const progress = Math.min(100, Math.round((current / safeTarget) * 100));
+  const missing = Math.max(0, target - current);
+  return (
+    <div className="goal-row">
+      <div className="goal-row-line">
+        <span className="goal-label">{label}</span>
+        <span className="goal-current">{formatGoal(current, kind)}</span>
+        <Progress
+          percent={progress}
+          showInfo={false}
+          size="small"
+          strokeColor={progress >= 100 ? "#52c41a" : "#1677ff"}
+          trailColor="#262626"
+        />
+        <span className="goal-target">{formatGoal(target, kind)}</span>
+      </div>
+      <Text type="secondary" className="goal-missing">
+        Falta {formatGoal(missing, kind)}
+      </Text>
+    </div>
+  );
+}
+
+function GoalTargets({
+  goals,
+  current,
+  kind,
+}: {
+  goals: { day: number; week: number; month: number };
+  current: { day: number; week: number; month: number };
+  kind: "currency" | "number";
+}) {
+  return (
+    <div className="goal-targets">
+      <GoalRow
+        label="Dia"
+        current={current.day}
+        target={goals.day}
+        kind={kind}
+      />
+      <GoalRow
+        label="Semana"
+        current={current.week}
+        target={goals.week}
+        kind={kind}
+      />
+      <GoalRow
+        label="Mês"
+        current={current.month}
+        target={goals.month}
+        kind={kind}
+      />
+    </div>
+  );
 }
 
 function trendText(value: number) {
@@ -188,7 +326,6 @@ export default function TvDashboardPage() {
     return () => window.clearInterval(interval);
   }, [loadMetrics]);
 
-  const goalProgress = pct(data?.today.revenue || 0, DAILY_GOAL);
   const hourly = useMemo(() => data?.hourlySales || [], [data]);
   const recentOrders = useMemo(
     () => (data?.recentOrders || []).slice(0, 5),
@@ -219,17 +356,33 @@ export default function TvDashboardPage() {
       render: (value) => <Text strong>#{value}</Text>,
     },
     {
+      title: "Data",
+      dataIndex: "date",
+      key: "date",
+      width: 120,
+      render: formatDateFull,
+    },
+    {
       title: "Cliente",
       dataIndex: "customer",
       key: "customer",
       ellipsis: true,
     },
     {
-      title: "Hora",
-      dataIndex: "date",
-      key: "date",
-      width: 90,
-      render: formatDateTime,
+      title: "Produto",
+      dataIndex: "productName",
+      key: "productName",
+      ellipsis: true,
+      render: (value, record) => (
+        <Space direction="vertical" size={0}>
+          <Text>{value}</Text>
+          {record.productCount > 1 && (
+            <Text type="secondary" style={{ fontSize: 11 }}>
+              +{record.productCount - 1} produto(s)
+            </Text>
+          )}
+        </Space>
+      ),
     },
     {
       title: "Valor",
@@ -335,20 +488,28 @@ export default function TvDashboardPage() {
           <Space direction="vertical" size={10} style={{ width: "100%" }}>
             <Row gutter={[12, 12]}>
               <Col xs={24} lg={6}>
-                <Card className="metric-card pulse-card">
+                <Card className="metric-card metric-card-feature pulse-card">
                   <Statistic
                     title="Vendas de hoje"
                     value={data?.today.orders || 0}
                     prefix={<span className="metric-emoji">🛒</span>}
-                    suffix="vendas"
                   />
                   <Tag color="blue">
                     {trendText(data?.trends.ordersVsYesterday || 0)}
                   </Tag>
+                  <GoalTargets
+                    goals={TV_GOALS.orders}
+                    current={{
+                      day: data?.today.orders || 0,
+                      week: data?.week.orders || 0,
+                      month: data?.month.orders || 0,
+                    }}
+                    kind="number"
+                  />
                 </Card>
               </Col>
               <Col xs={24} lg={6}>
-                <Card className="metric-card glow-green">
+                <Card className="metric-card metric-card-feature glow-green">
                   <Statistic
                     title="Faturamento de hoje"
                     value={data?.today.revenue || 0}
@@ -358,10 +519,19 @@ export default function TvDashboardPage() {
                   <Tag color="green">
                     {trendText(data?.trends.revenueVsYesterday || 0)}
                   </Tag>
+                  <GoalTargets
+                    goals={TV_GOALS.revenue}
+                    current={{
+                      day: data?.today.revenue || 0,
+                      week: data?.week.revenue || 0,
+                      month: data?.month.revenue || 0,
+                    }}
+                    kind="currency"
+                  />
                 </Card>
               </Col>
               <Col xs={24} lg={6}>
-                <Card className="metric-card">
+                <Card className="metric-card metric-card-feature">
                   <Statistic
                     title="Lucro de hoje"
                     value={data?.today.profit || 0}
@@ -371,42 +541,18 @@ export default function TvDashboardPage() {
                   <Tag color="purple">
                     {trendText(data?.trends.profitVsYesterday || 0)}
                   </Tag>
+                  <GoalTargets
+                    goals={TV_GOALS.profit}
+                    current={{
+                      day: data?.today.profit || 0,
+                      week: data?.week.profit || 0,
+                      month: data?.month.profit || 0,
+                    }}
+                    kind="currency"
+                  />
                 </Card>
               </Col>
               <Col xs={24} lg={6}>
-                <Card className="metric-card goal-card">
-                  <Flex align="center" justify="space-between">
-                    <div>
-                      <Text type="secondary">Meta do dia</Text>
-                      <Title level={3} style={{ margin: "4px 0" }}>
-                        {formatCurrency(DAILY_GOAL)}
-                      </Title>
-                    </div>
-                    <Progress
-                      type="circle"
-                      percent={goalProgress}
-                      size={76}
-                      strokeColor={goalProgress >= 100 ? "#52c41a" : "#1677ff"}
-                    />
-                  </Flex>
-                  <Progress
-                    percent={goalProgress}
-                    showInfo={false}
-                    strokeColor={{ from: "#1677ff", to: "#52c41a" }}
-                    trailColor="#262626"
-                  />
-                  <Text type="secondary">
-                    Faltam{" "}
-                    {formatCurrency(
-                      Math.max(0, DAILY_GOAL - (data?.today.revenue || 0)),
-                    )}
-                  </Text>
-                </Card>
-              </Col>
-            </Row>
-
-            <Row gutter={[12, 12]}>
-              <Col xs={24} xl={16}>
                 <Card
                   title={
                     <Space>
@@ -415,27 +561,28 @@ export default function TvDashboardPage() {
                   }
                   extra={
                     <Tag color="gold">
-                      <FireFilled /> melhor: {bestHour.label}
+                      <FireFilled /> {bestHour.label}
                     </Tag>
                   }
-                  className="chart-card"
+                  className="chart-card hour-card"
                 >
-                  <div className="chart-wrap">
+                  <div className="compact-chart">
                     <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={hourly} barCategoryGap={8}>
+                      <BarChart
+                        data={hourly}
+                        barCategoryGap={4}
+                        margin={{ top: 18, right: 4, left: -28, bottom: 0 }}
+                      >
                         <CartesianGrid stroke="#262626" vertical={false} />
                         <XAxis
                           dataKey="label"
                           stroke="#8c8c8c"
                           tickLine={false}
                           axisLine={false}
+                          interval={2}
+                          fontSize={10}
                         />
-                        <YAxis
-                          stroke="#8c8c8c"
-                          tickLine={false}
-                          axisLine={false}
-                          tickFormatter={(v) => `R$${Number(v) / 1000}k`}
-                        />
+                        <YAxis hide />
                         <Tooltip
                           cursor={{ fill: "rgba(22, 119, 255, 0.12)" }}
                           contentStyle={{
@@ -450,13 +597,13 @@ export default function TvDashboardPage() {
                             name === "revenue" ? "Faturamento" : "Vendas",
                           ]}
                         />
-                        <Bar dataKey="revenue" radius={[8, 8, 0, 0]}>
+                        <Bar dataKey="revenue" radius={[6, 6, 0, 0]}>
                           <LabelList
                             dataKey="revenue"
                             position="top"
                             formatter={formatBarLabel}
                             fill="#d9d9d9"
-                            fontSize={11}
+                            fontSize={9}
                           />
                           {hourly.map((item) => (
                             <Cell
@@ -475,74 +622,111 @@ export default function TvDashboardPage() {
                   </div>
                 </Card>
               </Col>
+            </Row>
 
-              <Col xs={24} xl={8}>
-                <Card title="Ritmo do dia" className="chart-card">
-                  <div className="mini-chart">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <AreaChart data={hourly}>
-                        <defs>
-                          <linearGradient
-                            id="revenueGradient"
-                            x1="0"
-                            y1="0"
-                            x2="0"
-                            y2="1"
+            <Row gutter={[12, 12]}>
+              <Col xs={24} lg={12}>
+                <Card
+                  title="Perguntas em produtos"
+                  extra={
+                    <Tag
+                      color={
+                        data?.questionNotifications.total ? "orange" : "green"
+                      }
+                    >
+                      {data?.questionNotifications.total || 0} pendentes
+                    </Tag>
+                  }
+                  className="notification-card"
+                >
+                  {data?.questionNotifications.error ? (
+                    <Text type="secondary">
+                      {data.questionNotifications.error}
+                    </Text>
+                  ) : data?.questionNotifications.items.length ? (
+                    <List
+                      size="small"
+                      dataSource={data.questionNotifications.items}
+                      renderItem={(item) => (
+                        <List.Item>
+                          <Space
+                            direction="vertical"
+                            size={1}
+                            style={{ width: "100%" }}
                           >
-                            <stop
-                              offset="5%"
-                              stopColor="#1677ff"
-                              stopOpacity={0.8}
-                            />
-                            <stop
-                              offset="95%"
-                              stopColor="#1677ff"
-                              stopOpacity={0.05}
-                            />
-                          </linearGradient>
-                        </defs>
-                        <XAxis dataKey="label" hide />
-                        <YAxis hide />
-                        <Tooltip
-                          contentStyle={{
-                            background: "#141414",
-                            border: "1px solid #303030",
-                            borderRadius: 8,
-                          }}
-                          formatter={(value) => formatCurrency(Number(value))}
-                        />
-                        <Area
-                          type="monotone"
-                          dataKey="revenue"
-                          stroke="#1677ff"
-                          strokeWidth={3}
-                          fill="url(#revenueGradient)"
-                        />
-                      </AreaChart>
-                    </ResponsiveContainer>
-                  </div>
-                  <List
-                    size="small"
-                    dataSource={[
-                      {
-                        label: "Ticket médio",
-                        value: formatCurrency(data?.today.averageTicket || 0),
-                      },
-                      {
-                        label: "Melhor hora",
-                        value: bestHour.orders
-                          ? `${bestHour.label} · ${formatCurrency(bestHour.revenue)}`
-                          : "sem vendas",
-                      },
-                      { label: "Progresso", value: `${goalProgress}% da meta` },
-                    ]}
-                    renderItem={(item) => (
-                      <List.Item>
-                        <Text type="secondary">{item.label}</Text>
-                        <Text strong>{item.value}</Text>
-                      </List.Item>
-                    )}
-                  />
+                            <Text strong ellipsis>
+                              {item.listingTitle}
+                            </Text>
+                            <Text type="secondary" ellipsis>
+                              {item.question}
+                            </Text>
+                            <Space size={6} wrap>
+                              {item.sku && <Tag>SKU {item.sku}</Tag>}
+                              <Tag color="blue">
+                                {formatDateFull(item.date || "")}
+                              </Tag>
+                            </Space>
+                          </Space>
+                        </List.Item>
+                      )}
+                    />
+                  ) : (
+                    <Empty
+                      image={Empty.PRESENTED_IMAGE_SIMPLE}
+                      description="Sem perguntas pendentes"
+                    />
+                  )}
+                </Card>
+              </Col>
+              <Col xs={24} lg={12}>
+                <Card
+                  title="Reclamações"
+                  extra={
+                    <Tag
+                      color={data?.claimNotifications.total ? "red" : "green"}
+                    >
+                      {data?.claimNotifications.total || 0} abertas
+                    </Tag>
+                  }
+                  className="notification-card"
+                >
+                  {data?.claimNotifications.items.length ? (
+                    <List
+                      size="small"
+                      dataSource={data.claimNotifications.items}
+                      renderItem={(item) => (
+                        <List.Item>
+                          <Space
+                            direction="vertical"
+                            size={1}
+                            style={{ width: "100%" }}
+                          >
+                            <Space split={<Text type="secondary">·</Text>} wrap>
+                              <Text strong>#{item.number}</Text>
+                              <Text>{item.customer}</Text>
+                              <Text style={{ color: "#52c41a" }}>
+                                {formatCurrency(item.total)}
+                              </Text>
+                            </Space>
+                            <Space size={6} wrap>
+                              <Tag color="red">Claim {item.claimId}</Tag>
+                              <Tag color={statusColor(item.status)}>
+                                {item.status}
+                              </Tag>
+                              <Tag color="blue">
+                                {formatDateFull(item.date)}
+                              </Tag>
+                            </Space>
+                          </Space>
+                        </List.Item>
+                      )}
+                    />
+                  ) : (
+                    <Empty
+                      image={Empty.PRESENTED_IMAGE_SIMPLE}
+                      description="Sem reclamações abertas"
+                    />
+                  )}
                 </Card>
               </Col>
             </Row>
@@ -557,9 +741,40 @@ export default function TvDashboardPage() {
                   size="small"
                 />
               ) : (
-                <Empty description="Nenhuma venda hoje ainda" />
+                <Empty description="Nenhuma venda registrada" />
               )}
             </Card>
+
+            <footer className="ads-footer">
+              <div>
+                <Text type="secondary">Total</Text>
+                <Text strong>{data?.ads.total || 0}</Text>
+              </div>
+              <div>
+                <Text type="secondary">Ativos</Text>
+                <Text strong style={{ color: "#52c41a" }}>
+                  {data?.ads.active || 0}
+                </Text>
+              </div>
+              <div>
+                <Text type="secondary">Pausados</Text>
+                <Text strong style={{ color: "#faad14" }}>
+                  {data?.ads.paused || 0}
+                </Text>
+              </div>
+              <div>
+                <Text type="secondary">Ativos Catálogo</Text>
+                <Text strong style={{ color: "#1677ff" }}>
+                  {data?.ads.activeCatalog || 0}
+                </Text>
+              </div>
+              <div>
+                <Text type="secondary">Ganhando Catálogo</Text>
+                <Text strong style={{ color: "#52c41a" }}>
+                  {data?.ads.winningCatalog || 0}
+                </Text>
+              </div>
+            </footer>
           </Space>
         )}
 
@@ -621,13 +836,20 @@ export default function TvDashboardPage() {
           }
           .metric-card,
           .chart-card,
+          .notification-card,
           .sales-card {
             border-color: #262626 !important;
             background: rgba(20, 20, 20, 0.94) !important;
             box-shadow: 0 14px 40px rgba(0, 0, 0, 0.28);
           }
           .metric-card {
-            min-height: 132px;
+            min-height: 190px;
+          }
+          .metric-card-feature {
+            border-color: rgba(22, 119, 255, 0.34) !important;
+            box-shadow:
+              0 0 34px rgba(22, 119, 255, 0.12),
+              0 14px 40px rgba(0, 0, 0, 0.28);
           }
           .metric-card .ant-statistic-title {
             color: #8c8c8c;
@@ -641,6 +863,42 @@ export default function TvDashboardPage() {
             margin-right: 8px;
             filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.22));
           }
+          .goal-targets {
+            display: grid;
+            gap: 7px;
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid #262626;
+          }
+          .goal-row {
+            display: grid;
+            gap: 2px;
+          }
+          .goal-row-line {
+            display: grid;
+            grid-template-columns: 48px 44px 1fr 54px;
+            align-items: center;
+            gap: 8px;
+          }
+          .goal-label,
+          .goal-current,
+          .goal-target {
+            color: #a0a0a0;
+            font-size: 11px;
+            line-height: 1.2;
+            white-space: nowrap;
+          }
+          .goal-current,
+          .goal-target {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+          }
+          .goal-missing {
+            display: block;
+            margin-left: 100px;
+            font-size: 10px;
+            line-height: 1;
+          }
           .pulse-card {
             box-shadow: 0 0 0 rgba(22, 119, 255, 0.35);
             animation: pulseBlue 2.8s ease-in-out infinite;
@@ -648,12 +906,36 @@ export default function TvDashboardPage() {
           .glow-green {
             box-shadow: 0 0 26px rgba(82, 196, 26, 0.16);
           }
-          .chart-wrap {
-            height: clamp(230px, 32vh, 330px);
+          .hour-card {
+            min-height: 190px;
           }
-          .mini-chart {
-            height: 125px;
-            margin-bottom: 8px;
+          .compact-chart {
+            height: 126px;
+          }
+          .notification-card {
+            min-height: 178px;
+          }
+          .notification-card .ant-list-item {
+            padding: 5px 0 !important;
+          }
+          .ads-footer {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            padding: 10px 14px;
+            border: 1px solid #262626;
+            border-radius: 10px;
+            background: rgba(20, 20, 20, 0.94);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.28);
+          }
+          .ads-footer > div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            background: #0f0f0f;
           }
           .ant-table,
           .ant-table-container,
