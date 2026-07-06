@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
+import { saoPauloDateParamToUtcIso } from '@/lib/timezone';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -29,6 +30,9 @@ export async function GET(request: Request) {
     const dateFrom = searchParams.get('dateFrom') || '';
     const dateTo = searchParams.get('dateTo') || '';
 
+    const startDateIso = dateFrom ? saoPauloDateParamToUtcIso(dateFrom, 'start') : null;
+    const endDateIso = dateTo ? saoPauloDateParamToUtcIso(dateTo, 'end') : null;
+
     const client = createServiceClient();
     let query = client
       .from('compras')
@@ -36,8 +40,8 @@ export async function GET(request: Request) {
 
     if (status) query = query.eq('status', status);
     if (search) query = query.or(`destinatario_nome.ilike.%${search}%,produto_descricao.ilike.%${search}%,dsid.ilike.%${search}%`);
-    if (dateFrom) query = query.gte('data_criacao', dateFrom);
-    if (dateTo) query = query.lte('data_criacao', `${dateTo}T23:59:59`);
+    if (startDateIso) query = query.gte('data_criacao', startDateIso);
+    if (endDateIso) query = query.lte('data_criacao', endDateIso);
 
     const { data, error } = await query;
 

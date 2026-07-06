@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
+import { saoPauloDateParamToUtcIso } from '@/lib/timezone';
 import { reconcileLocalNfeSnapshotFromXml } from '@/lib/fiscal/nfe-local-reconciliation';
 
 function logDbError(
@@ -174,7 +175,7 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
 
 function applyPedidoFilters(query: any, filters: {
   status: string;
-  dateFrom: string;
+  dateFrom: string | null;
   endDateIso: string | null;
   priceMin: number | null;
   priceMax: number | null;
@@ -277,19 +278,14 @@ export async function GET(request: Request) {
   const sortOrder = rawSortOrder === 'asc' ? 'asc' : 'desc';
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
-  let endDateIso: string | null = null;
-
-  if (dateTo) {
-    const end = new Date(dateTo);
-    end.setHours(23, 59, 59, 999);
-    endDateIso = end.toISOString();
-  }
+  const startDateIso = dateFrom ? saoPauloDateParamToUtcIso(dateFrom, 'start') : null;
+  const endDateIso = dateTo ? saoPauloDateParamToUtcIso(dateTo, 'end') : null;
 
   if (normalizedSearch) {
     const { data: rpcData, error: rpcError } = await (serviceClient as any).rpc('search_pedidos_paginated', {
       p_search: normalizedSearch,
       p_status: status || null,
-      p_date_from: dateFrom || null,
+      p_date_from: startDateIso,
       p_date_to: endDateIso,
       p_price_min: priceMin,
       p_price_max: priceMax,
@@ -325,7 +321,7 @@ export async function GET(request: Request) {
 
   const filterContext = {
     status,
-    dateFrom,
+    dateFrom: startDateIso,
     endDateIso,
     priceMin,
     priceMax,

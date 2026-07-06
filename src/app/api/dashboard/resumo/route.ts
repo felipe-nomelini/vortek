@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
+import { saoPauloDateParamToUtcIso, saoPauloDayLabel } from '@/lib/timezone';
 
 export async function GET(request: Request) {
   const supabase = await createClient();
@@ -12,12 +13,10 @@ export async function GET(request: Request) {
   const dateTo = searchParams.get('dateTo') || '';
 
   function applyDateFilter(query: any) {
-    if (dateFrom) query = query.gte('data', dateFrom);
-    if (dateTo) {
-      const end = new Date(dateTo);
-      end.setHours(23, 59, 59, 999);
-      query = query.lte('data', end.toISOString());
-    }
+    const startIso = dateFrom ? saoPauloDateParamToUtcIso(dateFrom, 'start') : null;
+    const endIso = dateTo ? saoPauloDateParamToUtcIso(dateTo, 'end') : null;
+    if (startIso) query = query.gte('data', startIso);
+    if (endIso) query = query.lte('data', endIso);
     return query;
   }
 
@@ -45,8 +44,8 @@ export async function GET(request: Request) {
 
   const vendasDiariasMap: Record<string, number> = {};
   for (const row of dailyData || []) {
-    const d = new Date(row.data);
-    const key = `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}`;
+    const key = saoPauloDayLabel(row.data);
+    if (!key) continue;
     vendasDiariasMap[key] = (vendasDiariasMap[key] || 0) + (row.total || 0);
   }
   const vendasDiarias = Object.entries(vendasDiariasMap)

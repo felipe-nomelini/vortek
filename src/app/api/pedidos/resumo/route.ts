@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
+import { saoPauloDateParamToUtcIso } from '@/lib/timezone';
 
 function logDbError(
   event: string,
@@ -52,19 +53,14 @@ export async function GET(request: Request) {
   const priceMin = searchParams.get('priceMin') ? parseFloat(searchParams.get('priceMin')!) : null;
   const priceMax = searchParams.get('priceMax') ? parseFloat(searchParams.get('priceMax')!) : null;
   const normalizedSearch = search.trim();
-  let endDateIso: string | null = null;
-
-  if (dateTo) {
-    const end = new Date(dateTo);
-    end.setHours(23, 59, 59, 999);
-    endDateIso = end.toISOString();
-  }
+  const startDateIso = dateFrom ? saoPauloDateParamToUtcIso(dateFrom, 'start') : null;
+  const endDateIso = dateTo ? saoPauloDateParamToUtcIso(dateTo, 'end') : null;
 
   if (normalizedSearch) {
     const { data: rpcData, error: rpcError } = await (serviceClient as any).rpc('search_pedidos_resumo', {
       p_search: normalizedSearch,
       p_status: status || null,
-      p_date_from: dateFrom || null,
+      p_date_from: startDateIso,
       p_date_to: endDateIso,
       p_price_min: priceMin,
       p_price_max: priceMax,
@@ -97,8 +93,8 @@ export async function GET(request: Request) {
     if (status) {
       query = query.eq('situacao', status);
     }
-    if (dateFrom) {
-      query = query.gte(dateColumn, dateFrom);
+    if (startDateIso) {
+      query = query.gte(dateColumn, startDateIso);
     }
     if (endDateIso) {
       query = query.lte(dateColumn, endDateIso);

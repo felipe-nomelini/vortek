@@ -1,20 +1,9 @@
 import { NextResponse } from "next/server";
 import { createClient, createServiceClient } from "@/lib/supabase";
+import { saoPauloDayBounds, saoPauloHour } from "@/lib/timezone";
 
 function round2(value: number): number {
   return Math.round(Number(value || 0) * 100) / 100;
-}
-
-function startOfDay(date: Date): Date {
-  const d = new Date(date);
-  d.setHours(0, 0, 0, 0);
-  return d;
-}
-
-function endOfDay(date: Date): Date {
-  const d = new Date(date);
-  d.setHours(23, 59, 59, 999);
-  return d;
 }
 
 function percentChange(current: number, previous: number): number {
@@ -60,9 +49,9 @@ function hourlySales(rows: any[]) {
     orders: 0,
   }));
   for (const row of rows) {
-    const date = new Date(row.data || row.created_at || row.updated_at);
-    if (Number.isNaN(date.getTime())) continue;
-    const bucket = buckets[date.getHours()];
+    const hour = saoPauloHour(row.data || row.created_at || row.updated_at);
+    if (hour === null) continue;
+    const bucket = buckets[hour];
     bucket.revenue = round2(bucket.revenue + Number(row.total || 0));
     bucket.orders += 1;
   }
@@ -93,12 +82,10 @@ export async function GET() {
 
   const service = createServiceClient();
   const now = new Date();
-  const todayStart = startOfDay(now);
-  const todayEnd = endOfDay(now);
-  const yesterday = new Date(todayStart);
-  yesterday.setDate(yesterday.getDate() - 1);
-  const yesterdayStart = startOfDay(yesterday);
-  const yesterdayEnd = endOfDay(yesterday);
+  const { start: todayStart, end: todayEnd } = saoPauloDayBounds(now);
+  const { start: yesterdayStart, end: yesterdayEnd } = saoPauloDayBounds(
+    new Date(todayStart.getTime() - 1),
+  );
   const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
 
   const [

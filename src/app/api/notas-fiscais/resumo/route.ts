@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
+import { saoPauloDateParamToUtcIso } from '@/lib/timezone';
 import { normalizeNfeTechnicalStatus, type NfeTechnicalStatus } from '@/lib/fiscal/nfe-status';
 import { reconcileLocalNfeSnapshotFromXml } from '@/lib/fiscal/nfe-local-reconciliation';
 
@@ -82,14 +83,15 @@ export async function GET(request: Request) {
       query = query.or(filters.join(','));
     }
 
-    if (dateFrom) {
-      query = query.gte('data', dateFrom);
+    const startDateIso = dateFrom ? saoPauloDateParamToUtcIso(dateFrom, 'start') : null;
+    const endDateIso = dateTo ? saoPauloDateParamToUtcIso(dateTo, 'end') : null;
+
+    if (startDateIso) {
+      query = query.gte('data', startDateIso);
     }
 
-    if (dateTo) {
-      const end = new Date(dateTo);
-      end.setHours(23, 59, 59, 999);
-      query = query.lte('data', end.toISOString());
+    if (endDateIso) {
+      query = query.lte('data', endDateIso);
     }
 
     if (valorMin) {
