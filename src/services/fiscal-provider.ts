@@ -343,8 +343,9 @@ export async function cancelarNotaBrasilNfePorChave(input: {
 
     const status = Number(resp?.Status || 0);
     const cod = Number(resp?.CodStatusRespostaSefaz || 0);
-    const ds = String(resp?.DsMotivo || '').toLowerCase();
-    const ok = status === 1 || [135, 136, 155].includes(cod) || ds.includes('evento registrado');
+    const ds = String(resp?.DsMotivo || resp?.Error || '').toLowerCase();
+    const duplicatedCancelEvent = cod === 573 && ds.includes('duplicidade de evento');
+    const ok = status === 1 || [135, 136, 155].includes(cod) || ds.includes('evento registrado') || duplicatedCancelEvent;
     if (!ok) {
       return {
         ok: false,

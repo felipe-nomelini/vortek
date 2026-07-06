@@ -17,18 +17,41 @@ const NFE_CANCEL_JUSTIFICATIVA =
 const NFE_CANCEL_SUCCESS_EVENT = "ml_cancel_auto_nfe_cancel_success";
 const WHATSAPP_SENT_EVENT = "ml_cancel_auto_supplier_whatsapp_sent";
 
-function isNfeAlreadyCancelled(status: unknown): boolean {
-  const normalized = String(status || "")
+function normalizeNfeStatus(status: unknown): string {
+  return String(status || "")
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .trim()
     .toLowerCase();
+}
+
+function isNfeAlreadyCancelled(status: unknown): boolean {
+  const normalized = normalizeNfeStatus(status);
   return (
     normalized === "cancelled" ||
     normalized === "canceled" ||
     normalized === "cancelada" ||
     normalized === "cancelado"
   );
+}
+
+function isTerminalNfeCancelRejection(status: unknown): boolean {
+  const normalized = normalizeNfeStatus(status);
+  return normalized === "cancel_rejected_deadline";
+}
+
+function isDeadlineCancelRejection(result: {
+  error?: string;
+  raw?: any;
+}): boolean {
+  const code = Number(result?.raw?.CodStatusRespostaSefaz || 0);
+  const text = String(
+    result?.error || result?.raw?.DsMotivo || result?.raw?.Error || "",
+  )
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+  return code === 501 || text.includes("prazo de cancelamento superior");
 }
 
 function maskPhoneSuffix(value: unknown): string | null {
@@ -145,7 +168,17 @@ async function processPedido(input: {
 
   const nfeAlreadyCancelled =
     isNfeAlreadyCancelled(pedido.nfe_status) || cancelAlreadyDone;
+  const nfeCancelTerminalRejected = isTerminalNfeCancelRejection(
+    pedido.nfe_status,
+  );
   let cancelledNow = false;
+
+  if (nfeCancelTerminalRejected) {
+    return {
+      status: "skipped",
+      reason: "nfe_cancel_rejected_deadline",
+    };
+  }
 
   if (!nfeAlreadyCancelled) {
     await registrarEventoNfAuditoria({
@@ -177,18 +210,65 @@ async function processPedido(input: {
     });
 
     if (!cancelResult.ok) {
+      const deadlineRejected = isDeadlineCancelRejection(cancelResult);
+      if (deadlineRejected) {
+        const now = new Date().toISOString();
+        const { error: deadlineUpdateError } = await client
+          .from("pedidos")
+          .update({
+            nfe_status: "cancel_rejected_deadline",
+            nfe_last_sync_at: now,
+            updated_at: now,
+          } as any)
+          .eq("id", pedidoId);
+
+        if (deadlineUpdateError) {
+          await registrarEventoNfAuditoria({
+            pedidoId,
+            mlOrderId,
+            evento: "ml_cancel_auto_nfe_cancel_failed",
+            respostaMl: {
+              dsid,
+              nfe_chave: nfeChave,
+              error: deadlineUpdateError.message,
+              raw: cancelResult.raw || null,
+              step: "deadline_status_update_failed",
+            },
+            statusResultante: "failed",
+          });
+          return {
+            status: "failed",
+            reason: "local_nfe_status_update_failed",
+            error: deadlineUpdateError.message,
+          };
+        }
+      }
+
       await registrarEventoNfAuditoria({
         pedidoId,
         mlOrderId,
-        evento: "ml_cancel_auto_nfe_cancel_failed",
+        evento: deadlineRejected
+          ? "ml_cancel_auto_nfe_cancel_rejected_deadline"
+          : "ml_cancel_auto_nfe_cancel_failed",
         respostaMl: {
           dsid,
           nfe_chave: nfeChave,
           error: cancelResult.error || null,
           raw: cancelResult.raw || null,
         },
-        statusResultante: "failed",
+        statusResultante: deadlineRejected ? "terminal" : "failed",
       });
+
+      if (deadlineRejected) {
+        return {
+          status: "processed",
+          reason: "nfe_cancel_rejected_deadline",
+          error:
+            cancelResult.error ||
+            "Prazo legal de cancelamento da NF-e excedido",
+        };
+      }
+
       return {
         status: "failed",
         reason: "nfe_cancel_failed",

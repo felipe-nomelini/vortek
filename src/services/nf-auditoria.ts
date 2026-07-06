@@ -128,6 +128,7 @@ type AuditEvent =
   | 'ml_cancel_auto_detected'
   | 'ml_cancel_auto_nfe_cancel_success'
   | 'ml_cancel_auto_nfe_cancel_failed'
+  | 'ml_cancel_auto_nfe_cancel_rejected_deadline'
   | 'ml_cancel_auto_supplier_whatsapp_sent'
   | 'ml_cancel_auto_supplier_whatsapp_failed'
   | 'ml_cancel_auto_supplier_whatsapp_skipped'
