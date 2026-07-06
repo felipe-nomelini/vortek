@@ -720,7 +720,13 @@ export default function PedidosPage() {
   const confirmarPagamentoDsliteNoFluxo = async () => {
     if (!dslitePaymentPrompt) return;
     const hasSavedReceipt = Boolean(dslitePaymentPrompt.order.supplier_payment_receipt_path);
-    if (!dslitePaymentReceiptFile && !hasSavedReceipt) {
+    const resumeOnly = Boolean(
+      dslitePaymentPrompt.resumeAfterConfirm
+      && dslitePaymentPrompt.order.supplier_payment_status === 'paid'
+      && hasSavedReceipt
+      && !dslitePaymentReceiptFile,
+    );
+    if (!dslitePaymentReceiptFile && !hasSavedReceipt && !resumeOnly) {
       messageApi.warning('Anexe o comprovante do PIX para continuar o fluxo.');
       return;
     }
@@ -729,6 +735,9 @@ export default function PedidosPage() {
     try {
       const form = new FormData();
       form.append('resume_dslite_flow', dslitePaymentPrompt.resumeAfterConfirm ? 'true' : 'false');
+      if (resumeOnly) {
+        form.append('resume_only', 'true');
+      }
       if (dslitePaymentReceiptFile) {
         form.append('receipt', dslitePaymentReceiptFile);
       }
@@ -1532,20 +1541,30 @@ export default function PedidosPage() {
         showCloseButton={whatsappSteps.some(s => s.status === 'error' || s.status === 'success' || s.status === 'warning')}
       />
       <Modal
-        title={dslitePaymentPrompt?.resumeAfterConfirm === false ? 'Enviar comprovante PIX ao fornecedor' : 'Confirmar PIX do fornecedor'}
+        title={dslitePaymentPrompt?.resumeAfterConfirm && dslitePaymentPrompt.order.supplier_payment_status === 'paid'
+          ? 'Retomar fluxo DSLite'
+          : dslitePaymentPrompt?.resumeAfterConfirm === false
+            ? 'Enviar comprovante PIX ao fornecedor'
+            : 'Confirmar PIX do fornecedor'}
         open={dslitePaymentModalOpen}
         onCancel={() => setDslitePaymentModalOpen(false)}
         onOk={confirmarPagamentoDsliteNoFluxo}
-        okText={dslitePaymentPrompt?.resumeAfterConfirm === false ? 'Enviar comprovante' : 'Confirmar PIX e continuar'}
+        okText={dslitePaymentPrompt?.resumeAfterConfirm && dslitePaymentPrompt.order.supplier_payment_status === 'paid'
+          ? 'Retomar fluxo'
+          : dslitePaymentPrompt?.resumeAfterConfirm === false
+            ? 'Enviar comprovante'
+            : 'Confirmar PIX e continuar'}
         cancelText="Depois"
         confirmLoading={confirmingDslitePayment}
         maskClosable={false}
       >
         <Space direction="vertical" size={14} style={{ width: '100%' }}>
           <Text style={{ color: '#a0a0a0' }}>
-            {dslitePaymentPrompt?.resumeAfterConfirm === false
-              ? 'Envie ou reenvie o comprovante PIX ao fornecedor sem retomar etapas de etiqueta.'
-              : 'O pedido DSLite foi criado e precisa da confirmação do PIX para continuar etiqueta/transportadora.'}
+            {dslitePaymentPrompt?.resumeAfterConfirm && dslitePaymentPrompt.order.supplier_payment_status === 'paid'
+              ? 'O comprovante já foi enviado ao fornecedor. Esta ação apenas retoma etiqueta/transportadora.'
+              : dslitePaymentPrompt?.resumeAfterConfirm === false
+                ? 'Envie ou reenvie o comprovante PIX ao fornecedor sem retomar etapas de etiqueta.'
+                : 'O pedido DSLite foi criado e precisa da confirmação do PIX para continuar etiqueta/transportadora.'}
           </Text>
           {(dslitePaymentPrompt?.supplierPixKeyMissing || dslitePaymentPrompt?.supplierPhoneMissing) && (
             <div style={{ background: '#2a1f00', border: '1px solid #faad1444', borderRadius: 8, padding: 12 }}>
@@ -1595,29 +1614,36 @@ export default function PedidosPage() {
             disabled={confirmingDslitePayment}
             rows={3}
           />
-          <Upload
-            accept=".pdf,.jpg,.jpeg,.png,.webp,application/pdf,image/jpeg,image/png,image/webp"
-            maxCount={1}
-            beforeUpload={(file) => {
-              setDslitePaymentReceiptFile(file);
-              return false;
-            }}
-            onRemove={() => {
-              setDslitePaymentReceiptFile(null);
-            }}
-            fileList={dslitePaymentReceiptFile ? [{
-              uid: 'supplier-payment-receipt',
-              name: dslitePaymentReceiptFile.name,
-              status: 'done' as const,
-            }] : []}
-            disabled={confirmingDslitePayment}
-          >
-            <Button icon={<UploadOutlined />} disabled={confirmingDslitePayment}>
-              {dslitePaymentPrompt?.order.supplier_payment_receipt_path ? 'Substituir comprovante' : 'Anexar comprovante'}
-            </Button>
-          </Upload>
-          {dslitePaymentPrompt?.order.supplier_payment_receipt_path && !dslitePaymentReceiptFile && (
-            <Text type="secondary">Comprovante já salvo. Você pode continuar sem anexar novamente.</Text>
+          {!(dslitePaymentPrompt?.resumeAfterConfirm && dslitePaymentPrompt.order.supplier_payment_status === 'paid' && dslitePaymentPrompt.order.supplier_payment_receipt_path) && (
+            <>
+              <Upload
+                accept=".pdf,.jpg,.jpeg,.png,.webp,application/pdf,image/jpeg,image/png,image/webp"
+                maxCount={1}
+                beforeUpload={(file) => {
+                  setDslitePaymentReceiptFile(file);
+                  return false;
+                }}
+                onRemove={() => {
+                  setDslitePaymentReceiptFile(null);
+                }}
+                fileList={dslitePaymentReceiptFile ? [{
+                  uid: 'supplier-payment-receipt',
+                  name: dslitePaymentReceiptFile.name,
+                  status: 'done' as const,
+                }] : []}
+                disabled={confirmingDslitePayment}
+              >
+                <Button icon={<UploadOutlined />} disabled={confirmingDslitePayment}>
+                  {dslitePaymentPrompt?.order.supplier_payment_receipt_path ? 'Substituir comprovante' : 'Anexar comprovante'}
+                </Button>
+              </Upload>
+              {dslitePaymentPrompt?.order.supplier_payment_receipt_path && !dslitePaymentReceiptFile && (
+                <Text type="secondary">Comprovante já salvo. Você pode continuar sem anexar novamente.</Text>
+              )}
+            </>
+          )}
+          {dslitePaymentPrompt?.resumeAfterConfirm && dslitePaymentPrompt.order.supplier_payment_status === 'paid' && dslitePaymentPrompt.order.supplier_payment_receipt_path && (
+            <Text type="secondary">Comprovante já salvo e já enviado. Nenhum novo envio será feito.</Text>
           )}
         </Space>
       </Modal>

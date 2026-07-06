@@ -36,6 +36,7 @@ async function parsePaymentConfirmationRequest(request: Request) {
       supplierPaymentReceiptUrl: String(form.get('supplier_payment_receipt_url') || '').trim() || null,
       supplierPaymentNotes: String(form.get('supplier_payment_notes') || '').trim() || null,
       resumeDsliteFlow: String(form.get('resume_dslite_flow') || '').trim() === 'true',
+      resumeOnly: String(form.get('resume_only') || '').trim() === 'true',
       receiptFile: receipt instanceof File && receipt.size > 0 ? receipt : null,
     };
   }
@@ -46,6 +47,7 @@ async function parsePaymentConfirmationRequest(request: Request) {
     supplierPaymentReceiptUrl: String(body?.supplier_payment_receipt_url || '').trim() || null,
     supplierPaymentNotes: String(body?.supplier_payment_notes || '').trim() || null,
     resumeDsliteFlow: Boolean(body?.resume_dslite_flow),
+    resumeOnly: Boolean(body?.resume_only),
     receiptFile: null as File | null,
   };
 }
@@ -240,6 +242,7 @@ export async function POST(
   const supplierPaymentReceiptUrl = parsed.supplierPaymentReceiptUrl;
   const supplierPaymentNotes = parsed.supplierPaymentNotes;
   const resumeDsliteFlow = Boolean(parsed.resumeDsliteFlow);
+  const requestedResumeOnly = Boolean(parsed.resumeOnly);
 
   const service = createServiceClient();
   const { data: compra, error: compraError } = await service
@@ -259,24 +262,27 @@ export async function POST(
   }
 
   const alreadyPaid = compra.supplier_payment_status === 'paid';
-  if (!parsed.receiptFile && !(compra as any).supplier_payment_receipt_path) {
+  const resumeOnly = requestedResumeOnly && resumeDsliteFlow && alreadyPaid && !parsed.receiptFile;
+  if (!parsed.receiptFile && !(compra as any).supplier_payment_receipt_path && !resumeOnly) {
     return NextResponse.json({ error: 'Anexe o comprovante para enviar ao fornecedor' }, { status: 422 });
   }
 
   const confirmedAt = (compra as any).supplier_payment_confirmed_at || new Date().toISOString();
   const confirmedBy = (compra as any).supplier_payment_confirmed_by || user?.email || user?.id || 'dslite_order_flow';
   const nextStatus = String(compra.status_dslite || compra.status || 'Iniciado');
-  const uploadedReceipt = parsed.receiptFile
-    ? await uploadReceiptFile({
-      service,
-      compraId,
-      dsid: compra.dsid ? String(compra.dsid) : null,
-      file: parsed.receiptFile,
-    })
-    : await downloadReceiptFile({
-      service,
-      path: (compra as any).supplier_payment_receipt_path || null,
-    });
+  const uploadedReceipt = resumeOnly
+    ? null
+    : parsed.receiptFile
+      ? await uploadReceiptFile({
+        service,
+        compraId,
+        dsid: compra.dsid ? String(compra.dsid) : null,
+        file: parsed.receiptFile,
+      })
+      : await downloadReceiptFile({
+        service,
+        path: (compra as any).supplier_payment_receipt_path || null,
+      });
 
   const { error: updateError } = await service
     .from('compras')
@@ -319,6 +325,7 @@ export async function POST(
       fornecedor_id: compra.fornecedor_id || null,
       fornecedor_nome: compra.fornecedor_nome || null,
       already_paid: alreadyPaid,
+      resume_only: resumeOnly,
       confirmed_at: confirmedAt,
       confirmed_by: confirmedBy,
       supplier_payment_reference: supplierPaymentReference,
@@ -335,29 +342,33 @@ export async function POST(
 
   let whatsappResult: Record<string, unknown> | null = null;
   try {
-    whatsappResult = await sendSupplierPaymentWhatsapp({
-      service,
-      appBaseUrl: resolveAppBaseUrl(request),
-      compra,
-      pedido,
-      fornecedorTelefone: (fornecedor as any)?.telefone || null,
-      receipt: uploadedReceipt,
-      reference: supplierPaymentReference,
-      notes: supplierPaymentNotes,
-    });
-    await registrarEventoNfAuditoria({
-      pedidoId: String(pedido.id),
-      mlOrderId: String(pedido.ml_order_id),
-      evento: 'supplier_payment_whatsapp_sent',
-      respostaMl: {
-        compra_id: compraId,
-        dslite_id: compra.dsid,
-        fornecedor_id: compra.fornecedor_id || null,
-        fornecedor_phone_suffix: String((fornecedor as any)?.telefone || '').replace(/\D/g, '').slice(-4) || null,
-        result: whatsappResult,
-      },
-      statusResultante: whatsappResult?.sent ? 'sent' : 'skipped',
-    });
+    if (resumeOnly) {
+      whatsappResult = { sent: false, skipped: true, reason: 'resume_only_receipt_already_sent' };
+    } else {
+      whatsappResult = await sendSupplierPaymentWhatsapp({
+        service,
+        appBaseUrl: resolveAppBaseUrl(request),
+        compra,
+        pedido,
+        fornecedorTelefone: (fornecedor as any)?.telefone || null,
+        receipt: uploadedReceipt,
+        reference: supplierPaymentReference,
+        notes: supplierPaymentNotes,
+      });
+      await registrarEventoNfAuditoria({
+        pedidoId: String(pedido.id),
+        mlOrderId: String(pedido.ml_order_id),
+        evento: 'supplier_payment_whatsapp_sent',
+        respostaMl: {
+          compra_id: compraId,
+          dslite_id: compra.dsid,
+          fornecedor_id: compra.fornecedor_id || null,
+          fornecedor_phone_suffix: String((fornecedor as any)?.telefone || '').replace(/\D/g, '').slice(-4) || null,
+          result: whatsappResult,
+        },
+        statusResultante: whatsappResult?.sent ? 'sent' : 'skipped',
+      });
+    }
   } catch (err: any) {
     whatsappResult = { sent: false, error: err?.message || 'Erro ao enviar WhatsApp ao fornecedor' };
     await registrarEventoNfAuditoria({
