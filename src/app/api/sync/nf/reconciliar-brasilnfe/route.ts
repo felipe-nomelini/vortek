@@ -40,9 +40,16 @@ export async function POST(request: Request) {
     let query = client
       .from("pedidos")
       .select(
-        "id,numero,ml_order_id,nfe_status,nota_fiscal_numero,nota_fiscal_emitida,situacao",
+        "id,numero,ml_order_id,nfe_status,nota_fiscal_numero,nota_fiscal_emitida,situacao,nfe_last_sync_at",
       )
       .limit(limit);
+
+    if (mlOrderIds.length === 0 && pedidoIds.length === 0) {
+      query = query.order("nfe_last_sync_at", {
+        ascending: true,
+        nullsFirst: true,
+      });
+    }
 
     query = useSaleDate
       ? query
@@ -55,16 +62,12 @@ export async function POST(request: Request) {
     } else if (pedidoIds.length > 0) {
       query = query.in("id", pedidoIds);
     } else {
-      query = query
-        .in("situacao", [
-          "etiqueta_impressa",
-          "coletado",
-          "em_transito",
-          "entregue",
-        ])
-        .or(
-          "nfe_status.is.null,nfe_status.eq.pendente,nota_fiscal_numero.is.null",
-        );
+      query = query.in("situacao", [
+        "etiqueta_impressa",
+        "coletado",
+        "em_transito",
+        "entregue",
+      ]);
     }
 
     return query;
