@@ -52,6 +52,19 @@ const TV_GOALS = {
 };
 const SALE_SOUND_SRC = "/sounds/dreigue.mp3";
 
+type TvOrderSummary = {
+  id: string;
+  number: number;
+  customer: string;
+  productName: string;
+  productCount: number;
+  total: number;
+  profit: number;
+  status: string;
+  date: string;
+  mlOrderId: string | null;
+};
+
 type TvMetrics = {
   generatedAt: string;
   today: {
@@ -86,18 +99,7 @@ type TvMetrics = {
     revenue: number;
     orders: number;
   }>;
-  recentOrders: Array<{
-    id: string;
-    number: number;
-    customer: string;
-    productName: string;
-    productCount: number;
-    total: number;
-    profit: number;
-    status: string;
-    date: string;
-    mlOrderId: string | null;
-  }>;
+  recentOrders: TvOrderSummary[];
   projection: {
     basis: {
       historicalDays: number;
@@ -130,6 +132,11 @@ type TvMetrics = {
     winningCatalog: number;
   };
 };
+
+type TvLiveMetrics = Pick<
+  TvMetrics,
+  "generatedAt" | "today" | "week" | "month" | "trends" | "recentOrders"
+>;
 
 type Celebration = {
   id: number;
@@ -310,6 +317,8 @@ export default function TvDashboardPage() {
   const soundEnabledRef = useRef(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const tvShellRef = useRef<HTMLElement | null>(null);
+  const fullRefreshInFlightRef = useRef(false);
+  const liveRefreshInFlightRef = useRef(false);
 
   useEffect(() => {
     soundEnabledRef.current = soundEnabled;
@@ -322,20 +331,10 @@ export default function TvDashboardPage() {
     audio.play().catch(() => undefined);
   }, []);
 
-  const loadMetrics = useCallback(async () => {
-    try {
-      setError(null);
-      const res = await fetch("/api/tv/metrics", { cache: "no-store" });
-      const json = await res.json();
-      if (!res.ok)
-        throw new Error(
-          json?.erro || json?.error || "Erro ao carregar TV ao Vivo",
-        );
-
-      const next = json as TvMetrics;
-      const newest = next.recentOrders?.[0];
+  const handleNewestOrder = useCallback(
+    (orders: TvOrderSummary[] | undefined) => {
+      const newest = orders?.[0];
       const previousNewestId = lastOrderIdRef.current;
-      setData(next);
 
       if (!previousNewestId) {
         lastOrderIdRef.current = newest?.id || null;
@@ -362,23 +361,79 @@ export default function TvDashboardPage() {
           celebrationTimerRef.current = null;
         }, 7000);
       }
+    },
+    [playSaleSound],
+  );
+
+  const loadMetrics = useCallback(async () => {
+    if (fullRefreshInFlightRef.current) return;
+    fullRefreshInFlightRef.current = true;
+    try {
+      setError(null);
+      const res = await fetch("/api/tv/metrics", { cache: "no-store" });
+      const json = await res.json();
+      if (!res.ok) {
+        throw new Error(
+          json?.erro || json?.error || "Erro ao carregar TV ao Vivo",
+        );
+      }
+
+      const next = json as TvMetrics;
+      setData(next);
+      handleNewestOrder(next.recentOrders);
     } catch (err: any) {
       setError(err?.message || "Erro ao carregar TV ao Vivo");
     } finally {
+      fullRefreshInFlightRef.current = false;
       setLoading(false);
     }
-  }, [playSaleSound]);
+  }, [handleNewestOrder]);
+
+  const loadLiveMetrics = useCallback(async () => {
+    if (liveRefreshInFlightRef.current) return;
+    liveRefreshInFlightRef.current = true;
+    try {
+      const res = await fetch("/api/tv/live", { cache: "no-store" });
+      const json = await res.json();
+      if (!res.ok) {
+        throw new Error(
+          json?.erro || json?.error || "Erro ao carregar TV ao Vivo",
+        );
+      }
+
+      const live = json as TvLiveMetrics;
+      setData((current) => {
+        if (!current) return current;
+        return {
+          ...current,
+          generatedAt: live.generatedAt,
+          today: live.today,
+          week: live.week,
+          month: live.month,
+          trends: live.trends,
+          recentOrders: live.recentOrders,
+        };
+      });
+      handleNewestOrder(live.recentOrders);
+    } catch {
+      // endpoint leve é best-effort; endpoint completo segue em 15s
+    } finally {
+      liveRefreshInFlightRef.current = false;
+    }
+  }, [handleNewestOrder]);
 
   useEffect(() => {
     loadMetrics();
-    const interval = window.setInterval(loadMetrics, 15000);
+    const liveInterval = window.setInterval(loadLiveMetrics, 1000);
+    const fullInterval = window.setInterval(loadMetrics, 15000);
     return () => {
-      window.clearInterval(interval);
+      window.clearInterval(liveInterval);
+      window.clearInterval(fullInterval);
       if (celebrationTimerRef.current) {
         window.clearTimeout(celebrationTimerRef.current);
       }
     };
-  }, [loadMetrics]);
+  }, [loadLiveMetrics, loadMetrics]);
 
   const hourly = useMemo(() => data?.hourlySales || [], [data]);
   const recentOrders = useMemo(
@@ -402,7 +457,7 @@ export default function TvDashboardPage() {
     tvShellRef.current?.requestFullscreen().catch(() => undefined);
   }, []);
 
-  const columns: ColumnsType<TvMetrics["recentOrders"][number]> = [
+  const columns: ColumnsType<TvOrderSummary> = [
     {
       title: "Venda",
       dataIndex: "number",
@@ -497,7 +552,7 @@ export default function TvDashboardPage() {
                 text={<Text strong>AO VIVO</Text>}
               />
               <Text type="secondary" style={{ display: "block", marginTop: 4 }}>
-                Atualiza a cada 15s ·{" "}
+                vendas ao vivo a cada 1s · painel completo a cada 15s ·{" "}
                 {data?.generatedAt
                   ? `última leitura ${formatDateTime(data.generatedAt)}`
                   : "carregando"}
