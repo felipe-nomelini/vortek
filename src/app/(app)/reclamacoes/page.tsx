@@ -1,267 +1,621 @@
-'use client';
+"use client";
 
-import { useState, useMemo } from 'react';
-import { Input, Select, Button, Tag, Typography, Row, Col, DatePicker } from 'antd';
-import ResizableTable from '@/components/ResizableTable';
-import type { TableProps } from 'antd';
-import { SearchOutlined, EllipsisOutlined } from '@ant-design/icons';
+import { useEffect, useMemo, useState } from "react";
+import {
+  Alert,
+  Button,
+  Col,
+  DatePicker,
+  Input,
+  Row,
+  Select,
+  Space,
+  Spin,
+  Tag,
+  Typography,
+} from "antd";
+import type { TableProps } from "antd";
+import { ReloadOutlined, SearchOutlined } from "@ant-design/icons";
+import ResizableTable from "@/components/ResizableTable";
 
 const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
 
-type ClaimType = 'devolucao' | 'cancelamento' | 'mediacao';
-type ClaimStage = 'claim' | 'dispute' | 'recontact';
-type ClaimStatus = 'opened' | 'closed';
+type MLClaimStatus = "opened" | "closed" | string;
+type MLClaimStage =
+  "claim" | "dispute" | "recontact" | "none" | "stale" | string;
+type MLClaimType =
+  | "return"
+  | "returns"
+  | "mediations"
+  | "cancel_sale"
+  | "cancel_purchase"
+  | "ml_case"
+  | "change"
+  | "service"
+  | string;
 
-interface Mensagem {
-  sender: string;
-  texto: string;
-  data: string;
-}
+type ClaimMessage = {
+  id: string | number | null;
+  sender: string | null;
+  text: string | null;
+  date_created: string | null;
+};
 
-interface Reclamacao {
+type Reclamacao = {
   id: number;
   pedido: number;
   cliente: string;
-  tipo: ClaimType;
-  stage: ClaimStage;
-  status: ClaimStatus;
-  data: string;
-  mensagens: Mensagem[];
-}
+  buyer_id: number | null;
+  tipo: MLClaimType | null;
+  tipo_label: string;
+  stage: MLClaimStage | null;
+  stage_label: string;
+  status: MLClaimStatus | null;
+  status_label: string;
+  reason_id: string | null;
+  reason_name?: string | null;
+  reason_detail?: string | null;
+  reason_flow?: string | null;
+  fulfilled: boolean | null;
+  quantity_type: string | null;
+  claimed_quantity: number | null;
+  resolution: any;
+  data: string | null;
+  atualizado_em: string | null;
+  pedido_status: string | null;
+  item_id: string | null;
+  item_title: string | null;
+  available_actions: Array<{
+    action?: string;
+    mandatory?: boolean;
+    due_date?: string | null;
+  }>;
+  related_entities: string[];
+  related_entities_label?: string[];
+  messages: ClaimMessage[];
+};
+
+type ApiResponse = {
+  conectado?: boolean;
+  precisaReconectar?: boolean;
+  erro?: string;
+  items?: Reclamacao[];
+  total?: number;
+};
 
 const tipoOptions = [
-  { value: '', label: 'Todos os tipos' },
-  { value: 'devolucao', label: 'Devolução' },
-  { value: 'cancelamento', label: 'Cancelamento' },
-  { value: 'mediacao', label: 'Mediação' },
+  { value: "", label: "Todos os tipos" },
+  { value: "returns", label: "Devolução" },
+  { value: "cancel_sale", label: "Cancelamento do vendedor" },
+  { value: "cancel_purchase", label: "Cancelamento do comprador" },
+  { value: "mediations", label: "Mediação" },
 ];
 
 const stageOptions = [
-  { value: '', label: 'Todos os estágios' },
-  { value: 'claim', label: 'Negociação' },
-  { value: 'dispute', label: 'Disputa' },
-  { value: 'recontact', label: 'Recontato' },
+  { value: "", label: "Todos os estágios" },
+  { value: "claim", label: "Negociação" },
+  { value: "dispute", label: "Disputa" },
+  { value: "recontact", label: "Recontato" },
+  { value: "none", label: "Não se aplica" },
+  { value: "stale", label: "Tratativa ML" },
 ];
 
 const statusOptions = [
-  { value: '', label: 'Todos os status' },
-  { value: 'opened', label: 'Aberto' },
-  { value: 'closed', label: 'Fechado' },
+  { value: "", label: "Todos os status" },
+  { value: "opened", label: "Aberto" },
+  { value: "closed", label: "Fechado" },
 ];
 
-const tipoColor: Record<ClaimType, string> = { devolucao: 'blue', cancelamento: 'red', mediacao: 'orange' };
-const tipoLabel: Record<ClaimType, string> = { devolucao: 'Devolução', cancelamento: 'Cancelamento', mediacao: 'Mediação' };
-const stageColor: Record<ClaimStage, string> = { claim: 'green', dispute: 'volcano', recontact: 'purple' };
-const stageLabel: Record<ClaimStage, string> = { claim: 'Negociação', dispute: 'Disputa', recontact: 'Recontato' };
+const tipoColor: Record<string, string> = {
+  return: "blue",
+  returns: "blue",
+  cancel_sale: "red",
+  cancel_purchase: "red",
+  mediations: "orange",
+  ml_case: "gold",
+  change: "cyan",
+  service: "geekblue",
+};
+const stageColor: Record<string, string> = {
+  claim: "green",
+  dispute: "volcano",
+  recontact: "purple",
+  none: "default",
+  stale: "gold",
+};
 
-const mockReclamacoes: Reclamacao[] = [
-  {
-    id: 5308212444, pedido: 337, cliente: 'Pedro Martins', tipo: 'cancelamento', stage: 'claim', status: 'opened', data: '2026-05-02T11:00:00Z',
-    mensagens: [
-      { sender: 'Comprador', texto: 'Produto veio com defeito, o mouse não liga. Quero cancelar a compra.', data: '2026-05-02T11:05:00Z' },
-      { sender: 'Vendedor', texto: 'Olá Pedro, sinto muito pelo ocorrido. Vamos processar o cancelamento. Pode nos enviar uma foto do defeito?', data: '2026-05-02T14:30:00Z' },
-      { sender: 'Comprador', texto: 'Claro, estou enviando o vídeo mostrando que não liga.', data: '2026-05-02T15:00:00Z' },
-    ],
-  },
-  {
-    id: 5308212555, pedido: 333, cliente: 'Diego Nunes', tipo: 'cancelamento', stage: 'dispute', status: 'opened', data: '2026-04-28T10:00:00Z',
-    mensagens: [
-      { sender: 'Comprador', texto: 'Comprei o produto errado, quero cancelar.', data: '2026-04-28T10:15:00Z' },
-      { sender: 'Vendedor', texto: 'Diego, o pedido já foi faturado e está em processo de separação. Infelizmente não podemos cancelar após o faturamento.', data: '2026-04-28T11:00:00Z' },
-      { sender: 'ML Mediação', texto: 'Foi aberta uma disputa. Ambas as partes devem apresentar suas evidências.', data: '2026-04-29T09:00:00Z' },
-    ],
-  },
-  {
-    id: 5308212666, pedido: 342, cliente: 'Ana Ferreira', tipo: 'devolucao', stage: 'claim', status: 'opened', data: '2026-05-05T09:30:00Z',
-    mensagens: [
-      { sender: 'Comprador', texto: 'O fone chegou mas o áudio está falhando no lado direito. Quero devolver.', data: '2026-05-05T09:35:00Z' },
-    ],
-  },
-  {
-    id: 5308212777, pedido: 331, cliente: 'Gustavo Pereira', tipo: 'devolucao', stage: 'recontact', status: 'closed', data: '2026-04-26T11:30:00Z',
-    mensagens: [
-      { sender: 'Comprador', texto: 'O suporte veio sem um dos parafusos, não consigo montar.', data: '2026-04-26T11:45:00Z' },
-      { sender: 'Vendedor', texto: 'Gustavo, vamos enviar o parafuso faltante pelo correio. Pedimos desculpas pelo transtorno.', data: '2026-04-26T14:00:00Z' },
-      { sender: 'Comprador', texto: 'Recebi o parafuso hoje, já montei o suporte. Obrigado!', data: '2026-05-01T10:00:00Z' },
-      { sender: 'ML Mediação', texto: 'Reclamação encerrada. Cliente confirmou resolução.', data: '2026-05-01T10:30:00Z' },
-    ],
-  },
-  {
-    id: 5308212888, pedido: 340, cliente: 'Marina Costa', tipo: 'mediacao', stage: 'dispute', status: 'opened', data: '2026-05-04T18:45:00Z',
-    mensagens: [
-      { sender: 'Comprador', texto: 'O carregador não carrega meu celular. Testei com outro carregador e funciona normal.', data: '2026-05-04T19:00:00Z' },
-      { sender: 'Vendedor', texto: 'Marina, você testou com o cabo original? Pode ser incompatibilidade do cabo.', data: '2026-05-05T09:00:00Z' },
-      { sender: 'Comprador', texto: 'Testei com 3 cabos diferentes e nenhum funcionou.', data: '2026-05-05T10:00:00Z' },
-    ],
-  },
-  {
-    id: 5308212999, pedido: 335, cliente: 'Fernando Oliveira', tipo: 'devolucao', stage: 'claim', status: 'closed', data: '2026-04-30T09:45:00Z',
-    mensagens: [
-      { sender: 'Comprador', texto: 'O cabo HDMI veio com a ponta amassada.', data: '2026-04-30T10:00:00Z' },
-      { sender: 'Vendedor', texto: 'Vamos realizar a troca imediatamente. Envie o produto de volta pelo correio.', data: '2026-04-30T11:00:00Z' },
-      { sender: 'ML Mediação', texto: 'Troca autorizada. Cliente deve enviar o produto em até 7 dias.', data: '2026-04-30T11:30:00Z' },
-    ],
-  },
-];
+function formatDate(value: string | null | undefined) {
+  if (!value) return "—";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "—";
+  return date.toLocaleDateString("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+function actionLabel(action: string | undefined) {
+  if (action === "send_message_to_complainant") return "Enviar mensagem";
+  if (action === "send_message_to_mediator") return "Enviar ao mediador";
+  if (action === "refund") return "Reembolsar";
+  if (action === "open_dispute") return "Abrir disputa";
+  if (action === "allow_return" || action === "allow_return_label")
+    return "Gerar devolução";
+  if (action === "allow_partial_refund") return "Reembolso parcial";
+  if (action === "send_tracking_number") return "Enviar rastreio";
+  if (action === "send_potential_shipping") return "Promessa de envio";
+  if (action === "add_shipping_evidence") return "Evidência de envio";
+  if (action === "return_review") return "Revisar devolução";
+  if (action === "send_attachments") return "Enviar anexos";
+  return action || "—";
+}
+
+function getMlOrderUrl(orderId: number) {
+  return `https://www.mercadolivre.com.br/vendas/${orderId}/detalhe`;
+}
+
+function matchesTipoFilter(tipo: MLClaimType | null, filtro: string) {
+  if (!filtro) return true;
+  if (filtro === "returns") return tipo === "return" || tipo === "returns";
+  return tipo === filtro;
+}
 
 export default function ReclamacoesPage() {
-  const [search, setSearch] = useState('');
-  const [tipoFilter, setTipoFilter] = useState<ClaimType | ''>('');
-  const [stageFilter, setStageFilter] = useState<ClaimStage | ''>('');
-  const [statusFilter, setStatusFilter] = useState<ClaimStatus | ''>('');
-  const [dateRange, setDateRange] = useState<[string | null, string | null]>([null, null]);
+  function openOrderInMl(orderId: number) {
+    window.open(getMlOrderUrl(orderId), "_blank", "noopener,noreferrer");
+  }
+
+  const [data, setData] = useState<Reclamacao[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [precisaReconectar, setPrecisaReconectar] = useState(false);
+  const [search, setSearch] = useState("");
+  const [tipoFilter, setTipoFilter] = useState<string>("");
+  const [stageFilter, setStageFilter] = useState<string>("");
+  const [statusFilter, setStatusFilter] = useState<string>("");
+  const [dateRange, setDateRange] = useState<[string | null, string | null]>([
+    null,
+    null,
+  ]);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [replyTexts, setReplyTexts] = useState<Record<number, string>>({});
+
+  async function load() {
+    setLoading(true);
+    setError(null);
+    setPrecisaReconectar(false);
+    try {
+      const res = await fetch("/api/ml/reclamacoes", { cache: "no-store" });
+      const json = (await res.json().catch(() => ({}))) as ApiResponse;
+      if (!res.ok)
+        throw new Error(json.erro || "Falha ao carregar reclamações.");
+      if (json.precisaReconectar || json.conectado === false) {
+        setPrecisaReconectar(true);
+        setData([]);
+        setError(json.erro || "Mercado Livre desconectado.");
+        return;
+      }
+      setData(Array.isArray(json.items) ? json.items : []);
+    } catch (err: any) {
+      setError(err?.message || "Falha ao carregar reclamações.");
+      setData([]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    void load();
+  }, []);
 
   const filtered = useMemo(() => {
-    return mockReclamacoes.filter(r => {
+    return data.filter((r) => {
       if (search) {
         const q = search.toLowerCase();
-        if (!String(r.id).includes(q) && !String(r.pedido).includes(q) && !r.cliente.toLowerCase().includes(q)) return false;
+        const haystack = [
+          r.id,
+          r.pedido,
+          r.cliente,
+          r.item_title,
+          r.item_id,
+          r.reason_id,
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+        if (!haystack.includes(q)) return false;
       }
-      if (tipoFilter && r.tipo !== tipoFilter) return false;
+      if (!matchesTipoFilter(r.tipo, tipoFilter)) return false;
       if (stageFilter && r.stage !== stageFilter) return false;
       if (statusFilter && r.status !== statusFilter) return false;
-      if (dateRange[0] && new Date(r.data) < new Date(dateRange[0])) return false;
+      const date = r.data ? new Date(r.data) : null;
+      if (dateRange[0] && (!date || date < new Date(dateRange[0])))
+        return false;
       if (dateRange[1]) {
         const end = new Date(dateRange[1]);
         end.setHours(23, 59, 59, 999);
-        if (new Date(r.data) > end) return false;
+        if (!date || date > end) return false;
       }
       return true;
     });
-  }, [search, tipoFilter, stageFilter, statusFilter, dateRange]);
+  }, [data, dateRange, search, stageFilter, statusFilter, tipoFilter]);
 
-  const handleReply = (id: number) => {
-    console.log(`Reply to claim ${id}:`, replyTexts[id]);
-  };
-
-  const columns: TableProps<Reclamacao>['columns'] = [
+  const columns: TableProps<Reclamacao>["columns"] = [
     {
-      title: 'ID', dataIndex: 'id', key: 'id', width: 80,
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
+      width: 110,
       sorter: (a, b) => a.id - b.id,
+      render: (id: number, record) => (
+        <a
+          href={getMlOrderUrl(record.pedido)}
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Abre detalhe da venda no Mercado Livre, onde a reclamação fica acessível no histórico de problemas."
+          style={{
+            fontFamily: "monospace",
+            color: "#1677ff",
+            textDecoration: "none",
+            fontWeight: 600,
+          }}
+        >
+          {id}
+        </a>
+      ),
     },
     {
-      title: 'Pedido', dataIndex: 'pedido', key: 'pedido', width: 90,
+      title: "Pedido",
+      dataIndex: "pedido",
+      key: "pedido",
+      width: 150,
       sorter: (a, b) => a.pedido - b.pedido,
-      render: (v: number) => <span style={{ fontFamily: 'monospace' }}>#{String(v).padStart(6, '0')}</span>,
+      render: (id: number) => (
+        <a
+          href={getMlOrderUrl(id)}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            fontFamily: "monospace",
+            color: "#1677ff",
+            textDecoration: "none",
+            fontWeight: 600,
+          }}
+        >
+          {id}
+        </a>
+      ),
     },
     {
-      title: 'Cliente', dataIndex: 'cliente', key: 'cliente',
+      title: "Cliente",
+      dataIndex: "cliente",
+      key: "cliente",
+      width: 160,
       sorter: (a, b) => a.cliente.localeCompare(b.cliente),
     },
     {
-      title: 'Tipo', dataIndex: 'tipo', key: 'tipo', width: 120,
-      sorter: (a, b) => a.tipo.localeCompare(b.tipo),
-      render: (t: ClaimType) => <Tag color={tipoColor[t]}>{tipoLabel[t]}</Tag>,
+      title: "Produto",
+      dataIndex: "item_title",
+      key: "item_title",
+      ellipsis: true,
+      render: (title: string | null) => title || "—",
     },
     {
-      title: 'Estágio', dataIndex: 'stage', key: 'stage', width: 110,
-      sorter: (a, b) => a.stage.localeCompare(b.stage),
-      render: (s: ClaimStage) => <Tag color={stageColor[s]}>{stageLabel[s]}</Tag>,
-    },
-    {
-      title: 'Status', dataIndex: 'status', key: 'status', width: 100,
-      sorter: (a, b) => a.status.localeCompare(b.status),
-      render: (s: ClaimStatus) => (
-        <Tag color={s === 'opened' ? 'orange' : 'default'}>
-          {s === 'opened' ? 'Aberto' : 'Fechado'}
+      title: "Tipo",
+      dataIndex: "tipo",
+      key: "tipo",
+      width: 130,
+      sorter: (a, b) =>
+        String(a.tipo || "").localeCompare(String(b.tipo || "")),
+      render: (_: string, record) => (
+        <Tag color={tipoColor[record.tipo || ""] || "default"}>
+          {record.tipo_label}
         </Tag>
       ),
     },
     {
-      title: 'Data', dataIndex: 'data', key: 'data', width: 150,
-      sorter: (a, b) => new Date(a.data).getTime() - new Date(b.data).getTime(),
-      render: (d: string) => new Date(d).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+      title: "Estágio",
+      dataIndex: "stage",
+      key: "stage",
+      width: 120,
+      sorter: (a, b) =>
+        String(a.stage || "").localeCompare(String(b.stage || "")),
+      render: (_: string, record) => (
+        <Tag color={stageColor[record.stage || ""] || "default"}>
+          {record.stage_label}
+        </Tag>
+      ),
     },
     {
-      title: 'Ações', key: 'actions', width: 60, fixed: 'right',
-      render: (_, record) => (
-        <Button type="text" size="small" icon={<EllipsisOutlined />} />
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+      width: 110,
+      sorter: (a, b) =>
+        String(a.status || "").localeCompare(String(b.status || "")),
+      render: (_: string, record) => (
+        <Tag color={record.status === "opened" ? "orange" : "default"}>
+          {record.status_label}
+        </Tag>
       ),
+    },
+    {
+      title: "Atualizado",
+      dataIndex: "atualizado_em",
+      key: "atualizado_em",
+      width: 160,
+      sorter: (a, b) =>
+        new Date(a.atualizado_em || a.data || 0).getTime() -
+        new Date(b.atualizado_em || b.data || 0).getTime(),
+      render: (date: string | null) => formatDate(date),
     },
   ];
 
-  const inputStyle = { background: '#1f1f1f', border: '1px solid #303030', color: '#e0e0e0', borderRadius: 6 };
-
   return (
     <div>
-      <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Reclamações - Mercado Livre</Title>
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
+      <Title level={4} style={{ color: "#e0e0e0", marginBottom: 16 }}>
+        Reclamações - Mercado Livre
+      </Title>
+
+      <div
+        style={{
+          background: "#141414",
+          border: "1px solid #303030",
+          borderRadius: 8,
+          padding: 16,
+          marginBottom: 16,
+        }}
+      >
         <Row gutter={[8, 8]} align="middle">
           <Col>
-            <Input placeholder="Buscar (ID, pedido, cliente)" prefix={<SearchOutlined />} value={search} onChange={e => setSearch(e.target.value)} style={{ width: 240 }} allowClear />
+            <Input
+              placeholder="Buscar (ID, pedido, cliente, produto)"
+              prefix={<SearchOutlined />}
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              style={{ width: 280 }}
+              allowClear
+            />
           </Col>
           <Col>
-            <Select placeholder="Tipo" value={tipoFilter || undefined} onChange={v => setTipoFilter(v as ClaimType | '')} options={tipoOptions} style={{ width: 140 }} allowClear onClear={() => setTipoFilter('')} />
+            <Select
+              placeholder="Tipo"
+              value={tipoFilter || undefined}
+              onChange={(value) => setTipoFilter(value || "")}
+              options={tipoOptions}
+              style={{ width: 150 }}
+              allowClear
+              onClear={() => setTipoFilter("")}
+            />
           </Col>
           <Col>
-            <Select placeholder="Estágio" value={stageFilter || undefined} onChange={v => setStageFilter(v as ClaimStage | '')} options={stageOptions} style={{ width: 140 }} allowClear onClear={() => setStageFilter('')} />
+            <Select
+              placeholder="Estágio"
+              value={stageFilter || undefined}
+              onChange={(value) => setStageFilter(value || "")}
+              options={stageOptions}
+              style={{ width: 150 }}
+              allowClear
+              onClear={() => setStageFilter("")}
+            />
           </Col>
           <Col>
-            <Select placeholder="Status" value={statusFilter || undefined} onChange={v => setStatusFilter(v as ClaimStatus | '')} options={statusOptions} style={{ width: 140 }} allowClear onClear={() => setStatusFilter('')} />
+            <Select
+              placeholder="Status"
+              value={statusFilter || undefined}
+              onChange={(value) => setStatusFilter(value || "")}
+              options={statusOptions}
+              style={{ width: 140 }}
+              allowClear
+              onClear={() => setStatusFilter("")}
+            />
           </Col>
           <Col>
-            <RangePicker onChange={(_, ds) => setDateRange([ds[0] || null, ds[1] || null])} format="DD/MM/YYYY" style={{ width: 230 }} />
+            <RangePicker
+              onChange={(_, dates) =>
+                setDateRange([dates[0] || null, dates[1] || null])
+              }
+              format="DD/MM/YYYY"
+              style={{ width: 230 }}
+            />
+          </Col>
+          <Col>
+            <Button icon={<ReloadOutlined />} onClick={() => void load()}>
+              Atualizar
+            </Button>
           </Col>
         </Row>
       </div>
-      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
-        <ResizableTable<Reclamacao>
-          storageKey="reclamacoes"
-          dataSource={filtered}
-          columns={columns}
-          rowKey="id"
-          rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
-          expandable={{
-            expandedRowRender: (record) => (
-              <div style={{ padding: '4px 0' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 12 }}>
-                  {record.mensagens.map((msg, i) => (
-                    <div key={i} style={{
-                      alignSelf: msg.sender === 'Vendedor' ? 'flex-end' : 'flex-start',
-                      maxWidth: '70%',
-                      background: msg.sender === 'Vendedor' ? '#1a3a1a' : msg.sender === 'ML Mediação' ? '#1a1a2e' : '#252525',
-                      padding: '10px 14px',
-                      borderRadius: 8,
-                      border: '1px solid #303030',
-                    }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                        <Text style={{ color: msg.sender === 'Vendedor' ? '#5aab2c' : msg.sender === 'ML Mediação' ? '#1677ff' : '#a0a0a0', fontWeight: 600, fontSize: 12 }}>
-                          {msg.sender}
-                        </Text>
-                        <Text style={{ color: '#666', fontSize: 11, marginLeft: 12 }}>
-                          {new Date(msg.data).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}
-                        </Text>
-                      </div>
-                      <Text style={{ color: '#c0c0c0', fontSize: 13, lineHeight: 1.6 }}>{msg.texto}</Text>
-                    </div>
-                  ))}
-                </div>
-                {record.status === 'opened' && (
-                  <div style={{ borderTop: '1px solid #303030', paddingTop: 12, display: 'flex', gap: 8 }}>
-                    <Input.TextArea
-                      rows={2}
-                      placeholder="Digite sua resposta..."
-                      value={replyTexts[record.id] ?? ''}
-                      onChange={e => setReplyTexts(prev => ({ ...prev, [record.id]: e.target.value }))}
-                      style={inputStyle}
-                    />
-                    <Button type="primary" size="small" style={{ alignSelf: 'flex-end' }} onClick={() => handleReply(record.id)}>
-                      Responder
-                    </Button>
-                  </div>
-                )}
-              </div>
-            ),
-            rowExpandable: () => true,
-          }}
-          pagination={{ pageSize: 20, showSizeChanger: true, showTotal: t => `${t} reclamações` }}
-          scroll={{ x: 1100 }}
-          style={{ background: 'transparent' }}
-          size="small"
+
+      {error && (
+        <Alert
+          type={precisaReconectar ? "warning" : "error"}
+          showIcon
+          message={error}
+          action={
+            precisaReconectar ? (
+              <Button type="primary" href="/api/integracao/ml/connect">
+                Reconectar ML
+              </Button>
+            ) : undefined
+          }
+          style={{ marginBottom: 16 }}
         />
+      )}
+
+      <div
+        style={{
+          background: "#141414",
+          border: "1px solid #303030",
+          borderRadius: 8,
+          padding: 16,
+        }}
+      >
+        {loading ? (
+          <div style={{ padding: 40, textAlign: "center" }}>
+            <Spin />
+          </div>
+        ) : (
+          <ResizableTable<Reclamacao>
+            storageKey="reclamacoes"
+            dataSource={filtered}
+            columns={columns}
+            rowKey="id"
+            rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
+            expandable={{
+              expandedRowRender: (record) => (
+                <div style={{ padding: "4px 0" }}>
+                  <Row gutter={[16, 12]}>
+                    <Col xs={24} md={12}>
+                      <Text style={{ color: "#808080", fontSize: 12 }}>
+                        Produto
+                      </Text>
+                      <div style={{ color: "#e0e0e0" }}>
+                        {record.item_title || "—"}
+                      </div>
+                      <Text style={{ color: "#666", fontSize: 12 }}>
+                        {record.item_id || ""}
+                      </Text>
+                    </Col>
+                    <Col xs={24} md={12}>
+                      <Text style={{ color: "#808080", fontSize: 12 }}>
+                        Motivo / Entidades
+                      </Text>
+                      <div style={{ color: "#e0e0e0" }}>
+                        {record.reason_detail || record.reason_name || "—"}
+                      </div>
+                      <Text style={{ color: "#666", fontSize: 12 }}>
+                        {record.reason_id || ""}
+                        {record.reason_flow ? ` · ${record.reason_flow}` : ""}
+                      </Text>
+                      <div style={{ marginTop: 4 }}>
+                        {(
+                          record.related_entities_label ||
+                          record.related_entities
+                        ).map((entity, index) => (
+                          <Tag key={`${entity}-${index}`}>{entity}</Tag>
+                        ))}
+                      </div>
+                    </Col>
+                    <Col xs={24} md={12}>
+                      <Text style={{ color: "#808080", fontSize: 12 }}>
+                        Ações disponíveis para vendedor
+                      </Text>
+                      <div style={{ marginTop: 4 }}>
+                        {record.available_actions.length > 0 ? (
+                          <Space wrap>
+                            {record.available_actions.map((action) => (
+                              <Button
+                                key={action.action}
+                                size="small"
+                                type={action.mandatory ? "primary" : "default"}
+                                danger={Boolean(action.mandatory)}
+                                onClick={() => openOrderInMl(record.pedido)}
+                                title="Ação disponível no claim. Endpoint de execução não foi confirmado na documentação/API do Mercado Livre; abrir venda no ML é caminho seguro e real para executar manualmente."
+                              >
+                                {actionLabel(action.action)}
+                              </Button>
+                            ))}
+                          </Space>
+                        ) : (
+                          <Text style={{ color: "#666" }}>
+                            Nenhuma ação retornada
+                          </Text>
+                        )}
+                      </div>
+                      {record.available_actions.length > 0 && (
+                        <div
+                          style={{ color: "#666", fontSize: 12, marginTop: 8 }}
+                        >
+                          Execução direta via API não documentada de forma
+                          operacional pelo ML. Botões abrem detalhe da venda
+                          para ação manual real.
+                        </div>
+                      )}
+                    </Col>
+                    <Col xs={24} md={12}>
+                      <Text style={{ color: "#808080", fontSize: 12 }}>
+                        Quantidade reclamada / resolução
+                      </Text>
+                      <div style={{ color: "#e0e0e0" }}>
+                        {record.claimed_quantity ?? "—"} ·{" "}
+                        {record.resolution ? "Com resolução" : "Sem resolução"}
+                      </div>
+                    </Col>
+                  </Row>
+
+                  <div style={{ marginTop: 16 }}>
+                    <Text style={{ color: "#808080", fontSize: 12 }}>
+                      Mensagens retornadas pela API
+                    </Text>
+                    {record.messages.length > 0 ? (
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: 10,
+                          marginTop: 8,
+                        }}
+                      >
+                        {record.messages.map((message, index) => (
+                          <div
+                            key={message.id || index}
+                            style={{
+                              background: "#1a1a1a",
+                              padding: "10px 14px",
+                              borderRadius: 8,
+                              border: "1px solid #303030",
+                            }}
+                          >
+                            <Text
+                              style={{
+                                color: "#a0a0a0",
+                                fontWeight: 600,
+                                fontSize: 12,
+                              }}
+                            >
+                              {message.sender || "—"}
+                            </Text>
+                            <Text
+                              style={{
+                                color: "#666",
+                                fontSize: 11,
+                                marginLeft: 12,
+                              }}
+                            >
+                              {formatDate(message.date_created)}
+                            </Text>
+                            <br />
+                            <Text style={{ color: "#c0c0c0", fontSize: 13 }}>
+                              {message.text || "—"}
+                            </Text>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div style={{ color: "#666", marginTop: 4 }}>
+                        Nenhuma mensagem retornada pela API para esta
+                        reclamação.
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ),
+              rowExpandable: () => true,
+            }}
+            pagination={{
+              pageSize: 20,
+              showSizeChanger: true,
+              showTotal: (total) => `${total} reclamações`,
+            }}
+            scroll={{ x: 1200 }}
+            style={{ background: "transparent" }}
+            size="small"
+          />
+        )}
       </div>
     </div>
   );

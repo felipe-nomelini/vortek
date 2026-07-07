@@ -1,124 +1,446 @@
-'use client';
+"use client";
 
-import { Card, Row, Col, Statistic, Progress, Tag, Typography, Divider } from 'antd';
+import { useEffect, useMemo, useState } from "react";
 import {
-  StarFilled, TrophyFilled, RocketFilled, CheckCircleFilled,
-  ThunderboltFilled, LikeFilled, DislikeFilled,
-} from '@ant-design/icons';
+  Alert,
+  Button,
+  Card,
+  Col,
+  Divider,
+  Progress,
+  Row,
+  Spin,
+  Statistic,
+  Tag,
+  Typography,
+} from "antd";
+import {
+  DislikeFilled,
+  LikeFilled,
+  RocketFilled,
+  StarFilled,
+  ThunderboltFilled,
+  TrophyFilled,
+} from "@ant-design/icons";
 
 const { Title, Text } = Typography;
 
-const repData = {
-  levelId: '5_green' as const,
-  powerSeller: 'gold' as const,
-  positive: 1480,
-  neutral: 45,
-  negative: 35,
-  completed: 1480,
-  canceled: 35,
-  total: 1560,
-  responseTimeAvg: '1h 12min',
-  sixMonths: { vendidas: 420, canceladas: 8, reclamacoes: 3 },
-  twelveMonths: { vendidas: 890, canceladas: 15, reclamacoes: 7 },
-  metrics: {
-    claims: { rate: 0.008, value: 2 },
-    delayedHandling: { rate: 0.04, value: 10 },
-    cancellations: { rate: 0.012, value: 3 },
-    period: '60 dias',
-    salesCompleted: 244,
+type ReputationMetric = {
+  rate: number | null;
+  percent: number | null;
+  value: number | null;
+  period: string | null;
+  excluded?: number | null;
+};
+
+type ReputacaoResponse = {
+  conectado?: boolean;
+  precisaReconectar?: boolean;
+  indisponivel?: boolean;
+  erro?: string;
+  user?: {
+    id: number | string;
+    nickname: string | null;
+    permalink: string | null;
+    registration_date: string | null;
+    site_id?: string | null;
+    tags?: string[];
+  };
+  seller_reputation?: {
+    level_id: string;
+    power_seller_status: string | null;
+    real_level: string | null;
+    protection_end_date: string | null;
+  };
+  transactions?: {
+    total: number;
+    completed: number;
+    canceled: number;
+    period: string | null;
+    ratings: {
+      positive: number | null;
+      neutral: number | null;
+      negative: number | null;
+    };
+  };
+  metrics?: {
+    claims: ReputationMetric;
+    delayed_handling_time: ReputationMetric;
+    cancellations: ReputationMetric;
+    sales_completed: number | null;
+    period: string | null;
+  };
+  orders_summary?: {
+    six_months: {
+      sold: number | null;
+      canceled: number | null;
+      feedback: {
+        positive: number | null;
+        neutral: number | null;
+        negative: number | null;
+      };
+    };
+    twelve_months: {
+      sold: number | null;
+      canceled: number | null;
+      feedback: {
+        positive: number | null;
+        neutral: number | null;
+        negative: number | null;
+      };
+    };
+  };
+  feedback?: {
+    source: string;
+    period: string;
+    positive: number | null;
+    neutral: number | null;
+    negative: number | null;
+    total: number | null;
+    positive_percent: number | null;
+  };
+
+  reclamacoes: number | null;
+  atrasos: number | null;
+  cancelamentos: number | null;
+  positivas: number | null;
+  nivel: string;
+  nivelCor: string;
+  nivelKey: string;
+};
+
+const levelConfig: Record<
+  string,
+  { color: string; bg: string; label: string; icon: React.ReactNode }
+> = {
+  "5_green": {
+    color: "#5aab2c",
+    bg: "#162312",
+    label: "Verde",
+    icon: <StarFilled />,
+  },
+  "4_light_green": {
+    color: "#73d13d",
+    bg: "#162812",
+    label: "Verde claro",
+    icon: <StarFilled />,
+  },
+  "4_light_blue": {
+    color: "#73d13d",
+    bg: "#162812",
+    label: "Verde claro",
+    icon: <StarFilled />,
+  },
+  "3_yellow": {
+    color: "#faad14",
+    bg: "#2a1f0a",
+    label: "Amarelo",
+    icon: <StarFilled />,
+  },
+  "2_orange": {
+    color: "#fa8c16",
+    bg: "#2a1706",
+    label: "Laranja",
+    icon: <StarFilled />,
+  },
+  "1_red": {
+    color: "#ff4d4f",
+    bg: "#2a0d0e",
+    label: "Vermelho",
+    icon: <StarFilled />,
+  },
+  default: {
+    color: "#888",
+    bg: "#1f1f1f",
+    label: "Sem reputação",
+    icon: <StarFilled />,
   },
 };
 
-const levelConfig = {
-  '5_green': { color: '#5aab2c', bg: '#162312', label: 'Verde', icon: <StarFilled /> },
-  '4_light_blue': { color: '#73d13d', bg: '#162812', label: 'Verde Claro', icon: <StarFilled /> },
-  '3_yellow': { color: '#faad14', bg: '#2a1f0a', label: 'Amarelo', icon: <StarFilled /> },
-  '2_orange': { color: '#fa8c16', bg: '#2a1706', label: 'Laranja', icon: <StarFilled /> },
-  '1_red': { color: '#ff4d4f', bg: '#2a0d0e', label: 'Vermelho', icon: <StarFilled /> },
+const psConfig: Record<string, { label: string; color: string; bg: string }> = {
+  platinum: {
+    label: "Mercado Líder Platinum",
+    color: "#d9d9d9",
+    bg: "#1a1919",
+  },
+  gold: { label: "Mercado Líder Gold", color: "#faad14", bg: "#2a1f0a" },
+  silver: { label: "Mercado Líder", color: "#a0a0a0", bg: "#141414" },
+  bronze: { label: "Mercado Líder", color: "#cd7f32", bg: "#1f150e" },
 };
 
-const psConfig = {
-  platinum: { label: 'Platinum', color: '#a0a0a0', bg: '#1a1919' },
-  gold: { label: 'Gold', color: '#faad14', bg: '#2a1f0a' },
-  silver: { label: 'Silver', color: '#a0a0a0', bg: '#141414' },
-  bronze: { label: 'Bronze', color: '#cd7f32', bg: '#1f150e' },
-};
+const levelOrder = [
+  "1_red",
+  "2_orange",
+  "3_yellow",
+  "4_light_green",
+  "5_green",
+] as const;
+const softRed = "#ff4d4f";
+const softOrange = "#fa8c16";
+const softYellow = "#faad14";
+const softBlue = "#1677ff";
+const softGreen = "#5aab2c";
 
-const levelOrder = ['1_red', '2_orange', '3_yellow', '4_light_blue', '5_green'] as const;
+function formatPercent(value: number | null | undefined, decimals = 1): string {
+  return typeof value === "number" && Number.isFinite(value)
+    ? `${value.toFixed(decimals)}%`
+    : "—";
+}
 
-const softRed = '#ff4d4f';
-const softOrange = '#fa8c16';
-const softYellow = '#faad14';
-const softBlue = '#1677ff';
-const softGreen = '#5aab2c';
+function formatNumber(value: number | null | undefined): string | number {
+  return typeof value === "number" && Number.isFinite(value) ? value : "—";
+}
 
-function metricInfo(rate: number, thresholds: [number, number, number, number]): { color: string; label: string } {
-  if (rate <= thresholds[0]) return { color: softGreen, label: 'Excelente' };
-  if (rate <= thresholds[1]) return { color: softGreen, label: 'Excelente' };
-  if (rate <= thresholds[2]) return { color: softYellow, label: 'Bom' };
-  if (rate <= thresholds[3]) return { color: softOrange, label: 'Atenção' };
-  return { color: softRed, label: 'Crítico' };
+function metricInfo(
+  rate: number | null | undefined,
+  thresholds: [number, number, number, number],
+): { color: string; label: string } {
+  if (rate === null || rate === undefined || !Number.isFinite(rate))
+    return { color: "#888", label: "Sem dados" };
+  if (rate <= thresholds[1]) return { color: softGreen, label: "Excelente" };
+  if (rate <= thresholds[2]) return { color: softYellow, label: "Bom" };
+  if (rate <= thresholds[3]) return { color: softOrange, label: "Atenção" };
+  return { color: softRed, label: "Crítico" };
 }
 
 export default function ReputacaoPage() {
-  const lvl = levelConfig[repData.levelId];
-  const ps = psConfig[repData.powerSeller];
-  const totalRatings = repData.positive + repData.neutral + repData.negative;
-  const pctPositive = Math.round((repData.positive / totalRatings) * 100);
-  const pctNeutral = Math.round((repData.neutral / totalRatings) * 100);
-  const pctNegative = Math.round((repData.negative / totalRatings) * 100);
-  const cancelRate = ((repData.canceled / repData.total) * 100).toFixed(1);
-  const psLabel = repData.powerSeller ? `Mercado Líder ${ps.label}` : '';
+  const [data, setData] = useState<ReputacaoResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const cardBg = { background: '#141414', border: '1px solid #303030', borderRadius: 8 };
-  const m = repData.metrics;
+  useEffect(() => {
+    let active = true;
+    async function load() {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await fetch("/api/ml/reputacao", { cache: "no-store" });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok)
+          throw new Error(
+            json?.erro || "Falha ao carregar reputação do Mercado Livre.",
+          );
+        if (active) setData(json as ReputacaoResponse);
+      } catch (err: any) {
+        if (active)
+          setError(
+            err?.message || "Falha ao carregar reputação do Mercado Livre.",
+          );
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    void load();
+    return () => {
+      active = false;
+    };
+  }, []);
 
+  const levelId = data?.seller_reputation?.level_id || "";
+  const lvl = levelConfig[levelId] || levelConfig.default;
+  const powerSeller = data?.seller_reputation?.power_seller_status || "";
+  const ps = powerSeller ? psConfig[powerSeller] : null;
+  const psLabel = ps?.label || "";
+  const transactions = data?.transactions;
+  const feedback = data?.feedback;
+  const feedbackTotal = feedback?.total || 0;
+  const positivePct = feedback?.positive_percent ?? null;
+  const neutralPct =
+    feedbackTotal > 0 && typeof feedback?.neutral === "number"
+      ? (feedback.neutral / feedbackTotal) * 100
+      : null;
+  const negativePct =
+    feedbackTotal > 0 && typeof feedback?.negative === "number"
+      ? (feedback.negative / feedbackTotal) * 100
+      : null;
+  const cancelRate = transactions?.total
+    ? (transactions.canceled / transactions.total) * 100
+    : null;
+  const m = data?.metrics;
+  const badges = useMemo(() => {
+    const list = [];
+    if (psLabel && ps)
+      list.push({
+        icon: <TrophyFilled />,
+        color: ps.color,
+        label: psLabel,
+        desc: "Reconhecimento informado pelo Mercado Livre",
+      });
+    list.push({
+      icon: <RocketFilled />,
+      color: lvl.color,
+      label: `Nível ${lvl.label}`,
+      desc: levelId
+        ? "Termômetro atual do Mercado Livre"
+        : "Conta sem nível público retornado",
+    });
+    if (m?.period)
+      list.push({
+        icon: <ThunderboltFilled />,
+        color: softYellow,
+        label: `Período ${m.period}`,
+        desc: "Janela de métricas retornada pelo Mercado Livre",
+      });
+    return list;
+  }, [levelId, lvl.color, lvl.label, m?.period, ps, psLabel]);
+
+  const cardBg = {
+    background: "#141414",
+    border: "1px solid #303030",
+    borderRadius: 8,
+  };
   const claimsTh: [number, number, number, number] = [0.01, 0.02, 0.045, 0.08];
-  const handlingTh: [number, number, number, number] = [0.06, 0.10, 0.18, 0.22];
-  const cancelTh: [number, number, number, number] = [0.005, 0.015, 0.035, 0.04];
+  const handlingTh: [number, number, number, number] = [0.06, 0.1, 0.18, 0.22];
+  const cancelTh: [number, number, number, number] = [
+    0.005, 0.015, 0.035, 0.04,
+  ];
+
+  if (loading) {
+    return (
+      <div>
+        <Title level={4} style={{ color: "#e0e0e0", marginBottom: 20 }}>
+          Reputação - Mercado Livre
+        </Title>
+        <Card
+          styles={{ body: { padding: 40, textAlign: "center" } }}
+          style={cardBg}
+        >
+          <Spin />
+        </Card>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div>
+        <Title level={4} style={{ color: "#e0e0e0", marginBottom: 20 }}>
+          Reputação - Mercado Livre
+        </Title>
+        <Alert type="error" showIcon message={error} />
+      </div>
+    );
+  }
+
+  if (!data?.conectado || data?.precisaReconectar) {
+    return (
+      <div>
+        <Title level={4} style={{ color: "#e0e0e0", marginBottom: 20 }}>
+          Reputação - Mercado Livre
+        </Title>
+        <Card
+          styles={{ body: { padding: 32, textAlign: "center" } }}
+          style={cardBg}
+        >
+          <Text style={{ color: "#888", display: "block", marginBottom: 12 }}>
+            Mercado Livre desconectado.
+          </Text>
+          <Button type="primary" href="/api/integracao/ml/connect">
+            Reconectar ML
+          </Button>
+        </Card>
+      </div>
+    );
+  }
+
+  if (data?.indisponivel) {
+    return (
+      <div>
+        <Title level={4} style={{ color: "#e0e0e0", marginBottom: 20 }}>
+          Reputação - Mercado Livre
+        </Title>
+        <Alert
+          type="warning"
+          showIcon
+          message="Mercado Livre não retornou reputação para esta conta."
+        />
+      </div>
+    );
+  }
 
   return (
     <div>
-      <Title level={4} style={{ color: '#e0e0e0', marginBottom: 20 }}>Reputação - Mercado Livre</Title>
+      <Title level={4} style={{ color: "#e0e0e0", marginBottom: 20 }}>
+        Reputação - Mercado Livre
+      </Title>
 
-      <Card styles={{ body: { padding: 24 } }} style={{ ...cardBg, marginBottom: 20 }}>
+      <Card
+        styles={{ body: { padding: 24 } }}
+        style={{ ...cardBg, marginBottom: 20 }}
+      >
         <Row align="middle" gutter={24}>
           <Col>
-            <div style={{
-              width: 72, height: 72, borderRadius: 36,
-              background: lvl.bg, color: lvl.color,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 36,
-            }}>
+            <div
+              style={{
+                width: 72,
+                height: 72,
+                borderRadius: 36,
+                background: lvl.bg,
+                color: lvl.color,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 36,
+              }}
+            >
               {lvl.icon}
             </div>
           </Col>
           <Col flex="auto">
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 4 }}>
-              <span style={{ fontSize: 24, fontWeight: 700, color: '#e0e0e0' }}>VORTEKTECNOLOGIA</span>
-              {psLabel && <Tag color={ps.color} style={{ margin: 0, fontWeight: 600 }}>{psLabel}</Tag>}
-              {(() => {
-                const greenTag = lvl.color === softGreen;
-                return (
-                  <Tag
-                    color={greenTag ? undefined : lvl.color}
-                    style={{ margin: 0, fontWeight: 600, ...(greenTag ? { color: softGreen, background: '#162312', borderColor: softGreen } : {}) }}
-                  >
-                    {lvl.label}
-                  </Tag>
-                );
-              })()}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                marginBottom: 4,
+                flexWrap: "wrap",
+              }}
+            >
+              <span style={{ fontSize: 24, fontWeight: 700, color: "#e0e0e0" }}>
+                {data.user?.nickname || "Loja Mercado Livre"}
+              </span>
+              {psLabel && ps && (
+                <Tag color={ps.color} style={{ margin: 0, fontWeight: 600 }}>
+                  {psLabel}
+                </Tag>
+              )}
+              <Tag
+                color={lvl.color === softGreen ? undefined : lvl.color}
+                style={{
+                  margin: 0,
+                  fontWeight: 600,
+                  ...(lvl.color === softGreen
+                    ? {
+                        color: softGreen,
+                        background: "#162312",
+                        borderColor: softGreen,
+                      }
+                    : {}),
+                }}
+              >
+                {lvl.label}
+              </Tag>
             </div>
-            <div style={{ display: 'flex', gap: 4, marginTop: 10, maxWidth: 400 }}>
-              {levelOrder.map(key => {
+            <Text style={{ color: "#808080", fontSize: 12 }}>
+              Dados reais do Mercado Livre · usuário {data.user?.id || "—"}
+            </Text>
+            <div
+              style={{ display: "flex", gap: 4, marginTop: 10, maxWidth: 400 }}
+            >
+              {levelOrder.map((key) => {
                 const lc = levelConfig[key];
-                const active = repData.levelId === key;
+                const active = levelId === key;
                 return (
-                  <div key={key} style={{
-                    flex: 1, height: 12, borderRadius: 4,
-                    background: active ? lc.color : '#252525',
-                    transition: 'all .3s',
-                  }} />
+                  <div
+                    key={key}
+                    style={{
+                      flex: 1,
+                      height: 12,
+                      borderRadius: 4,
+                      background: active ? lc.color : "#252525",
+                      transition: "all .3s",
+                    }}
+                  />
                 );
               })}
             </div>
@@ -127,110 +449,305 @@ export default function ReputacaoPage() {
       </Card>
 
       <Row gutter={[16, 16]} style={{ marginBottom: 20 }}>
-        <Col xs={12} lg={6}>
+        <Col xs={24} md={8}>
           <Card styles={{ body: { padding: 20 } }} style={cardBg}>
-            <Statistic title={<span style={{ color: '#a0a0a0' }}>Vendas Concluídas</span>} value={repData.completed} prefix={<LikeFilled style={{ color: softGreen }} />} valueStyle={{ color: '#e0e0e0' }} />
+            <Statistic
+              title={
+                <span style={{ color: "#a0a0a0" }}>Vendas Concluídas</span>
+              }
+              value={formatNumber(transactions?.completed)}
+              prefix={<LikeFilled style={{ color: softGreen }} />}
+              valueStyle={{ color: "#e0e0e0" }}
+            />
           </Card>
         </Col>
-        <Col xs={12} lg={6}>
+        <Col xs={24} md={8}>
           <Card styles={{ body: { padding: 20 } }} style={cardBg}>
-            <Statistic title={<span style={{ color: '#a0a0a0' }}>Cancelamentos</span>} value={repData.canceled} suffix={<span style={{ fontSize: 14, color: '#a0a0a0' }}>({cancelRate}%)</span>} prefix={<DislikeFilled style={{ color: softRed }} />} valueStyle={{ color: '#e0e0e0' }} />
+            <Statistic
+              title={<span style={{ color: "#a0a0a0" }}>Cancelamentos</span>}
+              value={formatNumber(transactions?.canceled)}
+              suffix={
+                <span style={{ fontSize: 14, color: "#a0a0a0" }}>
+                  ({formatPercent(cancelRate)})
+                </span>
+              }
+              prefix={<DislikeFilled style={{ color: softRed }} />}
+              valueStyle={{ color: "#e0e0e0" }}
+            />
           </Card>
         </Col>
-        <Col xs={12} lg={6}>
+        <Col xs={24} md={8}>
           <Card styles={{ body: { padding: 20 } }} style={cardBg}>
-            <Statistic title={<span style={{ color: '#a0a0a0' }}>Total Transações</span>} value={repData.total} prefix={<StarFilled style={{ color: softBlue }} />} valueStyle={{ color: '#e0e0e0' }} />
-          </Card>
-        </Col>
-        <Col xs={12} lg={6}>
-          <Card styles={{ body: { padding: 20 } }} style={cardBg}>
-            <Statistic title={<span style={{ color: '#a0a0a0' }}>Tempo Médio Resposta</span>} value={repData.responseTimeAvg} prefix={<ThunderboltFilled style={{ color: softYellow }} />} valueStyle={{ color: '#e0e0e0' }} />
+            <Statistic
+              title={<span style={{ color: "#a0a0a0" }}>Total Transações</span>}
+              value={formatNumber(transactions?.total)}
+              prefix={<StarFilled style={{ color: softBlue }} />}
+              valueStyle={{ color: "#e0e0e0" }}
+            />
           </Card>
         </Col>
       </Row>
 
       <Row gutter={[16, 16]} style={{ marginBottom: 20 }}>
         <Col xs={24} lg={12}>
-          <Card styles={{ body: { padding: 20 } }} style={{ ...cardBg, height: '100%' }}>
-            <Title level={5} style={{ color: '#a0a0a0', marginBottom: 16, fontSize: 13, textTransform: 'uppercase', letterSpacing: 1 }}>
-              Métricas de Qualidade · {m.period}
+          <Card
+            styles={{ body: { padding: 20 } }}
+            style={{ ...cardBg, height: "100%" }}
+          >
+            <Title
+              level={5}
+              style={{
+                color: "#a0a0a0",
+                marginBottom: 16,
+                fontSize: 13,
+                textTransform: "uppercase",
+                letterSpacing: 1,
+              }}
+            >
+              Métricas de Qualidade{m?.period ? ` · ${m.period}` : ""}
             </Title>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               {[
-                { label: 'Reclamações', value: m.claims.value, rate: m.claims.rate, thresholds: claimsTh },
-                { label: 'Atraso na Entrega', value: m.delayedHandling.value, rate: m.delayedHandling.rate, thresholds: handlingTh },
-                { label: 'Cancelamentos', value: m.cancellations.value, rate: m.cancellations.rate, thresholds: cancelTh },
-              ].map(item => {
-                const pct = item.rate * 100;
-                const info = metricInfo(item.rate, item.thresholds);
+                {
+                  label: "Reclamações",
+                  metric: m?.claims,
+                  thresholds: claimsTh,
+                },
+                {
+                  label: "Atraso na Entrega",
+                  metric: m?.delayed_handling_time,
+                  thresholds: handlingTh,
+                },
+                {
+                  label: "Cancelamentos",
+                  metric: m?.cancellations,
+                  thresholds: cancelTh,
+                },
+              ].map((item) => {
+                const pct = item.metric?.percent;
+                const info = metricInfo(item.metric?.rate, item.thresholds);
                 return (
                   <div key={item.label}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                      <Text style={{ color: '#c0c0c0', fontSize: 13 }}>{item.label}</Text>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <Text style={{ color: '#a0a0a0', fontSize: 12 }}>{item.value} ocorrências</Text>
-                        {(() => {
-                          const greenTag = info.color === softGreen;
-                          return (
-                            <Tag
-                              color={greenTag ? undefined : info.color}
-                              style={{ margin: 0, fontWeight: 600, fontSize: 11, ...(greenTag ? { color: softGreen, background: '#162312', borderColor: softGreen } : {}) }}
-                            >
-                              {info.label}
-                            </Tag>
-                          );
-                        })()}
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        marginBottom: 6,
+                        gap: 12,
+                      }}
+                    >
+                      <Text style={{ color: "#c0c0c0", fontSize: 13 }}>
+                        {item.label}
+                      </Text>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 8,
+                        }}
+                      >
+                        <Text style={{ color: "#a0a0a0", fontSize: 12 }}>
+                          {formatNumber(item.metric?.value)} ocorrências
+                        </Text>
+                        <Tag
+                          color={
+                            info.color === softGreen ? undefined : info.color
+                          }
+                          style={{
+                            margin: 0,
+                            fontWeight: 600,
+                            fontSize: 11,
+                            ...(info.color === softGreen
+                              ? {
+                                  color: softGreen,
+                                  background: "#162312",
+                                  borderColor: softGreen,
+                                }
+                              : {}),
+                          }}
+                        >
+                          {info.label}
+                        </Tag>
                       </div>
                     </div>
                     <Progress
-                      percent={parseFloat(pct.toFixed(2))}
+                      percent={
+                        pct === null || pct === undefined
+                          ? 0
+                          : Number(pct.toFixed(2))
+                      }
                       strokeColor={info.color}
                       trailColor="#303030"
-                      format={() => `${pct.toFixed(1)}%`}
+                      format={() => formatPercent(pct)}
                       size="small"
                     />
                   </div>
                 );
               })}
             </div>
-            <Divider style={{ borderColor: '#303030', margin: '16px 0' }} />
-            <Text style={{ color: '#666', fontSize: 12 }}>Vendas no período: {m.salesCompleted}</Text>
+            <Divider style={{ borderColor: "#303030", margin: "16px 0" }} />
+            <Text style={{ color: "#666", fontSize: 12 }}>
+              Vendas no período: {formatNumber(m?.sales_completed)}
+            </Text>
           </Card>
         </Col>
 
         <Col xs={24} lg={12}>
-          <Card styles={{ body: { padding: 20 } }} style={{ ...cardBg, height: '100%' }}>
-            <Title level={5} style={{ color: '#a0a0a0', marginBottom: 16, fontSize: 13, textTransform: 'uppercase', letterSpacing: 1 }}>
-              Avaliações
+          <Card
+            styles={{ body: { padding: 20 } }}
+            style={{ ...cardBg, height: "100%" }}
+          >
+            <Title
+              level={5}
+              style={{
+                color: "#a0a0a0",
+                marginBottom: 16,
+                fontSize: 13,
+                textTransform: "uppercase",
+                letterSpacing: 1,
+              }}
+            >
+              Feedbacks de vendas · últimos 12 meses
             </Title>
-            <div style={{ display: 'flex', borderRadius: 6, overflow: 'hidden', height: 32, marginBottom: 12 }}>
-              {pctPositive > 0 && <div style={{ flex: pctPositive, background: softGreen, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 600, fontSize: 13 }}>{pctPositive}%</div>}
-              {pctNeutral > 0 && <div style={{ flex: pctNeutral, background: softBlue, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 600, fontSize: 13 }}>{pctNeutral}%</div>}
-              {pctNegative > 0 && <div style={{ flex: pctNegative, background: softRed, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 600, fontSize: 13 }}>{pctNegative}%</div>}
-            </div>
-            <Row gutter={24} style={{ marginBottom: 20 }}>
-              <Col><Text style={{ color: softGreen }}>{repData.positive} positivos ({pctPositive}%)</Text></Col>
-              <Col><Text style={{ color: softBlue }}>{repData.neutral} neutros ({pctNeutral}%)</Text></Col>
-              <Col><Text style={{ color: softRed }}>{repData.negative} negativos ({pctNegative}%)</Text></Col>
-            </Row>
+            {feedbackTotal > 0 ? (
+              <>
+                <div
+                  style={{
+                    display: "flex",
+                    borderRadius: 6,
+                    overflow: "hidden",
+                    height: 32,
+                    marginBottom: 12,
+                    background: "#252525",
+                  }}
+                >
+                  {positivePct !== null && positivePct > 0 && (
+                    <div
+                      style={{
+                        flex: positivePct,
+                        background: softGreen,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#fff",
+                        fontWeight: 600,
+                        fontSize: 13,
+                      }}
+                    >
+                      {positivePct.toFixed(1)}%
+                    </div>
+                  )}
+                  {neutralPct !== null && neutralPct > 0 && (
+                    <div
+                      style={{
+                        flex: neutralPct,
+                        background: softBlue,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#fff",
+                        fontWeight: 600,
+                        fontSize: 13,
+                      }}
+                    >
+                      {neutralPct.toFixed(1)}%
+                    </div>
+                  )}
+                  {negativePct !== null && negativePct > 0 && (
+                    <div
+                      style={{
+                        flex: negativePct,
+                        background: softRed,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#fff",
+                        fontWeight: 600,
+                        fontSize: 13,
+                      }}
+                    >
+                      {negativePct.toFixed(1)}%
+                    </div>
+                  )}
+                </div>
+                <Row gutter={[16, 8]} style={{ marginBottom: 20 }}>
+                  <Col>
+                    <Text style={{ color: softGreen }}>
+                      Positivas: {formatNumber(feedback?.positive)} (
+                      {formatPercent(positivePct)})
+                    </Text>
+                  </Col>
+                  <Col>
+                    <Text style={{ color: softBlue }}>
+                      Neutras: {formatNumber(feedback?.neutral)} (
+                      {formatPercent(neutralPct)})
+                    </Text>
+                  </Col>
+                  <Col>
+                    <Text style={{ color: softRed }}>
+                      Negativas: {formatNumber(feedback?.negative)} (
+                      {formatPercent(negativePct)})
+                    </Text>
+                  </Col>
+                </Row>
+              </>
+            ) : (
+              <Text
+                style={{ color: "#808080", display: "block", marginBottom: 20 }}
+              >
+                Mercado Livre não retornou feedbacks de vendas no período.
+              </Text>
+            )}
 
-            <Title level={5} style={{ color: '#a0a0a0', marginBottom: 12, fontSize: 13, textTransform: 'uppercase', letterSpacing: 1 }}>
+            <Title
+              level={5}
+              style={{
+                color: "#a0a0a0",
+                marginBottom: 12,
+                fontSize: 13,
+                textTransform: "uppercase",
+                letterSpacing: 1,
+              }}
+            >
               Selos & Conquistas
             </Title>
             <Row gutter={[12, 12]}>
-              {[
-                ...(psLabel ? [{ icon: <TrophyFilled />, color: ps.color, label: psLabel, desc: 'Reconhecimento por alto volume de vendas' }] : []),
-                { icon: <CheckCircleFilled />, color: softGreen, label: `${pctPositive}% Avaliações Positivas`, desc: `${repData.completed} vendas concluídas com sucesso` },
-                { icon: <RocketFilled />, color: lvl.color, label: `Nível ${lvl.label}`, desc: pctPositive >= 94 ? 'Termômetro no nível máximo' : 'Continue melhorando' },
-                { icon: <ThunderboltFilled />, color: softYellow, label: 'Resposta Rápida', desc: `Média de ${repData.responseTimeAvg} para responder perguntas` },
-              ].map((badge, i) => (
+              {badges.map((badge, i) => (
                 <Col xs={24} sm={12} key={i}>
-                  <div style={{ display: 'flex', gap: 12, alignItems: 'center', padding: 12, borderRadius: 8, background: '#1a1a1a', border: '1px solid #303030' }}>
-                    <div style={{ fontSize: 24, color: badge.color, flexShrink: 0 }}>{badge.icon}</div>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 12,
+                      alignItems: "center",
+                      padding: 12,
+                      borderRadius: 8,
+                      background: "#1a1a1a",
+                      border: "1px solid #303030",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontSize: 24,
+                        color: badge.color,
+                        flexShrink: 0,
+                      }}
+                    >
+                      {badge.icon}
+                    </div>
                     <div>
-                      <Text style={{ color: '#e0e0e0', fontWeight: 600, fontSize: 13 }}>{badge.label}</Text>
+                      <Text
+                        style={{
+                          color: "#e0e0e0",
+                          fontWeight: 600,
+                          fontSize: 13,
+                        }}
+                      >
+                        {badge.label}
+                      </Text>
                       <br />
-                      <Text style={{ color: '#808080', fontSize: 12 }}>{badge.desc}</Text>
+                      <Text style={{ color: "#808080", fontSize: 12 }}>
+                        {badge.desc}
+                      </Text>
                     </div>
                   </div>
                 </Col>
@@ -239,56 +756,6 @@ export default function ReputacaoPage() {
           </Card>
         </Col>
       </Row>
-
-      <Card styles={{ body: { padding: 20 } }} style={cardBg}>
-        <Title level={5} style={{ color: '#a0a0a0', marginBottom: 16, fontSize: 13, textTransform: 'uppercase', letterSpacing: 1 }}>
-          Comparativo
-        </Title>
-        <Row gutter={[24, 16]} align="middle">
-          <Col xs={24} md={14}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, paddingBottom: 4, borderBottom: '1px solid #252525' }}>
-              <Text style={{ color: '#808080', fontSize: 12, flex: 1 }}>Métrica</Text>
-              <Text style={{ color: '#a0a0a0', fontSize: 12, width: 80, textAlign: 'center' }}>6 meses</Text>
-              <Text style={{ color: '#a0a0a0', fontSize: 12, width: 80, textAlign: 'center' }}>12 meses</Text>
-            </div>
-            {[
-              { label: 'Vendas realizadas', six: repData.sixMonths.vendidas, twelve: repData.twelveMonths.vendidas },
-              { label: 'Cancelamentos', six: repData.sixMonths.canceladas, twelve: repData.twelveMonths.canceladas },
-              { label: 'Reclamações', six: repData.sixMonths.reclamacoes, twelve: repData.twelveMonths.reclamacoes },
-            ].map((row, i) => (
-              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', borderBottom: i < 2 ? '1px solid #252525' : 'none' }}>
-                <Text style={{ color: '#c0c0c0', fontSize: 13, flex: 1 }}>{row.label}</Text>
-                <Text style={{ color: '#e0e0e0', fontSize: 13, fontWeight: 600, width: 80, textAlign: 'center' }}>{row.six}</Text>
-                <Text style={{ color: '#e0e0e0', fontSize: 13, fontWeight: 600, width: 80, textAlign: 'center' }}>{row.twelve}</Text>
-              </div>
-            ))}
-          </Col>
-          <Col xs={24} md={10}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <div style={{ display: 'flex', gap: 4, height: 24 }}>
-                {levelOrder.map(key => {
-                  const lc = levelConfig[key];
-                  const active = repData.levelId === key;
-                  return (
-                    <div key={key} style={{
-                      flex: 1, borderRadius: 4,
-                      background: active ? lc.color : '#252525',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontWeight: 700, fontSize: 11, color: active ? '#fff' : 'transparent',
-                      transition: 'all .3s',
-                    }}>
-                      {active ? lc.label : ''}
-                    </div>
-                  );
-                })}
-              </div>
-              <Text style={{ color: '#666', fontSize: 12, textAlign: 'center' }}>
-                🔴 🟠 🟡 💚 🟢 — Seu nível: {lvl.label}
-              </Text>
-            </div>
-          </Col>
-        </Row>
-      </Card>
     </div>
   );
 }
