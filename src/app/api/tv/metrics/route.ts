@@ -16,6 +16,10 @@ function normalizeStatus(value: unknown): string {
   return String(value || "aberto").trim() || "aberto";
 }
 
+function isCancelledStatus(value: unknown): boolean {
+  return normalizeStatus(value) === "cancelado";
+}
+
 function toIso(value: Date): string {
   return value.toISOString();
 }
@@ -47,20 +51,23 @@ function saoPauloPeriodBounds(date: Date, period: "week" | "month") {
 function summarizeOrders(rows: any[]) {
   let revenue = 0;
   let profit = 0;
+  let salesCount = 0;
   const statusCounts: Record<string, number> = {};
 
   for (const row of rows) {
-    revenue += Number(row.total || 0);
-    profit += Number(row.lucro || 0);
     const status = normalizeStatus(row.situacao);
     statusCounts[status] = (statusCounts[status] || 0) + 1;
+    if (isCancelledStatus(status)) continue;
+    revenue += Number(row.total || 0);
+    profit += Number(row.lucro || 0);
+    salesCount += 1;
   }
 
   return {
     orders: rows.length,
     revenue: round2(revenue),
     profit: round2(profit),
-    averageTicket: rows.length > 0 ? round2(revenue / rows.length) : 0,
+    averageTicket: salesCount > 0 ? round2(revenue / salesCount) : 0,
     statusCounts,
   };
 }
@@ -73,6 +80,7 @@ function hourlySales(rows: any[]) {
     orders: 0,
   }));
   for (const row of rows) {
+    if (isCancelledStatus(row.situacao)) continue;
     const hour = saoPauloHour(row.data || row.created_at || row.updated_at);
     if (hour === null) continue;
     const bucket = buckets[hour];
