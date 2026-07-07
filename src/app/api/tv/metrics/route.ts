@@ -20,6 +20,25 @@ function isCancelledStatus(value: unknown): boolean {
   return normalizeStatus(value) === "cancelado";
 }
 
+function isMissingSaleDateColumnError(
+  error:
+    | {
+        code?: string;
+        message?: string;
+      }
+    | null
+    | undefined,
+): boolean {
+  return (
+    error?.code === "42703" &&
+    String(error?.message || "").includes("data_venda")
+  );
+}
+
+function orderDateValue(row: any): string | null {
+  return row?.data_venda || row?.data || null;
+}
+
 function toIso(value: Date): string {
   return value.toISOString();
 }
@@ -81,7 +100,9 @@ function hourlySales(rows: any[]) {
   }));
   for (const row of rows) {
     if (isCancelledStatus(row.situacao)) continue;
-    const hour = saoPauloHour(row.data || row.created_at || row.updated_at);
+    const hour = saoPauloHour(
+      orderDateValue(row) || row.created_at || row.updated_at,
+    );
     if (hour === null) continue;
     const bucket = buckets[hour];
     bucket.revenue = round2(bucket.revenue + Number(row.total || 0));
@@ -209,7 +230,98 @@ export async function GET() {
     "month",
   );
 
-  const [
+  async function runOrderQueries(useSaleDate: boolean) {
+    const dateColumn = useSaleDate ? "data_venda" : "data";
+    const fullDateSelect = useSaleDate ? "data_venda,data" : "data";
+
+    return Promise.all([
+      service
+        .from("pedidos")
+        .select(
+          `id,numero,contato_nome,total,lucro,situacao,${fullDateSelect},created_at,updated_at`,
+        )
+        .gte(dateColumn, toIso(todayStart))
+        .lte(dateColumn, toIso(todayEnd))
+        .order(dateColumn, { ascending: true }),
+      service
+        .from("pedidos")
+        .select(`id,total,lucro,situacao,${fullDateSelect}`)
+        .gte(dateColumn, toIso(yesterdayStart))
+        .lte(dateColumn, toIso(yesterdayEnd)),
+      service
+        .from("pedidos")
+        .select(`id,total,lucro,situacao,${fullDateSelect}`)
+        .gte(dateColumn, toIso(oneHourAgo))
+        .lte(dateColumn, toIso(now)),
+      service
+        .from("pedidos")
+        .select(`id,total,lucro,situacao,${fullDateSelect}`)
+        .gte(dateColumn, toIso(weekStart))
+        .lte(dateColumn, toIso(weekEnd)),
+      service
+        .from("pedidos")
+        .select(`id,total,lucro,situacao,${fullDateSelect}`)
+        .gte(dateColumn, toIso(monthStart))
+        .lte(dateColumn, toIso(monthEnd)),
+      service
+        .from("pedidos")
+        .select(
+          `id,numero,contato_nome,total,lucro,situacao,${fullDateSelect},ml_order_id,pedido_itens(titulo,quantidade)`,
+        )
+        .order(dateColumn, { ascending: false })
+        .limit(5),
+      service
+        .from("pedidos")
+        .select(
+          `id,numero,contato_nome,total,situacao,${fullDateSelect},nota_fiscal_emitida,dslite_etiqueta_enviada`,
+        )
+        .in("situacao", [
+          "aberto",
+          "pendente",
+          "preparando",
+          "pronto_envio",
+          "etiqueta_impressa",
+          "faturado",
+        ])
+        .order(dateColumn, { ascending: false })
+        .limit(12),
+      service
+        .from("anuncios_ml")
+        .select("*", { count: "exact", head: true })
+        .eq("status", "ativo"),
+      service
+        .from("produtos")
+        .select("*", { count: "exact", head: true })
+        .eq("ml_status", "ativo"),
+      service
+        .from("pedidos")
+        .select("*", { count: "exact", head: true })
+        .not("ml_claim_id", "is", null)
+        .or("ml_claim_status.is.null,ml_claim_status.neq.closed"),
+      service.from("anuncios_ml").select("visitas,vendidos,preco_ml"),
+      service
+        .from("anuncios_ml")
+        .select(
+          "ml_item_id,titulo,sku,visitas,vendidos,preco_ml,thumbnail,permalink",
+        )
+        .order("vendidos", { ascending: false })
+        .limit(8),
+      service.from("anuncios_ml").select("status,catalogo"),
+      service
+        .from("catalogo_ml_snapshot")
+        .select("*", { count: "exact", head: true })
+        .eq("catalog_listing", true)
+        .eq("status", "active")
+        .eq("buy_box_winning", true),
+      service
+        .from("pedidos")
+        .select(`id,total,lucro,situacao,${fullDateSelect}`)
+        .gte(dateColumn, toIso(historicalStart))
+        .lte(dateColumn, toIso(now)),
+    ]);
+  }
+
+  let [
     todayResult,
     yesterdayResult,
     lastHourResult,
@@ -225,91 +337,38 @@ export async function GET() {
     adsStatsResult,
     catalogWinningResult,
     historicalResult,
-  ] = await Promise.all([
-    service
-      .from("pedidos")
-      .select(
-        "id,numero,contato_nome,total,lucro,situacao,data,created_at,updated_at",
-      )
-      .gte("data", toIso(todayStart))
-      .lte("data", toIso(todayEnd))
-      .order("data", { ascending: true }),
-    service
-      .from("pedidos")
-      .select("id,total,lucro,situacao,data")
-      .gte("data", toIso(yesterdayStart))
-      .lte("data", toIso(yesterdayEnd)),
-    service
-      .from("pedidos")
-      .select("id,total,lucro,situacao,data")
-      .gte("data", toIso(oneHourAgo))
-      .lte("data", toIso(now)),
-    service
-      .from("pedidos")
-      .select("id,total,lucro,situacao,data")
-      .gte("data", toIso(weekStart))
-      .lte("data", toIso(weekEnd)),
-    service
-      .from("pedidos")
-      .select("id,total,lucro,situacao,data")
-      .gte("data", toIso(monthStart))
-      .lte("data", toIso(monthEnd)),
-    service
-      .from("pedidos")
-      .select(
-        "id,numero,contato_nome,total,lucro,situacao,data,ml_order_id,pedido_itens(titulo,quantidade)",
-      )
-      .order("data", { ascending: false })
-      .limit(5),
-    service
-      .from("pedidos")
-      .select(
-        "id,numero,contato_nome,total,situacao,data,nota_fiscal_emitida,dslite_etiqueta_enviada",
-      )
-      .in("situacao", [
-        "aberto",
-        "pendente",
-        "preparando",
-        "pronto_envio",
-        "etiqueta_impressa",
-        "faturado",
-      ])
-      .order("data", { ascending: false })
-      .limit(12),
-    service
-      .from("anuncios_ml")
-      .select("*", { count: "exact", head: true })
-      .eq("status", "ativo"),
-    service
-      .from("produtos")
-      .select("*", { count: "exact", head: true })
-      .eq("ml_status", "ativo"),
-    service
-      .from("pedidos")
-      .select("*", { count: "exact", head: true })
-      .not("ml_claim_id", "is", null)
-      .or("ml_claim_status.is.null,ml_claim_status.neq.closed"),
-    service.from("anuncios_ml").select("visitas,vendidos,preco_ml"),
-    service
-      .from("anuncios_ml")
-      .select(
-        "ml_item_id,titulo,sku,visitas,vendidos,preco_ml,thumbnail,permalink",
-      )
-      .order("vendidos", { ascending: false })
-      .limit(8),
-    service.from("anuncios_ml").select("status,catalogo"),
-    service
-      .from("catalogo_ml_snapshot")
-      .select("*", { count: "exact", head: true })
-      .eq("catalog_listing", true)
-      .eq("status", "active")
-      .eq("buy_box_winning", true),
-    service
-      .from("pedidos")
-      .select("id,total,lucro,situacao,data")
-      .gte("data", toIso(historicalStart))
-      .lte("data", toIso(now)),
-  ]);
+  ] = await runOrderQueries(true);
+
+  const missingSaleDateColumn = [
+    todayResult,
+    yesterdayResult,
+    lastHourResult,
+    weekResult,
+    monthResult,
+    recentResult,
+    actionResult,
+    historicalResult,
+  ].some((result) => isMissingSaleDateColumnError(result.error));
+
+  if (missingSaleDateColumn) {
+    [
+      todayResult,
+      yesterdayResult,
+      lastHourResult,
+      weekResult,
+      monthResult,
+      recentResult,
+      actionResult,
+      activeAdsResult,
+      productsResult,
+      claimsResult,
+      visitsResult,
+      topProductsResult,
+      adsStatsResult,
+      catalogWinningResult,
+      historicalResult,
+    ] = await runOrderQueries(false);
+  }
 
   if (todayResult.error)
     return NextResponse.json(
@@ -354,7 +413,7 @@ export async function GET() {
       total: round2(row.total || 0),
       profit: round2(row.lucro || 0),
       status: normalizeStatus(row.situacao),
-      date: row.data,
+      date: orderDateValue(row),
       mlOrderId: row.ml_order_id || null,
     };
   });
@@ -368,7 +427,7 @@ export async function GET() {
     action: actionLabel(row.situacao),
     needsInvoice: row.nota_fiscal_emitida === false,
     needsLabel: row.dslite_etiqueta_enviada === false,
-    date: row.data,
+    date: orderDateValue(row),
   }));
 
   let totalVisits = 0;

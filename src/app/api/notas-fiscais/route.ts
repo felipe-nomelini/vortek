@@ -1,26 +1,42 @@
-import { NextResponse } from 'next/server';
-import { createClient, createServiceClient } from '@/lib/supabase';
-import { saoPauloDateParamToUtcIso } from '@/lib/timezone';
-import { normalizeNfeTechnicalStatus, type NfeTechnicalStatus } from '@/lib/fiscal/nfe-status';
-import { reconcileLocalNfeSnapshotFromXml } from '@/lib/fiscal/nfe-local-reconciliation';
+import { NextResponse } from "next/server";
+import { createClient, createServiceClient } from "@/lib/supabase";
+import { saoPauloDateParamToUtcIso } from "@/lib/timezone";
+import {
+  normalizeNfeTechnicalStatus,
+  type NfeTechnicalStatus,
+} from "@/lib/fiscal/nfe-status";
+import { reconcileLocalNfeSnapshotFromXml } from "@/lib/fiscal/nfe-local-reconciliation";
 
 type NFStatus = NfeTechnicalStatus;
-type SortOrder = 'asc' | 'desc';
+type SortOrder = "asc" | "desc";
 
 const PAGE_SIZE_DEFAULT = 20;
 const PAGE_SIZE_MAX = 100;
 
 const sortColumnMap: Record<string, string> = {
-  pedido: 'numero',
-  numero: 'nota_fiscal_numero',
-  cliente: 'contato_nome',
-  data: 'data',
-  valor: 'total',
-  status: 'nfe_status',
+  pedido: "numero",
+  numero: "nota_fiscal_numero",
+  cliente: "contato_nome",
+  data: "data_venda",
+  valor: "total",
+  status: "nfe_status",
 };
 
+function isMissingSaleDateColumnError(
+  error: { code?: string; message?: string } | null | undefined,
+): boolean {
+  return (
+    error?.code === "42703" &&
+    String(error?.message || "").includes("data_venda")
+  );
+}
+
+function getOrderDate(row: any): string | null {
+  return row?.data_venda || row?.data || null;
+}
+
 function normalizeSearch(value: string): string {
-  return value.replace(/[,]/g, ' ').trim();
+  return value.replace(/[,]/g, " ").trim();
 }
 
 function mapStatus(row: { nfe_status: string | null }): NFStatus {
@@ -28,23 +44,39 @@ function mapStatus(row: { nfe_status: string | null }): NFStatus {
 }
 
 function applyStatusFilter(query: any, status: NFStatus): any {
-  if (status === 'autorizada') return query.or('nfe_status.eq.authorized,nfe_status.eq.autorizada');
-  if (status === 'cancelada') return query.or('nfe_status.eq.cancelada,nfe_status.eq.cancelled,nfe_status.eq.canceled');
-  if (status === 'pendente') return query.or('nfe_status.eq.pendente,nfe_status.eq.pending,nfe_status.is.null');
-  if (status === 'interrompida') return query.or('nfe_status.eq.interrupted,nfe_status.eq.interrompida');
-  if (status === 'rejeitada') return query.or('nfe_status.eq.rejected,nfe_status.eq.rejeitada,nfe_status.eq.denegada');
-  if (status === 'processando') return query.or('nfe_status.eq.processing,nfe_status.eq.processando');
+  if (status === "autorizada")
+    return query.or("nfe_status.eq.authorized,nfe_status.eq.autorizada");
+  if (status === "cancelada")
+    return query.or(
+      "nfe_status.eq.cancelada,nfe_status.eq.cancelled,nfe_status.eq.canceled",
+    );
+  if (status === "pendente")
+    return query.or(
+      "nfe_status.eq.pendente,nfe_status.eq.pending,nfe_status.is.null",
+    );
+  if (status === "interrompida")
+    return query.or("nfe_status.eq.interrupted,nfe_status.eq.interrompida");
+  if (status === "rejeitada")
+    return query.or(
+      "nfe_status.eq.rejected,nfe_status.eq.rejeitada,nfe_status.eq.denegada",
+    );
+  if (status === "processando")
+    return query.or("nfe_status.eq.processing,nfe_status.eq.processando");
   return query;
 }
 
-function applyCommonFilters(query: any, params: {
-  search: string;
-  dateFrom: string;
-  dateTo: string;
-  valorMin: string | null;
-  valorMax: string | null;
-}): any {
-  const { search, dateFrom, dateTo, valorMin, valorMax } = params;
+function applyCommonFilters(
+  query: any,
+  params: {
+    search: string;
+    dateFrom: string;
+    dateTo: string;
+    valorMin: string | null;
+    valorMax: string | null;
+    useSaleDate: boolean;
+  },
+): any {
+  const { search, dateFrom, dateTo, valorMin, valorMax, useSaleDate } = params;
   let next = query;
   if (search) {
     const filters = [
@@ -56,64 +88,73 @@ function applyCommonFilters(query: any, params: {
     if (/^\d+$/.test(search)) {
       filters.push(`numero.eq.${search}`);
     }
-    next = next.or(filters.join(','));
+    next = next.or(filters.join(","));
   }
 
-  const startDateIso = dateFrom ? saoPauloDateParamToUtcIso(dateFrom, 'start') : null;
-  const endDateIso = dateTo ? saoPauloDateParamToUtcIso(dateTo, 'end') : null;
+  const startDateIso = dateFrom
+    ? saoPauloDateParamToUtcIso(dateFrom, "start")
+    : null;
+  const endDateIso = dateTo ? saoPauloDateParamToUtcIso(dateTo, "end") : null;
+
+  const dateColumn = useSaleDate ? "data_venda" : "data";
 
   if (startDateIso) {
-    next = next.gte('data', startDateIso);
+    next = next.gte(dateColumn, startDateIso);
   }
 
   if (endDateIso) {
-    next = next.lte('data', endDateIso);
+    next = next.lte(dateColumn, endDateIso);
   }
 
   if (valorMin) {
     const min = Number(valorMin);
     if (!Number.isNaN(min)) {
-      next = next.gte('total', min);
+      next = next.gte("total", min);
     }
   }
 
   if (valorMax) {
     const max = Number(valorMax);
     if (!Number.isNaN(max)) {
-      next = next.lte('total', max);
+      next = next.lte("total", max);
     }
   }
 
   return next;
 }
 
-async function reconcileRowsBestEffort(supabase: any, rows: any[]): Promise<any[]> {
-  return Promise.all((rows || []).map(async (row) => {
-    const reconciliation = reconcileLocalNfeSnapshotFromXml({
-      nfe_status: row?.nfe_status || null,
-      nfe_xml: row?.nfe_xml || null,
-      nfe_chave: row?.nfe_chave || null,
-      nota_fiscal_numero: row?.nota_fiscal_numero || null,
-      nfe_protocolo: row?.nfe_protocolo || null,
-      nfe_cfop: row?.nfe_cfop || null,
-    });
-    if (!reconciliation.shouldUpdate || !row?.id) {
-      return row;
-    }
+async function reconcileRowsBestEffort(
+  supabase: any,
+  rows: any[],
+): Promise<any[]> {
+  return Promise.all(
+    (rows || []).map(async (row) => {
+      const reconciliation = reconcileLocalNfeSnapshotFromXml({
+        nfe_status: row?.nfe_status || null,
+        nfe_xml: row?.nfe_xml || null,
+        nfe_chave: row?.nfe_chave || null,
+        nota_fiscal_numero: row?.nota_fiscal_numero || null,
+        nfe_protocolo: row?.nfe_protocolo || null,
+        nfe_cfop: row?.nfe_cfop || null,
+      });
+      if (!reconciliation.shouldUpdate || !row?.id) {
+        return row;
+      }
 
-    await supabase
-      .from('pedidos')
-      .update({
+      await supabase
+        .from("pedidos")
+        .update({
+          ...reconciliation.updates,
+          nfe_last_sync_at: new Date().toISOString(),
+        } as any)
+        .eq("id", row.id);
+
+      return {
+        ...row,
         ...reconciliation.updates,
-        nfe_last_sync_at: new Date().toISOString(),
-      } as any)
-      .eq('id', row.id);
-
-    return {
-      ...row,
-      ...reconciliation.updates,
-    };
-  }));
+      };
+    }),
+  );
 }
 
 export async function GET(request: Request) {
@@ -123,56 +164,123 @@ export async function GET(request: Request) {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+    return NextResponse.json({ erro: "Não autenticado" }, { status: 401 });
   }
   const serviceClient = createServiceClient();
 
   try {
     const { searchParams } = new URL(request.url);
 
-    const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10));
-    const pageSizeRaw = parseInt(searchParams.get('pageSize') || String(PAGE_SIZE_DEFAULT), 10);
+    const page = Math.max(1, parseInt(searchParams.get("page") || "1", 10));
+    const pageSizeRaw = parseInt(
+      searchParams.get("pageSize") || String(PAGE_SIZE_DEFAULT),
+      10,
+    );
     const pageSize = Math.min(PAGE_SIZE_MAX, Math.max(1, pageSizeRaw));
 
-    const search = normalizeSearch(searchParams.get('search') || '');
-    const status = (searchParams.get('status') || '').trim() as NFStatus | '';
-    const dateFrom = (searchParams.get('dateFrom') || '').trim();
-    const dateTo = (searchParams.get('dateTo') || '').trim();
-    const valorMin = searchParams.get('valorMin');
-    const valorMax = searchParams.get('valorMax');
+    const search = normalizeSearch(searchParams.get("search") || "");
+    const status = (searchParams.get("status") || "").trim() as NFStatus | "";
+    const dateFrom = (searchParams.get("dateFrom") || "").trim();
+    const dateTo = (searchParams.get("dateTo") || "").trim();
+    const valorMin = searchParams.get("valorMin");
+    const valorMax = searchParams.get("valorMax");
 
-    const sortByParam = (searchParams.get('sortBy') || 'data').trim();
-    const sortBy = sortColumnMap[sortByParam] || 'data';
-    const sortOrder: SortOrder = (searchParams.get('sortOrder') || 'desc').toLowerCase() === 'asc' ? 'asc' : 'desc';
+    const sortByParam = (searchParams.get("sortBy") || "data").trim();
+    const sortBy = sortColumnMap[sortByParam] || "data_venda";
+    const sortOrder: SortOrder =
+      (searchParams.get("sortOrder") || "desc").toLowerCase() === "asc"
+        ? "asc"
+        : "desc";
 
     const from = (page - 1) * pageSize;
     const to = from + pageSize - 1;
 
-    const baseSelect = 'id, numero, ml_order_id, ml_pack_id, contato_nome, contato_documento, data, nota_fiscal_numero, nota_fiscal_emitida, nfe_status, nfe_chave, nfe_protocolo, nfe_danfe_url, nfe_cfop, nfe_xml, total';
-    let countQuery = serviceClient.from('pedidos').select('id', { count: 'exact', head: true });
-    let dataQuery = serviceClient
-      .from('pedidos')
-      .select(baseSelect)
-      .order(sortBy, { ascending: sortOrder === 'asc', nullsFirst: false })
-      .range(from, to);
+    async function runQueries(useSaleDate: boolean) {
+      const baseSelect = `id, numero, ml_order_id, ml_pack_id, contato_nome, contato_documento, data, ${useSaleDate ? "data_venda," : ""} nota_fiscal_numero, nota_fiscal_emitida, nfe_status, nfe_chave, nfe_protocolo, nfe_danfe_url, nfe_cfop, nfe_xml, total`;
+      const sortColumn =
+        sortBy === "data_venda"
+          ? useSaleDate
+            ? "data_venda"
+            : "data"
+          : sortBy;
 
-    countQuery = applyCommonFilters(countQuery, { search, dateFrom, dateTo, valorMin, valorMax });
-    dataQuery = applyCommonFilters(dataQuery, { search, dateFrom, dateTo, valorMin, valorMax });
+      let countQuery = serviceClient
+        .from("pedidos")
+        .select("id", { count: "exact", head: true });
+      let dataQuery = serviceClient
+        .from("pedidos")
+        .select(baseSelect)
+        .order(sortColumn, {
+          ascending: sortOrder === "asc",
+          nullsFirst: false,
+        })
+        .range(from, to);
+
+      countQuery = applyCommonFilters(countQuery, {
+        search,
+        dateFrom,
+        dateTo,
+        valorMin,
+        valorMax,
+        useSaleDate,
+      });
+      dataQuery = applyCommonFilters(dataQuery, {
+        search,
+        dateFrom,
+        dateTo,
+        valorMin,
+        valorMax,
+        useSaleDate,
+      });
+
+      return { countQuery, dataQuery, baseSelect, sortColumn };
+    }
+
+    let { countQuery, dataQuery, baseSelect, sortColumn } =
+      await runQueries(true);
 
     let data: any[] = [];
     let count = 0;
 
-    if (status === 'outro') {
-      const fullQuery = applyCommonFilters(
-        serviceClient.from('pedidos').select(baseSelect).order(sortBy, { ascending: sortOrder === 'asc', nullsFirst: false }),
-        { search, dateFrom, dateTo, valorMin, valorMax },
+    if (status === "outro") {
+      let fullQuery = applyCommonFilters(
+        serviceClient
+          .from("pedidos")
+          .select(baseSelect)
+          .order(sortColumn, {
+            ascending: sortOrder === "asc",
+            nullsFirst: false,
+          }),
+        { search, dateFrom, dateTo, valorMin, valorMax, useSaleDate: true },
       );
-      const { data: rawRows, error } = await fullQuery;
-      if (error) {
-        return NextResponse.json({ erro: error.message || 'Erro ao buscar notas fiscais' }, { status: 500 });
+      let { data: rawRows, error } = await fullQuery;
+      if (isMissingSaleDateColumnError(error)) {
+        ({ baseSelect, sortColumn } = await runQueries(false));
+        fullQuery = applyCommonFilters(
+          serviceClient
+            .from("pedidos")
+            .select(baseSelect)
+            .order(sortColumn, {
+              ascending: sortOrder === "asc",
+              nullsFirst: false,
+            }),
+          { search, dateFrom, dateTo, valorMin, valorMax, useSaleDate: false },
+        );
+        ({ data: rawRows, error } = await fullQuery);
       }
-      const reconciledRows = await reconcileRowsBestEffort(serviceClient, rawRows || []);
-      const filtered = reconciledRows.filter((row: any) => normalizeNfeTechnicalStatus(row.nfe_status) === 'outro');
+      if (error) {
+        return NextResponse.json(
+          { erro: error.message || "Erro ao buscar notas fiscais" },
+          { status: 500 },
+        );
+      }
+      const reconciledRows = await reconcileRowsBestEffort(
+        serviceClient,
+        rawRows || [],
+      );
+      const filtered = reconciledRows.filter(
+        (row: any) => normalizeNfeTechnicalStatus(row.nfe_status) === "outro",
+      );
       count = filtered.length;
       data = filtered.slice(from, to + 1);
     } else {
@@ -181,10 +289,32 @@ export async function GET(request: Request) {
         dataQuery = applyStatusFilter(dataQuery, status);
       }
 
-      const [{ count: totalCount, error: countError }, { data: rowsData, error: dataError }] = await Promise.all([countQuery, dataQuery]);
+      let [
+        { count: totalCount, error: countError },
+        { data: rowsData, error: dataError },
+      ] = await Promise.all([countQuery, dataQuery]);
+      if (
+        isMissingSaleDateColumnError(countError) ||
+        isMissingSaleDateColumnError(dataError)
+      ) {
+        ({ countQuery, dataQuery } = await runQueries(false));
+        if (status) {
+          countQuery = applyStatusFilter(countQuery, status);
+          dataQuery = applyStatusFilter(dataQuery, status);
+        }
+        [
+          { count: totalCount, error: countError },
+          { data: rowsData, error: dataError },
+        ] = await Promise.all([countQuery, dataQuery]);
+      }
       if (countError || dataError) {
         return NextResponse.json(
-          { erro: countError?.message || dataError?.message || 'Erro ao buscar notas fiscais' },
+          {
+            erro:
+              countError?.message ||
+              dataError?.message ||
+              "Erro ao buscar notas fiscais",
+          },
           { status: 500 },
         );
       }
@@ -195,9 +325,9 @@ export async function GET(request: Request) {
     const rows = (data || []).map((row) => ({
       id: row.id,
       pedido: row.numero,
-      cliente: row.contato_nome || '—',
-      data: row.data,
-      numero: row.nota_fiscal_numero || '—',
+      cliente: row.contato_nome || "—",
+      data: getOrderDate(row),
+      numero: row.nota_fiscal_numero || "—",
       valor: Number(row.total || 0),
       status: mapStatus(row),
       ml_order_id: row.ml_order_id,
@@ -216,6 +346,9 @@ export async function GET(request: Request) {
       pageSize,
     });
   } catch (error: any) {
-    return NextResponse.json({ erro: error?.message || 'Erro inesperado' }, { status: 500 });
+    return NextResponse.json(
+      { erro: error?.message || "Erro inesperado" },
+      { status: 500 },
+    );
   }
 }

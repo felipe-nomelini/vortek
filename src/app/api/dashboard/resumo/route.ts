@@ -10,6 +10,25 @@ function isCancelledStatus(value: unknown): boolean {
   return normalizeStatus(value) === "cancelado";
 }
 
+function isMissingSaleDateColumnError(
+  error:
+    | {
+        code?: string;
+        message?: string;
+      }
+    | null
+    | undefined,
+): boolean {
+  return (
+    error?.code === "42703" &&
+    String(error?.message || "").includes("data_venda")
+  );
+}
+
+function getOrderDate(row: any): string | null {
+  return row?.data_venda || row?.data || null;
+}
+
 export async function GET(request: Request) {
   const supabase = await createClient();
   const {
@@ -23,28 +42,92 @@ export async function GET(request: Request) {
   const dateFrom = searchParams.get("dateFrom") || "";
   const dateTo = searchParams.get("dateTo") || "";
 
-  function applyDateFilter(query: any) {
+  function applyDateFilter(query: any, useSaleDate: boolean) {
+    const dateColumn = useSaleDate ? "data_venda" : "data";
     const startIso = dateFrom
       ? saoPauloDateParamToUtcIso(dateFrom, "start")
       : null;
     const endIso = dateTo ? saoPauloDateParamToUtcIso(dateTo, "end") : null;
-    if (startIso) query = query.gte("data", startIso);
-    if (endIso) query = query.lte("data", endIso);
+    if (startIso) query = query.gte(dateColumn, startIso);
+    if (endIso) query = query.lte(dateColumn, endIso);
     return query;
   }
 
-  // 1. Total de pedidos no período
-  let countQuery = serviceClient
-    .from("pedidos")
-    .select("*", { count: "exact", head: false })
-    .range(0, 0);
-  countQuery = applyDateFilter(countQuery);
-  const { count: totalPedidos } = await countQuery;
+  async function runDashboardQueries(useSaleDate: boolean) {
+    const fullDateSelect = useSaleDate ? "data_venda,data" : "data";
 
-  // 2. Faturamento e lucro no período
-  let sumQuery = serviceClient.from("pedidos").select("total, lucro, situacao");
-  sumQuery = applyDateFilter(sumQuery);
-  const { data: sumData } = await sumQuery;
+    let countQuery = serviceClient
+      .from("pedidos")
+      .select("*", { count: "exact", head: false })
+      .range(0, 0);
+    countQuery = applyDateFilter(countQuery, useSaleDate);
+
+    let sumQuery = serviceClient
+      .from("pedidos")
+      .select("total, lucro, situacao");
+    sumQuery = applyDateFilter(sumQuery, useSaleDate);
+
+    let dailyQuery = serviceClient
+      .from("pedidos")
+      .select(`${fullDateSelect}, total, situacao`);
+    dailyQuery = applyDateFilter(dailyQuery, useSaleDate);
+
+    let statusQuery = serviceClient.from("pedidos").select("situacao");
+    statusQuery = applyDateFilter(statusQuery, useSaleDate);
+
+    let recentQuery = serviceClient.from("pedidos").select("*");
+    recentQuery = applyDateFilter(recentQuery, useSaleDate);
+
+    const [countResult, sumResult, dailyResult, statusResult, recentResult] =
+      await Promise.all([
+        countQuery,
+        sumQuery,
+        dailyQuery,
+        statusQuery,
+        recentQuery
+          .order(useSaleDate ? "data_venda" : "data", {
+            ascending: false,
+          })
+          .limit(5),
+      ]);
+
+    return { countResult, sumResult, dailyResult, statusResult, recentResult };
+  }
+
+  let {
+    countResult: { count: totalPedidos, error: countError },
+    sumResult: { data: sumData, error: sumError },
+    dailyResult: { data: dailyData, error: dailyError },
+    statusResult: { data: statusData, error: statusError },
+    recentResult: { data: recentData, error: recentError },
+  } = await runDashboardQueries(true);
+
+  const missingSaleDateColumn = [
+    countError,
+    sumError,
+    dailyError,
+    statusError,
+    recentError,
+  ].some((error) => isMissingSaleDateColumnError(error));
+
+  if (missingSaleDateColumn) {
+    ({
+      countResult: { count: totalPedidos, error: countError },
+      sumResult: { data: sumData, error: sumError },
+      dailyResult: { data: dailyData, error: dailyError },
+      statusResult: { data: statusData, error: statusError },
+      recentResult: { data: recentData, error: recentError },
+    } = await runDashboardQueries(false));
+  }
+
+  if (countError || sumError || dailyError || statusError || recentError) {
+    const error =
+      countError || sumError || dailyError || statusError || recentError;
+    return NextResponse.json(
+      { erro: error?.message || "Falha ao carregar resumo do dashboard" },
+      { status: 500 },
+    );
+  }
 
   let faturamento = 0;
   let lucro = 0;
@@ -57,16 +140,10 @@ export async function GET(request: Request) {
   }
 
   // 3. Vendas diárias
-  let dailyQuery = serviceClient
-    .from("pedidos")
-    .select("data, total, situacao");
-  dailyQuery = applyDateFilter(dailyQuery);
-  const { data: dailyData } = await dailyQuery;
-
   const vendasDiariasMap: Record<string, number> = {};
   for (const row of dailyData || []) {
     if (isCancelledStatus(row.situacao)) continue;
-    const key = saoPauloDayLabel(row.data);
+    const key = saoPauloDayLabel(getOrderDate(row));
     if (!key) continue;
     vendasDiariasMap[key] = (vendasDiariasMap[key] || 0) + (row.total || 0);
   }
@@ -82,10 +159,6 @@ export async function GET(request: Request) {
     }));
 
   // 4. Status dos pedidos no período
-  let statusQuery = serviceClient.from("pedidos").select("situacao");
-  statusQuery = applyDateFilter(statusQuery);
-  const { data: statusData } = await statusQuery;
-
   const statusCounts: Record<string, number> = {};
   for (const row of statusData || []) {
     const s = row.situacao || "aberto";
@@ -93,18 +166,12 @@ export async function GET(request: Request) {
   }
 
   // 5. Pedidos recentes (últimos 5)
-  let recentQuery = serviceClient.from("pedidos").select("*");
-  recentQuery = applyDateFilter(recentQuery);
-  const { data: recentData } = await recentQuery
-    .order("data", { ascending: false })
-    .limit(5);
-
   const pedidosRecentes = (recentData || []).map((p: any) => ({
     numero: p.numero,
     cliente: p.contato_nome,
     total: p.total,
     situacao: p.situacao,
-    data: p.data,
+    data: getOrderDate(p),
   }));
 
   // 6. Top produtos: usa anuncios_ml.vendidos agregado por produto
