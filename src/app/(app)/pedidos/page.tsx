@@ -155,12 +155,14 @@ function sanitizeMlTechnicalSuffix(name: string): string {
   return raw;
 }
 
-function getDisplayClientName(order: Pick<Order, 'billing_nome' | 'contato'>): string {
-  const billingName = String(order.billing_nome || '').trim();
-  if (billingName) return billingName;
+function getDisplayClientName(order: Pick<Order, 'contato'>): string {
   const contatoNome = String(order.contato?.nome || '').trim();
   if (!contatoNome) return '—';
   return sanitizeMlTechnicalSuffix(contatoNome);
+}
+
+function getDisplayFiscalClientName(order: Pick<Order, 'billing_nome'>): string {
+  return String(order.billing_nome || '').trim();
 }
 
 function getDsliteActionTag(action: Order['dslite_next_action']) {
@@ -1103,7 +1105,23 @@ export default function PedidosPage() {
       title: 'Cliente', dataIndex: ['contato', 'nome'], key: 'cliente',
       sorter: true,
       sortOrder: getRemoteSortOrder('cliente', sort),
-      render: (_: string, record: Order) => getDisplayClientName(record),
+      render: (_: string, record: Order) => {
+        const clientName = getDisplayClientName(record);
+        const fiscalName = getDisplayFiscalClientName(record);
+        const showFiscalName = fiscalName && fiscalName.toLowerCase() !== clientName.toLowerCase();
+        return (
+          <div>
+            <div style={{ color: '#e0e0e0' }}>{clientName}</div>
+            {showFiscalName && (
+              <Tooltip title="Nome fiscal vindo do billing_info do Mercado Livre">
+                <div style={{ color: '#888', fontSize: 11 }}>
+                  Fiscal: {fiscalName}
+                </div>
+              </Tooltip>
+            )}
+          </div>
+        );
+      },
     },
     {
       title: 'Total', dataIndex: 'total', key: 'total', width: 110,
@@ -1112,42 +1130,38 @@ export default function PedidosPage() {
       render: (v: number) => formatCurrency(v),
     },
     {
-      title: 'Rastreio', dataIndex: 'rastreio', key: 'rastreio', width: 130,
-      sorter: true,
-      sortOrder: getRemoteSortOrder('rastreio', sort),
-      render: (v: string | null, record: Order) => {
-        if (!v) return <span style={{ color: '#666' }}>—</span>;
-        if (record.ml_shipment_id) {
-          return (
-            <Button
-              type="link"
-              size="small"
-              style={{ fontFamily: 'monospace', fontSize: 13, padding: 0 }}
-              onClick={() => {
-                setTrackingOrderId(record.dbId);
-                setTrackingOrderStatus(record.situacao.valor);
-                setTrackingModalOpen(true);
-              }}
-            >
-              {v}
-            </Button>
-          );
-        }
-        return <span style={{ fontFamily: 'monospace', fontSize: 13 }}>{v}</span>;
-      },
-    },
-    {
       title: 'Status', dataIndex: ['situacao', 'valor'], key: 'situacao', width: 140,
       sorter: true,
       sortOrder: getRemoteSortOrder('situacao', sort),
-      render: (status: OrderStatus, record: Order) => (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          <Tag color={statusColor[status]}>{statusLabel[status]}</Tag>
-          {(record as any).ml_claim_id && (
-            <WarningOutlined style={{ color: '#faad14', fontSize: 14 }} title="Reclamação em andamento" />
-          )}
-        </div>
-      ),
+      render: (status: OrderStatus, record: Order) => {
+        const canTrack = Boolean(record.ml_shipment_id);
+        const statusTag = (
+          <Tag
+            color={statusColor[status]}
+            style={{ marginInlineEnd: 0, cursor: canTrack ? 'pointer' : 'default' }}
+            onClick={() => {
+              if (!canTrack) return;
+              setTrackingOrderId(record.dbId);
+              setTrackingOrderStatus(record.situacao.valor);
+              setTrackingModalOpen(true);
+            }}
+          >
+            {statusLabel[status]}
+          </Tag>
+        );
+        return (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            {canTrack ? (
+              <Tooltip title={record.rastreio ? `Rastrear envio ${record.rastreio}` : 'Rastrear envio'}>
+                {statusTag}
+              </Tooltip>
+            ) : statusTag}
+            {(record as any).ml_claim_id && (
+              <WarningOutlined style={{ color: '#faad14', fontSize: 14 }} title="Reclamação em andamento" />
+            )}
+          </div>
+        );
+      },
     },
     {
       title: 'Nota Fiscal', dataIndex: 'notaFiscal', key: 'nota_fiscal_numero', width: 220,

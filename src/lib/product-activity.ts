@@ -1,4 +1,4 @@
-export const PRODUCT_COST_INACTIVE_THRESHOLD = 2000;
+export const PRODUCT_COST_INACTIVE_THRESHOLD = Number.POSITIVE_INFINITY;
 
 export function shouldProductBeInactiveByCost(cost: unknown): boolean {
   const value = Number(cost);

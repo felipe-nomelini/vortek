@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient, createServiceClient } from "@/lib/supabase";
 import { saoPauloDayBounds, saoPauloHour } from "@/lib/timezone";
-import { fetchMLResult, getMLConnectionStatus } from "@/services/integration";
 
 function round2(value: number): number {
   return Math.round(Number(value || 0) * 100) / 100;
@@ -97,98 +96,85 @@ function actionLabel(status: string): string {
   return map[raw] || raw;
 }
 
-async function fetchQuestionNotifications(
-  service: ReturnType<typeof createServiceClient>,
-) {
-  try {
-    const connection = await getMLConnectionStatus();
-    if (!connection.conectado) {
-      return {
-        connected: false,
-        total: 0,
-        items: [],
-        error: connection.erro || "Mercado Livre desconectado",
-      };
-    }
+type ProjectionMetric = {
+  orders: number;
+  revenue: number;
+  profit: number;
+};
 
-    const meResult = await fetchMLResult<{ id: number }>(
-      "/users/me?attributes=id",
-    );
-    if (!meResult.ok || !meResult.data?.id) {
-      return {
-        connected: false,
-        total: 0,
-        items: [],
-        error: meResult.error?.message || "Falha ao identificar vendedor ML",
-      };
-    }
+function saoPauloDateParts(date: Date) {
+  const offsetMs = -180 * 60 * 1000;
+  const local = new Date(date.getTime() + offsetMs);
+  return {
+    year: local.getUTCFullYear(),
+    month: local.getUTCMonth(),
+    day: local.getUTCDate(),
+    hour: local.getUTCHours(),
+    minute: local.getUTCMinutes(),
+    second: local.getUTCSeconds(),
+  };
+}
 
-    const params = new URLSearchParams({
-      seller_id: String(meResult.data.id),
-      limit: "3",
-      offset: "0",
-      api_version: "4",
-      status: "UNANSWERED",
-      sort_fields: "date_created",
-      sort_types: "DESC",
-    });
-    const questionsResult = await fetchMLResult<{
-      total?: number;
-      questions?: any[];
-    }>(`/questions/search?${params.toString()}`);
-    if (!questionsResult.ok) {
-      return {
-        connected: true,
-        total: 0,
-        items: [],
-        error: questionsResult.error?.message || "Falha ao buscar perguntas",
-      };
-    }
+function buildProjection(params: {
+  now: Date;
+  month: ProjectionMetric;
+  historical: ProjectionMetric;
+  historicalDays: number;
+}) {
+  const parts = saoPauloDateParts(params.now);
+  const daysInMonth = new Date(
+    Date.UTC(parts.year, parts.month + 1, 0),
+  ).getUTCDate();
+  const daysInNextMonth = new Date(
+    Date.UTC(parts.year, parts.month + 2, 0),
+  ).getUTCDate();
+  const dayProgress = Math.max(
+    1 / 24,
+    (parts.hour + parts.minute / 60 + parts.second / 3600) / 24,
+  );
+  const elapsedDays = Math.min(daysInMonth, parts.day - 1 + dayProgress);
+  const remainingDays = Math.max(0, daysInMonth - elapsedDays);
+  const currentWeight = elapsedDays >= 3 ? 0.7 : 0.45;
+  const historyWeight = 1 - currentWeight;
 
-    const questions = questionsResult.data?.questions || [];
-    const itemIds = Array.from(
-      new Set(
-        questions
-          .map((question: any) => String(question.item_id || ""))
-          .filter(Boolean),
-      ),
-    );
-    const { data: listings } = itemIds.length
-      ? await service
-          .from("anuncios_ml")
-          .select("ml_item_id,titulo,sku")
-          .in("ml_item_id", itemIds)
-      : { data: [] as any[] };
-    const listingMap = new Map(
-      (listings || []).map((row: any) => [String(row.ml_item_id), row]),
-    );
+  const pace = {
+    orders: round2(
+      (params.month.orders / Math.max(1, elapsedDays)) * currentWeight +
+        (params.historical.orders / Math.max(1, params.historicalDays)) *
+          historyWeight,
+    ),
+    revenue: round2(
+      (params.month.revenue / Math.max(1, elapsedDays)) * currentWeight +
+        (params.historical.revenue / Math.max(1, params.historicalDays)) *
+          historyWeight,
+    ),
+    profit: round2(
+      (params.month.profit / Math.max(1, elapsedDays)) * currentWeight +
+        (params.historical.profit / Math.max(1, params.historicalDays)) *
+          historyWeight,
+    ),
+  };
 
-    return {
-      connected: true,
-      total: Number(questionsResult.data?.total || questions.length),
-      error: null,
-      items: questions.map((question: any) => {
-        const listing = listingMap.get(String(question.item_id || ""));
-        return {
-          id: question.id,
-          itemId: question.item_id,
-          listingTitle: listing?.titulo || question.item_id || "Anúncio",
-          sku: listing?.sku || null,
-          customerId: question.from?.id || null,
-          question: question.text || "",
-          date: question.date_created || null,
-          status: question.status || null,
-        };
-      }),
-    };
-  } catch (err: any) {
-    return {
-      connected: false,
-      total: 0,
-      items: [],
-      error: err?.message || "Erro ao buscar perguntas",
-    };
-  }
+  return {
+    basis: {
+      historicalDays: params.historicalDays,
+      elapsedDays: round2(elapsedDays),
+      remainingDays: round2(remainingDays),
+      daysInMonth,
+      daysInNextMonth,
+      dailyPace: pace,
+    },
+    currentMonth: {
+      orders: Math.round(params.month.orders + pace.orders * remainingDays),
+      revenue: round2(params.month.revenue + pace.revenue * remainingDays),
+      profit: round2(params.month.profit + pace.profit * remainingDays),
+    },
+    nextMonth: {
+      orders: Math.round(pace.orders * daysInNextMonth),
+      revenue: round2(pace.revenue * daysInNextMonth),
+      profit: round2(pace.profit * daysInNextMonth),
+    },
+  };
 }
 
 export async function GET() {
@@ -206,6 +192,9 @@ export async function GET() {
     new Date(todayStart.getTime() - 1),
   );
   const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
+  const historicalStart = new Date(
+    todayStart.getTime() - 29 * 24 * 60 * 60 * 1000,
+  );
   const { start: weekStart, end: weekEnd } = saoPauloPeriodBounds(now, "week");
   const { start: monthStart, end: monthEnd } = saoPauloPeriodBounds(
     now,
@@ -225,9 +214,9 @@ export async function GET() {
     claimsResult,
     visitsResult,
     topProductsResult,
-    claimsListResult,
     adsStatsResult,
     catalogWinningResult,
+    historicalResult,
   ] = await Promise.all([
     service
       .from("pedidos")
@@ -300,15 +289,6 @@ export async function GET() {
       )
       .order("vendidos", { ascending: false })
       .limit(8),
-    service
-      .from("pedidos")
-      .select(
-        "id,numero,contato_nome,total,situacao,data,ml_order_id,ml_claim_id,ml_claim_status",
-      )
-      .not("ml_claim_id", "is", null)
-      .or("ml_claim_status.is.null,ml_claim_status.neq.closed")
-      .order("data", { ascending: false })
-      .limit(3),
     service.from("anuncios_ml").select("status,catalogo"),
     service
       .from("catalogo_ml_snapshot")
@@ -316,6 +296,11 @@ export async function GET() {
       .eq("catalog_listing", true)
       .eq("status", "active")
       .eq("buy_box_winning", true),
+    service
+      .from("pedidos")
+      .select("id,total,lucro,situacao,data")
+      .gte("data", toIso(historicalStart))
+      .lte("data", toIso(now)),
   ]);
 
   if (todayResult.error)
@@ -334,11 +319,19 @@ export async function GET() {
   const lastHourRows = lastHourResult.data || [];
   const weekRows = weekResult.data || [];
   const monthRows = monthResult.data || [];
+  const historicalRows = historicalResult.data || [];
   const today = summarizeOrders(todayRows);
   const yesterdaySummary = summarizeOrders(yesterdayRows);
   const lastHour = summarizeOrders(lastHourRows);
   const week = summarizeOrders(weekRows);
   const month = summarizeOrders(monthRows);
+  const historical = summarizeOrders(historicalRows);
+  const projection = buildProjection({
+    now,
+    month,
+    historical,
+    historicalDays: 30,
+  });
 
   const recentOrders = (recentResult.data || []).map((row: any) => {
     const items = Array.isArray(row.pedido_itens) ? row.pedido_itens : [];
@@ -392,22 +385,6 @@ export async function GET() {
       permalink: row.permalink || null,
     }),
   );
-
-  const questionNotifications = await fetchQuestionNotifications(service);
-  const claimNotifications = {
-    total: claimsResult.count || 0,
-    items: (claimsListResult.data || []).map((row: any) => ({
-      id: row.id,
-      number: row.numero,
-      customer: row.contato_nome || "Cliente ML",
-      total: round2(row.total || 0),
-      status: normalizeStatus(row.situacao),
-      claimId: row.ml_claim_id || null,
-      claimStatus: row.ml_claim_status || null,
-      date: row.data,
-      mlOrderId: row.ml_order_id || null,
-    })),
-  };
 
   let adsTotal = 0;
   let adsActive = 0;
@@ -464,8 +441,7 @@ export async function GET() {
     },
     hourlySales: hourlySales(todayRows),
     recentOrders,
-    questionNotifications,
-    claimNotifications,
+    projection,
     ads: {
       total: adsTotal,
       active: adsActive,

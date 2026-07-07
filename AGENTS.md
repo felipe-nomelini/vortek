@@ -54,6 +54,7 @@ These rules were added after repeated workflow failures. They are mandatory for 
 12. **Do not over-engineer.** No mirabolant solutions, no broad process, no new abstraction, no extra service, no extra deployment path unless required and justified.
 13. **If user corrects workflow, immediately update project instructions when asked and obey from then on.**
 14. **Never lie about tool usage, actions, validation, push, deploy, or external checks.** If not done, say not done.
+15. **When staging/committing files through shell, never pass unquoted paths containing parentheses, spaces, or shell metacharacters.** Prefer `rtk git add --all` for intentional full-project commits. If staging specific files, quote paths like `"src/app/(app)/tv/page.tsx"`; otherwise `/bin/sh` fails with `Syntax error: "(" unexpected`.
 
 ---
 

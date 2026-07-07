@@ -11,7 +11,6 @@ import {
   ConfigProvider,
   Empty,
   Flex,
-  List,
   Progress,
   Row,
   Space,
@@ -99,34 +98,29 @@ type TvMetrics = {
     date: string;
     mlOrderId: string | null;
   }>;
-  questionNotifications: {
-    connected: boolean;
-    total: number;
-    error: string | null;
-    items: Array<{
-      id: number;
-      itemId: string;
-      listingTitle: string;
-      sku: string | null;
-      customerId: number | null;
-      question: string;
-      date: string | null;
-      status: string | null;
-    }>;
-  };
-  claimNotifications: {
-    total: number;
-    items: Array<{
-      id: string;
-      number: number;
-      customer: string;
-      total: number;
-      status: string;
-      claimId: string | null;
-      claimStatus: string | null;
-      date: string;
-      mlOrderId: string | null;
-    }>;
+  projection: {
+    basis: {
+      historicalDays: number;
+      elapsedDays: number;
+      remainingDays: number;
+      daysInMonth: number;
+      daysInNextMonth: number;
+      dailyPace: {
+        orders: number;
+        revenue: number;
+        profit: number;
+      };
+    };
+    currentMonth: {
+      orders: number;
+      revenue: number;
+      profit: number;
+    };
+    nextMonth: {
+      orders: number;
+      revenue: number;
+      profit: number;
+    };
   };
   ads: {
     total: number;
@@ -270,15 +264,63 @@ function formatBarLabel(value: unknown) {
   return formatCurrency(amount).replace(",00", "");
 }
 
+function ProjectionValue({
+  label,
+  orders,
+  revenue,
+  profit,
+}: {
+  label: string;
+  orders: number;
+  revenue: number;
+  profit: number;
+}) {
+  return (
+    <div className="projection-block">
+      <Text type="secondary" className="projection-label">
+        {label}
+      </Text>
+      <div className="projection-grid">
+        <div>
+          <Text type="secondary">Vendas</Text>
+          <Title level={3}>{orders}</Title>
+        </div>
+        <div>
+          <Text type="secondary">Faturamento</Text>
+          <Title level={3}>{formatCurrency(revenue)}</Title>
+        </div>
+        <div>
+          <Text type="secondary">Lucro</Text>
+          <Title level={3}>{formatCurrency(profit)}</Title>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function TvDashboardPage() {
   const [data, setData] = useState<TvMetrics | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [soundEnabled, setSoundEnabled] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(true);
   const [celebration, setCelebration] = useState<Celebration | null>(null);
   const lastOrderIdRef = useRef<string | null>(null);
+  const playedOrderIdsRef = useRef<Set<string>>(new Set());
+  const celebrationTimerRef = useRef<number | null>(null);
+  const soundEnabledRef = useRef(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const tvShellRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    soundEnabledRef.current = soundEnabled;
+  }, [soundEnabled]);
+
+  const playSaleSound = useCallback(() => {
+    const audio = audioRef.current;
+    if (!audio || !soundEnabledRef.current) return;
+    audio.currentTime = 0;
+    audio.play().catch(() => undefined);
+  }, []);
 
   const loadMetrics = useCallback(async () => {
     try {
@@ -297,33 +339,45 @@ export default function TvDashboardPage() {
 
       if (!previousNewestId) {
         lastOrderIdRef.current = newest?.id || null;
+        if (newest?.id) playedOrderIdsRef.current.add(newest.id);
         return;
       }
 
       if (newest?.id && newest.id !== previousNewestId) {
         lastOrderIdRef.current = newest.id;
+        if (playedOrderIdsRef.current.has(newest.id)) return;
+        playedOrderIdsRef.current.add(newest.id);
         setCelebration({
           id: Date.now(),
           orderNumber: newest.number,
           customer: newest.customer,
           total: newest.total,
         });
-        if (soundEnabled) {
-          audioRef.current?.play().catch(() => undefined);
+        playSaleSound();
+        if (celebrationTimerRef.current) {
+          window.clearTimeout(celebrationTimerRef.current);
         }
-        window.setTimeout(() => setCelebration(null), 7000);
+        celebrationTimerRef.current = window.setTimeout(() => {
+          setCelebration(null);
+          celebrationTimerRef.current = null;
+        }, 7000);
       }
     } catch (err: any) {
       setError(err?.message || "Erro ao carregar TV ao Vivo");
     } finally {
       setLoading(false);
     }
-  }, [soundEnabled]);
+  }, [playSaleSound]);
 
   useEffect(() => {
     loadMetrics();
     const interval = window.setInterval(loadMetrics, 15000);
-    return () => window.clearInterval(interval);
+    return () => {
+      window.clearInterval(interval);
+      if (celebrationTimerRef.current) {
+        window.clearTimeout(celebrationTimerRef.current);
+      }
+    };
   }, [loadMetrics]);
 
   const hourly = useMemo(() => data?.hourlySales || [], [data]);
@@ -624,112 +678,56 @@ export default function TvDashboardPage() {
               </Col>
             </Row>
 
-            <Row gutter={[12, 12]}>
-              <Col xs={24} lg={12}>
-                <Card
-                  title="Perguntas em produtos"
-                  extra={
-                    <Tag
-                      color={
-                        data?.questionNotifications.total ? "orange" : "green"
-                      }
-                    >
-                      {data?.questionNotifications.total || 0} pendentes
-                    </Tag>
-                  }
-                  className="notification-card"
-                >
-                  {data?.questionNotifications.error ? (
-                    <Text type="secondary">
-                      {data.questionNotifications.error}
+            <Card
+              title={
+                <Space>
+                  <LineChartOutlined /> Projeção de resultado
+                </Space>
+              }
+              extra={
+                <Tag color="blue">
+                  ritmo{" "}
+                  {formatCurrency(
+                    data?.projection.basis.dailyPace.revenue || 0,
+                  )}{" "}
+                  / dia
+                </Tag>
+              }
+              className="projection-card"
+            >
+              <Row gutter={[12, 12]} align="middle">
+                <Col xs={24} lg={10}>
+                  <ProjectionValue
+                    label="Fechamento previsto do mês atual"
+                    orders={data?.projection.currentMonth.orders || 0}
+                    revenue={data?.projection.currentMonth.revenue || 0}
+                    profit={data?.projection.currentMonth.profit || 0}
+                  />
+                </Col>
+                <Col xs={24} lg={10}>
+                  <ProjectionValue
+                    label="Se mantiver o ritmo no próximo mês"
+                    orders={data?.projection.nextMonth.orders || 0}
+                    revenue={data?.projection.nextMonth.revenue || 0}
+                    profit={data?.projection.nextMonth.profit || 0}
+                  />
+                </Col>
+                <Col xs={24} lg={4}>
+                  <div className="projection-basis">
+                    <Text type="secondary">Base</Text>
+                    <Text strong>
+                      {data?.projection.basis.historicalDays || 30} dias + mês
+                      atual
                     </Text>
-                  ) : data?.questionNotifications.items.length ? (
-                    <List
-                      size="small"
-                      dataSource={data.questionNotifications.items}
-                      renderItem={(item) => (
-                        <List.Item>
-                          <Space
-                            direction="vertical"
-                            size={1}
-                            style={{ width: "100%" }}
-                          >
-                            <Text strong ellipsis>
-                              {item.listingTitle}
-                            </Text>
-                            <Text type="secondary" ellipsis>
-                              {item.question}
-                            </Text>
-                            <Space size={6} wrap>
-                              {item.sku && <Tag>SKU {item.sku}</Tag>}
-                              <Tag color="blue">
-                                {formatDateFull(item.date || "")}
-                              </Tag>
-                            </Space>
-                          </Space>
-                        </List.Item>
-                      )}
-                    />
-                  ) : (
-                    <Empty
-                      image={Empty.PRESENTED_IMAGE_SIMPLE}
-                      description="Sem perguntas pendentes"
-                    />
-                  )}
-                </Card>
-              </Col>
-              <Col xs={24} lg={12}>
-                <Card
-                  title="Reclamações"
-                  extra={
-                    <Tag
-                      color={data?.claimNotifications.total ? "red" : "green"}
-                    >
-                      {data?.claimNotifications.total || 0} abertas
-                    </Tag>
-                  }
-                  className="notification-card"
-                >
-                  {data?.claimNotifications.items.length ? (
-                    <List
-                      size="small"
-                      dataSource={data.claimNotifications.items}
-                      renderItem={(item) => (
-                        <List.Item>
-                          <Space
-                            direction="vertical"
-                            size={1}
-                            style={{ width: "100%" }}
-                          >
-                            <Space split={<Text type="secondary">·</Text>} wrap>
-                              <Text strong>#{item.number}</Text>
-                              <Text>{item.customer}</Text>
-                              <Text style={{ color: "#52c41a" }}>
-                                {formatCurrency(item.total)}
-                              </Text>
-                            </Space>
-                            <Space size={6} wrap>
-                              <Tag color="red">Claim {item.claimId}</Tag>
-                              <Tag color={statusColor(item.status)}>
-                                {item.status}
-                              </Tag>
-                              <Tag color="blue">
-                                {formatDateFull(item.date)}
-                              </Tag>
-                            </Space>
-                          </Space>
-                        </List.Item>
-                      )}
-                    />
-                  ) : (
-                    <Empty
-                      image={Empty.PRESENTED_IMAGE_SIMPLE}
-                      description="Sem reclamações abertas"
-                    />
-                  )}
-                </Card>
-              </Col>
-            </Row>
+                    <Text type="secondary">Restam</Text>
+                    <Text strong>
+                      {Math.ceil(data?.projection.basis.remainingDays || 0)}{" "}
+                      dias
+                    </Text>
+                  </div>
+                </Col>
+              </Row>
+            </Card>
 
             <Card title="Últimas 5 vendas" className="sales-card">
               {recentOrders.length ? (
@@ -836,7 +834,7 @@ export default function TvDashboardPage() {
           }
           .metric-card,
           .chart-card,
-          .notification-card,
+          .projection-card,
           .sales-card {
             border-color: #262626 !important;
             background: rgba(20, 20, 20, 0.94) !important;
@@ -912,11 +910,40 @@ export default function TvDashboardPage() {
           .compact-chart {
             height: 126px;
           }
-          .notification-card {
-            min-height: 178px;
+          .projection-card {
+            border-color: rgba(82, 196, 26, 0.26) !important;
           }
-          .notification-card .ant-list-item {
-            padding: 5px 0 !important;
+          .projection-block {
+            padding: 10px 12px;
+            border: 1px solid #262626;
+            border-radius: 10px;
+            background: #0f0f0f;
+          }
+          .projection-label {
+            display: block;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 11px;
+          }
+          .projection-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr 1fr;
+            gap: 10px;
+          }
+          .projection-grid h3 {
+            margin: 2px 0 0 !important;
+            font-size: clamp(18px, 1.7vw, 28px) !important;
+            white-space: nowrap;
+          }
+          .projection-basis {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3px;
+            padding: 10px 12px;
+            border: 1px solid #262626;
+            border-radius: 10px;
+            background: #0f0f0f;
           }
           .ads-footer {
             display: grid;
