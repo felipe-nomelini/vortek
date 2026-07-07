@@ -36,6 +36,8 @@ interface AnaliseRow {
 
 const TAXA_IMPOSTO = 0.04;
 const TAXA_ML_DEFAULT = 0.15;
+const MARGEM_LUCRO_MINIMA_ANALISE = 0.05;
+const DELTA_PRECO_MINIMO_ANALISE = 0.005;
 const PAGE_SIZE = 1000;
 const SUPABASE_IN_CHUNK_SIZE = 100;
 type RefreshMode = 'none' | 'incremental' | 'full';
@@ -288,7 +290,15 @@ export async function POST(request: Request) {
     };
   });
 
-  const sorted = [...report].sort((a, b) => {
+  const filtered = report.filter((row) => {
+    const lucro = toFiniteNumber(row.lucro_unitario_estimado);
+    const precoBase = toFiniteNumber(row.price_to_win) || toFiniteNumber(row.preco_recomendado);
+    const delta = Math.abs(toFiniteNumber(row.delta_preco) || 0);
+    if (lucro === null || precoBase === null || precoBase <= 0) return false;
+    return delta >= DELTA_PRECO_MINIMO_ANALISE && lucro > 0 && (lucro / precoBase) >= MARGEM_LUCRO_MINIMA_ANALISE;
+  });
+
+  const sorted = [...filtered].sort((a, b) => {
     const priorityDiff = classPriority(a.classe) - classPriority(b.classe);
     if (priorityDiff !== 0) return priorityDiff;
     const aDelta = Math.abs(a.delta_preco || 0);
@@ -312,6 +322,9 @@ export async function POST(request: Request) {
     snapshot_rows: snapshotRows.length,
     produto_ids: produtoIds.length,
     produtos_loaded: produtoMap.size,
+    min_profit_margin: MARGEM_LUCRO_MINIMA_ANALISE,
+    min_price_delta: DELTA_PRECO_MINIMO_ANALISE,
+    report_rows_before_filter: report.length,
     returned_rows: sorted.length,
     durations_ms: {
       refresh: refreshMs,
@@ -332,7 +345,7 @@ export async function POST(request: Request) {
     },
     snapshot_max_synced_at: snapshotMaxSyncedAt,
     snapshot_age_seconds: snapshotAgeSeconds,
-    total_analisado: report.length,
+    total_analisado: sorted.length,
     classes,
     data: sorted,
   });
