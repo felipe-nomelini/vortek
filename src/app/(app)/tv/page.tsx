@@ -4,7 +4,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import {
   Alert,
-  Badge,
   Button,
   Card,
   Col,
@@ -35,7 +34,6 @@ import {
   BarChart,
   CartesianGrid,
   Cell,
-  LabelList,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -261,14 +259,6 @@ function trendText(value: number) {
   if (value > 0) return `+${value}% vs ontem`;
   if (value < 0) return `${value}% vs ontem`;
   return "igual ontem";
-}
-
-function formatBarLabel(value: unknown) {
-  const amount = Number(value || 0);
-  if (!amount) return "";
-  if (amount >= 1000)
-    return `R$ ${(amount / 1000).toFixed(1).replace(".", ",")}k`;
-  return formatCurrency(amount).replace(",00", "");
 }
 
 function ProjectionValue({
@@ -546,11 +536,10 @@ export default function TvDashboardPage() {
               />
             </div>
             <div>
-              <Badge
-                status="processing"
-                color="#52c41a"
-                text={<Text strong>AO VIVO</Text>}
-              />
+              <div className="live-badge">
+                <span className="live-radar" aria-hidden="true" />
+                <Text strong>AO VIVO</Text>
+              </div>
               <Text type="secondary" style={{ display: "block", marginTop: 4 }}>
                 vendas ao vivo a cada 1s · painel completo a cada 15s ·{" "}
                 {data?.generatedAt
@@ -698,7 +687,10 @@ export default function TvDashboardPage() {
                             background: "#141414",
                             border: "1px solid #303030",
                             borderRadius: 8,
+                            color: "#f5f5f5",
                           }}
+                          labelStyle={{ color: "#f5f5f5" }}
+                          itemStyle={{ color: "#f5f5f5" }}
                           formatter={(value, name) => [
                             name === "revenue"
                               ? formatCurrency(Number(value))
@@ -707,13 +699,6 @@ export default function TvDashboardPage() {
                           ]}
                         />
                         <Bar dataKey="revenue" radius={[6, 6, 0, 0]}>
-                          <LabelList
-                            dataKey="revenue"
-                            position="top"
-                            formatter={formatBarLabel}
-                            fill="#d9d9d9"
-                            fontSize={9}
-                          />
                           {hourly.map((item) => (
                             <Cell
                               key={item.hour}
@@ -880,12 +865,37 @@ export default function TvDashboardPage() {
             align-items: center;
             justify-content: center;
             min-width: 220px;
-            min-height: 54px;
-            padding: 8px 16px;
-            border: 1px solid #1f1f1f;
-            border-radius: 14px;
-            background: rgba(20, 20, 20, 0.92);
-            box-shadow: 0 0 28px rgba(22, 119, 255, 0.18);
+            min-height: 31px;
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+          }
+          .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+          }
+          .live-radar {
+            position: relative;
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: #52c41a;
+            box-shadow: 0 0 12px rgba(82, 196, 26, 0.55);
+          }
+          .live-radar::before,
+          .live-radar::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 999px;
+            border: 1px solid rgba(82, 196, 26, 0.5);
+            animation: liveRadar 2s ease-out infinite;
+          }
+          .live-radar::after {
+            animation-delay: 1s;
           }
           .metric-card,
           .chart-card,
@@ -962,8 +972,14 @@ export default function TvDashboardPage() {
           .hour-card {
             min-height: 190px;
           }
+          .hour-card .ant-card-body {
+            min-height: 148px;
+            display: flex;
+            align-items: stretch;
+          }
           .compact-chart {
-            height: 126px;
+            flex: 1;
+            height: 148px;
           }
           .projection-card {
             border-color: rgba(82, 196, 26, 0.26) !important;
@@ -1033,6 +1049,12 @@ export default function TvDashboardPage() {
           }
           .tv-shell .ant-card-body {
             padding: 14px 16px;
+          }
+          .recharts-default-tooltip {
+            color: #f5f5f5 !important;
+          }
+          .recharts-tooltip-label {
+            color: #f5f5f5 !important;
           }
           .tv-shell .ant-table-cell {
             padding-top: 7px !important;
@@ -1110,6 +1132,16 @@ export default function TvDashboardPage() {
             }
             50% {
               box-shadow: 0 0 32px rgba(22, 119, 255, 0.28);
+            }
+          }
+          @keyframes liveRadar {
+            0% {
+              transform: scale(1);
+              opacity: 0.8;
+            }
+            100% {
+              transform: scale(3.2);
+              opacity: 0;
             }
           }
           @keyframes salePop {
