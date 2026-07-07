@@ -534,26 +534,38 @@ async function upsertCliente(serviceClient: ReturnType<typeof createServiceClien
     endereco: payload.endereco,
   };
 
-  const upsertResult = await serviceClient
-    .from('clientes')
-    .upsert(basePayload as any, { onConflict: 'ml_id' });
-
-  if (!upsertResult.error) {
-    return;
-  }
-
-  const { data: existing } = await serviceClient
+  const { data: existingRows, error: existingError } = await serviceClient
     .from('clientes')
     .select('id')
     .eq('ml_id', payload.buyerId)
-    .maybeSingle();
+    .order('created_at', { ascending: true })
+    .limit(1);
+
+  if (existingError) {
+    console.error('[sync-pedidos] Erro ao buscar cliente existente:', existingError.message);
+  }
+
+  const existing = existingRows?.[0];
 
   if (existing?.id) {
-    await serviceClient.from('clientes').update(basePayload as any).eq('id', existing.id);
+    const { error: updateError } = await serviceClient
+      .from('clientes')
+      .update(basePayload as any)
+      .eq('id', existing.id);
+
+    if (updateError) {
+      console.error('[sync-pedidos] Erro ao atualizar cliente existente:', updateError.message);
+    }
     return;
   }
 
-  await serviceClient.from('clientes').insert(basePayload as any);
+  const { error: insertError } = await serviceClient
+    .from('clientes')
+    .insert(basePayload as any);
+
+  if (insertError) {
+    console.error('[sync-pedidos] Erro ao inserir cliente:', insertError.message);
+  }
 }
 
 async function buildOrderItemsSnapshot(params: {
