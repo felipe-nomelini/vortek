@@ -10,6 +10,7 @@ import {
   extractMlProductFacts,
   type MlProductFacts,
 } from "@/lib/ml-product-facts";
+import { isMlCriticalAttributeId } from "@/lib/ml-critical-attributes";
 
 type AttributeInput = {
   id: string;
@@ -377,6 +378,7 @@ function fillAttribute(
 ): SmartAttribute {
   const id = String(attr.id || "").toUpperCase();
   const factValue = factForAttribute(attr, facts);
+  const isCritical = isMlCriticalAttributeId(id);
 
   if (factValue) {
     if (isBadPredictionConflict(attr, factValue)) {
@@ -393,6 +395,17 @@ function fillAttribute(
       "product_facts",
       `Extraído do cadastro/título do produto: ${produto.nome}`,
     );
+  }
+
+  if (isCritical) {
+    if (hasValue(attr)) {
+      return validateObviousErrors(
+        { ...attr, source: "existing", confidence: 0.9 },
+        [],
+        produto,
+      );
+    }
+    return { ...attr, source: "critical_missing_local_evidence", confidence: 0 };
   }
 
   if (
@@ -575,6 +588,7 @@ function applyAiAttributes(
     const valueName = String(ai.value_name || "").trim();
     const valueId = String(ai.value_id || "").trim();
     if (invalidLiteral(valueName) && !valueId) return attr;
+    if (isMlCriticalAttributeId(attr.id) && !hasValue(attr)) return attr;
     const next = valueName
       ? applyValue(
           attr,
@@ -724,7 +738,7 @@ export async function POST(req: Request) {
         supplierEvidence,
       });
       const applyEvidenceFallback = (attr: SmartAttribute) => {
-        if (hasValue(attr)) return attr;
+        if (hasValue(attr) || isMlCriticalAttributeId(attr.id)) return attr;
         const value = inferAttributeFromEvidence(
           attr,
           produtoWithEvidence,

@@ -22,6 +22,11 @@ import {
 } from "@/lib/ml-sale-terms";
 import { enqueueMlPublishOutbox } from "@/lib/sync/ml-publish-outbox";
 import { assertAllowedMlCategoryForProduct } from "@/lib/ml-category-guard";
+import {
+  isMlCriticalAttributeId,
+  normalizeCriticalAttributeValue,
+  resolveTrustedMlCriticalValue,
+} from "@/lib/ml-critical-attributes";
 
 type StepResult = { ok: boolean; error?: string };
 type AttrInput = { id: string; value_name?: string; value_id?: string };
@@ -697,6 +702,13 @@ export async function POST(req: Request) {
       );
     }
 
+    const { data: supplierOffers } = await supabase
+      .from("produto_fornecedor_ofertas")
+      .select(
+        "id,produto_id,nome,descricao,custo,estoque,prioridade,ativo,last_sync_at",
+      )
+      .eq("produto_id", produtoId);
+
     if (!produto.sku?.trim()) {
       return NextResponse.json(
         { error: "Produto sem SKU. Preencha o SKU antes de criar anúncio." },
@@ -889,6 +901,40 @@ export async function POST(req: Request) {
           );
         }
       }
+    }
+
+    for (const attr of attrs) {
+      const attrId = String(attr.id || "").toUpperCase();
+      if (!isMlCriticalAttributeId(attrId)) continue;
+      const trustedValue = resolveTrustedMlCriticalValue(
+        attrId,
+        produto,
+        supplierOffers || [],
+      );
+      const current = attributesMap.get(attr.id);
+      if (!trustedValue) {
+        if (current && hasValue(current)) {
+          attributesMap.delete(attr.id);
+          warnings.push(
+            `${attr.name}: valor removido porque não há evidência local/DSLite confiável para atributo crítico.`,
+          );
+        }
+        continue;
+      }
+      const currentNormalized = normalizeCriticalAttributeValue(
+        attrId,
+        current?.value_name || current?.value_id,
+      );
+      if (currentNormalized && currentNormalized !== trustedValue) {
+        warnings.push(
+          `${attr.name}: valor informado divergente do cadastro local; ajustado para ${trustedValue}.`,
+        );
+      }
+      attributesMap.set(attr.id, {
+        id: attr.id,
+        value_id: undefined,
+        value_name: trustedValue,
+      });
     }
 
     sanitizeAttributesByDependencies(

@@ -15,6 +15,10 @@ import {
   applyProductFactsToMlAttribute,
   extractMlProductFacts,
 } from "@/lib/ml-product-facts";
+import {
+  isMlCriticalAttributeId,
+  resolveTrustedMlCriticalValue,
+} from "@/lib/ml-critical-attributes";
 
 function normalizeStr(v: unknown): string {
   return String(v ?? "").trim();
@@ -316,6 +320,13 @@ export async function POST(req: Request) {
       );
     }
 
+    const { data: supplierOffers } = await supabase
+      .from("produto_fornecedor_ofertas")
+      .select(
+        "id,produto_id,nome,descricao,custo,estoque,prioridade,ativo,last_sync_at",
+      )
+      .eq("produto_id", produtoId);
+
     const attrs = (await getCategoryAttributes(categoriaId)) || [];
     const requiredAttributes = attrs.filter(
       (a: any) =>
@@ -353,11 +364,19 @@ export async function POST(req: Request) {
     const predictionByAttr = await predictionAttributes(categoriaId, produto);
 
     const prefillAttributes = attrs.map((attr: any) => {
-      const pre = {
-        ...initialAttributeValue(attr, produto),
-        ...applyRuleBasedAttributeValue(attr, produto),
-        ...(predictionByAttr.get(String(attr.id).toUpperCase()) || {}),
-      };
+      const attrId = String(attr.id || "").toUpperCase();
+      const trustedCriticalValue = isMlCriticalAttributeId(attrId)
+        ? resolveTrustedMlCriticalValue(attrId, produto, supplierOffers || [])
+        : null;
+      const pre = isMlCriticalAttributeId(attrId)
+        ? trustedCriticalValue
+          ? pickAllowedValue(attr, trustedCriticalValue)
+          : {}
+        : {
+            ...initialAttributeValue(attr, produto),
+            ...applyRuleBasedAttributeValue(attr, produto),
+            ...(predictionByAttr.get(attrId) || {}),
+          };
       if (isInvalidLiteralValue(pre.value_name) && !pre.value_id) {
         delete pre.value_name;
       }
