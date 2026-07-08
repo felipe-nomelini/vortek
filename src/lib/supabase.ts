@@ -3,10 +3,10 @@
  * - createClient(): cliente SSR para API routes (autenticado via cookies)
  * - createServiceClient(): cliente com service_role (bypass RLS)
  */
-import { createServerClient } from '@supabase/ssr';
-import { createClient as createSupabaseClient } from '@supabase/supabase-js';
-import { cookies } from 'next/headers';
-import type { Database } from '@/types/database';
+import { createServerClient } from "@supabase/ssr";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
+import { cookies } from "next/headers";
+import type { Database } from "@/types/database";
 
 export async function createClient() {
   const cookieStore = await cookies();
@@ -22,20 +22,23 @@ export async function createClient() {
         setAll(cookiesToSet) {
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
+              cookieStore.set(name, value, options),
             );
           } catch {}
         },
       },
-    }
+    },
   );
 }
 
 export function createServiceClient() {
-  const serviceUrl = process.env.SUPABASE_SERVICE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL!;
+  const publicUrl = String(process.env.NEXT_PUBLIC_SUPABASE_URL || "").trim();
+  const internalUrl = String(process.env.SUPABASE_SERVICE_URL || "").trim();
+  const serviceUrl = publicUrl || internalUrl;
+
   return createSupabaseClient<Database>(
     serviceUrl,
     process.env.SUPABASE_SERVICE_ROLE_KEY!,
-    { auth: { autoRefreshToken: false, persistSession: false } }
+    { auth: { autoRefreshToken: false, persistSession: false } },
   );
 }
