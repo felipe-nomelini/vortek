@@ -150,6 +150,7 @@ function isBrasilNfeTemporaryProviderMessage(value: unknown): boolean {
 
 function extractBrasilNfeEmitError(resp: any): string | undefined {
   return (
+    resp?.Error ||
     resp?.ReturnNF?.DsStatusRespostaSefaz ||
     resp?.ReturnNF?.Mensagem ||
     resp?.ReturnNF?.Msg ||

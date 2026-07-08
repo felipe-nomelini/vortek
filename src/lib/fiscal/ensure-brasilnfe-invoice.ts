@@ -50,6 +50,7 @@ const UF_CODES = new Set([
   "TO",
 ]);
 const ITEM_TOTAL_TOLERANCE = 0.01;
+const BRASIL_NFE_MAX_CLIENT_NAME_LENGTH = 60;
 
 function nowIso() {
   return new Date().toISOString();
@@ -57,6 +58,14 @@ function nowIso() {
 
 function normalizeDocument(value: string | null | undefined): string {
   return String(value || "").replace(/\D/g, "");
+}
+
+function normalizeBrasilNfeClientName(value: unknown): string {
+  const normalized = String(value || "Cliente")
+    .replace(/\s+/g, " ")
+    .trim();
+  const safe = normalized || "Cliente";
+  return safe.slice(0, BRASIL_NFE_MAX_CLIENT_NAME_LENGTH).trim() || "Cliente";
 }
 
 function normalizeUf(value: string | null | undefined): string | null {
@@ -338,7 +347,7 @@ function buildPayloadFromSnapshot(
       ConsumidorFinal: true,
       Cliente: {
         CpfCnpj: doc,
-        NmCliente: String(pedido.billing_nome || "Cliente"),
+        NmCliente: normalizeBrasilNfeClientName(pedido.billing_nome),
         IndicadorIe: indicadorIe,
         ...(isCnpj && indicadorIe === 1 && billingIe ? { IE: billingIe } : {}),
         Endereco: {
