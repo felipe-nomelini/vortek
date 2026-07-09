@@ -122,10 +122,13 @@ export default function ComprasPage() {
   const [hayamaxMpPending, setHayamaxMpPending] = useState<MercadoPagoPendingMovement[]>([]);
   const [approvingMpMovementId, setApprovingMpMovementId] = useState<string | null>(null);
   const [topupModalOpen, setTopupModalOpen] = useState(false);
+  const [topupImportModalOpen, setTopupImportModalOpen] = useState(false);
   const [topupAmount, setTopupAmount] = useState<number | null>(1000);
   const [topupReference, setTopupReference] = useState('');
   const [topupNotes, setTopupNotes] = useState('');
   const [savingTopup, setSavingTopup] = useState(false);
+  const [topupImportFile, setTopupImportFile] = useState<File | null>(null);
+  const [importingTopup, setImportingTopup] = useState(false);
   const [mlAnunciosAlertas, setMlAnunciosAlertas] = useState<MlAnunciosAlertas | null>(null);
   const [summary, setSummary] = useState({
     total: 0,
@@ -202,7 +205,11 @@ export default function ComprasPage() {
         const lastTopup = (json.movements || []).find((movement: any) => movement?.movement_type === 'topup');
         setHayamaxLastTopup(lastTopup ? {
           amount: Number(lastTopup.amount || 0),
-          source: String(lastTopup.created_by || '').startsWith('mercadopago') ? 'Mercado Pago' : 'Manual',
+          source: String(lastTopup.created_by || '').startsWith('mercadopago')
+            ? 'Mercado Pago'
+            : String(lastTopup.created_by || '').startsWith('hayamax_xlsx:')
+              ? 'Importado XLS'
+              : 'Manual',
           reference: lastTopup.reference || null,
         } : null);
         setHayamaxMpLastSync(json.mercadoPago?.lastMovementDate || null);
@@ -320,6 +327,37 @@ export default function ComprasPage() {
       messageApi.error(err.message || 'Erro ao registrar boleto Hayamax');
     } finally {
       setSavingTopup(false);
+    }
+  };
+
+  const handleImportHayamaxTopup = async () => {
+    if (!topupImportFile) {
+      messageApi.warning('Selecione um arquivo XLS/XLSX.');
+      return;
+    }
+    setImportingTopup(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', topupImportFile);
+      const res = await fetch('/api/fornecedores/saldo-hayamax', {
+        method: 'POST',
+        body: formData,
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(json.error || 'Erro ao importar extrato Hayamax');
+      setTopupImportModalOpen(false);
+      setTopupImportFile(null);
+      const summary = json.importSummary;
+      if (summary) {
+        messageApi.success(`Extrato importado. ${summary.inserted} crédito(s) novo(s), ${summary.skipped} já existente(s).`);
+      } else {
+        messageApi.success('Extrato Hayamax importado.');
+      }
+      await fetchData();
+    } catch (err: any) {
+      messageApi.error(err.message || 'Erro ao importar extrato Hayamax');
+    } finally {
+      setImportingTopup(false);
     }
   };
 
@@ -644,9 +682,14 @@ export default function ComprasPage() {
             </div>
           </Col>
           <Col>
-            <Button type="primary" onClick={() => setTopupModalOpen(true)}>
-              Registrar boleto Hayamax
-            </Button>
+            <Space wrap>
+              <Button onClick={() => setTopupImportModalOpen(true)} icon={<UploadOutlined />}>
+                Importar extrato Hayamax
+              </Button>
+              <Button type="primary" onClick={() => setTopupModalOpen(true)}>
+                Registrar boleto Hayamax
+              </Button>
+            </Space>
           </Col>
         </Row>
         {hayamaxMpPending.length > 0 && (
@@ -847,6 +890,44 @@ export default function ComprasPage() {
               placeholder="Observações internas do pagamento"
             />
           </div>
+        </Space>
+      </Modal>
+
+      <Modal
+        title="Importar extrato Hayamax"
+        open={topupImportModalOpen}
+        onCancel={() => {
+          if (importingTopup) return;
+          setTopupImportModalOpen(false);
+          setTopupImportFile(null);
+        }}
+        onOk={() => void handleImportHayamaxTopup()}
+        okText="Importar"
+        cancelText="Cancelar"
+        confirmLoading={importingTopup}
+      >
+        <Space direction="vertical" size={12} style={{ width: '100%' }}>
+          <Text style={{ color: '#a0a0a0' }}>
+            Envie arquivo <code>.xlsx</code> ou <code>.xls</code> no modelo do extrato Hayamax. Sistema importará apenas créditos <code>CREDDROPSHIP</code> ainda não lançados.
+          </Text>
+          <Upload
+            maxCount={1}
+            accept=".xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+            fileList={topupImportFile ? [{ uid: 'hayamax-topup-import', name: topupImportFile.name, status: 'done' }] as any : []}
+            beforeUpload={(file) => {
+              if (file.size > 10 * 1024 * 1024) {
+                messageApi.error('Arquivo maior que 10MB.');
+                return Upload.LIST_IGNORE;
+              }
+              setTopupImportFile(file as File);
+              return false;
+            }}
+            onRemove={() => {
+              setTopupImportFile(null);
+            }}
+          >
+            <Button icon={<UploadOutlined />}>Selecionar arquivo</Button>
+          </Upload>
         </Space>
       </Modal>
 
