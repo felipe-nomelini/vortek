@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     const client = createServiceClient();
     let query = client
       .from('pedidos')
-      .select('id,ml_order_id,dslite_id,dslite_status,dslite_etiqueta_enviada')
+      .select('id,ml_order_id,dslite_id,dslite_status,dslite_etiqueta_enviada,dslite_label_source')
       .limit(1);
 
     if (pedidoId) {
@@ -35,6 +35,7 @@ export async function POST(req: Request) {
         dslite_id: null,
         dslite_status: null,
         dslite_etiqueta_enviada: false,
+        dslite_label_source: null,
       })
       .eq('id', pedido.id);
 

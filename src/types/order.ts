@@ -52,6 +52,7 @@ export interface Order {
   dslite_id: string | null;
   dslite_status?: string | null;
   dslite_etiqueta_enviada?: boolean;
+  dslite_label_source?: string | null;
   compra_id?: string | null;
   supplier_payment_mode?: 'postpaid' | 'prepaid_pix' | 'balance_account' | null;
   supplier_payment_status?: 'pending' | 'paid' | 'failed' | 'cancelled' | string | null;

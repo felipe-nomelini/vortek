@@ -56,6 +56,7 @@ import {
 } from "@/lib/fiscal/nfe-local-reconciliation";
 import { ensureDanfeStoredForPedido } from "@/lib/fiscal/danfe-storage";
 import {
+  DSLITE_MERCADO_LIVRE_LABEL_SOURCE,
   DSLITE_PLACEHOLDER_LABEL_FILE_NAME,
   DSLITE_PLACEHOLDER_LABEL_SOURCE,
   loadDslitePlaceholderLabel,
@@ -1821,7 +1822,7 @@ async function runDsliteCreateJob(
     const { data: pedidoRow, error: pedidoRowError } = await client
       .from("pedidos")
       .select(
-        "numero,total,frete,billing_nome,billing_documento,nfe_xml,nfe_status,nfe_chave,nota_fiscal_numero,nota_fiscal_emitida,nfe_external_id,nfe_protocolo,nfe_cfop,dslite_id,dslite_etiqueta_enviada,ml_shipment_id,ml_pack_id,nfe_danfe_url",
+        "numero,total,frete,billing_nome,billing_documento,nfe_xml,nfe_status,nfe_chave,nota_fiscal_numero,nota_fiscal_emitida,nfe_external_id,nfe_protocolo,nfe_cfop,dslite_id,dslite_etiqueta_enviada,dslite_label_source,ml_shipment_id,ml_pack_id,nfe_danfe_url",
       )
       .eq("id", pedidoId)
       .maybeSingle();
@@ -3975,6 +3976,7 @@ async function runDsliteCreateJob(
         .update({
           dslite_id: String(dsidAtual),
           dslite_status: pedidoStatusFinal,
+          dslite_label_source: null,
           nfe_chave: chaveAcesso || undefined,
           nfe_provider: selectedProvider,
           nfe_last_sync_at: now(),
@@ -4013,6 +4015,9 @@ async function runDsliteCreateJob(
     ];
     let etiquetaStatus: "enviada" | "nao_disponivel" | "erro" =
       "nao_disponivel";
+    let dsliteLabelSource: string | null = String(
+      (pedidoRow as any)?.dslite_label_source || "",
+    ).trim() || null;
     let etiquetaError: string | undefined;
     const isRealLabelPendingForNonHayamax = Boolean(
       isMlLabelReleasePending &&
@@ -4120,6 +4125,7 @@ async function runDsliteCreateJob(
           );
           if (envioEtiqueta?.success) {
             etiquetaStatus = "enviada";
+            dsliteLabelSource = DSLITE_PLACEHOLDER_LABEL_SOURCE;
             await registrarEventoNfAuditoria({
               pedidoId,
               mlOrderId: mlOrderId ? String(mlOrderId) : null,
@@ -4364,6 +4370,7 @@ async function runDsliteCreateJob(
             );
             if (envioEtiqueta?.success) {
               etiquetaStatus = "enviada";
+              dsliteLabelSource = DSLITE_MERCADO_LIVRE_LABEL_SOURCE;
               await registrarEventoNfAuditoria({
                 pedidoId,
                 mlOrderId: mlOrderId ? String(mlOrderId) : null,
@@ -4424,6 +4431,8 @@ async function runDsliteCreateJob(
         dslite_status: pedidoStatusFinal,
         nfe_chave: chaveAcesso || undefined,
         dslite_etiqueta_enviada: etiquetaStatus === "enviada",
+        dslite_label_source:
+          etiquetaStatus === "enviada" ? dsliteLabelSource : null,
         nfe_provider: selectedProvider,
         nfe_last_sync_at: now(),
         nfe_cfop: extractCfopsFromXml(xml)[0] || null,

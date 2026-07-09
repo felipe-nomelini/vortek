@@ -10,6 +10,7 @@ import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import { ensureBrasilNfeInvoice } from '@/lib/fiscal/ensure-brasilnfe-invoice';
 import { cancelarNotaBrasilNfePorChave } from '@/services/fiscal-provider';
 import {
+  DSLITE_MERCADO_LIVRE_LABEL_SOURCE,
   DSLITE_PLACEHOLDER_LABEL_FILE_NAME,
   DSLITE_PLACEHOLDER_LABEL_SOURCE,
   loadDslitePlaceholderLabel,
@@ -403,7 +404,10 @@ export async function POST(req: Request) {
 
       await client
         .from('pedidos')
-        .update({ dslite_etiqueta_enviada: true } as any)
+        .update({
+          dslite_etiqueta_enviada: true,
+          dslite_label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
+        } as any)
         .eq('id', pedidoId);
 
       updateStep(steps, 'send_label_dslite', { status: 'success', detail: 'Etiqueta padrão Hayamax enviada com sucesso para DSLite' });
@@ -1213,7 +1217,10 @@ export async function POST(req: Request) {
 
     await client
       .from('pedidos')
-      .update({ dslite_etiqueta_enviada: true } as any)
+      .update({
+        dslite_etiqueta_enviada: true,
+        dslite_label_source: DSLITE_MERCADO_LIVRE_LABEL_SOURCE,
+      } as any)
       .eq('id', pedidoId);
 
     updateStep(steps, 'send_label_dslite', {

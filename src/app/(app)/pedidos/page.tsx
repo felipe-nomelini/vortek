@@ -165,6 +165,8 @@ function getDisplayFiscalClientName(order: Pick<Order, 'billing_nome'>): string 
   return String(order.billing_nome || '').trim();
 }
 
+const DSLITE_PLACEHOLDER_LABEL_SOURCE = 'placeholder_release_window';
+
 function getDsliteActionTag(action: Order['dslite_next_action']) {
   switch (action) {
     case 'confirm_supplier_payment':
@@ -238,6 +240,7 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     dslite_id: isValidDsliteId(item.dslite_id),
     dslite_status: item.dslite_status,
     dslite_etiqueta_enviada: item.dslite_etiqueta_enviada || false,
+    dslite_label_source: item.dslite_label_source || null,
     compra_id: (item as any).compra_id || null,
     fornecedor_nome: (item as any).fornecedor_nome || null,
     fornecedor_id: (item as any).fornecedor_id || null,
@@ -1226,6 +1229,7 @@ export default function PedidosPage() {
         const purchaseOrderId = isValidDsliteId(record.dslite_id);
         const actionTag = getDsliteActionTag(record.dslite_next_action);
         const supplierWarning = getSupplierSetupWarning(record);
+        const usesPlaceholderLabel = record.dslite_label_source === DSLITE_PLACEHOLDER_LABEL_SOURCE;
         const supplierWarningTag = supplierWarning ? (
           <Tooltip title={supplierWarning}>
             <Tag color="red" style={{ marginInlineEnd: 0, fontSize: 11 }}>
@@ -1240,6 +1244,11 @@ export default function PedidosPage() {
               <Tag color={actionTag.color} style={{ marginInlineEnd: 0, fontSize: 11 }}>
                 {actionTag.label}
               </Tag>
+              {usesPlaceholderLabel ? (
+                <Tag color="orange" style={{ marginInlineEnd: 0, fontSize: 11 }}>
+                  Padrão Hayamax
+                </Tag>
+              ) : null}
               {supplierWarningTag}
             </Space>
           );
@@ -1258,6 +1267,11 @@ export default function PedidosPage() {
             <Tag color={actionTag.color} style={{ marginInlineEnd: 0, fontSize: 11 }}>
               {actionTag.label}
             </Tag>
+            {usesPlaceholderLabel ? (
+              <Tag color="orange" style={{ marginInlineEnd: 0, fontSize: 11 }}>
+                Padrão Hayamax
+              </Tag>
+            ) : null}
             {supplierWarningTag}
           </Space>
         );

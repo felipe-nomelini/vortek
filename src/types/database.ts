@@ -514,6 +514,7 @@ export type Database = {
           dslite_id: string | null
           dslite_status: string | null
           dslite_etiqueta_enviada: boolean
+          dslite_label_source: string | null
           frete: number
           id: string
           lucro: number
@@ -575,6 +576,7 @@ export type Database = {
           dslite_id?: string | null
           dslite_status?: string | null
           dslite_etiqueta_enviada?: boolean
+          dslite_label_source?: string | null
           frete?: number
           id?: string
           lucro?: number
@@ -636,6 +638,7 @@ export type Database = {
           dslite_id?: string | null
           dslite_status?: string | null
           dslite_etiqueta_enviada?: boolean
+          dslite_label_source?: string | null
           frete?: number
           id?: string
           lucro?: number

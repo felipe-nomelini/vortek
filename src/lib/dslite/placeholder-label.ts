@@ -3,6 +3,7 @@ import path from 'node:path';
 
 export const DSLITE_PLACEHOLDER_LABEL_FILE_NAME = 'etiqueta_frete_terceiros_posterior.pdf';
 export const DSLITE_PLACEHOLDER_LABEL_SOURCE = 'placeholder_release_window';
+export const DSLITE_MERCADO_LIVRE_LABEL_SOURCE = 'mercado_livre';
 
 const PLACEHOLDER_LABEL_PATH = path.join(
   process.cwd(),
