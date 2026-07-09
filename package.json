@@ -24,6 +24,8 @@
     "reconcile:nf-status": "node scripts/reconcile-nf-status.js",
     "dedupe:produtos:dry": "node scripts/dedupe-produtos.js",
     "dedupe:produtos:apply": "node scripts/dedupe-produtos.js --apply",
+    "dedupe:anuncios-ml:dry": "node -r dotenv/config scripts/dedupe-anuncios-ml.js dotenv_config_path=.env.local",
+    "dedupe:anuncios-ml:apply": "node -r dotenv/config scripts/dedupe-anuncios-ml.js --apply dotenv_config_path=.env.local",
     "waha:gows:smoke": "node scripts/waha-gows-smoke-test.js"
   },
   "dependencies": {

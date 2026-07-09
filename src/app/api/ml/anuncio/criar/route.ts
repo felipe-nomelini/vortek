@@ -27,6 +27,7 @@ import {
   normalizeCriticalAttributeValue,
   resolveTrustedMlCriticalValue,
 } from "@/lib/ml-critical-attributes";
+import { persistSingleAnuncioBySku } from "@/lib/ml/persist-single-anuncio";
 
 type StepResult = { ok: boolean; error?: string };
 type AttrInput = { id: string; value_name?: string; value_id?: string };
@@ -646,20 +647,21 @@ async function persistListingLink(params: {
     })
     .eq("id", produtoId);
 
-  await supabase.from("anuncios_ml").upsert(
-    {
-      ml_item_id: item.id,
-      sku: produto.sku,
-      produto_id: produto.id,
-      titulo: item.title,
-      preco_ml: item.price,
-      vendidos: 0,
-      status: mlStatus,
-      thumbnail: item.thumbnail || null,
-      permalink: item.permalink,
-    },
-    { onConflict: "ml_item_id" },
-  );
+  const persistResult = await persistSingleAnuncioBySku(supabase, {
+    ml_item_id: item.id,
+    sku: produto.sku,
+    produto_id: produto.id,
+    titulo: item.title,
+    preco_ml: item.price,
+    vendidos: 0,
+    status: mlStatus,
+    thumbnail: item.thumbnail || null,
+    permalink: item.permalink,
+  });
+
+  if (!persistResult.ok) {
+    throw new Error(`Falha ao persistir anúncio ML único por SKU: ${persistResult.error}`);
+  }
 }
 
 export async function POST(req: Request) {

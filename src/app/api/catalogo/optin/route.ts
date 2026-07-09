@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 import { buildCatalogEnrichment } from '@/lib/catalogo/no-catalogo';
+import { persistSingleAnuncioBySku } from '@/lib/ml/persist-single-anuncio';
 
 function isEligibilityAllowed(status: string): boolean {
   const normalized = String(status || '').toUpperCase();
@@ -110,22 +111,20 @@ async function syncCatalogOptinLocally(params: {
   const produtoId = String(originalAnuncio?.produto_id || '').trim() || null;
   const statusLocal = mapMlStatusToLocalStatus(catalogItem.status);
 
-  const { error: anuncioError } = await service
-    .from('anuncios_ml')
-    .upsert({
-      ml_item_id: catalogItemId,
-      sku: sku || '',
-      produto_id: produtoId,
-      titulo: catalogItem.title || '',
-      preco_ml: Number(catalogItem.price || 0),
-      vendidos: Number(catalogItem.sold_quantity || 0),
-      status: statusLocal,
-      thumbnail: catalogItem.thumbnail || null,
-      permalink: catalogItem.permalink || null,
-      catalogo: catalogItem.catalog_listing === true,
-      updated_at: new Date().toISOString(),
-    }, { onConflict: 'ml_item_id' });
-  if (anuncioError) warnings.push(`Falha ao salvar anúncio de catálogo: ${anuncioError.message}`);
+  const anuncioResult = await persistSingleAnuncioBySku(service, {
+    ml_item_id: catalogItemId,
+    sku: sku || '',
+    produto_id: produtoId,
+    titulo: catalogItem.title || '',
+    preco_ml: Number(catalogItem.price || 0),
+    vendidos: Number(catalogItem.sold_quantity || 0),
+    status: statusLocal,
+    thumbnail: catalogItem.thumbnail || null,
+    permalink: catalogItem.permalink || null,
+    catalogo: catalogItem.catalog_listing === true,
+    updated_at: new Date().toISOString(),
+  });
+  if (!anuncioResult.ok) warnings.push(`Falha ao salvar anúncio de catálogo: ${anuncioResult.error}`);
 
   if (produtoId) {
     const { error: productError } = await service
