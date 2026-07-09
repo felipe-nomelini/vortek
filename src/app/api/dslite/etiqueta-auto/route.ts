@@ -15,7 +15,7 @@ import {
   loadDslitePlaceholderLabel,
 } from '@/lib/dslite/placeholder-label';
 import { storeShippingLabelForPedido } from '@/lib/shipping-label-storage';
-import { HAYAMAX_FORNECEDOR_ID, isVanralSupplier } from '@/lib/supplier-balance';
+import { HAYAMAX_FORNECEDOR_ID, usesThermalMlLabelSupplier } from '@/lib/supplier-balance';
 
 const LABEL_RETRY_INTERVAL_MS = 5000;
 const LABEL_WAIT_TIMEOUT_MS = 60000;
@@ -1002,14 +1002,14 @@ export async function POST(req: Request) {
       .maybeSingle();
     const fornecedorIdEtiqueta = String((compraEtiqueta as any)?.fornecedor_id || '').trim();
     const fornecedorNomeEtiqueta = String((compraEtiqueta as any)?.fornecedor_nome || '').trim();
-    const usarEtiquetaTermicaVanral = isVanralSupplier(fornecedorIdEtiqueta, fornecedorNomeEtiqueta);
-    const labelResponseType = usarEtiquetaTermicaVanral ? 'zpl2' : 'pdf';
-    const labelFileName = usarEtiquetaTermicaVanral ? 'etiqueta_ml.zpl' : 'etiqueta_ml.pdf';
-    const labelContentType = usarEtiquetaTermicaVanral ? 'text/plain' : 'application/pdf';
+    const usarEtiquetaTermica = usesThermalMlLabelSupplier(fornecedorIdEtiqueta, fornecedorNomeEtiqueta);
+    const labelResponseType = usarEtiquetaTermica ? 'zpl2' : 'pdf';
+    const labelFileName = usarEtiquetaTermica ? 'etiqueta_ml.zpl' : 'etiqueta_ml.pdf';
+    const labelContentType = usarEtiquetaTermica ? 'text/plain' : 'application/pdf';
 
     updateStep(steps, 'download_label_ml', {
       status: 'loading',
-      detail: usarEtiquetaTermicaVanral ? 'Baixando etiqueta térmica ZPL2 do Mercado Livre para Vanral' : undefined,
+      detail: usarEtiquetaTermica ? `Baixando etiqueta térmica ZPL2 do Mercado Livre para ${fornecedorNomeEtiqueta || 'fornecedor configurado'}` : undefined,
     });
     let attempts = 0;
     const startedAt = Date.now();
@@ -1218,7 +1218,7 @@ export async function POST(req: Request) {
 
     updateStep(steps, 'send_label_dslite', {
       status: 'success',
-      detail: usarEtiquetaTermicaVanral ? 'Etiqueta térmica ZPL2 enviada com sucesso para DSLite' : 'Etiqueta enviada com sucesso para DSLite',
+      detail: usarEtiquetaTermica ? 'Etiqueta térmica ZPL2 enviada com sucesso para DSLite' : 'Etiqueta enviada com sucesso para DSLite',
     });
     await registrarEventoNfAuditoria({
       pedidoId: String(pedidoId),
@@ -1243,7 +1243,7 @@ export async function POST(req: Request) {
       nextAction: 'done',
       labelResponseType,
       labelFileName,
-      message: usarEtiquetaTermicaVanral ? 'Etiqueta térmica real enviada para DSLite.' : 'Etiqueta real enviada para DSLite.',
+      message: usarEtiquetaTermica ? 'Etiqueta térmica real enviada para DSLite.' : 'Etiqueta real enviada para DSLite.',
     });
   } catch (err: any) {
     return stepError(steps, 'check_ml_invoice_xml', err?.message || 'Erro interno ao enviar etiqueta', undefined, 500);

@@ -41,8 +41,8 @@ import {
 } from "@/lib/produto-fornecedor";
 import {
   HAYAMAX_FORNECEDOR_ID,
-  isVanralSupplier,
   recordSupplierPurchaseDebit,
+  usesThermalMlLabelSupplier,
 } from "@/lib/supplier-balance";
 import { getSkuLookupVariants } from "@/lib/sku";
 import {
@@ -4192,15 +4192,15 @@ async function runDsliteCreateJob(
       resolvedShipmentId = shipmentIdForLabel;
 
       if (shipmentIdForLabel) {
-        const usarEtiquetaTermicaVanral = isVanralSupplier(
+        const usarEtiquetaTermica = usesThermalMlLabelSupplier(
           fornecedorId,
           fornecedorNomeResolved,
         );
-        const labelResponseType = usarEtiquetaTermicaVanral ? "zpl2" : "pdf";
-        const labelFileName = usarEtiquetaTermicaVanral
+        const labelResponseType = usarEtiquetaTermica ? "zpl2" : "pdf";
+        const labelFileName = usarEtiquetaTermica
           ? "etiqueta_ml.zpl"
           : "etiqueta_ml.pdf";
-        const labelContentType = usarEtiquetaTermicaVanral
+        const labelContentType = usarEtiquetaTermica
           ? "text/plain"
           : "application/pdf";
         const startedAt = Date.now();
@@ -4334,7 +4334,7 @@ async function runDsliteCreateJob(
           await setStep(
             "download_label_ml",
             "success",
-            usarEtiquetaTermicaVanral
+            usarEtiquetaTermica
               ? "Etiqueta térmica ZPL2 baixada com sucesso no Mercado Livre"
               : "Etiqueta baixada com sucesso no Mercado Livre",
           );
@@ -4378,7 +4378,7 @@ async function runDsliteCreateJob(
               await setStep(
                 "send_label_dslite",
                 "success",
-                usarEtiquetaTermicaVanral
+                usarEtiquetaTermica
                   ? "Etiqueta térmica ZPL2 enviada com sucesso para DSLite"
                   : "Etiqueta enviada com sucesso para DSLite",
               );

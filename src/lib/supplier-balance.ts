@@ -1,5 +1,6 @@
 export const HAYAMAX_FORNECEDOR_ID = '2';
 export const VANRAL_FORNECEDOR_ID = '97';
+export const BKR1_FORNECEDOR_ID = '108';
 export const HAYAMAX_MIN_TOPUP_AMOUNT = 1000;
 
 export type SupplierBalanceMovementType = 'topup' | 'purchase_debit' | 'adjustment';
@@ -15,6 +16,23 @@ export function isVanralSupplier(
   const id = String(fornecedorId || '').trim();
   if (id === VANRAL_FORNECEDOR_ID) return true;
   return String(fornecedorNome || '').trim().toLowerCase().includes('vanral');
+}
+
+export function isBkr1Supplier(
+  fornecedorId: string | number | null | undefined,
+  fornecedorNome?: string | null,
+) {
+  const id = String(fornecedorId || '').trim();
+  if (id === BKR1_FORNECEDOR_ID) return true;
+  const normalized = String(fornecedorNome || '').trim().toLowerCase();
+  return normalized.includes('bkr1') || normalized.includes('bkr 1');
+}
+
+export function usesThermalMlLabelSupplier(
+  fornecedorId: string | number | null | undefined,
+  fornecedorNome?: string | null,
+) {
+  return isVanralSupplier(fornecedorId, fornecedorNome) || isBkr1Supplier(fornecedorId, fornecedorNome);
 }
 
 export function normalizeMoneyAmount(value: unknown): number {
