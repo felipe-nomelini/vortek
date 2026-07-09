@@ -51,10 +51,13 @@ These rules were added after repeated workflow failures. They are mandatory for 
 9. **Never edit project files directly in Easypanel.** Deployment path is GitHub `main` first, then Easypanel webhook.
 10. **Deploy webhook for `vortek-erp`:** `http://192.168.1.160:3000/api/deploy/f2f75bfaa9c228097a40066b2c41e5744a793e80df3d6cb2`.
 11. **Production/development Supabase server IP:** `192.168.1.160`. Network was migrated from `192.168.0.x` to `192.168.1.x`; do **not** use old `192.168.0.160` addresses for deploy or Supabase access. Use stored/authorized credentials only through safe tooling; never hardcode secrets into source files.
-12. **Do not over-engineer.** No mirabolant solutions, no broad process, no new abstraction, no extra service, no extra deployment path unless required and justified.
-13. **If user corrects workflow, immediately update project instructions when asked and obey from then on.**
-14. **Never lie about tool usage, actions, validation, push, deploy, or external checks.** If not done, say not done.
-15. **When staging/committing files through shell, never pass unquoted paths containing parentheses, spaces, or shell metacharacters.** Prefer `rtk git add --all` for intentional full-project commits. If staging specific files, quote paths like `"src/app/(app)/tv/page.tsx"`; otherwise `/bin/sh` fails with `Syntax error: "(" unexpected`.
+12. **This project uses local/self-hosted Supabase, not Supabase Cloud.** Do not ask the user for Supabase Cloud dashboard access, cloud project refs, cloud personal access tokens, or other cloud-only credentials. Assume local Supabase operations must use already stored project/server credentials, local environment variables, existing self-hosted endpoints, or direct host access on `192.168.1.160`.
+13. **For any Supabase credential, dashboard, migration, or direct database access task, first inspect the local Supabase host `192.168.1.160` before asking the user anything.** Default first path: test SSH access, inspect the self-hosted stack at `/opt/supabase-vortek/supabase-project`, and read `/opt/supabase-vortek/supabase-project/.env` or equivalent live stack configuration to discover `DASHBOARD_USERNAME`, `DASHBOARD_PASSWORD`, `POSTGRES_PASSWORD`, `POOLER_TENANT_ID`, and connection details. If SSH fails, fix host-key/non-interactive access issues first when safe. Only ask the user for Supabase credentials after checking the host and project files and confirming the needed value is genuinely unavailable.
+14. **Known local Supabase location for this project:** stack directory `/opt/supabase-vortek/supabase-project`, env file `/opt/supabase-vortek/supabase-project/.env`, Studio URLs `https://supabase.vortek.shop` and `http://192.168.1.160:8000`.
+15. **Do not over-engineer.** No mirabolant solutions, no broad process, no new abstraction, no extra service, no extra deployment path unless required and justified.
+16. **If user corrects workflow, immediately update project instructions when asked and obey from then on.**
+17. **Never lie about tool usage, actions, validation, push, deploy, or external checks.** If not done, say not done.
+18. **When staging/committing files through shell, never pass unquoted paths containing parentheses, spaces, or shell metacharacters.** Prefer `rtk git add --all` for intentional full-project commits. If staging specific files, quote paths like "src/app/(app)/tv/page.tsx"; otherwise `/bin/sh` fails with `Syntax error: "(" unexpected`.
 
 ---
 
