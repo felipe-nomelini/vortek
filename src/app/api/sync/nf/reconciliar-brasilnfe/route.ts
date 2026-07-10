@@ -2,6 +2,12 @@ import { NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase";
 import { reconcileBrasilNfeExistingInvoice } from "@/lib/fiscal/ensure-brasilnfe-invoice";
 
+const BRASILNFE_LOOKBACK_DAYS = 30;
+
+function isoDaysAgo(days: number): string {
+  return new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+}
+
 function isMissingSaleDateColumnError(
   error: { code?: string; message?: string } | null | undefined,
 ): boolean {
@@ -40,22 +46,9 @@ export async function POST(request: Request) {
     let query = client
       .from("pedidos")
       .select(
-        "id,numero,ml_order_id,nfe_status,nota_fiscal_numero,nota_fiscal_emitida,situacao,nfe_last_sync_at",
+        "id,numero,ml_order_id,nfe_status,nota_fiscal_numero,nota_fiscal_emitida,situacao,nfe_last_sync_at,nfe_chave,data,data_venda",
       )
       .limit(limit);
-
-    if (mlOrderIds.length === 0 && pedidoIds.length === 0) {
-      query = query.order("nfe_last_sync_at", {
-        ascending: true,
-        nullsFirst: true,
-      });
-    }
-
-    query = useSaleDate
-      ? query
-          .order("data_venda", { ascending: false, nullsFirst: false })
-          .order("data", { ascending: false })
-      : query.order("data", { ascending: false });
 
     if (mlOrderIds.length > 0) {
       query = query.in("ml_order_id", mlOrderIds);
@@ -68,6 +61,26 @@ export async function POST(request: Request) {
         "em_transito",
         "entregue",
       ]);
+      query = query.or(
+        "nota_fiscal_emitida.eq.true,nota_fiscal_numero.not.is.null,nfe_chave.not.is.null",
+      );
+      query = query.gte(
+        useSaleDate ? "data_venda" : "data",
+        isoDaysAgo(BRASILNFE_LOOKBACK_DAYS),
+      );
+    }
+
+    query = useSaleDate
+      ? query
+          .order("data_venda", { ascending: false, nullsFirst: false })
+          .order("data", { ascending: false })
+      : query.order("data", { ascending: false });
+
+    if (mlOrderIds.length === 0 && pedidoIds.length === 0) {
+      query = query.order("nfe_last_sync_at", {
+        ascending: true,
+        nullsFirst: true,
+      });
     }
 
     return query;
@@ -77,6 +90,7 @@ export async function POST(request: Request) {
   if (isMissingSaleDateColumnError(error)) {
     ({ data: pedidos, error } = await buildQuery(false));
   }
+
   if (error) {
     return NextResponse.json(
       { error: "Falha ao carregar pedidos para reconciliação Brasil NFe" },
@@ -102,11 +116,19 @@ export async function POST(request: Request) {
     });
   }
 
-  return NextResponse.json({
-    success: true,
-    total: results.length,
-    reconciled: results.filter((r) => r.ok).length,
-    failed: results.filter((r) => !r.ok).length,
-    results,
-  });
+  const reconciled = results.filter((result) => result.ok).length;
+  const failed = results.filter((result) => !result.ok).length;
+  const success = reconciled > 0 || results.length === 0;
+
+  return NextResponse.json(
+    {
+      success,
+      total: results.length,
+      reconciled,
+      failed,
+      results,
+      ...(success ? {} : { error: "Nenhuma NF foi reconciliada nesta rodada" }),
+    },
+    { status: success ? 200 : 207 },
+  );
 }
