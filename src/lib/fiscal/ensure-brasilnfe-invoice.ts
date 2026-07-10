@@ -407,11 +407,25 @@ export type EnsureBrasilNfeInvoiceResult = {
   };
 };
 
-function isAuthorizedStatus(status: string | null | undefined): boolean {
-  const normalized = String(status || "")
+function normalizeLocalNfeStatus(status: string | null | undefined): string {
+  return String(status || "")
     .trim()
     .toLowerCase();
+}
+
+function isAuthorizedStatus(status: string | null | undefined): boolean {
+  const normalized = normalizeLocalNfeStatus(status);
   return normalized === "authorized" || normalized === "autorizada";
+}
+
+function isFinalExternalStatus(status: string | null | undefined): boolean {
+  const normalized = normalizeLocalNfeStatus(status);
+  return normalized === "cancelada"
+    || normalized === "cancelled"
+    || normalized === "canceled"
+    || normalized === "rejeitada"
+    || normalized === "rejected"
+    || normalized === "denegada";
 }
 
 async function cleanupGhostNfeSnapshot(
@@ -667,7 +681,9 @@ export async function ensureBrasilNfeInvoice(input: {
         .from("pedidos")
         .update({
           nfe_xml: xmlFetch.xml,
-          nfe_status: "authorized",
+          nfe_status: isFinalExternalStatus(statusAtual)
+            ? statusAtual
+            : "authorized",
           nfe_provider: "brasilnfe",
           nfe_chave: chave || undefined,
           nfe_external_id: externalAtual,
@@ -871,11 +887,13 @@ export async function ensureBrasilNfeInvoice(input: {
           if (xmlByKey.ok && xmlByKey.xml) {
             const numeroXml = extractTag(xmlByKey.xml, "nNF");
             const cfopXml = extractCfop(xmlByKey.xml);
+            const existingStatus =
+              mapBrasilNfeSearchStatusToLocal(found.nota.status) || "authorized";
             await client
               .from("pedidos")
               .update({
                 nfe_xml: xmlByKey.xml,
-                nfe_status: "authorized",
+                nfe_status: existingStatus,
                 nfe_provider: "brasilnfe",
                 nfe_chave: found.nota.chave,
                 nota_fiscal_numero: numeroXml || found.nota.numero || undefined,

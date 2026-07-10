@@ -237,6 +237,7 @@ Whenever implementation is required, execute in this order:
 6. **Do not change business rules implicitly.** If a rule seems wrong, point to evidence and ask for a decision when necessary.
 7. **Use `rtk` as the default command interface** for inspection, reading, testing, logs, and git workflows whenever supported.
 8. **Keep Caveman mode active by default** for user-facing responses unless a temporary clarity or safety exception is required.
+9. **If you find a real bug outside the exact user request, you may fix it too when the fix is small, safe, clearly correct, and does not create unrelated scope expansion.** Report it explicitly in the final delivery.
 
 ---
 

@@ -129,23 +129,30 @@ export async function GET(request: Request) {
     );
   }
 
+  const sumRows = (sumData || []) as Array<any>;
+  const dailyRows = (dailyData || []) as Array<any>;
+  const statusRows = (statusData || []) as Array<any>;
+  const recentRows = (recentData || []) as Array<any>;
+
   let faturamento = 0;
   let lucro = 0;
   let salesCount = 0;
-  for (const row of sumData || []) {
-    if (isCancelledStatus(row.situacao)) continue;
-    faturamento += row.total || 0;
-    lucro += row.lucro || 0;
+  for (const row of sumRows) {
+    if (isCancelledStatus(row?.situacao)) continue;
+    faturamento += Number(row?.total || 0);
+    lucro += Number(row?.lucro || 0);
     salesCount += 1;
   }
 
   // 3. Vendas diárias
   const vendasDiariasMap: Record<string, number> = {};
-  for (const row of dailyData || []) {
-    if (isCancelledStatus(row.situacao)) continue;
-    const key = saoPauloDayLabel(getOrderDate(row));
+  for (const row of dailyRows) {
+    if (isCancelledStatus(row?.situacao)) continue;
+    const orderDate = getOrderDate(row);
+    if (!orderDate) continue;
+    const key = saoPauloDayLabel(orderDate);
     if (!key) continue;
-    vendasDiariasMap[key] = (vendasDiariasMap[key] || 0) + (row.total || 0);
+    vendasDiariasMap[key] = (vendasDiariasMap[key] || 0) + Number(row?.total || 0);
   }
   const vendasDiarias = Object.entries(vendasDiariasMap)
     .sort((a, b) => {
@@ -160,13 +167,13 @@ export async function GET(request: Request) {
 
   // 4. Status dos pedidos no período
   const statusCounts: Record<string, number> = {};
-  for (const row of statusData || []) {
-    const s = row.situacao || "aberto";
+  for (const row of statusRows) {
+    const s = row?.situacao || "aberto";
     statusCounts[s] = (statusCounts[s] || 0) + 1;
   }
 
   // 5. Pedidos recentes (últimos 5)
-  const pedidosRecentes = (recentData || []).map((p: any) => ({
+  const pedidosRecentes = recentRows.map((p: any) => ({
     numero: p.numero,
     cliente: p.contato_nome,
     total: p.total,

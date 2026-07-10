@@ -60,6 +60,7 @@ export async function POST(request: Request) {
         "coletado",
         "em_transito",
         "entregue",
+        "cancelado",
       ]);
       query = query.or(
         "nota_fiscal_emitida.eq.true,nota_fiscal_numero.not.is.null,nfe_chave.not.is.null",

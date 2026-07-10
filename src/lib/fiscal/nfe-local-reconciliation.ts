@@ -62,6 +62,15 @@ function normalizeStatus(value: string | null | undefined): string | null {
   return status || null;
 }
 
+function isFinalExternalStatus(status: string | null): boolean {
+  return status === 'cancelada'
+    || status === 'cancelled'
+    || status === 'canceled'
+    || status === 'rejeitada'
+    || status === 'rejected'
+    || status === 'denegada';
+}
+
 export function extractXmlTag(xml: string | null | undefined, tag: string): string | null {
   try {
     const escaped = tag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -154,7 +163,9 @@ export function reconcileLocalNfeSnapshotFromXml(input: NfeAuthorizedSnapshotFie
 
   const updates: NfeLocalReconciliationResult['updates'] = {};
   if (xmlAuthorizedProduction) {
-    if (statusAnterior !== 'authorized') updates.nfe_status = 'authorized';
+    if (!isFinalExternalStatus(statusAnterior) && statusAnterior !== 'authorized') {
+      updates.nfe_status = 'authorized';
+    }
     if (chNFe && normalizeNullableText(input.nfe_chave) !== chNFe) updates.nfe_chave = chNFe;
     if (nNF && normalizeNullableText(input.nota_fiscal_numero) !== nNF) updates.nota_fiscal_numero = nNF;
     if (nProt && normalizeNullableText(input.nfe_protocolo) !== nProt) updates.nfe_protocolo = nProt;
