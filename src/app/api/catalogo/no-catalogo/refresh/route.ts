@@ -8,6 +8,7 @@ const MAX_INCREMENTAL_PAGES = 10;
 const DETAIL_CONCURRENCY = 6;
 const UPSERT_CHUNK_SIZE = 250;
 const DELETE_CHUNK_SIZE = 500;
+const ML_SCAN_PAGE_SIZE = 100;
 
 async function runPool<T>(items: T[], limit: number, worker: (item: T) => Promise<void>) {
   for (let i = 0; i < items.length; i += limit) {
@@ -32,6 +33,45 @@ function getSellerSkuFromItem(item: any): string | null {
 }
 
 export const maxDuration = 300;
+
+async function fetchAllCatalogListingItemIds(sellerId: string | number): Promise<{
+  ok: boolean;
+  itemIds: string[];
+  error?: string;
+  authFatal?: boolean;
+}> {
+  const uniqueIds = new Set<string>();
+  let scrollId: string | null = null;
+
+  while (true) {
+    const requestPath: string = scrollId
+      ? `/users/${encodeURIComponent(String(sellerId))}/items/search?search_type=scan&scroll_id=${encodeURIComponent(scrollId)}`
+      : `/users/${encodeURIComponent(String(sellerId))}/items/search?search_type=scan&limit=${ML_SCAN_PAGE_SIZE}&catalog_listing=true`;
+
+    const searchResult: Awaited<ReturnType<typeof fetchMLResult<{ results?: string[]; scroll_id?: string | null }>>> = await fetchMLResult<{ results?: string[]; scroll_id?: string | null }>(requestPath);
+    if (!searchResult.ok || !searchResult.data) {
+      return {
+        ok: false,
+        itemIds: [],
+        error: searchResult.error?.message || 'Falha ao buscar itens de catálogo',
+        authFatal: searchResult.error?.category === 'auth_fatal',
+      };
+    }
+
+    const ids = Array.isArray(searchResult.data.results)
+      ? searchResult.data.results.map((id: string) => String(id || '').trim()).filter(Boolean)
+      : [];
+
+    for (const id of ids) uniqueIds.add(id);
+
+    const nextScrollId: string = String(searchResult.data.scroll_id || '').trim();
+    if (!nextScrollId || ids.length === 0) {
+      return { ok: true, itemIds: Array.from(uniqueIds) };
+    }
+
+    scrollId = nextScrollId;
+  }
+}
 
 export async function POST(request: Request) {
   const startedAt = Date.now();
@@ -70,28 +110,41 @@ export async function POST(request: Request) {
   const allItemIds: string[] = [];
   let totalMl = 0;
 
-  const maxPages = mode === 'full' ? Number.MAX_SAFE_INTEGER : MAX_INCREMENTAL_PAGES;
-  for (let pageIdx = 0; pageIdx < maxPages; pageIdx += 1) {
-    const offset = pageIdx * PAGE_SIZE;
-    const searchResult = await fetchMLResult<{ results: string[]; paging?: { total?: number } }>(
-      `/users/${sellerId}/items/search?catalog_listing=true&offset=${offset}&limit=${PAGE_SIZE}`,
-    );
-
-    if (!searchResult.ok || !searchResult.data) {
+  if (mode === 'full') {
+    const scanResult = await fetchAllCatalogListingItemIds(sellerId);
+    if (!scanResult.ok) {
       return NextResponse.json({
         success: false,
-        error: searchResult.error?.message || 'Falha ao buscar itens de catálogo',
-        auth_fatal: searchResult.error?.category === 'auth_fatal',
-      }, { status: searchResult.status || 500 });
+        error: scanResult.error || 'Falha ao buscar itens de catálogo',
+        auth_fatal: scanResult.authFatal === true,
+      }, { status: scanResult.authFatal ? 401 : 500 });
     }
 
-    const ids = (searchResult.data.results || []).map((id) => String(id));
-    totalMl = Number(searchResult.data.paging?.total || totalMl || 0);
-    if (ids.length === 0) break;
+    allItemIds.push(...scanResult.itemIds);
+    totalMl = scanResult.itemIds.length;
+  } else {
+    const maxPages = MAX_INCREMENTAL_PAGES;
+    for (let pageIdx = 0; pageIdx < maxPages; pageIdx += 1) {
+      const offset = pageIdx * PAGE_SIZE;
+      const searchResult = await fetchMLResult<{ results: string[]; paging?: { total?: number } }>(
+        `/users/${sellerId}/items/search?catalog_listing=true&offset=${offset}&limit=${PAGE_SIZE}`,
+      );
 
-    allItemIds.push(...ids);
-    if (ids.length < PAGE_SIZE) break;
-    if (mode === 'full' && totalMl > 0 && allItemIds.length >= totalMl) break;
+      if (!searchResult.ok || !searchResult.data) {
+        return NextResponse.json({
+          success: false,
+          error: searchResult.error?.message || 'Falha ao buscar itens de catálogo',
+          auth_fatal: searchResult.error?.category === 'auth_fatal',
+        }, { status: searchResult.status || 500 });
+      }
+
+      const ids = (searchResult.data.results || []).map((id) => String(id));
+      totalMl = Number(searchResult.data.paging?.total || totalMl || 0);
+      if (ids.length === 0) break;
+
+      allItemIds.push(...ids);
+      if (ids.length < PAGE_SIZE) break;
+    }
   }
 
   const detailsByItemId = new Map<string, any>();

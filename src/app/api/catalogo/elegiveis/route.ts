@@ -7,6 +7,7 @@ const ELIGIBILITY_CHUNK_SIZE = 20;
 const PRODUCT_CONCURRENCY = 6;
 const CATALOG_FALLBACK_CONCURRENCY = 3;
 const MIN_RELIABLE_CATALOG_MATCH_SCORE = 100;
+const ML_SCAN_PAGE_SIZE = 100;
 
 async function runPool<T>(items: T[], limit: number, worker: (item: T) => Promise<void>) {
   for (let i = 0; i < items.length; i += limit) {
@@ -78,6 +79,49 @@ function isActionableForCatalogOptIn(row: any): boolean {
 
 function getEligibilityItemId(row: any): string {
   return String(row?.body?.id || row?.id || row?.body?.item_id || '').trim();
+}
+
+async function fetchAllEligibleItemIds(params: {
+  sellerId: string | number;
+  statusMl: string;
+}): Promise<{
+  ok: boolean;
+  itemIds: string[];
+  error?: string;
+  authFatal?: boolean;
+}> {
+  const uniqueIds = new Set<string>();
+  let scrollId: string | null = null;
+  const statusQuery = params.statusMl !== 'all' ? `&status=${encodeURIComponent(params.statusMl)}` : '';
+
+  while (true) {
+    const requestPath: string = scrollId
+      ? `/users/${encodeURIComponent(String(params.sellerId))}/items/search?search_type=scan&scroll_id=${encodeURIComponent(scrollId)}`
+      : `/users/${encodeURIComponent(String(params.sellerId))}/items/search?search_type=scan&limit=${ML_SCAN_PAGE_SIZE}&tags=catalog_listing_eligible${statusQuery}`;
+
+    const searchResult: Awaited<ReturnType<typeof fetchMLResult<{ results?: string[]; scroll_id?: string | null }>>> = await fetchMLResult<{ results?: string[]; scroll_id?: string | null }>(requestPath);
+    if (!searchResult.ok || !searchResult.data) {
+      return {
+        ok: false,
+        itemIds: [],
+        error: searchResult.error?.message || 'Falha ao buscar elegíveis',
+        authFatal: searchResult.error?.category === 'auth_fatal',
+      };
+    }
+
+    const ids = Array.isArray(searchResult.data.results)
+      ? searchResult.data.results.map((id: string) => String(id || '').trim()).filter(Boolean)
+      : [];
+
+    for (const id of ids) uniqueIds.add(id);
+
+    const nextScrollId: string = String(searchResult.data.scroll_id || '').trim();
+    if (!nextScrollId || ids.length === 0) {
+      return { ok: true, itemIds: Array.from(uniqueIds) };
+    }
+
+    scrollId = nextScrollId;
+  }
 }
 
 function normalizeText(input: unknown): string {
@@ -282,17 +326,14 @@ export async function GET(request: Request) {
 
   const sellerId = meResult.data.id;
   const offset = (page - 1) * pageSize;
-  const statusQuery = statusMl !== 'all' ? `&status=${encodeURIComponent(statusMl)}` : '';
-  const searchResult = await fetchMLResult<{ results: string[]; paging?: { total?: number } }>(
-    `/users/${sellerId}/items/search?tags=catalog_listing_eligible&offset=${offset}&limit=${pageSize}${statusQuery}`,
-  );
+  const eligibleResult = await fetchAllEligibleItemIds({ sellerId, statusMl });
 
-  if (!searchResult.ok || !searchResult.data) {
-    return NextResponse.json({ erro: searchResult.error?.message || 'Falha ao buscar elegíveis', auth_fatal: searchResult.error?.category === 'auth_fatal' }, { status: searchResult.status || 500 });
+  if (!eligibleResult.ok) {
+    return NextResponse.json({ erro: eligibleResult.error || 'Falha ao buscar elegíveis', auth_fatal: eligibleResult.authFatal === true }, { status: eligibleResult.authFatal ? 401 : 500 });
   }
 
-  const itemIds = searchResult.data.results || [];
-  const total = Number(searchResult.data.paging?.total || 0);
+  const itemIds = eligibleResult.itemIds;
+  const total = itemIds.length;
 
   const eligibilityMap = new Map<string, any>();
   if (itemIds.length > 0) {
@@ -417,6 +458,9 @@ export async function GET(request: Request) {
   if (min !== null && !Number.isNaN(min)) rows = rows.filter((r) => Number(r.price || 0) >= min);
   if (max !== null && !Number.isNaN(max)) rows = rows.filter((r) => Number(r.price || 0) <= max);
 
+  const filteredTotal = rows.length;
+  const pagedRows = rows.slice(offset, offset + pageSize);
+
   console.log(JSON.stringify({
     event: 'catalog_fetch_elegiveis',
     seller_id: sellerId,
@@ -426,13 +470,12 @@ export async function GET(request: Request) {
     eligibility_loaded: eligibilityMap.size,
     ready_for_optin: readyForOptInBeforeFilters,
     active_catalog_products: activeCatalogProductsBeforeActionableFilter,
-    actionable_catalog_products: rows.length,
+    actionable_catalog_products: filteredTotal,
     suggested_catalog_products: suggestedCatalogProductsBeforeFilters,
-    returned: rows.length,
+    returned: pagedRows.length,
     eligibility_status: 'READY_FOR_OPTIN',
     timestamp_utc: new Date().toISOString(),
   }));
 
-  const filteredTotal = Math.min(total, offset + rows.length);
-  return NextResponse.json({ data: rows, total: filteredTotal, page, pageSize });
+  return NextResponse.json({ data: pagedRows, total: filteredTotal, page, pageSize });
 }
