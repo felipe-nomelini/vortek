@@ -13,7 +13,7 @@ const CATALOG_ENRICH_CONCURRENCY = 4;
 const VISITS_CONCURRENCY = 3;
 const TRANSIENT_RETRY_ATTEMPTS = 3;
 const TRANSIENT_RETRY_BASE_DELAY_MS = 800;
-const ML_ITEMS_SEARCH_MAX_OFFSET = 1000;
+const ML_SCAN_PAGE_SIZE = 100;
 const CATALOG_REFRESH_TRIGGER_KEY = 'catalog_no_catalogo_refresh_last_trigger_at';
 const CATALOG_REFRESH_TRIGGER_INTERVAL_MS = 10 * 60 * 1000;
 
@@ -193,6 +193,75 @@ async function fetchVisitsByItemId(
   return visitsByItemId;
 }
 
+async function fetchAllMlItemIds(sellerId: string | number): Promise<{
+  ok: boolean;
+  itemIds: string[];
+  pagesFetched: number;
+  retriesTransient: number;
+  error?: {
+    code: string;
+    category: string;
+    upstream_status: number | null;
+    trace_id: string | null;
+    message: string;
+    endpoint: string;
+    retries: number;
+  };
+}> {
+  const uniqueIds = new Set<string>();
+  let pagesFetched = 0;
+  let retriesTransient = 0;
+  let scrollId: string | null = null;
+
+  while (true) {
+    const requestPath: string = scrollId
+      ? `/users/${encodeURIComponent(String(sellerId))}/items/search?search_type=scan&scroll_id=${encodeURIComponent(scrollId)}`
+      : `/users/${encodeURIComponent(String(sellerId))}/items/search?search_type=scan&limit=${ML_SCAN_PAGE_SIZE}`;
+
+    const scanCheck: { result: MLRequestResult<any>; retries: number } = await fetchMLResultWithRetry<any>(requestPath);
+    retriesTransient += scanCheck.retries;
+    const scanResult: MLRequestResult<any> = scanCheck.result;
+
+    if (!scanResult.ok || !scanResult.data) {
+      return {
+        ok: false,
+        itemIds: [],
+        pagesFetched,
+        retriesTransient,
+        error: {
+          code: scanResult.error?.code || 'ml_items_scan_failed',
+          category: scanResult.error?.category || 'error',
+          upstream_status: scanResult.status,
+          trace_id: scanResult.error?.traceId || null,
+          message: scanResult.error?.message || 'Erro ao buscar anúncios completos no ML',
+          endpoint: '/users/{seller_id}/items/search?search_type=scan',
+          retries: scanCheck.retries,
+        },
+      };
+    }
+
+    pagesFetched += 1;
+    const payload: any = scanResult.data;
+    const results: any[] = Array.isArray(payload?.results) ? payload.results : [];
+    for (const rawId of results) {
+      const itemId = String(rawId || '').trim();
+      if (itemId) uniqueIds.add(itemId);
+    }
+
+    const nextScrollId: string = String(payload?.scroll_id || '').trim();
+    if (!nextScrollId || results.length === 0) {
+      return {
+        ok: true,
+        itemIds: Array.from(uniqueIds),
+        pagesFetched,
+        retriesTransient,
+      };
+    }
+
+    scrollId = nextScrollId;
+  }
+}
+
 export async function POST(request: Request) {
   const startedAt = Date.now();
   const apiKey = request.headers.get('x-api-key') || '';
@@ -258,44 +327,10 @@ export async function POST(request: Request) {
     }
 
     const me = meResult.data;
-    if (offset >= ML_ITEMS_SEARCH_MAX_OFFSET) {
-      warnings.push({
-        code: 'ml_items_search_offset_cap_reached',
-        message: 'Limite de paginação por offset do Mercado Livre atingido; ciclo reiniciado no próximo disparo.',
-        context: {
-          offset,
-          limit,
-          max_offset: ML_ITEMS_SEARCH_MAX_OFFSET,
-        },
-      });
 
-      return NextResponse.json({
-        success: true,
-        domain,
-        job: {
-          key: 'sync_ml_listings_observed',
-          started_at: new Date(startedAt).toISOString(),
-          finished_at: new Date().toISOString(),
-          lock_acquired: true,
-        },
-        cursor: null,
-        records: { seen: 0, snapshot_upserted: 0, failed: 0 },
-        errors,
-        warnings,
-        duration: { ms: Date.now() - startedAt },
-        ok: true,
-        sincronizados: 0,
-        total: null,
-        proximo: null,
-        acabou: true,
-        offset_cap_reached: true,
-      });
-    }
-
-    const searchCheck = await fetchMLResultWithRetry<any>(`/users/${me.id}/items/search?limit=${limit}&offset=${offset}`);
-    const searchResult = searchCheck.result;
-    if (!searchResult.ok || !searchResult.data) {
-      if (searchResult.error?.category === 'auth_fatal') {
+    const scan = await fetchAllMlItemIds(me.id);
+    if (!scan.ok) {
+      if (scan.error?.category === 'auth_fatal') {
         const auth = await getMLAuthDiagnostics();
         return NextResponse.json({
           success: false,
@@ -307,30 +342,22 @@ export async function POST(request: Request) {
         }, { status: 401 });
       }
 
-      const diagnosticError = {
-        code: searchResult.error?.code || 'ml_items_search_failed',
-        category: searchResult.error?.category || 'error',
-        upstream_status: searchResult.status,
-        trace_id: searchResult.error?.traceId || null,
-        message: searchResult.error?.message || 'Erro ao buscar anúncios no ML',
-        endpoint: '/users/{seller_id}/items/search',
-        retries: searchCheck.retries,
-      };
-
       return NextResponse.json({
         success: false,
         domain,
         failure_reason: 'ml_upstream_error',
-        code: diagnosticError.code,
-        category: diagnosticError.category,
-        upstream_status: diagnosticError.upstream_status,
-        errors: [diagnosticError],
-        retries_transient: searchCheck.retries,
-      }, { status: diagnosticError.category === 'retryable' ? 424 : 502 });
+        code: scan.error?.code,
+        category: scan.error?.category,
+        upstream_status: scan.error?.upstream_status,
+        errors: scan.error ? [scan.error] : [{ code: 'ml_items_scan_failed', message: 'Erro ao buscar anúncios completos no ML' }],
+        retries_transient: scan.retriesTransient,
+        scan_pages_fetched: scan.pagesFetched,
+      }, { status: scan.error?.category === 'retryable' ? 424 : 502 });
     }
-    const search = searchResult.data;
 
-    const itemIds: string[] = Array.isArray(search.results) ? search.results : [];
+    const allItemIds = scan.itemIds;
+    const total = allItemIds.length;
+    const itemIds = allItemIds.slice(offset, offset + limit);
     if (itemIds.length === 0) {
       return NextResponse.json({
         success: true,
@@ -346,7 +373,7 @@ export async function POST(request: Request) {
         errors,
         warnings,
         duration: { ms: Date.now() - startedAt },
-        total: Number(search?.paging?.total || 0),
+        total,
         proximo: offset,
         acabou: true,
       });
@@ -689,9 +716,8 @@ export async function POST(request: Request) {
       }
     }
 
-    const total = Number(search?.paging?.total || 0);
     const nextOffset = offset + limit;
-    const done = nextOffset >= Math.min(total, ML_ITEMS_SEARCH_MAX_OFFSET) || itemIds.length < limit;
+    const done = nextOffset >= total || itemIds.length < limit;
     let catalogRefreshTriggered = false;
 
     try {
@@ -744,6 +770,8 @@ export async function POST(request: Request) {
       errors,
       warnings,
       duration: { ms: Date.now() - startedAt },
+      scan_pages_fetched: scan.pagesFetched,
+      retries_transient: scan.retriesTransient,
       // Compatibilidade:
       ok: errors.length === 0,
       sincronizados: snapshots.length,

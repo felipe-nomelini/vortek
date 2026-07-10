@@ -311,7 +311,11 @@ export default function ProductOfferDetailPage() {
               </Col>
               <Col xs={24} md={6}>
                 <div style={{ color: '#a0a0a0', fontSize: 13 }}>Frete ML</div>
-                <Text style={{ color: '#e0e0e0' }}>{formatCurrency(Number(product.ml_shipping || 0))}</Text>
+                {String(product.ml_status || 'sem_anuncio') !== 'sem_anuncio' && Number(product.ml_shipping || 0) <= 0 ? (
+                  <Tag color="red">Frete inválido</Tag>
+                ) : (
+                  <Text style={{ color: '#e0e0e0' }}>{formatCurrency(Number(product.ml_shipping || 0))}</Text>
+                )}
               </Col>
               <Col xs={24} md={6}>
                 <div style={{ color: '#a0a0a0', fontSize: 13 }}>Fornecedor preferencial atual</div>

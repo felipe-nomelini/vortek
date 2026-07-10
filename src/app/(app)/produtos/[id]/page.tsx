@@ -48,7 +48,7 @@ function mapDBtoProduct(item: ProdutoRow): Product {
     stock: item.estoque || 0,
     cost: item.custo || 0,
     mlFee: item.ml_fee || 0.15,
-    mlShipping: item.ml_shipping || 0,
+    mlShipping: Number(item.ml_shipping ?? 0),
     customPrice: item.custom_price,
     mlStatus: item.ml_status || 'sem_anuncio',
     netWeight: item.peso_liq || 0,
@@ -63,6 +63,12 @@ function mapDBtoProduct(item: ProdutoRow): Product {
     ncm: item.ncm || null,
     cest: item.cest || null,
   };
+}
+
+function renderMlShipping(shipping: number, mlStatus: MLStatus) {
+  const hasInvalidShipping = mlStatus !== 'sem_anuncio' && Number(shipping || 0) <= 0;
+  if (hasInvalidShipping) return <Tag color="red">Frete inválido</Tag>;
+  return formatCurrency(Number(shipping || 0));
 }
 
 export default function ProductDetailPage() {
@@ -448,6 +454,9 @@ export default function ProductDetailPage() {
               <Col span={12}>
                 <div style={labelStyle}>Frete ML</div>
                 <InputNumber size="small" value={product.mlShipping} onChange={v => patch({ mlShipping: v ?? 0 })} style={{ ...inputStyle, width: '100%', marginTop: 4 }} formatter={currencyFormatter} parser={currencyParser} step={0.50} />
+                {product.mlStatus !== 'sem_anuncio' && product.mlShipping <= 0 ? (
+                  <div style={{ marginTop: 6 }}>{renderMlShipping(product.mlShipping, product.mlStatus)}</div>
+                ) : null}
               </Col>
               <Col span={12}>
                 <div style={labelStyle}>Taxa ML</div>

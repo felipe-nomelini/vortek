@@ -377,7 +377,7 @@ function mapDBtoProduct(item: ProdutoRow): Product {
     stock: item.estoque || 0,
     cost: item.custo || 0,
     mlFee: item.ml_fee || 0.15,
-    mlShipping: item.ml_shipping || 0,
+    mlShipping: Number(item.ml_shipping ?? 0),
     customPrice: item.custom_price,
     mlStatus: item.ml_status || 'sem_anuncio',
     netWeight: item.peso_liq || 0,
@@ -392,6 +392,12 @@ function mapDBtoProduct(item: ProdutoRow): Product {
     ncm: item.ncm || null,
     cest: item.cest || null,
   };
+}
+
+function renderMlShipping(shipping: number, mlStatus: MLStatus) {
+  const hasInvalidShipping = mlStatus !== 'sem_anuncio' && Number(shipping || 0) <= 0;
+  if (hasInvalidShipping) return <Tag color="red">Frete inválido</Tag>;
+  return formatCurrency(Number(shipping || 0));
 }
 
 export default function ProductsPage() {
@@ -1537,7 +1543,7 @@ export default function ProductsPage() {
       title: 'Frete ML', dataIndex: ['product', 'mlShipping'], key: 'ml_shipping', width: 110,
       sorter: true,
       sortOrder: getRemoteSortOrder('ml_shipping', sort),
-      render: (v: number) => formatCurrency(v),
+      render: (_: number, record) => renderMlShipping(record.product.mlShipping, record.product.mlStatus),
     },
     {
       title: 'Sugerido', key: 'suggested_price', width: 160,
@@ -2022,7 +2028,7 @@ export default function ProductsPage() {
                     </Col>
                     <Col span={12}>
                       <Text style={{ color: '#888' }}>Frete ML: </Text>
-                      <Text style={{ color: '#e0e0e0' }}>{formatCurrency(p.mlShipping)}</Text>
+                      <Text style={{ color: '#e0e0e0' }}>{renderMlShipping(p.mlShipping, p.mlStatus)}</Text>
                     </Col>
                     <Col span={12}>
                       <Text style={{ color: '#888' }}>Lucro: </Text>
