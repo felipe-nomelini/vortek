@@ -519,6 +519,19 @@ export default function PedidosPage() {
 
         setSendingWhatsappLabel(false);
         if (state === 'success' || state === 'warning') {
+          if (!whatsappUsePlaceholderLabel && whatsappOrder?.dbId) {
+            setOrders(prev => prev.map((order) => (
+              order.dbId === whatsappOrder.dbId
+                ? {
+                    ...order,
+                    dslite_etiqueta_enviada: true,
+                    dslite_label_source: 'mercado_livre',
+                    dslite_next_action: 'done',
+                    dslite_next_action_label: 'OK',
+                  }
+                : order
+            )));
+          }
           messageApi.success(statusData.data?.message || 'Etiqueta enviada por WhatsApp.');
           setWhatsappOrder(null);
           setWhatsappUsePlaceholderLabel(false);

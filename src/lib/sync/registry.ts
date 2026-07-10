@@ -154,8 +154,9 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'pedidos:brasilnfe',
     lockTtlSeconds: 15 * 60,
     kind: 'fiscal',
-    schedule: { businessMinutes: 15, offHoursMinutes: 60 },
-    defaultBody: { limit: 5 },
+    schedule: { businessMinutes: 2, offHoursMinutes: 10 },
+    defaultBody: { limit: 3 },
+    runMode: 'inline',
   },
   {
     key: 'sync_mercadopago_account_money',

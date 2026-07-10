@@ -2,9 +2,9 @@ import { reconcileBrasilNfeExistingInvoice } from "@/lib/fiscal/ensure-brasilnfe
 import { reconcileLocalNfeSnapshotFromXml } from "@/lib/fiscal/nfe-local-reconciliation";
 import { normalizeNfeTechnicalStatus } from "@/lib/fiscal/nfe-status";
 
-const FINAL_STATUS_SYNC_INTERVAL_MS = 30_000;
-const ACTIVE_STATUS_SYNC_INTERVAL_MS = 5_000;
-const MAX_LIVE_SYNC_ROWS = 20;
+const FINAL_STATUS_SYNC_INTERVAL_MS = 45_000;
+const ACTIVE_STATUS_SYNC_INTERVAL_MS = 10_000;
+const MAX_LIVE_SYNC_ROWS = 3;
 
 function nowMs(): number {
   return Date.now();
@@ -105,29 +105,27 @@ export async function reconcileRowsBestEffort(
     })
     .slice(0, maxLiveSyncRows);
 
-  await Promise.all(
-    candidates.map(async (row) => {
-      const result = await reconcileBrasilNfeExistingInvoice({
-        pedidoId: String(row.id),
-      }).catch(() => null);
+  for (const row of candidates) {
+    const result = await reconcileBrasilNfeExistingInvoice({
+      pedidoId: String(row.id),
+    }).catch(() => null);
 
-      if (!result?.ok) return;
-      const index = rowIndexById.get(String(row.id));
-      if (index === undefined) return;
+    if (!result?.ok) continue;
+    const index = rowIndexById.get(String(row.id));
+    if (index === undefined) continue;
 
-      mergedRows[index] = {
-        ...mergedRows[index],
-        nfe_status: result.status || mergedRows[index]?.nfe_status || null,
-        nfe_chave: result.chave || mergedRows[index]?.nfe_chave || null,
-        nfe_protocolo: result.existingNfe?.numeroProtocolo || mergedRows[index]?.nfe_protocolo || null,
-        nota_fiscal_numero: result.numero || mergedRows[index]?.nota_fiscal_numero || null,
-        nfe_xml: result.xml || mergedRows[index]?.nfe_xml || null,
-        nfe_danfe_url: result.danfeUrl || mergedRows[index]?.nfe_danfe_url || null,
-        nfe_cfop: result.cfop || mergedRows[index]?.nfe_cfop || null,
-        nfe_last_sync_at: new Date().toISOString(),
-      };
-    }),
-  );
+    mergedRows[index] = {
+      ...mergedRows[index],
+      nfe_status: result.status || mergedRows[index]?.nfe_status || null,
+      nfe_chave: result.chave || mergedRows[index]?.nfe_chave || null,
+      nfe_protocolo: result.existingNfe?.numeroProtocolo || mergedRows[index]?.nfe_protocolo || null,
+      nota_fiscal_numero: result.numero || mergedRows[index]?.nota_fiscal_numero || null,
+      nfe_xml: result.xml || mergedRows[index]?.nfe_xml || null,
+      nfe_danfe_url: result.danfeUrl || mergedRows[index]?.nfe_danfe_url || null,
+      nfe_cfop: result.cfop || mergedRows[index]?.nfe_cfop || null,
+      nfe_last_sync_at: new Date().toISOString(),
+    };
+  }
 
   return mergedRows;
 }

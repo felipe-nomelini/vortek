@@ -11,7 +11,11 @@ import {
   downloadShippingLabelFromStorage,
   storeShippingLabelForPedido,
 } from '@/lib/shipping-label-storage';
-import { DSLITE_PLACEHOLDER_LABEL_FILE_NAME, loadDslitePlaceholderLabel } from '@/lib/dslite/placeholder-label';
+import {
+  DSLITE_MERCADO_LIVRE_LABEL_SOURCE,
+  DSLITE_PLACEHOLDER_LABEL_FILE_NAME,
+  loadDslitePlaceholderLabel,
+} from '@/lib/dslite/placeholder-label';
 import { buildPublicNfeUrl } from '@/lib/public-nfe-links';
 import { buildPublicShippingLabelUrl } from '@/lib/public-shipping-label-links';
 import { createShortLink } from '@/lib/short-links';
@@ -459,6 +463,18 @@ export async function runWhatsappLabelJob(input: {
       wahaResponse = await sendWahaText({ chatId, text: caption });
     }
     await setStep('send_whatsapp', 'success', whatsappSendMode === 'file' ? 'Mensagem com PDF enviada' : 'Mensagem com link enviada');
+
+    if (!input.usePlaceholderLabel) {
+      await client
+        .from('pedidos')
+        .update({
+          dslite_etiqueta_enviada: true,
+          dslite_label_source: DSLITE_MERCADO_LIVRE_LABEL_SOURCE,
+          ml_label_storage_path: labelStoragePath || undefined,
+          ml_label_bytes: labelPdf.length,
+        } as any)
+        .eq('id', pedidoId);
+    }
 
     await registrarEventoNfAuditoria({
       pedidoId,

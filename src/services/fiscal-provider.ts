@@ -130,6 +130,27 @@ function isBrasilNfeTemporaryDnsError(err: any): boolean {
   return code === "EAI_AGAIN" || message.includes("getaddrinfo eai_again");
 }
 
+function extractBrasilNfeRetryAfterSeconds(err: any): number | null {
+  const direct = Number(
+    err?.retryAfterSeconds ??
+      err?.error?.retryAfterSeconds ??
+      err?.response?.data?.retryAfterSeconds ??
+      err?.response?.retryAfterSeconds,
+  );
+  if (Number.isFinite(direct) && direct > 0) return direct;
+
+  const message = String(err?.message || err?.error?.message || "");
+  const match = message.match(/retryAfterSeconds"\s*:\s*(\d+)/i);
+  if (!match?.[1]) return null;
+  const parsed = Number(match[1]);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+}
+
+function isBrasilNfeRateLimitError(err: any): boolean {
+  const message = String(err?.message || err?.error?.message || "").toLowerCase();
+  return message.includes('rate_limited') || message.includes('limite de 60 requisições');
+}
+
 function normalizeTemporaryText(value: unknown): string {
   return String(value || "")
     .normalize("NFD")
@@ -175,6 +196,22 @@ async function withBrasilNfeDnsRetry<T>(
       return await operation();
     } catch (err: any) {
       lastError = err;
+
+      if (isBrasilNfeRateLimitError(err) && attempt < attempts) {
+        const retryAfterSeconds = extractBrasilNfeRetryAfterSeconds(err) || attempt * 5;
+        console.warn(
+          JSON.stringify({
+            event: "brasilnfe_rate_limit_retry",
+            attempt,
+            attempts,
+            retry_after_seconds: retryAfterSeconds,
+            message: err?.message || null,
+          }),
+        );
+        await sleep(retryAfterSeconds * 1000);
+        continue;
+      }
+
       if (!isBrasilNfeTemporaryDnsError(err) || attempt >= attempts) throw err;
       console.warn(
         JSON.stringify({

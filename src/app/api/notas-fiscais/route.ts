@@ -243,7 +243,6 @@ export async function GET(request: Request) {
       const reconciledRows = await reconcileRowsBestEffort(
         serviceClient,
         rawRows || [],
-        { liveSyncWithBrasilNfe: true },
       );
       const filtered = reconciledRows.filter(
         (row: any) => normalizeNfeTechnicalStatus(row.nfe_status) === "outro",
@@ -286,9 +285,7 @@ export async function GET(request: Request) {
         );
       }
       count = totalCount || 0;
-      data = await reconcileRowsBestEffort(serviceClient, rowsData || [], {
-        liveSyncWithBrasilNfe: true,
-      });
+      data = await reconcileRowsBestEffort(serviceClient, rowsData || []);
     }
 
     const rows = (data || []).map((row) => ({

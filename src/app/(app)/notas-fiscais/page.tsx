@@ -69,6 +69,7 @@ function formatNumeroWithSerie(numero: string, nfeChave: string | null | undefin
 export default function NotasFiscaisPage() {
   const PAGE_SIZE = 100;
   const POLLING_INTERVAL_MS = 5000;
+  const BACKGROUND_SYNC_INTERVAL_MS = 30000;
   const [rows, setRows] = useState<NotaFiscalRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);
@@ -87,7 +88,9 @@ export default function NotasFiscaisPage() {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [messageApi, contextHolder] = message.useMessage();
   const pollingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const backgroundSyncRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pollingInFlightRef = useRef(false);
+  const backgroundSyncInFlightRef = useRef(false);
   const [sendingRowId, setSendingRowId] = useState<string | null>(null);
   const [actionRowId, setActionRowId] = useState<string | null>(null);
   const [emailModalOpen, setEmailModalOpen] = useState(false);
@@ -320,6 +323,38 @@ export default function NotasFiscaisPage() {
     }
   }, []);
 
+  const clearBackgroundSync = useCallback(() => {
+    if (backgroundSyncRef.current) {
+      clearTimeout(backgroundSyncRef.current);
+      backgroundSyncRef.current = null;
+    }
+  }, []);
+
+  const triggerBackgroundSync = useCallback(async () => {
+    if (backgroundSyncInFlightRef.current) return;
+    backgroundSyncInFlightRef.current = true;
+    try {
+      await fetch('/api/sync/nf/reconciliar-brasilnfe/job', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+    } finally {
+      backgroundSyncInFlightRef.current = false;
+    }
+  }, []);
+
+  const scheduleNextBackgroundSync = useCallback(() => {
+    clearBackgroundSync();
+    backgroundSyncRef.current = setTimeout(async () => {
+      if (typeof document !== 'undefined' && document.visibilityState !== 'visible') {
+        scheduleNextBackgroundSync();
+        return;
+      }
+      await triggerBackgroundSync();
+      scheduleNextBackgroundSync();
+    }, BACKGROUND_SYNC_INTERVAL_MS);
+  }, [clearBackgroundSync, triggerBackgroundSync]);
+
   const scheduleNextPoll = useCallback(() => {
     clearPolling();
     pollingRef.current = setTimeout(async () => {
@@ -343,9 +378,14 @@ export default function NotasFiscaisPage() {
 
   useEffect(() => {
     fetchNotas();
+    void triggerBackgroundSync();
     scheduleNextPoll();
-    return () => clearPolling();
-  }, [clearPolling, fetchNotas, scheduleNextPoll]);
+    scheduleNextBackgroundSync();
+    return () => {
+      clearPolling();
+      clearBackgroundSync();
+    };
+  }, [clearBackgroundSync, clearPolling, fetchNotas, scheduleNextBackgroundSync, scheduleNextPoll, triggerBackgroundSync]);
 
   const columns: TableProps<NotaFiscalRow>['columns'] = [
     {
