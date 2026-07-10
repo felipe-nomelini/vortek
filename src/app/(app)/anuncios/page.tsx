@@ -67,6 +67,7 @@ export default function AnunciosPage() {
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [updatingActionItemId, setUpdatingActionItemId] = useState<string | null>(null);
+  const [bulkUpdatingStatus, setBulkUpdatingStatus] = useState<ListingStatus | null>(null);
   const statusPollingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [modalQualidade, setModalQualidade] = useState<{ open: boolean; score: number; itens: any[]; dica: string; titulo: string }>({ open: false, score: 0, itens: [], dica: '', titulo: '' });
   const [summary, setSummary] = useState({
@@ -138,50 +139,65 @@ export default function AnunciosPage() {
 
   useEffect(() => () => clearStatusPolling(), [clearStatusPolling]);
 
-  const applyLocalStatusChange = useCallback((record: Anuncio, nextStatus: ListingStatus) => {
+  const applyLocalStatusChanges = useCallback((records: Anuncio[], nextStatus: ListingStatus) => {
+    if (records.length === 0) return;
+    const byId = new Map(records.map((record) => [record.id, record]));
+    const ids = new Set(records.map((record) => record.id));
+
     setData((prev) => prev.flatMap((item) => {
-      if (item.id !== record.id) return [item];
+      if (!ids.has(item.id)) return [item];
       if (statusFilter && statusFilter !== nextStatus) return [];
       return [{ ...item, status: nextStatus }];
     }));
 
+    const movedFromAtivo = records.filter((record) => record.status === 'ativo' && nextStatus !== 'ativo').length;
+    const movedFromPausado = records.filter((record) => record.status === 'pausado' && nextStatus !== 'pausado').length;
+    const movedToAtivo = records.filter((record) => record.status !== 'ativo' && nextStatus === 'ativo').length;
+    const movedToPausado = records.filter((record) => record.status !== 'pausado' && nextStatus === 'pausado').length;
+
     setSummary((prev) => ({
       ...prev,
-      ativos: Math.max(0, prev.ativos + (record.status === 'ativo' ? -1 : 1)),
-      pausados: Math.max(0, prev.pausados + (record.status === 'pausado' ? -1 : 1)),
+      ativos: Math.max(0, prev.ativos - movedFromAtivo + movedToAtivo),
+      pausados: Math.max(0, prev.pausados - movedFromPausado + movedToPausado),
     }));
 
     if (statusFilter && statusFilter !== nextStatus) {
-      setTotal((prev) => Math.max(0, prev - 1));
+      setTotal((prev) => Math.max(0, prev - records.length));
     }
   }, [statusFilter]);
 
-  const pollStatusPublish = useCallback(async (outboxId: string) => {
-    const response = await fetch(`/api/ml/anuncio/atualizar-preco/status?outboxId=${encodeURIComponent(outboxId)}`);
-    const payload = await response.json().catch(() => ({}));
-    if (!response.ok) {
-      throw new Error(payload?.error || 'Falha ao consultar status da publicação.');
-    }
-    return payload as { status?: 'pending' | 'processing' | 'retry' | 'failed' | 'done'; last_error?: string | null };
+  const pollStatusPublish = useCallback(async (outboxIds: string[]) => {
+    const payloads = await Promise.all(outboxIds.map(async (outboxId) => {
+      const response = await fetch(`/api/ml/anuncio/atualizar-preco/status?outboxId=${encodeURIComponent(outboxId)}`);
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Falha ao consultar status da publicação.');
+      }
+      return payload as { status?: 'pending' | 'processing' | 'retry' | 'failed' | 'done'; last_error?: string | null };
+    }));
+    return payloads;
   }, []);
 
-  const scheduleStatusPolling = useCallback((outboxId: string) => {
+  const scheduleStatusPolling = useCallback((outboxIds: string[]) => {
     clearStatusPolling();
     statusPollingRef.current = setTimeout(async () => {
       try {
-        const payload = await pollStatusPublish(outboxId);
-        if (payload.status === 'done') {
+        const payloads = await pollStatusPublish(outboxIds);
+        const hasFailed = payloads.some((payload) => payload.status === 'failed');
+        const allDone = payloads.every((payload) => payload.status === 'done');
+        if (allDone) {
           clearStatusPolling();
           await fetchData();
           return;
         }
-        if (payload.status === 'failed') {
+        if (hasFailed) {
           clearStatusPolling();
-          message.error(payload.last_error || 'Falha ao publicar alteração de status no Mercado Livre.');
+          const failedMessage = payloads.find((payload) => payload.status === 'failed')?.last_error || 'Falha ao publicar alteração de status no Mercado Livre.';
+          message.error(failedMessage);
           await fetchData();
           return;
         }
-        scheduleStatusPolling(outboxId);
+        scheduleStatusPolling(outboxIds);
       } catch (error: any) {
         clearStatusPolling();
         message.error(error?.message || 'Falha ao acompanhar alteração de status do anúncio.');
@@ -197,6 +213,21 @@ export default function AnunciosPage() {
     }
     window.open(record.permalink, '_blank', 'noopener,noreferrer');
   }, []);
+
+  const selectedRecords = useMemo(() => {
+    const selectedIds = new Set(selectedRowKeys.map((key) => String(key)));
+    return data.filter((record) => selectedIds.has(record.id));
+  }, [data, selectedRowKeys]);
+
+  const selectedActivatable = useMemo(
+    () => selectedRecords.filter((record) => record.status === 'pausado' && record.produtoId),
+    [selectedRecords],
+  );
+
+  const selectedPausable = useMemo(
+    () => selectedRecords.filter((record) => record.status === 'ativo' && record.produtoId),
+    [selectedRecords],
+  );
 
   const handleToggleStatus = useCallback(async (record: Anuncio) => {
     if (!record.produtoId) {
@@ -231,8 +262,8 @@ export default function AnunciosPage() {
 
       const outboxId = String(payload?.outboxId || '').trim();
       if (payload?.queued_publish && outboxId) {
-        applyLocalStatusChange(record, nextStatus);
-        scheduleStatusPolling(outboxId);
+        applyLocalStatusChanges([record], nextStatus);
+        scheduleStatusPolling([outboxId]);
       } else {
         await fetchData();
       }
@@ -241,7 +272,69 @@ export default function AnunciosPage() {
     } finally {
       setUpdatingActionItemId(null);
     }
-  }, [applyLocalStatusChange, fetchData, scheduleStatusPolling]);
+  }, [applyLocalStatusChanges, fetchData, scheduleStatusPolling]);
+
+  const handleBulkToggleStatus = useCallback(async (targetStatus: ListingStatus) => {
+    const records = targetStatus === 'ativo' ? selectedActivatable : selectedPausable;
+    if (records.length === 0) {
+      message.warning(targetStatus === 'ativo'
+        ? 'Nenhum anúncio pausado selecionado com vínculo local para ativar.'
+        : 'Nenhum anúncio ativo selecionado com vínculo local para pausar.');
+      return;
+    }
+
+    setBulkUpdatingStatus(targetStatus);
+    try {
+      const response = await fetch('/api/anuncios/status-lote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          produtoIds: records.map((record) => record.produtoId),
+          targetStatus,
+        }),
+      });
+      const payload = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Falha ao enfileirar alteração em massa dos anúncios.');
+      }
+
+      const outboxIds = Array.isArray(payload?.outboxIds)
+        ? payload.outboxIds.map((value: unknown) => String(value || '').trim()).filter(Boolean)
+        : [];
+
+      applyLocalStatusChanges(records, targetStatus);
+      setSelectedRowKeys([]);
+
+      const queuedCount = Number(payload?.records?.actionable || records.length);
+      const alreadyCount = Number(payload?.records?.already_in_target || 0);
+      const skippedNoItem = Number(payload?.records?.skipped_no_item || 0);
+      const failedCount = Number(payload?.records?.failed || 0);
+
+      message.success(`${queuedCount} anúncio(s) ${targetStatus === 'ativo' ? 'enfileirado(s) para ativação' : 'enfileirado(s) para pausa'} no ML.`);
+      if (alreadyCount > 0 || skippedNoItem > 0 || failedCount > 0) {
+        const parts = [
+          alreadyCount > 0 ? `${alreadyCount} já estavam no status alvo` : null,
+          skippedNoItem > 0 ? `${skippedNoItem} sem vínculo ML` : null,
+          failedCount > 0 ? `${failedCount} com falha ao enfileirar` : null,
+        ].filter(Boolean);
+        if (parts.length) {
+          message.warning(parts.join(' • '));
+        }
+      }
+
+      if (payload?.queued_publish && outboxIds.length > 0) {
+        scheduleStatusPolling(outboxIds);
+      } else {
+        await fetchData();
+      }
+    } catch (error: any) {
+      message.error(error?.message || 'Falha ao alterar status em massa dos anúncios.');
+      await fetchData();
+    } finally {
+      setBulkUpdatingStatus(null);
+    }
+  }, [applyLocalStatusChanges, fetchData, scheduleStatusPolling, selectedActivatable, selectedPausable]);
 
   const columns: TableProps<Anuncio>['columns'] = [
     {
@@ -359,7 +452,7 @@ export default function AnunciosPage() {
               size="small"
               icon={isUpdatingCurrent ? <LoadingOutlined spin /> : <EllipsisOutlined />}
               loading={isUpdatingCurrent}
-              disabled={Boolean(updatingActionItemId && !isUpdatingCurrent)}
+              disabled={Boolean((updatingActionItemId && !isUpdatingCurrent) || bulkUpdatingStatus)}
             />
           </Dropdown>
         );
@@ -443,6 +536,25 @@ export default function AnunciosPage() {
               <InputNumber placeholder="ML mín" value={mlMin} onChange={v => setMlMin(v ?? null)} style={{ width: 110 }} />
               <InputNumber placeholder="ML máx" value={mlMax} onChange={v => setMlMax(v ?? null)} style={{ width: 110 }} />
             </Space.Compact>
+          </Col>
+          <Col>
+            <Space>
+              <Button
+                onClick={() => void handleBulkToggleStatus('ativo')}
+                disabled={selectedActivatable.length === 0 || Boolean(updatingActionItemId) || bulkUpdatingStatus !== null}
+                loading={bulkUpdatingStatus === 'ativo'}
+              >
+                Ativar selecionados ({selectedActivatable.length})
+              </Button>
+              <Button
+                danger
+                onClick={() => void handleBulkToggleStatus('pausado')}
+                disabled={selectedPausable.length === 0 || Boolean(updatingActionItemId) || bulkUpdatingStatus !== null}
+                loading={bulkUpdatingStatus === 'pausado'}
+              >
+                Pausar selecionados ({selectedPausable.length})
+              </Button>
+            </Space>
           </Col>
         </Row>
       </div>
