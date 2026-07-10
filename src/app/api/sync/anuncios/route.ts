@@ -460,10 +460,13 @@ export async function POST(request: Request) {
           });
         }
 
+        const nextMlStatus = String(item?.status || '').toLowerCase() === 'active' ? 'ativo' : 'pausado';
         const productPatch: Record<string, unknown> = {};
+        if (String(produto.ml_status || '') !== nextMlStatus) productPatch.ml_status = nextMlStatus;
         if (pricing.mlFee !== null && Math.abs(Number(produto.ml_fee || 0) - pricing.mlFee) >= 0.0001) productPatch.ml_fee = pricing.mlFee;
         if (pricing.mlShipping !== null && Math.abs(Number(produto.ml_shipping || 0) - pricing.mlShipping) >= 0.01) productPatch.ml_shipping = pricing.mlShipping;
         if (pricing.mlShipping !== null) productPatch.ml_shipping_warning = null;
+        else if (pricing.warning) productPatch.ml_shipping_warning = pricing.warning;
 
         if (Object.keys(productPatch).length > 0) {
           productPatch.updated_at = new Date().toISOString();
