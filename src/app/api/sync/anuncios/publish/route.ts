@@ -9,6 +9,8 @@ export const maxDuration = 300;
 
 const MAX_RETRY_ATTEMPTS = 5;
 const CONFLICT_RETRY_BACKOFF_MINUTES = 3;
+const LOCK_TTL_SECONDS = 6 * 60;
+const STALE_PROCESSING_THRESHOLD_MINUTES = 10;
 
 function parsePositiveInt(input: unknown, fallback: number): number {
   const n = Number(input);
@@ -77,6 +79,10 @@ function resolveApplyMode(row: any): {
 function normalizeOutboxPayload(payload: unknown): Record<string, unknown> {
   if (!payload || typeof payload !== 'object' || Array.isArray(payload)) return {};
   return payload as Record<string, unknown>;
+}
+
+function minutesAgoIso(minutes: number): string {
+  return new Date(Date.now() - minutes * 60 * 1000).toISOString();
 }
 
 function withPublishProgress(
@@ -196,7 +202,7 @@ export async function POST(request: Request) {
     const lock = await acquireDomainLock({
       domain,
       ownerTask: 'sync_ml_listings_publish',
-      ttlSeconds: 20 * 60,
+      ttlSeconds: LOCK_TTL_SECONDS,
       metadata: { source: 'api/sync/anuncios/publish' },
     });
     lockAcquired = lock.acquired;
@@ -231,6 +237,48 @@ export async function POST(request: Request) {
       .eq('source', 'stock_stale_guard')
       .in('status', ['pending', 'retry', 'processing']) as any);
 
+    const staleProcessingCutoff = minutesAgoIso(STALE_PROCESSING_THRESHOLD_MINUTES);
+    const { data: staleProcessingRows, error: staleProcessingSelectError } = await (client
+      .from('anuncios_ml_outbox' as any)
+      .select('id, payload')
+      .eq('status', 'processing')
+      .lte('updated_at', staleProcessingCutoff) as any);
+
+    if (staleProcessingSelectError) {
+      warnings.push({
+        code: 'ml_publish_stale_processing_scan_failed',
+        message: staleProcessingSelectError.message,
+      });
+    } else if (Array.isArray(staleProcessingRows) && staleProcessingRows.length > 0) {
+      for (const staleRow of staleProcessingRows) {
+        const stalePayload = normalizeOutboxPayload((staleRow as any).payload);
+        const staleAttempts = Number(((stalePayload.publish_progress as Record<string, unknown> | undefined)?.attempts) || 0);
+        await (client
+          .from('anuncios_ml_outbox' as any)
+          .update({
+            status: 'retry',
+            last_error: `Reenfileirado: item ficou preso em processing por mais de ${STALE_PROCESSING_THRESHOLD_MINUTES} minutos`,
+            payload: withPublishProgress(stalePayload, {
+              state: 'retry',
+              last_operation: 'recover_stale_processing',
+              attempts: staleAttempts,
+            }) as any,
+            available_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          } as any)
+          .eq('id', String((staleRow as any).id)) as any);
+      }
+
+      warnings.push({
+        code: 'ml_publish_stale_processing_recovered',
+        message: `${staleProcessingRows.length} item(ns) presos em processing foram reenfileirados`,
+        context: {
+          stale_threshold_minutes: STALE_PROCESSING_THRESHOLD_MINUTES,
+          count: staleProcessingRows.length,
+        },
+      });
+    }
+
     if (seedFromProducts) {
       const { data: produtos } = await client
         .from('produtos')
@@ -262,7 +310,7 @@ export async function POST(request: Request) {
 
     let outboxQuery = client
       .from('anuncios_ml_outbox' as any)
-      .select('id, produto_id, ml_item_id, desired_status, desired_price, desired_quantity, status, attempts, payload')
+      .select('id, produto_id, ml_item_id, desired_status, desired_price, desired_quantity, status, attempts, payload, source')
       .in('status', ['pending', 'retry']);
 
     if (targetOutboxId) {
@@ -347,6 +395,32 @@ export async function POST(request: Request) {
         operations.push({ op: 'validate', ok: false, error: 'ml_item_id ausente no outbox' });
       } else {
         const applyMode = resolveApplyMode(row);
+        const outboxSource = String((row as any).source || '').trim().toLowerCase();
+        const desiredStatusRaw = String(row.desired_status || '').trim().toLowerCase();
+
+        if (outboxSource === 'pricing_strategy_reprice' && desiredStatusRaw === 'sem_anuncio') {
+          await (client
+            .from('anuncios_ml_outbox' as any)
+            .update({
+              status: 'cancelled',
+              last_error: 'Cancelado: repricing ignorado para item sem anúncio publicável no ML',
+              payload: withPublishProgress(outboxPayloadBase, {
+                state: 'cancelled',
+                last_operation: 'skip_non_publishable_local_status',
+                attempts,
+              }) as any,
+              processed_at: new Date().toISOString(),
+              updated_at: new Date().toISOString(),
+            } as any)
+            .eq('id', outboxId) as any);
+          warnings.push({
+            code: 'ml_publish_skip_non_publishable_local_status',
+            message: 'Repricing cancelado para item sem anúncio publicável no ML',
+            context: { outboxId, mlItemId, source: outboxSource, desiredStatus: desiredStatusRaw },
+          });
+          continue;
+        }
+
         let pricePublishedOk = false;
         let pricePublishedValue: number | null = null;
         if (applyMode.applyPrice) {
