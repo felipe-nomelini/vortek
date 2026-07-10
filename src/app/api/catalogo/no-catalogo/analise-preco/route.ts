@@ -29,8 +29,11 @@ interface AnaliseRow {
   price_to_win: number | null;
   preco_piso_sem_prejuizo: number | null;
   preco_recomendado: number | null;
+  preco_acao_sugerida: number | null;
   delta_preco: number | null;
+  delta_price_to_win: number | null;
   lucro_unitario_estimado: number | null;
+  lucro_no_price_to_win: number | null;
   classe: ClasseAnalise;
   motivo: string;
 }
@@ -212,8 +215,11 @@ export async function POST(request: Request) {
         price_to_win: priceToWin !== null ? round2(priceToWin) : null,
         preco_piso_sem_prejuizo: null,
         preco_recomendado: null,
+        preco_acao_sugerida: null,
         delta_preco: null,
+        delta_price_to_win: null,
         lucro_unitario_estimado: null,
+        lucro_no_price_to_win: null,
         classe: 'dados_insuficientes',
         motivo: 'produto_id_ausente_ou_sem_vinculo_local',
       };
@@ -259,14 +265,22 @@ export async function POST(request: Request) {
         price_to_win: priceToWin !== null ? round2(priceToWin) : null,
         preco_piso_sem_prejuizo: pisoSemPrejuizo,
         preco_recomendado: null,
+        preco_acao_sugerida: null,
         delta_preco: null,
+        delta_price_to_win: null,
         lucro_unitario_estimado: null,
+        lucro_no_price_to_win: null,
         classe: 'dados_insuficientes',
         motivo: priceToWin === null || priceToWin <= 0 ? 'sem_preco_alvo_ml' : 'taxas_invalidas_para_calculo',
       };
     }
 
     const priceToWinRounded = round2(priceToWin);
+
+    const deltaPriceToWin = round2(priceToWinRounded - precoAtual);
+    const lucroNoPriceToWin = round2(
+      priceToWinRounded - custoAplicado - freteAplicado - (priceToWinRounded * 0.04) - (priceToWinRounded * taxaMlAplicada),
+    );
 
     if (priceToWinRounded >= precoEstrategicoMinimo) {
       const recomendado = priceToWinRounded;
@@ -284,8 +298,11 @@ export async function POST(request: Request) {
         price_to_win: priceToWinRounded,
         preco_piso_sem_prejuizo: pisoSemPrejuizo,
         preco_recomendado: recomendado,
+        preco_acao_sugerida: recomendado,
         delta_preco: delta,
+        delta_price_to_win: deltaPriceToWin,
         lucro_unitario_estimado: lucroEstimado,
+        lucro_no_price_to_win: lucroNoPriceToWin,
         classe: 'ajustar_para_ganhar_sem_prejuizo',
         motivo: 'price_to_win_atende_estrategia_minima',
       };
@@ -306,8 +323,11 @@ export async function POST(request: Request) {
       price_to_win: priceToWinRounded,
       preco_piso_sem_prejuizo: pisoSemPrejuizo,
       preco_recomendado: recomendado,
+      preco_acao_sugerida: recomendado,
       delta_preco: delta,
+      delta_price_to_win: deltaPriceToWin,
       lucro_unitario_estimado: lucroEstimado,
+      lucro_no_price_to_win: lucroNoPriceToWin,
       classe: 'nao_viavel_ganhar_sem_prejuizo',
       motivo: `price_to_win_abaixo_da_estrategia_minima:margem_${Math.round((estrategia?.margin || 0) * 100)}:lucro_${estrategia?.minProfit || 0}`,
     };
