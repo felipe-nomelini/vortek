@@ -349,7 +349,7 @@ export default function ComprasPage() {
       setTopupImportFile(null);
       const summary = json.importSummary;
       if (summary) {
-        messageApi.success(`Extrato importado. ${summary.inserted} crédito(s) novo(s), ${summary.skipped} já existente(s).`);
+        messageApi.success(`Extrato conciliado. ${summary.inserted} movimento(s) novo(s), ${summary.updated || 0} ajustado(s), ${summary.skipped} já conciliado(s).`);
       } else {
         messageApi.success('Extrato Hayamax importado.');
       }
