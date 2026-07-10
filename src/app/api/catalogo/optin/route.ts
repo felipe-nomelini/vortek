@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
-import { buildCatalogEnrichment } from '@/lib/catalogo/no-catalogo';
+import { buildCatalogEnrichment, extractCatalogCandidateSku, extractCatalogGtin } from '@/lib/catalogo/no-catalogo';
 import { persistSingleAnuncioBySku } from '@/lib/ml/persist-single-anuncio';
 
 function isEligibilityAllowed(status: string): boolean {
@@ -90,10 +90,11 @@ async function getRelatedPermalink(relatedItemId: string | null): Promise<string
 async function syncCatalogOptinLocally(params: {
   service: ReturnType<typeof createServiceClient>;
   originalItemId: string;
+  originalItem: any;
   catalogItem: any;
   sellerId: number | null;
 }) {
-  const { service, originalItemId, catalogItem, sellerId } = params;
+  const { service, originalItemId, originalItem, catalogItem, sellerId } = params;
   const warnings: string[] = [];
   const catalogItemId = String(catalogItem?.id || '').trim();
   if (!catalogItemId) {
@@ -107,8 +108,23 @@ async function syncCatalogOptinLocally(params: {
     .maybeSingle();
   if (originalError) warnings.push(`Falha ao buscar anúncio original: ${originalError.message}`);
 
-  const sku = String(originalAnuncio?.sku || '').trim() || getSellerSkuFromItem(catalogItem) || null;
-  const produtoId = String(originalAnuncio?.produto_id || '').trim() || null;
+  let sku = String(originalAnuncio?.sku || '').trim() || getSellerSkuFromItem(catalogItem) || null;
+  let produtoId = String(originalAnuncio?.produto_id || '').trim() || null;
+  if (!produtoId) {
+    const localLookup = await findLocalProductForItem({
+      service,
+      itemId: originalItemId,
+      item: originalItem,
+    });
+    if (localLookup.produto) {
+      produtoId = String(localLookup.produto.id || '').trim() || null;
+      if (!sku) {
+        sku = String(localLookup.produto.sku || '').trim() || sku;
+      }
+    } else if (localLookup.error) {
+      warnings.push(localLookup.error);
+    }
+  }
   const statusLocal = mapMlStatusToLocalStatus(catalogItem.status);
 
   const anuncioResult = await persistSingleAnuncioBySku(service, {
@@ -201,19 +217,40 @@ async function findLocalProductForItem(params: {
   }
   if (byItem) return { produto: byItem, error: null };
 
-  if (!sellerSku) return { produto: null, error: 'SKU do anúncio original não encontrado.' };
-
-  const { data: bySku, error: bySkuError } = await service
-    .from('produtos')
-    .select('id,sku,nome,gtin,descricao,ml_item_id')
-    .eq('sku', sellerSku)
-    .maybeSingle();
-  if (bySkuError) {
-    return { produto: null, error: `Falha ao buscar produto por SKU: ${bySkuError.message}` };
+  const fallbackSku = extractCatalogCandidateSku(sellerSku);
+  if (fallbackSku) {
+    const { data: bySku, error: bySkuError } = await service
+      .from('produtos')
+      .select('id,sku,nome,gtin,descricao,ml_item_id')
+      .eq('sku', fallbackSku)
+      .maybeSingle();
+    if (bySkuError) {
+      return { produto: null, error: `Falha ao buscar produto por SKU: ${bySkuError.message}` };
+    }
+    if (bySku) return { produto: bySku, error: null };
   }
-  if (bySku) return { produto: bySku, error: null };
 
-  return { produto: null, error: `Produto local não encontrado para SKU ${sellerSku}.` };
+  const gtin = extractCatalogGtin(item);
+  if (gtin) {
+    const { data: byGtin, error: byGtinError } = await service
+      .from('produtos')
+      .select('id,sku,nome,gtin,descricao,ml_item_id')
+      .eq('gtin', gtin)
+      .maybeSingle();
+    if (byGtinError) {
+      return { produto: null, error: `Falha ao buscar produto por GTIN: ${byGtinError.message}` };
+    }
+    if (byGtin) return { produto: byGtin, error: null };
+  }
+
+  if (!fallbackSku && !gtin) {
+    return { produto: null, error: 'SKU e GTIN do anúncio original não encontrados.' };
+  }
+
+  return {
+    produto: null,
+    error: `Produto local não encontrado para anúncio original. SKU=${fallbackSku || '(vazio)'} GTIN=${gtin || '(vazio)'}.`,
+  };
 }
 
 async function validateCatalogCompatibility(params: {
@@ -457,6 +494,7 @@ export async function POST(request: Request) {
       ? await syncCatalogOptinLocally({
         service,
         originalItemId: itemId,
+        originalItem: originalItemResult.data,
         catalogItem: catalogItemRefresh.data,
         sellerId: catalogItemRefresh.data?.seller_id || null,
       })

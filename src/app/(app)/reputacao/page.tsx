@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
   Button,
@@ -203,38 +203,86 @@ function metricInfo(
   return { color: softRed, label: "Crítico" };
 }
 
+const REPUTACAO_REFRESH_INTERVAL_MS = 60000;
+
 export default function ReputacaoPage() {
   const [data, setData] = useState<ReputacaoResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const pollingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const requestInFlightRef = useRef(false);
 
-  useEffect(() => {
-    let active = true;
-    async function load() {
+  const clearPolling = useCallback(() => {
+    if (pollingRef.current) {
+      clearTimeout(pollingRef.current);
+      pollingRef.current = null;
+    }
+  }, []);
+
+  const load = useCallback(async (options?: { silent?: boolean }) => {
+    if (requestInFlightRef.current) return;
+
+    requestInFlightRef.current = true;
+    if (!options?.silent) {
       setLoading(true);
-      setError(null);
-      try {
-        const res = await fetch("/api/ml/reputacao", { cache: "no-store" });
-        const json = await res.json().catch(() => ({}));
-        if (!res.ok)
-          throw new Error(
-            json?.erro || "Falha ao carregar reputação do Mercado Livre.",
-          );
-        if (active) setData(json as ReputacaoResponse);
-      } catch (err: any) {
-        if (active)
-          setError(
-            err?.message || "Falha ao carregar reputação do Mercado Livre.",
-          );
-      } finally {
-        if (active) setLoading(false);
+    }
+    setError(null);
+
+    try {
+      const res = await fetch("/api/ml/reputacao", { cache: "no-store" });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(
+          json?.erro || "Falha ao carregar reputação do Mercado Livre.",
+        );
+      }
+      setData(json as ReputacaoResponse);
+    } catch (err: any) {
+      setError(err?.message || "Falha ao carregar reputação do Mercado Livre.");
+    } finally {
+      requestInFlightRef.current = false;
+      if (!options?.silent) {
+        setLoading(false);
       }
     }
-    void load();
-    return () => {
-      active = false;
-    };
   }, []);
+
+  const schedulePolling = useCallback(() => {
+    clearPolling();
+    if (typeof document !== "undefined" && document.hidden) {
+      return;
+    }
+
+    pollingRef.current = setTimeout(() => {
+      void load({ silent: true }).finally(() => {
+        schedulePolling();
+      });
+    }, REPUTACAO_REFRESH_INTERVAL_MS);
+  }, [clearPolling, load]);
+
+  useEffect(() => {
+    void load().finally(() => {
+      schedulePolling();
+    });
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        clearPolling();
+        return;
+      }
+
+      void load({ silent: true }).finally(() => {
+        schedulePolling();
+      });
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      clearPolling();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [clearPolling, load, schedulePolling]);
 
   const levelId = data?.seller_reputation?.level_id || "";
   const lvl = levelConfig[levelId] || levelConfig.default;
