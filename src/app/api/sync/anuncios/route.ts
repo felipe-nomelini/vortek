@@ -130,6 +130,28 @@ async function resolveCurrentMlPricing(item: any, sellerZip: string | null): Pro
   return { mlFee, mlShipping };
 }
 
+function getItemShippingMode(item: any) {
+  return String(item?.shipping?.mode || '').trim().toLowerCase();
+}
+
+function requiresMercadoEnviosPause(item: any) {
+  return String(item?.status || '').toLowerCase() === 'active' && getItemShippingMode(item) !== 'me2';
+}
+
+function shouldPauseForNoCoverage(item: any, warning?: string) {
+  return String(item?.status || '').toLowerCase() === 'active'
+    && String(warning || '').toLowerCase().includes('no coverage options found');
+}
+
+async function pauseListing(itemId: string) {
+  const result = await fetchMLResult<any>(`/items/${encodeURIComponent(itemId)}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status: 'paused' }),
+  });
+  return { ok: result.ok, error: result.error?.message || null };
+}
+
 function parseVisitsPayload(payload: any): Map<string, number> {
   const rows = Array.isArray(payload)
     ? payload
@@ -401,7 +423,7 @@ export async function POST(request: Request) {
         return;
       }
 
-      const item = itemResult.data;
+      let item = itemResult.data;
       const sku = extractSku(item);
 
       let produtoId: string | null = null;
@@ -458,6 +480,28 @@ export async function POST(request: Request) {
             message: pricing.warning,
             context: { mlItemId: String(item.id), produtoId },
           });
+        }
+
+        const pauseForNoCoverage = shouldPauseForNoCoverage(item, pricing.warning);
+        const pauseForInvalidMode = requiresMercadoEnviosPause(item);
+        if (pauseForInvalidMode || pauseForNoCoverage) {
+          const pauseResult = await pauseListing(String(item.id));
+          if (pauseResult.ok) {
+            item = { ...item, status: 'paused' };
+            warnings.push({
+              code: 'ml_listing_paused_due_invalid_shipping',
+              message: pauseForNoCoverage
+                ? `Anúncio ${String(item.id)} pausado automaticamente: frete sem cobertura no ML.`
+                : `Anúncio ${String(item.id)} pausado automaticamente: não possui entrega Mercado Livre (ME2).`,
+              context: { mlItemId: String(item.id), produtoId },
+            });
+          } else {
+            warnings.push({
+              code: 'ml_listing_pause_failed',
+              message: `Falha ao pausar anúncio ${String(item.id)} após frete inválido: ${pauseResult.error || 'erro desconhecido'}`,
+              context: { mlItemId: String(item.id), produtoId },
+            });
+          }
         }
 
         const nextMlStatus = String(item?.status || '').toLowerCase() === 'active' ? 'ativo' : 'pausado';
