@@ -16,11 +16,34 @@ export interface CatalogEnrichment {
   buyBoxWinning: boolean;
 }
 
+const VORTEK_SKU_REGEX = /VTK\d{6}/i;
+
 function safeText(term: string): string {
   return term
     .replace(/[,%()]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+export function extractCatalogCandidateSku(input: unknown): string | null {
+  const raw = String(input || '').trim().toUpperCase();
+  if (!raw) return null;
+  const directMatch = raw.match(VORTEK_SKU_REGEX);
+  if (directMatch && directMatch[0]) return directMatch[0];
+  return raw || null;
+}
+
+export function resolveCatalogDisplaySku(input: { skuLocal?: string | null; sellerSku?: string | null }): string | null {
+  const local = String(input?.skuLocal || '').trim().toUpperCase();
+  if (local) return local;
+  return extractCatalogCandidateSku(input?.sellerSku);
+}
+
+export function extractCatalogGtin(item: any): string | null {
+  const attrs = Array.isArray(item?.attributes) ? item.attributes : [];
+  const attr = attrs.find((row: any) => String(row?.id || '').toUpperCase() === 'GTIN');
+  const value = String(attr?.value_name || attr?.value_id || '').trim();
+  return value || null;
 }
 
 export function parseNoCatalogFilters(searchParams: URLSearchParams): NoCatalogFilters {

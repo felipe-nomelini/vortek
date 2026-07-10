@@ -6,7 +6,7 @@ type ServiceClientLike = {
 
 type ExistingAnuncioRow = Pick<
   Database['public']['Tables']['anuncios_ml']['Row'],
-  'id' | 'ml_item_id' | 'preco_ml' | 'status' | 'titulo' | 'permalink' | 'thumbnail' | 'vendidos' | 'visitas'
+  'id' | 'produto_id' | 'ml_item_id' | 'preco_ml' | 'status' | 'titulo' | 'permalink' | 'thumbnail' | 'vendidos' | 'visitas'
 >;
 
 type MlListingLike = {
@@ -67,6 +67,22 @@ function isDifferentNullableString(a: string | null, b: string | null): boolean 
   return (a || null) !== (b || null);
 }
 
+async function syncProdutoMlStatus(
+  client: ServiceClientLike,
+  produtoId: string | null | undefined,
+  nextStatus: Database['public']['Enums']['ml_status'],
+): Promise<string | null> {
+  const resolvedProdutoId = String(produtoId || '').trim();
+  if (!resolvedProdutoId) return null;
+
+  const { error } = await (client
+    .from('produtos')
+    .update({ ml_status: nextStatus } as any)
+    .eq('id', resolvedProdutoId) as any);
+
+  return error ? error.message : null;
+}
+
 export async function reconcileAnuncioMlFromItem(
   client: ServiceClientLike,
   item: MlListingLike,
@@ -86,7 +102,7 @@ export async function reconcileAnuncioMlFromItem(
   if (!current) {
     const { data, error } = await (client
       .from('anuncios_ml')
-      .select('id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas')
+      .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas')
       .eq('ml_item_id', mlItemId)
       .maybeSingle() as any);
 
@@ -119,6 +135,11 @@ export async function reconcileAnuncioMlFromItem(
   if (nextVisits !== null && Number(current.visitas || 0) !== nextVisits) patch.visitas = nextVisits;
 
   if (Object.keys(patch).length === 0) {
+    const produtoSyncError = await syncProdutoMlStatus(client, current.produto_id, nextStatus);
+    if (produtoSyncError) {
+      return { ok: false, mlItemId, error: produtoSyncError };
+    }
+
     return {
       ok: true,
       found: true,
@@ -138,6 +159,11 @@ export async function reconcileAnuncioMlFromItem(
 
   if (updateError) {
     return { ok: false, mlItemId, error: updateError.message };
+  }
+
+  const produtoSyncError = await syncProdutoMlStatus(client, current.produto_id, nextStatus);
+  if (produtoSyncError) {
+    return { ok: false, mlItemId, error: produtoSyncError };
   }
 
   console.log(JSON.stringify({

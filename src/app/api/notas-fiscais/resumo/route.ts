@@ -5,7 +5,7 @@ import {
   normalizeNfeTechnicalStatus,
   type NfeTechnicalStatus,
 } from "@/lib/fiscal/nfe-status";
-import { reconcileLocalNfeSnapshotFromXml } from "@/lib/fiscal/nfe-local-reconciliation";
+import { reconcileRowsBestEffort } from "@/lib/fiscal/nfe-live-sync";
 
 type NFStatus = NfeTechnicalStatus;
 
@@ -24,41 +24,6 @@ function normalizeSearch(value: string): string {
 
 function mapStatus(row: { nfe_status: string | null }): NFStatus {
   return normalizeNfeTechnicalStatus(row.nfe_status);
-}
-
-async function reconcileRowsBestEffort(
-  supabase: any,
-  rows: any[],
-): Promise<any[]> {
-  return Promise.all(
-    (rows || []).map(async (row) => {
-      const reconciliation = reconcileLocalNfeSnapshotFromXml({
-        nfe_status: row?.nfe_status || null,
-        nfe_xml: row?.nfe_xml || null,
-        nfe_chave: row?.nfe_chave || null,
-        nota_fiscal_numero: row?.nota_fiscal_numero || null,
-        nfe_protocolo: row?.nfe_protocolo || null,
-        nfe_cfop: row?.nfe_cfop || null,
-      });
-
-      if (!reconciliation.shouldUpdate || !row?.id) {
-        return row;
-      }
-
-      await supabase
-        .from("pedidos")
-        .update({
-          ...reconciliation.updates,
-          nfe_last_sync_at: new Date().toISOString(),
-        } as any)
-        .eq("id", row.id);
-
-      return {
-        ...row,
-        ...reconciliation.updates,
-      };
-    }),
-  );
 }
 
 export async function GET(request: Request) {

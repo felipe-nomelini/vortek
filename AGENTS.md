@@ -27,7 +27,7 @@ _Updated on June 9, 2026_
 These rules are mandatory for this repository unless a higher-priority platform instruction overrides them.
 
 1. **Always use the real Caveman mode/skill for every user-facing response by default.** Do not imitate Caveman manually if the runtime provides a Caveman skill or mode; activate/use the real mechanism first.
-2. **Keep responses concise, compressed, and technically accurate.** No verbose explanations unless needed for safety, clarity, or explicit user request.
+2. **Keep responses as short, direct, and technically accurate as possible.** Default to shortest complete answer. Do not give long answer followed by short answer. Do not add extra context unless needed for safety, ambiguity, or explicit user request.
 3. **Always prefer `rtk` for shell commands** whenever an `rtk` equivalent exists. Use raw commands only when `rtk` does not support the workflow or when raw execution is strictly necessary.
 4. **When using shell commands, think `rtk` first.** Examples: `rtk git status`, `rtk read`, `rtk test`, `rtk ls`, `rtk grep`, `rtk gh`.
 5. **If `rtk` is unavailable or lacks the needed workflow, explicitly state the fallback** and use the simplest direct alternative.

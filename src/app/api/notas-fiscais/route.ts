@@ -5,7 +5,7 @@ import {
   normalizeNfeTechnicalStatus,
   type NfeTechnicalStatus,
 } from "@/lib/fiscal/nfe-status";
-import { reconcileLocalNfeSnapshotFromXml } from "@/lib/fiscal/nfe-local-reconciliation";
+import { reconcileRowsBestEffort } from "@/lib/fiscal/nfe-live-sync";
 
 type NFStatus = NfeTechnicalStatus;
 type SortOrder = "asc" | "desc";
@@ -123,40 +123,6 @@ function applyCommonFilters(
   return next;
 }
 
-async function reconcileRowsBestEffort(
-  supabase: any,
-  rows: any[],
-): Promise<any[]> {
-  return Promise.all(
-    (rows || []).map(async (row) => {
-      const reconciliation = reconcileLocalNfeSnapshotFromXml({
-        nfe_status: row?.nfe_status || null,
-        nfe_xml: row?.nfe_xml || null,
-        nfe_chave: row?.nfe_chave || null,
-        nota_fiscal_numero: row?.nota_fiscal_numero || null,
-        nfe_protocolo: row?.nfe_protocolo || null,
-        nfe_cfop: row?.nfe_cfop || null,
-      });
-      if (!reconciliation.shouldUpdate || !row?.id) {
-        return row;
-      }
-
-      await supabase
-        .from("pedidos")
-        .update({
-          ...reconciliation.updates,
-          nfe_last_sync_at: new Date().toISOString(),
-        } as any)
-        .eq("id", row.id);
-
-      return {
-        ...row,
-        ...reconciliation.updates,
-      };
-    }),
-  );
-}
-
 export async function GET(request: Request) {
   const supabase = await createClient();
   const {
@@ -196,7 +162,7 @@ export async function GET(request: Request) {
     const to = from + pageSize - 1;
 
     async function runQueries(useSaleDate: boolean) {
-      const baseSelect = `id, numero, ml_order_id, ml_pack_id, contato_nome, contato_documento, data, ${useSaleDate ? "data_venda," : ""} nota_fiscal_numero, nota_fiscal_emitida, nfe_status, nfe_chave, nfe_protocolo, nfe_danfe_url, nfe_cfop, nfe_xml, total`;
+      const baseSelect = `id, numero, ml_order_id, ml_pack_id, contato_nome, contato_documento, data, ${useSaleDate ? "data_venda," : ""} nota_fiscal_numero, nota_fiscal_emitida, nfe_status, nfe_chave, nfe_protocolo, nfe_danfe_url, nfe_cfop, nfe_xml, nfe_last_sync_at, total`;
       const sortColumn =
         sortBy === "data_venda"
           ? useSaleDate
@@ -277,6 +243,7 @@ export async function GET(request: Request) {
       const reconciledRows = await reconcileRowsBestEffort(
         serviceClient,
         rawRows || [],
+        { liveSyncWithBrasilNfe: true },
       );
       const filtered = reconciledRows.filter(
         (row: any) => normalizeNfeTechnicalStatus(row.nfe_status) === "outro",
@@ -319,7 +286,9 @@ export async function GET(request: Request) {
         );
       }
       count = totalCount || 0;
-      data = await reconcileRowsBestEffort(serviceClient, rowsData || []);
+      data = await reconcileRowsBestEffort(serviceClient, rowsData || [], {
+        liveSyncWithBrasilNfe: true,
+      });
     }
 
     const rows = (data || []).map((row) => ({

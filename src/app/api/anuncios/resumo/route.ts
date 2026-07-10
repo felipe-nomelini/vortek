@@ -29,31 +29,41 @@ export async function GET(request: Request) {
     return query;
   }
 
-  let query = serviceClient.from('anuncios_ml').select('status, qualidade');
-  query = applyFilters(query);
-
-  const { data, error } = await query;
-  if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
-
-  const rows = data || [];
+  const chunkSize = 1000;
+  let offset = 0;
+  let total = 0;
   let ativos = 0;
   let pausados = 0;
   let qualidadeBaixa = 0;
   let qualidadeAlta = 0;
   let qualidade100 = 0;
 
-  for (const row of rows) {
-    const statusValue = String(row.status || '').toLowerCase();
-    const qualidade = Number(row.qualidade || 0);
-    if (statusValue === 'ativo') ativos++;
-    if (statusValue === 'pausado') pausados++;
-    if (qualidade < 80) qualidadeBaixa++;
-    if (qualidade >= 80) qualidadeAlta++;
-    if (qualidade === 100) qualidade100++;
+  while (true) {
+    let query = serviceClient.from('anuncios_ml').select('status, qualidade');
+    query = applyFilters(query);
+
+    const { data, error } = await query.range(offset, offset + chunkSize - 1);
+    if (error) return NextResponse.json({ erro: error.message }, { status: 500 });
+
+    const rows = data || [];
+    total += rows.length;
+
+    for (const row of rows) {
+      const statusValue = String(row.status || '').toLowerCase();
+      const qualidade = Number(row.qualidade || 0);
+      if (statusValue === 'ativo') ativos++;
+      if (statusValue === 'pausado') pausados++;
+      if (qualidade < 80) qualidadeBaixa++;
+      if (qualidade >= 80) qualidadeAlta++;
+      if (qualidade === 100) qualidade100++;
+    }
+
+    if (rows.length < chunkSize) break;
+    offset += chunkSize;
   }
 
   return NextResponse.json({
-    total: rows.length,
+    total,
     ativos,
     pausados,
     qualidade_baixa: qualidadeBaixa,

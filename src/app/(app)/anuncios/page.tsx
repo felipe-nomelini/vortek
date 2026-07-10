@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useCallback, useEffect } from 'react';
+import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, Spin, Statistic, message } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import QualidadeModal from '@/components/QualidadeModal';
@@ -67,6 +67,7 @@ export default function AnunciosPage() {
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [updatingActionItemId, setUpdatingActionItemId] = useState<string | null>(null);
+  const statusPollingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [modalQualidade, setModalQualidade] = useState<{ open: boolean; score: number; itens: any[]; dica: string; titulo: string }>({ open: false, score: 0, itens: [], dica: '', titulo: '' });
   const [summary, setSummary] = useState({
     total: 0,
@@ -128,6 +129,67 @@ export default function AnunciosPage() {
     setPage(1);
   }, [search, statusFilter, mlMin, mlMax]);
 
+  const clearStatusPolling = useCallback(() => {
+    if (statusPollingRef.current) {
+      clearTimeout(statusPollingRef.current);
+      statusPollingRef.current = null;
+    }
+  }, []);
+
+  useEffect(() => () => clearStatusPolling(), [clearStatusPolling]);
+
+  const applyLocalStatusChange = useCallback((record: Anuncio, nextStatus: ListingStatus) => {
+    setData((prev) => prev.flatMap((item) => {
+      if (item.id !== record.id) return [item];
+      if (statusFilter && statusFilter !== nextStatus) return [];
+      return [{ ...item, status: nextStatus }];
+    }));
+
+    setSummary((prev) => ({
+      ...prev,
+      ativos: Math.max(0, prev.ativos + (record.status === 'ativo' ? -1 : 1)),
+      pausados: Math.max(0, prev.pausados + (record.status === 'pausado' ? -1 : 1)),
+    }));
+
+    if (statusFilter && statusFilter !== nextStatus) {
+      setTotal((prev) => Math.max(0, prev - 1));
+    }
+  }, [statusFilter]);
+
+  const pollStatusPublish = useCallback(async (outboxId: string) => {
+    const response = await fetch(`/api/ml/anuncio/atualizar-preco/status?outboxId=${encodeURIComponent(outboxId)}`);
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(payload?.error || 'Falha ao consultar status da publicação.');
+    }
+    return payload as { status?: 'pending' | 'processing' | 'retry' | 'failed' | 'done'; last_error?: string | null };
+  }, []);
+
+  const scheduleStatusPolling = useCallback((outboxId: string) => {
+    clearStatusPolling();
+    statusPollingRef.current = setTimeout(async () => {
+      try {
+        const payload = await pollStatusPublish(outboxId);
+        if (payload.status === 'done') {
+          clearStatusPolling();
+          await fetchData();
+          return;
+        }
+        if (payload.status === 'failed') {
+          clearStatusPolling();
+          message.error(payload.last_error || 'Falha ao publicar alteração de status no Mercado Livre.');
+          await fetchData();
+          return;
+        }
+        scheduleStatusPolling(outboxId);
+      } catch (error: any) {
+        clearStatusPolling();
+        message.error(error?.message || 'Falha ao acompanhar alteração de status do anúncio.');
+        await fetchData();
+      }
+    }, 1500);
+  }, [clearStatusPolling, fetchData, pollStatusPublish]);
+
   const handleViewOnMl = useCallback((record: Anuncio) => {
     if (!record.permalink) {
       message.warning('Link do anúncio no Mercado Livre indisponível para este registro.');
@@ -167,13 +229,19 @@ export default function AnunciosPage() {
         message.warning(payload.warning);
       }
 
-      await fetchData();
+      const outboxId = String(payload?.outboxId || '').trim();
+      if (payload?.queued_publish && outboxId) {
+        applyLocalStatusChange(record, nextStatus);
+        scheduleStatusPolling(outboxId);
+      } else {
+        await fetchData();
+      }
     } catch (error: any) {
       message.error(error?.message || 'Falha ao alterar status do anúncio no Mercado Livre.');
     } finally {
       setUpdatingActionItemId(null);
     }
-  }, [fetchData]);
+  }, [applyLocalStatusChange, fetchData, scheduleStatusPolling]);
 
   const columns: TableProps<Anuncio>['columns'] = [
     {

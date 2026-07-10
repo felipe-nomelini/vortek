@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, message, Modal, Statistic } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TablePaginationConfig, TableProps } from 'antd';
@@ -68,6 +68,7 @@ function formatNumeroWithSerie(numero: string, nfeChave: string | null | undefin
 
 export default function NotasFiscaisPage() {
   const PAGE_SIZE = 100;
+  const POLLING_INTERVAL_MS = 5000;
   const [rows, setRows] = useState<NotaFiscalRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);
@@ -85,6 +86,8 @@ export default function NotasFiscaisPage() {
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [messageApi, contextHolder] = message.useMessage();
+  const pollingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pollingInFlightRef = useRef(false);
   const [sendingRowId, setSendingRowId] = useState<string | null>(null);
   const [actionRowId, setActionRowId] = useState<string | null>(null);
   const [emailModalOpen, setEmailModalOpen] = useState(false);
@@ -172,8 +175,9 @@ export default function NotasFiscaisPage() {
     }
   }, [emailTarget, emailTo, emailSubject, emailBody, messageApi]);
 
-  const fetchNotas = useCallback(async () => {
-    setLoading(true);
+  const fetchNotas = useCallback(async (options?: { background?: boolean }) => {
+    const background = options?.background === true;
+    if (!background) setLoading(true);
     try {
       const params = new URLSearchParams({
         page: String(page),
@@ -190,10 +194,7 @@ export default function NotasFiscaisPage() {
       if (valorMax !== null) params.set('valorMax', String(valorMax));
 
       const serialized = params.toString();
-      const [listRes, summaryRes] = await Promise.all([
-        fetch(`/api/notas-fiscais?${serialized}`),
-        fetch(`/api/notas-fiscais/resumo?${serialized}`),
-      ]);
+      const listRes = await fetch(`/api/notas-fiscais?${serialized}`, { cache: 'no-store' });
 
       if (listRes.ok) {
         const json = await listRes.json();
@@ -201,6 +202,7 @@ export default function NotasFiscaisPage() {
         setTotal(json.total || 0);
       }
 
+      const summaryRes = await fetch(`/api/notas-fiscais/resumo?${serialized}`, { cache: 'no-store' });
       if (summaryRes.ok) {
         const json = await summaryRes.json();
         setSummary({
@@ -212,7 +214,7 @@ export default function NotasFiscaisPage() {
         });
       }
     } finally {
-      setLoading(false);
+      if (!background) setLoading(false);
     }
   }, [page, sortBy, sortOrder, lastSearch, statusFilter, dateRange, valorMin, valorMax]);
 
@@ -241,10 +243,23 @@ export default function NotasFiscaisPage() {
         messageApi.error(json?.error || 'Falha ao cancelar nota fiscal');
         return;
       }
+      setRows((prev) => prev.map((row) => (
+        row.id === cancelTarget.id
+          ? {
+              ...row,
+              status: 'cancelada',
+              nfe_status: 'cancelada',
+            }
+          : row
+      )));
+      setSummary((prev) => ({
+        ...prev,
+        emitidas: Math.max(0, prev.emitidas - 1),
+      }));
       messageApi.success(json?.alreadyCanceled ? 'Nota já estava cancelada.' : 'Nota fiscal cancelada com sucesso.');
       setCancelModalOpen(false);
       setCancelTarget(null);
-      await fetchNotas();
+      await fetchNotas({ background: true });
     } finally {
       setActionRowId(null);
     }
@@ -298,9 +313,39 @@ export default function NotasFiscaisPage() {
     return () => clearTimeout(timer);
   }, [search, lastSearch]);
 
+  const clearPolling = useCallback(() => {
+    if (pollingRef.current) {
+      clearTimeout(pollingRef.current);
+      pollingRef.current = null;
+    }
+  }, []);
+
+  const scheduleNextPoll = useCallback(() => {
+    clearPolling();
+    pollingRef.current = setTimeout(async () => {
+      if (typeof document !== 'undefined' && document.visibilityState !== 'visible') {
+        scheduleNextPoll();
+        return;
+      }
+      if (pollingInFlightRef.current) {
+        scheduleNextPoll();
+        return;
+      }
+      pollingInFlightRef.current = true;
+      try {
+        await fetchNotas({ background: true });
+      } finally {
+        pollingInFlightRef.current = false;
+        scheduleNextPoll();
+      }
+    }, POLLING_INTERVAL_MS);
+  }, [clearPolling, fetchNotas]);
+
   useEffect(() => {
     fetchNotas();
-  }, [fetchNotas]);
+    scheduleNextPoll();
+    return () => clearPolling();
+  }, [clearPolling, fetchNotas, scheduleNextPoll]);
 
   const columns: TableProps<NotaFiscalRow>['columns'] = [
     {

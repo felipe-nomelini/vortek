@@ -22,7 +22,20 @@ export async function GET(
       );
     }
 
-    return NextResponse.json({ data });
+    let resolvedData: any = data;
+    const mlItemId = String(data?.ml_item_id || '').trim();
+    if (mlItemId) {
+      const { data: anuncio, error: anuncioError } = await supabase
+        .from('anuncios_ml')
+        .select('status')
+        .eq('ml_item_id', mlItemId)
+        .maybeSingle();
+      if (!anuncioError && anuncio?.status) {
+        resolvedData = { ...data, ml_status: anuncio.status };
+      }
+    }
+
+    return NextResponse.json({ data: resolvedData });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }
@@ -117,6 +130,8 @@ export async function PATCH(
       && String(data?.ml_item_id || '').trim();
     const shouldEnqueueMlPublish = ['custom_price', 'estoque', 'ml_status'].some((field) => field in body) || shouldPauseByProductInactive;
     let outboxWarning: string | null = null;
+    let outboxId: string | null = null;
+    let queuedPublish = false;
 
     if (shouldEnqueueMlPublish && String(data?.ml_item_id || '').trim()) {
       const outbox = await enqueueMlPublishOutbox(supabase, {
@@ -144,11 +159,16 @@ export async function PATCH(
 
       if (!outbox.ok) {
         outboxWarning = outbox.error;
+      } else {
+        queuedPublish = true;
+        outboxId = outbox.outboxId;
       }
     }
 
     return NextResponse.json({
       data,
+      queued_publish: queuedPublish,
+      outboxId,
       ...(outboxWarning ? { warning: `Produto atualizado, mas falhou ao enfileirar publicação ML: ${outboxWarning}` } : {}),
     });
   } catch (err: any) {

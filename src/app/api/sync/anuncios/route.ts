@@ -721,7 +721,7 @@ export async function POST(request: Request) {
 
       const { data: existingAnuncios, error: existingAnunciosError } = await (serviceClient
         .from('anuncios_ml')
-        .select('id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas')
+        .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas')
         .in('ml_item_id', snapshots.map((snapshot) => String(snapshot.ml_item_id))) as any);
 
       if (existingAnunciosError) {

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
-import { buildCatalogEnrichment } from '@/lib/catalogo/no-catalogo';
+import { buildCatalogEnrichment, extractCatalogCandidateSku, extractCatalogGtin } from '@/lib/catalogo/no-catalogo';
 
 const PAGE_SIZE = 100;
 const MAX_INCREMENTAL_PAGES = 10;
@@ -153,6 +153,48 @@ export async function POST(request: Request) {
     }
   }
 
+  const fallbackSkuCandidates = new Set<string>();
+  const fallbackGtins = new Set<string>();
+  for (const itemId of allItemIds) {
+    const item = detailsByItemId.get(itemId);
+    if (!item) continue;
+    const local = anuncioMap.get(itemId);
+    if (String(local?.sku || '').trim()) continue;
+    const candidateSku = extractCatalogCandidateSku(getSellerSkuFromItem(item));
+    if (candidateSku) fallbackSkuCandidates.add(candidateSku);
+    const gtin = extractCatalogGtin(item);
+    if (gtin) fallbackGtins.add(gtin);
+  }
+
+  const produtoBySku = new Map<string, { id: string; sku: string }>();
+  for (const skuChunk of chunk(Array.from(fallbackSkuCandidates), 500)) {
+    const { data: produtoRows } = await service
+      .from('produtos')
+      .select('id, sku')
+      .in('sku', skuChunk);
+    for (const row of produtoRows || []) {
+      const sku = String(row.sku || '').trim().toUpperCase();
+      if (!sku) continue;
+      produtoBySku.set(sku, { id: String(row.id), sku });
+    }
+  }
+
+  const produtoByGtin = new Map<string, { id: string; sku: string }>();
+  for (const gtinChunk of chunk(Array.from(fallbackGtins), 500)) {
+    const { data: produtoRows } = await service
+      .from('produtos')
+      .select('id, sku, gtin')
+      .in('gtin', gtinChunk);
+    for (const row of produtoRows || []) {
+      const gtin = String((row as any).gtin || '').trim();
+      const sku = String(row.sku || '').trim().toUpperCase();
+      if (!gtin || !sku) continue;
+      if (!produtoByGtin.has(gtin)) {
+        produtoByGtin.set(gtin, { id: String(row.id), sku });
+      }
+    }
+  }
+
   const upsertRows: any[] = [];
   for (const itemId of allItemIds) {
     const item = detailsByItemId.get(itemId);
@@ -169,6 +211,11 @@ export async function POST(request: Request) {
       relatedPermalink: baseRelatedItemId ? (relatedPermalinkById.get(baseRelatedItemId) || null) : null,
     });
     const local = anuncioMap.get(itemId);
+    const fallbackSku = extractCatalogCandidateSku(getSellerSkuFromItem(item));
+    const gtin = extractCatalogGtin(item);
+    const fallbackProduto = fallbackSku
+      ? (produtoBySku.get(String(fallbackSku).toUpperCase()) || null)
+      : (gtin ? (produtoByGtin.get(gtin) || null) : null);
 
     upsertRows.push({
       ml_item_id: String(item.id),
@@ -188,8 +235,8 @@ export async function POST(request: Request) {
       domain_id: item.domain_id || null,
       related_item_id: enrichment.relatedItemId,
       related_permalink: enrichment.relatedPermalink,
-      produto_id: local?.produto_id || null,
-      sku_local: local?.sku || null,
+      produto_id: local?.produto_id || fallbackProduto?.id || null,
+      sku_local: local?.sku || fallbackProduto?.sku || fallbackSku || null,
       last_updated_ml: item.last_updated || null,
       synced_at: new Date().toISOString(),
     });

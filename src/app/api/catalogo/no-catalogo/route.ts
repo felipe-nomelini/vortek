@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
-import { applyNoCatalogFilters, parseNoCatalogFilters } from '@/lib/catalogo/no-catalogo';
+import { applyNoCatalogFilters, parseNoCatalogFilters, resolveCatalogDisplaySku } from '@/lib/catalogo/no-catalogo';
 import type { Database } from '@/types/database';
 
 type SnapshotRow = Database['public']['Tables']['catalogo_ml_snapshot']['Row'];
@@ -57,7 +57,7 @@ export async function GET(request: Request) {
     related_permalink: row.related_permalink,
     title: row.title || '',
     seller_sku: row.seller_sku,
-    sku_local: row.sku_local,
+    sku_local: resolveCatalogDisplaySku({ skuLocal: row.sku_local, sellerSku: row.seller_sku }),
     produto_id: row.produto_id,
     catalog_product_id: row.catalog_product_id,
     status: row.status,
