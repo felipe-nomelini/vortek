@@ -3,46 +3,72 @@ import type { PricingParams, PricingResult } from '@/types/pricing';
 const TAX_RATE = 0.04;
 const DEFAULT_MARGIN = 0.10;
 
+export interface PricingStrategy {
+  margin: number;
+  minProfit: number;
+}
+
+function round2(value: number): number {
+  return Math.round(value * 100) / 100;
+}
+
+export function getPricingStrategy(cost: number): PricingStrategy {
+  if (cost <= 400) {
+    return { margin: 0.15, minProfit: 20 };
+  }
+  if (cost <= 1000) {
+    return { margin: 0.20, minProfit: 60 };
+  }
+  return { margin: 0.25, minProfit: 150 };
+}
+
+export function calculateBreakEvenPrice(params: {
+  cost: number;
+  shipping: number;
+  mlFee: number;
+}): number {
+  const denominator = 1 - (TAX_RATE + params.mlFee);
+  if (denominator <= 0) {
+    throw new Error('A soma de imposto (4%) e taxa ML não pode ser igual ou superior a 100%');
+  }
+  return round2((params.cost + params.shipping) / denominator);
+}
+
 /**
- * Calcula o preço sugerido de venda baseado na fórmula Vortek.
+ * Calcula preço sugerido usando estratégia Vortek atual.
  *
- * Fórmula:
- *   Preço Sugerido = (Custo + Frete) / (1 - (Imposto + Taxa ML + Margem))
+ * Regra padrão:
+ * - até R$ 400 de custo: margem 15% + lucro mínimo R$ 20
+ * - R$ 401 a R$ 1.000: margem 20% + lucro mínimo R$ 60
+ * - R$ 1.001 a R$ 2.000+: margem 25% + lucro mínimo R$ 150
  *
- * Onde:
- *   - Imposto: 4% fixo (0.04)
- *   - Taxa ML: variável conforme categoria/tipo de anúncio no Mercado Livre
- *   - Margem: padrão 10% (0.10), ajustável pelo usuário
- *
- * @param params - Parâmetros de precificação
- * @param params.cost - Custo do produto
- * @param params.shipping - Valor do frete
- * @param params.mlFee - Taxa do Mercado Livre em decimal (ex: 0.15 para 15%)
- * @param params.margin - Margem de lucro desejada em decimal (padrão: 0.10)
- * @returns Resultado da precificação com valores detalhados
- * @throws {Error} Se a soma de impostos + taxas + margem for >= 1
+ * Quando `margin` é informado explicitamente, ele sobrescreve margem da estratégia,
+ * mas o piso de lucro mínimo por faixa continua valendo.
  */
 export function calculateSuggestedPrice(params: PricingParams): PricingResult {
-  const { cost, shipping, mlFee, margin = DEFAULT_MARGIN } = params;
-  const denominator = 1 - (TAX_RATE + mlFee + margin);
+  const { cost, shipping, mlFee } = params;
+  const strategy = getPricingStrategy(cost);
+  const margin = typeof params.margin === 'number' ? params.margin : strategy.margin;
+  const denominator = 1 - (TAX_RATE + mlFee);
 
   if (denominator <= 0) {
     throw new Error(
-      'A soma de imposto (4%), taxa ML e margem não pode ser igual ou superior a 100%'
+      'A soma de imposto (4%) e taxa ML não pode ser igual ou superior a 100%'
     );
   }
 
-  const suggestedPrice = (cost + shipping) / denominator;
+  const priceByMargin = (cost + shipping + (cost * margin)) / denominator;
+  const priceByMinProfit = (cost + shipping + strategy.minProfit) / denominator;
+  const suggestedPrice = Math.max(priceByMargin, priceByMinProfit);
   const tax = suggestedPrice * TAX_RATE;
   const mlFeeAmount = suggestedPrice * mlFee;
-  const marginAmount = suggestedPrice * margin;
   const netProfit = suggestedPrice - cost - shipping - tax - mlFeeAmount;
 
   return {
-    suggestedPrice: Math.round(suggestedPrice * 100) / 100,
-    tax: Math.round(tax * 100) / 100,
-    mlFeeAmount: Math.round(mlFeeAmount * 100) / 100,
-    marginAmount: Math.round(marginAmount * 100) / 100,
-    netProfit: Math.round(netProfit * 100) / 100,
+    suggestedPrice: round2(suggestedPrice),
+    tax: round2(tax),
+    mlFeeAmount: round2(mlFeeAmount),
+    marginAmount: round2(netProfit),
+    netProfit: round2(netProfit),
   };
 }

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import type { Database } from '@/types/database';
 import { POST as refreshNoCatalogSnapshot } from '@/app/api/catalogo/no-catalogo/refresh/route';
+import { calculateBreakEvenPrice, calculateSuggestedPrice, getPricingStrategy } from '@/services/pricing';
 
 type SnapshotRow = Pick<
   Database['public']['Tables']['catalogo_ml_snapshot']['Row'],
@@ -34,7 +35,6 @@ interface AnaliseRow {
   motivo: string;
 }
 
-const TAXA_IMPOSTO = 0.04;
 const TAXA_ML_DEFAULT = 0.15;
 const MARGEM_LUCRO_MINIMA_ANALISE = 0.05;
 const DELTA_PRECO_MINIMO_ANALISE = 0.005;
@@ -226,9 +226,29 @@ export async function POST(request: Request) {
     const taxaMlAplicada = taxaMl !== null ? taxaMl : TAXA_ML_DEFAULT;
     const freteAplicado = frete !== null ? frete : 0;
     const custoAplicado = custo !== null ? custo : 0;
-    const denominador = 1 - (TAXA_IMPOSTO + taxaMlAplicada);
 
-    if (!(denominador > 0) || priceToWin === null || priceToWin <= 0) {
+    let pisoSemPrejuizo: number | null = null;
+    let precoEstrategicoMinimo: number | null = null;
+    let estrategia: ReturnType<typeof getPricingStrategy> | null = null;
+    try {
+      pisoSemPrejuizo = calculateBreakEvenPrice({
+        cost: custoAplicado,
+        shipping: freteAplicado,
+        mlFee: taxaMlAplicada,
+      });
+      estrategia = getPricingStrategy(custoAplicado);
+      precoEstrategicoMinimo = calculateSuggestedPrice({
+        cost: custoAplicado,
+        shipping: freteAplicado,
+        mlFee: taxaMlAplicada,
+      }).suggestedPrice;
+    } catch {
+      pisoSemPrejuizo = null;
+      precoEstrategicoMinimo = null;
+      estrategia = null;
+    }
+
+    if (precoEstrategicoMinimo === null || priceToWin === null || priceToWin <= 0) {
       return {
         ml_item_id: row.ml_item_id,
         permalink: row.permalink || null,
@@ -237,7 +257,7 @@ export async function POST(request: Request) {
         produto_id: row.produto_id,
         preco_atual: precoAtual,
         price_to_win: priceToWin !== null ? round2(priceToWin) : null,
-        preco_piso_sem_prejuizo: denominador > 0 ? round2((custoAplicado + freteAplicado) / denominador) : null,
+        preco_piso_sem_prejuizo: pisoSemPrejuizo,
         preco_recomendado: null,
         delta_preco: null,
         lucro_unitario_estimado: null,
@@ -246,13 +266,14 @@ export async function POST(request: Request) {
       };
     }
 
-    const pisoSemPrejuizo = round2((custoAplicado + freteAplicado) / denominador);
     const priceToWinRounded = round2(priceToWin);
 
-    if (priceToWinRounded >= pisoSemPrejuizo) {
+    if (priceToWinRounded >= precoEstrategicoMinimo) {
       const recomendado = priceToWinRounded;
       const delta = round2(recomendado - precoAtual);
-      const lucro = round2((priceToWinRounded * denominador) - custoAplicado - freteAplicado);
+      const lucroEstimado = round2(
+        recomendado - custoAplicado - freteAplicado - (recomendado * 0.04) - (recomendado * taxaMlAplicada),
+      );
       return {
         ml_item_id: row.ml_item_id,
         permalink: row.permalink || null,
@@ -264,15 +285,17 @@ export async function POST(request: Request) {
         preco_piso_sem_prejuizo: pisoSemPrejuizo,
         preco_recomendado: recomendado,
         delta_preco: delta,
-        lucro_unitario_estimado: lucro,
+        lucro_unitario_estimado: lucroEstimado,
         classe: 'ajustar_para_ganhar_sem_prejuizo',
-        motivo: 'price_to_win_maior_ou_igual_ao_piso',
+        motivo: 'price_to_win_atende_estrategia_minima',
       };
     }
 
-    const recomendado = pisoSemPrejuizo;
+    const recomendado = precoEstrategicoMinimo;
     const delta = round2(recomendado - precoAtual);
-    const lucro = round2((priceToWinRounded * denominador) - custoAplicado - freteAplicado);
+    const lucroEstimado = round2(
+      recomendado - custoAplicado - freteAplicado - (recomendado * 0.04) - (recomendado * taxaMlAplicada),
+    );
     return {
       ml_item_id: row.ml_item_id,
       permalink: row.permalink || null,
@@ -284,15 +307,15 @@ export async function POST(request: Request) {
       preco_piso_sem_prejuizo: pisoSemPrejuizo,
       preco_recomendado: recomendado,
       delta_preco: delta,
-      lucro_unitario_estimado: lucro,
+      lucro_unitario_estimado: lucroEstimado,
       classe: 'nao_viavel_ganhar_sem_prejuizo',
-      motivo: 'price_to_win_abaixo_do_piso',
+      motivo: `price_to_win_abaixo_da_estrategia_minima:margem_${Math.round((estrategia?.margin || 0) * 100)}:lucro_${estrategia?.minProfit || 0}`,
     };
   });
 
   const filtered = report.filter((row) => {
     const lucro = toFiniteNumber(row.lucro_unitario_estimado);
-    const precoBase = toFiniteNumber(row.price_to_win) || toFiniteNumber(row.preco_recomendado);
+    const precoBase = toFiniteNumber(row.preco_recomendado) || toFiniteNumber(row.price_to_win);
     const delta = Math.abs(toFiniteNumber(row.delta_preco) || 0);
     if (lucro === null || precoBase === null || precoBase <= 0) return false;
     return delta >= DELTA_PRECO_MINIMO_ANALISE && lucro > 0 && (lucro / precoBase) >= MARGEM_LUCRO_MINIMA_ANALISE;
