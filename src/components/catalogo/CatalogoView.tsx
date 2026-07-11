@@ -126,11 +126,8 @@ type AnalisePrecoRow = {
   price_to_win: number | null;
   preco_piso_sem_prejuizo: number | null;
   preco_recomendado: number | null;
-  preco_acao_sugerida: number | null;
   delta_preco: number | null;
-  delta_price_to_win: number | null;
   lucro_unitario_estimado: number | null;
-  lucro_no_price_to_win: number | null;
   classe: AnaliseClasse;
   motivo: string;
 };
@@ -198,8 +195,8 @@ function mapStatusMlToPt(status: string | null | undefined): string {
 }
 
 function classLabel(classe: AnaliseClasse): string {
-  if (classe === 'ajustar_para_ganhar_sem_prejuizo') return 'Buy Box viável na estratégia';
-  if (classe === 'nao_viavel_ganhar_sem_prejuizo') return 'Buy Box inviável na estratégia';
+  if (classe === 'ajustar_para_ganhar_sem_prejuizo') return 'Ajustar para ganhar';
+  if (classe === 'nao_viavel_ganhar_sem_prejuizo') return 'Não viável sem prejuízo';
   return 'Dados insuficientes';
 }
 
@@ -1002,9 +999,9 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       messageApi.error('Anúncio sem vínculo com produto local. Vincule o produto para atualizar preço.');
       return;
     }
-    const targetPrice = Number(row.preco_acao_sugerida);
+    const targetPrice = Number(row.price_to_win);
     if (!Number.isFinite(targetPrice) || targetPrice <= 0) {
-      messageApi.error('A reanálise não gerou preço recomendado para este anúncio.');
+      messageApi.error('ML não retornou preço para ganhar Buy Box nesse anúncio.');
       return;
     }
     const itemKey = String(row.ml_item_id || row.produto_id || '');
@@ -1115,10 +1112,9 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
     { title: 'Título', dataIndex: 'titulo', key: 'titulo', width: 280, sorter: (a, b) => compareText(a.titulo, b.titulo), render: (v) => v || '—' },
     { title: 'SKU', dataIndex: 'sku_local', key: 'sku_local', width: 120, sorter: (a, b) => compareText(a.sku_local, b.sku_local), render: (v) => v || '—' },
     { title: 'Preço Atual', dataIndex: 'preco_atual', key: 'preco_atual', width: 120, sorter: (a, b) => compareNumberNullable(a.preco_atual, b.preco_atual), render: (v) => formatCurrency(Number(v || 0)) },
-    { title: 'Preço ML p/ Ganhar', dataIndex: 'price_to_win', key: 'price_to_win', width: 140, sorter: (a, b) => compareNumberNullable(a.price_to_win, b.price_to_win), render: (v) => (v === null ? '—' : formatCurrency(Number(v))) },
-    { title: 'Preço Estratégico', dataIndex: 'preco_recomendado', key: 'preco_recomendado', width: 140, sorter: (a, b) => compareNumberNullable(a.preco_recomendado, b.preco_recomendado), render: (v) => (v === null ? '—' : formatCurrency(Number(v))) },
+    { title: 'Preço p/ Ganhar', dataIndex: 'price_to_win', key: 'price_to_win', width: 130, sorter: (a, b) => compareNumberNullable(a.price_to_win, b.price_to_win), render: (v) => (v === null ? '—' : formatCurrency(Number(v))) },
     {
-      title: 'Δ Estratégico',
+      title: 'Diferença',
       dataIndex: 'delta_preco',
       key: 'delta_preco',
       width: 120,
@@ -1131,20 +1127,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       },
     },
     {
-      title: 'Lucro no ML p/ Ganhar',
-      dataIndex: 'lucro_no_price_to_win',
-      key: 'lucro_no_price_to_win',
-      width: 170,
-      sorter: (a, b) => compareNumberNullable(a.lucro_no_price_to_win, b.lucro_no_price_to_win),
-      render: (v) => {
-        if (v === null) return '—';
-        const n = Number(v);
-        const color = n > 0 ? '#52c41a' : n < 0 ? '#ff4d4f' : '#a0a0a0';
-        return <span style={{ color }}>{formatCurrency(n)}</span>;
-      },
-    },
-    {
-      title: 'Lucro no Estratégico',
+      title: 'Lucro/Prejuízo Estimado',
       dataIndex: 'lucro_unitario_estimado',
       key: 'lucro_unitario_estimado',
       width: 170,
@@ -1172,9 +1155,9 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       render: (_, record) => {
         const itemKey = String(record.ml_item_id || record.produto_id || '');
         const updating = Boolean(updatingPriceByItem[itemKey]);
-        const noSuggestedPrice = !(Number.isFinite(Number(record.preco_acao_sugerida)) && Number(record.preco_acao_sugerida) > 0);
+        const noPriceToWin = !(Number.isFinite(Number(record.price_to_win)) && Number(record.price_to_win) > 0);
         const noProduto = !record.produto_id;
-        const updateDisabled = updating || noSuggestedPrice || noProduto;
+        const updateDisabled = updating || noPriceToWin || noProduto;
         return (
           <Dropdown
             menu={{
@@ -1184,11 +1167,11 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
                   disabled: updateDisabled,
                   label: updating
                     ? 'Atualizando...'
-                    : noSuggestedPrice
-                      ? 'Atualizar preço recomendado (sem preço sugerido)'
+                    : noPriceToWin
+                      ? 'Atualizar preço p/ ganhar (sem preço sugerido)'
                       : noProduto
-                        ? 'Atualizar preço recomendado (sem produto vinculado)'
-                        : 'Atualizar preço recomendado',
+                        ? 'Atualizar preço p/ ganhar (sem produto vinculado)'
+                        : 'Atualizar preço p/ ganhar',
                 },
               ],
               onClick: ({ key }) => {
@@ -1498,10 +1481,10 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
             <Statistic title={<span style={{ color: '#a0a0a0' }}>Total analisado</span>} value={analiseTotal} valueStyle={{ color: '#1677ff', fontWeight: 700, fontSize: 24 }} />
           </Col>
           <Col xs={24} sm={12} md={8} lg={6}>
-            <Statistic title={<span style={{ color: '#a0a0a0' }}>Buy Box viável na estratégia</span>} value={Number(analiseClasses.ajustar_para_ganhar_sem_prejuizo || 0)} valueStyle={{ color: '#52c41a', fontWeight: 700, fontSize: 24 }} />
+            <Statistic title={<span style={{ color: '#a0a0a0' }}>Ajustar para ganhar</span>} value={Number(analiseClasses.ajustar_para_ganhar_sem_prejuizo || 0)} valueStyle={{ color: '#52c41a', fontWeight: 700, fontSize: 24 }} />
           </Col>
           <Col xs={24} sm={12} md={8} lg={6}>
-            <Statistic title={<span style={{ color: '#a0a0a0' }}>Buy Box inviável na estratégia</span>} value={Number(analiseClasses.nao_viavel_ganhar_sem_prejuizo || 0)} valueStyle={{ color: '#faad14', fontWeight: 700, fontSize: 24 }} />
+            <Statistic title={<span style={{ color: '#a0a0a0' }}>Não viável sem prejuízo</span>} value={Number(analiseClasses.nao_viavel_ganhar_sem_prejuizo || 0)} valueStyle={{ color: '#faad14', fontWeight: 700, fontSize: 24 }} />
           </Col>
           <Col xs={24} sm={12} md={8} lg={6}>
             <Statistic title={<span style={{ color: '#a0a0a0' }}>Dados insuficientes</span>} value={Number(analiseClasses.dados_insuficientes || 0)} valueStyle={{ color: '#d9d9d9', fontWeight: 700, fontSize: 24 }} />
