@@ -234,7 +234,6 @@ export type Database = {
           id: string
           margem_lucro: number
           nfe_provider_default: string
-          notificacoes_email: boolean
           notificacoes_push: boolean
           updated_at: string
         }
@@ -243,7 +242,6 @@ export type Database = {
           id?: string
           margem_lucro?: number
           nfe_provider_default?: string
-          notificacoes_email?: boolean
           notificacoes_push?: boolean
           updated_at?: string
         }
@@ -252,7 +250,6 @@ export type Database = {
           id?: string
           margem_lucro?: number
           nfe_provider_default?: string
-          notificacoes_email?: boolean
           notificacoes_push?: boolean
           updated_at?: string
         }

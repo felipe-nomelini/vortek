@@ -8,6 +8,7 @@ import { runMlSingleStageJob } from '@/services/sync-ml-job';
 import { resolveOrderSaleDate } from '@/lib/ml/order-sale-date';
 import { mapearStatusShipment } from '@/lib/ml/shipment-status';
 import { alertMlLabelReleased, alertNewQuestion, alertNewSale } from '@/services/whatsapp-alerts';
+import { pushEvents } from '@/services/push-notifications';
 
 const WEBHOOK_STUB_PENDING_TAGS = ['pedido_sem_itens', 'webhook_hydration_pending', 'snapshot_origem_webhook_stub'];
 
@@ -364,6 +365,12 @@ export async function POST(request: Request) {
             contato_nome: order.buyer?.nickname || 'Desconhecido',
             total: Number(order.total_amount || 0),
           });
+          void pushEvents().newSale({
+            id: pedidoId,
+            ml_order_id: String(order.id || ''),
+            contato_nome: order.buyer?.nickname || 'Desconhecido',
+            total: Number(order.total_amount || 0),
+          }).catch(() => null);
         }
       } else if (mlOrderId) {
         const stubResult = await persistWebhookOrderPendingStub({
@@ -380,6 +387,12 @@ export async function POST(request: Request) {
             contato_nome: existingPedido?.contato_nome || 'Desconhecido',
             total: Number(existingPedido?.total || 0),
           });
+          void pushEvents().newSale({
+            id: pedidoId,
+            ml_order_id: mlOrderId,
+            contato_nome: existingPedido?.contato_nome || 'Desconhecido',
+            total: Number(existingPedido?.total || 0),
+          }).catch(() => null);
         }
         // O ML pode notificar antes de liberar /orders/{id}; evita jobs imediatos que falham e deixa o cron hidratar.
         shouldHydrate = false;
@@ -460,6 +473,11 @@ export async function POST(request: Request) {
             date_created: question.date_created || null,
             status: question.status || null,
           });
+          void pushEvents().newQuestion({
+            id: question.id,
+            item_title: itemTitle,
+            text: question.text || null,
+          }).catch(() => null);
         }
       }
     }
@@ -596,6 +614,12 @@ export async function POST(request: Request) {
             ...(situacao ? { situacao } : {}),
           })
           .eq('ml_order_id', String(claim.resource_id));
+        if (String(claim.status || '').toLowerCase() === 'opened') {
+          void pushEvents().claimOpened({
+            ml_order_id: String(claim.resource_id),
+            ml_claim_id: String(claim.id || ''),
+          }).catch(() => null);
+        }
       }
     }
 

@@ -72,6 +72,13 @@ function saveIntegrations(ml: boolean, dslite: boolean) {
   }
 }
 
+function vapidKeyToUint8Array(value: string) {
+  const padding = '='.repeat((4 - (value.length % 4)) % 4);
+  const base64 = (value + padding).replace(/-/g, '+').replace(/_/g, '/');
+  const raw = window.atob(base64);
+  return Uint8Array.from(raw, (char) => char.charCodeAt(0));
+}
+
 function ConfiguracoesPageContent() {
   const searchParams = useSearchParams();
   const [tab, setTab] = useState("empresa");
@@ -217,7 +224,6 @@ function ConfiguracoesPageContent() {
             typeof conf?.margem_lucro === "number" ? conf.margem_lucro : 30,
           );
           setNotif({
-            email: Boolean(conf?.notificacoes_email ?? true),
             push: Boolean(conf?.notificacoes_push ?? false),
           });
           if (provider === "brasilnfe") {
@@ -560,7 +566,50 @@ function ConfiguracoesPageContent() {
   ];
 
   const [margem, setMargem] = useState(30);
-  const [notif, setNotif] = useState({ email: true, push: false });
+  const [notif, setNotif] = useState({ push: false });
+
+  const togglePush = async (enabled: boolean) => {
+    if (!enabled) {
+      const registration = await navigator.serviceWorker.getRegistration();
+      const subscription = await registration?.pushManager.getSubscription();
+      if (subscription) {
+        await fetch('/api/push/subscription', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ endpoint: subscription.endpoint }),
+        });
+        await subscription.unsubscribe();
+      }
+      setNotif({ push: false });
+      return;
+    }
+    if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) {
+      messageApi.error('Push não é suportado neste navegador.');
+      return;
+    }
+    const publicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
+    if (!publicKey) {
+      messageApi.error('Chave pública VAPID não configurada.');
+      return;
+    }
+    const permission = await Notification.requestPermission();
+    if (permission !== 'granted') {
+      messageApi.warning('Permissão de notificações não concedida.');
+      return;
+    }
+    const registration = await navigator.serviceWorker.register('/sw.js');
+    const subscription = await registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: vapidKeyToUint8Array(publicKey),
+    });
+    const response = await fetch('/api/push/subscription', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(subscription),
+    });
+    if (!response.ok) throw new Error('Falha ao salvar inscrição push.');
+    setNotif({ push: true });
+  };
 
   const salvarPreferencias = useCallback(async () => {
     setSavingPreferencias(true);
@@ -570,7 +619,6 @@ function ConfiguracoesPageContent() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           margem_lucro: margem,
-          notificacoes_email: notif.email,
           notificacoes_push: notif.push,
           nfe_provider_default: defaultNfeProvider,
         }),
@@ -586,7 +634,7 @@ function ConfiguracoesPageContent() {
     } finally {
       setSavingPreferencias(false);
     }
-  }, [defaultNfeProvider, margem, messageApi, notif.email, notif.push]);
+  }, [defaultNfeProvider, margem, messageApi, notif.push]);
 
   const integrations = [
     {
@@ -1192,27 +1240,13 @@ function ConfiguracoesPageContent() {
                           marginBottom: 6,
                         }}
                       >
-                        Notificações por E-mail
-                      </div>
-                      <Switch
-                        checked={notif.email}
-                        onChange={(v) => setNotif((p) => ({ ...p, email: v }))}
-                      />
-                    </Col>
-                    <Col xs={24} md={8}>
-                      <div
-                        style={{
-                          color: "#a0a0a0",
-                          fontSize: 13,
-                          marginBottom: 6,
-                        }}
-                      >
                         Notificações Push
                       </div>
                       <Switch
                         checked={notif.push}
-                        onChange={(v) => setNotif((p) => ({ ...p, push: v }))}
+                        onChange={(v) => void togglePush(v).catch((error) => messageApi.error(error?.message || 'Falha ao configurar push.'))}
                       />
+                      {notif.push && <Button size="small" style={{ marginLeft: 12 }} onClick={() => fetch('/api/push/test', { method: 'POST' }).then((res) => res.ok ? messageApi.success('Push de teste enviado.') : messageApi.error('Falha no push de teste.'))}>Testar</Button>}
                     </Col>
                     <Col span={24}>
                       <Button

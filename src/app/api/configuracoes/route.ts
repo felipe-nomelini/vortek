@@ -31,7 +31,6 @@ export async function PUT(request: Request) {
   const payload = {
     id: CONFIG_ROW_ID,
     margem_lucro: Number(body?.margem_lucro ?? 30),
-    notificacoes_email: Boolean(body?.notificacoes_email),
     notificacoes_push: Boolean(body?.notificacoes_push),
     nfe_provider_default:
       String(body?.nfe_provider_default || "brasilnfe")

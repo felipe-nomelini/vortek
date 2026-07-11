@@ -10,6 +10,7 @@ import {
   scanAndAlertReleasedLabels,
   sendSalesReport,
 } from '@/services/whatsapp-alerts';
+import { dispatchPushNotifications } from '@/services/push-notifications';
 
 export const maxDuration = 300;
 
@@ -197,6 +198,7 @@ export async function POST(request: Request) {
     alertIntegrationStatus().then((result) => alertResults.push({ alert: 'integration_status', ...result })),
     alertCriticalJobs().then((result) => alertResults.push({ alert: 'critical_jobs', ...result })),
     scanAndAlertReleasedLabels().then((result) => alertResults.push({ alert: 'released_labels', ...result })),
+    dispatchPushNotifications().then((result) => alertResults.push({ alert: 'push_dispatch', ...result })),
   ]);
 
   const spDate = getSaoPauloDateParts();

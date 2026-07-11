@@ -6,7 +6,6 @@ const ELIGIBILITY_CHUNK_SIZE = 20;
 const PRODUCT_CONCURRENCY = 6;
 const CATALOG_FALLBACK_CONCURRENCY = 3;
 const MIN_RELIABLE_CATALOG_MATCH_SCORE = 100;
-const ML_SCAN_PAGE_SIZE = 100;
 
 async function runPool<T>(items: T[], limit: number, worker: (item: T) => Promise<void>) {
   for (let i = 0; i < items.length; i += limit) {
@@ -89,14 +88,15 @@ async function fetchAllEligibleItemIds(params: {
   error?: string;
   authFatal?: boolean;
 }> {
-  const uniqueIds = new Set<string>();
   let scrollId: string | null = null;
+  const seenScrollIds = new Set<string>();
+  const uniqueIds = new Set<string>();
   const statusQuery = params.statusMl !== 'all' ? `&status=${encodeURIComponent(params.statusMl)}` : '';
 
   while (true) {
     const requestPath: string = scrollId
       ? `/users/${encodeURIComponent(String(params.sellerId))}/items/search?search_type=scan&scroll_id=${encodeURIComponent(scrollId)}`
-      : `/users/${encodeURIComponent(String(params.sellerId))}/items/search?search_type=scan&limit=${ML_SCAN_PAGE_SIZE}&tags=catalog_listing_eligible${statusQuery}`;
+      : `/users/${encodeURIComponent(String(params.sellerId))}/items/search?search_type=scan&limit=100&tags=catalog_listing_eligible${statusQuery}`;
 
     const searchResult: Awaited<ReturnType<typeof fetchMLResult<{ results?: string[]; scroll_id?: string | null }>>> = await fetchMLResult<{ results?: string[]; scroll_id?: string | null }>(requestPath);
     if (!searchResult.ok || !searchResult.data) {
@@ -118,7 +118,15 @@ async function fetchAllEligibleItemIds(params: {
     if (!nextScrollId || ids.length === 0) {
       return { ok: true, itemIds: Array.from(uniqueIds) };
     }
+    if (seenScrollIds.has(nextScrollId)) {
+      return {
+        ok: false,
+        itemIds: [],
+        error: 'Paginação de elegíveis do Mercado Livre retornou cursor repetido',
+      };
+    }
 
+    seenScrollIds.add(nextScrollId);
     scrollId = nextScrollId;
   }
 }
@@ -256,17 +264,17 @@ async function fetchItemsMap(itemIds: string[]): Promise<Map<string, any>> {
   const uniqueIds = Array.from(new Set(itemIds.map((id) => String(id || '').trim()).filter(Boolean)));
   const rowsById = new Map<string, any>();
 
-  for (const itemIdChunk of chunk(uniqueIds, ELIGIBILITY_CHUNK_SIZE)) {
+  await runPool(chunk(uniqueIds, ELIGIBILITY_CHUNK_SIZE), PRODUCT_CONCURRENCY, async (itemIdChunk) => {
     const result = await fetchMLResult<Array<{ code: number; body?: any }>>(
       `/items?ids=${itemIdChunk.map(encodeURIComponent).join(',')}&attributes=id,title,seller_custom_field,attributes,status,price,permalink,thumbnail,category_id,domain_id,catalog_product_id,last_updated`,
     );
-    if (!result.ok || !Array.isArray(result.data)) continue;
+    if (!result.ok || !Array.isArray(result.data)) return;
 
     for (const row of result.data) {
       if (row?.code !== 200 || !row.body?.id) continue;
       rowsById.set(String(row.body.id), row.body);
     }
-  }
+  });
 
   return rowsById;
 }
@@ -355,7 +363,7 @@ export async function GET(request: Request) {
 
   const eligibilityMap = new Map<string, any>();
   if (itemIds.length > 0) {
-    for (const itemIdChunk of chunk(itemIds, ELIGIBILITY_CHUNK_SIZE)) {
+    await runPool(chunk(itemIds, ELIGIBILITY_CHUNK_SIZE), PRODUCT_CONCURRENCY, async (itemIdChunk) => {
       const multiResult = await fetchMLResult<any>(`/multiget/catalog_listing_eligibility?ids=${itemIdChunk.join(',')}`);
       if (multiResult.ok && Array.isArray(multiResult.data)) {
         for (const row of multiResult.data) {
@@ -364,7 +372,7 @@ export async function GET(request: Request) {
           eligibilityMap.set(itemId, row?.body || row);
         }
       }
-    }
+    });
   }
 
   const rowsById = await fetchItemsMap(itemIds);
@@ -372,7 +380,7 @@ export async function GET(request: Request) {
   const localSkuMap = new Map<string, string>();
   if (itemIds.length > 0) {
     const service = createServiceClient();
-    for (const itemIdChunk of chunk(itemIds, ELIGIBILITY_CHUNK_SIZE)) {
+    await runPool(chunk(itemIds, ELIGIBILITY_CHUNK_SIZE), PRODUCT_CONCURRENCY, async (itemIdChunk) => {
       const { data } = await service
         .from('anuncios_ml')
         .select('ml_item_id,sku')
@@ -381,7 +389,7 @@ export async function GET(request: Request) {
         const sku = String(row?.sku || '').trim();
         if (row?.ml_item_id && sku) localSkuMap.set(String(row.ml_item_id), sku);
       }
-    }
+    });
   }
 
   let rows = itemIds

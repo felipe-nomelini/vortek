@@ -194,6 +194,21 @@ function mapStatusMlToPt(status: string | null | undefined): string {
   return status || '—';
 }
 
+function canCreateCatalogOptin(row: ElegivelRow): boolean {
+  const variationReady = Array.isArray(row.variation_eligibility)
+    && row.variation_eligibility.some((variation) => String(variation.status || '').toUpperCase() === 'READY_FOR_OPTIN');
+  const readyForOptin = String(row.eligibility_status || '').toUpperCase() === 'READY_FOR_OPTIN' || variationReady;
+  const catalogProductId = row.catalog_product_id_sugerido || row.catalog_product_id;
+  const reliableSuggestion = Boolean(row.catalog_product_id_sugerido)
+    && row.catalog_product_match_source === 'attributes_search'
+    && Number(row.catalog_product_match_score || 0) >= 100;
+
+  return readyForOptin
+    && Boolean(catalogProductId)
+    && row.catalog_product_status === 'active'
+    && (!row.catalog_product_warning || reliableSuggestion);
+}
+
 function classLabel(classe: AnaliseClasse): string {
   if (classe === 'ajustar_para_ganhar_sem_prejuizo') return 'Ajustar para ganhar';
   if (classe === 'nao_viavel_ganhar_sem_prejuizo') return 'Não viável sem prejuízo';
@@ -732,8 +747,8 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
 
   const handleOptin = useCallback(async (row: ElegivelRow) => {
     const payload = getCatalogOptinPayload(row);
-    if (!payload.catalogProductId) {
-      messageApi.error('Item sem catalog_product_id. Opt-in não pode ser feito automaticamente.');
+    if (!canCreateCatalogOptin(row)) {
+      messageApi.error('Item não está pronto para criar anúncio de catálogo.');
       return;
     }
 
@@ -818,9 +833,9 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
 
       const row = selectedElegivelRows[index];
       const payload = getCatalogOptinPayload(row);
-      if (!payload.catalogProductId) {
+      if (!canCreateCatalogOptin(row)) {
         skippedCount += 1;
-        updateCatalogBatchStep(index, { status: 'warning', error: 'Sem catalog_product_id.' });
+        updateCatalogBatchStep(index, { status: 'warning', error: 'Item não está pronto para criar anúncio de catálogo.' });
         continue;
       }
 
@@ -1327,7 +1342,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
           menu={{
             items: [
               { key: 'view', label: 'Ver no ML' },
-              { key: 'optin', label: 'Criar anúncio de catálogo' },
+              { key: 'optin', label: 'Criar anúncio de catálogo', disabled: !canCreateCatalogOptin(record) },
             ],
             onClick: ({ key }) => {
               if (key === 'view' && record.permalink) window.open(record.permalink, '_blank');
@@ -1597,7 +1612,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
                   selectedRowKeys: selectedElegivelKeys,
                   onChange: (keys) => setSelectedElegivelKeys(keys.map(String)),
                   getCheckboxProps: (record) => ({
-                    disabled: !getCatalogOptinPayload(record).catalogProductId || catalogBatchRunning,
+                    disabled: !canCreateCatalogOptin(record) || catalogBatchRunning,
                   }),
                 }}
                 pagination={{
