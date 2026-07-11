@@ -155,7 +155,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     lockTtlSeconds: 15 * 60,
     kind: 'fiscal',
     schedule: { businessMinutes: 2, offHoursMinutes: 10 },
-    defaultBody: { limit: 3 },
+    defaultBody: { limit: 10 },
     runMode: 'inline',
   },
   {

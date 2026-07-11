@@ -71,17 +71,20 @@ export async function POST(request: Request) {
       );
     }
 
-    query = useSaleDate
-      ? query
-          .order("data_venda", { ascending: false, nullsFirst: false })
-          .order("data", { ascending: false })
-      : query.order("data", { ascending: false });
-
     if (mlOrderIds.length === 0 && pedidoIds.length === 0) {
-      query = query.order("nfe_last_sync_at", {
-        ascending: true,
-        nullsFirst: true,
-      });
+      query = query
+        .order("nfe_last_sync_at", { ascending: true, nullsFirst: true })
+        .order(useSaleDate ? "data_venda" : "data", {
+          ascending: false,
+          nullsFirst: false,
+        })
+        .order("data", { ascending: false });
+    } else {
+      query = useSaleDate
+        ? query
+            .order("data_venda", { ascending: false, nullsFirst: false })
+            .order("data", { ascending: false })
+        : query.order("data", { ascending: false });
     }
 
     return query;
