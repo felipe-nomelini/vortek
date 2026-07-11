@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 
-const DETAIL_CONCURRENCY = 6;
 const ELIGIBILITY_CHUNK_SIZE = 20;
 const PRODUCT_CONCURRENCY = 6;
 const CATALOG_FALLBACK_CONCURRENCY = 3;
@@ -253,6 +252,25 @@ function scoreCatalogCandidate(item: any, candidate: any): number {
   return score;
 }
 
+async function fetchItemsMap(itemIds: string[]): Promise<Map<string, any>> {
+  const uniqueIds = Array.from(new Set(itemIds.map((id) => String(id || '').trim()).filter(Boolean)));
+  const rowsById = new Map<string, any>();
+
+  for (const itemIdChunk of chunk(uniqueIds, ELIGIBILITY_CHUNK_SIZE)) {
+    const result = await fetchMLResult<Array<{ code: number; body?: any }>>(
+      `/items?ids=${itemIdChunk.map(encodeURIComponent).join(',')}&attributes=id,title,seller_custom_field,attributes,status,price,permalink,thumbnail,category_id,domain_id,catalog_product_id,last_updated`,
+    );
+    if (!result.ok || !Array.isArray(result.data)) continue;
+
+    for (const row of result.data) {
+      if (row?.code !== 200 || !row.body?.id) continue;
+      rowsById.set(String(row.body.id), row.body);
+    }
+  }
+
+  return rowsById;
+}
+
 async function fetchCatalogProducts(catalogProductIds: string[]): Promise<Map<string, any>> {
   const uniqueIds = Array.from(new Set(catalogProductIds.map((id) => String(id || '').trim()).filter(Boolean)));
   const products = new Map<string, any>();
@@ -349,12 +367,7 @@ export async function GET(request: Request) {
     }
   }
 
-  const rowsById = new Map<string, any>();
-  await runPool(itemIds, DETAIL_CONCURRENCY, async (itemId) => {
-    const itemResult = await fetchMLResult<any>(`/items/${itemId}`);
-    if (!itemResult.ok || !itemResult.data) return;
-    rowsById.set(itemId, itemResult.data);
-  });
+  const rowsById = await fetchItemsMap(itemIds);
 
   const localSkuMap = new Map<string, string>();
   if (itemIds.length > 0) {
