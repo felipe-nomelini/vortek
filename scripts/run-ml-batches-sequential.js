@@ -12,6 +12,8 @@ const LOGIN_PASSWORD = process.env.BATCH_LOGIN_PASSWORD || '';
 const EXCLUDED_SUPPLIERS = new Set((process.env.BATCH_EXCLUDED_SUPPLIERS || 'SHOPPECAS').split(',').map((v) => String(v || '').trim().toUpperCase()).filter(Boolean));
 const SOURCE_DIR = process.env.ML_BATCH_SOURCE_DIR || path.join(process.cwd(), 'reports', 'ml-anuncio-batches', '2026-07-11T00-56-02-136Z');
 const RUN_DIR = path.join(SOURCE_DIR, 'run-results');
+const HOST_HEADER = process.env.BATCH_HOST_HEADER || '';
+const ONLY_FILES = new Set((process.env.BATCH_ONLY_FILES || '').split(',').map((v) => String(v || '').trim()).filter(Boolean));
 
 if (!LOGIN_EMAIL || !LOGIN_PASSWORD) throw new Error('BATCH_LOGIN_EMAIL/BATCH_LOGIN_PASSWORD required');
 
@@ -24,6 +26,7 @@ const supabase = createClient(
 function listBatchFiles(dir) {
   return fs.readdirSync(dir)
     .filter((name) => /^\d{3}-ml-create-\d{3}\.json$/.test(name))
+    .filter((name) => ONLY_FILES.size === 0 || ONLY_FILES.has(name))
     .sort((a, b) => a.localeCompare(b, 'en'));
 }
 
@@ -108,6 +111,7 @@ async function validateBatch(items) {
         BATCH_API_URL: BASE_URL,
         BATCH_LOGIN_EMAIL: LOGIN_EMAIL,
         BATCH_LOGIN_PASSWORD: LOGIN_PASSWORD,
+        BATCH_HOST_HEADER: HOST_HEADER,
         ML_BATCH_MANIFEST: tempManifestPath,
         ML_BATCH_RESULT_FILE: resultPath,
       },

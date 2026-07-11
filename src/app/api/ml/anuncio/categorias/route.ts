@@ -24,6 +24,67 @@ function uniquePredictions(predictions: any[]) {
   });
 }
 
+function normalizePredictionText(value: unknown) {
+  return String(value || "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function buildPredictionTitles(produto: {
+  nome?: string | null;
+  marca?: string | null;
+}) {
+  const rawName = normalizePredictionText(produto?.nome);
+  const brand = normalizePredictionText(produto?.marca);
+  const titles = new Set<string>();
+
+  const add = (value: string) => {
+    const text = normalizePredictionText(value);
+    if (text) titles.add(text.slice(0, 60));
+  };
+
+  add(brand ? `${rawName} ${brand}` : rawName);
+
+  const compactBattery = rawName
+    .replace(/\b(\d+)\s*cr\s*(\d{3,4})\b/gi, "CR$2")
+    .replace(/\b(\d+)\s*lr\s*(\d{2,4})\b/gi, "LR$2")
+    .replace(/\b(\d+)\s*sr\s*(\d{2,4})\b/gi, "SR$2");
+  add(brand ? `${compactBattery} ${brand}` : compactBattery);
+
+  const cleanedName = rawName
+    .replace(/\b(?:grl|std|s\.t\.d|picker)\b/gi, " ")
+    .replace(/\b[a-z]{1,4}-?[a-z0-9]{3,}\b/gi, " ")
+    .replace(/\br\d{4,}\b/gi, " ")
+    .replace(/\b\d+\s*(?:un|und|unid|unidade|cart|cartela|kit)\b/gi, " ")
+    .replace(/\(([^)]+)\)/g, " $1 ");
+  add(brand ? `${cleanedName} ${brand}` : cleanedName);
+
+  if (/\bpalheta\b/i.test(rawName)) {
+    const palhetaTitle = cleanedName.replace(/\bpalheta\b/i, "Palheta para guitarra");
+    add(brand ? `${palhetaTitle} ${brand}` : palhetaTitle);
+  }
+
+  if (/\b(?:cr|lr|sr)\d{2,4}\b/i.test(compactBattery) && !/\bbateria\b/i.test(compactBattery)) {
+    add(`${compactBattery.replace(/\bpilha\b/i, "Bateria")}${brand ? ` ${brand}` : ""}`);
+  }
+
+  return Array.from(titles);
+}
+
+async function predictCategoryWithFallbacks(
+  produto: { nome?: string | null; marca?: string | null },
+  limit: number,
+) {
+  const predictions: MLCategoryPrediction[] = [];
+  for (const title of buildPredictionTitles(produto)) {
+    const current = await predictCategory(title, limit);
+    if (Array.isArray(current) && current.length > 0) {
+      predictions.push(...current);
+    }
+  }
+  return uniquePredictions(predictions);
+}
+
 export async function POST(req: Request) {
   try {
     const { produtoId } = await req.json();
@@ -55,9 +116,8 @@ export async function POST(req: Request) {
       );
     }
 
-    const titulo = produto.marca
-      ? `${produto.nome} ${produto.marca}`.substring(0, 60)
-      : produto.nome.substring(0, 60);
+    const predictionTitles = buildPredictionTitles(produto);
+    const titulo = predictionTitles[0] || produto.nome.substring(0, 60);
 
     const preferredPetCategory = requiresPetShopCategory(produto)
       ? getPreferredPetCategoryForTitle(titulo)
@@ -87,7 +147,7 @@ export async function POST(req: Request) {
             },
           ]
         : [];
-    const basePredictions = await predictCategory(titulo, 8);
+    const basePredictions = await predictCategoryWithFallbacks(produto, 8);
     const rawPredictions = requiresPetShopCategory(produto)
       ? await filterPetShopPredictions(
           uniquePredictions([

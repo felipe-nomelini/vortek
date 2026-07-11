@@ -12,6 +12,7 @@ const DRY_RUN = process.env.DRY_RUN === '1';
 const RESULT_FILE = process.env.ML_BATCH_RESULT_FILE || '';
 const LOGIN_EMAIL = process.env.BATCH_LOGIN_EMAIL || '';
 const LOGIN_PASSWORD = process.env.BATCH_LOGIN_PASSWORD || '';
+const HOST_HEADER = process.env.BATCH_HOST_HEADER || '';
 let authCookie = process.env.BATCH_COOKIE || '';
 
 if (!MANIFEST_PATH) {
@@ -33,12 +34,18 @@ function hasText(value) {
   return String(value || '').trim().length > 0;
 }
 
+function buildHeaders(base = {}) {
+  const headers = { ...base };
+  if (HOST_HEADER) headers.Host = HOST_HEADER;
+  return headers;
+}
+
 async function ensureAuthCookie() {
   if (authCookie) return authCookie;
   if (!LOGIN_EMAIL || !LOGIN_PASSWORD) return '';
   const response = await fetch(`${BASE_URL}/api/auth/login`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: buildHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify({ email: LOGIN_EMAIL, senha: LOGIN_PASSWORD }),
   });
   const text = await response.text();
@@ -51,10 +58,10 @@ async function ensureAuthCookie() {
 }
 
 async function postJson(apiPath, body) {
-  const headers = {
+  const headers = buildHeaders({
     'Content-Type': 'application/json',
     'x-local-dev-batch': 'true',
-  };
+  });
   if (process.env.API_SECRET_KEY) headers['x-api-key'] = process.env.API_SECRET_KEY;
   const cookie = await ensureAuthCookie();
   if (cookie) headers.Cookie = cookie;
