@@ -190,7 +190,7 @@ function applyRuleBasedAttributeValue(
     return { value_name: "4" };
   }
   if (attrId === "UNITS_PER_PACK") {
-    return { value_name: "1" };
+    return {};
   }
   if (
     attrId === "STRING_GAUGE" ||

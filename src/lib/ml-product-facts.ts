@@ -60,12 +60,21 @@ function findNumber(pattern: RegExp, text: string): number | undefined {
 function extractTotalUnits(text: string): number | undefined {
   return (
     findNumber(/\bc\s*\/\s*(\d{1,3})\b/i, text) ||
+    findNumber(/\bkit\s*(\d{1,3})\b/i, text) ||
     findNumber(
-      /\bcom\s+(\d{1,3})\s+(?:pilhas?|baterias?|unidades?)\b/i,
+      /\bcom\s+(\d{1,3})\s+(?:pilhas?|baterias?|unidades?|conectores?|palhetas?|pecas?|peças?)\b/i,
       text,
     ) ||
-    findNumber(/\b(\d{1,3})\s+(?:pilhas?|baterias?|unidades?)\b/i, text) ||
-    findNumber(/\bbli\s*\/\s*(\d{1,3})\b/i, text)
+    findNumber(
+      /\b(\d{1,3})\s*(?:un|und|unid|unidade|unidades)\b/i,
+      text,
+    ) ||
+    findNumber(
+      /\b(\d{1,3})\s+(?:pilhas?|baterias?|unidades?|conectores?|palhetas?|pecas?|peças?)\b/i,
+      text,
+    ) ||
+    findNumber(/\bbli\s*\/\s*(\d{1,3})\b/i, text) ||
+    findNumber(/\bcart\s*(\d{1,3})\b/i, text)
   );
 }
 
