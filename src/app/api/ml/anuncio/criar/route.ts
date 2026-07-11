@@ -332,6 +332,27 @@ function findOfficialNotApplicableValue(
   return hit ? { id: String(hit.id), name: String(hit.name) } : null;
 }
 
+function pickEmptyGtinReasonValue(attr: any, productName: unknown) {
+  const values = Array.isArray(attr?.values) ? attr.values : [];
+  if (values.length === 0) return null;
+
+  const text = normalizeAttrText(productName);
+  const wantKit = /(\bkit\b|\bkits\b|\bcartela\b|\bcombo\b|\bpack\b|\b10un\b|\b12un\b|\b24un\b)/i.test(text);
+  const preferredPatterns = wantKit
+    ? [/^kit$/i, /^otro$/i, /^outro$/i, /nao registrado|no registrado/i, /^artesanal$/i]
+    : [/^otro$/i, /^outro$/i, /nao registrado|no registrado/i, /^kit$/i, /^artesanal$/i];
+
+  for (const pattern of preferredPatterns) {
+    const hit = values.find((value: any) => pattern.test(String(value?.name || '').trim()));
+    if (hit) {
+      return { id: String(hit.id), name: String(hit.name) };
+    }
+  }
+
+  const first = values[0];
+  return first ? { id: String(first.id), name: String(first.name) } : null;
+}
+
 function stripHtmlToText(input: unknown): string {
   return normalizeText(
     String(input ?? "")
@@ -994,6 +1015,20 @@ export async function POST(req: Request) {
     }
 
     const categoryInfo = await fetchML<any>(`/categories/${categoriaId}`);
+    const gtinAttr = categoryAttrsById.get("GTIN");
+    const emptyGtinReasonAttr = categoryAttrsById.get("EMPTY_GTIN_REASON");
+    const hasGtinValue = hasValue(attributesMap.get("GTIN") || { id: "GTIN" });
+    if (!hasGtinValue && emptyGtinReasonAttr) {
+      const reason = pickEmptyGtinReasonValue(emptyGtinReasonAttr, produto.nome);
+      if (reason) {
+        attributesMap.set("EMPTY_GTIN_REASON", {
+          id: "EMPTY_GTIN_REASON",
+          value_id: reason.id,
+          value_name: undefined,
+        });
+        warnings.push(`GTIN ausente. Motivo enviado ao ML: ${reason.name}.`);
+      }
+    }
     const hasSizeGridAttribute = categoryAttrsById.has("SIZE_GRID_ID");
     if (
       hasSizeGridAttribute &&
@@ -1320,7 +1355,18 @@ export async function POST(req: Request) {
       result = await createListing(listingPayload);
     } catch (err: any) {
       const message = err?.message || "Falha ao criar anúncio no ML";
+      const mlStatus = Number(err?.status || 0);
+      const missingConditionalGtin =
+        /item\.attribute\.missing_conditional_required/i.test(message) &&
+        /\bGTIN\b/i.test(message);
       steps.anuncio = { ok: false, error: message };
+      if (missingConditionalGtin && gtinAttr?.tags?.conditional_required) {
+        warnings.push(
+          emptyGtinReasonAttr
+            ? "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+            : "GTIN ausente; esta categoria não expõe EMPTY_GTIN_REASON. Cadastre GTIN real para publicar.",
+        );
+      }
       return NextResponse.json(
         {
           success: false,
@@ -1329,7 +1375,7 @@ export async function POST(req: Request) {
           missing_required_attributes: missingRequiredAttributes,
           error: message,
         },
-        { status: 502 },
+        { status: mlStatus === 409 ? 409 : mlStatus >= 400 && mlStatus < 500 ? 422 : 502 },
       );
     }
 

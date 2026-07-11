@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
+const { spawnSync } = require('child_process');
 const dotenv = require('dotenv');
 const { createClient } = require('@supabase/supabase-js');
 
@@ -13,6 +15,7 @@ const RESULT_FILE = process.env.ML_BATCH_RESULT_FILE || '';
 const LOGIN_EMAIL = process.env.BATCH_LOGIN_EMAIL || '';
 const LOGIN_PASSWORD = process.env.BATCH_LOGIN_PASSWORD || '';
 const HOST_HEADER = process.env.BATCH_HOST_HEADER || '';
+const DIRECT_IP = process.env.BATCH_DIRECT_IP || '';
 let authCookie = process.env.BATCH_COOKIE || '';
 
 if (!MANIFEST_PATH) {
@@ -34,25 +37,175 @@ function hasText(value) {
   return String(value || '').trim().length > 0;
 }
 
+function normalizePredictionText(value) {
+  return String(value || '').replace(/\s+/g, ' ').trim();
+}
+
+function buildPredictionTitles(produto) {
+  const rawName = normalizePredictionText(produto?.nome);
+  const brand = normalizePredictionText(produto?.marca);
+  const titles = new Set();
+
+  const add = (value) => {
+    const text = normalizePredictionText(value);
+    if (text) titles.add(text.slice(0, 60));
+  };
+
+  add(brand ? `${rawName} ${brand}` : rawName);
+
+  const compactBattery = rawName
+    .replace(/\b(\d+)\s*cr\s*(\d{3,4})\b/gi, 'CR$2')
+    .replace(/\b(\d+)\s*lr\s*(\d{2,4})\b/gi, 'LR$2')
+    .replace(/\b(\d+)\s*sr\s*(\d{2,4})\b/gi, 'SR$2');
+  add(brand ? `${compactBattery} ${brand}` : compactBattery);
+
+  const cleanedName = rawName
+    .replace(/\b(?:grl|std|s\.t\.d|picker)\b/gi, ' ')
+    .replace(/\b[a-z]{1,4}-?[a-z0-9]{3,}\b/gi, ' ')
+    .replace(/\br\d{4,}\b/gi, ' ')
+    .replace(/\b\d+\s*(?:un|und|unid|unidade|cart|cartela|kit)\b/gi, ' ')
+    .replace(/\(([^)]+)\)/g, ' $1 ');
+  add(brand ? `${cleanedName} ${brand}` : cleanedName);
+
+  if (/\bpalheta\b/i.test(rawName)) {
+    const palhetaTitle = cleanedName.replace(/\bpalheta\b/i, 'Palheta para guitarra');
+    add(brand ? `${palhetaTitle} ${brand}` : palhetaTitle);
+  }
+
+  if (/\b(?:cr|lr|sr)\d{2,4}\b/i.test(compactBattery) && !/\bbateria\b/i.test(compactBattery)) {
+    add(`${compactBattery.replace(/\bpilha\b/i, 'Bateria')}${brand ? ` ${brand}` : ''}`);
+  }
+
+  return Array.from(titles);
+}
+
+let mlAccessTokenPromise = null;
+
+async function getMlAccessToken() {
+  if (!mlAccessTokenPromise) {
+    mlAccessTokenPromise = supabase
+      .from('integracoes')
+      .select('access_token')
+      .eq('tipo', 'mercadolivre')
+      .single()
+      .then(({ data, error }) => {
+        if (error) throw new Error(`Falha ao ler token ML: ${error.message}`);
+        if (!data?.access_token) throw new Error('Token ML indisponível');
+        return data.access_token;
+      });
+  }
+  return mlAccessTokenPromise;
+}
+
+async function predictCategoryDirect(produto, limit = 8) {
+  const token = await getMlAccessToken();
+  const categories = [];
+  const seen = new Set();
+
+  for (const title of buildPredictionTitles(produto)) {
+    const response = await fetch(`https://api.mercadolibre.com/sites/MLB/domain_discovery/search?q=${encodeURIComponent(title)}&limit=${limit}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const text = await response.text();
+    let data = [];
+    try { data = text ? JSON.parse(text) : []; } catch { data = []; }
+    if (!response.ok) continue;
+    for (const item of Array.isArray(data) ? data : []) {
+      const id = String(item?.category_id || '').trim();
+      if (!id || seen.has(id)) continue;
+      seen.add(id);
+      categories.push({
+        id,
+        nome: item.category_name || id,
+        dominio: item.domain_name || '',
+      });
+    }
+  }
+
+  return categories;
+}
+
 function buildHeaders(base = {}) {
   const headers = { ...base };
   if (HOST_HEADER) headers.Host = HOST_HEADER;
   return headers;
 }
 
+function requestText(targetUrl, { method = 'GET', headers = {}, body = '' } = {}) {
+  const parsed = new URL(targetUrl);
+
+  if (DIRECT_IP) {
+    const port = parsed.port || (parsed.protocol === 'https:' ? '443' : '80');
+    const headerFile = path.join(os.tmpdir(), `ml-batch-headers-${process.pid}-${Date.now()}.txt`);
+    const args = [
+      '-k',
+      '--silent',
+      '--show-error',
+      '--output',
+      '-',
+      '--dump-header',
+      headerFile,
+      '--write-out',
+      '\n__STATUS__:%{http_code}',
+      '--request',
+      method,
+      '--resolve',
+      `${parsed.hostname}:${port}:${DIRECT_IP}`,
+      targetUrl,
+    ];
+
+    for (const [key, value] of Object.entries(headers || {})) {
+      args.push('-H', `${key}: ${value}`);
+    }
+    if (body) args.push('--data', body);
+
+    const exec = spawnSync('curl', args, {
+      cwd: process.cwd(),
+      encoding: 'utf8',
+      maxBuffer: 1024 * 1024 * 20,
+    });
+
+    const headerText = fs.existsSync(headerFile) ? fs.readFileSync(headerFile, 'utf8') : '';
+    if (fs.existsSync(headerFile)) fs.unlinkSync(headerFile);
+    if (exec.error) throw exec.error;
+    if (exec.status !== 0) {
+      throw new Error(exec.stderr || exec.stdout || `curl exited ${exec.status}`);
+    }
+
+    const raw = exec.stdout || '';
+    const marker = '\n__STATUS__:';
+    const markerIndex = raw.lastIndexOf(marker);
+    const text = markerIndex >= 0 ? raw.slice(0, markerIndex) : raw;
+    const status = markerIndex >= 0 ? Number(raw.slice(markerIndex + marker.length).trim()) : 0;
+    const cookies = headerText
+      .split(/\r?\n/)
+      .filter((line) => /^set-cookie:/i.test(line))
+      .map((line) => line.replace(/^set-cookie:\s*/i, '').trim())
+      .filter(Boolean);
+
+    return Promise.resolve({ status, text, headers: {}, cookies });
+  }
+
+  return fetch(targetUrl, { method, headers, body }).then(async (response) => ({
+    status: response.status,
+    text: await response.text(),
+    headers: response.headers,
+    cookies: response.headers.getSetCookie(),
+  }));
+}
+
 async function ensureAuthCookie() {
   if (authCookie) return authCookie;
   if (!LOGIN_EMAIL || !LOGIN_PASSWORD) return '';
-  const response = await fetch(`${BASE_URL}/api/auth/login`, {
+  const response = await requestText(`${BASE_URL}/api/auth/login`, {
     method: 'POST',
     headers: buildHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify({ email: LOGIN_EMAIL, senha: LOGIN_PASSWORD }),
   });
-  const text = await response.text();
-  if (!response.ok) {
-    throw new Error(`Falha login batch HTTP ${response.status}: ${text.slice(0, 300)}`);
+  if (response.status < 200 || response.status >= 300) {
+    throw new Error(`Falha login batch HTTP ${response.status}: ${response.text.slice(0, 300)}`);
   }
-  const cookies = response.headers.getSetCookie().map((row) => row.split(';')[0]).filter(Boolean);
+  const cookies = response.cookies.map((row) => row.split(';')[0]).filter(Boolean);
   authCookie = cookies.join('; ');
   return authCookie;
 }
@@ -66,16 +219,15 @@ async function postJson(apiPath, body) {
   const cookie = await ensureAuthCookie();
   if (cookie) headers.Cookie = cookie;
 
-  const response = await fetch(`${BASE_URL}${apiPath}`, {
+  const response = await requestText(`${BASE_URL}${apiPath}`, {
     method: 'POST',
     headers,
     body: JSON.stringify(body),
   });
-  const text = await response.text();
   let data = null;
-  try { data = text ? JSON.parse(text) : null; } catch { data = { raw: text }; }
-  if (!response.ok) {
-    const error = new Error(data?.error || data?.erro || data?.message || text || `HTTP ${response.status}`);
+  try { data = response.text ? JSON.parse(response.text) : null; } catch { data = { raw: response.text }; }
+  if (response.status < 200 || response.status >= 300) {
+    const error = new Error(data?.error || data?.erro || data?.message || response.text || `HTTP ${response.status}`);
     error.status = response.status;
     error.data = data;
     throw error;
@@ -112,8 +264,18 @@ async function prepareCategory(produtoId, categoryId, description) {
 }
 
 async function createOne(item) {
-  const categoriesData = await postJson('/api/ml/anuncio/categorias', { produtoId: item.produtoId });
-  const categories = (categoriesData?.categorias || []).filter((category) => category?.id).slice(0, 8);
+  let categories = [];
+  try {
+    const categoriesData = await postJson('/api/ml/anuncio/categorias', { produtoId: item.produtoId });
+    categories = (categoriesData?.categorias || []).filter((category) => category?.id).slice(0, 8);
+  } catch (error) {
+    categories = [];
+  }
+
+  if (categories.length === 0) {
+    categories = await predictCategoryDirect(item, 8);
+  }
+
   if (categories.length === 0) throw new Error('Sem categoria ML prevista');
 
   const attempts = [];
@@ -200,8 +362,8 @@ async function createOne(item) {
 
   for (const item of items) {
     try {
-      const { data: produto } = await supabase.from('produtos').select('id, descricao').eq('id', item.produtoId).single();
-      const payload = await createOne({ ...item, description: produto?.descricao || '' });
+      const { data: produto } = await supabase.from('produtos').select('id, nome, marca, descricao').eq('id', item.produtoId).single();
+      const payload = await createOne({ ...item, nome: produto?.nome || item.nome, marca: produto?.marca || '', description: produto?.descricao || '' });
       result.created.push(payload);
       console.log(`[ok] ${item.sku} ${payload.anuncio?.id || payload.category?.id || ''}`);
     } catch (error) {

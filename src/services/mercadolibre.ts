@@ -231,7 +231,15 @@ export async function createListing(
     ]
       .filter(Boolean)
       .join(" | ");
-    throw new Error(message);
+    const error = new Error(message) as Error & {
+      status?: number | null;
+      code?: string | null;
+      category?: string | null;
+    };
+    error.status = result.status;
+    error.code = result.error?.code || null;
+    error.category = result.error?.category || null;
+    throw error;
   }
   return result.data;
 }
