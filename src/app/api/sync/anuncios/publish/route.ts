@@ -4,6 +4,7 @@ import { fetchMLResult } from '@/services/integration';
 import { setItemQuantityPricing } from '@/services/mercadolibre';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
+import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 
 export const maxDuration = 300;
 
@@ -25,12 +26,7 @@ function toMlStatus(value: unknown): 'active' | 'paused' | null {
   return null;
 }
 
-function mapMlStatusToLocalStatus(value: unknown): 'ativo' | 'pausado' | 'sem_anuncio' {
-  const raw = String(value || '').trim().toLowerCase();
-  if (raw === 'active') return 'ativo';
-  if (raw === 'paused') return 'pausado';
-  return 'sem_anuncio';
-}
+
 
 function wantsQuantityPricing(payload: unknown): boolean {
   if (!payload || typeof payload !== 'object') return false;

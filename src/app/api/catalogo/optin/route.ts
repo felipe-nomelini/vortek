@@ -3,6 +3,7 @@ import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 import { buildCatalogEnrichment, extractCatalogCandidateSku, extractCatalogGtin } from '@/lib/catalogo/no-catalogo';
 import { persistSingleAnuncioBySku } from '@/lib/ml/persist-single-anuncio';
+import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 
 function isEligibilityAllowed(status: string): boolean {
   const normalized = String(status || '').toUpperCase();
@@ -19,12 +20,7 @@ function getSellerSkuFromItem(item: any): string | null {
   return attrValue || null;
 }
 
-function mapMlStatusToLocalStatus(value: unknown): 'ativo' | 'pausado' | 'sem_anuncio' {
-  const raw = String(value || '').trim().toLowerCase();
-  if (raw === 'active') return 'ativo';
-  if (raw === 'paused') return 'pausado';
-  return 'sem_anuncio';
-}
+
 
 function normalizeText(input: unknown): string {
   return String(input ?? '')

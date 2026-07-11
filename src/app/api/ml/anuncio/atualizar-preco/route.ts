@@ -5,13 +5,7 @@ import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { fetchMLResult } from '@/services/integration';
 import { setItemQuantityPricing } from '@/services/mercadolibre';
-
-function mapMlStatusToLocalStatus(value: unknown): 'ativo' | 'pausado' | 'sem_anuncio' {
-  const raw = String(value || '').trim().toLowerCase();
-  if (raw === 'active') return 'ativo';
-  if (raw === 'paused') return 'pausado';
-  return 'sem_anuncio';
-}
+import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 
 function isRetryableMlStatus(status: number | null): boolean {
   return [408, 409, 424, 429, 500, 502, 503, 504].includes(Number(status));

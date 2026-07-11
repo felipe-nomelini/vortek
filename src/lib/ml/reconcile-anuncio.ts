@@ -1,3 +1,4 @@
+import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 import type { Database } from '@/types/database';
 
 type ServiceClientLike = {
@@ -20,12 +21,7 @@ type MlListingLike = {
   visits?: unknown;
 };
 
-function mapMlStatusToLocalStatus(value: unknown): Database['public']['Enums']['ml_status'] {
-  const raw = String(value || '').trim().toLowerCase();
-  if (raw === 'active') return 'ativo';
-  if (raw === 'paused') return 'pausado';
-  return 'sem_anuncio';
-}
+
 
 function normalizePrice(value: unknown): number {
   const n = Number(value);

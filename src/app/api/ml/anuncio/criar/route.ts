@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+
+export const maxDuration = 300;
+
 import {
   createListing,
   getCategoryAttributes,
@@ -1077,22 +1080,15 @@ export async function POST(req: Request) {
       sku: produto.sku,
       title: produto.nome,
     });
+    const canSyncFiscal = fiscalParsed.success;
 
-    if (!fiscalParsed.success) {
+    if (!canSyncFiscal) {
       steps.fiscal = {
         ok: false,
         error: fiscalParsed.error.issues.map((i) => i.message).join(" | "),
       };
-      return NextResponse.json(
-        {
-          success: false,
-          steps,
-          warnings,
-          missing_required_attributes: missingRequiredAttributes,
-          error:
-            "Dados fiscais obrigatórios inválidos. Corrija antes de criar o anúncio.",
-        },
-        { status: 422 },
+      warnings.push(
+        `Fiscal não enviado na criação: ${steps.fiscal.error}`,
       );
     }
 
@@ -1545,68 +1541,54 @@ export async function POST(req: Request) {
 
     const fiscalErrors: string[] = [];
     const fiscalErrorDetails: any[] = [];
-    const originType = mapOriginType(fiscalParsed.data.origem_fiscal);
 
-    const fiscalResult = await updateListingFiscalData({
-      itemId: result.id,
-      sku: fiscalParsed.data.sku,
-      title: fiscalParsed.data.title,
-      ncm: normalizeNcm(fiscalParsed.data.ncm),
-      origin_type: originType,
-      origin_detail: fiscalParsed.data.origem_fiscal,
-      gtin: gtinFinal || undefined,
-      cest: cestFinal || undefined,
-      csosn: fiscalParsed.data.csosn,
-      net_weight: produto.peso_liq || undefined,
-      gross_weight: produto.peso_bruto || undefined,
-      measurement_unit: "UN",
-      cost: produto.custo,
-    });
+    if (canSyncFiscal) {
+      const originType = mapOriginType(fiscalParsed.data.origem_fiscal);
 
-    if (!fiscalResult.success) {
-      const fiscalMessage = [
-        fiscalResult.step,
-        fiscalResult.statusHttp ? `HTTP ${fiscalResult.statusHttp}` : "",
-        fiscalResult.error,
-      ]
-        .filter(Boolean)
-        .join(": ");
-      fiscalErrors.push(fiscalMessage);
-      fiscalErrorDetails.push({
-        step: fiscalResult.step,
-        statusHttp: fiscalResult.statusHttp ?? null,
-        endpoint: fiscalResult.endpoint ?? null,
-        error: fiscalResult.error,
-        fields: fiscalResult.fields ?? null,
-        rawBody: fiscalResult.rawBody ?? null,
+      const fiscalResult = await updateListingFiscalData({
+        itemId: result.id,
+        sku: fiscalParsed.data.sku,
+        title: fiscalParsed.data.title,
+        ncm: normalizeNcm(fiscalParsed.data.ncm),
+        origin_type: originType,
+        origin_detail: fiscalParsed.data.origem_fiscal,
+        gtin: gtinFinal || undefined,
+        cest: cestFinal || undefined,
+        csosn: fiscalParsed.data.csosn,
+        net_weight: produto.peso_liq || undefined,
+        gross_weight: produto.peso_bruto || undefined,
+        measurement_unit: "UN",
+        cost: produto.custo,
       });
+
+      if (!fiscalResult.success) {
+        const fiscalMessage = [
+          fiscalResult.step,
+          fiscalResult.statusHttp ? `HTTP ${fiscalResult.statusHttp}` : "",
+          fiscalResult.error,
+        ]
+          .filter(Boolean)
+          .join(": ");
+        fiscalErrors.push(fiscalMessage);
+        fiscalErrorDetails.push({
+          step: fiscalResult.step,
+          statusHttp: fiscalResult.statusHttp ?? null,
+          endpoint: fiscalResult.endpoint ?? null,
+          error: fiscalResult.error,
+          fields: fiscalResult.fields ?? null,
+          rawBody: fiscalResult.rawBody ?? null,
+        });
+      }
     }
 
-    if (fiscalErrors.length === 0) {
+    if (canSyncFiscal && fiscalErrors.length === 0) {
       steps.fiscal.ok = true;
-    } else {
+    } else if (canSyncFiscal && fiscalErrors.length > 0) {
       steps.fiscal = { ok: false, error: fiscalErrors.join(" | ") };
       warnings.push(`Fiscal não vinculado no ML: ${steps.fiscal.error}`);
 
       latestItem = (await getListingSnapshot(result.id)) || latestItem;
-      if (mapMlItemStatus(latestItem) === "ativo") {
-        const pauseResult = await pauseCreatedListing(result.id);
-        if (pauseResult.ok) {
-          latestItem = (await getListingSnapshot(result.id)) || {
-            ...latestItem,
-            status: "paused",
-          };
-          warnings.push(
-            "Anúncio criado, mas pausado porque o fiscal ainda não foi vinculado no ML.",
-          );
-        } else {
-          warnings.push(
-            `Fiscal pendente no ML e não foi possível pausar automaticamente: ${pauseResult.error || "erro desconhecido"}`,
-          );
-        }
-      } else {
-        addListingStatusWarnings(latestItem, warnings);
-      }
+      addListingStatusWarnings(latestItem, warnings);
 
       if (latestItem?.id) {
         latestItem = applyKnownCorrectedPrice(latestItem, pricingCorrection);
