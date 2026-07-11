@@ -587,7 +587,8 @@ function ConfiguracoesPageContent() {
       messageApi.error('Push não é suportado neste navegador.');
       return;
     }
-    const publicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
+    const keyResponse = await fetch('/api/push/public-key');
+    const { publicKey } = await keyResponse.json().catch(() => ({}));
     if (!publicKey) {
       messageApi.error('Chave pública VAPID não configurada.');
       return;
