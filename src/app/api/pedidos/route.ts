@@ -102,6 +102,28 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
     }
   }
 
+  const clienteIdPorMlId = new Map<string, string>();
+  const buyerMlIds = Array.from(new Set(
+    rows
+      .map((row) => String(row?.buyer_ml_id || '').trim())
+      .filter(Boolean),
+  ));
+  if (buyerMlIds.length) {
+    const { data, error } = await serviceClient
+      .from('clientes')
+      .select('id,ml_id')
+      .in('ml_id', buyerMlIds);
+    if (error) {
+      logDbError('pedidos_clients_enrich_failed', '/api/pedidos', '', error, {
+        buyers_count: buyerMlIds.length,
+      });
+    } else {
+      for (const cliente of data || []) {
+        if (cliente.ml_id) clienteIdPorMlId.set(String(cliente.ml_id), cliente.id);
+      }
+    }
+  }
+
   const dsids = Array.from(new Set(
     rows
       .map((row) => String(row?.dslite_id || '').trim())
@@ -111,6 +133,7 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
     return rows.map((row) => ({
       ...row,
       pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
+      cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
       dslite_next_action: row?.dslite_id ? 'complete_dslite_label' : 'create_dslite_order',
       dslite_next_action_label: row?.dslite_id ? 'Completar etiqueta DSLite' : 'Criar pedido DSLite',
     }));
@@ -131,6 +154,7 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
       return rows.map((row) => ({
         ...row,
         pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
+        cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
       }));
     }
     compras.push(...(data || []));
@@ -159,6 +183,7 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
       return {
         ...row,
         pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
+        cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
         dslite_next_action: row?.dslite_id ? 'complete_dslite_label' : 'create_dslite_order',
         dslite_next_action_label: row?.dslite_id ? 'Completar etiqueta DSLite' : 'Criar pedido DSLite',
       };
@@ -193,6 +218,7 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
     return {
       ...row,
       pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
+      cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
       compra_id: compra.id || null,
       compra_produto_descricao: compra.produto_descricao || null,
       compra_produto_sku: compra.produto_sku || null,

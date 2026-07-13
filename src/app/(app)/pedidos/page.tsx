@@ -272,6 +272,7 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     compra_produto_descricao: (item as any).compra_produto_descricao || null,
     compra_produto_sku: (item as any).compra_produto_sku || null,
     compra_quantidade: (item as any).compra_quantidade ?? null,
+    cliente_id: (item as any).cliente_id || null,
   };
 }
 
@@ -587,6 +588,14 @@ export default function PedidosPage() {
     if (!url) return;
     window.open(url, '_blank', 'noopener,noreferrer');
   }, [resolveNotaFiscalPdfUrl]);
+
+  const handleDownloadNotaFiscalXml = useCallback((order: Order) => {
+    if (!order.dbId) {
+      messageApi.error('Pedido sem referência interna para localizar o XML');
+      return;
+    }
+    window.open(`/api/notas-fiscais/${order.dbId}/xml`, '_blank', 'noopener,noreferrer');
+  }, [messageApi]);
 
   const pollDsliteJob = async (jobId: string, order: Order) => {
     const res = await fetch(`/api/dslite/pedido/status?jobId=${encodeURIComponent(jobId)}`);
@@ -1117,7 +1126,7 @@ export default function PedidosPage() {
                 <div key={`${item.ml_item_id || item.seller_sku || item.titulo}-${index}`} style={{ marginBottom: 8 }}>
                   <div>{item.titulo}</div>
                   <Text type="secondary" style={{ fontSize: 12 }}>
-                    SKU: {item.seller_sku || '—'} · Qtd: {item.quantidade} · {formatCurrency(item.valor_total_liquido)}
+                    SKU: {item.seller_sku ? <Link href={`/produtos?search=${encodeURIComponent(item.seller_sku)}`}>{item.seller_sku}</Link> : '—'} · Qtd: {item.quantidade} · {formatCurrency(item.valor_total_liquido)}
                   </Text>
                 </div>
               )) : (
@@ -1131,7 +1140,11 @@ export default function PedidosPage() {
           <Col xs={24} lg={12}>
             <Text strong>Entrega</Text>
             <div style={{ marginTop: 8 }}>
-              <div>{getDisplayFiscalClientName(order) || getDisplayClientName(order)}</div>
+              <div>
+                {order.cliente_id ? (
+                  <Link href={`/clientes/${order.cliente_id}`}>{getDisplayFiscalClientName(order) || getDisplayClientName(order)}</Link>
+                ) : getDisplayFiscalClientName(order) || getDisplayClientName(order)}
+              </div>
               <Text type="secondary" style={{ display: 'block', fontSize: 12 }}>
                 Documento: {order.contato.numeroDocumento || '—'}
               </Text>
@@ -1157,10 +1170,38 @@ export default function PedidosPage() {
           <Col xs={24} lg={12}>
             <Text strong>Logística e fiscal</Text>
             <Descriptions size="small" column={1} style={{ marginTop: 8 }}>
-              <Descriptions.Item label="Rastreio">{order.rastreio || '—'}</Descriptions.Item>
+              <Descriptions.Item label="Rastreio">
+                {order.rastreio && order.ml_shipment_id ? (
+                  <Button type="link" size="small" style={{ padding: 0 }} onClick={() => {
+                    setTrackingOrderId(order.dbId);
+                    setTrackingOrderStatus(order.situacao.valor);
+                    setTrackingModalOpen(true);
+                  }}>
+                    {order.rastreio}
+                  </Button>
+                ) : order.rastreio || '—'}
+              </Descriptions.Item>
               <Descriptions.Item label="Envio ML">{order.ml_shipment_id || '—'}</Descriptions.Item>
-              <Descriptions.Item label="Pedido ML">{order.ml_order_id || '—'}</Descriptions.Item>
-              <Descriptions.Item label="NF">{order.notaFiscal?.numero || 'Não emitida'}</Descriptions.Item>
+              <Descriptions.Item label="Pedido ML">
+                {order.ml_order_id ? (
+                  <a
+                    href={`https://www.mercadolivre.com.br/vendas/${order.ml_pack_id || order.ml_order_id}/detalhe`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {order.ml_order_id}
+                  </a>
+                ) : '—'}
+              </Descriptions.Item>
+              <Descriptions.Item label="NF">
+                {order.notaFiscal?.numero ? (
+                  <Space size={4}>
+                    <span>{order.notaFiscal.numero}</span>
+                    <Button size="small" onClick={() => handleOpenNotaFiscalPdf(order)}>DANFE</Button>
+                    <Button size="small" onClick={() => handleDownloadNotaFiscalXml(order)}>XML</Button>
+                  </Space>
+                ) : 'Não emitida'}
+              </Descriptions.Item>
             </Descriptions>
           </Col>
         </Row>
@@ -1246,7 +1287,11 @@ export default function PedidosPage() {
         const showFiscalName = fiscalName && fiscalName.toLowerCase() !== clientName.toLowerCase();
         return (
           <div>
-            <div style={{ color: '#e0e0e0' }}>{clientName}</div>
+            <div>
+              {record.cliente_id ? (
+                <Link href={`/clientes/${record.cliente_id}`} style={{ color: '#e0e0e0' }}>{clientName}</Link>
+              ) : <span style={{ color: '#e0e0e0' }}>{clientName}</span>}
+            </div>
             {showFiscalName && (
               <Tooltip title="Nome fiscal vindo do billing_info do Mercado Livre">
                 <div style={{ color: '#888', fontSize: 11 }}>

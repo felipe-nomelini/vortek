@@ -99,4 +99,5 @@ export interface Order {
   compra_produto_descricao?: string | null;
   compra_produto_sku?: string | null;
   compra_quantidade?: number | null;
+  cliente_id?: string | null;
 }
