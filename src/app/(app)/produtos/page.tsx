@@ -485,6 +485,14 @@ export default function ProductsPage() {
 
   const [stats, setStats] = useState({ total: 0, comEstoque: 0, semAnuncio: 0, lucroMedio: 0, receitaPotencial: 0 });
 
+  useEffect(() => {
+    const skuFromUrl = new URLSearchParams(window.location.search).get('search')?.trim() || '';
+    if (!skuFromUrl) return;
+    setSearch(skuFromUrl);
+    setLastSearch(skuFromUrl);
+    setPage(1);
+  }, []);
+
   const applyDependencyRules = useCallback((modalState: typeof mlModal) => {
     const requiredMap = new Map(modalState.editableAttributes.map((a) => [a.id, a]));
     const optionalMap = new Map(modalState.optionalAttributes.map((a) => [a.id, a]));

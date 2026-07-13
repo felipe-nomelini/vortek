@@ -1,11 +1,12 @@
 'use client';
 
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
-import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, Spin, Statistic, message } from 'antd';
+import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, Spin, Statistic, Modal, message } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import QualidadeModal from '@/components/QualidadeModal';
 import type { MenuProps, TableProps } from 'antd';
 import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
+import Link from 'next/link';
 import { formatCurrency } from '@/lib/format';
 import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 
@@ -29,11 +30,38 @@ interface Anuncio {
   catalogo: boolean;
 }
 
+type QuantityPricingTier = {
+  min_purchase_unit: number;
+  amount: number;
+  currency_id: string;
+};
+
+type PricingDetails = {
+  currentPrice: number;
+  currentProfit: number;
+  quantityPricing: QuantityPricingTier[];
+  quantityPricingWarning: string | null;
+  calculator: { cost: number; shipping: number; mlFee: number };
+};
+
 const statusOptions = [
   { value: '', label: 'Todos os status' },
   { value: 'ativo', label: 'Ativo' },
   { value: 'pausado', label: 'Pausado' },
 ];
+
+function calculateProfit(price: number, calculator: PricingDetails['calculator']) {
+  return Math.round((price - calculator.cost - calculator.shipping - (price * 0.04) - (price * calculator.mlFee)) * 100) / 100;
+}
+
+function buildWholesalePrices(price: number): QuantityPricingTier[] {
+  if (!Number.isFinite(price) || price <= 0) return [];
+  return [
+    { min_purchase_unit: 3, amount: price * 0.97 },
+    { min_purchase_unit: 5, amount: price * 0.96 },
+    { min_purchase_unit: 10, amount: price * 0.95 },
+  ].map((tier) => ({ ...tier, amount: Math.round(tier.amount * 100) / 100, currency_id: 'BRL' }));
+}
 
 function mapDBtoAnuncio(item: any): Anuncio {
   return {
@@ -70,6 +98,10 @@ export default function AnunciosPage() {
   const [bulkUpdatingStatus, setBulkUpdatingStatus] = useState<ListingStatus | null>(null);
   const statusPollingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [modalQualidade, setModalQualidade] = useState<{ open: boolean; score: number; itens: any[]; dica: string; titulo: string }>({ open: false, score: 0, itens: [], dica: '', titulo: '' });
+  const [priceModal, setPriceModal] = useState<{ open: boolean; record: Anuncio | null; details: PricingDetails | null }>({ open: false, record: null, details: null });
+  const [priceModalLoading, setPriceModalLoading] = useState(false);
+  const [priceModalSaving, setPriceModalSaving] = useState(false);
+  const [newPrice, setNewPrice] = useState<number | null>(null);
   const [summary, setSummary] = useState({
     total: 0,
     ativos: 0,
@@ -214,6 +246,71 @@ export default function AnunciosPage() {
     window.open(record.permalink, '_blank', 'noopener,noreferrer');
   }, []);
 
+  const handleOpenPriceModal = useCallback(async (record: Anuncio) => {
+    if (!record.produtoId) {
+      message.warning('Este anúncio não possui vínculo local com produto para alterar o preço.');
+      return;
+    }
+
+    setPriceModal({ open: true, record, details: null });
+    setPriceModalLoading(true);
+    setNewPrice(null);
+    try {
+      const response = await fetch(`/api/ml/anuncio/preco-detalhe?produtoId=${encodeURIComponent(record.produtoId)}`, { cache: 'no-store' });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload?.success) {
+        throw new Error(payload?.error || 'Falha ao carregar dados de preço do anúncio.');
+      }
+      const details = payload as PricingDetails;
+      setPriceModal({ open: true, record, details });
+      setNewPrice(Number(details.currentPrice));
+    } catch (error: any) {
+      setPriceModal({ open: false, record: null, details: null });
+      message.error(error?.message || 'Falha ao carregar dados de preço do anúncio.');
+    } finally {
+      setPriceModalLoading(false);
+    }
+  }, []);
+
+  const handleSavePrice = useCallback(async () => {
+    const record = priceModal.record;
+    const details = priceModal.details;
+    const targetPrice = Number(newPrice);
+    if (!record?.produtoId || !details) return;
+    if (!Number.isFinite(targetPrice) || targetPrice <= 0) {
+      message.warning('Informe um novo preço maior que zero.');
+      return;
+    }
+
+    setPriceModalSaving(true);
+    setUpdatingActionItemId(record.id);
+    try {
+      const response = await fetch('/api/ml/anuncio/atualizar-preco', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ produtoId: record.produtoId, targetPrice }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload?.success) {
+        throw new Error(payload?.errors?.filter(Boolean).join(' | ') || payload?.error || 'Falha ao atualizar preço no Mercado Livre.');
+      }
+
+      message.success(payload?.message || 'Preço atualizado no Mercado Livre.');
+      setPriceModal({ open: false, record: null, details: null });
+      const outboxId = String(payload?.outboxId || '').trim();
+      if (payload?.queued_publish && outboxId) {
+        scheduleStatusPolling([outboxId]);
+      } else {
+        await fetchData();
+      }
+    } catch (error: any) {
+      message.error(error?.message || 'Falha ao atualizar preço no Mercado Livre.');
+    } finally {
+      setPriceModalSaving(false);
+      setUpdatingActionItemId(null);
+    }
+  }, [fetchData, newPrice, priceModal.details, priceModal.record, scheduleStatusPolling]);
+
   const selectedRecords = useMemo(() => {
     const selectedIds = new Set(selectedRowKeys.map((key) => String(key)));
     return data.filter((record) => selectedIds.has(record.id));
@@ -341,6 +438,11 @@ export default function AnunciosPage() {
       title: 'SKU', dataIndex: 'sku', key: 'sku', width: 110,
       sorter: true,
       sortOrder: getRemoteSortOrder('sku', sort),
+      render: (sku: string) => sku ? (
+        <Link href={`/produtos?search=${encodeURIComponent(sku)}`} style={{ fontFamily: 'monospace' }}>
+          {sku}
+        </Link>
+      ) : <span style={{ color: '#666' }}>—</span>,
     },
     {
       title: 'Produto', dataIndex: 'produto', key: 'titulo',
@@ -423,6 +525,11 @@ export default function AnunciosPage() {
             label: 'Visualizar no ML',
             disabled: !record.permalink,
           },
+          {
+            key: 'editPrice',
+            label: 'Alterar preço',
+            disabled: !record.produtoId || isUpdatingCurrent,
+          },
           record.status === 'ativo'
             ? {
                 key: 'pause',
@@ -442,6 +549,7 @@ export default function AnunciosPage() {
               items: menuItems,
               onClick: ({ key }) => {
                 if (key === 'view') handleViewOnMl(record);
+                if (key === 'editPrice') void handleOpenPriceModal(record);
                 if (key === 'pause' || key === 'activate') void handleToggleStatus(record);
               },
             }}
@@ -466,6 +574,14 @@ export default function AnunciosPage() {
     setSort(nextSort);
     setPage(sortChanged ? 1 : (pagination.current || 1));
   };
+
+  const targetPrice = Number(newPrice);
+  const nextProfit = priceModal.details && Number.isFinite(targetPrice) && targetPrice > 0
+    ? calculateProfit(targetPrice, priceModal.details.calculator)
+    : null;
+  const nextWholesalePrices = Number.isFinite(targetPrice) && targetPrice > 0
+    ? buildWholesalePrices(targetPrice)
+    : [];
 
   return (
     <div>
@@ -588,6 +704,81 @@ export default function AnunciosPage() {
         dica={modalQualidade.dica}
         titulo={modalQualidade.titulo}
       />
+      <Modal
+        open={priceModal.open}
+        title={`Alterar preço — ${priceModal.record?.sku || priceModal.record?.id || ''}`}
+        onCancel={() => !priceModalSaving && setPriceModal({ open: false, record: null, details: null })}
+        confirmLoading={priceModalSaving}
+        okText="Salvar preço"
+        cancelText="Cancelar"
+        onOk={() => void handleSavePrice()}
+        okButtonProps={{ disabled: priceModalLoading || !Number.isFinite(targetPrice) || targetPrice <= 0 }}
+        destroyOnClose
+      >
+        <Spin spinning={priceModalLoading}>
+          {priceModal.details && (
+            <Space direction="vertical" size={16} style={{ width: '100%' }}>
+              <div>
+                <div style={{ color: '#a0a0a0', marginBottom: 6 }}>Preço e lucro atuais</div>
+                <Row gutter={12}>
+                  <Col span={12}>
+                    <div style={{ color: '#a0a0a0', fontSize: 12 }}>Preço ML</div>
+                    <strong>{formatCurrency(priceModal.details.currentPrice)}</strong>
+                  </Col>
+                  <Col span={12}>
+                    <div style={{ color: '#a0a0a0', fontSize: 12 }}>Lucro unitário</div>
+                    <strong style={{ color: priceModal.details.currentProfit >= 0 ? '#52c41a' : '#ff4d4f' }}>
+                      {formatCurrency(priceModal.details.currentProfit)}
+                    </strong>
+                  </Col>
+                </Row>
+              </div>
+
+              <div>
+                <div style={{ color: '#a0a0a0', marginBottom: 6 }}>Preços atuais de atacado</div>
+                {priceModal.details.quantityPricing.length > 0 ? (
+                  <Space wrap>
+                    {priceModal.details.quantityPricing.map((tier) => (
+                      <Tag key={`${tier.min_purchase_unit}-${tier.amount}`}>{tier.min_purchase_unit}+ = {formatCurrency(tier.amount)}</Tag>
+                    ))}
+                  </Space>
+                ) : <span style={{ color: '#666' }}>Nenhum preço de atacado ativo.</span>}
+                {priceModal.details.quantityPricingWarning && (
+                  <div style={{ color: '#faad14', fontSize: 12, marginTop: 6 }}>{priceModal.details.quantityPricingWarning}</div>
+                )}
+              </div>
+
+              <div>
+                <div style={{ color: '#a0a0a0', marginBottom: 6 }}>Novo preço</div>
+                <InputNumber
+                  value={newPrice}
+                  onChange={(value) => setNewPrice(value ?? null)}
+                  min={0.01}
+                  precision={2}
+                  prefix="R$"
+                  style={{ width: '100%' }}
+                />
+              </div>
+
+              <div>
+                <div style={{ color: '#a0a0a0', marginBottom: 6 }}>Novo lucro unitário</div>
+                <strong style={{ color: (nextProfit || 0) >= 0 ? '#52c41a' : '#ff4d4f' }}>
+                  {nextProfit === null ? '—' : formatCurrency(nextProfit)}
+                </strong>
+              </div>
+
+              <div>
+                <div style={{ color: '#a0a0a0', marginBottom: 6 }}>Novos preços de atacado</div>
+                <Space wrap>
+                  {nextWholesalePrices.map((tier) => (
+                    <Tag color="blue" key={`${tier.min_purchase_unit}-${tier.amount}`}>{tier.min_purchase_unit}+ = {formatCurrency(tier.amount)}</Tag>
+                  ))}
+                </Space>
+              </div>
+            </Space>
+          )}
+        </Spin>
+      </Modal>
     </div>
   );
 }
