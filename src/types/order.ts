@@ -87,4 +87,16 @@ export interface Order {
   ml_label_storage_path?: string | null;
   nfe_chave?: string | null;
   nfe_status?: string | null;
+  billing_endereco?: Record<string, unknown> | null;
+  pedido_itens?: {
+    titulo: string;
+    quantidade: number;
+    seller_sku: string | null;
+    ml_item_id: string | null;
+    valor_unitario: number;
+    valor_total_liquido: number;
+  }[];
+  compra_produto_descricao?: string | null;
+  compra_produto_sku?: string | null;
+  compra_quantidade?: number | null;
 }

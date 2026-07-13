@@ -3,7 +3,7 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import {
-  Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic, Divider, Tooltip, Upload,
+  Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic, Divider, Tooltip, Upload, Descriptions,
 } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
@@ -260,6 +260,7 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     ml_order_id: item.ml_order_id,
     ml_pack_id: item.ml_pack_id,
     billing_nome: item.billing_nome,
+    billing_endereco: item.billing_endereco as Record<string, unknown> | null,
     ml_fiscal_release_at: item.ml_fiscal_release_at,
     ml_fiscal_release_reason: item.ml_fiscal_release_reason,
     ml_fiscal_release_source: item.ml_fiscal_release_source,
@@ -267,6 +268,10 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     ml_label_storage_path: item.ml_label_storage_path,
     nfe_chave: item.nfe_chave,
     nfe_status: item.nfe_status,
+    pedido_itens: (item as any).pedido_itens || [],
+    compra_produto_descricao: (item as any).compra_produto_descricao || null,
+    compra_produto_sku: (item as any).compra_produto_sku || null,
+    compra_quantidade: (item as any).compra_quantidade ?? null,
   };
 }
 
@@ -333,6 +338,7 @@ export default function PedidosPage() {
   const [priceMax, setPriceMax] = useState<number | null>(null);
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const [expandedRowKeys, setExpandedRowKeys] = useState<React.Key[]>([]);
   const [messageApi, contextHolder] = message.useMessage();
 
   const [trackingModalOpen, setTrackingModalOpen] = useState(false);
@@ -1068,6 +1074,119 @@ export default function PedidosPage() {
     });
   };
 
+  const toggleOrderDetails = (order: Order) => {
+    setExpandedRowKeys((keys) => (
+      keys.includes(order.id)
+        ? keys.filter((key) => key !== order.id)
+        : [...keys, order.id]
+    ));
+  };
+
+  const renderOrderDetails = (order: Order) => {
+    const address = (order.billing_endereco || {}) as {
+      street_name?: string;
+      street_number?: string;
+      complement?: string;
+      neighborhood?: string;
+      city_name?: string;
+      state_id?: string;
+      zip_code?: string;
+    };
+    const addressLines = [
+      [address.street_name, address.street_number].filter(Boolean).join(', '),
+      address.complement,
+      address.neighborhood,
+      [address.city_name, address.state_id].filter(Boolean).join(' - '),
+      address.zip_code ? `CEP ${address.zip_code}` : '',
+    ].filter(Boolean);
+    const canCreateDslite = !isValidDsliteId(order.dslite_id)
+      && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(order.situacao.valor);
+    const canCompleteLabel = Boolean(isValidDsliteId(order.dslite_id) && order.dslite_next_action === 'complete_dslite_label');
+    const canConfirmPayment = Boolean(
+      isValidDsliteId(order.dslite_id)
+      && ['confirm_supplier_payment', 'send_supplier_receipt', 'resume_dslite_flow'].includes(order.dslite_next_action || ''),
+    );
+
+    return (
+      <div style={{ padding: '8px 4px' }}>
+        <Row gutter={[24, 16]}>
+          <Col xs={24} lg={12}>
+            <Text strong>Produtos</Text>
+            <div style={{ marginTop: 8 }}>
+              {(order.pedido_itens || []).length ? (order.pedido_itens || []).map((item, index) => (
+                <div key={`${item.ml_item_id || item.seller_sku || item.titulo}-${index}`} style={{ marginBottom: 8 }}>
+                  <div>{item.titulo}</div>
+                  <Text type="secondary" style={{ fontSize: 12 }}>
+                    SKU: {item.seller_sku || '—'} · Qtd: {item.quantidade} · {formatCurrency(item.valor_total_liquido)}
+                  </Text>
+                </div>
+              )) : (
+                <Text type="secondary">
+                  {order.compra_produto_descricao || 'Produto ainda não sincronizado'}
+                  {order.compra_quantidade ? ` · Qtd: ${order.compra_quantidade}` : ''}
+                </Text>
+              )}
+            </div>
+          </Col>
+          <Col xs={24} lg={12}>
+            <Text strong>Entrega</Text>
+            <div style={{ marginTop: 8 }}>
+              <div>{getDisplayFiscalClientName(order) || getDisplayClientName(order)}</div>
+              <Text type="secondary" style={{ display: 'block', fontSize: 12 }}>
+                Documento: {order.contato.numeroDocumento || '—'}
+              </Text>
+              {addressLines.length ? addressLines.map((line) => (
+                <Text key={line} type="secondary" style={{ display: 'block', fontSize: 12 }}>{line}</Text>
+              )) : <Text type="secondary">Endereço ainda não sincronizado</Text>}
+            </div>
+          </Col>
+          <Col xs={24} lg={12}>
+            <Text strong>Compra e fornecedor</Text>
+            <Descriptions size="small" column={1} style={{ marginTop: 8 }}>
+              <Descriptions.Item label="Pedido DSLite">
+                {order.dslite_id ? <Link href={`/compras?search=${encodeURIComponent(order.dslite_id)}`}>{order.dslite_id}</Link> : 'Não criado'}
+              </Descriptions.Item>
+              <Descriptions.Item label="Fornecedor">{order.fornecedor_nome || '—'}</Descriptions.Item>
+              <Descriptions.Item label="Pagamento">
+                {order.supplier_payment_amount !== null && order.supplier_payment_amount !== undefined
+                  ? `${formatCurrency(order.supplier_payment_amount)} · ${order.supplier_payment_status || 'pendente'}`
+                  : '—'}
+              </Descriptions.Item>
+            </Descriptions>
+          </Col>
+          <Col xs={24} lg={12}>
+            <Text strong>Logística e fiscal</Text>
+            <Descriptions size="small" column={1} style={{ marginTop: 8 }}>
+              <Descriptions.Item label="Rastreio">{order.rastreio || '—'}</Descriptions.Item>
+              <Descriptions.Item label="Envio ML">{order.ml_shipment_id || '—'}</Descriptions.Item>
+              <Descriptions.Item label="Pedido ML">{order.ml_order_id || '—'}</Descriptions.Item>
+              <Descriptions.Item label="NF">{order.notaFiscal?.numero || 'Não emitida'}</Descriptions.Item>
+            </Descriptions>
+          </Col>
+        </Row>
+        <Divider style={{ borderColor: '#303030', margin: '14px 0 10px' }} />
+        <Space wrap>
+          <Button size="small" href={`https://www.mercadolivre.com.br/vendas/${order.ml_pack_id || order.numero}/detalhe`} target="_blank">
+            Abrir no ML
+          </Button>
+          {order.ml_shipment_id && (
+            <Button size="small" icon={<CarOutlined />} onClick={() => {
+              setTrackingOrderId(order.dbId);
+              setTrackingOrderStatus(order.situacao.valor);
+              setTrackingModalOpen(true);
+            }}>
+              Rastrear
+            </Button>
+          )}
+          {canCreateDslite && <Button size="small" type="primary" onClick={() => criarPedidoDslite(order)}>Criar pedido DSLite</Button>}
+          {canCompleteLabel && <Button size="small" onClick={() => enviarEtiquetaAutomatica(order)}>Completar etiqueta</Button>}
+          {canConfirmPayment && <Button size="small" onClick={() => abrirConfirmacaoPixPedido(order)}>Confirmar PIX</Button>}
+          {order.notaFiscal?.emitida && <Button size="small" onClick={() => handleOpenNotaFiscalPdf(order)}>Abrir DANFE</Button>}
+        </Space>
+      </div>
+    );
+  };
+
   const columns: TableProps<Order>['columns'] = [
     {
       title: 'Número', dataIndex: 'numero', key: 'numero', width: 180,
@@ -1365,6 +1484,7 @@ export default function PedidosPage() {
             menu={{
               items,
               onClick: ({ key }) => {
+                if (key === 'view') toggleOrderDetails(record);
                 if (key === 'track') {
                   setTrackingOrderId(record.dbId);
                   setTrackingOrderStatus(record.situacao.valor);
@@ -1520,6 +1640,12 @@ export default function PedidosPage() {
             columns={columns}
             rowKey="id"
             rowSelection={{ selectedRowKeys, onChange: setSelectedRowKeys }}
+            expandable={{
+              expandedRowKeys,
+              onExpandedRowsChange: (keys) => setExpandedRowKeys([...keys]),
+              expandedRowRender: renderOrderDetails,
+              expandIconColumnIndex: 0,
+            }}
             pagination={{
               current: page,
               pageSize: 100,

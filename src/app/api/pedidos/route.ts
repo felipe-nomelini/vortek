@@ -77,26 +77,61 @@ async function persistReconciledPedidos(rows: any[]) {
 }
 
 async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<typeof createServiceClient>) {
+  const pedidoIds = Array.from(new Set(
+    rows
+      .map((row) => String(row?.id || '').trim())
+      .filter(Boolean),
+  ));
+  const itensPorPedido = new Map<string, any[]>();
+  if (pedidoIds.length) {
+    const { data, error } = await serviceClient
+      .from('pedido_itens')
+      .select('pedido_id,titulo,quantidade,seller_sku,ml_item_id,valor_unitario,valor_total_liquido')
+      .in('pedido_id', pedidoIds);
+
+    if (error) {
+      logDbError('pedidos_items_enrich_failed', '/api/pedidos', '', error, {
+        pedidos_count: pedidoIds.length,
+      });
+    } else {
+      for (const item of data || []) {
+        const pedidoId = String(item.pedido_id || '');
+        if (!itensPorPedido.has(pedidoId)) itensPorPedido.set(pedidoId, []);
+        itensPorPedido.get(pedidoId)!.push(item);
+      }
+    }
+  }
+
   const dsids = Array.from(new Set(
     rows
       .map((row) => String(row?.dslite_id || '').trim())
       .filter(Boolean),
   ));
-  if (!dsids.length) return rows;
+  if (!dsids.length) {
+    return rows.map((row) => ({
+      ...row,
+      pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
+      dslite_next_action: row?.dslite_id ? 'complete_dslite_label' : 'create_dslite_order',
+      dslite_next_action_label: row?.dslite_id ? 'Completar etiqueta DSLite' : 'Criar pedido DSLite',
+    }));
+  }
 
   const compras: any[] = [];
   for (let index = 0; index < dsids.length; index += 500) {
     const chunk = dsids.slice(index, index + 500);
     const { data, error } = await serviceClient
       .from('compras')
-      .select('id,dsid,fornecedor_id,fornecedor_nome,supplier_payment_mode,supplier_payment_status,supplier_payment_amount,supplier_payment_receipt_path,supplier_payment_reference,supplier_payment_notes')
+      .select('id,dsid,fornecedor_id,fornecedor_nome,produto_descricao,produto_sku,quantidade,supplier_payment_mode,supplier_payment_status,supplier_payment_amount,supplier_payment_receipt_path,supplier_payment_reference,supplier_payment_notes')
       .in('dsid', chunk);
 
     if (error) {
       logDbError('pedidos_compras_enrich_failed', '/api/pedidos', '', error, {
         dsids_count: dsids.length,
       });
-      return rows;
+      return rows.map((row) => ({
+        ...row,
+        pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
+      }));
     }
     compras.push(...(data || []));
   }
@@ -123,6 +158,7 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
     if (!compra) {
       return {
         ...row,
+        pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
         dslite_next_action: row?.dslite_id ? 'complete_dslite_label' : 'create_dslite_order',
         dslite_next_action_label: row?.dslite_id ? 'Completar etiqueta DSLite' : 'Criar pedido DSLite',
       };
@@ -156,7 +192,11 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
 
     return {
       ...row,
+      pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
       compra_id: compra.id || null,
+      compra_produto_descricao: compra.produto_descricao || null,
+      compra_produto_sku: compra.produto_sku || null,
+      compra_quantidade: compra.quantidade ?? null,
       fornecedor_id: compra.fornecedor_id || null,
       fornecedor_nome: compra.fornecedor_nome || null,
       fornecedor_telefone: fornecedor?.telefone || null,
