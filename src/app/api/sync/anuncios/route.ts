@@ -16,6 +16,76 @@ const TRANSIENT_RETRY_BASE_DELAY_MS = 800;
 const ML_SCAN_PAGE_SIZE = 100;
 const CATALOG_REFRESH_TRIGGER_KEY = 'catalog_no_catalogo_refresh_last_trigger_at';
 const CATALOG_REFRESH_TRIGGER_INTERVAL_MS = 10 * 60 * 1000;
+const PERFORMANCE_REFRESH_INTERVAL_MS = 6 * 60 * 60 * 1000;
+
+type MlPerformance = {
+  entity_id?: string;
+  score?: number;
+  level?: string;
+  level_wording?: string;
+  calculated_at?: string;
+  buckets?: any[];
+};
+
+function normalizePerformanceScore(value: unknown): number | null {
+  const score = Number(value);
+  if (!Number.isFinite(score) || score < 0 || score > 100) return null;
+  return Math.round(score);
+}
+
+function shouldRefreshPerformance(qualidadeInfo: unknown, now: number): boolean {
+  if (!qualidadeInfo || typeof qualidadeInfo !== 'object' || Array.isArray(qualidadeInfo)) return true;
+  const info = qualidadeInfo as Record<string, unknown>;
+  if (info.source !== 'mercado_livre_performance') return true;
+  const refreshedAt = new Date(String(info.refreshed_at || '')).getTime();
+  return !Number.isFinite(refreshedAt) || (now - refreshedAt) >= PERFORMANCE_REFRESH_INTERVAL_MS;
+}
+
+function buildPerformanceInfo(performance: MlPerformance, refreshedAt: string) {
+  const variables = (performance.buckets || []).flatMap((bucket: any) => (
+    Array.isArray(bucket?.variables) ? bucket.variables : []
+  ));
+  const itens = variables.map((variable: any) => ({
+    nome: String(variable?.title || variable?.key || 'Objetivo do Mercado Livre'),
+    ok: String(variable?.status || '').toUpperCase() === 'COMPLETED',
+    pontos: Math.round(Number(variable?.score || 0)),
+    max: 100,
+  }));
+  const pending = itens.find((item: any) => !item.ok);
+
+  return {
+    source: 'mercado_livre_performance',
+    entity_id: String(performance.entity_id || '') || null,
+    level: String(performance.level || '') || null,
+    level_wording: String(performance.level_wording || '') || null,
+    calculated_at: String(performance.calculated_at || '') || null,
+    refreshed_at: refreshedAt,
+    itens,
+    dica: pending?.nome || '',
+  };
+}
+
+async function fetchListingPerformance(itemId: string, userProductId: string | null): Promise<{
+  result: MLRequestResult<MlPerformance>;
+  retries: number;
+  endpoint: string;
+}> {
+  const endpoints = [
+    userProductId ? `/user-product/${encodeURIComponent(userProductId)}/performance` : null,
+    `/item/${encodeURIComponent(itemId)}/performance`,
+  ].filter((endpoint): endpoint is string => Boolean(endpoint));
+
+  let last: { result: MLRequestResult<MlPerformance>; retries: number; endpoint: string } | null = null;
+  for (const endpoint of endpoints) {
+    const check = await fetchMLResultWithRetry<MlPerformance>(endpoint);
+    if (check.result.ok && normalizePerformanceScore(check.result.data?.score) !== null) {
+      return { ...check, endpoint };
+    }
+    last = { ...check, endpoint };
+  }
+
+  return last!;
+}
 
 function extractSku(item: any): string | null {
   if (item?.seller_sku) return String(item.seller_sku).trim().toUpperCase();
@@ -408,8 +478,12 @@ export async function POST(request: Request) {
     const snapshots: any[] = [];
     const catalogItemsBase: Array<{ id: string; item: any }> = [];
     const listingMetricsByItemId = new Map<string, { soldQuantity: unknown; startTime: string | null }>();
+    const userProductIdByItemId = new Map<string, string>();
     let recordsFailed = 0;
     let pricingFieldsUpdated = 0;
+    let performanceRefreshed = 0;
+    let performanceSkippedFresh = 0;
+    let performanceFailed = 0;
 
     await runPool(itemIds, CONCURRENCY, async (itemId) => {
       const itemResult = await fetchMLResult<any>(`/items/${itemId}`);
@@ -540,6 +614,8 @@ export async function POST(request: Request) {
         soldQuantity: item.sold_quantity,
         startTime: item.start_time || null,
       });
+      const userProductId = String(item.user_product_id || '').trim();
+      if (userProductId) userProductIdByItemId.set(String(item.id), userProductId);
 
       snapshots.push({
         ml_item_id: String(item.id),
@@ -721,7 +797,7 @@ export async function POST(request: Request) {
 
       const { data: existingAnuncios, error: existingAnunciosError } = await (serviceClient
         .from('anuncios_ml')
-        .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas')
+        .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas, qualidade, qualidade_info')
         .in('ml_item_id', snapshots.map((snapshot) => String(snapshot.ml_item_id))) as any);
 
       if (existingAnunciosError) {
@@ -737,6 +813,55 @@ export async function POST(request: Request) {
         await runPool(snapshots, CONCURRENCY, async (snapshot) => {
           const existing = existingByItemId.get(String(snapshot.ml_item_id));
           if (!existing) return;
+          const itemId = String(snapshot.ml_item_id);
+
+          if (shouldRefreshPerformance(existing.qualidade_info, Date.now())) {
+            const performanceCheck = await fetchListingPerformance(itemId, userProductIdByItemId.get(itemId) || null);
+            const performance = performanceCheck.result;
+            const score = performance.ok && performance.data
+              ? normalizePerformanceScore(performance.data.score)
+              : null;
+
+            if (score === null) {
+              performanceFailed += 1;
+              warnings.push({
+                code: 'ml_listing_performance_unavailable',
+                message: performance.error?.message || 'Qualidade real não disponível para este anúncio no ML',
+                context: {
+                  itemId,
+                  status: performance.status,
+                  category: performance.error?.category || null,
+                  code: performance.error?.code || null,
+                  retries: performanceCheck.retries,
+                  endpoint: performanceCheck.endpoint,
+                },
+              });
+            } else {
+              const refreshedAt = new Date().toISOString();
+              const { error: performanceUpdateError } = await serviceClient
+                .from('anuncios_ml')
+                .update({
+                  qualidade: score,
+                  qualidade_info: buildPerformanceInfo(performance.data!, refreshedAt),
+                  updated_at: refreshedAt,
+                } as any)
+                .eq('ml_item_id', itemId);
+
+              if (performanceUpdateError) {
+                performanceFailed += 1;
+                errors.push({
+                  code: 'ml_listing_performance_persist_failed',
+                  message: performanceUpdateError.message,
+                  context: { itemId },
+                });
+              } else {
+                performanceRefreshed += 1;
+              }
+            }
+          } else {
+            performanceSkippedFresh += 1;
+          }
+
           const reconcileResult = await reconcileAnuncioMlFromItem(
             serviceClient,
             {
@@ -813,6 +938,9 @@ export async function POST(request: Request) {
         snapshot_upserted: snapshots.length,
         failed: recordsFailed,
         pricing_fields_updated: pricingFieldsUpdated,
+        performance_refreshed: performanceRefreshed,
+        performance_skipped_fresh: performanceSkippedFresh,
+        performance_failed: performanceFailed,
       },
       errors,
       warnings,
