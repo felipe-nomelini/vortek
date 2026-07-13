@@ -194,6 +194,30 @@ export async function POST(request: Request) {
   const results: any[] = [];
   const alertResults: any[] = [];
 
+  // Jobs manuais, como a criação de pedido DSLite, não pertencem a SYNC_TASKS.
+  // Recupera-os aqui para que não permaneçam indefinidamente em "rodando".
+  const { data: runningJobs, error: runningJobsError } = await serviceClient
+    .from('jobs')
+    .select('id, tipo, status, created_at, finished_at, log')
+    .in('status', ['pendente', 'rodando'])
+    .order('created_at', { ascending: true })
+    .limit(100);
+
+  if (runningJobsError) {
+    console.error('[cron-dispatch] falha ao listar jobs para recuperação stale', runningJobsError.message);
+  } else {
+    for (const job of runningJobs || []) {
+      if (!isJobStale(job as any, DEFAULT_STALE_JOB_THRESHOLD_MINUTES)) continue;
+      await markJobAsStale(job as any);
+      results.push({
+        task: job.tipo,
+        action: 'stale_job_recovered',
+        jobId: job.id,
+        stale_threshold_minutes: DEFAULT_STALE_JOB_THRESHOLD_MINUTES,
+      });
+    }
+  }
+
   await Promise.allSettled([
     alertIntegrationStatus().then((result) => alertResults.push({ alert: 'integration_status', ...result })),
     alertCriticalJobs().then((result) => alertResults.push({ alert: 'critical_jobs', ...result })),
