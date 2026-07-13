@@ -8,13 +8,20 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('push', (event) => {
   const data = event.data ? event.data.json() : {};
-  event.waitUntil(self.registration.showNotification(data.title || 'Vortek', {
+  const notification = self.registration.showNotification(data.title || 'Vortek', {
     body: data.body || '',
     tag: data.tag || 'vortek-notification',
     data: { url: data.url || '/' },
     icon: '/logo.png',
     badge: '/logo.png',
-  }));
+  });
+  const notifyOpenPages = self.clients.matchAll({ type: 'window', includeUncontrolled: true })
+    .then((pages) => pages.forEach((page) => page.postMessage({
+      type: 'vortek-push',
+      eventType: data.eventType || null,
+    })));
+
+  event.waitUntil(Promise.all([notification, notifyOpenPages]));
 });
 
 self.addEventListener('notificationclick', (event) => {

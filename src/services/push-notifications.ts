@@ -93,6 +93,7 @@ export async function dispatchPushNotifications(limit = 50) {
     }
 
     const payload = JSON.stringify({
+      eventType: notification.event_type,
       title: notification.title,
       body: notification.body,
       url: notification.url,
