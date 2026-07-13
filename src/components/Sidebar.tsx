@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import { Layout, Menu, Avatar, Typography } from 'antd';
 import type { MenuProps } from 'antd';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   DashboardOutlined,
   ShoppingCartOutlined,
@@ -25,41 +26,45 @@ import {
   TruckOutlined,
   FundProjectionScreenOutlined,
 } from '@ant-design/icons';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 const { Sider } = Layout;
 const { Text } = Typography;
 
+function menuLink(href: string, label: string) {
+  return <Link href={href}>{label}</Link>;
+}
+
 const menuItems: MenuProps['items'] = [
-  { key: '/dashboard', icon: <DashboardOutlined />, label: 'Dashboard' },
-  { key: '/tv', icon: <FundProjectionScreenOutlined />, label: 'TV ao Vivo' },
-  { key: '/produtos', icon: <ShoppingCartOutlined />, label: 'Produtos' },
-  { key: '/clientes', icon: <TeamOutlined />, label: 'Clientes' },
-  { key: '/fornecedores', icon: <TruckOutlined />, label: 'Fornecedores' },
+  { key: '/dashboard', icon: <DashboardOutlined />, label: menuLink('/dashboard', 'Dashboard') },
+  { key: '/tv', icon: <FundProjectionScreenOutlined />, label: menuLink('/tv', 'TV ao Vivo') },
+  { key: '/produtos', icon: <ShoppingCartOutlined />, label: menuLink('/produtos', 'Produtos') },
+  { key: '/clientes', icon: <TeamOutlined />, label: menuLink('/clientes', 'Clientes') },
+  { key: '/fornecedores', icon: <TruckOutlined />, label: menuLink('/fornecedores', 'Fornecedores') },
   {
     key: 'pedidos-group',
     icon: <OrderedListOutlined />,
     label: 'Pedidos',
     children: [
-      { key: '/pedidos', icon: <ShoppingCartOutlined />, label: 'Vendas' },
-      { key: '/compras', icon: <TruckOutlined />, label: 'Compras' },
+      { key: '/pedidos', icon: <ShoppingCartOutlined />, label: menuLink('/pedidos', 'Vendas') },
+      { key: '/compras', icon: <TruckOutlined />, label: menuLink('/compras', 'Compras') },
     ],
   },
-  { key: '/notas-fiscais', icon: <FileTextOutlined />, label: 'Notas Fiscais' },
-  { key: '/anuncios', icon: <ShopOutlined />, label: 'Anúncios' },
+  { key: '/notas-fiscais', icon: <FileTextOutlined />, label: menuLink('/notas-fiscais', 'Notas Fiscais') },
+  { key: '/anuncios', icon: <ShopOutlined />, label: menuLink('/anuncios', 'Anúncios') },
   {
     key: 'catalogo-group',
     icon: <AppstoreOutlined />,
     label: 'Catálogo',
     children: [
-      { key: '/catalogo/no-catalogo', icon: <AppstoreOutlined />, label: 'No Catálogo' },
-      { key: '/catalogo/elegiveis', icon: <AppstoreOutlined />, label: 'Elegíveis' },
+      { key: '/catalogo/no-catalogo', icon: <AppstoreOutlined />, label: menuLink('/catalogo/no-catalogo', 'No Catálogo') },
+      { key: '/catalogo/elegiveis', icon: <AppstoreOutlined />, label: menuLink('/catalogo/elegiveis', 'Elegíveis') },
     ],
   },
-  { key: '/perguntas', icon: <QuestionCircleOutlined />, label: 'Perguntas' },
-  { key: '/reputacao', icon: <StarOutlined />, label: 'Reputação' },
-  { key: '/reclamacoes', icon: <WarningOutlined />, label: 'Reclamações' },
-  { key: '/configuracoes', icon: <SettingOutlined />, label: 'Configurações' },
+  { key: '/perguntas', icon: <QuestionCircleOutlined />, label: menuLink('/perguntas', 'Perguntas') },
+  { key: '/reputacao', icon: <StarOutlined />, label: menuLink('/reputacao', 'Reputação') },
+  { key: '/reclamacoes', icon: <WarningOutlined />, label: menuLink('/reclamacoes', 'Reclamações') },
+  { key: '/configuracoes', icon: <SettingOutlined />, label: menuLink('/configuracoes', 'Configurações') },
 ];
 
 interface Integracoes {
@@ -69,7 +74,6 @@ interface Integracoes {
 
 export default function Sidebar() {
   const pathname = usePathname() || '';
-  const router = useRouter();
   const [profile, setProfile] = useState({ nome: 'Admin', avatar: '' });
   const [ints, setInts] = useState<Integracoes>({ ml: false, dslite: false });
 
@@ -123,9 +127,6 @@ export default function Sidebar() {
           ...(pathname.startsWith('/catalogo') ? ['catalogo-group'] : []),
         ]}
         items={menuItems}
-        onSelect={({ key }) => {
-          if (key && !key.endsWith('-group')) router.push(key);
-        }}
         style={{ background: 'transparent', borderRight: 0, marginTop: 8, flex: 1, overflowY: 'auto' }}
       />
       <div
