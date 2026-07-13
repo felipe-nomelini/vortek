@@ -960,7 +960,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          refreshMode: 'none',
+          refreshMode: 'incremental',
         }),
       });
       const json = await res.json().catch(() => ({})) as AnalisePrecoResponse;
