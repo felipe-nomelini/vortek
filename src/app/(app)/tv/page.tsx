@@ -495,6 +495,17 @@ export default function TvDashboardPage() {
       ),
     },
     {
+      title: "Lucro",
+      dataIndex: "profit",
+      key: "profit",
+      align: "right",
+      render: (value) => (
+        <Text strong style={{ color: "#52c41a" }}>
+          {formatCurrency(value)}
+        </Text>
+      ),
+    },
+    {
       title: "Status",
       dataIndex: "status",
       key: "status",
