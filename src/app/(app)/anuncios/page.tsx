@@ -445,6 +445,19 @@ export default function AnunciosPage() {
       ) : <span style={{ color: '#666' }}>—</span>,
     },
     {
+      title: 'Anúncio', dataIndex: 'id', key: 'ml_item_id', width: 150,
+      render: (id: string, record: Anuncio) => record.permalink ? (
+        <a
+          href={record.permalink}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ fontFamily: 'monospace' }}
+        >
+          {id}
+        </a>
+      ) : <span style={{ color: '#666', fontFamily: 'monospace' }}>{id || '—'}</span>,
+    },
+    {
       title: 'Produto', dataIndex: 'produto', key: 'titulo',
       sorter: true,
       sortOrder: getRemoteSortOrder('titulo', sort),
