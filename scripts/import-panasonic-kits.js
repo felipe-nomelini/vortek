@@ -22,6 +22,28 @@ function number(value) { return Number(String(value ?? '').replace(',', '.')) ||
 function images(row) {
   return Array.from(new Set([1, 2, 3, 4, 5, 6].map((n) => text(row[`URL imagem ${n}`])).filter(Boolean)));
 }
+function description(row) {
+  const title = text(row.Descrição) || 'Kit Panasonic';
+  const brand = text(row.Marca) || 'Panasonic';
+  const packaging = text(row['Formato embalagem']);
+  const warranty = text(row.Garantia);
+  const complement = text(row['Descrição complementar']);
+  return [
+    title,
+    '',
+    `Este anúncio corresponde ao kit ${title}.`,
+    'Conteúdo da embalagem:',
+    `- ${title}`,
+    '',
+    'Detalhes do produto:',
+    `- Marca: ${brand}`,
+    ...(packaging ? [`- Embalagem: ${packaging}`] : []),
+    ...(warranty ? [`- Garantia do fornecedor: ${warranty}`] : []),
+    ...(complement ? ['', complement] : []),
+    '',
+    'Confira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.',
+  ].join('\n');
+}
 function componentsFor(sku) {
   if (composite[sku]) return composite[sku];
   const match = /^(\d+)(?:CX|K)(\d+)$/i.exec(sku);
@@ -49,7 +71,13 @@ async function main() {
   const invalid = kits.filter((kit) => Object.keys(kit.components).some((id) => !productByDsliteId.get(id)));
   if (invalid.length) throw new Error(`Componentes BKR1 ausentes: ${invalid.map((kit) => kit.sku).join(', ')}`);
 
-  console.log(JSON.stringify({ mode: APPLY ? 'apply' : 'dry-run', kits: kits.length, bases: baseIds.length, invalid: invalid.length }, null, 2));
+  console.log(JSON.stringify({
+    mode: APPLY ? 'apply' : 'dry-run',
+    kits: kits.length,
+    bases: baseIds.length,
+    invalid: invalid.length,
+    descricao_exemplo: description(kits.find((kit) => kit.sku === '2062K5')?.row || kits[0]?.row || {}),
+  }, null, 2));
   if (!APPLY) return;
 
   let imported = 0;
@@ -84,7 +112,7 @@ async function main() {
         profundidade: number(row['Comprimento embalagem']),
         ncm: text(row['Classificação fiscal']) || null,
         gtin: text(row['GTIN/EAN']),
-        descricao: text(row['Descrição complementar']) || text(row.Descrição),
+        descricao: description(row),
         imagens: images(row),
         categoria: text(row.Categoria) || null,
         fornecedor: 'BKR1',
@@ -105,7 +133,10 @@ async function main() {
       await client.from('produto_kit_componentes').delete().eq('kit_produto_id', produtoId);
       const { error: activeError } = await client
         .from('produtos')
-        .update({ ativo: canFulfillInOneDsliteItem })
+        .update({
+          ativo: canFulfillInOneDsliteItem,
+          descricao: description(kit.row),
+        })
         .eq('id', produtoId);
       if (activeError) throw activeError;
       const { error: kitActiveError } = await client
