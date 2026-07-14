@@ -55,7 +55,6 @@ async function main() {
   let imported = 0;
   let updated = 0;
   for (const kit of kits) {
-    const canFulfillInOneDsliteItem = Object.keys(kit.components).length === 1;
     const { data: existingKit, error: kitLookupError } = await client
       .from('produto_kits')
       .select('produto_id')
@@ -88,8 +87,8 @@ async function main() {
         imagens: images(row),
         categoria: text(row.Categoria) || null,
         fornecedor: 'BKR1',
-        // DSLite vincula um produto por item. Kits compostos seguem bloqueados.
-        ativo: canFulfillInOneDsliteItem,
+        // Kit fica inativo até fluxo DSLite expandir venda em componentes.
+        ativo: false,
       }).select('id').single();
       if (productError) throw productError;
       produtoId = text(product.id);
@@ -97,7 +96,7 @@ async function main() {
         produto_id: produtoId,
         fornecedor_dslite_id: SUPPLIER_ID,
         sku_origem: kit.sku,
-        ativo: canFulfillInOneDsliteItem,
+        ativo: false,
       });
       if (newKitError) throw newKitError;
       imported += 1;
@@ -105,12 +104,12 @@ async function main() {
       await client.from('produto_kit_componentes').delete().eq('kit_produto_id', produtoId);
       const { error: activeError } = await client
         .from('produtos')
-        .update({ ativo: canFulfillInOneDsliteItem })
+        .update({ ativo: false })
         .eq('id', produtoId);
       if (activeError) throw activeError;
       const { error: kitActiveError } = await client
         .from('produto_kits')
-        .update({ ativo: canFulfillInOneDsliteItem })
+        .update({ ativo: false })
         .eq('produto_id', produtoId);
       if (kitActiveError) throw kitActiveError;
       updated += 1;
