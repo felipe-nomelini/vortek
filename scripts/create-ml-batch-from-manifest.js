@@ -10,6 +10,7 @@ dotenv.config({ path: '.env.local' });
 const MANIFEST_PATH = process.env.ML_BATCH_MANIFEST;
 const BASE_URL = process.env.BATCH_API_URL || 'http://localhost:3000';
 const DELAY_MS = Number(process.env.BATCH_DELAY_MS || '1500');
+const REQUEST_TIMEOUT_MS = Number(process.env.BATCH_REQUEST_TIMEOUT_MS || '45000');
 const DRY_RUN = process.env.DRY_RUN === '1';
 const RESULT_FILE = process.env.ML_BATCH_RESULT_FILE || '';
 const LOGIN_EMAIL = process.env.BATCH_LOGIN_EMAIL || '';
@@ -141,6 +142,8 @@ function requestText(targetUrl, { method = 'GET', headers = {}, body = '' } = {}
       '-k',
       '--silent',
       '--show-error',
+      '--max-time',
+      String(Math.max(1, Math.ceil(REQUEST_TIMEOUT_MS / 1000))),
       '--output',
       '-',
       '--dump-header',
@@ -186,7 +189,12 @@ function requestText(targetUrl, { method = 'GET', headers = {}, body = '' } = {}
     return Promise.resolve({ status, text, headers: {}, cookies });
   }
 
-  return fetch(targetUrl, { method, headers, body }).then(async (response) => ({
+  return fetch(targetUrl, {
+    method,
+    headers,
+    body,
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+  }).then(async (response) => ({
     status: response.status,
     text: await response.text(),
     headers: response.headers,
