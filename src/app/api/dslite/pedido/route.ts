@@ -899,6 +899,13 @@ function normalizeBrasilNfeClientName(value: unknown): string {
   return safe.slice(0, BRASIL_NFE_MAX_CLIENT_NAME_LENGTH).trim() || "Cliente";
 }
 
+function normalizeBrasilNfeProductName(value: unknown): string {
+  const normalized = String(value ?? "")
+    .replace(/\s+/g, " ")
+    .trim();
+  return (normalized || "Produto").slice(0, 120).trimEnd();
+}
+
 const UF_CODES = new Set([
   "AC",
   "AL",
@@ -1402,7 +1409,9 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
       String(it.titulo || "ITEM");
     return {
       CodProdutoServico: productCode,
-      NmProduto: kitPlan?.kind === "ready" ? kitPlan.plan.componentTitle : String(it.titulo || "Produto"),
+      NmProduto: normalizeBrasilNfeProductName(
+        kitPlan?.kind === "ready" ? kitPlan.plan.componentTitle : it.titulo,
+      ),
       NCM: String(kitPlan?.kind === "ready" ? kitPlan.plan.componentNcm || it.ncm || "" : it.ncm || ""),
       CFOP: Number(cfopEsperado),
       UnidadeComercial: "UN",

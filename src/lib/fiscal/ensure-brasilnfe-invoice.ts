@@ -68,6 +68,13 @@ function normalizeBrasilNfeClientName(value: unknown): string {
   return safe.slice(0, BRASIL_NFE_MAX_CLIENT_NAME_LENGTH).trim() || "Cliente";
 }
 
+function normalizeBrasilNfeProductName(value: unknown): string {
+  const normalized = String(value ?? "")
+    .replace(/\s+/g, " ")
+    .trim();
+  return (normalized || "Produto").slice(0, 120).trimEnd();
+}
+
 function normalizeUf(value: string | null | undefined): string | null {
   const uf = String(value || "")
     .trim()
@@ -308,7 +315,7 @@ function buildPayloadFromSnapshot(
 
   const produtos = itens.map((it: any) => ({
     CodProdutoServico: String(it.seller_sku || it.titulo || "ITEM"),
-    NmProduto: String(it.titulo || "Produto"),
+    NmProduto: normalizeBrasilNfeProductName(it.titulo),
     NCM: String(it.ncm || ""),
     CFOP: Number(cfopEsperado),
     UnidadeComercial: "UN",
