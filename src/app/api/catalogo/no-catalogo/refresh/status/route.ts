@@ -101,6 +101,17 @@ export async function GET(request: Request) {
       } : null,
       updated_at: updatedAt,
     },
+    events: logs
+      .filter((entry: any) => String(entry?.event_type || '').startsWith('catalog_refresh_'))
+      .slice(-40)
+      .map((entry: any) => ({
+        stage: entry.stage || null,
+        message: entry.message || null,
+        processed: entry.processed ?? null,
+        total: entry.total ?? null,
+        progress: entry.progress ?? null,
+        timestamp: entry.timestamp || null,
+      })),
     failures,
   });
 }

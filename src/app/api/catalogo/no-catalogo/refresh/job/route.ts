@@ -6,7 +6,7 @@ const JOB_TIPO = 'catalogo_no_catalogo_refresh';
 
 export const maxDuration = 300;
 
-export async function POST() {
+export async function POST(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {
@@ -14,6 +14,8 @@ export async function POST() {
   }
 
   const serviceClient = createServiceClient();
+  const body = await request.json().catch(() => ({}));
+  const mode = body?.mode === 'full' ? 'full' : 'incremental';
 
   const { data: runningJob } = await serviceClient
     .from('jobs')
@@ -60,8 +62,9 @@ export async function POST() {
       jobId: insertedJob.id,
       tipo: JOB_TIPO,
       path: '/api/catalogo/no-catalogo/refresh',
-      body: { mode: 'incremental' },
-      label: 'Refresh No Catálogo',
+      body: { mode, jobId: insertedJob.id },
+      label: mode === 'full' ? 'Refresh completo No Catálogo' : 'Refresh No Catálogo',
+      requestTimeoutMs: mode === 'full' ? 300000 : undefined,
     }).catch(async (err: any) => {
       console.error('[catalogo-no-catalogo-refresh-job] Falha ao iniciar processamento em background:', err?.message || err);
       const { data: currentJob } = await serviceClient

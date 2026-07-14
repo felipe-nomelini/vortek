@@ -8,6 +8,7 @@ interface MlJobConfig {
   label: string;
   query?: Record<string, string | number | boolean | null | undefined>;
   body?: Record<string, any>;
+  requestTimeoutMs?: number;
 }
 
 type JobsUpdate = Database['public']['Tables']['jobs']['Update'];
@@ -86,7 +87,7 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
 
   const baseUrl = process.env.INTERNAL_APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
   const apiKey = process.env.API_SECRET_KEY || '';
-  const requestTimeoutMs = Number(process.env.INTERNAL_SYNC_TIMEOUT_MS || 120000);
+  const requestTimeoutMs = Number(config.requestTimeoutMs || process.env.INTERNAL_SYNC_TIMEOUT_MS || 120000);
   const logs = parseJobLog(job.log);
 
   try {
@@ -176,7 +177,14 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
       ? (isValidFornecedorCursor(raw?.cursor) ? 'cursor' : 'next_cursor')
       : (cursorExhausted ? 'reset' : 'none');
 
-    logs.push({
+    const { data: latestJob } = await serviceClient
+      .from('jobs')
+      .select('log, processados, total')
+      .eq('id', jobId)
+      .maybeSingle();
+    const finalLogs = parseJobLog(latestJob?.log);
+
+    finalLogs.push({
       event_type: 'job_stage_done',
       type: ok ? 'success' : 'error',
       stage: tipo,
@@ -199,7 +207,7 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
       ...raw,
     });
 
-    logs.push(eventLog('job_finished', `Processamento finalizado com status ${statusFinal}`, {
+    finalLogs.push(eventLog('job_finished', `Processamento finalizado com status ${statusFinal}`, {
       job_id: jobId,
       tipo,
       http_status: res.status,
@@ -207,10 +215,10 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
 
     await updateJob(jobId, {
       status: statusFinal,
-      processados: 1,
-      total: 1,
+      processados: Math.max(1, Number(latestJob?.processados || 0)),
+      total: Math.max(1, Number(latestJob?.total || 0)),
       progresso: 100,
-      log: logs,
+      log: finalLogs,
       finished_at: nowIso(),
     });
 
@@ -221,7 +229,13 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
       total: 1,
     };
   } catch (err: any) {
-    logs.push(eventLog('job_start_failed', `Falha ao executar job: ${err?.message || 'erro desconhecido'}`, {
+    const { data: latestJob } = await serviceClient
+      .from('jobs')
+      .select('log')
+      .eq('id', jobId)
+      .maybeSingle();
+    const failedLogs = parseJobLog(latestJob?.log);
+    failedLogs.push(eventLog('job_start_failed', `Falha ao executar job: ${err?.message || 'erro desconhecido'}`, {
       job_id: jobId,
       tipo,
       error_name: err?.name || null,
@@ -230,7 +244,7 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
 
     await updateJob(jobId, {
       status: 'erro',
-      log: logs,
+      log: failedLogs,
       finished_at: nowIso(),
       processados: 1,
       total: 1,

@@ -5,14 +5,22 @@ import { buildCatalogEnrichment, extractCatalogCandidateSku, extractCatalogGtin 
 
 const PAGE_SIZE = 100;
 const MAX_INCREMENTAL_PAGES = 10;
-const DETAIL_CONCURRENCY = 6;
+const DETAIL_CONCURRENCY = 10;
+const MULTIGET_CHUNK_SIZE = 20;
+const MULTIGET_CONCURRENCY = 4;
 const UPSERT_CHUNK_SIZE = 250;
 const DELETE_CHUNK_SIZE = 500;
 const ML_SCAN_PAGE_SIZE = 100;
 
-async function runPool<T>(items: T[], limit: number, worker: (item: T) => Promise<void>) {
+async function runPool<T>(
+  items: T[],
+  limit: number,
+  worker: (item: T) => Promise<void>,
+  onProgress?: (processed: number, total: number) => Promise<void>,
+) {
   for (let i = 0; i < items.length; i += limit) {
     await Promise.all(items.slice(i, i + limit).map(worker));
+    if (onProgress) await onProgress(Math.min(i + limit, items.length), items.length);
   }
 }
 
@@ -33,6 +41,51 @@ function getSellerSkuFromItem(item: any): string | null {
 }
 
 export const maxDuration = 300;
+
+type RefreshProgressReporter = (input: {
+  stage: string;
+  message: string;
+  processed?: number;
+  total?: number;
+  progress?: number;
+}) => Promise<void>;
+
+async function createProgressReporter(jobId: unknown): Promise<RefreshProgressReporter> {
+  const normalizedJobId = String(jobId || '').trim();
+  if (!normalizedJobId) return async () => {};
+
+  const service = createServiceClient();
+  const { data: job } = await service
+    .from('jobs')
+    .select('log')
+    .eq('id', normalizedJobId)
+    .maybeSingle();
+  const logs = Array.isArray(job?.log) ? [...job.log] : [];
+
+  return async ({ stage, message, processed, total, progress }) => {
+    logs.push({
+      event_type: 'catalog_refresh_progress',
+      type: 'info',
+      stage,
+      message,
+      processed: processed ?? null,
+      total: total ?? null,
+      progress: progress ?? null,
+      timestamp: new Date().toISOString(),
+    });
+    await service
+      .from('jobs')
+      .update({
+        status: 'rodando',
+        processados: processed ?? 0,
+        total: total ?? 0,
+        progresso: progress ?? 0,
+        log: logs,
+      })
+      .eq('id', normalizedJobId)
+      .in('status', ['pendente', 'rodando']);
+  };
+}
 
 async function fetchAllCatalogListingItemIds(sellerId: string | number): Promise<{
   ok: boolean;
@@ -86,6 +139,7 @@ export async function POST(request: Request) {
 
   const body = await request.json().catch(() => ({}));
   const mode = body?.mode === 'full' ? 'full' : 'incremental';
+  const reportProgress = await createProgressReporter(body?.jobId);
 
   const meResult = await fetchMLResult<{ id: number }>('/users/me');
   if (!meResult.ok || !meResult.data?.id) {
@@ -111,6 +165,7 @@ export async function POST(request: Request) {
   let totalMl = 0;
 
   if (mode === 'full') {
+    await reportProgress({ stage: 'scan_catalog', message: 'Listando todos os anúncios de catálogo no Mercado Livre.', progress: 2 });
     const scanResult = await fetchAllCatalogListingItemIds(sellerId);
     if (!scanResult.ok) {
       return NextResponse.json({
@@ -122,6 +177,13 @@ export async function POST(request: Request) {
 
     allItemIds.push(...scanResult.itemIds);
     totalMl = scanResult.itemIds.length;
+    await reportProgress({
+      stage: 'scan_catalog',
+      message: `${totalMl} anúncios de catálogo encontrados.`,
+      processed: totalMl,
+      total: totalMl,
+      progress: 10,
+    });
   } else {
     const maxPages = MAX_INCREMENTAL_PAGES;
     for (let pageIdx = 0; pageIdx < maxPages; pageIdx += 1) {
@@ -151,15 +213,57 @@ export async function POST(request: Request) {
   const priceToWinByItemId = new Map<string, any>();
   const failedItemIds = new Set<string>();
 
-  await runPool(allItemIds, DETAIL_CONCURRENCY, async (itemId) => {
-    const itemResult = await fetchMLResult<any>(`/items/${itemId}`);
-    if (!itemResult.ok || !itemResult.data) {
-      failedItemIds.add(itemId);
-      warnings.push(`item_fetch_failed:${itemId}`);
+  await reportProgress({
+    stage: 'fetch_details',
+    message: 'Consultando detalhes dos anúncios.',
+    processed: 0,
+    total: allItemIds.length,
+    progress: 10,
+  });
+  const itemIdChunks = chunk(allItemIds, MULTIGET_CHUNK_SIZE);
+  await runPool(itemIdChunks, MULTIGET_CONCURRENCY, async (itemIdsChunk) => {
+    const itemResult = await fetchMLResult<Array<{ code: number; body?: any }>>(
+      `/items?ids=${itemIdsChunk.map(encodeURIComponent).join(',')}&attributes=id,title,seller_custom_field,attributes,status,price,permalink,thumbnail,category_id,domain_id,catalog_product_id,last_updated,item_relations`,
+    );
+    if (!itemResult.ok || !Array.isArray(itemResult.data)) {
+      for (const itemId of itemIdsChunk) {
+        failedItemIds.add(itemId);
+        warnings.push(`item_fetch_failed:${itemId}`);
+      }
       return;
     }
-    detailsByItemId.set(itemId, itemResult.data);
+    const returnedIds = new Set<string>();
+    for (const row of itemResult.data) {
+      if (row?.code !== 200 || !row.body?.id) continue;
+      const itemId = String(row.body.id);
+      returnedIds.add(itemId);
+      detailsByItemId.set(itemId, row.body);
+    }
+    for (const itemId of itemIdsChunk) {
+      if (returnedIds.has(itemId)) continue;
+      failedItemIds.add(itemId);
+      warnings.push(`item_fetch_failed:${itemId}`);
+    }
+  }, async (processedChunks) => {
+    const processed = Math.min(processedChunks * MULTIGET_CHUNK_SIZE, allItemIds.length);
+    await reportProgress({
+      stage: 'fetch_details',
+      message: `Consultando detalhes dos anúncios: ${processed}/${allItemIds.length}.`,
+      processed,
+      total: allItemIds.length,
+      progress: 10 + Math.round((processed / Math.max(allItemIds.length, 1)) * 22),
+    });
+  });
 
+  const itemIdsWithDetails = allItemIds.filter((itemId) => detailsByItemId.has(itemId));
+  await reportProgress({
+    stage: 'fetch_price_to_win',
+    message: 'Consultando preço para ganhar no Mercado Livre.',
+    processed: 0,
+    total: itemIdsWithDetails.length,
+    progress: 32,
+  });
+  await runPool(itemIdsWithDetails, DETAIL_CONCURRENCY, async (itemId) => {
     const priceResult = await fetchMLResult<any>(`/items/${itemId}/price_to_win?version=v2`);
     if (!priceResult.ok || !priceResult.data) {
       priceToWinByItemId.set(itemId, { buyBoxStatus: null, priceToWin: null });
@@ -168,6 +272,16 @@ export async function POST(request: Request) {
     }
 
     priceToWinByItemId.set(itemId, priceResult.data);
+  }, async (processed, total) => {
+    if (processed === total || processed % 50 === 0) {
+      await reportProgress({
+        stage: 'fetch_price_to_win',
+        message: `Consultando preço para ganhar: ${processed}/${total}.`,
+        processed,
+        total,
+        progress: 32 + Math.round((processed / Math.max(total, 1)) * 43),
+      });
+    }
   });
 
   const relatedIds = new Set<string>();
@@ -183,13 +297,39 @@ export async function POST(request: Request) {
   }
 
   const relatedPermalinkById = new Map<string, string | null>();
-  await runPool(Array.from(relatedIds), DETAIL_CONCURRENCY, async (relatedId) => {
-    const result = await fetchMLResult<any>(`/items/${relatedId}`);
-    if (!result.ok || !result.data) {
-      relatedPermalinkById.set(relatedId, null);
-      return;
+  await reportProgress({
+    stage: 'fetch_related',
+    message: 'Carregando links dos anúncios relacionados.',
+    processed: 0,
+    total: relatedIds.size,
+    progress: 76,
+  });
+  const relatedIdList = Array.from(relatedIds);
+  await runPool(chunk(relatedIdList, MULTIGET_CHUNK_SIZE), MULTIGET_CONCURRENCY, async (relatedIdsChunk) => {
+    const result = await fetchMLResult<Array<{ code: number; body?: any }>>(
+      `/items?ids=${relatedIdsChunk.map(encodeURIComponent).join(',')}&attributes=id,permalink`,
+    );
+    const returnedIds = new Set<string>();
+    if (result.ok && Array.isArray(result.data)) {
+      for (const row of result.data) {
+        if (row?.code !== 200 || !row.body?.id) continue;
+        const relatedId = String(row.body.id);
+        returnedIds.add(relatedId);
+        relatedPermalinkById.set(relatedId, row.body.permalink || null);
+      }
     }
-    relatedPermalinkById.set(relatedId, result.data.permalink || null);
+    for (const relatedId of relatedIdsChunk) {
+      if (!returnedIds.has(relatedId)) relatedPermalinkById.set(relatedId, null);
+    }
+  }, async (processedChunks) => {
+    const processed = Math.min(processedChunks * MULTIGET_CHUNK_SIZE, relatedIdList.length);
+    await reportProgress({
+      stage: 'fetch_related',
+      message: `Carregando links relacionados: ${processed}/${relatedIdList.length}.`,
+      processed,
+      total: relatedIdList.length,
+      progress: 76 + Math.round((processed / Math.max(relatedIdList.length, 1)) * 9),
+    });
   });
 
   const anuncioMap = new Map<string, { produto_id: string | null; sku: string | null }>();
@@ -249,6 +389,7 @@ export async function POST(request: Request) {
   }
 
   const upsertRows: any[] = [];
+  await reportProgress({ stage: 'match_products', message: 'Vinculando produtos locais.', progress: 86 });
   for (const itemId of allItemIds) {
     const item = detailsByItemId.get(itemId);
     if (!item) continue;
@@ -296,6 +437,7 @@ export async function POST(request: Request) {
   }
 
   let updated = 0;
+  await reportProgress({ stage: 'save_snapshot', message: 'Salvando snapshot atualizado.', processed: 0, total: upsertRows.length, progress: 90 });
   for (const rowsChunk of chunk(upsertRows, UPSERT_CHUNK_SIZE)) {
     const { error } = await service
       .from('catalogo_ml_snapshot')
@@ -307,6 +449,13 @@ export async function POST(request: Request) {
       }, { status: 500 });
     }
     updated += rowsChunk.length;
+    await reportProgress({
+      stage: 'save_snapshot',
+      message: `Salvando snapshot atualizado: ${updated}/${upsertRows.length}.`,
+      processed: updated,
+      total: upsertRows.length,
+      progress: 90 + Math.round((updated / Math.max(upsertRows.length, 1)) * 9),
+    });
   }
 
   let removed = 0;
@@ -350,6 +499,13 @@ export async function POST(request: Request) {
   }
 
   const duration = Date.now() - startedAt;
+  await reportProgress({
+    stage: 'completed',
+    message: `Refresh concluído: ${updated} anúncios atualizados.`,
+    processed: updated,
+    total: allItemIds.length,
+    progress: 100,
+  });
   const response = {
     success: true,
     mode,

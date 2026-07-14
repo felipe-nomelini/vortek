@@ -104,10 +104,21 @@ type RefreshStatusPayload = {
   job?: {
     id: string;
     status: string;
+    progresso?: number;
+    processados?: number;
+    total?: number;
     last_event?: {
       message?: string | null;
     } | null;
   } | null;
+  events?: Array<{
+    stage?: string | null;
+    message?: string | null;
+    processed?: number | null;
+    total?: number | null;
+    progress?: number | null;
+    timestamp?: string | null;
+  }>;
   failures?: string[];
 };
 
@@ -326,6 +337,55 @@ function buildMlPublishSteps(statusPayload: MlPublishStatusResponse | null): Pro
   ];
 }
 
+function buildAnaliseRefreshSteps(payload: RefreshStatusPayload | null, calculating = false): ProgressStep[] {
+  const job = payload?.job;
+  const events = payload?.events || [];
+  const failures = payload?.failures || [];
+  const hasError = job?.status === 'erro' || job?.status === 'failed_auth' || job?.status === 'cancelado';
+  const stages = [
+    { key: 'scan_catalog', label: 'Listando anúncios de catálogo' },
+    { key: 'fetch_details', label: 'Consultando detalhes dos anúncios' },
+    { key: 'fetch_price_to_win', label: 'Consultando preço para ganhar' },
+    { key: 'fetch_related', label: 'Carregando anúncios relacionados' },
+    { key: 'match_products', label: 'Vinculando produtos locais' },
+    { key: 'save_snapshot', label: 'Salvando snapshot atualizado' },
+  ];
+  const indexByStage = new Map(stages.map((stage, index) => [stage.key, index]));
+  const latestByStage = new Map<string, NonNullable<RefreshStatusPayload['events']>[number]>();
+  for (const event of events) {
+    if (event.stage) latestByStage.set(event.stage, event);
+  }
+  const activeStage = events.at(-1)?.stage || null;
+  const activeIndex = activeStage === 'completed'
+    ? stages.length
+    : activeStage ? (indexByStage.get(activeStage) ?? -1) : -1;
+  const done = job?.status === 'completo' || job?.status === 'completo_parcial';
+
+  const refreshSteps = stages.map((stage, index): ProgressStep => {
+    const event = latestByStage.get(stage.key);
+    const detail = event?.message || (index === 0 ? 'Aguardando job iniciar.' : 'Aguardando etapa anterior.');
+    if (hasError && (index === Math.max(activeIndex, 0))) {
+      return { label: stage.label, status: 'error', detail, error: failures[0] || job?.last_event?.message || 'Falha no refresh.' };
+    }
+    if (done || index < activeIndex) return { label: stage.label, status: 'success', detail };
+    if (index === activeIndex || (!activeStage && index === 0)) return { label: stage.label, status: 'loading', detail };
+    return { label: stage.label, status: 'pending', detail };
+  });
+
+  refreshSteps.push({
+    label: 'Calculando oportunidades de preço',
+    status: hasError ? 'pending' : calculating ? 'loading' : done ? 'success' : 'pending',
+    detail: hasError
+      ? 'Não executado porque o refresh falhou.'
+      : calculating
+        ? 'Analisando snapshot atualizado.'
+        : done
+          ? 'Reanálise concluída.'
+          : 'Aguardando refresh completo.',
+  });
+  return refreshSteps;
+}
+
 export default function CatalogoView({ mode }: CatalogoViewProps) {
   const [loading, setLoading] = useState(true);
   const [messageApi, contextHolder] = message.useMessage();
@@ -351,6 +411,8 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
   const catalogBatchCancelRef = useRef(false);
   const [analiseData, setAnaliseData] = useState<AnalisePrecoRow[]>([]);
   const [analiseLoading, setAnaliseLoading] = useState(false);
+  const [analiseRefreshModalOpen, setAnaliseRefreshModalOpen] = useState(false);
+  const [analiseRefreshSteps, setAnaliseRefreshSteps] = useState<ProgressStep[]>(buildAnaliseRefreshSteps(null));
   const [analiseErro, setAnaliseErro] = useState<string | null>(null);
   const [analiseTotal, setAnaliseTotal] = useState(0);
   const [analiseClasses, setAnaliseClasses] = useState<Partial<Record<AnaliseClasse, number>>>({});
@@ -955,12 +1017,38 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
     if (mode !== 'no_catalogo' || analiseLoading) return;
     setAnaliseLoading(true);
     setAnaliseErro(null);
+    setAnaliseRefreshModalOpen(true);
+    setAnaliseRefreshSteps(buildAnaliseRefreshSteps(null));
     try {
+      const refreshStart = await fetch('/api/catalogo/no-catalogo/refresh/job', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mode: 'full' }),
+      });
+      const refreshStartJson = await refreshStart.json().catch(() => ({}));
+      if (!refreshStart.ok || !refreshStartJson?.success || !refreshStartJson?.jobId) {
+        throw new Error(refreshStartJson?.error || 'Falha ao iniciar refresh completo do catálogo.');
+      }
+
+      const jobId = String(refreshStartJson.jobId);
+      let refreshPayload: RefreshStatusPayload | null = null;
+      while (true) {
+        refreshPayload = await fetchRefreshStatus(jobId);
+        setAnaliseRefreshSteps(buildAnaliseRefreshSteps(refreshPayload));
+        const refreshStatus = refreshPayload.job?.status;
+        if (refreshStatus === 'completo' || refreshStatus === 'completo_parcial') break;
+        if (refreshStatus === 'erro' || refreshStatus === 'failed_auth' || refreshStatus === 'cancelado') {
+          throw new Error(refreshPayload.failures?.[0] || refreshPayload.job?.last_event?.message || 'Refresh completo falhou.');
+        }
+        await new Promise<void>((resolve) => setTimeout(resolve, 1500));
+      }
+
+      setAnaliseRefreshSteps(buildAnaliseRefreshSteps(refreshPayload, true));
       const res = await fetch('/api/catalogo/no-catalogo/analise-preco', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          refreshMode: 'incremental',
+          refreshMode: 'none',
         }),
       });
       const json = await res.json().catch(() => ({})) as AnalisePrecoResponse;
@@ -978,15 +1066,19 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       setAnaliseSnapshotSyncedAt(json.snapshot_max_synced_at || null);
       setAnaliseSnapshotAgeSeconds(typeof json.snapshot_age_seconds === 'number' ? json.snapshot_age_seconds : null);
       setAnaliseUltimaExecucao(new Date().toISOString());
+      setAnaliseRefreshSteps(buildAnaliseRefreshSteps(refreshPayload));
       messageApi.success('Reanálise de preço concluída.');
-    } catch {
-      const erro = 'Erro de conexão ao executar reanálise de preço.';
+    } catch (error: any) {
+      const erro = error?.message || 'Erro de conexão ao executar reanálise de preço.';
       setAnaliseErro(erro);
+      setAnaliseRefreshSteps((current) => current.map((step) => (
+        step.status === 'loading' ? { ...step, status: 'error', error: erro } : step
+      )));
       messageApi.error(erro);
     } finally {
       setAnaliseLoading(false);
     }
-  }, [analiseLoading, messageApi, mode]);
+  }, [analiseLoading, fetchRefreshStatus, messageApi, mode]);
 
   const handleAtualizarPrecoParaGanhar = useCallback(async (row: NoCatalogoRow) => {
     if (mode !== 'no_catalogo') return;
@@ -1661,6 +1753,14 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
           onClick: () => { void applyWholesaleFromModal(); },
           primary: true,
         }] : []}
+      />
+
+      <ProgressModal
+        open={analiseRefreshModalOpen}
+        title="Atualizando reanálise de preço"
+        steps={analiseRefreshSteps}
+        onClose={() => setAnaliseRefreshModalOpen(false)}
+        showCloseButton={analiseRefreshSteps.every((step) => step.status === 'success' || step.status === 'warning') || analiseRefreshSteps.some((step) => step.status === 'error')}
       />
     </div>
   );
