@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase";
-import { fetchML } from "@/services/integration";
+import { fetchML, fetchMLResult } from "@/services/integration";
 import {
   getCategoryAttributes,
   predictCategory,
@@ -392,6 +392,50 @@ export async function POST(req: Request) {
       };
     });
 
+    const conditionalResult = await fetchMLResult<{
+      required_attributes?: Array<{ id?: string }>;
+    }>(`/categories/${categoriaId}/attributes/conditional`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: produto.nome,
+        category_id: categoriaId,
+        price: suggestedPrice,
+        currency_id: "BRL",
+        available_quantity: Math.max(Number(produto.estoque || 0), 1),
+        buying_mode: "buy_it_now",
+        condition: "new",
+        listing_type_id: listingType,
+        description: { plain_text: buildDescription(produto) },
+        attributes: prefillAttributes
+          .filter((attr) => attr.value_id || attr.value_name)
+          .map((attr) => ({
+            id: attr.id,
+            value_id: attr.value_id,
+            value_name: attr.value_name,
+          })),
+      }),
+    });
+    if (!conditionalResult.ok) {
+      return NextResponse.json(
+        {
+          error:
+            conditionalResult.error?.message ||
+            "Não foi possível validar atributos condicionais no Mercado Livre.",
+        },
+        { status: 502 },
+      );
+    }
+    const conditionalRequiredIds = new Set(
+      (conditionalResult.data?.required_attributes || [])
+        .map((attr) => String(attr.id || ""))
+        .filter(Boolean),
+    );
+
+    for (const attr of prefillAttributes) {
+      if (conditionalRequiredIds.has(String(attr.id))) attr.required = true;
+    }
+
     const saleTerms = saleTermsRaw.map((term: any) => {
       const values = (term.values || [])
         .slice(0, 100)
@@ -473,6 +517,7 @@ export async function POST(req: Request) {
           origem_fiscal: produto.origem_fiscal || "0",
           csosn: produto.csosn || "",
         },
+        conditional_required_attributes: Array.from(conditionalRequiredIds),
         prefill: {
           description: buildDescription(produto),
           base_price: Math.round(suggestedPrice * 100) / 100,
