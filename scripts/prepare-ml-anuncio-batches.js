@@ -6,6 +6,7 @@ const { createClient } = require('@supabase/supabase-js');
 dotenv.config({ path: '.env.local' });
 
 const BATCH_SIZE = Number(process.env.ML_BATCH_SIZE || '25');
+const KITS_ONLY = process.env.ML_BATCH_KITS_ONLY === '1';
 const REPORT_ROOT = path.join(process.cwd(), 'reports', 'ml-anuncio-batches');
 
 const supabase = createClient(
@@ -65,6 +66,8 @@ function getBlockReason(product) {
   if (hasText(product.ml_item_id)) return 'already_has_ml_item_id';
   if (!hasText(product.sku)) return 'missing_sku';
   if (!hasText(product.nome)) return 'missing_name';
+  if (!hasText(product.descricao)) return 'missing_description';
+  if (!hasImage(product)) return 'missing_image';
   if (!hasPositiveNumber(product.custo)) return 'invalid_cost';
   if (!hasPositiveNumber(product.estoque)) return 'out_of_stock';
   if (isBlockedMlBrand(product)) return 'blocked_brand_wahl';
@@ -115,12 +118,25 @@ async function loadLinkedProductIds(productIds) {
   return linked;
 }
 
+async function loadActiveKitProductIds() {
+  const { data, error } = await supabase
+    .from('produto_kits')
+    .select('produto_id')
+    .eq('ativo', true);
+  if (error) throw new Error(error.message);
+  return new Set((data || []).map((row) => String(row.produto_id || '')).filter(Boolean));
+}
+
 (async () => {
   const stamp = new Date().toISOString().replace(/[:.]/g, '-');
   const reportDir = path.join(REPORT_ROOT, stamp);
   fs.mkdirSync(reportDir, { recursive: true });
 
-  const rows = await loadCandidates();
+  const allRows = await loadCandidates();
+  const activeKitProductIds = KITS_ONLY ? await loadActiveKitProductIds() : null;
+  const rows = activeKitProductIds
+    ? allRows.filter((row) => activeKitProductIds.has(String(row.product?.id || '')))
+    : allRows;
   const productIds = rows.map((row) => row.product?.id).filter(Boolean);
   const linkedProductIds = await loadLinkedProductIds(productIds);
 
@@ -200,6 +216,7 @@ async function loadLinkedProductIds(productIds) {
 
   const summary = {
     generatedAt: new Date().toISOString(),
+    scope: KITS_ONLY ? 'active_simple_kits' : 'all_active_products',
     batchSize: BATCH_SIZE,
     rpcCandidatesSeen: rows.length,
     skippedExistingCount: skippedExisting.length,
