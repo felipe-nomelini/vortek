@@ -6,6 +6,7 @@ import { inferSupplierPaymentMode, syncPreferredProductSnapshot } from '@/lib/pr
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { shouldProductBeInactiveByCost } from '@/lib/product-activity';
+import { enqueueKitStockUpdates, recalculateProductKits } from '@/lib/produto-kits';
 
 export const maxDuration = 300;
 
@@ -222,6 +223,8 @@ export async function POST(req: Request) {
     let mlOutboxFailed = 0;
     let recordsUpdatedSeen = 0;
     let mlOutboxPausedZeroStock = 0;
+    let kitStockUpdated = 0;
+    let kitMlOutboxEnqueued = 0;
     let remainingPagesBudget = maxPagesPerRun;
     let nextCursor: { fornecedorId: string; page: number } | null = null;
     let stopByBudget = false;
@@ -541,6 +544,18 @@ export async function POST(req: Request) {
           break;
       }
 
+      try {
+        const kitSnapshots = await recalculateProductKits(client, snapshotProductIds);
+        kitStockUpdated += kitSnapshots.filter((kit) => kit.oldStock !== kit.newStock || kit.oldCost !== kit.newCost).length;
+        kitMlOutboxEnqueued += await enqueueKitStockUpdates(client, kitSnapshots);
+      } catch (err: any) {
+        errors.push({
+          code: 'kit_stock_recalculation_failed',
+          message: err?.message || 'Falha ao recalcular estoque de kits',
+          context: { fornecedorId: targetFornecedor, page: currentPage },
+        });
+      }
+
       const mlTargetsByProduct = await loadMlPublishTargetsByProduct(client, changedSnapshots);
       const existingMlItemIds = Array.from(
         new Set(
@@ -706,6 +721,8 @@ export async function POST(req: Request) {
         ml_outbox_failed: mlOutboxFailed,
         updated_seen: recordsUpdatedSeen,
         paused_zero_stock: mlOutboxPausedZeroStock,
+        kits_atualizados: kitStockUpdated,
+        kits_ml_outbox_enqueued: kitMlOutboxEnqueued,
         row_failed: recordsFailed,
         skipped_inactive: recordsSkippedInactive,
         inactivated_by_cost: recordsInactivatedByCost,
