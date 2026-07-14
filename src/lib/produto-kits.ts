@@ -2,6 +2,73 @@ import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 
 type ServiceClientLike = { from: (table: string) => any };
 
+export type SimpleKitOrderPlan = {
+  componentSku: string;
+  componentTitle: string;
+  componentQuantity: number;
+  componentNcm: string | null;
+  componentGtin: string | null;
+};
+
+/** Resolve a kit that can become one product line in the fiscal/DSLite order. */
+export async function resolveSimpleKitOrderPlan(
+  client: ServiceClientLike,
+  kitSku: string,
+): Promise<
+  | { kind: 'not_kit' }
+  | { kind: 'inactive' }
+  | { kind: 'unsupported_composite'; componentCount: number }
+  | { kind: 'ready'; plan: SimpleKitOrderPlan }
+> {
+  const normalizedSku = String(kitSku || '').trim();
+  if (!normalizedSku) return { kind: 'not_kit' };
+  const { data: kitProduct, error: kitProductError } = await client
+    .from('produtos' as any)
+    .select('id')
+    .eq('sku', normalizedSku)
+    .maybeSingle();
+  if (kitProductError) throw new Error(`Falha ao localizar kit ${normalizedSku}: ${kitProductError.message}`);
+  if (!kitProduct?.id) return { kind: 'not_kit' };
+
+  const { data: kit, error: kitError } = await client
+    .from('produto_kits' as any)
+    .select('produto_id,ativo')
+    .eq('produto_id', String(kitProduct.id))
+    .maybeSingle();
+  if (kitError) throw new Error(`Falha ao carregar configuração do kit ${normalizedSku}: ${kitError.message}`);
+  if (!kit?.produto_id) return { kind: 'not_kit' };
+  if (kit.ativo === false) return { kind: 'inactive' };
+
+  const { data: components, error: componentsError } = await client
+    .from('produto_kit_componentes' as any)
+    .select('componente_produto_id,quantidade')
+    .eq('kit_produto_id', String(kit.produto_id));
+  if (componentsError) throw new Error(`Falha ao carregar componentes do kit ${normalizedSku}: ${componentsError.message}`);
+  if ((components || []).length !== 1) {
+    return { kind: 'unsupported_composite', componentCount: (components || []).length };
+  }
+
+  const component = components![0] as any;
+  const { data: source, error: sourceError } = await client
+    .from('produtos' as any)
+    .select('sku,nome,ncm,gtin,ativo')
+    .eq('id', String(component.componente_produto_id))
+    .maybeSingle();
+  if (sourceError || !source?.sku) throw new Error(`Componente base ausente no kit ${normalizedSku}`);
+  if (source.ativo === false) return { kind: 'inactive' };
+
+  return {
+    kind: 'ready',
+    plan: {
+      componentSku: String(source.sku),
+      componentTitle: String(source.nome || source.sku),
+      componentQuantity: Math.max(1, Math.trunc(Number(component.quantidade || 0))),
+      componentNcm: source.ncm ? String(source.ncm) : null,
+      componentGtin: source.gtin ? String(source.gtin) : null,
+    },
+  };
+}
+
 export type KitStockSnapshot = {
   produtoId: string;
   sku: string;
