@@ -87,7 +87,8 @@ async function main() {
         imagens: images(row),
         categoria: text(row.Categoria) || null,
         fornecedor: 'BKR1',
-        ativo: true,
+        // Kit fica inativo até fluxo DSLite expandir venda em componentes.
+        ativo: false,
       }).select('id').single();
       if (productError) throw productError;
       produtoId = text(product.id);
@@ -95,7 +96,7 @@ async function main() {
         produto_id: produtoId,
         fornecedor_dslite_id: SUPPLIER_ID,
         sku_origem: kit.sku,
-        ativo: true,
+        ativo: false,
       });
       if (newKitError) throw newKitError;
       imported += 1;
