@@ -118,6 +118,22 @@ async function loadLinkedProductIds(productIds) {
   return linked;
 }
 
+async function loadProductsWithMlItemId(productIds) {
+  const linked = new Set();
+  for (let i = 0; i < productIds.length; i += 200) {
+    const { data, error } = await supabase
+      .from('produtos')
+      .select('id,ml_item_id')
+      .in('id', productIds.slice(i, i + 200))
+      .not('ml_item_id', 'is', null);
+    if (error) throw new Error(error.message);
+    for (const row of data || []) {
+      if (hasText(row.ml_item_id)) linked.add(String(row.id));
+    }
+  }
+  return linked;
+}
+
 async function loadActiveKitProductIds() {
   const { data, error } = await supabase
     .from('produto_kits')
@@ -138,7 +154,11 @@ async function loadActiveKitProductIds() {
     ? allRows.filter((row) => activeKitProductIds.has(String(row.product?.id || '')))
     : allRows;
   const productIds = rows.map((row) => row.product?.id).filter(Boolean);
-  const linkedProductIds = await loadLinkedProductIds(productIds);
+  const [linkedByAnuncio, linkedByProduct] = await Promise.all([
+    loadLinkedProductIds(productIds),
+    loadProductsWithMlItemId(productIds),
+  ]);
+  const linkedProductIds = new Set([...linkedByAnuncio, ...linkedByProduct]);
 
   const actionable = [];
   const blocked = [];
