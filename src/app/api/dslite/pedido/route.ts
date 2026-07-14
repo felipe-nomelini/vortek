@@ -62,6 +62,7 @@ import {
   loadDslitePlaceholderLabel,
 } from "@/lib/dslite/placeholder-label";
 import { storeShippingLabelForPedido } from "@/lib/shipping-label-storage";
+import { resolveSimpleKitOrderPlan } from "@/lib/produto-kits";
 
 const TRANSPORTADORA_PADRAO_CORREIOS = 31;
 const WAIT_AUTH_TIMEOUT_MS = 180_000;
@@ -1355,18 +1356,47 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
   }
 
   const dsliteProductCodes = new Map<string, string>();
+  const kitPlans = new Map<string, Awaited<ReturnType<typeof resolveSimpleKitOrderPlan>>>();
   for (const it of itens || []) {
     const sellerSku = String((it as any)?.seller_sku || "").trim();
+    const kitPlan = await resolveSimpleKitOrderPlan(client, sellerSku);
+    kitPlans.set(sellerSku, kitPlan);
+    if (kitPlan.kind === "inactive") {
+      return {
+        ok: false as const,
+        error: `Kit ${sellerSku} está inativo e não pode gerar pedido DSLite.`,
+        reason: "kit_inativo",
+      };
+    }
+    if (kitPlan.kind === "unsupported_composite") {
+      return {
+        ok: false as const,
+        error: `Kit composto ${sellerSku} possui ${kitPlan.componentCount} componentes. A DSLite só documenta vínculo de um produto por item; mantenha este kit pausado até existir suporte a múltiplos itens.`,
+        reason: "kit_composto_sem_suporte_dslite",
+      };
+    }
     const dsliteProductCode = await resolveDsliteProductCodeForNfe(
       client,
-      sellerSku,
+      kitPlan.kind === "ready" ? kitPlan.plan.componentSku : sellerSku,
     );
+    if (kitPlan.kind === "ready" && !dsliteProductCode) {
+      return {
+        ok: false as const,
+        error: `Componente base do kit ${sellerSku} não possui produto DSLite selecionável.`,
+        reason: "kit_componente_sem_oferta_dslite",
+      };
+    }
     if (sellerSku && dsliteProductCode)
       dsliteProductCodes.set(sellerSku, dsliteProductCode);
   }
 
   const produtos = (itens || []).map((it: any) => {
     const sellerSku = String(it.seller_sku || "").trim();
+    const kitPlan = kitPlans.get(sellerSku);
+    const componentMultiplier =
+      kitPlan?.kind === "ready" ? kitPlan.plan.componentQuantity : 1;
+    const quantidade = Number(it.quantidade || 0) * componentMultiplier;
+    const valorTotal = resolveProdutoValorTotalBruto(it);
     const productCode =
       dsliteProductCodes.get(sellerSku) ||
       sellerSku ||
@@ -1374,14 +1404,16 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
     return {
       CodProdutoServico: productCode,
       NmProduto: String(it.titulo || "Produto"),
-      NCM: String(it.ncm || ""),
+      NCM: String(
+        kitPlan?.kind === "ready" ? kitPlan.plan.componentNcm || it.ncm || "" : it.ncm || "",
+      ),
       CFOP: Number(cfopEsperado),
       UnidadeComercial: "UN",
-      Quantidade: Number(it.quantidade || 0),
-      ValorUnitario: Number(it.valor_unitario || 0),
-      ValorTotal: resolveProdutoValorTotalBruto(it),
+      Quantidade: quantidade,
+      ValorUnitario: quantidade > 0 ? Number((valorTotal / quantidade).toFixed(4)) : 0,
+      ValorTotal: valorTotal,
       OrigemProduto: 2,
-      GTIN: it.gtin || undefined,
+      GTIN: kitPlan?.kind === "ready" ? kitPlan.plan.componentGtin || it.gtin || undefined : it.gtin || undefined,
       CEST: it.cest || undefined,
       Imposto: {
         ICMS: { CodSituacaoTributaria: "102", AliquotaICMS: 0 },

@@ -2,6 +2,85 @@ import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 
 type ServiceClientLike = { from: (table: string) => any };
 
+export type SimpleKitOrderPlan = {
+  kitProductId: string;
+  kitSku: string;
+  componentProductId: string;
+  componentSku: string;
+  componentQuantity: number;
+  componentNcm: string | null;
+  componentGtin: string | null;
+};
+
+/**
+ * Resolve kit sold as one DSLite item. Kits with more than one component need
+ * multiple DSLite items, which its documented item-link endpoint cannot create.
+ */
+export async function resolveSimpleKitOrderPlan(
+  client: ServiceClientLike,
+  kitSku: string,
+): Promise<
+  | { kind: 'not_kit' }
+  | { kind: 'inactive' }
+  | { kind: 'unsupported_composite'; componentCount: number }
+  | { kind: 'ready'; plan: SimpleKitOrderPlan }
+> {
+  const normalizedSku = String(kitSku || '').trim();
+  if (!normalizedSku) return { kind: 'not_kit' };
+
+  const { data: kitProduct, error: kitProductError } = await client
+    .from('produtos' as any)
+    .select('id,sku')
+    .eq('sku', normalizedSku)
+    .maybeSingle();
+  if (kitProductError) {
+    throw new Error(`Falha ao localizar produto do kit ${normalizedSku}: ${kitProductError.message}`);
+  }
+  if (!kitProduct?.id) return { kind: 'not_kit' };
+
+  const { data: kit, error: kitError } = await client
+    .from('produto_kits' as any)
+    .select('produto_id,ativo')
+    .eq('produto_id', String(kitProduct.id))
+    .maybeSingle();
+  if (kitError) throw new Error(`Falha ao localizar configuração do kit ${normalizedSku}: ${kitError.message}`);
+  if (!kit?.produto_id) return { kind: 'not_kit' };
+  if (kit.ativo === false) return { kind: 'inactive' };
+
+  const { data: components, error: componentsError } = await client
+    .from('produto_kit_componentes' as any)
+    .select('componente_produto_id,quantidade')
+    .eq('kit_produto_id', String(kit.produto_id));
+  if (componentsError) throw new Error(`Falha ao localizar componentes do kit ${normalizedSku}: ${componentsError.message}`);
+  if ((components || []).length !== 1) {
+    return { kind: 'unsupported_composite', componentCount: (components || []).length };
+  }
+
+  const component = components![0] as any;
+  const quantity = Math.max(1, Math.trunc(Number(component.quantidade || 0)));
+  const { data: sourceProduct, error: sourceProductError } = await client
+    .from('produtos' as any)
+    .select('id,sku,ncm,gtin')
+    .eq('id', String(component.componente_produto_id))
+    .maybeSingle();
+  if (sourceProductError || !sourceProduct?.id || !sourceProduct?.sku) {
+    throw new Error(`Componente base não encontrado para kit ${normalizedSku}`);
+  }
+
+  return {
+    kind: 'ready',
+    plan: {
+      kitProductId: String(kit.produto_id),
+      kitSku: String(kitProduct.sku || normalizedSku),
+      componentProductId: String(sourceProduct.id),
+      componentSku: String(sourceProduct.sku),
+      componentQuantity: quantity,
+      componentNcm: sourceProduct.ncm ? String(sourceProduct.ncm) : null,
+      componentGtin: sourceProduct.gtin ? String(sourceProduct.gtin) : null,
+    },
+  };
+}
+
 export type KitStockSnapshot = {
   produtoId: string;
   sku: string;
