@@ -288,6 +288,9 @@ async function createOne(item) {
         prepared = { category, ...current };
         break;
       }
+      if (current.missing.some((attr) => String(attr.id || "").toUpperCase() === "GTIN")) {
+        break;
+      }
     } catch (error) {
       attempts.push({ category: { id: category.id, nome: category.nome }, error: error.message });
     }
