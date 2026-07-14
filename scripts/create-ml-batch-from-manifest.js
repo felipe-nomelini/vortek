@@ -12,6 +12,7 @@ const BASE_URL = process.env.BATCH_API_URL || 'http://localhost:3000';
 const DELAY_MS = Number(process.env.BATCH_DELAY_MS || '1500');
 const REQUEST_TIMEOUT_MS = Number(process.env.BATCH_REQUEST_TIMEOUT_MS || '45000');
 const DRY_RUN = process.env.DRY_RUN === '1';
+const ALLOW_OUT_OF_STOCK = process.env.BATCH_ALLOW_OUT_OF_STOCK === '1';
 const RESULT_FILE = process.env.ML_BATCH_RESULT_FILE || '';
 const LOGIN_EMAIL = process.env.BATCH_LOGIN_EMAIL || '';
 const LOGIN_PASSWORD = process.env.BATCH_LOGIN_PASSWORD || '';
@@ -338,6 +339,7 @@ async function createOne(item) {
       value_id: term.value_id || '',
       value_name: term.value_name || '',
     })),
+    allowOutOfStockListing: ALLOW_OUT_OF_STOCK,
   });
 
   if (!created?.success) {

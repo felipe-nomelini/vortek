@@ -699,6 +699,7 @@ export async function POST(req: Request) {
       description,
       attributes: editedAttributes,
       sale_terms: editedSaleTerms,
+      allowOutOfStockListing = false,
     } = await req.json();
 
     if (!produtoId) {
@@ -758,7 +759,7 @@ export async function POST(req: Request) {
     }
     if (
       !Number.isFinite(Number(produto.estoque)) ||
-      Number(produto.estoque) <= 0
+      (Number(produto.estoque) <= 0 && !allowOutOfStockListing)
     ) {
       return NextResponse.json(
         {
@@ -798,6 +799,11 @@ export async function POST(req: Request) {
     };
 
     const warnings: string[] = [];
+    if (Number(produto.estoque) <= 0 && allowOutOfStockListing) {
+      warnings.push(
+        "Anúncio será criado pausado por estoque zero e reativado pela sincronização quando houver disponibilidade.",
+      );
+    }
     const missingRequiredAttributes: Array<{ id: string; name: string }> = [];
 
     const safePrice = await calculateSafeListingPrice({
