@@ -16,6 +16,14 @@ const HAYAMAX_ELECTRIC_GRILL_CATEGORY = {
   id: "MLB48730",
   name: "Churrasqueiras Elétricas",
 };
+const PANASONIC_BATTERY_CATEGORY = {
+  id: "MLB7060",
+  name: "Pilhas",
+};
+const PANASONIC_COIN_BATTERY_CATEGORY = {
+  id: "MLB431681",
+  name: "Pilhas para Relógios",
+};
 const PREFERRED_PET_CATEGORIES: Record<string, { id: string; name: string }> = {
   coat_liquid: { id: "MLB178927", name: "Shampoo e Condicionadores" },
   coat_other: { id: "MLB434769", name: "Outros artigos para os pêlos" },
@@ -57,6 +65,19 @@ export function isBlockedMlBrand(produto: any) {
     `${produto?.marca || ""} ${produto?.nome || ""}`,
   );
   return /\bwahl\b/.test(brandText);
+}
+
+function getRequiredPanasonicBatteryCategory(produto: any) {
+  const brand = normalizeCategoryText(produto?.marca);
+  const text = normalizeCategoryText(
+    `${produto?.nome || ""} ${produto?.categoria || ""}`,
+  );
+  if (!brand.includes("panasonic") || !/\b(?:pilha|bateria)\b/.test(text)) {
+    return null;
+  }
+  return /\b(?:cr|lr|sr)\s*\d{3,4}\b|\bbotao\b/.test(text)
+    ? PANASONIC_COIN_BATTERY_CATEGORY
+    : PANASONIC_BATTERY_CATEGORY;
 }
 
 export function getPreferredHayamaxCategoryForProduct(produto: any) {
@@ -137,6 +158,17 @@ export async function assertAllowedMlCategoryForProduct(
 ) {
   if (isBlockedMlBrand(produto)) {
     throw new Error("Marca Wahl bloqueada para anúncios Mercado Livre.");
+  }
+
+  const requiredPanasonicBatteryCategory =
+    getRequiredPanasonicBatteryCategory(produto);
+  if (
+    requiredPanasonicBatteryCategory &&
+    categoryId !== requiredPanasonicBatteryCategory.id
+  ) {
+    throw new Error(
+      `Produto Panasonic de pilha/bateria exige categoria ML "${requiredPanasonicBatteryCategory.name}" (${requiredPanasonicBatteryCategory.id}).`,
+    );
   }
 
   if (requiresPetShopCategory(produto)) {
