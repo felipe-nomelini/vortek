@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { createServerClient } from '@supabase/ssr';
+import { cookies } from 'next/headers';
+import type { Database } from '@/types/database';
 
 export async function POST(request: Request) {
   const { email, senha } = await request.json();
@@ -8,7 +10,24 @@ export async function POST(request: Request) {
     return NextResponse.json({ erro: 'E-mail e senha são obrigatórios' }, { status: 400 });
   }
 
-  const supabase = await createClient();
+  const cookieStore = await cookies();
+  const response = NextResponse.json({ ok: true });
+  const supabase = createServerClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll();
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) =>
+            response.cookies.set(name, value, options),
+          );
+        },
+      },
+    },
+  );
   const { data, error } = await supabase.auth.signInWithPassword({ email, password: senha });
 
   if (error) {
@@ -21,13 +40,16 @@ export async function POST(request: Request) {
     .eq('id', data.user.id)
     .single();
 
-  return NextResponse.json({
-    user: {
-      id: data.user.id,
-      email: data.user.email,
-      nome: profile?.nome || email.split('@')[0],
-      cargo: profile?.cargo || 'operador',
-      avatar_url: profile?.avatar_url,
+  return NextResponse.json(
+    {
+      user: {
+        id: data.user.id,
+        email: data.user.email,
+        nome: profile?.nome || email.split('@')[0],
+        cargo: profile?.cargo || 'operador',
+        avatar_url: profile?.avatar_url,
+      },
     },
-  });
+    { headers: response.headers },
+  );
 }
