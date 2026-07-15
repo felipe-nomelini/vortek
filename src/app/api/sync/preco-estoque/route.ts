@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { sincronizarPrecoEstoque, listarFornecedores } from '@/services/dslite';
+import { sincronizarPrecoEstoque, listarFornecedoresComDiagnostico } from '@/services/dslite';
 import { createServiceClient } from '@/lib/supabase';
 import { buildCanonicalDsliteSku } from '@/lib/sku';
 import { inferSupplierPaymentMode, syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
@@ -141,9 +141,29 @@ export async function POST(req: Request) {
       }, { status: 409 });
     }
 
-    const fornecedores = await listarFornecedores();
-    if (!fornecedores?.length) {
-      errors.push({ code: 'dslite_fornecedores_empty', message: 'Nenhum fornecedor retornado pela DSLite' });
+    const fornecedoresResult = await listarFornecedoresComDiagnostico();
+    const fornecedores = fornecedoresResult.fornecedores;
+    if (!fornecedores) {
+      errors.push({
+        code: fornecedoresResult.failure?.code || 'dslite_fornecedores_unavailable',
+        message: fornecedoresResult.failure?.message || 'Consulta de fornecedores DSLite indisponível',
+      });
+      return NextResponse.json({
+        success: false,
+        domain: jobContext.domain,
+        job: {
+          ...jobContext,
+          finished_at: new Date().toISOString(),
+          lock_acquired: true,
+        },
+        cursor: null,
+        records: { seen: 0, updated: 0, missing: 0, failed: 0 },
+        errors,
+        duration: { ms: Date.now() - startedAt },
+      }, { status: 503 });
+    }
+    if (fornecedores.length === 0) {
+      errors.push({ code: 'dslite_fornecedores_empty', message: 'DSLite respondeu sem fornecedores' });
       return NextResponse.json({
         success: false,
         domain: jobContext.domain,

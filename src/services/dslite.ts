@@ -10,6 +10,17 @@ interface DsliteConfig {
   token: string;
 }
 
+export type DsliteFetchFailure = {
+  code: 'dslite_config_missing' | 'dslite_http_error' | 'dslite_connect_timeout' | 'dslite_timeout' | 'dslite_network_error' | 'dslite_invalid_json';
+  message: string;
+  status: number | null;
+};
+
+export type DsliteFetchResult<T> = {
+  data: T | null;
+  failure: DsliteFetchFailure | null;
+};
+
 const DSLITE_FETCH_MAX_ATTEMPTS = 3;
 const DSLITE_FETCH_RETRY_DELAYS_MS = [750, 2000];
 const DSLITE_CREATE_ORDER_MAX_ATTEMPTS = 2;
@@ -39,9 +50,16 @@ async function getConfig(): Promise<DsliteConfig | null> {
   return { url: data.url.replace(/\/+$/, ''), token: data.access_token };
 }
 
-export async function fetchDslite<T>(path: string, options?: RequestInit): Promise<T | null> {
+export async function fetchDsliteResult<T>(path: string, options?: RequestInit): Promise<DsliteFetchResult<T>> {
   const cfg = await getConfig();
-  if (!cfg) return null;
+  if (!cfg) {
+    return {
+      data: null,
+      failure: { code: 'dslite_config_missing', message: 'Configuração DSLite indisponível', status: null },
+    };
+  }
+
+  let lastFailure: DsliteFetchFailure | null = null;
 
   for (let attempt = 1; attempt <= DSLITE_FETCH_MAX_ATTEMPTS; attempt += 1) {
     const controller = new AbortController();
@@ -65,12 +83,32 @@ export async function fetchDslite<T>(path: string, options?: RequestInit): Promi
           await sleep(DSLITE_FETCH_RETRY_DELAYS_MS[attempt - 1] || 2000);
           continue;
         }
-        return null;
+        return {
+          data: null,
+          failure: { code: 'dslite_http_error', message: `DSLite respondeu HTTP ${res.status}`, status: res.status },
+        };
       }
 
-      return res.json();
+      try {
+        return { data: await res.json(), failure: null };
+      } catch {
+        return {
+          data: null,
+          failure: { code: 'dslite_invalid_json', message: 'DSLite retornou JSON inválido', status: res.status },
+        };
+      }
     } catch (err: any) {
       const isAbort = err?.name === 'AbortError';
+      const isConnectTimeout = err?.cause?.code === 'UND_ERR_CONNECT_TIMEOUT';
+      lastFailure = {
+        code: isConnectTimeout ? 'dslite_connect_timeout' : isAbort ? 'dslite_timeout' : 'dslite_network_error',
+        message: isConnectTimeout
+          ? 'DSLite não aceitou conexão dentro do tempo limite'
+          : isAbort
+            ? 'DSLite excedeu o tempo limite de resposta'
+            : 'Falha de rede ao consultar DSLite',
+        status: null,
+      };
       console.warn(
         `[dslite] ${isAbort ? 'timeout' : 'erro'} em ${path} (tentativa ${attempt}/${DSLITE_FETCH_MAX_ATTEMPTS}): ${err?.message || 'sem detalhe'}`,
       );
@@ -78,13 +116,17 @@ export async function fetchDslite<T>(path: string, options?: RequestInit): Promi
         await sleep(DSLITE_FETCH_RETRY_DELAYS_MS[attempt - 1] || 2000);
         continue;
       }
-      return null;
+      return { data: null, failure: lastFailure };
     } finally {
       clearTimeout(timeout);
     }
   }
 
-  return null;
+  return { data: null, failure: lastFailure || { code: 'dslite_network_error', message: 'Falha ao consultar DSLite', status: null } };
+}
+
+export async function fetchDslite<T>(path: string, options?: RequestInit): Promise<T | null> {
+  return (await fetchDsliteResult<T>(path, options)).data;
 }
 
 // ── API response types ──────────────────────────────────────
@@ -272,6 +314,14 @@ export interface DsliteCriarPedidoResponse {
 export async function listarFornecedores(): Promise<DsliteFornecedorStatus[] | null> {
   const data = await fetchDslite<any>('/v1/Empresa/fornecedor/status');
   return data?.fornecedores ?? null;
+}
+
+export async function listarFornecedoresComDiagnostico(): Promise<{
+  fornecedores: DsliteFornecedorStatus[] | null;
+  failure: DsliteFetchFailure | null;
+}> {
+  const result = await fetchDsliteResult<{ fornecedores?: DsliteFornecedorStatus[] }>('/v1/Empresa/fornecedor/status');
+  return { fornecedores: result.data?.fornecedores ?? null, failure: result.failure };
 }
 
 export async function sincronizarCatalogo(
