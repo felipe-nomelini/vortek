@@ -377,6 +377,7 @@ export default function PedidosPage() {
   ]);
 
   const [etiquetaProgressOpen, setEtiquetaProgressOpen] = useState(false);
+  const [etiquetaDownloadUrl, setEtiquetaDownloadUrl] = useState<string | null>(null);
   const [etiquetaDuplicateDecision, setEtiquetaDuplicateDecision] = useState<EtiquetaDuplicateDecision | null>(null);
   const [etiquetaSteps, setEtiquetaSteps] = useState<ProgressStep[]>([
     { label: 'Verificando vínculo fiscal no Mercado Livre', status: 'pending', detail: 'Fonte fiscal única: Brasil NFe. ML é usado apenas para vínculo documental e etiqueta.' },
@@ -1035,6 +1036,59 @@ export default function PedidosPage() {
     }
   };
 
+  const baixarEtiquetaSalva = async (order: Order) => {
+    try {
+      const res = await fetch(`/api/pedidos/${order.dbId}/etiqueta`);
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data?.url) throw new Error(data?.error || 'Etiqueta não disponível');
+      window.open(String(data.url), '_blank', 'noopener,noreferrer');
+    } catch (err: any) {
+      messageApi.error(err?.message || 'Não foi possível baixar etiqueta');
+    }
+  };
+
+  const processarEnvioProprio = async (order: Order) => {
+    setEtiquetaDuplicateDecision(null);
+    setEtiquetaDownloadUrl(null);
+    setEtiquetaSteps([
+      { label: 'Verificando vínculo fiscal no Mercado Livre', status: 'loading', detail: 'Atualizando dados fiscais do pedido' },
+      { label: 'Garantindo NF na Brasil NFe', status: 'pending' },
+      { label: 'Vinculando NF Brasil NFe no Mercado Livre', status: 'pending' },
+      { label: 'Baixando etiqueta do Mercado Livre', status: 'pending' },
+      { label: 'DSLite', status: 'pending' },
+      { label: 'Preparando download da etiqueta', status: 'pending' },
+    ]);
+    setEtiquetaProgressOpen(true);
+    try {
+      const res = await fetch('/api/dslite/etiqueta-auto', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pedidoId: order.dbId, directShipping: true }),
+      });
+      const data = await res.json().catch(() => ({}));
+      const mapped: ProgressStep[] = (data?.data?.steps || []).map((step: any) => ({
+        label: step.label,
+        status: step.status === 'skipped' ? 'success' : step.status || 'pending',
+        detail: step.detail,
+        error: step.error,
+      }));
+      if (mapped.length) setEtiquetaSteps(mapped);
+      if (!res.ok || !data?.success) throw new Error(data?.error || 'Falha ao processar envio próprio');
+      const url = String(data?.data?.labelDownloadUrl || '');
+      if (!url) throw new Error('Etiqueta foi baixada, mas link de download não foi gerado');
+      setEtiquetaDownloadUrl(url);
+      messageApi.success('Etiqueta pronta para download.');
+      fetchData();
+    } catch (err: any) {
+      setEtiquetaSteps((prev) => {
+        const next = [...prev];
+        const idx = next.findIndex((step) => step.status === 'loading' || step.status === 'pending');
+        if (idx >= 0) next[idx] = { ...next[idx], status: 'error', error: err?.message || 'Falha no envio próprio' };
+        return next;
+      });
+    }
+  };
+
   const executarAcaoDuplicidadeEtiqueta = async (action: 'use_existing' | 'reissue') => {
     if (!etiquetaDuplicateDecision) return;
     const order = orders.find((o) => String(o.dbId) === etiquetaDuplicateDecision.pedidoId);
@@ -1114,6 +1168,11 @@ export default function PedidosPage() {
     const canConfirmPayment = Boolean(
       isValidDsliteId(order.dslite_id)
       && ['confirm_supplier_payment', 'send_supplier_receipt', 'resume_dslite_flow'].includes(order.dslite_next_action || ''),
+    );
+    const canProcessDirectShipping = Boolean(
+      !isValidDsliteId(order.dslite_id)
+      && order.ml_shipment_id
+      && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(order.situacao.valor),
     );
 
     return (
@@ -1220,7 +1279,9 @@ export default function PedidosPage() {
             </Button>
           )}
           {canCreateDslite && <Button size="small" type="primary" onClick={() => criarPedidoDslite(order)}>Criar pedido DSLite</Button>}
+          {canProcessDirectShipping && <Button size="small" type="primary" onClick={() => processarEnvioProprio(order)}>Processar envio próprio</Button>}
           {canCompleteLabel && <Button size="small" onClick={() => enviarEtiquetaAutomatica(order)}>Completar etiqueta</Button>}
+          {order.ml_label_storage_path && <Button size="small" onClick={() => baixarEtiquetaSalva(order)}>Baixar etiqueta</Button>}
           {canConfirmPayment && <Button size="small" onClick={() => abrirConfirmacaoPixPedido(order)}>Confirmar PIX</Button>}
           {order.notaFiscal?.emitida && <Button size="small" onClick={() => handleOpenNotaFiscalPdf(order)}>Abrir DANFE</Button>}
         </Space>
@@ -1492,6 +1553,12 @@ export default function PedidosPage() {
             icon: <CarOutlined />,
           });
         }
+        if (!hasDsliteId && record.ml_shipment_id && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
+          items.push({ key: 'direct_shipping', label: 'Processar envio próprio (sem DSLite)', icon: <UploadOutlined /> });
+        }
+        if (record.ml_label_storage_path) {
+          items.push({ key: 'download_label', label: 'Baixar etiqueta', icon: <UploadOutlined /> });
+        }
         if (hasDsliteId && nextAction === 'complete_dslite_label') {
           items.push({
             key: 'etiqueta',
@@ -1536,6 +1603,8 @@ export default function PedidosPage() {
                   setTrackingModalOpen(true);
                 }
                 if (key === 'dslite') criarPedidoDslite(record, 'brasilnfe');
+                if (key === 'direct_shipping') processarEnvioProprio(record);
+                if (key === 'download_label') baixarEtiquetaSalva(record);
                 if (key === 'etiqueta') enviarEtiquetaAutomatica(record);
                 if (key === 'confirm_supplier_payment') abrirConfirmacaoPixPedido(record);
                 if (key === 'send_whatsapp_label') openWhatsappLabelModal(record);
@@ -1872,7 +1941,7 @@ export default function PedidosPage() {
       />
       <ProgressModal
         open={etiquetaProgressOpen}
-        title="Completando Etiqueta DSLite"
+        title={etiquetaDownloadUrl ? 'Etiqueta pronta para envio próprio' : 'Completando Etiqueta DSLite'}
         steps={etiquetaSteps}
         onClose={() => {
           setEtiquetaProgressOpen(false);
@@ -1880,7 +1949,14 @@ export default function PedidosPage() {
           fetchData();
         }}
         showCloseButton={etiquetaSteps.some(s => s.status === 'error' || s.status === 'success')}
-        customActions={etiquetaDuplicateDecision ? [
+        customActions={etiquetaDownloadUrl ? [
+          {
+            key: 'download_direct_label',
+            label: 'Baixar etiqueta',
+            primary: true,
+            onClick: () => window.open(etiquetaDownloadUrl, '_blank', 'noopener,noreferrer'),
+          },
+        ] : etiquetaDuplicateDecision ? [
           {
             key: 'open_nf_found',
             label: 'Abrir Nota Encontrada',

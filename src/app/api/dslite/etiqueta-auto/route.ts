@@ -16,6 +16,7 @@ import {
   loadDslitePlaceholderLabel,
 } from '@/lib/dslite/placeholder-label';
 import { storeShippingLabelForPedido } from '@/lib/shipping-label-storage';
+import { buildPublicShippingLabelUrl } from '@/lib/public-shipping-label-links';
 import { HAYAMAX_FORNECEDOR_ID, usesThermalMlLabelSupplier } from '@/lib/supplier-balance';
 
 const LABEL_RETRY_INTERVAL_MS = 5000;
@@ -142,14 +143,16 @@ function stepError(
 export async function POST(req: Request) {
   const steps = createSteps();
   try {
-    const { pedidoId, dsid, nfeDuplicateAction } = await req.json() as {
+    const { pedidoId, dsid, nfeDuplicateAction, directShipping } = await req.json() as {
       pedidoId: string;
-      dsid: string | number;
+      dsid?: string | number;
       nfeDuplicateAction?: NfeDuplicateAction;
+      directShipping?: boolean;
     };
-    if (!pedidoId || !dsid) {
-      return stepError(steps, 'check_ml_invoice_xml', 'pedidoId e dsid são obrigatórios', undefined, 400);
+    if (!pedidoId || (!directShipping && !dsid)) {
+      return stepError(steps, 'check_ml_invoice_xml', directShipping ? 'pedidoId é obrigatório' : 'pedidoId e dsid são obrigatórios', undefined, 400);
     }
+    const dsliteId = String(dsid || '').trim();
 
     const client = createServiceClient();
     const { data: pedido, error: pedidoError } = await client
@@ -242,7 +245,7 @@ export async function POST(req: Request) {
       });
     }
     const releaseAt = releaseAtRaw ? new Date(releaseAtRaw) : null;
-    if (releaseAt && !Number.isNaN(releaseAt.getTime()) && releaseAt.getTime() > Date.now()) {
+    if (!directShipping && releaseAt && !Number.isNaN(releaseAt.getTime()) && releaseAt.getTime() > Date.now()) {
       const releaseLabel = releaseAt.toLocaleString('pt-BR', {
         day: '2-digit',
         month: '2-digit',
@@ -360,7 +363,7 @@ export async function POST(req: Request) {
       }
 
       updateStep(steps, 'set_carrier_dslite', { status: 'loading' });
-      const pedidoDslite = await consultarPedido(dsid);
+      const pedidoDslite = await consultarPedido(dsliteId);
       const carrierId = Number((pedidoDslite as any)?.transportadora?.transportadoraid || 0);
       if (carrierId > 0) {
         updateStep(steps, 'set_carrier_dslite', {
@@ -368,7 +371,7 @@ export async function POST(req: Request) {
           detail: `Etapa pulada: transportadora já definida (id ${carrierId})`,
         });
       } else {
-        const transportadoraResult = await definirTransportadoraPedido(dsid, TRANSPORTADORA_PADRAO_CORREIOS);
+        const transportadoraResult = await definirTransportadoraPedido(dsliteId, TRANSPORTADORA_PADRAO_CORREIOS);
         if (!transportadoraResult?.success) {
           return stepError(
             steps,
@@ -381,7 +384,7 @@ export async function POST(req: Request) {
       }
 
       updateStep(steps, 'send_label_dslite', { status: 'loading' });
-      const envioResult = await enviarEtiqueta(dsid, etiquetaPdf, DSLITE_PLACEHOLDER_LABEL_FILE_NAME);
+      const envioResult = await enviarEtiqueta(dsliteId, etiquetaPdf, DSLITE_PLACEHOLDER_LABEL_FILE_NAME);
       if (!envioResult?.success) {
         await registrarEventoNfAuditoria({
           pedidoId: String(pedidoId),
@@ -432,7 +435,7 @@ export async function POST(req: Request) {
       });
     }
 
-    if (Boolean((pedido as any).dslite_etiqueta_enviada)) {
+    if (!directShipping && Boolean((pedido as any).dslite_etiqueta_enviada)) {
       (Object.keys(STEP_LABELS) as StepKey[]).forEach((stepKey) => {
         updateStep(steps, stepKey, { status: 'skipped', detail: 'Etapa pulada: etiqueta já enviada anteriormente' });
       });
@@ -999,6 +1002,53 @@ export async function POST(req: Request) {
       });
     }
 
+    if (directShipping) {
+      const etiquetaResult = await baixarEtiquetaML(shipmentId, { responseType: 'pdf' });
+      if (!etiquetaResult.pdf) {
+        return stepError(
+          steps,
+          'download_label_ml',
+          etiquetaResult.error || 'Etiqueta ainda indisponível no ML.',
+          { reason: etiquetaResult.reason || null, statusCode: etiquetaResult.statusCode || null },
+          422,
+          'business',
+        );
+      }
+      const stored = await storeShippingLabelForPedido({
+        client,
+        pedidoId: String(pedidoId),
+        pedidoNumero: (pedido as any).numero,
+        mlOrderId: mlOrderId || null,
+        shipmentId,
+        pdf: etiquetaResult.pdf,
+        source: 'pedido_envio_proprio',
+      });
+      if (!stored.ok) {
+        return stepError(steps, 'download_label_ml', stored.error || 'Falha ao salvar etiqueta no sistema');
+      }
+      updateStep(steps, 'download_label_ml', {
+        status: 'success',
+        detail: `${etiquetaResult.pdf.length.toLocaleString('pt-BR')} bytes (PDF salvo no sistema)`,
+      });
+      updateStep(steps, 'set_carrier_dslite', {
+        status: 'skipped',
+        detail: 'Envio próprio: DSLite não utilizada',
+      });
+      updateStep(steps, 'send_label_dslite', {
+        status: 'success',
+        detail: 'Etiqueta pronta para download',
+      });
+      const appBaseUrl = new URL(req.url).origin;
+      return finalizeSuccess(steps, {
+        operation: 'direct_shipping_label',
+        operationStatus: 'label_ready',
+        nextAction: 'download_label',
+        etiquetaBaixada: true,
+        etiquetaBytes: etiquetaResult.pdf.length,
+        labelDownloadUrl: buildPublicShippingLabelUrl(appBaseUrl, String(pedidoId)),
+      });
+    }
+
     const { data: compraEtiqueta } = await client
       .from('compras')
       .select('fornecedor_id,fornecedor_nome')
@@ -1158,7 +1208,7 @@ export async function POST(req: Request) {
 
     // 5) Definir transportadora na DSLite (skip se já definida)
     updateStep(steps, 'set_carrier_dslite', { status: 'loading' });
-    const pedidoDslite = await consultarPedido(dsid);
+    const pedidoDslite = await consultarPedido(dsliteId);
     const carrierId = Number((pedidoDslite as any)?.transportadora?.transportadoraid || 0);
     if (carrierId > 0) {
       updateStep(steps, 'set_carrier_dslite', {
@@ -1176,7 +1226,7 @@ export async function POST(req: Request) {
         statusResultante: 'skipped',
       });
     } else {
-      const transportadoraResult = await definirTransportadoraPedido(dsid, TRANSPORTADORA_PADRAO_CORREIOS);
+      const transportadoraResult = await definirTransportadoraPedido(dsliteId, TRANSPORTADORA_PADRAO_CORREIOS);
       if (!transportadoraResult?.success) {
         return stepError(
           steps,
@@ -1193,7 +1243,7 @@ export async function POST(req: Request) {
 
     // 6) Enviar etiqueta para DSLite
     updateStep(steps, 'send_label_dslite', { status: 'loading' });
-    const envioResult = await enviarEtiqueta(dsid, etiquetaPdf, labelFileName, labelContentType);
+    const envioResult = await enviarEtiqueta(dsliteId, etiquetaPdf, labelFileName, labelContentType);
     if (!envioResult?.success) {
       await registrarEventoNfAuditoria({
         pedidoId: String(pedidoId),
