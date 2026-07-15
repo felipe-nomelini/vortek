@@ -13,6 +13,10 @@ const DELAY_MS = Number(process.env.BATCH_DELAY_MS || '1500');
 const REQUEST_TIMEOUT_MS = Number(process.env.BATCH_REQUEST_TIMEOUT_MS || '45000');
 const DRY_RUN = process.env.DRY_RUN === '1';
 const ALLOW_OUT_OF_STOCK = process.env.BATCH_ALLOW_OUT_OF_STOCK === '1';
+// The listing route supplies the official EMPTY_GTIN_REASON=Kit when the
+// category permits it. Keep GTIN as a preflight blocker by default; batches
+// for known kits opt in explicitly and let Mercado Livre make the final call.
+const ALLOW_EMPTY_GTIN_FOR_KITS = process.env.BATCH_ALLOW_EMPTY_GTIN_FOR_KITS === '1';
 const RESULT_FILE = process.env.ML_BATCH_RESULT_FILE || '';
 const LOGIN_EMAIL = process.env.BATCH_LOGIN_EMAIL || '';
 const LOGIN_PASSWORD = process.env.BATCH_LOGIN_PASSWORD || '';
@@ -244,8 +248,15 @@ async function postJson(apiPath, body) {
   return data;
 }
 
-function missingRequired(attrs) {
-  return (attrs || []).filter((attr) => !hasText(attr.value_id) && !hasText(attr.value_name));
+function missingRequired(attrs, { allowEmptyGtinForKit = false } = {}) {
+  return (attrs || []).filter((attr) => {
+    if (hasText(attr.value_id) || hasText(attr.value_name)) return false;
+    const id = String(attr?.id || '').toUpperCase();
+    return !(
+      allowEmptyGtinForKit &&
+      (id === 'GTIN' || id === 'EMPTY_GTIN_REASON')
+    );
+  });
 }
 
 async function prepareCategory(produtoId, categoryId, description) {
@@ -268,7 +279,9 @@ async function prepareCategory(produtoId, categoryId, description) {
 
   const required = smartData.required_attributes || schema.required_attributes || [];
   const optional = smartData.optional_attributes || schema.optional_attributes || [];
-  const missing = missingRequired(required);
+  const missing = missingRequired(required, {
+    allowEmptyGtinForKit: ALLOW_EMPTY_GTIN_FOR_KITS,
+  });
   return { schema, smartData, required, optional, missing };
 }
 
