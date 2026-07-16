@@ -730,9 +730,6 @@ export default function TvDashboardPage() {
                     }}
                     kind="currency"
                   />
-                  <Text type="secondary" style={{ fontSize: 10, display: "block", marginTop: 8 }}>
-                    Meta dinâmica · base {data?.goals.basis.windowDays || 30} dias · lucro médio {formatCurrency(data?.goals.basis.averageProfitPerOrder || 0)}/venda · margem {(data?.goals.basis.profitMargin || 0).toFixed(1).replace(".", ",")}%
-                  </Text>
                 </Card>
               </Col>
               <Col xs={24} lg={6}>
