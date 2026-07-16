@@ -730,7 +730,10 @@ export async function POST(req: Request) {
     let aiDescription = "";
 
     const apiKey = process.env.OPENROUTER_API_KEY;
-    if (apiKey) {
+    // Pesquisa/IA só é necessária para lacunas reais. Evita uma chamada externa
+    // por produto quando regras locais e atributos oficiais já completam anúncio.
+    const hasMissingRequiredAttribute = required.some((attr) => !hasValue(attr));
+    if (apiKey && hasMissingRequiredAttribute) {
       const research = await researchProductAttribute({
         produto: produtoWithEvidence,
         field: { id: "ALL_ATTRIBUTES", name: "Todos os atributos do anúncio" },
