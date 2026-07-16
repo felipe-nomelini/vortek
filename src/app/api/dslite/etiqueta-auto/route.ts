@@ -11,13 +11,12 @@ import { ensureBrasilNfeInvoice } from '@/lib/fiscal/ensure-brasilnfe-invoice';
 import { cancelarNotaBrasilNfePorChave } from '@/services/fiscal-provider';
 import {
   DSLITE_MERCADO_LIVRE_LABEL_SOURCE,
-  DSLITE_PLACEHOLDER_LABEL_FILE_NAME,
-  DSLITE_PLACEHOLDER_LABEL_SOURCE,
+  getDslitePlaceholderLabelConfig,
   loadDslitePlaceholderLabel,
 } from '@/lib/dslite/placeholder-label';
 import { storeShippingLabelForPedido } from '@/lib/shipping-label-storage';
 import { buildPublicShippingLabelUrl } from '@/lib/public-shipping-label-links';
-import { HAYAMAX_FORNECEDOR_ID, usesThermalMlLabelSupplier } from '@/lib/supplier-balance';
+import { HAYAMAX_FORNECEDOR_ID, isBkr1Supplier, usesThermalMlLabelSupplier } from '@/lib/supplier-balance';
 
 const LABEL_RETRY_INTERVAL_MS = 5000;
 const LABEL_WAIT_TIMEOUT_MS = 60000;
@@ -263,12 +262,14 @@ export async function POST(req: Request) {
       });
       const { data: compraVinculada } = await client
         .from('compras')
-        .select('fornecedor_id,fornecedor_nome')
+        .select('fornecedor_id,fornecedor_nome,supplier_payment_mode,supplier_payment_status')
         .eq('dsid', String(dsid))
         .maybeSingle();
       const fornecedorId = String((compraVinculada as any)?.fornecedor_id || '').trim();
-      if (fornecedorId !== HAYAMAX_FORNECEDOR_ID) {
-        const msg = `Etiqueta ML ainda não liberada até ${releaseLabel}; etiqueta genérica permitida apenas para Hayamax.`;
+      const fornecedorNome = String((compraVinculada as any)?.fornecedor_nome || '').trim();
+      const allowsPlaceholder = fornecedorId === HAYAMAX_FORNECEDOR_ID || isBkr1Supplier(fornecedorId, fornecedorNome);
+      if (!allowsPlaceholder) {
+        const msg = `Etiqueta ML ainda não liberada até ${releaseLabel}; etiqueta padrão não configurada para este fornecedor.`;
         await registrarEventoNfAuditoria({
           pedidoId: String(pedidoId),
           mlOrderId,
@@ -279,9 +280,9 @@ export async function POST(req: Request) {
             reason: releaseReasonRaw || null,
             fornecedor_id: fornecedorId || null,
             fornecedor_nome: (compraVinculada as any)?.fornecedor_nome || null,
-            allowed_fornecedor_id: HAYAMAX_FORNECEDOR_ID,
+            allowed_fornecedores: [HAYAMAX_FORNECEDOR_ID, '108'],
             stage: 'etiqueta_auto_precheck',
-            label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
+            label_source: 'placeholder_release_window',
           },
           statusResultante: 'blocked',
         });
@@ -319,7 +320,8 @@ export async function POST(req: Request) {
           message: msg,
         });
       }
-      const msg = `Etiqueta ML ainda não liberada até ${releaseLabel}; usando etiqueta padrão Hayamax.`;
+      const placeholderConfig = getDslitePlaceholderLabelConfig(fornecedorId, fornecedorNome);
+      const msg = `Etiqueta ML ainda não liberada até ${releaseLabel}; usando etiqueta padrão ${placeholderConfig.supplierLabel}.`;
       await registrarEventoNfAuditoria({
         pedidoId: String(pedidoId),
         mlOrderId,
@@ -332,7 +334,7 @@ export async function POST(req: Request) {
           now_utc: new Date().toISOString(),
           blocked_now: true,
           stage: 'etiqueta_auto_precheck',
-          label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
+          label_source: placeholderConfig.source,
         },
         statusResultante: 'placeholder_label',
       });
@@ -353,7 +355,7 @@ export async function POST(req: Request) {
         detail: msg,
       });
 
-      const etiquetaPdf = await loadDslitePlaceholderLabel().catch((err: any) => {
+      const etiquetaPdf = await loadDslitePlaceholderLabel(fornecedorId, fornecedorNome).catch((err: any) => {
         updateStep(steps, 'download_label_ml', {
           status: 'error',
           error: err?.message || 'Falha ao carregar etiqueta padrão DSLite',
@@ -391,7 +393,7 @@ export async function POST(req: Request) {
       }
 
       updateStep(steps, 'send_label_dslite', { status: 'loading' });
-      const envioResult = await enviarEtiqueta(dsliteId, etiquetaPdf, DSLITE_PLACEHOLDER_LABEL_FILE_NAME);
+      const envioResult = await enviarEtiqueta(dsliteId, etiquetaPdf, placeholderConfig.fileName);
       if (!envioResult?.success) {
         await registrarEventoNfAuditoria({
           pedidoId: String(pedidoId),
@@ -399,7 +401,7 @@ export async function POST(req: Request) {
           evento: 'placeholder_label_send_failed',
           respostaMl: {
             release_at: releaseAt.toISOString(),
-            label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
+            label_source: placeholderConfig.source,
             error: envioResult?.message || 'Falha ao enviar etiqueta padrão para DSLite',
           },
           statusResultante: 'failed',
@@ -416,7 +418,7 @@ export async function POST(req: Request) {
         .from('pedidos')
         .update({
           dslite_etiqueta_enviada: true,
-          dslite_label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
+          dslite_label_source: placeholderConfig.source,
         } as any)
         .eq('id', pedidoId);
 
@@ -427,18 +429,18 @@ export async function POST(req: Request) {
         evento: 'placeholder_label_send_success',
         respostaMl: {
           release_at: releaseAt.toISOString(),
-          label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
-          file_name: DSLITE_PLACEHOLDER_LABEL_FILE_NAME,
+          label_source: placeholderConfig.source,
+          file_name: placeholderConfig.fileName,
           bytes: etiquetaPdf.length,
         },
         statusResultante: 'success',
       });
       return finalizeSuccess(steps, {
         partial: true,
-        labelSource: DSLITE_PLACEHOLDER_LABEL_SOURCE,
+        labelSource: placeholderConfig.source,
         operationStatus: 'placeholder_label_sent',
         nextAction: 'wait_real_ml_label',
-        message: 'Etiqueta padrão Hayamax enviada porque a etiqueta ML ainda não foi liberada.',
+        message: `Etiqueta padrão ${placeholderConfig.supplierLabel} enviada porque a etiqueta ML ainda não foi liberada.`,
       });
     }
 
@@ -452,6 +454,29 @@ export async function POST(req: Request) {
         operationStatus: 'already_done',
         nextAction: 'done',
       });
+    }
+
+    const { data: paymentCompra } = dsliteId
+      ? await client
+        .from('compras')
+        .select('fornecedor_id,fornecedor_nome,supplier_payment_mode,supplier_payment_status')
+        .eq('dsid', dsliteId)
+        .maybeSingle()
+      : { data: null as any };
+    if (
+      !directShipping &&
+      isBkr1Supplier((paymentCompra as any)?.fornecedor_id, (paymentCompra as any)?.fornecedor_nome) &&
+      String((paymentCompra as any)?.supplier_payment_mode || '') === 'prepaid_pix' &&
+      String((paymentCompra as any)?.supplier_payment_status || '') !== 'paid'
+    ) {
+      return stepError(
+        steps,
+        'download_label_ml',
+        'Confirme o PIX da BKR1 e anexe o comprovante antes de enviar a etiqueta real.',
+        { actionRequired: 'confirm_supplier_payment', dsid: dsliteId },
+        422,
+        'business',
+      );
     }
 
     // 1) Verificar vínculo fiscal no ML (shipment invoice_data)

@@ -41,6 +41,7 @@ import {
 } from "@/lib/produto-fornecedor";
 import {
   HAYAMAX_FORNECEDOR_ID,
+  isBkr1Supplier,
   recordSupplierPurchaseDebit,
   usesThermalMlLabelSupplier,
 } from "@/lib/supplier-balance";
@@ -59,6 +60,7 @@ import {
   DSLITE_MERCADO_LIVRE_LABEL_SOURCE,
   DSLITE_PLACEHOLDER_LABEL_FILE_NAME,
   DSLITE_PLACEHOLDER_LABEL_SOURCE,
+  getDslitePlaceholderLabelConfig,
   loadDslitePlaceholderLabel,
 } from "@/lib/dslite/placeholder-label";
 import { storeShippingLabelForPedido } from "@/lib/shipping-label-storage";
@@ -3323,7 +3325,8 @@ async function runDsliteCreateJob(
       dsidAtual = Number(existingDsliteId);
       fornecedorId = String(existingCompra?.fornecedor_id || "").trim();
       usePlaceholderLabel =
-        isMlLabelReleasePending && fornecedorId === HAYAMAX_FORNECEDOR_ID;
+        isMlLabelReleasePending &&
+        (fornecedorId === HAYAMAX_FORNECEDOR_ID || isBkr1Supplier(fornecedorId, existingCompra?.fornecedor_nome));
       fornecedorNomeResolved = existingCompra?.fornecedor_nome
         ? String(existingCompra.fornecedor_nome)
         : null;
@@ -3419,7 +3422,8 @@ async function runDsliteCreateJob(
 
       fornecedorId = String(selectedOffer.offer.dslite_fornecedor_id);
       usePlaceholderLabel =
-        isMlLabelReleasePending && fornecedorId === HAYAMAX_FORNECEDOR_ID;
+        isMlLabelReleasePending &&
+        (fornecedorId === HAYAMAX_FORNECEDOR_ID || isBkr1Supplier(fornecedorId, fornecedorNomeResolved));
       fornecedorNomeResolved = selectedOffer.offer.fornecedor_nome
         ? String(selectedOffer.offer.fornecedor_nome)
         : null;
@@ -3534,9 +3538,10 @@ async function runDsliteCreateJob(
     if (
       isMlLabelReleasePending &&
       releaseAt &&
-      fornecedorId !== HAYAMAX_FORNECEDOR_ID
+      fornecedorId !== HAYAMAX_FORNECEDOR_ID &&
+      !isBkr1Supplier(fornecedorId, fornecedorNomeResolved)
     ) {
-      const msg = `Etiqueta ML ainda não liberada até ${placeholderReleaseLabel}; etiqueta genérica permitida apenas para Hayamax.`;
+      const msg = `Etiqueta ML ainda não liberada até ${placeholderReleaseLabel}; etiqueta padrão não configurada para este fornecedor.`;
       await registrarEventoNfAuditoria({
         pedidoId,
         mlOrderId: mlOrderId ? String(mlOrderId) : null,
@@ -3548,7 +3553,7 @@ async function runDsliteCreateJob(
           release_at: releaseAt.toISOString(),
           fornecedor_id: fornecedorId || null,
           fornecedor_nome: fornecedorNomeResolved || null,
-          allowed_fornecedor_id: HAYAMAX_FORNECEDOR_ID,
+          allowed_fornecedores: [HAYAMAX_FORNECEDOR_ID, '108'],
           label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
         },
         statusResultante: "blocked",
@@ -3997,7 +4002,12 @@ async function runDsliteCreateJob(
       }
     }
 
-    if (supplierPaymentMode === "prepaid_pix" && !resumeAfterSupplierPayment) {
+    const deferBkr1PaymentUntilRealLabel = Boolean(
+      supplierPaymentMode === "prepaid_pix" &&
+      isMlLabelReleasePending &&
+      isBkr1Supplier(fornecedorId, fornecedorNomeResolved),
+    );
+    if (supplierPaymentMode === "prepaid_pix" && !resumeAfterSupplierPayment && !deferBkr1PaymentUntilRealLabel) {
       const { data: fornecedorCadastro } = await client
         .from("fornecedores")
         .select("telefone,supplier_pix_key")
@@ -4057,10 +4067,11 @@ async function runDsliteCreateJob(
       (pedidoRow as any)?.dslite_label_source || "",
     ).trim() || null;
     let etiquetaError: string | undefined;
-    const isRealLabelPendingForNonHayamax = Boolean(
+    const isRealLabelPendingForNonPlaceholderSupplier = Boolean(
       isMlLabelReleasePending &&
       releaseAt &&
-      fornecedorId !== HAYAMAX_FORNECEDOR_ID,
+      fornecedorId !== HAYAMAX_FORNECEDOR_ID &&
+      !isBkr1Supplier(fornecedorId, fornecedorNomeResolved),
     );
 
     if (supplierDefinedAtCreation) {
@@ -4118,7 +4129,7 @@ async function runDsliteCreateJob(
         "send_label_dslite",
         "etiqueta já enviada anteriormente",
       );
-    } else if (isRealLabelPendingForNonHayamax && releaseAt) {
+    } else if (isRealLabelPendingForNonPlaceholderSupplier && releaseAt) {
       etiquetaStatus = "nao_disponivel";
       etiquetaError = `Etiqueta ML ainda não liberada até ${placeholderReleaseLabel}; pedido DSLite criado com etiqueta pendente`;
       pendencias.push(`Etiqueta: ${etiquetaError}`);
@@ -4129,12 +4140,13 @@ async function runDsliteCreateJob(
         'Etapa não executada: use "Completar etiqueta DSLite" quando o ML liberar a etiqueta real',
       );
     } else if (usePlaceholderLabel && releaseAt) {
+      const placeholderConfig = getDslitePlaceholderLabelConfig(fornecedorId, fornecedorNomeResolved);
       try {
-        const etiquetaPdf = await loadDslitePlaceholderLabel();
+        const etiquetaPdf = await loadDslitePlaceholderLabel(fornecedorId, fornecedorNomeResolved);
         await setStep(
           "download_label_ml",
           "warning",
-          `Etiqueta ML ainda não liberada até ${placeholderReleaseLabel}; usando etiqueta padrão Hayamax`,
+          `Etiqueta ML ainda não liberada até ${placeholderReleaseLabel}; usando etiqueta padrão ${placeholderConfig.supplierLabel}`,
         );
         await setStep("send_label_dslite", "loading");
 
@@ -4149,7 +4161,7 @@ async function runDsliteCreateJob(
             evento: "placeholder_label_send_failed",
             respostaMl: {
               release_at: releaseAt.toISOString(),
-              label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
+              label_source: placeholderConfig.source,
               error: etiquetaError,
             },
             statusResultante: "failed",
@@ -4159,19 +4171,19 @@ async function runDsliteCreateJob(
           const envioEtiqueta = await enviarEtiqueta(
             dsidAtual as number,
             etiquetaPdf,
-            DSLITE_PLACEHOLDER_LABEL_FILE_NAME,
+            placeholderConfig.fileName,
           );
           if (envioEtiqueta?.success) {
             etiquetaStatus = "enviada";
-            dsliteLabelSource = DSLITE_PLACEHOLDER_LABEL_SOURCE;
+            dsliteLabelSource = placeholderConfig.source;
             await registrarEventoNfAuditoria({
               pedidoId,
               mlOrderId: mlOrderId ? String(mlOrderId) : null,
               evento: "placeholder_label_send_success",
               respostaMl: {
                 release_at: releaseAt.toISOString(),
-                label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
-                file_name: DSLITE_PLACEHOLDER_LABEL_FILE_NAME,
+                label_source: placeholderConfig.source,
+                file_name: placeholderConfig.fileName,
                 bytes: etiquetaPdf.length,
               },
               statusResultante: "success",
@@ -4179,7 +4191,7 @@ async function runDsliteCreateJob(
             await setStep(
               "send_label_dslite",
               "success",
-              "Etiqueta padrão Hayamax enviada com sucesso para DSLite",
+              `Etiqueta padrão ${placeholderConfig.supplierLabel} enviada com sucesso para DSLite`,
             );
           } else {
             etiquetaStatus = "erro";
@@ -4193,7 +4205,7 @@ async function runDsliteCreateJob(
               evento: "placeholder_label_send_failed",
               respostaMl: {
                 release_at: releaseAt.toISOString(),
-                label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
+                label_source: placeholderConfig.source,
                 error: etiquetaError,
               },
               statusResultante: "failed",
@@ -4212,7 +4224,7 @@ async function runDsliteCreateJob(
           evento: "placeholder_label_load_failed",
           respostaMl: {
             release_at: releaseAt.toISOString(),
-            label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
+            label_source: placeholderConfig.source,
             error: etiquetaError,
           },
           statusResultante: "failed",

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { saoPauloDateParamToUtcIso } from '@/lib/timezone';
 import { reconcileLocalNfeSnapshotFromXml } from '@/lib/fiscal/nfe-local-reconciliation';
+import { isBkr1Supplier } from '@/lib/supplier-balance';
 
 function logDbError(
   event: string,
@@ -195,10 +196,17 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
     const hasReceipt = Boolean(compra.supplier_payment_receipt_path);
     const labelSent = Boolean(row?.dslite_etiqueta_enviada);
     const fornecedor = fornecedorByDsliteId.get(String(compra.fornecedor_id || ''));
+    const deferBkr1PaymentUntilRealLabel = Boolean(
+      isBkr1Supplier(compra.fornecedor_id, compra.fornecedor_nome)
+      && paymentMode === 'prepaid_pix'
+      && paymentStatus !== 'paid'
+      && String(row?.dslite_label_source || '') === 'placeholder_release_window_bkr1'
+      && labelPendingByMl,
+    );
     let nextAction = 'done';
     let nextActionLabel = 'OK';
 
-    if (paymentMode === 'prepaid_pix' && paymentStatus !== 'paid') {
+    if (paymentMode === 'prepaid_pix' && paymentStatus !== 'paid' && !deferBkr1PaymentUntilRealLabel) {
       nextAction = 'confirm_supplier_payment';
       nextActionLabel = 'Confirmar PIX';
     } else if (paymentMode === 'prepaid_pix' && paymentStatus === 'paid' && !hasReceipt) {

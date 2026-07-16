@@ -19,6 +19,7 @@ import { formatMlReleaseWindow, getMlReleaseComparableDate } from '@/lib/ml/rele
 const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
 const HAYAMAX_FORNECEDOR_ID = '2';
+const BKR1_FORNECEDOR_ID = '108';
 
 const statusOptions = [
   { value: '', label: 'Todos os status' },
@@ -1470,6 +1471,7 @@ export default function PedidosPage() {
         const actionTag = getDsliteActionTag(record.dslite_next_action);
         const supplierWarning = getSupplierSetupWarning(record);
         const usesPlaceholderLabel = record.dslite_label_source === DSLITE_PLACEHOLDER_LABEL_SOURCE;
+        const usesBkr1PlaceholderLabel = record.dslite_label_source === 'placeholder_release_window_bkr1';
         const supplierWarningTag = supplierWarning ? (
           <Tooltip title={supplierWarning}>
             <Tag color="red" style={{ marginInlineEnd: 0, fontSize: 11 }}>
@@ -1487,6 +1489,11 @@ export default function PedidosPage() {
               {usesPlaceholderLabel ? (
                 <Tag color="orange" style={{ marginInlineEnd: 0, fontSize: 11 }}>
                   Padrão Hayamax
+                </Tag>
+              ) : null}
+              {usesBkr1PlaceholderLabel ? (
+                <Tag color="orange" style={{ marginInlineEnd: 0, fontSize: 11 }}>
+                  Padrão BKR1
                 </Tag>
               ) : null}
               {supplierWarningTag}
@@ -1546,6 +1553,7 @@ export default function PedidosPage() {
         const hasDsliteId = !!isValidDsliteId(record.dslite_id);
         const nextAction = record.dslite_next_action;
         const isHayamaxOrder = String(record.fornecedor_id || '') === HAYAMAX_FORNECEDOR_ID;
+        const isBkr1Order = String(record.fornecedor_id || '') === BKR1_FORNECEDOR_ID;
         const releaseAt = record.ml_fiscal_release_at ? getMlReleaseComparableDate(record.ml_fiscal_release_at) : null;
         const mlLabelStillBlocked = Boolean(releaseAt && releaseAt.getTime() > Date.now());
         if ((!hasDsliteId || nextAction === 'create_dslite_order') && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
@@ -1579,10 +1587,10 @@ export default function PedidosPage() {
             icon: <UploadOutlined />,
           });
         }
-        if (isHayamaxOrder && !mlLabelStillBlocked && (record.ml_shipment_id || record.ml_order_id || record.ml_label_storage_path)) {
+        if ((isHayamaxOrder || (isBkr1Order && record.supplier_payment_status === 'paid')) && !mlLabelStillBlocked && (record.ml_shipment_id || record.ml_order_id || record.ml_label_storage_path)) {
           items.push({
             key: 'send_whatsapp_label',
-            label: 'Enviar etiqueta real Hayamax',
+            label: isBkr1Order ? 'Enviar etiqueta real BKR1' : 'Enviar etiqueta real Hayamax',
             icon: <UploadOutlined />,
           });
         }
