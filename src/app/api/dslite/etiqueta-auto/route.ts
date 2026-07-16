@@ -163,7 +163,7 @@ export async function POST(req: Request) {
     const client = createServiceClient();
     const { data: pedido, error: pedidoError } = await client
       .from('pedidos')
-      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nfe_protocolo,nota_fiscal_numero,total,nfe_cfop,dslite_etiqueta_enviada,ml_pack_id')
+      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nfe_protocolo,nota_fiscal_numero,total,nfe_cfop,dslite_etiqueta_enviada,dslite_label_source,ml_pack_id')
       .eq('id', pedidoId)
       .maybeSingle();
 
@@ -444,7 +444,8 @@ export async function POST(req: Request) {
       });
     }
 
-    if (!directShipping && Boolean((pedido as any).dslite_etiqueta_enviada)) {
+    const hasPlaceholderLabel = String((pedido as any).dslite_label_source || '').startsWith('placeholder_release_window');
+    if (!directShipping && Boolean((pedido as any).dslite_etiqueta_enviada) && !hasPlaceholderLabel) {
       (Object.keys(STEP_LABELS) as StepKey[]).forEach((stepKey) => {
         updateStep(steps, stepKey, { status: 'skipped', detail: 'Etapa pulada: etiqueta já enviada anteriormente' });
       });

@@ -1913,7 +1913,10 @@ async function runDsliteCreateJob(
       await syncJob();
       return;
     }
-    const dsliteEtiquetaEnviada = Boolean(pedidoRow?.dslite_etiqueta_enviada);
+    const dsliteEtiquetaEnviada = Boolean(
+      pedidoRow?.dslite_etiqueta_enviada &&
+      !String(pedidoRow?.dslite_label_source || '').startsWith('placeholder_release_window'),
+    );
     const existingShipmentId = pedidoRow?.ml_shipment_id
       ? String(pedidoRow.ml_shipment_id)
       : null;
