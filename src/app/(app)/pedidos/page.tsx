@@ -181,6 +181,8 @@ function getDsliteActionTag(action: Order['dslite_next_action']) {
       return { color: 'blue', label: 'Etiqueta pendente' };
     case 'done':
       return { color: 'green', label: 'OK' };
+    case 'internal_shipping':
+      return { color: 'green', label: 'ENVIO INTERNO' };
     case 'blocked':
       return { color: 'red', label: 'Bloqueado' };
     case 'create_dslite_order':

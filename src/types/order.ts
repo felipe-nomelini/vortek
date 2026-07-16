@@ -72,7 +72,8 @@ export interface Order {
     | 'wait_ml_label'
     | 'complete_dslite_label'
     | 'done'
-    | 'blocked';
+    | 'blocked'
+    | 'internal_shipping';
   dslite_next_action_label?: string | null;
   ml_claim_id: string | null;
   ml_shipment_id: string | null;

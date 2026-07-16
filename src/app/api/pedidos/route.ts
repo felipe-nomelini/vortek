@@ -134,8 +134,8 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
       ...row,
       pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
       cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
-      dslite_next_action: row?.dslite_id ? 'complete_dslite_label' : 'create_dslite_order',
-      dslite_next_action_label: row?.dslite_id ? 'Completar etiqueta DSLite' : 'Criar pedido DSLite',
+      dslite_next_action: row?.envio_interno_at ? 'internal_shipping' : row?.dslite_id ? 'complete_dslite_label' : 'create_dslite_order',
+      dslite_next_action_label: row?.envio_interno_at ? 'Envio interno' : row?.dslite_id ? 'Completar etiqueta DSLite' : 'Criar pedido DSLite',
     }));
   }
 
@@ -184,8 +184,8 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
         ...row,
         pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
         cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
-        dslite_next_action: row?.dslite_id ? 'complete_dslite_label' : 'create_dslite_order',
-        dslite_next_action_label: row?.dslite_id ? 'Completar etiqueta DSLite' : 'Criar pedido DSLite',
+        dslite_next_action: row?.envio_interno_at ? 'internal_shipping' : row?.dslite_id ? 'complete_dslite_label' : 'create_dslite_order',
+        dslite_next_action_label: row?.envio_interno_at ? 'Envio interno' : row?.dslite_id ? 'Completar etiqueta DSLite' : 'Criar pedido DSLite',
       };
     }
     const releaseAt = row?.ml_fiscal_release_at ? new Date(row.ml_fiscal_release_at) : null;

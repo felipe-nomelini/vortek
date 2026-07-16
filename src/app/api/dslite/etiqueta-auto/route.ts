@@ -1033,6 +1033,10 @@ export async function POST(req: Request) {
       if (!stored.ok) {
         return stepError(steps, 'download_label_ml', stored.error || 'Falha ao salvar etiqueta no sistema');
       }
+      await client
+        .from('pedidos')
+        .update({ envio_interno_at: new Date().toISOString() } as any)
+        .eq('id', pedidoId);
       updateStep(steps, 'download_label_ml', {
         status: 'success',
         detail: `${etiquetaResult.pdf.length.toLocaleString('pt-BR')} bytes (PDF salvo no sistema)`,
