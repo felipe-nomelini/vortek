@@ -104,6 +104,32 @@ async function getMlAccessToken() {
   return mlAccessTokenPromise;
 }
 
+async function getSimpleKitComponentCategory(produtoId) {
+  const { data: components, error: componentsError } = await supabase
+    .from('produto_kit_componentes')
+    .select('componente_produto_id')
+    .eq('kit_produto_id', String(produtoId));
+  if (componentsError || (components || []).length !== 1) return null;
+
+  const { data: component, error: componentError } = await supabase
+    .from('produtos')
+    .select('ml_item_id')
+    .eq('id', String(components[0].componente_produto_id))
+    .maybeSingle();
+  const itemId = String(component?.ml_item_id || '').trim();
+  if (componentError || !itemId) return null;
+
+  const token = await getMlAccessToken();
+  const response = await fetch(
+    `https://api.mercadolibre.com/items/${encodeURIComponent(itemId)}?attributes=category_id`,
+    { headers: { Authorization: `Bearer ${token}` } },
+  );
+  if (!response.ok) return null;
+  const data = await response.json();
+  const categoryId = String(data?.category_id || '').trim();
+  return categoryId || null;
+}
+
 async function predictCategoryDirect(produto, limit = 8) {
   const token = await getMlAccessToken();
   const categories = [];
@@ -339,6 +365,16 @@ async function createOne(item) {
 
   if (categories.length === 0) {
     categories = await predictCategoryDirect(item, 8);
+  }
+
+  // A unit GTIN can only be reused by this seller in its original ML category.
+  // For a simple kit, prefer its component listing category over text prediction.
+  const componentCategoryId = await getSimpleKitComponentCategory(item.produtoId);
+  if (componentCategoryId) {
+    categories = [
+      { id: componentCategoryId, nome: componentCategoryId, dominio: '' },
+      ...categories.filter((category) => String(category.id) !== componentCategoryId),
+    ];
   }
 
   if (categories.length === 0) throw new Error('Sem categoria ML prevista');
