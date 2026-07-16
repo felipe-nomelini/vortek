@@ -1791,7 +1791,7 @@ export default function PedidosPage() {
         orderStatus={trackingOrderStatus}
       />
       <Modal
-        title={whatsappUsePlaceholderLabel ? 'Enviar etiqueta genérica por WhatsApp' : 'Enviar etiqueta real Hayamax'}
+        title={whatsappUsePlaceholderLabel ? 'Enviar etiqueta genérica por WhatsApp' : `Enviar etiqueta real ${String(whatsappOrder?.fornecedor_id || '') === BKR1_FORNECEDOR_ID ? 'BKR1' : 'Hayamax'}`}
         open={whatsappModalOpen}
         onCancel={closeWhatsappLabelModal}
         onOk={handleSendWhatsappLabel}
@@ -1805,7 +1805,7 @@ export default function PedidosPage() {
             Pedido venda #{whatsappOrder?.numero || '—'}.
             {whatsappOrder?.dslite_id ? ` Pedido DSLite #${whatsappOrder.dslite_id}.` : ' Sem pedido DSLite vinculado.'}
             {whatsappUsePlaceholderLabel ? ' Será enviada a etiqueta genérica de teste.' : ''}
-            {' '}Confirme o WhatsApp da Hayamax para envio da etiqueta real.
+            {' '}Confirme o WhatsApp do fornecedor para envio da etiqueta real.
           </Text>
           <Input
             placeholder="Ex.: 11999999999"
