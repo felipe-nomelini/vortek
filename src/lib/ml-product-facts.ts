@@ -354,7 +354,7 @@ export function extractMlProductFacts(produto: any): MlProductFacts {
     isRechargeable: isBattery
       ? text.includes("recarregavel") || text.includes("eneloop")
         ? "Sim"
-        : /\b(?:alcalin[ao]|comum|zinco|lithium|cr\d{3,4}|lr\d{2,4})\b/.test(text)
+        : /\b(?:alcalin[ao]s?|comuns?|zincos?|lithium|cr\d{3,4}|lr\d{2,4})\b/.test(text)
           ? "Não"
           : undefined
       : undefined,
