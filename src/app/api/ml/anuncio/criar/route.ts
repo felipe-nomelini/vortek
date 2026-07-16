@@ -31,6 +31,7 @@ import {
   resolveTrustedMlCriticalValue,
 } from "@/lib/ml-critical-attributes";
 import { persistSingleAnuncioBySku } from "@/lib/ml/persist-single-anuncio";
+import { resolveGtinForMlListing } from "@/lib/produto-kits";
 
 type StepResult = { ok: boolean; error?: string };
 type AttrInput = { id: string; value_name?: string; value_id?: string };
@@ -729,6 +730,12 @@ export async function POST(req: Request) {
       );
     }
 
+    const gtinForMl = await resolveGtinForMlListing(
+      supabase,
+      String(produto.sku || ""),
+      produto.gtin,
+    );
+
     const { data: supplierOffers } = await supabase
       .from("produto_fornecedor_ofertas")
       .select(
@@ -846,6 +853,12 @@ export async function POST(req: Request) {
     if (Array.isArray(editedAttributes)) {
       for (const attr of editedAttributes as AttrInput[]) {
         if (attr?.id) attributesMap.set(String(attr.id), normalizeAttr(attr));
+      }
+    }
+    if (gtinForMl && !hasValue(attributesMap.get("GTIN") || { id: "GTIN" })) {
+      attributesMap.set("GTIN", { id: "GTIN", value_name: gtinForMl });
+      if (!String(produto.gtin || "").trim()) {
+        warnings.push("GTIN unitário do componente usado para este kit de itens idênticos.");
       }
     }
 
@@ -1110,7 +1123,7 @@ export async function POST(req: Request) {
     }
 
     const ncmFinal = fiscal?.ncm ?? produto.ncm;
-    const gtinFinal = fiscal?.gtin ?? produto.gtin;
+    const gtinFinal = fiscal?.gtin ?? gtinForMl;
     const cestFinal = fiscal?.cest ?? produto.cest;
     const csosnFinal = fiscal?.csosn ?? produto.csosn;
     const origemFinal = fiscal?.origem_fiscal ?? produto.origem_fiscal;
@@ -1352,7 +1365,7 @@ export async function POST(req: Request) {
       saleTerms,
       sellerCustomField: produto.sku,
       fiscalData: {
-        gtin: fiscal?.gtin || produto.gtin || undefined,
+        gtin: fiscal?.gtin || gtinForMl || undefined,
       },
     };
 

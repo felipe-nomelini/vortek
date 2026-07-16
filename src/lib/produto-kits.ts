@@ -10,6 +10,25 @@ export type SimpleKitOrderPlan = {
   componentGtin: string | null;
 };
 
+/**
+ * Mercado Livre aceita o GTIN unitário quando a oferta é um pack de itens
+ * idênticos. Mantemos o código somente no produto componente para não violar
+ * a unicidade de GTIN no cadastro interno dos SKUs de kit.
+ */
+export async function resolveGtinForMlListing(
+  client: ServiceClientLike,
+  sku: string,
+  ownGtin: unknown,
+): Promise<string | null> {
+  const own = String(ownGtin || '').trim();
+  if (own) return own;
+
+  const kit = await resolveSimpleKitOrderPlan(client, sku);
+  return kit.kind === 'ready' && kit.plan.componentGtin
+    ? kit.plan.componentGtin
+    : null;
+}
+
 /** Resolve a kit that can become one product line in the fiscal/DSLite order. */
 export async function resolveSimpleKitOrderPlan(
   client: ServiceClientLike,

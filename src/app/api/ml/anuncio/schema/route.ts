@@ -19,6 +19,7 @@ import {
   isMlCriticalAttributeId,
   resolveTrustedMlCriticalValue,
 } from "@/lib/ml-critical-attributes";
+import { resolveGtinForMlListing } from "@/lib/produto-kits";
 
 function normalizeStr(v: unknown): string {
   return String(v ?? "").trim();
@@ -320,6 +321,13 @@ export async function POST(req: Request) {
       );
     }
 
+    const gtinForMl = await resolveGtinForMlListing(
+      supabase,
+      String(produto.sku || ""),
+      produto.gtin,
+    );
+    const produtoForMl = gtinForMl ? { ...produto, gtin: gtinForMl } : produto;
+
     const { data: supplierOffers } = await supabase
       .from("produto_fornecedor_ofertas")
       .select(
@@ -361,20 +369,20 @@ export async function POST(req: Request) {
       suggestedPrice = Number(produto.custom_price ?? produto.custo ?? 0);
     }
 
-    const predictionByAttr = await predictionAttributes(categoriaId, produto);
+    const predictionByAttr = await predictionAttributes(categoriaId, produtoForMl);
 
     const prefillAttributes = attrs.map((attr: any) => {
       const attrId = String(attr.id || "").toUpperCase();
       const trustedCriticalValue = isMlCriticalAttributeId(attrId)
-        ? resolveTrustedMlCriticalValue(attrId, produto, supplierOffers || [])
+        ? resolveTrustedMlCriticalValue(attrId, produtoForMl, supplierOffers || [])
         : null;
       const pre = isMlCriticalAttributeId(attrId)
         ? trustedCriticalValue
           ? pickAllowedValue(attr, trustedCriticalValue)
           : {}
         : {
-            ...initialAttributeValue(attr, produto),
-            ...applyRuleBasedAttributeValue(attr, produto),
+            ...initialAttributeValue(attr, produtoForMl),
+            ...applyRuleBasedAttributeValue(attr, produtoForMl),
             ...(predictionByAttr.get(attrId) || {}),
           };
       if (isInvalidLiteralValue(pre.value_name) && !pre.value_id) {
@@ -398,7 +406,7 @@ export async function POST(req: Request) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        title: produto.nome,
+        title: produtoForMl.nome,
         category_id: categoriaId,
         price: suggestedPrice,
         currency_id: "BRL",
@@ -406,7 +414,7 @@ export async function POST(req: Request) {
         buying_mode: "buy_it_now",
         condition: "new",
         listing_type_id: listingType,
-        description: { plain_text: buildDescription(produto) },
+        description: { plain_text: buildDescription(produtoForMl) },
         attributes: prefillAttributes
           .filter((attr) => attr.value_id || attr.value_name)
           .map((attr) => ({
@@ -513,13 +521,13 @@ export async function POST(req: Request) {
         fiscal_fields: {
           ncm: produto.ncm || "",
           cest: produto.cest || "",
-          gtin: produto.gtin || "",
+          gtin: produtoForMl.gtin || "",
           origem_fiscal: produto.origem_fiscal || "0",
           csosn: produto.csosn || "",
         },
         conditional_required_attributes: Array.from(conditionalRequiredIds),
         prefill: {
-          description: buildDescription(produto),
+          description: buildDescription(produtoForMl),
           base_price: Math.round(suggestedPrice * 100) / 100,
           listing_type: listingType,
           seller_id: me?.id || null,
