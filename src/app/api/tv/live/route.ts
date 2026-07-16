@@ -83,7 +83,7 @@ function summarizeOrders(rows: any[]) {
   }
 
   return {
-    orders: rows.length,
+    orders: salesCount,
     revenue: round2(revenue),
     profit: round2(profit),
     averageTicket: salesCount > 0 ? round2(revenue / salesCount) : 0,

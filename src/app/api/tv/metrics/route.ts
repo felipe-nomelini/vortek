@@ -83,11 +83,72 @@ function summarizeOrders(rows: any[]) {
   }
 
   return {
-    orders: rows.length,
+    orders: salesCount,
     revenue: round2(revenue),
     profit: round2(profit),
     averageTicket: salesCount > 0 ? round2(revenue / salesCount) : 0,
     statusCounts,
+  };
+}
+
+type GoalMetric = {
+  orders: number;
+  revenue: number;
+  profit: number;
+};
+
+function buildDynamicGoals(params: {
+  historical: GoalMetric;
+  today: GoalMetric;
+  daysInMonth: number;
+}) {
+  const dailyProfit = Number(process.env.TV_DAILY_PROFIT_GOAL || 1500);
+  const historicalOrders = Math.max(0, params.historical.orders);
+  const averageProfitPerOrder =
+    historicalOrders > 0 ? params.historical.profit / historicalOrders : 0;
+  const profitMargin =
+    params.historical.revenue > 0
+      ? params.historical.profit / params.historical.revenue
+      : 0;
+
+  const hasReliableBasis = averageProfitPerOrder > 0 && profitMargin > 0;
+  const dailyOrders = hasReliableBasis
+    ? Math.ceil(dailyProfit / averageProfitPerOrder)
+    : 10;
+  const dailyRevenue = hasReliableBasis
+    ? round2(dailyProfit / profitMargin)
+    : 7500;
+
+  return {
+    profit: {
+      day: dailyProfit,
+      week: round2(dailyProfit * 7),
+      month: round2(dailyProfit * params.daysInMonth),
+    },
+    orders: {
+      day: dailyOrders,
+      week: dailyOrders * 7,
+      month: dailyOrders * params.daysInMonth,
+    },
+    revenue: {
+      day: dailyRevenue,
+      week: round2(dailyRevenue * 7),
+      month: round2(dailyRevenue * params.daysInMonth),
+    },
+    basis: {
+      windowDays: 30,
+      orders: historicalOrders,
+      revenue: round2(params.historical.revenue),
+      profit: round2(params.historical.profit),
+      today: {
+        orders: params.today.orders,
+        revenue: round2(params.today.revenue),
+        profit: round2(params.today.profit),
+      },
+      averageProfitPerOrder: round2(averageProfitPerOrder),
+      profitMargin: round2(profitMargin * 100),
+      fallback: !hasReliableBasis,
+    },
   };
 }
 
@@ -399,6 +460,11 @@ export async function GET() {
     historical,
     historicalDays: 30,
   });
+  const goals = buildDynamicGoals({
+    historical,
+    today,
+    daysInMonth: projection.basis.daysInMonth,
+  });
 
   const recentOrders = (recentResult.data || []).map((row: any) => {
     const items = Array.isArray(row.pedido_itens) ? row.pedido_itens : [];
@@ -466,10 +532,6 @@ export async function GET() {
     if (isActive && row.catalogo === true) activeCatalog++;
   }
 
-  const goal = Number(process.env.TV_DAILY_REVENUE_GOAL || 7500);
-  const goalProgress =
-    goal > 0 ? Math.min(999, round2((today.revenue / goal) * 100)) : 0;
-
   return NextResponse.json({
     generatedAt: now.toISOString(),
     realtimeSources: {
@@ -490,11 +552,7 @@ export async function GET() {
       ordersVsYesterday: percentChange(today.orders, yesterdaySummary.orders),
       profitVsYesterday: percentChange(today.profit, yesterdaySummary.profit),
     },
-    goal: {
-      revenue: goal,
-      progress: goalProgress,
-      remaining: round2(Math.max(0, goal - today.revenue)),
-    },
+    goals,
     operations: {
       activeAds: activeAdsResult.count || 0,
       activeProducts: productsResult.count || 0,

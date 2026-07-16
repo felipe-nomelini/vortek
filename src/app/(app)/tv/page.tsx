@@ -42,13 +42,25 @@ import {
 import { formatCurrency } from "@/lib/format";
 
 const { Text, Title } = Typography;
-const DAILY_GOAL = 7500;
-const TV_GOALS = {
-  orders: { day: 10, week: 70, month: 300 },
-  revenue: { day: DAILY_GOAL, week: DAILY_GOAL * 7, month: DAILY_GOAL * 30 },
-  profit: { day: 1500, week: 10500, month: 45000 },
-};
 const SALE_SOUND_SRC = "/sounds/dreigue.mp3";
+
+type GoalValues = { day: number; week: number; month: number };
+
+type DynamicGoals = {
+  profit: GoalValues;
+  orders: GoalValues;
+  revenue: GoalValues;
+  basis: {
+    windowDays: number;
+    orders: number;
+    revenue: number;
+    profit: number;
+    today: { orders: number; revenue: number; profit: number };
+    averageProfitPerOrder: number;
+    profitMargin: number;
+    fallback: boolean;
+  };
+};
 
 type TvOrderSummary = {
   id: string;
@@ -129,6 +141,7 @@ type TvMetrics = {
     activeCatalog: number;
     winningCatalog: number;
   };
+  goals: DynamicGoals;
 };
 
 type TvLiveMetrics = Pick<
@@ -253,6 +266,54 @@ function GoalTargets({
       />
     </div>
   );
+}
+
+function dynamicGoalValues(goals: DynamicGoals | undefined, today: TvMetrics["today"]): {
+  orders: GoalValues;
+  revenue: GoalValues;
+  profit: GoalValues;
+} {
+  if (!goals) {
+    return {
+      orders: { day: 10, week: 70, month: 300 },
+      revenue: { day: 7500, week: 52500, month: 225000 },
+      profit: { day: 1500, week: 10500, month: 45000 },
+    };
+  }
+
+  const basisWithoutToday = {
+    orders: Math.max(0, goals.basis.orders - goals.basis.today.orders),
+    revenue: Math.max(0, goals.basis.revenue - goals.basis.today.revenue),
+    profit: Math.max(0, goals.basis.profit - goals.basis.today.profit),
+  };
+  const rolling = {
+    orders: basisWithoutToday.orders + today.orders,
+    revenue: basisWithoutToday.revenue + today.revenue,
+    profit: basisWithoutToday.profit + today.profit,
+  };
+  const averageProfitPerOrder =
+    rolling.orders > 0 ? rolling.profit / rolling.orders : 0;
+  const profitMargin = rolling.revenue > 0 ? rolling.profit / rolling.revenue : 0;
+
+  if (averageProfitPerOrder <= 0 || profitMargin <= 0) return goals;
+
+  const dailyOrders = Math.ceil(goals.profit.day / averageProfitPerOrder);
+  const dailyRevenue = goals.profit.day / profitMargin;
+  const daysInMonth = Math.max(1, Math.round(goals.profit.month / goals.profit.day));
+
+  return {
+    profit: goals.profit,
+    orders: {
+      day: dailyOrders,
+      week: dailyOrders * 7,
+      month: dailyOrders * daysInMonth,
+    },
+    revenue: {
+      day: dailyRevenue,
+      week: dailyRevenue * 7,
+      month: dailyRevenue * daysInMonth,
+    },
+  };
 }
 
 function trendText(value: number) {
@@ -429,6 +490,16 @@ export default function TvDashboardPage() {
   const recentOrders = useMemo(
     () => (data?.recentOrders || []).slice(0, 5),
     [data],
+  );
+  const goals = useMemo(
+    () => dynamicGoalValues(data?.goals, data?.today || {
+      orders: 0,
+      revenue: 0,
+      profit: 0,
+      averageTicket: 0,
+      statusCounts: {},
+    }),
+    [data?.goals, data?.today],
   );
   const bestHour = useMemo(
     () =>
@@ -607,7 +678,7 @@ export default function TvDashboardPage() {
                     {trendText(data?.trends.ordersVsYesterday || 0)}
                   </Tag>
                   <GoalTargets
-                    goals={TV_GOALS.orders}
+                    goals={goals.orders}
                     current={{
                       day: data?.today.orders || 0,
                       week: data?.week.orders || 0,
@@ -629,7 +700,7 @@ export default function TvDashboardPage() {
                     {trendText(data?.trends.revenueVsYesterday || 0)}
                   </Tag>
                   <GoalTargets
-                    goals={TV_GOALS.revenue}
+                    goals={goals.revenue}
                     current={{
                       day: data?.today.revenue || 0,
                       week: data?.week.revenue || 0,
@@ -651,7 +722,7 @@ export default function TvDashboardPage() {
                     {trendText(data?.trends.profitVsYesterday || 0)}
                   </Tag>
                   <GoalTargets
-                    goals={TV_GOALS.profit}
+                    goals={goals.profit}
                     current={{
                       day: data?.today.profit || 0,
                       week: data?.week.profit || 0,
@@ -659,6 +730,9 @@ export default function TvDashboardPage() {
                     }}
                     kind="currency"
                   />
+                  <Text type="secondary" style={{ fontSize: 10, display: "block", marginTop: 8 }}>
+                    Meta dinâmica · base {data?.goals.basis.windowDays || 30} dias · lucro médio {formatCurrency(data?.goals.basis.averageProfitPerOrder || 0)}/venda · margem {(data?.goals.basis.profitMargin || 0).toFixed(1).replace(".", ",")}%
+                  </Text>
                 </Card>
               </Col>
               <Col xs={24} lg={6}>
