@@ -267,7 +267,7 @@ function fillKnownBatteryAttributes(attrs, productName) {
     .replace(/[\u0300-\u036f]/g, '');
   const rechargeable = /recarregavel|eneloop/.test(text)
     ? 'Sim'
-    : /\b(?:alcalinas?|comuns?|zincos?|lithium|cr\d{3,4}|lr\d{2,4})\b/.test(text)
+    : /\b(?:alcalinas?|comu[mn]s?|zincos?|lithium|cr\d{3,4}|lr\d{2,4})\b/.test(text)
       ? 'Não'
       : '';
   if (!rechargeable) return attrs;

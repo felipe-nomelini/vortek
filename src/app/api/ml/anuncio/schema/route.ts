@@ -373,6 +373,12 @@ export async function POST(req: Request) {
 
     const prefillAttributes = attrs.map((attr: any) => {
       const attrId = String(attr.id || "").toUpperCase();
+      const ruleBasedValue = applyRuleBasedAttributeValue(attr, produtoForMl);
+      const mustKeepLocalPackValue = [
+        "SALE_FORMAT",
+        "UNITS_PER_PACK",
+        "PACKS_NUMBER",
+      ].includes(attrId);
       const trustedCriticalValue = isMlCriticalAttributeId(attrId)
         ? resolveTrustedMlCriticalValue(attrId, produtoForMl, supplierOffers || [])
         : null;
@@ -382,8 +388,11 @@ export async function POST(req: Request) {
           : {}
         : {
             ...initialAttributeValue(attr, produtoForMl),
-            ...applyRuleBasedAttributeValue(attr, produtoForMl),
+            ...ruleBasedValue,
             ...(predictionByAttr.get(attrId) || {}),
+            // ML prediction often defaults pack attributes to one unit. For a
+            // kit, the quantity parsed from the local product is authoritative.
+            ...(mustKeepLocalPackValue ? ruleBasedValue : {}),
           };
       if (isInvalidLiteralValue(pre.value_name) && !pre.value_id) {
         delete pre.value_name;
