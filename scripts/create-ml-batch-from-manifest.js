@@ -17,6 +17,7 @@ const ALLOW_OUT_OF_STOCK = process.env.BATCH_ALLOW_OUT_OF_STOCK === '1';
 // category permits it. Keep GTIN as a preflight blocker by default; batches
 // for known kits opt in explicitly and let Mercado Livre make the final call.
 const ALLOW_EMPTY_GTIN_FOR_KITS = process.env.BATCH_ALLOW_EMPTY_GTIN_FOR_KITS === '1';
+const SKIP_SMART_FILL = process.env.BATCH_SKIP_SMART_FILL === '1';
 const RESULT_FILE = process.env.ML_BATCH_RESULT_FILE || '';
 const LOGIN_EMAIL = process.env.BATCH_LOGIN_EMAIL || '';
 const LOGIN_PASSWORD = process.env.BATCH_LOGIN_PASSWORD || '';
@@ -267,6 +268,24 @@ async function prepareCategory(produtoId, categoryId, description) {
   });
   const schema = schemaData?.schema;
   if (!schema) throw new Error('Schema ML ausente');
+
+  if (SKIP_SMART_FILL) {
+    const required = schema.required_attributes || [];
+    const optional = schema.optional_attributes || [];
+    const missing = missingRequired(required, {
+      allowEmptyGtinForKit: ALLOW_EMPTY_GTIN_FOR_KITS,
+    });
+    return {
+      schema,
+      smartData: {
+        success: true,
+        description: schema.prefill?.description || description || '',
+      },
+      required,
+      optional,
+      missing,
+    };
+  }
 
   const smartData = await postJson('/api/ml/anuncio/preencher-inteligente', {
     produtoId,
