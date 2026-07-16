@@ -351,10 +351,13 @@ export function extractMlProductFacts(produto: any): MlProductFacts {
           ?.replace(".", "")
       : undefined,
     packagesNumber: isAirConditioner && text.includes("split") ? 2 : undefined,
-    isRechargeable:
-      isBattery && (text.includes("alcalina") || text.includes("alcalino"))
-        ? "Não"
-        : undefined,
+    isRechargeable: isBattery
+      ? text.includes("recarregavel") || text.includes("eneloop")
+        ? "Sim"
+        : /\b(?:alcalin[ao]|comum|zinco|lithium|cr\d{3,4}|lr\d{2,4})\b/.test(text)
+          ? "Não"
+          : undefined
+      : undefined,
   };
 }
 
