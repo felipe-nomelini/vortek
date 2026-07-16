@@ -22,6 +22,13 @@ import { HAYAMAX_FORNECEDOR_ID, usesThermalMlLabelSupplier } from '@/lib/supplie
 const LABEL_RETRY_INTERVAL_MS = 5000;
 const LABEL_WAIT_TIMEOUT_MS = 60000;
 const TRANSPORTADORA_PADRAO_CORREIOS = 31;
+const DEFAULT_PUBLIC_APP_URL = 'https://app.vortek.shop';
+
+function resolvePublicAppBaseUrl(): string {
+  return String(process.env.NEXT_PUBLIC_APP_URL || DEFAULT_PUBLIC_APP_URL)
+    .trim()
+    .replace(/\/+$/, '');
+}
 
 export const maxDuration = 90;
 
@@ -1038,14 +1045,13 @@ export async function POST(req: Request) {
         status: 'success',
         detail: 'Etiqueta pronta para download',
       });
-      const appBaseUrl = new URL(req.url).origin;
       return finalizeSuccess(steps, {
         operation: 'direct_shipping_label',
         operationStatus: 'label_ready',
         nextAction: 'download_label',
         etiquetaBaixada: true,
         etiquetaBytes: etiquetaResult.pdf.length,
-        labelDownloadUrl: buildPublicShippingLabelUrl(appBaseUrl, String(pedidoId)),
+        labelDownloadUrl: buildPublicShippingLabelUrl(resolvePublicAppBaseUrl(), String(pedidoId)),
       });
     }
 
