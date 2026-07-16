@@ -260,7 +260,31 @@ function missingRequired(attrs, { allowEmptyGtinForKit = false } = {}) {
   });
 }
 
-async function prepareCategory(produtoId, categoryId, description) {
+function fillKnownBatteryAttributes(attrs, productName) {
+  const text = normalizePredictionText(productName)
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+  const rechargeable = /recarregavel|eneloop/.test(text)
+    ? 'Sim'
+    : /\b(?:alcalinas?|comuns?|zincos?|lithium|cr\d{3,4}|lr\d{2,4})\b/.test(text)
+      ? 'Não'
+      : '';
+  if (!rechargeable) return attrs;
+
+  return attrs.map((attr) => {
+    if (String(attr.id || '').toUpperCase() !== 'IS_RECHARGEABLE') return attr;
+    if (hasText(attr.value_id) || hasText(attr.value_name)) return attr;
+    const allowed = (attr.values || []).find((value) => String(value.name) === rechargeable);
+    return {
+      ...attr,
+      value_id: allowed ? String(allowed.id) : '',
+      value_name: rechargeable,
+    };
+  });
+}
+
+async function prepareCategory(produtoId, categoryId, description, productName) {
   const schemaData = await postJson('/api/ml/anuncio/schema', {
     produtoId,
     categoriaId: categoryId,
@@ -270,7 +294,7 @@ async function prepareCategory(produtoId, categoryId, description) {
   if (!schema) throw new Error('Schema ML ausente');
 
   if (SKIP_SMART_FILL) {
-    const required = schema.required_attributes || [];
+    const required = fillKnownBatteryAttributes(schema.required_attributes || [], productName);
     const optional = schema.optional_attributes || [];
     const missing = missingRequired(required, {
       allowEmptyGtinForKit: ALLOW_EMPTY_GTIN_FOR_KITS,
@@ -296,7 +320,7 @@ async function prepareCategory(produtoId, categoryId, description) {
   });
   if (!smartData?.success) throw new Error(smartData?.error || 'Preenchimento inteligente falhou');
 
-  const required = smartData.required_attributes || schema.required_attributes || [];
+  const required = fillKnownBatteryAttributes(smartData.required_attributes || schema.required_attributes || [], productName);
   const optional = smartData.optional_attributes || schema.optional_attributes || [];
   const missing = missingRequired(required, {
     allowEmptyGtinForKit: ALLOW_EMPTY_GTIN_FOR_KITS,
@@ -323,7 +347,7 @@ async function createOne(item) {
   let prepared = null;
   for (const category of categories) {
     try {
-      const current = await prepareCategory(item.produtoId, category.id, item.description || '');
+      const current = await prepareCategory(item.produtoId, category.id, item.description || '', item.nome || '');
       attempts.push({ category: { id: category.id, nome: category.nome }, missing: current.missing.map((attr) => attr.name || attr.id) });
       if (current.missing.length === 0) {
         prepared = { category, ...current };
