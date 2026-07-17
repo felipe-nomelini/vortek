@@ -18,6 +18,7 @@ function normalize(value: unknown): string {
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s*([,;:/])\s*/g, "$1")
     .replace(/\s+/g, " ");
 }
 
@@ -27,6 +28,14 @@ function attributeValue(attribute: CatalogAttribute | null | undefined): string 
   const values = Array.isArray(attribute?.values) ? attribute.values : [];
   const first = values[0];
   const value = String(first?.id || first?.name || "").trim();
+  return value || null;
+}
+
+function attributeLabel(attribute: CatalogAttribute | null | undefined): string | null {
+  const direct = String(attribute?.value_name || "").trim();
+  if (direct) return direct;
+  const values = Array.isArray(attribute?.values) ? attribute.values : [];
+  const value = String(values[0]?.name || attribute?.value_id || values[0]?.id || "").trim();
   return value || null;
 }
 
@@ -73,7 +82,7 @@ function localHandOrientation(product: any): "destro" | "canhoto" | null {
 }
 
 export function catalogLocalCriticalMismatches(product: any, catalogProduct: any) {
-  const orientation = attributeValue(attributesById(catalogProduct).get("HAND_ORIENTATION"));
+  const orientation = attributeLabel(attributesById(catalogProduct).get("HAND_ORIENTATION"));
   if (!orientation) return [];
 
   const expected = localHandOrientation(product);

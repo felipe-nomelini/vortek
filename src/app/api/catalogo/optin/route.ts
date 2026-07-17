@@ -268,6 +268,43 @@ async function validateCatalogCompatibility(params: {
   }
 
   const produto = localLookup.produto;
+  const gtin = String(produto.gtin || '').replace(/\D/g, '');
+  if (gtin) {
+    const identifierResult = await fetchMLResult<any>(
+      `/products/search?site_id=MLB&product_identifier=${encodeURIComponent(gtin)}`,
+    );
+    const products = Array.isArray(identifierResult.data?.results) ? identifierResult.data.results : [];
+    const exactProducts = products.filter((product: any) => String(product?.catalog_product_id || product?.id || '') === catalogProductId);
+    if (!identifierResult.ok || identifierResult.data?.query_type !== 'GTIN' || products.length !== 1) {
+      return {
+        ok: false,
+        statusCode: 422,
+        message: `Não foi possível confirmar pelo GTIN ${gtin} que o catálogo é o produto físico vendido.`,
+        details: {
+          local_sku: produto.sku,
+          local_product_name: produto.nome,
+          local_gtin: gtin,
+          catalog_product_id: catalogProductId,
+          product_search_status: identifierResult.ok ? 'ambiguous_or_not_found' : 'unavailable',
+        },
+      };
+    }
+    if (exactProducts.length === 0) {
+      const identifiedCatalogId = String(products[0]?.catalog_product_id || products[0]?.id || '').trim();
+      return {
+        ok: false,
+        statusCode: 422,
+        message: `Catálogo incompatível: GTIN ${gtin} identifica produto ML ${identifiedCatalogId}, não ${catalogProductId}.`,
+        details: {
+          local_sku: produto.sku,
+          local_product_name: produto.nome,
+          local_gtin: gtin,
+          catalog_product_id: catalogProductId,
+          identified_catalog_product_id: identifiedCatalogId,
+        },
+      };
+    }
+  }
   const attributeMismatches = catalogCompatibilityMismatches({
     item,
     catalogProduct,
