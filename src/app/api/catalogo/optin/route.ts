@@ -4,6 +4,7 @@ import { fetchMLResult } from '@/services/integration';
 import { buildCatalogEnrichment, extractCatalogCandidateSku, extractCatalogGtin } from '@/lib/catalogo/no-catalogo';
 import { persistSingleAnuncioBySku } from '@/lib/ml/persist-single-anuncio';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
+import { catalogCompatibilityMismatches } from '@/lib/ml-catalog-compatibility';
 
 function isEligibilityAllowed(status: string): boolean {
   const normalized = String(status || '').toUpperCase();
@@ -267,6 +268,25 @@ async function validateCatalogCompatibility(params: {
   }
 
   const produto = localLookup.produto;
+  const attributeMismatches = catalogCompatibilityMismatches({
+    item,
+    catalogProduct,
+    localProduct: produto,
+  });
+  if (attributeMismatches.length > 0) {
+    const first = attributeMismatches[0];
+    return {
+      ok: false,
+      statusCode: 422,
+      message: `Catálogo incompatível: ${first.name} do produto local (${first.itemValue}) diverge ou não está confirmado para catálogo (${first.catalogValue}).`,
+      details: {
+        local_sku: produto.sku,
+        local_product_name: produto.nome,
+        catalog_product_id: catalogProductId,
+        attribute_mismatches: attributeMismatches,
+      },
+    };
+  }
   const localColor = getColorAttributeValue(item);
   const catalogColor = getColorAttributeValue(catalogProduct);
   if (localColor && catalogColor && normalizeText(localColor) !== normalizeText(catalogColor)) {

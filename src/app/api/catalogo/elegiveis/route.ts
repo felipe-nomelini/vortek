@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
+import { catalogCompatibilityMismatches } from '@/lib/ml-catalog-compatibility';
 
 const ELIGIBILITY_CHUNK_SIZE = 20;
 const PRODUCT_CONCURRENCY = 6;
@@ -378,6 +379,7 @@ export async function GET(request: Request) {
   const rowsById = await fetchItemsMap(itemIds);
 
   const localSkuMap = new Map<string, string>();
+  const localProductsBySku = new Map<string, any>();
   if (itemIds.length > 0) {
     const service = createServiceClient();
     await runPool(chunk(itemIds, ELIGIBILITY_CHUNK_SIZE), PRODUCT_CONCURRENCY, async (itemIdChunk) => {
@@ -390,6 +392,18 @@ export async function GET(request: Request) {
         if (row?.ml_item_id && sku) localSkuMap.set(String(row.ml_item_id), sku);
       }
     });
+  }
+
+  if (localSkuMap.size > 0) {
+    const service = createServiceClient();
+    const { data } = await service
+      .from('produtos')
+      .select('sku,nome,descricao,gtin')
+      .in('sku', Array.from(new Set(localSkuMap.values())));
+    for (const product of data || []) {
+      const sku = String(product?.sku || '').trim();
+      if (sku) localProductsBySku.set(sku, product);
+    }
   }
 
   let rows = itemIds
@@ -443,6 +457,14 @@ export async function GET(request: Request) {
     const item = rowsById.get(row.ml_item_id);
     const currentProduct = catalogProducts.get(String(row.catalog_product_id || '')) || null;
     if (!item || !currentProduct) return;
+    const localProduct = localProductsBySku.get(String(row.seller_sku || '').trim()) || null;
+    const mismatches = catalogCompatibilityMismatches({ item, catalogProduct: currentProduct, localProduct });
+    if (mismatches.length > 0) {
+      const first = mismatches[0];
+      row.catalog_product_warning = `Catálogo bloqueado: ${first.name} local (${first.itemValue}) diverge ou não está confirmado para catálogo (${first.catalogValue}).`;
+      row.catalog_attribute_mismatches = mismatches;
+      return;
+    }
     const suggestion = await findSuggestedCatalogProduct(item, currentProduct);
     row.catalog_product_id_sugerido = suggestion.id;
     row.catalog_product_name_sugerido = suggestion.name;
