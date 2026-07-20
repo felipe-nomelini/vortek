@@ -463,7 +463,20 @@ function determinarSituacao(status: string, tags: string[], isDevolvido: boolean
   return 'aberto';
 }
 
-async function buscarClaims(orderId: string | number): Promise<{ id: string | null; status: string | null; isDevolvido: boolean }> {
+function classificarMotivoDevolucao(raw: unknown): string | null {
+  const texto = Array.isArray(raw) ? raw.join(' ') : String(raw || '');
+  const normalizado = texto.toLowerCase();
+  if (/repentant|changed_mind|return_request|not_expected|desist/.test(normalizado)) return 'Desistência';
+  if (/damaged|defect|defective|not_working|broken|fault/.test(normalizado)) return 'Defeito';
+  return null;
+}
+
+async function buscarClaims(orderId: string | number): Promise<{
+  id: string | null;
+  status: string | null;
+  isDevolvido: boolean;
+  motivoDevolucao: string | null;
+}> {
   try {
     const search = await fetchML<any>(`/post-purchase/v1/claims/search?resource_id=${orderId}&resource=order`);
     if (search?.data && Array.isArray(search.data) && search.data.length > 0) {
@@ -471,16 +484,34 @@ async function buscarClaims(orderId: string | number): Promise<{ id: string | nu
       const isDevolvido = claim.resolution?.reason === 'item_returned' ||
                           claim.resolution?.closed_by === 'mediator' &&
                           claim.resolution?.benefited?.includes('complainant');
+      let motivoDevolucao = classificarMotivoDevolucao([
+        claim.reason_id,
+        claim.reason?.name,
+        claim.reason?.detail,
+        ...(claim.reason?.settings?.rules_engine_triage || []),
+      ]);
+
+      // ML expõe taxonomia da reclamação neste recurso; consulta só para devolução confirmada.
+      const reasonId = String(claim.reason_id || claim.reason?.id || '').trim();
+      if (isDevolvido && !motivoDevolucao && reasonId) {
+        const reason = await fetchML<any>(`/post-purchase/v1/reasons/${encodeURIComponent(reasonId)}/children`).catch(() => null);
+        motivoDevolucao = classificarMotivoDevolucao([
+          reason?.name,
+          reason?.detail,
+          ...(reason?.settings?.rules_engine_triage || []),
+        ]);
+      }
       return {
         id: String(claim.id),
         status: claim.status || null,
         isDevolvido,
+        motivoDevolucao,
       };
     }
   } catch (err: any) {
     console.error(`[sync-pedidos] Erro ao buscar claims do pedido ${orderId}:`, err?.message);
   }
-  return { id: null, status: null, isDevolvido: false };
+  return { id: null, status: null, isDevolvido: false, motivoDevolucao: null };
 }
 
 type SyncOrderResult = {
@@ -964,7 +995,12 @@ async function processOrder(params: {
   }
 
   // 3. Claims: buscar reclamações via endpoint de search
-  const { id: claimIdFromSearch, status: claimStatusFromSearch, isDevolvido } = await buscarClaims(o.id);
+  const {
+    id: claimIdFromSearch,
+    status: claimStatusFromSearch,
+    isDevolvido,
+    motivoDevolucao: motivoClaim,
+  } = await buscarClaims(o.id);
 
   // 4. Status: usa tags 'delivered'/'not_delivered' para refinar (considerando devolução)
   const tags: string[] = sourceOrder?.tags || o.tags || [];
@@ -992,6 +1028,7 @@ async function processOrder(params: {
   // 6. Shipment: buscar ml_shipment_id e status detalhado (uma única chamada por pedido)
   let mlShipmentId: string | null = null;
   let shipmentDetail: any = null;
+  let motivoDevolucao = motivoClaim;
   let releaseWindowCheckOk = false;
   let releaseWindow = extractMlFiscalReleaseWindow({ shipment: null, leadTime: null });
   const situacaoAnteriorShipment = situacao;
@@ -1004,6 +1041,9 @@ async function processOrder(params: {
     if (shipmentResult.ok && shipmentResult.data?.id) {
       shipmentDetail = shipmentResult.data;
       mlShipmentId = String(shipmentDetail.id);
+      if (shipmentDetail?.substatus === 'receiver_absent') {
+        motivoDevolucao = 'Destinatário ausente';
+      }
 
       const leadTimeFetch = await fetchMLResultWithRetry<any>(`/shipments/${mlShipmentId}/lead_time`);
       retriesTransient += leadTimeFetch.retries;
@@ -1314,7 +1354,7 @@ async function processOrder(params: {
       await serviceClient.from('pedido_itens').insert(mapped as any);
     }
     if (situacao === 'devolvido') {
-      await registrarDevolucaoInterna(pedidoId, claimIdFromSearch ? 'Devolução por reclamação' : 'Devolução confirmada');
+      await registrarDevolucaoInterna(pedidoId, motivoDevolucao || 'Motivo não informado pelo Mercado Livre');
     }
 
     await registrarEventoNfAuditoria({
