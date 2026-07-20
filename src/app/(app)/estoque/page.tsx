@@ -13,6 +13,7 @@ const initialData: EstoqueResponse = { data: [], revisao: 0, liberado: 0, nao_ap
 
 const statusLabels: Record<string, { label: string; color: string }> = {
   pending: { label: 'Devolução iniciada', color: 'blue' },
+  ready_to_ship: { label: 'Aguardando postagem', color: 'blue' },
   label_generated: { label: 'Etiqueta de devolução gerada', color: 'blue' },
   scheduled: { label: 'Coleta agendada', color: 'blue' },
   shipped: { label: 'Em trânsito', color: 'processing' },
