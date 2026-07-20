@@ -8,8 +8,9 @@ type ItemEstoque = {
   id: string; produto_id: string; pedido_id: string; sku: string; nome: string; quantidade: number;
   motivo: string; status_devolucao: string; situacao_estoque: SituacaoEstoque;
 };
-type EstoqueResponse = { data: ItemEstoque[]; revisao: number; liberado: number; nao_aproveitavel: number };
-const initialData: EstoqueResponse = { data: [], revisao: 0, liberado: 0, nao_aproveitavel: 0 };
+type ItemVendido = { id: string; sku: string; nome: string; quantidade: number; pedido_ml: string; vendido_em: string };
+type EstoqueResponse = { data: ItemEstoque[]; revisao: number; liberado: number; nao_aproveitavel: number; vendidos: ItemVendido[]; vendidosQuantidade: number };
+const initialData: EstoqueResponse = { data: [], revisao: 0, liberado: 0, nao_aproveitavel: 0, vendidos: [], vendidosQuantidade: 0 };
 
 const statusLabels: Record<string, { label: string; color: string }> = {
   pending: { label: 'Devolução iniciada', color: 'blue' },
@@ -64,9 +65,16 @@ export default function EstoquePage() {
     } },
   ];
   const tabela = (situacao: SituacaoEstoque) => <Table<ItemEstoque> rowKey="id" loading={loading} dataSource={data.data.filter((item) => item.situacao_estoque === situacao)} columns={columns} pagination={{ pageSize: 50 }} />;
+  const tabelaVendidos = <Table<ItemVendido> rowKey="id" loading={loading} dataSource={data.vendidos} pagination={{ pageSize: 50 }} columns={[
+    { title: 'SKU', dataIndex: 'sku' },
+    { title: 'Produto', dataIndex: 'nome' },
+    { title: 'Quantidade', dataIndex: 'quantidade' },
+    { title: 'Pedido ML', dataIndex: 'pedido_ml' },
+    { title: 'Data do envio', render: (_: unknown, item: ItemVendido) => new Date(item.vendido_em).toLocaleString('pt-BR') },
+  ]} />;
 
   return <>{contextHolder}<Typography.Title level={4}>Estoque interno</Typography.Title><Typography.Paragraph type="secondary">Devoluções entram em revisão. Ações liberadas somente após entrega confirmada pelo Mercado Livre.</Typography.Paragraph>
     <Row gutter={16}><Col xs={24} md={8}><Card><Statistic title="Para revisão" value={data.revisao} valueStyle={{ color: '#faad14' }} /></Card></Col><Col xs={24} md={8}><Card><Statistic title="Liberadas para venda" value={data.liberado} valueStyle={{ color: '#52c41a' }} /></Card></Col><Col xs={24} md={8}><Card><Statistic title="Não aproveitáveis" value={data.nao_aproveitavel} valueStyle={{ color: '#ff4d4f' }} /></Card></Col></Row>
-    <Tabs style={{ marginTop: 16 }} items={[{ key: 'revisao', label: `Para revisão (${data.revisao})`, children: tabela('revisao') }, { key: 'liberado', label: `Liberado (${data.liberado})`, children: tabela('liberado') }, { key: 'nao-aproveitavel', label: `Não aproveitável (${data.nao_aproveitavel})`, children: tabela('nao_aproveitavel') }]} />
+    <Tabs style={{ marginTop: 16 }} items={[{ key: 'revisao', label: `Para revisão (${data.revisao})`, children: tabela('revisao') }, { key: 'liberado', label: `Liberado (${data.liberado})`, children: tabela('liberado') }, { key: 'nao-aproveitavel', label: `Não aproveitável (${data.nao_aproveitavel})`, children: tabela('nao_aproveitavel') }, { key: 'vendidos', label: `Vendidos (${data.vendidosQuantidade})`, children: tabelaVendidos }]} />
   </>;
 }
