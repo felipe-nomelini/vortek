@@ -3,6 +3,8 @@ import { createClient, createServiceClient } from '@/lib/supabase';
 import { saoPauloDateParamToUtcIso } from '@/lib/timezone';
 import { reconcileLocalNfeSnapshotFromXml } from '@/lib/fiscal/nfe-local-reconciliation';
 import { isBkr1Supplier } from '@/lib/supplier-balance';
+import { inferSupplierPaymentMode, resolvePreferredOfferForProduct } from '@/lib/produto-fornecedor';
+import { getSkuLookupVariants } from '@/lib/sku';
 
 function logDbError(
   event: string,
@@ -77,6 +79,103 @@ async function persistReconciledPedidos(rows: any[]) {
   return rows.map((row) => reconcileNotaFiscalEmitidaRow(row).row);
 }
 
+async function resolveFornecedorPreviewByPedido(
+  itensPorPedido: Map<string, any[]>,
+  serviceClient: ReturnType<typeof createServiceClient>,
+) {
+  const skuVariants = Array.from(new Set(
+    Array.from(itensPorPedido.values())
+      .flatMap((itens) => itens.flatMap((item) => getSkuLookupVariants(item?.seller_sku)))
+      .filter(Boolean),
+  ));
+  const previews = new Map<string, any>();
+  if (!skuVariants.length) return previews;
+
+  const { data: products, error: productError } = await serviceClient
+    .from('produtos')
+    .select('id,sku,nome,fornecedor,dslite_fornecedor_id,oferta_preferencial_id')
+    .in('sku', skuVariants);
+  if (productError) {
+    logDbError('pedidos_supplier_preview_products_failed', '/api/pedidos', '', productError);
+    return previews;
+  }
+
+  const productsBySku = new Map<string, any>();
+  const productsById = new Map<string, any>();
+  for (const product of products || []) {
+    productsBySku.set(String((product as any).sku || '').trim().toUpperCase(), product);
+    productsById.set(String((product as any).id || ''), product);
+  }
+  const productIds = Array.from(productsById.keys()).filter(Boolean);
+  const { data: offers, error: offerError } = productIds.length
+    ? await serviceClient
+      .from('produto_fornecedor_ofertas')
+      .select('id,produto_id,dslite_fornecedor_id,fornecedor_nome,custo,estoque,ativo,prioridade')
+      .in('produto_id', productIds)
+    : { data: [], error: null as any };
+  if (offerError) {
+    logDbError('pedidos_supplier_preview_offers_failed', '/api/pedidos', '', offerError);
+    return previews;
+  }
+
+  const offersByProductId = new Map<string, any[]>();
+  for (const offer of offers || []) {
+    const productId = String((offer as any).produto_id || '');
+    const list = offersByProductId.get(productId) || [];
+    list.push(offer);
+    offersByProductId.set(productId, list);
+  }
+
+  for (const [pedidoId, itens] of itensPorPedido) {
+    const selected = (itens || []).map((item: any) => {
+      const product = getSkuLookupVariants(item?.seller_sku)
+        .map((sku) => productsBySku.get(sku))
+        .find(Boolean);
+      if (!product) return null;
+      const preferredOffer = resolvePreferredOfferForProduct(
+        offersByProductId.get(String(product.id)) || [],
+        product.oferta_preferencial_id,
+      );
+      const fornecedorId = String(preferredOffer?.dslite_fornecedor_id || product.dslite_fornecedor_id || '').trim();
+      const fornecedorNome = String(preferredOffer?.fornecedor_nome || product.fornecedor || '').trim();
+      if (!fornecedorId && !fornecedorNome) return null;
+      return {
+        fornecedorId: fornecedorId || null,
+        fornecedorNome: fornecedorNome || null,
+        custo: Number(preferredOffer?.custo || 0),
+        quantidade: Number(item?.quantidade || 1),
+        produtoDescricao: product.nome || item?.titulo || null,
+        produtoSku: product.sku || item?.seller_sku || null,
+      };
+    }).filter(Boolean) as Array<{
+      fornecedorId: string | null;
+      fornecedorNome: string | null;
+      custo: number;
+      quantidade: number;
+      produtoDescricao: string | null;
+      produtoSku: string | null;
+    }>;
+    if (!selected.length) continue;
+
+    const supplierKeys = Array.from(new Set(selected.map((item) => `${item.fornecedorId || ''}:${item.fornecedorNome || ''}`)));
+    const first = selected[0];
+    const singleSupplier = supplierKeys.length === 1;
+    const paymentMode = first.fornecedorId ? inferSupplierPaymentMode(first.fornecedorId) : null;
+    previews.set(pedidoId, {
+      fornecedor_id: singleSupplier ? first.fornecedorId : null,
+      fornecedor_nome: singleSupplier ? first.fornecedorNome : 'Múltiplos fornecedores previstos',
+      supplier_payment_mode: singleSupplier ? paymentMode : null,
+      supplier_payment_status: paymentMode === 'prepaid_pix' ? 'pending' : null,
+      supplier_payment_amount: selected.reduce((total, item) => total + item.custo * item.quantidade, 0) || null,
+      compra_produto_descricao: first.produtoDescricao,
+      compra_produto_sku: first.produtoSku,
+      compra_quantidade: selected.reduce((total, item) => total + item.quantidade, 0),
+    });
+  }
+
+  return previews;
+}
+
 async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<typeof createServiceClient>) {
   const pedidoIds = Array.from(new Set(
     rows
@@ -102,6 +201,7 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
       }
     }
   }
+  const fornecedorPreviewByPedido = await resolveFornecedorPreviewByPedido(itensPorPedido, serviceClient);
 
   const clienteIdPorMlId = new Map<string, string>();
   const buyerMlIds = Array.from(new Set(
@@ -135,6 +235,7 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
       ...row,
       pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
       cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
+      ...(fornecedorPreviewByPedido.get(String(row?.id || '')) || {}),
       dslite_next_action: row?.envio_interno_at ? 'internal_shipping' : row?.dslite_id ? 'complete_dslite_label' : 'create_dslite_order',
       dslite_next_action_label: row?.envio_interno_at ? 'Envio interno' : row?.dslite_id ? 'Completar etiqueta DSLite' : 'Criar pedido DSLite',
     }));
@@ -185,6 +286,7 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
         ...row,
         pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
         cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
+        ...(fornecedorPreviewByPedido.get(String(row?.id || '')) || {}),
         dslite_next_action: row?.envio_interno_at ? 'internal_shipping' : row?.dslite_id ? 'complete_dslite_label' : 'create_dslite_order',
         dslite_next_action_label: row?.envio_interno_at ? 'Envio interno' : row?.dslite_id ? 'Completar etiqueta DSLite' : 'Criar pedido DSLite',
       };

@@ -1221,7 +1221,7 @@ export default function PedidosPage() {
               <Descriptions.Item label="Pedido DSLite">
                 {order.dslite_id ? <Link href={`/compras?search=${encodeURIComponent(order.dslite_id)}`}>{order.dslite_id}</Link> : 'Não criado'}
               </Descriptions.Item>
-              <Descriptions.Item label="Fornecedor">{order.fornecedor_nome || '—'}</Descriptions.Item>
+              <Descriptions.Item label={order.compra_id ? 'Fornecedor' : 'Fornecedor previsto'}>{order.fornecedor_nome || '—'}</Descriptions.Item>
               <Descriptions.Item label="Pagamento">
                 {order.supplier_payment_amount !== null && order.supplier_payment_amount !== undefined
                   ? `${formatCurrency(order.supplier_payment_amount)} · ${order.supplier_payment_status || 'pendente'}`
