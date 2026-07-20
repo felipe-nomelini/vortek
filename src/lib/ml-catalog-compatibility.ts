@@ -76,24 +76,30 @@ export function catalogAttributeMismatches(item: any, catalogProduct: any) {
 
 function localHandOrientation(product: any): "destro" | "canhoto" | null {
   const text = normalize([product?.nome, product?.descricao].filter(Boolean).join(" "));
-  if (/\bcanhot[oa]?\b/.test(text)) return "canhoto";
-  if (/\bdestro\b/.test(text)) return "destro";
+  const hasLeft = /\bcanhot[oa]?\b/.test(text);
+  const hasRight = /\bdestro\b/.test(text);
+  if (hasLeft && hasRight) return null;
+  if (hasLeft) return "canhoto";
+  if (hasRight) return "destro";
   return null;
 }
 
 function titleHandOrientation(value: unknown): "destro" | "canhoto" | null {
   const text = normalize(value);
-  if (/\bcanhot[oa]?\b|\bmao esquerda\b|\bleft handed\b/.test(text)) return "canhoto";
-  if (/\bdestro\b|\bmao direita\b|\bright handed\b/.test(text)) return "destro";
+  const hasLeft = /\bcanhot[oa]?\b|\bmao esquerda\b|\bleft handed\b/.test(text);
+  const hasRight = /\bdestro\b|\bmao direita\b|\bright handed\b/.test(text);
+  if (hasLeft && hasRight) return null;
+  if (hasLeft) return "canhoto";
+  if (hasRight) return "destro";
   return null;
 }
 
 function titlePackQuantity(value: unknown): number | null {
   const text = normalize(value);
   const match = text.match(
-    /\b(?:kit|pack|combo|conjunto|lote)\s*(?:com|de)?\s*(\d{1,3})\b|\b(\d{1,3})\s*(?:unidades?|unds?|itens?|pecas?|pcs?)\b/,
+    /\b(?:kit|pack|combo|conjunto|lote)\s*(?:com|de)?\s*(\d{1,3})\b|\b(\d{1,3})\s*(?:unidades?|unds?|itens?|pecas?|pcs?)\b|\b(?:c|ct|cartela|car|bli|pct|dz|cem|tub)\s*(?:\/|x)\s*(\d{1,3})\b/,
   );
-  const quantity = Number(match?.[1] || match?.[2] || 0);
+  const quantity = Number(match?.[1] || match?.[2] || match?.[3] || 0);
   return Number.isInteger(quantity) && quantity > 0 ? quantity : null;
 }
 
