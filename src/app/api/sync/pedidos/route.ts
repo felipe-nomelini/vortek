@@ -14,6 +14,7 @@ import { resolveOrderSaleDate, type SaleDateSource } from '@/lib/ml/order-sale-d
 import { mapearStatusShipment } from '@/lib/ml/shipment-status';
 import { getSkuLookupVariants } from '@/lib/sku';
 import { alertClaimOpened, alertMlLabelReleased, alertNewSale } from '@/services/whatsapp-alerts';
+import { registrarDevolucaoInterna } from '@/lib/estoque-interno';
 
 export const maxDuration = 300;
 
@@ -1311,6 +1312,9 @@ async function processOrder(params: {
     await serviceClient.from('pedido_itens').delete().eq('pedido_id', pedidoId);
     if (mapped.length > 0) {
       await serviceClient.from('pedido_itens').insert(mapped as any);
+    }
+    if (situacao === 'devolvido') {
+      await registrarDevolucaoInterna(pedidoId, claimIdFromSearch ? 'Devolução por reclamação' : 'Devolução confirmada');
     }
 
     await registrarEventoNfAuditoria({

@@ -39,6 +39,7 @@ const menuItems: MenuProps['items'] = [
   { key: '/dashboard', icon: <DashboardOutlined />, label: menuLink('/dashboard', 'Dashboard') },
   { key: '/tv', icon: <FundProjectionScreenOutlined />, label: menuLink('/tv', 'TV ao Vivo') },
   { key: '/produtos', icon: <ShoppingCartOutlined />, label: menuLink('/produtos', 'Produtos') },
+  { key: '/estoque', icon: <AppstoreOutlined />, label: menuLink('/estoque', 'Estoque') },
   { key: '/clientes', icon: <TeamOutlined />, label: menuLink('/clientes', 'Clientes') },
   { key: '/fornecedores', icon: <TruckOutlined />, label: menuLink('/fornecedores', 'Fornecedores') },
   {

@@ -17,6 +17,7 @@ import {
 import { storeShippingLabelForPedido } from '@/lib/shipping-label-storage';
 import { buildPublicShippingLabelUrl } from '@/lib/public-shipping-label-links';
 import { HAYAMAX_FORNECEDOR_ID, isBkr1Supplier, usesThermalMlLabelSupplier } from '@/lib/supplier-balance';
+import { reservarEnvioInterno, validarEstoqueEnvioInterno } from '@/lib/estoque-interno';
 
 const LABEL_RETRY_INTERVAL_MS = 5000;
 const LABEL_WAIT_TIMEOUT_MS = 60000;
@@ -219,6 +220,21 @@ export async function POST(req: Request) {
 
     if (!pedido) {
       return stepError(steps, 'check_ml_invoice_xml', 'Pedido não encontrado', undefined, 404, 'not_found');
+    }
+
+    if (directShipping) {
+      try {
+        await validarEstoqueEnvioInterno(String(pedidoId));
+      } catch (error: any) {
+        return stepError(
+          steps,
+          'check_ml_invoice_xml',
+          error?.message || 'Estoque interno insuficiente para envio próprio.',
+          undefined,
+          422,
+          'business',
+        );
+      }
     }
 
     const mlOrderId = String((pedido as any).ml_order_id || '').trim();
@@ -1058,6 +1074,11 @@ export async function POST(req: Request) {
       });
       if (!stored.ok) {
         return stepError(steps, 'download_label_ml', stored.error || 'Falha ao salvar etiqueta no sistema');
+      }
+      try {
+        await reservarEnvioInterno(String(pedidoId));
+      } catch (error: any) {
+        return stepError(steps, 'download_label_ml', error?.message || 'Estoque interno insuficiente');
       }
       await client
         .from('pedidos')
