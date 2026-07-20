@@ -474,6 +474,7 @@ function classificarMotivoDevolucao(raw: unknown): string | null {
 
 type DevolucaoMl = {
   status: string;
+  destinoEstoqueInterno: boolean;
 };
 
 async function buscarClaims(orderId: string | number): Promise<{
@@ -511,13 +512,17 @@ async function buscarClaims(orderId: string | number): Promise<{
         ? await fetchML<any>(`/post-purchase/v2/claims/${encodeURIComponent(claimId)}/returns`).catch(() => null)
         : null;
       if (retorno?.id && retorno?.status) {
-        const envioRetorno = retorno?.shipments?.[0];
+        const enviosRetorno = Array.isArray(retorno?.shipments) ? retorno.shipments : [];
+        // Só há estoque interno quando o ML envia para o endereço do seller.
+        // Centros logísticos do ML e endereços de fornecedor não representam item recebido pela Vortek.
+        const envioRetorno = enviosRetorno.find((envio: any) => envio?.destination?.name === 'seller_address') || enviosRetorno[0];
         const statusEnvio = String(envioRetorno?.status || '').trim();
         const entregueNoCentroLogistico = statusEnvio === 'delivered' && envioRetorno?.destination?.name === 'warehouse';
         devolucao = {
           // `delivered` no retorno pode significar entregue a um centro do ML,
           // e não ao estoque físico da Vortek.
           status: entregueNoCentroLogistico ? 'delivered_warehouse' : (statusEnvio || String(retorno.status)),
+          destinoEstoqueInterno: envioRetorno?.destination?.name === 'seller_address',
         };
       }
 
@@ -1384,7 +1389,7 @@ async function processOrder(params: {
     if (mapped.length > 0) {
       await serviceClient.from('pedido_itens').insert(mapped as any);
     }
-    if (devolucaoMl || situacao === 'devolvido') {
+    if (devolucaoMl?.destinoEstoqueInterno) {
       await registrarDevolucaoInterna(
         pedidoId,
         motivoDevolucao || 'Outro Motivo',
