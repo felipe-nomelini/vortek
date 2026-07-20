@@ -126,6 +126,23 @@ async function resolveFornecedorPreviewByPedido(
     offersByProductId.set(productId, list);
   }
 
+  const fornecedorIds = Array.from(new Set([
+    ...(products || []).map((product: any) => String(product.dslite_fornecedor_id || '').trim()),
+    ...(offers || []).map((offer: any) => String(offer.dslite_fornecedor_id || '').trim()),
+  ].filter(Boolean)));
+  const { data: fornecedores, error: fornecedorError } = fornecedorIds.length
+    ? await serviceClient
+      .from('fornecedores')
+      .select('dslite_id,telefone,supplier_pix_key')
+      .in('dslite_id', fornecedorIds)
+    : { data: [], error: null as any };
+  if (fornecedorError) {
+    logDbError('pedidos_supplier_preview_fornecedores_failed', '/api/pedidos', '', fornecedorError);
+  }
+  const fornecedorByDsliteId = new Map((fornecedores || []).map((fornecedor: any) => [
+    String(fornecedor.dslite_id || '').trim(), fornecedor,
+  ]));
+
   for (const [pedidoId, itens] of itensPorPedido) {
     const selected = (itens || []).map((item: any) => {
       const product = getSkuLookupVariants(item?.seller_sku)
@@ -160,10 +177,13 @@ async function resolveFornecedorPreviewByPedido(
     const supplierKeys = Array.from(new Set(selected.map((item) => `${item.fornecedorId || ''}:${item.fornecedorNome || ''}`)));
     const first = selected[0];
     const singleSupplier = supplierKeys.length === 1;
+    const fornecedor = singleSupplier ? fornecedorByDsliteId.get(String(first.fornecedorId || '')) : null;
     const paymentMode = first.fornecedorId ? inferSupplierPaymentMode(first.fornecedorId) : null;
     previews.set(pedidoId, {
       fornecedor_id: singleSupplier ? first.fornecedorId : null,
       fornecedor_nome: singleSupplier ? first.fornecedorNome : 'Múltiplos fornecedores previstos',
+      fornecedor_telefone: fornecedor?.telefone || null,
+      supplier_pix_key: fornecedor?.supplier_pix_key || null,
       supplier_payment_mode: singleSupplier ? paymentMode : null,
       supplier_payment_status: paymentMode === 'prepaid_pix' ? 'pending' : null,
       supplier_payment_amount: selected.reduce((total, item) => total + item.custo * item.quantidade, 0) || null,
