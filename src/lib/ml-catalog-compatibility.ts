@@ -97,10 +97,16 @@ function titleHandOrientation(value: unknown): "destro" | "canhoto" | null {
 function titlePackQuantity(value: unknown): number | null {
   const text = normalize(value);
   const match = text.match(
-    /\b(?:kit|pack|combo|conjunto|lote)\s*(?:com|de)?\s*(\d{1,3})\b|\b(\d{1,3})\s*(?:unidades?|unds?|itens?|pecas?|pcs?)\b|\b(?:c|ct|cartela|car|bli|pct|dz|cem|tub)\s*(?:\/|x)\s*(\d{1,3})\b/,
+    /\b(?:kit|pack|combo|conjunto|lote)\s*(?:com|de)?\s*(\d{1,3})\b|\b(\d{1,3})\s*(?:unidades?|unds?|itens?|pecas?|pcs?)\b|\b(?:c|ct|cartela|car|bli|pct|cx|dz|cem|tub)\s*(?:\/|x)\s*(\d{1,3})\b/,
   );
   const quantity = Number(match?.[1] || match?.[2] || match?.[3] || 0);
   return Number.isInteger(quantity) && quantity > 0 ? quantity : null;
+}
+
+function titleInstrumentVariant(value: unknown): string | null {
+  const text = normalize(value);
+  const match = text.match(/\b(?:sax(?:ofone)?|ukulele)\s+(alto|tenor|soprano|baritono|concert)\b/);
+  return match ? `${match[0].split(" ")[0]} ${match[1]}` : null;
 }
 
 function catalogTitleCriticalMismatches(product: any, catalogProduct: any) {
@@ -133,6 +139,17 @@ function catalogTitleCriticalMismatches(product: any, catalogProduct: any) {
       name: "Quantidade do kit no título",
       itemValue: localQuantity ? String(localQuantity) : "produto unitário",
       catalogValue: String(catalogQuantity),
+    });
+  }
+
+  const localInstrumentVariant = titleInstrumentVariant(localTitle);
+  const catalogInstrumentVariant = titleInstrumentVariant(catalogTitle);
+  if (catalogInstrumentVariant && localInstrumentVariant !== catalogInstrumentVariant) {
+    mismatches.push({
+      id: "TITLE_INSTRUMENT_VARIANT",
+      name: "Variação do instrumento no título",
+      itemValue: localInstrumentVariant || "não confirmada no título local",
+      catalogValue: catalogInstrumentVariant,
     });
   }
 
