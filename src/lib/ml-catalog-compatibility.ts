@@ -114,6 +114,17 @@ function titleInstrumentVariant(value: unknown): string | null {
   return instrument && variant ? `${instrument} ${variant}` : null;
 }
 
+function titleColor(value: unknown): string | null {
+  const text = normalize(value);
+  if (/\bpreto\b|\bblack\b/.test(text)) return "preto";
+  if (/\bbranco\b|\bwhite\b/.test(text)) return "branco";
+  if (/\bnatural\b/.test(text)) return "natural";
+  if (/\bazul\b|\bblue\b/.test(text)) return "azul";
+  if (/\bvermelho\b|\bred\b/.test(text)) return "vermelho";
+  if (/\bsunburst\b/.test(text)) return "sunburst";
+  return null;
+}
+
 function catalogTitleCriticalMismatches(product: any, catalogProduct: any) {
   const localTitle = String(product?.nome || "").trim();
   const catalogTitle = String(catalogProduct?.name || catalogProduct?.title || "").trim();
@@ -155,6 +166,17 @@ function catalogTitleCriticalMismatches(product: any, catalogProduct: any) {
       name: "Variação do instrumento no título",
       itemValue: localInstrumentVariant || "não confirmada no título local",
       catalogValue: catalogInstrumentVariant,
+    });
+  }
+
+  const localColor = titleColor(localTitle);
+  const catalogColor = titleColor(catalogTitle);
+  if (localColor && catalogColor && localColor !== catalogColor) {
+    mismatches.push({
+      id: "TITLE_COLOR",
+      name: "Cor no título",
+      itemValue: localColor,
+      catalogValue: catalogColor,
     });
   }
 
