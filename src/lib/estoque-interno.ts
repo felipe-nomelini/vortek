@@ -1,4 +1,5 @@
 import { createServiceClient } from '@/lib/supabase';
+import { getSkuLookupVariants } from '@/lib/sku';
 
 type ItemEstoquePedido = {
   produtoId: string;
@@ -22,17 +23,35 @@ async function carregarItensEstoquePedido(pedidoId: string): Promise<ItemEstoque
     const quantidade = Number(item.quantidade || 0);
     if (!sku || quantidade <= 0) throw new Error('Pedido possui item sem SKU ou quantidade válida.');
 
-    const { data: produto, error: produtoError } = await db
+    const variantesSku = getSkuLookupVariants(sku);
+    const { data: produtoDireto, error: produtoError } = await db
       .from('produtos')
       .select('id')
-      .eq('sku', sku)
+      .in('sku', variantesSku)
       .maybeSingle();
     if (produtoError) throw new Error(produtoError.message);
-    if (!produto) throw new Error(`Produto interno não encontrado: ${sku}`);
 
-    const atual = agrupados.get(String(produto.id));
-    agrupados.set(String(produto.id), {
-      produtoId: String(produto.id),
+    let produtoId = produtoDireto?.id ? String(produtoDireto.id) : null;
+    if (!produtoId) {
+      const [ofertasPorSku, ofertasPorSkuFornecedor] = await Promise.all([
+        db
+          .from('produto_fornecedor_ofertas')
+          .select('produto_id')
+          .in('sku_oferta', variantesSku),
+        db
+          .from('produto_fornecedor_ofertas')
+          .select('produto_id')
+          .in('sku_fornecedor', variantesSku),
+      ]);
+      if (ofertasPorSku.error) throw new Error(ofertasPorSku.error.message);
+      if (ofertasPorSkuFornecedor.error) throw new Error(ofertasPorSkuFornecedor.error.message);
+      produtoId = String(ofertasPorSku.data?.[0]?.produto_id || ofertasPorSkuFornecedor.data?.[0]?.produto_id || '').trim() || null;
+    }
+    if (!produtoId) throw new Error(`Produto interno não encontrado: ${sku}`);
+
+    const atual = agrupados.get(produtoId);
+    agrupados.set(produtoId, {
+      produtoId,
       sku,
       quantidade: (atual?.quantidade || 0) + quantidade,
     });
