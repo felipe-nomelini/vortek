@@ -467,14 +467,13 @@ function classificarMotivoDevolucao(raw: unknown): string | null {
   const texto = Array.isArray(raw) ? raw.join(' ') : String(raw || '');
   const normalizado = texto.toLowerCase();
   if (/repentant|changed_mind|return_request|not_expected|desist|arrepende/.test(normalizado)) return 'Desistência';
-  if (/damaged|defect|defective|not_working|broken|fault|defeito|avaria/.test(normalizado)) return 'Defeito';
+  if (/damaged|defect|defective|not_working|broken|fault|defeito|avaria/.test(normalizado)) return 'Outro Motivo';
   if (/receiver_absent|destinat[aá]rio[_ ]ausente/.test(normalizado)) return 'Destinatário ausente';
   return null;
 }
 
 type DevolucaoMl = {
   status: string;
-  shipmentStatus: string | null;
 };
 
 async function buscarClaims(orderId: string | number): Promise<{
@@ -512,9 +511,13 @@ async function buscarClaims(orderId: string | number): Promise<{
         ? await fetchML<any>(`/post-purchase/v2/claims/${encodeURIComponent(claimId)}/returns`).catch(() => null)
         : null;
       if (retorno?.id && retorno?.status) {
+        const envioRetorno = retorno?.shipments?.[0];
+        const statusEnvio = String(envioRetorno?.status || '').trim();
+        const entregueNoCentroLogistico = statusEnvio === 'delivered' && envioRetorno?.destination?.name === 'warehouse';
         devolucao = {
-          status: String(retorno.status),
-          shipmentStatus: String(retorno?.shipments?.[0]?.status || '').trim() || null,
+          // `delivered` no retorno pode significar entregue a um centro do ML,
+          // e não ao estoque físico da Vortek.
+          status: entregueNoCentroLogistico ? 'delivered_warehouse' : (statusEnvio || String(retorno.status)),
         };
       }
 
@@ -1069,7 +1072,7 @@ async function processOrder(params: {
     if (shipmentResult.ok && shipmentResult.data?.id) {
       shipmentDetail = shipmentResult.data;
       mlShipmentId = String(shipmentDetail.id);
-      if (shipmentDetail?.substatus === 'receiver_absent' && !motivoDevolucao) {
+      if (shipmentDetail?.substatus === 'receiver_absent') {
         motivoDevolucao = 'Destinatário ausente';
       }
 
@@ -1384,7 +1387,7 @@ async function processOrder(params: {
     if (devolucaoMl || situacao === 'devolvido') {
       await registrarDevolucaoInterna(
         pedidoId,
-        motivoDevolucao || 'Motivo não informado pelo Mercado Livre',
+        motivoDevolucao || 'Outro Motivo',
         devolucaoMl?.status || 'aguardando_confirmacao',
       );
     }
