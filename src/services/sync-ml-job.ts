@@ -13,6 +13,9 @@ interface MlJobConfig {
 
 type JobsUpdate = Database['public']['Tables']['jobs']['Update'];
 
+const DOMAIN_LOCK_RETRY_ATTEMPTS = 15;
+const DOMAIN_LOCK_RETRY_DELAY_MS = 2_000;
+
 function nowIso() {
   return new Date().toISOString();
 }
@@ -146,11 +149,44 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
     }));
     await updateJob(jobId, { log: logs });
 
-    const raw = await res.json().catch(() => ({}));
-    const primaryError = Array.isArray(raw?.errors) && raw.errors.length > 0 ? raw.errors[0] : null;
-    const errorCode = raw?.code || raw?.error_code || primaryError?.code || null;
-    const isDomainLockConflict = res.status === 409 && errorCode === 'domain_lock_conflict';
-    const ok = (res.ok && raw?.success !== false && raw?.ok !== false) || isDomainLockConflict;
+    let raw = await res.json().catch(() => ({}));
+    let primaryError = Array.isArray(raw?.errors) && raw.errors.length > 0 ? raw.errors[0] : null;
+    let errorCode = raw?.code || raw?.error_code || primaryError?.code || null;
+    let isDomainLockConflict = res.status === 409 && errorCode === 'domain_lock_conflict';
+
+    for (let retry = 1; isDomainLockConflict && retry <= DOMAIN_LOCK_RETRY_ATTEMPTS; retry++) {
+      logs.push(eventLog('job_stage_done', 'Domínio ocupado; aguardando para repetir a etapa', {
+        stage: tipo,
+        event_type: 'job_domain_lock_retry',
+        retry,
+        retry_delay_ms: DOMAIN_LOCK_RETRY_DELAY_MS,
+      }));
+      await updateJob(jobId, { log: logs });
+      await new Promise((resolve) => setTimeout(resolve, DOMAIN_LOCK_RETRY_DELAY_MS));
+
+      const retryController = new AbortController();
+      const retryTimeout = setTimeout(() => retryController.abort(), requestTimeoutMs);
+      try {
+        res = await fetch(url.toString(), {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': apiKey,
+          },
+          body: JSON.stringify(body || {}),
+          signal: retryController.signal,
+        });
+      } finally {
+        clearTimeout(retryTimeout);
+      }
+
+      raw = await res.json().catch(() => ({}));
+      primaryError = Array.isArray(raw?.errors) && raw.errors.length > 0 ? raw.errors[0] : null;
+      errorCode = raw?.code || raw?.error_code || primaryError?.code || null;
+      isDomainLockConflict = res.status === 409 && errorCode === 'domain_lock_conflict';
+    }
+
+    const ok = res.ok && raw?.success !== false && raw?.ok !== false;
     const authFailure = res.status === 401 && (raw?.failure_reason === 'auth_fatal' || raw?.auth_state === 'reauth_required');
     const statusFinal: 'completo' | 'erro' | 'failed_auth' = ok ? 'completo' : (authFailure ? 'failed_auth' : 'erro');
     const errorCategory = raw?.category || primaryError?.category || null;
