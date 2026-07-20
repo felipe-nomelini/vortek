@@ -43,6 +43,7 @@ import { formatCurrency } from "@/lib/format";
 
 const { Text, Title } = Typography;
 const SALE_SOUND_SRC = "/sounds/dreigue.mp3";
+const QUESTION_SOUND_SRC = "/sounds/ala-nem-vou-ler-ines-brasil.mp3";
 
 type GoalValues = { day: number; week: number; month: number };
 
@@ -73,6 +74,15 @@ type TvOrderSummary = {
   status: string;
   date: string;
   mlOrderId: string | null;
+};
+
+type TvQuestionSummary = {
+  id: string;
+  itemId: string;
+  anuncio: string;
+  pergunta: string;
+  date: string;
+  status: string;
 };
 
 type TvMetrics = {
@@ -110,6 +120,7 @@ type TvMetrics = {
     orders: number;
   }>;
   recentOrders: TvOrderSummary[];
+  recentQuestions: TvQuestionSummary[];
   projection: {
     basis: {
       historicalDays: number;
@@ -155,6 +166,8 @@ type Celebration = {
   customer: string;
   total: number;
 };
+
+type QuestionCelebration = TvQuestionSummary & { celebrationId: number };
 
 function statusColor(status: string) {
   const map: Record<string, string> = {
@@ -362,11 +375,16 @@ export default function TvDashboardPage() {
   const [error, setError] = useState<string | null>(null);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [celebration, setCelebration] = useState<Celebration | null>(null);
+  const [questionCelebration, setQuestionCelebration] = useState<QuestionCelebration | null>(null);
+  const [questionQueue, setQuestionQueue] = useState<TvQuestionSummary[]>([]);
   const lastOrderIdRef = useRef<string | null>(null);
+  const seenQuestionIdsRef = useRef<Set<string>>(new Set());
   const playedOrderIdsRef = useRef<Set<string>>(new Set());
   const celebrationTimerRef = useRef<number | null>(null);
+  const questionCelebrationTimerRef = useRef<number | null>(null);
   const soundEnabledRef = useRef(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const questionAudioRef = useRef<HTMLAudioElement | null>(null);
   const tvShellRef = useRef<HTMLElement | null>(null);
   const fullRefreshInFlightRef = useRef(false);
   const liveRefreshInFlightRef = useRef(false);
@@ -377,6 +395,13 @@ export default function TvDashboardPage() {
 
   const playSaleSound = useCallback(() => {
     const audio = audioRef.current;
+    if (!audio || !soundEnabledRef.current) return;
+    audio.currentTime = 0;
+    audio.play().catch(() => undefined);
+  }, []);
+
+  const playQuestionSound = useCallback(() => {
+    const audio = questionAudioRef.current;
     if (!audio || !soundEnabledRef.current) return;
     audio.currentTime = 0;
     audio.play().catch(() => undefined);
@@ -416,6 +441,32 @@ export default function TvDashboardPage() {
     [playSaleSound],
   );
 
+  const handleNewestQuestions = useCallback((questions: TvQuestionSummary[] | undefined) => {
+    if (!questions?.length) return;
+    if (seenQuestionIdsRef.current.size === 0) {
+      questions.forEach((question) => seenQuestionIdsRef.current.add(question.id));
+      return;
+    }
+    const newQuestions = questions
+      .filter((question) => !seenQuestionIdsRef.current.has(question.id))
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    if (!newQuestions.length) return;
+    newQuestions.forEach((question) => seenQuestionIdsRef.current.add(question.id));
+    setQuestionQueue((current) => [...current, ...newQuestions]);
+  }, []);
+
+  useEffect(() => {
+    if (questionCelebration || questionQueue.length === 0) return;
+    const [next, ...remaining] = questionQueue;
+    setQuestionQueue(remaining);
+    setQuestionCelebration({ ...next, celebrationId: Date.now() });
+    playQuestionSound();
+    questionCelebrationTimerRef.current = window.setTimeout(() => {
+      setQuestionCelebration(null);
+      questionCelebrationTimerRef.current = null;
+    }, 7000);
+  }, [playQuestionSound, questionCelebration, questionQueue]);
+
   const loadMetrics = useCallback(async () => {
     if (fullRefreshInFlightRef.current) return;
     fullRefreshInFlightRef.current = true;
@@ -432,13 +483,14 @@ export default function TvDashboardPage() {
       const next = json as TvMetrics;
       setData(next);
       handleNewestOrder(next.recentOrders);
+      handleNewestQuestions(next.recentQuestions);
     } catch (err: any) {
       setError(err?.message || "Erro ao carregar TV ao Vivo");
     } finally {
       fullRefreshInFlightRef.current = false;
       setLoading(false);
     }
-  }, [handleNewestOrder]);
+  }, [handleNewestOrder, handleNewestQuestions]);
 
   const loadLiveMetrics = useCallback(async () => {
     if (liveRefreshInFlightRef.current) return;
@@ -483,12 +535,19 @@ export default function TvDashboardPage() {
       if (celebrationTimerRef.current) {
         window.clearTimeout(celebrationTimerRef.current);
       }
+      if (questionCelebrationTimerRef.current) {
+        window.clearTimeout(questionCelebrationTimerRef.current);
+      }
     };
   }, [loadLiveMetrics, loadMetrics]);
 
   const hourly = useMemo(() => data?.hourlySales || [], [data]);
   const recentOrders = useMemo(
     () => (data?.recentOrders || []).slice(0, 5),
+    [data],
+  );
+  const recentQuestions = useMemo(
+    () => (data?.recentQuestions || []).slice(0, 3),
     [data],
   );
   const goals = useMemo(
@@ -585,6 +644,12 @@ export default function TvDashboardPage() {
     },
   ];
 
+  const questionColumns: ColumnsType<TvQuestionSummary> = [
+    { title: "Data", dataIndex: "date", key: "date", width: 120, render: formatDateFull },
+    { title: "Anúncio", dataIndex: "anuncio", key: "anuncio", ellipsis: true },
+    { title: "Pergunta", dataIndex: "pergunta", key: "pergunta", ellipsis: true },
+  ];
+
   return (
     <ConfigProvider
       theme={{
@@ -599,6 +664,7 @@ export default function TvDashboardPage() {
     >
       <main ref={tvShellRef} className="tv-shell">
         <audio ref={audioRef} src={SALE_SOUND_SRC} preload="auto" />
+        <audio ref={questionAudioRef} src={QUESTION_SOUND_SRC} preload="auto" />
 
         <Flex
           align="center"
@@ -638,6 +704,7 @@ export default function TvDashboardPage() {
               onClick={() => {
                 setSoundEnabled((current) => !current);
                 audioRef.current?.load();
+                questionAudioRef.current?.load();
               }}
             >
               Som {soundEnabled ? "ligado" : "desligado"}
@@ -865,6 +932,20 @@ export default function TvDashboardPage() {
               )}
             </Card>
 
+            <Card title="Últimas 3 perguntas" className="questions-card">
+              {recentQuestions.length ? (
+                <Table
+                  rowKey="id"
+                  columns={questionColumns}
+                  dataSource={recentQuestions}
+                  pagination={false}
+                  size="small"
+                />
+              ) : (
+                <Empty description="Nenhuma pergunta registrada" />
+              )}
+            </Card>
+
             <footer className="ads-footer">
               <div>
                 <Text type="secondary">Total</Text>
@@ -909,6 +990,16 @@ export default function TvDashboardPage() {
                 Pedido #{celebration.orderNumber} · {celebration.customer}
               </Text>
               <Title level={2}>{formatCurrency(celebration.total)}</Title>
+            </Card>
+          </div>
+        )}
+
+        {questionCelebration && (
+          <div className="question-celebration" key={questionCelebration.celebrationId}>
+            <Card className="question-celebration-card">
+              <Title level={1}>NOVA PERGUNTA!</Title>
+              <Text type="secondary">{questionCelebration.anuncio}</Text>
+              <Title level={3}>{questionCelebration.pergunta}</Title>
             </Card>
           </div>
         )}
@@ -1174,6 +1265,36 @@ export default function TvDashboardPage() {
             color: #ffffff !important;
             font-size: clamp(34px, 5vw, 72px);
             margin-top: 12px !important;
+          }
+          .question-celebration {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            background: rgba(0, 0, 0, 0.52);
+            animation: fadeIn 180ms ease-out;
+          }
+          .question-celebration-card {
+            width: min(760px, 88vw);
+            text-align: center;
+            border: 1px solid rgba(22, 119, 255, 0.7) !important;
+            background: linear-gradient(135deg, #141414, #06152b) !important;
+            box-shadow: 0 0 80px rgba(22, 119, 255, 0.35);
+            animation: salePop 700ms cubic-bezier(0.2, 1.4, 0.4, 1);
+          }
+          .question-celebration-card h1 {
+            color: #1677ff !important;
+            font-size: clamp(42px, 6vw, 86px);
+            margin-bottom: 10px !important;
+            letter-spacing: -0.04em;
+          }
+          .question-celebration-card h3 {
+            color: #ffffff !important;
+            font-size: clamp(22px, 3vw, 42px);
+            margin: 16px 0 0 !important;
           }
           .confetti {
             position: fixed;

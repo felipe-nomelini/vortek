@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient, createServiceClient } from "@/lib/supabase";
 import { saoPauloDayBounds, saoPauloHour } from "@/lib/timezone";
+import { fetchMLResult } from "@/services/integration";
 
 function round2(value: number): number {
   return Math.round(Number(value || 0) * 100) / 100;
@@ -265,6 +266,50 @@ function buildProjection(params: {
       profit: round2(pace.profit * daysInNextMonth),
     },
   };
+}
+
+async function loadRecentQuestions() {
+  const meResult = await fetchMLResult<{ id: number }>("/users/me?attributes=id");
+  if (!meResult.ok || !meResult.data?.id) return [];
+
+  const params = new URLSearchParams({
+    seller_id: String(meResult.data.id),
+    limit: "10",
+    api_version: "4",
+    sort_fields: "date_created",
+    sort_types: "DESC",
+  });
+  const questionsResult = await fetchMLResult<{
+    questions?: Array<{
+      id: string | number;
+      item_id: string;
+      text: string;
+      date_created: string;
+      status: string;
+    }>;
+  }>(`/questions/search?${params.toString()}`);
+  const questions = questionsResult.ok ? questionsResult.data?.questions || [] : [];
+  if (!questions.length) return [];
+
+  const itemIds = Array.from(new Set(questions.map((question) => question.item_id).filter(Boolean)));
+  const itemResult = await fetchMLResult<Array<{ code: number; body?: { id?: string; title?: string } }>>(
+    `/items?ids=${itemIds.map(encodeURIComponent).join(",")}&attributes=id,title`,
+  );
+  const titles = new Map<string, string>();
+  if (itemResult.ok && Array.isArray(itemResult.data)) {
+    for (const item of itemResult.data) {
+      if (item.code === 200 && item.body?.id) titles.set(String(item.body.id), String(item.body.title || item.body.id));
+    }
+  }
+
+  return questions.map((question) => ({
+    id: String(question.id),
+    itemId: question.item_id,
+    anuncio: titles.get(question.item_id) || question.item_id,
+    pergunta: question.text || "Pergunta sem texto",
+    date: question.date_created,
+    status: question.status,
+  }));
 }
 
 export async function GET() {
@@ -532,6 +577,8 @@ export async function GET() {
     if (isActive && row.catalogo === true) activeCatalog++;
   }
 
+  const recentQuestions = await loadRecentQuestions().catch(() => []);
+
   return NextResponse.json({
     generatedAt: now.toISOString(),
     realtimeSources: {
@@ -566,6 +613,7 @@ export async function GET() {
     },
     hourlySales: hourlySales(todayRows),
     recentOrders,
+    recentQuestions,
     projection,
     ads: {
       total: adsTotal,
