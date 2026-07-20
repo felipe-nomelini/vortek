@@ -44,13 +44,13 @@ async function saldoDisponivelProduto(produtoId: string): Promise<number> {
   const db = createServiceClient();
   const { data: movimentos, error } = await (db as any)
     .from('estoque_interno_movimentacoes')
-    .select('tipo,quantidade,disponivel_venda')
+    .select('tipo,quantidade,situacao_estoque')
     .eq('produto_id', produtoId);
   if (error) throw new Error(error.message);
 
   return (movimentos || []).reduce((saldo: number, movimento: any) => (
     saldo
-      + (movimento.tipo === 'entrada_devolucao' && movimento.disponivel_venda ? Number(movimento.quantidade) : 0)
+      + (movimento.tipo === 'entrada_devolucao' && movimento.situacao_estoque === 'liberado' ? Number(movimento.quantidade) : 0)
       - (movimento.tipo === 'saida_envio_interno' ? Number(movimento.quantidade) : 0)
   ), 0);
 }
@@ -87,21 +87,34 @@ export async function reservarEnvioInterno(pedidoId: string) {
 }
 
 /** Toda devolução entra bloqueada; operador libera somente após conferência física. */
-export async function registrarDevolucaoInterna(pedidoId: string, motivo: string) {
+export async function registrarDevolucaoInterna(pedidoId: string, motivo: string, statusDevolucao: string) {
   const itens = await carregarItensEstoquePedido(pedidoId);
   const db = createServiceClient();
 
   for (const item of itens) {
-    const { error } = await (db as any)
-      .from('estoque_interno_movimentacoes')
-      .upsert({
+    const movimentos = (db as any).from('estoque_interno_movimentacoes');
+    const { data: existente, error: consultaError } = await movimentos
+      .select('id')
+      .eq('produto_id', item.produtoId)
+      .eq('pedido_id', pedidoId)
+      .eq('tipo', 'entrada_devolucao')
+      .maybeSingle();
+    if (consultaError) throw new Error(consultaError.message);
+
+    const { error } = existente
+      ? await movimentos
+        .update({ quantidade: item.quantidade, motivo, status_devolucao: statusDevolucao })
+        .eq('id', existente.id)
+      : await movimentos.insert({
         produto_id: item.produtoId,
         pedido_id: pedidoId,
         tipo: 'entrada_devolucao',
         quantidade: item.quantidade,
         motivo,
+        status_devolucao: statusDevolucao,
+        situacao_estoque: 'revisao',
         disponivel_venda: false,
-      }, { onConflict: 'pedido_id,produto_id,tipo' });
+      });
     if (error) throw new Error(error.message);
   }
 }

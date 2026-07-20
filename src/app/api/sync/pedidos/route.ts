@@ -471,11 +471,17 @@ function classificarMotivoDevolucao(raw: unknown): string | null {
   return null;
 }
 
+type DevolucaoMl = {
+  status: string;
+  shipmentStatus: string | null;
+};
+
 async function buscarClaims(orderId: string | number): Promise<{
   id: string | null;
   status: string | null;
   isDevolvido: boolean;
   motivoDevolucao: string | null;
+  devolucao: DevolucaoMl | null;
 }> {
   try {
     const search = await fetchML<any>(`/post-purchase/v1/claims/search?resource_id=${orderId}&resource=order`);
@@ -501,17 +507,30 @@ async function buscarClaims(orderId: string | number): Promise<{
           ...(reason?.settings?.rules_engine_triage || []),
         ]);
       }
+
+      let devolucao: DevolucaoMl | null = null;
+      const hasReturnEntity = Array.isArray(claim.related_entities) && claim.related_entities.includes('return');
+      if (isDevolvido || hasReturnEntity || claim.type === 'return') {
+        const retorno = await fetchML<any>(`/post-purchase/v2/claims/${encodeURIComponent(String(claim.id))}/returns`).catch(() => null);
+        if (retorno?.id && retorno?.status) {
+          devolucao = {
+            status: String(retorno.status),
+            shipmentStatus: String(retorno?.shipments?.[0]?.status || '').trim() || null,
+          };
+        }
+      }
       return {
         id: String(claim.id),
         status: claim.status || null,
         isDevolvido,
         motivoDevolucao,
+        devolucao,
       };
     }
   } catch (err: any) {
     console.error(`[sync-pedidos] Erro ao buscar claims do pedido ${orderId}:`, err?.message);
   }
-  return { id: null, status: null, isDevolvido: false, motivoDevolucao: null };
+  return { id: null, status: null, isDevolvido: false, motivoDevolucao: null, devolucao: null };
 }
 
 type SyncOrderResult = {
@@ -1000,6 +1019,7 @@ async function processOrder(params: {
     status: claimStatusFromSearch,
     isDevolvido,
     motivoDevolucao: motivoClaim,
+    devolucao: devolucaoMl,
   } = await buscarClaims(o.id);
 
   // 4. Status: usa tags 'delivered'/'not_delivered' para refinar (considerando devolução)
@@ -1041,7 +1061,7 @@ async function processOrder(params: {
     if (shipmentResult.ok && shipmentResult.data?.id) {
       shipmentDetail = shipmentResult.data;
       mlShipmentId = String(shipmentDetail.id);
-      if (shipmentDetail?.substatus === 'receiver_absent') {
+      if (shipmentDetail?.substatus === 'receiver_absent' && !motivoDevolucao) {
         motivoDevolucao = 'Destinatário ausente';
       }
 
@@ -1353,8 +1373,12 @@ async function processOrder(params: {
     if (mapped.length > 0) {
       await serviceClient.from('pedido_itens').insert(mapped as any);
     }
-    if (situacao === 'devolvido') {
-      await registrarDevolucaoInterna(pedidoId, motivoDevolucao || 'Motivo não informado pelo Mercado Livre');
+    if (devolucaoMl || situacao === 'devolvido') {
+      await registrarDevolucaoInterna(
+        pedidoId,
+        motivoDevolucao || 'Motivo não informado pelo Mercado Livre',
+        devolucaoMl?.status || 'aguardando_confirmacao',
+      );
     }
 
     await registrarEventoNfAuditoria({
