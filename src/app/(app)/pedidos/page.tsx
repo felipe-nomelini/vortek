@@ -1519,6 +1519,11 @@ export default function PedidosPage() {
                 Padrão Hayamax
               </Tag>
             ) : null}
+            {usesBkr1PlaceholderLabel ? (
+              <Tag color="orange" style={{ marginInlineEnd: 0, fontSize: 11 }}>
+                Padrão BKR1
+              </Tag>
+            ) : null}
             {supplierWarningTag}
           </Space>
         );

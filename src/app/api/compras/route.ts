@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { saoPauloDateParamToUtcIso } from '@/lib/timezone';
+import { DSLITE_BKR1_PLACEHOLDER_LABEL_SOURCE } from '@/lib/dslite/placeholder-label';
+import { isBkr1Supplier } from '@/lib/supplier-balance';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -130,7 +132,7 @@ export async function GET(request: Request) {
       offset += chunkSize;
     }
 
-    let pedidoNumeroPorDsliteId = new Map<string, number>();
+    let pedidoPorDsliteId = new Map<string, any>();
     const dsids = Array.from(new Set(allCompras.map((item: any) => String(item.dsid)).filter(Boolean)));
 
     if (dsids.length > 0) {
@@ -139,7 +141,7 @@ export async function GET(request: Request) {
         const chunk = dsids.slice(index, index + 500);
         const { data, error } = await client
           .from('pedidos')
-          .select('dslite_id, numero')
+          .select('dslite_id,numero,ml_fiscal_release_at,dslite_label_source')
           .in('dslite_id', chunk);
 
         if (error) {
@@ -150,10 +152,10 @@ export async function GET(request: Request) {
         pedidosVinculados.push(...(data || []));
       }
 
-      pedidoNumeroPorDsliteId = new Map(
+      pedidoPorDsliteId = new Map(
         pedidosVinculados
           .filter((item: any) => item?.dslite_id)
-          .map((item: any) => [String(item.dslite_id), Number(item.numero)]),
+          .map((item: any) => [String(item.dslite_id), item]),
       );
     }
 
@@ -178,11 +180,25 @@ export async function GET(request: Request) {
     }
     const fornecedorByDsliteId = new Map(fornecedores.map((fornecedor: any) => [String(fornecedor.dslite_id), fornecedor]));
 
-    const comprasEnriquecidas = allCompras.map((item: any) => ({
-      ...item,
-      pedido_vendas_numero: pedidoNumeroPorDsliteId.get(String(item.dsid)) ?? null,
-      supplier_pix_key: fornecedorByDsliteId.get(String(item.fornecedor_id || ''))?.supplier_pix_key || null,
-    }));
+    const comprasEnriquecidas = allCompras.map((item: any) => {
+      const pedido = pedidoPorDsliteId.get(String(item.dsid));
+      const releaseAt = pedido?.ml_fiscal_release_at ? new Date(pedido.ml_fiscal_release_at) : null;
+      const bkr1PixDeferred = Boolean(
+        isBkr1Supplier(item.fornecedor_id, item.fornecedor_nome)
+        && item.supplier_payment_mode === 'prepaid_pix'
+        && item.supplier_payment_status !== 'paid'
+        && pedido?.dslite_label_source === DSLITE_BKR1_PLACEHOLDER_LABEL_SOURCE
+        && releaseAt
+        && !Number.isNaN(releaseAt.getTime())
+        && releaseAt.getTime() > Date.now(),
+      );
+      return {
+        ...item,
+        pedido_vendas_numero: pedido?.numero ?? null,
+        supplier_pix_key: fornecedorByDsliteId.get(String(item.fornecedor_id || ''))?.supplier_pix_key || null,
+        bkr1_pix_deferred: bkr1PixDeferred,
+      };
+    });
 
     sortCompras(comprasEnriquecidas, sortBy, sortOrder);
 

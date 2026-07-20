@@ -6,6 +6,8 @@ import { formatMlReleaseWindow } from '@/lib/ml/release-window-display';
 import { buildPublicSupplierReceiptUrl } from '@/lib/public-supplier-receipt-links';
 import { createShortLink } from '@/lib/short-links';
 import { normalizeWhatsappChatId, sendWahaFile, sendWahaText } from '@/services/waha';
+import { DSLITE_BKR1_PLACEHOLDER_LABEL_SOURCE } from '@/lib/dslite/placeholder-label';
+import { isBkr1Supplier } from '@/lib/supplier-balance';
 
 const RECEIPTS_BUCKET = 'supplier-payment-receipts';
 const MAX_RECEIPT_SIZE_BYTES = 10 * 1024 * 1024;
@@ -261,6 +263,30 @@ export async function POST(
     return NextResponse.json({ error: 'Esta compra não exige confirmação manual de pagamento' }, { status: 422 });
   }
 
+  const { data: pedido, error: pedidoError } = await service
+    .from('pedidos')
+    .select('id,ml_order_id,numero,ml_fiscal_release_at,dslite_label_source')
+    .eq('dslite_id', String(compra.dsid))
+    .maybeSingle();
+
+  if (pedidoError) {
+    return NextResponse.json({ error: pedidoError.message }, { status: 500 });
+  }
+  if (!pedido?.id || !pedido?.ml_order_id) {
+    return NextResponse.json({ error: 'Pedido de venda vinculado não encontrado para retomar o fluxo DSLite' }, { status: 404 });
+  }
+  const releaseAt = pedido.ml_fiscal_release_at ? new Date(pedido.ml_fiscal_release_at) : null;
+  const bkr1PixDeferred = Boolean(
+    isBkr1Supplier(compra.fornecedor_id, compra.fornecedor_nome)
+    && pedido.dslite_label_source === DSLITE_BKR1_PLACEHOLDER_LABEL_SOURCE
+    && releaseAt
+    && !Number.isNaN(releaseAt.getTime())
+    && releaseAt.getTime() > Date.now(),
+  );
+  if (bkr1PixDeferred) {
+    return NextResponse.json({ error: 'PIX BKR1 será confirmado somente quando a etiqueta real do Mercado Livre estiver liberada.' }, { status: 422 });
+  }
+
   const alreadyPaid = compra.supplier_payment_status === 'paid';
   const resumeOnly = requestedResumeOnly && resumeDsliteFlow && alreadyPaid && !parsed.receiptFile;
   if (!parsed.receiptFile && !(compra as any).supplier_payment_receipt_path && !resumeOnly) {
@@ -300,19 +326,6 @@ export async function POST(
 
   if (updateError) {
     return NextResponse.json({ error: updateError.message }, { status: 500 });
-  }
-
-  const { data: pedido, error: pedidoError } = await service
-    .from('pedidos')
-    .select('id,ml_order_id,numero,ml_fiscal_release_at')
-    .eq('dslite_id', String(compra.dsid))
-    .maybeSingle();
-
-  if (pedidoError) {
-    return NextResponse.json({ error: pedidoError.message }, { status: 500 });
-  }
-  if (!pedido?.id || !pedido?.ml_order_id) {
-    return NextResponse.json({ error: 'Pedido de venda vinculado não encontrado para retomar o fluxo DSLite' }, { status: 404 });
   }
 
   await registrarEventoNfAuditoria({

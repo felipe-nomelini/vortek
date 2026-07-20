@@ -40,6 +40,7 @@ interface Compra {
   supplier_payment_receipt_path: string | null;
   supplier_payment_notes: string | null;
   supplier_pix_key: string | null;
+  bkr1_pix_deferred: boolean;
 }
 
 interface MercadoPagoPendingMovement {
@@ -494,7 +495,10 @@ export default function ComprasPage() {
               {record.supplier_payment_amount ? formatCurrency(record.supplier_payment_amount) : 'Valor não informado'}
             </div>
           )}
-          {record.supplier_payment_mode === 'prepaid_pix' && record.supplier_payment_status === 'pending' && (
+          {record.bkr1_pix_deferred ? (
+            <Tag color="blue" style={{ marginTop: 6 }}>Aguardando etiqueta ML</Tag>
+          ) : null}
+          {record.supplier_payment_mode === 'prepaid_pix' && record.supplier_payment_status === 'pending' && !record.bkr1_pix_deferred && (
             <Button
               size="small"
               type="primary"
@@ -545,7 +549,7 @@ export default function ComprasPage() {
         const items = [
           { key: 'view', label: 'Ver Detalhes' },
           { key: 'track', label: 'Rastrear' },
-          ...(record.supplier_payment_mode === 'prepaid_pix' && record.supplier_payment_status !== 'cancelled'
+          ...(record.supplier_payment_mode === 'prepaid_pix' && record.supplier_payment_status !== 'cancelled' && !record.bkr1_pix_deferred
             ? [{
               key: 'confirm_supplier_payment',
               label: record.supplier_payment_status === 'paid'
