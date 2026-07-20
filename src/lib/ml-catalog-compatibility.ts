@@ -105,8 +105,13 @@ function titlePackQuantity(value: unknown): number | null {
 
 function titleInstrumentVariant(value: unknown): string | null {
   const text = normalize(value);
-  const match = text.match(/\b(?:sax(?:ofone)?|ukulele)\s+(alto|tenor|soprano|baritono|concert)\b/);
-  return match ? `${match[0].split(" ")[0]} ${match[1]}` : null;
+  const instrument = /\bsax(?:ofone)?\b/.test(text)
+    ? "saxofone"
+    : /\bukulele\b/.test(text)
+      ? "ukulele"
+      : null;
+  const variant = text.match(/\b(alto|tenor|soprano|baritono|concert)\b/)?.[1] || null;
+  return instrument && variant ? `${instrument} ${variant}` : null;
 }
 
 function catalogTitleCriticalMismatches(product: any, catalogProduct: any) {
