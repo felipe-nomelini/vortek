@@ -520,7 +520,7 @@ async function buscarClaims(orderId: string | number): Promise<{
 
       const reasonId = String(fonteClaim.reason_id || fonteClaim.reason?.id || '').trim();
       if (devolucao && !motivoDevolucao && reasonId) {
-        const reason = await fetchML<any>(`/post-purchase/v1/reasons/${encodeURIComponent(reasonId)}/children`).catch(() => null);
+        const reason = await fetchML<any>(`/post-purchase/v1/claims/reasons/${encodeURIComponent(reasonId)}`).catch(() => null);
         motivoDevolucao = classificarMotivoDevolucao([
           reason?.name,
           reason?.detail,
