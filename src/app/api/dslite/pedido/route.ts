@@ -33,6 +33,7 @@ import {
   validateCfopForDslite,
 } from "@/lib/fiscal/cfop";
 import {
+  choosePreferredOffer,
   inferSupplierPaymentMode,
   resolvePreferredOfferForProduct,
   resolveCompraStatus,
@@ -82,7 +83,6 @@ const STRICT_NFE_VALIDATION =
 const ITEM_TOTAL_TOLERANCE = 0.01;
 const STATUS_AGUARDANDO_PAGAMENTO_FORNECEDOR =
   "Aguardando Pagamento Fornecedor";
-const STOCK_REFRESH_THRESHOLD_MS = 2 * 60 * 60 * 1000;
 const BRASIL_NFE_MAX_CLIENT_NAME_LENGTH = 60;
 
 function normalizeSupplierPaymentMode(
@@ -101,16 +101,6 @@ function extractFirstItemQuantityFromXml(
   const qCom = extractXmlTag(String(xml || ""), "qCom");
   const parsed = Number(String(qCom || "").replace(",", "."));
   return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
-}
-
-function shouldRefreshSupplierStockBeforePurchase(offer: any): boolean {
-  const stock = Number(offer?.estoque || 0);
-  if (!Number.isFinite(stock) || stock <= 0) return true;
-  const rawLastSync = String(offer?.last_sync_at || "").trim();
-  if (!rawLastSync) return true;
-  const lastSyncAt = new Date(rawLastSync).getTime();
-  if (!Number.isFinite(lastSyncAt)) return true;
-  return Date.now() - lastSyncAt > STOCK_REFRESH_THRESHOLD_MS;
 }
 
 async function confirmSupplierStockWithDslite(params: {
@@ -216,6 +206,81 @@ async function confirmSupplierStockWithDslite(params: {
     lastSyncAt: syncedAt,
     reason: "confirmed",
   };
+}
+
+type SupplierStockAttempt = {
+  offer: any;
+  stock: number | null;
+  reason: "confirmed" | "zero_stock" | "insufficient_stock" | "missing_identity" | "provider_unavailable";
+};
+
+/**
+ * Confirma estoque diretamente na DSLite antes de criar uma compra e, se a
+ * oferta inicialmente preferida não puder atender o item, tenta as demais
+ * ofertas ativas do mesmo produto. Estoque local nunca autoriza compra.
+ */
+async function resolveConfirmedSupplierOffer(params: {
+  client: ReturnType<typeof createServiceClient>;
+  productId: string | null | undefined;
+  selectedOffer: any;
+  requiredQuantity: number;
+}): Promise<{ offer: any | null; attempts: SupplierStockAttempt[] }> {
+  const { client, productId, selectedOffer, requiredQuantity } = params;
+  const selectedId = String(selectedOffer?.id || "").trim();
+  const candidates = [selectedOffer].filter(Boolean) as any[];
+
+  if (productId) {
+    const { data: offers } = await client
+      .from("produto_fornecedor_ofertas")
+      .select("*")
+      .eq("produto_id", productId)
+      .eq("ativo", true);
+
+    const remaining = ((offers || []) as any[]).filter(
+      (offer) => String(offer?.id || "").trim() !== selectedId,
+    );
+    while (remaining.length > 0) {
+      const next = choosePreferredOffer(remaining);
+      if (!next) break;
+      candidates.push(next);
+      const nextId = String(next.id || "").trim();
+      const index = remaining.findIndex(
+        (offer) => String(offer?.id || "").trim() === nextId,
+      );
+      if (index < 0) break;
+      remaining.splice(index, 1);
+    }
+  }
+
+  const attempts: SupplierStockAttempt[] = [];
+  for (const offer of candidates) {
+    const result = await confirmSupplierStockWithDslite({
+      client,
+      offer,
+      requiredQuantity,
+    });
+    attempts.push({ offer, stock: result.stock, reason: result.reason });
+    if (result.ok) return { offer, attempts };
+  }
+
+  return { offer: null, attempts };
+}
+
+function describeSupplierStockAttempts(attempts: SupplierStockAttempt[]): string {
+  if (attempts.length === 0) return "Nenhuma oferta ativa encontrada";
+  return attempts
+    .map(({ offer, stock, reason }) => {
+      const supplier = String(
+        offer?.fornecedor_nome || offer?.dslite_fornecedor_id || "Fornecedor",
+      ).trim();
+      if (reason === "zero_stock") return `${supplier}: estoque 0`;
+      if (reason === "insufficient_stock")
+        return `${supplier}: estoque ${stock ?? 0} insuficiente`;
+      if (reason === "provider_unavailable")
+        return `${supplier}: catálogo indisponível`;
+      return `${supplier}: oferta inválida`;
+    })
+    .join("; ");
 }
 
 function summarizeDsliteResponseText(
@@ -3372,7 +3437,7 @@ async function runDsliteCreateJob(
         return;
       }
 
-      const selectedOffer = await resolvePedidoSupplierOffer({
+      let selectedOffer = await resolvePedidoSupplierOffer({
         client,
         sku: skuComPrefixo,
       });
@@ -3399,29 +3464,35 @@ async function runDsliteCreateJob(
         return;
       }
       const requestedQuantity = extractFirstItemQuantityFromXml(xml);
-      if (shouldRefreshSupplierStockBeforePurchase(selectedOffer.offer)) {
-        const stockCheck = await confirmSupplierStockWithDslite({
-          client,
-          offer: selectedOffer.offer,
-          requiredQuantity: requestedQuantity,
-        });
-
-        if (!stockCheck.ok) {
-          const stockWarningMessage =
-            stockCheck.reason === "zero_stock"
-              ? `Aviso: DSLite informou estoque 0 para ${skuComPrefixo}; seguindo criação pois a venda já foi feita`
-              : stockCheck.reason === "insufficient_stock"
-                ? `Aviso: DSLite informou estoque insuficiente para ${skuComPrefixo} (${stockCheck.stock ?? 0} unidades); seguindo criação pois a venda já foi feita`
-                : "Aviso: não foi possível confirmar estoque na DSLite agora; seguindo criação pois a venda já foi feita";
-          await setStep("find_product_dslite", "loading", stockWarningMessage);
-        } else {
-          await setStep(
-            "find_product_dslite",
-            "loading",
-            `Estoque DSLite confirmado: ${stockCheck.stock} unidades`,
-          );
-        }
+      const confirmedSupplier = await resolveConfirmedSupplierOffer({
+        client,
+        productId: selectedOffer.productId,
+        selectedOffer: selectedOffer.offer,
+        requiredQuantity: requestedQuantity,
+      });
+      if (!confirmedSupplier.offer) {
+        await setStep(
+          "find_product_dslite",
+          "error",
+          undefined,
+          `Compra não criada: nenhum fornecedor confirmou estoque para ${skuComPrefixo} (quantidade ${requestedQuantity}). ${describeSupplierStockAttempts(confirmedSupplier.attempts)}`,
+        );
+        state = "error";
+        await syncJob();
+        return;
       }
+      selectedOffer = {
+        ...selectedOffer,
+        offer: confirmedSupplier.offer,
+      };
+      const fallbackUsed = confirmedSupplier.attempts.length > 1;
+      await setStep(
+        "find_product_dslite",
+        "loading",
+        fallbackUsed
+          ? `Fornecedor alternativo confirmado: ${selectedOffer.offer.fornecedor_nome || selectedOffer.offer.dslite_fornecedor_id}, estoque ${selectedOffer.offer.estoque} unidades`
+          : `Estoque DSLite confirmado: ${selectedOffer.offer.estoque} unidades`,
+      );
 
       fornecedorId = String(selectedOffer.offer.dslite_fornecedor_id);
       usePlaceholderLabel =
