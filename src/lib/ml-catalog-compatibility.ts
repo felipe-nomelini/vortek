@@ -81,21 +81,74 @@ function localHandOrientation(product: any): "destro" | "canhoto" | null {
   return null;
 }
 
+function titleHandOrientation(value: unknown): "destro" | "canhoto" | null {
+  const text = normalize(value);
+  if (/\bcanhot[oa]?\b|\bmao esquerda\b|\bleft handed\b/.test(text)) return "canhoto";
+  if (/\bdestro\b|\bmao direita\b|\bright handed\b/.test(text)) return "destro";
+  return null;
+}
+
+function titlePackQuantity(value: unknown): number | null {
+  const text = normalize(value);
+  const match = text.match(
+    /\b(?:kit|pack|combo|conjunto|lote)\s*(?:com|de)?\s*(\d{1,3})\b|\b(\d{1,3})\s*(?:unidades?|unds?|itens?|pecas?|pcs?)\b/,
+  );
+  const quantity = Number(match?.[1] || match?.[2] || 0);
+  return Number.isInteger(quantity) && quantity > 0 ? quantity : null;
+}
+
+function catalogTitleCriticalMismatches(product: any, catalogProduct: any) {
+  const localTitle = String(product?.nome || "").trim();
+  const catalogTitle = String(catalogProduct?.name || catalogProduct?.title || "").trim();
+  if (!localTitle || !catalogTitle) return [];
+
+  const mismatches: Array<{
+    id: string;
+    name: string;
+    itemValue: string;
+    catalogValue: string;
+  }> = [];
+  const localOrientation = titleHandOrientation(localTitle);
+  const catalogOrientation = titleHandOrientation(catalogTitle);
+  if (catalogOrientation && localOrientation !== catalogOrientation) {
+    mismatches.push({
+      id: "TITLE_HAND_ORIENTATION",
+      name: "Orientação no título",
+      itemValue: localOrientation || "não confirmada no título local",
+      catalogValue: catalogOrientation,
+    });
+  }
+
+  const localQuantity = titlePackQuantity(localTitle);
+  const catalogQuantity = titlePackQuantity(catalogTitle);
+  if (catalogQuantity && catalogQuantity > 1 && localQuantity !== catalogQuantity) {
+    mismatches.push({
+      id: "TITLE_PACK_QUANTITY",
+      name: "Quantidade do kit no título",
+      itemValue: localQuantity ? String(localQuantity) : "produto unitário",
+      catalogValue: String(catalogQuantity),
+    });
+  }
+
+  return mismatches;
+}
+
 export function catalogLocalCriticalMismatches(product: any, catalogProduct: any) {
+  const titleMismatches = catalogTitleCriticalMismatches(product, catalogProduct);
   const orientation = attributeLabel(attributesById(catalogProduct).get("HAND_ORIENTATION"));
-  if (!orientation) return [];
+  if (!orientation) return titleMismatches;
 
   const expected = localHandOrientation(product);
   if (!expected) {
-    return [{
+    return [...titleMismatches, {
       id: "HAND_ORIENTATION",
       name: "Orientação da mão",
       itemValue: "não confirmada no produto local",
       catalogValue: orientation,
     }];
   }
-  if (normalize(expected) === normalize(orientation)) return [];
-  return [{
+  if (normalize(expected) === normalize(orientation)) return titleMismatches;
+  return [...titleMismatches, {
     id: "HAND_ORIENTATION",
     name: "Orientação da mão",
     itemValue: expected,
