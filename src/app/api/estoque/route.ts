@@ -56,3 +56,37 @@ export async function GET() {
     vendidosQuantidade: vendidos.reduce((total: number, item: any) => total + item.quantidade, 0),
   });
 }
+
+export async function POST(req: Request) {
+  const body = await req.json().catch(() => ({}));
+  const sku = String(body.sku || '').trim().toUpperCase();
+  const quantidade = Number(body.quantidade);
+  if (!sku) return NextResponse.json({ error: 'Informe o SKU.' }, { status: 400 });
+  if (!Number.isInteger(quantidade) || quantidade <= 0) {
+    return NextResponse.json({ error: 'Informe uma quantidade inteira maior que zero.' }, { status: 400 });
+  }
+
+  const db = createServiceClient();
+  const { data: produto, error: produtoError } = await db
+    .from('produtos')
+    .select('id,sku,nome')
+    .eq('sku', sku)
+    .maybeSingle();
+  if (produtoError) return NextResponse.json({ error: produtoError.message }, { status: 500 });
+  if (!produto) return NextResponse.json({ error: 'Produto não encontrado para este SKU.' }, { status: 404 });
+
+  const { error } = await (db as any)
+    .from('estoque_interno_movimentacoes')
+    .insert({
+      produto_id: produto.id,
+      tipo: 'entrada_devolucao',
+      quantidade,
+      motivo: 'Inserido manualmente',
+      status_devolucao: 'manual',
+      situacao_estoque: 'revisao',
+      disponivel_venda: false,
+    });
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+  return NextResponse.json({ success: true, produto: { sku: produto.sku, nome: produto.nome } }, { status: 201 });
+}

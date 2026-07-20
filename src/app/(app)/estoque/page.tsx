@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { Button, Card, Col, message, Row, Statistic, Table, Tabs, Tag, Typography } from 'antd';
+import { Button, Card, Col, Form, Input, InputNumber, message, Modal, Row, Statistic, Table, Tabs, Tag, Typography } from 'antd';
 
 type SituacaoEstoque = 'revisao' | 'liberado' | 'nao_aproveitavel';
 type ItemEstoque = {
@@ -32,6 +32,11 @@ const statusLabels: Record<string, { label: string; color: string }> = {
 export default function EstoquePage() {
   const [data, setData] = useState<EstoqueResponse>(initialData);
   const [loading, setLoading] = useState(true);
+  const [manualModalOpen, setManualModalOpen] = useState(false);
+  const [manualProduct, setManualProduct] = useState<{ sku: string; nome: string } | null>(null);
+  const [lookingUpProduct, setLookingUpProduct] = useState(false);
+  const [savingManual, setSavingManual] = useState(false);
+  const [manualForm] = Form.useForm<{ sku: string; quantidade: number }>();
   const [messageApi, contextHolder] = message.useMessage();
   const load = useCallback(async () => {
     setLoading(true);
@@ -54,12 +59,46 @@ export default function EstoquePage() {
     } catch (error: any) { messageApi.error(error?.message || 'Falha ao atualizar devolução.'); }
   };
 
+  const buscarProdutoManual = async () => {
+    const sku = String(manualForm.getFieldValue('sku') || '').trim();
+    if (!sku) return;
+    setLookingUpProduct(true);
+    setManualProduct(null);
+    try {
+      const response = await fetch(`/api/estoque/produto?sku=${encodeURIComponent(sku)}`);
+      const result = await response.json();
+      if (!response.ok) throw new Error(result?.error || 'Produto não encontrado.');
+      setManualProduct(result.produto);
+      manualForm.setFieldsValue({ sku: result.produto.sku });
+    } catch (error: any) { messageApi.error(error?.message || 'Produto não encontrado.'); }
+    finally { setLookingUpProduct(false); }
+  };
+
+  const inserirEstoqueManual = async (values: { sku: string; quantidade: number }) => {
+    setSavingManual(true);
+    try {
+      const response = await fetch('/api/estoque', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(values) });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result?.error || 'Falha ao inserir estoque interno.');
+      messageApi.success('Estoque interno inserido para revisão.');
+      setManualModalOpen(false);
+      setManualProduct(null);
+      manualForm.resetFields();
+      await load();
+    } catch (error: any) { messageApi.error(error?.message || 'Falha ao inserir estoque interno.'); }
+    finally { setSavingManual(false); }
+  };
+
   const columns = [
     { title: 'SKU', dataIndex: 'sku' }, { title: 'Produto', dataIndex: 'nome' }, { title: 'Quantidade', dataIndex: 'quantidade' },
     { title: 'Motivo', dataIndex: 'motivo' },
-    { title: 'Status', render: (_: unknown, item: ItemEstoque) => { const status = statusLabels[item.status_devolucao] || { label: item.status_devolucao, color: 'default' }; return <Tag color={status.color}>{status.label}</Tag>; } },
+    { title: 'Status', render: (_: unknown, item: ItemEstoque) => {
+      if (item.status_devolucao === 'manual') return <Typography.Text type="secondary">—</Typography.Text>;
+      const status = statusLabels[item.status_devolucao] || { label: item.status_devolucao, color: 'default' };
+      return <Tag color={status.color}>{status.label}</Tag>;
+    } },
     { title: 'Ações', render: (_: unknown, item: ItemEstoque) => {
-      const entregue = item.status_devolucao === 'delivered';
+      const entregue = ['delivered', 'manual'].includes(item.status_devolucao);
       if (item.situacao_estoque !== 'revisao') return <Tag color={item.situacao_estoque === 'liberado' ? 'green' : 'red'}>{item.situacao_estoque === 'liberado' ? 'Liberado' : 'Não aproveitável'}</Tag>;
       return <>{<Button type="primary" disabled={!entregue} onClick={() => void atualizarSituacao(item, 'liberado')}>Liberar para venda</Button>}{<Button danger disabled={!entregue} style={{ marginLeft: 8 }} onClick={() => void atualizarSituacao(item, 'nao_aproveitavel')}>Não aproveitar</Button>}</>;
     } },
@@ -73,8 +112,21 @@ export default function EstoquePage() {
     { title: 'Data do envio', render: (_: unknown, item: ItemVendido) => new Date(item.vendido_em).toLocaleString('pt-BR') },
   ]} />;
 
-  return <>{contextHolder}<Typography.Title level={4}>Estoque interno</Typography.Title><Typography.Paragraph type="secondary">Devoluções entram em revisão. Ações liberadas somente após entrega confirmada pelo Mercado Livre.</Typography.Paragraph>
+  return <>{contextHolder}<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}><div><Typography.Title level={4}>Estoque interno</Typography.Title><Typography.Paragraph type="secondary">Devoluções entram em revisão. Ações liberadas somente após entrega confirmada pelo Mercado Livre.</Typography.Paragraph></div><Button type="primary" onClick={() => setManualModalOpen(true)}>Inserir estoque interno</Button></div>
     <Row gutter={16}><Col xs={24} md={8}><Card><Statistic title="Para revisão" value={data.revisao} valueStyle={{ color: '#faad14' }} /></Card></Col><Col xs={24} md={8}><Card><Statistic title="Liberadas para venda" value={data.liberado} valueStyle={{ color: '#52c41a' }} /></Card></Col><Col xs={24} md={8}><Card><Statistic title="Não aproveitáveis" value={data.nao_aproveitavel} valueStyle={{ color: '#ff4d4f' }} /></Card></Col></Row>
     <Tabs style={{ marginTop: 16 }} items={[{ key: 'revisao', label: `Para revisão (${data.revisao})`, children: tabela('revisao') }, { key: 'liberado', label: `Liberado (${data.liberado})`, children: tabela('liberado') }, { key: 'nao-aproveitavel', label: `Não aproveitável (${data.nao_aproveitavel})`, children: tabela('nao_aproveitavel') }, { key: 'vendidos', label: `Vendidos (${data.vendidosQuantidade})`, children: tabelaVendidos }]} />
+    <Modal title="Inserir estoque interno" open={manualModalOpen} onCancel={() => { setManualModalOpen(false); setManualProduct(null); manualForm.resetFields(); }} onOk={() => manualForm.submit()} confirmLoading={savingManual} okText="Inserir produto">
+      <Form form={manualForm} layout="vertical" onFinish={inserirEstoqueManual} onValuesChange={(changed) => { if (changed.sku !== undefined) setManualProduct(null); }}>
+        <Form.Item label="SKU" name="sku" rules={[{ required: true, message: 'Informe o SKU.' }]}>
+          <Input placeholder="Ex.: VTK001030" onBlur={() => void buscarProdutoManual()} onPressEnter={(event) => { event.preventDefault(); void buscarProdutoManual(); }} suffix={lookingUpProduct ? 'Buscando...' : undefined} />
+        </Form.Item>
+        <Form.Item label="Produto">
+          <Input value={manualProduct?.nome || ''} placeholder="Informe o SKU para buscar o produto" readOnly />
+        </Form.Item>
+        <Form.Item label="Quantidade" name="quantidade" rules={[{ required: true, message: 'Informe a quantidade.' }]}>
+          <InputNumber min={1} precision={0} style={{ width: '100%' }} />
+        </Form.Item>
+      </Form>
+    </Modal>
   </>;
 }

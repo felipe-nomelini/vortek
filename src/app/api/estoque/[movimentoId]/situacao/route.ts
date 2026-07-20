@@ -15,8 +15,8 @@ export async function PATCH(req: Request, { params }: { params: { movimentoId: s
     .eq('id', params.movimentoId)
     .eq('tipo', 'entrada_devolucao')
     .maybeSingle();
-  if (consultaError || !movimento) return NextResponse.json({ error: 'Devolução não encontrada.' }, { status: 404 });
-  if (movimento.status_devolucao !== 'delivered') {
+  if (consultaError || !movimento) return NextResponse.json({ error: 'Movimento de estoque não encontrado.' }, { status: 404 });
+  if (!['delivered', 'manual'].includes(String(movimento.status_devolucao || ''))) {
     return NextResponse.json({ error: 'Ações liberadas somente após entrega da devolução.' }, { status: 409 });
   }
 
