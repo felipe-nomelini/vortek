@@ -466,8 +466,9 @@ function determinarSituacao(status: string, tags: string[], isDevolvido: boolean
 function classificarMotivoDevolucao(raw: unknown): string | null {
   const texto = Array.isArray(raw) ? raw.join(' ') : String(raw || '');
   const normalizado = texto.toLowerCase();
-  if (/repentant|changed_mind|return_request|not_expected|desist/.test(normalizado)) return 'Desistência';
-  if (/damaged|defect|defective|not_working|broken|fault/.test(normalizado)) return 'Defeito';
+  if (/repentant|changed_mind|return_request|not_expected|desist|arrepende/.test(normalizado)) return 'Desistência';
+  if (/damaged|defect|defective|not_working|broken|fault|defeito|avaria/.test(normalizado)) return 'Defeito';
+  if (/receiver_absent|destinat[aá]rio[_ ]ausente/.test(normalizado)) return 'Destinatário ausente';
   return null;
 }
 
@@ -487,19 +488,38 @@ async function buscarClaims(orderId: string | number): Promise<{
     const search = await fetchML<any>(`/post-purchase/v1/claims/search?resource_id=${orderId}&resource=order`);
     if (search?.data && Array.isArray(search.data) && search.data.length > 0) {
       const claim = search.data[0];
+      const claimId = String(claim.id || '').trim();
       const isDevolvido = claim.resolution?.reason === 'item_returned' ||
                           claim.resolution?.closed_by === 'mediator' &&
                           claim.resolution?.benefited?.includes('complainant');
+      // A busca resumida de claims nem sempre traz a causa e as entidades relacionadas.
+      // Busca o claim completo para classificar a devolução com a informação do ML.
+      const claimDetalhado = claimId
+        ? await fetchML<any>(`/post-purchase/v1/claims/${encodeURIComponent(claimId)}`).catch(() => null)
+        : null;
+      const fonteClaim = claimDetalhado || claim;
       let motivoDevolucao = classificarMotivoDevolucao([
-        claim.reason_id,
-        claim.reason?.name,
-        claim.reason?.detail,
-        ...(claim.reason?.settings?.rules_engine_triage || []),
+        fonteClaim.reason_id,
+        fonteClaim.reason?.name,
+        fonteClaim.reason?.detail,
+        ...(fonteClaim.reason?.settings?.rules_engine_triage || []),
       ]);
 
-      // ML expõe taxonomia da reclamação neste recurso; consulta só para devolução confirmada.
-      const reasonId = String(claim.reason_id || claim.reason?.id || '').trim();
-      if (isDevolvido && !motivoDevolucao && reasonId) {
+      let devolucao: DevolucaoMl | null = null;
+      // A devolução é um recurso próprio do ML e pode existir mesmo quando o resumo
+      // do claim ainda não marcou `related_entities` nem a resolução final.
+      const retorno = claimId
+        ? await fetchML<any>(`/post-purchase/v2/claims/${encodeURIComponent(claimId)}/returns`).catch(() => null)
+        : null;
+      if (retorno?.id && retorno?.status) {
+        devolucao = {
+          status: String(retorno.status),
+          shipmentStatus: String(retorno?.shipments?.[0]?.status || '').trim() || null,
+        };
+      }
+
+      const reasonId = String(fonteClaim.reason_id || fonteClaim.reason?.id || '').trim();
+      if (devolucao && !motivoDevolucao && reasonId) {
         const reason = await fetchML<any>(`/post-purchase/v1/reasons/${encodeURIComponent(reasonId)}/children`).catch(() => null);
         motivoDevolucao = classificarMotivoDevolucao([
           reason?.name,
@@ -507,21 +527,9 @@ async function buscarClaims(orderId: string | number): Promise<{
           ...(reason?.settings?.rules_engine_triage || []),
         ]);
       }
-
-      let devolucao: DevolucaoMl | null = null;
-      const hasReturnEntity = Array.isArray(claim.related_entities) && claim.related_entities.includes('return');
-      if (isDevolvido || hasReturnEntity || claim.type === 'return') {
-        const retorno = await fetchML<any>(`/post-purchase/v2/claims/${encodeURIComponent(String(claim.id))}/returns`).catch(() => null);
-        if (retorno?.id && retorno?.status) {
-          devolucao = {
-            status: String(retorno.status),
-            shipmentStatus: String(retorno?.shipments?.[0]?.status || '').trim() || null,
-          };
-        }
-      }
       return {
-        id: String(claim.id),
-        status: claim.status || null,
+        id: claimId || null,
+        status: fonteClaim.status || null,
         isDevolvido,
         motivoDevolucao,
         devolucao,
