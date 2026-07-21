@@ -248,6 +248,7 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     fornecedor_nome: (item as any).fornecedor_nome || null,
     fornecedor_id: (item as any).fornecedor_id || null,
     fornecedor_telefone: (item as any).fornecedor_telefone || null,
+    internal_stock_available: Boolean((item as any).internal_stock_available),
     supplier_payment_mode: (item as any).supplier_payment_mode || null,
     supplier_payment_status: (item as any).supplier_payment_status || null,
     supplier_payment_amount: (item as any).supplier_payment_amount ?? null,
@@ -1166,6 +1167,7 @@ export default function PedidosPage() {
       address.zip_code ? `CEP ${address.zip_code}` : '',
     ].filter(Boolean);
     const canCreateDslite = !isValidDsliteId(order.dslite_id)
+      && !order.internal_stock_available
       && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(order.situacao.valor);
     const canCompleteLabel = Boolean(isValidDsliteId(order.dslite_id) && order.dslite_next_action === 'complete_dslite_label');
     const canConfirmPayment = Boolean(
@@ -1282,7 +1284,7 @@ export default function PedidosPage() {
             </Button>
           )}
           {canCreateDslite && <Button size="small" type="primary" onClick={() => criarPedidoDslite(order)}>Criar pedido DSLite</Button>}
-          {canProcessDirectShipping && <Button size="small" type="primary" onClick={() => processarEnvioProprio(order)}>Processar envio próprio</Button>}
+          {canProcessDirectShipping && <Button size="small" type="primary" onClick={() => processarEnvioProprio(order)}>{order.internal_stock_available ? 'Processar envio interno' : 'Processar envio próprio'}</Button>}
           {canCompleteLabel && <Button size="small" onClick={() => enviarEtiquetaAutomatica(order)}>Completar etiqueta</Button>}
           {order.ml_label_storage_path && <Button size="small" onClick={() => baixarEtiquetaSalva(order)}>Baixar etiqueta</Button>}
           {canConfirmPayment && <Button size="small" onClick={() => abrirConfirmacaoPixPedido(order)}>Confirmar PIX</Button>}
@@ -1561,7 +1563,7 @@ export default function PedidosPage() {
         const isBkr1Order = String(record.fornecedor_id || '') === BKR1_FORNECEDOR_ID;
         const releaseAt = record.ml_fiscal_release_at ? getMlReleaseComparableDate(record.ml_fiscal_release_at) : null;
         const mlLabelStillBlocked = Boolean(releaseAt && releaseAt.getTime() > Date.now());
-        if ((!hasDsliteId || nextAction === 'create_dslite_order') && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
+        if ((!hasDsliteId || nextAction === 'create_dslite_order') && !record.internal_stock_available && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
           items.push({
             key: 'dslite',
             label: 'Criar Pedido DSLite (Brasil NFe)',
@@ -1569,7 +1571,7 @@ export default function PedidosPage() {
           });
         }
         if (!hasDsliteId && record.ml_shipment_id && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
-          items.push({ key: 'direct_shipping', label: 'Processar envio próprio (sem DSLite)', icon: <UploadOutlined /> });
+          items.push({ key: 'direct_shipping', label: record.internal_stock_available ? 'Processar envio interno' : 'Processar envio próprio (sem DSLite)', icon: <UploadOutlined /> });
         }
         if (record.ml_label_storage_path) {
           items.push({ key: 'download_label', label: 'Baixar etiqueta', icon: <UploadOutlined /> });
