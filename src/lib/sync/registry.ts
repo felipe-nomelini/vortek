@@ -2,6 +2,7 @@ export type SyncTaskKey =
   | 'sync_dslite_fornecedores'
   | 'sync_dslite_catalogo'
   | 'sync_dslite_preco_estoque'
+  | 'sync_dslite_xml_preco_estoque'
   | 'sync_dslite_pedidos_compra'
   | 'sync_ml_orders_ingest'
   | 'sync_ml_cancelamentos_pos_nfe'
@@ -76,6 +77,17 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
       maxPagesPerRun: 1,
       withMlSync: false,
     },
+    runMode: 'inline',
+  },
+  {
+    key: 'sync_dslite_xml_preco_estoque',
+    jobTipo: 'sync_dslite_xml_preco_estoque',
+    label: 'DSLite XML Preço/Estoque',
+    path: '/api/sync/preco-estoque-xml',
+    domain: 'produtos:dslite_preco',
+    lockTtlSeconds: 15 * 60,
+    kind: 'dslite',
+    schedule: { businessMinutes: 10, offHoursMinutes: 10 },
     runMode: 'inline',
   },
   {
