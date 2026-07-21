@@ -403,9 +403,11 @@ export default function ProductDetailPage() {
                       render: (_, offer) => {
                         const isSavingOffer = savingOfferId === offer.id;
                         return offer.is_internal_stock ? (
-                          <Tag color="blue">Interno</Tag>
+                          <Tag color="green">Atual</Tag>
                         ) : offer.preferred ? (
                           <Tag color="green">Atual</Tag>
+                        ) : supplierOffers.some((item) => item.is_internal_stock) ? (
+                          <Tag>Estoque interno prioritário</Tag>
                         ) : (
                           <Button
                             size="small"

@@ -47,6 +47,7 @@ import {
   usesThermalMlLabelSupplier,
 } from "@/lib/supplier-balance";
 import { getSkuLookupVariants } from "@/lib/sku";
+import { validarEstoqueEnvioInterno } from "@/lib/estoque-interno";
 import {
   extractTaxpayerTypeFromBillingAddress,
   resolveDestIePolicy,
@@ -4644,6 +4645,20 @@ export async function POST(req: Request) {
     }
 
     const client = createServiceClient();
+    if (!resumeAfterSupplierPayment) {
+      try {
+        await validarEstoqueEnvioInterno(String(pedidoId));
+        return NextResponse.json(
+          {
+            error: "Estoque Interno liberado para este pedido. Use 'Processar envio próprio' para emitir a NF e baixar a etiqueta sem criar compra na DSLite.",
+            code: "internal_stock_priority",
+          },
+          { status: 409 },
+        );
+      } catch {
+        // Sem saldo interno completo: segue com o fornecedor externo normal.
+      }
+    }
     const jobId = crypto.randomUUID();
     const initialSteps = initSteps();
     const syncIdx = initialSteps.findIndex(

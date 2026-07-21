@@ -117,6 +117,28 @@ async function resolveFornecedorPreviewByPedido(
     logDbError('pedidos_supplier_preview_offers_failed', '/api/pedidos', '', offerError);
     return previews;
   }
+  const { data: movimentosInternos, error: movimentosInternosError } = productIds.length
+    ? await (serviceClient as any)
+      .from('estoque_interno_movimentacoes')
+      .select('produto_id,tipo,quantidade,situacao_estoque')
+      .in('produto_id', productIds)
+    : { data: [], error: null as any };
+  if (movimentosInternosError) {
+    logDbError('pedidos_internal_stock_preview_failed', '/api/pedidos', '', movimentosInternosError);
+  }
+  const saldoInternoPorProduto = new Map<string, number>();
+  for (const movimento of movimentosInternos || []) {
+    const produtoId = String((movimento as any).produto_id || '');
+    if (!produtoId) continue;
+    const atual = saldoInternoPorProduto.get(produtoId) || 0;
+    const quantidade = Number((movimento as any).quantidade || 0);
+    const saldo = (movimento as any).tipo === 'entrada_devolucao' && (movimento as any).situacao_estoque === 'liberado'
+      ? atual + quantidade
+      : (movimento as any).tipo === 'saida_envio_interno'
+        ? atual - quantidade
+        : atual;
+    saldoInternoPorProduto.set(produtoId, saldo);
+  }
 
   const offersByProductId = new Map<string, any[]>();
   for (const offer of offers || []) {
@@ -155,8 +177,8 @@ async function resolveFornecedorPreviewByPedido(
       );
       const fornecedorId = String(preferredOffer?.dslite_fornecedor_id || product.dslite_fornecedor_id || '').trim();
       const fornecedorNome = String(preferredOffer?.fornecedor_nome || product.fornecedor || '').trim();
-      if (!fornecedorId && !fornecedorNome) return null;
       return {
+        produtoId: String(product.id),
         fornecedorId: fornecedorId || null,
         fornecedorNome: fornecedorNome || null,
         custo: Number(preferredOffer?.custo || 0),
@@ -165,6 +187,7 @@ async function resolveFornecedorPreviewByPedido(
         produtoSku: product.sku || item?.seller_sku || null,
       };
     }).filter(Boolean) as Array<{
+      produtoId: string;
       fornecedorId: string | null;
       fornecedorNome: string | null;
       custo: number;
@@ -173,6 +196,35 @@ async function resolveFornecedorPreviewByPedido(
       produtoSku: string | null;
     }>;
     if (!selected.length) continue;
+
+    const quantidadeInternaPorProduto = new Map<string, number>();
+    for (const item of selected) {
+      quantidadeInternaPorProduto.set(
+        item.produtoId,
+        (quantidadeInternaPorProduto.get(item.produtoId) || 0) + item.quantidade,
+      );
+    }
+    const estoqueInternoCompleto = selected.length === itens.length
+      && Array.from(quantidadeInternaPorProduto.entries()).every(([produtoId, quantidade]) => (
+        (saldoInternoPorProduto.get(produtoId) || 0) >= quantidade
+      ));
+    if (estoqueInternoCompleto) {
+      const first = selected[0];
+      previews.set(pedidoId, {
+        fornecedor_id: null,
+        fornecedor_nome: 'Estoque Interno',
+        fornecedor_telefone: null,
+        supplier_pix_key: null,
+        supplier_payment_mode: null,
+        supplier_payment_status: null,
+        supplier_payment_amount: null,
+        internal_stock_available: true,
+        compra_produto_descricao: first.produtoDescricao,
+        compra_produto_sku: first.produtoSku,
+        compra_quantidade: selected.reduce((total, item) => total + item.quantidade, 0),
+      });
+      continue;
+    }
 
     const supplierKeys = Array.from(new Set(selected.map((item) => `${item.fornecedorId || ''}:${item.fornecedorNome || ''}`)));
     const first = selected[0];

@@ -40,16 +40,18 @@ export async function GET(
   const currentFornecedorId = String(product.dslite_fornecedor_id || '').trim();
   const currentDsliteProdutoId = String(product.dslite_produto_id || '').trim();
 
+  const saldoInterno = await obterSaldoEstoqueInternoProduto(String(product.id));
   const fornecedores: any[] = (offers || []).map((offer: any) => ({
       ...offer,
-      preferred: currentPreferredOfferId
+      // Enquanto houver saldo físico liberado, o fornecedor externo não pode
+      // ser a origem principal do produto.
+      preferred: saldoInterno <= 0 && (currentPreferredOfferId
         ? currentPreferredOfferId === String(offer.id || '').trim()
         : (
           currentFornecedorId === String(offer.dslite_fornecedor_id || '').trim()
           && currentDsliteProdutoId === String(offer.dslite_produto_id || '').trim()
-        ),
+        )),
     }));
-  const saldoInterno = await obterSaldoEstoqueInternoProduto(String(product.id));
 
   // Não persiste uma oferta DSLite fictícia: estoque próprio não pode gerar
   // pedido de compra. A linha é apenas a fonte interna disponível para envio.
@@ -62,7 +64,7 @@ export async function GET(
       custo: 0,
       ativo: true,
       prioridade: -1,
-      preferred: false,
+      preferred: true,
       is_internal_stock: true,
     });
   }

@@ -63,6 +63,7 @@ export interface Order {
   fornecedor_id?: string | null;
   fornecedor_nome?: string | null;
   fornecedor_telefone?: string | null;
+  internal_stock_available?: boolean;
   supplier_pix_key?: string | null;
   dslite_next_action?:
     | 'create_dslite_order'
