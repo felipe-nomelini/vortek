@@ -49,6 +49,27 @@ function supplierPartNumber(produto: any): string {
   return baseCode || dsliteId || normalizeStr(produto.sku);
 }
 
+function findVerifiedModel(produto: any): string {
+  const source = `${produto?.nome || ""} ${produto?.descricao || ""}`;
+  // Codes must have a product-code shape. Do not mistake measures such as
+  // "6V" or "90W" for a model merely to satisfy a required ML field.
+  const patterns = [
+    /\b[A-Z]{2,10}-\d{1,8}[A-Z0-9+.-]*\b/i,
+    /\b[A-Z]{2,10}\d{1,8}[A-Z0-9+.-]*\b/i,
+    /\b[A-Z]\d[A-Z]{2,}\d+[A-Z0-9+.-]*\b/i,
+    /\b\d+[A-Z]{2,}\d*[A-Z0-9+.-]*\b/i,
+    /\b[A-Z]-[A-Z]?\d{1,8}[A-Z0-9+.-]*\b/i,
+  ];
+  for (const pattern of patterns) {
+    const explicitCode = source.match(pattern)?.[0];
+    if (explicitCode) return explicitCode.replace(/\s+/g, "").toUpperCase();
+  }
+
+  // Commercial names without a code require a manufacturer/GTIN source and
+  // intentionally remain blank in unattended publication.
+  return "";
+}
+
 function pickAllowedValue(
   attr: any,
   valueName: string,
@@ -76,8 +97,10 @@ function initialAttributeValue(
     return { value_name: supplierPartNumber(produto) };
   if (attrId === "BRAND" && normalizeStr(produto.marca))
     return { value_name: produto.marca };
-  // Full commercial title is not necessarily a model. Leave MODEL blank when
-  // no exact model is evidenced; the strict preflight will skip the product.
+  if (attrId === "MODEL") {
+    const model = findVerifiedModel(produto);
+    if (model) return { value_name: model };
+  }
   if (attrId === "ITEM_CONDITION")
     return { value_id: "2230284", value_name: "Novo" };
   if (attrId === "GTIN" && normalizeStr(produto.gtin))
@@ -130,6 +153,27 @@ function applyRuleBasedAttributeValue(
     )
       return pickAllowedValue(attr, "Linha Pesada");
     return pickAllowedValue(attr, "Carro/Caminhonete");
+  }
+  if (attrId === "LOCATION") {
+    if (
+      /\b(?:interna?\s*(?:e|ou)\s*externa?|internos?\s*(?:e|ou)\s*externos?)\b/i.test(
+        haystack,
+      )
+    ) {
+      return pickAllowedValue(attr, "Interno/Externo");
+    }
+    if (/\b(?:antena\s+)?interna?\b/i.test(haystack)) {
+      return pickAllowedValue(attr, "Interno");
+    }
+    if (/\b(?:antena\s+)?externa?\b/i.test(haystack)) {
+      return pickAllowedValue(attr, "Externo");
+    }
+  }
+  if (
+    attrId === "IS_DIGITAL_FREEVIEW" &&
+    /\b(?:tv\s+digital|hdtv\s+digital|sinal\s+digital|4k)\b/i.test(haystack)
+  ) {
+    return pickAllowedValue(attr, "Sim");
   }
   if (attrId === "WRENCH_TYPE") {
     if (/\bchave\b/i.test(haystack)) return pickAllowedValue(attr, "Flat");

@@ -32,6 +32,7 @@ export function supplierTextToDescription(value: unknown) {
     .replace(/<[^>]+>/g, "");
 
   return text
+    .replace(/\bPesquisa\s*:\s*[^\n]+/gi, "")
     .split("\n")
     .map(normalizeLine)
     .filter(Boolean)
@@ -39,6 +40,23 @@ export function supplierTextToDescription(value: unknown) {
     .join("\n")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
+}
+
+function extractSupplierSpecifications(value: string) {
+  const source = String(value || "");
+  const labels = [
+    "Potência", "Voltagem", "Tensão", "Resistência", "Ponta", "Alimentação",
+    "Dimensões", "Peso", "Material", "Comprimento", "Cor", "Conector",
+  ];
+  const pattern = new RegExp(`\\b(${labels.join("|")})\\s*:\\s*([\\s\\S]*?)(?=\\s+(?:${labels.join("|")})\\s*:|$)`, "gi");
+  const specs: string[] = [];
+  for (const match of source.matchAll(pattern)) {
+    const label = normalizeLine(match[1]);
+    const content = normalizeLine(match[2]).replace(/[;,.]+$/, "");
+    if (!label || !content || content.length > 180) continue;
+    pushUnique(specs, `${label}: ${content}`);
+  }
+  return specs;
 }
 
 function pushUnique(target: string[], value: unknown) {
@@ -63,6 +81,11 @@ export function buildEvidenceBasedMlDescription(produto: any, preferredText?: un
 
   if (title) lines.push(title);
   if (supplierDescription) lines.push(`\nDescrição do produto\n${supplierDescription}`);
+
+  const specifications = extractSupplierSpecifications(supplierDescription);
+  if (specifications.length) {
+    lines.push(`\nEspecificações informadas pelo fornecedor\n${specifications.map((line) => `• ${line}`).join("\n")}`);
+  }
 
   const confirmed: string[] = [];
   if (normalizeLine(produto?.marca)) pushUnique(confirmed, `Marca: ${normalizeLine(produto.marca)}`);

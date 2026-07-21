@@ -20,7 +20,6 @@ const ALLOW_EMPTY_GTIN_FOR_KITS = process.env.BATCH_ALLOW_EMPTY_GTIN_FOR_KITS ==
 // Strict supplier batches never use AI/web guesses as publication evidence.
 const STRICT_EVIDENCE = process.env.BATCH_STRICT_EVIDENCE !== '0';
 const SKIP_SMART_FILL = STRICT_EVIDENCE || process.env.BATCH_SKIP_SMART_FILL === '1';
-const MIN_SOURCE_DESCRIPTION_CHARS = Number(process.env.BATCH_MIN_SOURCE_DESCRIPTION_CHARS || '180');
 const RESULT_FILE = process.env.ML_BATCH_RESULT_FILE || '';
 const LOGIN_EMAIL = process.env.BATCH_LOGIN_EMAIL || '';
 const LOGIN_PASSWORD = process.env.BATCH_LOGIN_PASSWORD || '';
@@ -359,10 +358,6 @@ async function prepareCategory(produtoId, categoryId, description, productName) 
 }
 
 async function createOne(item) {
-  const sourceDescription = String(item.description || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-  if (sourceDescription.length < MIN_SOURCE_DESCRIPTION_CHARS) {
-    throw new Error(`Descrição do fornecedor insuficiente para publicação segura (${sourceDescription.length}/${MIN_SOURCE_DESCRIPTION_CHARS} caracteres)`);
-  }
   let categories = [];
   try {
     const categoriesData = await postJson('/api/ml/anuncio/categorias', { produtoId: item.produtoId });
