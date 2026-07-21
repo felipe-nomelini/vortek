@@ -152,6 +152,48 @@ async function getMlCategoryInfo(
   };
 }
 
+/**
+ * Domain discovery is only a suggestion. Reject niche categories unless the
+ * supplier title, description, or source category explicitly supports them.
+ * This prevents false positives such as a coaxial cable being sent to Aquários.
+ */
+function assertNicheCategoryEvidence(produto: any, info: { path: string; domain: string | null }) {
+  const source = normalizeCategoryText(
+    `${produto?.nome || ""} ${produto?.descricao || ""} ${produto?.categoria || ""}`,
+  );
+  const target = normalizeCategoryText(`${info.path} ${info.domain || ""}`);
+  const niches: Array<{ categoryTerms: string[]; sourceTerms: string[]; label: string }> = [
+    {
+      categoryTerms: ["aquario", "aquarios", "peixe", "peixes"],
+      sourceTerms: ["aquario", "aquarios", "peixe", "peixes", "aquatico", "aquatica"],
+      label: "Aquários/peixes",
+    },
+    {
+      categoryTerms: ["caravana", "caravanas", "motorhome"],
+      sourceTerms: ["caravana", "caravanas", "motorhome", "trailer"],
+      label: "Caravanas/motorhomes",
+    },
+    {
+      categoryTerms: ["pesca", "pescaria"],
+      sourceTerms: ["pesca", "pescaria", "anzol", "vara de pesca"],
+      label: "Pesca",
+    },
+    {
+      categoryTerms: ["bebes", "bebe"],
+      sourceTerms: ["bebe", "bebes", "infantil", "crianca", "criancas"],
+      label: "Bebês",
+    },
+  ];
+
+  for (const niche of niches) {
+    if (!niche.categoryTerms.some((term) => target.includes(term))) continue;
+    if (niche.sourceTerms.some((term) => source.includes(term))) continue;
+    throw new Error(
+      `Categoria ML sem evidência compatível no cadastro do fornecedor: ${niche.label}. Categoria recebida: ${info.path || "não identificada"}.`,
+    );
+  }
+}
+
 export async function assertAllowedMlCategoryForProduct(
   produto: any,
   categoryId: string,
@@ -159,6 +201,9 @@ export async function assertAllowedMlCategoryForProduct(
   if (isBlockedMlBrand(produto)) {
     throw new Error("Marca Wahl bloqueada para anúncios Mercado Livre.");
   }
+
+  const categoryInfo = await getMlCategoryInfo(categoryId);
+  assertNicheCategoryEvidence(produto, categoryInfo);
 
   const requiredPanasonicBatteryCategory =
     getRequiredPanasonicBatteryCategory(produto);
@@ -185,7 +230,7 @@ export async function assertAllowedMlCategoryForProduct(
   const productText = normalizeCategoryText(
     `${produto?.nome || ""} ${produto?.categoria || ""}`,
   );
-  const info = await getMlCategoryInfo(categoryId);
+  const info = categoryInfo;
   const categoryText = normalizeCategoryText(
     `${categoryId} ${info.path} ${info.domain || ""}`,
   );
