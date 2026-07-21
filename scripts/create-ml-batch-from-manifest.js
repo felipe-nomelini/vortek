@@ -288,6 +288,23 @@ function missingRequired(attrs, { allowEmptyGtinForKit = false } = {}) {
   });
 }
 
+function applyAttributeOverrides(attrs, overrides) {
+  const byId = new Map(
+    (Array.isArray(overrides) ? overrides : [])
+      .filter((attribute) => hasText(attribute?.id))
+      .map((attribute) => [String(attribute.id).toUpperCase(), attribute]),
+  );
+  return (attrs || []).map((attribute) => {
+    const override = byId.get(String(attribute.id || '').toUpperCase());
+    if (!override) return attribute;
+    return {
+      ...attribute,
+      value_id: hasText(override.value_id) ? String(override.value_id) : '',
+      value_name: hasText(override.value_name) ? String(override.value_name) : '',
+    };
+  });
+}
+
 function fillKnownBatteryAttributes(attrs, productName) {
   const text = normalizePredictionText(productName)
     .toLowerCase()
@@ -387,6 +404,11 @@ async function createOne(item) {
   for (const category of categories) {
     try {
       const current = await prepareCategory(item.produtoId, category.id, item.description || '', item.nome || '');
+      current.required = applyAttributeOverrides(current.required, item.attributeOverrides);
+      current.optional = applyAttributeOverrides(current.optional, item.attributeOverrides);
+      current.missing = missingRequired(current.required, {
+        allowEmptyGtinForKit: ALLOW_EMPTY_GTIN_FOR_KITS,
+      });
       attempts.push({ category: { id: category.id, nome: category.nome }, missing: current.missing.map((attr) => attr.name || attr.id) });
       if (current.missing.length === 0) {
         prepared = { category, ...current };

@@ -184,6 +184,14 @@ Deliver:
 
 ---
 
+## Mandatory Procedure for Mercado Livre Listings
+
+Before creating, updating, repairing, or validating any Mercado Livre listing, read and follow [docs/mercado-livre-publicacao-operacional.md](docs/mercado-livre-publicacao-operacional.md).
+
+This is mandatory for every listing operation. It covers category precision, attributes, `Não se aplica`, evidence requirements, descriptions, supplier-image fallback to Vortek Storage, Mercado Livre image diagnostics, and post-publication verification.
+
+---
+
 ## Tool Matrix (Codex Compatibility)
 
 | Goal | Original tool (Opencode) | Operational equivalent in Codex | Forbidden |
