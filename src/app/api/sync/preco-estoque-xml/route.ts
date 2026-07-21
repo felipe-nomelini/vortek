@@ -91,7 +91,7 @@ async function loadSupplierOffers(client: ReturnType<typeof createServiceClient>
   for (let from = 0; ; from += OFFER_PAGE_SIZE) {
     const { data, error } = await client
       .from('produto_fornecedor_ofertas')
-      .select('produto_id,dslite_produto_id,sku_oferta,nome,custo,estoque,product:produtos!produto_fornecedor_ofertas_produto_id_fkey(ativo)')
+      .select('id,produto_id,dslite_produto_id,sku_oferta,nome,custo,estoque,product:produtos!produto_fornecedor_ofertas_produto_id_fkey(ativo)')
       .eq('dslite_fornecedor_id', supplierId)
       .eq('ativo', true)
       .range(from, from + OFFER_PAGE_SIZE - 1);
@@ -161,6 +161,7 @@ export async function POST(request: Request) {
           const oldStock = Number(offer.estoque || 0);
           if (Math.abs(oldCost - xml.custo) < 0.0001 && oldStock === xml.estoque) return [];
           return [{
+            id: String(offer.id),
             produto_id: String(offer.produto_id),
             dslite_fornecedor_id: supplierId,
             dslite_produto_id: xml.produtoId,
@@ -177,7 +178,7 @@ export async function POST(request: Request) {
         for (const rows of chunk(changedOffers, UPSERT_CHUNK_SIZE)) {
           const { error } = await client
             .from('produto_fornecedor_ofertas')
-            .upsert(rows as any, { onConflict: 'dslite_fornecedor_id,dslite_produto_id' });
+            .upsert(rows as any, { onConflict: 'id' });
           if (error) throw new Error(`Falha ao atualizar ofertas: ${error.message}`);
 
           const productIds = Array.from(new Set(rows.map((row) => row.produto_id)));
