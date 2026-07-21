@@ -32,6 +32,7 @@ import {
 } from "@/lib/ml-critical-attributes";
 import { persistSingleAnuncioBySku } from "@/lib/ml/persist-single-anuncio";
 import { resolveGtinForMlListing } from "@/lib/produto-kits";
+import { buildEvidenceBasedMlDescription } from "@/lib/ml-listing-description";
 
 type StepResult = { ok: boolean; error?: string };
 type AttrInput = { id: string; value_name?: string; value_id?: string };
@@ -354,39 +355,8 @@ function pickEmptyGtinReasonValue(attr: any, productName: unknown) {
   return first ? { id: String(first.id), name: String(first.name) } : null;
 }
 
-function stripHtmlToText(input: unknown): string {
-  return normalizeText(
-    String(input ?? "")
-      .replace(/<\s*br\s*\/?>/gi, " ")
-      .replace(/<\s*\/p\s*>/gi, " ")
-      .replace(/<\s*\/li\s*>/gi, " ")
-      .replace(/<[^>]+>/g, " ")
-      .replace(/&nbsp;/gi, " ")
-      .replace(/&amp;/gi, "&")
-      .replace(/&lt;/gi, "<")
-      .replace(/&gt;/gi, ">")
-      .replace(/&quot;/gi, '"')
-      .replace(/&#39;/gi, "'"),
-  );
-}
-
 function buildDescription(produto: any, input?: string) {
-  const manual = stripHtmlToText(input);
-  if (manual) return manual.slice(0, 5000);
-
-  const descricao = stripHtmlToText(produto?.descricao);
-  if (descricao) return descricao.slice(0, 5000);
-
-  const caracteristicas = stripHtmlToText(produto?.caracteristicas);
-  if (caracteristicas) return caracteristicas.slice(0, 5000);
-
-  const informacoes = stripHtmlToText(produto?.informacoes);
-  if (informacoes) return informacoes.slice(0, 5000);
-
-  return [normalizeText(produto?.nome), normalizeText(produto?.marca)]
-    .filter(Boolean)
-    .join(" - ")
-    .slice(0, 5000);
+  return buildEvidenceBasedMlDescription(produto, input);
 }
 
 function isNegative(value?: MappedAttr) {

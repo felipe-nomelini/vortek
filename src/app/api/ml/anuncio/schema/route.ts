@@ -20,6 +20,7 @@ import {
   resolveTrustedMlCriticalValue,
 } from "@/lib/ml-critical-attributes";
 import { resolveGtinForMlListing } from "@/lib/produto-kits";
+import { buildEvidenceBasedMlDescription } from "@/lib/ml-listing-description";
 
 function normalizeStr(v: unknown): string {
   return String(v ?? "").trim();
@@ -38,35 +39,8 @@ function isInvalidLiteralValue(v: unknown) {
   );
 }
 
-function stripHtmlToText(input: unknown): string {
-  return String(input ?? "")
-    .replace(/<\s*br\s*\/?>/gi, " ")
-    .replace(/<\s*\/p\s*>/gi, " ")
-    .replace(/<\s*\/li\s*>/gi, " ")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/&nbsp;/gi, " ")
-    .replace(/&amp;/gi, "&")
-    .replace(/&lt;/gi, "<")
-    .replace(/&gt;/gi, ">")
-    .replace(/&quot;/gi, '"')
-    .replace(/&#39;/gi, "'")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
 function buildDescription(produto: any): string {
-  const descricao = stripHtmlToText(produto?.descricao);
-  if (descricao) return descricao;
-  const title = stripHtmlToText(produto?.nome);
-  const marca = normalizeStr(produto.marca);
-  const gtin = normalizeStr(produto.gtin);
-  return [
-    `${title}${marca ? ` - ${marca}` : ""}`,
-    "Produto original com envio rápido.",
-    gtin ? `GTIN: ${gtin}` : "",
-  ]
-    .filter(Boolean)
-    .join("\n");
+  return buildEvidenceBasedMlDescription(produto);
 }
 
 function supplierPartNumber(produto: any): string {
@@ -102,8 +76,8 @@ function initialAttributeValue(
     return { value_name: supplierPartNumber(produto) };
   if (attrId === "BRAND" && normalizeStr(produto.marca))
     return { value_name: produto.marca };
-  if (attrId === "MODEL" && normalizeStr(produto.nome))
-    return { value_name: produto.nome.slice(0, 60) };
+  // Full commercial title is not necessarily a model. Leave MODEL blank when
+  // no exact model is evidenced; the strict preflight will skip the product.
   if (attrId === "ITEM_CONDITION")
     return { value_id: "2230284", value_name: "Novo" };
   if (attrId === "GTIN" && normalizeStr(produto.gtin))
@@ -299,6 +273,7 @@ export async function POST(req: Request) {
       produtoId,
       categoriaId,
       listingType = "gold_pro",
+      strictEvidence = false,
     } = await req.json();
     if (!produtoId || !categoriaId) {
       return NextResponse.json(
@@ -389,7 +364,9 @@ export async function POST(req: Request) {
         : {
             ...initialAttributeValue(attr, produtoForMl),
             ...ruleBasedValue,
-            ...(predictionByAttr.get(attrId) || {}),
+            // Category prediction is useful for assisted editing, but cannot
+            // be treated as evidence in unattended supplier batches.
+            ...(strictEvidence ? {} : (predictionByAttr.get(attrId) || {})),
             // ML prediction often defaults pack attributes to one unit. For a
             // kit, the quantity parsed from the local product is authoritative.
             ...(mustKeepLocalPackValue ? ruleBasedValue : {}),
