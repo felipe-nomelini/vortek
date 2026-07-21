@@ -91,7 +91,7 @@ async function loadSupplierOffers(client: ReturnType<typeof createServiceClient>
   for (let from = 0; ; from += OFFER_PAGE_SIZE) {
     const { data, error } = await client
       .from('produto_fornecedor_ofertas')
-      .select('produto_id,dslite_produto_id,custo,estoque,product:produtos!produto_fornecedor_ofertas_produto_id_fkey(ativo)')
+      .select('produto_id,dslite_produto_id,sku_oferta,nome,custo,estoque,product:produtos!produto_fornecedor_ofertas_produto_id_fkey(ativo)')
       .eq('dslite_fornecedor_id', supplierId)
       .eq('ativo', true)
       .range(from, from + OFFER_PAGE_SIZE - 1);
@@ -164,6 +164,8 @@ export async function POST(request: Request) {
             produto_id: String(offer.produto_id),
             dslite_fornecedor_id: supplierId,
             dslite_produto_id: xml.produtoId,
+            sku_oferta: String(offer.sku_oferta || ''),
+            nome: String(offer.nome || '').trim() || `Produto ${xml.produtoId}`,
             custo: xml.custo,
             estoque: xml.estoque,
             last_sync_at: new Date().toISOString(),
