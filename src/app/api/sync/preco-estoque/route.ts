@@ -7,6 +7,7 @@ import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { shouldProductBeInactiveByCost } from '@/lib/product-activity';
 import { enqueueKitStockUpdates, recalculateProductKits } from '@/lib/produto-kits';
+import { obterSaldoEstoqueInternoProduto } from '@/lib/estoque-interno';
 
 export const maxDuration = 300;
 
@@ -642,7 +643,10 @@ export async function POST(req: Request) {
           continue;
         }
 
-        const desiredStatus = resolveDesiredMlStatusByStock(Number(snapshot.next.estoque || 0));
+        const estoqueFornecedor = Number(snapshot.next.estoque || 0);
+        const estoqueInterno = await obterSaldoEstoqueInternoProduto(String(snapshot.productId));
+        const estoqueDisponivel = Math.max(estoqueFornecedor, estoqueInterno);
+        const desiredStatus = resolveDesiredMlStatusByStock(estoqueDisponivel);
         if (desiredStatus === 'pausado') mlOutboxPausedZeroStock += 1;
 
         for (const mlItemId of mlItemIds) {
@@ -656,7 +660,7 @@ export async function POST(req: Request) {
             produtoId: String(snapshot.productId),
             mlItemId,
             desiredStatus,
-            desiredQuantity: Number(snapshot.next.estoque || 0),
+            desiredQuantity: estoqueDisponivel,
             desiredPrice: null,
             source: 'dslite_stock_automation',
             dedupePending: true,
@@ -666,7 +670,9 @@ export async function POST(req: Request) {
               apply_quantity: true,
               apply_status: true,
               sku: snapshot.previous.sku,
-              estoque_origem: Number(snapshot.next.estoque || 0),
+              estoque_origem: estoqueDisponivel,
+              estoque_fornecedor: estoqueFornecedor,
+              estoque_interno: estoqueInterno,
               status_desejado: desiredStatus,
               fornecedor_preferencial: snapshot.next.fornecedor,
               fornecedor_dslite_id: snapshot.next.dslite_fornecedor_id,

@@ -1,5 +1,6 @@
 import { createServiceClient } from '@/lib/supabase';
 import { getSkuLookupVariants } from '@/lib/sku';
+import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 
 type ItemEstoquePedido = {
   produtoId: string;
@@ -75,6 +76,72 @@ export async function obterSaldoEstoqueInternoProduto(produtoId: string): Promis
   ), 0);
 }
 
+/**
+ * Publica o maior saldo disponível: fornecedor selecionado ou estoque próprio.
+ * Estoques de fornecedores não são somados, para não anunciar quantidade que
+ * não pode ser atendida simultaneamente por uma única origem.
+ */
+export async function enfileirarSyncMlEstoqueInterno(produtoId: string) {
+  const db = createServiceClient();
+  const { data: produto, error: produtoError } = await db
+    .from('produtos')
+    .select('id,sku,estoque,ml_item_id')
+    .eq('id', produtoId)
+    .maybeSingle();
+  if (produtoError) throw new Error(produtoError.message);
+  if (!produto) return { enfileirados: 0, bloqueadosManualmente: 0 };
+
+  const saldoInterno = await obterSaldoEstoqueInternoProduto(String(produto.id));
+  const estoqueDisponivel = Math.max(Number(produto.estoque || 0), saldoInterno);
+  const { data: anuncios, error: anunciosError } = await db
+    .from('anuncios_ml')
+    .select('ml_item_id')
+    .eq('produto_id', produto.id);
+  if (anunciosError) throw new Error(anunciosError.message);
+
+  const mlItemIds = Array.from(new Set([
+    String(produto.ml_item_id || '').trim(),
+    ...(anuncios || []).map((anuncio: any) => String(anuncio.ml_item_id || '').trim()),
+  ].filter(Boolean)));
+  if (!mlItemIds.length) return { enfileirados: 0, bloqueadosManualmente: 0 };
+
+  const sku = String(produto.sku || '').trim().toUpperCase();
+  const [manualByItem, manualBySku] = await Promise.all([
+    (db as any).from('ml_manual_blocklist').select('ml_item_id').eq('ativo', true).in('ml_item_id', mlItemIds),
+    sku ? (db as any).from('ml_manual_blocklist').select('sku').eq('ativo', true).in('sku', [sku]) : Promise.resolve({ data: [], error: null }),
+  ]);
+  if (manualByItem.error) throw new Error(manualByItem.error.message);
+  if (manualBySku.error) throw new Error(manualBySku.error.message);
+  const bloqueados = new Set((manualByItem.data || []).map((row: any) => String(row.ml_item_id || '').trim()));
+  const skuBloqueado = (manualBySku.data || []).length > 0;
+
+  let enfileirados = 0;
+  for (const mlItemId of mlItemIds) {
+    if (skuBloqueado || bloqueados.has(mlItemId)) continue;
+    const result = await enqueueMlPublishOutbox(db, {
+      produtoId: String(produto.id),
+      mlItemId,
+      desiredStatus: estoqueDisponivel > 0 ? 'ativo' : 'pausado',
+      desiredQuantity: estoqueDisponivel,
+      source: 'internal_stock_automation',
+      dedupePending: true,
+      payload: {
+        apply_price: false,
+        apply_quantity_pricing: false,
+        apply_quantity: true,
+        apply_status: true,
+        sku: produto.sku,
+        estoque_fornecedor: Number(produto.estoque || 0),
+        estoque_interno: saldoInterno,
+        estoque_disponivel: estoqueDisponivel,
+      },
+    });
+    if (!result.ok) throw new Error(result.error);
+    enfileirados += 1;
+  }
+  return { enfileirados, bloqueadosManualmente: mlItemIds.length - enfileirados };
+}
+
 async function obterReservasDoPedido(pedidoId: string): Promise<Map<string, number>> {
   const db = createServiceClient();
   const { data, error } = await (db as any)
@@ -126,6 +193,16 @@ export async function reservarEnvioInterno(pedidoId: string) {
     // etiqueta segura: não pode baixar o estoque pela segunda vez.
     if (error && String((error as any).code || '') !== '23505') throw new Error(error.message);
   }
+
+  await Promise.all(itens.map(async (item) => {
+    try {
+      await enfileirarSyncMlEstoqueInterno(item.produtoId);
+    } catch (error: any) {
+      // A etiqueta já foi salva e a baixa é válida; a fila ML será refeita no
+      // próximo sync externo, sem transformar um envio concluído em erro.
+      console.error('[internal_stock_ml_sync_failed]', { pedidoId, produtoId: item.produtoId, error: error?.message || error });
+    }
+  }));
 }
 
 /** Toda devolução entra bloqueada; operador libera somente após conferência física. */

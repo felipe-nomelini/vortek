@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
+import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
 
 const SITUACOES = new Set(['liberado', 'nao_aproveitavel']);
 
@@ -11,7 +12,7 @@ export async function PATCH(req: Request, { params }: { params: { movimentoId: s
   const db = createServiceClient();
   const { data: movimento, error: consultaError } = await (db as any)
     .from('estoque_interno_movimentacoes')
-    .select('status_devolucao')
+    .select('status_devolucao,produto_id')
     .eq('id', params.movimentoId)
     .eq('tipo', 'entrada_devolucao')
     .maybeSingle();
@@ -25,5 +26,11 @@ export async function PATCH(req: Request, { params }: { params: { movimentoId: s
     .update({ situacao_estoque: situacao, disponivel_venda: situacao === 'liberado' })
     .eq('id', params.movimentoId);
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-  return NextResponse.json({ success: true });
+  try {
+    const mlSync = await enfileirarSyncMlEstoqueInterno(String(movimento.produto_id));
+    return NextResponse.json({ success: true, mlSync });
+  } catch (syncError: any) {
+    console.error('[estoque_interno_ml_sync_failed]', syncError?.message || syncError);
+    return NextResponse.json({ success: true, mlSyncWarning: 'Saldo atualizado, mas não foi possível enfileirar a atualização do anúncio.' });
+  }
 }
