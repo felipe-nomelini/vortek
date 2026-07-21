@@ -255,7 +255,9 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
       ...row,
       pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
       cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
-      ...(fornecedorPreviewByPedido.get(String(row?.id || '')) || {}),
+      ...(row?.envio_interno_at
+        ? { fornecedor_id: null, fornecedor_nome: 'Estoque Interno', supplier_payment_mode: null, supplier_payment_status: null, supplier_payment_amount: null }
+        : (fornecedorPreviewByPedido.get(String(row?.id || '')) || {})),
       dslite_next_action: row?.envio_interno_at ? 'internal_shipping' : row?.dslite_id ? 'complete_dslite_label' : 'create_dslite_order',
       dslite_next_action_label: row?.envio_interno_at ? 'Envio interno' : row?.dslite_id ? 'Completar etiqueta DSLite' : 'Criar pedido DSLite',
     }));
@@ -306,7 +308,9 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
         ...row,
         pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
         cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
-        ...(fornecedorPreviewByPedido.get(String(row?.id || '')) || {}),
+        ...(row?.envio_interno_at
+          ? { fornecedor_id: null, fornecedor_nome: 'Estoque Interno', supplier_payment_mode: null, supplier_payment_status: null, supplier_payment_amount: null }
+          : (fornecedorPreviewByPedido.get(String(row?.id || '')) || {})),
         dslite_next_action: row?.envio_interno_at ? 'internal_shipping' : row?.dslite_id ? 'complete_dslite_label' : 'create_dslite_order',
         dslite_next_action_label: row?.envio_interno_at ? 'Envio interno' : row?.dslite_id ? 'Completar etiqueta DSLite' : 'Criar pedido DSLite',
       };

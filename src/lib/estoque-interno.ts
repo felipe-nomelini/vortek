@@ -59,7 +59,8 @@ async function carregarItensEstoquePedido(pedidoId: string): Promise<ItemEstoque
   return [...agrupados.values()];
 }
 
-async function saldoDisponivelProduto(produtoId: string): Promise<number> {
+/** Saldo físico já conferido e liberado para um novo envio próprio. */
+export async function obterSaldoEstoqueInternoProduto(produtoId: string): Promise<number> {
   const db = createServiceClient();
   const { data: movimentos, error } = await (db as any)
     .from('estoque_interno_movimentacoes')
@@ -74,12 +75,30 @@ async function saldoDisponivelProduto(produtoId: string): Promise<number> {
   ), 0);
 }
 
+async function obterReservasDoPedido(pedidoId: string): Promise<Map<string, number>> {
+  const db = createServiceClient();
+  const { data, error } = await (db as any)
+    .from('estoque_interno_movimentacoes')
+    .select('produto_id,quantidade')
+    .eq('pedido_id', pedidoId)
+    .eq('tipo', 'saida_envio_interno');
+  if (error) throw new Error(error.message);
+
+  return new Map((data || []).map((row: any) => [
+    String(row.produto_id),
+    Number(row.quantidade || 0),
+  ]));
+}
+
 /** Confere saldo liberado antes de emitir NF ou baixar etiqueta de envio interno. */
 export async function validarEstoqueEnvioInterno(pedidoId: string) {
   const itens = await carregarItensEstoquePedido(pedidoId);
+  const reservasAtuais = await obterReservasDoPedido(pedidoId);
   for (const item of itens) {
-    const saldo = await saldoDisponivelProduto(item.produtoId);
-    if (saldo < item.quantidade) {
+    const quantidadePendente = Math.max(0, item.quantidade - (reservasAtuais.get(item.produtoId) || 0));
+    if (quantidadePendente <= 0) continue;
+    const saldo = await obterSaldoEstoqueInternoProduto(item.produtoId);
+    if (saldo < quantidadePendente) {
       throw new Error(`Estoque interno insuficiente para ${item.sku}. Disponível: ${saldo}.`);
     }
   }
@@ -90,8 +109,10 @@ export async function validarEstoqueEnvioInterno(pedidoId: string) {
 export async function reservarEnvioInterno(pedidoId: string) {
   const itens = await validarEstoqueEnvioInterno(pedidoId);
   const db = createServiceClient();
+  const reservasAtuais = await obterReservasDoPedido(pedidoId);
 
   for (const item of itens) {
+    if ((reservasAtuais.get(item.produtoId) || 0) >= item.quantidade) continue;
     const { error } = await (db as any)
       .from('estoque_interno_movimentacoes')
       .insert({
@@ -101,7 +122,9 @@ export async function reservarEnvioInterno(pedidoId: string) {
         quantidade: item.quantidade,
         motivo: 'Envio interno',
       });
-    if (error) throw new Error(error.message);
+    // A restrição única (pedido, produto, tipo) torna nova tentativa da mesma
+    // etiqueta segura: não pode baixar o estoque pela segunda vez.
+    if (error && String((error as any).code || '') !== '23505') throw new Error(error.message);
   }
 }
 

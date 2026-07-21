@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { inferSupplierPaymentMode, syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
+import { obterSaldoEstoqueInternoProduto } from '@/lib/estoque-interno';
 
 export async function GET(
   _request: Request,
@@ -39,8 +40,7 @@ export async function GET(
   const currentFornecedorId = String(product.dslite_fornecedor_id || '').trim();
   const currentDsliteProdutoId = String(product.dslite_produto_id || '').trim();
 
-  return NextResponse.json({
-    data: (offers || []).map((offer: any) => ({
+  const fornecedores: any[] = (offers || []).map((offer: any) => ({
       ...offer,
       preferred: currentPreferredOfferId
         ? currentPreferredOfferId === String(offer.id || '').trim()
@@ -48,8 +48,26 @@ export async function GET(
           currentFornecedorId === String(offer.dslite_fornecedor_id || '').trim()
           && currentDsliteProdutoId === String(offer.dslite_produto_id || '').trim()
         ),
-    })),
-  });
+    }));
+  const saldoInterno = await obterSaldoEstoqueInternoProduto(String(product.id));
+
+  // Não persiste uma oferta DSLite fictícia: estoque próprio não pode gerar
+  // pedido de compra. A linha é apenas a fonte interna disponível para envio.
+  if (saldoInterno > 0) {
+    fornecedores.unshift({
+      id: `estoque-interno-${product.id}`,
+      fornecedor_nome: 'Estoque Interno',
+      sku_oferta: null,
+      estoque: saldoInterno,
+      custo: 0,
+      ativo: true,
+      prioridade: -1,
+      preferred: false,
+      is_internal_stock: true,
+    });
+  }
+
+  return NextResponse.json({ data: fornecedores });
 }
 
 export async function PATCH(

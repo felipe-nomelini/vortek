@@ -35,6 +35,7 @@ const sectionTitle = {
 type ProdutoRow = Database['public']['Tables']['produtos']['Row'];
 type ProductSupplierOffer = Database['public']['Tables']['produto_fornecedor_ofertas']['Row'] & {
   preferred?: boolean;
+  is_internal_stock?: boolean;
 };
 
 function mapDBtoProduct(item: ProdutoRow): Product {
@@ -374,7 +375,7 @@ export default function ProductDetailPage() {
                         <div>
                           <div style={{ color: '#e0e0e0', fontWeight: 600 }}>{offer.fornecedor_nome || offer.dslite_fornecedor_id}</div>
                           <div style={{ color: '#888', fontSize: 12 }}>
-                            SKU {offer.sku_oferta || '—'}
+                            {offer.is_internal_stock ? 'Saldo físico liberado' : `SKU ${offer.sku_oferta || '—'}`}
                           </div>
                         </div>
                       ),
@@ -401,7 +402,9 @@ export default function ProductDetailPage() {
                       width: 160,
                       render: (_, offer) => {
                         const isSavingOffer = savingOfferId === offer.id;
-                        return offer.preferred ? (
+                        return offer.is_internal_stock ? (
+                          <Tag color="blue">Interno</Tag>
+                        ) : offer.preferred ? (
                           <Tag color="green">Atual</Tag>
                         ) : (
                           <Button
