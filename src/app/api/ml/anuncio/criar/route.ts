@@ -341,8 +341,8 @@ function pickEmptyGtinReasonValue(attr: any, productName: unknown) {
   const text = normalizeAttrText(productName);
   const wantKit = /(\bkit\b|\bkits\b|\bcartela\b|\bcombo\b|\bpack\b|\b10un\b|\b12un\b|\b24un\b)/i.test(text);
   const preferredPatterns = wantKit
-    ? [/^kit$/i, /^otro$/i, /^outro$/i, /nao registrado|no registrado/i, /^artesanal$/i]
-    : [/^otro$/i, /^outro$/i, /nao registrado|no registrado/i, /^kit$/i, /^artesanal$/i];
+    ? [/\bkit\b|\bpack\b/i, /^otro$/i, /^outro$/i, /nao registrado|no registrado|codigo cadastrado/i, /^artesanal$/i]
+    : [/^otro$/i, /^outro$/i, /nao registrado|no registrado|codigo cadastrado/i, /\bkit\b|\bpack\b/i, /^artesanal$/i];
 
   for (const pattern of preferredPatterns) {
     const hit = values.find((value: any) => pattern.test(String(value?.name || '').trim()));
