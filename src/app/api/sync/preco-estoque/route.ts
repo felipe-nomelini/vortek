@@ -8,6 +8,7 @@ import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { shouldProductBeInactiveByCost } from '@/lib/product-activity';
 import { enqueueKitStockUpdates, recalculateProductKits } from '@/lib/produto-kits';
 import { obterSaldoEstoqueInternoProduto } from '@/lib/estoque-interno';
+import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
 
 export const maxDuration = 300;
 
@@ -244,6 +245,8 @@ export async function POST(req: Request) {
     let mlOutboxFailed = 0;
     let recordsUpdatedSeen = 0;
     let mlOutboxPausedZeroStock = 0;
+    let mlPriceProductsUpdated = 0;
+    let mlPriceOutboxEnqueued = 0;
     let kitStockUpdated = 0;
     let kitMlOutboxEnqueued = 0;
     let remainingPagesBudget = maxPagesPerRun;
@@ -577,6 +580,25 @@ export async function POST(req: Request) {
         });
       }
 
+      try {
+        const automaticPricing = await enqueueAutomaticPricesForCostChanges(client, changedSnapshots);
+        mlPriceProductsUpdated += automaticPricing.productsUpdated;
+        mlPriceOutboxEnqueued += automaticPricing.outboxEnqueued;
+        for (const priceError of automaticPricing.errors) {
+          errors.push({
+            code: 'ml_automatic_price_enqueue_failed',
+            message: priceError.message,
+            context: { fornecedorId: targetFornecedor, page: currentPage, productId: priceError.productId },
+          });
+        }
+      } catch (err: any) {
+        errors.push({
+          code: 'ml_automatic_price_failed',
+          message: err?.message || 'Falha ao recalcular preços automáticos',
+          context: { fornecedorId: targetFornecedor, page: currentPage },
+        });
+      }
+
       const mlTargetsByProduct = await loadMlPublishTargetsByProduct(client, changedSnapshots);
       const existingMlItemIds = Array.from(
         new Set(
@@ -747,6 +769,8 @@ export async function POST(req: Request) {
         ml_outbox_failed: mlOutboxFailed,
         updated_seen: recordsUpdatedSeen,
         paused_zero_stock: mlOutboxPausedZeroStock,
+        ml_price_products_updated: mlPriceProductsUpdated,
+        ml_price_outbox_enqueued: mlPriceOutboxEnqueued,
         kits_atualizados: kitStockUpdated,
         kits_ml_outbox_enqueued: kitMlOutboxEnqueued,
         row_failed: recordsFailed,
@@ -769,6 +793,8 @@ export async function POST(req: Request) {
       ml_outbox_failed: mlOutboxFailed,
       updated_seen: recordsUpdatedSeen,
       paused_zero_stock: mlOutboxPausedZeroStock,
+      ml_price_products_updated: mlPriceProductsUpdated,
+      ml_price_outbox_enqueued: mlPriceOutboxEnqueued,
       row_failed: recordsFailed,
       skipped_inactive: recordsSkippedInactive,
       inactivated_by_cost: recordsInactivatedByCost,

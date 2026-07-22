@@ -27,6 +27,20 @@ function normalizeDesiredQuantity(value: unknown): number | null {
   return Math.trunc(n);
 }
 
+function parseBooleanFlag(value: unknown): boolean | null {
+  if (value === true || value === 'true' || value === 1 || value === '1') return true;
+  if (value === false || value === 'false' || value === 0 || value === '0') return false;
+  return null;
+}
+
+function operationEnabled(
+  payload: Record<string, unknown>,
+  key: 'apply_price' | 'apply_quantity_pricing' | 'apply_quantity' | 'apply_status',
+  hasDesiredValue: boolean,
+): boolean {
+  return parseBooleanFlag(payload[key]) ?? hasDesiredValue;
+}
+
 export async function enqueueMlPublishOutbox(
   client: ServiceClientLike,
   input: MlPublishOutboxInput,
@@ -50,10 +64,12 @@ export async function enqueueMlPublishOutbox(
   if (dedupePending) {
     const { data: existing, error: existingError } = await (client
       .from('anuncios_ml_outbox' as any)
-      .select('id, status, payload')
+      .select('id,status,payload,desired_price,desired_quantity,desired_status')
       .eq('produto_id', produtoId)
       .eq('ml_item_id', mlItemId)
-      .in('status', ['pending', 'retry', 'processing', 'failed'])
+      // Nunca altera a linha em processamento: o worker poderia finalizar depois
+      // e sobrescrever uma atualização de preço/estoque recém-enfileirada.
+      .in('status', ['pending', 'retry', 'failed'])
       .order('created_at', { ascending: false })
       .limit(1)
       .maybeSingle() as any);
@@ -64,17 +80,36 @@ export async function enqueueMlPublishOutbox(
 
     const existingId = String((existing as any)?.id || '').trim();
     if (existingId) {
-      const mergedPayload =
+      const existingPayload =
         (existing as any)?.payload && typeof (existing as any).payload === 'object' && !Array.isArray((existing as any).payload)
-          ? { ...((existing as any).payload as Record<string, unknown>), ...payload }
-          : payload;
+          ? ((existing as any).payload as Record<string, unknown>)
+          : {};
+      const hasDesiredPrice = Object.prototype.hasOwnProperty.call(input, 'desiredPrice');
+      const hasDesiredQuantity = Object.prototype.hasOwnProperty.call(input, 'desiredQuantity');
+      const hasDesiredStatus = Object.prototype.hasOwnProperty.call(input, 'desiredStatus');
+      const existingApplyPrice = operationEnabled(existingPayload, 'apply_price', (existing as any).desired_price !== null);
+      const existingApplyQuantityPricing = operationEnabled(existingPayload, 'apply_quantity_pricing', false);
+      const existingApplyQuantity = operationEnabled(existingPayload, 'apply_quantity', (existing as any).desired_quantity !== null);
+      const existingApplyStatus = operationEnabled(existingPayload, 'apply_status', Boolean((existing as any).desired_status));
+      const nextApplyPrice = operationEnabled(payload, 'apply_price', hasDesiredPrice && desiredPrice !== null);
+      const nextApplyQuantityPricing = operationEnabled(payload, 'apply_quantity_pricing', false);
+      const nextApplyQuantity = operationEnabled(payload, 'apply_quantity', hasDesiredQuantity && desiredQuantity !== null);
+      const nextApplyStatus = operationEnabled(payload, 'apply_status', hasDesiredStatus && Boolean(desiredStatus));
+      const mergedPayload = {
+        ...existingPayload,
+        ...payload,
+        apply_price: existingApplyPrice || nextApplyPrice,
+        apply_quantity_pricing: existingApplyQuantityPricing || nextApplyQuantityPricing,
+        apply_quantity: existingApplyQuantity || nextApplyQuantity,
+        apply_status: existingApplyStatus || nextApplyStatus,
+      };
 
       const { error: updateError } = await (client
         .from('anuncios_ml_outbox' as any)
         .update({
-          desired_status: desiredStatus,
-          desired_price: desiredPrice,
-          desired_quantity: desiredQuantity,
+          desired_status: nextApplyStatus ? desiredStatus : (existing as any).desired_status,
+          desired_price: nextApplyPrice ? desiredPrice : (existing as any).desired_price,
+          desired_quantity: nextApplyQuantity ? desiredQuantity : (existing as any).desired_quantity,
           source,
           payload: mergedPayload,
           status: 'pending',

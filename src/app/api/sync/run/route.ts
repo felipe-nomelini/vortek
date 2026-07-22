@@ -144,6 +144,7 @@ function buildBody(taskKey: SyncTaskKey, taskDefaultBody: Record<string, unknown
   if (taskKey === 'sync_ml_listings_publish') {
     if (requestBody.limit !== undefined) payload.limit = Math.min(50, parsePositiveInt(requestBody.limit, 10));
     if (requestBody.seedFromProducts !== undefined) payload.seedFromProducts = Boolean(requestBody.seedFromProducts);
+    if (requestBody.outboxId !== undefined) payload.outboxId = String(requestBody.outboxId || '').trim();
   }
 
   if (taskKey === 'sync_mercadopago_account_money') {
@@ -200,6 +201,27 @@ export async function POST(request: Request) {
     for (const taskKey of taskKeys) {
       const task = getSyncTaskByKey(taskKey);
       if (!task) continue;
+
+      if (task.key === 'sync_ml_listings_publish') {
+        const targetOutboxId = String(safeBody.outboxId || '').trim();
+        let pendingQuery = serviceClient
+          .from('anuncios_ml_outbox' as any)
+          .select('id')
+          .in('status', ['pending', 'retry'])
+          .limit(1);
+        pendingQuery = targetOutboxId
+          ? pendingQuery.eq('id', targetOutboxId)
+          : pendingQuery.lte('available_at', nowIso());
+        const { data: pendingOutbox, error: pendingOutboxError } = await pendingQuery;
+        if (pendingOutboxError) {
+          results.push({ task: task.key, tipo: task.jobTipo, domain: task.domain, error: pendingOutboxError.message });
+          continue;
+        }
+        if (!pendingOutbox || pendingOutbox.length === 0) {
+          results.push({ task: task.key, tipo: task.jobTipo, domain: task.domain, skipped: true, status: 'empty' });
+          continue;
+        }
+      }
 
       const { data: running } = await serviceClient
         .from('jobs')

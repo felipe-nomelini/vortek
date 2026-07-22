@@ -5,6 +5,7 @@ import { setItemQuantityPricing } from '@/services/mercadolibre';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
+import { loadMlStockContext, publishAndVerifyMlStock } from '@/lib/ml/stock-publish';
 
 export const maxDuration = 300;
 
@@ -348,6 +349,8 @@ export async function POST(request: Request) {
     let retry = 0;
     let failed = 0;
     let permanentFailed = 0;
+    const requiresStockPublish = rows.some((row) => resolveApplyMode(row).applyQuantity);
+    const mlStockContext = requiresStockPublish ? await loadMlStockContext() : null;
 
     for (const row of rows) {
       const outboxId = String(row.id);
@@ -474,15 +477,18 @@ export async function POST(request: Request) {
         if (applyMode.applyQuantity) {
           await updateProcessingMarker('quantity');
           const quantity = Math.max(0, Math.trunc(Number(row.desired_quantity)));
-          const result = await fetchMLResult<any>(`/items/${mlItemId}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ available_quantity: quantity }),
-          });
+          const result = mlStockContext
+            ? await publishAndVerifyMlStock(mlItemId, quantity, mlStockContext)
+            : {
+                ok: false,
+                code: 'ml_stock_context_unavailable',
+                error: 'Falha ao identificar o modo de estoque da conta Mercado Livre',
+              };
           operations.push({
             op: 'quantity',
             ok: result.ok,
-            error: result.ok ? undefined : (result.error?.message || 'Falha ao publicar estoque no ML'),
+            error: result.ok ? undefined : (result.error || 'Falha ao publicar estoque no ML'),
+            code: result.code,
           });
         }
 
@@ -610,17 +616,19 @@ export async function POST(request: Request) {
       } else {
         const isNonPublishableState = isMlNonPublishableStateError(failedOperation);
         const isPermanentAuthorization = isMlPermanentAuthorizationError(failedOperation);
-        const isPermanentFailure = isNonPublishableState || isPermanentAuthorization;
+        const isPermanentFailure = isPermanentAuthorization;
         const isHardFail = isPermanentFailure || attempts >= MAX_RETRY_ATTEMPTS;
         const isConflictRetry = isMlConflictError(failedOperation);
         const retryDelayMinutes = isConflictRetry
           ? CONFLICT_RETRY_BACKOFF_MINUTES
           : Math.min(15, attempts);
-        if (isHardFail) failed += 1;
+        if (isNonPublishableState) {
+          permanentFailed += 1;
+        } else if (isHardFail) failed += 1;
         else retry += 1;
         if (isPermanentFailure) permanentFailed += 1;
 
-        if (isPermanentFailure && mlItemId) {
+        if ((isNonPublishableState || isPermanentFailure) && mlItemId) {
           await reconcileItemStateAfterPermanentFailure(client, {
             row,
             outboxId,
@@ -632,15 +640,16 @@ export async function POST(request: Request) {
         await (client
           .from('anuncios_ml_outbox' as any)
           .update({
-            status: isHardFail ? 'failed' : 'retry',
+            status: isNonPublishableState ? 'cancelled' : (isHardFail ? 'failed' : 'retry'),
             last_error: `[${failedOperation.op}${failedOperation.code ? `:${failedOperation.code}` : ''}] ${failedOperation.error || 'Falha na publicação ML'}`,
             payload: withPublishProgress(outboxPayloadBase, {
-              state: isHardFail ? 'failed' : 'retry',
+              state: isNonPublishableState ? 'cancelled' : (isHardFail ? 'failed' : 'retry'),
               last_operation: failedOperation.op,
               operations,
               attempts,
             }) as any,
-            available_at: isHardFail
+            processed_at: isNonPublishableState ? new Date().toISOString() : null,
+            available_at: (isNonPublishableState || isHardFail)
               ? new Date().toISOString()
               : new Date(Date.now() + retryDelayMinutes * 60 * 1000).toISOString(),
             updated_at: new Date().toISOString(),
@@ -659,7 +668,7 @@ export async function POST(request: Request) {
           },
         };
 
-        if (isPermanentFailure) {
+        if (isNonPublishableState || isPermanentFailure) {
           warnings.push(issue);
         } else {
           errors.push(issue);

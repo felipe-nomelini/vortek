@@ -76,12 +76,21 @@ export async function obterSaldoEstoqueInternoProduto(produtoId: string): Promis
   ), 0);
 }
 
+export type MlObservedStock = {
+  mlItemId: string;
+  availableQuantity: number | null;
+  status: string | null;
+};
+
 /**
  * Publica o maior saldo disponível: fornecedor selecionado ou estoque próprio.
  * Estoques de fornecedores não são somados, para não anunciar quantidade que
  * não pode ser atendida simultaneamente por uma única origem.
  */
-export async function enfileirarSyncMlEstoqueInterno(produtoId: string) {
+export async function enfileirarSyncMlEstoqueInterno(
+  produtoId: string,
+  observed?: MlObservedStock,
+) {
   const db = createServiceClient();
   const { data: produto, error: produtoError } = await db
     .from('produtos')
@@ -89,7 +98,7 @@ export async function enfileirarSyncMlEstoqueInterno(produtoId: string) {
     .eq('id', produtoId)
     .maybeSingle();
   if (produtoError) throw new Error(produtoError.message);
-  if (!produto) return { enfileirados: 0, bloqueadosManualmente: 0 };
+  if (!produto) return { enfileirados: 0, bloqueadosManualmente: 0, semAlteracao: 0, emProcessamento: 0 };
 
   const saldoInterno = await obterSaldoEstoqueInternoProduto(String(produto.id));
   const estoqueDisponivel = Math.max(Number(produto.estoque || 0), saldoInterno);
@@ -99,11 +108,15 @@ export async function enfileirarSyncMlEstoqueInterno(produtoId: string) {
     .eq('produto_id', produto.id);
   if (anunciosError) throw new Error(anunciosError.message);
 
-  const mlItemIds = Array.from(new Set([
+  let mlItemIds = Array.from(new Set([
     String(produto.ml_item_id || '').trim(),
     ...(anuncios || []).map((anuncio: any) => String(anuncio.ml_item_id || '').trim()),
   ].filter(Boolean)));
-  if (!mlItemIds.length) return { enfileirados: 0, bloqueadosManualmente: 0 };
+  if (observed?.mlItemId) {
+    const targetItemId = String(observed.mlItemId).trim();
+    mlItemIds = mlItemIds.filter((mlItemId) => mlItemId === targetItemId);
+  }
+  if (!mlItemIds.length) return { enfileirados: 0, bloqueadosManualmente: 0, semAlteracao: 0, emProcessamento: 0 };
 
   const sku = String(produto.sku || '').trim().toUpperCase();
   const [manualByItem, manualBySku] = await Promise.all([
@@ -116,12 +129,50 @@ export async function enfileirarSyncMlEstoqueInterno(produtoId: string) {
   const skuBloqueado = (manualBySku.data || []).length > 0;
 
   let enfileirados = 0;
+  let bloqueadosManualmente = 0;
+  let semAlteracao = 0;
+  let emProcessamento = 0;
+  const observedStatusNormalized = String(observed?.status || '').trim().toLowerCase();
+  const desiredStatus = estoqueDisponivel <= 0
+    ? 'paused'
+    : observedStatusNormalized === 'paused'
+      ? 'paused'
+      : 'active';
   for (const mlItemId of mlItemIds) {
-    if (skuBloqueado || bloqueados.has(mlItemId)) continue;
+    if (skuBloqueado || bloqueados.has(mlItemId)) {
+      bloqueadosManualmente += 1;
+      continue;
+    }
+    const observedQuantity = Number(observed?.availableQuantity);
+    const observedStatus = observedStatusNormalized;
+    if (
+      observed?.mlItemId === mlItemId
+      && observed.availableQuantity !== null
+      && Number.isFinite(observedQuantity)
+      && Math.max(0, Math.trunc(observedQuantity)) === estoqueDisponivel
+      && observedStatus === desiredStatus
+    ) {
+      semAlteracao += 1;
+      continue;
+    }
+    if (observed?.mlItemId === mlItemId) {
+      const { data: processing, error: processingError } = await (db as any)
+        .from('anuncios_ml_outbox')
+        .select('id')
+        .eq('ml_item_id', mlItemId)
+        .eq('status', 'processing')
+        .limit(1)
+        .maybeSingle();
+      if (processingError) throw new Error(processingError.message);
+      if (processing?.id) {
+        emProcessamento += 1;
+        continue;
+      }
+    }
     const result = await enqueueMlPublishOutbox(db, {
       produtoId: String(produto.id),
       mlItemId,
-      desiredStatus: estoqueDisponivel > 0 ? 'ativo' : 'pausado',
+      desiredStatus: desiredStatus === 'active' ? 'ativo' : 'pausado',
       desiredQuantity: estoqueDisponivel,
       source: 'internal_stock_automation',
       dedupePending: true,
@@ -139,7 +190,7 @@ export async function enfileirarSyncMlEstoqueInterno(produtoId: string) {
     if (!result.ok) throw new Error(result.error);
     enfileirados += 1;
   }
-  return { enfileirados, bloqueadosManualmente: mlItemIds.length - enfileirados };
+  return { enfileirados, bloqueadosManualmente, semAlteracao, emProcessamento };
 }
 
 async function obterReservasDoPedido(pedidoId: string): Promise<Map<string, number>> {

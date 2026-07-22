@@ -144,7 +144,6 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'anuncios:ml_push',
     lockTtlSeconds: 20 * 60,
     kind: 'ml',
-    schedule: { businessMinutes: 1, offHoursMinutes: 1, businessSeconds: 3, offHoursSeconds: 3 },
     defaultBody: { limit: 50 },
     runMode: 'inline',
   },

@@ -5,6 +5,7 @@ import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync/runtime-config';
 import { buildCatalogEnrichment } from '@/lib/catalogo/no-catalogo';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
+import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
 
 export const maxDuration = 300;
 
@@ -484,6 +485,8 @@ export async function POST(request: Request) {
     let performanceRefreshed = 0;
     let performanceSkippedFresh = 0;
     let performanceFailed = 0;
+    let authoritativeStockEnqueued = 0;
+    let authoritativeStockUnchanged = 0;
 
     await runPool(itemIds, CONCURRENCY, async (itemId) => {
       const itemResult = await fetchMLResult<any>(`/items/${itemId}`);
@@ -578,9 +581,7 @@ export async function POST(request: Request) {
           }
         }
 
-        const nextMlStatus = String(item?.status || '').toLowerCase() === 'active' ? 'ativo' : 'pausado';
         const productPatch: Record<string, unknown> = {};
-        if (String(produto.ml_status || '') !== nextMlStatus) productPatch.ml_status = nextMlStatus;
         if (pricing.mlFee !== null && Math.abs(Number(produto.ml_fee || 0) - pricing.mlFee) >= 0.0001) productPatch.ml_fee = pricing.mlFee;
         if (pricing.mlShipping !== null && Math.abs(Number(produto.ml_shipping || 0) - pricing.mlShipping) >= 0.01) productPatch.ml_shipping = pricing.mlShipping;
         if (pricing.mlShipping !== null) productPatch.ml_shipping_warning = null;
@@ -604,6 +605,27 @@ export async function POST(request: Request) {
           }
         }
 
+      }
+
+      const observedStatus = String(item.status || '').trim().toLowerCase();
+      if (produtoId && ['active', 'paused'].includes(observedStatus)) {
+        try {
+          const stockSync = await enfileirarSyncMlEstoqueInterno(produtoId, {
+            mlItemId: String(item.id),
+            availableQuantity: item.available_quantity === null || item.available_quantity === undefined
+              ? null
+              : Number(item.available_quantity),
+            status: observedStatus,
+          });
+          authoritativeStockEnqueued += stockSync.enfileirados;
+          authoritativeStockUnchanged += stockSync.semAlteracao;
+        } catch (error: any) {
+          warnings.push({
+            code: 'ml_authoritative_stock_reconcile_failed',
+            message: error?.message || 'Falha ao reconciliar estoque autoritativo do Vortek',
+            context: { mlItemId: String(item.id), produtoId },
+          });
+        }
       }
 
       const isCatalogListing = item.catalog_listing === true;
@@ -941,6 +963,8 @@ export async function POST(request: Request) {
         performance_refreshed: performanceRefreshed,
         performance_skipped_fresh: performanceSkippedFresh,
         performance_failed: performanceFailed,
+        authoritative_stock_enqueued: authoritativeStockEnqueued,
+        authoritative_stock_unchanged: authoritativeStockUnchanged,
       },
       errors,
       warnings,

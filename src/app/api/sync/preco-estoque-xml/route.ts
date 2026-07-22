@@ -5,14 +5,16 @@ import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { getSyncRuntimeJson } from '@/lib/sync/runtime-config';
 import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
 import { enqueueKitStockUpdates, recalculateProductKits } from '@/lib/produto-kits';
+import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
 
 export const maxDuration = 300;
 
 const CONFIG_KEY = 'dslite_catalog_xml_urls';
 const OFFER_PAGE_SIZE = 1000;
 const UPSERT_CHUNK_SIZE = 300;
-const XML_FETCH_MAX_ATTEMPTS = 3;
-const XML_FETCH_RETRY_DELAYS_MS = [1_000, 3_000];
+const XML_FETCH_MAX_ATTEMPTS = 2;
+const XML_FETCH_RETRY_DELAYS_MS = [1_000];
+const XML_FETCH_CONCURRENCY = 2;
 
 type XmlFeedConfig = Record<string, string>;
 type XmlCatalogItem = { produtoId: string; custo: number; estoque: number };
@@ -81,7 +83,7 @@ async function downloadFeed(url: string): Promise<XmlCatalogItem[]> {
 
   for (let attempt = 1; attempt <= XML_FETCH_MAX_ATTEMPTS; attempt += 1) {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 20_000);
+    const timeout = setTimeout(() => controller.abort(), 15_000);
     try {
       const response = await fetch(url, { signal: controller.signal, cache: 'no-store' });
       if (!response.ok) {
@@ -179,15 +181,29 @@ export async function POST(request: Request) {
     let mlEnqueued = 0;
     let mlManualBlocked = 0;
     let kitsUpdated = 0;
+    let mlPriceProductsUpdated = 0;
+    let mlPriceOutboxEnqueued = 0;
 
-    for (const supplierId of supplierIds) {
-      try {
-        const feedUrl = validateFeedUrl(String(configuredFeeds[supplierId] || ''));
-        if (!feedUrl) throw new Error('URL XML DSLite inválida ou não permitida');
-        const [xmlProducts, localOffers] = await Promise.all([
-          downloadFeed(feedUrl),
-          loadSupplierOffers(client, supplierId),
-        ]);
+    for (const supplierBatch of chunk(supplierIds, XML_FETCH_CONCURRENCY)) {
+      const downloadedFeeds = new Map<string, XmlCatalogItem[]>();
+      const feedErrors = new Map<string, Error>();
+      await Promise.all(supplierBatch.map(async (supplierId) => {
+        try {
+          const feedUrl = validateFeedUrl(String(configuredFeeds[supplierId] || ''));
+          if (!feedUrl) throw new Error('URL XML DSLite inválida ou não permitida');
+          downloadedFeeds.set(supplierId, await downloadFeed(feedUrl));
+        } catch (error: any) {
+          feedErrors.set(supplierId, error instanceof Error ? error : new Error('Falha ao baixar XML DSLite'));
+        }
+      }));
+
+      for (const supplierId of supplierBatch) {
+        try {
+        const feedError = feedErrors.get(supplierId);
+        if (feedError) throw feedError;
+        const xmlProducts = downloadedFeeds.get(supplierId);
+        if (!xmlProducts) throw new Error('XML DSLite não foi carregado');
+        const localOffers = await loadSupplierOffers(client, supplierId);
         feedsDownloaded += 1;
         const xmlByProductId = new Map(xmlProducts.map((item) => [item.produtoId, item]));
         const changedOffers = localOffers.flatMap((offer) => {
@@ -221,6 +237,12 @@ export async function POST(request: Request) {
           const productIds = Array.from(new Set(rows.map((row) => row.produto_id)));
           const snapshots = await syncPreferredProductSnapshot(client, productIds);
           productsRecalculated += snapshots.length;
+          const automaticPricing = await enqueueAutomaticPricesForCostChanges(client, snapshots);
+          mlPriceProductsUpdated += automaticPricing.productsUpdated;
+          mlPriceOutboxEnqueued += automaticPricing.outboxEnqueued;
+          for (const priceError of automaticPricing.errors) {
+            errors.push({ supplierId, message: `Preço automático ${priceError.productId}: ${priceError.message}` });
+          }
           const kits = await recalculateProductKits(client, productIds);
           kitsUpdated += kits.filter((kit) => kit.oldStock !== kit.newStock || kit.oldCost !== kit.newCost).length;
           await enqueueKitStockUpdates(client, kits);
@@ -232,8 +254,9 @@ export async function POST(request: Request) {
             mlManualBlocked += result.bloqueadosManualmente;
           }
         }
-      } catch (error: any) {
-        errors.push({ supplierId, message: error?.message || 'Falha ao processar XML DSLite' });
+        } catch (error: any) {
+          errors.push({ supplierId, message: error?.message || 'Falha ao processar XML DSLite' });
+        }
       }
     }
 
@@ -246,6 +269,8 @@ export async function POST(request: Request) {
       kits_updated: kitsUpdated,
       ml_enqueued: mlEnqueued,
       ml_manual_blocked: mlManualBlocked,
+      ml_price_products_updated: mlPriceProductsUpdated,
+      ml_price_outbox_enqueued: mlPriceOutboxEnqueued,
       errors,
       duration_ms: Date.now() - startedAt,
     }, { status: errors.length === 0 ? 200 : 207 });

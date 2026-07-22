@@ -120,6 +120,7 @@ export async function reconcileAnuncioMlFromItem(
   const nextThumbnail = toNullableString(item?.thumbnail);
   const nextSoldQuantity = normalizeMlReferenceQuantity(item?.sold_quantity);
   const nextVisits = normalizeMlReferenceQuantity(item?.visits);
+  const shouldSyncDesiredProductStatus = source === 'publish_reconcile';
 
   const patch: Database['public']['Tables']['anuncios_ml']['Update'] = {};
   if (normalizePrice(current.preco_ml) !== nextPrice) patch.preco_ml = nextPrice;
@@ -131,7 +132,9 @@ export async function reconcileAnuncioMlFromItem(
   if (nextVisits !== null && Number(current.visitas || 0) !== nextVisits) patch.visitas = nextVisits;
 
   if (Object.keys(patch).length === 0) {
-    const produtoSyncError = await syncProdutoMlStatus(client, current.produto_id, nextStatus);
+    const produtoSyncError = shouldSyncDesiredProductStatus
+      ? await syncProdutoMlStatus(client, current.produto_id, nextStatus)
+      : null;
     if (produtoSyncError) {
       return { ok: false, mlItemId, error: produtoSyncError };
     }
@@ -157,7 +160,9 @@ export async function reconcileAnuncioMlFromItem(
     return { ok: false, mlItemId, error: updateError.message };
   }
 
-  const produtoSyncError = await syncProdutoMlStatus(client, current.produto_id, nextStatus);
+  const produtoSyncError = shouldSyncDesiredProductStatus
+    ? await syncProdutoMlStatus(client, current.produto_id, nextStatus)
+    : null;
   if (produtoSyncError) {
     return { ok: false, mlItemId, error: produtoSyncError };
   }

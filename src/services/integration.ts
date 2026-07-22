@@ -30,6 +30,7 @@ export interface MLRequestResult<T> {
   status: number | null;
   data: T | null;
   error: MLRequestError | null;
+  headers?: Record<string, string>;
 }
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -770,7 +771,13 @@ export async function fetchMLResult<T>(
 
     if (res.ok) {
       const data = await res.json().catch(() => null);
-      return { ok: true, status: res.status, data, error: null };
+      return {
+        ok: true,
+        status: res.status,
+        data,
+        error: null,
+        headers: Object.fromEntries(res.headers.entries()),
+      };
     }
 
     const body = await res.text().catch(() => "");

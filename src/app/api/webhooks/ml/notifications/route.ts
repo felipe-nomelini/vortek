@@ -9,6 +9,7 @@ import { resolveOrderSaleDate } from '@/lib/ml/order-sale-date';
 import { mapearStatusShipment } from '@/lib/ml/shipment-status';
 import { alertMlLabelReleased, alertNewQuestion, alertNewSale } from '@/services/whatsapp-alerts';
 import { pushEvents } from '@/services/push-notifications';
+import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
 
 const WEBHOOK_STUB_PENDING_TAGS = ['pedido_sem_itens', 'webhook_hydration_pending', 'snapshot_origem_webhook_stub'];
 
@@ -497,6 +498,7 @@ export async function POST(request: Request) {
           error: itemResult.error?.message || 'Falha ao consultar item do ML após webhook',
         }));
       } else {
+        const mlItemId = String(itemResult.data.id || '').trim();
         const reconcileResult = await reconcileAnuncioMlFromItem(
           serviceClient,
           itemResult.data,
@@ -511,6 +513,59 @@ export async function POST(request: Request) {
             ml_item_id: reconcileResult.mlItemId,
             error: reconcileResult.error,
           }));
+        }
+
+        const observedStatus = String(itemResult.data.status || '').trim().toLowerCase();
+        if (mlItemId && ['active', 'paused'].includes(observedStatus)) {
+          try {
+            const { data: linkedListing, error: linkedListingError } = await serviceClient
+              .from('anuncios_ml')
+              .select('produto_id')
+              .eq('ml_item_id', mlItemId)
+              .maybeSingle();
+            if (linkedListingError) throw new Error(linkedListingError.message);
+
+            let produtoId = String(linkedListing?.produto_id || '').trim();
+            if (!produtoId) {
+              const { data: linkedProduct, error: linkedProductError } = await serviceClient
+                .from('produtos')
+                .select('id')
+                .eq('ml_item_id', mlItemId)
+                .maybeSingle();
+              if (linkedProductError) throw new Error(linkedProductError.message);
+              produtoId = String(linkedProduct?.id || '').trim();
+            }
+
+            if (produtoId) {
+              const stockSync = await enfileirarSyncMlEstoqueInterno(produtoId, {
+                mlItemId,
+                availableQuantity: itemResult.data.available_quantity === null
+                  || itemResult.data.available_quantity === undefined
+                  ? null
+                  : Number(itemResult.data.available_quantity),
+                status: observedStatus,
+              });
+              console.log(JSON.stringify({
+                event: 'ml_items_webhook_authoritative_stock',
+                timestamp_utc: new Date().toISOString(),
+                ml_item_id: mlItemId,
+                produto_id: produtoId,
+                observed_quantity: itemResult.data.available_quantity ?? null,
+                observed_status: observedStatus,
+                enqueued: stockSync.enfileirados,
+                unchanged: stockSync.semAlteracao,
+                processing: stockSync.emProcessamento,
+                manually_blocked: stockSync.bloqueadosManualmente,
+              }));
+            }
+          } catch (error: any) {
+            console.error(JSON.stringify({
+              event: 'ml_items_webhook_authoritative_stock_failed',
+              timestamp_utc: new Date().toISOString(),
+              ml_item_id: mlItemId,
+              error: error?.message || 'Falha ao restaurar estoque autoritativo do Vortek',
+            }));
+          }
         }
       }
     }
