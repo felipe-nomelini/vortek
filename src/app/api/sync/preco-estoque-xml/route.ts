@@ -146,7 +146,13 @@ export async function POST(request: Request) {
     });
     lockOwnerToken = lock.ownerToken;
     if (!lock.acquired) {
-      return NextResponse.json({ success: false, error: 'Domínio de preço/estoque já está em execução' }, { status: 409 });
+      const message = 'Domínio de preço/estoque já está em execução';
+      return NextResponse.json({
+        success: false,
+        code: 'domain_lock_conflict',
+        error: message,
+        errors: [{ code: 'domain_lock_conflict', message }],
+      }, { status: 409 });
     }
 
     const body = await request.json().catch(() => ({}));

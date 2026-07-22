@@ -186,7 +186,10 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
       isDomainLockConflict = res.status === 409 && errorCode === 'domain_lock_conflict';
     }
 
-    const ok = res.ok && raw?.success !== false && raw?.ok !== false;
+    // Lock contention means another equivalent job owns this domain. It is not
+    // a failed synchronization and must not create critical-error alerts.
+    const skippedDueToDomainLock = isDomainLockConflict;
+    const ok = skippedDueToDomainLock || (res.ok && raw?.success !== false && raw?.ok !== false);
     const authFailure = res.status === 401 && (raw?.failure_reason === 'auth_fatal' || raw?.auth_state === 'reauth_required');
     const statusFinal: 'completo' | 'erro' | 'failed_auth' = ok ? 'completo' : (authFailure ? 'failed_auth' : 'erro');
     const errorCategory = raw?.category || primaryError?.category || null;
@@ -239,7 +242,7 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
       cursor_effective_next: effectiveNextCursor,
       cursor_exhausted: cursorExhausted,
       cursor_source: cursorSource,
-      skipped_due_to_domain_lock: isDomainLockConflict,
+      skipped_due_to_domain_lock: skippedDueToDomainLock,
       ...raw,
     });
 
