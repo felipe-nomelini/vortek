@@ -3,6 +3,7 @@ import { createServiceClient } from '@/lib/supabase';
 import { getMLAuthDiagnostics } from '@/services/integration';
 import { SYNC_TASKS, getIntervalMinutesForTask, getSaoPauloHour } from '@/lib/sync/registry';
 import { DEFAULT_STALE_JOB_THRESHOLD_MINUTES, isJobStale } from '@/lib/sync/stale-jobs';
+import { BUSINESS_TIME_ZONE, formatSaoPauloDateTime } from '@/lib/timezone';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -87,15 +88,21 @@ export async function GET() {
         status: last.status,
         created_at: last.created_at,
         finished_at: last.finished_at,
+        display: {
+          created_at: last.created_at ? formatSaoPauloDateTime(last.created_at) : null,
+          finished_at: last.finished_at ? formatSaoPauloDateTime(last.finished_at) : null,
+        },
       } : null,
       last_error_summary: extractLastErrorSummary(last),
       next_run_estimate: nextRunEstimate,
+      next_run_estimate_display: nextRunEstimate ? formatSaoPauloDateTime(nextRunEstimate) : null,
     };
   }));
 
   return NextResponse.json({
     success: true,
-    timezone: 'America/Sao_Paulo',
+    timezone: BUSINESS_TIME_ZONE,
+    timestamps_timezone: 'UTC',
     hour,
     ml_auth: mlAuth,
     tasks: rows,

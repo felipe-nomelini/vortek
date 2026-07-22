@@ -3,6 +3,24 @@ const SAO_PAULO_OFFSET_MS = SAO_PAULO_OFFSET_MINUTES * 60 * 1000;
 
 export const BUSINESS_TIME_ZONE = 'America/Sao_Paulo';
 
+/** Formata um instante para exibição operacional no horário de Brasília. */
+export function formatSaoPauloDateTime(dateInput: string | Date): string | null {
+  const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
+  if (Number.isNaN(date.getTime())) return null;
+
+  return new Intl.DateTimeFormat('pt-BR', {
+    timeZone: BUSINESS_TIME_ZONE,
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+    timeZoneName: 'short',
+  }).format(date);
+}
+
 function parseDateParts(date: string): { year: number; month: number; day: number } | null {
   const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(date);
   if (!match) return null;

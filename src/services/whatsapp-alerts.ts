@@ -7,6 +7,7 @@ import {
   sendWahaText,
 } from "@/services/waha";
 import { formatCurrency } from "@/lib/format";
+import { formatSaoPauloDateTime } from "@/lib/timezone";
 import {
   formatMlReleaseWindow,
   getMlReleaseComparableDate,
@@ -681,7 +682,7 @@ export async function alertCriticalJobs() {
         `Job: ${latest.job.tipo}`,
         `Status: ${latest.job.status}`,
         `Ocorrências recentes: ${occurrences.length}`,
-        `Finalizado: ${latest.job.finished_at || "não informado"}`,
+        `Finalizado: ${latest.job.finished_at ? formatSaoPauloDateTime(latest.job.finished_at) || "não informado" : "não informado"}`,
         rootLog?.event_type
           ? `Evento: ${rootLog.event_type}`
           : latest.lastLog?.event_type
