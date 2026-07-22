@@ -70,7 +70,6 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'produtos:dslite_preco',
     lockTtlSeconds: 15 * 60,
     kind: 'dslite',
-    schedule: { businessMinutes: 2, offHoursMinutes: 2 },
     usesCursor: true,
     defaultBody: {
       pageSize: 100,

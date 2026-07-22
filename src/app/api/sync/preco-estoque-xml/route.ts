@@ -11,6 +11,8 @@ export const maxDuration = 300;
 const CONFIG_KEY = 'dslite_catalog_xml_urls';
 const OFFER_PAGE_SIZE = 1000;
 const UPSERT_CHUNK_SIZE = 300;
+const XML_FETCH_MAX_ATTEMPTS = 3;
+const XML_FETCH_RETRY_DELAYS_MS = [1_000, 3_000];
 
 type XmlFeedConfig = Record<string, string>;
 type XmlCatalogItem = { produtoId: string; custo: number; estoque: number };
@@ -66,18 +68,46 @@ function validateFeedUrl(value: string): string | null {
   }
 }
 
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isRetryableXmlStatus(status: number): boolean {
+  return status === 408 || status === 425 || status === 429 || status >= 500;
+}
+
 async function downloadFeed(url: string): Promise<XmlCatalogItem[]> {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 120_000);
-  try {
-    const response = await fetch(url, { signal: controller.signal, cache: 'no-store' });
-    if (!response.ok) throw new Error(`DSLite XML respondeu HTTP ${response.status}`);
-    const size = Number(response.headers.get('content-length') || '0');
-    if (size > 80 * 1024 * 1024) throw new Error('XML DSLite excede limite de 80 MB');
-    return parseXmlCatalog(await response.text());
-  } finally {
-    clearTimeout(timeout);
+  let lastError: Error | null = null;
+
+  for (let attempt = 1; attempt <= XML_FETCH_MAX_ATTEMPTS; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 20_000);
+    try {
+      const response = await fetch(url, { signal: controller.signal, cache: 'no-store' });
+      if (!response.ok) {
+        const error = new Error(`DSLite XML respondeu HTTP ${response.status}`);
+        if (!isRetryableXmlStatus(response.status)) {
+          (error as Error & { retryable?: boolean }).retryable = false;
+          throw error;
+        }
+        if (attempt === XML_FETCH_MAX_ATTEMPTS) throw error;
+        lastError = error;
+      } else {
+        const size = Number(response.headers.get('content-length') || '0');
+        if (size > 80 * 1024 * 1024) throw new Error('XML DSLite excede limite de 80 MB');
+        return parseXmlCatalog(await response.text());
+      }
+    } catch (error: any) {
+      lastError = error instanceof Error ? error : new Error('Falha ao baixar XML DSLite');
+      if (error?.retryable === false || attempt === XML_FETCH_MAX_ATTEMPTS) break;
+    } finally {
+      clearTimeout(timeout);
+    }
+
+    await sleep(XML_FETCH_RETRY_DELAYS_MS[attempt - 1] || 3_000);
   }
+
+  throw new Error(`Falha ao baixar XML DSLite após ${XML_FETCH_MAX_ATTEMPTS} tentativas: ${lastError?.message || 'sem detalhe'}`);
 }
 
 function chunk<T>(items: T[], size: number): T[][] {
