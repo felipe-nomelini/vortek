@@ -158,7 +158,12 @@ export async function getCategoryAttributes(
 ): Promise<MLAttribute[] | null> {
   const data = await fetchML<any>(`/categories/${categoryId}/attributes`);
   if (!data) return null;
-  return data.filter((a: any) => !a.tags?.hidden);
+  // ML keeps EMPTY_GTIN_REASON hidden in the technical sheet, but it must be
+  // available to the publication flow when a conditional GTIN is absent.
+  return data.filter(
+    (attribute: any) =>
+      !attribute.tags?.hidden || attribute.id === "EMPTY_GTIN_REASON",
+  );
 }
 
 export async function createListing(
