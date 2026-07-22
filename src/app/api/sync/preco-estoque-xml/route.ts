@@ -94,6 +94,7 @@ async function loadSupplierOffers(client: ReturnType<typeof createServiceClient>
       .select('id,produto_id,dslite_produto_id,sku_oferta,nome,custo,estoque,product:produtos!produto_fornecedor_ofertas_produto_id_fkey(ativo)')
       .eq('dslite_fornecedor_id', supplierId)
       .eq('ativo', true)
+      .order('id', { ascending: true })
       .range(from, from + OFFER_PAGE_SIZE - 1);
     if (error) throw new Error(`Falha ao carregar ofertas do fornecedor ${supplierId}: ${error.message}`);
     rows.push(...(data || []));
