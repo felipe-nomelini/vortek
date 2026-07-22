@@ -42,5 +42,14 @@ export function getSkuLookupVariants(input: unknown): string[] {
   const withoutPrefix = stripKnownSkuPrefix(normalized);
   if (withoutPrefix) variants.add(withoutPrefix);
 
+  // Pedidos históricos do Mercado Livre podem trazer SKU legado como
+  // ARCHIVE-MLB...-VTK001244. O catálogo local mantém o SKU VTK canônico.
+  if (normalized.startsWith('ARCHIVE-')) {
+    const archivedSuffix = normalized.split('-').at(-1) || '';
+    if (/^VTK[A-Z0-9]+$/.test(archivedSuffix)) {
+      variants.add(archivedSuffix);
+    }
+  }
+
   return Array.from(variants);
 }
