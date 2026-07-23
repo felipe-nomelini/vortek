@@ -32,7 +32,12 @@ export function verifyPublicShippingLabelToken(
   return timingSafeEqual(tokenBuffer, expectedBuffer);
 }
 
-export function buildPublicShippingLabelUrl(baseUrl: string, pedidoId: string): string {
+export function buildPublicShippingLabelUrl(
+  baseUrl: string,
+  pedidoId: string,
+  format: 'pdf' | 'zpl2' = 'pdf',
+): string {
   const token = createPublicShippingLabelToken(pedidoId);
-  return `${baseUrl}/api/public/etiquetas/${pedidoId}?token=${encodeURIComponent(token)}`;
+  const formatParam = format === 'zpl2' ? '&format=zpl2' : '';
+  return `${baseUrl}/api/public/etiquetas/${pedidoId}?token=${encodeURIComponent(token)}${formatParam}`;
 }

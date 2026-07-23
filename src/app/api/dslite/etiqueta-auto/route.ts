@@ -14,7 +14,10 @@ import {
   getDslitePlaceholderLabelConfig,
   loadDslitePlaceholderLabel,
 } from '@/lib/dslite/placeholder-label';
-import { storeShippingLabelForPedido } from '@/lib/shipping-label-storage';
+import {
+  storeShippingLabelForPedido,
+  storeThermalShippingLabelForPedido,
+} from '@/lib/shipping-label-storage';
 import { buildPublicShippingLabelUrl } from '@/lib/public-shipping-label-links';
 import { HAYAMAX_FORNECEDOR_ID, isBkr1Supplier, usesThermalMlLabelSupplier } from '@/lib/supplier-balance';
 import { reservarEnvioInterno, validarEstoqueEnvioInterno } from '@/lib/estoque-interno';
@@ -1063,6 +1066,17 @@ export async function POST(req: Request) {
           'business',
         );
       }
+      const thermalLabelResult = await baixarEtiquetaML(shipmentId, { responseType: 'zpl2' });
+      if (!thermalLabelResult.file) {
+        return stepError(
+          steps,
+          'download_label_ml',
+          thermalLabelResult.error || 'Etiqueta térmica ainda indisponível no ML.',
+          { reason: thermalLabelResult.reason || null, statusCode: thermalLabelResult.statusCode || null },
+          422,
+          'business',
+        );
+      }
       const stored = await storeShippingLabelForPedido({
         client,
         pedidoId: String(pedidoId),
@@ -1075,6 +1089,18 @@ export async function POST(req: Request) {
       if (!stored.ok) {
         return stepError(steps, 'download_label_ml', stored.error || 'Falha ao salvar etiqueta no sistema');
       }
+      const storedThermal = await storeThermalShippingLabelForPedido({
+        client,
+        pedidoId: String(pedidoId),
+        pedidoNumero: (pedido as any).numero,
+        mlOrderId: mlOrderId || null,
+        shipmentId,
+        zpl: thermalLabelResult.file,
+        source: 'pedido_envio_proprio',
+      });
+      if (!storedThermal.ok) {
+        return stepError(steps, 'download_label_ml', storedThermal.error || 'Falha ao salvar etiqueta térmica no sistema');
+      }
       try {
         await reservarEnvioInterno(String(pedidoId));
       } catch (error: any) {
@@ -1086,7 +1112,7 @@ export async function POST(req: Request) {
         .eq('id', pedidoId);
       updateStep(steps, 'download_label_ml', {
         status: 'success',
-        detail: `${etiquetaResult.pdf.length.toLocaleString('pt-BR')} bytes (PDF salvo no sistema)`,
+        detail: `PDF ${etiquetaResult.pdf.length.toLocaleString('pt-BR')} bytes + ZPL2 ${thermalLabelResult.file.length.toLocaleString('pt-BR')} bytes salvos`,
       });
       updateStep(steps, 'set_carrier_dslite', {
         status: 'skipped',
@@ -1102,7 +1128,10 @@ export async function POST(req: Request) {
         nextAction: 'download_label',
         etiquetaBaixada: true,
         etiquetaBytes: etiquetaResult.pdf.length,
-        labelDownloadUrl: buildPublicShippingLabelUrl(resolvePublicAppBaseUrl(), String(pedidoId)),
+        thermalLabelBytes: thermalLabelResult.file.length,
+        labelDownloadUrl: buildPublicShippingLabelUrl(resolvePublicAppBaseUrl(), String(pedidoId), 'zpl2'),
+        thermalLabelDownloadUrl: buildPublicShippingLabelUrl(resolvePublicAppBaseUrl(), String(pedidoId), 'zpl2'),
+        pdfLabelDownloadUrl: buildPublicShippingLabelUrl(resolvePublicAppBaseUrl(), String(pedidoId)),
       });
     }
 

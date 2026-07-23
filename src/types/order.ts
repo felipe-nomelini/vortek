@@ -87,6 +87,7 @@ export interface Order {
   ml_fiscal_release_source?: string | null;
   ml_fiscal_release_checked_at?: string | null;
   ml_label_storage_path?: string | null;
+  ml_thermal_label_storage_path?: string | null;
   nfe_chave?: string | null;
   nfe_status?: string | null;
   billing_endereco?: Record<string, unknown> | null;

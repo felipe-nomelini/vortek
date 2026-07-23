@@ -530,6 +530,9 @@ export type Database = {
           ml_label_downloaded_at: string | null
           ml_label_storage_path: string | null
           ml_label_url: string | null
+          ml_thermal_label_bytes: number | null
+          ml_thermal_label_downloaded_at: string | null
+          ml_thermal_label_storage_path: string | null
           ml_shipment_id: string | null
           nfe_chave: string | null
           nfe_cfop: string | null
@@ -593,6 +596,9 @@ export type Database = {
           ml_label_downloaded_at?: string | null
           ml_label_storage_path?: string | null
           ml_label_url?: string | null
+          ml_thermal_label_bytes?: number | null
+          ml_thermal_label_downloaded_at?: string | null
+          ml_thermal_label_storage_path?: string | null
           ml_shipment_id?: string | null
           nfe_chave?: string | null
           nfe_cfop?: string | null
@@ -656,6 +662,9 @@ export type Database = {
           ml_label_downloaded_at?: string | null
           ml_label_storage_path?: string | null
           ml_label_url?: string | null
+          ml_thermal_label_bytes?: number | null
+          ml_thermal_label_downloaded_at?: string | null
+          ml_thermal_label_storage_path?: string | null
           ml_shipment_id?: string | null
           nfe_chave?: string | null
           nfe_cfop?: string | null

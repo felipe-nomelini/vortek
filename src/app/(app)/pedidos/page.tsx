@@ -270,6 +270,7 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     ml_fiscal_release_source: item.ml_fiscal_release_source,
     ml_fiscal_release_checked_at: item.ml_fiscal_release_checked_at,
     ml_label_storage_path: item.ml_label_storage_path,
+    ml_thermal_label_storage_path: item.ml_thermal_label_storage_path,
     nfe_chave: item.nfe_chave,
     nfe_status: item.nfe_status,
     pedido_itens: (item as any).pedido_itens || [],
@@ -382,6 +383,7 @@ export default function PedidosPage() {
 
   const [etiquetaProgressOpen, setEtiquetaProgressOpen] = useState(false);
   const [etiquetaDownloadUrl, setEtiquetaDownloadUrl] = useState<string | null>(null);
+  const [etiquetaPdfDownloadUrl, setEtiquetaPdfDownloadUrl] = useState<string | null>(null);
   const [etiquetaDuplicateDecision, setEtiquetaDuplicateDecision] = useState<EtiquetaDuplicateDecision | null>(null);
   const [etiquetaSteps, setEtiquetaSteps] = useState<ProgressStep[]>([
     { label: 'Verificando vínculo fiscal no Mercado Livre', status: 'pending', detail: 'Fonte fiscal única: Brasil NFe. ML é usado apenas para vínculo documental e etiqueta.' },
@@ -1040,20 +1042,22 @@ export default function PedidosPage() {
     }
   };
 
-  const baixarEtiquetaSalva = async (order: Order) => {
+  const baixarEtiquetaSalva = async (order: Order, format: 'pdf' | 'zpl2' = 'pdf') => {
     try {
-      const res = await fetch(`/api/pedidos/${order.dbId}/etiqueta`);
+      const formatParam = format === 'zpl2' ? '?format=zpl2' : '';
+      const res = await fetch(`/api/pedidos/${order.dbId}/etiqueta${formatParam}`);
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data?.url) throw new Error(data?.error || 'Etiqueta não disponível');
       window.open(String(data.url), '_blank', 'noopener,noreferrer');
     } catch (err: any) {
-      messageApi.error(err?.message || 'Não foi possível baixar etiqueta');
+      messageApi.error(err?.message || `Não foi possível baixar etiqueta ${format === 'zpl2' ? 'térmica' : 'PDF'}`);
     }
   };
 
   const processarEnvioProprio = async (order: Order) => {
     setEtiquetaDuplicateDecision(null);
     setEtiquetaDownloadUrl(null);
+    setEtiquetaPdfDownloadUrl(null);
     setEtiquetaSteps([
       { label: 'Verificando vínculo fiscal no Mercado Livre', status: 'loading', detail: 'Atualizando dados fiscais do pedido' },
       { label: 'Garantindo NF na Brasil NFe', status: 'pending' },
@@ -1078,10 +1082,12 @@ export default function PedidosPage() {
       }));
       if (mapped.length) setEtiquetaSteps(mapped);
       if (!res.ok || !data?.success) throw new Error(data?.error || 'Falha ao processar envio próprio');
-      const url = String(data?.data?.labelDownloadUrl || '');
-      if (!url) throw new Error('Etiqueta foi baixada, mas link de download não foi gerado');
-      setEtiquetaDownloadUrl(url);
-      messageApi.success('Etiqueta pronta para download.');
+      const thermalUrl = String(data?.data?.thermalLabelDownloadUrl || data?.data?.labelDownloadUrl || '');
+      const pdfUrl = String(data?.data?.pdfLabelDownloadUrl || '');
+      if (!thermalUrl) throw new Error('Etiqueta foi baixada, mas link térmico não foi gerado');
+      setEtiquetaDownloadUrl(thermalUrl);
+      setEtiquetaPdfDownloadUrl(pdfUrl || null);
+      messageApi.success('Etiquetas térmica e PDF prontas para download.');
       fetchData();
     } catch (err: any) {
       setEtiquetaSteps((prev) => {
@@ -1286,7 +1292,8 @@ export default function PedidosPage() {
           {canCreateDslite && <Button size="small" type="primary" onClick={() => criarPedidoDslite(order)}>Criar pedido DSLite</Button>}
           {canProcessDirectShipping && <Button size="small" type="primary" onClick={() => processarEnvioProprio(order)}>{order.internal_stock_available ? 'Processar envio interno' : 'Processar envio próprio'}</Button>}
           {canCompleteLabel && <Button size="small" onClick={() => enviarEtiquetaAutomatica(order)}>Completar etiqueta</Button>}
-          {order.ml_label_storage_path && <Button size="small" onClick={() => baixarEtiquetaSalva(order)}>Baixar etiqueta</Button>}
+          {order.ml_thermal_label_storage_path && <Button size="small" type="primary" onClick={() => baixarEtiquetaSalva(order, 'zpl2')}>Baixar térmica</Button>}
+          {order.ml_label_storage_path && <Button size="small" onClick={() => baixarEtiquetaSalva(order, 'pdf')}>Baixar PDF</Button>}
           {canConfirmPayment && <Button size="small" onClick={() => abrirConfirmacaoPixPedido(order)}>Confirmar PIX</Button>}
           {order.notaFiscal?.emitida && <Button size="small" onClick={() => handleOpenNotaFiscalPdf(order)}>Abrir DANFE</Button>}
         </Space>
@@ -1573,8 +1580,11 @@ export default function PedidosPage() {
         if (!hasDsliteId && record.ml_shipment_id && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
           items.push({ key: 'direct_shipping', label: record.internal_stock_available ? 'Processar envio interno' : 'Processar envio próprio (sem DSLite)', icon: <UploadOutlined /> });
         }
+        if (record.ml_thermal_label_storage_path) {
+          items.push({ key: 'download_thermal_label', label: 'Baixar etiqueta térmica', icon: <UploadOutlined /> });
+        }
         if (record.ml_label_storage_path) {
-          items.push({ key: 'download_label', label: 'Baixar etiqueta', icon: <UploadOutlined /> });
+          items.push({ key: 'download_label', label: 'Baixar etiqueta PDF', icon: <UploadOutlined /> });
         }
         if (hasDsliteId && nextAction === 'complete_dslite_label') {
           items.push({
@@ -1621,7 +1631,8 @@ export default function PedidosPage() {
                 }
                 if (key === 'dslite') criarPedidoDslite(record, 'brasilnfe');
                 if (key === 'direct_shipping') processarEnvioProprio(record);
-                if (key === 'download_label') baixarEtiquetaSalva(record);
+                if (key === 'download_thermal_label') baixarEtiquetaSalva(record, 'zpl2');
+                if (key === 'download_label') baixarEtiquetaSalva(record, 'pdf');
                 if (key === 'etiqueta') enviarEtiquetaAutomatica(record);
                 if (key === 'confirm_supplier_payment') abrirConfirmacaoPixPedido(record);
                 if (key === 'send_whatsapp_label') openWhatsappLabelModal(record);
@@ -1963,16 +1974,23 @@ export default function PedidosPage() {
         onClose={() => {
           setEtiquetaProgressOpen(false);
           setEtiquetaDuplicateDecision(null);
+          setEtiquetaDownloadUrl(null);
+          setEtiquetaPdfDownloadUrl(null);
           fetchData();
         }}
         showCloseButton={etiquetaSteps.some(s => s.status === 'error' || s.status === 'success')}
         customActions={etiquetaDownloadUrl ? [
           {
             key: 'download_direct_label',
-            label: 'Baixar etiqueta',
+            label: 'Baixar etiqueta térmica',
             primary: true,
             onClick: () => window.open(etiquetaDownloadUrl, '_blank', 'noopener,noreferrer'),
           },
+          ...(etiquetaPdfDownloadUrl ? [{
+            key: 'download_direct_label_pdf',
+            label: 'Baixar PDF',
+            onClick: () => window.open(etiquetaPdfDownloadUrl, '_blank', 'noopener,noreferrer'),
+          }] : []),
         ] : etiquetaDuplicateDecision ? [
           {
             key: 'open_nf_found',
