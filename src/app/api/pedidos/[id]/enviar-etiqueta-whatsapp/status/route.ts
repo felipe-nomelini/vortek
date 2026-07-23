@@ -1,7 +1,11 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
+import { runWhatsappLabelJob } from '@/services/whatsapp-label-job';
 
-export async function GET(req: Request) {
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+export async function GET(req: Request, { params }: { params: { id: string } }) {
   const { searchParams } = new URL(req.url);
   const jobId = searchParams.get('jobId');
   if (!jobId) return NextResponse.json({ error: 'jobId é obrigatório' }, { status: 400 });
@@ -26,6 +30,28 @@ export async function GET(req: Request) {
   const latest = snapshots.length ? snapshots[snapshots.length - 1] : null;
 
   const dbStatus = String(data.status || '');
+  if (dbStatus === 'pendente') {
+    const requestEntry = Array.isArray(log)
+      ? log.find((entry: any) => entry?.event === 'request_received')
+      : null;
+    const payload = requestEntry?.payload;
+    if (
+      payload?.pedidoId === params.id
+      && payload?.phoneNumber
+      && payload?.appBaseUrl
+    ) {
+      void runWhatsappLabelJob({
+        jobId: data.id,
+        pedidoId: payload.pedidoId,
+        phoneNumber: payload.phoneNumber,
+        usePlaceholderLabel: Boolean(payload.usePlaceholderLabel),
+        appBaseUrl: payload.appBaseUrl,
+      }).catch((err: any) => {
+        console.error('[whatsapp-label-job] Falha ao retomar job pendente:', err?.message || err);
+      });
+    }
+  }
+
   const state = latest?.state
     || (dbStatus === 'completo' ? 'success'
       : dbStatus === 'completo_parcial' ? 'warning'

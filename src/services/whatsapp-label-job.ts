@@ -254,7 +254,24 @@ export async function runWhatsappLabelJob(input: {
 }) {
   const client = createServiceClient();
   const steps = initWhatsappLabelJobSteps();
-  const logEntries: any[] = [];
+  const { data: claimedJob, error: claimError } = await client
+    .from('jobs')
+    .update({ status: 'rodando' })
+    .eq('id', input.jobId)
+    .eq('tipo', 'whatsapp_label_send')
+    .eq('status', 'pendente')
+    .select('id,log')
+    .maybeSingle();
+
+  if (claimError) throw new Error(`Falha ao assumir job de WhatsApp: ${claimError.message}`);
+  if (!claimedJob?.id) return;
+
+  const existingLog = Array.isArray(claimedJob.log)
+    ? claimedJob.log
+    : typeof claimedJob.log === 'string'
+      ? JSON.parse(claimedJob.log || '[]')
+      : [];
+  const logEntries: any[] = Array.isArray(existingLog) ? existingLog : [];
   let state: JobState = 'running';
   let result: any = null;
   let pedidoIdForError: string | null = input.pedidoId;
@@ -265,14 +282,18 @@ export async function runWhatsappLabelJob(input: {
     const progress = Math.round((done / steps.length) * 100);
     logEntries.push({ event: 'progress_snapshot', at: now(), state, steps, result });
 
-    await client.from('jobs').update({
-      status: state === 'success' ? 'completo' : state === 'warning' ? 'completo_parcial' : state === 'error' ? 'erro' : 'rodando',
-      progresso: progress,
-      total: steps.length,
-      processados: done,
-      log: JSON.parse(JSON.stringify(logEntries)),
-      finished_at: state === 'running' ? null : now(),
-    }).eq('id', input.jobId);
+    const { error } = await client
+      .from('jobs')
+      .update({
+        status: state === 'success' ? 'completo' : state === 'warning' ? 'completo_parcial' : state === 'error' ? 'erro' : 'rodando',
+        progresso: progress,
+        total: steps.length,
+        processados: done,
+        log: JSON.parse(JSON.stringify(logEntries)),
+        finished_at: state === 'running' ? null : now(),
+      })
+      .eq('id', input.jobId);
+    if (error) throw new Error(`Falha ao atualizar job de WhatsApp: ${error.message}`);
   };
 
   const setStep = async (key: string, status: StepStatus, detail?: string, error?: string) => {
@@ -462,25 +483,12 @@ export async function runWhatsappLabelJob(input: {
       await setStep('send_whatsapp', 'loading', 'WAHA Core não envia arquivo; enviando mensagem com link');
       wahaResponse = await sendWahaText({ chatId, text: caption });
     }
-    await setStep('send_whatsapp', 'success', whatsappSendMode === 'file' ? 'Mensagem com PDF enviada' : 'Mensagem com link enviada');
-
-    if (!input.usePlaceholderLabel) {
-      await client
-        .from('pedidos')
-        .update({
-          dslite_etiqueta_enviada: true,
-          dslite_label_source: DSLITE_MERCADO_LIVRE_LABEL_SOURCE,
-          ml_label_storage_path: labelStoragePath || undefined,
-          ml_label_bytes: labelPdf.length,
-        } as any)
-        .eq('id', pedidoId);
-    }
-
     await registrarEventoNfAuditoria({
       pedidoId,
       mlOrderId,
       evento: 'whatsapp_label_send_success',
       respostaMl: {
+        job_id: input.jobId,
         dsid: dsid || null,
         ml_shipment_id: shipmentId,
         uploaded_invoice: uploadedInvoice,
@@ -496,6 +504,21 @@ export async function runWhatsappLabelJob(input: {
       },
       statusResultante: 'success',
     });
+
+    await setStep('send_whatsapp', 'success', whatsappSendMode === 'file' ? 'Mensagem com PDF enviada' : 'Mensagem com link enviada');
+
+    if (!input.usePlaceholderLabel) {
+      const { error: pedidoUpdateError } = await client
+        .from('pedidos')
+        .update({
+          dslite_etiqueta_enviada: true,
+          dslite_label_source: DSLITE_MERCADO_LIVRE_LABEL_SOURCE,
+          ml_label_storage_path: labelStoragePath || undefined,
+          ml_label_bytes: labelPdf.length,
+        } as any)
+        .eq('id', pedidoId);
+      if (pedidoUpdateError) throw new Error(`Mensagem enviada, mas falhou ao atualizar pedido: ${pedidoUpdateError.message}`);
+    }
 
     result = {
       dsid: dsid || null,
@@ -522,9 +545,11 @@ export async function runWhatsappLabelJob(input: {
       pedidoId: pedidoIdForError || undefined,
       mlOrderId: mlOrderIdForError,
       evento: 'whatsapp_label_send_failed',
-      respostaMl: { error: message, steps },
+      respostaMl: { job_id: input.jobId, error: message, steps },
       statusResultante: 'failed',
     }).catch(() => undefined);
-    await syncJob();
+    await syncJob().catch((syncError: any) => {
+      console.error('[whatsapp-label-job] Falha ao registrar encerramento:', syncError?.message || syncError);
+    });
   }
 }
