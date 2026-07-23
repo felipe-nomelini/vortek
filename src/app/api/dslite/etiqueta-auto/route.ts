@@ -1129,9 +1129,10 @@ export async function POST(req: Request) {
         etiquetaBaixada: true,
         etiquetaBytes: etiquetaResult.pdf.length,
         thermalLabelBytes: thermalLabelResult.file.length,
-        labelDownloadUrl: buildPublicShippingLabelUrl(resolvePublicAppBaseUrl(), String(pedidoId), 'zpl2'),
-        thermalLabelDownloadUrl: buildPublicShippingLabelUrl(resolvePublicAppBaseUrl(), String(pedidoId), 'zpl2'),
-        pdfLabelDownloadUrl: buildPublicShippingLabelUrl(resolvePublicAppBaseUrl(), String(pedidoId)),
+        labelDownloadUrl: buildPublicShippingLabelUrl(resolvePublicAppBaseUrl(), String(pedidoId), 'thermal_pdf'),
+        thermalLabelDownloadUrl: buildPublicShippingLabelUrl(resolvePublicAppBaseUrl(), String(pedidoId), 'thermal_pdf'),
+        pdfLabelDownloadUrl: buildPublicShippingLabelUrl(resolvePublicAppBaseUrl(), String(pedidoId), 'thermal_pdf'),
+        zplLabelDownloadUrl: buildPublicShippingLabelUrl(resolvePublicAppBaseUrl(), String(pedidoId), 'zpl2'),
       });
     }
 

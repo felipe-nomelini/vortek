@@ -35,9 +35,9 @@ export function verifyPublicShippingLabelToken(
 export function buildPublicShippingLabelUrl(
   baseUrl: string,
   pedidoId: string,
-  format: 'pdf' | 'zpl2' = 'pdf',
+  format: 'pdf' | 'zpl2' | 'thermal_pdf' = 'pdf',
 ): string {
   const token = createPublicShippingLabelToken(pedidoId);
-  const formatParam = format === 'zpl2' ? '&format=zpl2' : '';
+  const formatParam = format === 'pdf' ? '' : `&format=${format}`;
   return `${baseUrl}/api/public/etiquetas/${pedidoId}?token=${encodeURIComponent(token)}${formatParam}`;
 }
