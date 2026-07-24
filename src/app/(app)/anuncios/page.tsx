@@ -5,7 +5,7 @@ import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col
 import ResizableTable from '@/components/ResizableTable';
 import QualidadeModal from '@/components/QualidadeModal';
 import type { MenuProps, TableProps } from 'antd';
-import { SearchOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
+import { SearchOutlined, EllipsisOutlined, LoadingOutlined, FilePdfOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import { formatCurrency } from '@/lib/format';
 import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
@@ -96,6 +96,7 @@ export default function AnunciosPage() {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [updatingActionItemId, setUpdatingActionItemId] = useState<string | null>(null);
   const [bulkUpdatingStatus, setBulkUpdatingStatus] = useState<ListingStatus | null>(null);
+  const [exportingPdf, setExportingPdf] = useState(false);
   const statusPollingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [modalQualidade, setModalQualidade] = useState<{ open: boolean; score: number; itens: any[]; dica: string; titulo: string }>({ open: false, score: 0, itens: [], dica: '', titulo: '' });
   const [priceModal, setPriceModal] = useState<{ open: boolean; record: Anuncio | null; details: PricingDetails | null }>({ open: false, record: null, details: null });
@@ -433,6 +434,38 @@ export default function AnunciosPage() {
     }
   }, [applyLocalStatusChanges, fetchData, scheduleStatusPolling, selectedActivatable, selectedPausable]);
 
+  const handleExportPdf = useCallback(async () => {
+    setExportingPdf(true);
+    try {
+      const params = buildParams();
+      params.delete('page');
+      const response = await fetch(`/api/anuncios/exportar-pdf?${params.toString()}`, {
+        cache: 'no-store',
+      });
+      if (!response.ok) {
+        const payload = await response.json().catch(() => ({}));
+        throw new Error(payload?.erro || 'Falha ao gerar PDF dos anúncios.');
+      }
+
+      const blob = await response.blob();
+      const contentDisposition = response.headers.get('content-disposition') || '';
+      const fileName = contentDisposition.match(/filename="([^"]+)"/i)?.[1] || 'anuncios-mercado-livre.pdf';
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = fileName;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      URL.revokeObjectURL(url);
+      message.success('PDF dos anúncios exportado.');
+    } catch (error: any) {
+      message.error(error?.message || 'Falha ao exportar PDF dos anúncios.');
+    } finally {
+      setExportingPdf(false);
+    }
+  }, [buildParams]);
+
   const columns: TableProps<Anuncio>['columns'] = [
     {
       title: 'SKU', dataIndex: 'sku', key: 'sku', width: 110,
@@ -668,6 +701,13 @@ export default function AnunciosPage() {
           </Col>
           <Col>
             <Space>
+              <Button
+                icon={<FilePdfOutlined />}
+                onClick={() => void handleExportPdf()}
+                loading={exportingPdf}
+              >
+                Exportar PDF
+              </Button>
               <Button
                 onClick={() => void handleBulkToggleStatus('ativo')}
                 disabled={selectedActivatable.length === 0 || Boolean(updatingActionItemId) || bulkUpdatingStatus !== null}
