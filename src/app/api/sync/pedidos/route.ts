@@ -14,7 +14,7 @@ import { resolveOrderSaleDate, type SaleDateSource } from '@/lib/ml/order-sale-d
 import { mapearStatusShipment } from '@/lib/ml/shipment-status';
 import { getSkuLookupVariants } from '@/lib/sku';
 import { alertClaimOpened, alertMlLabelReleased, alertNewSale } from '@/services/whatsapp-alerts';
-import { registrarDevolucaoInterna } from '@/lib/estoque-interno';
+import { isEnderecoEstoqueInternoMl, registrarDevolucaoInterna } from '@/lib/estoque-interno';
 
 export const maxDuration = 300;
 
@@ -516,10 +516,16 @@ async function buscarClaims(orderId: string | number): Promise<{
         const enviosRetorno = Array.isArray(retorno?.shipments) ? retorno.shipments : [];
         // Só há estoque interno quando o ML envia para o endereço do seller.
         // Centros logísticos do ML e endereços de fornecedor não representam item recebido pela Vortek.
-        const envioRetorno = enviosRetorno.find((envio: any) => envio?.destination?.name === 'seller_address') || enviosRetorno[0];
+        const envioRetornoInterno = enviosRetorno.find((envio: any) => (
+          envio?.destination?.name === 'seller_address'
+          && isEnderecoEstoqueInternoMl(envio?.destination?.shipping_address)
+        ));
+        const envioRetorno = envioRetornoInterno
+          || enviosRetorno.find((envio: any) => envio?.destination?.name === 'seller_address')
+          || enviosRetorno[0];
         const statusEnvio = String(envioRetorno?.status || '').trim();
         const entregueNoCentroLogistico = statusEnvio === 'delivered' && envioRetorno?.destination?.name === 'warehouse';
-        const destinoEstoqueInterno = envioRetorno?.destination?.name === 'seller_address';
+        const destinoEstoqueInterno = Boolean(envioRetornoInterno);
         devolucao = {
           // `delivered` no retorno pode significar entregue a um centro do ML,
           // e não ao estoque físico da Vortek.
@@ -1397,6 +1403,7 @@ async function processOrder(params: {
         pedidoId,
         motivoDevolucao || 'Outro Motivo',
         devolucaoMl?.status || 'aguardando_confirmacao',
+        true,
       );
     } else {
       const shipmentStatus = String(shipmentDetail?.status || '').toLowerCase();
@@ -1409,6 +1416,9 @@ async function processOrder(params: {
           pedidoId,
           motivoDevolucao || 'Entrega não realizada',
           shipmentSubstatus,
+          isEnderecoEstoqueInternoMl(
+            shipmentDetail?.origin?.shipping_address || shipmentDetail?.sender_address,
+          ),
         );
       }
     }

@@ -9,7 +9,11 @@ import { resolveOrderSaleDate } from '@/lib/ml/order-sale-date';
 import { mapearStatusShipment } from '@/lib/ml/shipment-status';
 import { alertMlLabelReleased, alertNewQuestion, alertNewSale } from '@/services/whatsapp-alerts';
 import { pushEvents } from '@/services/push-notifications';
-import { enfileirarSyncMlEstoqueInterno, registrarDevolucaoInterna } from '@/lib/estoque-interno';
+import {
+  enfileirarSyncMlEstoqueInterno,
+  isEnderecoEstoqueInternoMl,
+  registrarDevolucaoInterna,
+} from '@/lib/estoque-interno';
 
 const WEBHOOK_STUB_PENDING_TAGS = ['pedido_sem_itens', 'webhook_hydration_pending', 'snapshot_origem_webhook_stub'];
 
@@ -617,6 +621,9 @@ export async function POST(request: Request) {
                 String(pedido.id),
                 pedido.situacao === 'dest_ausente' ? 'Destinatário ausente' : 'Entrega não realizada',
                 shipmentSubstatus,
+                isEnderecoEstoqueInternoMl(
+                  shipment?.origin?.shipping_address || shipment?.sender_address,
+                ),
               );
             }
 

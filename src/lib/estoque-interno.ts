@@ -8,6 +8,24 @@ type ItemEstoquePedido = {
   quantidade: number;
 };
 
+const ESTOQUE_INTERNO_RETURN_ADDRESS_ID = '1634853936';
+const ESTOQUE_INTERNO_RETURN_ZIP_CODE = '21011550';
+
+function somenteDigitos(value: unknown): string {
+  return String(value || '').replace(/\D/g, '');
+}
+
+/**
+ * Confirma o endereço físico da Vortek no Rio de Janeiro.
+ * `seller_address` sozinho não basta: fornecedores também usam esse tipo no ML.
+ */
+export function isEnderecoEstoqueInternoMl(address: any): boolean {
+  const addressId = String(address?.address_id || '').trim();
+  const zipCode = somenteDigitos(address?.zip_code);
+  return addressId === ESTOQUE_INTERNO_RETURN_ADDRESS_ID
+    || zipCode === ESTOQUE_INTERNO_RETURN_ZIP_CODE;
+}
+
 async function carregarItensEstoquePedido(pedidoId: string): Promise<ItemEstoquePedido[]> {
   const db = createServiceClient();
   const { data: itens, error } = await db
@@ -257,7 +275,14 @@ export async function reservarEnvioInterno(pedidoId: string) {
 }
 
 /** Toda devolução entra bloqueada; operador libera somente após conferência física. */
-export async function registrarDevolucaoInterna(pedidoId: string, motivo: string, statusDevolucao: string) {
+export async function registrarDevolucaoInterna(
+  pedidoId: string,
+  motivo: string,
+  statusDevolucao: string,
+  destinoEstoqueInterno: boolean,
+) {
+  if (!destinoEstoqueInterno) return;
+
   const itens = await carregarItensEstoquePedido(pedidoId);
   const db = createServiceClient();
 
