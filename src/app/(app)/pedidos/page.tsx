@@ -15,11 +15,17 @@ import type { Database } from '@/types/database';
 import type { Order, OrderStatus } from '@/types/order';
 import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 import { formatMlReleaseWindow, getMlReleaseComparableDate } from '@/lib/ml/release-window-display';
+import { getSkuLookupVariants } from '@/lib/sku';
 
 const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
 const HAYAMAX_FORNECEDOR_ID = '2';
 const BKR1_FORNECEDOR_ID = '108';
+
+function getPedidoItemDisplaySku(sellerSku: string | null): string | null {
+  if (!sellerSku) return null;
+  return getSkuLookupVariants(sellerSku).find((sku) => /^VTK[A-Z0-9]+$/.test(sku)) || sellerSku;
+}
 
 const statusOptions = [
   { value: '', label: 'Todos os status' },
@@ -1193,6 +1199,7 @@ export default function PedidosPage() {
     );
     const canProcessDirectShipping = Boolean(
       !isValidDsliteId(order.dslite_id)
+      && order.internal_stock_available
       && order.ml_shipment_id
       && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(order.situacao.valor),
     );
@@ -1207,7 +1214,11 @@ export default function PedidosPage() {
                 <div key={`${item.ml_item_id || item.seller_sku || item.titulo}-${index}`} style={{ marginBottom: 8 }}>
                   <div>{item.titulo}</div>
                   <Text type="secondary" style={{ fontSize: 12 }}>
-                    SKU: {item.seller_sku ? <Link href={`/produtos?search=${encodeURIComponent(item.seller_sku)}`}>{item.seller_sku}</Link> : '—'} · Qtd: {item.quantidade} · {formatCurrency(item.valor_total_liquido)}
+                    SKU: {getPedidoItemDisplaySku(item.seller_sku) ? (
+                      <Link href={`/produtos?search=${encodeURIComponent(getPedidoItemDisplaySku(item.seller_sku)!)}`}>
+                        {getPedidoItemDisplaySku(item.seller_sku)}
+                      </Link>
+                    ) : '—'} · Qtd: {item.quantidade} · {formatCurrency(item.valor_total_liquido)}
                   </Text>
                 </div>
               )) : (
@@ -1589,8 +1600,8 @@ export default function PedidosPage() {
             icon: <CarOutlined />,
           });
         }
-        if (!hasDsliteId && record.ml_shipment_id && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
-          items.push({ key: 'direct_shipping', label: record.internal_stock_available ? 'Processar envio interno' : 'Processar envio próprio (sem DSLite)', icon: <UploadOutlined /> });
+        if (!hasDsliteId && record.internal_stock_available && record.ml_shipment_id && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
+          items.push({ key: 'direct_shipping', label: 'Processar envio interno', icon: <UploadOutlined /> });
         }
         if (record.ml_label_storage_path && record.dslite_next_action === 'internal_shipping') {
           items.push({ key: 'download_thermal_pdf', label: 'Baixar térmica PDF 100x150', icon: <UploadOutlined /> });
