@@ -1,0 +1,3237 @@
+{
+  "startedAt": "2026-07-24T03:39:34.244Z",
+  "sourceFile": "/home/felipe/Downloads/rebaixamento_78_90_vortek.csv",
+  "resultDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-classic-buyer-shipping/2026-07-24T03-38-45-196Z",
+  "account": {
+    "id": 3294514937,
+    "nickname": "VORTEKTECNOLOGIA"
+  },
+  "selected": 223,
+  "totals": {
+    "priceUpdated": 46,
+    "listingTypeUpdated": 2,
+    "shippingUpdated": 0,
+    "alreadyFinal": 177,
+    "verified": 223,
+    "failed": 0
+  },
+  "rows": [
+    {
+      "sequence": 1,
+      "sku": "VTK017231",
+      "itemId": "MLB7238967906",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.12
+      }
+    },
+    {
+      "sequence": 2,
+      "sku": "VTK002090",
+      "itemId": "MLB7111650240",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 3,
+      "sku": "VTK013072",
+      "itemId": "MLB7227248380",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 4,
+      "sku": "VTK012193",
+      "itemId": "MLB4880564265",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.14
+      }
+    },
+    {
+      "sequence": 5,
+      "sku": "VTK001028",
+      "itemId": "MLB7239004176",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.11
+      }
+    },
+    {
+      "sequence": 6,
+      "sku": "VTK012056",
+      "itemId": "MLB7111649436",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 7,
+      "sku": "VTK012004",
+      "itemId": "MLB4880564363",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 8,
+      "sku": "VTK002189",
+      "itemId": "MLB7111707350",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 9,
+      "sku": "VTK017945",
+      "itemId": "MLB4937479947",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 10,
+      "sku": "VTK002473",
+      "itemId": "MLB4880582379",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.14
+      }
+    },
+    {
+      "sequence": 11,
+      "sku": "VTK003675",
+      "itemId": "MLB7111661804",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 12,
+      "sku": "VTK001809",
+      "itemId": "MLB7111661794",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 13,
+      "sku": "VTK012202",
+      "itemId": "MLB7111661784",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 14,
+      "sku": "VTK001740",
+      "itemId": "MLB7239006366",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.12
+      }
+    },
+    {
+      "sequence": 15,
+      "sku": "VTK012289",
+      "itemId": "MLB7149328138",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 16,
+      "sku": "VTK012725",
+      "itemId": "MLB7111661750",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 17,
+      "sku": "VTK017451",
+      "itemId": "MLB7239010584",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 18,
+      "sku": "VTK012200",
+      "itemId": "MLB7111661730",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.14
+      }
+    },
+    {
+      "sequence": 19,
+      "sku": "VTK012367",
+      "itemId": "MLB4880585951",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 20,
+      "sku": "VTK002209",
+      "itemId": "MLB7111661676",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.12
+      }
+    },
+    {
+      "sequence": 21,
+      "sku": "VTK012449",
+      "itemId": "MLB4886661325",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.14
+      }
+    },
+    {
+      "sequence": 22,
+      "sku": "VTK000385",
+      "itemId": "MLB4841970055",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 23,
+      "sku": "VTK012392",
+      "itemId": "MLB4880564505",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 24,
+      "sku": "VTK012602",
+      "itemId": "MLB7111707196",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 25,
+      "sku": "VTK012465",
+      "itemId": "MLB7111649268",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 26,
+      "sku": "VTK012493",
+      "itemId": "MLB7149329432",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 27,
+      "sku": "VTK012296",
+      "itemId": "MLB4880582419",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 28,
+      "sku": "VTK012788",
+      "itemId": "MLB4880586031",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 29,
+      "sku": "VTK000366",
+      "itemId": "MLB7111662524",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 30,
+      "sku": "VTK012255",
+      "itemId": "MLB4880586103",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 31,
+      "sku": "VTK012588",
+      "itemId": "MLB7111661572",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 32,
+      "sku": "VTK012323",
+      "itemId": "MLB7111707118",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 33,
+      "sku": "VTK000250",
+      "itemId": "MLB7111661564",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.14
+      }
+    },
+    {
+      "sequence": 34,
+      "sku": "VTK001084",
+      "itemId": "MLB7111649168",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 35,
+      "sku": "VTK001847",
+      "itemId": "MLB7111661560",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.12
+      }
+    },
+    {
+      "sequence": 36,
+      "sku": "VTK012566",
+      "itemId": "MLB7149333140",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 37,
+      "sku": "VTK000735",
+      "itemId": "MLB7111661546",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 38,
+      "sku": "VTK012609",
+      "itemId": "MLB7111649158",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 39,
+      "sku": "VTK003678",
+      "itemId": "MLB7111707072",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 40,
+      "sku": "VTK003681",
+      "itemId": "MLB7111649130",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 41,
+      "sku": "VTK003635",
+      "itemId": "MLB7111707076",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 42,
+      "sku": "VTK012309",
+      "itemId": "MLB7149333170",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.14
+      }
+    },
+    {
+      "sequence": 43,
+      "sku": "VTK012734",
+      "itemId": "MLB7111649094",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 44,
+      "sku": "VTK012731",
+      "itemId": "MLB7111649100",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 45,
+      "sku": "VTK012721",
+      "itemId": "MLB7111661482",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 46,
+      "sku": "VTK012728",
+      "itemId": "MLB7111649086",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 47,
+      "sku": "VTK012413",
+      "itemId": "MLB7149333200",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 48,
+      "sku": "VTK012703",
+      "itemId": "MLB4882821551",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 49,
+      "sku": "VTK012614",
+      "itemId": "MLB7149329468",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 50,
+      "sku": "VTK012600",
+      "itemId": "MLB4880563379",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 51,
+      "sku": "VTK000449",
+      "itemId": "MLB7111706994",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.14
+      }
+    },
+    {
+      "sequence": 52,
+      "sku": "VTK012790",
+      "itemId": "MLB7227726872",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 53,
+      "sku": "VTK012429",
+      "itemId": "MLB7111649042",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.14
+      }
+    },
+    {
+      "sequence": 54,
+      "sku": "VTK017223",
+      "itemId": "MLB4937546247",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 55,
+      "sku": "VTK017334",
+      "itemId": "MLB4937488303",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 56,
+      "sku": "VTK017368",
+      "itemId": "MLB4937523881",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 57,
+      "sku": "VTK021889",
+      "itemId": "MLB7239010338",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.11
+      }
+    },
+    {
+      "sequence": 58,
+      "sku": "VTK012437",
+      "itemId": "MLB7149367448",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 59,
+      "sku": "VTK012070",
+      "itemId": "MLB7111706968",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 60,
+      "sku": "VTK012627",
+      "itemId": "MLB7111661376",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.11
+      }
+    },
+    {
+      "sequence": 61,
+      "sku": "VTK005385",
+      "itemId": "MLB7149406020",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 62,
+      "sku": "VTK003137",
+      "itemId": "MLB7111649008",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 63,
+      "sku": "VTK000713",
+      "itemId": "MLB6630723090",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 64,
+      "sku": "VTK001081",
+      "itemId": "MLB4846743633",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 65,
+      "sku": "VTK004225",
+      "itemId": "MLB7087435606",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.1
+      }
+    },
+    {
+      "sequence": 66,
+      "sku": "VTK012748",
+      "itemId": "MLB7111661350",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 67,
+      "sku": "VTK012745",
+      "itemId": "MLB7111648964",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 68,
+      "sku": "VTK012742",
+      "itemId": "MLB7111649002",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 69,
+      "sku": "VTK012751",
+      "itemId": "MLB7111661342",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 70,
+      "sku": "VTK005927",
+      "itemId": "MLB4621152049",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.12
+      }
+    },
+    {
+      "sequence": 71,
+      "sku": "VTK006594",
+      "itemId": "MLB4620396985",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.12
+      }
+    },
+    {
+      "sequence": 72,
+      "sku": "VTK000627",
+      "itemId": "MLB7104350446",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 73,
+      "sku": "VTK000018",
+      "itemId": "MLB7076364080",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 74,
+      "sku": "VTK000964",
+      "itemId": "MLB6655134104",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 75,
+      "sku": "VTK002336",
+      "itemId": "MLB4857530991",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 76,
+      "sku": "VTK001573",
+      "itemId": "MLB4842206203",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 77,
+      "sku": "VTK000195",
+      "itemId": "MLB7079612744",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 78,
+      "sku": "VTK001570",
+      "itemId": "MLB4880564667",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 79,
+      "sku": "VTK012329",
+      "itemId": "MLB7111648940",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 80,
+      "sku": "VTK012328",
+      "itemId": "MLB7111648946",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 81,
+      "sku": "VTK001068",
+      "itemId": "MLB6648863938",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.12
+      }
+    },
+    {
+      "sequence": 82,
+      "sku": "VTK000932",
+      "itemId": "MLB6648864540",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.12
+      }
+    },
+    {
+      "sequence": 83,
+      "sku": "VTK001672",
+      "itemId": "MLB7239025350",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.12
+      }
+    },
+    {
+      "sequence": 84,
+      "sku": "VTK000515",
+      "itemId": "MLB7009322722",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 85,
+      "sku": "VTK002507",
+      "itemId": "MLB7149376582",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 86,
+      "sku": "VTK003207",
+      "itemId": "MLB4857486009",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.14
+      }
+    },
+    {
+      "sequence": 87,
+      "sku": "VTK006579",
+      "itemId": "MLB7087428180",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 88,
+      "sku": "VTK000989",
+      "itemId": "MLB4880634265",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 89,
+      "sku": "VTK000717",
+      "itemId": "MLB4842017071",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 90,
+      "sku": "VTK006566",
+      "itemId": "MLB7087427922",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 91,
+      "sku": "VTK006535",
+      "itemId": "MLB7087416326",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 92,
+      "sku": "VTK001725",
+      "itemId": "MLB7149328288",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 93,
+      "sku": "VTK000075",
+      "itemId": "MLB4841914053",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 94,
+      "sku": "VTK003004",
+      "itemId": "MLB4880633089",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 95,
+      "sku": "VTK005351",
+      "itemId": "MLB4857486005",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 96,
+      "sku": "VTK012795",
+      "itemId": "MLB4930775609",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 97,
+      "sku": "VTK000343",
+      "itemId": "MLB7149333260",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 98,
+      "sku": "VTK012077",
+      "itemId": "MLB4880586295",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.14
+      }
+    },
+    {
+      "sequence": 99,
+      "sku": "VTK000743",
+      "itemId": "MLB6655262954",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 100,
+      "sku": "VTK004318",
+      "itemId": "MLB7149405608",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 101,
+      "sku": "VTK006215",
+      "itemId": "MLB7095324934",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 102,
+      "sku": "VTK012172",
+      "itemId": "MLB7149333332",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 103,
+      "sku": "VTK003124",
+      "itemId": "MLB7111661280",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 104,
+      "sku": "VTK012682",
+      "itemId": "MLB7111648892",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 105,
+      "sku": "VTK000927",
+      "itemId": "MLB6646470912",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 106,
+      "sku": "VTK006342",
+      "itemId": "MLB6587836774",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 107,
+      "sku": "VTK004349",
+      "itemId": "MLB4857485991",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 108,
+      "sku": "VTK000005",
+      "itemId": "MLB6956456920",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.14
+      }
+    },
+    {
+      "sequence": 109,
+      "sku": "VTK001659",
+      "itemId": "MLB4842175151",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.14
+      }
+    },
+    {
+      "sequence": 110,
+      "sku": "VTK000502",
+      "itemId": "MLB4857485987",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 111,
+      "sku": "VTK012183",
+      "itemId": "MLB7149376418",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 112,
+      "sku": "VTK012243",
+      "itemId": "MLB4877415237",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 113,
+      "sku": "VTK002299",
+      "itemId": "MLB4877415313",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 114,
+      "sku": "VTK012002",
+      "itemId": "MLB7149328316",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 115,
+      "sku": "VTK001222",
+      "itemId": "MLB4857485137",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 116,
+      "sku": "VTK002605",
+      "itemId": "MLB7149333360",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 117,
+      "sku": "VTK000755",
+      "itemId": "MLB6572968828",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 118,
+      "sku": "VTK000094",
+      "itemId": "MLB7149367642",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 119,
+      "sku": "VTK005313",
+      "itemId": "MLB7149406138",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 120,
+      "sku": "VTK012559",
+      "itemId": "MLB7111661238",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 121,
+      "sku": "VTK005811",
+      "itemId": "MLB7192106230",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 122,
+      "sku": "VTK006375",
+      "itemId": "MLB4846402221",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 123,
+      "sku": "VTK000941",
+      "itemId": "MLB7095392350",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 124,
+      "sku": "VTK000115",
+      "itemId": "MLB7086959336",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 125,
+      "sku": "VTK002245",
+      "itemId": "MLB7087408434",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 126,
+      "sku": "VTK012477",
+      "itemId": "MLB7111648848",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 127,
+      "sku": "VTK000367",
+      "itemId": "MLB7101696502",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.14
+      }
+    },
+    {
+      "sequence": 128,
+      "sku": "VTK012468",
+      "itemId": "MLB7149406994",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 129,
+      "sku": "VTK001657",
+      "itemId": "MLB7116149454",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.12
+      }
+    },
+    {
+      "sequence": 130,
+      "sku": "VTK012072",
+      "itemId": "MLB4877529417",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 131,
+      "sku": "VTK000595",
+      "itemId": "MLB7095340304",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 132,
+      "sku": "VTK001778",
+      "itemId": "MLB6563344986",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 133,
+      "sku": "VTK002187",
+      "itemId": "MLB4857531025",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 134,
+      "sku": "VTK001393",
+      "itemId": "MLB7095391332",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 135,
+      "sku": "VTK006361",
+      "itemId": "MLB6646381018",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.12
+      }
+    },
+    {
+      "sequence": 136,
+      "sku": "VTK012494",
+      "itemId": "MLB7149328342",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 137,
+      "sku": "VTK001792",
+      "itemId": "MLB7149367672",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 138,
+      "sku": "VTK012592",
+      "itemId": "MLB7111661206",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 139,
+      "sku": "VTK012416",
+      "itemId": "MLB4898641383",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 140,
+      "sku": "VTK012642",
+      "itemId": "MLB4880582599",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 141,
+      "sku": "VTK012010",
+      "itemId": "MLB7111648806",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 142,
+      "sku": "VTK012456",
+      "itemId": "MLB4880586473",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 143,
+      "sku": "VTK012583",
+      "itemId": "MLB7111661166",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 144,
+      "sku": "VTK012021",
+      "itemId": "MLB7111648792",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 145,
+      "sku": "VTK000812",
+      "itemId": "MLB6655134262",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 146,
+      "sku": "VTK000803",
+      "itemId": "MLB6573141820",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 147,
+      "sku": "VTK000009",
+      "itemId": "MLB4786778733",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 148,
+      "sku": "VTK003176",
+      "itemId": "MLB7111648730",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 149,
+      "sku": "VTK000878",
+      "itemId": "MLB4620840017",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 150,
+      "sku": "VTK012509",
+      "itemId": "MLB7111661128",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 151,
+      "sku": "VTK012560",
+      "itemId": "MLB7111706684",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 152,
+      "sku": "VTK004335",
+      "itemId": "MLB7149329622",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 153,
+      "sku": "VTK004382",
+      "itemId": "MLB4880581435",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 154,
+      "sku": "VTK012716",
+      "itemId": "MLB7111648686",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 155,
+      "sku": "VTK012719",
+      "itemId": "MLB7111706638",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 156,
+      "sku": "VTK012740",
+      "itemId": "MLB7111706660",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 157,
+      "sku": "VTK000434",
+      "itemId": "MLB7086758274",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 158,
+      "sku": "VTK012139",
+      "itemId": "MLB4877415769",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.11
+      }
+    },
+    {
+      "sequence": 159,
+      "sku": "VTK002015",
+      "itemId": "MLB4880564817",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 160,
+      "sku": "VTK000791",
+      "itemId": "MLB6655134296",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 161,
+      "sku": "VTK001715",
+      "itemId": "MLB6646507824",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 162,
+      "sku": "VTK001104",
+      "itemId": "MLB4877416163",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 163,
+      "sku": "VTK001294",
+      "itemId": "MLB4880634371",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 164,
+      "sku": "VTK001135",
+      "itemId": "MLB4877416299",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 165,
+      "sku": "VTK004736",
+      "itemId": "MLB7137189150",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.12
+      }
+    },
+    {
+      "sequence": 166,
+      "sku": "VTK006039",
+      "itemId": "MLB4907843043",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 167,
+      "sku": "VTK006301",
+      "itemId": "MLB4621151913",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 168,
+      "sku": "VTK000390",
+      "itemId": "MLB7095340348",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 169,
+      "sku": "VTK003325",
+      "itemId": "MLB6646470674",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 170,
+      "sku": "VTK001052",
+      "itemId": "MLB4852431589",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.12
+      }
+    },
+    {
+      "sequence": 171,
+      "sku": "VTK006134",
+      "itemId": "MLB4612540573",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 172,
+      "sku": "VTK006173",
+      "itemId": "MLB4786753035",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 173,
+      "sku": "VTK006136",
+      "itemId": "MLB6649110192",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 174,
+      "sku": "VTK012158",
+      "itemId": "MLB7111706604",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 175,
+      "sku": "VTK012459",
+      "itemId": "MLB7111661040",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 176,
+      "sku": "VTK001117",
+      "itemId": "MLB7149271954",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 177,
+      "sku": "VTK012055",
+      "itemId": "MLB7111648626",
+      "operations": [],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 178,
+      "sku": "VTK018584",
+      "itemId": "MLB4937527631",
+      "operations": [
+        "price",
+        "listing_type"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 179,
+      "sku": "VTK012601",
+      "itemId": "MLB7111661022",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 180,
+      "sku": "VTK000302",
+      "itemId": "MLB7086773274",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 181,
+      "sku": "VTK012726",
+      "itemId": "MLB7111706576",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 182,
+      "sku": "VTK012737",
+      "itemId": "MLB7111706548",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 183,
+      "sku": "VTK012724",
+      "itemId": "MLB7111648600",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 184,
+      "sku": "VTK012533",
+      "itemId": "MLB7111648586",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 185,
+      "sku": "VTK002863",
+      "itemId": "MLB7095325228",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 186,
+      "sku": "VTK003640",
+      "itemId": "MLB7149333550",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 187,
+      "sku": "VTK004435",
+      "itemId": "MLB7149405618",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 188,
+      "sku": "VTK004119",
+      "itemId": "MLB7149367764",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 189,
+      "sku": "VTK000541",
+      "itemId": "MLB4841993159",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.11
+      }
+    },
+    {
+      "sequence": 190,
+      "sku": "VTK000505",
+      "itemId": "MLB7149264172",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.11
+      }
+    },
+    {
+      "sequence": 191,
+      "sku": "VTK006449",
+      "itemId": "MLB6565317260",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.14
+      }
+    },
+    {
+      "sequence": 192,
+      "sku": "VTK012005",
+      "itemId": "MLB7111658092",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 193,
+      "sku": "VTK003295",
+      "itemId": "MLB7149329670",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.12
+      }
+    },
+    {
+      "sequence": 194,
+      "sku": "VTK012111",
+      "itemId": "MLB7111658076",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 195,
+      "sku": "VTK012516",
+      "itemId": "MLB7149329698",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 196,
+      "sku": "VTK004072",
+      "itemId": "MLB4857485969",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.11
+      }
+    },
+    {
+      "sequence": 197,
+      "sku": "VTK012591",
+      "itemId": "MLB4880632435",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 198,
+      "sku": "VTK012442",
+      "itemId": "MLB7111645502",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 199,
+      "sku": "VTK006362",
+      "itemId": "MLB4621152043",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.12
+      }
+    },
+    {
+      "sequence": 200,
+      "sku": "VTK000991",
+      "itemId": "MLB6573116398",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 201,
+      "sku": "VTK012520",
+      "itemId": "MLB4880582749",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 202,
+      "sku": "VTK005402",
+      "itemId": "MLB4857485961",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 203,
+      "sku": "VTK012711",
+      "itemId": "MLB7111658014",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 204,
+      "sku": "VTK003109",
+      "itemId": "MLB7111645478",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 205,
+      "sku": "VTK000010",
+      "itemId": "MLB7086773016",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 206,
+      "sku": "VTK001549",
+      "itemId": "MLB4908882679",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 207,
+      "sku": "VTK001261",
+      "itemId": "MLB4880633189",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.11
+      }
+    },
+    {
+      "sequence": 208,
+      "sku": "VTK002455",
+      "itemId": "MLB4620602381",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 209,
+      "sku": "VTK012593",
+      "itemId": "MLB7111658002",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 210,
+      "sku": "VTK000004",
+      "itemId": "MLB4786776935",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 211,
+      "sku": "VTK012450",
+      "itemId": "MLB4857542665",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.14
+      }
+    },
+    {
+      "sequence": 212,
+      "sku": "VTK012407",
+      "itemId": "MLB7149329760",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 213,
+      "sku": "VTK001494",
+      "itemId": "MLB4857485665",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.11
+      }
+    },
+    {
+      "sequence": 214,
+      "sku": "VTK019167",
+      "itemId": "MLB7238799642",
+      "operations": [
+        "price",
+        "listing_type"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.1
+      }
+    },
+    {
+      "sequence": 215,
+      "sku": "VTK012071",
+      "itemId": "MLB7149367806",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 216,
+      "sku": "VTK005379",
+      "itemId": "MLB7087424282",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.11
+      }
+    },
+    {
+      "sequence": 217,
+      "sku": "VTK012278",
+      "itemId": "MLB7149374578",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 218,
+      "sku": "VTK000995",
+      "itemId": "MLB6649085078",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 219,
+      "sku": "VTK002451",
+      "itemId": "MLB4857530925",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 220,
+      "sku": "VTK003320",
+      "itemId": "MLB7149367836",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.115
+      }
+    },
+    {
+      "sequence": 221,
+      "sku": "VTK012263",
+      "itemId": "MLB7111645398",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 222,
+      "sku": "VTK012041",
+      "itemId": "MLB4857542615",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.13
+      }
+    },
+    {
+      "sequence": 223,
+      "sku": "VTK001499",
+      "itemId": "MLB4897325977",
+      "operations": [
+        "price"
+      ],
+      "status": "verified",
+      "final": {
+        "price": 78.9,
+        "listingType": "gold_special",
+        "freeShipping": false,
+        "status": "active",
+        "mlFee": 0.12
+      }
+    }
+  ],
+  "finishedAt": "2026-07-24T03:44:46.414Z"
+}

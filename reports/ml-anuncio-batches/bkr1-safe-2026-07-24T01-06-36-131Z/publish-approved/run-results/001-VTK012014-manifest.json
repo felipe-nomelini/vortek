@@ -1,0 +1,43 @@
+{
+  "batchNumber": 1,
+  "batchId": "bkr1-live-001-VTK012014",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "d63548bc-a94a-42bd-b6cb-53ae8976bb03",
+      "sku": "VTK012014",
+      "nome": "Conector Para Cabo Fêmea P/ac - Corpo Azul Wc 3 Fca Wireconex 02 Unidades",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 40,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 74.07,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "Kit Conectores P/Cabo Fêmea P/AC - Corpo Azul WC 3 FCA (2UN) Wireconex A Wireconex é uma marca do grupo ATTACK visando garantir a máxima qualidade sonora. Seus conectores, cabos, main power e acessórios são projetados e construídos com tecnologia de ponta para explorar o máximo dos seus equipamentos de áudio, sem perder a qualidade e fidelidade.\n\nKit com 2 Conectores - Modelo WC 3 FCA - Extremamente robusto e confiável.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "85369010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB38172",
+      "categoryEvidence": {
+        "source": "strict_evidence_dry_run",
+        "categoryId": "MLB38172",
+        "categoryName": "Conectores",
+        "domainName": "Conectores de áudio e vídeo"
+      },
+      "sourceBatch": "001-bkr1-publish-001.json"
+    }
+  ]
+}

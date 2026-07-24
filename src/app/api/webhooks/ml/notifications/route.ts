@@ -9,12 +9,14 @@ import { resolveOrderSaleDate } from '@/lib/ml/order-sale-date';
 import { mapearStatusShipment } from '@/lib/ml/shipment-status';
 import { alertMlLabelReleased, alertNewQuestion, alertNewSale } from '@/services/whatsapp-alerts';
 import { pushEvents } from '@/services/push-notifications';
-import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
+import { enfileirarSyncMlEstoqueInterno, registrarDevolucaoInterna } from '@/lib/estoque-interno';
 
 const WEBHOOK_STUB_PENDING_TAGS = ['pedido_sem_itens', 'webhook_hydration_pending', 'snapshot_origem_webhook_stub'];
 
 function normalizeResourcePath(resource: string): string {
-  return String(resource || '').replace('https://api.mercadolibre.com', '');
+  const normalized = String(resource || '').replace('https://api.mercadolibre.com', '').trim();
+  if (!normalized) return '';
+  return normalized.startsWith('/') ? normalized : `/${normalized}`;
 }
 
 function extractOrderIdFromResourcePath(resourcePath: string): string | null {
@@ -605,6 +607,19 @@ export async function POST(request: Request) {
             .eq('ml_order_id', String(orderId));
 
           if (pedido?.id) {
+            const shipmentStatus = String(shipment.status || '').toLowerCase();
+            const shipmentSubstatus = String(shipment.substatus || '').toLowerCase();
+            const isReturningToSender =
+              shipmentStatus === 'not_delivered' &&
+              ['returning_to_sender', 'returned'].includes(shipmentSubstatus);
+            if (isReturningToSender) {
+              await registrarDevolucaoInterna(
+                String(pedido.id),
+                pedido.situacao === 'dest_ausente' ? 'Destinatário ausente' : 'Entrega não realizada',
+                shipmentSubstatus,
+              );
+            }
+
             const hadReleaseBefore = Boolean((pedido as any).ml_fiscal_release_at);
             if (releaseCheckOk && hasFutureRelease) {
               await registrarEventoNfAuditoria({
@@ -654,27 +669,46 @@ export async function POST(request: Request) {
       }
     }
 
-    if (topic === 'claims' || topic === 'claim_update') {
+    const postPurchaseActions = Array.isArray(body.actions)
+      ? body.actions.map((action: unknown) => String(action || '').toLowerCase())
+      : [];
+    const isClaimNotification =
+      topic === 'claims' ||
+      topic === 'claim_update' ||
+      (topic === 'post_purchase' &&
+        postPurchaseActions.some((action: string) => ['claims', 'claims_actions'].includes(action)));
+
+    if (isClaimNotification) {
       const claim = await fetchML<any>(resourcePath);
       if (claim?.resource_id && claim.resource === 'order') {
+        const mlOrderId = String(claim.resource_id);
         const isDevolvido = claim.resolution?.reason === 'item_returned' ||
                            (claim.resolution?.closed_by === 'mediator' &&
                             claim.resolution?.benefited?.includes('complainant'));
         const situacao = isDevolvido ? 'devolvido' : undefined;
-        await serviceClient
+        const { data: pedido } = await serviceClient
           .from('pedidos')
           .update({
             ml_claim_id: String(claim.id),
             ml_claim_status: claim.status || null,
             ...(situacao ? { situacao } : {}),
           })
-          .eq('ml_order_id', String(claim.resource_id));
+          .eq('ml_order_id', mlOrderId)
+          .select('id')
+          .maybeSingle();
         if (String(claim.status || '').toLowerCase() === 'opened') {
           void pushEvents().claimOpened({
-            ml_order_id: String(claim.resource_id),
+            ml_order_id: mlOrderId,
             ml_claim_id: String(claim.id || ''),
           }).catch(() => null);
         }
+        await queueOrderHydrationJob({
+          serviceClient,
+          mlOrderId,
+          resourcePath,
+          receivedAt: new Date().toISOString(),
+          pedidoId: pedido?.id ? String(pedido.id) : null,
+        });
       }
     }
 

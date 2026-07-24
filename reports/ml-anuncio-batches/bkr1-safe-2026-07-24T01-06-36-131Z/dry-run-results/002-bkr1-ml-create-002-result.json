@@ -1,0 +1,125 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z/002-bkr1-ml-create-002.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "bkr1-ml-create-002",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "1bbbffef-7733-4f79-a62f-5bfccd76e3cc",
+      "sku": "VTK012237",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 37.74,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "543cd6ae-f86f-473c-8c3c-55cd8e70e50c",
+      "sku": "VTK012248",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 35.22,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "878494a4-238b-4e01-9d02-8b9db1660faa",
+      "sku": "VTK012275",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 35.22,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a09e2e5d-9958-4bdc-92d8-4d4f070ce0b7",
+      "sku": "VTK012281",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "basePrice": 287.35,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "dbecc552-4f0b-4abf-a874-654a26eb0818",
+      "sku": "VTK012267",
+      "nome": "Adaptador Rca Macho P/xlr 3p Fêmea Niq. Wc 242 Ad 02 Unidades Wireconex",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB195961",
+            "nome": "Adaptadores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB438559",
+            "nome": "Cabos e Conectores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB432437",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB431813",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB1658",
+            "nome": "Placas de Vídeo"
+          },
+          "missing": [
+            "Fabricante",
+            "Modelo",
+            "Tamanho da memória"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

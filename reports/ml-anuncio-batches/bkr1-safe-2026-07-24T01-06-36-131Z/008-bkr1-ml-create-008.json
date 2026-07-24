@@ -1,0 +1,158 @@
+{
+  "batchNumber": 8,
+  "batchId": "bkr1-ml-create-008",
+  "strategy": "strict_evidence_small_batch",
+  "executionHints": {
+    "delayMs": 2000,
+    "listingType": "gold_pro",
+    "strictEvidence": true,
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "stopAfterConsecutiveFailures": 3,
+    "allowEmptyGtinOnlyForExplicitMultipacks": true,
+    "requireVortekStorageImages": true,
+    "verifyListingAfterEachCreate": true
+  },
+  "items": [
+    {
+      "produtoId": "67bc35b4-73bf-484f-8bbb-6d39710108c9",
+      "sku": "VTK012628",
+      "nome": "Palheta Guitarra Dur Prec 6dbu5 D Addario 1.00mm 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 26.77,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 57.74,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA GUITARRA DUR PREC 6DBU5 D Addario 1.00mm 10un A Palheta D Addario DuraGrip 6DBU5 é projetada para oferecer durabilidade e aderência superior aos músicos. Abaixo estão suas principais\n\nespecificações\n\nCaracterísticas Principais\n\nModelo: 6DBU5 Linha: DuraGrip Material: Duralin (também conhecido como Acetato de Polioximetileno ou Delrin) Espessura: 1,00 mm (Pesada) Cor: Azul Formato: Padrão\n\nDescrição\n\nAs palhetas DuraGrip são fabricadas com Duralin, um material conhecido por sua resistência e durabilidade. Este material oferece uma superfície texturizada que proporciona uma aderência superior, evitando que a palheta escorregue durante a execução.\n\nA espessura de 1,00 mm oferece um equilíbrio entre flexibilidade e rigidez, sendo versátil para diversas técnicas de execução. Aplicações Recomendadas: Devido à sua espessura pesada, esta palheta é adequada para músicos que buscam um equilíbrio entre flexibilidade e controle, sendo especialmente indicada para uma variedade de estilos musicais e técnicas.\n\nConteúdo da Embalagem\n\nO pacote contém 10 palhetas D Addario DuraGrip 6DBU5, cada uma com espessura de 1,00 mm na cor azul.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099400",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "ebb84cd8-c62e-4c91-8f53-85d294b6ce03",
+      "sku": "VTK012632",
+      "nome": "Painel Multicabo 36 Vias XLR Sem Conectores Wireconex",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 156.7,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 222.48,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "Painel Multicabo 36 Vias XLR Sem Conectores Wireconex Garanta máxima organização e flexibilidade nas suas conexões com o Painel Multicabo 36 Vias XLR sem conectores Wireconex. Ideal para projetos personalizados, ele permite a montagem conforme a sua necessidade, sendo perfeito para sistemas profissionais de áudio em estúdios, palcos e eventos.\n\nEspecificações Técnicas\n\n• Marca: Wireconex\n\n• Modelo: Multicabo 36 Vias\n\n• Conexões: XLR (sem conectores)\n\n• Quantidade de vias: 36 canais\n\n• Material: Estrutura resistente e durável\n\n•\n\nAplicações\n\nEstúdios, sistemas de som, mesas de áudio, igrejas e eventos\n\n• Diferencial: Permite personalização das conexões conforme o projeto O painel multicabo 36 vias da Wireconex é ideal para quem precisa de alta capacidade e personalização em sistemas de áudio. Com estrutura robusta e excelente organização, ele facilita a instalação e garante mais eficiência na distribuição dos sinais, sendo perfeito para aplicações profissionais de maior porte.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898640363523",
+        "emptyGtinReasonEvidence": null,
+        "validatedNcm": "85369090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "beb1e6a3-9ff6-44b2-9e87-93213f7cb65b",
+      "sku": "VTK012668",
+      "nome": "Palheta Guitarra Med 1ccf4 D Addario .70mm 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 34.53,
+      "estoque": 2,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 67.32,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA GUITARRA MED 1CCF4 D Addario .70mm 10un A Palheta D Addario Camuflada de Celuloide 1CCF4 é projetada para oferecer aos músicos uma sensação tradicional e um timbre quente. Abaixo estão suas principais\n\nespecificações\n\nCaracterísticas Principais\n\n• Modelo: 1CCF4\n\n• Linha: Celuloide Camuflada\n\n• Material: Celuloide\n\n• Espessura: 0,70 mm (Média)\n\n• Cor: Camuflada\n\n• Formato: Padrão\n\nDescrição\n\nA celuloide foi introduzida no início do século XX como substituta das palhetas de casco de tartaruga. Este material, um dos primeiros polímeros já criados, é produzido a partir da reação entre fibras de algodão e ácido nítrico.\n\nUtilizado por mais de um século como base para filmes de 35 mm, atualmente a celuloide é um dos materiais mais populares na fabricação de palhetas. As palhetas clássicas da D Addario estão disponíveis em uma variedade de espessuras, formatos e cores, proporcionando ótima sensação ao toque e um timbre quente e encorpado.\n\nAplicações Recomendadas: Devido à sua espessura média de 0,70 mm, esta palheta é versátil e adequada tanto para ritmos quanto para solos, oferecendo um equilíbrio entre flexibilidade e rigidez.\n\nConteúdo da Embalagem\n\nO pacote contém 10 palhetas D Addario Camufladas de Celuloide 1CCF4, cada uma com espessura de 0,70 mm e design camuflado.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099400",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "8df5a908-5df3-4e17-a4ad-ebff58570bde",
+      "sku": "VTK012669",
+      "nome": "Palheta Guitarra Dur Prec 6dbk7 D Addario 1.50mm 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 30.08,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 61.83,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA GUITARRA DUR PREC 6DBK7 D Addario 1.50mm 10un A Palheta D Addario DuraGrip 6DBK7 é projetada para oferecer durabilidade e aderência superior aos músicos. Abaixo estão suas principais\n\nespecificações\n\nCaracterísticas Principais\n\n• Modelo: 6DBK7\n\n• Linha: DuraGrip\n\n• Material: Duralin (também conhecido como Acetato de Polioximetileno ou Delrin)\n\n• Espessura: 1,50 mm (Extra Pesada)\n\n• Cor: Preto\n\n• Formato: Padrão\n\nDescrição\n\nAs palhetas DuraGrip são fabricadas com Duralin, um material conhecido por sua resistência e durabilidade. Este material oferece uma superfície texturizada que proporciona uma aderência superior, evitando que a palheta escorregue durante a execução.\n\nA espessura de 1,50 mm proporciona rigidez adicional, ideal para técnicas que exigem precisão e controle. Aplicações Recomendadas: Devido à sua espessura extra pesada, esta palheta é adequada para músicos que buscam maior controle e precisão, sendo especialmente indicada para solos e técnicas que exigem um ataque mais definido.\n\nConteúdo da Embalagem\n\nO pacote contém 10 palhetas D Addario DuraGrip 6DBK7, cada uma com espessura de 1,50 mm na cor preta",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099400",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "c5a3ac69-aaa3-408d-ba6a-981ceaa94a52",
+      "sku": "VTK012670",
+      "nome": "Palheta Guitarra Color 1cap7 D Addario 1.25mm 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 32.27,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 64.53,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA GUITARRA COLOR 1CAP7 D Addario 1.25mm 10un A Palheta D Addario 1CAP7-10 é uma escolha excelente para músicos que buscam qualidade e durabilidade. Abaixo, apresento suas principais\n\nespecificações\n\nCaracterísticas Principais\n\n• Modelo: 1CAP7-10\n\n• Material: Celuloide perolado\n\n• Espessura: 1,25 mm (Extra Pesada)\n\n• Cor: Sortida (perolada/multicolorida)\n\n• Formato: Padrão\n\nDescrição\n\nA celuloide é um dos primeiros polímeros criados, desenvolvido a partir da reação entre fibras de algodão e ácido nítrico. Introduzida no início do século XX como substituta das palhetas de casco de tartaruga, a celuloide oferece uma sensação tradicional ao tocar, proporcionando um timbre quente e encorpado.\n\nA espessura extra pesada de 1,25 mm proporciona maior rigidez, sendo ideal para técnicas que exigem precisão e controle. Aplicações Recomendadas: Devido à sua espessura extra pesada, esta palheta é adequada para músicos que buscam maior controle e precisão, sendo especialmente indicada para solos e técnicas que exigem um ataque mais definido.\n\nConteúdo da Embalagem\n\nO pacote contém 10 palhetas D Addario 1CAP7-10, cada uma com espessura de 1,25 mm e cores sortidas peroladas.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099400",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

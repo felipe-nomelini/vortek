@@ -1,0 +1,11 @@
+{
+  "generatedAt": "2026-07-24T01:18:24.036Z",
+  "selected": 45,
+  "approved": 44,
+  "pending": 1,
+  "initiallyBlocked": 15,
+  "batchSize": 5,
+  "batchCount": 9,
+  "correctionDryRunComplete": true,
+  "descriptionFormat": "parágrafos e bullet points com fatos do fornecedor e atributos oficiais"
+}

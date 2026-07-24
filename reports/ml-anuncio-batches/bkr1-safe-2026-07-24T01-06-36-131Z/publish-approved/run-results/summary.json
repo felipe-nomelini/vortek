@@ -1,0 +1,98 @@
+{
+  "startedAt": "2026-07-24T01:43:29.548Z",
+  "account": {
+    "userId": "3294514937",
+    "nickname": "VORTEKTECNOLOGIA"
+  },
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z/publish-approved",
+  "selected": 4,
+  "totals": {
+    "created": 4,
+    "verified": 3,
+    "failed": 1
+  },
+  "rows": [
+    {
+      "sequence": 1,
+      "sku": "VTK012523",
+      "itemId": "MLB7239571018",
+      "status": "verified",
+      "verification": {
+        "attempt": 20,
+        "itemId": "MLB7239571018",
+        "sku": "VTK012523",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "quantity": 8,
+        "price": 61.32
+      }
+    },
+    {
+      "sequence": 2,
+      "sku": "VTK012547",
+      "itemId": "MLB7239571716",
+      "status": "verified",
+      "verification": {
+        "attempt": 20,
+        "itemId": "MLB7239571716",
+        "sku": "VTK012547",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "quantity": 7,
+        "price": 82.57
+      }
+    },
+    {
+      "sequence": 3,
+      "sku": "VTK012611",
+      "itemId": "MLB4937865089",
+      "status": "verified",
+      "verification": {
+        "attempt": 20,
+        "itemId": "MLB4937865089",
+        "sku": "VTK012611",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "quantity": 5,
+        "price": 80.3
+      }
+    },
+    {
+      "sequence": 4,
+      "sku": "VTK012907",
+      "itemId": "MLB4937922729",
+      "status": "verification_failed",
+      "verification": {
+        "ok": false,
+        "reason": "verification_timeout",
+        "row": {
+          "attempt": 24,
+          "itemId": "MLB4937922729",
+          "sku": "VTK012907",
+          "categoryOk": true,
+          "status": "paused",
+          "subStatuses": [
+            "picture_download_pending"
+          ],
+          "pictureReady": false,
+          "richDescription": true,
+          "identifierOk": true,
+          "quantity": 4,
+          "price": 424.65
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "batchNumber": 7,
+  "batchId": "bkr1-publish-approved-007",
+  "strategy": "dry_run_and_category_evidence_approved",
+  "executionHints": {
+    "delayMs": 2000,
+    "listingType": "gold_pro",
+    "strictEvidence": true,
+    "dryRunFirst": false,
+    "createSequentially": true,
+    "stopAfterConsecutiveFailures": 3,
+    "allowEmptyGtinOnlyForExplicitMultipacks": true,
+    "requireVortekStorageImages": true,
+    "verifyListingAfterEachCreate": true
+  },
+  "items": [
+    {
+      "produtoId": "140f0532-8d7c-4863-8ccb-559355ed369b",
+      "sku": "VTK012470",
+      "nome": "Palheta Bori Grl At-r16114 Azul Crystal 0,82 Mm R21007 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 8,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 34.57,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA BORI GRL AT-R16114 AZUL CRYSTAL 0,82 MM R21007 10UN A Palheta Bori GRL AT-R16114 Azul Crystal 0,82 mm (R21007) é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Abaixo, apresento suas principais\n\nespecificações\n\nCaracterísticas Principais\n\n• Modelo: S.T.D (Standard)\n\n• Código do Fabricante: R21007\n\n• Espessura: 0,82 mm\n\n• Material: Poliamida Nylon (Resina de Engenharia)\n\n• Cor: Azul Crystal\n\n• Acabamento: Fosco, desenvolvido para minimizar a retenção de suor e evitar que a palheta escorregue\n\n• Dimensões:\n\n• Largura: 25 mm\n\n• Altura: 30 mm\n\n• Peso: 0,45 g Design e Funcionalidade: Ponta em 'V' Standard: Proporciona flexibilidade e uma sonoridade de excelência. Relevo Esférico 'GRIP': Oferece maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Arredondada: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Tamanho Compacto: Ideal para palhetadas rápidas, atendendo às necessidades de diversos estilos musicais. Aplicações Recomendadas: Indicada para instrumentos como cavaquinho, banjo, bandolim, violão e guitarra, oferecendo versatilidade para músicos de diferentes gêneros.\n\nConteúdo da Embalagem\n\nO kit contém 10 palhetas Bori S.T.D de 0,82 mm na cor Azul Crystal.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB45712",
+      "categoryEvidence": {
+        "source": "strict_evidence_dry_run",
+        "categoryId": "MLB45712",
+        "categoryName": "Palhetas para Guitarras",
+        "domainName": "Palhetas para instrumentos de cordas"
+      }
+    },
+    {
+      "produtoId": "1108d86d-b2bd-45ee-a95f-2519198c67b1",
+      "sku": "VTK012523",
+      "nome": "Knobs Andaluz Kp (kit C/2 Vol+2ton) Preto",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 15.5,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.83,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "KNOBS ANDALUZ KP (KIT C/2 VOL+2TON) PRETO O Kit de Knobs Andaluz KP Preto é um conjunto de botões de controle projetado para guitarras modelo Stratocaster, oferecendo uma estética clássica e funcionalidade aprimorada. Abaixo, apresento suas principais\n\nespecificações\n\nEspecificações Técnicas\n\n• Marca: Andaluz\n\n• Modelo: KP\n\n• Cor: Preto com letras brancas\n\n• Material: Plástico ABS resistente\n\n• Unidades por Embalagem: 4 knobs (2 para controle de volume e 2 para controle de tom)\n\n• Medidas Externas:\n\n• Altura: 9 mm\n\n• Largura Superior: 17 mm\n\n• Medidas Internas:\n\n• Largura de Encaixe: 5 mm\n\n• Largura da Base: 21 mm\n\n• Compatibilidade: Guitarras elétricas, especialmente modelos Stratocaster Observações: Design: Os knobs possuem um design clássico com acabamento preto e letras brancas, complementando a estética de guitarras Stratocaster. Durabilidade: Fabricados em plástico ABS, oferecem resistência ao desgaste diário, garantindo longa vida útil. Instalação: Fácil de instalar, permitindo uma personalização rápida do instrumento.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898905159670",
+        "emptyGtinReasonEvidence": null,
+        "validatedNcm": "92099400",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB72751",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4070810",
+          "value_name": "Andaluz"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24371997",
+          "value_name": "Knob KP Preto"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "4"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENTS",
+          "value_id": "2106570",
+          "value_name": "Guitarra"
+        },
+        {
+          "id": "GTIN",
+          "value_name": "7898905159670"
+        }
+      ],
+      "categoryEvidence": {
+        "source": "official_category_and_product_evidence",
+        "categoryId": "MLB72751",
+        "details": "produto MLB27113636 por GTIN exato; categoria Knobs MLB72751"
+      }
+    },
+    {
+      "produtoId": "84ebeb50-8e9e-4528-a628-79255507f7b9",
+      "sku": "VTK012543",
+      "nome": "Palheta Bori Grl At-r16109 S.t.d 0,89 Mm (roxo) R21013 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 8,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 34.57,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA BORI GRL AT-R16109 S. T.\n\nD 0,89 MM (ROXO) R21013 10UN A Palheta Bori GRL AT-R16109 S. T.\n\nD 0,89 mm (Roxo) R21013 é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Este modelo destaca-se por suas características técnicas e design funcional.\n\nPrincipais\n\nCaracterísticas\n\n• Modelo: S.T.D (Standard)\n\n• Código do Fabricante: R21013\n\n• Espessura: 0,89 mm\n\n• Material: Poliamida Nylon (Resina de Engenharia)\n\n• Cor: Roxo\n\n• Acabamento: Fosco, desenvolvido para minimizar a retenção de suor e evitar que a palheta escorregue\n\n• Dimensões:\n\n• Largura: 25 mm\n\n• Altura: 30 mm\n\n• Peso: 0,45 g Design e Funcionalidade: Ponta em 'V' Standard: Proporciona flexibilidade e uma sonoridade de excelência. Relevo Esférico 'GRIP': Oferece maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Arredondada: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Tamanho Compacto: Ideal para palhetadas rápidas, atendendo às necessidades de diversos estilos musicais. Aplicações Recomendadas: Indicada para instrumentos como cavaquinho, banjo, bandolim, violão e guitarra, oferecendo versatilidade para músicos de diferentes gêneros.\n\nConteúdo da Embalagem\n\nO kit contém 10 palhetas Bori S.T.D de 0,89 mm na cor roxa.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB45712",
+      "categoryEvidence": {
+        "source": "strict_evidence_dry_run",
+        "categoryId": "MLB45712",
+        "categoryName": "Palhetas para Guitarras",
+        "domainName": "Palhetas para instrumentos de cordas"
+      }
+    },
+    {
+      "produtoId": "1e9f89d2-cbd7-418b-98f8-f6b34a43c33d",
+      "sku": "VTK012547",
+      "nome": "Breu Vr300 Escuro D Addario",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 31.49,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 63.57,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "Breu VR300 escuro D Addario O Breu Escuro D Addario Natural Rosin VR300 é um acessório essencial para músicos de instrumentos de arco, como violino, viola e violoncelo. Sua formulação especial proporciona uma tocabilidade precisa e uma sonoridade rica.\n\nCaracterísticas Principais\n\n- Composição: Formulado com ingredientes naturais, incluindo resina de pinho, cera de abelha e óleo de mamona, combinados em um processo exclusivo que assegura alta qualidade e desempenho. - Tipo de Breu: Escuro, ideal para arcos com crina de cavalo ou sintética.\n\n- Embalagem: Acompanha uma canaleta de plástico que protege o breu e facilita sua aplicação. Benefícios: - Sonoridade Aprimorada: Proporciona um som mais quente e encorpado, ideal para performances orquestrais e solos.\n\n- Facilidade de Uso: A embalagem com canaleta oferece suporte durante a aplicação, garantindo maior controle e evitando desperdícios. - Durabilidade: A composição de alta qualidade assegura uma longa vida útil do breu, oferecendo um bom custo-benefício.\n\nObservações: Armazenamento: Recomenda-se armazenar o breu em local fresco e seco, longe de fontes de calor excessivo, para preservar sua qualidade. Aplicação: Utilize a quantidade adequada de breu para evitar acúmulo excessivo nas cordas, garantindo uma performance ideal.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "019954160050",
+        "emptyGtinReasonEvidence": null,
+        "validatedNcm": "92099900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB434825",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "5240871",
+          "value_name": "D'Addario"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "VR300"
+        },
+        {
+          "id": "GTIN",
+          "value_name": "019954160050"
+        }
+      ],
+      "categoryEvidence": {
+        "source": "official_category_and_product_evidence",
+        "categoryId": "MLB434825",
+        "details": "produto MLB22230956 por GTIN exato; categoria semântica Resinas para Arcos"
+      }
+    },
+    {
+      "produtoId": "f4a0119d-e227-466a-911c-622b7a172adc",
+      "sku": "VTK012611",
+      "nome": "Breu Vr200 Claro D Addario",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 31.49,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 63.57,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "BREU VR200 CLARO D Addario O Breu Claro D Addario Natural Rosin VR200 é um acessório essencial para músicos de instrumentos de arco, como violino, viola e violoncelo. Sua formulação especial proporciona excelente desempenho, garantindo uma tocabilidade suave e uma sonoridade rica.\n\nCaracterísticas Principais\n\n- Composição: Combina ingredientes naturais, incluindo resina de goma, cera de abelha natural e óleo de mamona, em um processo exclusivo que assegura alta qualidade e desempenho. - Tipo de Breu: Disponível na versão clara (Light), ideal para arcos com crina de cavalo ou sintética.\n\n- Embalagem: Acompanha canaleta de plástico que protege e facilita o uso do breu, além de ser compacta, encaixando-se perfeitamente em estojos de instrumentos. Benefícios: - Qualidade Superior: Ingredientes naturais combinados de forma a proporcionar um breu de alto padrão, garantindo uma tocabilidade precisa e uma sonoridade com ótima projeção.\n\n- Custo-Benefício: Oferece excelente desempenho a um preço acessível, tornando-se uma opção econômica para músicos de todos os níveis. Observações: Armazenamento: Recomenda-se guardar o breu em local fresco e seco, longe de fontes de calor excessivo, para preservar sua qualidade.\n\nAplicação: Utilize a quantidade adequada de breu para evitar acúmulo excessivo nas cordas, garantindo uma performance ideal.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "019954160043",
+        "emptyGtinReasonEvidence": null,
+        "validatedNcm": "92099900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB434825",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "5240871",
+          "value_name": "D'Addario"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "VR200"
+        },
+        {
+          "id": "GTIN",
+          "value_name": "019954160043"
+        }
+      ],
+      "categoryEvidence": {
+        "source": "official_category_and_product_evidence",
+        "categoryId": "MLB434825",
+        "details": "produto MLB27901860 por GTIN exato; categoria semântica Resinas para Arcos"
+      }
+    }
+  ]
+}

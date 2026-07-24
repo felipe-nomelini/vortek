@@ -1,0 +1,179 @@
+{
+  "batchNumber": 9,
+  "batchId": "bkr1-publish-approved-009",
+  "strategy": "dry_run_and_category_evidence_approved",
+  "executionHints": {
+    "delayMs": 2000,
+    "listingType": "gold_pro",
+    "strictEvidence": true,
+    "dryRunFirst": false,
+    "createSequentially": true,
+    "stopAfterConsecutiveFailures": 3,
+    "allowEmptyGtinOnlyForExplicitMultipacks": true,
+    "requireVortekStorageImages": true,
+    "verifyListingAfterEachCreate": true
+  },
+  "items": [
+    {
+      "produtoId": "3d3e8419-30ba-4171-a441-126deb7ecb98",
+      "sku": "VTK012763",
+      "nome": "Palheta Guitarra Shl Hvy 1csh6 D Addario 1.00mm 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 32.27,
+      "estoque": 2,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 64.53,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA GUITARRA SHL HVY 1CSH6 D Addario 1.00mm 10un\n\nDescrição\n\nAs palhetas D Addario SHL Heavy são feitas de celuloide, proporcionando um ataque suave e um timbre quente. Com 1,00 mm de espessura, são ideais para guitarristas que precisam de maior controle e precisão ao tocar solos e riffs mais técnicos.\n\nO acabamento em padrão tartaruga oferece um visual clássico e sofisticado.\n\nCaracterísticas Principais\n\n• Modelo: 1CSH6\n\n• Linha: SHL (Shell)\n\n• Material: Celuloide\n\n• Espessura: 1,00 mm (Heavy)\n\n• Cor: Tartaruga (Shell)\n\n• Formato: Padrão Aplicações Recomendadas: Ideal para guitarristas que preferem uma palheta mais rígida para solos detalhados e riffs com maior definição. Boa resposta para estilos como rock, metal e jazz, onde a articulação das notas é essencial.\n\nConteúdo da Embalagem\n\n10 palhetas D Addario SHL Heavy 1CSH6 (1,00 mm).",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099400",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB45712",
+      "categoryEvidence": {
+        "source": "strict_evidence_dry_run",
+        "categoryId": "MLB45712",
+        "categoryName": "Palhetas para Guitarras",
+        "domainName": "Palhetas para instrumentos de cordas"
+      }
+    },
+    {
+      "produtoId": "5b1a9381-ca77-406b-a24e-8b8b5aee9efe",
+      "sku": "VTK012764",
+      "nome": "Palheta Guitarra Dur Prec 6dpr6 D Addario 1.20mm 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 26.77,
+      "estoque": 2,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 57.74,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA GUITARRA DUR PREC 6DPR6 D Addario 1.20mm 10un A Palheta D Addario Duralin Precision 6DPR6 é projetada para oferecer aos músicos uma combinação de durabilidade e precisão. Abaixo estão suas principais\n\nespecificações\n\nCaracterísticas Principais\n\n• Modelo: 6DPR6\n\n• Linha: Duralin Precision\n\n• Material: Duralin (também conhecido como Acetil ou Delrin)\n\n• Espessura: 1,20 mm (Pesada)\n\n• Cor: Roxa\n\n• Formato: Padrão com ponta afiada\n\nDescrição\n\nAs palhetas Duralin Precision são fabricadas com Duralin, um material conhecido por sua resistência, rigidez e estabilidade dimensional. Este polímero durável é ideal para palhetas, permitindo um som brilhante e distinto ao tocar cordas de instrumentos acústicos, guitarra rítmica e passagens rápidas de notas únicas.\n\nA ponta afiada facilita uma articulação mais precisa, tornando-a adequada para estilos que exigem maior controle e dinâmica, como rock progressivo, speed metal e jazz. Aplicações Recomendadas: Devido à sua espessura pesada de 1,20 mm, esta palheta é ideal para técnicas que requerem maior controle e precisão, proporcionando um som brilhante e uma resposta rápida.\n\nConteúdo da Embalagem\n\nO pacote contém 10 palhetas D Addario Duralin Precision 6DPR6, cada uma com espessura de 1,20 mm na cor roxa.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099400",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB45712",
+      "categoryEvidence": {
+        "source": "strict_evidence_dry_run",
+        "categoryId": "MLB45712",
+        "categoryName": "Palhetas para Guitarras",
+        "domainName": "Palhetas para instrumentos de cordas"
+      }
+    },
+    {
+      "produtoId": "da6cc1ad-f9dd-42ee-becd-0f6d7f9fdcdd",
+      "sku": "VTK012765",
+      "nome": "Adaptador Rca Macho P/xlr 3p Macho Niq. Wc 243 Ad 02 Unidades Wireconex",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 21,
+      "estoque": 2,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 50.62,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "Kit Adaptadores RCA Macho P/XLR 3P Macho Niq. WC 243 AD (2UN) Wireconex A Wireconex é uma marca do grupo ATTACK visando garantir a máxima qualidade sonora.\n\nSeus conectores, cabos, main power e acessórios são projetados e construídos com tecnologia de ponta para explorar o máximo dos seus equipamentos de áudio, sem perder a qualidade e fidelidade. Kit com 2 Conectores - Modelo WC 243 - Extremamente robusto e confiável.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "85369010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB195961",
+      "attributeOverrides": [
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788227",
+          "value_name": "XLR"
+        }
+      ],
+      "categoryEvidence": {
+        "source": "official_category_and_product_evidence",
+        "categoryId": "MLB195961",
+        "details": "conexão XLR explícita; valor oficial da categoria"
+      }
+    },
+    {
+      "produtoId": "3adaa07f-dcc2-46ac-934d-392ced07f464",
+      "sku": "VTK012907",
+      "nome": "Painel Multicabo 28 Vias Xlr Medusa Wireconex",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 267.46,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 379.73,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "Painel Multicabo 28 Vias XLR – Medusa Wireconex O Painel Multicabo 28 Vias XLR – Medusa da Wireconex é uma solução robusta e organizada para distribuição de sinais de áudio profissional em setups com grande número de canais. Com 28 vias XLR já equipadas com conectores, ele facilita a conexão e identificação dos cabos em racks, estúdios, palcos e instalações fixas, proporcionando um fluxo de trabalho mais eficiente e um ambiente de som bem estruturado.\n\nEspecificações\n\n• Modelo: Painel Multicabo 28 Vias XLR – Medusa\n\n• Marca: Wireconex\n\n• Tipo: Painel Multicabo com 28 vias XLR\n\n• Conectores: XLR instalados em todas as vias\n\n• Aplicação: Distribuição e organização de sinais XLR em sistemas de áudio profissionais\n\n• Construção: Estrutura metálica resistente para montagem em painel ou rack Com construção sólida, conectores de alta qualidade e layout funcional, o Painel Multicabo 28 Vias XLR – Medusa oferece durabilidade, excelente gerenciamento de cabos e facilidade de uso. Uma escolha confiável para técnicos, instaladores e profissionais de áudio que buscam desempenho, organização e praticidade em setups multicanais.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898640363585",
+        "emptyGtinReasonEvidence": null,
+        "validatedNcm": "85369090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB38279",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "13660752",
+          "value_name": "Wireconex"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788227",
+          "value_name": "XLR"
+        },
+        {
+          "id": "GTIN",
+          "value_name": "7898640363585"
+        }
+      ],
+      "categoryEvidence": {
+        "source": "official_category_and_product_evidence",
+        "categoryId": "MLB38279",
+        "details": "produto MLB29324141 por GTIN exato; categoria usada por cinco anúncios do produto"
+      }
+    }
+  ]
+}

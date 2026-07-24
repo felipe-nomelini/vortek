@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-07-24T01:06:44.953Z",
+  "supplier": {
+    "name": "BKR1",
+    "dsliteId": "108"
+  },
+  "mode": "mirror_images_and_prepare",
+  "batchSize": 5,
+  "candidateUniverseCount": 60,
+  "locallyReadyCount": 46,
+  "liveMlCheckedCount": 46,
+  "readyCount": 45,
+  "blockedCount": 15,
+  "batchCount": 9,
+  "blockedReasonCounts": {
+    "missing_gtin_single_product": 10,
+    "duplicate_candidate_product": 4,
+    "no_valid_images": 1
+  },
+  "descriptionPolicy": "Texto factual do fornecedor reorganizado em parágrafos; publicação acrescenta características confirmadas, identificação e embalagem em bullet points.",
+  "safetyRules": [
+    "produto e oferta ativos com estoque",
+    "BKR1 como oferta preferencial",
+    "nenhum ml_item_id ou vínculo local por produto/SKU",
+    "SKU ausente também na conta ML ao vivo",
+    "produtos duplicados bloqueados",
+    "GTIN válido ou kit/multipack explícito sujeito ao motivo oficial da categoria",
+    "produto unitário sem GTIN bloqueado",
+    "NCM, marca, descrição, dimensões e peso presentes",
+    "imagem validada e servida pelo Storage Vortek",
+    "categoria e atributos condicionais revalidados no dry-run e na execução"
+  ],
+  "files": {
+    "reportDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z",
+    "blocked": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z/blocked-items.json",
+    "ready": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z/ready-items.json",
+    "imageMigrations": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z/image-migrations.json"
+  }
+}

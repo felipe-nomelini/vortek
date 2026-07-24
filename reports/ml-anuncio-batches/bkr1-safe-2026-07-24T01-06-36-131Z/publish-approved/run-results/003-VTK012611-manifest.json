@@ -1,0 +1,57 @@
+{
+  "batchNumber": 3,
+  "batchId": "bkr1-live-003-VTK012611",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "f4a0119d-e227-466a-911c-622b7a172adc",
+      "sku": "VTK012611",
+      "nome": "Breu Vr200 Claro D Addario",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 31.49,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 63.57,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "BREU VR200 CLARO D Addario O Breu Claro D Addario Natural Rosin VR200 é um acessório essencial para músicos de instrumentos de arco, como violino, viola e violoncelo. Sua formulação especial proporciona excelente desempenho, garantindo uma tocabilidade suave e uma sonoridade rica.\n\nCaracterísticas Principais\n\n- Composição: Combina ingredientes naturais, incluindo resina de goma, cera de abelha natural e óleo de mamona, em um processo exclusivo que assegura alta qualidade e desempenho. - Tipo de Breu: Disponível na versão clara (Light), ideal para arcos com crina de cavalo ou sintética.\n\n- Embalagem: Acompanha canaleta de plástico que protege e facilita o uso do breu, além de ser compacta, encaixando-se perfeitamente em estojos de instrumentos. Benefícios: - Qualidade Superior: Ingredientes naturais combinados de forma a proporcionar um breu de alto padrão, garantindo uma tocabilidade precisa e uma sonoridade com ótima projeção.\n\n- Custo-Benefício: Oferece excelente desempenho a um preço acessível, tornando-se uma opção econômica para músicos de todos os níveis. Observações: Armazenamento: Recomenda-se guardar o breu em local fresco e seco, longe de fontes de calor excessivo, para preservar sua qualidade.\n\nAplicação: Utilize a quantidade adequada de breu para evitar acúmulo excessivo nas cordas, garantindo uma performance ideal.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "019954160043",
+        "emptyGtinReasonEvidence": null,
+        "validatedNcm": "92099900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB434825",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "5240871",
+          "value_name": "D'Addario"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "VR200"
+        },
+        {
+          "id": "GTIN",
+          "value_name": "019954160043"
+        }
+      ],
+      "categoryEvidence": {
+        "source": "official_category_and_product_evidence",
+        "categoryId": "MLB434825",
+        "details": "produto MLB27901860 por GTIN exato; categoria semântica Resinas para Arcos"
+      },
+      "sourceBatch": "007-bkr1-publish-007.json"
+    }
+  ]
+}

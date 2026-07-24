@@ -1,0 +1,70 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z/006-bkr1-ml-create-006.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "bkr1-ml-create-006",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "422bcabd-a745-4698-a59a-9b376e947f2c",
+      "sku": "VTK012383",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 69.6,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6c4f65db-7cd0-448b-90fe-076a6b3ceb7d",
+      "sku": "VTK012384",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 69.64,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ddd9f12b-6a56-4456-874f-e60cee322f9a",
+      "sku": "VTK012414",
+      "category": {
+        "id": "MLB38172",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "basePrice": 96.15,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9bba78bf-6c76-45dd-afa1-c460ae550ace",
+      "sku": "VTK012421",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 65.75,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ee29fdf0-5caf-40ff-8a2e-63bfaa7e671e",
+      "sku": "VTK012422",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 69.79,
+      "missing": []
+    }
+  ],
+  "failed": []
+}

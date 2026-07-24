@@ -1,0 +1,58 @@
+{
+  "batchNumber": 4,
+  "batchId": "bkr1-live-004-VTK012907",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "3adaa07f-dcc2-46ac-934d-392ced07f464",
+      "sku": "VTK012907",
+      "nome": "Painel Multicabo 28 Vias Xlr Medusa Wireconex",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 267.46,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 379.73,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "Painel Multicabo 28 Vias XLR – Medusa Wireconex O Painel Multicabo 28 Vias XLR – Medusa da Wireconex é uma solução robusta e organizada para distribuição de sinais de áudio profissional em setups com grande número de canais. Com 28 vias XLR já equipadas com conectores, ele facilita a conexão e identificação dos cabos em racks, estúdios, palcos e instalações fixas, proporcionando um fluxo de trabalho mais eficiente e um ambiente de som bem estruturado.\n\nEspecificações\n\n• Modelo: Painel Multicabo 28 Vias XLR – Medusa\n\n• Marca: Wireconex\n\n• Tipo: Painel Multicabo com 28 vias XLR\n\n• Conectores: XLR instalados em todas as vias\n\n• Aplicação: Distribuição e organização de sinais XLR em sistemas de áudio profissionais\n\n• Construção: Estrutura metálica resistente para montagem em painel ou rack Com construção sólida, conectores de alta qualidade e layout funcional, o Painel Multicabo 28 Vias XLR – Medusa oferece durabilidade, excelente gerenciamento de cabos e facilidade de uso. Uma escolha confiável para técnicos, instaladores e profissionais de áudio que buscam desempenho, organização e praticidade em setups multicanais.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898640363585",
+        "emptyGtinReasonEvidence": null,
+        "validatedNcm": "85369090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB38279",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "13660752",
+          "value_name": "Wireconex"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788227",
+          "value_name": "XLR"
+        },
+        {
+          "id": "GTIN",
+          "value_name": "7898640363585"
+        }
+      ],
+      "categoryEvidence": {
+        "source": "official_category_and_product_evidence",
+        "categoryId": "MLB38279",
+        "details": "produto MLB29324141 por GTIN exato; categoria usada por cinco anúncios do produto"
+      },
+      "sourceBatch": "009-bkr1-publish-009.json"
+    }
+  ]
+}

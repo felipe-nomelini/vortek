@@ -1,0 +1,87 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z/008-bkr1-ml-create-008.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "bkr1-ml-create-008",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "67bc35b4-73bf-484f-8bbb-6d39710108c9",
+      "sku": "VTK012628",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 58.83,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "beb1e6a3-9ff6-44b2-9e87-93213f7cb65b",
+      "sku": "VTK012668",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 68.59,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8df5a908-5df3-4e17-a4ad-ebff58570bde",
+      "sku": "VTK012669",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 62.99,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "c5a3ac69-aaa3-408d-ba6a-981ceaa94a52",
+      "sku": "VTK012670",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 65.75,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "ebb84cd8-c62e-4c91-8f53-85d294b6ce03",
+      "sku": "VTK012632",
+      "nome": "Painel Multicabo 36 Vias XLR Sem Conectores Wireconex",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB455650",
+            "nome": "Painéis de Controle"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB409814",
+            "nome": "Sistemas de Monitoramento"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

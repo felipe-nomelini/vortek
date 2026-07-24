@@ -1,0 +1,123 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z/005-bkr1-ml-create-005.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "bkr1-ml-create-005",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "c71efd1f-eea6-43ba-adee-9d6dfb0699e9",
+      "sku": "VTK012335",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 37.74,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6e303597-dc2a-4632-b320-fd3b92447ee5",
+      "sku": "VTK012336",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 37.74,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e6b1f9d9-cb95-4695-ad62-b9593259ae60",
+      "sku": "VTK012337",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 37.74,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8b244ff4-cd3c-4be7-9e79-07d65a6a4e22",
+      "sku": "VTK012359",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 37.74,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "df0fe9d6-90ce-49e9-b554-bb3b026a3574",
+      "sku": "VTK012369",
+      "nome": "Adaptadores Rca Fêmea P/xlr 3p Macho Niq. Wc 245 Ad 02 Unidades Wireconex",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB195961",
+            "nome": "Adaptadores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB438559",
+            "nome": "Cabos e Conectores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB432437",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB431813",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB38172",
+            "nome": "Conectores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

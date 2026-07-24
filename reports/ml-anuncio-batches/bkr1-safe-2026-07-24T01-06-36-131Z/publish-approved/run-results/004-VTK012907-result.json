@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z/publish-approved/run-results/004-VTK012907-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-004-VTK012907",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "3adaa07f-dcc2-46ac-934d-392ced07f464",
+      "sku": "VTK012907",
+      "category": {
+        "id": "MLB38279",
+        "nome": "MLB38279",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4937922729",
+        "title": "Painel Multicabo 28 Vias Xlr Medusa Wireconex",
+        "price": 424.65,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937922729-painel-multicabo-28-vias-xlr-medusa-wireconex-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 394.33 → R$ 424.65."
+      ]
+    }
+  ],
+  "failed": []
+}

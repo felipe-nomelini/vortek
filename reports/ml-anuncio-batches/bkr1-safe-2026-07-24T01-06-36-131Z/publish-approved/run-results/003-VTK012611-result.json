@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z/publish-approved/run-results/003-VTK012611-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-003-VTK012611",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "f4a0119d-e227-466a-911c-622b7a172adc",
+      "sku": "VTK012611",
+      "category": {
+        "id": "MLB434825",
+        "nome": "MLB434825",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4937865089",
+        "title": "Breu Vr200 Claro D Addario",
+        "price": 80.3,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937865089-breu-vr200-claro-d-addario-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 64.77 → R$ 80.30."
+      ]
+    }
+  ],
+  "failed": []
+}

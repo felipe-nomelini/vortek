@@ -1,0 +1,157 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z/001-bkr1-ml-create-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "bkr1-ml-create-001",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "d63548bc-a94a-42bd-b6cb-53ae8976bb03",
+      "sku": "VTK012014",
+      "category": {
+        "id": "MLB38172",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "basePrice": 76.92,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "3d89cea5-4142-4587-9e80-f83fb967c9e6",
+      "sku": "VTK012233",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 37.96,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "521f017d-10c5-4043-950e-aa4d05920e70",
+      "sku": "VTK012236",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 37.96,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "25ea579a-df21-4e4c-a729-a8b1f351b239",
+      "sku": "VTK012022",
+      "nome": "Conector Combo Xlr Fêmea Painel 3p Wc 330 Wireconex 04 Unidades",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB420707",
+            "nome": "Conectores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB38172",
+            "nome": "Conectores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB435189",
+            "nome": "Outros"
+          },
+          "missing": [
+            "Modelo do produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "70fb5f79-40a8-4eb9-a48c-5e2ddb29c4fa",
+      "sku": "VTK012148",
+      "nome": "Adaptador Rca Fêmea P/xlr 3p Fêmea Niq. Wc 244 Ad 02 Unidades Wireconex",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB195961",
+            "nome": "Adaptadores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB438559",
+            "nome": "Cabos e Conectores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB432437",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB431813",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB38172",
+            "nome": "Conectores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB420707",
+            "nome": "Conectores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

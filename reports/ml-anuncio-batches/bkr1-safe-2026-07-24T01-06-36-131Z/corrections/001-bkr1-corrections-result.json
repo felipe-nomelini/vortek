@@ -1,0 +1,142 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z/corrections/001-bkr1-corrections.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "bkr1-corrections-001",
+  "selected": 11,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "25ea579a-df21-4e4c-a729-a8b1f351b239",
+      "sku": "VTK012022",
+      "category": {
+        "id": "MLB420707",
+        "nome": "MLB420707",
+        "dominio": ""
+      },
+      "basePrice": 107.69,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "70fb5f79-40a8-4eb9-a48c-5e2ddb29c4fa",
+      "sku": "VTK012148",
+      "category": {
+        "id": "MLB195961",
+        "nome": "MLB195961",
+        "dominio": ""
+      },
+      "basePrice": 50,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "dbecc552-4f0b-4abf-a874-654a26eb0818",
+      "sku": "VTK012267",
+      "category": {
+        "id": "MLB195961",
+        "nome": "MLB195961",
+        "dominio": ""
+      },
+      "basePrice": 52.15,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "152238b0-74d4-4e71-b611-3e3950e1ed9c",
+      "sku": "VTK012297",
+      "category": {
+        "id": "MLB420707",
+        "nome": "MLB420707",
+        "dominio": ""
+      },
+      "basePrice": 61.37,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ea1b9a83-6435-4677-a052-870c41fde6bf",
+      "sku": "VTK012327",
+      "category": {
+        "id": "MLB420707",
+        "nome": "MLB420707",
+        "dominio": ""
+      },
+      "basePrice": 61.37,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "df0fe9d6-90ce-49e9-b554-bb3b026a3574",
+      "sku": "VTK012369",
+      "category": {
+        "id": "MLB195961",
+        "nome": "MLB195961",
+        "dominio": ""
+      },
+      "basePrice": 51.28,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1108d86d-b2bd-45ee-a95f-2519198c67b1",
+      "sku": "VTK012523",
+      "category": {
+        "id": "MLB72751",
+        "nome": "MLB72751",
+        "dominio": ""
+      },
+      "basePrice": 44.65,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1e9f89d2-cbd7-418b-98f8-f6b34a43c33d",
+      "sku": "VTK012547",
+      "category": {
+        "id": "MLB434825",
+        "nome": "MLB434825",
+        "dominio": ""
+      },
+      "basePrice": 64.77,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f4a0119d-e227-466a-911c-622b7a172adc",
+      "sku": "VTK012611",
+      "category": {
+        "id": "MLB434825",
+        "nome": "MLB434825",
+        "dominio": ""
+      },
+      "basePrice": 64.77,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "da6cc1ad-f9dd-42ee-becd-0f6d7f9fdcdd",
+      "sku": "VTK012765",
+      "category": {
+        "id": "MLB195961",
+        "nome": "MLB195961",
+        "dominio": ""
+      },
+      "basePrice": 52.56,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "3adaa07f-dcc2-46ac-934d-392ced07f464",
+      "sku": "VTK012907",
+      "category": {
+        "id": "MLB38279",
+        "nome": "MLB38279",
+        "dominio": ""
+      },
+      "basePrice": 394.33,
+      "missing": []
+    }
+  ],
+  "failed": []
+}

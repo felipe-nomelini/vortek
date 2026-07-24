@@ -1,0 +1,158 @@
+{
+  "batchNumber": 4,
+  "batchId": "bkr1-ml-create-004",
+  "strategy": "strict_evidence_small_batch",
+  "executionHints": {
+    "delayMs": 2000,
+    "listingType": "gold_pro",
+    "strictEvidence": true,
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "stopAfterConsecutiveFailures": 3,
+    "allowEmptyGtinOnlyForExplicitMultipacks": true,
+    "requireVortekStorageImages": true,
+    "verifyListingAfterEachCreate": true
+  },
+  "items": [
+    {
+      "produtoId": "e9198188-46cf-49eb-b90f-b7b7eaf37b3b",
+      "sku": "VTK012310",
+      "nome": "Palheta Bori Grl At-r16142 Rio Ii (vermelho) R21026 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 10,
+      "estoque": 22,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "As palhetas Bori RIO, possuem as pontas diferenciadas com suas ranhuras texturizadas na gravação nos dois lados para maior firmeza e segurança, evitando que a palheta escape. Detalhe rígido para uma sonoridade com excelência.\n\nBorda arredondada para redução de ruídos e maior flexibilidade para obter frases rápidas, arpejos e acordes. Seu tamanho compacto e borda arredondada são ideais para palhetadas rápidas.\n\nModelo: Palhetas RIO “JAZZ” Código: Ref. 21026 [RIO II 1,16mm Vermelho] Acabamento: Alto Brilho Material: Poliamida Nylon Cores disponíveis: Vermelho e Preto Ideal para: Cavaco, Banjo, Bandolim, Violão, Guitarra e Baixo Espessura: 1,16mm Largura: 21mm Altura: 26mm Peso: 0,55g Ref.\n\nda linha RIO: Código: Ref. 21025 [RIO I 0,98mm Vermelho] Código: Ref.\n\n21026 [RIO II 1,16mm Vermelho] Código: Ref. 21027 [RIO III 1,38mm Vermelho] Código: Ref.\n\n21028 [RIO I-XXL 1,70mm Vermelho] Código: Ref. 21029 [RIO I 0,98mm Preto] Código: Ref.\n\n21030 [RIO II 1,16mm Preto] Código: Ref. 21031 [RIO III 1,38mm Preto] Código: Ref.\n\n21032 [RIO I-XXL 1,70mm Preto]",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "34ced274-3d7d-41ce-bde4-ede040014072",
+      "sku": "VTK012319",
+      "nome": "Palheta Bori Grl At-r16115 Azul Crystal 0,96 Mm R21008 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 8,
+      "estoque": 21,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 34.57,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA BORI GRL AT-R16115 AZUL CRYSTAL 0,96 MM R21008 10UN A Palheta Bori GRL AT-R16115 Azul Crystal 0,96 mm (R21008) é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Abaixo, apresento suas principais\n\nespecificações\n\nCaracterísticas Principais\n\n• Modelo: S.T.D (Standard)\n\n• Código do Fabricante: R21008\n\n• Espessura: 0,96 mm\n\n• Material: Policarbonato Cristal (Resina de Engenharia)\n\n• Cor: Azul Crystal\n\n• Acabamento: Transparente Fosco Cristal\n\n• Dimensões:\n\n• Largura: 25 mm\n\n• Altura: 30 mm\n\n• Peso: 0,45 g Design e Funcionalidade: Ponta em 'V' Mediana: Proporciona flexibilidade e uma sonoridade de excelência. Relevo Esférico 'GRIP': Oferece maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Arredondada: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Tamanho Compacto: Ideal para palhetadas rápidas, atendendo às necessidades de diversos estilos musicais. Aplicações Recomendadas: Indicada para instrumentos como violão, guitarra e baixo, oferecendo versatilidade para músicos de diferentes gêneros.\n\nConteúdo da Embalagem\n\nO kit contém 10 palhetas Bori S.T.D de 0,96 mm na cor Azul Crystal.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "2900f5c0-284c-4f25-afdf-02e041156354",
+      "sku": "VTK012320",
+      "nome": "Palheta Bori Grl At-r16136 Drip Gota 2,50 Mm (azul) R21019 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 10,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA BORI GRL AT-R16136 DRIP GOTA 2,50 MM (AZUL) R21019 10UN A Palheta Bori GRL AT-R16136 Drip Gota 2,50 mm (Azul) R21019 é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Abaixo, apresento suas principais\n\nespecificações\n\nCaracterísticas Principais\n\n• Modelo: Drip Gota\n\n• Código do Fabricante: R21019\n\n• Espessura: 2,50 mm\n\n• Material: Poliamida Nylon (Resina de Engenharia)\n\n• Cor: Azul\n\n• Acabamento: Fosco, desenvolvido para minimizar a retenção de suor e evitar que a palheta escorregue\n\n• Dimensões:\n\n• Largura: 30 mm\n\n• Altura: 35 mm\n\n• Peso: 0,70 g Design e Funcionalidade: Formato Gota: Proporciona maior área de contato com as cordas, resultando em um som mais encorpado e quente. Espessura de 2,50 mm: Ideal para músicos que buscam maior controle e força nas palhetadas, especialmente em estilos como rock e heavy metal. Relevo Esférico 'GRIP': Oferece maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Arredondada: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Aplicações Recomendadas: Indicada para instrumentos como guitarra elétrica e baixo, oferecendo versatilidade para músicos de diferentes gêneros, especialmente aqueles que buscam maior agressividade e presença sonora.\n\nConteúdo da Embalagem\n\nO kit contém 10 palhetas Bori Drip Gota de 2,50 mm na cor azul.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "04e730e5-b9d0-4147-b1c5-4428e8fc4c71",
+      "sku": "VTK012321",
+      "nome": "Palheta Bori Grl At-r16144 Rio Iii (vermelho) R21027 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 10,
+      "estoque": 21,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA BORI GRL AT-R16146 RIO XXL (VERMELHO) R21028 10UN A Palheta Bori GRL AT-R16146 Rio XXL (Vermelho) R21028 é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Abaixo, apresento suas principais\n\nespecificações\n\nCaracterísticas Principais\n\n• Modelo: Rio XXL\n\n• Código do Fabricante: R21028\n\n• Espessura: 1,00 mm\n\n• Material: Policarbonato (Resina de Engenharia)\n\n• Cor: Vermelho Transparente\n\n• Acabamento: Alto Brilho\n\n• Dimensões:\n\n• Largura: 25 mm\n\n• Altura: 30 mm\n\n• Peso: 0,50 g Design e Funcionalidade: Ponta Arredondada: Proporciona um ataque suave e uma sonoridade equilibrada. Superfície Lisa: Oferece uma sensação confortável ao tocar, adequada para diferentes técnicas de palhetada. Borda Fina: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Aplicações Recomendadas: Indicada para instrumentos como violão, guitarra e baixo, oferecendo versatilidade para músicos de diferentes gêneros.\n\nConteúdo da Embalagem\n\nO kit contém 10 palhetas Bori Rio XXL de 1,00 mm na cor vermelha.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "ea1b9a83-6435-4677-a052-870c41fde6bf",
+      "sku": "VTK012327",
+      "nome": "Kit 04 Conectores Xlr Femea P/ Pci 3 Polos Wc 4046 Wireconex",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 27.87,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 59.1,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "Kit 04 Conectores XLR Fêmea para PCI 3 Polos WC 4046 Wireconex O Kit com 04 Conectores XLR Fêmea WC 4046 Wireconex foi desenvolvido para montagem em placa de circuito impresso (PCI), oferecendo uma conexão segura e estável para equipamentos de áudio. Ideal para projetos eletrônicos, manutenção e montagem de aparelhos profissionais, garantindo excelente qualidade na transmissão de sinal.\n\nPrincipais\n\nCaracterísticas\n\n• Conector XLR fêmea para montagem em PCI (placa de circuito impresso)\n\n• 3 polos, ideal para sistemas de áudio balanceado\n\n• Construção resistente para maior durabilidade\n\n• Conexão firme que ajuda a reduzir ruídos e interferências\n\n• Indicado para mesas de som, amplificadores, interfaces de áudio e projetos eletrônicos\n\n• Produto da marca Wireconex, reconhecida pela qualidade em conectores O Conector XLR Fêmea WC 4046 Wireconex é uma excelente escolha para quem precisa de confiabilidade e qualidade em conexões de áudio. Com padrão profissional e fácil instalação em placas PCI, ele garante desempenho eficiente e maior segurança nas conexões, sendo ideal para técnicos, eletrônicos e profissionais de áudio.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "85369010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

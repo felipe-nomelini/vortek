@@ -1,0 +1,57 @@
+{
+  "batchNumber": 2,
+  "batchId": "bkr1-live-002-VTK012547",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "1e9f89d2-cbd7-418b-98f8-f6b34a43c33d",
+      "sku": "VTK012547",
+      "nome": "Breu Vr300 Escuro D Addario",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 31.49,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 63.57,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "Breu VR300 escuro D Addario O Breu Escuro D Addario Natural Rosin VR300 é um acessório essencial para músicos de instrumentos de arco, como violino, viola e violoncelo. Sua formulação especial proporciona uma tocabilidade precisa e uma sonoridade rica.\n\nCaracterísticas Principais\n\n- Composição: Formulado com ingredientes naturais, incluindo resina de pinho, cera de abelha e óleo de mamona, combinados em um processo exclusivo que assegura alta qualidade e desempenho. - Tipo de Breu: Escuro, ideal para arcos com crina de cavalo ou sintética.\n\n- Embalagem: Acompanha uma canaleta de plástico que protege o breu e facilita sua aplicação. Benefícios: - Sonoridade Aprimorada: Proporciona um som mais quente e encorpado, ideal para performances orquestrais e solos.\n\n- Facilidade de Uso: A embalagem com canaleta oferece suporte durante a aplicação, garantindo maior controle e evitando desperdícios. - Durabilidade: A composição de alta qualidade assegura uma longa vida útil do breu, oferecendo um bom custo-benefício.\n\nObservações: Armazenamento: Recomenda-se armazenar o breu em local fresco e seco, longe de fontes de calor excessivo, para preservar sua qualidade. Aplicação: Utilize a quantidade adequada de breu para evitar acúmulo excessivo nas cordas, garantindo uma performance ideal.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "019954160050",
+        "emptyGtinReasonEvidence": null,
+        "validatedNcm": "92099900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB434825",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "5240871",
+          "value_name": "D'Addario"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "VR300"
+        },
+        {
+          "id": "GTIN",
+          "value_name": "019954160050"
+        }
+      ],
+      "categoryEvidence": {
+        "source": "official_category_and_product_evidence",
+        "categoryId": "MLB434825",
+        "details": "produto MLB22230956 por GTIN exato; categoria semântica Resinas para Arcos"
+      },
+      "sourceBatch": "007-bkr1-publish-007.json"
+    }
+  ]
+}

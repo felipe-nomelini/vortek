@@ -1398,6 +1398,19 @@ async function processOrder(params: {
         motivoDevolucao || 'Outro Motivo',
         devolucaoMl?.status || 'aguardando_confirmacao',
       );
+    } else {
+      const shipmentStatus = String(shipmentDetail?.status || '').toLowerCase();
+      const shipmentSubstatus = String(shipmentDetail?.substatus || '').toLowerCase();
+      if (
+        shipmentStatus === 'not_delivered' &&
+        ['returning_to_sender', 'returned'].includes(shipmentSubstatus)
+      ) {
+        await registrarDevolucaoInterna(
+          pedidoId,
+          motivoDevolucao || 'Entrega não realizada',
+          shipmentSubstatus,
+        );
+      }
     }
 
     await registrarEventoNfAuditoria({

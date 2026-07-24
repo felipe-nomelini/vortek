@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z/publish-approved/run-results/001-VTK012523-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-001-VTK012523",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "1108d86d-b2bd-45ee-a95f-2519198c67b1",
+      "sku": "VTK012523",
+      "category": {
+        "id": "MLB72751",
+        "nome": "MLB72751",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7239571018",
+        "title": "Knobs Andaluz Kp (kit C/2 Vol+2ton) Preto",
+        "price": 61.32,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239571018-knobs-andaluz-kp-kit-c2-vol2ton-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 44.65 → R$ 61.32."
+      ]
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,158 @@
+{
+  "batchNumber": 6,
+  "batchId": "bkr1-ml-create-006",
+  "strategy": "strict_evidence_small_batch",
+  "executionHints": {
+    "delayMs": 2000,
+    "listingType": "gold_pro",
+    "strictEvidence": true,
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "stopAfterConsecutiveFailures": 3,
+    "allowEmptyGtinOnlyForExplicitMultipacks": true,
+    "requireVortekStorageImages": true,
+    "verifyListingAfterEachCreate": true
+  },
+  "items": [
+    {
+      "produtoId": "422bcabd-a745-4698-a59a-9b376e947f2c",
+      "sku": "VTK012383",
+      "nome": "Palheta Guitarra Mul Lght 1cmc2 D Addario .50mm 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 35.33,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 68.31,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA GUITARRA MUL LGHT 1CMC2 D Addario .50mm 10un A Palheta D Addario Celuloide Multicolorida 1CMC2 é projetada para oferecer aos músicos uma sensação tradicional e um timbre quente. Abaixo estão suas principais\n\nespecificações\n\nCaracterísticas Principais\n\n• Modelo: 1CMC2\n\n• Linha: Celuloide Multicolorida\n\n• Material: Celuloide\n\n• Espessura: 0,50 mm (Leve)\n\n• Cor: Multicolorida\n\n• Formato: Padrão\n\nDescrição\n\nAs palhetas de celuloide da D Addario proporcionam uma sensação tradicional e um tom quente e redondo. A espessura leve de 0,50 mm oferece flexibilidade, tornando-a ideal para técnicas de strumming suaves e ritmos mais leves.\n\nO design multicolorido adiciona um toque estético diferenciado para os músicos que buscam estilo além de funcionalidade. Aplicações Recomendadas: Devido à sua espessura leve, esta palheta é especialmente adequada para estilos musicais que requerem uma abordagem mais suave e fluida, oferecendo uma resposta rápida e um som brilhante.\n\nConteúdo da Embalagem\n\nO pacote contém 10 palhetas D Addario Celuloide Multicolorida 1CMC2, cada uma com espessura de 0,50 mm e design multicolorido.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099400",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "6c4f65db-7cd0-448b-90fe-076a6b3ceb7d",
+      "sku": "VTK012384",
+      "nome": "Palheta Guitarra Color 1cap2 D Addario .50mm 10 Un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 35.36,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 68.35,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA GUITARRA COLOR 1CAP2 D Addario .50mm 10 un A Palheta D Addario 1CAP2-10 é uma escolha popular entre músicos que buscam qualidade e desempenho. Abaixo, apresento suas principais\n\nespecificações\n\nCaracterísticas Principais\n\n• Modelo: 1CAP2-10\n\n• Material: Celuloide perolado\n\n• Espessura: 0,50 mm (Leve)\n\n• Cor: Sortida (perolada/multicolorida)\n\n• Formato: Padrão\n\nDescrição\n\nA celuloide é um dos primeiros polímeros criados, desenvolvido a partir da reação entre fibras de algodão e ácido nítrico. Inicialmente, foi utilizada como substituta das palhetas de casco de tartaruga no início do século XX.\n\nEste material proporciona uma sensação tradicional ao tocar, oferecendo um timbre quente e encorpado. Aplicações Recomendadas: Devido à sua espessura leve de 0,50 mm, esta palheta é ideal para músicos que preferem uma resposta mais flexível, sendo especialmente adequada para técnicas de strumming em violões e guitarras acústicas.\n\nConteúdo da Embalagem\n\nO pacote contém 10 palhetas D Addario 1CAP2-10, cada uma com espessura de 0,50 mm e cores sortidas peroladas.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099400",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "ddd9f12b-6a56-4456-874f-e60cee322f9a",
+      "sku": "VTK012414",
+      "nome": "Adaptador 3,5 Femea Trs 6,3mm Macho Wc347 Wireconex 06 Unidades",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 55,
+      "estoque": 13,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 92.59,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "Adaptador 3,5mm Fêmea TRS para 6,3mm Macho WC347 Wireconex – Kit com 6 Unidades Ideal para quem precisa de versatilidade e conexão segura em equipamentos de áudio, este adaptador permite converter plugues P2 (3,5mm) estéreo para entrada P10 (6,3mm), garantindo compatibilidade entre fones, mesas de som, interfaces, instrumentos e outros dispositivos profissionais. Especificações\n\n• Modelo: WC347\n\n• Marca: Wireconex\n\n• Tipo de conexão: 3,5mm (P2) Fêmea TRS → 6,3mm (P10) Macho\n\n• Padrão: TRS (estéreo)\n\n• Material: Conectores metálicos de alta durabilidade\n\n• Acabamento: Corpo resistente com encaixe firme\n\n• Quantidade: 06 unidades\n\n• Aplicação: Áudio profissional, instrumentos musicais, mesas de som, amplificadores, fones de ouvido Com excelente custo-benefício, o adaptador WC347 da Wireconex oferece conexão estável, encaixe preciso e ótima durabilidade, sendo ideal tanto para uso profissional quanto doméstico. O kit com 6 unidades é perfeito para estúdios, igrejas, eventos e técnicos que precisam de praticidade no dia a dia. Garanta mais compatibilidade e eficiência nas suas conexões de áudio com qualidade e segurança.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "85369010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "9bba78bf-6c76-45dd-afa1-c460ae550ace",
+      "sku": "VTK012421",
+      "nome": "Palheta Guitarra Shl Lght 1csh2 D Addario .50mm 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 32.27,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 64.53,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA GUITARRA SHL LGHT 1CSH2 D Addario .50mm 10un\n\nDescrição\n\nA D Addario SHL Light 1CSH2 é uma palheta de celuloide com espessura leve (0,50 mm), ideal para quem busca flexibilidade e um ataque mais suave às cordas. O material proporciona um timbre quente e uma sensação confortável ao tocar.\n\nSeu design clássico na cor tartaruga oferece um visual sofisticado.\n\nCaracterísticas Principais\n\n• Modelo: 1CSH2\n\n• Linha: SHL (Shell)\n\n• Material: Celuloide\n\n• Espessura: 0,50 mm (Light)\n\n• Cor: Tartaruga (Shell)\n\n• Formato: Padrão Aplicações Recomendadas: Perfeita para ritmos mais suaves, como acompanhamento de violão, pop e folk. Boa para técnicas de strumming, pois a menor espessura facilita o deslize nas cordas e proporciona um som mais aberto.\n\nConteúdo da Embalagem\n\n10 palhetas D Addario SHL Light 1CSH2 (0,50 mm).",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099400",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "ee29fdf0-5caf-40ff-8a2e-63bfaa7e671e",
+      "sku": "VTK012422",
+      "nome": "Palheta Guitarra Mul Med 1cmc4 D Addario .70mm 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 35.48,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 68.49,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA GUITARRA MUL MED 1CMC4 D Addario .70mm 10un\n\nDescrição\n\nAs palhetas de celuloide da D Addario oferecem uma sensação tradicional e um timbre quente e equilibrado. A espessura média (0,70 mm) proporciona um ótimo equilíbrio entre flexibilidade e rigidez, tornando-a versátil para diferentes estilos musicais.\n\nSeu design multicolorido adiciona um toque estético diferenciado.\n\nCaracterísticas Principais\n\n• Modelo: 1CMC4\n\n• Linha: Celuloide Multicolorida\n\n• Material: Celuloide\n\n• Espessura: 0,70 mm (Média)\n\n• Cor: Multicolorida\n\n• Formato: Padrão Aplicações Recomendadas: Indicada para guitarristas que buscam um som equilibrado e versatilidade para tocar acordes e solos. Boa resposta para técnicas híbridas entre strumming e picking.\n\nConteúdo da Embalagem\n\n10 palhetas D Addario Celuloide Multicolorida 1CMC4 (0,70 mm).",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099400",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z/009-bkr1-ml-create-009.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "bkr1-ml-create-009",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "8bd947dc-4f73-4a57-a02c-ffa28acf126f",
+      "sku": "VTK012694",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 35.22,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "3d3e8419-30ba-4171-a441-126deb7ecb98",
+      "sku": "VTK012763",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 65.75,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "5b1a9381-ca77-406b-a24e-8b8b5aee9efe",
+      "sku": "VTK012764",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 58.83,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "da6cc1ad-f9dd-42ee-becd-0f6d7f9fdcdd",
+      "sku": "VTK012765",
+      "nome": "Adaptador Rca Macho P/xlr 3p Macho Niq. Wc 243 Ad 02 Unidades Wireconex",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB195961",
+            "nome": "Adaptadores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB438559",
+            "nome": "Cabos e Conectores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB432437",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB431813",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB72956",
+            "nome": "Cabos e Adaptadores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB1658",
+            "nome": "Placas de Vídeo"
+          },
+          "missing": [
+            "Fabricante",
+            "Tamanho da memória"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3adaa07f-dcc2-46ac-934d-392ced07f464",
+      "sku": "VTK012907",
+      "nome": "Painel Multicabo 28 Vias Xlr Medusa Wireconex",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB455833",
+            "nome": "Painéis Led"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB49074",
+            "nome": "Encadernadoras"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { Button, Card, Col, Form, Input, InputNumber, message, Modal, Row, Statistic, Table, Tabs, Tag, Typography } from 'antd';
+import { Button, Card, Col, Form, Input, InputNumber, message, Modal, Popconfirm, Row, Space, Statistic, Table, Tabs, Tag, Typography } from 'antd';
 
 type SituacaoEstoque = 'revisao' | 'liberado' | 'nao_aproveitavel';
 type ItemEstoque = {
@@ -26,6 +26,9 @@ const statusLabels: Record<string, { label: string; color: string }> = {
   failed: { label: 'Falha na devolução', color: 'red' },
   expired: { label: 'Devolução expirada', color: 'red' },
   return_to_buyer: { label: 'Retornando ao cliente', color: 'orange' },
+  returning_to_sender: { label: 'Retornando ao remetente', color: 'processing' },
+  returned: { label: 'Devolvido ao remetente', color: 'green' },
+  lost: { label: 'Extraviado', color: 'red' },
   aguardando_confirmacao: { label: 'Aguardando confirmação', color: 'default' },
 };
 
@@ -36,18 +39,36 @@ export default function EstoquePage() {
   const [manualProduct, setManualProduct] = useState<{ sku: string; nome: string } | null>(null);
   const [lookingUpProduct, setLookingUpProduct] = useState(false);
   const [savingManual, setSavingManual] = useState(false);
+  const [deletingManualId, setDeletingManualId] = useState<string | null>(null);
   const [manualForm] = Form.useForm<{ sku: string; quantidade: number }>();
   const [messageApi, contextHolder] = message.useMessage();
-  const load = useCallback(async () => {
-    setLoading(true);
+  const load = useCallback(async (showLoading = true) => {
+    if (showLoading) setLoading(true);
     try {
       const response = await fetch('/api/estoque'); const result = await response.json();
       if (!response.ok) throw new Error(result?.error || 'Falha ao carregar estoque interno.');
       setData(result);
-    } catch (error: any) { messageApi.error(error?.message || 'Falha ao carregar estoque interno.'); }
-    finally { setLoading(false); }
+    } catch (error: any) {
+      if (showLoading) messageApi.error(error?.message || 'Falha ao carregar estoque interno.');
+    } finally {
+      if (showLoading) setLoading(false);
+    }
   }, [messageApi]);
-  useEffect(() => { void load(); }, [load]);
+  useEffect(() => {
+    void load();
+    const refresh = () => void load(false);
+    const interval = window.setInterval(refresh, 30_000);
+    const refreshWhenVisible = () => {
+      if (document.visibilityState === 'visible') refresh();
+    };
+    window.addEventListener('focus', refresh);
+    document.addEventListener('visibilitychange', refreshWhenVisible);
+    return () => {
+      window.clearInterval(interval);
+      window.removeEventListener('focus', refresh);
+      document.removeEventListener('visibilitychange', refreshWhenVisible);
+    };
+  }, [load]);
 
   const atualizarSituacao = async (item: ItemEstoque, situacao: Exclude<SituacaoEstoque, 'revisao'>) => {
     try {
@@ -89,6 +110,21 @@ export default function EstoquePage() {
     finally { setSavingManual(false); }
   };
 
+  const excluirEstoqueManual = async (item: ItemEstoque) => {
+    setDeletingManualId(item.id);
+    try {
+      const response = await fetch(`/api/estoque/${item.id}/situacao`, { method: 'DELETE' });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result?.error || 'Falha ao excluir inserção manual.');
+      messageApi.success('Inserção manual excluída.');
+      await load();
+    } catch (error: any) {
+      messageApi.error(error?.message || 'Falha ao excluir inserção manual.');
+    } finally {
+      setDeletingManualId(null);
+    }
+  };
+
   const columns = [
     { title: 'SKU', dataIndex: 'sku' }, { title: 'Produto', dataIndex: 'nome' }, { title: 'Quantidade', dataIndex: 'quantidade' },
     { title: 'Motivo', dataIndex: 'motivo' },
@@ -98,9 +134,23 @@ export default function EstoquePage() {
       return <Tag color={status.color}>{status.label}</Tag>;
     } },
     { title: 'Ações', render: (_: unknown, item: ItemEstoque) => {
-      const entregue = ['delivered', 'manual'].includes(item.status_devolucao);
-      if (item.situacao_estoque !== 'revisao') return <Tag color={item.situacao_estoque === 'liberado' ? 'green' : 'red'}>{item.situacao_estoque === 'liberado' ? 'Liberado' : 'Não aproveitável'}</Tag>;
-      return <>{<Button type="primary" disabled={!entregue} onClick={() => void atualizarSituacao(item, 'liberado')}>Liberar para venda</Button>}{<Button danger disabled={!entregue} style={{ marginLeft: 8 }} onClick={() => void atualizarSituacao(item, 'nao_aproveitavel')}>Não aproveitar</Button>}</>;
+      const entregue = ['delivered', 'returned', 'manual'].includes(item.status_devolucao);
+      const excluirManual = item.status_devolucao === 'manual' ? (
+        <Popconfirm
+          title="Excluir inserção manual?"
+          description="O produto será removido do estoque interno."
+          okText="Excluir"
+          cancelText="Cancelar"
+          okButtonProps={{ danger: true }}
+          onConfirm={() => excluirEstoqueManual(item)}
+        >
+          <Button danger loading={deletingManualId === item.id}>Excluir</Button>
+        </Popconfirm>
+      ) : null;
+      if (item.situacao_estoque !== 'revisao') {
+        return <Space><Tag color={item.situacao_estoque === 'liberado' ? 'green' : 'red'}>{item.situacao_estoque === 'liberado' ? 'Liberado' : 'Não aproveitável'}</Tag>{excluirManual}</Space>;
+      }
+      return <Space><Button type="primary" disabled={!entregue} onClick={() => void atualizarSituacao(item, 'liberado')}>Liberar para venda</Button><Button danger disabled={!entregue} onClick={() => void atualizarSituacao(item, 'nao_aproveitavel')}>Não aproveitar</Button>{excluirManual}</Space>;
     } },
   ];
   const tabela = (situacao: SituacaoEstoque) => <Table<ItemEstoque> rowKey="id" loading={loading} dataSource={data.data.filter((item) => item.situacao_estoque === situacao)} columns={columns} pagination={{ pageSize: 50 }} />;

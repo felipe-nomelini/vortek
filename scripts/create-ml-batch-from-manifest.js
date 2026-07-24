@@ -706,7 +706,7 @@ async function createOne(item) {
         product: produto || null,
         nome: produto?.nome || item.nome,
         marca: produto?.marca || '',
-        description: produto?.descricao || '',
+        description: item.description || produto?.descricao || '',
       });
       result.created.push(payload);
       console.log(`[ok] ${item.sku} ${payload.anuncio?.id || payload.category?.id || ''}`);

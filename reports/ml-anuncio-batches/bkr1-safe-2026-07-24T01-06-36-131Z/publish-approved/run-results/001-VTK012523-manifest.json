@@ -1,0 +1,67 @@
+{
+  "batchNumber": 1,
+  "batchId": "bkr1-live-001-VTK012523",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "1108d86d-b2bd-45ee-a95f-2519198c67b1",
+      "sku": "VTK012523",
+      "nome": "Knobs Andaluz Kp (kit C/2 Vol+2ton) Preto",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 15.5,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.83,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "KNOBS ANDALUZ KP (KIT C/2 VOL+2TON) PRETO O Kit de Knobs Andaluz KP Preto é um conjunto de botões de controle projetado para guitarras modelo Stratocaster, oferecendo uma estética clássica e funcionalidade aprimorada. Abaixo, apresento suas principais\n\nespecificações\n\nEspecificações Técnicas\n\n• Marca: Andaluz\n\n• Modelo: KP\n\n• Cor: Preto com letras brancas\n\n• Material: Plástico ABS resistente\n\n• Unidades por Embalagem: 4 knobs (2 para controle de volume e 2 para controle de tom)\n\n• Medidas Externas:\n\n• Altura: 9 mm\n\n• Largura Superior: 17 mm\n\n• Medidas Internas:\n\n• Largura de Encaixe: 5 mm\n\n• Largura da Base: 21 mm\n\n• Compatibilidade: Guitarras elétricas, especialmente modelos Stratocaster Observações: Design: Os knobs possuem um design clássico com acabamento preto e letras brancas, complementando a estética de guitarras Stratocaster. Durabilidade: Fabricados em plástico ABS, oferecem resistência ao desgaste diário, garantindo longa vida útil. Instalação: Fácil de instalar, permitindo uma personalização rápida do instrumento.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898905159670",
+        "emptyGtinReasonEvidence": null,
+        "validatedNcm": "92099400",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB72751",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4070810",
+          "value_name": "Andaluz"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24371997",
+          "value_name": "Knob KP Preto"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "4"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENTS",
+          "value_id": "2106570",
+          "value_name": "Guitarra"
+        },
+        {
+          "id": "GTIN",
+          "value_name": "7898905159670"
+        }
+      ],
+      "categoryEvidence": {
+        "source": "official_category_and_product_evidence",
+        "categoryId": "MLB72751",
+        "details": "produto MLB27113636 por GTIN exato; categoria Knobs MLB72751"
+      },
+      "sourceBatch": "007-bkr1-publish-007.json"
+    }
+  ]
+}

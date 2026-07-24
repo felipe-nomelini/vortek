@@ -1,0 +1,158 @@
+{
+  "batchNumber": 2,
+  "batchId": "bkr1-ml-create-002",
+  "strategy": "strict_evidence_small_batch",
+  "executionHints": {
+    "delayMs": 2000,
+    "listingType": "gold_pro",
+    "strictEvidence": true,
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "stopAfterConsecutiveFailures": 3,
+    "allowEmptyGtinOnlyForExplicitMultipacks": true,
+    "requireVortekStorageImages": true,
+    "verifyListingAfterEachCreate": true
+  },
+  "items": [
+    {
+      "produtoId": "1bbbffef-7733-4f79-a62f-5bfccd76e3cc",
+      "sku": "VTK012237",
+      "nome": "Palheta Bori Grl At-r16147 Rio Xxl (preto) R21032 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 10,
+      "estoque": 37,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "KIT 10 PALHETAS BORI RIO I-XXL 1,70 MM PRETA\n\nCaracterísticas\n\n• Modelo: Bori Rio Jazz I-XXL\n\n• Referência: 21032\n\n• Espessura: 1,70 mm\n\n• Cor: preta\n\n• Material: poliamida (nylon)\n\n• Ponta: anatômica\n\n• Acabamento: alto brilho\n\n• Largura: 21 mm\n\n• Altura: 26 mm\n\nConteúdo da embalagem\n\n• 10 palhetas Bori Rio I-XXL 1,70 mm pretas.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "543cd6ae-f86f-473c-8c3c-55cd8e70e50c",
+      "sku": "VTK012248",
+      "nome": "Palheta Bori Grl At-r16103 Picker 0,82 Mm (vermelho) R21004 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 8,
+      "estoque": 32,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 34.57,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA BORI GRL AT-R16103 PICKER 0,82 MM (VERMELHO) R21004 10UN A Palheta Bori GRL AT-R16103 Picker 0,82 mm (Vermelho) R21004 é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Abaixo, apresento suas principais\n\nespecificações\n\nCaracterísticas Principais\n\n• Modelo: Picker PA\n\n• Código do Fabricante: R21004\n\n• Espessura: 0,82 mm\n\n• Material: Poliamida Nylon (Resina de Engenharia)\n\n• Cor: Vermelho\n\n• Acabamento: Fosco, desenvolvido para minimizar a retenção de suor e evitar que a palheta escorregue\n\n• Dimensões:\n\n• Largura: 25 mm\n\n• Altura: 30 mm\n\n• Peso: 0,45 g Design e Funcionalidade: Ponta Fina Standard: Proporciona flexibilidade e uma sonoridade de excelência. Relevo Esférico 'GRIP': Oferece maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Arredondada: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Tamanho Compacto: Ideal para palhetadas rápidas, atendendo às necessidades de diversos estilos musicais. Aplicações Recomendadas: Indicada para instrumentos como cavaquinho, banjo, bandolim, violão e guitarra, oferecendo versatilidade para músicos de diferentes gêneros.\n\nConteúdo da Embalagem\n\nO kit contém 10 palhetas Bori Picker PA de 0,82 mm na cor vermelha.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "dbecc552-4f0b-4abf-a874-654a26eb0818",
+      "sku": "VTK012267",
+      "nome": "Adaptador Rca Macho P/xlr 3p Fêmea Niq. Wc 242 Ad 02 Unidades Wireconex",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 20.68,
+      "estoque": 27,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 50.22,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "Adaptador RCA Macho para XLR 3 Pinos Fêmea Niquelado WC 242 AD – Kit com 2 Unidades Wireconex Ideal para conexões práticas e seguras em sistemas de áudio, este adaptador permite converter RCA macho para XLR 3 pinos fêmea, ampliando a compatibilidade entre equipamentos profissionais e domésticos com eficiência e confiabilidade. Especificações\n\n• Modelo: WC 242 AD\n\n• Marca: Wireconex\n\n• Tipo de conexão: RCA Macho → XLR 3 Pinos Fêmea\n\n• Material: Corpo metálico resistente\n\n• Acabamento: Niquelado (Ni)\n\n• Padrão XLR: 3 pinos\n\n• Quantidade: 02 unidades\n\n• Aplicação: Mesas de som, amplificadores, sistemas de áudio, estúdios e instalações profissionais Desenvolvido com materiais duráveis e acabamento de qualidade, o adaptador WC 242 AD oferece encaixe firme e transmissão de sinal estável. Ideal para técnicos, igrejas, eventos e estúdios que precisam de soluções rápidas e eficientes para interligar diferentes padrões de conexão. Mais versatilidade e segurança para o seu sistema de áudio.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "85369010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "878494a4-238b-4e01-9d02-8b9db1660faa",
+      "sku": "VTK012275",
+      "nome": "Palheta Bori Grl At-r16110 S.t.d 0,94 Mm (verde Esc) R21014 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 8,
+      "estoque": 27,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 34.57,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA BORI GRL AT-R16110 S.T.D 0,94 MM (VERDE ESC) R21014 10UN\n\nCaracterísticas Principais\n\n• Modelo: S.T.D (Standard)\n\n• Código do Fabricante: R21014\n\n• Espessura: 0,94 mm\n\n• Material: Poliamida Nylon (Resina de Engenharia)\n\n• Cor: Verde Escuro\n\n• Acabamento: Fosco, reduzindo a retenção de suor e proporcionando melhor aderência\n\n• Dimensões e Peso:\n\n• Largura: 25 mm\n\n• Altura: 30 mm\n\n• Peso unitário: 0,45 g\n\nDestaques do Design\n\nPonta em 'V' Standard – Flexibilidade e precisão para diversos estilos musicais Relevo Esférico 'GRIP' – Melhor aderência e controle durante a execução Borda Arredondada – Reduz ruídos indesejados e melhora a resposta da palhetada Formato Ergonômico – Confortável para longas sessões de uso Aplicações Recomendadas: Ideal para instrumentos como guitarra, violão, cavaquinho, bandolim e banjo, oferecendo uma resposta equilibrada entre ataque e suavidade.\n\nConteúdo da Embalagem\n\n10 palhetas Bori S.T.D 0,94 mm na cor Verde Escuro",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "a09e2e5d-9958-4bdc-92d8-4d4f070ce0b7",
+      "sku": "VTK012281",
+      "nome": "Kit Conector Speakon Wc 605 (20un) Wireconex",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 194.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 276.71,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "20 unidades do conector speakon macho para cabo WC 605 4P WIRECONEX Para utilização profissional. A Wireconex é uma marca do grupo ATTACK visando garantir a máxima qualidade sonora.\n\nSeus conectores, cabos, main power e acessórios são projetados e construídos com tecnologia de ponta para explorar o máximo dos seus equipamentos de áudio, sem perder a qualidade e fidelidade.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "85369010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

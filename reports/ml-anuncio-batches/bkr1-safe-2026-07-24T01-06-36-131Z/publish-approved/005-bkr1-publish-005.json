@@ -1,0 +1,199 @@
+{
+  "batchNumber": 5,
+  "batchId": "bkr1-publish-approved-005",
+  "strategy": "dry_run_and_category_evidence_approved",
+  "executionHints": {
+    "delayMs": 2000,
+    "listingType": "gold_pro",
+    "strictEvidence": true,
+    "dryRunFirst": false,
+    "createSequentially": true,
+    "stopAfterConsecutiveFailures": 3,
+    "allowEmptyGtinOnlyForExplicitMultipacks": true,
+    "requireVortekStorageImages": true,
+    "verifyListingAfterEachCreate": true
+  },
+  "items": [
+    {
+      "produtoId": "c71efd1f-eea6-43ba-adee-9d6dfb0699e9",
+      "sku": "VTK012335",
+      "nome": "Palheta Bori Grl At-r16112 S.t.d 1,14 Mm (preto) R21016 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 10,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA BORI GRL AT-R16112 S.T.D 1,14 MM (PRETO) R21016 10UN A Palheta Bori S.T.D 1,14 mm (Preto) R21016 é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Abaixo, apresento suas principais\n\nespecificações\n\nCaracterísticas Principais\n\n• Modelo: S.T.D (Standard)\n\n• Código do Fabricante: R21016\n\n• Espessura: 1,14 mm\n\n• Material: Poliamida Nylon (Resina de Engenharia)\n\n• Cor: Preto\n\n• Acabamento: Brilho Médio\n\n• Dimensões:\n\n• Largura: 25 mm\n\n• Altura: 28 mm\n\n• Peso: 0,50 g Design e Funcionalidade: Ponta Arredondada: Proporciona flexibilidade e uma sonoridade de excelência. Relevo Esférico 'GRIP': Oferece maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Arredondada: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Tamanho Compacto: Ideal para palhetadas rápidas, atendendo às necessidades de diversos estilos musicais. Aplicações Recomendadas: Indicada para instrumentos como cavaquinho, banjo, bandolim, violão, guitarra e baixo, oferecendo versatilidade para músicos de diferentes gêneros.\n\nConteúdo da Embalagem\n\nO kit contém 10 palhetas Bori S.T.D de 1,14 mm na cor preta.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB45712",
+      "categoryEvidence": {
+        "source": "strict_evidence_dry_run",
+        "categoryId": "MLB45712",
+        "categoryName": "Palhetas para Guitarras",
+        "domainName": "Palhetas para instrumentos de cordas"
+      }
+    },
+    {
+      "produtoId": "6e303597-dc2a-4632-b320-fd3b92447ee5",
+      "sku": "VTK012336",
+      "nome": "Palheta Bori Grl At-r16132 Drip Gota 1,50 Mm (azul) R21017 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 10,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA BORI GRL AT-R16132 DRIP GOTA 1,50 MM (AZUL) R21017 10UN A Palheta Bori GRL AT-R16132 Drip Gota 1,50 mm (Azul) R21017 é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Este modelo destaca-se por seu design inovador e especificações técnicas avançadas.\n\nPrincipais\n\nCaracterísticas\n\n• Modelo: Drip Gota\n\n• Código do Fabricante: R21017\n\n• Espessura: 1,50 mm\n\n• Material: Poliamida Nylon (Resina de Engenharia)\n\n• Cor: Azul\n\n• Acabamento: Fosco, desenvolvido para minimizar a retenção de suor e evitar que a palheta escorregue\n\n• Dimensões:\n\n• Largura: 30 mm\n\n• Altura: 35 mm\n\n• Peso: 0,60 g Design e Funcionalidade: Formato Gota: Proporciona maior área de contato com as cordas, resultando em um som mais encorpado e quente. Espessura de 1,50 mm: Ideal para músicos que buscam maior controle e força nas palhetadas, especialmente em estilos como rock e heavy metal. Relevo Esférico 'GRIP': Oferece maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Arredondada: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Aplicações Recomendadas: Indicada para instrumentos como guitarra elétrica e baixo, oferecendo versatilidade para músicos de diferentes gêneros, especialmente aqueles que buscam maior agressividade e presença sonora.\n\nConteúdo da Embalagem\n\nO kit contém 10 palhetas Bori Drip Gota de 1,50 mm na cor azul.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB45712",
+      "categoryEvidence": {
+        "source": "strict_evidence_dry_run",
+        "categoryId": "MLB45712",
+        "categoryName": "Palhetas para Guitarras",
+        "domainName": "Palhetas para instrumentos de cordas"
+      }
+    },
+    {
+      "produtoId": "e6b1f9d9-cb95-4695-ad62-b9593259ae60",
+      "sku": "VTK012337",
+      "nome": "Palheta Bori Grl At-r16138 Drip Gota 3,00 Mm (azul) R21020 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 10,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA BORI GRL AT-R16138 DRIP GOTA 3,00 MM (AZUL) R21020 10UN A Palheta Bori GRL AT-R16138 Drip Gota 3,00 mm (Azul) R21020 é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Abaixo, apresento suas principais\n\nespecificações\n\nCaracterísticas Principais\n\n• Modelo: Drip Gota\n\n• Código do Fabricante: R21020\n\n• Espessura: 3,00 mm\n\n• Material: Policarbonato (Resina de Engenharia)\n\n• Cor: Azul Transparente\n\n• Acabamento: Alto Brilho\n\n• Dimensões:\n\n• Largura: 21 mm\n\n• Altura: 26 mm\n\n• Peso: 0,60 g Design e Funcionalidade: Ponta Fina com Ranhuras Texturizadas: Proporciona maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Fina: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Tamanho Compacto e Borda Arredondada: Ideais para palhetadas rápidas, atendendo às necessidades de diversos estilos musicais. Aplicações Recomendadas: Indicada para instrumentos como violão, guitarra e baixo, oferecendo versatilidade para músicos de diferentes gêneros.\n\nConteúdo da Embalagem\n\nO kit contém 10 palhetas Bori Drip Gota de 3,00 mm na cor azul.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB45712",
+      "categoryEvidence": {
+        "source": "strict_evidence_dry_run",
+        "categoryId": "MLB45712",
+        "categoryName": "Palhetas para Guitarras",
+        "domainName": "Palhetas para instrumentos de cordas"
+      }
+    },
+    {
+      "produtoId": "8b244ff4-cd3c-4be7-9e79-07d65a6a4e22",
+      "sku": "VTK012359",
+      "nome": "Palheta Bori Grl At-r16134 Drip Gota 2,00 Mm (azul) R21018 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 10,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA BORI GRL AT-R16134 DRIP GOTA 2,00 MM (AZUL) R21018 10UN A Palheta Bori GRL AT-R16134 Drip Gota 2,00 mm (Azul) R21018 é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Este modelo destaca-se por seu design inovador e especificações técnicas avançadas.\n\nPrincipais\n\nCaracterísticas\n\n• Modelo: Drip Gota\n\n• Código do Fabricante: R21018\n\n• Espessura: 2,00 mm\n\n• Material: Poliamida Nylon (Resina de Engenharia)\n\n• Cor: Azul\n\n• Acabamento: Fosco, desenvolvido para minimizar a retenção de suor e evitar que a palheta escorregue\n\n• Dimensões:\n\n• Largura: 30 mm\n\n• Altura: 35 mm\n\n• Peso: 0,65 g Design e Funcionalidade: Formato Gota: Proporciona maior área de contato com as cordas, resultando em um som mais encorpado e quente. Espessura de 2,00 mm: Ideal para músicos que buscam maior controle e força nas palhetadas, especialmente em estilos como rock e heavy metal. Relevo Esférico 'GRIP': Oferece maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Arredondada: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Aplicações Recomendadas: Indicada para instrumentos como guitarra elétrica e baixo, oferecendo versatilidade para músicos de diferentes gêneros, especialmente aqueles que buscam maior agressividade e presença sonora.\n\nConteúdo da Embalagem\n\nO kit contém 10 palhetas Bori Drip Gota de 2,00 mm na cor azul.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB45712",
+      "categoryEvidence": {
+        "source": "strict_evidence_dry_run",
+        "categoryId": "MLB45712",
+        "categoryName": "Palhetas para Guitarras",
+        "domainName": "Palhetas para instrumentos de cordas"
+      }
+    },
+    {
+      "produtoId": "df0fe9d6-90ce-49e9-b554-bb3b026a3574",
+      "sku": "VTK012369",
+      "nome": "Adaptadores Rca Fêmea P/xlr 3p Macho Niq. Wc 245 Ad 02 Unidades Wireconex",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 20,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 49.38,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "Adaptador RCA Fêmea para XLR 3 Pinos Macho Niquelado WC 245 AD Desenvolvido para oferecer mais versatilidade nas conexões de áudio, este adaptador permite converter RCA fêmea para XLR 3 pinos macho, facilitando a integração entre equipamentos com diferentes padrões de entrada e saída. Especificações\n\n• Modelo: WC 245 AD\n\n• Marca: Wireconex\n\n• Tipo de conexão: RCA Fêmea → XLR 3 Pinos Macho\n\n• Material: Corpo metálico resistente\n\n• Acabamento: Niquelado (Ni)\n\n• Padrão XLR: 3 pinos\n\n• Aplicação: Mesas de som, amplificadores, sistemas de áudio, estúdios e instalações profissionais Com construção robusta e acabamento de qualidade, o adaptador WC 245 AD garante encaixe firme e transmissão de sinal estável. Ideal para técnicos, igrejas, eventos e ambientes profissionais que precisam de soluções práticas e confiáveis para interligar diferentes conexões de áudio. Mais compatibilidade e eficiência para o seu sistema de som.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "85369010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "categoryId": "MLB195961",
+      "attributeOverrides": [
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788227",
+          "value_name": "XLR"
+        }
+      ],
+      "categoryEvidence": {
+        "source": "official_category_and_product_evidence",
+        "categoryId": "MLB195961",
+        "details": "conexão XLR explícita; valor oficial da categoria"
+      }
+    }
+  ]
+}

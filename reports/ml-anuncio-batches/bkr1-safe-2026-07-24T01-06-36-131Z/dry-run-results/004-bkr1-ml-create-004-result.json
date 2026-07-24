@@ -1,0 +1,97 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z/004-bkr1-ml-create-004.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "bkr1-ml-create-004",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "e9198188-46cf-49eb-b90f-b7b7eaf37b3b",
+      "sku": "VTK012310",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 37.74,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "34ced274-3d7d-41ce-bde4-ede040014072",
+      "sku": "VTK012319",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 35.22,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2900f5c0-284c-4f25-afdf-02e041156354",
+      "sku": "VTK012320",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 37.74,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "04e730e5-b9d0-4147-b1c5-4428e8fc4c71",
+      "sku": "VTK012321",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 37.74,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "ea1b9a83-6435-4677-a052-870c41fde6bf",
+      "sku": "VTK012327",
+      "nome": "Kit 04 Conectores Xlr Femea P/ Pci 3 Polos Wc 4046 Wireconex",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB420707",
+            "nome": "Conectores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB38172",
+            "nome": "Conectores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB180244",
+            "nome": "Kits para reparação de celular"
+          },
+          "missing": [
+            "Modelo",
+            "É kit de fábrica"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

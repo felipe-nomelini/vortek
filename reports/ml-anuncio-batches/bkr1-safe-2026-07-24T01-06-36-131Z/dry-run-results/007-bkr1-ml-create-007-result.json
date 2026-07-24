@@ -1,0 +1,85 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z/007-bkr1-ml-create-007.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "bkr1-ml-create-007",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "140f0532-8d7c-4863-8ccb-559355ed369b",
+      "sku": "VTK012470",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 35.22,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1108d86d-b2bd-45ee-a95f-2519198c67b1",
+      "sku": "VTK012523",
+      "category": {
+        "id": "MLB277753",
+        "nome": "Caixas de Marchas",
+        "dominio": "Caixas de marchas para veículos"
+      },
+      "basePrice": 44.94,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "84ebeb50-8e9e-4528-a628-79255507f7b9",
+      "sku": "VTK012543",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "basePrice": 35.22,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "1e9f89d2-cbd7-418b-98f8-f6b34a43c33d",
+      "sku": "VTK012547",
+      "nome": "Breu Vr300 Escuro D Addario",
+      "error": "Atributos obrigatórios pendentes: Nome do jogo de tabuleiro",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB6883",
+            "nome": "Jogos de Tabuleiro e Cartas"
+          },
+          "missing": [
+            "Nome do jogo de tabuleiro"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f4a0119d-e227-466a-911c-622b7a172adc",
+      "sku": "VTK012611",
+      "nome": "Breu Vr200 Claro D Addario",
+      "error": "Atributos obrigatórios pendentes: Nome do jogo de tabuleiro",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB6883",
+            "nome": "Jogos de Tabuleiro e Cartas"
+          },
+          "missing": [
+            "Nome do jogo de tabuleiro"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "produtoId": "0d57c2ab-e6cc-4a93-bf80-5ba272763223",
+    "sku": "VTK012729",
+    "nome": "Cabo P10 Prowire Em L Tweed Lilás/prata 6,10m Wireconex",
+    "reason": "missing_gtin_single_product"
+  },
+  {
+    "produtoId": "0f063293-5f4c-4f87-8dc4-b219f40ba782",
+    "sku": "VTK012613",
+    "nome": "Palheta Royal Tenor Rkb0125 D Addario",
+    "reason": "missing_gtin_single_product"
+  },
+  {
+    "produtoId": "14ac74a6-6f78-4a3d-9580-6cb4c7efc075",
+    "sku": "VTK012766",
+    "nome": "Cabo Para Caixa 4 Polos 5 Metros Spk 4p 05 225 Wireconex",
+    "reason": "missing_gtin_single_product"
+  },
+  {
+    "produtoId": "2705a1d3-e329-475b-a11c-8153c6385604",
+    "sku": "VTK012040",
+    "nome": "Kit Conectores Xlr 1003 1013 20un (10 Machos/10 Femeas) Wireconex",
+    "reason": "duplicate_candidate_product"
+  },
+  {
+    "produtoId": "289f321c-9b4d-4fee-bdbf-b5758f88ae17",
+    "sku": "VTK012018",
+    "nome": "Kit Conector Xlr Macho Wc 1013 (10un) Wireconex",
+    "reason": "duplicate_candidate_product"
+  },
+  {
+    "produtoId": "4be0b818-3bb2-41b9-b9a6-d8198fbd2850",
+    "sku": "VTK012039",
+    "nome": "Kit Conector Xlr Macho Wc 1013 (10un) Wireconex",
+    "reason": "duplicate_candidate_product"
+  },
+  {
+    "produtoId": "4ed1ab3f-f23e-4aa7-8880-648d839c887d",
+    "sku": "VTK012699",
+    "nome": "Painel Medusa 28 Furos Xlr Com Conectores Wireconex",
+    "reason": "missing_gtin_single_product"
+  },
+  {
+    "produtoId": "59491d00-93ec-497f-a8a1-756fcaa8cf25",
+    "sku": "VTK012418",
+    "nome": "Bateria Cr123 3v Panasonic",
+    "reason": "missing_gtin_single_product"
+  },
+  {
+    "produtoId": "9804a031-2e05-4dea-a4ab-1924080ba9b8",
+    "sku": "VTK012772",
+    "nome": "Caixa De Som Passiva 8 Polegadas 100 W Rms - Attack Vrf810",
+    "reason": "missing_gtin_single_product"
+  },
+  {
+    "produtoId": "a2243285-b7ee-4217-9225-22df8cd9d6a5",
+    "sku": "VTK012420",
+    "nome": "Bateria 9v Alcalina Unidade Flex",
+    "reason": "missing_gtin_single_product"
+  },
+  {
+    "produtoId": "bace5096-725d-4223-9089-87c59c22c289",
+    "sku": "VTK012687",
+    "nome": "Cabo De Microfone Pro Balanceado Emborrachado Xlr Xlr 0,40 Cm Mpbe-0,40 Wireconex",
+    "reason": "missing_gtin_single_product"
+  },
+  {
+    "produtoId": "c2f077aa-c3b3-4f24-b9cd-4f71e77d002e",
+    "sku": "VTK012502",
+    "nome": "Polidor Spray Shine Pw-pl-03 D Addario",
+    "reason": "missing_gtin_single_product"
+  },
+  {
+    "produtoId": "dd75d2e4-4280-41b5-93e5-5d719abbb97e",
+    "sku": "VTK012016",
+    "nome": "Kit Conectores Xlr 1003 1013 20un (10 Machos/10 Femeas) Wireconex",
+    "reason": "duplicate_candidate_product"
+  },
+  {
+    "produtoId": "f1219523-c041-4366-8a85-6890d27030b4",
+    "sku": "VTK012800",
+    "nome": "Painel 48 Furos Xlr Com Conectores 2 Saídas Wireconex",
+    "reason": "missing_gtin_single_product"
+  },
+  {
+    "produtoId": "4b8e4e44-3472-4439-bf59-650b983a24bd",
+    "sku": "VTK012408",
+    "nome": "Palheta Bori Grl At-r16107 S.t.d 0,78 Mm (rosa) R21011 10un",
+    "reason": "no_valid_images"
+  }
+]

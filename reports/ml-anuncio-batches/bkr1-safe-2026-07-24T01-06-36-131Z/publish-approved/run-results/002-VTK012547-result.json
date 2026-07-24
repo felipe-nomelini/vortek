@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-safe-2026-07-24T01-06-36-131Z/publish-approved/run-results/002-VTK012547-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-002-VTK012547",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "1e9f89d2-cbd7-418b-98f8-f6b34a43c33d",
+      "sku": "VTK012547",
+      "category": {
+        "id": "MLB434825",
+        "nome": "MLB434825",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7239571716",
+        "title": "Breu Vr300 Escuro D Addario",
+        "price": 82.57,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239571716-breu-vr300-escuro-d-addario-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 64.77 → R$ 82.57."
+      ]
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,158 @@
+{
+  "batchNumber": 3,
+  "batchId": "bkr1-ml-create-003",
+  "strategy": "strict_evidence_small_batch",
+  "executionHints": {
+    "delayMs": 2000,
+    "listingType": "gold_pro",
+    "strictEvidence": true,
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "stopAfterConsecutiveFailures": 3,
+    "allowEmptyGtinOnlyForExplicitMultipacks": true,
+    "requireVortekStorageImages": true,
+    "verifyListingAfterEachCreate": true
+  },
+  "items": [
+    {
+      "produtoId": "b4916f7e-70e1-426c-a271-bd7ab2ac90ee",
+      "sku": "VTK012282",
+      "nome": "Palheta Bori Grl At-r16108 S.t.d 0,80 Mm (azul) R21012 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 11,
+      "estoque": 25,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 38.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA BORI GRL AT-R16108 S. T.\n\nD 0,80 MM (AZUL) R21012 10UN A Palheta Bori GRL AT-R16108 S. T.\n\nD 0,80 mm (Azul) R21012 é um acessório de alta qualidade, projetado para músicos que buscam precisão e conforto em sua performance. Este modelo destaca-se por suas características técnicas e design funcional.\n\nPrincipais\n\nCaracterísticas\n\n• Modelo: S.T.D (Standard)\n\n• Código do Fabricante: R21012\n\n• Espessura: 0,80 mm\n\n• Material: Poliamida Nylon (Resina de Engenharia)\n\n• Cor: Azul\n\n• Acabamento: Fosco, desenvolvido para minimizar a retenção de suor e evitar que a palheta escorregue\n\n• Dimensões:\n\n• Largura: 25 mm\n\n• Altura: 30 mm\n\n• Peso: 0,45 g Design e Funcionalidade: Ponta em 'V' Standard: Proporciona flexibilidade e uma sonoridade de excelência. Relevo Esférico 'GRIP': Oferece maior firmeza e segurança, evitando que a palheta escape durante a execução. Borda Arredondada: Reduz ruídos e aumenta a flexibilidade, facilitando a execução de frases rápidas, arpejos e acordes. Tamanho Compacto: Ideal para palhetadas rápidas, atendendo às necessidades de diversos estilos musicais. Aplicações Recomendadas: Indicada para instrumentos como cavaquinho, banjo, bandolim, violão e guitarra, oferecendo versatilidade para músicos de diferentes gêneros.\n\nConteúdo da Embalagem\n\nO kit contém 10 palhetas Bori S.T.D de 0,80 mm na cor azul.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "87cdd472-e303-43a5-a712-339a38abc358",
+      "sku": "VTK012283",
+      "nome": "Palheta Bori Grl At-r16146 Rio Xxl (vermelho) R21028 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 10,
+      "estoque": 26,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "As palhetas Bori RIO, possuem as pontas diferenciadas com suas ranhuras texturizadas na gravação nos dois lados para maior firmeza e segurança, evitando que a palheta escape. Detalhe rígido para uma sonoridade com excelência.\n\nBorda arredondada para redução de ruídos e maior flexibilidade para obter frases rápidas, arpejos e acordes. Seu tamanho compacto e borda arredondada são ideais para palhetadas rápidas.\n\nModelo: Palhetas RIO “JAZZ” Código: Ref. 21028 [RIO I-XXL 1,70mm Vermelho] Acabamento: Alto Brilho Material: Poliamida Nylon Cores disponíveis: Vermelho e Preto Ideal para: Cavaco, Banjo, Bandolim, Violão, Guitarra e Baixo Espessura: 1,70mm Largura: 21mm Altura: 26mm Peso: 0,55g Ref.\n\nda linha RIO: Código: Ref. 21025 [RIO I 0,98mm Vermelho] Código: Ref.\n\n21026 [RIO II 1,16mm Vermelho] Código: Ref. 21027 [RIO III 1,38mm Vermelho] Código: Ref.\n\n21028 [RIO I-XXL 1,70mm Vermelho] Código: Ref. 21029 [RIO I 0,98mm Preto] Código: Ref.\n\n21030 [RIO II 1,16mm Preto] Código: Ref. 21031 [RIO III 1,38mm Preto] Código: Ref.\n\n21032 [RIO I-XXL 1,70mm Preto]",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "152238b0-74d4-4e71-b611-3e3950e1ed9c",
+      "sku": "VTK012297",
+      "nome": "Kit 04 Conectores Xlr Macho P/ Pci 3 Polos Wc 4050 Wireconex",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 27.87,
+      "estoque": 24,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 59.1,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "WC 4050 - Conector XLR Macho para PCI 3 Polos Wireconex – Kit com 04 Unidades O WC 4050 Conector XLR Macho para PCI 3 Polos Wireconex é ideal para aplicações em equipamentos de áudio profissional e projetos eletrônicos que exigem conexões seguras e de alta qualidade. Desenvolvido para montagem em placa de circuito impresso (PCI), oferece excelente desempenho na transmissão de sinal, garantindo estabilidade e durabilidade.\n\nPrincipais\n\nCaracterísticas\n\n• Conector XLR macho para montagem em PCI (placa de circuito impresso)\n\n• 3 polos, ideal para transmissão de áudio balanceado\n\n• Fabricado com materiais resistentes e de alta durabilidade\n\n• Proporciona conexão firme e estável, reduzindo interferências\n\n• Indicado para equipamentos de áudio profissional, mesas de som, amplificadores e projetos eletrônicos\n\n• Produto da marca Wireconex, referência em conectores Se você busca qualidade e confiabilidade para seus projetos ou manutenção de equipamentos de áudio, o Conector XLR Macho WC 4050 Wireconex é uma excelente escolha. Com construção robusta e padrão profissional, garante conexões seguras e desempenho consistente, atendendo tanto técnicos quanto entusiastas de eletrônica e áudio.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "85369010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "73012fb6-c36a-42bf-97c5-df0dd984de1d",
+      "sku": "VTK012301",
+      "nome": "Palheta Bori Grl At-r16145 Rio Iii (preto) R21031 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 10,
+      "estoque": 23,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "As palhetas Bori RIO, possuem as pontas diferenciadas com suas ranhuras texturizadas na gravação nos dois lados para maior firmeza e segurança, evitando que a palheta escape. Detalhe rígido para uma sonoridade com excelência.\n\nBorda arredondada para redução de ruídos e maior flexibilidade para obter frases rápidas, arpejos e acordes. Seu tamanho compacto e borda arredondada são ideais para palhetadas rápidas.\n\nModelo: Palhetas RIO “JAZZ” Código: Ref. 21031 [RIO III 1,38mm Preto] Acabamento: Alto Brilho Material: Poliamida Nylon Cores disponíveis: Vermelho e Preto Ideal para: Cavaco, Banjo, Bandolim, Violão, Guitarra e Baixo Espessura: 1,38mm Largura: 21mm Altura: 26mm Peso: 0,55g Ref.\n\nda linha RIO: Código: Ref. 21025 [RIO I 0,98mm Vermelho] Código: Ref.\n\n21026 [RIO II 1,16mm Vermelho] Código: Ref. 21027 [RIO III 1,38mm Vermelho] Código: Ref.\n\n21028 [RIO I-XXL 1,70mm Vermelho] Código: Ref. 21029 [RIO I 0,98mm Preto] Código: Ref.\n\n21030 [RIO II 1,16mm Preto] Código: Ref. 21031 [RIO III 1,38mm Preto] Código: Ref.\n\n21032 [RIO I-XXL 1,70mm Preto]",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "f899d217-66f3-479a-bd1d-5bcaad5e0bad",
+      "sku": "VTK012304",
+      "nome": "Palheta Guitarra Color 1cap6 D Addario 1.00mm 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 35.48,
+      "estoque": 22,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 68.49,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "description": "PALHETA GUITARRA COLOR 1CAP6 D Addario 1.00mm 10un A Palheta D Addario 1CAP6 é uma escolha popular entre músicos que buscam qualidade e desempenho. Abaixo, apresento suas principais\n\nespecificações\n\nCaracterísticas Principais\n\n• Modelo: 1CAP6\n\n• Material: Celuloide perolado\n\n• Espessura: 1,00 mm (Pesada)\n\n• Cor: Sortida (perolada/multicolorida)\n\n• Formato: Padrão\n\nDescrição\n\nA celuloide é um dos materiais mais populares para palhetas de guitarra, conhecida por proporcionar uma sensação natural e um tom quente e encorpado. Este material foi introduzido no início do século XX como substituto das palhetas de casco de tartaruga.\n\nA espessura pesada de 1,00 mm oferece maior rigidez, sendo ideal para técnicas que exigem precisão e controle. Aplicações Recomendadas: Devido à sua espessura pesada, esta palheta é adequada para músicos que buscam maior controle e precisão, sendo especialmente indicada para solos e técnicas que exigem ataque mais definido.\n\nConteúdo da Embalagem\n\nO pacote contém 10 palhetas D Addario 1CAP6, cada uma com espessura de 1,00 mm e cores sortidas peroladas.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": null,
+        "emptyGtinReasonEvidence": "explicit_multipack_name",
+        "validatedNcm": "92099400",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_dry_run_and_execution",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}
