@@ -5,7 +5,7 @@ import {
   Input, Select, InputNumber, Tag, Typography, Space, Spin, Modal, Button, message, Dropdown, Row, Col, Statistic, Divider, Radio, Alert, Tooltip,
 } from 'antd';
 import type { TableProps } from 'antd';
-import { SearchOutlined, LoadingOutlined, EllipsisOutlined, EditOutlined, PlusOutlined, StarOutlined, LinkOutlined } from '@ant-design/icons';
+import { SearchOutlined, LoadingOutlined, EllipsisOutlined, EditOutlined, PlusOutlined, StarOutlined, LinkOutlined, FilePdfOutlined } from '@ant-design/icons';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { formatCurrency, formatPercent } from '@/lib/format';
 import { useRouter } from 'next/navigation';
@@ -419,6 +419,7 @@ export default function ProductsPage() {
   const [priceField, setPriceField] = useState<string>('cost');
   const [priceMin, setPriceMin] = useState<number | null>(null);
   const [priceMax, setPriceMax] = useState<number | null>(null);
+  const [exportingPdf, setExportingPdf] = useState(false);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [messageApi, contextHolder] = message.useMessage();
   const [updatingPriceProductId, setUpdatingPriceProductId] = useState<string | null>(null);
@@ -1476,6 +1477,68 @@ export default function ProductsPage() {
     });
   }, [products]);
 
+  const handleExportPdf = useCallback(async () => {
+    setExportingPdf(true);
+    try {
+      const params = new URLSearchParams();
+      appendRemoteSortParams(params, sort);
+      if (lastSearch) params.set('search', lastSearch);
+      if (filterFornecedores.length > 0) params.set('fornecedores', filterFornecedores.join(','));
+      if (filterMLStatus) params.set('ml_status', filterMLStatus);
+      if (filterEstoque) params.set('estoque', filterEstoque);
+      if (priceMin !== null) params.set('priceMin', String(priceMin));
+      if (priceMax !== null) params.set('priceMax', String(priceMax));
+      params.set('priceField', priceField);
+
+      const hasExplicitFilter = Boolean(
+        lastSearch
+        || filterFornecedores.length > 0
+        || filterProductActive
+        || filterMLStatus
+        || filterEstoque
+        || priceMin !== null
+        || priceMax !== null
+      );
+      params.set('ativo', filterProductActive || (hasExplicitFilter ? 'ativo' : 'todos'));
+
+      const response = await fetch(`/api/produtos/exportar-pdf?${params.toString()}`, {
+        cache: 'no-store',
+      });
+      if (!response.ok) {
+        const payload = await response.json().catch(() => ({}));
+        throw new Error(payload?.erro || 'Falha ao gerar PDF dos produtos.');
+      }
+
+      const blob = await response.blob();
+      const contentDisposition = response.headers.get('content-disposition') || '';
+      const fileName = contentDisposition.match(/filename="([^"]+)"/i)?.[1] || 'produtos.pdf';
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = fileName;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      URL.revokeObjectURL(url);
+      messageApi.success('PDF dos produtos exportado.');
+    } catch (error: any) {
+      messageApi.error(error?.message || 'Falha ao exportar PDF dos produtos.');
+    } finally {
+      setExportingPdf(false);
+    }
+  }, [
+    filterEstoque,
+    filterFornecedores,
+    filterMLStatus,
+    filterProductActive,
+    lastSearch,
+    messageApi,
+    priceField,
+    priceMax,
+    priceMin,
+    sort,
+  ]);
+
 
 
   const columns: TableProps<ProductRow>['columns'] = [
@@ -1783,6 +1846,13 @@ export default function ProductsPage() {
             <InputNumber placeholder="Mín" value={priceMin} onChange={v => setPriceMin(v ?? null)} style={{ width: 100 }} />
             <InputNumber placeholder="Máx" value={priceMax} onChange={v => setPriceMax(v ?? null)} style={{ width: 100 }} />
           </Space.Compact>
+          <Button
+            icon={<FilePdfOutlined />}
+            onClick={() => void handleExportPdf()}
+            loading={exportingPdf}
+          >
+            Exportar PDF
+          </Button>
         </div>
       </div>
       <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
