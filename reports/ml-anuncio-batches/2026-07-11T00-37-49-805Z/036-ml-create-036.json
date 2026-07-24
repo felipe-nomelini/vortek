@@ -1,0 +1,489 @@
+{
+  "batchNumber": 36,
+  "batchId": "ml-create-036",
+  "strategy": "safe_small_batch",
+  "executionHints": {
+    "delayMs": 1500,
+    "listingType": "gold_pro",
+    "useSchemaBasePrice": true,
+    "applyPricingStrategyAtRuntime": true,
+    "stopIfFailureRateOver": 0.5
+  },
+  "items": [
+    {
+      "produtoId": "b42159aa-d006-4a85-85db-e09ed85f9a6d",
+      "sku": "VTK013107",
+      "nome": "Tampa De Combustível Borda Baixa F4000 Após 05",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 42.7,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 77.41,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "782f5491-8651-4cd2-825e-1eb8cce99b2f",
+      "sku": "VTK010853",
+      "nome": "Maçaneta Externa Porta Esq Diant Peugeot 206 Hoggar Passion",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 42.75,
+      "estoque": 99,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": 77.47,
+      "suggestedPricePreview": 77.47,
+      "priceSource": "custom_price",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "6a4ed21c-4972-4a1a-a37a-9624d6e6d09a",
+      "sku": "VTK011320",
+      "nome": "Maçaneta Externa Porta Esquerda Preta Gol Parati G2",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 42.75,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": 77.47,
+      "suggestedPricePreview": 77.47,
+      "priceSource": "custom_price",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "a7723c29-05c3-4e5c-a332-02d49479723e",
+      "sku": "VTK013118",
+      "nome": "Maçaneta Externa Porta Direita Dianteira Peugeot 206 207",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 42.75,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 77.47,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "71824a4b-1524-4734-9944-0b71fdf90ad0",
+      "sku": "VTK013898",
+      "nome": "Kit Coifa Homocinética Lado Dir Ou Esq Civic G2 I30 Hb20",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 42.77,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 77.49,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "c1f8c69f-3396-4c9b-8695-e830b380265b",
+      "sku": "VTK010804",
+      "nome": "Maçaneta Interna Gatilho Lado Direito Preto Hb20 12 A 19",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 42.82,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 77.56,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "8e150611-8db2-430f-8aa3-b337d3705f9c",
+      "sku": "VTK011246",
+      "nome": "Maçaneta Ext Porta Esq Tras Voyage 87 A 94 4pts",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 42.86,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 77.6,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "e64b8270-78aa-4097-9597-2b7ad8a74891",
+      "sku": "VTK010772",
+      "nome": "Batente Porta Diant Tras Dir Esq Kia Bongo Após 05",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 42.93,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 77.69,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "9a9a0f22-3208-415f-b114-cf25c8056b4b",
+      "sku": "VTK011168",
+      "nome": "Maçaneta Externa Tampa Motor Kombi Clipper 97 A 13",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 42.97,
+      "estoque": 41,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 77.74,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "ff16be6f-cd45-4ca9-aa61-f3e9d238a1dc",
+      "sku": "VTK013736",
+      "nome": "Terminal Direção Lados Direito Esquerdo Corolla G3 09 A 14",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 42.97,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 77.74,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "cb5db308-6f23-4033-a689-0bc61cf889ed",
+      "sku": "VTK013782",
+      "nome": "Terminal Direção Lados Direito Esquerdo L200 Sport Pajero",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 42.97,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 77.74,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "3b160c7e-e898-43fe-bb98-c2d02c21d0e1",
+      "sku": "VTK011127",
+      "nome": "Fechadura Mecânica Porta Meio Kombi E Kombi Clipper",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 43.03,
+      "estoque": 95,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 77.81,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "d76609e1-b0a7-430a-8723-3cb5ea593271",
+      "sku": "VTK013899",
+      "nome": "Kit Coifa Homocinética Direita Ou Esquerda Fusion G1 06 A 12",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 43.15,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 77.96,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "21693fcf-7b01-4a56-8cf7-6897e87d64a1",
+      "sku": "VTK013832",
+      "nome": "Bieleta Dianteira Esquerda Direita Corcel",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 43.21,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "64c74692-87b1-40b6-b56f-cf05bdcbb25b",
+      "sku": "VTK011627",
+      "nome": "Maçaneta Externa Porta  Dianteira Gol Parati G2 Preta",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 43.25,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.09,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "69ef1b7c-b6b8-4cc1-a6dd-eda2cf7c4d46",
+      "sku": "VTK011328",
+      "nome": "Maçaneta Externa Porta Esquerda Gol Preto Parati 2pts",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 43.28,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": 78.12,
+      "suggestedPricePreview": 78.12,
+      "priceSource": "custom_price",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "a1a603b8-a7dc-4018-9cd6-86189873396f",
+      "sku": "VTK011378",
+      "nome": "Maçaneta Interna Porta Esq Diant Royale Versailles Gol",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 43.31,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.16,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "cb8269f9-7009-4327-aa1d-0e4d6ba78f95",
+      "sku": "VTK011379",
+      "nome": "Maçaneta Interna Porta Diant Dir Voyage Parati Metal Cromada",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 43.31,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.16,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "a3e40c76-8c92-45bf-bcb4-21793118b79b",
+      "sku": "VTK013498",
+      "nome": "Fechadura Inferior Capô Ecosport 03 A 07 Fiesta 02 A 07",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 43.46,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.35,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "f82fdc3a-9a39-48da-98a7-e9981ccec053",
+      "sku": "VTK011374",
+      "nome": "Maçaneta Externa Porta Direita Dianteira Gol Parati Saveiro",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 43.56,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.47,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "5d7782b2-900a-45ec-8afa-cb12f835833e",
+      "sku": "VTK011375",
+      "nome": "Maçaneta Externa Porta Esquerda Dianteira Gol Parati Saveiro",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 43.56,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.47,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "89a073da-105a-4f1f-8530-8f72b759eaa4",
+      "sku": "VTK011376",
+      "nome": "Maçaneta Externa Porta Direita Gol Parati",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 43.56,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.47,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "2a72a069-d9ef-4967-9a88-8ad4c18ef61a",
+      "sku": "VTK011629",
+      "nome": "Maçaneta Externa Porta Dir Diant Preta Gol Parati Saveiro",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 43.56,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.47,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "a6022df7-d136-48a7-aff4-6941ba47641b",
+      "sku": "VTK011630",
+      "nome": "Maçaneta Externa Pta Direita Diant Preta Gol Parati G3",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 43.56,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.47,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "ceb6a9c1-8f90-4eba-b025-37287e625433",
+      "sku": "VTK013106",
+      "nome": "Tampa De Combustível Borda Alta Agrale Caminhões",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 44.11,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 79.15,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    }
+  ]
+}

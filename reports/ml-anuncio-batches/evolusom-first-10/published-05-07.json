@@ -1,0 +1,96 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-first-10/current.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-first-10-researched",
+  "selected": 3,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "bbf74430-ce5a-4e8c-80af-c7adee3642e3",
+      "sku": "VTK017605",
+      "category": {
+        "id": "MLB269588",
+        "nome": "Convencionais",
+        "dominio": "Duchas"
+      },
+      "anuncio": {
+        "id": "MLB7217348098",
+        "title": "Resistencia Zagonel Pratica 127v 9205000027",
+        "price": 51.61,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7217348098-resistencia-zagonel-pratica-127v-9205000027-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 37.79 → R$ 51.61."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "8e5c59d9-f0c0-410e-af13-4b4ba1c8c476",
+      "sku": "VTK017381",
+      "category": {
+        "id": "MLB38205",
+        "nome": "Para TV",
+        "dominio": "Controles remotos para TV"
+      },
+      "anuncio": {
+        "id": "MLB4923683591",
+        "title": "Controle Remoto Mxt C01367 Tv Philco Smart Ph55",
+        "price": 54.55,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4923683591-controle-remoto-mxt-c01367-tv-philco-smart-ph55-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 38.72 → R$ 54.55."
+      ]
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "3919d318-bb85-4e52-941e-3dc223014587",
+      "sku": "VTK018725",
+      "nome": "Suporte Para Tv Fixo Multivisão Easy Até 71\"",
+      "error": "Validation error | invalid.item.attribute.values: Attribute [MOUNTING_PLACES] is not valid, item values [(null:Parede e painel de madeira)] | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | invalid.item.attribute.values: Attribute [MOUNTING_PLACES] is not valid, item values [(null:Parede e painel de madeira)] | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [],
+        "missing_required_attributes": [],
+        "error": "Validation error | invalid.item.attribute.values: Attribute [MOUNTING_PLACES] is not valid, item values [(null:Parede e painel de madeira)] | code=validation_error | http=400"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-013-ml-create-013.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-013",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "6a9a1c80-deca-4f21-b05a-0875587836dd",
+      "sku": "VTK012176",
+      "category": {
+        "id": "MLB270431",
+        "nome": "Correias",
+        "dominio": "Correias de distribuição para impressoras"
+      },
+      "anuncio": {
+        "id": "MLB4877412111",
+        "title": "Correia Standard - 5 Cm Fita Cce (cinto De Segurana)",
+        "price": 56.86,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877412111-correia-standard-5-cm-fita-cce-cinto-de-segurana-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 41.03 → R$ 56.86."
+      ]
+    }
+  ],
+  "failed": []
+}

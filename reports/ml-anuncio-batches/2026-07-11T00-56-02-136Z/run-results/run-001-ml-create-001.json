@@ -1,0 +1,33 @@
+{
+  "batchNumber": 1,
+  "batchId": "ml-create-001",
+  "strategy": "safe_small_batch",
+  "executionHints": {
+    "delayMs": 1500,
+    "listingType": "gold_pro",
+    "useSchemaBasePrice": true,
+    "applyPricingStrategyAtRuntime": true,
+    "stopIfFailureRateOver": 0.5
+  },
+  "items": [
+    {
+      "produtoId": "fcbc811c-8e2f-411f-9271-30bbbd2f539e",
+      "sku": "VTK012463",
+      "nome": "Plafon Economic E-27 Saco Plastico Branca",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 3.77,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 29.35,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "batchNumber": 11,
+  "batchId": "ml-create-011",
+  "strategy": "safe_small_batch",
+  "executionHints": {
+    "delayMs": 1500,
+    "listingType": "gold_pro",
+    "useSchemaBasePrice": true,
+    "applyPricingStrategyAtRuntime": true,
+    "stopIfFailureRateOver": 0.5
+  },
+  "items": [
+    {
+      "produtoId": "2900f5c0-284c-4f25-afdf-02e041156354",
+      "sku": "VTK012320",
+      "nome": "Palheta Bori Grl At-r16136 Drip Gota 2,50 Mm (azul) R21019 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 10,
+      "estoque": 21,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "04e730e5-b9d0-4147-b1c5-4428e8fc4c71",
+      "sku": "VTK012321",
+      "nome": "Palheta Bori Grl At-r16144 Rio Iii (vermelho) R21027 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 10,
+      "estoque": 21,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "6e303597-dc2a-4632-b320-fd3b92447ee5",
+      "sku": "VTK012336",
+      "nome": "Palheta Bori Grl At-r16132 Drip Gota 1,50 Mm (azul) R21017 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 10,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "e6b1f9d9-cb95-4695-ad62-b9593259ae60",
+      "sku": "VTK012337",
+      "nome": "Palheta Bori Grl At-r16138 Drip Gota 3,00 Mm (azul) R21020 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 10,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "8b244ff4-cd3c-4be7-9e79-07d65a6a4e22",
+      "sku": "VTK012359",
+      "nome": "Palheta Bori Grl At-r16134 Drip Gota 2,00 Mm (azul) R21018 10un",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 10,
+      "estoque": 19,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    }
+  ]
+}

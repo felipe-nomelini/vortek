@@ -1,0 +1,146 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/011-evolusom-catalog-create-011.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-011",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "efd00848-1f79-4e04-a0f0-e9c17dec0c23",
+      "sku": "VTK017997",
+      "category": {
+        "id": "MLB7073",
+        "nome": "Câmeras de Segurança",
+        "dominio": "MLB-SURVEILLANCE_CAMERAS"
+      },
+      "basePrice": 355.7,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "945c4793-9382-4754-ae81-ce54acc0b82a",
+      "sku": "VTK019180",
+      "category": {
+        "id": "MLB7073",
+        "nome": "Câmeras de Segurança",
+        "dominio": "MLB-SURVEILLANCE_CAMERAS"
+      },
+      "basePrice": 491.68,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e28979c3-f974-4b95-b02b-7a3b756c437d",
+      "sku": "VTK018245",
+      "category": {
+        "id": "MLB7073",
+        "nome": "Câmeras de Segurança",
+        "dominio": "MLB-SURVEILLANCE_CAMERAS"
+      },
+      "basePrice": 229.86,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d401d3c6-dbf0-4bc9-89bc-f8a2f0677e3f",
+      "sku": "VTK018458",
+      "category": {
+        "id": "MLB7073",
+        "nome": "Câmeras de Segurança",
+        "dominio": "MLB-SURVEILLANCE_CAMERAS"
+      },
+      "basePrice": 280.48,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ee30888e-c6fa-4bae-bd20-a28bb0fa1f6e",
+      "sku": "VTK017886",
+      "category": {
+        "id": "MLB7073",
+        "nome": "Câmeras de Segurança",
+        "dominio": "MLB-SURVEILLANCE_CAMERAS"
+      },
+      "basePrice": 303.7,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e0a218a8-ef6e-4c71-abbf-a699845bd913",
+      "sku": "VTK019204",
+      "category": {
+        "id": "MLB186150",
+        "nome": "Câmera Veicular",
+        "dominio": "MLB-VEHICLE_CAMERAS"
+      },
+      "basePrice": 674.85,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "04602138-b77d-480a-a48e-010ba2404e1f",
+      "sku": "VTK017907",
+      "category": {
+        "id": "MLB271538",
+        "nome": "Capas",
+        "dominio": "MLB-WALKIE_TALKIE_COVERS"
+      },
+      "basePrice": 115.26,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "c67795dd-f96b-478b-9af7-f7265d3f6071",
+      "sku": "VTK018944",
+      "category": {
+        "id": "MLB33447",
+        "nome": "Motores para Portões",
+        "dominio": "MLB-GATE_MOTORS"
+      },
+      "basePrice": 1033.81,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "0a650f64-edae-4284-a0e7-e5c3cbdc13eb",
+      "sku": "VTK018150",
+      "nome": "Câmera Bullet Hikvision Plast Ds-2ce16d8t-itf 2.8 1080p",
+      "error": "Atributos obrigatórios pendentes: Localizações da câmera",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7073",
+            "nome": "Câmeras de Segurança"
+          },
+          "missing": [
+            "Localizações da câmera"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "063dbebd-b445-4a04-af92-4036ba27b15d",
+      "sku": "VTK017637",
+      "nome": "Central De Alarme Sulton Cls 1400 Não Monitorada 10 Zonas",
+      "error": "Atributos obrigatórios pendentes: Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

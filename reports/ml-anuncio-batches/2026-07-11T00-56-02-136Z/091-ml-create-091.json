@@ -1,0 +1,394 @@
+{
+  "batchNumber": 91,
+  "batchId": "ml-create-091",
+  "strategy": "safe_small_batch",
+  "executionHints": {
+    "delayMs": 1500,
+    "listingType": "gold_pro",
+    "useSchemaBasePrice": true,
+    "applyPricingStrategyAtRuntime": true,
+    "stopIfFailureRateOver": 0.5
+  },
+  "items": [
+    {
+      "produtoId": "f1219523-c041-4366-8a85-6890d27030b4",
+      "sku": "VTK012800",
+      "nome": "Painel 48 Furos Xlr Com Conectores 2 Saídas Wireconex",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 647.78,
+      "estoque": 2,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 959.67,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "0085a48c-daf4-4a5c-b52d-de1a763c984d",
+      "sku": "VTK006102",
+      "nome": "Conjunto Jarra Twister Ri7769 Walita - CX / 6",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 652.92,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 967.29,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "ac893d3f-2c0b-4407-b358-d4030fce1181",
+      "sku": "VTK001173",
+      "nome": "Pistão A Gás BC1 ThunderX3",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 712.39,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1055.39,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "24bc4010-0afb-4752-824e-d87a5faddf1b",
+      "sku": "VTK005320",
+      "nome": "Fone de Ouvido Sennheiser HD25 Light Preto",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 715.17,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1059.51,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "e93383c9-457a-4be6-b176-bf6d3fcb11fc",
+      "sku": "VTK001094",
+      "nome": "Violão Tagima Cartagena Eletroacústico Nylon Natural Satin",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 740.47,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1096.99,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "0ac22844-da0e-48d9-8578-f0e2f81dbac5",
+      "sku": "VTK012784",
+      "nome": "Amplificador Potência 200w Rms Mk1200 Mark Audio",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 828.71,
+      "estoque": 2,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1227.72,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "b10fa001-d4e5-417c-bd8f-cc3c5df81b2e",
+      "sku": "VTK011965",
+      "nome": "Violão Tagima Gran Reserva Juninho Afram Dark Mahogany",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 833.44,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1234.73,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "5d78c1f7-39c4-43ca-b250-c69bb037d4ce",
+      "sku": "VTK001039",
+      "nome": "Assento Para Cadeira XTC Mesh Black ThunderX3",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 867.27,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": 1284.84,
+      "suggestedPricePreview": 1284.84,
+      "priceSource": "custom_price",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "1be46bf9-1cd1-4665-a868-2ccb25db3529",
+      "sku": "VTK000518",
+      "nome": "Assento Para Cadeira Core Modern Black ThunderX3",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 933.3,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1382.67,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "9156a2bd-4ef2-4805-86f6-8e35a4ab746f",
+      "sku": "VTK000569",
+      "nome": "Pacote de Parafusos Para Cadeira TC3 ThunderX3",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 933.49,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1382.95,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "72ed9484-db1a-4565-a10f-57f7b76afb33",
+      "sku": "VTK004352",
+      "nome": "Fone de Ouvido Sennheiser IE 100 Pro Preto",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 954.31,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1413.79,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "a0f3ff88-cf19-4045-b0ac-32e8edd5f965",
+      "sku": "VTK000760",
+      "nome": "Cadeira Gamer ThunderX3 TGC12 Loft Grafite",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 962.89,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1426.5,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "9804a031-2e05-4dea-a4ab-1924080ba9b8",
+      "sku": "VTK012772",
+      "nome": "Caixa De Som Passiva 8 Polegadas 100 W Rms - Attack Vrf810",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 1006.98,
+      "estoque": 2,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1553.98,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "91215b9f-aab9-485f-8aa2-b8d400cbd617",
+      "sku": "VTK001063",
+      "nome": "Pistão A Gás BC1 ThunderX3",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 1011.85,
+      "estoque": 13,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1561.5,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "c69a93b1-5567-40fc-a0e5-3ed5a36b5deb",
+      "sku": "VTK011866",
+      "nome": "Fech Pta Diant Eletr C/trav Vw Tiguan Gi 09a11 D",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 1013.47,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1564,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "659ca4f3-be79-4765-aaa6-528561e8d19d",
+      "sku": "VTK011867",
+      "nome": "Fech Pta Diant Eletr C/trav Vw Tiguan Gi 09a11 E",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 1013.47,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1564,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "12e4dd09-6ad6-40f5-b870-a012960efabe",
+      "sku": "VTK001207",
+      "nome": "Encosto Para Cadeira Core Loft Grafite ThunderX3",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 1022.14,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1577.38,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "f67e17b3-8aa4-4303-b04e-22f0e6a7b083",
+      "sku": "VTK000395",
+      "nome": "Cadeira Ergonômica ThunderX3 Yama1 Vermelha",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 1036.96,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1600.25,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "d9930b7b-c377-4f02-8e24-9f36c3d78f1e",
+      "sku": "VTK001187",
+      "nome": "ALMOFADA DE CABECA CORE LOFT BLACK",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 1084.05,
+      "estoque": 9,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1672.92,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "53162da4-f825-4a3c-a7c4-5bdc1dfb24c5",
+      "sku": "VTK012781",
+      "nome": "Mesa Som 16 Canais Analógica Usb Cmx016 Mark Audio",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 1320,
+      "estoque": 2,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 2037.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    }
+  ]
+}

@@ -1,0 +1,1033 @@
+{
+  "batchNumber": 6,
+  "batchId": "evolusom-domain-approved-006",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "735ca2f4-69b8-4d81-93d7-c721650be7df",
+      "sku": "VTK017640",
+      "nome": "Cinta Metálica Permak Para Auto Rádio Bosch 130",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 10.9,
+      "estoque": 36,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 38.15,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253491446",
+        "validatedNcm": "83023000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB433273",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "8299",
+          "value_name": "130"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27992343",
+          "value_name": "7898253491446"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29335709",
+        "catalogProductName": "Cinta De Rádio Universal Prata Gaveta Fixação Cd Bosch",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_CAGES",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_CAGES",
+        "categoryId": "MLB433273",
+        "categoryName": "Gavetas de Fixação",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7898253491446"
+      }
+    },
+    {
+      "produtoId": "1bdbc526-1a1f-4927-a1d2-148506f84f0a",
+      "sku": "VTK018492",
+      "nome": "Climatizador Evaporativo Symphony Diet 8i 8l 127v 60hz",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 499.9,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 740.59,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "8901791100455",
+        "validatedNcm": "84796000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB72503",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2942489",
+          "value_name": "Symphony"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "46155569",
+          "value_name": "DiET8i"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "12472061",
+          "value_name": "Branco"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "AIR_CONDITIONING_TYPE",
+          "value_id": "83444",
+          "value_name": "Frio"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "7640907",
+          "value_name": "6.3 kg"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "9234684",
+          "value_name": "78 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7855225",
+          "value_name": "33 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "5662649",
+          "value_name": "30 cm"
+        },
+        {
+          "id": "IS_HUMIDIFIER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_AIR_PURIFIER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_VENTILATION_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WATER_CAPACITY",
+          "value_id": "1263431",
+          "value_name": "8 L"
+        },
+        {
+          "id": "POWER",
+          "value_id": "1000386",
+          "value_name": "105 W"
+        },
+        {
+          "id": "SPEEDS_NUMBER",
+          "value_id": "1000288",
+          "value_name": "3"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16432051",
+          "value_name": "8901791100455"
+        },
+        {
+          "id": "ENERGY_EFFICIENCY",
+          "value_id": "2307502",
+          "value_name": "A+"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        },
+        {
+          "id": "WITH_TIMER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_REMOTE_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21569054",
+        "catalogProductName": "Climatizador De Ar Symphony Diet 8i-g, 8 Litros, Controle Re",
+        "catalogDomainId": "MLB-PORTABLE_EVAPORATIVE_AIR_COOLERS",
+        "predictedDomainId": "MLB-PORTABLE_EVAPORATIVE_AIR_COOLERS",
+        "categoryId": "MLB72503",
+        "categoryName": "Climatizador Portátil",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "8901791100455"
+      }
+    },
+    {
+      "produtoId": "4ed6d374-c7f1-496c-afa1-bb6a12bccdcf",
+      "sku": "VTK017323",
+      "nome": "Controle Remoto Mxt 01374 Tv Samsung 4k Netflix",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 15.85,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 44.26,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908324701319",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB38205",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "28170404",
+          "value_name": "un49k6500agxzd"
+        },
+        {
+          "id": "INCLUDES_CELL_BATTERIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NETFLIX_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_YOUTUBE_BUTTON",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_UNIVERSAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_PRIME_VIDEO_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "28170403",
+          "value_name": "7908324701319"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29448741",
+        "catalogProductName": "Controle Remoto Smart Tv Un49k6500agxzd - Un 49k6500 Agxzd",
+        "catalogDomainId": "MLB-TV_REMOTE_CONTROLS",
+        "predictedDomainId": "MLB-TV_REMOTE_CONTROLS",
+        "categoryId": "MLB38205",
+        "categoryName": "Para TV",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7908324701319"
+      }
+    },
+    {
+      "produtoId": "2b00baa2-e74c-45df-a380-29de77f0cf37",
+      "sku": "VTK017688",
+      "nome": "Controle Remoto Ar Condicionado Mxt 01300 Samsung Db93-13553a",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 16.5,
+      "estoque": 33,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 45.06,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899903112032",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB196072",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "39103903",
+          "value_name": "DB93-13553A"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7891817",
+          "value_name": "3 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8058567",
+          "value_name": "4.5 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "13822632",
+          "value_name": "100 g"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7857374",
+          "value_name": "14 cm"
+        },
+        {
+          "id": "MAX_REACH",
+          "value_id": "4822898",
+          "value_name": "10 m"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "81834",
+          "value_name": "LCD"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "1176674",
+          "value_name": "Pilha"
+        },
+        {
+          "id": "CELL_BATTERIES_TYPE",
+          "value_id": "6073399",
+          "value_name": "AAA"
+        },
+        {
+          "id": "INCLUDES_CELL_BATTERIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_UNIVERSAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIFI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "28122349",
+          "value_name": "7899903112032"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "124338",
+          "value_name": "Lelong"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "56981792",
+          "value_name": "8456"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB37992271",
+        "catalogProductName": "Controle ar condicionado split Samsung virus doctor inverter MXT",
+        "catalogDomainId": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS",
+        "predictedDomainId": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS",
+        "categoryId": "MLB196072",
+        "categoryName": "Controles Remotos",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7899903112032"
+      }
+    },
+    {
+      "produtoId": "66334528-bebb-48e7-9330-c329c57ed13c",
+      "sku": "VTK017576",
+      "nome": "Controle Remoto Ar Condicionado Mxt 01315 York Gz-12a-e1",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 17.9,
+      "estoque": 44,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 46.79,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899903126756",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB196072",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "28482970",
+          "value_name": "Gz-12b-e1"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7891537",
+          "value_name": "2 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8053397",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "16091364",
+          "value_name": "70 g"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "8865109",
+          "value_name": "11.5 cm"
+        },
+        {
+          "id": "MAX_REACH",
+          "value_id": "7449446",
+          "value_name": "5 m"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "81834",
+          "value_name": "LCD"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "6073399",
+          "value_name": "AAA"
+        },
+        {
+          "id": "CELL_BATTERIES_TYPE",
+          "value_id": "6073399",
+          "value_name": "AAA"
+        },
+        {
+          "id": "INCLUDES_CELL_BATTERIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_UNIVERSAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIFI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "28482969",
+          "value_name": "7899903126756"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB46031859",
+        "catalogProductName": "Controle Remoto Mxt Compativel C/ar Condicionado Gz-12a-e1",
+        "catalogDomainId": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS",
+        "predictedDomainId": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS",
+        "categoryId": "MLB196072",
+        "categoryName": "Controles Remotos",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7899903126756"
+      }
+    },
+    {
+      "produtoId": "ea2fe766-d9c3-46ad-b189-b2c90043d2ee",
+      "sku": "VTK018063",
+      "nome": "Controle Remoto Mxt 01340 Ar Condicionado Split Artcool Libero E+lg",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 19.99,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 49.37,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899903143081",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB196072",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "14983341",
+          "value_name": "Compatível"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "426405",
+          "value_name": "Split"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7893549",
+          "value_name": "1.9 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8053397",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "14328536",
+          "value_name": "80 g"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "12048945",
+          "value_name": "14.7 cm"
+        },
+        {
+          "id": "MAX_REACH",
+          "value_id": "7796027",
+          "value_name": "8 m"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "81834",
+          "value_name": "LCD"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "28540593",
+          "value_name": "dc3v"
+        },
+        {
+          "id": "CELL_BATTERIES_TYPE",
+          "value_id": "6073399",
+          "value_name": "AAA"
+        },
+        {
+          "id": "INCLUDES_CELL_BATTERIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_UNIVERSAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIFI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "36995537",
+          "value_name": "7899903143081"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "75283365",
+          "value_name": "AKB73315601, AKB73215509, AKB73315602, AKB73315603, AKB73315605, AKB73315606, AKB73315607, AKB73315608, AKB73315609, AKB73455711, AKB73875902, AKB73856302, AKB73855710, AKB74955617, AKB36637501, AKB73855717, AKB73215508, AKB74375404, AKB73757605, AKB74375"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB36263019",
+        "catalogProductName": "Controle Remoto Compatível Ar Condicionado LG Inverter Split Branco",
+        "catalogDomainId": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS",
+        "predictedDomainId": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS",
+        "categoryId": "MLB196072",
+        "categoryName": "Controles Remotos",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7899903143081"
+      }
+    },
+    {
+      "produtoId": "2ef8265f-99a0-4fef-86a9-09d0c25cba7e",
+      "sku": "VTK017996",
+      "nome": "Controle Remoto Jfa Acqua 1200 Branco",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 62.9,
+      "estoque": 17,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 102.35,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898554806406",
+        "validatedNcm": "85272900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB11883",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2466336",
+          "value_name": "JFA"
+        },
+        {
+          "id": "LINE",
+          "value_id": "2225628",
+          "value_name": "Acqua"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "25271137",
+          "value_name": "K1200 ACQUA"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "UNIVERSAL_CAR_REMOTE_NUMBER_OF_BUTTONS",
+          "value_id": "24729982",
+          "value_name": "8"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "6810531",
+          "value_name": "Universal"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25271139",
+          "value_name": "7898554806406"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "2466336",
+          "value_name": "JFA"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "40676796",
+          "value_name": "Acqua 1200"
+        },
+        {
+          "id": "MAXIMUM_RANGE",
+          "value_id": "26799473",
+          "value_name": "1200 m"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "24556082",
+          "value_name": "433"
+        },
+        {
+          "id": "MODULATION_TYPE",
+          "value_id": "37440293",
+          "value_name": "FSK"
+        },
+        {
+          "id": "BATTERY_TYPE",
+          "value_id": "6059223",
+          "value_name": "23A"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27685629",
+        "catalogProductName": "Controle Jfa Acqua Branco K1200 Longa Distância",
+        "catalogDomainId": "MLB-UNIVERSAL_CAR_REMOTES",
+        "predictedDomainId": "MLB-UNIVERSAL_CAR_REMOTES",
+        "categoryId": "MLB11883",
+        "categoryName": "Controles Remotos",
+        "linkedListingsInCategory": 100,
+        "validatedGtin": "7898554806406"
+      }
+    },
+    {
+      "produtoId": "32da06c2-d52e-48e9-8e94-72b428ebd10f",
+      "sku": "VTK017978",
+      "nome": "Controle Stetsom Sx2 Ultra Grafite",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 64.9,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 104.81,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897748705853",
+        "validatedNcm": "85269200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB11883",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "345468",
+          "value_name": "Stetsom"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "50456294",
+          "value_name": "SX ULTRA + MINI VT"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "2324",
+          "value_name": "Grafite"
+        },
+        {
+          "id": "UNIVERSAL_CAR_REMOTE_NUMBER_OF_BUTTONS",
+          "value_id": "24729982",
+          "value_name": "8"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "9645705",
+          "value_name": "Radio"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "59171335",
+          "value_name": "7897748705853"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "345468",
+          "value_name": "Stetsom"
+        },
+        {
+          "id": "MAXIMUM_RANGE",
+          "value_id": "26089930",
+          "value_name": "500 m"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB53799483",
+        "catalogProductName": "Controle Sx2 Ultra Longa Distância Stetsom + Mini Vt Cor Grafite",
+        "catalogDomainId": "MLB-UNIVERSAL_CAR_REMOTES",
+        "predictedDomainId": "MLB-UNIVERSAL_CAR_REMOTES",
+        "categoryId": "MLB11883",
+        "categoryName": "Controles Remotos",
+        "linkedListingsInCategory": 9,
+        "validatedGtin": "7897748705853"
+      }
+    },
+    {
+      "produtoId": "176a4745-f8ad-45c3-8f42-574d401a096a",
+      "sku": "VTK018555",
+      "nome": "Corda Giannini Contrabaixo Geebrl 6 0.030\" Leve",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 106.5,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 156.17,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898159187252",
+        "validatedNcm": "92093000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB278076",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "45321",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16343176",
+          "value_name": "GEEBRL6"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_id": "16040035",
+          "value_name": "BAIXO"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_id": "15146",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_id": "20965405",
+          "value_name": "030"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "112648",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_id": "19811932",
+          "value_name": "Leve"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16343226",
+          "value_name": "7898159187252, 843104100678"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21505965",
+        "catalogProductName": "Encordoamento Giannnini Para Baixo 6 Cordas 030 Geebrl",
+        "catalogDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+        "predictedDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+        "categoryId": "MLB278076",
+        "categoryName": "Cordas para Instrumentos",
+        "linkedListingsInCategory": 14,
+        "validatedGtin": "7898159187252"
+      }
+    },
+    {
+      "produtoId": "698dd152-3b2b-4615-a9ad-e1db2cf40024",
+      "sku": "VTK001740",
+      "nome": "Detector de Tensão HKVolt HIKARI",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 45.5,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": 79.59,
+      "suggestedPricePreview": 80.86,
+      "priceSource": "custom_price",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810412591",
+        "validatedNcm": "90303319",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB260688",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "50577718",
+          "value_name": "Hkvolt Hikari"
+        },
+        {
+          "id": "VOLTAGE_DETECTOR_TYPE",
+          "value_id": "32247736",
+          "value_name": "Luminoso / sonoro / CAT lll 1000V"
+        },
+        {
+          "id": "MIN_VOLTAGE_MEASUREMENT",
+          "value_id": "3323363",
+          "value_name": "24V"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_FLASHLIGHT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_BATTERY",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27025985",
+          "value_name": "7899810412591"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "5230413",
+          "value_name": "15.8 cm"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB28698920",
+        "catalogProductName": "Detector De Tensão Hikari Ac 24v A 1000v Bip E Led Hk-volt",
+        "catalogDomainId": "MLB-VOLTAGE_DETECTORS",
+        "predictedDomainId": "MLB-VOLTAGE_DETECTORS",
+        "categoryId": "MLB260688",
+        "categoryName": "Busca-Pólos",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7899810412591"
+      }
+    }
+  ]
+}

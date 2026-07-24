@@ -1,0 +1,145 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/005-evolusom-catalog-create-005.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-005",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "5be26c44-3aca-411b-9d37-16181b0dbcca",
+      "sku": "VTK018453",
+      "category": {
+        "id": "MLB99957",
+        "nome": "Calculadoras",
+        "dominio": "MLB-CALCULATORS"
+      },
+      "basePrice": 40.88,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b572a9b1-cb6b-46d5-9283-bc63cba867a3",
+      "sku": "VTK018298",
+      "category": {
+        "id": "MLB99957",
+        "nome": "Calculadoras",
+        "dominio": "MLB-CALCULATORS"
+      },
+      "basePrice": 43.9,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "efd00848-1f79-4e04-a0f0-e9c17dec0c23",
+      "sku": "VTK017997",
+      "category": {
+        "id": "MLB7073",
+        "nome": "Câmeras de Segurança",
+        "dominio": "MLB-SURVEILLANCE_CAMERAS"
+      },
+      "basePrice": 355.7,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "945c4793-9382-4754-ae81-ce54acc0b82a",
+      "sku": "VTK019180",
+      "category": {
+        "id": "MLB7073",
+        "nome": "Câmeras de Segurança",
+        "dominio": "MLB-SURVEILLANCE_CAMERAS"
+      },
+      "basePrice": 491.68,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e28979c3-f974-4b95-b02b-7a3b756c437d",
+      "sku": "VTK018245",
+      "category": {
+        "id": "MLB7073",
+        "nome": "Câmeras de Segurança",
+        "dominio": "MLB-SURVEILLANCE_CAMERAS"
+      },
+      "basePrice": 229.86,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d401d3c6-dbf0-4bc9-89bc-f8a2f0677e3f",
+      "sku": "VTK018458",
+      "category": {
+        "id": "MLB7073",
+        "nome": "Câmeras de Segurança",
+        "dominio": "MLB-SURVEILLANCE_CAMERAS"
+      },
+      "basePrice": 280.48,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ee30888e-c6fa-4bae-bd20-a28bb0fa1f6e",
+      "sku": "VTK017886",
+      "category": {
+        "id": "MLB7073",
+        "nome": "Câmeras de Segurança",
+        "dominio": "MLB-SURVEILLANCE_CAMERAS"
+      },
+      "basePrice": 303.7,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e0a218a8-ef6e-4c71-abbf-a699845bd913",
+      "sku": "VTK019204",
+      "category": {
+        "id": "MLB186150",
+        "nome": "Câmera Veicular",
+        "dominio": "MLB-VEHICLE_CAMERAS"
+      },
+      "basePrice": 674.85,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "cc84bed0-6160-4af3-b00e-148814686007",
+      "sku": "VTK017982",
+      "nome": "Calculadora Pessoal Procalc Pc986-p 8 Dígitos Pink",
+      "error": "Atributos obrigatórios pendentes: Tipo de calculadora",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB99957",
+            "nome": "Calculadoras"
+          },
+          "missing": [
+            "Tipo de calculadora"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "0a650f64-edae-4284-a0e7-e5c3cbdc13eb",
+      "sku": "VTK018150",
+      "nome": "Câmera Bullet Hikvision Plast Ds-2ce16d8t-itf 2.8 1080p",
+      "error": "Atributos obrigatórios pendentes: Localizações da câmera",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7073",
+            "nome": "Câmeras de Segurança"
+          },
+          "missing": [
+            "Localizações da câmera"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

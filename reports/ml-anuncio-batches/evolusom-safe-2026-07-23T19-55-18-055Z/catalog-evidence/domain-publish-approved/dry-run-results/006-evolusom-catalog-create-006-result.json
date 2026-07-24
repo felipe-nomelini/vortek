@@ -1,0 +1,139 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/006-evolusom-catalog-create-006.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-006",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "b920dbaf-4373-4d46-b084-174113435531",
+      "sku": "VTK018969",
+      "category": {
+        "id": "MLB135679",
+        "nome": "Com Tela",
+        "dominio": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS"
+      },
+      "basePrice": 510.97,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2351f349-537e-4081-9553-801bb9193fa7",
+      "sku": "VTK018800",
+      "category": {
+        "id": "MLB135679",
+        "nome": "Com Tela",
+        "dominio": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS"
+      },
+      "basePrice": 728.96,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "279cd801-e10c-410a-9986-22b88a4a331b",
+      "sku": "VTK019007",
+      "category": {
+        "id": "MLB135679",
+        "nome": "Com Tela",
+        "dominio": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS"
+      },
+      "basePrice": 1458.08,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a2fe7003-2d7f-4fbc-8e73-9d62fd95718e",
+      "sku": "VTK018759",
+      "category": {
+        "id": "MLB7070",
+        "nome": "Alarmes e Sensores",
+        "dominio": "MLB-HOME_ALARMS_AND_SENSORS"
+      },
+      "basePrice": 468.53,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4496d44d-9117-415d-850b-da315f3b4d8e",
+      "sku": "VTK001028",
+      "category": {
+        "id": "MLB31678",
+        "nome": "Chaleiras Elétricas",
+        "dominio": "MLB-ELECTRIC_JUGS"
+      },
+      "basePrice": 81.13,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "735ca2f4-69b8-4d81-93d7-c721650be7df",
+      "sku": "VTK017640",
+      "category": {
+        "id": "MLB433273",
+        "nome": "Gavetas de Fixação",
+        "dominio": "MLB-VEHICLE_STEREO_CAGES"
+      },
+      "basePrice": 39.11,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1bdbc526-1a1f-4927-a1d2-148506f84f0a",
+      "sku": "VTK018492",
+      "category": {
+        "id": "MLB72503",
+        "nome": "Climatizador Portátil",
+        "dominio": "MLB-PORTABLE_EVAPORATIVE_AIR_COOLERS"
+      },
+      "basePrice": 749.85,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4ed6d374-c7f1-496c-afa1-bb6a12bccdcf",
+      "sku": "VTK017323",
+      "category": {
+        "id": "MLB38205",
+        "nome": "Para TV",
+        "dominio": "MLB-TV_REMOTE_CONTROLS"
+      },
+      "basePrice": 45.96,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2b00baa2-e74c-45df-a380-29de77f0cf37",
+      "sku": "VTK017688",
+      "category": {
+        "id": "MLB196072",
+        "nome": "Controles Remotos",
+        "dominio": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS"
+      },
+      "basePrice": 45.63,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "063dbebd-b445-4a04-af92-4036ba27b15d",
+      "sku": "VTK017637",
+      "nome": "Central De Alarme Sulton Cls 1400 Não Monitorada 10 Zonas",
+      "error": "Atributos obrigatórios pendentes: Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

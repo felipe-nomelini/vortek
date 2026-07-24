@@ -1,0 +1,66 @@
+{
+  "batchNumber": 5,
+  "batchId": "retry-502-005",
+  "items": [
+    {
+      "produtoId": "83b7466a-cc2b-47b2-b9be-73198d156685",
+      "sku": "VTK012377",
+      "nome": "Kit 10 Conectores P10 Stereo Femea Painel Wc 345 Wireconex",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "beb1e6a3-9ff6-44b2-9e87-93213f7cb65b",
+      "sku": "VTK012668",
+      "nome": "Palheta Guitarra Med 1ccf4 D Addario .70mm 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "be4c89bd-fca2-4287-bda3-248f36fd6ccf",
+      "sku": "VTK012074",
+      "nome": "Kit 02 Conectores Xlr Macho 90 Graus Wc2053 Wireconex",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "422bcabd-a745-4698-a59a-9b376e947f2c",
+      "sku": "VTK012383",
+      "nome": "Palheta Guitarra Mul Lght 1cmc2 D Addario .50mm 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "6c4f65db-7cd0-448b-90fe-076a6b3ceb7d",
+      "sku": "VTK012384",
+      "nome": "Palheta Guitarra Color 1cap2 D Addario .50mm 10 Un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "f899d217-66f3-479a-bd1d-5bcaad5e0bad",
+      "sku": "VTK012304",
+      "nome": "Palheta Guitarra Color 1cap6 D Addario 1.00mm 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "ee29fdf0-5caf-40ff-8a2e-63bfaa7e671e",
+      "sku": "VTK012422",
+      "nome": "Palheta Guitarra Mul Med 1cmc4 D Addario .70mm 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "7f8dc378-533d-4c5c-8c3e-b1e6899dc334",
+      "sku": "VTK012276",
+      "nome": "Kit 05 Conectores P2 Trrs Linha Wc 2314 Wireconex",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "d63548bc-a94a-42bd-b6cb-53ae8976bb03",
+      "sku": "VTK012014",
+      "nome": "Conector Para Cabo Fêmea P/ac - Corpo Azul Wc 3 Fca Wireconex 02 Unidades",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "90da20c8-f381-45a1-a976-bae92365c8fd",
+      "sku": "VTK012171",
+      "nome": "Kit 05 Conectores P2 Linha Stereo Wc 2313 Wireconex",
+      "fornecedor": "RETRY_502"
+    }
+  ]
+}

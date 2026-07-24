@@ -1,0 +1,4954 @@
+{
+  "generated_at": "2026-07-17T17:37:53.052Z",
+  "since": "2026-07-17T17:00:00.000Z",
+  "summary": {
+    "divergent": 104,
+    "compatible": 21,
+    "inconclusive": 7
+  },
+  "records": [
+    {
+      "ml_item_id": "MLB4582557611",
+      "sku": "VTK001075",
+      "product_name": "Conector RJ45 Macho CAT5E Sohoplus - PCT / 100",
+      "local_gtin": "7893137318796",
+      "catalog_product_id": "MLB2076044972",
+      "gtin_lookup_product_id": "MLB35868259",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB35868259, não MLB2076044972.",
+      "differences": [
+        {
+          "id": "BRAND",
+          "listing": "Furukawa Soho Plus",
+          "catalog": "Furukawa",
+          "hard": true
+        },
+        {
+          "id": "GTIN",
+          "listing": "7893137318796",
+          "catalog": "000001995213",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Conector RJ45 Macho CAT5E Sohoplus - PCT / 100",
+          "catalog": "Conector Rj45 Cat5e",
+          "hard": true
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4583160961",
+      "sku": "VTK000915",
+      "product_name": "Fone de Ouvido Philips TAT2500 Bluetooth True Wireless Preto",
+      "local_gtin": "4895229165328",
+      "catalog_product_id": "MLB54895332",
+      "gtin_lookup_product_id": "MLB54895332",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "Desconhecido",
+          "catalog": "TAT2500BK",
+          "hard": true
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4585892635",
+      "sku": "VTK000787",
+      "product_name": "Multímetro Analógico Hikari HM-202A",
+      "local_gtin": "7899810412812",
+      "catalog_product_id": "MLB2044419039",
+      "gtin_lookup_product_id": "MLB27119767",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB27119767, não MLB2044419039.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "HM-202A",
+          "catalog": "Hikari HM-202A",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "43 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "7 cm",
+          "catalog": "15 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "340 g",
+          "catalog": "330 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "25 cm",
+          "catalog": "13 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4621152031",
+      "sku": "VTK006039",
+      "product_name": "Kit Mouse e Teclado Fortrek CW11 Wireless Preto",
+      "local_gtin": "7898554608628",
+      "catalog_product_id": "MLB54124615",
+      "gtin_lookup_product_id": "MLB54124615",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [
+        {
+          "id": "COMPATIBLE_OPERATING_SYSTEMS",
+          "listing": "Linux,Windows,macOS",
+          "catalog": "Windows, Linux, macOS",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4640509129",
+      "sku": "VTK001244",
+      "product_name": "Ferro de Solda Maxx 180W 220V Brasfort",
+      "local_gtin": "7899807215730",
+      "catalog_product_id": "MLB52546242",
+      "gtin_lookup_product_id": "MLB52546242",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4640509685",
+      "sku": "VTK001243",
+      "product_name": "Caixa de Som Sumay CSP1318 PowerBlack 150w Bluetooth Com Microfone Preta",
+      "local_gtin": "7898508273360",
+      "catalog_product_id": "MLB55249420",
+      "gtin_lookup_product_id": "MLB55249420",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4786766793",
+      "sku": "VTK009688",
+      "product_name": "Encordoamento Violão Aço 012 Phosphor Bronze 203l Thomaz",
+      "local_gtin": "7898705602734",
+      "catalog_product_id": "MLB21393103",
+      "gtin_lookup_product_id": "MLB21393103",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [
+        {
+          "id": "GAUGES",
+          "listing": "0.012,0.016,0.024,0.032,0.042,0.053",
+          "catalog": "0.012 inch, 0.30 mm, 0.016 inch, 0.41 mm, 0.024 inch, 0.61 mm, 0.032 inch, 0.81 mm, 0.042 inch, 1.07 mm, 0.053 inch, 1.35 mm",
+          "hard": false
+        },
+        {
+          "id": "NOTES",
+          "listing": "Mi,Sol",
+          "catalog": "E, B, G, D, A",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4786789731",
+      "sku": "VTK009697",
+      "product_name": "Escaleta Melódica 27 Teclas Azul New York",
+      "local_gtin": "7898705601850",
+      "catalog_product_id": "MLB24800792",
+      "gtin_lookup_product_id": "MLB24800792",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [
+        {
+          "id": "COLOR",
+          "listing": "Preto",
+          "catalog": "Azul",
+          "hard": true
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4790690419",
+      "sku": "VTK009170",
+      "product_name": "Fio Confete 100grs Circulo Cor:3674 Cancan",
+      "local_gtin": "7891113037730",
+      "catalog_product_id": "MLB23883282",
+      "gtin_lookup_product_id": null,
+      "classification": "inconclusive",
+      "reason": "Sem confirmação suficiente por GTIN ou atributos críticos.",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4800983765",
+      "sku": "VTK000123",
+      "product_name": "Mesa de Som Analógica Yamaha MG10XU 10 Canais 110V Preta",
+      "local_gtin": "4957812547925",
+      "catalog_product_id": "MLB15954993",
+      "gtin_lookup_product_id": null,
+      "classification": "inconclusive",
+      "reason": "Sem confirmação suficiente por GTIN ou atributos críticos.",
+      "differences": [
+        {
+          "id": "CONNECTORS",
+          "listing": "4 combo XLR/jack 6.3 mm in,1 footswitch jack 6.3 mm,2 line jack L/R 6.3 mm in,2 line RCA L/R in,1 line jack L-mono/R 6.3 mm in,1 FX send jack 6.3 mm,1 stereo XLR L/R out,1 stereo jack L/R 6.3 mm out,1 monitor jack L/R 6.3 mm out,1 phone jack 6.3 mm,1 USB-B",
+          "catalog": "4 combo XLR/jack 6.3 mm in, 1 footswitch jack 6.3 mm, 2 line jack L/R 6.3 mm in, 2 line RCA L/R in, 1 line jack L-mono/R 6.3 mm in, 1 FX send jack 6.3 mm, 1 stereo XLR L/R out, 1 stereo jack L/R 6.3 mm out, 1 monitor jack L/R 6.3 mm out, 1 phone jack 6.3",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4801143531",
+      "sku": "VTK002821",
+      "product_name": "Sanduicheira e Grill Agratto SID02 750W Inox 220v",
+      "local_gtin": "7898461967788",
+      "catalog_product_id": "MLB59084265",
+      "gtin_lookup_product_id": "MLB22478704",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB22478704, não MLB59084265.",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4801151247",
+      "sku": "VTK004842",
+      "product_name": "Panela Elétrica Agratto Mangiare APEQ01I-01 Preto 220v",
+      "local_gtin": "7898461974588",
+      "catalog_product_id": "MLB36749098",
+      "gtin_lookup_product_id": "MLB22595707",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB22595707, não MLB36749098.",
+      "differences": [
+        {
+          "id": "WIDTH",
+          "listing": "30.3 cm",
+          "catalog": "14 cm",
+          "hard": false
+        },
+        {
+          "id": "HEIGHT",
+          "listing": "11.5 cm",
+          "catalog": "31 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4804196041",
+      "sku": "VTK000346",
+      "product_name": "Ventilador de Coluna Ventisol Turbo 6 40cm Preto 220v",
+      "local_gtin": "7898461965128",
+      "catalog_product_id": "MLB10513381",
+      "gtin_lookup_product_id": null,
+      "classification": "inconclusive",
+      "reason": "Sem confirmação suficiente por GTIN ou atributos críticos.",
+      "differences": [
+        {
+          "id": "HEIGHT",
+          "listing": "1.21 m",
+          "catalog": "1.16 m",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4806732973",
+      "sku": "VTK000489",
+      "product_name": "Ventilador de Coluna Ventisol Turbo 6 30cm Preto 220v",
+      "local_gtin": "7898461967641",
+      "catalog_product_id": "MLB18971071",
+      "gtin_lookup_product_id": "MLB18971071",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [
+        {
+          "id": "HEIGHT",
+          "listing": "1.21 m",
+          "catalog": "1.16 m",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4807796219",
+      "sku": "VTK000225",
+      "product_name": "Sanduicheira e Grill Agratto SID01 750W Inox 110v",
+      "local_gtin": "7898461967795",
+      "catalog_product_id": "MLB59084265",
+      "gtin_lookup_product_id": "MLB22643112",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB22643112, não MLB59084265.",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4836084091",
+      "sku": "VTK000037",
+      "product_name": "Encordoamento Para Contrabaixo .040 Giannini GEEBRL",
+      "local_gtin": "7898159187061",
+      "catalog_product_id": "MLB2042348787",
+      "gtin_lookup_product_id": "MLB21304047",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB21304047, não MLB2042348787.",
+      "differences": [
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "19 cm",
+          "catalog": "21 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "120 g",
+          "catalog": "400 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "15 cm",
+          "catalog": "17 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4841934813",
+      "sku": "VTK000033",
+      "product_name": "Alicate Amperímetro Digital Minipa ET-3200 Azul/Preto",
+      "local_gtin": "7898112603515",
+      "catalog_product_id": "MLB2039213937",
+      "gtin_lookup_product_id": "MLB15532909",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB15532909, não MLB2039213937.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7898112603515",
+          "catalog": "7898112603515",
+          "hard": true
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "listing": "0",
+          "catalog": "9V",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "33 cm",
+          "catalog": "35 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "7 cm",
+          "catalog": "8 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "385 g",
+          "catalog": "602 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "17 cm",
+          "catalog": "19 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4842108875",
+      "sku": "VTK001350",
+      "product_name": "Violão Tagima Andes Eletroacústico Folk Aço Natural Amber Satin",
+      "local_gtin": "7898563976244",
+      "catalog_product_id": "MLB39346854",
+      "gtin_lookup_product_id": "MLB26656188",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB26656188, não MLB39346854.",
+      "differences": [
+        {
+          "id": "STRINGS_NUMBER",
+          "listing": "6",
+          "catalog": "6",
+          "hard": false
+        },
+        {
+          "id": "BODY_TOP_MATERIAL",
+          "listing": "Metal",
+          "catalog": "Spruce",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4842109061",
+      "sku": "VTK001353",
+      "product_name": "Cabo de Rede CAT5E 305m Blindagem Capa Dupla Megatron - BOB / 305",
+      "local_gtin": "7899278900289",
+      "catalog_product_id": "MLB2068569368",
+      "gtin_lookup_product_id": null,
+      "classification": "divergent",
+      "reason": "Atributos críticos divergentes: BRAND, GTIN, MODEL.",
+      "differences": [
+        {
+          "id": "BRAND",
+          "listing": "Megatron",
+          "catalog": "megatron original",
+          "hard": true
+        },
+        {
+          "id": "GTIN",
+          "listing": "7899278900289",
+          "catalog": "85441910",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Cabo de Rede CAT5E 305m Blindagem Capa Dupla Megatron - BOB",
+          "catalog": "cabo de rede externo blindado para cftv cameras - para ligar conversor de par trançado baloon",
+          "hard": true
+        },
+        {
+          "id": "NETWORK_CABLE_TYPE",
+          "listing": "Par trançado UTP",
+          "catalog": "blindado",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "34 cm",
+          "catalog": "32 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "27 cm",
+          "catalog": "25 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "12078 g",
+          "catalog": "9400 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "33 cm",
+          "catalog": "32 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4842164031",
+      "sku": "VTK001711",
+      "product_name": "Encordoamento Violão Aço .010-.047 80/20 Bronze EJ10-B D Addario Com Corda Extra PL010",
+      "local_gtin": "019954983178",
+      "catalog_product_id": "MLB2041811020",
+      "gtin_lookup_product_id": "MLB21960398",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB21960398, não MLB2041811020.",
+      "differences": [
+        {
+          "id": "GAUGES",
+          "listing": ".010-.047",
+          "catalog": "10-47",
+          "hard": false
+        },
+        {
+          "id": "GTIN",
+          "listing": "019954983178",
+          "catalog": "-1",
+          "hard": true
+        },
+        {
+          "id": "MATERIALS",
+          "listing": "Metal",
+          "catalog": "Bronze",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "Encordoamento Violão Aço .010-.047 80/20 Bronze EJ10-B D Add",
+          "catalog": "Ej 10",
+          "hard": true
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "listing": "Guitarra elétrica",
+          "catalog": "Guitarra acústica",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "11 cm",
+          "catalog": "13 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "1 cm",
+          "catalog": "11 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "340 g",
+          "catalog": "30 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "11 cm",
+          "catalog": "12 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4850158445",
+      "sku": "VTK000672",
+      "product_name": "Ventilador de Teto Ventisol Wind 3 Pás Branco Bivolt",
+      "local_gtin": "7898461974632",
+      "catalog_product_id": "MLB24035079",
+      "gtin_lookup_product_id": "MLB24035079",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [
+        {
+          "id": "WIDTH",
+          "listing": "15 cm",
+          "catalog": "17.5 cm",
+          "hard": false
+        },
+        {
+          "id": "WEIGHT",
+          "listing": "2.775 kg",
+          "catalog": "2.825 kg",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857495155",
+      "sku": "VTK001007",
+      "product_name": "Copo Para Liquidificador Com Alça RI2101/02/03 Branco Walita - CX / 6",
+      "local_gtin": "10564050000108",
+      "catalog_product_id": "MLB2055514682",
+      "gtin_lookup_product_id": null,
+      "classification": "divergent",
+      "reason": "Atributos críticos divergentes: GTIN, MODEL.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "10564050000108",
+          "catalog": "4206190003876",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Copo Para Liquidificador Com Alça RI2101/02/03 Branco Walita - CX / 6",
+          "catalog": "RI2101, RI2102, RI2103 e RI2104",
+          "hard": true
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857498175",
+      "sku": "VTK001282",
+      "product_name": "Pacote de Parafusos Ergo One Fortrek",
+      "local_gtin": "7890000856553",
+      "catalog_product_id": "MLB2086880903",
+      "gtin_lookup_product_id": null,
+      "classification": "inconclusive",
+      "reason": "Sem confirmação suficiente por GTIN ou atributos críticos.",
+      "differences": [
+        {
+          "id": "SCREW_TYPE",
+          "listing": "Pacote de Parafusos Ergo One",
+          "catalog": "PARA CADEIRA ERGO ONE",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "24 cm",
+          "catalog": "21 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "8 cm",
+          "catalog": "6 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "285 g",
+          "catalog": "237 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "15 cm",
+          "catalog": "13 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857530659",
+      "sku": "VTK001291",
+      "product_name": "Lubrificante e Desengripante Aerosol 100ml Spay WD40 - CX / 12",
+      "local_gtin": "17899737500392",
+      "catalog_product_id": "MLB2065922842",
+      "gtin_lookup_product_id": null,
+      "classification": "divergent",
+      "reason": "Atributos críticos divergentes: GTIN, MODEL.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "17899737500392",
+          "catalog": "7899737500395",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Lubrificante e Desengripante Aerosol 100ml Spay - CX / 12",
+          "catalog": "WD40 SPRAY LUBRIFICANTE MULTIUSO DESENGRIPA LUFRIFICA 100ML",
+          "hard": true
+        },
+        {
+          "id": "PRODUCT_NAME",
+          "listing": "Lubrificante e desengripante aerosol 100 ml",
+          "catalog": "wd40",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "24 cm",
+          "catalog": "25 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "13 cm",
+          "catalog": "8 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "630 g",
+          "catalog": "525 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "15 cm",
+          "catalog": "17 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857540521",
+      "sku": "VTK012617",
+      "product_name": "Patch Panel Headphone Output Ho816a Wireconex",
+      "local_gtin": "7898640365671",
+      "catalog_product_id": "MLB2069078330",
+      "gtin_lookup_product_id": null,
+      "classification": "divergent",
+      "reason": "Atributos críticos divergentes: MODEL.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "Patch Panel Headphone Output Ho816a",
+          "catalog": "HO816/A",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "29 cm",
+          "catalog": "26 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "5 cm",
+          "catalog": "26 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "283 g",
+          "catalog": "100 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "18 cm",
+          "catalog": "10 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857622833",
+      "sku": "VTK012046",
+      "product_name": "Pilha Recarregável Aa Elgin 2700mah Cartela Com 02 Unidades",
+      "local_gtin": "7897013536106",
+      "catalog_product_id": "MLB2064962035",
+      "gtin_lookup_product_id": "MLB28328653",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB28328653, não MLB2064962035.",
+      "differences": [
+        {
+          "id": "IS_RECHARGEABLE",
+          "listing": "Não",
+          "catalog": "Sim",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Recarregável Aa 2700mah Cartela Com 02 Unidades",
+          "catalog": "AA2700mAh",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "12 cm",
+          "catalog": "18 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "40 g",
+          "catalog": "119 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "8 cm",
+          "catalog": "13 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857622855",
+      "sku": "VTK000314",
+      "product_name": "Pilha Auditiva 10 (Cartela C/6 Unid.) Duracell",
+      "local_gtin": "041333030180",
+      "catalog_product_id": "MLB2079358548",
+      "gtin_lookup_product_id": "MLB19546221",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB19546221, não MLB2079358548.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "041333030180",
+          "catalog": "10041333030187",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Auditiva 10 (Cartela C/6 Unid.)",
+          "catalog": "Activair 10",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "16 cm",
+          "catalog": "11 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "8 cm",
+          "catalog": "5 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "40 g",
+          "catalog": "190 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "11 cm",
+          "catalog": "6 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857623033",
+      "sku": "VTK001501",
+      "product_name": "Encordoamento Para Violão Aço .010 N500 Bronze NIG",
+      "local_gtin": "7897813405008",
+      "catalog_product_id": "MLB2043976453",
+      "gtin_lookup_product_id": null,
+      "classification": "divergent",
+      "reason": "Atributos críticos divergentes: GTIN, MODEL.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7897813405008",
+          "catalog": "7897813405008",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Encordoamento Para Aço .010 N500 Bronze",
+          "catalog": "N500",
+          "hard": true
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "listing": "Violão AÇO",
+          "catalog": "Violão acústico",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "21 cm",
+          "catalog": "19 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "6 cm",
+          "catalog": "3 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "307 g",
+          "catalog": "220 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "13 cm",
+          "catalog": "16 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857623611",
+      "sku": "VTK003774",
+      "product_name": "Pilha Alcalina 1,5v AAA MN2400 (C/4 Pilhas) Duracell",
+      "local_gtin": "041333001098",
+      "catalog_product_id": "MLB2076117476",
+      "gtin_lookup_product_id": "MLB20014558",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB20014558, não MLB2076117476.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "041333001098",
+          "catalog": "7898012376816",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Alcalina 1,5v AAA MN2400 (C/4 Pilhas)",
+          "catalog": "70107314",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "18 cm",
+          "catalog": "21 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "3 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "350 g",
+          "catalog": "100 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "14 cm",
+          "catalog": "15 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857624271",
+      "sku": "VTK012205",
+      "product_name": "Pilha Alcalina D Cartela Com 2 Unidades Flex",
+      "local_gtin": "7898615151988",
+      "catalog_product_id": "MLB2072397739",
+      "gtin_lookup_product_id": "MLB22807572",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB22807572, não MLB2072397739.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "Pilha Alcalina D Cartela Com 2 Unidades",
+          "catalog": "Pilha Alcalina D Flex C/2 Unidades Fx-Dk2",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "17 cm",
+          "catalog": "12 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "3 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "70 g",
+          "catalog": "280 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "13 cm",
+          "catalog": "10 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857624411",
+      "sku": "VTK000284",
+      "product_name": "Pilha Moeda Lithium 3V CR2025 (C/5 Pilhas) Panasonic - CAR / 5",
+      "local_gtin": "7896067202364",
+      "catalog_product_id": "MLB2063304715",
+      "gtin_lookup_product_id": "MLB20571075",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB20571075, não MLB2063304715.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7896067202364",
+          "catalog": "7897031423396",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Moeda Lithium 3V CR2025 (C/5 Pilhas) - CAR / 5",
+          "catalog": "CR",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "5 cm",
+          "catalog": "3 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "65 g",
+          "catalog": "35 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "12 cm",
+          "catalog": "6 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857625023",
+      "sku": "VTK012170",
+      "product_name": "Pilha Alcalina Aaa L8p7 Elgin (08 Unidades)",
+      "local_gtin": "7908412502057",
+      "catalog_product_id": "MLB2069875930",
+      "gtin_lookup_product_id": "MLB19639635",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB19639635, não MLB2069875930.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7908412502057",
+          "catalog": "7908412502057",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Alcalina Aaa L8p7 (08 Unidades)",
+          "catalog": "LR03",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "19 cm",
+          "catalog": "18 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "4 cm",
+          "catalog": "3 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "50 g",
+          "catalog": "215 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "12 cm",
+          "catalog": "13 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857625945",
+      "sku": "VTK012093",
+      "product_name": "Pilha Aa Alcalina Cartela Com 4 Unidades Flex",
+      "local_gtin": "7898615151964",
+      "catalog_product_id": "MLB2080034058",
+      "gtin_lookup_product_id": "MLB24823716",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB24823716, não MLB2080034058.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7898615151964",
+          "catalog": "7900001256860",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Aa Alcalina Cartela Com 4 Unidades",
+          "catalog": "FX-AAK4",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "19 cm",
+          "catalog": "18 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "3 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "90 g",
+          "catalog": "45 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "14 cm",
+          "catalog": "12 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857626089",
+      "sku": "VTK012147",
+      "product_name": "Bateria Botão Lr41 Cartela Com 14 Unidades Flex",
+      "local_gtin": "7908417101774",
+      "catalog_product_id": "MLB2068836489",
+      "gtin_lookup_product_id": "MLB36713533",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB36713533, não MLB2068836489.",
+      "differences": [
+        {
+          "id": "BRAND",
+          "listing": "Flex",
+          "catalog": "Flex Gold",
+          "hard": true
+        },
+        {
+          "id": "GTIN",
+          "listing": "7908417101774",
+          "catalog": "7900001257874",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Bateria Botão Lr41 Cartela Com 14 Unidades",
+          "catalog": "FX-LR41",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "3 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "116 g",
+          "catalog": "40 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "13 cm",
+          "catalog": "12 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857626109",
+      "sku": "VTK003141",
+      "product_name": "Tomada Keystone RJ45 CAT5.E KEYS0001 Storm - PCT / 10",
+      "local_gtin": "7898566207437",
+      "catalog_product_id": "MLB2068582022",
+      "gtin_lookup_product_id": "MLB26970766",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB26970766, não MLB2068582022.",
+      "differences": [
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "20 cm",
+          "catalog": "10 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "4 cm",
+          "catalog": "2 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "173 g",
+          "catalog": "500 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "14 cm",
+          "catalog": "10 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857626293",
+      "sku": "VTK012066",
+      "product_name": "10 Baterias Alcalinas Ag10 Lr1130 Lr54 Elgin",
+      "local_gtin": "7897013553509",
+      "catalog_product_id": "MLB2064439461",
+      "gtin_lookup_product_id": "MLB20814884",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB20814884, não MLB2064439461.",
+      "differences": [
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "listing": "Não Identificado",
+          "catalog": "AG10",
+          "hard": false
+        },
+        {
+          "id": "GTIN",
+          "listing": "7897013553509",
+          "catalog": "7897013553509",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "10 Baterias Alcalinas Ag10 Lr1130 Lr54",
+          "catalog": "82254",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "28 cm",
+          "catalog": "18 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "12 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "1633 g",
+          "catalog": "46 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "23 cm",
+          "catalog": "12 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857627461",
+      "sku": "VTK012090",
+      "product_name": "Pilha Aaa Alcalina Cartela Com 2 Unidades Flex",
+      "local_gtin": "7898615151933",
+      "catalog_product_id": "MLB2072540595",
+      "gtin_lookup_product_id": "MLB35368012",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB35368012, não MLB2072540595.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7898615151933",
+          "catalog": "7898615151933",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Aaa Alcalina Cartela Com 2 Unidades",
+          "catalog": "AAA Alcalina",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "2 cm",
+          "catalog": "3 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "40 g",
+          "catalog": "64 g",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857635245",
+      "sku": "VTK012186",
+      "product_name": "Bateria Cr1616 Cartela Com 05 Unidades Panasonic",
+      "local_gtin": "8887549613951",
+      "catalog_product_id": "MLB2076198917",
+      "gtin_lookup_product_id": "MLB20235827",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB20235827, não MLB2076198917.",
+      "differences": [
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "listing": "Lithium",
+          "catalog": "-1",
+          "hard": false
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "listing": "Button",
+          "catalog": "Botão",
+          "hard": false
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "listing": "CR1616",
+          "catalog": "3V",
+          "hard": false
+        },
+        {
+          "id": "GTIN",
+          "listing": "8887549613951",
+          "catalog": "8887549613951",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Bateria Cr1616 Cartela Com 05 Unidades",
+          "catalog": "CR1616",
+          "hard": true
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "listing": "5",
+          "catalog": "-1",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "17 cm",
+          "catalog": "18 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "4 cm",
+          "catalog": "3 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "85 g",
+          "catalog": "125 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "11 cm",
+          "catalog": "13 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857635479",
+      "sku": "VTK001616",
+      "product_name": "Encordoamento Para Violão Aço .011 Giannini GESPW Bronze Série Acústico",
+      "local_gtin": "7898159186798",
+      "catalog_product_id": "MLB2071636617",
+      "gtin_lookup_product_id": "MLB22412334",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB22412334, não MLB2071636617.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7898159186798",
+          "catalog": "7898159186798",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Encordoamento Para Aço .011 GESPW Bronze Série Acústico",
+          "catalog": "GESPW",
+          "hard": true
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "listing": "Violão Aço",
+          "catalog": "Violão",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "44 cm",
+          "catalog": "16 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "9 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "382 g",
+          "catalog": "155 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "21 cm",
+          "catalog": "15 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857635515",
+      "sku": "VTK012355",
+      "product_name": "Pilha Auditiva Rayovac E. Adv Act Tam675 Cart 6 Sm-60",
+      "local_gtin": "5038061000795",
+      "catalog_product_id": "MLB2071376898",
+      "gtin_lookup_product_id": "MLB21462239",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB21462239, não MLB2071376898.",
+      "differences": [
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "listing": "10",
+          "catalog": "675",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Auditiva E. Adv Act Tam675 Cart 6 Sm-60",
+          "catalog": "675",
+          "hard": true
+        },
+        {
+          "id": "SALE_FORMAT",
+          "listing": "Unidade",
+          "catalog": "Pack",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "35 cm",
+          "catalog": "9 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "10 cm",
+          "catalog": "1 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "574 g",
+          "catalog": "20 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "24 cm",
+          "catalog": "5 cm",
+          "hard": false
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "listing": "1",
+          "catalog": "6",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857635671",
+      "sku": "VTK012031",
+      "product_name": "Pilha Recarregável Eco Aaa2 Rayovac Com 02 Unidades",
+      "local_gtin": "7702094190034",
+      "catalog_product_id": "MLB2065108975",
+      "gtin_lookup_product_id": "MLB25777520",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB25777520, não MLB2065108975.",
+      "differences": [
+        {
+          "id": "IS_RECHARGEABLE",
+          "listing": "Não",
+          "catalog": "Sim",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Recarregável Eco Aaa2 Com 02 Unidades",
+          "catalog": "LR03",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "19 cm",
+          "catalog": "2 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "3 cm",
+          "catalog": "16 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "130 g",
+          "catalog": "100 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "13 cm",
+          "catalog": "12 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857636673",
+      "sku": "VTK000058",
+      "product_name": "Encordoamento Para Violão Nylon Série Canário Giannini GENWB Com Bolinha",
+      "local_gtin": "7898159187351",
+      "catalog_product_id": "MLB2039995721",
+      "gtin_lookup_product_id": "MLB21310498",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB21310498, não MLB2039995721.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "Encordoamento Para Nylon Série Canário GENWB Com Bolinha",
+          "catalog": "GENWB",
+          "hard": true
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "listing": "Encordoamento Para Nylon Série Canário GENWB Com Bolinha",
+          "catalog": "Violão de náilon",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "2 cm",
+          "catalog": "5 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "406 g",
+          "catalog": "20 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "14 cm",
+          "catalog": "12 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857636853",
+      "sku": "VTK002891",
+      "product_name": "Pilha Alcalina 1,5V AAA LR03 Premium (C/4 Pilhas) Panasonic - CAR / 4",
+      "local_gtin": "7896067203750",
+      "catalog_product_id": "MLB2073121533",
+      "gtin_lookup_product_id": "MLB23940566",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB23940566, não MLB2073121533.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7896067203750",
+          "catalog": "7896067203750",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Alcalina 1,5V AAA LR03 Premium (C/4 Pilhas) - CAR / 4",
+          "catalog": "LR03EGR",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "18 cm",
+          "catalog": "17 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "3 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "350 g",
+          "catalog": "413 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "13 cm",
+          "catalog": "12 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857637107",
+      "sku": "VTK012308",
+      "product_name": "Pilha Alcalina Tipo C Elgin Cartela Com 02 Unidades",
+      "local_gtin": "7897013534225",
+      "catalog_product_id": "MLB2079274336",
+      "gtin_lookup_product_id": "MLB25925813",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB25925813, não MLB2079274336.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7897013534225",
+          "catalog": "7897013534225",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Alcalina Tipo C Cartela Com 02 Unidades",
+          "catalog": "Alcalinas",
+          "hard": true
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857637179",
+      "sku": "VTK003639",
+      "product_name": "Conector CAT.5 RJ 45 PGMD0001 Storm - PCT / 100",
+      "local_gtin": "7898566201152",
+      "catalog_product_id": "MLB2065516274",
+      "gtin_lookup_product_id": "MLB26635633",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB26635633, não MLB2065516274.",
+      "differences": [
+        {
+          "id": "BRAND",
+          "listing": "Storm",
+          "catalog": "Gralf",
+          "hard": true
+        },
+        {
+          "id": "GTIN",
+          "listing": "7898566201152",
+          "catalog": "-1",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "CAT.5 RJ 45 PGMD0001 - PCT / 100",
+          "catalog": "GF-RJ45",
+          "hard": true
+        },
+        {
+          "id": "PLUG_TYPE",
+          "listing": "CAT.5 RJ 45 PGMD0001 - PCT / 100",
+          "catalog": "RJ45",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "245 g",
+          "catalog": "160 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "10 cm",
+          "catalog": "12 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857637271",
+      "sku": "VTK012155",
+      "product_name": "Pilha Recarregável Aaa 1000 Mah Elgin Com 02 Unidades",
+      "local_gtin": "7897013536069",
+      "catalog_product_id": "MLB2069891660",
+      "gtin_lookup_product_id": "MLB19546228",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB19546228, não MLB2069891660.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7897013536069",
+          "catalog": "7897013536069",
+          "hard": true
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "listing": "Não",
+          "catalog": "Sim",
+          "hard": false
+        },
+        {
+          "id": "LINE",
+          "listing": "Recarregável",
+          "catalog": "Pilha Recarregável",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Recarregável Aaa 1000 Mah Com 02 Unidades",
+          "catalog": "AAA 1000MAH",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "21 cm",
+          "catalog": "19 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "230 g",
+          "catalog": "63 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "19 cm",
+          "catalog": "14 cm",
+          "hard": false
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "listing": "4",
+          "catalog": "1",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857637279",
+      "sku": "VTK012242",
+      "product_name": "Pilha Alcalina C Cartela Com 2 Unidades Flex",
+      "local_gtin": "7898615151971",
+      "catalog_product_id": "MLB2073067313",
+      "gtin_lookup_product_id": "MLB23831739",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB23831739, não MLB2073067313.",
+      "differences": [
+        {
+          "id": "BRAND",
+          "listing": "Flex",
+          "catalog": "Flex Gold",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Alcalina C Cartela Com 2 Unidades",
+          "catalog": "LR14",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "20 cm",
+          "catalog": "3 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "3 cm",
+          "catalog": "16 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "163 g",
+          "catalog": "150 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "13 cm",
+          "catalog": "16 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857637395",
+      "sku": "VTK003798",
+      "product_name": "Pilha Alcalina 1,5v AA MN1500 (C/2 Pilhas) Duracell",
+      "local_gtin": "041333001005",
+      "catalog_product_id": "MLB2063317815",
+      "gtin_lookup_product_id": "MLB22752426",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB22752426, não MLB2063317815.",
+      "differences": [
+        {
+          "id": "PART_NUMBER",
+          "listing": "VTK003798",
+          "catalog": "3043",
+          "hard": false
+        },
+        {
+          "id": "LINE",
+          "listing": "Pilha Alcalina",
+          "catalog": "AA Alcalina",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Alcalina 1,5v AA MN1500 (C/2 Pilhas)",
+          "catalog": "3043",
+          "hard": true
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857638135",
+      "sku": "VTK012045",
+      "product_name": "Bateria Alcalina 9v Elgin Cartela 01 Unidade",
+      "local_gtin": "7897013534249",
+      "catalog_product_id": "MLB2069585119",
+      "gtin_lookup_product_id": "MLB19692869",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB19692869, não MLB2069585119.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7897013534249",
+          "catalog": "7796285725808",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Bateria Alcalina 9v Cartela 01 Unidade",
+          "catalog": "9V",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "23 cm",
+          "catalog": "16 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "5 cm",
+          "catalog": "7 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "211 g",
+          "catalog": "450 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "18 cm",
+          "catalog": "15 cm",
+          "hard": false
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "listing": "5",
+          "catalog": "1",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857638269",
+      "sku": "VTK012091",
+      "product_name": "Pilha Aaa Alcalina Cartela Com 4 Unidades Flex",
+      "local_gtin": "7898615151940",
+      "catalog_product_id": "MLB2076397026",
+      "gtin_lookup_product_id": "MLB35367547",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB35367547, não MLB2076397026.",
+      "differences": [
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "19 cm",
+          "catalog": "17 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "4 cm",
+          "catalog": "3 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "132 g",
+          "catalog": "35 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "15 cm",
+          "catalog": "12 cm",
+          "hard": false
+        },
+        {
+          "id": "GTIN",
+          "listing": "7898615151940",
+          "catalog": "7898615151940",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Aaa Alcalina Cartela Com 4 Unidades",
+          "catalog": "FX-AAAK4",
+          "hard": true
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857638285",
+      "sku": "VTK012064",
+      "product_name": "Pilha Comum D Sm-2 Panasonic Um-1shs128",
+      "local_gtin": "7896067200018",
+      "catalog_product_id": "MLB2089441825",
+      "gtin_lookup_product_id": "MLB19962330",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB19962330, não MLB2089441825.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "Pilha Comum D Sm-2 Um-1shs128",
+          "catalog": "D",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "22 cm",
+          "catalog": "6 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "4 cm",
+          "catalog": "5 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "140 g",
+          "catalog": "200 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "12 cm",
+          "catalog": "8 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857638305",
+      "sku": "VTK012164",
+      "product_name": "Bateria Botão Lr1130 Cartela Com 14 Unidades Flex",
+      "local_gtin": "5379861525133",
+      "catalog_product_id": "MLB2071944264",
+      "gtin_lookup_product_id": "MLB38486095",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB38486095, não MLB2071944264.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "Bateria Botão Lr1130 Cartela Com 14 Unidades",
+          "catalog": "FX-LR1130",
+          "hard": true
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857638323",
+      "sku": "VTK012266",
+      "product_name": "Bateria Botão Lr66 Cartela Com 14 Unidades Flex",
+      "local_gtin": "7908417101903",
+      "catalog_product_id": "MLB2079543368",
+      "gtin_lookup_product_id": "MLB40223146",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB40223146, não MLB2079543368.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7908417101903",
+          "catalog": "7908417101903",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Bateria Botão Lr66 Cartela Com 14 Unidades",
+          "catalog": "LR66",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "17 cm",
+          "catalog": "3 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "3 cm",
+          "catalog": "11 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "116 g",
+          "catalog": "150 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "13 cm",
+          "catalog": "15 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857638329",
+      "sku": "VTK012569",
+      "product_name": "Bateria Botão Lr621 Cartela Com 14 Unidades Flex",
+      "local_gtin": "7898615150776",
+      "catalog_product_id": "MLB2083582718",
+      "gtin_lookup_product_id": "MLB35370424",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB35370424, não MLB2083582718.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "Bateria Botão Lr621 Cartela Com 14 Unidades",
+          "catalog": "FX-LR621/AG1",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "17 cm",
+          "catalog": "18 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "116 g",
+          "catalog": "51 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "13 cm",
+          "catalog": "12 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857638555",
+      "sku": "VTK012221",
+      "product_name": "Bateria Alcalina Lr44 Elgin Cartela Com 10 Unidades",
+      "local_gtin": "7897013538124",
+      "catalog_product_id": "MLB2070378515",
+      "gtin_lookup_product_id": "MLB16156650",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB16156650, não MLB2070378515.",
+      "differences": [
+        {
+          "id": "BRAND",
+          "listing": "Elgin",
+          "catalog": "Elgin Pilha",
+          "hard": true
+        },
+        {
+          "id": "GTIN",
+          "listing": "7897013538124",
+          "catalog": "7897013538124",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Bateria Alcalina Lr44 Cartela Com 10 Unidades",
+          "catalog": "Modelo Padrão",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "17 cm",
+          "catalog": "21 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "4 cm",
+          "catalog": "6 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "125 g",
+          "catalog": "120 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "12 cm",
+          "catalog": "13 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4857638573",
+      "sku": "VTK012069",
+      "product_name": "10 Baterias Alcalinas Lr621 Ag1 Elgin",
+      "local_gtin": "7897013574009",
+      "catalog_product_id": "MLB2076293468",
+      "gtin_lookup_product_id": "MLB21020934",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB21020934, não MLB2076293468.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "10 Baterias Alcalinas Lr621 Ag1",
+          "catalog": "ELE000000082307",
+          "hard": true
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "listing": "1.5V",
+          "catalog": "1.5V",
+          "hard": false
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "listing": "10",
+          "catalog": "1",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "28 cm",
+          "catalog": "19 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "12 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "1633 g",
+          "catalog": "155 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "23 cm",
+          "catalog": "15 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4870158919",
+      "sku": "VTK004842",
+      "product_name": "Panela Elétrica Agratto Mangiare APEQ01I-01 Preto 220v",
+      "local_gtin": "7898461974588",
+      "catalog_product_id": "MLB36749098",
+      "gtin_lookup_product_id": "MLB22595707",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB22595707, não MLB36749098.",
+      "differences": [
+        {
+          "id": "WIDTH",
+          "listing": "30.3 cm",
+          "catalog": "14 cm",
+          "hard": false
+        },
+        {
+          "id": "HEIGHT",
+          "listing": "11.5 cm",
+          "catalog": "31 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4880526723",
+      "sku": "VTK012448",
+      "product_name": "Bateria Cr123a Lítio 3v Unidade Flex",
+      "local_gtin": "7898615156754",
+      "catalog_product_id": null,
+      "gtin_lookup_product_id": "MLB66633949",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB66633949, não .",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4880563183",
+      "sku": "VTK012136",
+      "product_name": "Pilha Zinco Aa4 Rayovac Amarelinhas Tubo Com 48 Unidades",
+      "local_gtin": "7896009760099",
+      "catalog_product_id": null,
+      "gtin_lookup_product_id": "MLB23492770",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB23492770, não .",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4880634247",
+      "sku": "VTK000672",
+      "product_name": "Ventilador de Teto Ventisol Wind 3 Pás Branco Bivolt",
+      "local_gtin": "7898461974632",
+      "catalog_product_id": "MLB6057773",
+      "gtin_lookup_product_id": "MLB24035079",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB24035079, não MLB6057773.",
+      "differences": [
+        {
+          "id": "WIDTH",
+          "listing": "15 cm",
+          "catalog": "17.5 cm",
+          "hard": false
+        },
+        {
+          "id": "WEIGHT",
+          "listing": "2.775 kg",
+          "catalog": "2.825 kg",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB4881447147",
+      "sku": "VTK005653",
+      "product_name": "Violão Tagima Rio Negro Eletroacústico Aço Vintage Sunburst",
+      "local_gtin": "7898563976138",
+      "catalog_product_id": "MLB62432613",
+      "gtin_lookup_product_id": "MLB26332169",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB26332169, não MLB62432613.",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB6559688178",
+      "sku": "VTK001762",
+      "product_name": "Jogo de Chaves de Fenda/Philips Com 6 Peças Brasfort",
+      "local_gtin": "7898464732758",
+      "catalog_product_id": "MLB2054202540",
+      "gtin_lookup_product_id": "MLB28218432",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB28218432, não MLB2054202540.",
+      "differences": [
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "40 cm",
+          "catalog": "42 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "950 g",
+          "catalog": "730 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "29 cm",
+          "catalog": "25 cm",
+          "hard": false
+        },
+        {
+          "id": "GTIN",
+          "listing": "7898464732758",
+          "catalog": "7898464732758",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Jogo de Chaves de Fenda/Philips Com 6 Peças Brasfort",
+          "catalog": "7029",
+          "hard": true
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB6572969086",
+      "sku": "VTK006386",
+      "product_name": "Sistema de Microfone Duplo Sem Fio Leson LS962 Bege",
+      "local_gtin": "7898656412895",
+      "catalog_product_id": null,
+      "gtin_lookup_product_id": "MLB50863900",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB50863900, não .",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB6646471106",
+      "sku": "VTK005732",
+      "product_name": "Webcam 4k Streamplify Cam Pro",
+      "local_gtin": "4251442511005",
+      "catalog_product_id": "MLB42116120",
+      "gtin_lookup_product_id": "MLB42116120",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [
+        {
+          "id": "MIN_OPERATING_SYSTEMS_REQUIRED",
+          "listing": "Android OS,Chrome OS,Windows 10,Windows 7,Windows 8,macOS",
+          "catalog": "Windows 10, Windows 8, Windows 7, macOS, Chrome OS, Android OS",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB6646643660",
+      "sku": "VTK001369",
+      "product_name": "Nobreak Ts Shara XPRO Bivolt 1000VA",
+      "local_gtin": "7897103545285",
+      "catalog_product_id": "MLB22371389",
+      "gtin_lookup_product_id": "MLB22371389",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [
+        {
+          "id": "SUITABLE_DEVICES",
+          "listing": "Equipamentos eletrônicos em geral,Sistemas de telecomunicações,Câmeras de segurança e sistemas CFTV,Microcomputadores,notebooks e servidores,Fechaduras magnéticas e sistemas de controle de acesso,Impressoras de jato de tinta,Modems e roteadores,Periféricos e acessórios diversos",
+          "catalog": "Equipamentos eletrônicos em geral, Sistemas de telecomunicações, Câmeras de segurança e sistemas CFTV, Microcomputadores, notebooks e servidores, Fechaduras magnéticas e sistemas de controle de acesso, Impressoras de jato de tinta, Modems e roteadores, Pe",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB6649085288",
+      "sku": "VTK000841",
+      "product_name": "Mouse Gamer Fortrek Rogue Wireless Branco",
+      "local_gtin": "7898554609007",
+      "catalog_product_id": "MLB53445922",
+      "gtin_lookup_product_id": "MLB53445922",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [
+        {
+          "id": "COMPUTER_MOUSE_TYPE",
+          "listing": "Convencional",
+          "catalog": "Gamer",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB6649110130",
+      "sku": "VTK001412",
+      "product_name": "Kit Teclado e Mouse Sem Fio C3Tech W70BK Preto",
+      "local_gtin": "7908639901121",
+      "catalog_product_id": "MLB38685571",
+      "gtin_lookup_product_id": "MLB38685571",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [
+        {
+          "id": "COMPATIBLE_OPERATING_SYSTEMS",
+          "listing": "Linux,Windows,macOS",
+          "catalog": "Linux, macOS, Windows",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB6655134320",
+      "sku": "VTK001434",
+      "product_name": "Amplificador de Guitarra Laney LX20R 110v Preto",
+      "local_gtin": "5060109451290",
+      "catalog_product_id": "MLB22974062",
+      "gtin_lookup_product_id": "MLB22974062",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB6655262764",
+      "sku": "VTK001041",
+      "product_name": "Mouse Óptico USB Logitech M110 Silent Preto",
+      "local_gtin": "097855181138",
+      "catalog_product_id": "MLB25875329",
+      "gtin_lookup_product_id": null,
+      "classification": "inconclusive",
+      "reason": "Sem confirmação suficiente por GTIN ou atributos críticos.",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB6655262916",
+      "sku": "VTK000777",
+      "product_name": "Amplificador de Guitarra Laney LX10 110v Preto",
+      "local_gtin": "5060109453805",
+      "catalog_product_id": "MLB34973512",
+      "gtin_lookup_product_id": "MLB22918703",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB22918703, não MLB34973512.",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB6655262986",
+      "sku": "VTK000836",
+      "product_name": "Mouse Gamer Fortrek Rogue Wireless Preto",
+      "local_gtin": "7898554608994",
+      "catalog_product_id": "MLB53228024",
+      "gtin_lookup_product_id": "MLB53228024",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [
+        {
+          "id": "COMPUTER_MOUSE_TYPE",
+          "listing": "Convencional",
+          "catalog": "Gamer",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7015058594",
+      "sku": "VTK000362",
+      "product_name": "Headset Gamer Fortrek Crusader P2 + USB RGB Preto",
+      "local_gtin": "7898554606785",
+      "catalog_product_id": "MLB27216951",
+      "gtin_lookup_product_id": "MLB27216951",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [
+        {
+          "id": "SUITABLE_USES",
+          "listing": "Entretenimento,Jogos,Música",
+          "catalog": "Jogos, Entretenimento, Música",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7061199548",
+      "sku": "VTK000327",
+      "product_name": "Cabo de Rede PRETO CAT.6 CMX CX 305m FURUKAWA SOHOPLUS - CX / 305",
+      "local_gtin": "7893137264710",
+      "catalog_product_id": "MLB28029035",
+      "gtin_lookup_product_id": "MLB29228064",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB29228064, não MLB28029035.",
+      "differences": [
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "listing": "Não Possui",
+          "catalog": "Não Possui",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7076427478",
+      "sku": "VTK000028",
+      "product_name": "Multímetro Analógico Minipa ET-2022B",
+      "local_gtin": "7898112601320",
+      "catalog_product_id": "MLB2041984255",
+      "gtin_lookup_product_id": "MLB28155066",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB28155066, não MLB2041984255.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7898112601320",
+          "catalog": "7898112601771",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Multímetro Analógico Minipa ET-2022B",
+          "catalog": "MINIPA",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "39 cm",
+          "catalog": "23 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "8 cm",
+          "catalog": "7 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "500 g",
+          "catalog": "354 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "23 cm",
+          "catalog": "16 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7076432902",
+      "sku": "VTK000039",
+      "product_name": "Encordoamento Para Contrabaixo 5 Cordas .040 Extra Leve SG",
+      "local_gtin": "7897626850293",
+      "catalog_product_id": "MLB2045318966",
+      "gtin_lookup_product_id": "MLB22361716",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB22361716, não MLB2045318966.",
+      "differences": [
+        {
+          "id": "BRAND",
+          "listing": "SG",
+          "catalog": "Sg Strings",
+          "hard": true
+        },
+        {
+          "id": "GTIN",
+          "listing": "7897626850293",
+          "catalog": "7897626850293",
+          "hard": true
+        },
+        {
+          "id": "LINE",
+          "listing": "Extra Light",
+          "catalog": "Nickel Wound",
+          "hard": false
+        },
+        {
+          "id": "MATERIALS",
+          "listing": "Metal",
+          "catalog": "Aço,Níquel",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "Encordoamento Para Contrabaixo 5 Cordas .040 Extra Leve SG",
+          "catalog": "ENCORDOAMENTO SG P/ CONTRABAIXO 5 CORDAS - 40/125",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "23 cm",
+          "catalog": "19 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "6 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "380 g",
+          "catalog": "250 g",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7086771790",
+      "sku": "VTK000182",
+      "product_name": "Trompete Harmonics BB HMT-500L Pocket Laqueado",
+      "local_gtin": "7898554604644",
+      "catalog_product_id": "MLB34142835",
+      "gtin_lookup_product_id": "MLB34142835",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [
+        {
+          "id": "COLOR",
+          "listing": "Dourado",
+          "catalog": "Marrom",
+          "hard": true
+        },
+        {
+          "id": "INCLUDES_CASE",
+          "listing": "Sim",
+          "catalog": "Não",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7086984426",
+      "sku": "VTK000096",
+      "product_name": "Copo Para Liquidificador Com Alça HR1764 Branco Walita - CX / 6",
+      "local_gtin": "10508990000101",
+      "catalog_product_id": "MLB2049054318",
+      "gtin_lookup_product_id": null,
+      "classification": "divergent",
+      "reason": "Atributos críticos divergentes: GTIN, MODEL.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "10508990000101",
+          "catalog": "4206136698036",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Copo Para Liquidificador Com Alça HR1764 Branco Walita - CX",
+          "catalog": "RI1784, RI7743, RI7746",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "14 cm",
+          "catalog": "18 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "1575 g",
+          "catalog": "1100 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "24 cm",
+          "catalog": "18 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7087155166",
+      "sku": "VTK001186",
+      "product_name": "Antena Para Celular Fullband PQAG5015LTE Proeletronic",
+      "local_gtin": "7898419497213",
+      "catalog_product_id": "MLB2081632649",
+      "gtin_lookup_product_id": null,
+      "classification": "divergent",
+      "reason": "Atributos críticos divergentes: GTIN, MODEL.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7898419497213",
+          "catalog": "7898419497213",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Antena Para Celular Fullband PQAG5015LTE Proeletronic",
+          "catalog": "PQAG-5015LTE",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "23 cm",
+          "catalog": "74 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "4 cm",
+          "catalog": "12 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "140 g",
+          "catalog": "625 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "6 cm",
+          "catalog": "29 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7087158054",
+      "sku": "VTK001264",
+      "product_name": "Antena Omnidirecional Passiva Sennheiser A1031-U",
+      "local_gtin": "4006087046456",
+      "catalog_product_id": "MLB2097721400",
+      "gtin_lookup_product_id": null,
+      "classification": "divergent",
+      "reason": "Atributos críticos divergentes: MODEL.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "Antena Omnidirecional Passiva Sennheiser A1031-U",
+          "catalog": "A1031-U",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "35 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "10 cm",
+          "catalog": "32 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "412 g",
+          "catalog": "300 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "23 cm",
+          "catalog": "2 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7087407818",
+      "sku": "VTK001978",
+      "product_name": "Encordoamento Para Violão .010 Extra Light Phosphor Bronze Nanoweb 16002 Elixir",
+      "local_gtin": "733132160020",
+      "catalog_product_id": "MLB2042730251",
+      "gtin_lookup_product_id": "MLB22232314",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB22232314, não MLB2042730251.",
+      "differences": [
+        {
+          "id": "GAUGES",
+          "listing": ".080 - .020",
+          "catalog": "010,014,023,030,039,047",
+          "hard": false
+        },
+        {
+          "id": "GTIN",
+          "listing": "733132160020",
+          "catalog": "733132160020",
+          "hard": true
+        },
+        {
+          "id": "LINE",
+          "listing": "Extra Light",
+          "catalog": "PHOSPHOR BRONZE",
+          "hard": false
+        },
+        {
+          "id": "MATERIALS",
+          "listing": "Metal",
+          "catalog": "Phosphor bronze",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "Encordoamento Para Violão .010 Extra Light Phosphor Bronze N",
+          "catalog": "PHOSPHOR BRONZE 10/47",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "14 cm",
+          "catalog": "17 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "2 cm",
+          "catalog": "5 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "50 g",
+          "catalog": "60 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "11 cm",
+          "catalog": "13 cm",
+          "hard": false
+        },
+        {
+          "id": "TENSION",
+          "listing": "Extra Light",
+          "catalog": "Média",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7087410398",
+      "sku": "VTK003366",
+      "product_name": "Encordoamento Para Guitarra 0.10 Niquel Regular Slinky 2221 Ernie Ball",
+      "local_gtin": "749699122210",
+      "catalog_product_id": "MLB2089197199",
+      "gtin_lookup_product_id": "MLB21272052",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB21272052, não MLB2089197199.",
+      "differences": [
+        {
+          "id": "GAUGES",
+          "listing": ".010/.046",
+          "catalog": "0.046",
+          "hard": false
+        },
+        {
+          "id": "GTIN",
+          "listing": "749699122210",
+          "catalog": "749699122210",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "29 cm",
+          "catalog": "19 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "4 cm",
+          "catalog": "2 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "200 g",
+          "catalog": "111 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "20 cm",
+          "catalog": "18 cm",
+          "hard": false
+        },
+        {
+          "id": "TENSION",
+          "listing": "Regular",
+          "catalog": "Alta",
+          "hard": false
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "listing": "2",
+          "catalog": "6",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7095337656",
+      "sku": "VTK005811",
+      "product_name": "Mouse Gamer Fortrek Crusader 12800Dpi Branco",
+      "local_gtin": "7898554608178",
+      "catalog_product_id": "MLB45503192",
+      "gtin_lookup_product_id": "MLB45503192",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7095391494",
+      "sku": "VTK001265",
+      "product_name": "Chaleira Elétrica Agratto Aroma 2,2 Litros Inox 220v",
+      "local_gtin": "7898461976872",
+      "catalog_product_id": "MLB61961339",
+      "gtin_lookup_product_id": "MLB61961339",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7095599958",
+      "sku": "VTK000568",
+      "product_name": "Microfone Sem Fio Harmonics HSF-200 Simples",
+      "local_gtin": "7898554607508",
+      "catalog_product_id": "MLB2093965570",
+      "gtin_lookup_product_id": "MLB28659224",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB28659224, não MLB2093965570.",
+      "differences": [
+        {
+          "id": "FREQUENCY_RANGE",
+          "listing": "UHF multi-frequência",
+          "catalog": "UHF",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "66 cm",
+          "catalog": "20 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "12 cm",
+          "catalog": "7 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "1611 g",
+          "catalog": "380 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "40 cm",
+          "catalog": "15 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7101684604",
+      "sku": "VTK001681",
+      "product_name": "Ferro de Solda 21K016 75W 110V Hikari",
+      "local_gtin": "7899810401243",
+      "catalog_product_id": "MLB25305750",
+      "gtin_lookup_product_id": "MLB25305750",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111644648",
+      "sku": "VTK012540",
+      "product_name": "Pilha Alcalina Aa2 Rayovac Tubo Com 32 Unidades",
+      "local_gtin": "7896009764615",
+      "catalog_product_id": "MLB2072070267",
+      "gtin_lookup_product_id": "MLB16236950",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB16236950, não MLB2072070267.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7896009764615",
+          "catalog": "7896009764615",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Alcalina Aa2 Tubo Com 32 Unidades",
+          "catalog": "Alcalina AA 208010",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "66 cm",
+          "catalog": "12 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "12 cm",
+          "catalog": "6 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "2005 g",
+          "catalog": "779 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "24 cm",
+          "catalog": "6 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111645532",
+      "sku": "VTK012291",
+      "product_name": "Cabo Flat Para Pedal Wfc 12-3 Wireconex",
+      "local_gtin": "7898640365794",
+      "catalog_product_id": "MLB2089701181",
+      "gtin_lookup_product_id": "MLB53416285",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB53416285, não MLB2089701181.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "Flat Para Pedal Wfc 12-3",
+          "catalog": "WFC 12-3",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "27 cm",
+          "catalog": "20 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "7 cm",
+          "catalog": "3 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "655 g",
+          "catalog": "260 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "18 cm",
+          "catalog": "25 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111649566",
+      "sku": "VTK012102",
+      "product_name": "Pilha Ult. Aa2 Cart 2 Energizer",
+      "local_gtin": "039800034083",
+      "catalog_product_id": "MLB2079418127",
+      "gtin_lookup_product_id": "MLB19825507",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB19825507, não MLB2079418127.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "039800034083",
+          "catalog": "0039800034083",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Ult. Aa2 Cart 2",
+          "catalog": "ULTIMATE",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "20 cm",
+          "catalog": "21 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "5 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "178 g",
+          "catalog": "198 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "15 cm",
+          "catalog": "12 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111651904",
+      "sku": "VTK012461",
+      "product_name": "Palheta Java 2,5 P/sax Alto Sr2625 Vandoren Un",
+      "local_gtin": "008576134037",
+      "catalog_product_id": "MLB2041847169",
+      "gtin_lookup_product_id": "MLB39962020",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB39962020, não MLB2041847169.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "Palheta Java 2,5 P/sax Alto Sr2625 Un",
+          "catalog": "Java",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "13 cm",
+          "catalog": "30 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "4 cm",
+          "catalog": "5 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "10 g",
+          "catalog": "300 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "5 cm",
+          "catalog": "19 cm",
+          "hard": false
+        },
+        {
+          "id": "UNITS_PER_PACKAGE",
+          "listing": "5",
+          "catalog": "1",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111656280",
+      "sku": "VTK001572",
+      "product_name": "Encordoamento Para Guitarra .009 Nanoweb 12027 Custom Light Elixir",
+      "local_gtin": "733132120277",
+      "catalog_product_id": "MLB2075204474",
+      "gtin_lookup_product_id": "MLB22319192",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB22319192, não MLB2075204474.",
+      "differences": [
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "35 cm",
+          "catalog": "17 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "13 cm",
+          "catalog": "3 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "554 g",
+          "catalog": "65 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "28 cm",
+          "catalog": "12 cm",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "Encordoamento Para .009 Nanoweb 12027 Custom Light",
+          "catalog": "CUSTOM LIGHT",
+          "hard": true
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "listing": "Encordoamento Para .009 Nanoweb 12027 Custom Light",
+          "catalog": "Guitarra",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111657134",
+      "sku": "VTK012306",
+      "product_name": "Pilha Alcalina Aaa2 Rayovac Tubo Com 32 Unidades",
+      "local_gtin": "7896009764608",
+      "catalog_product_id": "MLB2083490889",
+      "gtin_lookup_product_id": "MLB26465611",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB26465611, não MLB2083490889.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "Pilha Alcalina Aaa2 Tubo Com 32 Unidades",
+          "catalog": "8055020321",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "66 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "12 cm",
+          "catalog": "5 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "2005 g",
+          "catalog": "10 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "24 cm",
+          "catalog": "9 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111661218",
+      "sku": "VTK003614",
+      "product_name": "Encordoamentos Para Violão Aço .010 Bronze 85/15 Light SG (Kit c/ 3)",
+      "local_gtin": "7899574331763",
+      "catalog_product_id": "MLB2043627726",
+      "gtin_lookup_product_id": "MLB21523609",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB21523609, não MLB2043627726.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "Encordoamentos Para Aço .010 Bronze 85/15 Light (Kit c/ 3)",
+          "catalog": "6685TP, kit 3 encordoamento sg violão, kit 3 encordoamentos 010, encordoamento violão aço 010 sg, encordoamento violão aço 0 10, encordoamento 010 violão kit, encordoamento 010 violão aço, cordas violao aço 010, jogo de cordas violao aço, cordas 010, hgz",
+          "hard": true
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "listing": "Encordoamentos Para Aço .010 Bronze 85/15 Light (Kit c/ 3)",
+          "catalog": "Violão Aço",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "2 cm",
+          "catalog": "3 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "535 g",
+          "catalog": "70 g",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111662028",
+      "sku": "VTK000341",
+      "product_name": "Pilha Recarregável 1,2V AAA 800mAh Eneloop (C/2 Pilhas) Panasonic - CAR / 2",
+      "local_gtin": "7896067203613",
+      "catalog_product_id": "MLB2070834989",
+      "gtin_lookup_product_id": "MLB19629350",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB19629350, não MLB2070834989.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7896067203613",
+          "catalog": "7896067203613",
+          "hard": true
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "listing": "Não",
+          "catalog": "Sim",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Recarregável 1,2V AAA 800mAh Eneloop (C/2 Pilhas) - CAR / 2",
+          "catalog": "Modelo Padrão",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "18 cm",
+          "catalog": "16 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "4 cm",
+          "catalog": "5 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "350 g",
+          "catalog": "150 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "13 cm",
+          "catalog": "12 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111662322",
+      "sku": "VTK012277",
+      "product_name": "Bateria Lr44 V13ga-5 Lr44 (cartela Com 10 Unidades)",
+      "local_gtin": "783094051447",
+      "catalog_product_id": "MLB2070613565",
+      "gtin_lookup_product_id": "MLB23546917",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB23546917, não MLB2070613565.",
+      "differences": [
+        {
+          "id": "BRAND",
+          "listing": "Rayovac",
+          "catalog": "Marca",
+          "hard": true
+        },
+        {
+          "id": "GTIN",
+          "listing": "783094051447",
+          "catalog": "783094051447",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Bateria Lr44 V13ga-5 Lr44 (cartela Com 10 Unidades)",
+          "catalog": "V13GA",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "17 cm",
+          "catalog": "1 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "290 g",
+          "catalog": "20 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "13 cm",
+          "catalog": "16 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111662476",
+      "sku": "VTK003739",
+      "product_name": "Pilha Alcalina D MN1300 (C/2 Pilhas) Duracell",
+      "local_gtin": "041333000985",
+      "catalog_product_id": "MLB2064592669",
+      "gtin_lookup_product_id": "MLB20014677",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB20014677, não MLB2064592669.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "041333000985",
+          "catalog": "7890925713863",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Alcalina D MN1300 (C/2 Pilhas)",
+          "catalog": "70105646",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "14 cm",
+          "catalog": "18 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "475 g",
+          "catalog": "275 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "14 cm",
+          "catalog": "16 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111662612",
+      "sku": "VTK012313",
+      "product_name": "Palheta Plasticover Cla Rrpbcl200 Un",
+      "local_gtin": "199543357204",
+      "catalog_product_id": "MLB2077165035",
+      "gtin_lookup_product_id": "MLB24290897",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB24290897, não MLB2077165035.",
+      "differences": [
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "21 cm",
+          "catalog": "20 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "201 g",
+          "catalog": "91 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "12 cm",
+          "catalog": "13 cm",
+          "hard": false
+        },
+        {
+          "id": "INSTRUMENT_TYPE",
+          "listing": "Saxofone",
+          "catalog": "Clarinete",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "Palheta Cla Rrpbcl200 Un",
+          "catalog": "RRP05BCL200",
+          "hard": true
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111664322",
+      "sku": "VTK001642",
+      "product_name": "Encordoamento Para Violão Nylon Média Série Clássico Giannini GENWPM",
+      "local_gtin": "7898159186897",
+      "catalog_product_id": "MLB2070043911",
+      "gtin_lookup_product_id": null,
+      "classification": "divergent",
+      "reason": "Atributos críticos divergentes: MODEL.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "Encordoamento Para Nylon Média Série Clássico GENWPM",
+          "catalog": "GENWPM",
+          "hard": true
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "listing": "Encordoamento Para Nylon Média Série Clássico GENWPM",
+          "catalog": "Guitarra",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "12 cm",
+          "catalog": "11 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "400 g",
+          "catalog": "140 g",
+          "hard": false
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "listing": "6",
+          "catalog": "6",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111707198",
+      "sku": "VTK012187",
+      "product_name": "Encordoamento P/violão Aço Bronze 85/15 Pct/3 Sg 0.011 - 0.052",
+      "local_gtin": "7899574303265",
+      "catalog_product_id": "MLB2063076783",
+      "gtin_lookup_product_id": "MLB22361723",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB22361723, não MLB2063076783.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7899574303265",
+          "catalog": "7897626866911",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Encordoamento P/ Aço Bronze 85/15 Pct/3 0.011 - 0.052",
+          "catalog": "Fósforo Bronze 0.011 – 0.052 – Kit 3 Jogos",
+          "hard": true
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "listing": "Encordoamento P/ Aço Bronze 85/15 Pct/3 0.011 - 0.052",
+          "catalog": "Guitarra",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "18 cm",
+          "catalog": "23 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "5 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "455 g",
+          "catalog": "350 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "12 cm",
+          "catalog": "19 cm",
+          "hard": false
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "listing": "1",
+          "catalog": "3",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111707384",
+      "sku": "VTK012288",
+      "product_name": "Pilha Alcalina Aaa2 Rayovac Multiblister Com 16 Unidades",
+      "local_gtin": "7896009764530",
+      "catalog_product_id": "MLB2067145909",
+      "gtin_lookup_product_id": "MLB23979390",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB23979390, não MLB2067145909.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7896009764530",
+          "catalog": "7896009764530",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Alcalina Aaa2 Multiblister Com 16 Unidades",
+          "catalog": "Pacote Alcalina Palito",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "17 cm",
+          "catalog": "26 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "5 cm",
+          "catalog": "1 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "290 g",
+          "catalog": "205 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "13 cm",
+          "catalog": "14 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111707632",
+      "sku": "VTK012809",
+      "product_name": "Palheta Plasticover Cla Rrpbcl250 Un",
+      "local_gtin": "019954335731",
+      "catalog_product_id": "MLB2037052223",
+      "gtin_lookup_product_id": null,
+      "classification": "divergent",
+      "reason": "Atributos críticos divergentes: GTIN, MODEL.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "019954335731",
+          "catalog": "046716533432",
+          "hard": true
+        },
+        {
+          "id": "INSTRUMENT_TYPE",
+          "listing": "Saxofone",
+          "catalog": "Clarinete",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "Palheta Cla Rrpbcl250 Un",
+          "catalog": "clarinete",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "21 cm",
+          "catalog": "19 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "4 cm",
+          "catalog": "2 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "201 g",
+          "catalog": "300 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "12 cm",
+          "catalog": "16 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111708406",
+      "sku": "VTK000380",
+      "product_name": "Alicate Modelo Para Crimpar RJ45/RJ12 /RJ11 ALCT0002 Storm",
+      "local_gtin": "7898566207536",
+      "catalog_product_id": "MLB2069514213",
+      "gtin_lookup_product_id": "MLB33133607",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB33133607, não MLB2069514213.",
+      "differences": [
+        {
+          "id": "BRAND",
+          "listing": "Storm",
+          "catalog": "Genérica",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Alicate Modelo Para Crimpar RJ45/RJ12 /RJ11 ALCT0002",
+          "catalog": "Pinza Crimpeadora Profesional Rj45CAT5e /RJ11/RJ09",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "585 g",
+          "catalog": "340 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "9 cm",
+          "catalog": "11 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111709944",
+      "sku": "VTK012088",
+      "product_name": "02 Pilhas Aa Recarregáveis 2500mah Philips",
+      "local_gtin": "4895229119529",
+      "catalog_product_id": "MLB2076937390",
+      "gtin_lookup_product_id": "MLB19569277",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB19569277, não MLB2076937390.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "4895229119529",
+          "catalog": "7890000030793",
+          "hard": true
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "listing": "Não",
+          "catalog": "Sim",
+          "hard": false
+        },
+        {
+          "id": "LINE",
+          "listing": "Recarregáveis",
+          "catalog": "AA Recarregáveis 2500",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "02 Pilhas Aa Recarregáveis 2500mah",
+          "catalog": "AA Recarregáveis 2500",
+          "hard": true
+        },
+        {
+          "id": "SALE_FORMAT",
+          "listing": "Kit",
+          "catalog": "Unidade",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "17 cm",
+          "catalog": "20 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "4 cm",
+          "catalog": "5 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "90 g",
+          "catalog": "150 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "11 cm",
+          "catalog": "19 cm",
+          "hard": false
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "listing": "10",
+          "catalog": "1",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111710200",
+      "sku": "VTK012150",
+      "product_name": "16 Pilhas Alcalinas Aa Elgin",
+      "local_gtin": "7908412543951",
+      "catalog_product_id": "MLB2068644972",
+      "gtin_lookup_product_id": "MLB25649370",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB25649370, não MLB2068644972.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7908412543951",
+          "catalog": "7908412543951",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "16 Pilhas Alcalinas Aa",
+          "catalog": "AA",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "31 cm",
+          "catalog": "20 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "3 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "350 g",
+          "catalog": "420 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "22 cm",
+          "catalog": "16 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111710268",
+      "sku": "VTK012108",
+      "product_name": "Pilha Alcalina 16 Unidades 8aa 8aaa Elgin",
+      "local_gtin": "7908412520259",
+      "catalog_product_id": "MLB2069891592",
+      "gtin_lookup_product_id": "MLB42906150",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB42906150, não MLB2069891592.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "Pilha Alcalina 16 Unidades 8aa 8aaa",
+          "catalog": "AA",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "22 cm",
+          "catalog": "20 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "7 cm",
+          "catalog": "5 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "290 g",
+          "catalog": "310 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "15 cm",
+          "catalog": "17 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111711612",
+      "sku": "VTK001571",
+      "product_name": "Encordoamento Para Viola Tensão Leve São Gonçalo",
+      "local_gtin": "7899574328404",
+      "catalog_product_id": "MLB2069216273",
+      "gtin_lookup_product_id": "MLB22860002",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB22860002, não MLB2069216273.",
+      "differences": [
+        {
+          "id": "LINE",
+          "listing": "Viola caipira",
+          "catalog": "São Gonçalo",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "Encordoamento Para Viola Tensão Leve",
+          "catalog": "SAO GONCALO 16702",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "21 cm",
+          "catalog": "40 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "5 cm",
+          "catalog": "8 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "183 g",
+          "catalog": "210 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "13 cm",
+          "catalog": "31 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111711662",
+      "sku": "VTK012462",
+      "product_name": "Pilha Zinco Aaa Tubo 40 Unidades Elgin R03",
+      "local_gtin": "7897013588921",
+      "catalog_product_id": "MLB2067432311",
+      "gtin_lookup_product_id": "MLB19546255",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB19546255, não MLB2067432311.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7897013588921",
+          "catalog": "7897013588921",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Zinco Aaa Tubo 40 Unidades R03",
+          "catalog": "R03",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "38 cm",
+          "catalog": "17 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "8 cm",
+          "catalog": "5 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "471 g",
+          "catalog": "285 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "26 cm",
+          "catalog": "13 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111711716",
+      "sku": "VTK012712",
+      "product_name": "Plug Modular Rj 45 Cat6 Storm 100 Unidades",
+      "local_gtin": "7898566207321",
+      "catalog_product_id": "MLB2069126106",
+      "gtin_lookup_product_id": "MLB36672258",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB36672258, não MLB2069126106.",
+      "differences": [
+        {
+          "id": "BRAND",
+          "listing": "Storm",
+          "catalog": "M&M",
+          "hard": true
+        },
+        {
+          "id": "GTIN",
+          "listing": "7898566207321",
+          "catalog": "7898453061005",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Modular Rj 45 Cat6 100 Unidades",
+          "catalog": "RJ45",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "17 cm",
+          "catalog": "21 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "4 cm",
+          "catalog": "5 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "238 g",
+          "catalog": "288 g",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111711762",
+      "sku": "VTK012527",
+      "product_name": "Palheta 1,5 P/sax Alto Jsr6115 Juno",
+      "local_gtin": "008576193041",
+      "catalog_product_id": "MLB2074175422",
+      "gtin_lookup_product_id": "MLB36742114",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB36742114, não MLB2074175422.",
+      "differences": [
+        {
+          "id": "BRAND",
+          "listing": "Juno",
+          "catalog": "Vandoren",
+          "hard": true
+        },
+        {
+          "id": "GTIN",
+          "listing": "008576193041",
+          "catalog": "7897626896840",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Palheta 1,5 P/sax Alto Jsr6115",
+          "catalog": "Palheta Saxofone Palheta Sax Alto Tamanho 1,5 Juno Vandoren Paris JSR6115",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "31 cm",
+          "catalog": "17 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "238 g",
+          "catalog": "300 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "14 cm",
+          "catalog": "13 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111711826",
+      "sku": "VTK012264",
+      "product_name": "Pilha Alcalina \"d\" Rayovac (cartela Com 2 Unidades) 20220",
+      "local_gtin": "7896009722011",
+      "catalog_product_id": "MLB2064473121",
+      "gtin_lookup_product_id": "MLB19559987",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB19559987, não MLB2064473121.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7896009722011",
+          "catalog": "7896009722011",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Alcalina \"d\" (cartela Com 2 Unidades) 20220",
+          "catalog": "D - Grande",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "17 cm",
+          "catalog": "16 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "3 cm",
+          "catalog": "5 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "62 g",
+          "catalog": "280 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "13 cm",
+          "catalog": "12 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111711872",
+      "sku": "VTK012054",
+      "product_name": "Aaa 1000 Mah Pilha Recarreg.elgin Blist4",
+      "local_gtin": "7897013536076",
+      "catalog_product_id": "MLB2098112726",
+      "gtin_lookup_product_id": "MLB26003305",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB26003305, não MLB2098112726.",
+      "differences": [
+        {
+          "id": "IS_RECHARGEABLE",
+          "listing": "Não",
+          "catalog": "Sim",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "Aaa 1000 Mah Pilha Recarreg. Blist4",
+          "catalog": "AAA",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "17 cm",
+          "catalog": "12 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "5 cm",
+          "catalog": "2 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "273 g",
+          "catalog": "130 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "12 cm",
+          "catalog": "8 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111712996",
+      "sku": "VTK000098",
+      "product_name": "Encordoamento Para Guitarra .009 Série Canário Giannini GESGT9",
+      "local_gtin": "7890443000063",
+      "catalog_product_id": "MLB2068242023",
+      "gtin_lookup_product_id": "MLB21776581",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB21776581, não MLB2068242023.",
+      "differences": [
+        {
+          "id": "BRAND",
+          "listing": "Giannini",
+          "catalog": "Canario",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "26 cm",
+          "catalog": "21 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "10 cm",
+          "catalog": "5 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "309 g",
+          "catalog": "95 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "17 cm",
+          "catalog": "14 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111713108",
+      "sku": "VTK000209",
+      "product_name": "Pilha Moeda Lithium 3V CR2016 (C/5 Pilhas) Panasonic - CAR / 5",
+      "local_gtin": "7896067202326",
+      "catalog_product_id": "MLB2073436652",
+      "gtin_lookup_product_id": "MLB30575803",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB30575803, não MLB2073436652.",
+      "differences": [
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "listing": "CR2016",
+          "catalog": "3V",
+          "hard": false
+        },
+        {
+          "id": "GTIN",
+          "listing": "7896067202326",
+          "catalog": "7896067202326",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Moeda Lithium 3V CR2016 (C/5 Pilhas) - CAR / 5",
+          "catalog": "2016",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "19 cm",
+          "catalog": "12 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "1 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "65 g",
+          "catalog": "30 g",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111713230",
+      "sku": "VTK012143",
+      "product_name": "Pilha Alcalina Aa6 Rayovac Cartela Com 06 Unidades",
+      "local_gtin": "7896009760662",
+      "catalog_product_id": "MLB2070727319",
+      "gtin_lookup_product_id": "MLB25119245",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB25119245, não MLB2070727319.",
+      "differences": [
+        {
+          "id": "LINE",
+          "listing": "Alcalina",
+          "catalog": "Alcalina AA",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "PILHA ALCALINA",
+          "catalog": "Alcalina AA",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "12 cm",
+          "catalog": "13 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "198 g",
+          "catalog": "150 g",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111713338",
+      "sku": "VTK012284",
+      "product_name": "Bateria Lr44 V13ga-1 (cartela Com 02 Unidades)",
+      "local_gtin": "7896009756689",
+      "catalog_product_id": "MLB2074532712",
+      "gtin_lookup_product_id": "MLB23203938",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB23203938, não MLB2074532712.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "Bateria Lr44 V13ga-1 (cartela Com 02 Unidades)",
+          "catalog": "LR44",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "16 cm",
+          "catalog": "18 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "5 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "133 g",
+          "catalog": "120 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "12 cm",
+          "catalog": "11 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111713842",
+      "sku": "VTK003749",
+      "product_name": "Pilha Alcalina 1,5v AAA Mn2400 (C/2 Pilhas) Duracell",
+      "local_gtin": "041333001074",
+      "catalog_product_id": "MLB2064557459",
+      "gtin_lookup_product_id": null,
+      "classification": "divergent",
+      "reason": "Atributos críticos divergentes: MODEL.",
+      "differences": [
+        {
+          "id": "LINE",
+          "listing": "Pilha Alcalina",
+          "catalog": "Alcalina",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Alcalina 1,5v AAA Mn2400 (C/2 Pilhas)",
+          "catalog": "AAA",
+          "hard": true
+        },
+        {
+          "id": "SALE_FORMAT",
+          "listing": "Unidade",
+          "catalog": "Kit",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "3 cm",
+          "catalog": "14 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "350 g",
+          "catalog": "40 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "14 cm",
+          "catalog": "15 cm",
+          "hard": false
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "listing": "1",
+          "catalog": "2",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111714236",
+      "sku": "VTK012118",
+      "product_name": "Pilha De Zinco Carvão R20 2 Unidades Elgin",
+      "local_gtin": "7897013538070",
+      "catalog_product_id": "MLB2064601935",
+      "gtin_lookup_product_id": "MLB26003195",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB26003195, não MLB2064601935.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7897013538070",
+          "catalog": "7908412543968,7897013538070",
+          "hard": true
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha De Zinco Carvão R20 2 Unidades",
+          "catalog": "9V Recarregavel",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "20 cm",
+          "catalog": "18 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "5 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "132 g",
+          "catalog": "180 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "14 cm",
+          "catalog": "20 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111714528",
+      "sku": "VTK012381",
+      "product_name": "Emenda Rj45 Fêmea Para Rj 45 Fêmea 8x8 Storm 10 Unidades",
+      "local_gtin": "7898566201992",
+      "catalog_product_id": "MLB2043808779",
+      "gtin_lookup_product_id": "MLB51856366",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB51856366, não MLB2043808779.",
+      "differences": [
+        {
+          "id": "BRAND",
+          "listing": "Storm",
+          "catalog": "Vt-power",
+          "hard": true
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "listing": "Emenda Rj45 Fêmea Para Rj 45 Fêmea 8x8 10 Unidades",
+          "catalog": "Ethernet",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "Emenda Rj45 Fêmea Para Rj 45 Fêmea 8x8 10 Unidades",
+          "catalog": "SCP701(010)",
+          "hard": true
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "listing": "Emenda Rj45 Fêmea Para Rj 45 Fêmea 8x8 10 Unidades",
+          "catalog": "RJ45",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "8 cm",
+          "catalog": "19 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "2 cm",
+          "catalog": "4 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "105 g",
+          "catalog": "172 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "8 cm",
+          "catalog": "12 cm",
+          "hard": false
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "listing": "1",
+          "catalog": "10",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111714680",
+      "sku": "VTK012043",
+      "product_name": "Pilha Alcalina Aaa4 Elgin Cartela Com 04 Unidades",
+      "local_gtin": "7897013534218",
+      "catalog_product_id": "MLB2064468913",
+      "gtin_lookup_product_id": "MLB16247284",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB16247284, não MLB2064468913.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "Pilha Alcalina Aaa4 Cartela Com 04 Unidades",
+          "catalog": "Pilha AAA para brinquedos, aparelhos de som etc",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "17 cm",
+          "catalog": "18 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "3 cm",
+          "catalog": "6 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "121 g",
+          "catalog": "195 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "13 cm",
+          "catalog": "14 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111714846",
+      "sku": "VTK012241",
+      "product_name": "Bateria Alcalina A23 Elgin Cartela Com 01 Unidade",
+      "local_gtin": "7897013582561",
+      "catalog_product_id": "MLB2072767333",
+      "gtin_lookup_product_id": "MLB22807576",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB22807576, não MLB2072767333.",
+      "differences": [
+        {
+          "id": "MODEL",
+          "listing": "Bateria Alcalina A23 Cartela Com 01 Unidade",
+          "catalog": "Alcalina",
+          "hard": true
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "listing": "35 cm",
+          "catalog": "13 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "listing": "6 cm",
+          "catalog": "3 cm",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "listing": "333 g",
+          "catalog": "86 g",
+          "hard": false
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "listing": "29 cm",
+          "catalog": "9 cm",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7111716072",
+      "sku": "VTK012217",
+      "product_name": "Pilha Zinco Aaa4 Elgin R03 Cartela Com 04 Unidades",
+      "local_gtin": "7897013538049",
+      "catalog_product_id": "MLB2065546031",
+      "gtin_lookup_product_id": "MLB19531638",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB19531638, não MLB2065546031.",
+      "differences": [
+        {
+          "id": "GTIN",
+          "listing": "7897013538049",
+          "catalog": "7897013538049",
+          "hard": true
+        },
+        {
+          "id": "LINE",
+          "listing": "Pilha de Zinco",
+          "catalog": "Zinco",
+          "hard": false
+        },
+        {
+          "id": "MODEL",
+          "listing": "Pilha Zinco Aaa4 R03 Cartela Com 04 Unidades",
+          "catalog": "Zinco",
+          "hard": true
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7123334124",
+      "sku": "VTK006494",
+      "product_name": "Grill Arno Compact GPTO Preto 220v",
+      "local_gtin": "3016661178221",
+      "catalog_product_id": "MLB41533649",
+      "gtin_lookup_product_id": "MLB41533813",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB41533813, não MLB41533649.",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7127839712",
+      "sku": "VTK000123",
+      "product_name": "Mesa de Som Analógica Yamaha MG10XU 10 Canais 110V Preta",
+      "local_gtin": "4957812547925",
+      "catalog_product_id": "MLB15954993",
+      "gtin_lookup_product_id": null,
+      "classification": "inconclusive",
+      "reason": "Sem confirmação suficiente por GTIN ou atributos críticos.",
+      "differences": [
+        {
+          "id": "CONNECTORS",
+          "listing": "4 combo XLR/jack 6.3 mm in,1 footswitch jack 6.3 mm,2 line jack L/R 6.3 mm in,2 line RCA L/R in,1 line jack L-mono/R 6.3 mm in,1 FX send jack 6.3 mm,1 stereo XLR L/R out,1 stereo jack L/R 6.3 mm out,1 monitor jack L/R 6.3 mm out,1 phone jack 6.3 mm,1 USB-B",
+          "catalog": "4 combo XLR/jack 6.3 mm in, 1 footswitch jack 6.3 mm, 2 line jack L/R 6.3 mm in, 2 line RCA L/R in, 1 line jack L-mono/R 6.3 mm in, 1 FX send jack 6.3 mm, 1 stereo XLR L/R out, 1 stereo jack L/R 6.3 mm out, 1 monitor jack L/R 6.3 mm out, 1 phone jack 6.3",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7146116856",
+      "sku": "VTK000546",
+      "product_name": "Bateria Selada 12V 4Ah Alarme EN011A Powertek",
+      "local_gtin": "7908414477520",
+      "catalog_product_id": null,
+      "gtin_lookup_product_id": "MLB28761118",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB28761118, não .",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7149271704",
+      "sku": "VTK001350",
+      "product_name": "Violão Tagima Andes Eletroacústico Folk Aço Natural Amber Satin",
+      "local_gtin": "7898563976244",
+      "catalog_product_id": "MLB39346854",
+      "gtin_lookup_product_id": "MLB26656188",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB26656188, não MLB39346854.",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7149329558",
+      "sku": "VTK012643",
+      "product_name": "Plug Rca Macho Nickel Amarelo 10 Un Wireconex",
+      "local_gtin": "7898640361888",
+      "catalog_product_id": null,
+      "gtin_lookup_product_id": "MLB28804056",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB28804056, não .",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7149330516",
+      "sku": "VTK012753",
+      "product_name": "Ventilador Coluna Turbo 50cm 6p 220v Preto Ventisol",
+      "local_gtin": "7898461965142",
+      "catalog_product_id": "MLB14434777",
+      "gtin_lookup_product_id": null,
+      "classification": "inconclusive",
+      "reason": "Sem confirmação suficiente por GTIN ou atributos críticos.",
+      "differences": [
+        {
+          "id": "HEIGHT",
+          "listing": "1.21 m",
+          "catalog": "1.16 m",
+          "hard": false
+        }
+      ],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7149368050",
+      "sku": "VTK005554",
+      "product_name": "Alto-falantes 4\" Leson LS4 140w (PAR)",
+      "local_gtin": "7898656410457",
+      "catalog_product_id": null,
+      "gtin_lookup_product_id": "MLB27643370",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB27643370, não .",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7149375192",
+      "sku": "VTK001495",
+      "product_name": "Divisor Satélite 1/4 5-2400 MHz Storm - PCT / 10",
+      "local_gtin": "7898566201435",
+      "catalog_product_id": null,
+      "gtin_lookup_product_id": "MLB29648475",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB29648475, não .",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7149405884",
+      "sku": "VTK001227",
+      "product_name": "Máquina de Corte Wahl Super Taper 127V",
+      "local_gtin": "7899934702295",
+      "catalog_product_id": "MLB6339669",
+      "gtin_lookup_product_id": "MLB6339669",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7149406722",
+      "sku": "VTK006323",
+      "product_name": "Máquina de Corte Wahl Vortex Cordless Preta",
+      "local_gtin": "043917029092",
+      "catalog_product_id": "MLB47127098",
+      "gtin_lookup_product_id": "MLB47127098",
+      "classification": "compatible",
+      "reason": "GTIN local identifica exatamente este produto de catálogo.",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7173661978",
+      "sku": "VTK012134",
+      "product_name": "16 Pilhas Alcalinas Aa Duracell",
+      "local_gtin": "041333666815",
+      "catalog_product_id": null,
+      "gtin_lookup_product_id": "MLB21841582",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB21841582, não .",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    },
+    {
+      "ml_item_id": "MLB7173718908",
+      "sku": "VTK012651",
+      "product_name": "Calculadora Mesa Visor 12 Dig. - Verde Mv4126 Elgin",
+      "local_gtin": "7897013539619",
+      "catalog_product_id": null,
+      "gtin_lookup_product_id": "MLB25427592",
+      "classification": "divergent",
+      "reason": "GTIN local identifica catálogo MLB25427592, não .",
+      "differences": [],
+      "item_error": null,
+      "catalog_error": null
+    }
+  ]
+}

@@ -1,0 +1,489 @@
+{
+  "batchNumber": 13,
+  "batchId": "ml-create-013",
+  "strategy": "safe_small_batch",
+  "executionHints": {
+    "delayMs": 1500,
+    "listingType": "gold_pro",
+    "useSchemaBasePrice": true,
+    "applyPricingStrategyAtRuntime": true,
+    "stopIfFailureRateOver": 0.5
+  },
+  "items": [
+    {
+      "produtoId": "152c9798-dbe4-4b88-b148-ce039f610dc8",
+      "sku": "VTK012152",
+      "nome": "Kit 02 Bornes Vermelhos Para Alto Falante Wc 1159 Wireconex",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 14,
+      "estoque": 76,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 41.98,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "50e744ce-239b-4bd9-a574-15a984dc5bb1",
+      "sku": "VTK012185",
+      "nome": "Kit 02 Bornes Preto Para Alto Falante Wc 1159 Wireconex",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 14,
+      "estoque": 57,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 41.98,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "39e790c1-04f1-4706-8b7d-d339975ba982",
+      "sku": "VTK013838",
+      "nome": "Bieleta Traseira Esquerda Direita Kia Besta Gs",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 14.19,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.21,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "626d9295-87de-483f-a98a-9fcd0305d87d",
+      "sku": "VTK011058",
+      "nome": "Cabo Acionamento Tampa Caçamba Dir Saveiro G1",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 14.24,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "734d07ce-0c9d-46e2-b96f-725a3f52bcda",
+      "sku": "VTK013331",
+      "nome": "Maçaneta Interna Da Porta Diant Dir Ford Escort 1983 A 1992",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 14.3,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.35,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "0dcb1674-4a29-4138-a8f8-8ec2d8b3f884",
+      "sku": "VTK013332",
+      "nome": "Maçaneta Interna Da Porta Diant Dir Vw Apollo De 1990 A 1992",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 14.3,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.35,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "29b8d68f-e7e4-4c77-ad0b-f22b1e348cd2",
+      "sku": "VTK013135",
+      "nome": "Cabo Acionamento Fechadura Porta Diant Dir Esq Logus 93 A 96",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 14.37,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.43,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "e0c53f4b-cfc9-4a6f-a667-c7c452eb2a30",
+      "sku": "VTK013533",
+      "nome": "Cabo Acionamento Fechadura Pta Dir F250 F12000 F14000 F16000",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 14.39,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.46,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "a9b5e529-39a2-4bd8-a815-6877dbffa980",
+      "sku": "VTK011530",
+      "nome": "Fecho Porta-luvas Sem Chave Gol Parati Cinza",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 14.43,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.51,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "e5acda1b-60f8-41f4-ac9e-f9452d35ca2a",
+      "sku": "VTK011568",
+      "nome": "Fecho Porta-luvas S/ Chave Gol Saveiro G3 Cinza Escuro",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 14.43,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.51,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "30db64d9-992b-422b-9e2c-8beb7dbd1812",
+      "sku": "VTK013897",
+      "nome": "Kit Coifa Homocinética Dir Esq Palio Siena Strada L200",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 14.45,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.53,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "dd35e448-755d-4dcb-956b-0ba03ca6da2c",
+      "sku": "VTK011578",
+      "nome": "Maçaneta Interna Porta Esq Dian Tras Fox 03 Gol G4 Plástico",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 14.48,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.57,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "ab88692d-4048-49b8-9b33-f5083e394ea6",
+      "sku": "VTK011809",
+      "nome": "Cabo Abertura Do Capô S/maçaneta Fox 4 Portas Após 2005",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 14.68,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.81,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "90350441-b65a-4eb2-acab-fcab2ee801f2",
+      "sku": "VTK011517",
+      "nome": "Batente Porta-malas Santana 91 A 96 2pts",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 14.76,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.91,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "896a0d2f-c4f0-4ec7-aefb-1735d9b6609e",
+      "sku": "VTK013333",
+      "nome": "Maçaneta Interna Da Porta Diant Esq Ford Escort 1983 A 1992",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 14.76,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.91,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "564a89de-91b2-4e04-bf5c-a68b1a4bacc0",
+      "sku": "VTK013334",
+      "nome": "Maçaneta Interna Da Porta Diant Esq Vw Apollo De 1990 A 1992",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 14.76,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.91,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "42dd5384-4e75-48ad-9363-69251a875b03",
+      "sku": "VTK013624",
+      "nome": "Cabo Fechadura/maçaneta Porta Dir Esq Ford Cargo G2 Após 11",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 14.79,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.95,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "56e895b3-7031-4a5a-9b7f-cd626454ebdd",
+      "sku": "VTK013566",
+      "nome": "Cabo Acionamento Fechadura Porta Traseira Dir/esq Mondeo",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 14.86,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "6fb175eb-4322-4086-ad1d-2a4f1bc9d267",
+      "sku": "VTK010937",
+      "nome": "Moldura Maçaneta Interna Porta Dian Tras Dir Esq L200",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 14.92,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.11,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "ff9afdd4-ff38-4e68-ac53-06b9895559ae",
+      "sku": "VTK011815",
+      "nome": "Maçaneta Interna Puxador Direito Prata Gol Saveiro Após 16",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 15,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.21,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "180f7c0a-7bb2-44f8-b845-8d5dcf608642",
+      "sku": "VTK011816",
+      "nome": "Maçaneta Interna Puxador Esquerdo Prata Gol Saveiro Após 16",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 15,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.21,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "7bc250b2-9d63-4b4e-b7cd-8a72778875c6",
+      "sku": "VTK011817",
+      "nome": "Maçaneta Interna Puxador Direito Grafite Gol Saveiro Após 13",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 15,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.21,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "f476f78c-610c-4d24-ab15-993a6816e831",
+      "sku": "VTK011818",
+      "nome": "Maçaneta Puxador Int Esquerdo Grafite Gol Saveiro Após 13",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 15,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.21,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "67080a93-c048-4dba-bc21-224bd95ae887",
+      "sku": "VTK013515",
+      "nome": "Cabo Acionamento Fechadura Capô Ecosport 03 A 12 Fiesta",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 15.17,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.42,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "e763b5b1-e290-4aed-a150-ec4847dce868",
+      "sku": "VTK011723",
+      "nome": "Fechadura Superior Capô Crossfox Gol Saveiro Spacefox Voyage",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 15.25,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    }
+  ]
+}

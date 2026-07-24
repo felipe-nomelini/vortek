@@ -1,0 +1,130 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/003-evolusom-catalog-create-003.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-003",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "bdbc13db-3dc6-4a93-8db3-b75f6002c777",
+      "sku": "VTK017213",
+      "category": {
+        "id": "MLB272149",
+        "nome": "Splitters de Fibra Óptica",
+        "dominio": "MLB-FIBER_OPTIC_SPLITTERS"
+      },
+      "basePrice": 72.66,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "82b944b7-f599-448b-9773-67db42871613",
+      "sku": "VTK017717",
+      "category": {
+        "id": "MLB272149",
+        "nome": "Splitters de Fibra Óptica",
+        "dominio": "MLB-FIBER_OPTIC_SPLITTERS"
+      },
+      "basePrice": 173.29,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "10e0a3f8-0e1d-41f7-8529-ac507e7be94a",
+      "sku": "VTK017622",
+      "category": {
+        "id": "MLB272149",
+        "nome": "Splitters de Fibra Óptica",
+        "dominio": "MLB-FIBER_OPTIC_SPLITTERS"
+      },
+      "basePrice": 245.71,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a0f81105-6d12-45f8-922b-6bb331e66985",
+      "sku": "VTK002166",
+      "category": {
+        "id": "MLB72745",
+        "nome": "Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 40,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6a24bd0f-5570-4ce3-8f45-e2471766cd5e",
+      "sku": "VTK002145",
+      "category": {
+        "id": "MLB432437",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 48.08,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b84edd78-1253-4a91-89d3-8fbbd54e6662",
+      "sku": "VTK019026",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 265.24,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9e16c14e-c3ad-4a84-b9da-206719bcc0c0",
+      "sku": "VTK018177",
+      "category": {
+        "id": "MLB38279",
+        "nome": "Outros Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 707.54,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6ffcce6b-c3ab-4a4e-a7ce-97587710dc71",
+      "sku": "VTK017396",
+      "category": {
+        "id": "MLB38279",
+        "nome": "Outros Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 56.28,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "c497f1b5-5846-41f9-9c58-b3153185677d",
+      "sku": "VTK017449",
+      "category": {
+        "id": "MLB438559",
+        "nome": "Cabos e Conectores",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 64.87,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "5997dcbb-205e-44c0-b291-c54c6a6b98fc",
+      "sku": "VTK018520",
+      "category": {
+        "id": "MLB38186",
+        "nome": "Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 151.15,
+      "missing": []
+    }
+  ],
+  "failed": []
+}

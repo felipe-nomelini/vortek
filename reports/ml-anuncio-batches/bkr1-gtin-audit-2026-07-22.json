@@ -1,0 +1,1132 @@
++{
+  "generated_at": "2026-07-22T15:59:48.284Z",
+  "supplier": "BKR1",
+  "superseded_by": "bkr1-gtin-required-live-2026-07-22.json",
+  "warning": "Consulta condicional isolada não substitui resposta da criação real; GTIN foi exigido pelo ML nos testes de publicação.",
+  "total": 56,
+  "summary": {
+    "dispensavel_nesta_publicacao": 56
+  },
+  "items": [
+    {
+      "sku": "VTK012014",
+      "nome": "Conector Para Cabo Fêmea P/ac - Corpo Azul Wc 3 Fca Wireconex 02 Unidades",
+      "categoria": {
+        "id": "MLB38172",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012016",
+      "nome": "Kit Conectores Xlr 1003 1013 20un (10 Machos/10 Femeas) Wireconex",
+      "categoria": {
+        "id": "MLB38172",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012018",
+      "nome": "Kit Conector Xlr Macho Wc 1013 (10un) Wireconex",
+      "categoria": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012022",
+      "nome": "Conector Combo Xlr Fêmea Painel 3p Wc 330 Wireconex 04 Unidades",
+      "categoria": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012039",
+      "nome": "Kit Conector Xlr Macho Wc 1013 (10un) Wireconex",
+      "categoria": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012040",
+      "nome": "Kit Conectores Xlr 1003 1013 20un (10 Machos/10 Femeas) Wireconex",
+      "categoria": {
+        "id": "MLB38172",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012148",
+      "nome": "Adaptador Rca Fêmea P/xlr 3p Fêmea Niq. Wc 244 Ad 02 Unidades Wireconex",
+      "categoria": {
+        "id": "MLB195961",
+        "nome": "Adaptadores",
+        "dominio": "Cabos e adaptadores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012233",
+      "nome": "Palheta Bori Grl At-r16102 Picker 0,73 Mm (azul) R21003 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012236",
+      "nome": "Palheta Bori Grl At-r16104 Picker 0,96 Mm (amarelo) R21005 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012237",
+      "nome": "Palheta Bori Grl At-r16147 Rio Xxl (preto) R21032 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012248",
+      "nome": "Palheta Bori Grl At-r16103 Picker 0,82 Mm (vermelho) R21004 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012267",
+      "nome": "Adaptador Rca Macho P/xlr 3p Fêmea Niq. Wc 242 Ad 02 Unidades Wireconex",
+      "categoria": {
+        "id": "MLB195961",
+        "nome": "Adaptadores",
+        "dominio": "Cabos e adaptadores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012275",
+      "nome": "Palheta Bori Grl At-r16110 S.t.d 0,94 Mm (verde Esc) R21014 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012281",
+      "nome": "Kit Conector Speakon Wc 605 (20un) Wireconex",
+      "categoria": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012282",
+      "nome": "Palheta Bori Grl At-r16108 S.t.d 0,80 Mm (azul) R21012 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012283",
+      "nome": "Palheta Bori Grl At-r16146 Rio Xxl (vermelho) R21028 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012297",
+      "nome": "Kit 04 Conectores Xlr Macho P/ Pci 3 Polos Wc 4050 Wireconex",
+      "categoria": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012301",
+      "nome": "Palheta Bori Grl At-r16145 Rio Iii (preto) R21031 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012304",
+      "nome": "Palheta Guitarra Color 1cap6 D Addario 1.00mm 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012310",
+      "nome": "Palheta Bori Grl At-r16142 Rio Ii (vermelho) R21026 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012319",
+      "nome": "Palheta Bori Grl At-r16115 Azul Crystal 0,96 Mm R21008 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012320",
+      "nome": "Palheta Bori Grl At-r16136 Drip Gota 2,50 Mm (azul) R21019 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012321",
+      "nome": "Palheta Bori Grl At-r16144 Rio Iii (vermelho) R21027 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012327",
+      "nome": "Kit 04 Conectores Xlr Femea P/ Pci 3 Polos Wc 4046 Wireconex",
+      "categoria": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012335",
+      "nome": "Palheta Bori Grl At-r16112 S.t.d 1,14 Mm (preto) R21016 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012336",
+      "nome": "Palheta Bori Grl At-r16132 Drip Gota 1,50 Mm (azul) R21017 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012337",
+      "nome": "Palheta Bori Grl At-r16138 Drip Gota 3,00 Mm (azul) R21020 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012359",
+      "nome": "Palheta Bori Grl At-r16134 Drip Gota 2,00 Mm (azul) R21018 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012369",
+      "nome": "Adaptadores Rca Fêmea P/xlr 3p Macho Niq. Wc 245 Ad 02 Unidades Wireconex",
+      "categoria": {
+        "id": "MLB195961",
+        "nome": "Adaptadores",
+        "dominio": "Cabos e adaptadores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012383",
+      "nome": "Palheta Guitarra Mul Lght 1cmc2 D Addario .50mm 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012384",
+      "nome": "Palheta Guitarra Color 1cap2 D Addario .50mm 10 Un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012408",
+      "nome": "Palheta Bori Grl At-r16107 S.t.d 0,78 Mm (rosa) R21011 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012414",
+      "nome": "Adaptador 3,5 Femea Trs 6,3mm Macho Wc347 Wireconex 06 Unidades",
+      "categoria": {
+        "id": "MLB38172",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012418",
+      "nome": "Bateria Cr123 3v Panasonic",
+      "categoria": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012420",
+      "nome": "Bateria 9v Alcalina Unidade Flex",
+      "categoria": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012421",
+      "nome": "Palheta Guitarra Shl Lght 1csh2 D Addario .50mm 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012422",
+      "nome": "Palheta Guitarra Mul Med 1cmc4 D Addario .70mm 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012470",
+      "nome": "Palheta Bori Grl At-r16114 Azul Crystal 0,82 Mm R21007 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012502",
+      "nome": "Polidor Spray Shine Pw-pl-03 D Addario",
+      "categoria": {
+        "id": "MLB188789",
+        "nome": "Politriz Elétricas",
+        "dominio": "Polidoras elétricas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012530",
+      "nome": "Bateria Alcalina A76 Cart 1 Energizer",
+      "categoria": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012543",
+      "nome": "Palheta Bori Grl At-r16109 S.t.d 0,89 Mm (roxo) R21013 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012613",
+      "nome": "Palheta Royal Tenor Rkb0125 D Addario",
+      "categoria": {
+        "id": "MLB278096",
+        "nome": "Para Saxos e Clarinetes",
+        "dominio": "Palhetas para saxofones e clarinetes"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012628",
+      "nome": "Palheta Guitarra Dur Prec 6dbu5 D Addario 1.00mm 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012668",
+      "nome": "Palheta Guitarra Med 1ccf4 D Addario .70mm 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012669",
+      "nome": "Palheta Guitarra Dur Prec 6dbk7 D Addario 1.50mm 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012670",
+      "nome": "Palheta Guitarra Color 1cap7 D Addario 1.25mm 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012687",
+      "nome": "Cabo De Microfone Pro Balanceado Emborrachado Xlr Xlr 0,40 Cm Mpbe-0,40 Wireconex",
+      "categoria": {
+        "id": "MLB72745",
+        "nome": "Cabos",
+        "dominio": "Cabos e adaptadores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012694",
+      "nome": "Palheta Bori Grl At-r16111 S.t.d 1,04 Mm (branco) R21015 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012699",
+      "nome": "Painel Medusa 28 Furos Xlr Com Conectores Wireconex",
+      "categoria": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012729",
+      "nome": "Cabo P10 Prowire Em L Tweed Lilás/prata 6,10m Wireconex",
+      "categoria": {
+        "id": "MLB72745",
+        "nome": "Cabos",
+        "dominio": "Cabos e adaptadores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012763",
+      "nome": "Palheta Guitarra Shl Hvy 1csh6 D Addario 1.00mm 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012764",
+      "nome": "Palheta Guitarra Dur Prec 6dpr6 D Addario 1.20mm 10un",
+      "categoria": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": false,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012765",
+      "nome": "Adaptador Rca Macho P/xlr 3p Macho Niq. Wc 243 Ad 02 Unidades Wireconex",
+      "categoria": {
+        "id": "MLB195961",
+        "nome": "Adaptadores",
+        "dominio": "Cabos e adaptadores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012766",
+      "nome": "Cabo Para Caixa 4 Polos 5 Metros Spk 4p 05 225 Wireconex",
+      "categoria": {
+        "id": "MLB438559",
+        "nome": "Cabos e Conectores",
+        "dominio": "Cabos e adaptadores de áudio e vídeo"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012772",
+      "nome": "Caixa De Som Passiva 8 Polegadas 100 W Rms - Attack Vrf810",
+      "categoria": {
+        "id": "MLB11507",
+        "nome": "Caixas Acústicas ",
+        "dominio": "Caixas de som"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    },
+    {
+      "sku": "VTK012800",
+      "nome": "Painel 48 Furos Xlr Com Conectores 2 Saídas Wireconex",
+      "categoria": {
+        "id": "MLB33443",
+        "nome": "Estantes para TV",
+        "dominio": "Móveis para TV"
+      },
+      "gtin_tags": {
+        "multivalued": true,
+        "variation_attribute": true,
+        "used_hidden": true,
+        "validate": true,
+        "conditional_required": true
+      },
+      "empty_gtin_reason": true,
+      "status": "dispensavel_nesta_publicacao",
+      "motivo": "Endpoint condicional não exigiu GTIN",
+      "required_attributes": []
+    }
+  ]
+}

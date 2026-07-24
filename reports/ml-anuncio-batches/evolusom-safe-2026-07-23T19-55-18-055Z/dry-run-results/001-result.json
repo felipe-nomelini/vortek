@@ -1,0 +1,255 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/001-evolusom-ml-create-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-ml-create-001",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "9cbbbf6d-4826-418f-bbfe-6fa035b3bb8e",
+      "sku": "VTK019167",
+      "category": {
+        "id": "MLB455580",
+        "nome": "Hambúrgueres",
+        "dominio": "Hambúrgueres congeladas"
+      },
+      "basePrice": 101.17,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6f2d02a9-a507-459b-9a90-7faf9d50b92c",
+      "sku": "VTK018179",
+      "category": {
+        "id": "MLB404089",
+        "nome": "Semeadeiras",
+        "dominio": "Máquinas semeadeiras agrícolas"
+      },
+      "basePrice": 134.02,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "23325240-e7c1-4a4f-805f-79f7ac369f98",
+      "sku": "VTK002611",
+      "category": {
+        "id": "MLB11187",
+        "nome": "Hubs USB",
+        "dominio": "Hubs USB"
+      },
+      "basePrice": 83.12,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "5f74e994-77a1-42f4-8f56-af442f8c8c7f",
+      "sku": "VTK018588",
+      "category": {
+        "id": "MLB411106",
+        "nome": "Para Fritadeiras",
+        "dominio": "Acessórios e peças de reposição para eletrodomésticos"
+      },
+      "basePrice": 439.21,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "78ebcbfc-5953-44ca-803a-a4b40bbfae1e",
+      "sku": "VTK017861",
+      "category": {
+        "id": "MLB440299",
+        "nome": "Alarmes para Automotores",
+        "dominio": "Alarmes para veículos"
+      },
+      "basePrice": 169.49,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "724b7d33-2fc4-4905-ab51-2ca45664aab0",
+      "sku": "VTK018009",
+      "category": {
+        "id": "MLB11099",
+        "nome": "Kits Completos",
+        "dominio": "Alarmes para veículos"
+      },
+      "basePrice": 189.75,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "75abcf4e-d3a5-40f5-816a-50b997706d46",
+      "sku": "VTK018503",
+      "category": {
+        "id": "MLB440299",
+        "nome": "Alarmes para Automotores",
+        "dominio": "Alarmes para veículos"
+      },
+      "basePrice": 277.89,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "fef3489e-d7b8-483b-a5f4-1921740369be",
+      "sku": "VTK018349",
+      "category": {
+        "id": "MLB440299",
+        "nome": "Alarmes para Automotores",
+        "dominio": "Alarmes para veículos"
+      },
+      "basePrice": 302.64,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "c2bc53ad-df5d-4a5b-a3ec-f98ab519a418",
+      "sku": "VTK017708",
+      "nome": "Acessório Cabo De Antena Ford Fusion / Gm",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB457887",
+            "nome": "Antenas de Conectividade"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB457888",
+            "nome": "Antenas de Conectividade"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB457889",
+            "nome": "Antenas de Conectividade"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB457886",
+            "nome": "Antenas de Conectividade"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB63312",
+            "nome": "Antenas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB49513",
+            "nome": "Outros"
+          },
+          "missing": [
+            "Modelo do produto"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB8534",
+            "nome": "Outros"
+          },
+          "missing": [
+            "Modelo do produto"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB439381",
+            "nome": "Cápsulas para Toca-discos"
+          },
+          "missing": [
+            "Modelo do produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d35df101-0356-4658-b6e1-fa9656b214ad",
+      "sku": "VTK001685",
+      "nome": "Adaptador DVI Fêmea x HDMI Macho Gold ST-HDMI-DMF Storm",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB195961",
+            "nome": "Adaptadores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB431813",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB38186",
+            "nome": "Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB432564",
+            "nome": "Switches e Splitters"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB432437",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB277945",
+            "nome": "Luzes Led Profissionais"
+          },
+          "missing": [
+            "Modelo",
+            "Tipo de dispositivo",
+            "Com flash"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

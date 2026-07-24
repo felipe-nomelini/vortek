@@ -1,0 +1,23 @@
+{
+  "batchNumber": 1,
+  "batchId": "evolusom-first-10",
+  "strategy": "sequential-create-and-verify",
+  "executionHints": {
+    "delayMs": 1500,
+    "listingType": "gold_pro",
+    "useSchemaBasePrice": true,
+    "applyPricingStrategyAtRuntime": true
+  },
+  "items": [
+    { "produtoId": "01bd76c0-70dd-467d-95c0-af8d5da2f640", "sku": "VTK017266", "nome": "Controle Remoto Mxt Receptor Tocomsat Combate 01360" },
+    { "produtoId": "f5fc8a52-9f1a-4255-8751-2032a4acce3d", "sku": "VTK017191", "nome": "Controle Remoto Mxt Universal Co1064" },
+    { "produtoId": "54749ec9-e1fa-4be2-8398-1a9634fd85e3", "sku": "VTK017440", "nome": "Lâmpada Halógena Code/tech One 12v 4300k 9005 Hb3 60w Unitária" },
+    { "produtoId": "93df8701-8b92-4419-b95e-f023d28b0043", "sku": "VTK017513", "nome": "Cabo Rca Injetado Technoise Series 300 Pro 4mm - 1m" },
+    { "produtoId": "10a950d3-61c6-4fa0-ac24-e43c5e6642d8", "sku": "VTK017542", "nome": "Alicate Mini Universal Western A-5 4.1/2" },
+    { "produtoId": "61e0477d-0e46-4418-a1ca-16074ed26c59", "sku": "VTK017226", "nome": "Disco Diamantado Vonder 110mm V1 Furo 20" },
+    { "produtoId": "bbf74430-ce5a-4e8c-80af-c7adee3642e3", "sku": "VTK017605", "nome": "Resistencia Zagonel Pratica 127v 9205000027" },
+    { "produtoId": "134f7356-371b-4435-8917-fb6ae3be2700", "sku": "VTK017805", "nome": "Espuma Limpadora Orbi Limpa Estofados" },
+    { "produtoId": "8e5c59d9-f0c0-410e-af13-4b4ba1c8c476", "sku": "VTK017381", "nome": "Controle Remoto Mxt C01367 Tv Philco Smart Ph55" },
+    { "produtoId": "3919d318-bb85-4e52-941e-3dc223014587", "sku": "VTK018725", "nome": "Suporte Para Tv Fixo Multivisão Easy Até 71\"" }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-017-ml-create-017.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-017",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "dd3f1501-4017-4ed3-b8d2-07361277e10a",
+      "sku": "VTK012353",
+      "category": {
+        "id": "MLB9699",
+        "nome": "Pedais",
+        "dominio": "Pedais para bateria"
+      },
+      "anuncio": {
+        "id": "MLB4877404099",
+        "title": "Cabo Para Pedal Emborrachado Cachibmo Pedem 0 25 Wireconex",
+        "price": 59.31,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877404099-cabo-para-pedal-emborrachado-cachibmo-pedem-0-25-wireconex-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Descrição pendente no ML: HTTP 400: The description must be in plain text",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 43.77 → R$ 59.31."
+      ]
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,1008 @@
+{
+  "batchNumber": 9,
+  "batchId": "evolusom-catalog-create-009",
+  "strategy": "exact_gtin_catalog_evidence",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "5ca84246-49db-4c82-a69a-da5dd3009089",
+      "sku": "VTK001736",
+      "nome": "Ferro de Solda 34W 220V Plus SC40P Azul Hikari",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 33.9,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 66.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810415219",
+        "validatedNcm": "85151100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB48611",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "32258316",
+          "value_name": "SC40"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "198813",
+          "value_name": "220V"
+        },
+        {
+          "id": "SOLDERING_IRON_TYPE",
+          "value_id": "5572229",
+          "value_name": "Lápis"
+        },
+        {
+          "id": "POWER",
+          "value_id": "11534521",
+          "value_name": "34 W"
+        },
+        {
+          "id": "ELECTRODE_DIAMETER",
+          "value_id": "12659118",
+          "value_name": "5 mm"
+        },
+        {
+          "id": "TIP_MATERIAL",
+          "value_id": "3726542",
+          "value_name": "Aço inoxidável"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_REMOVABLE_TIP",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "32258317",
+          "value_name": "7899810415219"
+        },
+        {
+          "id": "INCLUDES_STAND",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MAX_TEMPERATURE",
+          "value_id": "4125131",
+          "value_name": "480 °C"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB32422506",
+        "catalogProductName": "Ferro De Solda Profissional Hikari Sc40 34w",
+        "catalogDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "predictedDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "categoryId": "MLB48611",
+        "categoryName": "Ferros de Solda",
+        "linkedListingsInCategory": 11,
+        "validatedGtin": "7899810415219"
+      }
+    },
+    {
+      "produtoId": "c1aced83-2301-4596-a12a-9c6741e939a1",
+      "sku": "VTK018336",
+      "nome": "Ferro De Solda Hikari Plus Sc-30 25w 110v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 31.9,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 64.07,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893007715083",
+        "validatedNcm": "85151100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB48611",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "20756158",
+          "value_name": "Plus SC-30"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "SOLDERING_IRON_TYPE",
+          "value_id": "5572229",
+          "value_name": "Lápis"
+        },
+        {
+          "id": "POWER",
+          "value_id": "2888689",
+          "value_name": "25 W"
+        },
+        {
+          "id": "ELECTRODE_DIAMETER",
+          "value_id": "65965705",
+          "value_name": "225 mm"
+        },
+        {
+          "id": "TIP_MATERIAL",
+          "value_id": "3726542",
+          "value_name": "Aço inoxidável"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_REMOVABLE_TIP",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "20756190",
+          "value_name": "7893007715083"
+        },
+        {
+          "id": "INCLUDES_STAND",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MAX_TEMPERATURE",
+          "value_id": "6243462",
+          "value_name": "360 °C"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB24431783",
+        "catalogProductName": "Ferro De Soldar Hikari Profissional Sc-30 25w",
+        "catalogDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "predictedDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "categoryId": "MLB48611",
+        "categoryName": "Ferros de Solda",
+        "linkedListingsInCategory": 24,
+        "validatedGtin": "7893007715083"
+      }
+    },
+    {
+      "produtoId": "5ba148a1-92d0-4c4c-8999-fcf2a8830938",
+      "sku": "VTK017186",
+      "nome": "Ferro De Solda Hikari Power 25w 127v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 33.45,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 65.99,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810400499",
+        "validatedNcm": "85151100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB48611",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "20756325",
+          "value_name": "Power 30"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "SOLDERING_IRON_TYPE",
+          "value_id": "5572229",
+          "value_name": "Lápis"
+        },
+        {
+          "id": "POWER",
+          "value_id": "2888689",
+          "value_name": "25 W"
+        },
+        {
+          "id": "ELECTRODE_DIAMETER",
+          "value_id": "12840713",
+          "value_name": "4 mm"
+        },
+        {
+          "id": "TIP_MATERIAL",
+          "value_id": "22775938",
+          "value_name": "Cobre"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_REMOVABLE_TIP",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "20756364",
+          "value_name": "7899810400499, 7893007713157"
+        },
+        {
+          "id": "INCLUDES_STAND",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MAX_TEMPERATURE",
+          "value_id": "4401006",
+          "value_name": "450 °C"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB24431932",
+        "catalogProductName": "Ferro De Soldar Hikari Power 30 Eletrônica Artesanato Solda Voltagem",
+        "catalogDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "predictedDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "categoryId": "MLB48611",
+        "categoryName": "Ferros de Solda",
+        "linkedListingsInCategory": 27,
+        "validatedGtin": "7899810400499"
+      }
+    },
+    {
+      "produtoId": "06692a90-6024-4287-8bf8-6069be519f50",
+      "sku": "VTK017962",
+      "nome": "Ferro De Solda Hikari 30 Power 25w 220v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 33.45,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 65.99,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810400512",
+        "validatedNcm": "85151100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB48611",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "20756325",
+          "value_name": "Power 30"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "198813",
+          "value_name": "220V"
+        },
+        {
+          "id": "SOLDERING_IRON_TYPE",
+          "value_id": "22722454",
+          "value_name": "Lpis"
+        },
+        {
+          "id": "POWER",
+          "value_id": "2888689",
+          "value_name": "25 W"
+        },
+        {
+          "id": "ELECTRODE_DIAMETER",
+          "value_id": "12840713",
+          "value_name": "4 mm"
+        },
+        {
+          "id": "TIP_MATERIAL",
+          "value_id": "22775938",
+          "value_name": "Cobre"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_REMOVABLE_TIP",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "23422227",
+          "value_name": "7899810400512"
+        },
+        {
+          "id": "INCLUDES_STAND",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MAX_TEMPERATURE",
+          "value_id": "4401006",
+          "value_name": "450 °C"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB26404747",
+        "catalogProductName": "Ferro De Soldar Modelo Power-30 Hikari",
+        "catalogDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "predictedDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "categoryId": "MLB48611",
+        "categoryName": "Ferros de Solda",
+        "linkedListingsInCategory": 28,
+        "validatedGtin": "7899810400512"
+      }
+    },
+    {
+      "produtoId": "15125489-9a57-4faa-b61f-1a0d0be42688",
+      "sku": "VTK017603",
+      "nome": "Ferro De Solda Hikari Plus Sc-60 50w 110v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 38.95,
+      "estoque": 37,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 72.78,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893007715120",
+        "validatedNcm": "85151100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB48611",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "21073264",
+          "value_name": "21k005"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "SOLDERING_IRON_TYPE",
+          "value_id": "21073278",
+          "value_name": "Comum"
+        },
+        {
+          "id": "POWER",
+          "value_id": "112953",
+          "value_name": "50 W"
+        },
+        {
+          "id": "ELECTRODE_DIAMETER",
+          "value_id": "12659118",
+          "value_name": "5 mm"
+        },
+        {
+          "id": "TIP_MATERIAL",
+          "value_id": "22775938",
+          "value_name": "Cobre"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_REMOVABLE_TIP",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "21073275",
+          "value_name": "7893007715120"
+        },
+        {
+          "id": "INCLUDES_STAND",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MAX_TEMPERATURE",
+          "value_id": "4839741",
+          "value_name": "510 °C"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB24659160",
+        "catalogProductName": "Ferro De Solda Profissional Hikari SC-60 potência de 50w -",
+        "catalogDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "predictedDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "categoryId": "MLB48611",
+        "categoryName": "Ferros de Solda",
+        "linkedListingsInCategory": 24,
+        "validatedGtin": "7893007715120"
+      }
+    },
+    {
+      "produtoId": "aaef2474-f887-430b-9b81-552a73ee609d",
+      "sku": "VTK021889",
+      "nome": "Ferro De Passar Vapor E à Seco Agratto – Vapore Fv-01 110v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 49.95,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 86.36,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898461966576",
+        "validatedNcm": "85164000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB31689",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "97494",
+          "value_name": "Agratto"
+        },
+        {
+          "id": "LINE",
+          "value_id": "18506226",
+          "value_name": "a vapor"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "6200294",
+          "value_name": "Vapore"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "value_id": "84299751",
+          "value_name": "Vapore"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "59405",
+          "value_name": "Branco/Azul"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "6200295",
+          "value_name": "FV-01"
+        },
+        {
+          "id": "IRON_POWER",
+          "value_id": "65442267",
+          "value_name": "1250 W"
+        },
+        {
+          "id": "IRON_USE",
+          "value_id": "8067505",
+          "value_name": "Doméstico"
+        },
+        {
+          "id": "IRON_TYPE",
+          "value_id": "6943392",
+          "value_name": "Vapor"
+        },
+        {
+          "id": "IS_GARMENT_STEAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_IRONING_STATION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_VERTICAL_IRONING_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "8465119",
+          "value_name": "7898461966576"
+        },
+        {
+          "id": "PLATE_MATERIAL",
+          "value_id": "5862341",
+          "value_name": "Aço inoxidável"
+        },
+        {
+          "id": "BODY_MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "CONSTANT_STEAM",
+          "value_id": "17630178",
+          "value_name": "35.5 g/min"
+        },
+        {
+          "id": "WITH_SWIVEL_CABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TEMPERATURE_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ADJUSTABLE_STEAM",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NON_STICK_PLATE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB9069579",
+        "catalogProductName": "Ferro a Vapor Agratto Vapore FV-01 Com Base Antiaderente e Controle de Temperatura",
+        "catalogDomainId": "MLB-IRONS",
+        "predictedDomainId": "MLB-IRONS",
+        "categoryId": "MLB31689",
+        "categoryName": "Ferro de Passar",
+        "linkedListingsInCategory": 49,
+        "validatedGtin": "7898461966576"
+      }
+    },
+    {
+      "produtoId": "df8c9551-1035-42bc-a6c5-2e42e9f90c2d",
+      "sku": "VTK018758",
+      "nome": "Ferro De Soldar à Gás Hikari Hk-900 30a100w",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 95.5,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 142.59,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810412775",
+        "validatedNcm": "85151100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB48611",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "33771117",
+          "value_name": "UCB-21J183"
+        },
+        {
+          "id": "SOLDERING_IRON_TYPE",
+          "value_id": "5572229",
+          "value_name": "Lápis"
+        },
+        {
+          "id": "POWER",
+          "value_id": "109880",
+          "value_name": "100 W"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "33771115",
+          "value_name": "7899810412775"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB33654628",
+        "catalogProductName": "Ferro De Solda Elétrico De Estanho Tipo Lápis Hikari Ucb-21j183",
+        "catalogDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "predictedDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "categoryId": "MLB48611",
+        "categoryName": "Ferros de Solda",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7899810412775"
+      }
+    },
+    {
+      "produtoId": "a8f6ad4b-3fae-43ea-8cb8-548632d56882",
+      "sku": "VTK017239",
+      "nome": "Filtro De Linha Com 6t Fl-61bk C3tech",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 21.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 51.73,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898555213951",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB63114",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "8774306",
+          "value_name": "C3Tech"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18873842",
+          "value_name": "FL-61BK"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "18033133",
+          "value_name": "Extensão"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "OUTLETS_NUMBER",
+          "value_id": "5377261",
+          "value_name": "6"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "12872035",
+          "value_name": "50Hz/60Hz"
+        },
+        {
+          "id": "POWER",
+          "value_id": "49554941",
+          "value_name": "1.27 kW"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "55683382",
+          "value_name": "FL-61BK"
+        },
+        {
+          "id": "MAX_CURRENT",
+          "value_id": "5755450",
+          "value_name": "10 A"
+        },
+        {
+          "id": "WITH_USB",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_OVERLOAD_PROTECTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ELECTRICAL_NOISE_REDUCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18873848",
+          "value_name": "7898555213951"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB23048734",
+        "catalogProductName": "Régua 6 Tomadas Proteção Fusível Chave Led Filtro C3 Tech",
+        "catalogDomainId": "MLB-POWER_STRIPS",
+        "predictedDomainId": "MLB-POWER_STRIPS",
+        "categoryId": "MLB63114",
+        "categoryName": "Filtros de Linha",
+        "linkedListingsInCategory": 20,
+        "validatedGtin": "7898555213951"
+      }
+    },
+    {
+      "produtoId": "e385bc65-13ce-468b-9862-0fb1c7bb7327",
+      "sku": "VTK017451",
+      "nome": "Filtro De Linha Multi Wi251 6 Tomadas E 2 Entradas",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 45.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 81.36,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898506465811",
+        "validatedNcm": "85363090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB63114",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "31163",
+          "value_name": "Multilaser"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "49191307",
+          "value_name": "WI251 6 Outlets 2 USB"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "18033134",
+          "value_name": "Filtro de linha"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "OUTLETS_NUMBER",
+          "value_id": "5377248",
+          "value_name": "5"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129115",
+          "value_name": "1.5 m"
+        },
+        {
+          "id": "MAX_CURRENT",
+          "value_id": "22007901",
+          "value_name": "2100 A"
+        },
+        {
+          "id": "WITH_USB",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_OVERLOAD_PROTECTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ELECTRICAL_NOISE_REDUCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "PORTS_AND_CONNECTORS_TYPES",
+          "value_id": "11455798",
+          "value_name": "2 X USB"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "22007900",
+          "value_name": "7898506465811"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB25363995",
+        "catalogProductName": "Filtro De Linha 6 Tomadas E 2 Entradas Usb Multilaser Wi251",
+        "catalogDomainId": "MLB-POWER_STRIPS",
+        "predictedDomainId": "MLB-POWER_STRIPS",
+        "categoryId": "MLB63114",
+        "categoryName": "Filtros de Linha",
+        "linkedListingsInCategory": 11,
+        "validatedGtin": "7898506465811"
+      }
+    },
+    {
+      "produtoId": "3e9cff62-82fa-4d74-adef-0aebb8ba0ee4",
+      "sku": "VTK017225",
+      "nome": "Fita Auto Fusão Vonder 19mm X 5m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 14.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.09,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893946109622",
+        "validatedNcm": "40059190",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB422401",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "275828",
+          "value_name": "Vonder"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24934924",
+          "value_name": "Fita Auto Fusão"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "ADHESIVE_TAPE_TYPE",
+          "value_id": "2466998",
+          "value_name": "Dupla face"
+        },
+        {
+          "id": "RECOMMENDED_SURFACES",
+          "value_id": "3918728",
+          "value_name": "Madeira, Metal, Vidro"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2482319",
+          "value_name": "Polipropileno"
+        },
+        {
+          "id": "IS_WRITABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_TRANSPARENT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TAPE_DISPENSER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24934925",
+          "value_name": "7893946109622"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27498301",
+        "catalogProductName": "Fita Auto Fusão Vonder 19mm X 5m Cor Preto",
+        "catalogDomainId": "MLB-ADHESIVE_TAPES",
+        "predictedDomainId": "MLB-ADHESIVE_TAPES",
+        "categoryId": "MLB422401",
+        "categoryName": "Fitas Isolantes",
+        "linkedListingsInCategory": 10,
+        "validatedGtin": "7893946109622"
+      }
+    }
+  ]
+}

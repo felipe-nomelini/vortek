@@ -1,0 +1,489 @@
+{
+  "batchNumber": 8,
+  "batchId": "ml-create-008",
+  "strategy": "safe_small_batch",
+  "executionHints": {
+    "delayMs": 1500,
+    "listingType": "gold_pro",
+    "useSchemaBasePrice": true,
+    "applyPricingStrategyAtRuntime": true,
+    "stopIfFailureRateOver": 0.5
+  },
+  "items": [
+    {
+      "produtoId": "cb7a7224-f3dd-4b6f-87ba-0623be5a68bb",
+      "sku": "VTK011950",
+      "nome": "Cabo Abertura Do Capô Sem Botão Brasilia 73 A 82",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.06,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 35.88,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "c45d06be-bc09-4f4f-a987-ee11207a4888",
+      "sku": "VTK011741",
+      "nome": "Cabo Acionamento Fechadura Porta Diant Direita Gol G2 G3",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.15,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 35.99,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "b1ee3a7d-5708-421f-98dd-e8696cbdc84c",
+      "sku": "VTK011742",
+      "nome": "Cabo Acionamento Fechadura Porta Diant Esq Gol G2 G3",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.15,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 35.99,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "1236c136-6aa6-4237-92c8-b39d13a8456d",
+      "sku": "VTK011717",
+      "nome": "Pino Trava Porta Diant Lado Esq Saveiro G5 Gol Voyage",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.17,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.01,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "3ee59e59-c9f2-4a9f-9945-411721fe11a7",
+      "sku": "VTK013916",
+      "nome": "Kit Rep Alav Camb Tramb C/tubo 5m Passat 79a88",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.2,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.05,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "010173e1-af49-427e-8d35-6c4aecda187b",
+      "sku": "VTK011775",
+      "nome": "Maçaneta Interna Porta Dianteira Dir Brasilia Caminhões",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.23,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.09,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "cb6724b2-87c8-42dc-a1a8-169692be06fe",
+      "sku": "VTK011776",
+      "nome": "Maçaneta Interna Porta Dianteira Dir Fusca Tl Variant",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.23,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.09,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "bc5314f2-f51b-4626-b102-c65fe0b1a66a",
+      "sku": "VTK011777",
+      "nome": "Maçaneta Interna Porta Dianteira Esq Brasilia Caminhões",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.23,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.09,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "9a85abfa-1b90-4130-bc6f-5807a0fc725d",
+      "sku": "VTK011778",
+      "nome": "Maçaneta Interna Porta Dianteira Esq Fusca Tl Variant",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.23,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.09,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "74c13209-3414-488d-a448-d08d39845f3c",
+      "sku": "VTK013397",
+      "nome": "Kit Batente Fechadura Porta Diant-tras Del Rey Pampa - 5pçs",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.28,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.15,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "2f295559-34a6-484e-a844-596580bc97c8",
+      "sku": "VTK010658",
+      "nome": "Gatilho Interno Da Maçaneta Dianteira Traseira Direita Kwid",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.35,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.23,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "79bbf525-926f-4345-a3e2-3079520d5d46",
+      "sku": "VTK010659",
+      "nome": "Maçaneta Interna Gatilho Puxador Direito Kwid Após 2017",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.35,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.23,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "5d23ce3f-3633-420d-b575-580122826975",
+      "sku": "VTK013635",
+      "nome": "Moldura Maçaneta Interna Porta Dir Escort Verona Cinza",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.37,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.26,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "c6aed4c6-1e1f-4f96-ab47-238f40a1a0b1",
+      "sku": "VTK013636",
+      "nome": "Moldura Maçaneta Interna Porta Esq Escort Verona Cinza",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.37,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.26,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "b26d6f4d-d37a-4fae-b9e8-25445e8a9b7f",
+      "sku": "VTK013183",
+      "nome": "Cabo Abertura Do Capô Vw 1600 Tl Variant 67 A 77",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.39,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.28,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "852a659c-9b24-432b-870b-8b76b8a3c168",
+      "sku": "VTK013573",
+      "nome": "Haste Fechadura Da Porta Escort Fiesta Ka Elétrico",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.44,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.35,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "78200453-03b0-4a00-992d-4027a440c6b2",
+      "sku": "VTK011331",
+      "nome": "Pino Trava Porta Dianteira Esquerda Gol Parati Saveiro",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.45,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": 36.36,
+      "suggestedPricePreview": 36.36,
+      "priceSource": "custom_price",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "8bd46807-ffa4-4caf-8f13-0c0d30ab60a8",
+      "sku": "VTK011332",
+      "nome": "Pino Trava Porta Diant Direita Gol",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.45,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.36,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "d8a3a18c-45c1-412d-b000-1cddf7f4252d",
+      "sku": "VTK013568",
+      "nome": "Cabo Acionamento Fechadura Porta Dir Esq Ka Após 08",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.47,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.38,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "74bfb206-ce88-4e4c-9881-024952f0e33d",
+      "sku": "VTK011508",
+      "nome": "Maçaneta Int Porta Direita Vw Caminhões",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.6,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "b17e1b77-db49-4e57-9f25-a2cb423d3e5b",
+      "sku": "VTK011509",
+      "nome": "Maçaneta Int Porta Esquerda Vw Caminhões  Cinza Claro",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.6,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "6c58a635-479f-4e01-833f-7fb31d961d80",
+      "sku": "VTK011699",
+      "nome": "Maçaneta Interna Da Porta Esquerda Caminhões Volkswagen",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.6,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "6ba21c5b-3c6d-4053-8f26-084366ca6a52",
+      "sku": "VTK013166",
+      "nome": "Maçaneta Interna Da Porta Direita Caminhões Volkswagen",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.6,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "ee7e8320-75af-4e92-8661-25ce4f0c3262",
+      "sku": "VTK010454",
+      "nome": "Tpa Reserv Gas Vedada Alcool/flex Linha Renault",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.63,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.58,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "d1b20080-4e27-4281-9675-10ad37572ed1",
+      "sku": "VTK013901",
+      "nome": "Kit Estab Dian Monza Apos 91",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 9.64,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 36.59,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    }
+  ]
+}

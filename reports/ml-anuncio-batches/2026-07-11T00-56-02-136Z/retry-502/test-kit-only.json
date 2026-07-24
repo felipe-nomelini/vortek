@@ -1,0 +1,18 @@
+{
+  "batchNumber": 5,
+  "batchId": "retry-502-005",
+  "items": [
+    {
+      "produtoId": "7f8dc378-533d-4c5c-8c3e-b1e6899dc334",
+      "sku": "VTK012276",
+      "nome": "Kit 05 Conectores P2 Trrs Linha Wc 2314 Wireconex",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "90da20c8-f381-45a1-a976-bae92365c8fd",
+      "sku": "VTK012171",
+      "nome": "Kit 05 Conectores P2 Linha Stereo Wc 2313 Wireconex",
+      "fornecedor": "RETRY_502"
+    }
+  ]
+}

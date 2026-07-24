@@ -1,0 +1,109 @@
+{
+  "batchNumber": 83,
+  "batchId": "ml-create-083",
+  "strategy": "safe_small_batch",
+  "executionHints": {
+    "delayMs": 1500,
+    "listingType": "gold_pro",
+    "useSchemaBasePrice": true,
+    "applyPricingStrategyAtRuntime": true,
+    "stopIfFailureRateOver": 0.5
+  },
+  "items": [
+    {
+      "produtoId": "b10fa001-d4e5-417c-bd8f-cc3c5df81b2e",
+      "sku": "VTK011965",
+      "nome": "Violão Tagima Gran Reserva Juninho Afram Dark Mahogany",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 833.44,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1234.73,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "a0f3ff88-cf19-4045-b0ac-32e8edd5f965",
+      "sku": "VTK000760",
+      "nome": "Cadeira Gamer ThunderX3 TGC12 Loft Grafite",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 962.89,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1426.5,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "c69a93b1-5567-40fc-a0e5-3ed5a36b5deb",
+      "sku": "VTK011866",
+      "nome": "Fech Pta Diant Eletr C/trav Vw Tiguan Gi 09a11 D",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 1013.47,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1564,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "659ca4f3-be79-4765-aaa6-528561e8d19d",
+      "sku": "VTK011867",
+      "nome": "Fech Pta Diant Eletr C/trav Vw Tiguan Gi 09a11 E",
+      "fornecedor": "SHOPPECAS",
+      "dsliteFornecedorId": "103",
+      "custo": 1013.47,
+      "estoque": 100,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1564,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "f67e17b3-8aa4-4303-b04e-22f0e6a7b083",
+      "sku": "VTK000395",
+      "nome": "Cadeira Ergonômica ThunderX3 Yama1 Vermelha",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 1036.96,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1600.25,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    }
+  ]
+}

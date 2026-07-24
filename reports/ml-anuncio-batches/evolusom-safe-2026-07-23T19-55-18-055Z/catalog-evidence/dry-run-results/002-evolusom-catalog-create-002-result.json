@@ -1,0 +1,138 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/002-evolusom-catalog-create-002.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-002",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "73961361-53a0-41ec-a09a-615a7215d95e",
+      "sku": "VTK019038",
+      "category": {
+        "id": "MLB30162",
+        "nome": "Amperímetros",
+        "dominio": "MLB-CLAMP_METERS"
+      },
+      "basePrice": 329.43,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0bb807c5-99a6-45bd-9e57-c04f8b389b5e",
+      "sku": "VTK017920",
+      "category": {
+        "id": "MLB236047",
+        "nome": "Alicates de Bico",
+        "dominio": "MLB-LONG_NOSE_PLIERS"
+      },
+      "basePrice": 46.71,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d127a44a-9282-4da7-9c62-64de8800241a",
+      "sku": "VTK018238",
+      "category": {
+        "id": "MLB188425",
+        "nome": "Alicate Desencapador",
+        "dominio": "MLB-WIRE_STRIPPERS_AND_WIRE_STRIPPING_PLIERS"
+      },
+      "basePrice": 73.29,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ecbcdad8-db77-45dc-875c-ea4b2172a9e9",
+      "sku": "VTK018239",
+      "category": {
+        "id": "MLB188428",
+        "nome": "Alicate Universal",
+        "dominio": "MLB-LINEMAN_PLIERS"
+      },
+      "basePrice": 69.49,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "72f144ad-5948-4d1c-9d7e-d8cb42100aaf",
+      "sku": "VTK017221",
+      "category": {
+        "id": "MLB439330",
+        "nome": "Alicates de Corte",
+        "dominio": "MLB-CUTTING_PLIERS"
+      },
+      "basePrice": 63.16,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0bf6be56-986c-4f32-8386-04a217cac39e",
+      "sku": "VTK017229",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "basePrice": 161.33,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "512135ba-a87a-4168-9e67-e8176adf6f5d",
+      "sku": "VTK017264",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "basePrice": 221.67,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "cf5c1f11-8e83-4264-a0b6-e07509697ec5",
+      "sku": "VTK019205",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "basePrice": 526.37,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b5968200-7844-4534-8a12-803115e30310",
+      "sku": "VTK018500",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "basePrice": 706.52,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "3fd032f8-334a-4c6c-9631-72f675c533ce",
+      "sku": "VTK018604",
+      "nome": "Alto Falante Bravox Tr55u 5\" 40w Rms 4r Universal Par",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Largura do alto-falante"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-14T22-11-37-278Z/coin-cell-runs/001-coin-cell.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "coin-cell-001",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "24dea8aa-05e4-4a6b-ac84-93f9e9da9d47",
+      "sku": "VTK016175",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "basePrice": 61.75,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "07eb2950-6226-4fff-9356-9a51d7d402a5",
+      "sku": "VTK016195",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "basePrice": 68.91,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4f24ebe8-7522-49a2-83d4-7d531548814f",
+      "sku": "VTK015933",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "basePrice": 70.18,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "94482b32-d292-430b-8d18-2c4bfc3e1a22",
+      "sku": "VTK016216",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "basePrice": 76.06,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9733e7d4-bc78-442d-ba95-a35ee22a339f",
+      "sku": "VTK016222",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "basePrice": 83.22,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d9692d2c-98d6-470a-a705-54622f82e6fe",
+      "sku": "VTK015929",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "basePrice": 87.92,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "84d4d4ff-7204-4736-9a14-59c5fa2f58ae",
+      "sku": "VTK015930",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "basePrice": 87.92,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "bb504b60-3216-4703-a6e0-b80496136d6d",
+      "sku": "VTK015936",
+      "nome": "10 Baterias Cr2032 Panasonic (2 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "19f13f75-a909-4114-bd09-249935438afb",
+      "sku": "VTK015934",
+      "nome": "10 Baterias Cr2025 Panasonic (2 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7f6799c3-585c-4a25-8455-7000ba435c47",
+      "sku": "VTK015991",
+      "nome": "15 Baterias Cr2032 Panasonic (3 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

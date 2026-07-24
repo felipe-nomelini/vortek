@@ -1,0 +1,261 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/006-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-006",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "735ca2f4-69b8-4d81-93d7-c721650be7df",
+      "sku": "VTK017640",
+      "category": {
+        "id": "MLB433273",
+        "nome": "Gavetas de Fixação",
+        "dominio": "MLB-VEHICLE_STEREO_CAGES"
+      },
+      "anuncio": {
+        "id": "MLB7239005588",
+        "title": "Cinta Metálica Permak Para Auto Rádio Bosch 130",
+        "price": 54.75,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239005588-cinta-metalica-permak-para-auto-radio-bosch-130-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 39.11 → R$ 54.75."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "1bdbc526-1a1f-4927-a1d2-148506f84f0a",
+      "sku": "VTK018492",
+      "category": {
+        "id": "MLB72503",
+        "nome": "Climatizador Portátil",
+        "dominio": "MLB-PORTABLE_EVAPORATIVE_AIR_COOLERS"
+      },
+      "anuncio": {
+        "id": "MLB7239005700",
+        "title": "Climatizador Evaporativo Symphony Diet 8i 8l 127v 60hz 127v",
+        "price": 897.33,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239005700-climatizador-evaporativo-symphony-diet-8i-8l-127v-60hz-127v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 749.85 → R$ 897.33."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "4ed6d374-c7f1-496c-afa1-bb6a12bccdcf",
+      "sku": "VTK017323",
+      "category": {
+        "id": "MLB38205",
+        "nome": "Para TV",
+        "dominio": "MLB-TV_REMOTE_CONTROLS"
+      },
+      "anuncio": {
+        "id": "MLB7239005768",
+        "title": "Controle Remoto Mxt 01374 Tv Samsung 4k Netflix",
+        "price": 61.79,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239005768-controle-remoto-mxt-01374-tv-samsung-4k-netflix-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 45.96 → R$ 61.79."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "2b00baa2-e74c-45df-a380-29de77f0cf37",
+      "sku": "VTK017688",
+      "category": {
+        "id": "MLB196072",
+        "nome": "Controles Remotos",
+        "dominio": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS"
+      },
+      "anuncio": {
+        "id": "MLB7239005854",
+        "title": "Controle Remoto Ar Condicionado Mxt 01300 Samsung",
+        "price": 61.06,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239005854-controle-remoto-ar-condicionado-mxt-01300-samsung-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 45.63 → R$ 61.06."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "66334528-bebb-48e7-9330-c329c57ed13c",
+      "sku": "VTK017576",
+      "category": {
+        "id": "MLB196072",
+        "nome": "Controles Remotos",
+        "dominio": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS"
+      },
+      "anuncio": {
+        "id": "MLB7239016738",
+        "title": "Controle Remoto Ar Condicionado Mxt 01315 York Gz-12a-e1",
+        "price": 65.06,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239016738-controle-remoto-ar-condicionado-mxt-01315-york-gz-12a-e1-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 47.37 → R$ 65.06."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ea2fe766-d9c3-46ad-b189-b2c90043d2ee",
+      "sku": "VTK018063",
+      "category": {
+        "id": "MLB196072",
+        "nome": "Controles Remotos",
+        "dominio": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS"
+      },
+      "anuncio": {
+        "id": "MLB7238972410",
+        "title": "Controle Remoto Mxt 01340 Ar Condicionado Split Artcool",
+        "price": 66.55,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238972410-controle-remoto-mxt-01340-ar-condicionado-split-artcool-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 49.99 → R$ 66.55."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "2ef8265f-99a0-4fef-86a9-09d0c25cba7e",
+      "sku": "VTK017996",
+      "category": {
+        "id": "MLB11883",
+        "nome": "Controles Remotos",
+        "dominio": "MLB-UNIVERSAL_CAR_REMOTES"
+      },
+      "anuncio": {
+        "id": "MLB7238972514",
+        "title": "Controle Remoto Jfa Acqua 1200 Branco",
+        "price": 121.56,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238972514-controle-remoto-jfa-acqua-1200-branco-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 103.63 → R$ 121.56."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "32da06c2-d52e-48e9-8e94-72b428ebd10f",
+      "sku": "VTK017978",
+      "category": {
+        "id": "MLB11883",
+        "nome": "Controles Remotos",
+        "dominio": "MLB-UNIVERSAL_CAR_REMOTES"
+      },
+      "anuncio": {
+        "id": "MLB7238972596",
+        "title": "Controle Stetsom Sx2 Ultra Grafite",
+        "price": 126.31,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238972596-controle-stetsom-sx2-ultra-grafite-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 106.13 → R$ 126.31."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "176a4745-f8ad-45c3-8f42-574d401a096a",
+      "sku": "VTK018555",
+      "category": {
+        "id": "MLB278076",
+        "nome": "Cordas para Instrumentos",
+        "dominio": "MLB-STRING_INSTRUMENT_STRINGS"
+      },
+      "anuncio": {
+        "id": "MLB7239006272",
+        "title": "Corda Giannini Contrabaixo Geebrl 6 0.030  Leve",
+        "price": 181.17,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239006272-corda-giannini-contrabaixo-geebrl-6-0030-leve-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 155.21 → R$ 181.17."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "698dd152-3b2b-4615-a9ad-e1db2cf40024",
+      "sku": "VTK001740",
+      "category": {
+        "id": "MLB260688",
+        "nome": "Busca-Pólos",
+        "dominio": "MLB-VOLTAGE_DETECTORS"
+      },
+      "anuncio": {
+        "id": "MLB7239006366",
+        "title": "Detector De Tensão Hkvolt Hikari",
+        "price": 99.68,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239006366-detector-de-tenso-hkvolt-hikari-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço ajustado automaticamente para R$ 82.91 para evitar frete/taxa desatualizados.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 82.91 → R$ 99.68."
+      ]
+    }
+  ],
+  "failed": []
+}

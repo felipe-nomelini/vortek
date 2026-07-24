@@ -1,0 +1,152 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/012-evolusom-catalog-create-012.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-012",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "39fd438d-5bee-4fac-8a8a-8d65e654b6fb",
+      "sku": "VTK004423",
+      "category": {
+        "id": "MLB5906",
+        "nome": "Leitores de Código de Barras",
+        "dominio": "MLB-BAR_CODE_SCANNERS"
+      },
+      "basePrice": 283.72,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8da178e0-a746-4e3a-8272-7cbbed68bca6",
+      "sku": "VTK001157",
+      "category": {
+        "id": "MLB49093",
+        "nome": "Lupas",
+        "dominio": "MLB-MAGNIFYING_GLASSES"
+      },
+      "basePrice": 75.89,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "59e3ed8d-333a-499d-8377-3502909a29aa",
+      "sku": "VTK017991",
+      "category": {
+        "id": "MLB29281",
+        "nome": "Mesas de Som",
+        "dominio": "MLB-SOUND_CONSOLES_AND_MIXERS"
+      },
+      "basePrice": 730.35,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "3c04ddfc-a789-43eb-8918-0f398ded5d8a",
+      "sku": "VTK002218",
+      "category": {
+        "id": "MLB4469",
+        "nome": "Microfones",
+        "dominio": "MLB-MICROPHONES"
+      },
+      "basePrice": 125.58,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "c1586888-7a8e-4553-954d-530816c2d000",
+      "sku": "VTK017932",
+      "category": {
+        "id": "MLB235594",
+        "nome": "Morsas",
+        "dominio": "MLB-VISES"
+      },
+      "basePrice": 125.95,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9817c9d6-b436-441f-bef3-66a24fa6fb34",
+      "sku": "VTK018595",
+      "category": {
+        "id": "MLB3385",
+        "nome": "Módulos Amplificadores",
+        "dominio": "MLB-VEHICLE_AMPLIFIERS"
+      },
+      "basePrice": 681.35,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ebb97279-ff85-4141-8978-16408c4d8e67",
+      "sku": "VTK017769",
+      "category": {
+        "id": "MLB9635",
+        "nome": "Placas de Rede",
+        "dominio": "MLB-NETWORK_CARDS"
+      },
+      "basePrice": 142.18,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "a61b46d2-bd8e-4552-98b9-e15bf512bbf3",
+      "sku": "VTK018925",
+      "nome": "Kit Telefone Intelbras Celular Fixo Gsm Cfa4212",
+      "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB1053",
+            "nome": "Telefones"
+          },
+          "missing": [
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6749a6a8-ea48-4057-bdae-f02dc8dadecd",
+      "sku": "VTK018198",
+      "nome": "Liquidificador Philco Ph900 Com Filtro 12 Velocidades 3 Litros Vermelho 127v",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB73055",
+            "nome": "Liquidificadores"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "aac0b9b3-eafd-4013-a7c3-a68118e9b81a",
+      "sku": "VTK017760",
+      "nome": "Miniprocessador Agratto Ampr01i-01 350ml 100w 127v",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB31674",
+            "nome": "Processadores"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

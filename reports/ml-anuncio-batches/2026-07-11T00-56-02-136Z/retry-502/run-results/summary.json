@@ -1,0 +1,36 @@
+{
+  "startedAt": "2026-07-11T02:52:06.858Z",
+  "baseUrl": "https://app.vortek.shop",
+  "sourceDir": "reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/retry-502",
+  "excludedSuppliers": [
+    "SHOPPECAS"
+  ],
+  "batches": [
+    {
+      "fileName": "001-ml-create-001.json",
+      "manifestPath": "reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/retry-502/run-results/run-001-ml-create-001.json",
+      "resultPath": "reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/retry-502/run-results/001-ml-create-001-result.json",
+      "exitCode": 2,
+      "originalCount": 10,
+      "excludedCount": 0,
+      "executedCount": 10,
+      "createdCount": 0,
+      "failedCount": 10,
+      "validation": {
+        "selected": 10,
+        "withMlItemId": 1,
+        "withLinkedAnuncio": 1,
+        "semAnuncioStill": 9
+      }
+    }
+  ],
+  "totals": {
+    "sourceItems": 10,
+    "excludedItems": 0,
+    "executedItems": 10,
+    "createdItems": 0,
+    "failedItems": 10,
+    "withMlItemId": 1,
+    "withLinkedAnuncio": 1
+  }
+}

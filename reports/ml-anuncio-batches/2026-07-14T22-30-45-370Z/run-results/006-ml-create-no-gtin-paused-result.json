@@ -1,0 +1,54 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-14T22-30-45-370Z/006-ml-create-no-gtin-paused.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-no-gtin-paused",
+  "selected": 4,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "8cb5d3fd-bc1b-43b8-ae57-90d883127c28",
+      "sku": "VTK015924",
+      "nome": "VTK015924",
+      "error": "Produto sem estoque. Sincronize estoque ou aguarde disponibilidade antes de anunciar.",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "error": "Produto sem estoque. Sincronize estoque ou aguarde disponibilidade antes de anunciar."
+      }
+    },
+    {
+      "produtoId": "cd773c34-b7bc-4d7a-b461-7e4e272147f1",
+      "sku": "VTK015937",
+      "nome": "VTK015937",
+      "error": "Produto sem estoque. Sincronize estoque ou aguarde disponibilidade antes de anunciar.",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "error": "Produto sem estoque. Sincronize estoque ou aguarde disponibilidade antes de anunciar."
+      }
+    },
+    {
+      "produtoId": "1cef65d0-d601-4686-ab0c-58e0321fec79",
+      "sku": "VTK016048",
+      "nome": "VTK016048",
+      "error": "Produto sem estoque. Sincronize estoque ou aguarde disponibilidade antes de anunciar.",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "error": "Produto sem estoque. Sincronize estoque ou aguarde disponibilidade antes de anunciar."
+      }
+    },
+    {
+      "produtoId": "ed557c4d-00b3-4882-b152-9e05e3471c9c",
+      "sku": "VTK016182",
+      "nome": "VTK016182",
+      "error": "Produto sem estoque. Sincronize estoque ou aguarde disponibilidade antes de anunciar.",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "error": "Produto sem estoque. Sincronize estoque ou aguarde disponibilidade antes de anunciar."
+      }
+    }
+  ]
+}

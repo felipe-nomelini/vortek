@@ -1,0 +1,1927 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-14T22-30-45-370Z/run-results/run-002-ml-create-002.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "ml-create-002",
+  "selected": 100,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "a1575d1b-2279-4160-bf4e-69955f4f790c",
+      "sku": "VTK016067",
+      "nome": "24 Pilhas Alcalinas Aa Panasonic (4 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7e02dce0-3358-44d3-b3f5-ef280e13c7d8",
+      "sku": "VTK016022",
+      "nome": "18 Pilhas Comum D Panasonic (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6230d627-fdd7-4668-a69a-8ae4bc1f885f",
+      "sku": "VTK016157",
+      "nome": "40 Pilhas Comum Aaa Panasonic (10 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "fc04ed2b-f93d-463d-ad6c-201bad773bdb",
+      "sku": "VTK016002",
+      "nome": "16 Pilhas Alcalinas Premium Aaa Panasonic (8 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3d913730-7b19-4935-bcdc-f713bd1a9772",
+      "sku": "VTK016172",
+      "nome": "48 Pilhas Comum Aaa Panasonic (6 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c0931e32-864b-4ea7-8b0d-b6210a8998aa",
+      "sku": "VTK016018",
+      "nome": "18 Pilhas Alcalinas Premium Aa Panasonic (3 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "82ea7299-2111-458b-8758-8899cfe391c6",
+      "sku": "VTK016019",
+      "nome": "18 Pilhas Alcalinas Premium Aa Panasonic (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "ff02907e-21f6-47c9-b4a6-f0c8751764a7",
+      "sku": "VTK016001",
+      "nome": "16 Pilhas Alcalinas Premium Aaa Panasonic (4 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1fe69ffb-3818-4491-88cc-98cef5e916ca",
+      "sku": "VTK016068",
+      "nome": "24 Pilhas Alcalinas Aa Panasonic (6 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "430e2fc8-9328-44ba-9157-6af4c3c4fb07",
+      "sku": "VTK016069",
+      "nome": "24 Pilhas Alcalinas Aaa Panasonic (4 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "0e011661-d1f6-49af-b108-668825048dbe",
+      "sku": "VTK016174",
+      "nome": "5 Baterias Alcalinas 9v Panasonic",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "00c367c4-b9a1-473a-9098-79269f544c5d",
+      "sku": "VTK016047",
+      "nome": "20 Baterias Cr2032 Panasonic (4 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1b9d7f55-f4f8-401c-af30-ea4c3661fc3e",
+      "sku": "VTK016218",
+      "nome": "72 Pilhas Comum Aa Panasonic (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "30e79f75-8696-47c8-b56d-b324b66dddca",
+      "sku": "VTK016051",
+      "nome": "20 Pilhas Alcalinas Aaa Panasonic (10 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "a091ab41-5688-44b4-b617-c7447c53109f",
+      "sku": "VTK016220",
+      "nome": "8 Baterias Alcalinas 12v Panasonic Lrv08-1b",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3e784f4d-ac13-4906-a8c1-12478cacbdc5",
+      "sku": "VTK016061",
+      "nome": "20 Pilhas Comum D Panasonic (10 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f3dc8547-41fd-4888-af90-bdcb3d19fd27",
+      "sku": "VTK016020",
+      "nome": "18 Pilhas Alcalinas Premium Aaa Panasonic (3 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "ebf1e186-9c8d-4c7f-9bff-c059b34fd251",
+      "sku": "VTK016070",
+      "nome": "24 Pilhas Alcalinas Aaa Panasonic (6 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "967c0285-15b1-4476-923c-3488b59f3f5b",
+      "sku": "VTK016021",
+      "nome": "18 Pilhas Alcalinas Premium Aaa Panasonic (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "473b8d8c-049d-409b-bba1-68498bcfc28e",
+      "sku": "VTK016055",
+      "nome": "20 Pilhas Alcalinas Premium Aa Panasonic (10 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "988e1232-06f0-4de6-8db7-9732773f54ef",
+      "sku": "VTK016192",
+      "nome": "56 Pilhas Comum Aaa Panasonic (7 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "28e9fb9d-d0ca-4726-b184-6190976bf8ad",
+      "sku": "VTK016046",
+      "nome": "20 Baterias Cr2025 Panasonic (4 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3a32ed5b-be28-4ebd-a871-63089a6e8983",
+      "sku": "VTK016056",
+      "nome": "20 Pilhas Alcalinas Premium Aa Panasonic (5 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b6e61016-966d-4853-81c7-2410a8b95303",
+      "sku": "VTK016241",
+      "nome": "80 Pilhas Comum Aa Panasonic (10 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "05e3ecfd-2953-4f60-996d-2acded138e2f",
+      "sku": "VTK016085",
+      "nome": "28 Pilhas Alcalinas Aa Panasonic (7 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e6af5314-cd58-43d4-a51e-c4e1929b4caf",
+      "sku": "VTK016199",
+      "nome": "6 Pilhas Alcalinas D Panasonic (3  Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b09092e1-6890-4de5-a65c-3ac0fa7cb4b4",
+      "sku": "VTK016243",
+      "nome": "9 Baterias Alcalinas 12v Panasonic Lrv08-1b",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7e982af3-d2ee-4db1-8f24-4a99726bcb4d",
+      "sku": "VTK016104",
+      "nome": "30 Pilhas Alcalinas Aa Panasonic (5 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8cb91e40-63ac-4caa-88a0-2f2a8313ab65",
+      "sku": "VTK016057",
+      "nome": "20 Pilhas Alcalinas Premium Aaa Panasonic (10 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6c4225ba-76e3-48a9-8b2a-bd96d373577a",
+      "sku": "VTK016194",
+      "nome": "6 Baterias Alcalinas 9v Panasonic",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "366f874a-c38c-489e-908b-59735c2d7b09",
+      "sku": "VTK016227",
+      "nome": "8 Pilhas Alcalinas C Panasonic (4  Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d28958e4-2b84-4f10-9e65-0fd9466eb53c",
+      "sku": "VTK016058",
+      "nome": "20 Pilhas Alcalinas Premium Aaa Panasonic (5 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f5dfc568-36cf-4f53-b7c4-e9381d2087af",
+      "sku": "VTK016086",
+      "nome": "28 Pilhas Alcalinas Aaa Panasonic (7 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "34f659fb-ac5a-4596-ba60-bd8610bed0cb",
+      "sku": "VTK016105",
+      "nome": "30 Pilhas Alcalinas Aaa Panasonic (5 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "87e48eda-b39b-4f0d-90ab-001ebd71122c",
+      "sku": "VTK016213",
+      "nome": "64 Pilhas Comum Aaa Panasonic (8 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "dcdbd476-d43b-408a-807a-a5c7086c2df7",
+      "sku": "VTK016083",
+      "nome": "25 Baterias Cr2032 Panasonic (5 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7954d9a2-e60b-400f-a686-274b46cf3a26",
+      "sku": "VTK016072",
+      "nome": "24 Pilhas Alcalinas Premium Aa Panasonic (4 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b42138a2-4328-4968-8640-9aaeddd7be18",
+      "sku": "VTK016071",
+      "nome": "24 Pilhas Alcalinas Premium AA Panasonic (12 Cartelas C/2 Un)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c9b510a5-bf9e-4baa-be8c-65cc921d8fe9",
+      "sku": "VTK015925",
+      "nome": "10 Baterias Alcalinas 12v Lrv08 Panasonic (10 Cartelas)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3527b9c5-fb31-47a8-b54d-b4d2e9e70ae8",
+      "sku": "VTK015926",
+      "nome": "10 Baterias Alcalinas 12v Panasonic Lrv08-1b",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e1ebc8f3-13a7-47a4-bac2-394abbf07c36",
+      "sku": "VTK015922",
+      "nome": "02 Baterias 2CR5 6v Panasonic",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "24fc1b61-cf93-4bb0-922b-952af47204d9",
+      "sku": "VTK016109",
+      "nome": "32 Pilhas Alcalinas Aa Panasonic (8 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f32ebba1-1869-42e6-bd81-b1517e4da803",
+      "sku": "VTK016073",
+      "nome": "24 Pilhas Alcalinas Premium Aa Panasonic (6 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "894ee9c8-1c74-40e3-908c-44e5c5ade378",
+      "sku": "VTK016143",
+      "nome": "4 Pilhas Recarregaveis Eneloop Std Aaa Panasonic (2 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1788aef3-fcfa-4f1d-811d-db359fb80113",
+      "sku": "VTK016082",
+      "nome": "25 Baterias Cr2025 Panasonic (5 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "a2f16ddb-c55d-4b43-99f0-7fc6e7ec636c",
+      "sku": "VTK016075",
+      "nome": "24 Pilhas Alcalinas Premium Aaa Panasonic (4 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f2128fb3-06f2-446a-a37e-fb9c015a5e00",
+      "sku": "VTK016120",
+      "nome": "36 Pilhas Alcalinas Aa Panasonic (6 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "af98fbff-1341-4f4a-90b5-79b947e12ad5",
+      "sku": "VTK016110",
+      "nome": "32 Pilhas Alcalinas Aaa Panasonic (8 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2bbaebe1-cc07-4721-9958-28c9ee010903",
+      "sku": "VTK016074",
+      "nome": "24 Pilhas Alcalinas Premium AAA Panasonic (12 Cartelas C/2 Un)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "61314f6e-dd53-4e75-9b69-09bc510c12db",
+      "sku": "VTK016219",
+      "nome": "72 Pilhas Comum Aaa Panasonic (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d75f816f-cd50-49f1-b522-2bbce1420435",
+      "sku": "VTK016215",
+      "nome": "7 Baterias Alcalinas 9v Panasonic",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "388287cf-a1c9-4506-9145-97edbe6ac39e",
+      "sku": "VTK016076",
+      "nome": "24 Pilhas Alcalinas Premium Aaa Panasonic (6 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "86f64369-c5df-4542-9737-084180be329c",
+      "sku": "VTK016037",
+      "nome": "2 Tubos Pilha Comum Aaa C/40un Cada",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c4b43754-f463-47d4-8692-9733da81f4c2",
+      "sku": "VTK016121",
+      "nome": "36 Pilhas Alcalinas Aa Panasonic (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8aed0504-7002-4524-b5f4-be2bd3889c7e",
+      "sku": "VTK016122",
+      "nome": "36 Pilhas Alcalinas Aaa Panasonic (6 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "27004dfa-5ba3-405d-8485-154f439cd08a",
+      "sku": "VTK016103",
+      "nome": "30 Baterias Cr2032 Panasonic (6 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "be8aa635-3caa-4575-a0ae-1eccb1f2969d",
+      "sku": "VTK015940",
+      "nome": "10 Pilhas Alcalinas C Panasonic (5  Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "fe4ffb31-a91a-42b9-b4d5-5e98d1b826b2",
+      "sku": "VTK016228",
+      "nome": "8 Pilhas Alcalinas D Panasonic (4  Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2985de12-05ee-4976-a6d2-94840db1209a",
+      "sku": "VTK016036",
+      "nome": "2 Tubos Pilha Comum Aa C/52un Cada Panasonic",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "84b7eccd-bd6f-4c1b-a663-2245202f0846",
+      "sku": "VTK016087",
+      "nome": "28 Pilhas Alcalinas Premium Aa Panasonic (7 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "328c4795-a4bf-4210-a33b-6141222e4ea1",
+      "sku": "VTK016242",
+      "nome": "80 Pilhas Comum Aaa Panasonic (10 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "de2124b1-a782-4f35-bdd1-2d14c88edced",
+      "sku": "VTK016123",
+      "nome": "36 Pilhas Alcalinas Aaa Panasonic (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f2af16df-f351-4fa4-a2b8-0f6951d9f162",
+      "sku": "VTK016106",
+      "nome": "30 Pilhas Alcalinas Premium Aa Panasonic (5 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "75ffd4d5-9232-48de-8d16-575d41a13654",
+      "sku": "VTK016221",
+      "nome": "8 Baterias Alcalinas 9v Panasonic",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7556b6c9-d67f-4ad0-b14c-76e39d0f89dc",
+      "sku": "VTK016160",
+      "nome": "42 Pilhas Alcalinas Aa Panasonic (7 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "9dbdb4fd-6cb6-4933-9907-fdbb4d58e987",
+      "sku": "VTK016151",
+      "nome": "40 Pilhas Alcalinas Aa Panasonic (10 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "625b7615-85ed-481e-8abb-34eb945ca6cb",
+      "sku": "VTK016142",
+      "nome": "4 Pilhas Recarregaveis Eneloop Std Aa Panasonic (2 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "66d3610b-b78a-4171-98b2-8ec575419e5f",
+      "sku": "VTK016102",
+      "nome": "30 Baterias Cr2025 Panasonic (6 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "178d7b3e-f969-4f57-ae0b-be2cfa838f35",
+      "sku": "VTK016088",
+      "nome": "28 Pilhas Alcalinas Premium Aaa Panasonic (7 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "afffb57b-97b5-47ec-a615-231ca820deaa",
+      "sku": "VTK016107",
+      "nome": "30 Pilhas Alcalinas Premium Aaa Panasonic (5 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "a1fec127-8c18-4d2d-9700-27a5b873b1e4",
+      "sku": "VTK016161",
+      "nome": "42 Pilhas Alcalinas Aaa Panasonic (7 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "198cccd8-1c28-45a3-a916-c5b262b4446b",
+      "sku": "VTK016152",
+      "nome": "40 Pilhas Alcalinas Aaa Panasonic (10 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "158b0d1e-e0fd-47aa-8813-201c05bee935",
+      "sku": "VTK016119",
+      "nome": "35 Baterias Cr2032 Panasonic (7 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "05b3aefb-d6a0-44aa-be7b-c1adef63f676",
+      "sku": "VTK016111",
+      "nome": "32 Pilhas Alcalinas Premium Aa Panasonic (8 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b1ffe8d6-a7e2-403c-93f2-5bf7427de0b4",
+      "sku": "VTK016244",
+      "nome": "9 Baterias Alcalinas 9v Panasonic",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "157f1443-f2cf-4c16-ad4d-b62b08ff18bc",
+      "sku": "VTK015960",
+      "nome": "12 Pilhas Alcalinas C Panasonic (6  Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "81b90339-513b-4adb-9db0-de4188f17d37",
+      "sku": "VTK016167",
+      "nome": "48 Pilhas Alcalinas Aa Panasonic (8 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2a6d6224-eb0f-4661-a3fe-32df5911e823",
+      "sku": "VTK016124",
+      "nome": "36 Pilhas Alcalinas Premium Aa Panasonic (6 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "378da5b3-d00f-4c06-9c1f-0759a70e7115",
+      "sku": "VTK015941",
+      "nome": "10 Pilhas Alcalinas D Panasonic (5  Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "0d20de01-489a-4d85-b8a7-62ac18239ad0",
+      "sku": "VTK016118",
+      "nome": "35 Baterias Cr2025 Panasonic (7 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c83003da-7291-4343-a2eb-ab3af2e1216d",
+      "sku": "VTK016112",
+      "nome": "32 Pilhas Alcalinas Premium Aaa Panasonic (8 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f47c3c2c-229f-4f3c-8db2-fce97cf9e39f",
+      "sku": "VTK016168",
+      "nome": "48 Pilhas Alcalinas Aaa Panasonic (8 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2e77ea19-b693-4859-bc45-7110309c2c1d",
+      "sku": "VTK016125",
+      "nome": "36 Pilhas Alcalinas Premium Aa Panasonic (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "71fddc7e-b4e9-472a-ac5e-a4257bfd3eee",
+      "sku": "VTK015927",
+      "nome": "10 Baterias Alcalinas 9v Panasonic",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "956a2291-8e29-44e2-a64a-c9f50f03a85b",
+      "sku": "VTK016150",
+      "nome": "40 Baterias Cr2032 Panasonic (8 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "bcf4eed1-675a-46e3-b303-f7f1c94aae5a",
+      "sku": "VTK016206",
+      "nome": "6 Pilhas Recarregaveis Eneloop Std Aaa Panasonic (3 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1ca97717-47f2-43e1-91a4-6daf8923bb32",
+      "sku": "VTK016126",
+      "nome": "36 Pilhas Alcalinas Premium Aaa Panasonic (6 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2779e315-65b5-48bb-a9ad-65cd8d8e76cc",
+      "sku": "VTK016187",
+      "nome": "54 Pilhas Alcalinas Aa Panasonic (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b941faa2-7cf2-498b-aa71-af423d6b0eb2",
+      "sku": "VTK015977",
+      "nome": "14 Pilhas Alcalinas C Panasonic (7  Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8ede24aa-7f7f-4ba5-93e6-18ae3cfef265",
+      "sku": "VTK016127",
+      "nome": "36 Pilhas Alcalinas Premium Aaa Panasonic (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1fa46197-ccec-41ef-9ba0-b9fb6e3f18e6",
+      "sku": "VTK016095",
+      "nome": "3 Tubos Pilha Comum Aaa C/40un Cada",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1d8fe53e-a890-44c0-81c6-a950481c1a07",
+      "sku": "VTK016162",
+      "nome": "42 Pilhas Alcalinas Premium Aa Panasonic (7 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "00ae5b7d-c049-4612-890c-868595ea89b7",
+      "sku": "VTK016149",
+      "nome": "40 Baterias Cr2025 Panasonic (8 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2f5d5241-4dd7-47b4-92cd-7680a0794f11",
+      "sku": "VTK016153",
+      "nome": "40 Pilhas Alcalinas Premium Aa Panasonic (10 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "51e91ee6-5217-4207-8dc3-9f1222fd4476",
+      "sku": "VTK016188",
+      "nome": "54 Pilhas Alcalinas Aaa Panasonic (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6cfad522-b262-439d-9887-0c7971e0311f",
+      "sku": "VTK016166",
+      "nome": "45 Baterias Cr2032 Panasonic (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "97613448-9e2d-4d3a-98fe-f77ea9ecf8d5",
+      "sku": "VTK015961",
+      "nome": "12 Pilhas Alcalinas D Panasonic (6  Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d8aa5ca2-4b88-49bc-b32c-ff32fe7690f4",
+      "sku": "VTK016039",
+      "nome": "20 Baterias Alcalinas 12v Panasonic Lr-V08-1bt (2 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "df0b2c31-edd7-48c8-bb01-da014444e61f",
+      "sku": "VTK016094",
+      "nome": "3 Tubos Pilha Comum Aa C/52un Cada Panasonic",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7a9bad92-e2c0-4698-bd4e-11f35b50e6d6",
+      "sku": "VTK016208",
+      "nome": "60 Pilhas Alcalinas Aa Panasonic (10 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

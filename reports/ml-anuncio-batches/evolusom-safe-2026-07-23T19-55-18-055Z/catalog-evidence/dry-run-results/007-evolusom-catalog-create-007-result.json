@@ -1,0 +1,138 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/007-evolusom-catalog-create-007.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-007",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "381240fd-88a1-4b16-8802-7b4ee043dc97",
+      "sku": "VTK018712",
+      "category": {
+        "id": "MLB277715",
+        "nome": "Antenas",
+        "dominio": "MLB-CELLPHONE_SIGNAL_BOOSTER_ANTENNAS"
+      },
+      "basePrice": 250.49,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b15206b3-9651-402e-a1b1-89d70a6e1de7",
+      "sku": "VTK019031",
+      "category": {
+        "id": "MLB432437",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 738.31,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "7662b862-f0b9-422c-b290-36a91b89094f",
+      "sku": "VTK017182",
+      "category": {
+        "id": "MLB54168",
+        "nome": "Cabos de Dados",
+        "dominio": "MLB-DATA_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 40.32,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e8674c3c-3f08-4334-ad46-264e6f16fae8",
+      "sku": "VTK017453",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 42.95,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "de035017-d2c7-4aba-8c31-1d9377798e26",
+      "sku": "VTK017332",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 50.26,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "213e9b98-abe7-43ab-a94b-e3787ff5301e",
+      "sku": "VTK017334",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 89.62,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0523a7d3-ad05-4145-bd38-861394fa8460",
+      "sku": "VTK018479",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 186.15,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "27ea6643-9a65-460b-b273-b4ceff3ef159",
+      "sku": "VTK017475",
+      "category": {
+        "id": "MLB270088",
+        "nome": "Cabos de Rede",
+        "dominio": "MLB-NETWORK_CABLES"
+      },
+      "basePrice": 1338.31,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8398a3fb-8b3b-47e4-8530-c5cc54ec40fe",
+      "sku": "VTK017212",
+      "category": {
+        "id": "MLB272149",
+        "nome": "Splitters de Fibra Óptica",
+        "dominio": "MLB-FIBER_OPTIC_SPLITTERS"
+      },
+      "basePrice": 49.75,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "aede4efb-eb6d-4bfe-9bbb-bdb616fb02f3",
+      "sku": "VTK017787",
+      "nome": "Cabo De Aço Galvanizado Vonder 1,5mm 6x7 Bobina 500m",
+      "error": "Atributos obrigatórios pendentes: Quantidade de torções por cabo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB455240",
+            "nome": "Cabos de Aço Galvanizado"
+          },
+          "missing": [
+            "Quantidade de torções por cabo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

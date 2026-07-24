@@ -1,0 +1,946 @@
+{
+  "batchId": "evolusom-publish-023",
+  "strategy": "dry_run_and_exact_catalog_approved",
+  "items": [
+    {
+      "produtoId": "6529db06-96ae-4f36-873c-e673c801cdaa",
+      "sku": "VTK017783",
+      "nome": "Quantum Qps Plus4004 Sensor De Estacion. C/ 4 Sensores Sonoros",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 134.9,
+      "estoque": 25,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 191.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898382148075",
+        "validatedNcm": "87089990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45905",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "48598",
+          "value_name": "Quantum"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "49109629",
+          "value_name": "Quantum qps plus4004"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "15276966",
+          "value_name": "Carros, picapes e SUVs"
+        },
+        {
+          "id": "OEM",
+          "value_id": "23270714",
+          "value_name": "Quantum"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "23270713",
+          "value_name": "7898382148075"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB26280451",
+        "catalogProductName": "Quantum Qps Plus4004 Sensor De Estacion. 4 Sensores Sonoros",
+        "catalogDomainId": "MLB-VEHICLE_PARKING_SENSORS",
+        "categoryId": "MLB45905",
+        "categoryName": "Sensores de Estacionamento",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898382148075"
+      }
+    },
+    {
+      "produtoId": "d5c4e481-5712-4c0d-8783-5ad4c7bd86e0",
+      "sku": "VTK018118",
+      "nome": "Refil De Tinta Magenta Multilaser Epson T664 100ml",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 14.9,
+      "estoque": 14,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.09,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899838830254",
+        "validatedNcm": "32151900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3561",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "31163",
+          "value_name": "Multilaser"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "15412785",
+          "value_name": "Integradores"
+        },
+        {
+          "id": "INK_COLOR",
+          "value_id": "338780",
+          "value_name": "Magenta"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "37723560",
+          "value_name": "7899838830254"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB36922061",
+        "catalogProductName": "Refil De Tinta Para Impressoras Epson 100 Ml Magenta",
+        "catalogDomainId": "MLB-PRINTER_INKS",
+        "categoryId": "MLB3561",
+        "categoryName": "Tintas",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7899838830254"
+      }
+    },
+    {
+      "produtoId": "503d5406-8395-4b04-bae6-5194a0b18084",
+      "sku": "VTK018829",
+      "nome": "Refletor Led Elgin 400w 6500k Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 199.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 283.81,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908412526213",
+        "validatedNcm": "94054200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB189884",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "8870797",
+          "value_name": "Ultrafino"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "FLOOD_LIGHT_CASE_COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "LIGHT_BULB_TYPE",
+          "value_id": "344358",
+          "value_name": "LED"
+        },
+        {
+          "id": "FLOOD_LIGHT_INSTALLATION_TYPE",
+          "value_id": "344364",
+          "value_name": "Montável"
+        },
+        {
+          "id": "WITH_MOTION_SENSOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "49633970",
+          "value_name": "7908412526213"
+        },
+        {
+          "id": "IP_RATING",
+          "value_id": "13496130",
+          "value_name": "IP65"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB47355202",
+        "catalogProductName": "Refletor Super Led Ultrafino 400w 6500k Elgin Modelo",
+        "catalogDomainId": "MLB-FLOOD_LIGHTS",
+        "categoryId": "MLB189884",
+        "categoryName": "Refletores",
+        "linkedListingsInCategory": 5,
+        "validatedGtin": "7908412526213"
+      }
+    },
+    {
+      "produtoId": "8a878e68-5db7-460f-9f43-638b88b4c676",
+      "sku": "VTK017825",
+      "nome": "Régua Elétrica Max Eletron 19\" 08 Tomadas 10 âmperes",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.9,
+      "estoque": 23,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 117.16,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908060203306",
+        "validatedNcm": "85354090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB63114",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "15425638",
+          "value_name": "Max Eletron"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "19482233",
+          "value_name": "8P10A"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "18033134",
+          "value_name": "Filtro de linha"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "OUTLETS_NUMBER",
+          "value_id": "5377254",
+          "value_name": "8"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129115",
+          "value_name": "1.5 m"
+        },
+        {
+          "id": "POWER",
+          "value_id": "40526227",
+          "value_name": "2.5 kW"
+        },
+        {
+          "id": "MAX_CURRENT",
+          "value_id": "5755450",
+          "value_name": "10 A"
+        },
+        {
+          "id": "WITH_USB",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_OVERLOAD_PROTECTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ELECTRICAL_NOISE_REDUCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "PLUGS_COMPATIBILITY",
+          "value_id": "19482260",
+          "value_name": "Norma nbr 14136"
+        },
+        {
+          "id": "PORTS_AND_CONNECTORS_TYPES",
+          "value_id": "19482261",
+          "value_name": "Pinos redondos de 10mm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "19482258",
+          "value_name": "7908060203306"
+        },
+        {
+          "id": "MPN",
+          "value_id": "8004945",
+          "value_name": "3269"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB23528142",
+        "catalogProductName": "Filtro de Linha Max Eletron com 8 Tomadas para Rack 19\" e Cabo de 1,5m",
+        "catalogDomainId": "MLB-POWER_STRIPS",
+        "categoryId": "MLB63114",
+        "categoryName": "Filtros de Linha",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7908060203306"
+      }
+    },
+    {
+      "produtoId": "bdd22a64-bf53-4d11-865c-97dd9a6eb776",
+      "sku": "VTK017821",
+      "nome": "Reparo Jbl Selenium Rpst302-x Para Super Tweeter St302-x",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.5,
+      "estoque": 23,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.33,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359530991",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3905",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "17265",
+          "value_name": "JBL"
+        },
+        {
+          "id": "LINE",
+          "value_id": "2486139",
+          "value_name": "Super Tweeter"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "2594072",
+          "value_name": "ST302-X"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_id": "24719556",
+          "value_name": "0 \""
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "19979142",
+          "value_name": "0"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "296918",
+          "value_name": "Tweeter"
+        },
+        {
+          "id": "WAYS_NUMBER",
+          "value_id": "8704194",
+          "value_name": "1"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_id": "25173754",
+          "value_name": "0"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_id": "161313",
+          "value_name": "125 W"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "37534935",
+          "value_name": "7896359530991"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB36764150",
+        "catalogProductName": "Tipo De Alto-falante Tweeter Jbl St302-x Para Carro/caminhonete 0 X 0 Unidades",
+        "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "linkedListingsInCategory": 5,
+        "validatedGtin": "7896359530991"
+      }
+    },
+    {
+      "produtoId": "65cf91e9-4975-4825-8c8b-6236c64fa2aa",
+      "sku": "VTK017872",
+      "nome": "Reparo Jbl Rpst330 Para Super Tweeter St330 Poly T",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 49.99,
+      "estoque": 21,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 86.41,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359538010",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3905",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16472",
+          "value_name": "Selenium"
+        },
+        {
+          "id": "LINE",
+          "value_id": "38770267",
+          "value_name": "Reparo St330"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "38770268",
+          "value_name": "Reparo St330"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_id": "48657671",
+          "value_name": "2.756 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_LENGTH",
+          "value_id": "48657672",
+          "value_name": "2.756 \""
+        },
+        {
+          "id": "COLOR",
+          "value_id": "283164",
+          "value_name": "Dourado"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_id": "945353",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "7452068",
+          "value_name": "1"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "296918",
+          "value_name": "Tweeter"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_id": "8704186",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_id": "2378563",
+          "value_name": "1250 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_id": "38770265",
+          "value_name": "100-5000"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "56957",
+          "value_name": "2.2 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "38770266",
+          "value_name": "7896359538010"
+        },
+        {
+          "id": "CONE_MATERIALS",
+          "value_id": "24795295",
+          "value_name": "Kapton"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB37709755",
+        "catalogProductName": "Reparo Tweeter Selenium ST330 1250W RMS 8 Ohms Dourado Kapton Carro",
+        "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "linkedListingsInCategory": 6,
+        "validatedGtin": "7896359538010"
+      }
+    },
+    {
+      "produtoId": "f4830746-74a9-401b-a711-2ccee41787d1",
+      "sku": "VTK017534",
+      "nome": "Reparo Jbl Selenium Rpd250-x Para Driver D250-x",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 50.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 87.53,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359508631",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB38250",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "17265",
+          "value_name": "JBL"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "POWER",
+          "value_id": "109880",
+          "value_name": "100 W"
+        },
+        {
+          "id": "TOLERANCE",
+          "value_id": "24473479",
+          "value_name": "5 %"
+        },
+        {
+          "id": "MOUNT_TYPE",
+          "value_id": "34878320",
+          "value_name": "PTH"
+        },
+        {
+          "id": "DIAMETER",
+          "value_id": "15999901",
+          "value_name": "1 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "35866185",
+          "value_name": "7896359508631"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB35295622",
+        "catalogProductName": "Reparo de Driver JBL D250X, Fenólico 100W",
+        "catalogDomainId": "MLB-RESISTORS",
+        "categoryId": "MLB38250",
+        "categoryName": "Resistores",
+        "linkedListingsInCategory": 6,
+        "validatedGtin": "7896359508631"
+      }
+    },
+    {
+      "produtoId": "9c77b5a6-03a8-43a1-bb04-7c2e30e2c9c1",
+      "sku": "VTK017970",
+      "nome": "Reparo Tweeter Shock Completo St-400 Selenium",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 24.9,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 55.43,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7892046021094",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3905",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "21174343",
+          "value_name": "Musicall"
+        },
+        {
+          "id": "LINE",
+          "value_id": "14789637",
+          "value_name": "Automotivo"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "3136158",
+          "value_name": "ST400"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_id": "48696034",
+          "value_name": "0.787 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_LENGTH",
+          "value_id": "48672879",
+          "value_name": "0.787 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_id": "48696035",
+          "value_name": "0.787 \""
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_id": "945353",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "7452068",
+          "value_name": "1"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "296918",
+          "value_name": "Tweeter"
+        },
+        {
+          "id": "WAYS_NUMBER",
+          "value_id": "7509882",
+          "value_name": "2"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_id": "8704186",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_id": "161271",
+          "value_name": "70 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_id": "38249879",
+          "value_name": "4000 a 20000 Hz"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "38907965",
+          "value_name": "7892046021094"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB37823742",
+        "catalogProductName": "Kit 4 Reparo Super Tweeter Musicall ST400 8 Ohms 150W RMS Preto",
+        "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7892046021094"
+      }
+    },
+    {
+      "produtoId": "b1f9c24c-9a5b-4e26-b1c7-ee0a8bda5172",
+      "sku": "VTK018455",
+      "nome": "Reparo Tweeter Shock Completo St-450 Trio",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 25.9,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 56.67,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7892046021254",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3905",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "21174343",
+          "value_name": "Musicall"
+        },
+        {
+          "id": "LINE",
+          "value_id": "38249877",
+          "value_name": "Shock ST 450 MT 450"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "38249878",
+          "value_name": "Reparo tweeter st450 MusicAll"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_id": "48663405",
+          "value_name": "4.528 \""
+        },
+        {
+          "id": "COLOR",
+          "value_id": "283165",
+          "value_name": "Cinza"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_id": "945353",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "7452068",
+          "value_name": "1"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "296918",
+          "value_name": "Tweeter"
+        },
+        {
+          "id": "WAYS_NUMBER",
+          "value_id": "7509882",
+          "value_name": "2"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_id": "8704186",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_id": "161528",
+          "value_name": "300 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_id": "38249879",
+          "value_name": "4000 a 20000 Hz"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "3001",
+          "value_name": "9 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "38249880",
+          "value_name": "7892046021254"
+        },
+        {
+          "id": "CONE_MATERIALS",
+          "value_id": "8756735",
+          "value_name": "Fenólico, Plástico"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "7889315",
+          "value_name": "110 dB"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB37331534",
+        "catalogProductName": "Reparo Super Tweeter MusicAll ST450 Trio 300W RMS 8 Ohms Cinza Kit 4",
+        "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7892046021254"
+      }
+    },
+    {
+      "produtoId": "2e386618-3225-41f1-90ea-b7ecd541d968",
+      "sku": "VTK018727",
+      "nome": "Resistencia Para Ferro De Solda Hikari Power 30 220v Conj 2 Pç",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 14.5,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.59,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810400598",
+        "validatedNcm": "85168090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB48611",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "34681492",
+          "value_name": "21K408K"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52053",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "198813",
+          "value_name": "220V"
+        },
+        {
+          "id": "SOLDERING_IRON_TYPE",
+          "value_id": "5572229",
+          "value_name": "Lápis"
+        },
+        {
+          "id": "POWER",
+          "value_id": "154354",
+          "value_name": "30 W"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_REMOVABLE_TIP",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "34681491",
+          "value_name": "7899810400598"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB34358269",
+        "catalogProductName": "Ferro de Solda Lápis Hikari 21K408K 30W Prateado para Soldagem Elétrica",
+        "catalogDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "categoryId": "MLB48611",
+        "categoryName": "Ferros de Solda",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7899810400598"
+      }
+    }
+  ]
+}

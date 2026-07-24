@@ -1,0 +1,10 @@
+{
+  "generatedAt": "2026-07-11T00:51:22.547Z",
+  "targets": 385,
+  "updated": 0,
+  "skipped": 385,
+  "stillMissingBrand": 385,
+  "minConfidence": 0.78,
+  "concurrency": 3,
+  "reportDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-brand-fill/2026-07-11T00-42-07-422Z"
+}

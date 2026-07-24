@@ -1,0 +1,1316 @@
+{
+  "batchId": "evolusom-publish-025",
+  "strategy": "dry_run_and_exact_catalog_approved",
+  "items": [
+    {
+      "produtoId": "fbc3d59d-5046-43ea-ace9-8247ea227645",
+      "sku": "VTK017910",
+      "nome": "Ssd Kingston Nv3 M.2 2280 Nvme 4.0 1tb",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 1127.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1740.59,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "740617344790",
+        "validatedNcm": "84717040",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1672",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16360",
+          "value_name": "Kingston"
+        },
+        {
+          "id": "LINE",
+          "value_id": "41394484",
+          "value_name": "NV3"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "41394485",
+          "value_name": "SNV3S/1000G"
+        },
+        {
+          "id": "CAPACITY",
+          "value_id": "9588",
+          "value_name": "1 TB"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52033",
+          "value_name": "Azul-escuro"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "84849154",
+          "value_name": "SNV3S/1000G"
+        },
+        {
+          "id": "DRIVE_STORAGE_TYPE",
+          "value_id": "122392",
+          "value_name": "SSD"
+        },
+        {
+          "id": "INTERFACES",
+          "value_id": "35182069",
+          "value_name": "NVMe 4.0"
+        },
+        {
+          "id": "HARD_DRIVE_AND_SSD_LOCATION",
+          "value_id": "96008",
+          "value_name": "Interno"
+        },
+        {
+          "id": "APPLICATIONS",
+          "value_id": "289315",
+          "value_name": "PC, Notebook"
+        },
+        {
+          "id": "HARD_DRIVE_AND_SSD_FORM_FACTOR",
+          "value_id": "47055573",
+          "value_name": "NVME 4.0"
+        },
+        {
+          "id": "EXTERNAL_HARD_DRIVE_AND_SSD_TYPE",
+          "value_id": "20923213",
+          "value_name": "Interno"
+        },
+        {
+          "id": "OPERATING_TEMPERATURE",
+          "value_id": "11642676",
+          "value_name": "0 °C - 70 °C"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_RAID",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_DUST_RESISTANT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "DATA_TRANSFER",
+          "value_id": "47055576",
+          "value_name": "6000 mb de leitura, 4000MB gravação"
+        },
+        {
+          "id": "CONNECTIVITY",
+          "value_id": "35182069",
+          "value_name": "NVMe 4.0"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "41394486",
+          "value_name": "740617344790"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_SHOCK_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SECURITY_DATA_SYSTEM",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CLOUD_BACKUP",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_3D_NAND_TECHNOLOGY",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_HEATSINK",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_RGB_LIGHTING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "OS_SUPPORTED",
+          "value_id": "10632017",
+          "value_name": "Windows 10 Pro, Windows 11, Linux, MacOS 10.13"
+        },
+        {
+          "id": "STORAGE_TEMPERATURE",
+          "value_id": "37746372",
+          "value_name": "-40 °C x 85 °C"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "13000157",
+          "value_name": "2.2 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "19085656",
+          "value_name": "0.22 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "8167140",
+          "value_name": "8 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "8626437",
+          "value_name": "7 g"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB39766120",
+        "catalogProductName": "SSD M.2 NVMe 1TB PCIe 4.0 Kingston NV3 Leitura 6000 MB/s e Gravação 4000 MB/s Unidade de Estado Sólido azul escuro",
+        "catalogDomainId": "MLB-HARD_DRIVES_AND_SSDS",
+        "categoryId": "MLB1672",
+        "categoryName": "HDs e SSDs",
+        "linkedListingsInCategory": 70,
+        "validatedGtin": "740617344790"
+      }
+    },
+    {
+      "produtoId": "d416d068-469b-49d8-8363-dd08943f331b",
+      "sku": "VTK000384",
+      "nome": "Suporte Articulado Para TV 14\"-56\" M2-PR Multivisão",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.95,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.95,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896643441231",
+        "validatedNcm": "73269090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB11529",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2716081",
+          "value_name": "Multivisão"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "19402150",
+          "value_name": "TFM2"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "COMPATIBLE_SCREEN_TYPES",
+          "value_id": "19402153",
+          "value_name": "Lcd led 4k smart"
+        },
+        {
+          "id": "MIN_SCREEN_SIZE",
+          "value_id": "7648804",
+          "value_name": "22 \""
+        },
+        {
+          "id": "MAX_SCREEN_SIZE",
+          "value_id": "7634726",
+          "value_name": "56 \""
+        },
+        {
+          "id": "STANDARDS_VESA",
+          "value_id": "3568440",
+          "value_name": "400x400, 100x100, 200x100, 300x200, 400x300, 200x200"
+        },
+        {
+          "id": "MOUNTING_PLACES",
+          "value_id": "7720908",
+          "value_name": "Parede"
+        },
+        {
+          "id": "IS_INCLINABLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_ARTICULATED_MOUNT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SWIVELLING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_FIXED_MOUNT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_MOTORIZED",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "8285231",
+          "value_name": "7896643441231"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "25840699",
+          "value_name": "Aço ao carbono"
+        },
+        {
+          "id": "SUPPORTED_SCREENS_NUMBER",
+          "value_id": "9235769",
+          "value_name": "1"
+        },
+        {
+          "id": "MAX_WEIGHT_SUPPORTED",
+          "value_id": "925813",
+          "value_name": "25 kg"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "11690711",
+          "value_name": "13 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "24449851",
+          "value_name": "5.5 cm"
+        },
+        {
+          "id": "MIN_WALL_DISTANCE",
+          "value_id": "7792003",
+          "value_name": "6.5 cm"
+        },
+        {
+          "id": "MAX_WALL_DISTANCE",
+          "value_id": "7949363",
+          "value_name": "21.5 cm"
+        },
+        {
+          "id": "UPPER_TILT",
+          "value_id": "9147438",
+          "value_name": "15 °"
+        },
+        {
+          "id": "LOWER_TILT",
+          "value_id": "9157142",
+          "value_name": "15 °"
+        },
+        {
+          "id": "ROTATION_ANGLE",
+          "value_id": "8670683",
+          "value_name": "180°"
+        },
+        {
+          "id": "INCLUDES_INSTALLATION_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_CABLE_ORGANIZER",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB23452111",
+        "catalogProductName": "Suporte Tv 14 -56 Articulado C/ Inclinação Multivisão M2-pr Cor Preto",
+        "catalogDomainId": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS",
+        "categoryId": "MLB11529",
+        "categoryName": "Suportes",
+        "linkedListingsInCategory": 33,
+        "validatedGtin": "7896643441231"
+      }
+    },
+    {
+      "produtoId": "87e2129f-2d51-4335-a5c0-6363a41b77a0",
+      "sku": "VTK018559",
+      "nome": "Suporte De Mesa Para Tv Multivisão De 32\" Até 65\" - Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 175.9,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 249.73,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896643442429",
+        "validatedNcm": "94032090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB11529",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2716081",
+          "value_name": "Multivisão"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "10575189",
+          "value_name": "STAND100"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "COMPATIBLE_SCREEN_TYPES",
+          "value_id": "7641580",
+          "value_name": "Curva"
+        },
+        {
+          "id": "MIN_SCREEN_SIZE",
+          "value_id": "7246735",
+          "value_name": "32 \""
+        },
+        {
+          "id": "MAX_SCREEN_SIZE",
+          "value_id": "7451691",
+          "value_name": "65 \""
+        },
+        {
+          "id": "STANDARDS_VESA",
+          "value_id": "3581823",
+          "value_name": "600x400"
+        },
+        {
+          "id": "MOUNTING_PLACES",
+          "value_id": "963436",
+          "value_name": "Mesa"
+        },
+        {
+          "id": "IS_INCLINABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_ARTICULATED_MOUNT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_SWIVELLING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_FIXED_MOUNT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "8285254",
+          "value_name": "7896643442429, 17896643442426"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "3325160",
+          "value_name": "Aço carbono"
+        },
+        {
+          "id": "SUPPORTED_SCREENS_NUMBER",
+          "value_id": "9235769",
+          "value_name": "1"
+        },
+        {
+          "id": "MAX_WEIGHT_SUPPORTED",
+          "value_id": "1020542",
+          "value_name": "30 kg"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "11409936",
+          "value_name": "35 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "26449664",
+          "value_name": "65 cm"
+        },
+        {
+          "id": "MIN_WALL_DISTANCE",
+          "value_id": "7990465",
+          "value_name": "35 cm"
+        },
+        {
+          "id": "MAX_WALL_DISTANCE",
+          "value_id": "7678301",
+          "value_name": "35 cm"
+        },
+        {
+          "id": "INCLUDES_INSTALLATION_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MPN",
+          "value_id": "11062873",
+          "value_name": "STAND100-PR, 4242"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB15355054",
+        "catalogProductName": "Suporte Multivisão Stand100 Mesa Tv/monitor 32 - 65 Preto",
+        "catalogDomainId": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS",
+        "categoryId": "MLB11529",
+        "categoryName": "Suportes",
+        "linkedListingsInCategory": 9,
+        "validatedGtin": "7896643442429"
+      }
+    },
+    {
+      "produtoId": "ce75825b-9c2e-4d76-bb75-b5224f81e6c6",
+      "sku": "VTK000478",
+      "nome": "Suporte Para Notebook Com Cooler NBC-11BK C3Tech",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 45.9,
+      "estoque": 39,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 81.36,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898555213104",
+        "validatedNcm": "84145990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB54182",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "8774306",
+          "value_name": "C3Tech"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24926111",
+          "value_name": "BASE REFRIGERADA NBC-11BK"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "2511571",
+          "value_name": "ABS, Aço, Plásticos, Plástico ABS acero"
+        },
+        {
+          "id": "MAX_LAPTOP_SIZE",
+          "value_id": "3664917",
+          "value_name": "14 \""
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7842445",
+          "value_name": "4 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "5760546",
+          "value_name": "25 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7855225",
+          "value_name": "33 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "15925532",
+          "value_name": "340 g"
+        },
+        {
+          "id": "POSITIONS_NUMBER",
+          "value_id": "1112245",
+          "value_name": "2"
+        },
+        {
+          "id": "USB_PORTS_NUMBER",
+          "value_id": "517204",
+          "value_name": "1"
+        },
+        {
+          "id": "FANS_NUMBER",
+          "value_id": "3664910",
+          "value_name": "1"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_ANTI_SLIP",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SILENT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24926114",
+          "value_name": "7898555213104, 7891196006180"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27493295",
+        "catalogProductName": "Base Refrigerada C3Tech NBC-11BK para Notebook 14\" Preto com Ventoinha Silenciosa",
+        "catalogDomainId": "MLB-EXTERNAL_LAPTOP_COOLERS_AND_FANS",
+        "categoryId": "MLB54182",
+        "categoryName": "Coolers Externos",
+        "linkedListingsInCategory": 30,
+        "validatedGtin": "7898555213104"
+      }
+    },
+    {
+      "produtoId": "59eda7a6-d2a4-4553-9d25-6383cfa1c027",
+      "sku": "VTK017211",
+      "nome": "Suporte Para Microfone De Bateria/precussão Ask B10",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 67.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 108.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898939972504",
+        "validatedNcm": "92099900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB271200",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4238929",
+          "value_name": "ASK"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24739271",
+          "value_name": "PAPTB100001"
+        },
+        {
+          "id": "DRUM_CLAMP_COMPATIBILITY",
+          "value_id": "4407593",
+          "value_name": "Microfone"
+        },
+        {
+          "id": "MIN_COMPATIBLE_DIAMETER",
+          "value_id": "48616151",
+          "value_name": "1.1 cm"
+        },
+        {
+          "id": "MAX_COMPATIBLE_DIAMETER",
+          "value_id": "48616152",
+          "value_name": "1.1 cm"
+        },
+        {
+          "id": "IS_MULTI_CLAMP",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ADJUSTABLE_ANGLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "84051293",
+          "value_name": "Plástico, Aço, Alumínio"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24739270",
+          "value_name": "7898939972504"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27380888",
+        "catalogProductName": "Microfone De Bateria E Percussão Clamp Ask B10",
+        "catalogDomainId": "MLB-DRUM_CLAMPS",
+        "categoryId": "MLB271200",
+        "categoryName": "Clamps",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7898939972504"
+      }
+    },
+    {
+      "produtoId": "9bb36bae-d17e-41e2-983e-df7fff19e78a",
+      "sku": "VTK018934",
+      "nome": "Suporte Para Caixa Acústica Ask Ou Cubo Com Regulagem Inclinação",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 93.6,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 140.25,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898939971378",
+        "validatedNcm": "92099900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB278064",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4238929",
+          "value_name": "ASK"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "37053837",
+          "value_name": "Sl113"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "1233289",
+          "value_name": "De piso"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENTS",
+          "value_id": "2106570",
+          "value_name": "Guitarra"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "4837600",
+          "value_name": "Aço"
+        },
+        {
+          "id": "INSTRUMENT_CAPACITY",
+          "value_id": "24276403",
+          "value_name": "1"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "1125579",
+          "value_name": "60 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "127485",
+          "value_name": "1 m"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "1125677",
+          "value_name": "41.5 cm"
+        },
+        {
+          "id": "MAX_WEIGHT_SUPPORTED",
+          "value_id": "2508303",
+          "value_name": "50 kg"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "35879181",
+          "value_name": "7898939971378"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB35305936",
+        "catalogProductName": "Suporte Para Amplificador Cubo E Acordeon Ask Sl113",
+        "catalogDomainId": "MLB-STRING_INSTRUMENT_STANDS_AND_WALL_HANGERS",
+        "categoryId": "MLB278064",
+        "categoryName": "Suportes",
+        "linkedListingsInCategory": 9,
+        "validatedGtin": "7898939971378"
+      }
+    },
+    {
+      "produtoId": "81033b15-8416-4f9f-9864-cc1d29b6b864",
+      "sku": "VTK017983",
+      "nome": "Switch 08 Portas Intelbras Sf802af 10/100 Mbps Poe Ativo",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 799.9,
+      "estoque": 17,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1185.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637644594",
+        "validatedNcm": "85176234",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1708",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "14801783",
+          "value_name": "SF 802 AF"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "40364692",
+          "value_name": "1021300160"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "14801782",
+          "value_name": "7896637644594"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB20572763",
+        "catalogProductName": "Switch PoE Intelbras SF 802 AF de 8 Portas",
+        "catalogDomainId": "MLB-NETWORK_SWITCHES",
+        "categoryId": "MLB1708",
+        "categoryName": "Interruptores de Rede",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7896637644594"
+      }
+    },
+    {
+      "produtoId": "2904d342-2a4b-4864-b846-83557d192804",
+      "sku": "VTK019049",
+      "nome": "Teclado Gamer Bloody B540 Mecânico De Alta Performance Usb Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 673.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 998.37,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "4711421911030",
+        "validatedNcm": "84716052",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB418472",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16745",
+          "value_name": "A4Tech"
+        },
+        {
+          "id": "LINE",
+          "value_id": "15774022",
+          "value_name": "Bloody gamer"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17591313",
+          "value_name": "Bloody B540"
+        },
+        {
+          "id": "KEYBOARD_COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "LAYOUT",
+          "value_id": "110991",
+          "value_name": "QWERTY"
+        },
+        {
+          "id": "PC_KEYBOARDS_SWITCH_TYPE",
+          "value_id": "110996",
+          "value_name": "Cherry MX Black"
+        },
+        {
+          "id": "PC_KEYBOARD_ARCHITECTURE",
+          "value_id": "108463",
+          "value_name": "Mecânico"
+        },
+        {
+          "id": "IS_SPLASH_RESISTANT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_NUMERIC_KEYBOARD",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_RETROILLUMINATION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REMOVABLE_CABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "17591327",
+          "value_name": "4711421911030"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22313191",
+        "catalogProductName": "Teclado Mecânico A4Tech Bloody B540 Gamer Retroiluminado Preto Cherry MX Black",
+        "catalogDomainId": "MLB-PC_KEYBOARDS",
+        "categoryId": "MLB418472",
+        "categoryName": "Teclados Físicos",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "4711421911030"
+      }
+    },
+    {
+      "produtoId": "7e4d3eae-5b29-4620-8616-a0b5bab0e7dd",
+      "sku": "VTK017454",
+      "nome": "Teclado Usb Multimídia C3tech Kb-m10bk - Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 16.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 45.56,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908639901497",
+        "validatedNcm": "84716052",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB418472",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "8774306",
+          "value_name": "C3Tech"
+        },
+        {
+          "id": "LINE",
+          "value_id": "65187283",
+          "value_name": "Teclado multimidia"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "41418029",
+          "value_name": "Kb- M10bk"
+        },
+        {
+          "id": "KEYBOARD_COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "LAYOUT",
+          "value_id": "75462918",
+          "value_name": "QWERTY ABNT2"
+        },
+        {
+          "id": "LANGUAGE",
+          "value_id": "328560",
+          "value_name": "Português Brasil"
+        },
+        {
+          "id": "PC_KEYBOARDS_SWITCH_TYPE",
+          "value_id": "20844820",
+          "value_name": "Membrana"
+        },
+        {
+          "id": "KEYBOARD_HEIGHT",
+          "value_id": "12306585",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "KEYBOARD_WIDTH",
+          "value_id": "14993787",
+          "value_name": "12 cm"
+        },
+        {
+          "id": "KEYBOARD_DEPTH",
+          "value_id": "11473946",
+          "value_name": "14 cm"
+        },
+        {
+          "id": "PC_KEYBOARD_ARCHITECTURE",
+          "value_id": "108464",
+          "value_name": "Membrana"
+        },
+        {
+          "id": "IS_SPLASH_RESISTANT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_NUMERIC_KEYBOARD",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_RETROILLUMINATION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_REMOVABLE_CABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "41418030",
+          "value_name": "7908639901497, 07900930104065"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "124833",
+          "value_name": "1.2 m"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "8774306",
+          "value_name": "C3Tech"
+        },
+        {
+          "id": "SWITCH_TECHNOLOGY",
+          "value_id": "61683421",
+          "value_name": "Tradicional"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "CONNECTIVITY",
+          "value_id": "82230",
+          "value_name": "USB"
+        },
+        {
+          "id": "IS_HOTSWAPPABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "KEYBOARD_SIZE",
+          "value_id": "61683446",
+          "value_name": "Full size"
+        },
+        {
+          "id": "INCLUDES_ACCESSORIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WRIST_REST",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TOUCHPAD",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NUMERIC_PAD",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ANTI_GHOST_KEYS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TRACKBALL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_ONE_HANDED",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB39786007",
+        "catalogProductName": "Teclado Abnt2 Multmídia Preto KB-M10BK C3tech Com Fio Usb Ergônomico",
+        "catalogDomainId": "MLB-PC_KEYBOARDS",
+        "categoryId": "MLB418472",
+        "categoryName": "Teclados Físicos",
+        "linkedListingsInCategory": 56,
+        "validatedGtin": "7908639901497"
+      }
+    },
+    {
+      "produtoId": "c54f2b59-7bce-4952-b226-754db5b9d543",
+      "sku": "VTK002982",
+      "nome": "Telefone Celular Fixo 4G 2 Chip CA42S Preto Aquário",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 329.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 468.38,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898127606204",
+        "validatedNcm": "85171439",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1053",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "45099",
+          "value_name": "Aquário"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "13456289",
+          "value_name": "CA-42S4G"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MOBILE_NETWORK",
+          "value_id": "9133368",
+          "value_name": "4G"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "81834",
+          "value_name": "LCD"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "value_id": "4491927",
+          "value_name": "Bateria, Corrente doméstica"
+        },
+        {
+          "id": "HEADPHONES_NUMBER_INCLUDED",
+          "value_id": "7512605",
+          "value_name": "1"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CALLER_IDENTIFICATION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ANSWERING_MACHINE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WALL_MOUNTABLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_DUAL_SIM",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_RURAL_TELEPHONE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "40632574",
+          "value_name": "17721802250"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "13456290",
+          "value_name": "7898127606204"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "40742730",
+          "value_name": "CA-42S 4G"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "5018002",
+          "value_name": "3.5 \""
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_DATE_AND_TIME_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB19772163",
+        "catalogProductName": "Celular De Mesa Com Wi Fi Top 4g Para Vivo Claro E Tim Cor Preto",
+        "catalogDomainId": "MLB-TELEPHONES",
+        "categoryId": "MLB1053",
+        "categoryName": "Telefones",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898127606204"
+      }
+    }
+  ]
+}

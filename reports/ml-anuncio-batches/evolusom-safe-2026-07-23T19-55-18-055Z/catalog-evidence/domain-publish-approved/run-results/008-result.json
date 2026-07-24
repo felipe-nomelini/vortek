@@ -1,0 +1,260 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/008-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-008",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "5ca84246-49db-4c82-a69a-da5dd3009089",
+      "sku": "VTK001736",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "anuncio": {
+        "id": "MLB7239009906",
+        "title": "Ferro De Solda 34w 220v Plus Sc40p Azul Hikari 220v",
+        "price": 83.86,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239009906-ferro-de-solda-34w-220v-plus-sc40p-azul-hikari-220v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 68.23 → R$ 83.86."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "c1aced83-2301-4596-a12a-9c6741e939a1",
+      "sku": "VTK018336",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "anuncio": {
+        "id": "MLB4937521489",
+        "title": "Ferro De Solda Hikari Plus Sc-30 25w 110v 110v",
+        "price": 81.33,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937521489-ferro-de-solda-hikari-plus-sc-30-25w-110v-110v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 65.70 → R$ 81.33."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "5ba148a1-92d0-4c4c-8999-fcf2a8830938",
+      "sku": "VTK017186",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "anuncio": {
+        "id": "MLB7239010048",
+        "title": "Ferro De Solda Hikari Power 25w 127v 127v",
+        "price": 85.57,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239010048-ferro-de-solda-hikari-power-25w-127v-127v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 67.66 → R$ 85.57."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "06692a90-6024-4287-8bf8-6069be519f50",
+      "sku": "VTK017962",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "anuncio": {
+        "id": "MLB7239021130",
+        "title": "Ferro De Solda Hikari 30 Power 25w 220v 220v",
+        "price": 85.57,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239021130-ferro-de-solda-hikari-30-power-25w-220v-220v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 67.66 → R$ 85.57."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "15125489-9a57-4faa-b61f-1a0d0be42688",
+      "sku": "VTK017603",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "anuncio": {
+        "id": "MLB7239021244",
+        "title": "Ferro De Solda Hikari Plus Sc-60 50w 110v 110v",
+        "price": 91.39,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239021244-ferro-de-solda-hikari-plus-sc-60-50w-110v-110v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 74.62 → R$ 91.39."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "aaef2474-f887-430b-9b81-552a73ee609d",
+      "sku": "VTK021889",
+      "category": {
+        "id": "MLB31689",
+        "nome": "Ferro de Passar",
+        "dominio": "MLB-IRONS"
+      },
+      "anuncio": {
+        "id": "MLB7239010338",
+        "title": "Ferro De Passar Vapor E À Seco Agratto  Vapore Fv-01 110v 110v",
+        "price": 107.13,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239010338-ferro-de-passar-vapor-e-seco-agratto-vapore-fv-01-110v-110v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 87.44 → R$ 107.13."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "df8c9551-1035-42bc-a6c5-2e42e9f90c2d",
+      "sku": "VTK018758",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "anuncio": {
+        "id": "MLB7239010396",
+        "title": "Ferro De Soldar À Gás Hikari Hk-900 30a100w",
+        "price": 168.54,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239010396-ferro-de-soldar-gas-hikari-hk-900-30a100w-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 146.20 → R$ 168.54."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "a8f6ad4b-3fae-43ea-8cb8-548632d56882",
+      "sku": "VTK017239",
+      "category": {
+        "id": "MLB63114",
+        "nome": "Filtros de Linha",
+        "dominio": "MLB-POWER_STRIPS"
+      },
+      "anuncio": {
+        "id": "MLB7239021514",
+        "title": "Filtro De Linha Com 6t Fl-61bk C3tech 127v",
+        "price": 70.88,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239021514-filtro-de-linha-com-6t-fl-61bk-c3tech-127v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 52.70 → R$ 70.88."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "e385bc65-13ce-468b-9862-0fb1c7bb7327",
+      "sku": "VTK017451",
+      "category": {
+        "id": "MLB63114",
+        "nome": "Filtros de Linha",
+        "dominio": "MLB-POWER_STRIPS"
+      },
+      "anuncio": {
+        "id": "MLB7239010584",
+        "title": "Filtro De Linha Multi Wi251 6 Tomadas E 2 Entradas 110v",
+        "price": 99.56,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239010584-filtro-de-linha-multi-wi251-6-tomadas-e-2-entradas-110v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 82.89 → R$ 99.56."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "3e9cff62-82fa-4d74-adef-0aebb8ba0ee4",
+      "sku": "VTK017225",
+      "category": {
+        "id": "MLB422401",
+        "nome": "Fitas Isolantes",
+        "dominio": "MLB-ADHESIVE_TAPES"
+      },
+      "anuncio": {
+        "id": "MLB7239010726",
+        "title": "Fita Auto Fusão Vonder 19mm X 5m",
+        "price": 61.5,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239010726-fita-auto-fuso-vonder-19mm-x-5m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 43.90 → R$ 61.50."
+      ]
+    }
+  ],
+  "failed": []
+}

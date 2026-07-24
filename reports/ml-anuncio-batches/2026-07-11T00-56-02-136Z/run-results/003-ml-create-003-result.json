@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-003-ml-create-003.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-003",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "c4eab70d-1d2c-4621-9887-aba1a951aca9",
+      "sku": "VTK012203",
+      "category": {
+        "id": "MLB29325",
+        "nome": "Baquetas",
+        "dominio": "Baquetas, maçanetas e vassourinhas para bateria"
+      },
+      "anuncio": {
+        "id": "MLB7145201178",
+        "title": "Baqueta Vanguarda",
+        "price": 52.1,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7145201178-baqueta-vanguarda-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 33.92 → R$ 52.10."
+      ]
+    }
+  ],
+  "failed": []
+}

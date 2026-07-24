@@ -1,0 +1,128 @@
+{
+  "batchNumber": 57,
+  "batchId": "ml-create-057",
+  "strategy": "safe_small_batch",
+  "executionHints": {
+    "delayMs": 1500,
+    "listingType": "gold_pro",
+    "useSchemaBasePrice": true,
+    "applyPricingStrategyAtRuntime": true,
+    "stopIfFailureRateOver": 0.5
+  },
+  "items": [
+    {
+      "produtoId": "67b24205-6321-479c-8e2c-e4f68c4326f8",
+      "sku": "VTK001246",
+      "nome": "Suporte Para Caixa de Som CP10 ASK",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 55.23,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 92.88,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "b5727e47-7584-4559-83b4-475ecab1a6ba",
+      "sku": "VTK012139",
+      "nome": "Microfone Custom Sound Csms 58 Com Cabo",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 55.23,
+      "estoque": 84,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 92.88,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "3e7bbd7e-13cf-4e25-b8cb-50b93c8fa62a",
+      "sku": "VTK001226",
+      "nome": "Fita Isolante 18mm X 10m Vermelha Imperial 3M - PCT / 10",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 55.38,
+      "estoque": 13,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 93.06,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "08d86827-1d6b-4d5a-b870-dc8076577173",
+      "sku": "VTK001104",
+      "nome": "Fita Isolante 18mm x 10m Imperial Azul 3M - PCT / 10",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 55.43,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 93.12,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "5d8a5312-c7f7-4521-afcd-48855ea329a8",
+      "sku": "VTK001135",
+      "nome": "Fita Isolante 18mm x 10m Verde Imperial 3M - PCT / 10",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 55.43,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 93.12,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "f3e31b38-d115-44e5-8b57-64081c0521ed",
+      "sku": "VTK001294",
+      "nome": "Fita Isolante 18mm x 10m Amarela Imperial 3M - PCT / 10",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 55.43,
+      "estoque": 13,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 93.12,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    }
+  ]
+}

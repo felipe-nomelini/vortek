@@ -1,0 +1,138 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/019-evolusom-catalog-create-019.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-019",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "5791ea8f-f7b4-4afc-9928-ac6583fa7b83",
+      "sku": "VTK017607",
+      "category": {
+        "id": "MLB105468",
+        "nome": "Fitas Adesivas",
+        "dominio": "MLB-ADHESIVE_TAPES"
+      },
+      "basePrice": 60.25,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9e217af3-d066-4d41-b48e-24c8d116225c",
+      "sku": "VTK017792",
+      "category": {
+        "id": "MLB105468",
+        "nome": "Fitas Adesivas",
+        "dominio": "MLB-ADHESIVE_TAPES"
+      },
+      "basePrice": 53.32,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b2e9be0a-14ae-4a91-9653-cedbd6f23106",
+      "sku": "VTK017537",
+      "category": {
+        "id": "MLB1664",
+        "nome": "Fones",
+        "dominio": "MLB-HEADPHONES"
+      },
+      "basePrice": 67.82,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "edbe286e-77be-4f7a-b83f-9d96fb9087b0",
+      "sku": "VTK017222",
+      "category": {
+        "id": "MLB1664",
+        "nome": "Fones",
+        "dominio": "MLB-HEADPHONES"
+      },
+      "basePrice": 48.59,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ad9bb504-524a-48d3-a56c-146c4f1781ab",
+      "sku": "VTK017577",
+      "category": {
+        "id": "MLB7457",
+        "nome": "Fones de Ouvido",
+        "dominio": "MLB-HEADPHONES"
+      },
+      "basePrice": 99.49,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "78d60d02-7936-4e09-9279-ad8ec2833a35",
+      "sku": "VTK017898",
+      "category": {
+        "id": "MLB1664",
+        "nome": "Fones",
+        "dominio": "MLB-HEADPHONES"
+      },
+      "basePrice": 353.7,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ed5f9de6-35fc-4ad4-bec8-2561a086aa31",
+      "sku": "VTK017368",
+      "category": {
+        "id": "MLB6777",
+        "nome": "Fontes",
+        "dominio": "MLB-DESKTOP_COMPUTER_POWER_SUPPLIES"
+      },
+      "basePrice": 89.62,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1809f7f6-fe29-49b8-ae58-c006462b7d9e",
+      "sku": "VTK018645",
+      "category": {
+        "id": "MLB6777",
+        "nome": "Fontes",
+        "dominio": "MLB-DESKTOP_COMPUTER_POWER_SUPPLIES"
+      },
+      "basePrice": 397.93,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "012e08b0-57bf-4bda-87ba-3b87c5ae04d2",
+      "sku": "VTK017597",
+      "category": {
+        "id": "MLB420411",
+        "nome": "Fontes Chaveadas",
+        "dominio": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES"
+      },
+      "basePrice": 51.27,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "8d23282f-5f35-4856-b5e7-8cfe11c885c5",
+      "sku": "VTK018787",
+      "nome": "Fone Headset Intelbras Chs-55 Conector Usb 4010058",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3828",
+            "nome": "Telefones Headset"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

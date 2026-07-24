@@ -1,0 +1,71 @@
+{
+  "batchNumber": 86,
+  "batchId": "ml-create-086",
+  "strategy": "safe_small_batch",
+  "executionHints": {
+    "delayMs": 1500,
+    "listingType": "gold_pro",
+    "useSchemaBasePrice": true,
+    "applyPricingStrategyAtRuntime": true,
+    "stopIfFailureRateOver": 0.5
+  },
+  "items": [
+    {
+      "produtoId": "1e2ce859-94ec-40da-bfa8-087089e3a9f5",
+      "sku": "VTK000119",
+      "nome": "Violão Harmonics GNA-111 Acústico Nylon Natural",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 217.28,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 308.48,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "bb99fe50-0928-460e-92f7-6da4fc5ea410",
+      "sku": "VTK000265",
+      "nome": "Violão Harmonics GNA-111 Acústico Nylon Sunburst",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 217.28,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 308.48,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "f5ce93e4-bc81-4485-aede-96ade3391b51",
+      "sku": "VTK000293",
+      "nome": "Violão Harmonics GNA-111 Acústico Nylon Preto",
+      "fornecedor": "HAYAMAX-PR",
+      "dsliteFornecedorId": "2",
+      "custo": 217.28,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 308.48,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    }
+  ]
+}

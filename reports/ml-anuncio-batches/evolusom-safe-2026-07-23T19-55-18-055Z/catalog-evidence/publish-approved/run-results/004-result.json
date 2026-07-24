@@ -1,0 +1,263 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/publish-approved/run-results/004-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-remaining-004",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "cab1f7b1-3f10-458c-acc6-673834a79050",
+      "sku": "VTK005880",
+      "category": {
+        "id": "MLB7892",
+        "nome": "Amplificadores",
+        "dominio": "MLB-AUDIO_AMPLIFIERS"
+      },
+      "anuncio": {
+        "id": "MLB7238888912",
+        "title": "Amplificador Frahm Home Sense 320.4 Dual 320w Bluetooth 320 W",
+        "price": 3155.66,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238888912-amplificador-frahm-home-sense-3204-dual-320w-bluetooth-320-w-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"code\":\"conflict.error\",\"status\":409,\"error\":\"Conflict\"}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "d897bf5b-12ec-4364-a9d6-d4b8bb4be6bc",
+      "sku": "VTK018075",
+      "category": {
+        "id": "MLB11507",
+        "nome": "Caixas Acústicas ",
+        "dominio": "MLB-SPEAKERS"
+      },
+      "anuncio": {
+        "id": "MLB7238889012",
+        "title": "Antena Digital Interna Slim Aquário Dtv-250 Preto",
+        "price": 72.56,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238889012-antena-digital-interna-slim-aquario-dtv-250-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 54.42 → R$ 72.56."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "cc8af7ed-6b7e-44f6-88f3-e8113e723824",
+      "sku": "VTK000275",
+      "category": {
+        "id": "MLB44572",
+        "nome": "Antenas de TV",
+        "dominio": "MLB-TV_ANTENNAS"
+      },
+      "anuncio": {
+        "id": "MLB7238889146",
+        "title": "Antena Digital Com Cabo 2 5m Vhf/uhf/fm/hdtv Dtv-100 Aquário",
+        "price": 73.53,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238889146-antena-digital-com-cabo-2-5m-vhfuhffmhdtv-dtv-100-aquario-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 55.00 → R$ 73.53."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "2d3c2932-8844-4fd5-9727-2a80d82b3c5a",
+      "sku": "VTK004716",
+      "category": {
+        "id": "MLB44572",
+        "nome": "Antenas de TV",
+        "dominio": "MLB-TV_ANTENNAS"
+      },
+      "anuncio": {
+        "id": "MLB7238909634",
+        "title": "Antena Externa Log Para Tv Lu-20 Aquário",
+        "price": 63.97,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238909634-antena-externa-log-para-tv-lu-20-aquario-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB7238909634: No coverage options found",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "d48054f1-8ad9-470a-a00a-79ac81a4aa8e",
+      "sku": "VTK000585",
+      "category": {
+        "id": "MLB44572",
+        "nome": "Antenas de TV",
+        "dominio": "MLB-TV_ANTENNAS"
+      },
+      "anuncio": {
+        "id": "MLB7238889442",
+        "title": "Antena Externa Log Para Tv Lu-30 Aquário",
+        "price": 71.67,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238889442-antena-externa-log-para-tv-lu-30-aquario-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB7238889442: No coverage options found",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "4b1023f4-e51c-4b9a-9d9a-aee65923629a",
+      "sku": "VTK000534",
+      "category": {
+        "id": "MLB44572",
+        "nome": "Antenas de TV",
+        "dominio": "MLB-TV_ANTENNAS"
+      },
+      "anuncio": {
+        "id": "MLB7238909924",
+        "title": "Antena Interna Tv Digital Dtv-200 2 5m Aquário Preto",
+        "price": 58.97,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238909924-antena-interna-tv-digital-dtv-200-2-5m-aquario-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 43.14 → R$ 58.97."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "2b3dbc5d-3fcf-4445-b10e-a34dba4a9e3e",
+      "sku": "VTK020760",
+      "category": {
+        "id": "MLB44572",
+        "nome": "Antenas de TV",
+        "dominio": "MLB-TV_ANTENNAS"
+      },
+      "anuncio": {
+        "id": "MLB7238889666",
+        "title": "Antena Log Digital Proeletronic Prohd-1040db 14db 28",
+        "price": 116.64,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238889666-antena-log-digital-proeletronic-prohd-1040db-14db-28-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 64.09 → R$ 116.64."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "df7923c5-fdc1-42a0-8e83-6a5776ae0136",
+      "sku": "VTK018650",
+      "category": {
+        "id": "MLB120498",
+        "nome": "Antenas",
+        "dominio": "MLB-GPS_ANTENNAS"
+      },
+      "anuncio": {
+        "id": "MLB4937414559",
+        "title": "Antena Permak Shark Branca 100/m1",
+        "price": 84.14,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937414559-antena-permak-shark-branca-100m1-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 67.78 → R$ 84.14."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b80ad054-8c24-4c4e-8f95-73c01c3f5f18",
+      "sku": "VTK018929",
+      "category": {
+        "id": "MLB363814",
+        "nome": "Tratamentos",
+        "dominio": "MLB-VEHICLE_COATING_PRODUCTS"
+      },
+      "anuncio": {
+        "id": "MLB7238889924",
+        "title": "Anti Chios (freios A Disco) Orbi 200ml/ 140g",
+        "price": 58.92,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238889924-anti-chios-freios-a-disco-orbi-200ml-140g-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 41.39 → R$ 58.92."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "194c7dcb-be07-4295-ba39-fa55be846782",
+      "sku": "VTK018041",
+      "category": {
+        "id": "MLB11507",
+        "nome": "Caixas Acústicas ",
+        "dominio": "MLB-SPEAKERS"
+      },
+      "anuncio": {
+        "id": "MLB7238910500",
+        "title": "Arandela 6  Frahm Cs Cx 50w - Branco",
+        "price": 289.47,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238910500-arandela-6-frahm-cs-cx-50w-branco-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 257.87 → R$ 289.47."
+      ]
+    }
+  ],
+  "failed": []
+}

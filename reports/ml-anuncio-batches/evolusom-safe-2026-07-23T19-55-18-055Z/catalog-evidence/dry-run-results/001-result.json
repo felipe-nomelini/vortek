@@ -1,0 +1,130 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/001-evolusom-catalog-create-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-001",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "9cbbbf6d-4826-418f-bbfe-6fa035b3bb8e",
+      "sku": "VTK019167",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "basePrice": 96.17,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d35df101-0356-4658-b6e1-fa9656b214ad",
+      "sku": "VTK001685",
+      "category": {
+        "id": "MLB195961",
+        "nome": "Adaptadores",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 41.79,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6f2d02a9-a507-459b-9a90-7faf9d50b92c",
+      "sku": "VTK018179",
+      "category": {
+        "id": "MLB195961",
+        "nome": "Adaptadores",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 140.9,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "23325240-e7c1-4a4f-805f-79f7ac369f98",
+      "sku": "VTK002611",
+      "category": {
+        "id": "MLB7466",
+        "nome": "USB",
+        "dominio": "MLB-DATA_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 83.12,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "5f74e994-77a1-42f4-8f56-af442f8c8c7f",
+      "sku": "VTK018588",
+      "category": {
+        "id": "MLB456045",
+        "nome": "De Ar",
+        "dominio": "MLB-AIR_FRYERS"
+      },
+      "basePrice": 428.23,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "78ebcbfc-5953-44ca-803a-a4b40bbfae1e",
+      "sku": "VTK017861",
+      "category": {
+        "id": "MLB440299",
+        "nome": "Alarmes para Automotores",
+        "dominio": "MLB-VEHICLE_ALARMS"
+      },
+      "basePrice": 169.49,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "724b7d33-2fc4-4905-ab51-2ca45664aab0",
+      "sku": "VTK018009",
+      "category": {
+        "id": "MLB440299",
+        "nome": "Alarmes para Automotores",
+        "dominio": "MLB-VEHICLE_ALARMS"
+      },
+      "basePrice": 189.75,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "75abcf4e-d3a5-40f5-816a-50b997706d46",
+      "sku": "VTK018503",
+      "category": {
+        "id": "MLB440299",
+        "nome": "Alarmes para Automotores",
+        "dominio": "MLB-VEHICLE_ALARMS"
+      },
+      "basePrice": 277.89,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "fef3489e-d7b8-483b-a5f4-1921740369be",
+      "sku": "VTK018349",
+      "category": {
+        "id": "MLB440299",
+        "nome": "Alarmes para Automotores",
+        "dominio": "MLB-VEHICLE_ALARMS"
+      },
+      "basePrice": 302.64,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f0cfdc8d-c860-43a0-88c6-2cae875582df",
+      "sku": "VTK018080",
+      "category": {
+        "id": "MLB440299",
+        "nome": "Alarmes para Automotores",
+        "dominio": "MLB-VEHICLE_ALARMS"
+      },
+      "basePrice": 407.45,
+      "missing": []
+    }
+  ],
+  "failed": []
+}

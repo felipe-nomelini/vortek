@@ -1,0 +1,105 @@
+{
+  "startedAt": "2026-07-14T22:17:54.467Z",
+  "baseUrl": "https://app.vortek.shop",
+  "sourceDir": "reports/ml-anuncio-batches/2026-07-14T22-11-37-278Z/coin-cell-runs",
+  "excludedSuppliers": [
+    "SHOPPECAS"
+  ],
+  "batches": [
+    {
+      "fileName": "002-ml-create-002.json",
+      "manifestPath": "reports/ml-anuncio-batches/2026-07-14T22-11-37-278Z/coin-cell-runs/run-results/run-002-ml-create-002.json",
+      "resultPath": "reports/ml-anuncio-batches/2026-07-14T22-11-37-278Z/coin-cell-runs/run-results/002-ml-create-002-result.json",
+      "exitCode": 0,
+      "originalCount": 10,
+      "excludedCount": 0,
+      "executedCount": 10,
+      "createdCount": 7,
+      "failedCount": 3,
+      "validation": {
+        "selected": 10,
+        "withMlItemId": 7,
+        "withLinkedAnuncio": 7,
+        "semAnuncioStill": 3
+      }
+    },
+    {
+      "fileName": "003-ml-create-003.json",
+      "manifestPath": "reports/ml-anuncio-batches/2026-07-14T22-11-37-278Z/coin-cell-runs/run-results/run-003-ml-create-003.json",
+      "resultPath": "reports/ml-anuncio-batches/2026-07-14T22-11-37-278Z/coin-cell-runs/run-results/003-ml-create-003-result.json",
+      "exitCode": 0,
+      "originalCount": 10,
+      "excludedCount": 0,
+      "executedCount": 10,
+      "createdCount": 6,
+      "failedCount": 4,
+      "validation": {
+        "selected": 10,
+        "withMlItemId": 6,
+        "withLinkedAnuncio": 6,
+        "semAnuncioStill": 4
+      }
+    },
+    {
+      "fileName": "004-ml-create-004.json",
+      "manifestPath": "reports/ml-anuncio-batches/2026-07-14T22-11-37-278Z/coin-cell-runs/run-results/run-004-ml-create-004.json",
+      "resultPath": "reports/ml-anuncio-batches/2026-07-14T22-11-37-278Z/coin-cell-runs/run-results/004-ml-create-004-result.json",
+      "exitCode": 2,
+      "originalCount": 10,
+      "excludedCount": 0,
+      "executedCount": 10,
+      "createdCount": 4,
+      "failedCount": 6,
+      "validation": {
+        "selected": 10,
+        "withMlItemId": 4,
+        "withLinkedAnuncio": 4,
+        "semAnuncioStill": 6
+      }
+    },
+    {
+      "fileName": "005-ml-create-005.json",
+      "manifestPath": "reports/ml-anuncio-batches/2026-07-14T22-11-37-278Z/coin-cell-runs/run-results/run-005-ml-create-005.json",
+      "resultPath": "reports/ml-anuncio-batches/2026-07-14T22-11-37-278Z/coin-cell-runs/run-results/005-ml-create-005-result.json",
+      "exitCode": 0,
+      "originalCount": 10,
+      "excludedCount": 0,
+      "executedCount": 10,
+      "createdCount": 5,
+      "failedCount": 5,
+      "validation": {
+        "selected": 10,
+        "withMlItemId": 5,
+        "withLinkedAnuncio": 5,
+        "semAnuncioStill": 5
+      }
+    },
+    {
+      "fileName": "006-ml-create-006.json",
+      "manifestPath": "reports/ml-anuncio-batches/2026-07-14T22-11-37-278Z/coin-cell-runs/run-results/run-006-ml-create-006.json",
+      "resultPath": "reports/ml-anuncio-batches/2026-07-14T22-11-37-278Z/coin-cell-runs/run-results/006-ml-create-006-result.json",
+      "exitCode": 2,
+      "originalCount": 4,
+      "excludedCount": 0,
+      "executedCount": 4,
+      "createdCount": 0,
+      "failedCount": 4,
+      "validation": {
+        "selected": 4,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 4
+      }
+    }
+  ],
+  "totals": {
+    "sourceItems": 44,
+    "excludedItems": 0,
+    "executedItems": 44,
+    "createdItems": 22,
+    "failedItems": 22,
+    "withMlItemId": 22,
+    "withLinkedAnuncio": 22
+  },
+  "finishedAt": "2026-07-14T22:25:47.638Z"
+}

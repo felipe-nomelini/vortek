@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-076-ml-create-076.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-076",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "c200f082-f31b-4611-8aee-c559692325f5",
+      "sku": "VTK012517",
+      "category": {
+        "id": "MLB271160",
+        "nome": "Arcos para Violinos",
+        "dominio": "Arcos para instrumentos de corda"
+      },
+      "anuncio": {
+        "id": "MLB4877417287",
+        "title": "Arco De Violino Scarlett Crina Animal Octogonal Em Madeira",
+        "price": 184.58,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877417287-arco-de-violino-scarlett-crina-animal-octogonal-em-madeira-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 159.12 → R$ 184.58."
+      ]
+    }
+  ],
+  "failed": []
+}

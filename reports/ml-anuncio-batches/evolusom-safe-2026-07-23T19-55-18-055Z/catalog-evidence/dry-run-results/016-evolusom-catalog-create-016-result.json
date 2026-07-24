@@ -1,0 +1,130 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/016-evolusom-catalog-create-016.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-016",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "d2cdc58b-6096-4cbe-a10a-5ff9f7672199",
+      "sku": "VTK018594",
+      "category": {
+        "id": "MLB3843",
+        "nome": "Caixas Bluetooth",
+        "dominio": "MLB-SPEAKERS"
+      },
+      "basePrice": 294.72,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "788a2606-cf31-4cb8-9788-4b043ac3ce22",
+      "sku": "VTK018674",
+      "category": {
+        "id": "MLB420039",
+        "nome": "Gravadores DVR",
+        "dominio": "MLB-SURVEILLANCE_VIDEO_RECORDERS"
+      },
+      "basePrice": 679.09,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d9f4b7a2-5aab-41a5-8342-b0f684f24883",
+      "sku": "VTK012908",
+      "category": {
+        "id": "MLB278076",
+        "nome": "Cordas para Instrumentos",
+        "dominio": "MLB-STRING_INSTRUMENT_STRINGS"
+      },
+      "basePrice": 56.86,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "dfe522d7-96b8-498f-a240-322254c7e2ab",
+      "sku": "VTK012916",
+      "category": {
+        "id": "MLB278076",
+        "nome": "Cordas para Instrumentos",
+        "dominio": "MLB-STRING_INSTRUMENT_STRINGS"
+      },
+      "basePrice": 150.31,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ba19ca70-f5ef-4b25-8b16-4be18ca8e356",
+      "sku": "VTK001671",
+      "category": {
+        "id": "MLB278076",
+        "nome": "Cordas para Instrumentos",
+        "dominio": "MLB-STRING_INSTRUMENT_STRINGS"
+      },
+      "basePrice": 59.75,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "65a634ab-5ce4-4c01-9a1e-e88e70bf7fa0",
+      "sku": "VTK019116",
+      "category": {
+        "id": "MLB188790",
+        "nome": "Esmerilhadeiras Angulares",
+        "dominio": "MLB-POWER_GRINDERS"
+      },
+      "basePrice": 385.53,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "88b69e08-8f01-4735-a01b-f48c99ddae31",
+      "sku": "VTK023618",
+      "category": {
+        "id": "MLB438559",
+        "nome": "Cabos e Conectores",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 48.08,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6adc4bfa-de2c-4f5f-9c9f-b26dc4df07e2",
+      "sku": "VTK023619",
+      "category": {
+        "id": "MLB438559",
+        "nome": "Cabos e Conectores",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 55.26,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9a85a55b-bbc9-47a0-b4de-ff561b1b5fac",
+      "sku": "VTK023620",
+      "category": {
+        "id": "MLB438559",
+        "nome": "Cabos e Conectores",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 62.69,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "dfeca35e-dda6-4ba1-bdb8-93a8d42c11c1",
+      "sku": "VTK023621",
+      "category": {
+        "id": "MLB438559",
+        "nome": "Cabos e Conectores",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 88.33,
+      "missing": []
+    }
+  ],
+  "failed": []
+}

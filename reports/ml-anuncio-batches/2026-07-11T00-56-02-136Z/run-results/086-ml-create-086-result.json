@@ -1,0 +1,85 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-086-ml-create-086.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-086",
+  "selected": 3,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "1e2ce859-94ec-40da-bfa8-087089e3a9f5",
+      "sku": "VTK000119",
+      "category": {
+        "id": "MLB3016",
+        "nome": "Acústicas",
+        "dominio": "Violões acústicos"
+      },
+      "anuncio": {
+        "id": "MLB4877488721",
+        "title": "Violão Harmonics Gna-111 Acústico Nylon Natural",
+        "price": 390.82,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877488721-violo-harmonics-gna-111-acustico-nylon-natural-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 306.59 → R$ 390.82."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "bb99fe50-0928-460e-92f7-6da4fc5ea410",
+      "sku": "VTK000265",
+      "category": {
+        "id": "MLB432320",
+        "nome": "Clássicas",
+        "dominio": "Violões clássicos"
+      },
+      "anuncio": {
+        "id": "MLB4877418501",
+        "title": "Violão Harmonics Gna-111 Acústico Nylon Sunburst",
+        "price": 390.82,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877418501-violo-harmonics-gna-111-acustico-nylon-sunburst-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 306.59 → R$ 390.82."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "f5ce93e4-bc81-4485-aede-96ade3391b51",
+      "sku": "VTK000293",
+      "category": {
+        "id": "MLB3016",
+        "nome": "Acústicas",
+        "dominio": "Violões acústicos"
+      },
+      "anuncio": {
+        "id": "MLB7145208300",
+        "title": "Violão Harmonics Gna-111 Acústico Nylon Preto Destro",
+        "price": 390.82,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7145208300-violo-harmonics-gna-111-acustico-nylon-preto-destro-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 306.59 → R$ 390.82."
+      ]
+    }
+  ],
+  "failed": []
+}

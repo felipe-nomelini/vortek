@@ -1,0 +1,195 @@
+{
+  "batchId": "coin-cell-001",
+  "items": [
+    {
+      "produtoId": "24dea8aa-05e4-4a6b-ac84-93f9e9da9d47",
+      "sku": "VTK016175",
+      "nome": "5 Baterias Cr2032 Panasonic",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 27.55,
+      "estoque": 19,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 58.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "bb504b60-3216-4703-a6e0-b80496136d6d",
+      "sku": "VTK015936",
+      "nome": "10 Baterias Cr2032 Panasonic (2 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 30.94,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 62.89,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "07eb2950-6226-4fff-9356-9a51d7d402a5",
+      "sku": "VTK016195",
+      "nome": "6 Baterias Cr2032 Panasonic",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 33.06,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 65.51,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "4f24ebe8-7522-49a2-83d4-7d531548814f",
+      "sku": "VTK015933",
+      "nome": "10 Baterias Cr2016 Panasonic (2 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 34.04,
+      "estoque": 22,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 66.72,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "19f13f75-a909-4114-bd09-249935438afb",
+      "sku": "VTK015934",
+      "nome": "10 Baterias Cr2025 Panasonic (2 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 34.04,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 66.72,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "94482b32-d292-430b-8d18-2c4bfc3e1a22",
+      "sku": "VTK016216",
+      "nome": "7 Baterias Cr2032 Panasonic",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 38.57,
+      "estoque": 13,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 72.31,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "9733e7d4-bc78-442d-ba95-a35ee22a339f",
+      "sku": "VTK016222",
+      "nome": "8 Baterias Cr2032 Panasonic",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 44.08,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 79.11,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "7f6799c3-585c-4a25-8455-7000ba435c47",
+      "sku": "VTK015991",
+      "nome": "15 Baterias Cr2032 Panasonic (3 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 46.41,
+      "estoque": 33,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 81.99,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "d9692d2c-98d6-470a-a705-54622f82e6fe",
+      "sku": "VTK015929",
+      "nome": "10 Baterias CR1220 Panasonic (02 cartelas)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 47.7,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.58,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "84d4d4ff-7204-4736-9a14-59c5fa2f58ae",
+      "sku": "VTK015930",
+      "nome": "10 Baterias CR1616 Panasonic (02 cartelas)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 47.7,
+      "estoque": 28,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.58,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    }
+  ]
+}

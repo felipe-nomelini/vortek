@@ -1,0 +1,54 @@
+{
+  "batchNumber": 7,
+  "batchId": "retry-502-007",
+  "items": [
+    {
+      "produtoId": "2705a1d3-e329-475b-a11c-8153c6385604",
+      "sku": "VTK012040",
+      "nome": "Kit Conectores Xlr 1003 1013 20un (10 Machos/10 Femeas) Wireconex",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "a09e2e5d-9958-4bdc-92d8-4d4f070ce0b7",
+      "sku": "VTK012281",
+      "nome": "Kit Conector Speakon Wc 605 (20un) Wireconex",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "037a0d81-85b9-4458-9b07-148b399bb557",
+      "sku": "VTK000504",
+      "nome": "Mecanismo Sync6 Para Cadeira Core ThunderX3",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "4ed1ab3f-f23e-4aa7-8880-648d839c887d",
+      "sku": "VTK012699",
+      "nome": "Painel Medusa 28 Furos Xlr Com Conectores Wireconex",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "f1219523-c041-4366-8a85-6890d27030b4",
+      "sku": "VTK012800",
+      "nome": "Painel 48 Furos Xlr Com Conectores 2 Saídas Wireconex",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "24bc4010-0afb-4752-824e-d87a5faddf1b",
+      "sku": "VTK005320",
+      "nome": "Fone de Ouvido Sennheiser HD25 Light Preto",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "72ed9484-db1a-4565-a10f-57f7b76afb33",
+      "sku": "VTK004352",
+      "nome": "Fone de Ouvido Sennheiser IE 100 Pro Preto",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "9804a031-2e05-4dea-a4ab-1924080ba9b8",
+      "sku": "VTK012772",
+      "nome": "Caixa De Som Passiva 8 Polegadas 100 W Rms - Attack Vrf810",
+      "fornecedor": "RETRY_502"
+    }
+  ]
+}

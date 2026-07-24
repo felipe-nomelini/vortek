@@ -1,0 +1,145 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/006-evolusom-catalog-create-006.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-006",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "a540d98f-8112-4d22-b21e-26f7f528a1f1",
+      "sku": "VTK017908",
+      "category": {
+        "id": "MLB57843",
+        "nome": "Baterias",
+        "dominio": "MLB-UPS_BATTERIES"
+      },
+      "basePrice": 112.69,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6aad7bc9-9c00-4597-86de-37c6ddde778e",
+      "sku": "VTK017933",
+      "category": {
+        "id": "MLB33412",
+        "nome": "Controles Remotos para Alarmes",
+        "dominio": "MLB-ALARM_REMOTE_CONTROLS"
+      },
+      "basePrice": 52.7,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "3cd63a03-f703-4590-9acc-4a6e017a1d6a",
+      "sku": "VTK004724",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 74.23,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b0fff073-49cb-48d6-9904-5a035e2cc85b",
+      "sku": "VTK005073",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 59.81,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "acf02ebc-acb3-4ced-b072-2b6768aebab8",
+      "sku": "VTK005071",
+      "category": {
+        "id": "MLB38279",
+        "nome": "Outros Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 62.18,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d9c5a098-54a7-48c9-a7a1-045129600cc8",
+      "sku": "VTK003185",
+      "category": {
+        "id": "MLB432437",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 61.41,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "73680629-ca61-4ed3-ab19-4edfe1eb90c0",
+      "sku": "VTK018652",
+      "category": {
+        "id": "MLB270088",
+        "nome": "Cabos de Rede",
+        "dominio": "MLB-NETWORK_CABLES"
+      },
+      "basePrice": 131.92,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "bdb61763-ddc9-479f-ac49-4e0838a61a11",
+      "sku": "VTK019466",
+      "category": {
+        "id": "MLB38279",
+        "nome": "Outros Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 73.72,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "d4502a54-13c9-46ce-8e55-1629be055604",
+      "sku": "VTK017570",
+      "nome": "Bateria Selada De Chumbo Elgin Vrla 12v 9ah",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e666735c-5699-4787-9273-2e2be34c872a",
+      "sku": "VTK017848",
+      "nome": "Cabo Alarme Telecam 100 Metros 50 X 10 Vias Cca Liga Cobre",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

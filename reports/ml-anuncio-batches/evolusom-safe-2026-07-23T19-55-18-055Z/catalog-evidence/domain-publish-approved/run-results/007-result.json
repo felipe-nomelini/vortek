@@ -1,0 +1,247 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/007-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-007",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "d99a77db-5a33-4072-9a3f-13bdacc9c5c0",
+      "sku": "VTK017739",
+      "category": {
+        "id": "MLB260685",
+        "nome": "Discos e Rebolos",
+        "dominio": "MLB-CUTTING_AND_GRINDING_DISCS_AND_STONES"
+      },
+      "anuncio": {
+        "id": "MLB7239018444",
+        "title": "Disco Diamantado Vonder V3 Furo 20 110mm",
+        "price": 56.18,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239018444-disco-diamantado-vonder-v3-furo-20-110mm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 40.54 → R$ 56.18."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "e36211d7-3653-4686-93c6-40619e689f76",
+      "sku": "VTK017228",
+      "category": {
+        "id": "MLB260685",
+        "nome": "Discos e Rebolos",
+        "dominio": "MLB-CUTTING_AND_GRINDING_DISCS_AND_STONES"
+      },
+      "anuncio": {
+        "id": "MLB7239007694",
+        "title": "Disco Diamantado Vonder V4 110mm",
+        "price": 59.51,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239007694-disco-diamantado-vonder-v4-110mm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 41.97 → R$ 59.51."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "781de69e-d4ba-4115-b898-3d0a5b5f1d4b",
+      "sku": "VTK017254",
+      "category": {
+        "id": "MLB195961",
+        "nome": "Adaptadores",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB7238974184",
+        "title": "Divisor Hdmi Evus C-081 4k Fêmea X Fêmea 2 Saídas 1 Entrada",
+        "price": 129.94,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238974184-divisor-hdmi-evus-c-081-4k-fmea-x-fmea-2-saidas-1-entrada-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 110.13 → R$ 129.94."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "788a2606-cf31-4cb8-9788-4b043ac3ce22",
+      "sku": "VTK018674",
+      "category": {
+        "id": "MLB420039",
+        "nome": "Gravadores DVR",
+        "dominio": "MLB-SURVEILLANCE_VIDEO_RECORDERS"
+      },
+      "anuncio": {
+        "id": "MLB7238974268",
+        "title": "Dvr Gravador De Vídeo Frahm 8 Canais Fgd2008l",
+        "price": 708.84,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238974268-dvr-gravador-de-video-frahm-8-canais-fgd2008l-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 679.09 → R$ 708.84."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "d9f4b7a2-5aab-41a5-8342-b0f684f24883",
+      "sku": "VTK012908",
+      "category": {
+        "id": "MLB278076",
+        "nome": "Cordas para Instrumentos",
+        "dominio": "MLB-STRING_INSTRUMENT_STRINGS"
+      },
+      "anuncio": {
+        "id": "MLB7239018872",
+        "title": "Encordoamento Giannini P/guitarra Niquel 0.011 Geegst.11",
+        "price": 74.65,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239018872-encordoamento-giannini-pguitarra-niquel-0011-geegst11-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 56.86 → R$ 74.65."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "dfe522d7-96b8-498f-a240-322254c7e2ab",
+      "sku": "VTK012916",
+      "category": {
+        "id": "MLB278076",
+        "nome": "Cordas para Instrumentos",
+        "dominio": "MLB-STRING_INSTRUMENT_STRINGS"
+      },
+      "anuncio": {
+        "id": "MLB4937519569",
+        "title": "Encordoamento Giannini P/contra Baixo Pesado 0.045 Geebrs/5",
+        "price": 172.94,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937519569-encordoamento-giannini-pcontra-baixo-pesado-0045-geebrs5-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 150.31 → R$ 172.94."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ba19ca70-f5ef-4b25-8b16-4be18ca8e356",
+      "sku": "VTK001671",
+      "category": {
+        "id": "MLB278076",
+        "nome": "Cordas para Instrumentos",
+        "dominio": "MLB-STRING_INSTRUMENT_STRINGS"
+      },
+      "anuncio": {
+        "id": "MLB4937519675",
+        "title": "Encordoamento Para Guitarra .010 Niquel Round Wound",
+        "price": 77.92,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937519675-encordoamento-para-guitarra-010-niquel-round-wound-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 59.75 → R$ 77.92."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "65a634ab-5ce4-4c01-9a1e-e88e70bf7fa0",
+      "sku": "VTK019116",
+      "category": {
+        "id": "MLB188790",
+        "nome": "Esmerilhadeiras Angulares",
+        "dominio": "MLB-POWER_GRINDERS"
+      },
+      "anuncio": {
+        "id": "MLB4937519869",
+        "title": "Esmerilhadeira Vonder 4.1/ 2  Eav 860 127v 127v",
+        "price": 417.54,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937519869-esmerilhadeira-vonder-41-2-eav-860-127v-127v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 385.53 → R$ 417.54."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "77e833d7-3487-4b9b-8b1c-298a9a540694",
+      "sku": "VTK018195",
+      "category": {
+        "id": "MLB63114",
+        "nome": "Filtros de Linha",
+        "dominio": "MLB-POWER_STRIPS"
+      },
+      "anuncio": {
+        "id": "MLB7239019584",
+        "title": "Extensão Daneva No Shock Pl 10m Grafite 2 X 0 75mm",
+        "price": 82.2,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239019584-extenso-daneva-no-shock-pl-10m-grafite-2-x-0-75mm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 64.03 → R$ 82.20."
+      ]
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "93a09e68-ab81-4aba-96e1-f5168eab6007",
+      "sku": "VTK019109",
+      "nome": "Fechadura Hdl Elétrica Pv90 1f Bola",
+      "error": "Produto sem estoque. Sincronize estoque ou aguarde disponibilidade antes de anunciar.",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "error": "Produto sem estoque. Sincronize estoque ou aguarde disponibilidade antes de anunciar."
+      }
+    }
+  ]
+}

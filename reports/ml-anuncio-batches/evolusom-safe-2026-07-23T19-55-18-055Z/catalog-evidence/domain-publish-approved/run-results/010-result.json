@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/010-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-010",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "25145b39-46b2-49fd-9a0b-ac457e1720bf",
+      "sku": "VTK017774",
+      "category": {
+        "id": "MLB107564",
+        "nome": "Jogo de Panelas",
+        "dominio": "MLB-KITCHEN_COOKWARE_KITS"
+      },
+      "anuncio": {
+        "id": "MLB7239096330",
+        "title": "Jogo De Panelas Tramontina Loreto Alumínio Starflon Max 5",
+        "price": 420.53,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239096330-jogo-de-panelas-tramontina-loreto-aluminio-starflon-max-5-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 362.28 → R$ 420.53."
+      ]
+    }
+  ],
+  "failed": []
+}

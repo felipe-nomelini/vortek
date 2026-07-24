@@ -1,0 +1,502 @@
++{
+  "generated_at": "2026-07-22T15:43:05.025247+00:00",
+  "supplier": "BKR1",
+  "summary": {
+    "total": 61,
+    "aptos_agora": 0,
+    "gtin_ausente": 56,
+    "imagem_400x400": 1,
+    "categoria_ml_incorreta_breu": 2,
+    "categoria_ml_incorreta_painel": 2
+  },
+  "items": [
+    {
+      "sku": "VTK012547",
+      "nome": "Breu Vr300 Escuro D Addario",
+      "gtin": "019954160050",
+      "estoque": 7,
+      "custo": 31.49,
+      "motivo": "categoria_ml_incorreta_breu"
+    },
+    {
+      "sku": "VTK012611",
+      "nome": "Breu Vr200 Claro D Addario",
+      "gtin": "019954160043",
+      "estoque": 5,
+      "custo": 31.49,
+      "motivo": "categoria_ml_incorreta_breu"
+    },
+    {
+      "sku": "VTK012632",
+      "nome": "Painel Multicabo 36 Vias XLR Sem Conectores Wireconex",
+      "gtin": "7898640363523",
+      "estoque": 4,
+      "custo": 156.7,
+      "motivo": "categoria_ml_incorreta_painel"
+    },
+    {
+      "sku": "VTK012907",
+      "nome": "Painel Multicabo 28 Vias Xlr Medusa Wireconex",
+      "gtin": "7898640363585",
+      "estoque": 4,
+      "custo": 267.46,
+      "motivo": "categoria_ml_incorreta_painel"
+    },
+    {
+      "sku": "VTK012014",
+      "nome": "Conector Para Cabo Fêmea P/ac - Corpo Azul Wc 3 Fca Wireconex 02 Unidades",
+      "gtin": null,
+      "estoque": 100,
+      "custo": 40,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012016",
+      "nome": "Kit Conectores Xlr 1003 1013 20un (10 Machos/10 Femeas) Wireconex",
+      "gtin": null,
+      "estoque": 100,
+      "custo": 129.9,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012018",
+      "nome": "Kit Conector Xlr Macho Wc 1013 (10un) Wireconex",
+      "gtin": null,
+      "estoque": 100,
+      "custo": 69.9,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012022",
+      "nome": "Conector Combo Xlr Fêmea Painel 3p Wc 330 Wireconex 04 Unidades",
+      "gtin": null,
+      "estoque": 100,
+      "custo": 64,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012039",
+      "nome": "Kit Conector Xlr Macho Wc 1013 (10un) Wireconex",
+      "gtin": null,
+      "estoque": 100,
+      "custo": 69.9,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012040",
+      "nome": "Kit Conectores Xlr 1003 1013 20un (10 Machos/10 Femeas) Wireconex",
+      "gtin": null,
+      "estoque": 100,
+      "custo": 129.9,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012148",
+      "nome": "Adaptador Rca Fêmea P/xlr 3p Fêmea Niq. Wc 244 Ad 02 Unidades Wireconex",
+      "gtin": null,
+      "estoque": 71,
+      "custo": 19,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012233",
+      "nome": "Palheta Bori Grl At-r16102 Picker 0,73 Mm (azul) R21003 10un",
+      "gtin": null,
+      "estoque": 38,
+      "custo": 10.18,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012236",
+      "nome": "Palheta Bori Grl At-r16104 Picker 0,96 Mm (amarelo) R21005 10un",
+      "gtin": null,
+      "estoque": 37,
+      "custo": 10.18,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012237",
+      "nome": "Palheta Bori Grl At-r16147 Rio Xxl (preto) R21032 10un",
+      "gtin": null,
+      "estoque": 37,
+      "custo": 10,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012248",
+      "nome": "Palheta Bori Grl At-r16103 Picker 0,82 Mm (vermelho) R21004 10un",
+      "gtin": null,
+      "estoque": 32,
+      "custo": 8,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012267",
+      "nome": "Adaptador Rca Macho P/xlr 3p Fêmea Niq. Wc 242 Ad 02 Unidades Wireconex",
+      "gtin": null,
+      "estoque": 28,
+      "custo": 20.68,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012275",
+      "nome": "Palheta Bori Grl At-r16110 S.t.d 0,94 Mm (verde Esc) R21014 10un",
+      "gtin": null,
+      "estoque": 27,
+      "custo": 8,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012281",
+      "nome": "Kit Conector Speakon Wc 605 (20un) Wireconex",
+      "gtin": null,
+      "estoque": 10,
+      "custo": 194.9,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012282",
+      "nome": "Palheta Bori Grl At-r16108 S.t.d 0,80 Mm (azul) R21012 10un",
+      "gtin": null,
+      "estoque": 26,
+      "custo": 11,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012283",
+      "nome": "Palheta Bori Grl At-r16146 Rio Xxl (vermelho) R21028 10un",
+      "gtin": null,
+      "estoque": 26,
+      "custo": 10,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012297",
+      "nome": "Kit 04 Conectores Xlr Macho P/ Pci 3 Polos Wc 4050 Wireconex",
+      "gtin": null,
+      "estoque": 24,
+      "custo": 27.87,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012301",
+      "nome": "Palheta Bori Grl At-r16145 Rio Iii (preto) R21031 10un",
+      "gtin": null,
+      "estoque": 23,
+      "custo": 10,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012304",
+      "nome": "Palheta Guitarra Color 1cap6 D Addario 1.00mm 10un",
+      "gtin": null,
+      "estoque": 22,
+      "custo": 35.48,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012310",
+      "nome": "Palheta Bori Grl At-r16142 Rio Ii (vermelho) R21026 10un",
+      "gtin": null,
+      "estoque": 22,
+      "custo": 10,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012319",
+      "nome": "Palheta Bori Grl At-r16115 Azul Crystal 0,96 Mm R21008 10un",
+      "gtin": null,
+      "estoque": 21,
+      "custo": 8,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012320",
+      "nome": "Palheta Bori Grl At-r16136 Drip Gota 2,50 Mm (azul) R21019 10un",
+      "gtin": null,
+      "estoque": 21,
+      "custo": 10,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012321",
+      "nome": "Palheta Bori Grl At-r16144 Rio Iii (vermelho) R21027 10un",
+      "gtin": null,
+      "estoque": 21,
+      "custo": 10,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012327",
+      "nome": "Kit 04 Conectores Xlr Femea P/ Pci 3 Polos Wc 4046 Wireconex",
+      "gtin": null,
+      "estoque": 20,
+      "custo": 27.87,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012335",
+      "nome": "Palheta Bori Grl At-r16112 S.t.d 1,14 Mm (preto) R21016 10un",
+      "gtin": null,
+      "estoque": 20,
+      "custo": 10,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012336",
+      "nome": "Palheta Bori Grl At-r16132 Drip Gota 1,50 Mm (azul) R21017 10un",
+      "gtin": null,
+      "estoque": 20,
+      "custo": 10,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012337",
+      "nome": "Palheta Bori Grl At-r16138 Drip Gota 3,00 Mm (azul) R21020 10un",
+      "gtin": null,
+      "estoque": 20,
+      "custo": 10,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012359",
+      "nome": "Palheta Bori Grl At-r16134 Drip Gota 2,00 Mm (azul) R21018 10un",
+      "gtin": null,
+      "estoque": 19,
+      "custo": 10,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012369",
+      "nome": "Adaptadores Rca Fêmea P/xlr 3p Macho Niq. Wc 245 Ad 02 Unidades Wireconex",
+      "gtin": null,
+      "estoque": 15,
+      "custo": 20,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012383",
+      "nome": "Palheta Guitarra Mul Lght 1cmc2 D Addario .50mm 10un",
+      "gtin": null,
+      "estoque": 16,
+      "custo": 35.33,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012384",
+      "nome": "Palheta Guitarra Color 1cap2 D Addario .50mm 10 Un",
+      "gtin": null,
+      "estoque": 16,
+      "custo": 35.36,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012408",
+      "nome": "Palheta Bori Grl At-r16107 S.t.d 0,78 Mm (rosa) R21011 10un",
+      "gtin": null,
+      "estoque": 14,
+      "custo": 8,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012414",
+      "nome": "Adaptador 3,5 Femea Trs 6,3mm Macho Wc347 Wireconex 06 Unidades",
+      "gtin": null,
+      "estoque": 13,
+      "custo": 55,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012418",
+      "nome": "Bateria Cr123 3v Panasonic",
+      "gtin": null,
+      "estoque": 9,
+      "custo": 23.9,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012420",
+      "nome": "Bateria 9v Alcalina Unidade Flex",
+      "gtin": null,
+      "estoque": 13,
+      "custo": 9.5,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012421",
+      "nome": "Palheta Guitarra Shl Lght 1csh2 D Addario .50mm 10un",
+      "gtin": null,
+      "estoque": 12,
+      "custo": 32.27,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012422",
+      "nome": "Palheta Guitarra Mul Med 1cmc4 D Addario .70mm 10un",
+      "gtin": null,
+      "estoque": 12,
+      "custo": 35.48,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012470",
+      "nome": "Palheta Bori Grl At-r16114 Azul Crystal 0,82 Mm R21007 10un",
+      "gtin": null,
+      "estoque": 10,
+      "custo": 8,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012502",
+      "nome": "Polidor Spray Shine Pw-pl-03 D Addario",
+      "gtin": null,
+      "estoque": 9,
+      "custo": 63,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012530",
+      "nome": "Bateria Alcalina A76 Cart 1 Energizer",
+      "gtin": null,
+      "estoque": 4,
+      "custo": 7.74,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012543",
+      "nome": "Palheta Bori Grl At-r16109 S.t.d 0,89 Mm (roxo) R21013 10un",
+      "gtin": null,
+      "estoque": 6,
+      "custo": 8,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012613",
+      "nome": "Palheta Royal Tenor Rkb0125 D Addario",
+      "gtin": null,
+      "estoque": 5,
+      "custo": 38,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012628",
+      "nome": "Palheta Guitarra Dur Prec 6dbu5 D Addario 1.00mm 10un",
+      "gtin": null,
+      "estoque": 4,
+      "custo": 26.77,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012668",
+      "nome": "Palheta Guitarra Med 1ccf4 D Addario .70mm 10un",
+      "gtin": null,
+      "estoque": 2,
+      "custo": 34.53,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012669",
+      "nome": "Palheta Guitarra Dur Prec 6dbk7 D Addario 1.50mm 10un",
+      "gtin": null,
+      "estoque": 3,
+      "custo": 30.08,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012670",
+      "nome": "Palheta Guitarra Color 1cap7 D Addario 1.25mm 10un",
+      "gtin": null,
+      "estoque": 3,
+      "custo": 32.27,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012687",
+      "nome": "Cabo De Microfone Pro Balanceado Emborrachado Xlr Xlr 0,40 Cm Mpbe-0,40 Wireconex",
+      "gtin": null,
+      "estoque": 3,
+      "custo": 20,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012694",
+      "nome": "Palheta Bori Grl At-r16111 S.t.d 1,04 Mm (branco) R21015 10un",
+      "gtin": null,
+      "estoque": 2,
+      "custo": 8,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012699",
+      "nome": "Painel Medusa 28 Furos Xlr Com Conectores Wireconex",
+      "gtin": null,
+      "estoque": 3,
+      "custo": 366.01,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012729",
+      "nome": "Cabo P10 Prowire Em L Tweed Lilás/prata 6,10m Wireconex",
+      "gtin": null,
+      "estoque": 3,
+      "custo": 60.51,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012763",
+      "nome": "Palheta Guitarra Shl Hvy 1csh6 D Addario 1.00mm 10un",
+      "gtin": null,
+      "estoque": 2,
+      "custo": 32.27,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012764",
+      "nome": "Palheta Guitarra Dur Prec 6dpr6 D Addario 1.20mm 10un",
+      "gtin": null,
+      "estoque": 2,
+      "custo": 26.77,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012765",
+      "nome": "Adaptador Rca Macho P/xlr 3p Macho Niq. Wc 243 Ad 02 Unidades Wireconex",
+      "gtin": null,
+      "estoque": 2,
+      "custo": 21,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012766",
+      "nome": "Cabo Para Caixa 4 Polos 5 Metros Spk 4p 05 225 Wireconex",
+      "gtin": null,
+      "estoque": 2,
+      "custo": 84.55,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012772",
+      "nome": "Caixa De Som Passiva 8 Polegadas 100 W Rms - Attack Vrf810",
+      "gtin": null,
+      "estoque": 2,
+      "custo": 1006.98,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012800",
+      "nome": "Painel 48 Furos Xlr Com Conectores 2 Saídas Wireconex",
+      "gtin": null,
+      "estoque": 2,
+      "custo": 647.78,
+      "motivo": "gtin_ausente"
+    },
+    {
+      "sku": "VTK012523",
+      "nome": "Knobs Andaluz Kp (kit C/2 Vol+2ton) Preto",
+      "gtin": "7898905159670",
+      "estoque": 8,
+      "custo": 15.5,
+      "motivo": "imagem_400x400"
+    }
+  ]
+}

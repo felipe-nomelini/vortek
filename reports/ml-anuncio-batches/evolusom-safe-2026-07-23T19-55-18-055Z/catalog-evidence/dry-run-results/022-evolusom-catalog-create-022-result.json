@@ -1,0 +1,153 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/022-evolusom-catalog-create-022.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-022",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "59e3ed8d-333a-499d-8377-3502909a29aa",
+      "sku": "VTK017991",
+      "category": {
+        "id": "MLB29281",
+        "nome": "Mesas de Som",
+        "dominio": "MLB-SOUND_CONSOLES_AND_MIXERS"
+      },
+      "basePrice": 730.35,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "3c04ddfc-a789-43eb-8918-0f398ded5d8a",
+      "sku": "VTK002218",
+      "category": {
+        "id": "MLB4469",
+        "nome": "Microfones",
+        "dominio": "MLB-MICROPHONES"
+      },
+      "basePrice": 125.58,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "c1586888-7a8e-4553-954d-530816c2d000",
+      "sku": "VTK017932",
+      "category": {
+        "id": "MLB235594",
+        "nome": "Morsas",
+        "dominio": "MLB-VISES"
+      },
+      "basePrice": 125.95,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "dc1632af-808a-4acd-bfb2-ac85add0ea3a",
+      "sku": "VTK018522",
+      "category": {
+        "id": "MLB30214",
+        "nome": "Multímetros",
+        "dominio": "MLB-MULTIMETERS"
+      },
+      "basePrice": 76.2,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4745913c-5b34-40ab-b200-2dd027053231",
+      "sku": "VTK018549",
+      "category": {
+        "id": "MLB44572",
+        "nome": "Antenas de TV",
+        "dominio": "MLB-TV_ANTENNAS"
+      },
+      "basePrice": 225.43,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9817c9d6-b436-441f-bef3-66a24fa6fb34",
+      "sku": "VTK018595",
+      "category": {
+        "id": "MLB3385",
+        "nome": "Módulos Amplificadores",
+        "dominio": "MLB-VEHICLE_AMPLIFIERS"
+      },
+      "basePrice": 681.35,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ebb97279-ff85-4141-8978-16408c4d8e67",
+      "sku": "VTK017769",
+      "category": {
+        "id": "MLB9635",
+        "nome": "Placas de Rede",
+        "dominio": "MLB-NETWORK_CARDS"
+      },
+      "basePrice": 142.18,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "aac0b9b3-eafd-4013-a7c3-a68118e9b81a",
+      "sku": "VTK017760",
+      "nome": "Miniprocessador Agratto Ampr01i-01 350ml 100w 127v",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB31674",
+            "nome": "Processadores"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7dca48d5-d209-4431-81cc-33bbae63bcda",
+      "sku": "VTK018224",
+      "nome": "Módulo De Vidro Elétrico Soft Infinity 2.0 - Aa.56.0001",
+      "error": "Atributos obrigatórios pendentes: Quantidade de entradas, Quantidade de saídas",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB433203",
+            "nome": "Módulos de Luzes"
+          },
+          "missing": [
+            "Quantidade de entradas",
+            "Quantidade de saídas"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "dc9ab654-a53f-4415-9c79-c302399113f3",
+      "sku": "VTK018376",
+      "nome": "Moldura 2 Din Fiamon Gm Vectra Gt/ Meriva/ Corsa/ Montana Black",
+      "error": "Atributos obrigatórios pendentes: Dimensão estándar do estéreo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45320",
+            "nome": "Molduras para Estéreos"
+          },
+          "missing": [
+            "Dimensão estándar do estéreo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

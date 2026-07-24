@@ -1,0 +1,145 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/021-evolusom-catalog-create-021.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-021",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "bc040ab0-3aa3-4126-b12a-d24c2897bac0",
+      "sku": "VTK003270",
+      "category": {
+        "id": "MLB269929",
+        "nome": "Interruptores de Luz de Parede",
+        "dominio": "MLB-WALL_LIGHT_SWITCHES"
+      },
+      "basePrice": 103.02,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "baaae1b2-3872-4f68-bd88-b2c08902ff02",
+      "sku": "VTK001672",
+      "category": {
+        "id": "MLB236055",
+        "nome": "Kit de Chaves",
+        "dominio": "MLB-WRENCHES"
+      },
+      "basePrice": 89.49,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "00472e3e-1484-4aff-b15b-9f47863d7ed6",
+      "sku": "VTK017552",
+      "category": {
+        "id": "MLB244658",
+        "nome": "Potes para Alimentos",
+        "dominio": "MLB-FOOD_STORAGE_CONTAINERS"
+      },
+      "basePrice": 62.77,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "25145b39-46b2-49fd-9a0b-ac457e1720bf",
+      "sku": "VTK017774",
+      "category": {
+        "id": "MLB107564",
+        "nome": "Jogo de Panelas",
+        "dominio": "MLB-KITCHEN_COOKWARE_KITS"
+      },
+      "basePrice": 362.28,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ed62b1b8-d140-4d21-aebd-5c42f87c8e27",
+      "sku": "VTK017824",
+      "category": {
+        "id": "MLB268504",
+        "nome": "Insulfilms",
+        "dominio": "MLB-VEHICLE_TINTED_GLASSES"
+      },
+      "basePrice": 108.76,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "39fd438d-5bee-4fac-8a8a-8d65e654b6fb",
+      "sku": "VTK004423",
+      "category": {
+        "id": "MLB5906",
+        "nome": "Leitores de Código de Barras",
+        "dominio": "MLB-BAR_CODE_SCANNERS"
+      },
+      "basePrice": 283.72,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8da178e0-a746-4e3a-8272-7cbbed68bca6",
+      "sku": "VTK001157",
+      "category": {
+        "id": "MLB49093",
+        "nome": "Lupas",
+        "dominio": "MLB-MAGNIFYING_GLASSES"
+      },
+      "basePrice": 75.89,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1e9cf426-cadd-4295-b050-872acf4f79bf",
+      "sku": "VTK017376",
+      "category": {
+        "id": "MLB11529",
+        "nome": "Suportes",
+        "dominio": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS"
+      },
+      "basePrice": 49.74,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "a61b46d2-bd8e-4552-98b9-e15bf512bbf3",
+      "sku": "VTK018925",
+      "nome": "Kit Telefone Intelbras Celular Fixo Gsm Cfa4212",
+      "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB1053",
+            "nome": "Telefones"
+          },
+          "missing": [
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6749a6a8-ea48-4057-bdae-f02dc8dadecd",
+      "sku": "VTK018198",
+      "nome": "Liquidificador Philco Ph900 Com Filtro 12 Velocidades 3 Litros Vermelho 127v",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB73055",
+            "nome": "Liquidificadores"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

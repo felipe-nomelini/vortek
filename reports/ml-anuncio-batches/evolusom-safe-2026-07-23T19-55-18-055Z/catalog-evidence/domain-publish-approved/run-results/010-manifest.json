@@ -1,0 +1,122 @@
+{
+  "batchNumber": 10,
+  "batchId": "evolusom-domain-approved-010",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "25145b39-46b2-49fd-9a0b-ac457e1720bf",
+      "sku": "VTK017774",
+      "nome": "Jogo De Panelas Tramontina Loreto Alumínio Starflon Max 5 Peças Vermelho",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 259.9,
+      "estoque": 27,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 368.99,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7891112228726",
+        "validatedNcm": "76151000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB107564",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "433",
+          "value_name": "Tramontina"
+        },
+        {
+          "id": "LINE",
+          "value_id": "13943597",
+          "value_name": "Loreto"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "73236906",
+          "value_name": "20399/082"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "value_id": "3402025",
+          "value_name": "5"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "51993",
+          "value_name": "Vermelho"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450307",
+          "value_name": "Vermelho"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "2748301",
+          "value_name": "Alumínio"
+        },
+        {
+          "id": "PIECES_INCLUDED",
+          "value_id": "40107532",
+          "value_name": "Panela, Frigideira, Fervedor, Caçarola"
+        },
+        {
+          "id": "IS_FACTORY_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_INDUCTION_COOKER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NONSTICK_COATING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "33331861",
+          "value_name": "7891112228726"
+        },
+        {
+          "id": "HANDLE_MATERIAL",
+          "value_id": "43958513",
+          "value_name": "Baquelite antitérmico"
+        },
+        {
+          "id": "IS_DISHWASHWE_SAFE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB33309662",
+        "catalogProductName": "Jogo de 5 Panelas Loreto Alumínio Com Revestimento Interno E Externo Antiaderente Starflon Max Cor Vermelho Tramontina",
+        "catalogDomainId": "MLB-KITCHEN_COOKWARE_KITS",
+        "predictedDomainId": "MLB-KITCHEN_COOKWARE_KITS",
+        "categoryId": "MLB107564",
+        "categoryName": "Jogo de Panelas",
+        "linkedListingsInCategory": 16,
+        "validatedGtin": "7891112228726"
+      }
+    }
+  ]
+}

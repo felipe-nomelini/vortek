@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-first-10/current.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-first-10-researched",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "3919d318-bb85-4e52-941e-3dc223014587",
+      "sku": "VTK018725",
+      "category": {
+        "id": "MLB11529",
+        "nome": "Suportes",
+        "dominio": "Suportes de chão e de parede para TV e monitor"
+      },
+      "anuncio": {
+        "id": "MLB4923686925",
+        "title": "Suporte Para Tv Fixo Multivisão Easy Até 71 ",
+        "price": 58.06,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4923686925-suporte-para-tv-fixo-multiviso-easy-ate-71-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 38.85 → R$ 58.06."
+      ]
+    }
+  ],
+  "failed": []
+}

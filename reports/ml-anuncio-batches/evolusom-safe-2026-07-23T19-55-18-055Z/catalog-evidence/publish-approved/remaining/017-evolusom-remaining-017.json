@@ -1,0 +1,1331 @@
+{
+  "batchId": "evolusom-remaining-017",
+  "strategy": "verified_dry_run_exact_catalog",
+  "items": [
+    {
+      "produtoId": "0ee590bb-5657-480e-b748-166319acefe7",
+      "sku": "VTK017224",
+      "nome": "Fita Dupla Face Vonder Espuma 19mmx10,0m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 17.38,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 46.15,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893946107444",
+        "validatedNcm": "39191010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB105468",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "275828",
+          "value_name": "Vonder"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17098618",
+          "value_name": "Fita dupla face"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "1748",
+          "value_name": "1.9 cm"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "129133",
+          "value_name": "10 m"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726555",
+          "value_name": "2"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "value_id": "8691860",
+          "value_name": "2"
+        },
+        {
+          "id": "ADHESIVE_TAPE_TYPE",
+          "value_id": "2466998",
+          "value_name": "Dupla face"
+        },
+        {
+          "id": "RECOMMENDED_SURFACES",
+          "value_id": "3918728",
+          "value_name": "Madeira, Acrílico, Metal, Vidro"
+        },
+        {
+          "id": "THICKNESS",
+          "value_id": "5190610",
+          "value_name": "1.3 mm"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "47888536",
+          "value_name": "Polipropileno"
+        },
+        {
+          "id": "FINISH",
+          "value_id": "2102514",
+          "value_name": "Brilhante"
+        },
+        {
+          "id": "MAX_TEMPERATURE_SUPPORTED",
+          "value_id": "11316237",
+          "value_name": "50 °C"
+        },
+        {
+          "id": "IS_WRITABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_TRANSPARENT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TAPE_DISPENSER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24907741",
+          "value_name": "7893946107444"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27479734",
+        "catalogProductName": "Fita Dupla Face Espuma 19mm X 10m Vonder 2 Peças",
+        "catalogDomainId": "MLB-ADHESIVE_TAPES",
+        "categoryId": "MLB105468",
+        "categoryName": "Fitas Adesivas",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7893946107444"
+      }
+    },
+    {
+      "produtoId": "5791ea8f-f7b4-4afc-9928-ac6583fa7b83",
+      "sku": "VTK017607",
+      "nome": "Fita Dupla Face Vonder Acrílica 12mmx20m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 27.9,
+      "estoque": 38,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 59.14,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893946421021",
+        "validatedNcm": "35061090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB105468",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "275828",
+          "value_name": "Vonder"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "21723487",
+          "value_name": "12mm x 20m"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "4099936",
+          "value_name": "1.2 cm"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "2958914",
+          "value_name": "Incolor"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "130422",
+          "value_name": "20 m"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "ADHESIVE_TAPE_TYPE",
+          "value_id": "2466998",
+          "value_name": "Dupla face"
+        },
+        {
+          "id": "RECOMMENDED_SURFACES",
+          "value_id": "24209320",
+          "value_name": "Artigos de metal, Artigos de plástico, Cartazes, Emblemas, Frisos automotivos, Placas, Plásticos"
+        },
+        {
+          "id": "THICKNESS",
+          "value_id": "3095034",
+          "value_name": "1 mm"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2482319",
+          "value_name": "Polipropileno"
+        },
+        {
+          "id": "FINISH",
+          "value_id": "2102514",
+          "value_name": "Brilhante"
+        },
+        {
+          "id": "IS_WRITABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_TRANSPARENT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TAPE_DISPENSER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "21723511",
+          "value_name": "7893946421021"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB25144296",
+        "catalogProductName": "Vonder 12mm x 20m fita dupla face transparente",
+        "catalogDomainId": "MLB-ADHESIVE_TAPES",
+        "categoryId": "MLB105468",
+        "categoryName": "Fitas Adesivas",
+        "linkedListingsInCategory": 29,
+        "validatedGtin": "7893946421021"
+      }
+    },
+    {
+      "produtoId": "9e217af3-d066-4d41-b48e-24c8d116225c",
+      "sku": "VTK017792",
+      "nome": "Fixa Forte 3m Espuma 24mm X 1,5m 76686",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 22.39,
+      "estoque": 25,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 52.33,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7891040121403",
+        "validatedNcm": "39191090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB105468",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "7696",
+          "value_name": "3M"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "3912865",
+          "value_name": "Fixa Forte"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "5419894",
+          "value_name": "2.4 cm"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "57070",
+          "value_name": "Transparente"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "129115",
+          "value_name": "1.5 m"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "value_id": "6826921",
+          "value_name": "1"
+        },
+        {
+          "id": "ADHESIVE_TAPE_TYPE",
+          "value_id": "2466998",
+          "value_name": "Dupla face"
+        },
+        {
+          "id": "RECOMMENDED_SURFACES",
+          "value_id": "26138862",
+          "value_name": "Lisa"
+        },
+        {
+          "id": "THICKNESS",
+          "value_id": "3095034",
+          "value_name": "1 mm"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2466987",
+          "value_name": "Silicone"
+        },
+        {
+          "id": "FINISH",
+          "value_id": "5104594",
+          "value_name": "Transparente"
+        },
+        {
+          "id": "MAX_TEMPERATURE_SUPPORTED",
+          "value_id": "5947712",
+          "value_name": "40 °C"
+        },
+        {
+          "id": "IS_WRITABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_TRANSPARENT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TAPE_DISPENSER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24893198",
+          "value_name": "7891040121403"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27468778",
+        "catalogProductName": "Fita Dupla Face Fixa Forte Espuma 3m 24mm X 1.5m Scotch",
+        "catalogDomainId": "MLB-ADHESIVE_TAPES",
+        "categoryId": "MLB105468",
+        "categoryName": "Fitas Adesivas",
+        "linkedListingsInCategory": 37,
+        "validatedGtin": "7891040121403"
+      }
+    },
+    {
+      "produtoId": "b2e9be0a-14ae-4a91-9653-cedbd6f23106",
+      "sku": "VTK017537",
+      "nome": "Fone Com Microfone C3 Tech Ph-60bk Voicer Comfort",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 32.9,
+      "estoque": 46,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 65.31,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898555218048",
+        "validatedNcm": "85183000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1664",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "8774306",
+          "value_name": "C3Tech"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "12931822",
+          "value_name": "PH-60BK"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "value_id": "12931820",
+          "value_name": "PH-60BK"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "HEADPHONE_FORMAT",
+          "value_id": "182358",
+          "value_name": "Headset"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_MONAURAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_INFANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "20169468",
+          "value_name": "7898555218048, 7898919257843"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "61389643",
+          "value_name": "Ph-60bk"
+        },
+        {
+          "id": "DIAPHRAGM_UNIT",
+          "value_id": "10814759",
+          "value_name": "4 cm"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_id": "447286",
+          "value_name": "32 Ω"
+        },
+        {
+          "id": "FREQUENCY_RESPONSE",
+          "value_id": "925820",
+          "value_name": "20 Hz - 20 kHz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "964028",
+          "value_name": "105 dB"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "4773776",
+          "value_name": "1.85 m"
+        },
+        {
+          "id": "INCLUDES_CHARGING_CASE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIRELESS_CHARGING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TWS_TECHNOLOGY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_PROXIMITY_SENSOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_MP3_PLAYER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_FM_RADIO",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NOISE_CANCELLING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATERPROOF",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_DUST_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DETACHABLE_CABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DETACHABLE_MICROPHONE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_FLEXIBLE_MICROPHONE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_INTEGRATED_VOICE_ASSISTANTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MICROPHONES_NUMBER",
+          "value_id": "934836",
+          "value_name": "1"
+        },
+        {
+          "id": "CONNECTOR_TYPES",
+          "value_id": "8724261",
+          "value_name": "Jack 3.5 mm"
+        },
+        {
+          "id": "MICROPHONE_ORIENTATIONS",
+          "value_id": "8847355",
+          "value_name": "Esquerda"
+        },
+        {
+          "id": "SUITABLE_USES",
+          "value_id": "8701147",
+          "value_name": "Profissional, Entretenimento"
+        },
+        {
+          "id": "CONTROL_FUNCTIONS",
+          "value_id": "11559796",
+          "value_name": "Controle de volume"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "8752531",
+          "value_name": "Almofadas, Cabo jack 3.5 mm"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB19474779",
+        "catalogProductName": "Fone De Ouvido Headset Com Microfone Voicer Comfort C3tech",
+        "catalogDomainId": "MLB-HEADPHONES",
+        "categoryId": "MLB1664",
+        "categoryName": "Fones",
+        "linkedListingsInCategory": 22,
+        "validatedGtin": "7898555218048"
+      }
+    },
+    {
+      "produtoId": "edbe286e-77be-4f7a-b83f-9d96fb9087b0",
+      "sku": "VTK017222",
+      "nome": "Fone De Ouvido Evus F-09 Intra Auricular Premium Rosa",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 17.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 46.79,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597131527",
+        "validatedNcm": "85183000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1664",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24132791",
+          "value_name": "EVUS"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "13869876",
+          "value_name": "Único"
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "26094723",
+          "value_name": "7898597131527"
+        },
+        {
+          "id": "DIAPHRAGM_UNIT",
+          "value_id": "12931743",
+          "value_name": "3.5 mm"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_id": "447286",
+          "value_name": "32 Ω"
+        },
+        {
+          "id": "FREQUENCY_RESPONSE",
+          "value_id": "925820",
+          "value_name": "20 Hz - 20 kHz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "964028",
+          "value_name": "105 dB"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "124833",
+          "value_name": "1.2 m"
+        },
+        {
+          "id": "CONNECTOR_TYPES",
+          "value_id": "73923381",
+          "value_name": "P2 Stereo 3.5 mm"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB28107410",
+        "catalogProductName": "Fone De Ouvido Evus F-09 Intra Auricular Premium Rosa",
+        "catalogDomainId": "MLB-HEADPHONES",
+        "categoryId": "MLB1664",
+        "categoryName": "Fones",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898597131527"
+      }
+    },
+    {
+      "produtoId": "ad9bb504-524a-48d3-a56c-146c4f1781ab",
+      "sku": "VTK017577",
+      "nome": "Fone De Ouvido Para Radio Comunicador Intelbras Hc20pt 4161020",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 57.6,
+      "estoque": 44,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 95.8,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899298633693",
+        "validatedNcm": "85183000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7457",
+      "attributeOverrides": [
+        {
+          "id": "MANUFACTURER",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "LINE",
+          "value_id": "13629541",
+          "value_name": "Fone de Ouvido"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "49886003",
+          "value_name": "Intelbras HC 20"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "value_id": "21498297",
+          "value_name": "HC 20 PT"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "HEADPHONE_FORMAT",
+          "value_id": "182351",
+          "value_name": "In-ear"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_MONAURAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_INFANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "21498337",
+          "value_name": "7892764500444, 7899298633693"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "934877",
+          "value_name": "3 dB"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "4506040",
+          "value_name": "1.05 m"
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_FLEXIBLE_MICROPHONE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "CONNECTOR_TYPES",
+          "value_id": "8058616",
+          "value_name": "Mini jack"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "411379",
+          "value_name": "Cabo"
+        },
+        {
+          "id": "MPN",
+          "value_id": "21498338",
+          "value_name": "Fone de ouvido com microfone hc 20 para rc 4102 intelbras"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB24962898",
+        "catalogProductName": "Fone De Ouvido Com Microfone Intelbras Hc20pt Preto",
+        "catalogDomainId": "MLB-HEADPHONES",
+        "categoryId": "MLB7457",
+        "categoryName": "Fones de Ouvido",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7899298633693"
+      }
+    },
+    {
+      "produtoId": "78d60d02-7936-4e09-9279-ad8ec2833a35",
+      "sku": "VTK017898",
+      "nome": "Fone Headset Intelbras Ths 55 Conector Usb 4010055",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 239.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 340.6,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637677035",
+        "validatedNcm": "85183000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1664",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17012662",
+          "value_name": "THS 55"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "HEADPHONE_FORMAT",
+          "value_id": "182358",
+          "value_name": "Headset"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_MONAURAL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_INFANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "17012688",
+          "value_name": "7896637677035"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21895542",
+        "catalogProductName": "Fone Headset USB para Telemarketing Intelbras THS-55 Cor Preto",
+        "catalogDomainId": "MLB-HEADPHONES",
+        "categoryId": "MLB1664",
+        "categoryName": "Fones",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7896637677035"
+      }
+    },
+    {
+      "produtoId": "ed5f9de6-35fc-4ad4-bec8-2561a086aa31",
+      "sku": "VTK017368",
+      "nome": "Fonte Atx Evus Ft-200w Atx 200w Real 20/24p 3 Sata Com Cabo",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 49.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 86.3,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597130018",
+        "validatedNcm": "85044021",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB6777",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "2168584",
+          "value_name": "FT-200W"
+        },
+        {
+          "id": "POWER_OUTPUT",
+          "value_id": "2091951",
+          "value_name": "200 W"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52053",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "EFFICIENCY_CERTIFICATION",
+          "value_id": "13360373",
+          "value_name": "0"
+        },
+        {
+          "id": "FAN_DIAMETER",
+          "value_id": "8294976",
+          "value_name": "8 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7905690",
+          "value_name": "14 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "37270619",
+          "value_name": "7898597130018"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "1115184",
+          "value_name": "8.5 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "5795689",
+          "value_name": "15 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "5801090",
+          "value_name": "672 g"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "8095728",
+          "value_name": "50 Hz x 60 Hz"
+        },
+        {
+          "id": "MODULATION_TYPE",
+          "value_id": "8234703",
+          "value_name": "Permanente"
+        },
+        {
+          "id": "WITH_ACTIVE_POWER_FACTOR_CORRECTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "CONNECTIVITY",
+          "value_id": "66813211",
+          "value_name": "3 Conectores Sata"
+        },
+        {
+          "id": "INPUT_VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "PROTECTIONS",
+          "value_id": "60333606",
+          "value_name": "Proteção contra sobrecargas"
+        },
+        {
+          "id": "POWER_SUPPLY_COOLING_TYPE",
+          "value_id": "59937886",
+          "value_name": "Ar"
+        },
+        {
+          "id": "ENERGY_EFFICIENCY_BRASIL",
+          "value_id": "36526405",
+          "value_name": "0"
+        },
+        {
+          "id": "FORM_FACTOR",
+          "value_id": "116819",
+          "value_name": "ATX"
+        },
+        {
+          "id": "INCLUDES_ACCESSORIES",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "7609642",
+          "value_name": "Cabo de alimentação"
+        },
+        {
+          "id": "COMPUTER_POWER_SUPPLY_HEIGHT",
+          "value_id": "216344",
+          "value_name": "14 cm"
+        },
+        {
+          "id": "COMPUTER_POWER_SUPPLY_LENGTH",
+          "value_id": "31645132",
+          "value_name": "8.5 cm"
+        },
+        {
+          "id": "COMPUTER_POWER_SUPPLY_WIDTH",
+          "value_id": "570734",
+          "value_name": "15 cm"
+        },
+        {
+          "id": "COMPUTER_POWER_SUPPLY_WEIGHT",
+          "value_id": "5801090",
+          "value_name": "672 g"
+        },
+        {
+          "id": "WITH_SILENT_OPERATION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_RGB_LIGHTING",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB36537609",
+        "catalogProductName": "Fonte Evus Ft-200w Atx 200w Real 20/24p 3 Sata Com Cabo Cor Prateado",
+        "catalogDomainId": "MLB-DESKTOP_COMPUTER_POWER_SUPPLIES",
+        "categoryId": "MLB6777",
+        "categoryName": "Fontes",
+        "linkedListingsInCategory": 5,
+        "validatedGtin": "7898597130018"
+      }
+    },
+    {
+      "produtoId": "1809f7f6-fe29-49b8-ae58-c006462b7d9e",
+      "sku": "VTK018645",
+      "nome": "Fonte Atx Gamemax Gp400a 400w Real 80plus/pfc/bivolt Auto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 269.9,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 383.19,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "6931858720021",
+        "validatedNcm": "85044021",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB6777",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "899182",
+          "value_name": "GameMax"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "7894262",
+          "value_name": "GP-400A"
+        },
+        {
+          "id": "POWER_OUTPUT",
+          "value_id": "1082268",
+          "value_name": "400 W"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "FAN_DIAMETER",
+          "value_id": "7927477",
+          "value_name": "12 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "8524359",
+          "value_name": "6931858720021"
+        },
+        {
+          "id": "WITH_RGB_LIGHTING",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB49829492",
+        "catalogProductName": "Fonte Alimentacao Gamemax Gp400a 400w Box 80 Plus Bronze Cor Preto",
+        "catalogDomainId": "MLB-DESKTOP_COMPUTER_POWER_SUPPLIES",
+        "categoryId": "MLB6777",
+        "categoryName": "Fontes",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "6931858720021"
+      }
+    },
+    {
+      "produtoId": "012e08b0-57bf-4bda-87ba-3b87c5ae04d2",
+      "sku": "VTK017597",
+      "nome": "Fonte Chaveada 9v 2a P4 C+ 2.1 X 5.5 Mm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 19.99,
+      "estoque": 41,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 49.37,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899471855096",
+        "validatedNcm": "85044029",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB420411",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "26297144",
+          "value_name": "039.001.00173"
+        },
+        {
+          "id": "POWER",
+          "value_id": "1175140",
+          "value_name": "18 W"
+        },
+        {
+          "id": "POWER_OUTPUT",
+          "value_id": "8124797",
+          "value_name": "18 W"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "2511571",
+          "value_name": "ABS, Cobre, PCB"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "12737658",
+          "value_name": "50 / 60 HZ"
+        },
+        {
+          "id": "MIN_INPUT_VOLTAGE",
+          "value_id": "17583711",
+          "value_name": "100V"
+        },
+        {
+          "id": "MAX_INPUT_VOLTAGE",
+          "value_id": "198813",
+          "value_name": "220V"
+        },
+        {
+          "id": "MIN_OUTPUT_VOLTAGE",
+          "value_id": "19940978",
+          "value_name": "9V"
+        },
+        {
+          "id": "MAX_OUTPUT_VOLTAGE",
+          "value_id": "8149915",
+          "value_name": "9V"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7806877",
+          "value_name": "100 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "26297145",
+          "value_name": "7899471855096"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB28222408",
+        "catalogProductName": "Fonte Chaveada Ac/dc Mxt P4 - 9v - 2a - 18w - Entrada 100-240",
+        "catalogDomainId": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES",
+        "categoryId": "MLB420411",
+        "categoryName": "Fontes Chaveadas",
+        "linkedListingsInCategory": 12,
+        "validatedGtin": "7899471855096"
+      }
+    }
+  ]
+}

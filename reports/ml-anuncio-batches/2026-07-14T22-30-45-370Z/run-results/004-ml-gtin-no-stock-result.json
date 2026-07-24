@@ -1,0 +1,419 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-14T22-30-45-370Z/004-ml-gtin-no-stock.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "ml-gtin-no-stock",
+  "selected": 22,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "8cb5d3fd-bc1b-43b8-ae57-90d883127c28",
+      "sku": "VTK015924",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "basePrice": 83.12,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "cd773c34-b7bc-4d7a-b461-7e4e272147f1",
+      "sku": "VTK015937",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "basePrice": 155.58,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1cef65d0-d601-4686-ab0c-58e0321fec79",
+      "sku": "VTK016048",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "basePrice": 283.38,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ed557c4d-00b3-4882-b152-9e05e3471c9c",
+      "sku": "VTK016182",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "basePrice": 359.2,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "7f42cac9-d5e1-4631-b46c-bb369d23d0a5",
+      "sku": "VTK015945",
+      "nome": "10 Pilhas Recarregaveis Eneloop Pro Aa Panasonic (5 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "cab6ecdf-8f79-4960-bd59-c83893742a50",
+      "sku": "VTK015946",
+      "nome": "10 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (5 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2ca131f4-555e-4e96-ad92-389682d1cb4a",
+      "sku": "VTK015971",
+      "nome": "12 Pilhas Recarregaveis Eneloop Pro Aa Panasonic (6 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f7ee4e5d-fd47-4d93-a169-63cbc4a9f257",
+      "sku": "VTK015972",
+      "nome": "12 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (6 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b302b01f-162f-4958-a2b2-97bf195b4a8e",
+      "sku": "VTK015982",
+      "nome": "14 Pilhas Recarregaveis Eneloop Pro Aa Panasonic (7 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "70bc66e2-e975-4683-b5d5-c483dd16614b",
+      "sku": "VTK015983",
+      "nome": "14 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (7 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e3da23c5-048e-4f74-b94d-9bcf5143f08a",
+      "sku": "VTK016008",
+      "nome": "16 Pilhas Recarregaveis Eneloop Pro Aa Panasonic (8 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "68404b02-4e51-442c-bec6-c9aea166852d",
+      "sku": "VTK016009",
+      "nome": "16 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (8 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "91e387fc-34b8-4f52-a86a-0ea660bfa8ec",
+      "sku": "VTK016023",
+      "nome": "18 Pilhas Recarregaveis Eneloop Pro Aa Panasonic (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2719221b-385e-433c-8830-d37e95f24d3a",
+      "sku": "VTK016024",
+      "nome": "18 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "9b4fc650-5173-48f6-81cc-2264354cc870",
+      "sku": "VTK016062",
+      "nome": "20 Pilhas Recarregaveis Eneloop Pro Aa Panasonic (10 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f97b6f4d-ecff-41ab-a2ba-630baf9f6173",
+      "sku": "VTK016063",
+      "nome": "20 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (10 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "945694ff-b226-4f7c-9f5f-859dca852361",
+      "sku": "VTK016140",
+      "nome": "4 Pilhas Recarregaveis Eneloop Pro Aa Panasonic (2 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f6dd53a7-be1d-435b-8a90-5811eaaf959d",
+      "sku": "VTK016141",
+      "nome": "4 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (2 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2e7002f6-82c7-4c7d-a7c7-656559616187",
+      "sku": "VTK016203",
+      "nome": "6 Pilhas Recarregaveis Eneloop Pro Aa Panasonic (3 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b686c43a-d79c-4ca8-8c33-c99af43ac16f",
+      "sku": "VTK016204",
+      "nome": "6 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (3 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3f3dcec7-9878-4662-add2-1724ee5f789f",
+      "sku": "VTK016236",
+      "nome": "8 Pilhas Recarregaveis Eneloop Pro Aa Panasonic (4 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "92bf4a77-b94a-49df-b11f-bf5bacc229bc",
+      "sku": "VTK016237",
+      "nome": "8 Pilhas Recarregaveis Eneloop Pro Aaa Panasonic (4 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

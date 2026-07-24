@@ -1,0 +1,489 @@
+{
+  "batchNumber": 6,
+  "batchId": "ml-create-006",
+  "strategy": "safe_small_batch",
+  "executionHints": {
+    "delayMs": 1500,
+    "listingType": "gold_pro",
+    "useSchemaBasePrice": true,
+    "applyPricingStrategyAtRuntime": true,
+    "stopIfFailureRateOver": 0.5
+  },
+  "items": [
+    {
+      "produtoId": "ebf1e186-9c8d-4c7f-9bff-c059b34fd251",
+      "sku": "VTK016070",
+      "nome": "24 Pilhas Alcalinas Aaa Panasonic (6 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 64.44,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 104.25,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "967c0285-15b1-4476-923c-3488b59f3f5b",
+      "sku": "VTK016021",
+      "nome": "18 Pilhas Alcalinas Premium Aaa Panasonic (9 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 64.71,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 104.58,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "473b8d8c-049d-409b-bba1-68498bcfc28e",
+      "sku": "VTK016055",
+      "nome": "20 Pilhas Alcalinas Premium Aa Panasonic (10 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 65.3,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 105.31,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "988e1232-06f0-4de6-8db7-9732773f54ef",
+      "sku": "VTK016192",
+      "nome": "56 Pilhas Comum Aaa Panasonic (7 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 67.13,
+      "estoque": 14,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 107.57,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "6a4257d8-5e98-45d9-b241-8784baf133a7",
+      "sku": "VTK016045",
+      "nome": "20 Baterias Cr2016 Panasonic (4 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 68.08,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 108.74,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "28e9fb9d-d0ca-4726-b184-6190976bf8ad",
+      "sku": "VTK016046",
+      "nome": "20 Baterias Cr2025 Panasonic (4 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 68.08,
+      "estoque": 25,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 108.74,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "3a32ed5b-be28-4ebd-a871-63089a6e8983",
+      "sku": "VTK016056",
+      "nome": "20 Pilhas Alcalinas Premium Aa Panasonic (5 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 68.3,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 109.01,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "b6e61016-966d-4853-81c7-2410a8b95303",
+      "sku": "VTK016241",
+      "nome": "80 Pilhas Comum Aa Panasonic (10 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 69.1,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 110,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "05e3ecfd-2953-4f60-996d-2acded138e2f",
+      "sku": "VTK016085",
+      "nome": "28 Pilhas Alcalinas Aa Panasonic (7 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 70.42,
+      "estoque": 14,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 111.63,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "20c31e20-2542-4ebb-abe4-0a52d9d8de6f",
+      "sku": "VTK015932",
+      "nome": "10 Baterias CR1632 Panasonic (02 Cartelas)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 70.78,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 112.07,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "e6af5314-cd58-43d4-a51e-c4e1929b4caf",
+      "sku": "VTK016199",
+      "nome": "6 Pilhas Alcalinas D Panasonic (3  Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 71.25,
+      "estoque": 33,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 112.65,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "b09092e1-6890-4de5-a65c-3ac0fa7cb4b4",
+      "sku": "VTK016243",
+      "nome": "9 Baterias Alcalinas 12v Panasonic Lrv08-1b",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 71.28,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 112.69,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "7e982af3-d2ee-4db1-8f24-4a99726bcb4d",
+      "sku": "VTK016104",
+      "nome": "30 Pilhas Alcalinas Aa Panasonic (5 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 71.5,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 112.96,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "8cb91e40-63ac-4caa-88a0-2f2a8313ab65",
+      "sku": "VTK016057",
+      "nome": "20 Pilhas Alcalinas Premium Aaa Panasonic (10 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 71.9,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 113.46,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "6c4225ba-76e3-48a9-8b2a-bd96d373577a",
+      "sku": "VTK016194",
+      "nome": "6 Baterias Alcalinas 9v Panasonic",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 74.16,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.25,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "366f874a-c38c-489e-908b-59735c2d7b09",
+      "sku": "VTK016227",
+      "nome": "8 Pilhas Alcalinas C Panasonic (4  Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 74.68,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.89,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "d28958e4-2b84-4f10-9e65-0fd9466eb53c",
+      "sku": "VTK016058",
+      "nome": "20 Pilhas Alcalinas Premium Aaa Panasonic (5 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 75.1,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 117.41,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "f5dfc568-36cf-4f53-b7c4-e9381d2087af",
+      "sku": "VTK016086",
+      "nome": "28 Pilhas Alcalinas Aaa Panasonic (7 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 75.18,
+      "estoque": 14,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 117.51,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "34f659fb-ac5a-4596-ba60-bd8610bed0cb",
+      "sku": "VTK016105",
+      "nome": "30 Pilhas Alcalinas Aaa Panasonic (5 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 76.4,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 119.01,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "87e48eda-b39b-4f0d-90ab-001ebd71122c",
+      "sku": "VTK016213",
+      "nome": "64 Pilhas Comum Aaa Panasonic (8 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 76.72,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 119.41,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "dcdbd476-d43b-408a-807a-a5c7086c2df7",
+      "sku": "VTK016083",
+      "nome": "25 Baterias Cr2032 Panasonic (5 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 77.35,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 120.19,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "7954d9a2-e60b-400f-a686-274b46cf3a26",
+      "sku": "VTK016072",
+      "nome": "24 Pilhas Alcalinas Premium Aa Panasonic (4 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 77.64,
+      "estoque": 25,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 120.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "b42138a2-4328-4968-8640-9aaeddd7be18",
+      "sku": "VTK016071",
+      "nome": "24 Pilhas Alcalinas Premium AA Panasonic (12 Cartelas C/2 Un)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 78.36,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 121.43,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "c9b510a5-bf9e-4baa-be8c-65cc921d8fe9",
+      "sku": "VTK015925",
+      "nome": "10 Baterias Alcalinas 12v Lrv08 Panasonic (10 Cartelas)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 79.2,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 122.47,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "3527b9c5-fb31-47a8-b54d-b4d2e9e70ae8",
+      "sku": "VTK015926",
+      "nome": "10 Baterias Alcalinas 12v Panasonic Lrv08-1b",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 79.2,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 122.47,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    }
+  ]
+}

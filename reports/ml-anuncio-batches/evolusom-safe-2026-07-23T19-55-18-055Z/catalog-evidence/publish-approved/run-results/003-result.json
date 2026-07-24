@@ -1,0 +1,275 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/publish-approved/run-results/003-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-remaining-003",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "1388f38a-f023-4f26-8503-680e3c4bbb8d",
+      "sku": "VTK018501",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "anuncio": {
+        "id": "MLB4937407843",
+        "title": "Alto Falante Roadstar Rs850br Marine Coaxial 8'' Par Branco",
+        "price": 984.85,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937407843-alto-falante-roadstar-rs850br-marine-coaxial-8-par-branco-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 952.44 → R$ 984.85."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "59a867c4-15c8-47ab-ab14-ef55e5c0628e",
+      "sku": "VTK019005",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "anuncio": {
+        "id": "MLB4937396643",
+        "title": "Alto Falante Subwoofer 15  Eros Target Xbass 5k 2500w Rms 4 Preto/amarelo",
+        "price": 2201.64,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937396643-alto-falante-subwoofer-15-eros-target-xbass-5k-2500w-rms-4-pretoamarelo-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 2070.83 → R$ 2201.64."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "05000abc-702b-494f-983f-b4bf1c02970d",
+      "sku": "VTK017940",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "anuncio": {
+        "id": "MLB4937408283",
+        "title": "Alto Falante Jbl Tornado 18swt5600 18  Prata",
+        "price": 2272.87,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937408283-alto-falante-jbl-tornado-18swt5600-18-prata-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 2160.34 → R$ 2272.87."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "d80da422-b849-4659-b0f6-ff0efe36e765",
+      "sku": "VTK018489",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "anuncio": {
+        "id": "MLB4937408639",
+        "title": "Alto Falante Eros E-15 Hammer 7200 Xbass 4hms Amarelo",
+        "price": 2484.04,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937408639-alto-falante-eros-e-15-hammer-7200-xbass-4hms-amarelo-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 2353.24 → R$ 2484.04."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "27a4c9ea-fe09-4dc0-9ea3-db3c6bd9139e",
+      "sku": "VTK017836",
+      "category": {
+        "id": "MLB3385",
+        "nome": "Módulos Amplificadores",
+        "dominio": "MLB-VEHICLE_AMPLIFIERS"
+      },
+      "anuncio": {
+        "id": "MLB4937408849",
+        "title": "Amplificador Digital Stetsom Cl800.4 800w Preto",
+        "price": 411.37,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937408849-amplificador-digital-stetsom-cl8004-800w-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Descrição pendente no ML: HTTP 400: The description must be in plain text",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"code\":\"conflict.error\",\"error\":\"Conflict\",\"status\":409}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "cd06c332-0ee8-427d-b8c1-5356fdded359",
+      "sku": "VTK017876",
+      "category": {
+        "id": "MLB3385",
+        "nome": "Módulos Amplificadores",
+        "dominio": "MLB-VEHICLE_AMPLIFIERS"
+      },
+      "anuncio": {
+        "id": "MLB4937409025",
+        "title": "Amplificador Digital Stetsom Db500 500w 1 Canal 4 Ohms Preto",
+        "price": 464.8,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937409025-amplificador-digital-stetsom-db500-500w-1-canal-4-ohms-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Descrição pendente no ML: HTTP 400: The description must be in plain text",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 436.31 → R$ 464.80."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "47cb6019-e097-4198-aa5d-da6beb61dbd6",
+      "sku": "VTK017609",
+      "category": {
+        "id": "MLB3385",
+        "nome": "Módulos Amplificadores",
+        "dominio": "MLB-VEHICLE_AMPLIFIERS"
+      },
+      "anuncio": {
+        "id": "MLB4937398015",
+        "title": "Amplificador Digital Stetsom Hl800.4 900w 4 Canais 2 Ohms Preto",
+        "price": 636.78,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937398015-amplificador-digital-stetsom-hl8004-900w-4-canais-2-ohms-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 607.08 → R$ 636.78."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "0ec77509-59db-43d9-8ecf-66fbff84f60d",
+      "sku": "VTK018568",
+      "category": {
+        "id": "MLB3385",
+        "nome": "Módulos Amplificadores",
+        "dominio": "MLB-VEHICLE_AMPLIFIERS"
+      },
+      "anuncio": {
+        "id": "MLB4937398279",
+        "title": "Amplificador Digital Stetsom Vulcan 3000 1 Canal 2 Ohms Preto",
+        "price": 1008.69,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937398279-amplificador-digital-stetsom-vulcan-3000-1-canal-2-ohms-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Descrição pendente no ML: HTTP 400: The description must be in plain text",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 976.28 → R$ 1008.69."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "31a2970c-b34d-4256-a66f-90bbb08c80f9",
+      "sku": "VTK005814",
+      "category": {
+        "id": "MLB7892",
+        "nome": "Amplificadores",
+        "dominio": "MLB-AUDIO_AMPLIFIERS"
+      },
+      "anuncio": {
+        "id": "MLB4937409883",
+        "title": "Amplificador Frahm Rd Bt Ceiling Amplifier Rd Bluetooth 56w Preto 40 W",
+        "price": 570.17,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937409883-amplificador-frahm-rd-bt-ceiling-amplifier-rd-bluetooth-56w-preto-40-w-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 531.73 → R$ 570.17."
+      ]
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "7c433078-cf08-4965-8cba-fe1e9c822b33",
+      "sku": "VTK005357",
+      "nome": "Alto-Falante 5\" JBL Multisystem 5TRMS80 (PAR)",
+      "error": "Valor inválido para atributo Impedância",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": false,
+            "error": "Valor inválido para atributo Impedância"
+          },
+          "anuncio": {
+            "ok": false
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [],
+        "missing_required_attributes": [],
+        "error": "Valor inválido para atributo Impedância"
+      }
+    }
+  ]
+}

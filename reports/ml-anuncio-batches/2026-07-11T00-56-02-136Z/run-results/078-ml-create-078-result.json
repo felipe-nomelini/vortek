@@ -1,0 +1,92 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-078-ml-create-078.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-078",
+  "selected": 3,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "9ac90e1e-88d2-4e43-9dab-4db91c3bc203",
+      "sku": "VTK001165",
+      "category": {
+        "id": "MLB22729",
+        "nome": "Bancos",
+        "dominio": "Bancos de motos"
+      },
+      "anuncio": {
+        "id": "MLB4877417409",
+        "title": "Assento Cad Thunder Tgc12 Rs",
+        "price": 269.26,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877417409-assento-cad-thunder-tgc12-rs-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Produto sem imagens locais. Será usada imagem placeholder.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 169.20 → R$ 269.26."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "d0881aca-c3ea-4e03-af2a-4ad9fa429d18",
+      "sku": "VTK001483",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "anuncio": {
+        "id": "MLB4877487805",
+        "title": "Dedeira Shell Grande Dunlop (com 12 Unidades) - Pct / 12",
+        "price": 196.71,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877487805-dedeira-shell-grande-dunlop-com-12-unidades-pct-12-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 171.25 → R$ 196.71."
+      ]
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "f8906f65-7eb8-4b23-b5c5-f4a6b25a6157",
+      "sku": "VTK012688",
+      "nome": "Carregador De Pilhas Usb Com 2x Aa1500mah",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto, Tipo de conector",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB11290",
+            "nome": "Carregadores de Pilhas"
+          },
+          "missing": [
+            "Tipo de produto",
+            "Tipo de conector"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB459613",
+            "nome": "Carregadores para Bicicletas"
+          },
+          "missing": [
+            "Tipo de produto",
+            "Tipo de conector"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

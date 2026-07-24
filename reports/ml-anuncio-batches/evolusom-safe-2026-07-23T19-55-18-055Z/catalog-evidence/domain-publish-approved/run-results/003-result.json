@@ -1,0 +1,260 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/003-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-003",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "a0f81105-6d12-45f8-922b-6bb331e66985",
+      "sku": "VTK002166",
+      "category": {
+        "id": "MLB72745",
+        "nome": "Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB7238965498",
+        "title": "Cabo Para Instrumento Xlr(f) X P10 5m Cbmc0001 Storm",
+        "price": 56.99,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238965498-cabo-para-instrumento-xlrf-x-p10-5m-cbmc0001-storm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 40.00 → R$ 56.99."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "6a24bd0f-5570-4ce3-8f45-e2471766cd5e",
+      "sku": "VTK002145",
+      "category": {
+        "id": "MLB432437",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB7238965598",
+        "title": "Cabo Para Instrumento Xlr(f) X P10 10m Cbmc0002 Storm",
+        "price": 63.91,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238965598-cabo-para-instrumento-xlrf-x-p10-10m-cbmc0002-storm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 48.08 → R$ 63.91."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b84edd78-1253-4a91-89d3-8fbbd54e6662",
+      "sku": "VTK019026",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937479371",
+        "title": "Cabo Para Microfone Mono Tiaflex Espiralado 100 Metros 1x0",
+        "price": 294.15,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937479371-cabo-para-microfone-mono-tiaflex-espiralado-100-metros-1x0-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 265.24 → R$ 294.15."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9e16c14e-c3ad-4a84-b9da-206719bcc0c0",
+      "sku": "VTK018177",
+      "category": {
+        "id": "MLB38279",
+        "nome": "Outros Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937490499",
+        "title": "Cabo Paralelo Technoise 100% Cobre Cristal 2x4.00mm - 50",
+        "price": 764.01,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937490499-cabo-paralelo-technoise-100-cobre-cristal-2x400mm-50-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 707.54 → R$ 764.01."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "6ffcce6b-c3ab-4a4e-a7ce-97587710dc71",
+      "sku": "VTK017396",
+      "category": {
+        "id": "MLB38279",
+        "nome": "Outros Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB7238965948",
+        "title": "Cabo Rca 'y' Technoise Series 400 Pro 2 Macho X 1 Femea",
+        "price": 72.12,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238965948-cabo-rca-y-technoise-series-400-pro-2-macho-x-1-femea-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 56.28 → R$ 72.12."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "c497f1b5-5846-41f9-9c58-b3153185677d",
+      "sku": "VTK017449",
+      "category": {
+        "id": "MLB438559",
+        "nome": "Cabos e Conectores",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937479755",
+        "title": "Cabo Rca 2x2 Nwt Profissional Blindado Vermelho 1m",
+        "price": 81.86,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937479755-cabo-rca-2x2-nwt-profissional-blindado-vermelho-1m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 64.87 → R$ 81.86."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "5997dcbb-205e-44c0-b291-c54c6a6b98fc",
+      "sku": "VTK018520",
+      "category": {
+        "id": "MLB38186",
+        "nome": "Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937490735",
+        "title": "Cabo Santo Angelo Rca Paredão 5 Metros Estéreo Vermelho",
+        "price": 174.81,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937490735-cabo-santo-angelo-rca-paredo-5-metros-estereo-vermelho-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 151.15 → R$ 174.81."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "2aacede6-1481-45c5-842a-255b6e79a372",
+      "sku": "VTK017945",
+      "category": {
+        "id": "MLB5080",
+        "nome": "Cabos",
+        "dominio": "MLB-DATA_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937479947",
+        "title": "Cabo Usb A X Lightning Proeletronic Caus-100l 1 0m Branco",
+        "price": 101.22,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937479947-cabo-usb-a-x-lightning-proeletronic-caus-100l-1-0m-branco-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 83.46 → R$ 101.22."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "40833916-0332-443e-a228-277eb34c12c9",
+      "sku": "VTK017183",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937490941",
+        "title": "Cabo Vga Para Monitor Plus Cable Pc-mon1802 Conector Ouro",
+        "price": 64.29,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937490941-cabo-vga-para-monitor-plus-cable-pc-mon1802-conector-ouro-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 47.31 → R$ 64.29."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "8088fd1a-2748-4164-b1cf-848f7ffb9f9b",
+      "sku": "VTK017329",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937480137",
+        "title": "Cabo Vga Evus C-041 Hd15 Macho X Hd15 Macho Com Filtro 10 0m",
+        "price": 80.58,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937480137-cabo-vga-evus-c-041-hd15-macho-x-hd15-macho-com-filtro-10-0m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 64.74 → R$ 80.58."
+      ]
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,1156 @@
+{
+  "batchId": "evolusom-remaining-015",
+  "strategy": "verified_dry_run_exact_catalog",
+  "items": [
+    {
+      "produtoId": "9a85a55b-bbc9-47a0-b4de-ff561b1b5fac",
+      "sku": "VTK023620",
+      "nome": "Espaguete Corrugado Permak 10mm 3/8 20m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 28.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 60.37,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899079101229",
+        "validatedNcm": "39173900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB438559",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16958501",
+          "value_name": "Leiplast"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16958502",
+          "value_name": "LEI5210"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "16088604",
+          "value_name": "Cabo"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "130422",
+          "value_name": "20 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "55338605",
+          "value_name": "10 mm"
+        },
+        {
+          "id": "AWG_SIZE",
+          "value_id": "16272088",
+          "value_name": "4"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "28266859",
+          "value_name": "Espaguete"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "28266860",
+          "value_name": "Espaguete"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "78257034",
+          "value_name": "PP"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "78257036",
+          "value_name": "PP"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "5504726",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16958522",
+          "value_name": "7899079101229"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21852246",
+        "catalogProductName": "Tubo Corrugado Rolo Com 20 Metros X 10mm - Cód.255",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB438559",
+        "categoryName": "Cabos e Conectores",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7899079101229"
+      }
+    },
+    {
+      "produtoId": "dfeca35e-dda6-4ba1-bdb8-93a8d42c11c1",
+      "sku": "VTK023621",
+      "nome": "Espaguete Corrugado Permak 13mm 1/2 20m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 48.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 85.06,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899079101236",
+        "validatedNcm": "39173900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB438559",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16958501",
+          "value_name": "Leiplast"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16365448",
+          "value_name": "CORRUGADO"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "17482477",
+          "value_name": "ESPAGUETE CORRUGADO"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "130422",
+          "value_name": "20 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "65341833",
+          "value_name": "13 mm"
+        },
+        {
+          "id": "AWG_SIZE",
+          "value_id": "16088650",
+          "value_name": "0"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "16365515",
+          "value_name": "ESPAGUETE"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "16365516",
+          "value_name": "ESPAGUETE"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116080",
+          "value_name": "Fêmea"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116087",
+          "value_name": "Fêmea"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "5504726",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "17482504",
+          "value_name": "7899079101236"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22235170",
+        "catalogProductName": "Espaguete Corrugado 13 Mm Ou 1/2 De Pp C/ Corte 20 Metros",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB438559",
+        "categoryName": "Cabos e Conectores",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7899079101236"
+      }
+    },
+    {
+      "produtoId": "8a8a4390-0070-46df-a3a0-eb0ef957c9a1",
+      "sku": "VTK000240",
+      "nome": "Expositor Para Instrumentos de Corda ASL Preto ASK",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 19.5,
+      "estoque": 30,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 48.77,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898939971309",
+        "validatedNcm": "92099900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB278064",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4238929",
+          "value_name": "ASK"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "27724327",
+          "value_name": "ASL"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "26322417",
+          "value_name": "De parede"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENTS",
+          "value_id": "182362",
+          "value_name": "Baixo, Cavaquinho"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "4837600",
+          "value_name": "Aço"
+        },
+        {
+          "id": "INSTRUMENT_CAPACITY",
+          "value_id": "24276403",
+          "value_name": "1"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "1016242",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "570743",
+          "value_name": "27 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "3259574",
+          "value_name": "8 cm"
+        },
+        {
+          "id": "MAX_WEIGHT_SUPPORTED",
+          "value_id": "1125599",
+          "value_name": "5 kg"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27724332",
+          "value_name": "7898939971309"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29157075",
+        "catalogProductName": "Suporte Ask Slat Wall Asl Emborrachado Cordas Cor Preto",
+        "catalogDomainId": "MLB-STRING_INSTRUMENT_STANDS_AND_WALL_HANGERS",
+        "categoryId": "MLB278064",
+        "categoryName": "Suportes",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7898939971309"
+      }
+    },
+    {
+      "produtoId": "77e833d7-3487-4b9b-8b1c-298a9a540694",
+      "sku": "VTK018195",
+      "nome": "Extensão Daneva No Shock Pl 10m Grafite 2 X 0,75mm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 30.9,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 62.84,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896586814673",
+        "validatedNcm": "85444900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB63114",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "12046553",
+          "value_name": "Daneva"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "23056114",
+          "value_name": "1467 NO SHOCK"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "18033133",
+          "value_name": "Extensão"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "OUTLETS_NUMBER",
+          "value_id": "5755463",
+          "value_name": "3"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129133",
+          "value_name": "10 m"
+        },
+        {
+          "id": "MAX_CURRENT",
+          "value_id": "5755450",
+          "value_name": "10 A"
+        },
+        {
+          "id": "WITH_USB",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "23056165",
+          "value_name": "7896586814673"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB26117522",
+        "catalogProductName": "Extensão Elétrica Pl 2x0,75 Mm² 10m 10a 1467 No Shock Daneva Cor Preto",
+        "catalogDomainId": "MLB-POWER_STRIPS",
+        "categoryId": "MLB63114",
+        "categoryName": "Filtros de Linha",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7896586814673"
+      }
+    },
+    {
+      "produtoId": "d4f2810e-11b2-4b4c-8ae7-91328bb0cbaa",
+      "sku": "VTK017868",
+      "nome": "Extensão Sort Pl 2x0.75mm² 3 Metros Cores Sortidas Ref.1513",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 11.95,
+      "estoque": 21,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 39.44,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896586815137",
+        "validatedNcm": "85444900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB195961",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16554620",
+          "value_name": "RTecnologia"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "50488499",
+          "value_name": "Db9 Macho X Macho"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "16554621",
+          "value_name": "DB9"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "1115139",
+          "value_name": "4 cm"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827369",
+          "value_name": "Adaptador"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "13878568",
+          "value_name": "DB9"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "14038195",
+          "value_name": "db9"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116080",
+          "value_name": "Fêmea"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116087",
+          "value_name": "Fêmea"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "13788231",
+          "value_name": "Latão niquelado"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16554662",
+          "value_name": "7896586815137"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21641958",
+        "catalogProductName": "Adaptador / Emenda Serial Db9 Macho X Macho 9 Pinos Rs232",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB195961",
+        "categoryName": "Adaptadores",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7896586815137"
+      }
+    },
+    {
+      "produtoId": "11460c2a-409a-43e8-9fe7-becc8ce904b8",
+      "sku": "VTK003511",
+      "nome": "Extensão Tripla 2 X 0,75 x 3,0M Preta Megatron",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 11.5,
+      "estoque": 19,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 38.89,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899278900982",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB63114",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3695029",
+          "value_name": "Megatron"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24597407",
+          "value_name": "2PB"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "18033133",
+          "value_name": "Extensão"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "OUTLETS_NUMBER",
+          "value_id": "5755463",
+          "value_name": "3"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129130",
+          "value_name": "3 m"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "12872035",
+          "value_name": "50Hz/60Hz"
+        },
+        {
+          "id": "POWER",
+          "value_id": "49554941",
+          "value_name": "1.27 kW"
+        },
+        {
+          "id": "MAX_CURRENT",
+          "value_id": "5755450",
+          "value_name": "10 A"
+        },
+        {
+          "id": "WITH_USB",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_OVERLOAD_PROTECTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ELECTRICAL_NOISE_REDUCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "PLUGS_COMPATIBILITY",
+          "value_id": "25423766",
+          "value_name": "10A"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24597409",
+          "value_name": "7899278900982"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27282165",
+        "catalogProductName": "Extensão Elétrica 03 Metros Paralelo Preto Régua 03 tomadas 2 Pinos 10A Bivolt Megatron",
+        "catalogDomainId": "MLB-POWER_STRIPS",
+        "categoryId": "MLB63114",
+        "categoryName": "Filtros de Linha",
+        "linkedListingsInCategory": 14,
+        "validatedGtin": "7899278900982"
+      }
+    },
+    {
+      "produtoId": "9ff924af-b743-4a0e-964d-2496d5c3d148",
+      "sku": "VTK002762",
+      "nome": "Extensão Tripla 3 X 0,75 X 3,0M Preta Megatron",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 18.5,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 47.53,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899278900579",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB63114",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3695029",
+          "value_name": "Megatron"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "59594484",
+          "value_name": "Extensão 2P+T 10A REF 57"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "18033133",
+          "value_name": "Extensão"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "OUTLETS_NUMBER",
+          "value_id": "5755463",
+          "value_name": "3"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129130",
+          "value_name": "3 m"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "12872035",
+          "value_name": "50Hz/60Hz"
+        },
+        {
+          "id": "POWER",
+          "value_id": "22806091",
+          "value_name": "2.2 kW"
+        },
+        {
+          "id": "MAX_CURRENT",
+          "value_id": "5755450",
+          "value_name": "10 A"
+        },
+        {
+          "id": "WITH_USB",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_OVERLOAD_PROTECTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ELECTRICAL_NOISE_REDUCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "PORTS_AND_CONNECTORS_TYPES",
+          "value_id": "23309620",
+          "value_name": "Tomada em barra tripla 10a, tomada com terra, tomada preta"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18728847",
+          "value_name": "7899278900579"
+        },
+        {
+          "id": "MPN",
+          "value_id": "18728848",
+          "value_name": "908000022"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22953875",
+        "catalogProductName": "Régua Extensão Elétrica 3 Metros 2p+t Qualidade Megatron",
+        "catalogDomainId": "MLB-POWER_STRIPS",
+        "categoryId": "MLB63114",
+        "categoryName": "Filtros de Linha",
+        "linkedListingsInCategory": 19,
+        "validatedGtin": "7899278900579"
+      }
+    },
+    {
+      "produtoId": "bd66dfee-21ff-49d5-98a1-20a721d54527",
+      "sku": "VTK002772",
+      "nome": "Extensão Tripla 3,0 X 0,75 X 5,0M Preta Megatron",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 26.5,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 57.41,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899278900586",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB63114",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3695029",
+          "value_name": "Megatron"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "2276471",
+          "value_name": "5M"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "18033133",
+          "value_name": "Extensão"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "OUTLETS_NUMBER",
+          "value_id": "5755463",
+          "value_name": "3"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129121",
+          "value_name": "5 m"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "12872035",
+          "value_name": "50Hz/60Hz"
+        },
+        {
+          "id": "POWER",
+          "value_id": "15029901",
+          "value_name": "220 W"
+        },
+        {
+          "id": "MAX_CURRENT",
+          "value_id": "5755450",
+          "value_name": "10 A"
+        },
+        {
+          "id": "WITH_USB",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_OVERLOAD_PROTECTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ELECTRICAL_NOISE_REDUCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "PLUGS_COMPATIBILITY",
+          "value_id": "18548037",
+          "value_name": "Padrão brasileiro"
+        },
+        {
+          "id": "PORTS_AND_CONNECTORS_TYPES",
+          "value_id": "18655684",
+          "value_name": "Tomada em barra tripla 10a, Pino macho 10a"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18655708",
+          "value_name": "7899278900586"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22911147",
+        "catalogProductName": "Régua Extensão Elétrica 5 Metros 2p+t Qualidade Megatron Cor Preto",
+        "catalogDomainId": "MLB-POWER_STRIPS",
+        "categoryId": "MLB63114",
+        "categoryName": "Filtros de Linha",
+        "linkedListingsInCategory": 20,
+        "validatedGtin": "7899278900586"
+      }
+    },
+    {
+      "produtoId": "93a09e68-ab81-4aba-96e1-f5168eab6007",
+      "sku": "VTK019109",
+      "nome": "Fechadura Hdl Elétrica Pv90 1f Bola",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 363.16,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 515.6,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896423522792",
+        "validatedNcm": "83014000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB194301",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2445255",
+          "value_name": "HDL"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "39235797",
+          "value_name": "HDL"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "2133143",
+          "value_name": "Inox"
+        },
+        {
+          "id": "FINISH",
+          "value_id": "2439618",
+          "value_name": "Aço inoxidável"
+        },
+        {
+          "id": "OPENING_MECHANISMS",
+          "value_id": "75100193",
+          "value_name": "Cilindro embutido com 3 chaves, Maçaneta"
+        },
+        {
+          "id": "INSTALLATION_TYPE",
+          "value_id": "312345",
+          "value_name": "De embutir"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "3739569",
+          "value_name": "12V"
+        },
+        {
+          "id": "IS_DIGITAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WI_FI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "39235798",
+          "value_name": "7896423522792"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "62835364",
+          "value_name": "HDL DA AMAZONIA IND. ELETRONICA LTDA"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "67698173",
+          "value_name": "90.01.03.094"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450303",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "2132854",
+          "value_name": "Zinco"
+        },
+        {
+          "id": "INCLUDED_KEYS_NUMBER",
+          "value_id": "18189908",
+          "value_name": "3"
+        },
+        {
+          "id": "INCLUDES_DOOR_HANDLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB38100716",
+        "catalogProductName": "Fechadura Hdl Elétrica Pv90 1f Bola",
+        "catalogDomainId": "MLB-ELECTRIC_LOCKS",
+        "categoryId": "MLB194301",
+        "categoryName": "Elétricas",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7896423522792"
+      }
+    },
+    {
+      "produtoId": "e72bc21d-d22d-4bd3-a0eb-b4c6fda4e144",
+      "sku": "VTK019126",
+      "nome": "Fechadura Solenoide De Embutir Intelbras Fs 1010",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 809.08,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1198.64,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637671330",
+        "validatedNcm": "83014000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB420116",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "26298890",
+          "value_name": "FS 1010"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52053",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "LATCH_BOLT_TYPE",
+          "value_id": "5431084",
+          "value_name": "Inteiro"
+        },
+        {
+          "id": "LOCK_DIRECTION",
+          "value_id": "14738893",
+          "value_name": "Direita/Esquerda"
+        },
+        {
+          "id": "INSTALLATION_PLACEMENT",
+          "value_id": "13489493",
+          "value_name": "Porta"
+        },
+        {
+          "id": "LOCK_TYPE",
+          "value_id": "5431100",
+          "value_name": "Unidirecional"
+        },
+        {
+          "id": "INSTALLATION_TYPE",
+          "value_id": "312345",
+          "value_name": "De embutir"
+        },
+        {
+          "id": "APERTURE_MATERIALS",
+          "value_id": "26298894",
+          "value_name": "alvenaria, Madeira"
+        },
+        {
+          "id": "LOCK_MATERIALS",
+          "value_id": "1119286",
+          "value_name": "Aço"
+        },
+        {
+          "id": "MIN_RECOMMENDED_DOOR_THICKNESS",
+          "value_id": "16344295",
+          "value_name": "3.5 cm"
+        },
+        {
+          "id": "MAX_RECOMMENDED_DOOR_THICKNESS",
+          "value_id": "16344293",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "INCLUDES_DOOR_HANDLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "26298897",
+          "value_name": "7896637671330"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450303",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "6025139",
+          "value_name": "845 g"
+        },
+        {
+          "id": "DEAD_BOLT_SHAPE",
+          "value_id": "5431120",
+          "value_name": "Retangular"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "13489506",
+          "value_name": "Entrada de chave"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB28223714",
+        "catalogProductName": "Fechadura Solenoide Fail Secure Safe Com Chave Fs 1010 Cor Prateado",
+        "catalogDomainId": "MLB-DOOR_AND_WINDOW_LOCKS",
+        "categoryId": "MLB420116",
+        "categoryName": "Manuais",
+        "linkedListingsInCategory": 9,
+        "validatedGtin": "7896637671330"
+      }
+    }
+  ]
+}

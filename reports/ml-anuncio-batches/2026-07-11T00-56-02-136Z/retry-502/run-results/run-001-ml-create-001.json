@@ -1,0 +1,66 @@
+{
+  "batchNumber": 1,
+  "batchId": "retry-502-001",
+  "items": [
+    {
+      "produtoId": "321e4455-4fa3-431f-a17f-929cd862b018",
+      "sku": "VTK012357",
+      "nome": "5 Cr 1620 Elgin 01 Cartela",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "c3d0cd4c-6e9f-40de-bd79-326f4b8a2f39",
+      "sku": "VTK012530",
+      "nome": "Bateria Alcalina A76 Cart 1 Energizer",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "3d89cea5-4142-4587-9e80-f83fb967c9e6",
+      "sku": "VTK012233",
+      "nome": "Palheta Bori Grl At-r16102 Picker 0,73 Mm (azul) R21003 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "521f017d-10c5-4043-950e-aa4d05920e70",
+      "sku": "VTK012236",
+      "nome": "Palheta Bori Grl At-r16104 Picker 0,96 Mm (amarelo) R21005 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "543cd6ae-f86f-473c-8c3c-55cd8e70e50c",
+      "sku": "VTK012248",
+      "nome": "Palheta Bori Grl At-r16103 Picker 0,82 Mm (vermelho) R21004 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "878494a4-238b-4e01-9d02-8b9db1660faa",
+      "sku": "VTK012275",
+      "nome": "Palheta Bori Grl At-r16110 S.t.d 0,94 Mm (verde Esc) R21014 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "b4916f7e-70e1-426c-a271-bd7ab2ac90ee",
+      "sku": "VTK012282",
+      "nome": "Palheta Bori Grl At-r16108 S.t.d 0,80 Mm (azul) R21012 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "34ced274-3d7d-41ce-bde4-ede040014072",
+      "sku": "VTK012319",
+      "nome": "Palheta Bori Grl At-r16115 Azul Crystal 0,96 Mm R21008 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "c71efd1f-eea6-43ba-adee-9d6dfb0699e9",
+      "sku": "VTK012335",
+      "nome": "Palheta Bori Grl At-r16112 S.t.d 1,14 Mm (preto) R21016 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "4b8e4e44-3472-4439-bf59-650b983a24bd",
+      "sku": "VTK012408",
+      "nome": "Palheta Bori Grl At-r16107 S.t.d 0,78 Mm (rosa) R21011 10un",
+      "fornecedor": "RETRY_502"
+    }
+  ]
+}

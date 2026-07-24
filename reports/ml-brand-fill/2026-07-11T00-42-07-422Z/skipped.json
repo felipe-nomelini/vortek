@@ -1,0 +1,3082 @@
+[
+  {
+    "ok": false,
+    "produtoId": "f2a7ffe9-398e-4578-bcda-c3c899abeb3f",
+    "sku": "VTK010190",
+    "nome": "Garg Tamp Reser Arla 32 C/ch Scania Seriev Ap07",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "3f50a943-4b0f-421d-a351-ef911fea1d40",
+    "sku": "VTK010191",
+    "nome": "Tampa Reserv Arla 32 S/ch Mb Cam Atego Apos16",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "190d8940-f5ba-4bd3-a20b-1cd480155258",
+    "sku": "VTK010192",
+    "nome": "Tampa Reserv Arla 32 S/ch Mb Sprinter Giii Ap19",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "3f3caa6a-9fec-427e-99e5-8a603ca8a58d",
+    "sku": "VTK010193",
+    "nome": "Tpa Arrefecimento Valvulada 0,5bar Actros Ap10",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "825a06fb-8bd1-4b8a-b406-e7e45c58eca2",
+    "sku": "VTK010194",
+    "nome": "Tampa Reserv Limp P/brisa Preta Gm Onix Gi 12a19",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "7e7dadff-702f-4325-be40-cc160784cb30",
+    "sku": "VTK010195",
+    "nome": "Tampa Do Radiador 0,9bar Toyota Corolla 02 A 08",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "67b21657-faae-4ef4-8921-dba107ed7653",
+    "sku": "VTK010196",
+    "nome": "Tampa Comb C/ch Vedada Mb Cam Actros Apos 20",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "6c9a62b8-0179-4f6e-9891-66b97830916b",
+    "sku": "VTK010240",
+    "nome": "Tampa Reserv Oleo Do Freio Mb Cam 70 A 90",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "25bfe7ed-fb8e-4b0f-9a5d-7b2e64292a34",
+    "sku": "VTK010242",
+    "nome": "Tampa Oleo Motor Com Rosca Mwm Diversos",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "e0ab8c09-17d5-4d4a-90ab-2dc7ed9f8eb9",
+    "sku": "VTK010247",
+    "nome": "Tampa Reserv Limp Para-brisa Vw Gol Gi 80 A 96",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "3405f7ed-88ec-4b53-b81a-0589c09225a6",
+    "sku": "VTK010256",
+    "nome": "Tampa Do Radiador 1,1 Bar Ford Ranger 94 A 12",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "210cd44f-56f3-4c7f-8a57-5d1d6ee7c4b5",
+    "sku": "VTK010257",
+    "nome": "Tampa Reserv Limp Para-brisa Fiat Diversos",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "6fd558ae-47bb-496d-9836-902eb4632a82",
+    "sku": "VTK010258",
+    "nome": "Tpa Reserv Limp P/brisa Branco Gm Celta Gi 00a15",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "fcfc7bd8-c7cf-4255-b273-00df26eea14d",
+    "sku": "VTK010259",
+    "nome": "Tampa Reserv Limp Para-brisa Wv Diversos Ap95",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "ac4724da-f34b-4e2d-911d-8ed84088de75",
+    "sku": "VTK010266",
+    "nome": "Tampa Reserv Limp Para-brisa Mb Cam 1618 90a13",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "29eda495-2c3b-4df6-942a-ceba0ed89643",
+    "sku": "VTK010286",
+    "nome": "Tampa Radiador Reserv Inf 7 Lbs Mb 1618 90 A 13",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "e7fff1ed-8044-4430-b8a0-db10754b1ebb",
+    "sku": "VTK010287",
+    "nome": "Tampa Do Radiador 10 Lbs Ford F-1000 79 A 98",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "bf26661e-5918-4435-80bb-691c271a77fb",
+    "sku": "VTK010293",
+    "nome": "Tampa Radiador 1,1 Bar Honda Civic 92a16",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "de8587b9-8f11-4527-9d22-259f4a432420",
+    "sku": "VTK010310",
+    "nome": "Tampa Do Radiador 14 Lbs Mb Sprinter Apos 97",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "7fc882f3-c5bd-40f5-9fd3-996087f875ab",
+    "sku": "VTK010314",
+    "nome": "Reserv Oleo Hidr Direcao Comp Ford F1000",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "3ff0c31a-83f2-4e30-95b7-a925cbcf2ed5",
+    "sku": "VTK010316",
+    "nome": "Reparo Bocal Tanq Comb Palio 96/00",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "7fde0548-02b8-40c7-bc7a-23ac5e2f8a72",
+    "sku": "VTK010318",
+    "nome": "Tpa Reserv Gas Verm Valv C/rosc Ext Corsa 02a12",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b661681d-165d-4d8f-8cdf-082e4213aad7",
+    "sku": "VTK010351",
+    "nome": "Tampa Reserv Limp Para-brisa Volvo Cam Fh Ap12",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "31326f62-77e7-4141-98c2-0b24fc01985d",
+    "sku": "VTK010356",
+    "nome": "Tampa Reserv Gasol Veic Alc/flex Vw Golf 07a13",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c9b64510-479e-45f8-a384-8795aff95af2",
+    "sku": "VTK010360",
+    "nome": "Tampa Reserv Limp Para-brisa Volvo Fh Apos 12",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "1f663921-aa3b-40a2-a560-8f9a8d17aead",
+    "sku": "VTK010390",
+    "nome": "Tampa Cobertura Reserv Freio Vw Cam Ate 90",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "853b6d74-5c57-433d-a53b-4063f08af074",
+    "sku": "VTK010391",
+    "nome": "Tampa Cobertura Reserv Freio Vw Cam 90 A 00",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a4cdd098-1b88-4c8a-93f5-c8d66d77fc18",
+    "sku": "VTK010392",
+    "nome": "Tampa Combustivel Vedada Vw Fusca 59 A 96",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "40014cdc-c5a3-4ad3-a7b6-a7f045d8e7c4",
+    "sku": "VTK010408",
+    "nome": "Tamp Radiador 0,9 Bar Mitsubishi Pajero Tr4 At14",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "2a75c1cc-67bd-40b9-80ed-d08f4ffc049d",
+    "sku": "VTK010414",
+    "nome": "Tamp Reserv Gasol Veic Alcool/flex Vw Gol 08a12",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "f18d4ae9-823b-426d-b6ab-6888b0620a16",
+    "sku": "VTK010415",
+    "nome": "Tampa Reserv Gasol Veic Flex Fiat Doblo 01 A 09",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a5201031-283b-475d-8262-88b3cd4ea86f",
+    "sku": "VTK010416",
+    "nome": "Tampa Reserv Gasol Veic Flex Ford Fiesta 02 A 14",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "1fd8c308-ccf3-45c8-9bd9-7dd9840d13cc",
+    "sku": "VTK010417",
+    "nome": "Tampa Do Radiador 13 A 16 Lbs Mb Om-355 88 A 00",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "923bf701-3d50-4b52-8b07-7ee7e89de401",
+    "sku": "VTK010420",
+    "nome": "Tampa Sup Rad 10lbs/0,9bar Ford Cargo 85a01",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c42043d5-addc-4d1d-a69f-926f46d44e9d",
+    "sku": "VTK010425",
+    "nome": "Tampa Reserv Limp Para-brisa Ford Diversos",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "889c78cb-550a-4504-a346-1032a9c7e6f4",
+    "sku": "VTK010426",
+    "nome": "Tampa Abast Oleo Motor Gm Cruze Sedan 11 A 16",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "174ac271-49fd-456d-b590-99aecf610d58",
+    "sku": "VTK010427",
+    "nome": "Tpa Comb Pret Valvulad Alcool/gasol/flex S/ch",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "ffeaa973-632f-4309-8594-c711544e7398",
+    "sku": "VTK010433",
+    "nome": "Tampa Reserv Arla 32 S/chav Scania Serie V Ap07",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "934feeb3-244e-44a0-9649-af5417eefd0a",
+    "sku": "VTK010437",
+    "nome": "Tampa Oleo Do Motor Peugeot 206 2.0/16v 01 A 09",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a4269574-c182-4636-9a2f-3fecdf72945b",
+    "sku": "VTK010439",
+    "nome": "Tampa Do Radiador Nissan Frontier 07 A 16",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "0accb137-3d7c-449f-ab71-bb6ddf7601ed",
+    "sku": "VTK010444",
+    "nome": "Tampa Reserv Limp Para-brisa Volvo Fh Apos 12",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "20a3dfb6-1a2b-4750-ba60-bc93b5e198e6",
+    "sku": "VTK010445",
+    "nome": "Tampa Reserv Limp Para-brisa Iveco Daily 07 A 11",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "4e93dabb-00d5-4ecc-9eb1-a17525a09dd7",
+    "sku": "VTK010446",
+    "nome": "Tampa Reserv Gasol Veic Flex Fiat Punto Apos 07",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "591bc147-af8a-47de-9ea7-6a43bfc7a7e4",
+    "sku": "VTK010447",
+    "nome": "Tampa Reserv Limp Para-brisa Peugeot 208 Apos13",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b17ee2ed-0598-4f8e-84c9-ed74fcfcf881",
+    "sku": "VTK010452",
+    "nome": "Tampa Reserv Limp Para-brisa Amarelo Clio 06a16",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "41c5b163-faac-47d0-891f-92ad3607b9b0",
+    "sku": "VTK010453",
+    "nome": "Tampa Do Radiador 88kpa Nissan March 11 A 14",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "ee7e8320-75af-4e92-8661-25ce4f0c3262",
+    "sku": "VTK010454",
+    "nome": "Tpa Reserv Gas Vedada Alcool/flex Linha Renault",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "0f75eebb-3ad6-4e7b-b76c-8fe38172c5bf",
+    "sku": "VTK010457",
+    "nome": "Tampa Reserv Limp P-brisa Amarelo Ford Ka 14a18",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "6b6e11d3-3fc7-4709-b822-5bf1d7bf5af8",
+    "sku": "VTK010461",
+    "nome": "Tampa Reserv Oleo Direcao Dhb Gm Astra 95 A 11",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "fa88d5ac-65eb-4928-978e-3086dfc33e37",
+    "sku": "VTK010463",
+    "nome": "Tampa Reser Limp Para-brisa Mt L200 Triton 07a16",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "feff10f3-dae2-4e8f-8966-5b24b5dc6eb6",
+    "sku": "VTK010467",
+    "nome": "Tampa Comb Vedada S/chave Peugeot 208 Apos 20",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "ad5d1e2e-6559-4953-bf9d-5a5c7dbd5dca",
+    "sku": "VTK010468",
+    "nome": "Tampa Arrefecimento 1,4bar C/rosc Vw Cam Ap12",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "7109c2e3-5068-4f61-8a03-a09354b366bc",
+    "sku": "VTK010469",
+    "nome": "Tpa Reserv Gas Valvulada Veic Flex Linha Renault",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "0c3c21a6-2b02-4a50-8d11-56fb8c4e63b2",
+    "sku": "VTK010504",
+    "nome": "Comutador De Ignicao Renault 21 Nevada 89a94",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "19d2fee4-5406-40c5-9d2b-efb13b2bfe71",
+    "sku": "VTK010506",
+    "nome": "Comutador Ignicao Renault Megane Hatch 97a05",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "27c9ae17-f7c9-415c-ab7f-57a68d4fc782",
+    "sku": "VTK010518",
+    "nome": "Batente Tampa Porta Malas Renault Kangoo 00a10",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "f8e8a9ee-4b93-43b9-a323-b7574e083eba",
+    "sku": "VTK010520",
+    "nome": "Cilindro C/chave Diant Renault Logan 07a13 Dir",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b7400c00-f599-462c-ae5d-d38b1682b13c",
+    "sku": "VTK010521",
+    "nome": "Par Cilind C/chav Diant Renault Logan 07a13 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "103d9425-82a3-489f-98e0-e836c420be2a",
+    "sku": "VTK010559",
+    "nome": "Guia Porta Kangoo 2000 Até 2010",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c7d9c7cc-ced2-42e5-8fe1-aee9f51732d1",
+    "sku": "VTK010563",
+    "nome": "Botao P/mal C/sup P/trav Elet Clio Sedan Ii 06a16",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a7378071-c2bb-42e3-a6ff-373da38f9e8a",
+    "sku": "VTK010576",
+    "nome": "Capa Telecomando 2botoes (frente) Renault",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b339a1e3-596a-4458-b222-8a5d4f0d2edd",
+    "sku": "VTK010590",
+    "nome": "Fech Int Tras Bau Predis P/elet Master Ii Ap13 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "2c6d228d-6cac-41ca-a88f-f0a51ed29369",
+    "sku": "VTK010591",
+    "nome": "Fech Porta Tras Bau Esq Sup/inf Dir Inf Master",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "f4905d89-e58f-4aa5-989d-cff9ea3fbd0d",
+    "sku": "VTK010592",
+    "nome": "Batente Sup/inf Pta Tras Bau Master Apos 13 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "20e217f0-7974-4406-9358-f69a362e1ded",
+    "sku": "VTK010596",
+    "nome": "Fechadura Meca Porta Diant Dir Renault Master Ap 13",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "67d1d7e0-2ced-4816-ba54-baec9d99b5f2",
+    "sku": "VTK010597",
+    "nome": "Fechadura Meca Porta Diant Renault Master Ap 13 Esq",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b7a5695e-798c-4c23-a11c-358626feeebf",
+    "sku": "VTK010598",
+    "nome": "Fechadura Elé Porta Diant Renault Master Ap 13 Dir",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "44a8a716-7724-41da-8dce-2e4603f820e1",
+    "sku": "VTK010599",
+    "nome": "Fechadura Elé Porta Diant Renault Master Ap 13 Esq",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c8a1a0df-7ddf-44d0-abf8-2450d65e1384",
+    "sku": "VTK010605",
+    "nome": "Cilindro Ignicao C/ch Renault Sandero Gii Ap14",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "16f61dac-4f25-4aa9-8ccd-ac24cc85dc40",
+    "sku": "VTK010610",
+    "nome": "Cil Tpa Porta Malas C/ch Renault Sandero Ii Ap14",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "965c77e4-9291-4ff8-b9c2-fd45c691c766",
+    "sku": "VTK010611",
+    "nome": "Guia Centr Pt Lat Corr S/base Fix Master Gi 02a13",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "2d80d32d-95be-46cc-b3fa-5260140b831d",
+    "sku": "VTK010612",
+    "nome": "Comutador De Ignicao Renault Sandero Apos 14",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c8c85c28-c1f1-44b5-8f92-a5a4d0685c77",
+    "sku": "VTK010622",
+    "nome": "Mq V E S/m F/ori Renault Sandero Ap 14/logan Ap 13 Tras D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b370623c-ed87-49c3-a734-b6d895999695",
+    "sku": "VTK010623",
+    "nome": "Mq V E S/m F/ori Renault Sandero Ap 14/logan Ap 13 Tras E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "df4ec6bb-b20d-4073-9b38-cf93b2141615",
+    "sku": "VTK010624",
+    "nome": "Maq Vid Mec Renault Sandero Ap 14/logan Ap 13 Diant D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "6f20d8e4-b33c-4813-9f87-0bda055364dd",
+    "sku": "VTK010625",
+    "nome": "Maq Vid Mec Renault Sandero Ap 14/logan Ap 13 Diant E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "4c53b77c-82b4-433f-8c84-6c0387c3c880",
+    "sku": "VTK010628",
+    "nome": "Cabo Acion Fech Pt Dian Renault Master Ii Ap13 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "e831f931-3350-4ce5-a74e-d0a543ad87c7",
+    "sku": "VTK010637",
+    "nome": "Guia Porta Besta 1997 Até 2005",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c4af07b2-d1a2-4f3e-b91a-03414177fc3c",
+    "sku": "VTK010638",
+    "nome": "Guia Porta Besta 1997 Até 2005",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c96c6962-fd7a-4186-a96e-ba3f832057f5",
+    "sku": "VTK010639",
+    "nome": "Guia Inf Porta Topic 2008",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a0a99774-d160-47d3-b534-6718ae98d566",
+    "sku": "VTK010640",
+    "nome": "Guia Porta Correr Sup Asia Motors Topic Apos08",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "45943107-927d-4654-a3ef-265f95c3c236",
+    "sku": "VTK010656",
+    "nome": "Miolo Porta Malas Duster 2011",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "bf039acc-b51d-4ac9-a6b4-2d95ca408dcf",
+    "sku": "VTK010666",
+    "nome": "Mac Int Dian/tras Base Prt/pux Cro Kwid I Ap17 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "5d5c974d-0e21-46a5-8d1c-d416021f73e2",
+    "sku": "VTK010667",
+    "nome": "Mac Int Dian/tras Base Prt/pux Cro Kwid I Ap17 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a8abcc1e-54b3-4fb4-94a4-10d167a2ba19",
+    "sku": "VTK010671",
+    "nome": "Guia Pta Corredica Central Hyundai H100 87a96",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "da84ee74-885a-437e-b156-e98a61645583",
+    "sku": "VTK010672",
+    "nome": "Guia Inf Porta Lat Corredica Hyundai H100 87a96",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "72a3ec66-75a9-494e-93b0-4efa24cb28f3",
+    "sku": "VTK010675",
+    "nome": "Cabo Abert P/malas S/mac Int C2670mm Kwid Ap17",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "68280db1-c71a-4f76-a72d-e0356c682fa4",
+    "sku": "VTK010676",
+    "nome": "Gancho Amarracao Cacamb Renault Duster 16a21",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b6d6941b-5d99-4b2c-807e-0e12306ec54d",
+    "sku": "VTK010677",
+    "nome": "Mac Int Pta Dian/tras Preta C/base Captur Ap17 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "6a4f6f3f-bd0d-4810-b881-474c2f07be8a",
+    "sku": "VTK010678",
+    "nome": "Mac Int Pta Dian/tras Preta C/base Captur Ap17 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "d830c08e-ead5-44f7-bdde-098e44bb9ffe",
+    "sku": "VTK010679",
+    "nome": "Fech Inf Capo C/switch Renault Master Gii Ap13",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "5335a50a-2457-4c04-82f0-dc59e1ea5a0c",
+    "sku": "VTK010680",
+    "nome": "Botao Porta-malas Elet 2pinos Megane 03a09",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "7dd5d58a-35ac-429b-bd83-ca3744d65d5d",
+    "sku": "VTK010681",
+    "nome": "Interruptor Igncao Cielo 2010 Até 2013 - Espero 1994 Até 19",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "0b1a6028-756f-4167-83df-73c4b7e7e938",
+    "sku": "VTK010688",
+    "nome": "Cilind Tampa Porta Mala C/chave Honda Fit 03a08",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "ed9d06fa-de49-40bb-8dea-d000539c8a26",
+    "sku": "VTK010700",
+    "nome": "Fech Int Tpa P/mal C/micr Switch Civic Gvii 01a06",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "6283477f-d5a7-4c76-9966-35decb857e82",
+    "sku": "VTK010701",
+    "nome": "Mac Ext Pta Tras S/furo S/ch Honda Fit 08a14 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "1aa5a582-fe9a-4561-aab2-352c00123054",
+    "sku": "VTK010712",
+    "nome": "Ch Oca 3b C/b Pan Pf Snake Key Honda City 09a18",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "3c9c0649-19c0-40b1-b8c3-2f23cd9c13c6",
+    "sku": "VTK010714",
+    "nome": "Guia Porta Jumper 2006 Até 2014",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "6aa8b827-f7e5-48c0-b2e9-bd44a534e87c",
+    "sku": "VTK010718",
+    "nome": "Par Cilindros Pta Diant C/ch Hyundai Hr Ap07 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "58ee1162-24d9-4866-b14d-4b63055533f4",
+    "sku": "VTK010719",
+    "nome": "Par Cilindro Diant C/ch Kia Bongo 2/4pt Ap05 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "ea1048bd-40f4-4a34-b0ec-25c66ca4db5d",
+    "sku": "VTK010721",
+    "nome": "Cilindro Pta Diant C/ch Kia Bongo 2/4pt Ap05 Esq",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "123ca80e-9131-422b-acab-db829e7a8010",
+    "sku": "VTK010722",
+    "nome": "Cil Tpa P-malas C/ch Hyundai Elantra Gv 11a16",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "746f7369-7647-4a9f-8048-720ae187c27a",
+    "sku": "VTK010723",
+    "nome": "Cilindr Porta Diant C/chaves Hyundai Ix35 Ap10 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "d63f1426-b8d3-4dc5-8661-e9b7bd7dc1fe",
+    "sku": "VTK010724",
+    "nome": "Miolo Porta Diant Cerato 2006 Até 2009",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a7c5223c-6dc2-4bff-8cbe-8a09e68352ef",
+    "sku": "VTK010726",
+    "nome": "Mac Int Pt Base:pret/pux:bege Tucson Gi 05a09 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "843602be-6338-4911-96a2-d383dc654349",
+    "sku": "VTK010727",
+    "nome": "Mac Int Pt Base:pret/pux:bege Tucson Gi 05a09 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c292674a-d92e-4258-9740-9bae9f711968",
+    "sku": "VTK010728",
+    "nome": "Mac Int Pt Base:pret/pux:crom Tucson Gi 05a09 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "da7fab81-d25b-411b-955d-a168c35897f8",
+    "sku": "VTK010729",
+    "nome": "Mac Int Pt Base:pret/pux:crom Tucson Gi 05a09 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "4822a021-d562-40ca-855e-f82b9e57d0f4",
+    "sku": "VTK010730",
+    "nome": "Mac Int Pt Base:pret/pux:prata Tucson Gi 05a09 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "e4b51022-efd6-424b-b5dc-9c7e0141487f",
+    "sku": "VTK010731",
+    "nome": "Mac Int Pt Base:pret/pux:prata Tucson Gi 05a09 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b0496e98-5112-4968-bcf3-88e356840d2e",
+    "sku": "VTK010732",
+    "nome": "Mac Int Porta Preta Hyundai Tucson Gi 05a09 Dir",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a1c1d72c-ec45-4772-81d6-66e80b57fc1d",
+    "sku": "VTK010733",
+    "nome": "Mac Int Porta Preta Hyundai Tucson Gi 05a09 Esq",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "9f68e072-48e0-4928-a0a3-ba7587d598bc",
+    "sku": "VTK010738",
+    "nome": "Mac Int Pt Base:pret/pux:graf Tucson Gi 05a09 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "51bc7bc4-a7e8-4a60-a492-e9eae2509004",
+    "sku": "VTK010739",
+    "nome": "Mac Int Pt Base:pret/pux:graf Tucson Gi 05a09 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "cc6b2f3d-f3d0-44f8-a709-dc3baa6c428e",
+    "sku": "VTK010759",
+    "nome": "Mac Int Abert Porta Hyundai Hr 2.5 Tci Ap07 Dir",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "2f93beba-9136-4ee0-b934-f65d5f67ae33",
+    "sku": "VTK010785",
+    "nome": "Guia Central Porta H100 1987 Até 1996",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "3d4a11b1-d4a2-4ca6-8c9d-9139eae911a4",
+    "sku": "VTK010786",
+    "nome": "Miolo Porta Diant H100 1987 Até 1996",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "1eff7eee-b06d-405a-bc03-dc740799556d",
+    "sku": "VTK010788",
+    "nome": "Mac Int Porta Porta",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "bd84f68d-2af4-41bd-8403-4e029c048040",
+    "sku": "VTK010791",
+    "nome": "Maq Vid Ele S/m F/mabuchi Hr D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "09604b5f-ded3-4e86-a3ac-32a95f75a4c8",
+    "sku": "VTK010806",
+    "nome": "Cilindro Da Porta Dianteira Esq Hb20 G1 2012 A 2019",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "0956dbf3-bb31-4728-8927-1ad85f8601d5",
+    "sku": "VTK010807",
+    "nome": "Cilindr Porta Diant C/chave Hyundai Hb20 Ap12 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "4ac314c4-61e3-4f82-ad60-bbda5b1cbd0b",
+    "sku": "VTK010808",
+    "nome": "Fech Int Tampa Porta-malas 3pinos Hb20s Gi 13a19",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "14523909-93ba-42c7-b486-c6ca32e4feb2",
+    "sku": "VTK010809",
+    "nome": "Cilindro C/chav Porta Diant Hyundai H1 97a07 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "fde92f8b-c1cb-4f01-9ed4-bc9add8f7aa8",
+    "sku": "VTK010810",
+    "nome": "Miolo Porta Diant H1 1997 Até 2007",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "05acff59-be21-4324-806d-1350584eb41f",
+    "sku": "VTK010812",
+    "nome": "Fech Tp Tras Besta Gs 98/04",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "d01dee68-6ddd-4575-bd27-fad9f0c0dae1",
+    "sku": "VTK010814",
+    "nome": "Maçaneta Interna Gatilho Diant/tras Cromado Dir Hb20 12 A 19",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "0b56dfe1-1bf8-4109-b606-0deba103a8d1",
+    "sku": "VTK010815",
+    "nome": "Maçaneta Interna Gatilho Diant/tras Cromado Esq Hb20 12 A 20",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "f994dd98-d9a1-4118-b863-907ab1b78fed",
+    "sku": "VTK010816",
+    "nome": "Fech Eletrica Porta Diant Hyundai Hb20 12 A 19 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "53fdd656-dfb7-4092-abe7-4d9f33164814",
+    "sku": "VTK010819",
+    "nome": "Mac Int Diant/tras Pret Pux Cinz Hb20 Gi 12a19 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "11a8b05d-fa3b-4764-b356-158bf543dbe6",
+    "sku": "VTK010820",
+    "nome": "Mac Int Diant/tras Pret Pux Cinz Hb20 Gi 12a19 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "654ce8ed-94a3-417b-bc19-04d7e6b893d3",
+    "sku": "VTK010845",
+    "nome": "Mac Ext Pt Dia S/ch C/furo Kia Bongo 2/4pt Ap05 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "2188959b-fcba-4e8e-97bf-2523fec63bea",
+    "sku": "VTK010847",
+    "nome": "Mac Int Diant/tras Cinza Kia Bongo 2/4pt Ap05 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "f8f2ad51-739c-4d62-b36c-394effe1dbe4",
+    "sku": "VTK010848",
+    "nome": "Mac Int Diant/tras Cinza Kia Bongo 2/4pt Ap05 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "3eb8d6df-f27d-418b-be3f-883e69db5ca4",
+    "sku": "VTK010849",
+    "nome": "Mac Ext Porta C/furo S/ch Hyundai Hr Ap07 Dir",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "11a3afcb-961f-4f1c-ba94-cb8eda079f65",
+    "sku": "VTK010850",
+    "nome": "Mac Ext Porta S/ch C/furo Hyundai Hr Ap07 Esq",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "65df3a47-95e0-4e36-ba11-292be0d81bb6",
+    "sku": "VTK010852",
+    "nome": "Guia Porta Correr Central Peugeot Boxer 02a06",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "caba4a50-17e1-47c3-a238-89ec5a4ba285",
+    "sku": "VTK010858",
+    "nome": "Par Miolo Porta D/e  206 2001 Até 2009",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "610bfc0b-7109-4ed2-b016-b0366f705621",
+    "sku": "VTK010865",
+    "nome": "Capa Telecom Oca C/aloj P/trans 2b C3 I/ii Ap03",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "68e5b534-2713-43c2-b1f3-30bb97a4895d",
+    "sku": "VTK010870",
+    "nome": "Interruptor Igncao 306 Sedan 1994 Até 2001",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "669ab65b-99b8-4fee-ba0b-009aa6b43e8c",
+    "sku": "VTK010880",
+    "nome": "Miolo Porta Diant Berlingo 1998 Até 2007 - Partner 1999 Até",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b53dd19e-0145-4e5b-a4fa-44eb13b17cca",
+    "sku": "VTK010895",
+    "nome": "Interruptor Igncao C3 2003 Até 2012",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "71d87b21-f3bf-4110-adc5-e6db32688788",
+    "sku": "VTK010905",
+    "nome": "Chave S/segredo Oca Pf Snake Key Peugeot 307",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "8962151e-4676-4e85-a138-94d89fe41f82",
+    "sku": "VTK010908",
+    "nome": "Guia Porta Berlingo 1998 Até 2007 - Partner 1999 Até 2013",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "69ba56ba-8772-4682-82f1-5d6d323a4796",
+    "sku": "VTK010928",
+    "nome": "Tirante Tp Bag 206/207/306/307",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "2084f597-c182-4062-a832-bd04cb9a2d51",
+    "sku": "VTK010939",
+    "nome": "Trava Da Tampa Cac (gancho) L-200 96 A 07",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "2d8dbfef-7adf-4a12-b087-2dc4580f12de",
+    "sku": "VTK010943",
+    "nome": "Mac Ext Tra Crom S/fur S/ch L200 Triton Ap08 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "7f222350-c9ec-419f-a40a-33f80191e470",
+    "sku": "VTK010959",
+    "nome": "Cabo Aciona Fec Capo S/mac Nissan Frontier Ap17",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "fbc677f1-1905-4194-9751-abab0f8f56c2",
+    "sku": "VTK010965",
+    "nome": "Cilindro Porta Malas Mitsubishi Pajero Tr4 03 A 08",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "0719b6a9-e30c-44d2-8efd-24ebaa62f1a2",
+    "sku": "VTK010973",
+    "nome": "Regulador Do Vidro Eletrico C/m Di Adpt March D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c98098d2-c528-493b-b006-cd29729cfc6e",
+    "sku": "VTK010974",
+    "nome": "Regulador Do Vidro Eletrico C/m Di Adpt March E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "41fab929-4a04-4410-afcb-2c2787947b5f",
+    "sku": "VTK010975",
+    "nome": "Regulador Do Vidro Eletrico C/m Tr Adpt March D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "08525236-bd92-4f10-bbed-ec7aec92360b",
+    "sku": "VTK010976",
+    "nome": "Regulador Do Vidro Eletrico C/m Tr Adpt March E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "776e1da7-7c4a-48e5-990e-f6934bde8e97",
+    "sku": "VTK010980",
+    "nome": "Mac Ext Diant Dir/tra D/e S/fur S/ch March 11a14",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "0ca305b1-4c63-47c5-ab31-07c0628a3983",
+    "sku": "VTK010983",
+    "nome": "Miolo Porta Diant Livina 2009 Até 2014",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "cf1211e9-f812-49a5-b08e-930c408f838f",
+    "sku": "VTK010992",
+    "nome": "Cabo Aciona Capo S/mac Int Nissan Versa Ap11",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "493d2d6b-081f-4501-ae84-95755c323e52",
+    "sku": "VTK010997",
+    "nome": "Mac Ext Tpa Cacamb C/fur P/cam Frontier Iii Ap17",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "4d2b4b95-2a9d-4e43-9070-92fab178a331",
+    "sku": "VTK010998",
+    "nome": "Mac Ext Pt Dia Crom C/fur S/ch L200 Triton Ap08 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "7ad0246a-e72f-4b4e-a581-acce90bd0247",
+    "sku": "VTK010999",
+    "nome": "Chave Plast Oca 2b Mitsubishi Asx / L200 / Pajero",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "fff7f379-625c-4258-b6f0-3ecc33be3453",
+    "sku": "VTK011003",
+    "nome": "Cilindro Porta Malas C/chave Mitsubishi Pajero Tr4 08 A 14",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "79c1c582-ac77-42bc-810a-717df49ee4de",
+    "sku": "VTK011004",
+    "nome": "Mac Int Pta Dian/tras Crom Nissan March Ap11 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b0f1784b-3a1e-4248-9f75-4d27334709c2",
+    "sku": "VTK011005",
+    "nome": "Mac Int Pta Dian/tras Crom Nissan March Ap11 D9",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "cc4e74b1-878a-444b-9e07-0b420262287b",
+    "sku": "VTK011053",
+    "nome": "Calco Da Mac Tampa Motor Vw Fusca/kombi Ate96",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "8c26df61-b5f4-4b32-a650-0d20317b1a77",
+    "sku": "VTK011054",
+    "nome": "Trinco Basc Lat K Clipper Crom-d",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b4886842-bae1-4deb-9ddc-a5b595d062c3",
+    "sku": "VTK011077",
+    "nome": "Trinco Q Vento Passat /88 Crom-d",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "54bc4e41-870b-45ce-a418-ed0e8dd2fd83",
+    "sku": "VTK011107",
+    "nome": "Regulador Do Vidro Eletrico C/m Tr Pointer 4p D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b809c59c-5f13-4b5c-9019-151204739839",
+    "sku": "VTK011108",
+    "nome": "Regulador Do Vidro Eletrico C/m Tr Pointer 4p E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c0257f5f-d4ab-442b-9dac-1d82c985a9ea",
+    "sku": "VTK011126",
+    "nome": "Grampo Fixacao P Luva Gol/voy/sa (20.334-20.407)",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "32263f96-c19b-471c-a4e7-e94c0100d588",
+    "sku": "VTK011129",
+    "nome": "Porca Fecho P Mala Gol/pas/voyage",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "327fdd31-2ddc-4c33-af77-152aaded7b3e",
+    "sku": "VTK011143",
+    "nome": "Gatilho Da Mac Ext Cromado Vw Fusca Apos 77",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "dcba6186-90e3-485a-8f3a-4dd5c4ba2b19",
+    "sku": "VTK011144",
+    "nome": "Gatilho Da Mac Ext Preto Vw Gol Gi 80 A 94",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "48e4f3d0-f05f-41ca-98dc-f3995b2eecfc",
+    "sku": "VTK011151",
+    "nome": "Respiro Do Oleo Sem Tampa Vw Fusca 59 A 96",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b4c9dd82-1266-47c2-a45b-1daed7067364",
+    "sku": "VTK011163",
+    "nome": "Gatilho Mac Ext Cromado Vw Passat 74 A 88",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "4c693245-9bf0-480b-bce3-d179c06e1f40",
+    "sku": "VTK011164",
+    "nome": "Gatilho Mac Ext Tl/variant Crom",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "964665b2-58ee-4f10-a2a1-2302aee849a5",
+    "sku": "VTK011165",
+    "nome": "Gatilho Macaneta Ext Cromado Vw Kombi 75a13",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b697482e-9c54-4711-a396-e89b7537f51c",
+    "sku": "VTK011176",
+    "nome": "Guia Lat Vid Vw - Todos",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "ab124c55-7ca2-48eb-99f1-8321247a26d8",
+    "sku": "VTK011178",
+    "nome": "Alavanca Ac Fech P Mala Parati/gol",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "fd241a22-6a89-4f71-bf95-47fbc5837026",
+    "sku": "VTK011231",
+    "nome": "Gatilho Mac Ext Vt/brasilia - Prt",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "61727120-81ef-4e92-988b-5460a59cb4b4",
+    "sku": "VTK011232",
+    "nome": "Conj Presilh Banco Tras Vw Kombi Clipper 75a96",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "1597bf63-42ec-4a45-b0b0-56b6b85a0c87",
+    "sku": "VTK011234",
+    "nome": "Gatilho Da Mac Ext Preto Vw Kombi 75 A 13 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "1ff2adde-ba3b-4158-ac24-78f3e06d9bb8",
+    "sku": "VTK011256",
+    "nome": "Capa Pedal Freio/embreagem Vw",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "3749b631-dfca-4dd4-b1f8-4c3255ce7ff1",
+    "sku": "VTK011257",
+    "nome": "Pedal Acelerador Vw/brasilia/variant",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "725b3271-3a5b-4243-bccd-22137f9ecd6b",
+    "sku": "VTK011277",
+    "nome": "Comutador Ig 2pinos Excentr Vw Fusca Ate 77",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "4750a03c-f0cd-44d1-b0ea-3b35656946df",
+    "sku": "VTK011278",
+    "nome": "Excentrico Da Trava De Direção Fusca Apos 77",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b67d6be5-ab50-4b33-acb9-4da7a4d45879",
+    "sku": "VTK011310",
+    "nome": "Alojamento Vareta Med Oleo Vw Gol Gi 80a96",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "76569a6b-608b-4f7d-ba9a-b86d219dc883",
+    "sku": "VTK011311",
+    "nome": "Porca Menor Do Fech Porta Malas Vw Gol 80 A 96",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "dbce40c5-f27c-419d-b67f-936b0799e002",
+    "sku": "VTK011313",
+    "nome": "Gatilho Da Macaneta Ext Preto Ford Versailles",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c9f31fab-ddb6-4309-b797-aefaf36e937e",
+    "sku": "VTK011316",
+    "nome": "Trava/mola Fech Inf Capo Vw Gol Gi 80a94",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "510c4400-ee3f-4567-bf9d-3fffc17d54ab",
+    "sku": "VTK011340",
+    "nome": "Conj Presilha Banco Vw Kombi Moderna 97a13",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "f5525594-5f63-4a46-8a16-2cc520e32a84",
+    "sku": "VTK011412",
+    "nome": "Calco Mac Ext Peq Capo Vw Fusca Gi 1300 71a96",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "ab001d3c-3b0b-46d5-9328-80a770bfd1cc",
+    "sku": "VTK011417",
+    "nome": "Chave S/segr Perf Convencional Vw Kombi 57a97",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "d1ebd40c-98fe-4053-83c0-80865a022000",
+    "sku": "VTK011418",
+    "nome": "Chave S/segredo Perfil Tecmisa Vw Gol 80a96",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "22739f11-d34b-4da8-a797-d6bd5350b7a2",
+    "sku": "VTK011419",
+    "nome": "Chave S/seg Valeo C/aloj P/transp Vw Gol 94a99",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "982135db-1e18-41ab-a4db-97aace1c98da",
+    "sku": "VTK011420",
+    "nome": "Chave S/segr Pf Maxion S/aloj P/trans Gol 94a99",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "bdc33d73-76d7-476f-961b-c8c09efeb3f5",
+    "sku": "VTK011429",
+    "nome": "Grampo Desliz Trilho Banco Vw Gol 94a16",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "2c15b1a8-a10a-475d-996c-91a669977c2b",
+    "sku": "VTK011430",
+    "nome": "Bot Tr Banco Gol/voy/par/sav Ap 97 Cz-d",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a24b33df-5726-4fa0-bce9-66b6cf044f4c",
+    "sku": "VTK011431",
+    "nome": "Bot Tr Banco Gol/voy/par/sav Ap 97 Cz-e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "d6c60022-41ba-4ccf-990a-ee606caae718",
+    "sku": "VTK011432",
+    "nome": "Capa Recl Bco Mot Gol/par/sav Ap 97 Pr-e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "f843c422-4449-4389-ade0-7f4875d2a36f",
+    "sku": "VTK011433",
+    "nome": "Comp Fix Para Choque Tras Vw Gol Giii 99a05 Dir",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "dd312599-a26d-41b6-9802-54cb4029c250",
+    "sku": "VTK011434",
+    "nome": "Mold Mac Int Pe Baixo Port Vw Gol 94a99 Cinza D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "4e5265ee-3793-44f5-9d7f-6d02a7cf5b82",
+    "sku": "VTK011435",
+    "nome": "Moldura Porta Gol Gi 1987 Até 1996",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "1910b7df-29fc-4b45-b78b-5977b897c029",
+    "sku": "VTK011436",
+    "nome": "Moldura Porta Gol Gi 1987 Até 1996",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "6544646b-2b2d-4127-9367-c182a528fe26",
+    "sku": "VTK011437",
+    "nome": "Interruptor Moldura Porta Diant. Gol Gi 1987 Até 1996",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "9a7562e2-1e19-4a38-9d1d-0a0b05dd8f59",
+    "sku": "VTK011438",
+    "nome": "Interruptor Moldura Porta Diant. Gol Gi 1987 Até 1996",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "dfa818a6-60f2-48f8-a428-1a5003af5edc",
+    "sku": "VTK011446",
+    "nome": "Chave S/segr Pf Snake Key C/aloj P/trans Vw Gol",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "2c7fc203-a384-4f17-a151-67852a8c9876",
+    "sku": "VTK011455",
+    "nome": "Grampo Forracao Pta Gol/parati Ap 94",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "99d17372-0455-4452-8b27-4a4e06713364",
+    "sku": "VTK011458",
+    "nome": "Fechadura Inf Do Capo Vw Polo 02 A 14",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "742151c7-f6d1-4c57-9831-fe70460c59a5",
+    "sku": "VTK011460",
+    "nome": "Batente Do Porta Malas Vw Fox Apos 09",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "70ae5340-3e9b-4a90-acba-e1c426ce5ca3",
+    "sku": "VTK011524",
+    "nome": "Interruptor Moldura Porta Diant. Gol Gi 1980 Até 1996",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "cb445591-36c2-4cd9-adbf-03f54c651d7b",
+    "sku": "VTK011525",
+    "nome": "Interruptor Moldura Porta Diant. Gol Gi 1980 Até 1996",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "123f146f-48c0-4bb5-9558-3379897f5f83",
+    "sku": "VTK011532",
+    "nome": "Porca Borboleta Embreagem M7 Vw Sedan/br",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "86dcc6db-b58d-4e10-9bfc-11f492a7be07",
+    "sku": "VTK011533",
+    "nome": "Respiro Do Oleo Do Motor Mwm Vw Worker 05a14",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "5e24a0ee-47ae-429d-bf3d-5aa8dfc761be",
+    "sku": "VTK011564",
+    "nome": "Pino Porta Gol Giv 2005 Até 2014",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "84599bf5-511a-4eec-833a-a79587b3d0de",
+    "sku": "VTK011566",
+    "nome": "Botao Trava Freio Mao Vw Gol Gii 94 A 99",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "fd3aaf0f-1345-4e12-bc67-30827aa18072",
+    "sku": "VTK011567",
+    "nome": "Pino Eixo Sup (cavalete) Mac Int Pta Vw Gol 94a05",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a5eb932d-b02a-4a6b-92a0-e6f9bc37df26",
+    "sku": "VTK011570",
+    "nome": "Capa Braco Limp P/brisa Gol Giii Preto",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "3b23abde-fb16-47c6-99b7-4fef2a85ccef",
+    "sku": "VTK011582",
+    "nome": "Pino Porta Gol Gi 1980 Até 1996",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "316717b5-bd36-4e5b-924a-a3414fa16249",
+    "sku": "VTK011583",
+    "nome": "Pino Porta Gol Gi 1980 Até 1996",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "de442015-d050-4e9b-b96b-88e2f2b524ab",
+    "sku": "VTK011584",
+    "nome": "Pino Porta Passat 1974 Até 1988",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "0cce69d9-a1c4-435c-bf9e-186aa15dccd8",
+    "sku": "VTK011586",
+    "nome": "Trilho Guia Do Vidro Vw Worker 81 A 18",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "097ce68f-2f9c-4d8d-86cb-aa555c0a4d90",
+    "sku": "VTK011605",
+    "nome": "Chave S/segr Pf Convencional Vw Worker 05a14",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "2e7d5708-3e78-4789-8efd-f1af5d2c4b06",
+    "sku": "VTK011606",
+    "nome": "Chave S/segr Pf Convencional Ford Verona 89a92",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "aa635841-326f-47ee-a2db-023321f92a99",
+    "sku": "VTK011609",
+    "nome": "Grampo Da Vareta Capo 20pcs Vw Gol I 80 A 96",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c9ebb84e-1e35-4891-b722-6cf90a00e419",
+    "sku": "VTK011622",
+    "nome": "Gatilho Da Mac Original Vw Santana Giii 98a06",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "517e7055-d7f7-40e5-9aab-bff0f3b4ae60",
+    "sku": "VTK011656",
+    "nome": "Interruptor Moldura Banco Gol Gi",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "9d4f56b8-a03c-4ca6-a15a-2406fb74b5d6",
+    "sku": "VTK011659",
+    "nome": "Manopla Do Banco Cinza Vw Golf 94 A 97",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "dbc70e88-f04f-4847-be63-274685319d4c",
+    "sku": "VTK011667",
+    "nome": "Maq Vid El Tras S/mt F.mab Polohatch Giv 02a14 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "0bd976c0-e9f9-4a9e-8b29-936469c10876",
+    "sku": "VTK011680",
+    "nome": "Presilha Da Grade Vw Caminhoes",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "9fe6cb58-c46c-48d4-8330-40571453e31a",
+    "sku": "VTK011726",
+    "nome": "Maq Vid El Tras S/mt F/org Amarok Ap10 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "ffecedbd-fac1-4a14-80c2-c3103bf35599",
+    "sku": "VTK011750",
+    "nome": "Interruptor Igncao Fox Gii 2014",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "f8283fe5-d1e1-4c4f-98fe-0cb8de2c1d10",
+    "sku": "VTK011755",
+    "nome": "Pino Porta Gol Gii 1994 Até 1999",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "15f9ed35-c9ff-4ece-a558-eecf5abbff05",
+    "sku": "VTK011759",
+    "nome": "Pino Porta Gol Gii 1994 Até 1999",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b5408117-ab1c-447b-9d22-e241ab19fab6",
+    "sku": "VTK011760",
+    "nome": "Pino Porta Gol Gii 1994 Até 1999",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "3a7469eb-3445-42b4-b7bf-925a439f38bd",
+    "sku": "VTK011798",
+    "nome": "Calco Mac Ext Porta Gol Giii/iv(grande+pequeno)",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "9adc939a-0f3f-44b6-9ce7-9c55fe829a0d",
+    "sku": "VTK011799",
+    "nome": "Calco Mac Ext Porta Gol Gii(grande +pequeno)",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "258b63b4-44b4-428b-ac10-bb68b94682e7",
+    "sku": "VTK011802",
+    "nome": "Miolo Porta Diant A4 2000 Até 2004",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "8e36af2b-6534-454f-b5bf-61a90bf0c535",
+    "sku": "VTK011812",
+    "nome": "Interruptor Moldura Da Porta Gol Gv E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "0c3a0071-058e-43f7-bf5e-7f07e3184628",
+    "sku": "VTK011813",
+    "nome": "Moldura Da Porta Tras C/ Suporte Vw Gol Gv E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "6a1ed762-2b9c-487c-975e-555bce3b3418",
+    "sku": "VTK011819",
+    "nome": "Miolo Porta Diant A6 2011",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "9630ff5f-50c0-4b2e-aaaf-58b875c42239",
+    "sku": "VTK011820",
+    "nome": "Miolo Porta Diant A6 Até 2011",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "abec51f2-7a29-43f4-aa2f-ca40318e1b9f",
+    "sku": "VTK011821",
+    "nome": "Miolo Porta Diant Q7 2005",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "ab429957-fc6f-4f85-86e6-e4161d2498cb",
+    "sku": "VTK011825",
+    "nome": "Chapa Embreagem Guia Vw Fusca 59 A 96",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "d67e2de0-65a6-4dad-953e-719b2b128edb",
+    "sku": "VTK011827",
+    "nome": "Travessa Cambio Fusca/kombi 59 A 96",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "f57eb8a6-185e-47dd-8722-82facf1ad923",
+    "sku": "VTK011828",
+    "nome": "Cilindro C/chave Porta Diant Audi Q5 Apos 09 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "6145d95c-9e94-4016-a981-813557f4a76d",
+    "sku": "VTK011831",
+    "nome": "Aro Quebra Vento Fusca Cromado Dir Apos71",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "d81e0f3f-2a1b-4937-8cef-84554e3926e0",
+    "sku": "VTK011836",
+    "nome": "Cilindro Tampa Cacamba C/chave Vw Saveiro Ap17",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a038a3ea-28b2-4230-8815-50a8a7207794",
+    "sku": "VTK011837",
+    "nome": "Miolo Porta Malas Golf Giv 1998 Até 2007",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "6f43fc8f-f499-49ee-ba5d-294407079cdc",
+    "sku": "VTK011839",
+    "nome": "Fechadura Pta Diant Eletrica Vw Polo Gvi Ap17 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "af761598-e926-4079-b653-147c7bfd8407",
+    "sku": "VTK011840",
+    "nome": "Fechadura Pta Tras Eletrica Vw Polo Gvi Ap17 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "3c67e126-28e4-4813-830a-22c188b50142",
+    "sku": "VTK011841",
+    "nome": "Fechadura Pta Tras Eletrica Vw Polo Gvi Ap17 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "728b7ff8-3a41-43a4-a3c5-a81d70ae5316",
+    "sku": "VTK011842",
+    "nome": "Mac Ext Pt Pret S/ch C/furo Delivery Gii Ap18 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "2b47381b-95f1-497b-82b7-7ef23825d8c6",
+    "sku": "VTK011843",
+    "nome": "Cilindro Da Pta C/chave Vw Delivery Gii Ap18 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "8d2ef850-73f7-40a7-81df-fb7f03586498",
+    "sku": "VTK011844",
+    "nome": "Cilindro Da Pta C/chave Vw Delivery Gii Ap18 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a435c51e-a58f-4608-b5f7-7c4877d34ed2",
+    "sku": "VTK011845",
+    "nome": "Cilindro De Ignicao C/ch Vw Delivery Gii Ap18",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a6ff8ff6-49dc-42b8-8f66-07c879e231a2",
+    "sku": "VTK011854",
+    "nome": "Cj Calco Mac Ext Diant/tras Gol Gi D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "e24ae505-0ac1-4ae4-bb41-47f79b78a37e",
+    "sku": "VTK011855",
+    "nome": "Cj Calco Mac Ext Pta Santana Gii 91a98 - Versaill D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b9e09028-80df-48af-9a32-7faee08be19e",
+    "sku": "VTK011856",
+    "nome": "Cj Calco Mac Ext Polo Classic Gi 96a02 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "e0b53a80-debf-4943-af54-579b5f74d190",
+    "sku": "VTK011857",
+    "nome": "Calco Mac Ext Pta Grand/peq Santana Giii 98a06 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a80c055f-6f85-419f-8a99-e69aa3c03a82",
+    "sku": "VTK011858",
+    "nome": "Cj Calco Mac Ext Santana Gii 98a06 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "cdf5d7b6-2eaf-45f5-a859-99948e11abfb",
+    "sku": "VTK011859",
+    "nome": "Maq Vidr El Pta Diant S/mt F.orig Polo Gvi Ap17 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "f1da41d5-8200-42ee-8e1d-a9e53439d09d",
+    "sku": "VTK011860",
+    "nome": "Maq Vidr El Pta Diant S/mt F.orig Polo Gvi Ap17 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "212dd55b-f38c-4d93-97b5-4ed2577a37fc",
+    "sku": "VTK011861",
+    "nome": "Maq Vidr El Pta Tras S/mt F.orig Polo Gvi Ap17 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "1298140e-dc8a-4a79-aa07-be539d3a1d3a",
+    "sku": "VTK011862",
+    "nome": "Maq Vidr El Pta Tras S/mt F.orig Polo Gvi Ap17 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "03dfa58a-85a3-4369-a48e-6a67be07f20e",
+    "sku": "VTK011863",
+    "nome": "Mac Int Pta Diant/tras Prata Vw Polo Giv Ap17 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "cba68115-9841-48d9-93a5-6d58f7ed9c6b",
+    "sku": "VTK011864",
+    "nome": "Mac Int Pta Diant/tras Prata Vw Polo Giv Ap17 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "e74efa01-b4d7-4be0-84cd-108746d9a234",
+    "sku": "VTK011865",
+    "nome": "Mac Int Pta Diant/tras Preta Vw Polo Giv Ap17 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c69a93b1-5567-40fc-a0e5-3ed5a36b5deb",
+    "sku": "VTK011866",
+    "nome": "Fech Pta Diant Eletr C/trav Vw Tiguan Gi 09a11 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "659ca4f3-be79-4765-aaa6-528561e8d19d",
+    "sku": "VTK011867",
+    "nome": "Fech Pta Diant Eletr C/trav Vw Tiguan Gi 09a11 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "5c3f53c6-68f2-4061-aaa4-6f04b2253cfa",
+    "sku": "VTK011868",
+    "nome": "Fech Porta Tras Elet 6pinos Vw Up Apos 14 Dir",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "bbf2a3af-8401-49f3-abe5-e23e2cde2af0",
+    "sku": "VTK011869",
+    "nome": "Fech Porta Tras Elet 6pinos Vw Up Apos 14 Esq",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "838f84a9-747e-426b-a851-af6c2b85fdc1",
+    "sku": "VTK011874",
+    "nome": "Cilindro Da Porta Diant C/chave Vw Up Ap14 Dir",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "064655d8-62c2-4018-a9d1-0c6571dc44f2",
+    "sku": "VTK011880",
+    "nome": "Mac Int Porta Porta  Up 2014",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "ecd18aa4-d2d5-4012-9f99-cd97f2b7024a",
+    "sku": "VTK011881",
+    "nome": "Mac Int Porta Porta  Up 2014",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "fe756b1e-f085-4d89-a22b-fa8df003418d",
+    "sku": "VTK011882",
+    "nome": "Maq Vid Elet Pt Dian S/mt F.orig Audi A3 I 96a03 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "fa46ec64-2317-4f7a-9b6b-6396a17a66af",
+    "sku": "VTK011883",
+    "nome": "Maq Vid Elet Pt Dian S/mt F.orig Audi A3 I 96a03 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "69cd12ae-d91e-40a8-8084-f233afb90992",
+    "sku": "VTK011884",
+    "nome": "Maq Vid Elet Pt Tras S/mt F.orig Vw Golf 99a08 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "3006f163-239d-44c3-b9c4-9f28a89d8a9c",
+    "sku": "VTK011885",
+    "nome": "Maq Vid Elet Pt Tras S/mt F.orig Vw Golf 99a08 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "1d75358e-a0a6-47a0-a674-f28c69152301",
+    "sku": "VTK011886",
+    "nome": "Cilindro Da Porta C/chave Vw Meteor Ap21 Esq",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "78083a6e-060e-48ac-a059-b9a7cae5d586",
+    "sku": "VTK011887",
+    "nome": "Maq Vidr Elet S/mt Diant F.orig Vw Jetta 05a11 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "1e77d370-32ec-4500-a80c-024a0a80a09e",
+    "sku": "VTK011888",
+    "nome": "Maq Vidr Elet S/mt Dian F.orig Vw Golf 13a16 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a4a21136-f3fe-42aa-809a-383760e9f423",
+    "sku": "VTK011889",
+    "nome": "Mac Ext C/ch Completo Vw Delivery Ii Ap18 Dir",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "cd77e2d4-c715-48fe-97f7-c9e0c6b3b53b",
+    "sku": "VTK011890",
+    "nome": "Mac Ext C/ch Completo Vw Delivery Ii Ap18 Esq",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "0e2362c6-e271-4ed5-ba5f-cbb355e815d9",
+    "sku": "VTK011897",
+    "nome": "Kit 4 Batentes E Limitador Dianteiro Fox Após 2009.",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "6309903e-e566-4c9b-a0cf-32a32c86ae3d",
+    "sku": "VTK011901",
+    "nome": "Calco Mac Ext Da Porta Vw Constellation Dir",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "ca255e88-e66d-4c23-b0ab-855f65c2b286",
+    "sku": "VTK011902",
+    "nome": "Calco Mac Ext Da Porta Vw Constellation Esq",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "69a88e7e-2ab3-4499-bcd8-f4ece1c9514c",
+    "sku": "VTK011912",
+    "nome": "Miolo Porta Diant Vw Passat 11 A 15",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "8b31dab7-cc4a-4cc9-9523-b7493ddbf0f0",
+    "sku": "VTK011913",
+    "nome": "Mac Ext Porta S/ Miolo Golf 2007 Até 2013",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "2ab72c8b-9206-4018-895e-279841ef7c9f",
+    "sku": "VTK011914",
+    "nome": "Eixo Estr Coman Maq Manual Dian Amarok Ap10 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "33d61c24-de61-4cd0-8b5f-8a8f429d861d",
+    "sku": "VTK011915",
+    "nome": "Eixo Estr Diant P/maq Manual Vw Amarok Ap10 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a0799c0c-d168-4a7a-ac34-e2b1e7daaff4",
+    "sku": "VTK011916",
+    "nome": "Eixo Estria Maq Manual Tras Vw Amarok Ap10 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "27b222b7-dbca-4dbf-9f77-f53fe916850f",
+    "sku": "VTK011917",
+    "nome": "Eixo Estr P/maq Manual Tras Vw Amarok Apos10 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "680b21a7-0546-485e-a98b-6288a0097e3a",
+    "sku": "VTK011923",
+    "nome": "Miolo Botao C/ch Uso Geral Gancho Inox",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "42a289a0-076a-4287-a902-2dfad9b63456",
+    "sku": "VTK011928",
+    "nome": "Alavanca Maior (ling) Abert Capo Vw Golf 08a14",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "fa2df49e-56a4-465d-8364-d5e79b84717b",
+    "sku": "VTK011932",
+    "nome": "Cabo Abert Pta C470mm Vw Delivery Ap18 Dir",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "49903674-e078-4590-a3fb-adef500af717",
+    "sku": "VTK011933",
+    "nome": "Mac Ext Da Porta C/chave Vw Meteor Gi Ap21 Dir",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "84cf11b0-80bd-4335-ad3a-a96f71b56e47",
+    "sku": "VTK011934",
+    "nome": "Mac Ext Da Porta C/chave Vw Meteor Gi Ap21 Esq",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "623080b9-19cf-4c57-ad42-c006977dc692",
+    "sku": "VTK011935",
+    "nome": "Mac Int Pta Prata Vw Delivery Gii/express Ap18 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "65286248-47e4-4089-93ba-e0dbdb90c3c1",
+    "sku": "VTK011936",
+    "nome": "Mac Int Pta Prata Vw Delivery Gii/express Ap18 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "3a670007-277a-4085-a4ab-19125188fcf4",
+    "sku": "VTK011937",
+    "nome": "Mac Ext Pt C/ch C/micro Switch Vw Meteor Ap21 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "1bbb8141-6d3b-4713-a275-f6f5011832fe",
+    "sku": "VTK011938",
+    "nome": "Conj Cil Mac Ext + Cil Ign C/ch Delivery Gii Ap18",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "2dd46fca-a6be-41a5-a774-8a67597a5969",
+    "sku": "VTK011939",
+    "nome": "Fech Pta Predisp P/eletr Man Tga/tgs/tgx Dir",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "92c4d478-1a3e-4611-b99a-663fdb3b5066",
+    "sku": "VTK011940",
+    "nome": "Trinco Jan Basculante Vw Saveiro Apos98",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b673bba2-9ed5-4348-b3f4-68ef10923171",
+    "sku": "VTK011941",
+    "nome": "Haste Fech Da Cacamba Vw Saveiro Ii/iii/iv 97a08",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "03591c06-a726-4029-b1ca-d79e6d139f1a",
+    "sku": "VTK011942",
+    "nome": "Mac Int Abert Cap Cinza S/base Vw Golf Gvii Ap13",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "69dd654d-7127-49ef-a335-19f0fbdf0d59",
+    "sku": "VTK011943",
+    "nome": "Mac Int Abert Cap Preta S/base Vw Golf Gvii Ap13",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "08b4c8a5-66d9-4b0b-b49f-cb79ef787772",
+    "sku": "VTK011944",
+    "nome": "Fech Cab Basc Vw Meteor Ap21/man Tgx D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "e86e5d29-42c6-4cf9-9536-a25c2f3eb81f",
+    "sku": "VTK011947",
+    "nome": "Fech Dian Elet 5p Trav Elet Orig Gol 08a22 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "0615197b-5fde-4936-8cf8-9cd8f4f739fa",
+    "sku": "VTK011948",
+    "nome": "Fecha Elet Porta Diant 5 Pinos Vw Gol 12a16 Dir",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a322d505-442c-4901-8c80-8a023567df04",
+    "sku": "VTK011982",
+    "nome": "Tampa Do Oleo Motor Perkins Gm D20 85 A 97",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "4e5cbe95-f03e-424e-8240-69c8832296df",
+    "sku": "VTK011983",
+    "nome": "Tampa Reserv Limp Para-brisa Vw Passat 79 A 85",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a6d7a9a2-eb08-4902-b6db-a9136a5ec239",
+    "sku": "VTK011985",
+    "nome": "Tampa Radiador Sup 13lbs/0,9bar Vw 16-210 87a99",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "1a2d77a2-0f83-4ae4-abc2-c4c4e99e3b94",
+    "sku": "VTK011986",
+    "nome": "Tamp Rad Reserv Inf 13lbs Vw Constellation 05a12",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "22da04fb-4edf-427d-9721-c0b601a10ea7",
+    "sku": "VTK011987",
+    "nome": "Tampa Reserv Oleo Do Freio Vw Brasilia 73 A 82",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b9b6aa28-1686-48e7-99eb-fe77a1a6b490",
+    "sku": "VTK013109",
+    "nome": "Bat Porta Lateral Master Gi 2003 Até 2012",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "776ebc03-c9cb-4f97-bc82-8a99a98ef873",
+    "sku": "VTK013113",
+    "nome": "Mac Int Pta Diant/tras C/base Pret Kwid Gi Ap17 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "8cabb399-360f-46c6-8d38-5ab45431c73f",
+    "sku": "VTK013114",
+    "nome": "Cabo Aco Limit Tampa Cacamb Renault Oroch Ap15",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "84b52b77-1e40-40d2-bc31-bc2910c00625",
+    "sku": "VTK013116",
+    "nome": "Fech Mec/pre El Pta Mla (bau) H100 Ap 97",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "889defd8-74c5-4333-b2da-d087ccc25e90",
+    "sku": "VTK013122",
+    "nome": "Interruptor Moldura Banco Apollo - Verona",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "5008db79-ebee-4ed6-b7c2-67b3413a1c85",
+    "sku": "VTK013127",
+    "nome": "Tampa Reserv Gasol Veic Flex Vw/ford Diversos",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "97d77897-836f-4850-b425-1ea105dfdb9c",
+    "sku": "VTK013148",
+    "nome": "Capa Recl Bco Pas Gol/par/sav Ap 97 Pr-d",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "e004f0e4-6f82-4813-9a11-5704839dfa3f",
+    "sku": "VTK013155",
+    "nome": "Mac Int Abert Capo Preta Vw Gol Giii 93a98",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a20e7f19-328b-453b-9f12-3e4bfdd2e051",
+    "sku": "VTK013170",
+    "nome": "Interruptor Moldura Porta Diant/tras Gol Gv D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "00cf23e1-18db-4bc2-abe6-71b9a97f876b",
+    "sku": "VTK013172",
+    "nome": "Cj Calco Mac Ext Porta Grand E Peq Vw Gol Gv D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "58aa5788-6807-461f-8c88-387294caf5b3",
+    "sku": "VTK013184",
+    "nome": "Cj. C/6 Cil Avibras",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "2356e5a0-b8c6-47a9-adb3-1312f042b300",
+    "sku": "VTK013219",
+    "nome": "Chave Seta C/controle Limpador/buzina 24v Prt Mb Axor/onibus",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "26d9fd8e-22fe-4678-bfe4-75ae25b11598",
+    "sku": "VTK013220",
+    "nome": "Chave Seta C/controle Limpador/buzina 24v Cza Mb Axor/onibus",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c95f4421-bed0-4c02-9865-b525c8d1b5c4",
+    "sku": "VTK013224",
+    "nome": "Cilindro Da Porta Diant C/chave Ford Ka Ap14 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "223ca687-b5f4-4c12-b287-da6ea7f5f828",
+    "sku": "VTK013225",
+    "nome": "Cab Aco Limit Tp Cacamb C370mm Ranger Ap13 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c89f3fc4-eea1-4fc2-b56c-1c5c97324f82",
+    "sku": "VTK013259",
+    "nome": "Espelho Mac Int F1000/2000/4000/91 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "349e1795-70c0-4966-8b6c-5bd5defabcdf",
+    "sku": "VTK013275",
+    "nome": "Batente Da Porta Dianteira - Dir. - Unv30178",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c46d1c32-1b1d-46de-80d9-6bac111ccd30",
+    "sku": "VTK013298",
+    "nome": "Interruptor Moldura Da Mac Int Pta Diant/tras Corcel Ii E/d",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "38f2f20d-4c20-473d-b370-035a8e3f6f8b",
+    "sku": "VTK013345",
+    "nome": "Tampa Do Radiador 7 Lbs Ford Cargo Apos 85",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "0afeda9d-033e-444c-8d9b-9ee19d8b9f24",
+    "sku": "VTK013346",
+    "nome": "Tampa Radiador 13 Lbs/0,9 Bar Gm Chevette 73a82",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "ae6046c8-065e-4858-b6c9-21b5c9b1dd3d",
+    "sku": "VTK013347",
+    "nome": "Tampa Radiador Sup 8 Lbs Ford Cargo Apos 85",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "67c8c666-14bb-442a-bb40-f5d83af17392",
+    "sku": "VTK013348",
+    "nome": "Tampa Do Radiador Gm Chevette 83 A 93",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b73d57af-51c1-4251-a96b-0cd459185c52",
+    "sku": "VTK013357",
+    "nome": "Roldana Maq Do Vidro Ford Escort 83a92",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "89369fff-8596-49f4-9046-94d8f939179c",
+    "sku": "VTK013407",
+    "nome": "Tampa Do Radiador Selada Ford Corcel 68 A 77",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "f4569d5c-bd78-41dc-8a7f-e1910673520e",
+    "sku": "VTK013476",
+    "nome": "Maq Vidr Eletr Pta Diant C/motor Focus 00a08 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "225deb0e-9b96-408d-9460-3d51f78d84e7",
+    "sku": "VTK013477",
+    "nome": "Maq Vidr Eletr Pta Diant C/motor Focus 00a08 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a153cac8-45b6-4326-9044-4830ad6817f3",
+    "sku": "VTK013480",
+    "nome": "Chave S/segr Pf Convencional Ford F-1000 79a98",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c66822a4-84b3-4ac7-a719-21aee22c80fc",
+    "sku": "VTK013481",
+    "nome": "Chave S/segr Perfil Conven Ford Del Rey 81a91",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "947fab29-3196-4269-805a-eeee9d87615f",
+    "sku": "VTK013482",
+    "nome": "Chave S/segr Convencional Ford Escort 83 A 92",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "1a2a4192-4e0f-4800-8f11-e4568680c439",
+    "sku": "VTK013497",
+    "nome": "Mac Ext Porta S/ Miolo Focus Gi 2000 Até 2009",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "81b4e283-b0b7-4ff1-bcef-263f3804d925",
+    "sku": "VTK013516",
+    "nome": "Maq Vid El S/mt Ranger G1 2/4 Pts D 94/12",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "5a108dce-f236-442d-8e38-7115000c90c6",
+    "sku": "VTK013534",
+    "nome": "Coman (fech) Abert Int Tp Cacamba Courier 97a13",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "6e829cb3-a5e1-40e1-a89a-2a53477e46ab",
+    "sku": "VTK013540",
+    "nome": "Man Reg Vidr Pta Cinza Ford Ranger Gi 04a12",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "98cb65aa-3cef-4b61-9dbe-86aa3e5f86b8",
+    "sku": "VTK013549",
+    "nome": "Grampo Teto Preto Escort/verona/f1000",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "1439dc9f-aee9-4548-8ef5-1cadf633259c",
+    "sku": "VTK013613",
+    "nome": "Fecho Inf Capo C/pn/mla Cargo Ap 11 E",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "f1ea984d-98c3-4e46-b3b9-015695d0e104",
+    "sku": "VTK013638",
+    "nome": "Cj Mac Ext Diant/tras Ford Fiesta Amazon 02a14 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a3add9a2-6e8a-4407-9d26-5f38edab42c3",
+    "sku": "VTK013645",
+    "nome": "Arm Inf Pta Trav Guia Carg D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "54f3cb30-785d-4669-96f1-b708ab390741",
+    "sku": "VTK013686",
+    "nome": "Mac Ext Pt Diant Pret C/fur S/ch Ka Giii 14a21 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "250fc439-65c9-430f-8d8c-bca186be4693",
+    "sku": "VTK013691",
+    "nome": "Fech Elet Pta Diant Ford Ecosport Gii 12a21 Esq",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "8b2ef36b-b57e-49f1-8916-66007cf41515",
+    "sku": "VTK013692",
+    "nome": "Fech Elet Pta Tras Ford Ecosport Gii 12a21 Esq",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "8b251c98-fa29-4f64-8c2e-5d8996e7bae6",
+    "sku": "VTK013699",
+    "nome": "Fech Elet Pta Diant Ford Fiesta Hatch Giii 13a19 D",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a99ff92e-7092-439a-87da-ae44bc6be0b6",
+    "sku": "VTK013712",
+    "nome": "Cabo De Velocimetro C1749mm Ford Jeep Ap67",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "1d85c97e-de3e-4f65-a63e-8892d988f43d",
+    "sku": "VTK013795",
+    "nome": "Prato De Mola Do Amort Diant Vw Gol 80 A 96",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "34dee801-f32d-442e-a7eb-a856b1faf01c",
+    "sku": "VTK013833",
+    "nome": "Bieleta Dianteira Etios Apòs/12 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "2e2fcb92-a9e6-43f4-b17c-f5fde2b328c5",
+    "sku": "VTK013839",
+    "nome": "Biel Bar Estab Diant Golf 95/9",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a7da4199-f48a-4c50-8ee9-78e6d06f3c4f",
+    "sku": "VTK013846",
+    "nome": "Ter Dir Curto/barra Curta F-250 Após 99",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "0577c4b4-3a04-46aa-b1a1-1779d5681976",
+    "sku": "VTK013847",
+    "nome": "Biel Bar Est Dian C310mm Nylon Cruze I 11a16 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "d480794d-25c7-4cf9-bda9-af905c65861d",
+    "sku": "VTK013848",
+    "nome": "Kit Junta Homocinetica Ld Roda Passat 94a05 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "dc3f2a59-050b-4f7f-839c-c0bcf28cc1ad",
+    "sku": "VTK013850",
+    "nome": "Kit Amort Diant C/coxim/rol/bat/coifa Up Ap 14",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "9a006f12-8a48-4075-af31-5ce1f48201d7",
+    "sku": "VTK013854",
+    "nome": "Haste Engate Trambulador Cambio 350mm Prêmio 85",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "6659d5a9-c692-4db5-8f60-15f7b1ef6e25",
+    "sku": "VTK013857",
+    "nome": "Kit Eixo C/rep Parcial Tramb Gm Corsa/celta",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c515175e-8221-4379-be81-e942f1c42c06",
+    "sku": "VTK013859",
+    "nome": "Pino E Bucha Conexao Cb Tramb Volvo Cam 76a84",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "e21b4b9b-265f-4019-906c-d2e98bd475a0",
+    "sku": "VTK013861",
+    "nome": "Reparo Parcial C/bucha Ala Cambio Vw Fox 03a09",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "4d320aa8-4d6d-48bb-b4e7-90eec061ea34",
+    "sku": "VTK013862",
+    "nome": "Kit Reparo Barra Estab Diant Mb Classe A 98a05",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "29dc214c-b356-4a40-8f9d-7b18fd43c024",
+    "sku": "VTK013863",
+    "nome": "Kit Rep Alavanca De Cambio Punto",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "2b5b0421-c5b5-4d14-bbd4-47c84587213d",
+    "sku": "VTK013864",
+    "nome": "Kit Alav Sel Do Trambulador Corsa",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "8a42644c-5db4-4c6f-8edb-be504cf90557",
+    "sku": "VTK013866",
+    "nome": "Kit Tramb Conec Cx De Camb Corsa Gi E Gii",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "95719c55-a3e5-4e8b-b49b-d2e8699f3592",
+    "sku": "VTK013887",
+    "nome": "Kit Amort Dia C/bat C/cf Escort Zt Ap 97",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "fd9e76d3-e9fc-4a4b-b53e-6f45467d6e9e",
+    "sku": "VTK013888",
+    "nome": "Kit Amor Di C/bat C/cf Escort 93/96",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "67238aa6-c441-48f5-b99b-d7b1087c5e90",
+    "sku": "VTK013900",
+    "nome": "Kit Reparo Barra Estab Vw Fusca 81a96 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "d1b20080-4e27-4281-9675-10ad37572ed1",
+    "sku": "VTK013901",
+    "nome": "Kit Estab Dian Monza Apos 91",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "a007298c-6f02-4349-963f-1e76903aa706",
+    "sku": "VTK013902",
+    "nome": "Kit Estab Dian Cen Uno Apos 91",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "de232422-262e-4cdf-9806-db19c9fcfa0e",
+    "sku": "VTK013903",
+    "nome": "Kit Estab Dian Fox Apos 03 Dir",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "ff0c93a3-df13-436d-a1d2-efdb95264156",
+    "sku": "VTK013904",
+    "nome": "Kit Reparo Barra Estab Vw Kombi 69 A 07 Esq",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "c59a3fd0-66f4-4153-a781-cd044f0277c5",
+    "sku": "VTK013905",
+    "nome": "Kit Estab Dian Ext Gol Apos 82",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "85511c37-1c1f-4866-8e2e-17b96bf1cbb7",
+    "sku": "VTK013907",
+    "nome": "Kit Rep Amort Dian C/ Rol/cox/bat/gp Spin",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "aca3c806-fbea-4db9-ade0-98401f703384",
+    "sku": "VTK013914",
+    "nome": "Kit Tramb C/ Liame Corsa Ap04",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "281c76ad-b99c-4883-9fbf-197835661793",
+    "sku": "VTK013915",
+    "nome": "Kit Trambulador C/liame Gm Corsa Gi 94a02 D/e",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "3ee59e59-c9f2-4a9f-9945-411721fe11a7",
+    "sku": "VTK013916",
+    "nome": "Kit Rep Alav Camb Tramb C/tubo 5m Passat 79a88",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "1e333f73-8e6e-4c65-af0d-66524f0a62af",
+    "sku": "VTK013917",
+    "nome": "Kit Ala/tramb Cambio Uno 85/88",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "b51d7208-9228-4489-af77-03dce722d052",
+    "sku": "VTK013918",
+    "nome": "Kit Rep Brac Osc C/rol Tras Palio Weekend 97a17",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "e1dd88f5-314f-4071-8a22-32b9c4df746d",
+    "sku": "VTK013919",
+    "nome": "Kit Amo Di C/bat C/coi Onix",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  },
+  {
+    "ok": false,
+    "produtoId": "379b3c26-d9cb-4577-8177-9f1a17b69f0e",
+    "sku": "VTK013920",
+    "nome": "Kit Amo Ci C/bat C/coi Hb20",
+    "reason": "exception",
+    "error": "Resposta IA inválida"
+  }
+]

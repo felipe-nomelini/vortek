@@ -1,0 +1,118 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-082-ml-create-082.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-082",
+  "selected": 3,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "1016b5d8-5964-427a-b5f6-f6d9299f52ae",
+      "sku": "VTK001109",
+      "category": {
+        "id": "MLB22729",
+        "nome": "Bancos",
+        "dominio": "Bancos de motos"
+      },
+      "anuncio": {
+        "id": "MLB7145207248",
+        "title": "Encosto Cad Thunder Tgc12 Rs",
+        "price": 315.19,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7145207248-encosto-cad-thunder-tgc12-rs-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Produto sem imagens locais. Será usada imagem placeholder.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 204.03 → R$ 315.19."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "de045a9f-a54e-454d-8c71-6ad50a201b1f",
+      "sku": "VTK001286",
+      "category": {
+        "id": "MLB193945",
+        "nome": "Cadeiras para Escritório",
+        "dominio": "Cadeiras de escritório"
+      },
+      "anuncio": {
+        "id": "MLB4877417893",
+        "title": "Assento P/ Cadeira Tgc12 /vermelho Thunderx3 Preto Couro Sintético",
+        "price": 299.94,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877417893-assento-p-cadeira-tgc12-vermelho-thunderx3-preto-couro-sintetico-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Produto sem imagens locais. Será usada imagem placeholder.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 204.03 → R$ 299.94."
+      ]
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "36394ab4-0d3d-48ce-9646-e22896315eb3",
+      "sku": "VTK005426",
+      "nome": "Kit Cabo Para Pedal Hayonik Linha Player 15cm Sortido Com 20",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB438559",
+            "nome": "Cabos e Conectores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB38279",
+            "nome": "Outros Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB432437",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        },
+        {
+          "category": {
+            "id": "MLB431813",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

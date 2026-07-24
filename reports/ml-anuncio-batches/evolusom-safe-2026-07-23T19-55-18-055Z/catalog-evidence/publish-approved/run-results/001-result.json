@@ -1,0 +1,261 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/publish-approved/remaining/001-evolusom-remaining-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-remaining-001",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "d35df101-0356-4658-b6e1-fa9656b214ad",
+      "sku": "VTK001685",
+      "category": {
+        "id": "MLB195961",
+        "nome": "Adaptadores",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB7238802778",
+        "title": "Adaptador Dvi Fêmea X Hdmi Macho Gold St-hdmi-dmf Storm",
+        "price": 57.63,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238802778-adaptador-dvi-fmea-x-hdmi-macho-gold-st-hdmi-dmf-storm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 41.79 → R$ 57.63."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "6f2d02a9-a507-459b-9a90-7faf9d50b92c",
+      "sku": "VTK018179",
+      "category": {
+        "id": "MLB195961",
+        "nome": "Adaptadores",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB7238802910",
+        "title": "Adaptador Rca Stetsom St-6100 Com Saída Remoto/filtro",
+        "price": 161.99,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238802910-adaptador-rca-stetsom-st-6100-com-saida-remotofiltro-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 140.90 → R$ 161.99."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "23325240-e7c1-4a4f-805f-79f7ac369f98",
+      "sku": "VTK002611",
+      "category": {
+        "id": "MLB7466",
+        "nome": "USB",
+        "dominio": "MLB-DATA_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB7238823266",
+        "title": "Adaptador Usb Tipo C Macho Para Vga Femea Adap0057 Storm Branco",
+        "price": 77.24,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238823266-adaptador-usb-tipo-c-macho-para-vga-femea-adap0057-storm-branco-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 83.12 → R$ 77.24."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "5f74e994-77a1-42f4-8f56-af442f8c8c7f",
+      "sku": "VTK018588",
+      "category": {
+        "id": "MLB456045",
+        "nome": "De Ar",
+        "dominio": "MLB-AIR_FRYERS"
+      },
+      "anuncio": {
+        "id": "MLB7238803510",
+        "title": "Airfryer Black + Decker Digital Afmdv360-b2 4 5l - 220v Preto 220v",
+        "price": 483.29,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238803510-airfryer-black-decker-digital-afmdv360-b2-4-5l-220v-preto-220v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 428.23 → R$ 483.29."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "78ebcbfc-5953-44ca-803a-a4b40bbfae1e",
+      "sku": "VTK017861",
+      "category": {
+        "id": "MLB440299",
+        "nome": "Alarmes para Automotores",
+        "dominio": "MLB-VEHICLE_ALARMS"
+      },
+      "anuncio": {
+        "id": "MLB7238823730",
+        "title": "Alarme Automotivo Fks Fk902 Plus Universal Função Desliga",
+        "price": 194.62,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238823730-alarme-automotivo-fks-fk902-plus-universal-funco-desliga-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 169.49 → R$ 194.62."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "724b7d33-2fc4-4905-ab51-2ca45664aab0",
+      "sku": "VTK018009",
+      "category": {
+        "id": "MLB440299",
+        "nome": "Alarmes para Automotores",
+        "dominio": "MLB-VEHICLE_ALARMS"
+      },
+      "anuncio": {
+        "id": "MLB7238823924",
+        "title": "Alarme Automotivo Universal Fks Fk902 Plus - Sem Bloqueio",
+        "price": 219.68,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238823924-alarme-automotivo-universal-fks-fk902-plus-sem-bloqueio-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 189.75 → R$ 219.68."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "75abcf4e-d3a5-40f5-816a-50b997706d46",
+      "sku": "VTK018503",
+      "category": {
+        "id": "MLB440299",
+        "nome": "Alarmes para Automotores",
+        "dominio": "MLB-VEHICLE_ALARMS"
+      },
+      "anuncio": {
+        "id": "MLB7238804114",
+        "title": "Alarme Automotivo Universal Fks Fk904 Cb Com Bloqueador",
+        "price": 307.83,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238804114-alarme-automotivo-universal-fks-fk904-cb-com-bloqueador-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 277.89 → R$ 307.83."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "fef3489e-d7b8-483b-a5f4-1921740369be",
+      "sku": "VTK018349",
+      "category": {
+        "id": "MLB440299",
+        "nome": "Alarmes para Automotores",
+        "dominio": "MLB-VEHICLE_ALARMS"
+      },
+      "anuncio": {
+        "id": "MLB7238836080",
+        "title": "Alarme Automotivo Fks Fki505rf Conector Original Fiat 2012",
+        "price": 332.58,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238836080-alarme-automotivo-fks-fki505rf-conector-original-fiat-2012-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 302.64 → R$ 332.58."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "f0cfdc8d-c860-43a0-88c6-2cae875582df",
+      "sku": "VTK018080",
+      "category": {
+        "id": "MLB440299",
+        "nome": "Alarmes para Automotores",
+        "dominio": "MLB-VEHICLE_ALARMS"
+      },
+      "anuncio": {
+        "id": "MLB7238824470",
+        "title": "Alarme Automotivo Positron Cyber Ex-360 Blade",
+        "price": 435.99,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238824470-alarme-automotivo-positron-cyber-ex-360-blade-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 407.45 → R$ 435.99."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "73961361-53a0-41ec-a09a-615a7215d95e",
+      "sku": "VTK019038",
+      "category": {
+        "id": "MLB30162",
+        "nome": "Amperímetros",
+        "dominio": "MLB-CLAMP_METERS"
+      },
+      "anuncio": {
+        "id": "MLB7238804632",
+        "title": "Alicate Amperimetro Digital Minipa Et-3111 Cat Iii",
+        "price": 329.43,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238804632-alicate-amperimetro-digital-minipa-et-3111-cat-iii-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Descrição pendente no ML: HTTP 400: The description must be in plain text",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"status\":409,\"error\":\"Conflict\",\"code\":\"conflict.error\"}"
+      ]
+    }
+  ],
+  "failed": []
+}

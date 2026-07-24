@@ -1,0 +1,626 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-16T20-32-52-582Z/run-results/run-004-ml-create-004.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-004",
+  "selected": 25,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "1788aef3-fcfa-4f1d-811d-db359fb80113",
+      "sku": "VTK016082",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184724764",
+        "title": "25 Baterias Cr2025 Panasonic (5 Cart)",
+        "price": 160.45,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184724764-25-baterias-cr2025-panasonic-5-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 136.49 → R$ 160.45."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "a2f16ddb-c55d-4b43-99f0-7fc6e7ec636c",
+      "sku": "VTK016075",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184757542",
+        "title": "24 Pilhas Alcalinas Premium Aaa Panasonic (4 Cart)",
+        "price": 160.84,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184757542-24-pilhas-alcalinas-premium-aaa-panasonic-4-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 136.88 → R$ 160.84."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "f2128fb3-06f2-446a-a37e-fb9c015a5e00",
+      "sku": "VTK016120",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184747214",
+        "title": "36 Pilhas Alcalinas Aa Panasonic (6 Cart)",
+        "price": 161.36,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184747214-36-pilhas-alcalinas-aa-panasonic-6-cart-_JM",
+        "status": "active",
+        "sub_status": []
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 137.40 → R$ 161.36."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "af98fbff-1341-4f4a-90b5-79b947e12ad5",
+      "sku": "VTK016110",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184725090",
+        "title": "32 Pilhas Alcalinas Aaa Panasonic (8 Cart)",
+        "price": 137.56,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184725090-32-pilhas-alcalinas-aaa-panasonic-8-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"error\":\"Conflict\",\"code\":\"conflict.error\",\"status\":409}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "2bbaebe1-cc07-4721-9958-28c9ee010903",
+      "sku": "VTK016074",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184725212",
+        "title": "24 Pilhas Alcalinas Premium Aaa Panasonic (12 Cartelas C/2",
+        "price": 161.99,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184725212-24-pilhas-alcalinas-premium-aaa-panasonic-12-cartelas-c2-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 138.03 → R$ 161.99."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "61314f6e-dd53-4e75-9b69-09bc510c12db",
+      "sku": "VTK016219",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184747606",
+        "title": "72 Pilhas Comum Aaa Panasonic (9 Cart)",
+        "price": 162.03,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184747606-72-pilhas-comum-aaa-panasonic-9-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 138.06 → R$ 162.03."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "d75f816f-cd50-49f1-b522-2bbce1420435",
+      "sku": "VTK016215",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184725476",
+        "title": "7 Baterias Alcalinas 9v Panasonic",
+        "price": 162.3,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184725476-7-baterias-alcalinas-9v-panasonic-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 138.34 → R$ 162.30."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "388287cf-a1c9-4506-9145-97edbe6ac39e",
+      "sku": "VTK016076",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184747832",
+        "title": "24 Pilhas Alcalinas Premium Aaa Panasonic (6 Cart)",
+        "price": 166.97,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184747832-24-pilhas-alcalinas-premium-aaa-panasonic-6-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 143.01 → R$ 166.97."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "86f64369-c5df-4542-9737-084180be329c",
+      "sku": "VTK016037",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184758404",
+        "title": "2 Tubos Pilha Comum Aaa C/40un Cada",
+        "price": 167.21,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184758404-2-tubos-pilha-comum-aaa-c40un-cada-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 143.25 → R$ 167.21."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "c4b43754-f463-47d4-8692-9733da81f4c2",
+      "sku": "VTK016121",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184758526",
+        "title": "36 Pilhas Alcalinas Aa Panasonic (9 Cart)",
+        "price": 143.56,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184758526-36-pilhas-alcalinas-aa-panasonic-9-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"error\":\"Conflict\",\"status\":409,\"code\":\"conflict.error\"}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "8aed0504-7002-4524-b5f4-be2bd3889c7e",
+      "sku": "VTK016122",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184748102",
+        "title": "36 Pilhas Alcalinas Aaa Panasonic (6 Cart)",
+        "price": 169,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184748102-36-pilhas-alcalinas-aaa-panasonic-6-cart-_JM",
+        "status": "active",
+        "sub_status": []
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 145.04 → R$ 169.00."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "27004dfa-5ba3-405d-8485-154f439cd08a",
+      "sku": "VTK016103",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184758740",
+        "title": "30 Baterias Cr2032 Panasonic (6 Cart)",
+        "price": 170.48,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184758740-30-baterias-cr2032-panasonic-6-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 146.52 → R$ 170.48."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "be8aa635-3caa-4575-a0ae-1eccb1f2969d",
+      "sku": "VTK015940",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184748336",
+        "title": "10 Pilhas Alcalinas C Panasonic (5 Cart)",
+        "price": 171.17,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184748336-10-pilhas-alcalinas-c-panasonic-5-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 147.21 → R$ 171.17."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "fe4ffb31-a91a-42b9-b4d5-5e98d1b826b2",
+      "sku": "VTK016228",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903837187",
+        "title": "8 Pilhas Alcalinas D Panasonic (4 Cart)",
+        "price": 173.31,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903837187-8-pilhas-alcalinas-d-panasonic-4-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 149.35 → R$ 173.31."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "2985de12-05ee-4976-a6d2-94840db1209a",
+      "sku": "VTK016036",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184759068",
+        "title": "2 Tubos Pilha Comum Aa C/52un Cada Panasonic",
+        "price": 173.49,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184759068-2-tubos-pilha-comum-aa-c52un-cada-panasonic-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 149.53 → R$ 173.49."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "84b7eccd-bd6f-4c1b-a663-2245202f0846",
+      "sku": "VTK016087",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184759182",
+        "title": "28 Pilhas Alcalinas Premium Aa Panasonic (7 Cart)",
+        "price": 168.36,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184759182-28-pilhas-alcalinas-premium-aa-panasonic-7-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 150.16 → R$ 168.36."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "328c4795-a4bf-4210-a33b-6141222e4ea1",
+      "sku": "VTK016242",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903837597",
+        "title": "80 Pilhas Comum Aaa Panasonic (10 Cart)",
+        "price": 168.7,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903837597-80-pilhas-comum-aaa-panasonic-10-cart-_JM",
+        "status": "active",
+        "sub_status": []
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 150.52 → R$ 168.70."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "de2124b1-a782-4f35-bdd1-2d14c88edced",
+      "sku": "VTK016123",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903837763",
+        "title": "36 Pilhas Alcalinas Aaa Panasonic (9 Cart)",
+        "price": 169.64,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903837763-36-pilhas-alcalinas-aaa-panasonic-9-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 151.51 → R$ 169.64."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "f2af16df-f351-4fa4-a2b8-0f6951d9f162",
+      "sku": "VTK016106",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184749124",
+        "title": "30 Pilhas Alcalinas Premium Aa Panasonic (5 Cart)",
+        "price": 170.12,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184749124-30-pilhas-alcalinas-premium-aa-panasonic-5-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 152.01 → R$ 170.12."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "75ffd4d5-9232-48de-8d16-575d41a13654",
+      "sku": "VTK016221",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184749306",
+        "title": "8 Baterias Alcalinas 9v Panasonic",
+        "price": 154.39,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184749306-8-baterias-alcalinas-9v-panasonic-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB7184749306: NSOPublicAPI error",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "7556b6c9-d67f-4ad0-b14c-76e39d0f89dc",
+      "sku": "VTK016160",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903838189",
+        "title": "42 Pilhas Alcalinas Aa Panasonic (7 Cart)",
+        "price": 173.89,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903838189-42-pilhas-alcalinas-aa-panasonic-7-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 155.97 → R$ 173.89."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9dbdb4fd-6cb6-4933-9907-fdbb4d58e987",
+      "sku": "VTK016151",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903838341",
+        "title": "40 Pilhas Alcalinas Aa Panasonic (10 Cart)",
+        "price": 174.51,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903838341-40-pilhas-alcalinas-aa-panasonic-10-cart-_JM",
+        "status": "active",
+        "sub_status": []
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 156.62 → R$ 174.51."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "625b7615-85ed-481e-8abb-34eb945ca6cb",
+      "sku": "VTK016142",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184749692",
+        "title": "4 Pilhas Recarregaveis Eneloop Std Aa Panasonic (2 Cart)",
+        "price": 175.94,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184749692-4-pilhas-recarregaveis-eneloop-std-aa-panasonic-2-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 150.32 → R$ 175.94."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "66d3610b-b78a-4171-98b2-8ec575419e5f",
+      "sku": "VTK016102",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184749810",
+        "title": "30 Baterias Cr2025 Panasonic (6 Cart)",
+        "price": 176.38,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184749810-30-baterias-cr2025-panasonic-6-cart-_JM",
+        "status": "active",
+        "sub_status": []
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 150.77 → R$ 176.38."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "178d7b3e-f969-4f57-ae0b-be2cfa838f35",
+      "sku": "VTK016088",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903838735",
+        "title": "28 Pilhas Alcalinas Premium Aaa Panasonic (7 Cart)",
+        "price": 180.11,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903838735-28-pilhas-alcalinas-premium-aaa-panasonic-7-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 154.49 → R$ 180.11."
+      ]
+    }
+  ],
+  "failed": []
+}

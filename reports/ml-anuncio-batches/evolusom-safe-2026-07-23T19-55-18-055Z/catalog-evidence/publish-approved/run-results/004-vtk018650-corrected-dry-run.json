@@ -1,0 +1,22 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/publish-approved/run-results/004-vtk018650-corrected.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-vtk018650-category-correction",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "df7923c5-fdc1-42a0-8e83-6a5776ae0136",
+      "sku": "VTK018650",
+      "category": {
+        "id": "MLB45256",
+        "nome": "Antenas",
+        "dominio": "MLB-VEHICLE_ANTENNAS"
+      },
+      "basePrice": 84.14,
+      "missing": []
+    }
+  ],
+  "failed": []
+}

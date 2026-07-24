@@ -1,0 +1,1237 @@
+{
+  "startedAt": "2026-07-11T01:05:12.475Z",
+  "baseUrl": "https://app.vortek.shop",
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z",
+  "excludedSuppliers": [
+    "SHOPPECAS"
+  ],
+  "batches": [
+    {
+      "fileName": "001-ml-create-001.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-001-ml-create-001.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/001-ml-create-001-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 0,
+      "failedCount": 1,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "002-ml-create-002.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "003-ml-create-003.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-003-ml-create-003.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/003-ml-create-003-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 1,
+      "failedCount": 0,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 1,
+        "withLinkedAnuncio": 1,
+        "semAnuncioStill": 0
+      }
+    },
+    {
+      "fileName": "004-ml-create-004.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-004-ml-create-004.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/004-ml-create-004-result.json",
+      "exitCode": 2,
+      "originalCount": 25,
+      "excludedCount": 15,
+      "executedCount": 10,
+      "createdCount": 0,
+      "failedCount": 10,
+      "validation": {
+        "selected": 10,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 10
+      }
+    },
+    {
+      "fileName": "005-ml-create-005.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-005-ml-create-005.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/005-ml-create-005-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 22,
+      "executedCount": 3,
+      "createdCount": 0,
+      "failedCount": 3,
+      "validation": {
+        "selected": 3,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 3
+      }
+    },
+    {
+      "fileName": "006-ml-create-006.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "007-ml-create-007.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "008-ml-create-008.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "009-ml-create-009.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-009-ml-create-009.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/009-ml-create-009-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 0,
+      "failedCount": 1,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "010-ml-create-010.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-010-ml-create-010.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/010-ml-create-010-result.json",
+      "exitCode": 2,
+      "originalCount": 25,
+      "excludedCount": 21,
+      "executedCount": 4,
+      "createdCount": 0,
+      "failedCount": 4,
+      "validation": {
+        "selected": 4,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 4
+      }
+    },
+    {
+      "fileName": "011-ml-create-011.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-011-ml-create-011.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/011-ml-create-011-result.json",
+      "exitCode": 2,
+      "originalCount": 25,
+      "excludedCount": 20,
+      "executedCount": 5,
+      "createdCount": 0,
+      "failedCount": 5,
+      "validation": {
+        "selected": 5,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 5
+      }
+    },
+    {
+      "fileName": "012-ml-create-012.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "013-ml-create-013.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-013-ml-create-013.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/013-ml-create-013-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 1,
+      "failedCount": 0,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 1,
+        "withLinkedAnuncio": 1,
+        "semAnuncioStill": 0
+      }
+    },
+    {
+      "fileName": "014-ml-create-014.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-014-ml-create-014.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/014-ml-create-014-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 0,
+      "failedCount": 1,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "015-ml-create-015.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "016-ml-create-016.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-016-ml-create-016.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/016-ml-create-016-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 21,
+      "executedCount": 4,
+      "createdCount": 2,
+      "failedCount": 2,
+      "validation": {
+        "selected": 4,
+        "withMlItemId": 2,
+        "withLinkedAnuncio": 2,
+        "semAnuncioStill": 2
+      }
+    },
+    {
+      "fileName": "017-ml-create-017.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-017-ml-create-017.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/017-ml-create-017-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 1,
+      "failedCount": 0,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 1,
+        "withLinkedAnuncio": 1,
+        "semAnuncioStill": 0
+      }
+    },
+    {
+      "fileName": "018-ml-create-018.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-018-ml-create-018.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/018-ml-create-018-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 0,
+      "failedCount": 1,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "019-ml-create-019.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-019-ml-create-019.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/019-ml-create-019-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 1,
+      "failedCount": 0,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 1,
+        "withLinkedAnuncio": 1,
+        "semAnuncioStill": 0
+      }
+    },
+    {
+      "fileName": "020-ml-create-020.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "021-ml-create-021.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-021-ml-create-021.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/021-ml-create-021-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 0,
+      "failedCount": 1,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "022-ml-create-022.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-022-ml-create-022.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/022-ml-create-022-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 0,
+      "failedCount": 1,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "023-ml-create-023.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "024-ml-create-024.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-024-ml-create-024.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/024-ml-create-024-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 23,
+      "executedCount": 2,
+      "createdCount": 0,
+      "failedCount": 2,
+      "validation": {
+        "selected": 2,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 2
+      }
+    },
+    {
+      "fileName": "025-ml-create-025.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-025-ml-create-025.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/025-ml-create-025-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 23,
+      "executedCount": 2,
+      "createdCount": 0,
+      "failedCount": 2,
+      "validation": {
+        "selected": 2,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 2
+      }
+    },
+    {
+      "fileName": "026-ml-create-026.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "027-ml-create-027.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-027-ml-create-027.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/027-ml-create-027-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 0,
+      "failedCount": 1,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "028-ml-create-028.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-028-ml-create-028.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/028-ml-create-028-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 23,
+      "executedCount": 2,
+      "createdCount": 0,
+      "failedCount": 2,
+      "validation": {
+        "selected": 2,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 2
+      }
+    },
+    {
+      "fileName": "029-ml-create-029.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "030-ml-create-030.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "031-ml-create-031.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-031-ml-create-031.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/031-ml-create-031-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 22,
+      "executedCount": 3,
+      "createdCount": 1,
+      "failedCount": 2,
+      "validation": {
+        "selected": 3,
+        "withMlItemId": 1,
+        "withLinkedAnuncio": 1,
+        "semAnuncioStill": 2
+      }
+    },
+    {
+      "fileName": "032-ml-create-032.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-032-ml-create-032.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/032-ml-create-032-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 23,
+      "executedCount": 2,
+      "createdCount": 0,
+      "failedCount": 2,
+      "validation": {
+        "selected": 2,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 2
+      }
+    },
+    {
+      "fileName": "033-ml-create-033.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-033-ml-create-033.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/033-ml-create-033-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 1,
+      "failedCount": 0,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 1,
+        "withLinkedAnuncio": 1,
+        "semAnuncioStill": 0
+      }
+    },
+    {
+      "fileName": "034-ml-create-034.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-034-ml-create-034.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/034-ml-create-034-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 0,
+      "failedCount": 1,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "035-ml-create-035.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "036-ml-create-036.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-036-ml-create-036.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/036-ml-create-036-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 23,
+      "executedCount": 2,
+      "createdCount": 0,
+      "failedCount": 2,
+      "validation": {
+        "selected": 2,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 2
+      }
+    },
+    {
+      "fileName": "037-ml-create-037.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-037-ml-create-037.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/037-ml-create-037-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 22,
+      "executedCount": 3,
+      "createdCount": 0,
+      "failedCount": 3,
+      "validation": {
+        "selected": 3,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 3
+      }
+    },
+    {
+      "fileName": "038-ml-create-038.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "039-ml-create-039.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-039-ml-create-039.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/039-ml-create-039-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 23,
+      "executedCount": 2,
+      "createdCount": 0,
+      "failedCount": 2,
+      "validation": {
+        "selected": 2,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 2
+      }
+    },
+    {
+      "fileName": "040-ml-create-040.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-040-ml-create-040.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/040-ml-create-040-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 23,
+      "executedCount": 2,
+      "createdCount": 0,
+      "failedCount": 2,
+      "validation": {
+        "selected": 2,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 2
+      }
+    },
+    {
+      "fileName": "041-ml-create-041.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-041-ml-create-041.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/041-ml-create-041-result.json",
+      "exitCode": 2,
+      "originalCount": 25,
+      "excludedCount": 21,
+      "executedCount": 4,
+      "createdCount": 0,
+      "failedCount": 4,
+      "validation": {
+        "selected": 4,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 4
+      }
+    },
+    {
+      "fileName": "042-ml-create-042.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "043-ml-create-043.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-043-ml-create-043.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/043-ml-create-043-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 0,
+      "failedCount": 1,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "044-ml-create-044.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-044-ml-create-044.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/044-ml-create-044-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 0,
+      "failedCount": 1,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "045-ml-create-045.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-045-ml-create-045.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/045-ml-create-045-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 22,
+      "executedCount": 3,
+      "createdCount": 1,
+      "failedCount": 2,
+      "validation": {
+        "selected": 3,
+        "withMlItemId": 1,
+        "withLinkedAnuncio": 1,
+        "semAnuncioStill": 2
+      }
+    },
+    {
+      "fileName": "046-ml-create-046.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "047-ml-create-047.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "048-ml-create-048.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "049-ml-create-049.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "050-ml-create-050.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "051-ml-create-051.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-051-ml-create-051.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/051-ml-create-051-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 0,
+      "failedCount": 1,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "052-ml-create-052.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-052-ml-create-052.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/052-ml-create-052-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 0,
+      "failedCount": 1,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "053-ml-create-053.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-053-ml-create-053.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/053-ml-create-053-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 21,
+      "executedCount": 4,
+      "createdCount": 4,
+      "failedCount": 0,
+      "validation": {
+        "selected": 4,
+        "withMlItemId": 4,
+        "withLinkedAnuncio": 4,
+        "semAnuncioStill": 0
+      }
+    },
+    {
+      "fileName": "054-ml-create-054.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-054-ml-create-054.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/054-ml-create-054-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 22,
+      "executedCount": 3,
+      "createdCount": 3,
+      "failedCount": 0,
+      "validation": {
+        "selected": 3,
+        "withMlItemId": 3,
+        "withLinkedAnuncio": 3,
+        "semAnuncioStill": 0
+      }
+    },
+    {
+      "fileName": "055-ml-create-055.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-055-ml-create-055.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/055-ml-create-055-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 22,
+      "executedCount": 3,
+      "createdCount": 1,
+      "failedCount": 2,
+      "validation": {
+        "selected": 3,
+        "withMlItemId": 1,
+        "withLinkedAnuncio": 1,
+        "semAnuncioStill": 2
+      }
+    },
+    {
+      "fileName": "056-ml-create-056.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-056-ml-create-056.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/056-ml-create-056-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 0,
+      "failedCount": 1,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "057-ml-create-057.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-057-ml-create-057.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/057-ml-create-057-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 19,
+      "executedCount": 6,
+      "createdCount": 6,
+      "failedCount": 0,
+      "validation": {
+        "selected": 6,
+        "withMlItemId": 6,
+        "withLinkedAnuncio": 6,
+        "semAnuncioStill": 0
+      }
+    },
+    {
+      "fileName": "058-ml-create-058.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "059-ml-create-059.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-059-ml-create-059.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/059-ml-create-059-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 23,
+      "executedCount": 2,
+      "createdCount": 0,
+      "failedCount": 2,
+      "validation": {
+        "selected": 2,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 2
+      }
+    },
+    {
+      "fileName": "060-ml-create-060.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-060-ml-create-060.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/060-ml-create-060-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 23,
+      "executedCount": 2,
+      "createdCount": 1,
+      "failedCount": 1,
+      "validation": {
+        "selected": 2,
+        "withMlItemId": 1,
+        "withLinkedAnuncio": 1,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "061-ml-create-061.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-061-ml-create-061.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/061-ml-create-061-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 22,
+      "executedCount": 3,
+      "createdCount": 1,
+      "failedCount": 2,
+      "validation": {
+        "selected": 3,
+        "withMlItemId": 1,
+        "withLinkedAnuncio": 1,
+        "semAnuncioStill": 2
+      }
+    },
+    {
+      "fileName": "062-ml-create-062.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-062-ml-create-062.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/062-ml-create-062-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 0,
+      "failedCount": 1,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "063-ml-create-063.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-063-ml-create-063.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/063-ml-create-063-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 23,
+      "executedCount": 2,
+      "createdCount": 0,
+      "failedCount": 2,
+      "validation": {
+        "selected": 2,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 2
+      }
+    },
+    {
+      "fileName": "064-ml-create-064.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "065-ml-create-065.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "066-ml-create-066.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-066-ml-create-066.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/066-ml-create-066-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 1,
+      "failedCount": 0,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 1,
+        "withLinkedAnuncio": 1,
+        "semAnuncioStill": 0
+      }
+    },
+    {
+      "fileName": "067-ml-create-067.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "068-ml-create-068.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-068-ml-create-068.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/068-ml-create-068-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 0,
+      "failedCount": 1,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "069-ml-create-069.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "070-ml-create-070.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "071-ml-create-071.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "072-ml-create-072.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "073-ml-create-073.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "074-ml-create-074.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "075-ml-create-075.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "076-ml-create-076.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-076-ml-create-076.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/076-ml-create-076-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 1,
+      "failedCount": 0,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 1,
+        "withLinkedAnuncio": 1,
+        "semAnuncioStill": 0
+      }
+    },
+    {
+      "fileName": "077-ml-create-077.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "078-ml-create-078.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-078-ml-create-078.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/078-ml-create-078-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 22,
+      "executedCount": 3,
+      "createdCount": 2,
+      "failedCount": 1,
+      "validation": {
+        "selected": 3,
+        "withMlItemId": 2,
+        "withLinkedAnuncio": 2,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "079-ml-create-079.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "080-ml-create-080.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-080-ml-create-080.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/080-ml-create-080-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 22,
+      "executedCount": 3,
+      "createdCount": 1,
+      "failedCount": 2,
+      "validation": {
+        "selected": 3,
+        "withMlItemId": 1,
+        "withLinkedAnuncio": 1,
+        "semAnuncioStill": 2
+      }
+    },
+    {
+      "fileName": "081-ml-create-081.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-081-ml-create-081.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/081-ml-create-081-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 24,
+      "executedCount": 1,
+      "createdCount": 1,
+      "failedCount": 0,
+      "validation": {
+        "selected": 1,
+        "withMlItemId": 1,
+        "withLinkedAnuncio": 1,
+        "semAnuncioStill": 0
+      }
+    },
+    {
+      "fileName": "082-ml-create-082.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-082-ml-create-082.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/082-ml-create-082-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 22,
+      "executedCount": 3,
+      "createdCount": 2,
+      "failedCount": 1,
+      "validation": {
+        "selected": 3,
+        "withMlItemId": 2,
+        "withLinkedAnuncio": 2,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "083-ml-create-083.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-083-ml-create-083.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/083-ml-create-083-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 21,
+      "executedCount": 4,
+      "createdCount": 3,
+      "failedCount": 1,
+      "validation": {
+        "selected": 4,
+        "withMlItemId": 3,
+        "withLinkedAnuncio": 3,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "084-ml-create-084.json",
+      "skipped": true,
+      "reason": "all_items_excluded",
+      "originalCount": 25,
+      "excludedCount": 25
+    },
+    {
+      "fileName": "085-ml-create-085.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-085-ml-create-085.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/085-ml-create-085-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 23,
+      "executedCount": 2,
+      "createdCount": 0,
+      "failedCount": 2,
+      "validation": {
+        "selected": 2,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 2
+      }
+    },
+    {
+      "fileName": "086-ml-create-086.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-086-ml-create-086.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/086-ml-create-086-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 22,
+      "executedCount": 3,
+      "createdCount": 3,
+      "failedCount": 0,
+      "validation": {
+        "selected": 3,
+        "withMlItemId": 3,
+        "withLinkedAnuncio": 3,
+        "semAnuncioStill": 0
+      }
+    },
+    {
+      "fileName": "087-ml-create-087.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-087-ml-create-087.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/087-ml-create-087-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 23,
+      "executedCount": 2,
+      "createdCount": 0,
+      "failedCount": 2,
+      "validation": {
+        "selected": 2,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 2
+      }
+    },
+    {
+      "fileName": "088-ml-create-088.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-088-ml-create-088.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/088-ml-create-088-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 21,
+      "executedCount": 4,
+      "createdCount": 3,
+      "failedCount": 1,
+      "validation": {
+        "selected": 4,
+        "withMlItemId": 3,
+        "withLinkedAnuncio": 3,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "089-ml-create-089.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-089-ml-create-089.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/089-ml-create-089-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 20,
+      "executedCount": 5,
+      "createdCount": 5,
+      "failedCount": 0,
+      "validation": {
+        "selected": 5,
+        "withMlItemId": 5,
+        "withLinkedAnuncio": 5,
+        "semAnuncioStill": 0
+      }
+    },
+    {
+      "fileName": "090-ml-create-090.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-090-ml-create-090.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/090-ml-create-090-result.json",
+      "exitCode": 0,
+      "originalCount": 25,
+      "excludedCount": 21,
+      "executedCount": 4,
+      "createdCount": 3,
+      "failedCount": 1,
+      "validation": {
+        "selected": 4,
+        "withMlItemId": 3,
+        "withLinkedAnuncio": 3,
+        "semAnuncioStill": 1
+      }
+    },
+    {
+      "fileName": "091-ml-create-091.json",
+      "manifestPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-091-ml-create-091.json",
+      "resultPath": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/091-ml-create-091-result.json",
+      "exitCode": 0,
+      "originalCount": 20,
+      "excludedCount": 2,
+      "executedCount": 18,
+      "createdCount": 12,
+      "failedCount": 6,
+      "validation": {
+        "selected": 18,
+        "withMlItemId": 12,
+        "withLinkedAnuncio": 12,
+        "semAnuncioStill": 10
+      }
+    }
+  ],
+  "totals": {
+    "sourceItems": 2270,
+    "excludedItems": 2118,
+    "executedItems": 152,
+    "createdItems": 62,
+    "failedItems": 90,
+    "withMlItemId": 62,
+    "withLinkedAnuncio": 62
+  },
+  "finishedAt": "2026-07-11T01:29:38.475Z"
+}

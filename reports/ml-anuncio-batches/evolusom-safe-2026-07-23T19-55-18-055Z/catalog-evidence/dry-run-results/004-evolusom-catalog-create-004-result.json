@@ -1,0 +1,138 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/004-evolusom-catalog-create-004.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-004",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "0ec77509-59db-43d9-8ecf-66fbff84f60d",
+      "sku": "VTK018568",
+      "category": {
+        "id": "MLB3385",
+        "nome": "Módulos Amplificadores",
+        "dominio": "MLB-VEHICLE_AMPLIFIERS"
+      },
+      "basePrice": 976.28,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "31a2970c-b34d-4256-a66f-90bbb08c80f9",
+      "sku": "VTK005814",
+      "category": {
+        "id": "MLB7892",
+        "nome": "Amplificadores",
+        "dominio": "MLB-AUDIO_AMPLIFIERS"
+      },
+      "basePrice": 531.73,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "cab1f7b1-3f10-458c-acc6-673834a79050",
+      "sku": "VTK005880",
+      "category": {
+        "id": "MLB7892",
+        "nome": "Amplificadores",
+        "dominio": "MLB-AUDIO_AMPLIFIERS"
+      },
+      "basePrice": 3124.84,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d897bf5b-12ec-4364-a9d6-d4b8bb4be6bc",
+      "sku": "VTK018075",
+      "category": {
+        "id": "MLB11507",
+        "nome": "Caixas Acústicas ",
+        "dominio": "MLB-SPEAKERS"
+      },
+      "basePrice": 54.42,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "cc8af7ed-6b7e-44f6-88f3-e8113e723824",
+      "sku": "VTK000275",
+      "category": {
+        "id": "MLB44572",
+        "nome": "Antenas de TV",
+        "dominio": "MLB-TV_ANTENNAS"
+      },
+      "basePrice": 55,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2d3c2932-8844-4fd5-9727-2a80d82b3c5a",
+      "sku": "VTK004716",
+      "category": {
+        "id": "MLB44572",
+        "nome": "Antenas de TV",
+        "dominio": "MLB-TV_ANTENNAS"
+      },
+      "basePrice": 63.97,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d48054f1-8ad9-470a-a00a-79ac81a4aa8e",
+      "sku": "VTK000585",
+      "category": {
+        "id": "MLB44572",
+        "nome": "Antenas de TV",
+        "dominio": "MLB-TV_ANTENNAS"
+      },
+      "basePrice": 71.67,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4b1023f4-e51c-4b9a-9d9a-aee65923629a",
+      "sku": "VTK000534",
+      "category": {
+        "id": "MLB44572",
+        "nome": "Antenas de TV",
+        "dominio": "MLB-TV_ANTENNAS"
+      },
+      "basePrice": 43.14,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2b3dbc5d-3fcf-4445-b10e-a34dba4a9e3e",
+      "sku": "VTK020760",
+      "category": {
+        "id": "MLB44572",
+        "nome": "Antenas de TV",
+        "dominio": "MLB-TV_ANTENNAS"
+      },
+      "basePrice": 64.09,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "a153f631-21b1-4b34-8cd6-97c861505e72",
+      "sku": "VTK018866",
+      "nome": "Antena Móvel Aquário M-400c 5/8 De Onda Para Rádio Vhf",
+      "error": "Atributos obrigatórios pendentes: É TV digital terrestre",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB44572",
+            "nome": "Antenas de TV"
+          },
+          "missing": [
+            "É TV digital terrestre"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

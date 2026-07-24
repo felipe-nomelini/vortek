@@ -1,0 +1,45 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-001-ml-create-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-001",
+  "selected": 1,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "fcbc811c-8e2f-411f-9271-30bbbd2f539e",
+      "sku": "VTK012463",
+      "nome": "Plafon Economic E-27 Saco Plastico Branca",
+      "error": "Dados fiscais obrigatórios inválidos. Corrija antes de criar o anúncio.",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": false
+          },
+          "anuncio": {
+            "ok": false
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false,
+            "error": "NCM inválido. Use 8 dígitos (com ou sem pontos)."
+          }
+        },
+        "warnings": [],
+        "missing_required_attributes": [],
+        "error": "Dados fiscais obrigatórios inválidos. Corrija antes de criar o anúncio."
+      }
+    }
+  ]
+}

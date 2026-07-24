@@ -1,0 +1,260 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/005-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-005",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "945c4793-9382-4754-ae81-ce54acc0b82a",
+      "sku": "VTK019180",
+      "category": {
+        "id": "MLB7073",
+        "nome": "Câmeras de Segurança",
+        "dominio": "MLB-SURVEILLANCE_CAMERAS"
+      },
+      "anuncio": {
+        "id": "MLB7239003366",
+        "title": "Câmera De Segurança Externa Elsys Full Hd - Esc-wb3f",
+        "price": 524.7,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239003366-cmera-de-seguranca-externa-elsys-full-hd-esc-wb3f-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 491.68 → R$ 524.70."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "e28979c3-f974-4b95-b02b-7a3b756c437d",
+      "sku": "VTK018245",
+      "category": {
+        "id": "MLB7073",
+        "nome": "Câmeras de Segurança",
+        "dominio": "MLB-SURVEILLANCE_CAMERAS"
+      },
+      "anuncio": {
+        "id": "MLB7239014302",
+        "title": "Câmera Dome Citrox Jetcolor 4x1 2mp Ir20m",
+        "price": 262.87,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239014302-cmera-dome-citrox-jetcolor-4x1-2mp-ir20m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 229.86 → R$ 262.87."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "d401d3c6-dbf0-4bc9-89bc-f8a2f0677e3f",
+      "sku": "VTK018458",
+      "category": {
+        "id": "MLB7073",
+        "nome": "Câmeras de Segurança",
+        "dominio": "MLB-SURVEILLANCE_CAMERAS"
+      },
+      "anuncio": {
+        "id": "MLB7238969930",
+        "title": "Câmera Dome Hikvision Plastica Ds-2ce56d8t-itmf 2mp Branco",
+        "price": 310.23,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238969930-cmera-dome-hikvision-plastica-ds-2ce56d8t-itmf-2mp-branco-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 280.48 → R$ 310.23."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ee30888e-c6fa-4bae-bd20-a28bb0fa1f6e",
+      "sku": "VTK017886",
+      "category": {
+        "id": "MLB7073",
+        "nome": "Câmeras de Segurança",
+        "dominio": "MLB-SURVEILLANCE_CAMERAS"
+      },
+      "anuncio": {
+        "id": "MLB7239003680",
+        "title": "Câmera Multitoc Ccd Color Ir100 1/ 3  Sharp 420 Linhas Branco",
+        "price": 333.45,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239003680-cmera-multitoc-ccd-color-ir100-1-3-sharp-420-linhas-branco-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 303.70 → R$ 333.45."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "e0a218a8-ef6e-4c71-abbf-a699845bd913",
+      "sku": "VTK019204",
+      "category": {
+        "id": "MLB186150",
+        "nome": "Câmera Veicular",
+        "dominio": "MLB-VEHICLE_CAMERAS"
+      },
+      "anuncio": {
+        "id": "MLB7238970088",
+        "title": "Camera Roadstar Dash Cam Rs25 Dvr Br Es",
+        "price": 704.41,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238970088-camera-roadstar-dash-cam-rs25-dvr-br-es-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 674.85 → R$ 704.41."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b920dbaf-4373-4d46-b084-174113435531",
+      "sku": "VTK018969",
+      "category": {
+        "id": "MLB135679",
+        "nome": "Com Tela",
+        "dominio": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS"
+      },
+      "anuncio": {
+        "id": "MLB7239003838",
+        "title": "Central Multimídia Evolve Gp348 7  Capacitiva",
+        "price": 541.4,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239003838-central-multimidia-evolve-gp348-7-capacitiva-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 510.97 → R$ 541.40."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "2351f349-537e-4081-9553-801bb9193fa7",
+      "sku": "VTK018800",
+      "category": {
+        "id": "MLB135679",
+        "nome": "Com Tela",
+        "dominio": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS"
+      },
+      "anuncio": {
+        "id": "MLB7238970260",
+        "title": "Central Multimídia Roadstar Android Com Carplay 7  - Rs815br",
+        "price": 762.19,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238970260-central-multimidia-roadstar-android-com-carplay-7-rs815br-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 728.96 → R$ 762.19."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "279cd801-e10c-410a-9986-22b88a4a331b",
+      "sku": "VTK019007",
+      "category": {
+        "id": "MLB135679",
+        "nome": "Com Tela",
+        "dominio": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS"
+      },
+      "anuncio": {
+        "id": "MLB7239014824",
+        "title": "Central Multimídia Svart S900x Octacore Carplay/android",
+        "price": 1544.97,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239014824-central-multimidia-svart-s900x-octacore-carplayandroid-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 1458.08 → R$ 1544.97."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "a2fe7003-2d7f-4fbc-8e73-9d62fd95718e",
+      "sku": "VTK018759",
+      "category": {
+        "id": "MLB7070",
+        "nome": "Alarmes e Sensores",
+        "dominio": "MLB-HOME_ALARMS_AND_SENSORS"
+      },
+      "anuncio": {
+        "id": "MLB7239014924",
+        "title": "Central Viaweb Vw8z Ip Star Caixa Abs",
+        "price": 498.28,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239014924-central-viaweb-vw8z-ip-star-caixa-abs-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 468.53 → R$ 498.28."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "4496d44d-9117-415d-850b-da315f3b4d8e",
+      "sku": "VTK001028",
+      "category": {
+        "id": "MLB31678",
+        "nome": "Chaleiras Elétricas",
+        "dominio": "MLB-ELECTRIC_JUGS"
+      },
+      "anuncio": {
+        "id": "MLB7239004176",
+        "title": "Chaleira Elétrica Agratto Ce02 Prata Em Aço Inox 220v 220v",
+        "price": 102.44,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239004176-chaleira-eletrica-agratto-ce02-prata-em-aco-inox-220v-220v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 81.13 → R$ 102.44."
+      ]
+    }
+  ],
+  "failed": []
+}

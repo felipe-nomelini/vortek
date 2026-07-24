@@ -1,0 +1,1428 @@
+{
+  "batchNumber": 17,
+  "batchId": "evolusom-catalog-create-017",
+  "strategy": "exact_gtin_catalog_evidence",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "960911fa-1318-4eb5-9e22-dbcf1f944e8b",
+      "sku": "VTK018451",
+      "nome": "Sensor Magnético Abertura Intelbras Sem Fio Is3",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 92.9,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 139.38,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637680363",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7070",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18196176",
+          "value_name": "iS3"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "value_id": "395195",
+          "value_name": "Sensor"
+        },
+        {
+          "id": "SENSOR_TYPES",
+          "value_id": "16716930",
+          "value_name": "Magneticos"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18196175",
+          "value_name": "7896637680363"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "65947969",
+          "value_name": "20031800160"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22595787",
+        "catalogProductName": "Sensor Porta E Janela Sem Fio Magnético Intelbras Is3",
+        "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7896637680363"
+      }
+    },
+    {
+      "produtoId": "152f7e88-3187-4dd5-b483-200878ef45b3",
+      "sku": "VTK018927",
+      "nome": "Sensor Presenca Intelbras Sem Fio Is5",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 169.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 241.22,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637680387",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7070",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "LINE",
+          "value_id": "4157388",
+          "value_name": "Mibo"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16716867",
+          "value_name": "iS5"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "value_id": "3071720",
+          "value_name": "7"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "value_id": "395195",
+          "value_name": "Sensor"
+        },
+        {
+          "id": "SENSOR_TYPES",
+          "value_id": "395198",
+          "value_name": "Infravermelho"
+        },
+        {
+          "id": "DETECTOR_TYPES",
+          "value_id": "8616768",
+          "value_name": "De movimento"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ZONES_NUMBER",
+          "value_id": "2649263",
+          "value_name": "1"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16716866",
+          "value_name": "7896637680387"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "65950700",
+          "value_name": "20051800160"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "77736468",
+          "value_name": "4605253"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21742485",
+        "catalogProductName": "Sensor De Presenca Sem Fio Is5 Intelbras",
+        "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7896637680387"
+      }
+    },
+    {
+      "produtoId": "cb1d8fa6-2b15-4c15-a92b-146c2007213a",
+      "sku": "VTK018926",
+      "nome": "Sirene Sem Fio Intelbras Is7",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 184.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 262.51,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637680349",
+        "validatedNcm": "85318000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7070",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "LINE",
+          "value_id": "4157388",
+          "value_name": "Mibo"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16811808",
+          "value_name": "iS7"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "value_id": "395193",
+          "value_name": "Alarme"
+        },
+        {
+          "id": "SENSOR_TYPES",
+          "value_id": "16717502",
+          "value_name": "Sonoro"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16811807",
+          "value_name": "7896637680349"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "65950380",
+          "value_name": "20541800160"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21757393",
+        "catalogProductName": "Sirene Intelbras Is7 Sem Fio Para Alarme Integrado Cor Unico",
+        "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7896637680349"
+      }
+    },
+    {
+      "produtoId": "4264a425-c8f3-4835-89a1-1bdea2647e0a",
+      "sku": "VTK018973",
+      "nome": "Sirene Smart Isi 1001 Intelbras",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 230.38,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 327.08,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899298603979",
+        "validatedNcm": "85318000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7070",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "LINE",
+          "value_id": "39340612",
+          "value_name": "Izi"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16716869",
+          "value_name": "ISI 1001"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "value_id": "2637839",
+          "value_name": "1"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "value_id": "395193",
+          "value_name": "Alarme"
+        },
+        {
+          "id": "SENSOR_TYPES",
+          "value_id": "39502990",
+          "value_name": "visual, Sonoro, por violação"
+        },
+        {
+          "id": "DETECTOR_TYPES",
+          "value_id": "24100214",
+          "value_name": "Sensores"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "39340615",
+          "value_name": "Centro"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "16844667",
+          "value_name": "Corrente elétrica/Bateria"
+        },
+        {
+          "id": "WITH_BACKUP_BATTERY",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7566493",
+          "value_name": "8 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7817388",
+          "value_name": "8 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "11112079",
+          "value_name": "3.5 cm"
+        },
+        {
+          "id": "SOUND_LEVEL",
+          "value_id": "28028033",
+          "value_name": "100 dB"
+        },
+        {
+          "id": "COVERAGE_DISTANCE",
+          "value_id": "7555954",
+          "value_name": "100 m"
+        },
+        {
+          "id": "IS_PET_IMMUNE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WEATHER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIFI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_REMOTE_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_AUTOMATIC_DIALLING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SOUND_ALARM",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_DISCREET_ALARM",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "ZONES_NUMBER",
+          "value_id": "2649263",
+          "value_name": "1"
+        },
+        {
+          "id": "MAX_SENSORS_NUMBER",
+          "value_id": "7551710",
+          "value_name": "1"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16716868",
+          "value_name": "7899298603979, 8100000033595, 7804518874060"
+        },
+        {
+          "id": "ALARMS_NUMBER",
+          "value_id": "25759997",
+          "value_name": "1"
+        },
+        {
+          "id": "SENSORS_NUMBER",
+          "value_id": "8791504",
+          "value_name": "1"
+        },
+        {
+          "id": "SIRENS_NUMBER",
+          "value_id": "8628092",
+          "value_name": "1"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "75559686",
+          "value_name": "ISI 1001"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB38196594",
+        "catalogProductName": "Alarme Residencial Sirene Smart Isi 1001 cor Branco 100-240V Intelbras",
+        "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "linkedListingsInCategory": 17,
+        "validatedGtin": "7899298603979"
+      }
+    },
+    {
+      "produtoId": "7db7cb53-5677-49a6-9af3-c0b365d12555",
+      "sku": "VTK017529",
+      "nome": "Solda Tubinho Cobix Azul 22 Gramas",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 11.7,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 39.14,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898249430015",
+        "validatedNcm": "80012000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB48611",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "22273154",
+          "value_name": "Barcelona Utilidades"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "22273155",
+          "value_name": "G60w"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52053",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "198813",
+          "value_name": "220V"
+        },
+        {
+          "id": "SOLDERING_IRON_TYPE",
+          "value_id": "5572229",
+          "value_name": "Lápis"
+        },
+        {
+          "id": "POWER",
+          "value_id": "112954",
+          "value_name": "60 W"
+        },
+        {
+          "id": "ELECTRODE_DIAMETER",
+          "value_id": "14350763",
+          "value_name": "1 mm"
+        },
+        {
+          "id": "TIP_MATERIAL",
+          "value_id": "33479679",
+          "value_name": "ESTANHO E CHUMBO"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_REMOVABLE_TIP",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "44589643",
+          "value_name": "7898249430015"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB43505629",
+        "catalogProductName": "Kit 2 Tubos Solda Estanho 1mm Azul 63x37 Cobix Com Fluxo",
+        "catalogDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "predictedDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "categoryId": "MLB48611",
+        "categoryName": "Ferros de Solda",
+        "linkedListingsInCategory": 18,
+        "validatedGtin": "7898249430015"
+      }
+    },
+    {
+      "produtoId": "abbe4587-7010-4303-b677-107e0c471833",
+      "sku": "VTK017909",
+      "nome": "Ssd Kingston Nv3 M.2 2280 Nvme 4.0 500gb",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 822.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1219.11,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "740617344806",
+        "validatedNcm": "84717040",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1672",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16360",
+          "value_name": "Kingston"
+        },
+        {
+          "id": "LINE",
+          "value_id": "41394484",
+          "value_name": "NV3"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "40885950",
+          "value_name": "SNV3S/500G"
+        },
+        {
+          "id": "CAPACITY",
+          "value_id": "151013",
+          "value_name": "500 GB"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52031",
+          "value_name": "Azul-aço"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "42934942",
+          "value_name": "SNV3S/500G"
+        },
+        {
+          "id": "SSD_MAX_READ_SPEED",
+          "value_id": "53429719",
+          "value_name": "5000 MB/s"
+        },
+        {
+          "id": "SSD_MAX_WRITE_SPEED",
+          "value_id": "53762336",
+          "value_name": "3000 MB/s"
+        },
+        {
+          "id": "DRIVE_STORAGE_TYPE",
+          "value_id": "122392",
+          "value_name": "SSD"
+        },
+        {
+          "id": "INTERFACES",
+          "value_id": "7967927",
+          "value_name": "PCIe 4.0"
+        },
+        {
+          "id": "HARD_DRIVE_AND_SSD_LOCATION",
+          "value_id": "96008",
+          "value_name": "Interno"
+        },
+        {
+          "id": "APPLICATIONS",
+          "value_id": "289314",
+          "value_name": "Notebook"
+        },
+        {
+          "id": "HARD_DRIVE_AND_SSD_FORM_FACTOR",
+          "value_id": "405403",
+          "value_name": "M.2 2280"
+        },
+        {
+          "id": "EXTERNAL_HARD_DRIVE_AND_SSD_TYPE",
+          "value_id": "1216151",
+          "value_name": "Desktop"
+        },
+        {
+          "id": "OPERATING_TEMPERATURE",
+          "value_id": "11642676",
+          "value_name": "0 °C - 70 °C"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_RAID",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_DUST_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "DATA_TRANSFER",
+          "value_id": "47270467",
+          "value_name": "5000 MB de leitura"
+        },
+        {
+          "id": "CONNECTIVITY",
+          "value_id": "24215273",
+          "value_name": "Pcie 4, NVMe PCIe 4.0 x4"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "40885959",
+          "value_name": "740617344806"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SHOCK_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SECURITY_DATA_SYSTEM",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CLOUD_BACKUP",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_3D_NAND_TECHNOLOGY",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_HEATSINK",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_RGB_LIGHTING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "OS_SUPPORTED",
+          "value_id": "11305604",
+          "value_name": "Chrome OS, Linux, MacOS, Windows 10 Pro"
+        },
+        {
+          "id": "STORAGE_TEMPERATURE",
+          "value_id": "18360467",
+          "value_name": "40 °C x 85 °C"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "13000157",
+          "value_name": "2.2 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "14753351",
+          "value_name": "0.23 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "8167140",
+          "value_name": "8 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "8626437",
+          "value_name": "7 g"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB39410080",
+        "catalogProductName": "SSD Kingston NV3 500GB M2 2280 NVME PCIe 4.0 Gen 4x4 Ultra Rápido",
+        "catalogDomainId": "MLB-HARD_DRIVES_AND_SSDS",
+        "predictedDomainId": "MLB-HARD_DRIVES_AND_SSDS",
+        "categoryId": "MLB1672",
+        "categoryName": "HDs e SSDs",
+        "linkedListingsInCategory": 78,
+        "validatedGtin": "740617344806"
+      }
+    },
+    {
+      "produtoId": "fbc3d59d-5046-43ea-ace9-8247ea227645",
+      "sku": "VTK017910",
+      "nome": "Ssd Kingston Nv3 M.2 2280 Nvme 4.0 1tb",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 1127.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1740.59,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "740617344790",
+        "validatedNcm": "84717040",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1672",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16360",
+          "value_name": "Kingston"
+        },
+        {
+          "id": "LINE",
+          "value_id": "41394484",
+          "value_name": "NV3"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "41394485",
+          "value_name": "SNV3S/1000G"
+        },
+        {
+          "id": "CAPACITY",
+          "value_id": "9588",
+          "value_name": "1 TB"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52033",
+          "value_name": "Azul-escuro"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "84849154",
+          "value_name": "SNV3S/1000G"
+        },
+        {
+          "id": "DRIVE_STORAGE_TYPE",
+          "value_id": "122392",
+          "value_name": "SSD"
+        },
+        {
+          "id": "INTERFACES",
+          "value_id": "35182069",
+          "value_name": "NVMe 4.0"
+        },
+        {
+          "id": "HARD_DRIVE_AND_SSD_LOCATION",
+          "value_id": "96008",
+          "value_name": "Interno"
+        },
+        {
+          "id": "APPLICATIONS",
+          "value_id": "289315",
+          "value_name": "PC, Notebook"
+        },
+        {
+          "id": "HARD_DRIVE_AND_SSD_FORM_FACTOR",
+          "value_id": "47055573",
+          "value_name": "NVME 4.0"
+        },
+        {
+          "id": "EXTERNAL_HARD_DRIVE_AND_SSD_TYPE",
+          "value_id": "20923213",
+          "value_name": "Interno"
+        },
+        {
+          "id": "OPERATING_TEMPERATURE",
+          "value_id": "11642676",
+          "value_name": "0 °C - 70 °C"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_RAID",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_DUST_RESISTANT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "DATA_TRANSFER",
+          "value_id": "47055576",
+          "value_name": "6000 mb de leitura, 4000MB gravação"
+        },
+        {
+          "id": "CONNECTIVITY",
+          "value_id": "35182069",
+          "value_name": "NVMe 4.0"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "41394486",
+          "value_name": "740617344790"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_SHOCK_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SECURITY_DATA_SYSTEM",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CLOUD_BACKUP",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_3D_NAND_TECHNOLOGY",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_HEATSINK",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_RGB_LIGHTING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "OS_SUPPORTED",
+          "value_id": "10632017",
+          "value_name": "Windows 10 Pro, Windows 11, Linux, MacOS 10.13"
+        },
+        {
+          "id": "STORAGE_TEMPERATURE",
+          "value_id": "37746372",
+          "value_name": "-40 °C x 85 °C"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "13000157",
+          "value_name": "2.2 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "19085656",
+          "value_name": "0.22 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "8167140",
+          "value_name": "8 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "8626437",
+          "value_name": "7 g"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB39766120",
+        "catalogProductName": "SSD M.2 NVMe 1TB PCIe 4.0 Kingston NV3 Leitura 6000 MB/s e Gravação 4000 MB/s Unidade de Estado Sólido azul escuro",
+        "catalogDomainId": "MLB-HARD_DRIVES_AND_SSDS",
+        "predictedDomainId": "MLB-HARD_DRIVES_AND_SSDS",
+        "categoryId": "MLB1672",
+        "categoryName": "HDs e SSDs",
+        "linkedListingsInCategory": 70,
+        "validatedGtin": "740617344790"
+      }
+    },
+    {
+      "produtoId": "d416d068-469b-49d8-8363-dd08943f331b",
+      "sku": "VTK000384",
+      "nome": "Suporte Articulado Para TV 14\"-56\" M2-PR Multivisão",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.95,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.95,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896643441231",
+        "validatedNcm": "73269090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB11529",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2716081",
+          "value_name": "Multivisão"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "19402150",
+          "value_name": "TFM2"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "COMPATIBLE_SCREEN_TYPES",
+          "value_id": "19402153",
+          "value_name": "Lcd led 4k smart"
+        },
+        {
+          "id": "MIN_SCREEN_SIZE",
+          "value_id": "7648804",
+          "value_name": "22 \""
+        },
+        {
+          "id": "MAX_SCREEN_SIZE",
+          "value_id": "7634726",
+          "value_name": "56 \""
+        },
+        {
+          "id": "STANDARDS_VESA",
+          "value_id": "3568440",
+          "value_name": "400x400, 100x100, 200x100, 300x200, 400x300, 200x200"
+        },
+        {
+          "id": "MOUNTING_PLACES",
+          "value_id": "7720908",
+          "value_name": "Parede"
+        },
+        {
+          "id": "IS_INCLINABLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_ARTICULATED_MOUNT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SWIVELLING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_FIXED_MOUNT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_MOTORIZED",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "8285231",
+          "value_name": "7896643441231"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "25840699",
+          "value_name": "Aço ao carbono"
+        },
+        {
+          "id": "SUPPORTED_SCREENS_NUMBER",
+          "value_id": "9235769",
+          "value_name": "1"
+        },
+        {
+          "id": "MAX_WEIGHT_SUPPORTED",
+          "value_id": "925813",
+          "value_name": "25 kg"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "11690711",
+          "value_name": "13 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "24449851",
+          "value_name": "5.5 cm"
+        },
+        {
+          "id": "MIN_WALL_DISTANCE",
+          "value_id": "7792003",
+          "value_name": "6.5 cm"
+        },
+        {
+          "id": "MAX_WALL_DISTANCE",
+          "value_id": "7949363",
+          "value_name": "21.5 cm"
+        },
+        {
+          "id": "UPPER_TILT",
+          "value_id": "9147438",
+          "value_name": "15 °"
+        },
+        {
+          "id": "LOWER_TILT",
+          "value_id": "9157142",
+          "value_name": "15 °"
+        },
+        {
+          "id": "ROTATION_ANGLE",
+          "value_id": "8670683",
+          "value_name": "180°"
+        },
+        {
+          "id": "INCLUDES_INSTALLATION_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_CABLE_ORGANIZER",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB23452111",
+        "catalogProductName": "Suporte Tv 14 -56 Articulado C/ Inclinação Multivisão M2-pr Cor Preto",
+        "catalogDomainId": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS",
+        "predictedDomainId": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS",
+        "categoryId": "MLB11529",
+        "categoryName": "Suportes",
+        "linkedListingsInCategory": 33,
+        "validatedGtin": "7896643441231"
+      }
+    },
+    {
+      "produtoId": "87e2129f-2d51-4335-a5c0-6363a41b77a0",
+      "sku": "VTK018559",
+      "nome": "Suporte De Mesa Para Tv Multivisão De 32\" Até 65\" - Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 175.9,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 249.73,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896643442429",
+        "validatedNcm": "94032090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB11529",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2716081",
+          "value_name": "Multivisão"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "10575189",
+          "value_name": "STAND100"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "COMPATIBLE_SCREEN_TYPES",
+          "value_id": "7641580",
+          "value_name": "Curva"
+        },
+        {
+          "id": "MIN_SCREEN_SIZE",
+          "value_id": "7246735",
+          "value_name": "32 \""
+        },
+        {
+          "id": "MAX_SCREEN_SIZE",
+          "value_id": "7451691",
+          "value_name": "65 \""
+        },
+        {
+          "id": "STANDARDS_VESA",
+          "value_id": "3581823",
+          "value_name": "600x400"
+        },
+        {
+          "id": "MOUNTING_PLACES",
+          "value_id": "963436",
+          "value_name": "Mesa"
+        },
+        {
+          "id": "IS_INCLINABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_ARTICULATED_MOUNT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_SWIVELLING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_FIXED_MOUNT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "8285254",
+          "value_name": "7896643442429, 17896643442426"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "3325160",
+          "value_name": "Aço carbono"
+        },
+        {
+          "id": "SUPPORTED_SCREENS_NUMBER",
+          "value_id": "9235769",
+          "value_name": "1"
+        },
+        {
+          "id": "MAX_WEIGHT_SUPPORTED",
+          "value_id": "1020542",
+          "value_name": "30 kg"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "11409936",
+          "value_name": "35 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "26449664",
+          "value_name": "65 cm"
+        },
+        {
+          "id": "MIN_WALL_DISTANCE",
+          "value_id": "7990465",
+          "value_name": "35 cm"
+        },
+        {
+          "id": "MAX_WALL_DISTANCE",
+          "value_id": "7678301",
+          "value_name": "35 cm"
+        },
+        {
+          "id": "INCLUDES_INSTALLATION_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MPN",
+          "value_id": "11062873",
+          "value_name": "STAND100-PR, 4242"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB15355054",
+        "catalogProductName": "Suporte Multivisão Stand100 Mesa Tv/monitor 32 - 65 Preto",
+        "catalogDomainId": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS",
+        "predictedDomainId": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS",
+        "categoryId": "MLB11529",
+        "categoryName": "Suportes",
+        "linkedListingsInCategory": 9,
+        "validatedGtin": "7896643442429"
+      }
+    },
+    {
+      "produtoId": "ce75825b-9c2e-4d76-bb75-b5224f81e6c6",
+      "sku": "VTK000478",
+      "nome": "Suporte Para Notebook Com Cooler NBC-11BK C3Tech",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 45.9,
+      "estoque": 39,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 81.36,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898555213104",
+        "validatedNcm": "84145990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB54182",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "8774306",
+          "value_name": "C3Tech"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24926111",
+          "value_name": "BASE REFRIGERADA NBC-11BK"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "2511571",
+          "value_name": "ABS, Aço, Plásticos, Plástico ABS acero"
+        },
+        {
+          "id": "MAX_LAPTOP_SIZE",
+          "value_id": "3664917",
+          "value_name": "14 \""
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7842445",
+          "value_name": "4 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "5760546",
+          "value_name": "25 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7855225",
+          "value_name": "33 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "15925532",
+          "value_name": "340 g"
+        },
+        {
+          "id": "POSITIONS_NUMBER",
+          "value_id": "1112245",
+          "value_name": "2"
+        },
+        {
+          "id": "USB_PORTS_NUMBER",
+          "value_id": "517204",
+          "value_name": "1"
+        },
+        {
+          "id": "FANS_NUMBER",
+          "value_id": "3664910",
+          "value_name": "1"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_ANTI_SLIP",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SILENT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24926114",
+          "value_name": "7898555213104, 7891196006180"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27493295",
+        "catalogProductName": "Base Refrigerada C3Tech NBC-11BK para Notebook 14\" Preto com Ventoinha Silenciosa",
+        "catalogDomainId": "MLB-EXTERNAL_LAPTOP_COOLERS_AND_FANS",
+        "predictedDomainId": "MLB-EXTERNAL_LAPTOP_COOLERS_AND_FANS",
+        "categoryId": "MLB54182",
+        "categoryName": "Coolers Externos",
+        "linkedListingsInCategory": 30,
+        "validatedGtin": "7898555213104"
+      }
+    }
+  ]
+}

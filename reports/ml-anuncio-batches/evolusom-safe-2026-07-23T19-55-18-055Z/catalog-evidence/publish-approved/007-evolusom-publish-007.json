@@ -1,0 +1,1066 @@
+{
+  "batchId": "evolusom-publish-007",
+  "strategy": "dry_run_and_exact_catalog_approved",
+  "items": [
+    {
+      "produtoId": "213e9b98-abe7-43ab-a94b-e3787ff5301e",
+      "sku": "VTK017334",
+      "nome": "Cabo Hdmi Evus C-052 4k Macho X Macho V2.0 10,0m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 49.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 86.3,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597131749",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB431813",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "70093243",
+          "value_name": "Macho X Macho"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "16280341",
+          "value_name": "Preto com detalhes Dourados"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6739225",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6739227",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "13788230",
+          "value_name": "Ouro"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "70093244",
+          "value_name": "7898597131749"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "13788232",
+          "value_name": "TV, MP3"
+        },
+        {
+          "id": "MAX_RESOLUTION_SUPPORTED",
+          "value_id": "128798",
+          "value_name": "4K"
+        },
+        {
+          "id": "VERSION_TYPE",
+          "value_id": "63532249",
+          "value_name": "2.0"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB63500011",
+        "catalogProductName": "Cabo HDMI Macho X Macho 4K 2.0 Evus de 10,0m com Conectores Banhados a Ouro",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB431813",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898597131749"
+      }
+    },
+    {
+      "produtoId": "0523a7d3-ad05-4145-bd38-861394fa8460",
+      "sku": "VTK018479",
+      "nome": "Cabo Hdmi Aquário 4k20 4k Macho X Macho 2.0 20m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 125.2,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 179.26,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898127608598",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB431813",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "45099",
+          "value_name": "Aquário"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17705854",
+          "value_name": "4K20"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "16696220",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52033",
+          "value_name": "Azul-escuro"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "130422",
+          "value_name": "20 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "16088632",
+          "value_name": "6 mm"
+        },
+        {
+          "id": "AWG_SIZE",
+          "value_id": "16272103",
+          "value_name": "10"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6739225",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6739227",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "13788230",
+          "value_name": "Ouro"
+        },
+        {
+          "id": "SUPPORTED_AUDIO_CODECS",
+          "value_id": "15773445",
+          "value_name": "Dolby Digital Plus"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "17705884",
+          "value_name": "7898127608598"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "8867968",
+          "value_name": "Computadores, Notebook, TV"
+        },
+        {
+          "id": "MAX_RESOLUTION_SUPPORTED",
+          "value_id": "128798",
+          "value_name": "4K"
+        },
+        {
+          "id": "VERSION_TYPE",
+          "value_id": "63532249",
+          "value_name": "2.0"
+        },
+        {
+          "id": "MAX_BANDWITH",
+          "value_id": "65307795",
+          "value_name": "18 Gbps"
+        },
+        {
+          "id": "MAX_REFRESH_RATE",
+          "value_id": "11224782",
+          "value_name": "60 Hz"
+        },
+        {
+          "id": "CABLE_CERTIFICATIONS",
+          "value_id": "63532259",
+          "value_name": "VESA Certified DP40"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22381159",
+        "catalogProductName": "Cabo Hdmi 2.0 20m 4k Ultra Hd Hdr 60hz Alta Velocidade Tv Pc",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB431813",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 19,
+        "validatedGtin": "7898127608598"
+      }
+    },
+    {
+      "produtoId": "27ea6643-9a65-460b-b273-b4ceff3ef159",
+      "sku": "VTK017475",
+      "nome": "Cabo Lan Mpt Cat6 U/utp 23awgx4p 305 Metros Cmx Azul 53040545",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 869.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1288.74,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908770702823",
+        "validatedNcm": "85444900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB270088",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "25890349",
+          "value_name": "MPT Cable"
+        },
+        {
+          "id": "NETWORK_CABLE_TYPE",
+          "value_id": "2623686",
+          "value_name": "Par trançado UTP"
+        },
+        {
+          "id": "SALES_UNIT",
+          "value_id": "5203052",
+          "value_name": "Bobina"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52028",
+          "value_name": "Azul"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "3024198",
+          "value_name": "305 m"
+        },
+        {
+          "id": "CABLE_SHAPE",
+          "value_id": "52296118",
+          "value_name": "par trançado"
+        },
+        {
+          "id": "NETWORK_CABLE_CATEGORY",
+          "value_id": "2623699",
+          "value_name": "Categoria 6"
+        },
+        {
+          "id": "COATING_MATERIAL",
+          "value_id": "1237600",
+          "value_name": "PVC"
+        },
+        {
+          "id": "CONDUCTOR_MATERIAL",
+          "value_id": "1237602",
+          "value_name": "Cobre"
+        },
+        {
+          "id": "AMBIENT",
+          "value_id": "115340",
+          "value_name": "Interior"
+        },
+        {
+          "id": "INCLUDES_CONNECTORS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "67267233",
+          "value_name": "7908770702823"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "25890349",
+          "value_name": "MPT Cable"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "74761429",
+          "value_name": "EX17D168T3-08"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB62501970",
+        "catalogProductName": "Cabo De Rede Utp Cat6 23awg X 4p Azul - Mpt Cable 305m",
+        "catalogDomainId": "MLB-NETWORK_CABLES",
+        "categoryId": "MLB270088",
+        "categoryName": "Cabos de Rede",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7908770702823"
+      }
+    },
+    {
+      "produtoId": "8398a3fb-8b3b-47e4-8530-c5cc54ec40fe",
+      "sku": "VTK017212",
+      "nome": "Cabo óptico Intelbras Plc 1x2 Nc Xfs 120 Com Divisor 4830013",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 19.3,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 48.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637676717",
+        "validatedNcm": "85447090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB272149",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "84065914",
+          "value_name": "XFS120"
+        },
+        {
+          "id": "SPLITTER_TYPE",
+          "value_id": "33937868",
+          "value_name": "PLC"
+        },
+        {
+          "id": "FIBER_OPTIC_SPLITTERS_NUMBER",
+          "value_id": "24287935",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_FIBERS_NUMBER",
+          "value_id": "24287914",
+          "value_name": "1"
+        },
+        {
+          "id": "SPLITTING_RATIO",
+          "value_id": "34890005",
+          "value_name": "1 - 2"
+        },
+        {
+          "id": "OUTPUT_FIBERS_NUMBER",
+          "value_id": "24287915",
+          "value_name": "2"
+        },
+        {
+          "id": "WITH_CONNECTORS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "51889297",
+          "value_name": "7896637676717"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB48722734",
+        "catalogProductName": "Cabo Óptico Com Divisor Plc 1x2 Nc Xfs120 Intelbras",
+        "catalogDomainId": "MLB-FIBER_OPTIC_SPLITTERS",
+        "categoryId": "MLB272149",
+        "categoryName": "Splitters de Fibra Óptica",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7896637676717"
+      }
+    },
+    {
+      "produtoId": "9c27b9af-ea06-435e-9e87-3831e0b0b8b3",
+      "sku": "VTK017755",
+      "nome": "Cabo óptico Splitter Intelbras Xfs 142 Plc 1x4 Sc/apc 4830019",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 37.3,
+      "estoque": 28,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 70.74,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637676816",
+        "validatedNcm": "85447090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB272149",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "50258742",
+          "value_name": "1X4 SC/APC XFS 142"
+        },
+        {
+          "id": "FIBER_OPTIC_SPLITTERS_NUMBER",
+          "value_id": "24288104",
+          "value_name": "4"
+        },
+        {
+          "id": "CONNECTORS_TYPES",
+          "value_id": "5774097",
+          "value_name": "SC"
+        },
+        {
+          "id": "CONNECTORS_POLISH_TYPES",
+          "value_id": "5774099",
+          "value_name": "APC"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "40364777",
+          "value_name": "33421700160"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "74741468",
+          "value_name": "07896637676816"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB66674889",
+        "catalogProductName": "Cabo Óptico Com Divisor Plc (splitter) 1x4 Sc/apc - Xfs 142",
+        "catalogDomainId": "MLB-FIBER_OPTIC_SPLITTERS",
+        "categoryId": "MLB272149",
+        "categoryName": "Splitters de Fibra Óptica",
+        "linkedListingsInCategory": 10,
+        "validatedGtin": "7896637676816"
+      }
+    },
+    {
+      "produtoId": "bdbc13db-3dc6-4a93-8db3-b75f6002c777",
+      "sku": "VTK017213",
+      "nome": "Cabo óptico Splitter Intelbras Xfs 141 Plc 1x4 Sc/upc 4830029",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 37.4,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 70.86,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637676878",
+        "validatedNcm": "85447090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB272149",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17043901",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "SPLITTER_TYPE",
+          "value_id": "33937868",
+          "value_name": "PLC"
+        },
+        {
+          "id": "FIBER_OPTIC_SPLITTERS_NUMBER",
+          "value_id": "24287935",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_FIBERS_NUMBER",
+          "value_id": "24287914",
+          "value_name": "1"
+        },
+        {
+          "id": "SPLITTING_RATIO",
+          "value_id": "37126656",
+          "value_name": "1 - 4"
+        },
+        {
+          "id": "OUTPUT_FIBERS_NUMBER",
+          "value_id": "24288106",
+          "value_name": "4"
+        },
+        {
+          "id": "WITH_CONNECTORS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "CONNECTORS_TYPES",
+          "value_id": "5774097",
+          "value_name": "SC"
+        },
+        {
+          "id": "CONNECTORS_POLISH_TYPES",
+          "value_id": "5774100",
+          "value_name": "UPC"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "40364777",
+          "value_name": "33421700160"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "30432409",
+          "value_name": "7896637676878"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB47815942",
+        "catalogProductName": "Splitter Plc 1x4 Sc/upc Xfs141 Intelbras Azul",
+        "catalogDomainId": "MLB-FIBER_OPTIC_SPLITTERS",
+        "categoryId": "MLB272149",
+        "categoryName": "Splitters de Fibra Óptica",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7896637676878"
+      }
+    },
+    {
+      "produtoId": "82b944b7-f599-448b-9773-67db42871613",
+      "sku": "VTK017717",
+      "nome": "Cabo óptico Splitter Intelbras Xfs1320 Plc 1x32 Nc 4830017",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 122.1,
+      "estoque": 30,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 175.43,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637676793",
+        "validatedNcm": "85447090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB272149",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "84853166",
+          "value_name": "XFS 180"
+        },
+        {
+          "id": "SPLITTER_TYPE",
+          "value_id": "33937868",
+          "value_name": "PLC"
+        },
+        {
+          "id": "FIBER_OPTIC_SPLITTERS_NUMBER",
+          "value_id": "24287935",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_FIBERS_NUMBER",
+          "value_id": "24287914",
+          "value_name": "1"
+        },
+        {
+          "id": "SPLITTING_RATIO",
+          "value_id": "34890005",
+          "value_name": "1 - 2"
+        },
+        {
+          "id": "OUTPUT_FIBERS_NUMBER",
+          "value_id": "24287915",
+          "value_name": "2"
+        },
+        {
+          "id": "WITH_CONNECTORS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "41997044",
+          "value_name": "7896637676793"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "41674948",
+          "value_name": "1x8 NC"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB40224537",
+        "catalogProductName": "Splitter 1x32 Nc Sm Xfs 1320 Intelbras",
+        "catalogDomainId": "MLB-FIBER_OPTIC_SPLITTERS",
+        "categoryId": "MLB272149",
+        "categoryName": "Splitters de Fibra Óptica",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7896637676793"
+      }
+    },
+    {
+      "produtoId": "10e0a3f8-0e1d-41f7-8529-ac507e7be94a",
+      "sku": "VTK017622",
+      "nome": "Cabo óptico Splitter Intelbras Xfs 1322 Plc 1x32 Sc/apc 4830027",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 175.2,
+      "estoque": 39,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 248.74,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637676847",
+        "validatedNcm": "85447090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB272149",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "49245331",
+          "value_name": "1x32 Sc Apc Sm Xfs 1322"
+        },
+        {
+          "id": "INPUT_FIBERS_NUMBER",
+          "value_id": "24287914",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_FIBERS_NUMBER",
+          "value_id": "32528269",
+          "value_name": "32"
+        },
+        {
+          "id": "WITH_CONNECTORS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "CONNECTORS_TYPES",
+          "value_id": "5774097",
+          "value_name": "SC"
+        },
+        {
+          "id": "CONNECTORS_POLISH_TYPES",
+          "value_id": "5774099",
+          "value_name": "APC"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "40364777",
+          "value_name": "33421700160"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27111458",
+          "value_name": "7896637676847"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB28754305",
+        "catalogProductName": "Splitter 1x32 Sc Apc Sm Xfs 1322 Intelbras",
+        "catalogDomainId": "MLB-FIBER_OPTIC_SPLITTERS",
+        "categoryId": "MLB272149",
+        "categoryName": "Splitters de Fibra Óptica",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7896637676847"
+      }
+    },
+    {
+      "produtoId": "a0f81105-6d12-45f8-922b-6bb331e66985",
+      "sku": "VTK002166",
+      "nome": "Cabo Para Instrumento XLR(F) x P10 5M CBMC0001 Preto Storm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 11.2,
+      "estoque": 22,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 38.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566202951",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB72745",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18989065",
+          "value_name": "CANON M X CANON F"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788227",
+          "value_name": "XLR"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129133",
+          "value_name": "10 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "16088632",
+          "value_name": "6 mm"
+        },
+        {
+          "id": "AWG_SIZE",
+          "value_id": "16505706",
+          "value_name": "5"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "16554647",
+          "value_name": "XLR macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "18989082",
+          "value_name": "XLT FEMEA"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116080",
+          "value_name": "Fêmea"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "5520057",
+          "value_name": "Metal"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18989081",
+          "value_name": "7898566202951"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "53917696",
+          "value_name": "Equipamentos de áudio profissional, Microfones"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB23159688",
+        "catalogProductName": "Cabo Microfone Dmx Xlr Balanceado Xlr Canon M X F 10 Metros",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB72745",
+        "categoryName": "Cabos",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7898566202951"
+      }
+    },
+    {
+      "produtoId": "6a24bd0f-5570-4ce3-8f45-e2471766cd5e",
+      "sku": "VTK002145",
+      "nome": "Cabo Para Instrumento XLR(F) x P10 10M CBMC0002 Preto Storm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 17.5,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 46.3,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566202968",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB432437",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2785980",
+          "value_name": "Storm"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "36817470",
+          "value_name": "CBMC0006"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "16088608",
+          "value_name": "P10"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "11163179",
+          "value_name": "Azul"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "15991808",
+          "value_name": "P10"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "16958457",
+          "value_name": "CANNON"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116080",
+          "value_name": "Fêmea"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "36817472",
+          "value_name": "7898566202968"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB65029687",
+        "catalogProductName": "Cabo Profissional P10 Mono para Cannon de 10 Metros Storm",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB432437",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898566202968"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1116 @@
+{
+  "batchId": "evolusom-remaining-011",
+  "strategy": "verified_dry_run_exact_catalog",
+  "items": [
+    {
+      "produtoId": "b920dbaf-4373-4d46-b084-174113435531",
+      "sku": "VTK018969",
+      "nome": "Central Multimídia Evolve Gp348 7\" Capacitiva Com Espelhamento Ios Android",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 359.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 510.97,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899838891828",
+        "validatedNcm": "85269100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB135679",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "9982797",
+          "value_name": "Evolve"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "38870469",
+          "value_name": "GP348"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "40491280",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7600402",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "12097451",
+          "value_name": "18 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7828417",
+          "value_name": "6 cm"
+        },
+        {
+          "id": "WITH_GPS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_USB_PORT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TV_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TOUCHSCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "26860289",
+          "value_name": "7899838891828"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "9982797",
+          "value_name": "Evolve"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "55867294",
+          "value_name": "GP348"
+        },
+        {
+          "id": "WITH_FLIP_OUT_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_FM_TRANSMITTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REMOTE_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MEMORY_CARD_READER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "OEM",
+          "value_id": "26860291",
+          "value_name": "7899838825717"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB47121199",
+        "catalogProductName": "Multimídia Evolve 7pol. Com Espelhamento Ios Android Gp348 Cor Preto",
+        "catalogDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "categoryId": "MLB135679",
+        "categoryName": "Com Tela",
+        "linkedListingsInCategory": 5,
+        "validatedGtin": "7899838891828"
+      }
+    },
+    {
+      "produtoId": "2351f349-537e-4081-9553-801bb9193fa7",
+      "sku": "VTK018800",
+      "nome": "Central Multimídia Roadstar Android Com Carplay 7\" - Rs815br",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 479.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 710.96,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898587424882",
+        "validatedNcm": "85272100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB135679",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "37213445",
+          "value_name": "RS-815BR Prime"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "9680365",
+          "value_name": "10.3 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "15945276",
+          "value_name": "4.5 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8943738",
+          "value_name": "17.8 cm"
+        },
+        {
+          "id": "WITH_GPS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_USB_PORT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TV_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TOUCHSCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27063304",
+          "value_name": "7898587424882"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "40583904",
+          "value_name": "RS-815BR Prime"
+        },
+        {
+          "id": "WITH_FLIP_OUT_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_FM_TRANSMITTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REMOTE_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_MEMORY_CARD_READER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB36486045",
+        "catalogProductName": "Sistema multimídia para veículo Roadstar RS-815BR Prime 7\" - preto",
+        "catalogDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "categoryId": "MLB135679",
+        "categoryName": "Com Tela",
+        "linkedListingsInCategory": 62,
+        "validatedGtin": "7898587424882"
+      }
+    },
+    {
+      "produtoId": "279cd801-e10c-410a-9986-22b88a4a331b",
+      "sku": "VTK019007",
+      "nome": "Central Multimídia Svart S900x Octacore Carplay/android Auto 9\"",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 959.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1422.07,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "4895228224989",
+        "validatedNcm": "85272100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB135679",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "9073710",
+          "value_name": "Svart"
+        },
+        {
+          "id": "LINE",
+          "value_id": "46630193",
+          "value_name": "MULTIMIDIA SV S900X OCTA-PRO"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "46630194",
+          "value_name": "S900X"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "40491280",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2685628",
+          "value_name": "9 \""
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7600402",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "20280308",
+          "value_name": "29.5 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7727669",
+          "value_name": "18 cm"
+        },
+        {
+          "id": "WITH_GPS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_USB_PORT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TV_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TOUCHSCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "46630195",
+          "value_name": "4895228224989"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "9073710",
+          "value_name": "Svart"
+        },
+        {
+          "id": "WITH_FLIP_OUT_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_FM_TRANSMITTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REMOTE_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MEMORY_CARD_READER",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB45424354",
+        "catalogProductName": "Multimídia Svart S900x 9 Pol Android Carplay Wifi 4g Octapro",
+        "catalogDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "categoryId": "MLB135679",
+        "categoryName": "Com Tela",
+        "linkedListingsInCategory": 18,
+        "validatedGtin": "4895228224989"
+      }
+    },
+    {
+      "produtoId": "a2fe7003-2d7f-4fbc-8e73-9d62fd95718e",
+      "sku": "VTK018759",
+      "nome": "Central Viaweb Vw8z Ip Star Caixa Abs",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 323.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 459.86,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898936319036",
+        "validatedNcm": "85311090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7070",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16717793",
+          "value_name": "Viaweb"
+        },
+        {
+          "id": "LINE",
+          "value_id": "4463526",
+          "value_name": "IP"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18723527",
+          "value_name": "VW8ZIP"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "value_id": "395193",
+          "value_name": "Alarme"
+        },
+        {
+          "id": "SENSOR_TYPES",
+          "value_id": "395198",
+          "value_name": "Infravermelho"
+        },
+        {
+          "id": "DETECTOR_TYPES",
+          "value_id": "8616768",
+          "value_name": "De movimento"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "8616773",
+          "value_name": "Celular"
+        },
+        {
+          "id": "WITH_WIFI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "ZONES_NUMBER",
+          "value_id": "1261287",
+          "value_name": "8"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18723526",
+          "value_name": "7898936319036"
+        },
+        {
+          "id": "MPN",
+          "value_id": "11208715",
+          "value_name": "154"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22948770",
+        "catalogProductName": "Central de Alarme Viaweb VW8ZIP IP 8 Zonas Sensor Infravermelho",
+        "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7898936319036"
+      }
+    },
+    {
+      "produtoId": "4496d44d-9117-415d-850b-da315f3b4d8e",
+      "sku": "VTK001028",
+      "nome": "Chaleira Elétrica Agratto CE02 Prata Em Aço Inox 220V",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 44.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 80.12,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898461964534",
+        "validatedNcm": "85161000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB31678",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "97494",
+          "value_name": "Agratto"
+        },
+        {
+          "id": "LINE",
+          "value_id": "83597809",
+          "value_name": "784"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "97495",
+          "value_name": "CE-02"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "3513251",
+          "value_name": "Preto/Inox"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "198813",
+          "value_name": "220V"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "5783673",
+          "value_name": "CE-02"
+        },
+        {
+          "id": "VOLUME_CAPACITY",
+          "value_id": "97471",
+          "value_name": "1.8 L"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "4086949",
+          "value_name": "Aço inoxidável"
+        },
+        {
+          "id": "WITH_THERMOMETER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TEMPERATURE_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_AUTOMATIC_SHUT_OFF",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "8291604",
+          "value_name": "7898461964534, 7893590698497, 07905678106388"
+        },
+        {
+          "id": "ENERGY_EFFICIENCY",
+          "value_id": "98473",
+          "value_name": "A"
+        },
+        {
+          "id": "POWER",
+          "value_id": "109598",
+          "value_name": "1500 W"
+        },
+        {
+          "id": "WITH_WATER_INDICATOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_FILTER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_INFUSER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DIGITAL_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MATE_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ROTATING_BASE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_WORKING_INDICATOR_LIGHT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MPN",
+          "value_id": "36995989",
+          "value_name": "GR31241"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB11400063",
+        "catalogProductName": "Chaleira Elétrica Inox Agratto 1,8l Aquecimento Rápido - Preto Inox",
+        "catalogDomainId": "MLB-ELECTRIC_JUGS",
+        "categoryId": "MLB31678",
+        "categoryName": "Chaleiras Elétricas",
+        "linkedListingsInCategory": 98,
+        "validatedGtin": "7898461964534"
+      }
+    },
+    {
+      "produtoId": "2f410b69-9b05-49fd-95ab-487e32bfb552",
+      "sku": "VTK017924",
+      "nome": "Chaveiro Positron Novo Px-32 Cyber 4 Botões Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 41.9,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 76.42,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897789624526",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB440299",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "113336",
+          "value_name": "Pósitron"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24279911",
+          "value_name": "PXN32"
+        },
+        {
+          "id": "CONTROLLERS_NUMBER",
+          "value_id": "20401251",
+          "value_name": "1"
+        },
+        {
+          "id": "OPERATING_VOLTAGE",
+          "value_id": "909022",
+          "value_name": "12V"
+        },
+        {
+          "id": "WITH_PRESENCE_SENSOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SIREN",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_VOLUMETRIC_SENSOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SHOCK_SENSOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_AUTO_LOCK_SYSTEM",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_PANIC_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_INSTALLATION_KIT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24279910",
+          "value_name": "7897789624526"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "19967339",
+          "value_name": "1 controle remoto simples"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27040732",
+        "catalogProductName": "Controle Remoto De Alarme Automático Positron Px32 Pst pret",
+        "catalogDomainId": "MLB-VEHICLE_ALARMS",
+        "categoryId": "MLB440299",
+        "categoryName": "Alarmes para Automotores",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7897789624526"
+      }
+    },
+    {
+      "produtoId": "853ee0d7-5ad0-4312-a297-4af55b2194d2",
+      "sku": "VTK018751",
+      "nome": "Chaveiro Presença Positron Dpn62 Para Duoblock Fx G6/ Cg150/ 125",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 54.99,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 92.58,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897789642858",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB440299",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "113336",
+          "value_name": "Pósitron"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "32162508",
+          "value_name": "DPN62"
+        },
+        {
+          "id": "WITH_PRESENCE_SENSOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "32162507",
+          "value_name": "7897789642858"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "40629140",
+          "value_name": "24201601693"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB32352012",
+        "catalogProductName": "Controle Alarme Dpn62",
+        "catalogDomainId": "MLB-VEHICLE_ALARMS",
+        "categoryId": "MLB440299",
+        "categoryName": "Alarmes para Automotores",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7897789642858"
+      }
+    },
+    {
+      "produtoId": "735ca2f4-69b8-4d81-93d7-c721650be7df",
+      "sku": "VTK017640",
+      "nome": "Cinta Metálica Permak Para Auto Rádio Bosch 130",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 10.9,
+      "estoque": 36,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 38.15,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253491446",
+        "validatedNcm": "83023000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB433273",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "8299",
+          "value_name": "130"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27992343",
+          "value_name": "7898253491446"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29335709",
+        "catalogProductName": "Cinta De Rádio Universal Prata Gaveta Fixação Cd Bosch",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_CAGES",
+        "categoryId": "MLB433273",
+        "categoryName": "Gavetas de Fixação",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7898253491446"
+      }
+    },
+    {
+      "produtoId": "1bdbc526-1a1f-4927-a1d2-148506f84f0a",
+      "sku": "VTK018492",
+      "nome": "Climatizador Evaporativo Symphony Diet 8i 8l 127v 60hz",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 499.9,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 740.59,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "8901791100455",
+        "validatedNcm": "84796000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB72503",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2942489",
+          "value_name": "Symphony"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "46155569",
+          "value_name": "DiET8i"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "12472061",
+          "value_name": "Branco"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "AIR_CONDITIONING_TYPE",
+          "value_id": "83444",
+          "value_name": "Frio"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "7640907",
+          "value_name": "6.3 kg"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "9234684",
+          "value_name": "78 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7855225",
+          "value_name": "33 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "5662649",
+          "value_name": "30 cm"
+        },
+        {
+          "id": "IS_HUMIDIFIER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_AIR_PURIFIER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_VENTILATION_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WATER_CAPACITY",
+          "value_id": "1263431",
+          "value_name": "8 L"
+        },
+        {
+          "id": "POWER",
+          "value_id": "1000386",
+          "value_name": "105 W"
+        },
+        {
+          "id": "SPEEDS_NUMBER",
+          "value_id": "1000288",
+          "value_name": "3"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16432051",
+          "value_name": "8901791100455"
+        },
+        {
+          "id": "ENERGY_EFFICIENCY",
+          "value_id": "2307502",
+          "value_name": "A+"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        },
+        {
+          "id": "WITH_TIMER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_REMOTE_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21569054",
+        "catalogProductName": "Climatizador De Ar Symphony Diet 8i-g, 8 Litros, Controle Re",
+        "catalogDomainId": "MLB-PORTABLE_EVAPORATIVE_AIR_COOLERS",
+        "categoryId": "MLB72503",
+        "categoryName": "Climatizador Portátil",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "8901791100455"
+      }
+    },
+    {
+      "produtoId": "df5f076d-34e3-4055-8bb1-4a5c31aade74",
+      "sku": "VTK018454",
+      "nome": "Conector Para Cd Vw Jetta/passat",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 24.99,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 55.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253504511",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB38279",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16088677",
+          "value_name": "35D12"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788223",
+          "value_name": "Plug"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827368",
+          "value_name": "Cabo adaptador"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "17642536",
+          "value_name": "Padrão"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "28311656",
+          "value_name": "Normal"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16088703",
+          "value_name": "7898253504511"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21341534",
+        "catalogProductName": "Chicote De Ligação New Quadrilock 2016 Gol G7 Jetta Passat",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB38279",
+        "categoryName": "Outros Cabos",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7898253504511"
+      }
+    }
+  ]
+}

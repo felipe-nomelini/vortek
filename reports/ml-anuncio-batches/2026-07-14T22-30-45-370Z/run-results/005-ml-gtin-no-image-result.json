@@ -1,0 +1,106 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-14T22-30-45-370Z/005-ml-gtin-no-image.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "ml-gtin-no-image",
+  "selected": 5,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "64e57270-4980-4387-9a75-4a265003092b",
+      "sku": "VTK015947",
+      "nome": "10 Pilhas Recarregaveis Eneloop Std Aa Panasonic (5 Cart)",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1153e4d4-cede-4d61-a061-f02815226130",
+      "sku": "VTK016207",
+      "nome": "60 Baterias Alcalinas 12v Panasonic Lr-V08-1bt (6 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e92f6915-7ced-4c5f-95ad-94d4a02a2500",
+      "sku": "VTK016217",
+      "nome": "70 Baterias Alcalinas 12v Panasonic Lr-V08-1bt (7 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4ab2d60a-a1d1-48fe-a6fc-8e9d557f08e7",
+      "sku": "VTK016240",
+      "nome": "80 Baterias Alcalinas 12v Panasonic Lr-V08-1bt (8 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "0cbaca88-b155-4087-b308-38abe14befb4",
+      "sku": "VTK016246",
+      "nome": "90 Baterias Alcalinas 12v Panasonic Lr-V08-1bt (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

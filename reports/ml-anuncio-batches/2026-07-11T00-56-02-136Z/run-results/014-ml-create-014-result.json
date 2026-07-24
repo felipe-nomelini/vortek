@@ -1,0 +1,29 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-014-ml-create-014.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-014",
+  "selected": 1,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "f8a700dc-5264-4e5d-ade9-d760cf1f59dd",
+      "sku": "VTK012050",
+      "nome": "Bateria Para Aparelho Auditivo 13 Pr48 Elgin 06 Unidades",
+      "error": "Atributos obrigatórios pendentes: É recarregável",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

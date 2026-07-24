@@ -1,0 +1,1031 @@
+{
+  "batchId": "evolusom-remaining-001",
+  "strategy": "verified_dry_run_exact_catalog",
+  "items": [
+    {
+      "produtoId": "d35df101-0356-4658-b6e1-fa9656b214ad",
+      "sku": "VTK001685",
+      "nome": "Adaptador DVI Fêmea x HDMI Macho Gold ST-HDMI-DMF Storm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 12.6,
+      "estoque": 28,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 40.25,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566201077",
+        "validatedNcm": "85366990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB195961",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "276243",
+          "value_name": "Genérica"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "22143899",
+          "value_name": "DVI Fêmea x HDMI Macho"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "16696220",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827369",
+          "value_name": "Adaptador"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6739225",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "13822953",
+          "value_name": "DVI"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116087",
+          "value_name": "Fêmea"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "22143988",
+          "value_name": "7898566201077"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB25456619",
+        "catalogProductName": "Adaptador Dvi Fêmea X Hdmi Macho Gold St-hdmi-dmf Storm",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB195961",
+        "categoryName": "Adaptadores",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898566201077"
+      }
+    },
+    {
+      "produtoId": "6f2d02a9-a507-459b-9a90-7faf9d50b92c",
+      "sku": "VTK018179",
+      "nome": "Adaptador Rca Stetsom St-6100 Com Saída Remoto/filtro Antirruído",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 89.9,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 135.68,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897748703576",
+        "validatedNcm": "85442000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB195961",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "345468",
+          "value_name": "Stetsom"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17783019",
+          "value_name": "Rca St 6100"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788220",
+          "value_name": "RCA"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15289674",
+          "value_name": "2"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15290095",
+          "value_name": "2"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "15991802",
+          "value_name": "Fio"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6778116",
+          "value_name": "RCA"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116080",
+          "value_name": "Fêmea"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116087",
+          "value_name": "Fêmea"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "17783028",
+          "value_name": "7897748703576, 7897748702760"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22400147",
+        "catalogProductName": "Conversor de Áudio Stetsom ST 6100 de Fio para RCA com Filtro Anti Ruído",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB195961",
+        "categoryName": "Adaptadores",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7897748703576"
+      }
+    },
+    {
+      "produtoId": "23325240-e7c1-4a4f-805f-79f7ac369f98",
+      "sku": "VTK002611",
+      "nome": "Adaptador USB Tipo C Macho Para VGA Femea ADAP0057 Branca Storm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 27.9,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": 83.12,
+      "suggestedPricePreview": 59.14,
+      "priceSource": "custom_price",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566206447",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7466",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2785980",
+          "value_name": "Storm"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "48834038",
+          "value_name": "USB-C to VGA Adapter"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "2230455",
+          "value_name": "USB"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "102303",
+          "value_name": "USB"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "28116611",
+          "value_name": "7898566206447"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29409798",
+        "catalogProductName": "Adaptador USB-C para VGA Storm ADAP0057, Com Conector USB Tipo C",
+        "catalogDomainId": "MLB-DATA_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB7466",
+        "categoryName": "USB",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898566206447"
+      }
+    },
+    {
+      "produtoId": "5f74e994-77a1-42f4-8f56-af442f8c8c7f",
+      "sku": "VTK018588",
+      "nome": "Airfryer Black + Decker Digital Afmdv360-b2 4,5l - 220v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 297.9,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 422.94,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898735580262",
+        "validatedNcm": "85166000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB456045",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2149465",
+          "value_name": "Black+Decker"
+        },
+        {
+          "id": "LINE",
+          "value_id": "107412",
+          "value_name": "Cozinha"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "47995488",
+          "value_name": "AFMDV360"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "value_id": "47995489",
+          "value_name": "AFMDV360-BR"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "198813",
+          "value_name": "220V"
+        },
+        {
+          "id": "FUNCTIONS",
+          "value_id": "25230490",
+          "value_name": "Asse, Descongelar, Fritar"
+        },
+        {
+          "id": "CONTROL_TYPES",
+          "value_id": "1158335",
+          "value_name": "Digital"
+        },
+        {
+          "id": "WITH_TOUCHSCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "POWER",
+          "value_id": "47814962",
+          "value_name": "1.3 kW"
+        },
+        {
+          "id": "VOLUME_CAPACITY",
+          "value_id": "13222679",
+          "value_name": "4 L"
+        },
+        {
+          "id": "WITH_TEMPERATURE_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MIN_TEMPERATURE",
+          "value_id": "7763825",
+          "value_name": "80 °C"
+        },
+        {
+          "id": "MAX_TEMPERATURE",
+          "value_id": "7218576",
+          "value_name": "200 °C"
+        },
+        {
+          "id": "BASKETS_NUMBER",
+          "value_id": "8113614",
+          "value_name": "1"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "8039247",
+          "value_name": "38 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7187149",
+          "value_name": "28 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "8026337",
+          "value_name": "35 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "24217895",
+          "value_name": "3500 kg"
+        },
+        {
+          "id": "WITH_SEE_THROUGH_WINDOW",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_NON_STICK_SURFACE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ENERGY_EFFICIENCY_BRASIL",
+          "value_id": "33344215",
+          "value_name": "A"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "35448089",
+          "value_name": "7898735580262"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "8117352",
+          "value_name": "Manual"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB34940384",
+        "catalogProductName": "Air Fryer Com Display Digital 4,5L BLACK+DECKER AFMDV360 Potência 1300W",
+        "catalogDomainId": "MLB-AIR_FRYERS",
+        "categoryId": "MLB456045",
+        "categoryName": "De Ar",
+        "linkedListingsInCategory": 12,
+        "validatedGtin": "7898735580262"
+      }
+    },
+    {
+      "produtoId": "78ebcbfc-5953-44ca-803a-a4b40bbfae1e",
+      "sku": "VTK017861",
+      "nome": "Alarme Automotivo Fks Fk902 Plus Universal Função Desliga Rádio",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 113.9,
+      "estoque": 21,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 165.31,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899906800059",
+        "validatedNcm": "85123000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB440299",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3340179",
+          "value_name": "FKS"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "23428294",
+          "value_name": "FK902 PLUS CR941"
+        },
+        {
+          "id": "CONTROLLERS_NUMBER",
+          "value_id": "18959181",
+          "value_name": "2"
+        },
+        {
+          "id": "OPERATING_VOLTAGE",
+          "value_id": "909022",
+          "value_name": "12V"
+        },
+        {
+          "id": "WITH_PRESENCE_SENSOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SIREN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_VOLUMETRIC_SENSOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SHOCK_SENSOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_AUTO_LOCK_SYSTEM",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_PANIC_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_INSTALLATION_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "23428292",
+          "value_name": "7899906800059"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "3340179",
+          "value_name": "FKS"
+        },
+        {
+          "id": "INCLUDES_ACCESSORIES",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MPN",
+          "value_id": "21613839",
+          "value_name": "7704"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB26409892",
+        "catalogProductName": "Alarme Automotivo FKS FK902 Plus Universal 12V Com 2 Controles Remotos",
+        "catalogDomainId": "MLB-VEHICLE_ALARMS",
+        "categoryId": "MLB440299",
+        "categoryName": "Alarmes para Automotores",
+        "linkedListingsInCategory": 16,
+        "validatedGtin": "7899906800059"
+      }
+    },
+    {
+      "produtoId": "724b7d33-2fc4-4905-ab51-2ca45664aab0",
+      "sku": "VTK018009",
+      "nome": "Alarme Automotivo Universal Fks Fk902 Plus - Sem Bloqueio",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 129.9,
+      "estoque": 17,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 185.06,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899906806488",
+        "validatedNcm": "85123000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB440299",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3340179",
+          "value_name": "FKS"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "75105883",
+          "value_name": "Fk902sb"
+        },
+        {
+          "id": "CONTROLLERS_NUMBER",
+          "value_id": "18959181",
+          "value_name": "2"
+        },
+        {
+          "id": "WITH_SIREN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "75105882",
+          "value_name": "07899906806488"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB66935904",
+        "catalogProductName": "Alarme Fk902sb 2 Controles Cr800 - Fks",
+        "catalogDomainId": "MLB-VEHICLE_ALARMS",
+        "categoryId": "MLB440299",
+        "categoryName": "Alarmes para Automotores",
+        "linkedListingsInCategory": 5,
+        "validatedGtin": "7899906806488"
+      }
+    },
+    {
+      "produtoId": "75abcf4e-d3a5-40f5-816a-50b997706d46",
+      "sku": "VTK018503",
+      "nome": "Alarme Automotivo Universal Fks Fk904 Cb Com Bloqueador",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 190.9,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 271.03,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899906800134",
+        "validatedNcm": "85123000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB440299",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3340179",
+          "value_name": "FKS"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "19783259",
+          "value_name": "FK902 ALF CR941 CR960"
+        },
+        {
+          "id": "CONTROLLERS_NUMBER",
+          "value_id": "18959181",
+          "value_name": "2"
+        },
+        {
+          "id": "WITH_SIREN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "19783258",
+          "value_name": "7899906800134"
+        },
+        {
+          "id": "INCLUDES_ACCESSORIES",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "8625530",
+          "value_name": "Cabos de conexão"
+        },
+        {
+          "id": "MPN",
+          "value_id": "19783260",
+          "value_name": "Fk904 plus cr960"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB23765451",
+        "catalogProductName": "Alarme Automotivo FKS FK902 Antifurto com 2 Controles e Sirene",
+        "catalogDomainId": "MLB-VEHICLE_ALARMS",
+        "categoryId": "MLB440299",
+        "categoryName": "Alarmes para Automotores",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7899906800134"
+      }
+    },
+    {
+      "produtoId": "fef3489e-d7b8-483b-a5f4-1921740369be",
+      "sku": "VTK018349",
+      "nome": "Alarme Automotivo Fks Fki505rf Conector Original Fiat 2012 Controle Cr963",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 207.9,
+      "estoque": 9,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 295.17,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899906800233",
+        "validatedNcm": "85123000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB440299",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3340179",
+          "value_name": "FKS"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "49098685",
+          "value_name": "FKS FKI505RF Fiat 2012"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "23278932",
+          "value_name": "7899906800233"
+        },
+        {
+          "id": "OEM",
+          "value_id": "19905095",
+          "value_name": "Fks"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB26285948",
+        "catalogProductName": "Alarme Automotivo Fks Fki505rf Conector Fiat 2012 Controle",
+        "catalogDomainId": "MLB-VEHICLE_ALARMS",
+        "categoryId": "MLB440299",
+        "categoryName": "Alarmes para Automotores",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7899906800233"
+      }
+    },
+    {
+      "produtoId": "f0cfdc8d-c860-43a0-88c6-2cae875582df",
+      "sku": "VTK018080",
+      "nome": "Alarme Automotivo Positron Cyber Ex-360 Blade",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 279.9,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 397.39,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897789650044",
+        "validatedNcm": "85311090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB440299",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "113336",
+          "value_name": "Pósitron"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "20251353",
+          "value_name": "POSITRON EXACT 360 Blade"
+        },
+        {
+          "id": "CONTROLLERS_NUMBER",
+          "value_id": "18959181",
+          "value_name": "2"
+        },
+        {
+          "id": "OPERATING_VOLTAGE",
+          "value_id": "909022",
+          "value_name": "12V"
+        },
+        {
+          "id": "WITH_PRESENCE_SENSOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SIREN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_VOLUMETRIC_SENSOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SHOCK_SENSOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_AUTO_LOCK_SYSTEM",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_PANIC_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_INSTALLATION_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "20251351",
+          "value_name": "7897789650044"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "113336",
+          "value_name": "Pósitron"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "47991240",
+          "value_name": "12872005"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "20487531",
+          "value_name": "2 Controles, Cabos de conexão, Central, Manual, Sirene"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB24047223",
+        "catalogProductName": "Alarme para carro Cyber EX360 Blade Universal Pósitron",
+        "catalogDomainId": "MLB-VEHICLE_ALARMS",
+        "categoryId": "MLB440299",
+        "categoryName": "Alarmes para Automotores",
+        "linkedListingsInCategory": 28,
+        "validatedGtin": "7897789650044"
+      }
+    },
+    {
+      "produtoId": "73961361-53a0-41ec-a09a-615a7215d95e",
+      "sku": "VTK019038",
+      "nome": "Alicate Amperimetro Digital Minipa Et-3111 Cat Iii",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 234.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 333.5,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898112603560",
+        "validatedNcm": "90303100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB30162",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3053665",
+          "value_name": "Minipa"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "48884641",
+          "value_name": "Alicate Amperímetro Digital"
+        },
+        {
+          "id": "MAX_TENSION_AC",
+          "value_id": "8120867",
+          "value_name": "750V"
+        },
+        {
+          "id": "MAX_TENSION_CC",
+          "value_id": "8120868",
+          "value_name": "1000V"
+        },
+        {
+          "id": "MAX_CURRENT_AC",
+          "value_id": "8120871",
+          "value_name": "1000 A"
+        },
+        {
+          "id": "MAX_CURRENT_CC",
+          "value_id": "8127019",
+          "value_name": "1000 A"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_id": "8153322",
+          "value_name": "400 Hz"
+        },
+        {
+          "id": "MIN_TEMPERATURE",
+          "value_id": "7218567",
+          "value_name": "0 °C"
+        },
+        {
+          "id": "MAX_TEMPERATURE",
+          "value_id": "8151798",
+          "value_name": "40 °C"
+        },
+        {
+          "id": "BATTERIES_NUMBER",
+          "value_id": "8114690",
+          "value_name": "1"
+        },
+        {
+          "id": "BATTERY_VOLTAGE",
+          "value_id": "8149915",
+          "value_name": "9V"
+        },
+        {
+          "id": "BATTERY_TYPE",
+          "value_id": "2351060",
+          "value_name": "PP3"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "102258",
+          "value_name": "Digital"
+        },
+        {
+          "id": "WITH_TRUE_RMS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CONTINUITY_TEST",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_DIODE_TEST",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18617348",
+          "value_name": "7898112603560"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "7675715",
+          "value_name": "350 g"
+        },
+        {
+          "id": "WITH_AUTO_RANGE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_AUTO_SHUTDOWN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_LOW_BATTERY_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BACKLIGHTING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "8151794",
+          "value_name": "Chumbo de teste, Manual"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22882006",
+        "catalogProductName": "Alicate Amperímetro Digital Et-3111 Minipa 1000 A",
+        "catalogDomainId": "MLB-CLAMP_METERS",
+        "categoryId": "MLB30162",
+        "categoryName": "Amperímetros",
+        "linkedListingsInCategory": 21,
+        "validatedGtin": "7898112603560"
+      }
+    }
+  ]
+}

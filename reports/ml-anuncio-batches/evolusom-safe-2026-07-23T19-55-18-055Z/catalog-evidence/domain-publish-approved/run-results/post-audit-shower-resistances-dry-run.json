@@ -1,0 +1,34 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/post-audit-shower-resistances.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-post-audit-shower-resistances",
+  "selected": 2,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "4bfdca7e-c32e-47f5-b90a-39956cd2f323",
+      "sku": "VTK018545",
+      "category": {
+        "id": "MLB455086",
+        "nome": "Resistências para Aquecedores de Água",
+        "dominio": "MLB-RESISTORS"
+      },
+      "basePrice": 62.19,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "074533de-3625-4ac5-87e6-970a7b9add7c",
+      "sku": "VTK017251",
+      "category": {
+        "id": "MLB455086",
+        "nome": "Resistências para Aquecedores de Água",
+        "dominio": "MLB-RESISTORS"
+      },
+      "basePrice": 57.08,
+      "missing": []
+    }
+  ],
+  "failed": []
+}

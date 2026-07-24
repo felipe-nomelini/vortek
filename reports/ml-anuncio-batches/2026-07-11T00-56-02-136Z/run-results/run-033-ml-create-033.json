@@ -1,0 +1,33 @@
+{
+  "batchNumber": 33,
+  "batchId": "ml-create-033",
+  "strategy": "safe_small_batch",
+  "executionHints": {
+    "delayMs": 1500,
+    "listingType": "gold_pro",
+    "useSchemaBasePrice": true,
+    "applyPricingStrategyAtRuntime": true,
+    "stopIfFailureRateOver": 0.5
+  },
+  "items": [
+    {
+      "produtoId": "8c694aee-0247-4dfa-b013-667b06147ba3",
+      "sku": "VTK012597",
+      "nome": "Palheta Big Stubby 1mm Pct C/6 475r1.0 Dunlop Vermelha (1841)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 29.23,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 60.78,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    }
+  ]
+}

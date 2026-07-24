@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-081-ml-create-081.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-081",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "f0635871-89a2-4e66-a415-02ac568622b6",
+      "sku": "VTK001195",
+      "category": {
+        "id": "MLB22729",
+        "nome": "Bancos",
+        "dominio": "Bancos de motos"
+      },
+      "anuncio": {
+        "id": "MLB7145207076",
+        "title": "Encosto Cad Thunder Ec3 Rs",
+        "price": 288.16,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7145207076-encosto-cad-thunder-ec3-rs-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Produto sem imagens locais. Será usada imagem placeholder.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 188.10 → R$ 288.16."
+      ]
+    }
+  ],
+  "failed": []
+}

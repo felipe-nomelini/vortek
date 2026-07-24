@@ -1,0 +1,69 @@
+{
+  "startedAt": "2026-07-23T22:48:23.893Z",
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/remaining",
+  "startBatch": 10,
+  "batches": [
+    {
+      "fileName": "010-evolusom-remaining-010.json",
+      "selected": 1,
+      "created": 1,
+      "failed": 0,
+      "exitCode": 0,
+      "failureReasons": [],
+      "verification": {
+        "ok": true,
+        "attempt": 13,
+        "rows": [
+          {
+            "itemId": "MLB7239096330",
+            "produtoId": "25145b39-46b2-49fd-9a0b-ac457e1720bf",
+            "categoryOk": true,
+            "status": "active",
+            "subStatuses": [],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 27,
+            "price": 420.53
+          }
+        ]
+      }
+    },
+    {
+      "fileName": "011-evolusom-remaining-011.json",
+      "skipped": true,
+      "reason": "already_listed"
+    },
+    {
+      "fileName": "012-evolusom-remaining-012.json",
+      "skipped": true,
+      "reason": "already_listed"
+    },
+    {
+      "fileName": "013-evolusom-remaining-013.json",
+      "skipped": true,
+      "reason": "already_listed"
+    },
+    {
+      "fileName": "014-evolusom-remaining-014.json",
+      "skipped": true,
+      "reason": "already_listed"
+    },
+    {
+      "fileName": "015-evolusom-remaining-015.json",
+      "skipped": true,
+      "reason": "already_listed"
+    },
+    {
+      "fileName": "016-evolusom-remaining-016.json",
+      "skipped": true,
+      "reason": "already_listed"
+    }
+  ],
+  "totals": {
+    "selected": 1,
+    "created": 1,
+    "failed": 0,
+    "verified": 1
+  },
+  "finishedAt": "2026-07-23T22:50:51.934Z"
+}

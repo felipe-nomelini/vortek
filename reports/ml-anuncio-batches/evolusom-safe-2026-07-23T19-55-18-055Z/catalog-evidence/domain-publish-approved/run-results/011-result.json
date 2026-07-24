@@ -1,0 +1,260 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/011-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-011",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "59e3ed8d-333a-499d-8377-3502909a29aa",
+      "sku": "VTK017991",
+      "category": {
+        "id": "MLB29281",
+        "nome": "Mesas de Som",
+        "dominio": "MLB-SOUND_CONSOLES_AND_MIXERS"
+      },
+      "anuncio": {
+        "id": "MLB4937547495",
+        "title": "Mesa De Som Stetsom Stm1206 6 Canais 12v",
+        "price": 761.16,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937547495-mesa-de-som-stetsom-stm1206-6-canais-12v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 730.35 → R$ 761.16."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "3c04ddfc-a789-43eb-8918-0f398ded5d8a",
+      "sku": "VTK002218",
+      "category": {
+        "id": "MLB4469",
+        "nome": "Microfones",
+        "dominio": "MLB-MICROPHONES"
+      },
+      "anuncio": {
+        "id": "MLB4937526951",
+        "title": "Microfone De Mão Leson Ls50 Dinâmico Preto",
+        "price": 148.21,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937526951-microfone-de-mo-leson-ls50-dinmico-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 125.58 → R$ 148.21."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "c1586888-7a8e-4553-954d-530816c2d000",
+      "sku": "VTK017932",
+      "category": {
+        "id": "MLB235594",
+        "nome": "Morsas",
+        "dominio": "MLB-VISES"
+      },
+      "anuncio": {
+        "id": "MLB4937547671",
+        "title": "Mini Morsa Hikari Hk-201 Abertura Máxima: 2 / 50mm",
+        "price": 149.3,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937547671-mini-morsa-hikari-hk-201-abertura-maxima-2-50mm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 125.95 → R$ 149.30."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9817c9d6-b436-441f-bef3-66a24fa6fb34",
+      "sku": "VTK018595",
+      "category": {
+        "id": "MLB3385",
+        "nome": "Módulos Amplificadores",
+        "dominio": "MLB-VEHICLE_AMPLIFIERS"
+      },
+      "anuncio": {
+        "id": "MLB4937527103",
+        "title": "Módulo Amplificador H-buster Maxpower Hbm6400 6 Canais",
+        "price": 708.52,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937527103-modulo-amplificador-h-buster-maxpower-hbm6400-6-canais-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 681.35 → R$ 708.52."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ebb97279-ff85-4141-8978-16408c4d8e67",
+      "sku": "VTK017769",
+      "category": {
+        "id": "MLB9635",
+        "nome": "Placas de Rede",
+        "dominio": "MLB-NETWORK_CARDS"
+      },
+      "anuncio": {
+        "id": "MLB4937547837",
+        "title": "Módulo Mini Gbic Tp-link Tl-sm311ls Sfp Monomodo",
+        "price": 164.81,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937547837-modulo-mini-gbic-tp-link-tl-sm311ls-sfp-monomodo-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 142.18 → R$ 164.81."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "f949f3a6-8ced-417f-a0e4-535729c58232",
+      "sku": "VTK018981",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937547931",
+        "title": "Moldura Fiamon 9  Toyota Corolla G10 Preta Fosca",
+        "price": 135,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937547931-moldura-fiamon-9-toyota-corolla-g10-preta-fosca-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 115.93 → R$ 135.00."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "5a1f5294-f462-4ad3-a46b-baf3fdc81161",
+      "sku": "VTK019132",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937548015",
+        "title": "Moldura Fiamon Fit 15/19 G3 Black Piano",
+        "price": 202.88,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937548015-moldura-fiamon-fit-1519-g3-black-piano-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"status\":409,\"error\":\"Conflict\",\"code\":\"conflict.error\"}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "bde0f3ff-a8df-40b7-b957-b17515ef8709",
+      "sku": "VTK018979",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937548087",
+        "title": "Moldura Fiamon 9  Modelo Chinês Com Adaptador 7  Cruze",
+        "price": 332.7,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937548087-moldura-fiamon-9-modelo-chins-com-adaptador-7-cruze-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 302.27 → R$ 332.70."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "a8f76d87-5844-4140-8265-a630618ccf9d",
+      "sku": "VTK017455",
+      "category": {
+        "id": "MLB1714",
+        "nome": "Mouses",
+        "dominio": "MLB-COMPUTER_MICE"
+      },
+      "anuncio": {
+        "id": "MLB4937548153",
+        "title": "Mouse Sem Fio C3tech M-w15bk - Preto",
+        "price": 59.29,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937548153-mouse-sem-fio-c3tech-m-w15bk-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 43.46 → R$ 59.29."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9e289fe6-3c2f-4c6c-9700-c2e825741f6d",
+      "sku": "VTK018584",
+      "category": {
+        "id": "MLB1714",
+        "nome": "Mouses",
+        "dominio": "MLB-COMPUTER_MICE"
+      },
+      "anuncio": {
+        "id": "MLB4937527631",
+        "title": "Mouse Sem Fio Recarregável Lenovo Lecoo Ws207 Branco",
+        "price": 113.14,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937527631-mouse-sem-fio-recarregavel-lenovo-lecoo-ws207-branco-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 97.31 → R$ 113.14."
+      ]
+    }
+  ],
+  "failed": []
+}

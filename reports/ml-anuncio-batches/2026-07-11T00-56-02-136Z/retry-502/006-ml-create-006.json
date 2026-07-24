@@ -1,0 +1,66 @@
+{
+  "batchNumber": 6,
+  "batchId": "retry-502-006",
+  "items": [
+    {
+      "produtoId": "dfc01521-f641-43d6-8c9c-18ecb53463e0",
+      "sku": "VTK012795",
+      "nome": "Lccs 2 Dist - Limpador E Cond. De Cordas Solez Dist Aerosol",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "ed6164ce-d35c-4cc1-97ca-b187ca7f9f4e",
+      "sku": "VTK012072",
+      "nome": "Kit 05 Conectores P2 Femea Stereo Wc 2323 Wireconex",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "0e89519b-7baa-46d2-918c-876e90ba4953",
+      "sku": "VTK004609",
+      "nome": "77384",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "ddd9f12b-6a56-4456-874f-e60cee322f9a",
+      "sku": "VTK012414",
+      "nome": "Adaptador 3,5 Femea Trs 6,3mm Macho Wc347 Wireconex 06 Unidades",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "fa091297-df2b-493d-8fbf-52089b74821e",
+      "sku": "VTK001499",
+      "nome": "Divisor Satélite 1/2 5-2400 MHz Storm - DEZ / 10",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "57d19be9-e462-4419-84b3-c6423f88bb0c",
+      "sku": "VTK012797",
+      "nome": "Cabo Guitar Textil Guitxc-05 05 Metros Wireconex",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "25ea579a-df21-4e4c-a729-a8b1f351b239",
+      "sku": "VTK012022",
+      "nome": "Conector Combo Xlr Fêmea Painel 3p Wc 330 Wireconex 04 Unidades",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "289f321c-9b4d-4fee-bdbf-b5758f88ae17",
+      "sku": "VTK012018",
+      "nome": "Kit Conector Xlr Macho Wc 1013 (10un) Wireconex",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "4be0b818-3bb2-41b9-b9a6-d8198fbd2850",
+      "sku": "VTK012039",
+      "nome": "Kit Conector Xlr Macho Wc 1013 (10un) Wireconex",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "dd75d2e4-4280-41b5-93e5-5d719abbb97e",
+      "sku": "VTK012016",
+      "nome": "Kit Conectores Xlr 1003 1013 20un (10 Machos/10 Femeas) Wireconex",
+      "fornecedor": "RETRY_502"
+    }
+  ]
+}

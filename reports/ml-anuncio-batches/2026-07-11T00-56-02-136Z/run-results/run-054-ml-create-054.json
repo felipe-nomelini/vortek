@@ -1,0 +1,71 @@
+{
+  "batchNumber": 54,
+  "batchId": "ml-create-054",
+  "strategy": "safe_small_batch",
+  "executionHints": {
+    "delayMs": 1500,
+    "listingType": "gold_pro",
+    "useSchemaBasePrice": true,
+    "applyPricingStrategyAtRuntime": true,
+    "stopIfFailureRateOver": 0.5
+  },
+  "items": [
+    {
+      "produtoId": "84a8e8a2-41b9-4915-b6ca-fe8ff151c280",
+      "sku": "VTK012183",
+      "nome": "Kit 05 Conectores P2 Stereo Linha Femea Wc 336 Wireconex",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 52,
+      "estoque": 58,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 88.89,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "333fa5ab-1e85-4ef1-8d16-9e1aba8dc118",
+      "sku": "VTK012243",
+      "nome": "Cabo Flat Para Pedal Emborrachado 3 Polegadas Wireconex",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 52,
+      "estoque": 36,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 88.89,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "f647e8bf-dd32-482f-bfad-f01260f0cd3b",
+      "sku": "VTK002299",
+      "nome": "Adaptador P10 Mono x XLR Cannon Fêmea Metal ADAP0028 Prata Storm - PCT / 5",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "custo": 52.03,
+      "estoque": 9,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 88.93,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    }
+  ]
+}

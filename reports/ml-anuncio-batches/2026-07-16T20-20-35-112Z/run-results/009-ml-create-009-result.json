@@ -1,0 +1,616 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-16T20-20-35-112Z/run-results/run-009-ml-create-009.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-009",
+  "selected": 25,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "13d342f4-68f7-42f6-8cb4-da7ce9b29eb3",
+      "sku": "VTK016177",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903847073",
+        "title": "5 Tubos Pilha Comum Aaa C/40un Cada",
+        "price": 350.94,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903847073-5-tubos-pilha-comum-aaa-c40un-cada-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 320.51 → R$ 350.94.",
+        "Fiscal não vinculado no ML: vincular_sku: HTTP 409: Could not lock following resource - MLBU4346418082 | code=409 CONFLICT"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "3716a44f-f8de-4f10-b7a2-51391388d410",
+      "sku": "VTK016054",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903856573",
+        "title": "20 Pilhas Alcalinas D Panasonic (10 Cart)",
+        "price": 365.03,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903856573-20-pilhas-alcalinas-d-panasonic-10-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 337.19 → R$ 365.03.",
+        "Fiscal não vinculado no ML: vincular_sku: HTTP 409: Could not lock following resource - MLBU4346411530 | code=409 CONFLICT"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "4f488882-fcbd-4b2d-a49d-948df5c72955",
+      "sku": "VTK016176",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903847293",
+        "title": "5 Tubos Pilha Comum Aa C/52un Cada Panasonic",
+        "price": 368.12,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903847293-5-tubos-pilha-comum-aa-c52un-cada-panasonic-_JM",
+        "status": "active",
+        "sub_status": []
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 337.69 → R$ 368.12."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "04cea44f-efb7-4068-9dd1-1e896d41243b",
+      "sku": "VTK016040",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903856859",
+        "title": "20 Baterias Alcalinas 9v Panasonic",
+        "price": 381.4,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903856859-20-baterias-alcalinas-9v-panasonic-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 350.96 → R$ 381.40."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ab8095b3-1849-43b3-8de0-93ae28ceb6f8",
+      "sku": "VTK015974",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903867367",
+        "title": "12 Pilhas Recarregaveis Eneloop Std Aaa Panasonic (6 Cart)",
+        "price": 355.56,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903867367-12-pilhas-recarregaveis-eneloop-std-aaa-panasonic-6-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"code\":\"conflict.error\",\"error\":\"Conflict\",\"status\":409}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ff571feb-d040-4cea-bfbf-59839e1ef42a",
+      "sku": "VTK016146",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903867485",
+        "title": "40 Baterias Alcalinas 12v Panasonic Lr-v08-1bt (4 Cart)",
+        "price": 434.22,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903867485-40-baterias-alcalinas-12v-panasonic-lr-v08-1bt-4-cart-_JM",
+        "status": "active",
+        "sub_status": []
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 405.03 → R$ 434.22."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "fb2791f1-0c41-4ad9-9800-8772c830d02b",
+      "sku": "VTK015985",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903847797",
+        "title": "14 Pilhas Recarregaveis Eneloop Std Aaa Panasonic (7 Cart)",
+        "price": 444.02,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903847797-14-pilhas-recarregaveis-eneloop-std-aaa-panasonic-7-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 414.82 → R$ 444.02.",
+        "Fiscal não vinculado no ML: vincular_sku: HTTP 409: Could not lock following resource - MLBU4324158935 | code=409 CONFLICT"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "3997fcc9-eb69-497c-be78-6f82013e430c",
+      "sku": "VTK016249",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903867673",
+        "title": "Bateria Alcalina 9v Panasonic 24 Unidades",
+        "price": 421.16,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903867673-bateria-alcalina-9v-panasonic-24-unidades-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB4903867673: NSOPublicAPI error",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "5dadf654-ced7-4cec-9d80-f0f675b0c4d7",
+      "sku": "VTK015973",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903867769",
+        "title": "12 Pilhas Recarregaveis Eneloop Std Aa Panasonic (6 Cart)",
+        "price": 461.26,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903867769-12-pilhas-recarregaveis-eneloop-std-aa-panasonic-6-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 433.42 → R$ 461.26."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "c3474056-06ab-4510-8b96-0b80da8bd4c3",
+      "sku": "VTK015953",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903857431",
+        "title": "100 Pilhas Baterias Cr2032 3v Panasonic 20 Cartelas",
+        "price": 465.14,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903857431-100-pilhas-baterias-cr2032-3v-panasonic-20-cartelas-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 439.27 → R$ 465.14."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "92672195-7f95-4266-ac72-1cc97cc4614b",
+      "sku": "VTK016247",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903868017",
+        "title": "96 Pilhas Alcalinas Premium Aa Panasonic (24 Cartelas C/4",
+        "price": 494.65,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903868017-96-pilhas-alcalinas-premium-aa-panasonic-24-cartelas-c4-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 465.45 → R$ 494.65."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "46fd5bdf-22ac-4348-b46b-a7cb6c2fde15",
+      "sku": "VTK016011",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903868157",
+        "title": "16 Pilhas Recarregaveis Eneloop Std Aaa Panasonic (8 Cart)",
+        "price": 503.28,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903868157-16-pilhas-recarregaveis-eneloop-std-aaa-panasonic-8-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 474.08 → R$ 503.28."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "db4ce01c-4267-41ee-b945-89dc93976248",
+      "sku": "VTK015984",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903868313",
+        "title": "14 Pilhas Recarregaveis Eneloop Std Aa Panasonic (7 Cart)",
+        "price": 533.5,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903868313-14-pilhas-recarregaveis-eneloop-std-aa-panasonic-7-cart-_JM",
+        "status": "active",
+        "sub_status": []
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 505.66 → R$ 533.50."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "00c66741-f1f2-420d-8f91-0ddcae43e861",
+      "sku": "VTK016178",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903848667",
+        "title": "50 Baterias Alcalinas 12v Panasonic Lr-v08-1bt (5 Cart)",
+        "price": 535.48,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903848667-50-baterias-alcalinas-12v-panasonic-lr-v08-1bt-5-cart-_JM",
+        "status": "active",
+        "sub_status": []
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 506.28 → R$ 535.48."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "68c8b3bc-5505-436f-8641-612240686f20",
+      "sku": "VTK016248",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903858167",
+        "title": "96 Pilhas Alcalinas Premium Aaa Panasonic (24 Cartelas C/4",
+        "price": 511.79,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903858167-96-pilhas-alcalinas-premium-aaa-panasonic-24-cartelas-c4-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"code\":\"conflict.error\",\"error\":\"Conflict\",\"status\":409}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b58ee26f-9084-443b-8010-6dbe29901d02",
+      "sku": "VTK016100",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903848949",
+        "title": "30 Baterias Alcalinas 9v Panasonic",
+        "price": 555.64,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903848949-30-baterias-alcalinas-9v-panasonic-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 526.44 → R$ 555.64."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "7c64713d-d4fa-4c95-8f44-96d5ba7a4ab4",
+      "sku": "VTK016026",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903849077",
+        "title": "18 Pilhas Recarregaveis Eneloop Std Aaa Panasonic (9 Cart)",
+        "price": 562.54,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903849077-18-pilhas-recarregaveis-eneloop-std-aaa-panasonic-9-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 533.34 → R$ 562.54."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "1471bbaa-d217-4b34-84a6-c0bc9ecf962a",
+      "sku": "VTK016010",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903849169",
+        "title": "16 Pilhas Recarregaveis Eneloop Std Aa Panasonic (8 Cart)",
+        "price": 630.86,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903849169-16-pilhas-recarregaveis-eneloop-std-aa-panasonic-8-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 603.02 → R$ 630.86."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "5ff5442d-f905-47e2-b762-78b2258ae763",
+      "sku": "VTK016065",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903849289",
+        "title": "20 Pilhas Recarregaveis Eneloop Std Aaa Panasonic (10 Cart)",
+        "price": 647.57,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903849289-20-pilhas-recarregaveis-eneloop-std-aaa-panasonic-10-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 618.37 → R$ 647.57."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "8ccd2fbc-e7da-4d33-b87e-85c0fd8688ce",
+      "sku": "VTK015950",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903849365",
+        "title": "10 Tubos Pilha Comum Aaa C/40un Cada",
+        "price": 694.75,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903849365-10-tubos-pilha-comum-aaa-c40un-cada-_JM",
+        "status": "active",
+        "sub_status": []
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 668.89 → R$ 694.75."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "3f9815cf-3367-4fb4-abde-96cce24592a4",
+      "sku": "VTK016027",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903869269",
+        "title": "192 Pilhas Alcalinas Aa Panasonic (32 Cartelas C/6 Un)",
+        "price": 708.36,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903869269-192-pilhas-alcalinas-aa-panasonic-32-cartelas-c6-un-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 677.93 → R$ 708.36."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "e65bfeb0-de2c-44c3-a550-90868892f722",
+      "sku": "VTK016025",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903859023",
+        "title": "18 Pilhas Recarregaveis Eneloop Std Aa Panasonic (9 Cart)",
+        "price": 707.6,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903859023-18-pilhas-recarregaveis-eneloop-std-aa-panasonic-9-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 678.40 → R$ 707.60."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "08a6eeae-99b9-457f-ac38-735e4da2cb0f",
+      "sku": "VTK015949",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903869589",
+        "title": "10 Tubos Pilha Comum Aa C/52un Cada Panasonic",
+        "price": 768.56,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903869589-10-tubos-pilha-comum-aa-c52un-cada-panasonic-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 741.35 → R$ 768.56."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "7c782c6c-3fbb-4c03-93d5-74b5d1b6c657",
+      "sku": "VTK016028",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903859255",
+        "title": "192 Pilhas Alcalinas Aa Panasonic (48 Cartelas C/4 Un)",
+        "price": 784.55,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903859255-192-pilhas-alcalinas-aa-panasonic-48-cartelas-c4-un-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 752.54 → R$ 784.55."
+      ]
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "a3bc0921-f8a5-40ca-9ae1-fef8d162682a",
+      "sku": "VTK015992",
+      "nome": "150 Pilhas Baterias Cr2032 3v Panasonic 30 Cartelas",
+      "error": "<!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!--<![endif]-->\n<head>\n\n<title>vortek.shop | 502: Bad gateway</title>\n<meta charset=\"UTF-8\" />\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\" />\n<meta name=\"robots\" content=\"noindex, nofollow\" />\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\" />\n<link rel=\"stylesheet\" id=\"cf_styles-css\" href=\"/cdn-cgi/styles/main.css\" />\n</head>\n<body>\n<div id=\"cf-wrapper\">\n    <div id=\"cf-error-details\" class=\"p-0\">\n        <header class=\"mx-auto pt-10 lg:pt-6 lg:px-8 w-240 lg:w-full mb-8\">\n            <h1 class=\"inline-block sm:block sm:mb-2 font-light text-60 lg:text-4xl text-black-dark leading-tight mr-2\">\n                <span class=\"inline-block\">Bad gateway</span>\n                <span class=\"code-label\">Error code 502</span>\n            </h1>\n            <div>\n                Visit <a href=\"https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_502&utm_campaign=app.vortek.shop\" target=\"_blank\" rel=\"noopener noreferrer\">cloudflare.com</a> for more information.\n            </div>\n            <div class=\"mt-3\">2026-07-16 21:07:52 UTC</div>\n        </header>\n        <div class=\"my-8 bg-gradient-gray\">\n            <div class=\"w-240 lg:w-full mx-auto\">\n                <div class=\"clearfix md:px-8\">\n                    <div id=\"cf-browser-status\" class=\" relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center\">\n  <div class=\"relative mb-10 md:m-0\">\n    \n    <span class=\"cf-icon-browser block md:hidden h-20 bg-center bg-no-repeat\"></span>\n    <span class=\"cf-icon-ok w-12 h-12 absolute left-1/2 md:left-auto md:right-0 md:top-0 -ml-6 -bottom-4\"></span>\n    \n  </div>\n  <span class=\"md:block w-full truncate\">You</span>\n  <h3 class=\"md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3\">\n  \n    Browser\n  \n  </h3>\n  \n  <span class=\"leading-1.3 text-2xl text-green-success\">Working</span>\n  \n</div>\n                    <div id=\"cf-cloudflare-status\" class=\" relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center\">\n  <div class=\"relative mb-10 md:m-0\">\n    <a href=\"https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_502&#38;utm_campaign=app.vortek.shop\" target=\"_blank\" rel=\"noopener noreferrer\">\n    <span class=\"cf-icon-cloud block md:hidden h-20 bg-center bg-no-repeat\"></span>\n    <span class=\"cf-icon-ok w-12 h-12 absolute left-1/2 md:left-auto md:right-0 md:top-0 -ml-6 -bottom-4\"></span>\n    </a>\n  </div>\n  <span class=\"md:block w-full truncate\">São Paulo</span>\n  <h3 class=\"md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3\">\n  <a href=\"https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_502&utm_campaign=app.vortek.shop\" target=\"_blank\" rel=\"noopener noreferrer\">\n    Cloudflare\n  </a>\n  </h3>\n  \n  <span class=\"leading-1.3 text-2xl text-green-success\">Working</span>\n  \n</div>\n                    <div id=\"cf-host-status\" class=\"cf-error-source relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center\">\n  <div class=\"relative mb-10 md:m-0\">\n    \n    <span class=\"cf-icon-server block md:hidden h-20 bg-center bg-no-repeat\"></span>\n    <span class=\"cf-icon-error w-12 h-12 absolute left-1/2 md:left-auto md:right-0 md:top-0 -ml-6 -bottom-4\"></span>\n    \n  </div>\n  <span class=\"md:block w-full truncate\">app.vortek.shop</span>\n  <h3 class=\"md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3\">\n  \n    Host\n  \n  </h3>\n  \n  <span class=\"leading-1.3 text-2xl text-red-error\">Error</span>\n  \n</div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"w-240 lg:w-full mx-auto mb-8 lg:px-8\">\n            <div class=\"clearfix\">\n                <div class=\"w-1/2 md:w-full float-left pr-6 md:pb-10 md:pr-0 leading-relaxed\">\n                    <h2 class=\"text-3xl font-normal leading-1.3 mb-4\">What happened?</h2>\n                    <p>The web server reported a bad gateway error.</p>\n                </div>\n                <div class=\"w-1/2 md:w-full float-left leading-relaxed\">\n                    <h2 class=\"text-3xl font-normal leading-1.3 mb-4\">What can I do?</h2>\n                    <p class=\"mb-6\">Please try again in a few minutes.</p>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"cf-error-footer cf-wrapper w-240 lg:w-full py-10 sm:py-4 sm:px-8 mx-auto text-center sm:text-left border-solid border-0 border-t border-gray-300\">\n    <p class=\"text-13\">\n      <span class=\"cf-footer-item sm:block sm:mb-1\">Cloudflare Ray ID: <strong class=\"font-semibold\">a1c3fa8b2d785e5b</strong></span>\n      <span class=\"cf-footer-separator sm:hidden\">&bull;</span>\n      <span id=\"cf-footer-item-ip\" class=\"cf-footer-item hidden sm:block sm:mb-1\">\n        Your IP:\n        <button type=\"button\" id=\"cf-footer-ip-reveal\" class=\"cf-footer-ip-reveal-btn\">Click to reveal</button>\n        <span class=\"hidden\" id=\"cf-footer-ip\">2804:4b40:a10a:ea00:a406:4f16:dc12:6dbf</span>\n        <span class=\"cf-footer-separator sm:hidden\">&bull;</span>\n      </span>\n      <span class=\"cf-footer-item sm:block sm:mb-1\"><span>Performance &amp; security by</span> <a rel=\"noopener noreferrer\" href=\"https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_502&#38;utm_campaign=app.vortek.shop\" id=\"brand_link\" target=\"_blank\">Cloudflare</a></span>\n      \n    </p>\n    <script>(function(){function d(){var b=a.getElementById(\"cf-footer-item-ip\"),c=a.getElementById(\"cf-footer-ip-reveal\");b&&\"classList\"in b&&(b.classList.remove(\"hidden\"),c.addEventListener(\"click\",function(){c.classList.add(\"hidden\");a.getElementById(\"cf-footer-ip\").classList.remove(\"hidden\")}))}var a=document;document.addEventListener&&a.addEventListener(\"DOMContentLoaded\",d)})();</script>\n  </div><!-- /.error-footer -->\n\n    </div>\n</div>\n</body>\n</html>",
+      "status": 502,
+      "attempts": null,
+      "data": {
+        "raw": "<!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!--<![endif]-->\n<head>\n\n<title>vortek.shop | 502: Bad gateway</title>\n<meta charset=\"UTF-8\" />\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\" />\n<meta name=\"robots\" content=\"noindex, nofollow\" />\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\" />\n<link rel=\"stylesheet\" id=\"cf_styles-css\" href=\"/cdn-cgi/styles/main.css\" />\n</head>\n<body>\n<div id=\"cf-wrapper\">\n    <div id=\"cf-error-details\" class=\"p-0\">\n        <header class=\"mx-auto pt-10 lg:pt-6 lg:px-8 w-240 lg:w-full mb-8\">\n            <h1 class=\"inline-block sm:block sm:mb-2 font-light text-60 lg:text-4xl text-black-dark leading-tight mr-2\">\n                <span class=\"inline-block\">Bad gateway</span>\n                <span class=\"code-label\">Error code 502</span>\n            </h1>\n            <div>\n                Visit <a href=\"https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_502&utm_campaign=app.vortek.shop\" target=\"_blank\" rel=\"noopener noreferrer\">cloudflare.com</a> for more information.\n            </div>\n            <div class=\"mt-3\">2026-07-16 21:07:52 UTC</div>\n        </header>\n        <div class=\"my-8 bg-gradient-gray\">\n            <div class=\"w-240 lg:w-full mx-auto\">\n                <div class=\"clearfix md:px-8\">\n                    <div id=\"cf-browser-status\" class=\" relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center\">\n  <div class=\"relative mb-10 md:m-0\">\n    \n    <span class=\"cf-icon-browser block md:hidden h-20 bg-center bg-no-repeat\"></span>\n    <span class=\"cf-icon-ok w-12 h-12 absolute left-1/2 md:left-auto md:right-0 md:top-0 -ml-6 -bottom-4\"></span>\n    \n  </div>\n  <span class=\"md:block w-full truncate\">You</span>\n  <h3 class=\"md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3\">\n  \n    Browser\n  \n  </h3>\n  \n  <span class=\"leading-1.3 text-2xl text-green-success\">Working</span>\n  \n</div>\n                    <div id=\"cf-cloudflare-status\" class=\" relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center\">\n  <div class=\"relative mb-10 md:m-0\">\n    <a href=\"https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_502&#38;utm_campaign=app.vortek.shop\" target=\"_blank\" rel=\"noopener noreferrer\">\n    <span class=\"cf-icon-cloud block md:hidden h-20 bg-center bg-no-repeat\"></span>\n    <span class=\"cf-icon-ok w-12 h-12 absolute left-1/2 md:left-auto md:right-0 md:top-0 -ml-6 -bottom-4\"></span>\n    </a>\n  </div>\n  <span class=\"md:block w-full truncate\">São Paulo</span>\n  <h3 class=\"md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3\">\n  <a href=\"https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_502&utm_campaign=app.vortek.shop\" target=\"_blank\" rel=\"noopener noreferrer\">\n    Cloudflare\n  </a>\n  </h3>\n  \n  <span class=\"leading-1.3 text-2xl text-green-success\">Working</span>\n  \n</div>\n                    <div id=\"cf-host-status\" class=\"cf-error-source relative w-1/3 md:w-full py-15 md:p-0 md:py-8 md:text-left md:border-solid md:border-0 md:border-b md:border-gray-400 overflow-hidden float-left md:float-none text-center\">\n  <div class=\"relative mb-10 md:m-0\">\n    \n    <span class=\"cf-icon-server block md:hidden h-20 bg-center bg-no-repeat\"></span>\n    <span class=\"cf-icon-error w-12 h-12 absolute left-1/2 md:left-auto md:right-0 md:top-0 -ml-6 -bottom-4\"></span>\n    \n  </div>\n  <span class=\"md:block w-full truncate\">app.vortek.shop</span>\n  <h3 class=\"md:inline-block mt-3 md:mt-0 text-2xl text-gray-600 font-light leading-1.3\">\n  \n    Host\n  \n  </h3>\n  \n  <span class=\"leading-1.3 text-2xl text-red-error\">Error</span>\n  \n</div>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"w-240 lg:w-full mx-auto mb-8 lg:px-8\">\n            <div class=\"clearfix\">\n                <div class=\"w-1/2 md:w-full float-left pr-6 md:pb-10 md:pr-0 leading-relaxed\">\n                    <h2 class=\"text-3xl font-normal leading-1.3 mb-4\">What happened?</h2>\n                    <p>The web server reported a bad gateway error.</p>\n                </div>\n                <div class=\"w-1/2 md:w-full float-left leading-relaxed\">\n                    <h2 class=\"text-3xl font-normal leading-1.3 mb-4\">What can I do?</h2>\n                    <p class=\"mb-6\">Please try again in a few minutes.</p>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"cf-error-footer cf-wrapper w-240 lg:w-full py-10 sm:py-4 sm:px-8 mx-auto text-center sm:text-left border-solid border-0 border-t border-gray-300\">\n    <p class=\"text-13\">\n      <span class=\"cf-footer-item sm:block sm:mb-1\">Cloudflare Ray ID: <strong class=\"font-semibold\">a1c3fa8b2d785e5b</strong></span>\n      <span class=\"cf-footer-separator sm:hidden\">&bull;</span>\n      <span id=\"cf-footer-item-ip\" class=\"cf-footer-item hidden sm:block sm:mb-1\">\n        Your IP:\n        <button type=\"button\" id=\"cf-footer-ip-reveal\" class=\"cf-footer-ip-reveal-btn\">Click to reveal</button>\n        <span class=\"hidden\" id=\"cf-footer-ip\">2804:4b40:a10a:ea00:a406:4f16:dc12:6dbf</span>\n        <span class=\"cf-footer-separator sm:hidden\">&bull;</span>\n      </span>\n      <span class=\"cf-footer-item sm:block sm:mb-1\"><span>Performance &amp; security by</span> <a rel=\"noopener noreferrer\" href=\"https://www.cloudflare.com/5xx-error-landing?utm_source=errorcode_502&#38;utm_campaign=app.vortek.shop\" id=\"brand_link\" target=\"_blank\">Cloudflare</a></span>\n      \n    </p>\n    <script>(function(){function d(){var b=a.getElementById(\"cf-footer-item-ip\"),c=a.getElementById(\"cf-footer-ip-reveal\");b&&\"classList\"in b&&(b.classList.remove(\"hidden\"),c.addEventListener(\"click\",function(){c.classList.add(\"hidden\");a.getElementById(\"cf-footer-ip\").classList.remove(\"hidden\")}))}var a=document;document.addEventListener&&a.addEventListener(\"DOMContentLoaded\",d)})();</script>\n  </div><!-- /.error-footer -->\n\n    </div>\n</div>\n</body>\n</html>"
+      }
+    }
+  ]
+}

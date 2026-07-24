@@ -1,0 +1,25 @@
+{
+  "batchId": "ml-create-no-gtin-paused",
+  "items": [
+    {
+      "produtoId": "8cb5d3fd-bc1b-43b8-ae57-90d883127c28",
+      "sku": "VTK015924",
+      "nome": "VTK015924"
+    },
+    {
+      "produtoId": "cd773c34-b7bc-4d7a-b461-7e4e272147f1",
+      "sku": "VTK015937",
+      "nome": "VTK015937"
+    },
+    {
+      "produtoId": "1cef65d0-d601-4686-ab0c-58e0321fec79",
+      "sku": "VTK016048",
+      "nome": "VTK016048"
+    },
+    {
+      "produtoId": "ed557c4d-00b3-4882-b152-9e05e3471c9c",
+      "sku": "VTK016182",
+      "nome": "VTK016182"
+    }
+  ]
+}

@@ -1,0 +1,848 @@
+{
+  "batchNumber": 13,
+  "batchId": "evolusom-catalog-create-013",
+  "strategy": "exact_gtin_catalog_evidence",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "dc9ab654-a53f-4415-9c79-c302399113f3",
+      "sku": "VTK018376",
+      "nome": "Moldura 2 Din Fiamon Gm Vectra Gt/ Meriva/ Corsa/ Montana Black",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 20.9,
+      "estoque": 9,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 50.49,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898478318306",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "49216669",
+          "value_name": "Fiamon 2261 2 Din"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25261638",
+          "value_name": "7898478318306"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27679084",
+        "catalogProductName": "Moldura multimídia 2 Din Corsa 2002 A 2012 Hatch Sedan",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 21,
+        "validatedGtin": "7898478318306"
+      }
+    },
+    {
+      "produtoId": "8d6e28e6-7d85-4f4a-aa42-8f9a5b4b2e37",
+      "sku": "VTK018910",
+      "nome": "Moldura Fiamon 2 Din Gm Vectra Gt/meriva/corsa/montana Prata",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 20.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 50.49,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898478318337",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24746521",
+          "value_name": "89/M2"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52053",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2511571",
+          "value_name": "ABS"
+        },
+        {
+          "id": "EXTERIOR_HEIGHT",
+          "value_id": "7816576",
+          "value_name": "15 cm"
+        },
+        {
+          "id": "EXTERIOR_WIDTH",
+          "value_id": "5662660",
+          "value_name": "20 cm"
+        },
+        {
+          "id": "EXTERIOR_LENGTH",
+          "value_id": "7816454",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24746520",
+          "value_name": "7898478318337"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29614284",
+        "catalogProductName": "Moldura Painel 2din Vectra Meriva Corsa Montana - Cinza",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 27,
+        "validatedGtin": "7898478318337"
+      }
+    },
+    {
+      "produtoId": "c094ad9e-26fa-43c7-87f7-c0c65895290c",
+      "sku": "VTK018928",
+      "nome": "Moldura Fiamon 2 Din Duster/ Sandero/ Logan/ Kwid/ Captur Black Piano",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 41.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 76.42,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898478318412",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "25631358",
+          "value_name": "2380R"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25631356",
+          "value_name": "7898478318412"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27888414",
+        "catalogProductName": "Moldura Fiamon Duster/sandero/logan/kwid/captur Black Piano",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 32,
+        "validatedGtin": "7898478318412"
+      }
+    },
+    {
+      "produtoId": "f949f3a6-8ced-417f-a0e4-535729c58232",
+      "sku": "VTK018981",
+      "nome": "Moldura Fiamon 9\" Toyota Corolla G10 Preta Fosca",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 73.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 115.93,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908262119269",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "5069782",
+          "value_name": "4112"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "24938417",
+          "value_name": "Preta fosca"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "26341399",
+          "value_name": "7908262119269"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB55459642",
+        "catalogProductName": "Moldura Multimidia 9 Poleg Toyota Corolla 2008 A 2013 Cor Preta Fosca",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 9,
+        "validatedGtin": "7908262119269"
+      }
+    },
+    {
+      "produtoId": "525b3946-a305-41d4-bd4f-5ae3e60a1f64",
+      "sku": "VTK018773",
+      "nome": "Moldura Fiamon 2 Din Idea/ Idea Adventure 13/ 18 Prata",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 78.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 122.1,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898478318238",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "52381437",
+          "value_name": "Idea Adventure 2014-2017"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25244311",
+          "value_name": "7898478318238"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27666506",
+        "catalogProductName": "Moldura Painel 2 Din Prata Idea/ideia Adventure 2013 A 2018",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 8,
+        "validatedGtin": "7898478318238"
+      }
+    },
+    {
+      "produtoId": "5a1f5294-f462-4ad3-a46b-baf3fdc81161",
+      "sku": "VTK019132",
+      "nome": "Moldura Fiamon Fit 15/19 G3 Black Piano",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 142.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 202.88,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898478319891",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "84059421",
+          "value_name": "Fit 2015-2021 / WRV 2015-2021"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2511571",
+          "value_name": "ABS"
+        },
+        {
+          "id": "EXTERIOR_HEIGHT",
+          "value_id": "9935859",
+          "value_name": "17.9 cm"
+        },
+        {
+          "id": "EXTERIOR_WIDTH",
+          "value_id": "9680368",
+          "value_name": "10.3 cm"
+        },
+        {
+          "id": "EXTERIOR_LENGTH",
+          "value_id": "10361558",
+          "value_name": "10.3 cm"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24761138",
+          "value_name": "7898478319891"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27395527",
+        "catalogProductName": "Moldura Central Multimidia Honda Fit 2015 A 2021 Wr-v 2 Din 7 Pol",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 21,
+        "validatedGtin": "7898478319891"
+      }
+    },
+    {
+      "produtoId": "bde0f3ff-a8df-40b7-b957-b17515ef8709",
+      "sku": "VTK018979",
+      "nome": "Moldura Fiamon 9\" Modelo Chinês Com Adaptador 7\" Cruze 2016/2017",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 212.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 302.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908262116336",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "66905",
+          "value_name": "Cruze"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "47396005",
+          "value_name": "7908262116336"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB46000868",
+        "catalogProductName": "Moldura Cruze 15/16 9 Adaptador 7 Black Piano Friso Prata",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7908262116336"
+      }
+    },
+    {
+      "produtoId": "6a7f85c3-1e7e-406b-9575-82a576b68c8f",
+      "sku": "VTK018602",
+      "nome": "Moldura Universal Permak 2 Din 90/g",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 10.6,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.78,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253497905",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "28134761",
+          "value_name": "90/G"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "28134760",
+          "value_name": "7898253497905"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29422300",
+        "catalogProductName": "Moldura 2 Din Universal Somente Aro Permak 90/g",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7898253497905"
+      }
+    },
+    {
+      "produtoId": "a8f76d87-5844-4140-8265-a630618ccf9d",
+      "sku": "VTK017455",
+      "nome": "Mouse Sem Fio C3tech M-w15bk - Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 13.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 41.85,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908639901787",
+        "validatedNcm": "84716053",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1714",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "8774306",
+          "value_name": "C3Tech"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "44620924",
+          "value_name": "M-W15BK"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "value_id": "74471954",
+          "value_name": "M-W15BK Sem Fio"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "COMPUTER_MOUSE_TYPE",
+          "value_id": "192740",
+          "value_name": "Convencional"
+        },
+        {
+          "id": "SENSOR_TYPE",
+          "value_id": "192736",
+          "value_name": "Laser"
+        },
+        {
+          "id": "SENSOR_TECHNOLOGY",
+          "value_id": "20197759",
+          "value_name": "Óptico"
+        },
+        {
+          "id": "HAND_ORIENTATION",
+          "value_id": "2862903",
+          "value_name": "Ambidestro"
+        },
+        {
+          "id": "COMPATIBLE_OPERATING_SYSTEMS",
+          "value_id": "17889964",
+          "value_name": "Compatível com windows, Linux Chrome OS, macOS"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIRE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SENSOR_RESOLUTION",
+          "value_id": "249272",
+          "value_name": "1200 dpi"
+        },
+        {
+          "id": "MAX_SPEED",
+          "value_id": "13745836",
+          "value_name": "15 ips"
+        },
+        {
+          "id": "BUTTONS_NUMBER",
+          "value_id": "1021242",
+          "value_name": "3"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "44620932",
+          "value_name": "7908639901787"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7175738",
+          "value_name": "16 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7800080",
+          "value_name": "9 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7841468",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "8774306",
+          "value_name": "C3Tech"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "8695106",
+          "value_name": "70 g"
+        },
+        {
+          "id": "POLLING_RATE",
+          "value_id": "74047487",
+          "value_name": "240 Hz"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "2296418",
+          "value_name": "Adaptador"
+        },
+        {
+          "id": "WIRELESS_TECHNOLOGY",
+          "value_id": "73460133",
+          "value_name": "Wireless 2.4"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB43425843",
+        "catalogProductName": "Mouse Sem Fio C3Tech M-W15BK 1200dpi Óptico Nano USB Preto Ambidestro",
+        "catalogDomainId": "MLB-COMPUTER_MICE",
+        "predictedDomainId": "MLB-COMPUTER_MICE",
+        "categoryId": "MLB1714",
+        "categoryName": "Mouses",
+        "linkedListingsInCategory": 43,
+        "validatedGtin": "7908639901787"
+      }
+    },
+    {
+      "produtoId": "9e289fe6-3c2f-4c6c-9700-c2e825741f6d",
+      "sku": "VTK018584",
+      "nome": "Mouse Sem Fio Recarregável Lenovo Lecoo Ws207 Branco",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 55.9,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 93.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "6971859344840",
+        "validatedNcm": "84716053",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1714",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "7494",
+          "value_name": "Lenovo"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "37326920",
+          "value_name": "WS207"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        },
+        {
+          "id": "COMPUTER_MOUSE_TYPE",
+          "value_id": "192740",
+          "value_name": "Convencional"
+        },
+        {
+          "id": "SENSOR_TYPE",
+          "value_id": "109003",
+          "value_name": "Óptico"
+        },
+        {
+          "id": "SENSOR_TECHNOLOGY",
+          "value_id": "20197759",
+          "value_name": "Óptico"
+        },
+        {
+          "id": "HAND_ORIENTATION",
+          "value_id": "2862903",
+          "value_name": "Ambidestro"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIRE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SENSOR_RESOLUTION",
+          "value_id": "255138",
+          "value_name": "1600 dpi"
+        },
+        {
+          "id": "MAX_SPEED",
+          "value_id": "12269948",
+          "value_name": "1600 ips"
+        },
+        {
+          "id": "BUTTONS_NUMBER",
+          "value_id": "1021250",
+          "value_name": "4"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "39311919",
+          "value_name": "6971859344840"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "47439",
+          "value_name": "Coletek"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB38170552",
+        "catalogProductName": "Mouse Recarregável Sem Fio Lenovo Ws207 Branco",
+        "catalogDomainId": "MLB-COMPUTER_MICE",
+        "predictedDomainId": "MLB-COMPUTER_MICE",
+        "categoryId": "MLB1714",
+        "categoryName": "Mouses",
+        "linkedListingsInCategory": 6,
+        "validatedGtin": "6971859344840"
+      }
+    }
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/015-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-015",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "abbe4587-7010-4303-b677-107e0c471833",
+      "sku": "VTK017909",
+      "category": {
+        "id": "MLB1672",
+        "nome": "HDs e SSDs",
+        "dominio": "MLB-HARD_DRIVES_AND_SSDS"
+      },
+      "anuncio": {
+        "id": "MLB4937566765",
+        "title": "Ssd Kingston Nv3 M.2 2280 Nvme 4.0 500gb",
+        "price": 1292.86,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937566765-ssd-kingston-nv3-m2-2280-nvme-40-500gb-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 1266.00 → R$ 1292.86."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "fbc3d59d-5046-43ea-ace9-8247ea227645",
+      "sku": "VTK017910",
+      "category": {
+        "id": "MLB1672",
+        "nome": "HDs e SSDs",
+        "dominio": "MLB-HARD_DRIVES_AND_SSDS"
+      },
+      "anuncio": {
+        "id": "MLB4937566873",
+        "title": "Ssd Kingston Nv3 M.2 2280 Nvme 4.0 1tb",
+        "price": 1834.39,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937566873-ssd-kingston-nv3-m2-2280-nvme-40-1tb-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 1807.53 → R$ 1834.39."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "d416d068-469b-49d8-8363-dd08943f331b",
+      "sku": "VTK000384",
+      "category": {
+        "id": "MLB11529",
+        "nome": "Suportes",
+        "dominio": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS"
+      },
+      "anuncio": {
+        "id": "MLB7239068304",
+        "title": "Suporte Articulado Para Tv 14 -56  M2-pr Multivisão Preto",
+        "price": 99.74,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239068304-suporte-articulado-para-tv-14-56-m2-pr-multiviso-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 81.99 → R$ 99.74."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "87e2129f-2d51-4335-a5c0-6363a41b77a0",
+      "sku": "VTK018559",
+      "category": {
+        "id": "MLB11529",
+        "nome": "Suportes",
+        "dominio": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS"
+      },
+      "anuncio": {
+        "id": "MLB4937567111",
+        "title": "Suporte De Mesa Para Tv Multivisão De 32  Até 65  - Preto",
+        "price": 292.99,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937567111-suporte-de-mesa-para-tv-multiviso-de-32-ate-65-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 259.34 → R$ 292.99."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ce75825b-9c2e-4d76-bb75-b5224f81e6c6",
+      "sku": "VTK000478",
+      "category": {
+        "id": "MLB54182",
+        "nome": "Coolers Externos",
+        "dominio": "MLB-EXTERNAL_LAPTOP_COOLERS_AND_FANS"
+      },
+      "anuncio": {
+        "id": "MLB4937567207",
+        "title": "Suporte Para Notebook Com Cooler Nbc-11bk C3tech",
+        "price": 104.68,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937567207-suporte-para-notebook-com-cooler-nbc-11bk-c3tech-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 84.49 → R$ 104.68."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "81033b15-8416-4f9f-9864-cc1d29b6b864",
+      "sku": "VTK017983",
+      "category": {
+        "id": "MLB1708",
+        "nome": "Interruptores de Rede",
+        "dominio": "MLB-NETWORK_SWITCHES"
+      },
+      "anuncio": {
+        "id": "MLB4937556401",
+        "title": "Switch 08 Portas Intelbras Sf802af 10/100 Mbps Poe Ativo",
+        "price": 1262.22,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937556401-switch-08-portas-intelbras-sf802af-10100-mbps-poe-ativo-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 1230.62 → R$ 1262.22."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "2904d342-2a4b-4864-b846-83557d192804",
+      "sku": "VTK019049",
+      "category": {
+        "id": "MLB418472",
+        "nome": "Teclados Físicos",
+        "dominio": "MLB-PC_KEYBOARDS"
+      },
+      "anuncio": {
+        "id": "MLB7239068738",
+        "title": "Teclado Gamer Bloody B540 Mecânico De Alta Performance Usb",
+        "price": 1068.37,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239068738-teclado-gamer-bloody-b540-mecnico-de-alta-performance-usb-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 1036.77 → R$ 1068.37."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "7e4d3eae-5b29-4620-8616-a0b5bab0e7dd",
+      "sku": "VTK017454",
+      "category": {
+        "id": "MLB418472",
+        "nome": "Teclados Físicos",
+        "dominio": "MLB-PC_KEYBOARDS"
+      },
+      "anuncio": {
+        "id": "MLB7239068864",
+        "title": "Teclado Usb Multimídia C3tech Kb-m10bk - Preto",
+        "price": 63.96,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239068864-teclado-usb-multimidia-c3tech-kb-m10bk-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 47.31 → R$ 63.96."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ffdf05d8-a020-46f4-949c-d2cc0e1c87b0",
+      "sku": "VTK017843",
+      "category": {
+        "id": "MLB1053",
+        "nome": "Telefones",
+        "dominio": "MLB-TELEPHONES"
+      },
+      "anuncio": {
+        "id": "MLB7239069016",
+        "title": "Telefone Sem Fio Intelbras Ts5122 Digital Com Ramal",
+        "price": 413.61,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239069016-telefone-sem-fio-intelbras-ts5122-digital-com-ramal-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 380.79 → R$ 413.61."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "df364e36-4318-4d5a-bb86-2dd7546b7bc0",
+      "sku": "VTK018921",
+      "category": {
+        "id": "MLB271716",
+        "nome": "Testadores de Cabos",
+        "dominio": "MLB-NETWORK_CABLE_TESTERS"
+      },
+      "anuncio": {
+        "id": "MLB7239069120",
+        "title": "Testador De Cabos De Rede E Alicate De Crimpar Hikari Hk-305",
+        "price": 355.81,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239069120-testador-de-cabos-de-rede-e-alicate-de-crimpar-hikari-hk-305-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 324.21 → R$ 355.81."
+      ]
+    }
+  ],
+  "failed": []
+}

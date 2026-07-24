@@ -1,0 +1,1031 @@
+{
+  "batchId": "evolusom-remaining-006",
+  "strategy": "verified_dry_run_exact_catalog",
+  "items": [
+    {
+      "produtoId": "acf02ebc-acb3-4ced-b072-2b6768aebab8",
+      "sku": "VTK005071",
+      "nome": "Cabo Blindado 2RCA X 2RCA 5m Azul Storm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 28.5,
+      "estoque": 28,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 59.88,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566207970",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB38279",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16890593",
+          "value_name": "Stormtech"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "13834606",
+          "value_name": "Blindado"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788220",
+          "value_name": "RCA"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "12290005",
+          "value_name": "Azul"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129121",
+          "value_name": "5 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "16088626",
+          "value_name": "5 mm"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15289674",
+          "value_name": "2"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15290095",
+          "value_name": "2"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6778113",
+          "value_name": "RCA"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6778116",
+          "value_name": "RCA"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "22788370",
+          "value_name": "Banhado a ouro"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18184421",
+          "value_name": "7898566207970"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22587823",
+        "catalogProductName": "Kit Cabo Rca Blindado 5 Metros E 2 Y 2 Machos 1 Fêmea Ouro",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB38279",
+        "categoryName": "Outros Cabos",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7898566207970"
+      }
+    },
+    {
+      "produtoId": "d9c5a098-54a7-48c9-a7a1-045129600cc8",
+      "sku": "VTK003185",
+      "nome": "Cabo Cannon Macho para Cannon Fêmea 10m CBCN0002 Storm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 27.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 59.14,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566206737",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB432437",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2785980",
+          "value_name": "Storm"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17482611",
+          "value_name": "CBCN0002"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788227",
+          "value_name": "XLR"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129133",
+          "value_name": "10 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6778114",
+          "value_name": "XLR"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "2305169",
+          "value_name": "XLR"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "17482633",
+          "value_name": "7898566206737"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22235279",
+        "catalogProductName": "Cabo XLR Storm Profissional Macho para Fêmea de 10 m",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB432437",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7898566206737"
+      }
+    },
+    {
+      "produtoId": "73680629-ca61-4ed3-ab19-4edfe1eb90c0",
+      "sku": "VTK018652",
+      "nome": "Cabo Coaxial Flexível 4,0mm Multitoc 80% Malha Cobre +2 Alimentações Internas Branco 100m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 82.9,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 127.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898179317226",
+        "validatedNcm": "85444900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB270088",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "15436071",
+          "value_name": "TELECAM"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17155918",
+          "value_name": "CAT5"
+        },
+        {
+          "id": "NETWORK_CABLE_TYPE",
+          "value_id": "2623686",
+          "value_name": "Par trançado UTP"
+        },
+        {
+          "id": "SALES_UNIT",
+          "value_id": "5203052",
+          "value_name": "Bobina"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "4392266",
+          "value_name": "300 m"
+        },
+        {
+          "id": "NETWORK_CABLE_CATEGORY",
+          "value_id": "2623701",
+          "value_name": "Categoria 5e"
+        },
+        {
+          "id": "COATING_MATERIAL",
+          "value_id": "1237600",
+          "value_name": "PVC"
+        },
+        {
+          "id": "CONDUCTOR_MATERIAL",
+          "value_id": "74149906",
+          "value_name": "Fio liga de cobre"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6787154",
+          "value_name": "RJ-45"
+        },
+        {
+          "id": "AMBIENT",
+          "value_id": "417560",
+          "value_name": "Interior/Exterior"
+        },
+        {
+          "id": "INCLUDES_CONNECTORS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "31797877",
+          "value_name": "7898179317226"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB32061965",
+        "catalogProductName": "Cabo de Rede Categoria 5e TELECAM de 300 m para Câmeras e CFTV",
+        "catalogDomainId": "MLB-NETWORK_CABLES",
+        "categoryId": "MLB270088",
+        "categoryName": "Cabos de Rede",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898179317226"
+      }
+    },
+    {
+      "produtoId": "bdb61763-ddc9-479f-ac49-4e0838a61a11",
+      "sku": "VTK019466",
+      "nome": "Cabo De Descida Proeletronic Para Celular Fixo Rgc58 10 Metros Caco-0190",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 37.5,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 70.99,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898419484459",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB38279",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "31689501",
+          "value_name": "Proeletronic, ITEM_CONDITION"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17516219",
+          "value_name": "EMHD-0001"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "16696220",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6739225",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6739227",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "31689509",
+          "value_name": "7898419484459"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB31977569",
+        "catalogProductName": "Cabo De Descida Celular Fixo Rgc58 10mt N Macho",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB38279",
+        "categoryName": "Outros Cabos",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898419484459"
+      }
+    },
+    {
+      "produtoId": "381240fd-88a1-4b16-8802-7b4ee043dc97",
+      "sku": "VTK018712",
+      "nome": "Cabo De Descida Proeletronic Para Celular Fixo Rgc213 20 Metros Caco0192",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 169.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 241.22,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898419485029",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB277715",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "1175465",
+          "value_name": "Proeletronic"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "35587334",
+          "value_name": "CACO0192"
+        },
+        {
+          "id": "ANTENNA_TYPE",
+          "value_id": "5110562",
+          "value_name": "Externa"
+        },
+        {
+          "id": "CONNECTORS_TYPES",
+          "value_id": "39180182",
+          "value_name": "N macho, TNC macho"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "value_id": "53912942",
+          "value_name": "30 MHz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_id": "53912941",
+          "value_name": "10 GHz"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "53912940",
+          "value_name": "7898419485029"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB50278127",
+        "catalogProductName": "Cabo Descida Telefone Celular Rural Rgc213 20m N Macho / Tn",
+        "catalogDomainId": "MLB-CELLPHONE_SIGNAL_BOOSTER_ANTENNAS",
+        "categoryId": "MLB277715",
+        "categoryName": "Antenas",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898419485029"
+      }
+    },
+    {
+      "produtoId": "b15206b3-9651-402e-a1b1-89d70a6e1de7",
+      "sku": "VTK019031",
+      "nome": "Cabo De Guitarra Tiaflex 1x22 Awg 0,30 Mm Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 479.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 710.96,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898429984192",
+        "validatedNcm": "85444900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB432437",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "12235577",
+          "value_name": "Tiaflex"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "25266467",
+          "value_name": "701000"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "16088604",
+          "value_name": "Cabo"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "AWG_SIZE",
+          "value_id": "16240127",
+          "value_name": "22"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "29661973",
+          "value_name": "7898429984192"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "20201450",
+          "value_name": "Instrumentos musicais, Microfones, Equipamento de áudio, Instalações eletro-eletrônicos"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB30456286",
+        "catalogProductName": "Cabo De Guitarra Emborrachado 1 X 0,30mm2 6mm 100 Metros",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB432437",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898429984192"
+      }
+    },
+    {
+      "produtoId": "7662b862-f0b9-422c-b290-36a91b89094f",
+      "sku": "VTK017182",
+      "nome": "Cabo Extensor Usb 2.0 Plus Cable Pc-usb5002 A Macho X A Fêmea 5,0 Metros",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 11.45,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 38.83,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898555212442",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB54168",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3756317",
+          "value_name": "Plus Cable"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "15818917",
+          "value_name": "extensão"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "2230455",
+          "value_name": "USB"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "102303",
+          "value_name": "USB"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129121",
+          "value_name": "5 m"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16570378",
+          "value_name": "7898555212442"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "3756317",
+          "value_name": "Plus Cable"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "44139288",
+          "value_name": "extensão"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "19641279",
+          "value_name": "Cabo"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_VIDEO_TRANSMISSION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MAX_DATA_TRANSFER_SPEED",
+          "value_id": "76979965",
+          "value_name": "0 Mbps"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21652731",
+        "catalogProductName": "Cabo Usb 2.0 Extensão 5 Metros Extensor Macho Femea",
+        "catalogDomainId": "MLB-DATA_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB54168",
+        "categoryName": "Cabos de Dados",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7898555212442"
+      }
+    },
+    {
+      "produtoId": "e8674c3c-3f08-4334-ad46-264e6f16fae8",
+      "sku": "VTK017453",
+      "nome": "Cabo Hdmi Aquário 2.0 4k 3 Metro",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 13.5,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 41.36,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898127608550",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB431813",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "14200012",
+          "value_name": "Suzer"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "49002156",
+          "value_name": "Cabo Hdmi 2.0 Gamer 90 Graus"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "16696220",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "124822",
+          "value_name": "2 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "AWG_SIZE",
+          "value_id": "16088650",
+          "value_name": "0"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "16302668",
+          "value_name": "19"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "16302669",
+          "value_name": "19"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6739225",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6739227",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "30471017",
+          "value_name": "Banhado a níquel"
+        },
+        {
+          "id": "SUPPORTED_AUDIO_CODECS",
+          "value_id": "16874792",
+          "value_name": "1"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16302667",
+          "value_name": "7898127608550"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "20150014",
+          "value_name": "Caixas Aucusticas, Eletroeletrônicos Mesas de Som, Instrumentos Musicais em Gerais, Microfones Guitarras, Teclados em Geral, Guitarras"
+        },
+        {
+          "id": "MAX_RESOLUTION_SUPPORTED",
+          "value_id": "128798",
+          "value_name": "4K"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21478122",
+        "catalogProductName": "Cabo HDMI Suzer 2.0 Blindado 4K 2m Preto Alta Velocidade",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB431813",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 8,
+        "validatedGtin": "7898127608550"
+      }
+    },
+    {
+      "produtoId": "de035017-d2c7-4aba-8c31-1d9377798e26",
+      "sku": "VTK017332",
+      "nome": "Cabo Hdmi Evus C-050 4k Macho X Macho V2.0 3,0m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 19.2,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 48.4,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597131725",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB431813",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "16696220",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "83775",
+          "value_name": "Preto/Laranja"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "16201380",
+          "value_name": "6.5 mm"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "64611450",
+          "value_name": "Ouro de 24K"
+        },
+        {
+          "id": "SUPPORTED_AUDIO_CODECS",
+          "value_id": "60066755",
+          "value_name": "PCM, dvd-audio, Super Audio CD, Dolby TrueHD, DTS-HD Master Audio"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "23590019",
+          "value_name": "7898597131725"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "68008582",
+          "value_name": "TVs LED, LCD, Plasma, Monitores Digitais, Projetores, consoles de videogame, Blu-Ray"
+        },
+        {
+          "id": "MAX_RESOLUTION_SUPPORTED",
+          "value_id": "73926722",
+          "value_name": "4K 2160p"
+        },
+        {
+          "id": "VERSION_TYPE",
+          "value_id": "63532248",
+          "value_name": "1.4"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB26531419",
+        "catalogProductName": "Cabo HDMI 4K Evus para TV e Monitor com 3,0m",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB431813",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898597131725"
+      }
+    },
+    {
+      "produtoId": "213e9b98-abe7-43ab-a94b-e3787ff5301e",
+      "sku": "VTK017334",
+      "nome": "Cabo Hdmi Evus C-052 4k Macho X Macho V2.0 10,0m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 49.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 86.3,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597131749",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB431813",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "70093243",
+          "value_name": "Macho X Macho"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "16280341",
+          "value_name": "Preto com detalhes Dourados"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6739225",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6739227",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "13788230",
+          "value_name": "Ouro"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "70093244",
+          "value_name": "7898597131749"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "13788232",
+          "value_name": "TV, MP3"
+        },
+        {
+          "id": "MAX_RESOLUTION_SUPPORTED",
+          "value_id": "128798",
+          "value_name": "4K"
+        },
+        {
+          "id": "VERSION_TYPE",
+          "value_id": "63532249",
+          "value_name": "2.0"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB63500011",
+        "catalogProductName": "Cabo HDMI Macho X Macho 4K 2.0 Evus de 10,0m com Conectores Banhados a Ouro",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB431813",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898597131749"
+      }
+    }
+  ]
+}

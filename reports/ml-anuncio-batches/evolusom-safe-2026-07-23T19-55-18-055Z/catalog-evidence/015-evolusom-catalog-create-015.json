@@ -1,0 +1,1103 @@
+{
+  "batchNumber": 15,
+  "batchId": "evolusom-catalog-create-015",
+  "strategy": "exact_gtin_catalog_evidence",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "536a4c15-bd1a-47b7-b3bd-7d4da64d0a8b",
+      "sku": "VTK004940",
+      "nome": "Patch Cord Cat6 10m Azul PlusCable",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 19.9,
+      "estoque": 45,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 49.26,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898555214347",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB270088",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3756317",
+          "value_name": "Plus Cable"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "25884250",
+          "value_name": "PC-ETH6U100BL"
+        },
+        {
+          "id": "NETWORK_CABLE_TYPE",
+          "value_id": "2623689",
+          "value_name": "Patch cord"
+        },
+        {
+          "id": "SALES_UNIT",
+          "value_id": "5203053",
+          "value_name": "m"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "129133",
+          "value_name": "10 m"
+        },
+        {
+          "id": "CABLE_SHAPE",
+          "value_id": "433716",
+          "value_name": "Circular"
+        },
+        {
+          "id": "NETWORK_CABLE_CATEGORY",
+          "value_id": "32264606",
+          "value_name": "Categoria 6"
+        },
+        {
+          "id": "COATING_MATERIAL",
+          "value_id": "1237600",
+          "value_name": "PVC"
+        },
+        {
+          "id": "CONDUCTOR_MATERIAL",
+          "value_id": "1237602",
+          "value_name": "Cobre"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6787154",
+          "value_name": "RJ-45"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6343183",
+          "value_name": "RJ45"
+        },
+        {
+          "id": "AMBIENT",
+          "value_id": "115340",
+          "value_name": "Interior"
+        },
+        {
+          "id": "BANDWIDTH",
+          "value_id": "25144461",
+          "value_name": "1 GHz"
+        },
+        {
+          "id": "INCLUDES_CONNECTORS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25884251",
+          "value_name": "7898555214347"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "74933598",
+          "value_name": "PC-ETH6U100BL"
+        },
+        {
+          "id": "MPN",
+          "value_id": "25884252",
+          "value_name": "7898555214347"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27986124",
+        "catalogProductName": "Cabo De Rede Cat.6 10m Pc-eth6u100bl Azul Patch Cord Plus",
+        "catalogDomainId": "MLB-NETWORK_CABLES",
+        "predictedDomainId": "MLB-NETWORK_CABLES",
+        "categoryId": "MLB270088",
+        "categoryName": "Cabos de Rede",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7898555214347"
+      }
+    },
+    {
+      "produtoId": "1c223bca-7a89-4a38-a0e9-302117cebc2d",
+      "sku": "VTK003308",
+      "nome": "Patch Cord U/UTP CAT.6 CMX 10m T568A/B Azul FURUKAWA SOHOPLUS",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 76,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 118.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893137276669",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB270088",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3646767",
+          "value_name": "Furukawa"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "43079683",
+          "value_name": "Flexível Patch cord"
+        },
+        {
+          "id": "NETWORK_CABLE_TYPE",
+          "value_id": "2623689",
+          "value_name": "Patch cord"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "129133",
+          "value_name": "10 m"
+        },
+        {
+          "id": "NETWORK_CABLE_CATEGORY",
+          "value_id": "2623699",
+          "value_name": "Categoria 6"
+        },
+        {
+          "id": "COATING_MATERIAL",
+          "value_id": "25871412",
+          "value_name": "Poliolefina ou Polietileno"
+        },
+        {
+          "id": "CONDUCTOR_MATERIAL",
+          "value_id": "25420824",
+          "value_name": "Cobre eletrolítico"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6787154",
+          "value_name": "RJ-45"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6343183",
+          "value_name": "RJ45"
+        },
+        {
+          "id": "AMBIENT",
+          "value_id": "115340",
+          "value_name": "Interior"
+        },
+        {
+          "id": "BANDWIDTH",
+          "value_id": "4136091",
+          "value_name": "250 MHz"
+        },
+        {
+          "id": "INCLUDES_CONNECTORS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "28446994",
+          "value_name": "7893137276669"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "3646767",
+          "value_name": "Furukawa"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "74611182",
+          "value_name": "FKA0024"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29609399",
+        "catalogProductName": "Cabo Flexível Lan Utp Rj45 Furukawa Sohoplus Cat6 10m Azul",
+        "catalogDomainId": "MLB-NETWORK_CABLES",
+        "predictedDomainId": "MLB-NETWORK_CABLES",
+        "categoryId": "MLB270088",
+        "categoryName": "Cabos de Rede",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7893137276669"
+      }
+    },
+    {
+      "produtoId": "cd8688fe-dbea-4f06-aef6-1f4c9a02a122",
+      "sku": "VTK022563",
+      "nome": "Patch Panel Sohoplus T568a/b Cat6 24 Portas",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 499.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 740.59,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893137316938",
+        "validatedNcm": "85177900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB100698",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "17549910",
+          "value_name": "Furukawa Soho Plus"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "48993948",
+          "value_name": "Furukawa CMX U/UTP"
+        },
+        {
+          "id": "PORTS_NUMBER",
+          "value_id": "23324915",
+          "value_name": "24"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "1047527",
+          "value_name": "700 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "1125493",
+          "value_name": "53 cm"
+        },
+        {
+          "id": "PORT_TYPE",
+          "value_id": "5409664",
+          "value_name": "RJ45"
+        },
+        {
+          "id": "NETWORK_CABLE_CATEGORY",
+          "value_id": "25877954",
+          "value_name": "Cat.6"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "124822",
+          "value_name": "2 m"
+        },
+        {
+          "id": "CHANNELS_NUMBER",
+          "value_id": "16208899",
+          "value_name": "24"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_DJ_EQUIPMENT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "26877504",
+          "value_name": "Aço SPCC, Plástico ABS"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25224157",
+          "value_name": "7893137316938"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27652735",
+        "catalogProductName": "Patch Panel Cat6 T568a/b 24 Portas Rj-45 Rack 1u Servidor",
+        "catalogDomainId": "MLB-PATCH_PANELS",
+        "predictedDomainId": "MLB-PATCH_PANELS",
+        "categoryId": "MLB100698",
+        "categoryName": "Patch Painéis",
+        "linkedListingsInCategory": 25,
+        "validatedGtin": "7893137316938"
+      }
+    },
+    {
+      "produtoId": "3e731d68-d11e-4a79-b40e-5904840154d1",
+      "sku": "VTK018766",
+      "nome": "Pedestal Ask Para Caixa Acústica Cxt Regulagem Telescópica",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 95.95,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 143.15,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898939971675",
+        "validatedNcm": "92099900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB10233",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4238929",
+          "value_name": "ASK"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "53909383",
+          "value_name": "Acústica CXT"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "4837600",
+          "value_name": "Aço"
+        },
+        {
+          "id": "IS_ADJUSTABLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MIN_HEIGHT",
+          "value_id": "66001610",
+          "value_name": "180 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "26454298",
+          "value_name": "7898939971675"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB28325639",
+        "catalogProductName": "Suporte Tripé Para Caixa Acústica Cxt 1,80m 40 Kg Preto",
+        "catalogDomainId": "MLB-SPEAKERS_STANDS",
+        "predictedDomainId": "MLB-SPEAKERS_STANDS",
+        "categoryId": "MLB10233",
+        "categoryName": "Suportes para Caixas de Som",
+        "linkedListingsInCategory": 12,
+        "validatedGtin": "7898939971675"
+      }
+    },
+    {
+      "produtoId": "01230107-7150-4839-9397-5df4e772d309",
+      "sku": "VTK018860",
+      "nome": "Pen Drive Emtec Angry Birds Yellow Bird 08gb 2.0",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 44.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 80.12,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "3126170104465",
+        "validatedNcm": "85235190",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB4980",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "453730",
+          "value_name": "Emtec"
+        },
+        {
+          "id": "LINE",
+          "value_id": "2240079",
+          "value_name": "Original"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "35313532",
+          "value_name": "Tematico"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "value_id": "40344392",
+          "value_name": "EMT8"
+        },
+        {
+          "id": "DATA_STORAGE_CAPACITY",
+          "value_id": "18646",
+          "value_name": "8 GB"
+        },
+        {
+          "id": "USB_PORT_VERSION",
+          "value_id": "13467392",
+          "value_name": "2"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52007",
+          "value_name": "Amarelo"
+        },
+        {
+          "id": "PATTERN_NAME",
+          "value_id": "7544930",
+          "value_name": "Angry Birds"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "7386989",
+          "value_name": "1"
+        },
+        {
+          "id": "CONNECTOR_TYPES",
+          "value_id": "102761",
+          "value_name": "USB 2.0"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "COMPATIBLE_OPERATING_SYSTEMS",
+          "value_id": "4804541",
+          "value_name": "Windows"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450296",
+          "value_name": "Amarelo"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "40344395",
+          "value_name": "EMT8"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "40344396",
+          "value_name": "3126170104465"
+        },
+        {
+          "id": "CLOSURE_TYPE",
+          "value_id": "21056695",
+          "value_name": "Tampa"
+        },
+        {
+          "id": "READ_SPEED",
+          "value_id": "305236",
+          "value_name": "20 MB/s"
+        },
+        {
+          "id": "WRITE_SPEED",
+          "value_id": "973440",
+          "value_name": "4 MB/s"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "25725083",
+          "value_name": "0.2 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "13260176",
+          "value_name": "0.5 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "34704639",
+          "value_name": "0.5 cm"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ACTIVITY_LED",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB39017703",
+        "catalogProductName": "Pen Drive Tematico 8gb Angry Birds Chuck",
+        "catalogDomainId": "MLB-PENDRIVES",
+        "predictedDomainId": "MLB-PENDRIVES",
+        "categoryId": "MLB4980",
+        "categoryName": "Pen Drives",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "3126170104465"
+      }
+    },
+    {
+      "produtoId": "8c5ea493-5817-4020-b43b-f57f10c5c67a",
+      "sku": "VTK018637",
+      "nome": "Pistola De Cola Quente Hikari Hpc-280 280w Bivolt 21k913",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 95.1,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 142.1,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810412348",
+        "validatedNcm": "85167990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB277318",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "19792844",
+          "value_name": "HPC-280"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "19159438",
+          "value_name": "Pistola de cola"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52051",
+          "value_name": "Cinza-escuro"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "MAX_POWER",
+          "value_id": "5635224",
+          "value_name": "280 W"
+        },
+        {
+          "id": "RATED_POWER",
+          "value_id": "6555522",
+          "value_name": "32 W"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "1033091",
+          "value_name": "Elétrica"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "11074305",
+          "value_name": "50/60 Hz"
+        },
+        {
+          "id": "RECOMMENDED_USES",
+          "value_id": "2439633",
+          "value_name": "Industrial, Reparos, Restauração, Estofamento"
+        },
+        {
+          "id": "RECOMMENDED_SURFACES",
+          "value_id": "2467006",
+          "value_name": "Papel, Papelão"
+        },
+        {
+          "id": "MAX_OPERATING_TEMPERATURE",
+          "value_id": "19792881",
+          "value_name": "190 °C"
+        },
+        {
+          "id": "HEATING_TIME",
+          "value_id": "18501296",
+          "value_name": "5 m"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "1125631",
+          "value_name": "24 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "31966",
+          "value_name": "3 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7727702",
+          "value_name": "23 cm"
+        },
+        {
+          "id": "GLUE_STICK_DIAMETER",
+          "value_id": "34556188",
+          "value_name": "1.1 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "19792880",
+          "value_name": "7899810412348, 7899810401199"
+        },
+        {
+          "id": "WITH_ERGONOMIC_DESIGN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REMOVABLE_NOZZLES",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SUPPORT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB23774141",
+        "catalogProductName": "Pistola de Cola Quente Profissional Hikari HPC-280 280W Industrial 127/220 V",
+        "catalogDomainId": "MLB-ELECTRIC_GLUE_AND_SILICONE_GUNS",
+        "predictedDomainId": "MLB-ELECTRIC_GLUE_AND_SILICONE_GUNS",
+        "categoryId": "MLB277318",
+        "categoryName": "Pistolas de Cola",
+        "linkedListingsInCategory": 45,
+        "validatedGtin": "7899810412348"
+      }
+    },
+    {
+      "produtoId": "e5bee835-d54d-4ec4-a391-7830d3c36bde",
+      "sku": "VTK018090",
+      "nome": "Ponta Fenda Para Ferro De Solda Hikari Hk Plus Sc-40 Com 4 Peças",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 26.9,
+      "estoque": 14,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 57.9,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810413994",
+        "validatedNcm": "85159000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB48611",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "7800254",
+          "value_name": "Conica"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52053",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "SOLDERING_IRON_TYPE",
+          "value_id": "5572229",
+          "value_name": "Lápis"
+        },
+        {
+          "id": "POWER",
+          "value_id": "113030",
+          "value_name": "40 W"
+        },
+        {
+          "id": "TIP_MATERIAL",
+          "value_id": "22775938",
+          "value_name": "Cobre"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_REMOVABLE_TIP",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "37236735",
+          "value_name": "7899810413994"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB36507266",
+        "catalogProductName": "Kit 4 Pontas Fenda Ferro Solda Hikari SC-40 Conica Cobre 40W",
+        "catalogDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "predictedDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "categoryId": "MLB48611",
+        "categoryName": "Ferros de Solda",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7899810413994"
+      }
+    },
+    {
+      "produtoId": "5fd29c7c-8617-46f0-80fd-309199798d3a",
+      "sku": "VTK017398",
+      "nome": "Porta Fusível Technoise 1 Via Niquel Faca Anl",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 17.99,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 46.9,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898530515896",
+        "validatedNcm": "85361000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB270084",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "7198818",
+          "value_name": "Technoise"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "26096048",
+          "value_name": "Technoise"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "1115139",
+          "value_name": "4 cm"
+        },
+        {
+          "id": "INDUSTRIAL_FUSE_TYPE",
+          "value_id": "42942956",
+          "value_name": "Automotivo"
+        },
+        {
+          "id": "INDUSTRIAL_FUSE_MATERIAL",
+          "value_id": "2693316",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "SHAPE",
+          "value_id": "1163800",
+          "value_name": "Retangular"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "28666659",
+          "value_name": "7898530515896"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29742843",
+        "catalogProductName": "Porta Fusível Faca/ Mini Faca Anl 1 Via Technoise",
+        "catalogDomainId": "MLB-INDUSTRIAL_FUSES",
+        "predictedDomainId": "MLB-INDUSTRIAL_FUSES",
+        "categoryId": "MLB270084",
+        "categoryName": "Fusíveis",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7898530515896"
+      }
+    },
+    {
+      "produtoId": "437ff9ec-67b2-40d3-801a-5a3950b3ae06",
+      "sku": "VTK018665",
+      "nome": "Protetor Eletrônico Intelbras Com 5 Tomadas Epe 205+",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 37.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 71.48,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637612609",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB63114",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "22007802",
+          "value_name": "4824202"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "18033134",
+          "value_name": "Filtro de linha"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "OUTLETS_NUMBER",
+          "value_id": "5377248",
+          "value_name": "5"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "127485",
+          "value_name": "1 m"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "12872035",
+          "value_name": "50Hz/60Hz"
+        },
+        {
+          "id": "POWER",
+          "value_id": "11386401",
+          "value_name": "2.2 W"
+        },
+        {
+          "id": "MAX_CURRENT",
+          "value_id": "5755450",
+          "value_name": "10 A"
+        },
+        {
+          "id": "WITH_USB",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_OVERLOAD_PROTECTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ELECTRICAL_NOISE_REDUCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "PLUGS_COMPATIBILITY",
+          "value_id": "24038153",
+          "value_name": "Novo padrao"
+        },
+        {
+          "id": "PORTS_AND_CONNECTORS_TYPES",
+          "value_id": "24038155",
+          "value_name": "Tomadas"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "22007848",
+          "value_name": "7896637612609"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB25363961",
+        "catalogProductName": "Filtro De Linha Com 5 Tomadas Epe 205 Branco Intelbras",
+        "catalogDomainId": "MLB-POWER_STRIPS",
+        "predictedDomainId": "MLB-POWER_STRIPS",
+        "categoryId": "MLB63114",
+        "categoryName": "Filtros de Linha",
+        "linkedListingsInCategory": 31,
+        "validatedGtin": "7896637612609"
+      }
+    },
+    {
+      "produtoId": "d5c4e481-5712-4c0d-8783-5ad4c7bd86e0",
+      "sku": "VTK018118",
+      "nome": "Refil De Tinta Magenta Multilaser Epson T664 100ml",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 14.9,
+      "estoque": 14,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.09,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899838830254",
+        "validatedNcm": "32151900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3561",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "31163",
+          "value_name": "Multilaser"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "15412785",
+          "value_name": "Integradores"
+        },
+        {
+          "id": "INK_COLOR",
+          "value_id": "338780",
+          "value_name": "Magenta"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "37723560",
+          "value_name": "7899838830254"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB36922061",
+        "catalogProductName": "Refil De Tinta Para Impressoras Epson 100 Ml Magenta",
+        "catalogDomainId": "MLB-PRINTER_INKS",
+        "predictedDomainId": "MLB-PRINTER_INKS",
+        "categoryId": "MLB3561",
+        "categoryName": "Tintas",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7899838830254"
+      }
+    }
+  ]
+}

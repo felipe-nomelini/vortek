@@ -1,0 +1,1428 @@
+{
+  "batchNumber": 4,
+  "batchId": "evolusom-catalog-create-004",
+  "strategy": "exact_gtin_catalog_evidence",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "2aacede6-1481-45c5-842a-255b6e79a372",
+      "sku": "VTK017945",
+      "nome": "Cabo Usb A X Lightning Proeletronic Caus-100l Branco 1,0m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 45.1,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 80.37,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898419499552",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB5080",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "1175465",
+          "value_name": "Proeletronic"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16408149",
+          "value_name": "CAUS-100 L"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "2230455",
+          "value_name": "USB"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "48550954",
+          "value_name": "Conector de 8 pinos"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "127485",
+          "value_name": "1 m"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16408210",
+          "value_name": "7898419499552"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21551509",
+        "catalogProductName": "Cabo Lightning Usb Recarga E Dados Caus-100l Proeletronic Cor Branco",
+        "catalogDomainId": "MLB-DATA_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-DATA_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB5080",
+        "categoryName": "Cabos",
+        "linkedListingsInCategory": 8,
+        "validatedGtin": "7898419499552"
+      }
+    },
+    {
+      "produtoId": "40833916-0332-443e-a228-277eb34c12c9",
+      "sku": "VTK017183",
+      "nome": "Cabo Vga Para Monitor Plus Cable Pc-mon1802 Conector Ouro 1.8 Metros",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 16.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 45.56,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898555212343",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB431813",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3756317",
+          "value_name": "Plus Cable"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "20234019",
+          "value_name": "PC-MON1802"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788222",
+          "value_name": "VGA"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129119",
+          "value_name": "1.8 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6739226",
+          "value_name": "VGA"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6739228",
+          "value_name": "VGA"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "20234046",
+          "value_name": "7898555212343"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB24033618",
+        "catalogProductName": "Cabo Plus Cable Vga 1,8m Para Monitor Com Filtro Pc-mon1802",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB431813",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 16,
+        "validatedGtin": "7898555212343"
+      }
+    },
+    {
+      "produtoId": "8088fd1a-2748-4164-b1cf-848f7ffb9f9b",
+      "sku": "VTK017329",
+      "nome": "Cabo Vga Evus C-041 Hd15 Macho X Hd15 Macho Com Filtro 10,0m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 30.5,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 62.35,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597131640",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB431813",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24132791",
+          "value_name": "EVUS"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788222",
+          "value_name": "VGA"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "16041615",
+          "value_name": "7 mm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "36724119",
+          "value_name": "7898597131640"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB36002261",
+        "catalogProductName": "Cabo VGA Evus de 10m com Filtro",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB431813",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898597131640"
+      }
+    },
+    {
+      "produtoId": "fb082eb6-7b7d-41e6-b744-08855f2b5ae8",
+      "sku": "VTK004200",
+      "nome": "Caixa de Som Ambiente Frahm Outdoor 120W HS5 Preta - PAR / 2",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 599.9,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 888.74,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896673815170",
+        "validatedNcm": "85182200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB11507",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "116881",
+          "value_name": "Frahm"
+        },
+        {
+          "id": "LINE",
+          "value_id": "12609874",
+          "value_name": "HS"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "20006218",
+          "value_name": "31863 5 HS"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "72740926",
+          "value_name": "31863 5 HS"
+        },
+        {
+          "id": "POWER_OUTPUT_RMS",
+          "value_id": "118225",
+          "value_name": "120 W"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "value_id": "1033091",
+          "value_name": "Elétrica"
+        },
+        {
+          "id": "MAX_BATTERY_AUTONOMY",
+          "value_id": "12240348",
+          "value_name": "0 h"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "946874",
+          "value_name": "2"
+        },
+        {
+          "id": "PICKUPS_NUMBER",
+          "value_id": "12093456",
+          "value_name": "0"
+        },
+        {
+          "id": "SPEAKER_TYPES",
+          "value_id": "7199379",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "SPEAKER_FILTER_TYPES",
+          "value_id": "352987",
+          "value_name": "Passivo"
+        },
+        {
+          "id": "SPEAKER_FORMAT",
+          "value_id": "7199382",
+          "value_name": "Caixa"
+        },
+        {
+          "id": "INSTALLATION_PLACEMENTS",
+          "value_id": "16841103",
+          "value_name": "Zona externa"
+        },
+        {
+          "id": "CHANNELS_SETUP",
+          "value_id": "9885211",
+          "value_name": "1"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WI_FI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BASE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_INTEGRATED_DJ_CONTROLLERS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_KARAOKE_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_VOICE_EFFECT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_RADIO",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_PORTABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATERPROOF",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_SUPPORT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_RECHARGEABLE_BATTERY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "20006316",
+          "value_name": "7896673815170"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "116881",
+          "value_name": "Frahm"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_OUTDOOR_USE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_DUST_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_REMOTE_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_CHARGER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_WHEELS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_LATCH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_PROFESSIONAL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_A_STAGE_MONITOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SCREEN",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NFC",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INPUT_CONNECTORS",
+          "value_id": "102306",
+          "value_name": "Plug"
+        },
+        {
+          "id": "MIN_FREQUENCY_RESPONSE",
+          "value_id": "7213589",
+          "value_name": "55 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY_RESPONSE",
+          "value_id": "8158757",
+          "value_name": "20 Hz"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7792089",
+          "value_name": "24.1 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "9705993",
+          "value_name": "17.3 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "8876422",
+          "value_name": "16.5 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "7677469",
+          "value_name": "4 kg"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB23928064",
+        "catalogProductName": "Par de Caixas de Som Frahm HS Outdoor Passivas de 5\" com 120W",
+        "catalogDomainId": "MLB-SPEAKERS",
+        "predictedDomainId": "MLB-SPEAKERS",
+        "categoryId": "MLB11507",
+        "categoryName": "Caixas Acústicas ",
+        "linkedListingsInCategory": 29,
+        "validatedGtin": "7896673815170"
+      }
+    },
+    {
+      "produtoId": "e502444e-ea1e-4e20-9a24-da10069b6668",
+      "sku": "VTK017338",
+      "nome": "Caixa De Som Evus As-225d Color Wave",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 39.91,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 73.96,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597133439",
+        "validatedNcm": "85182100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3378",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "22869130",
+          "value_name": "AS225D"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "22869156",
+          "value_name": "AS225D"
+        },
+        {
+          "id": "POWER_OUTPUT_RMS",
+          "value_id": "2426062",
+          "value_name": "6 W"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "value_id": "20912980",
+          "value_name": "Ca"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "946874",
+          "value_name": "2"
+        },
+        {
+          "id": "SPEAKER_TYPES",
+          "value_id": "7643641",
+          "value_name": "Médio"
+        },
+        {
+          "id": "SPEAKER_FILTER_TYPES",
+          "value_id": "352987",
+          "value_name": "Passivo"
+        },
+        {
+          "id": "SPEAKER_FORMAT",
+          "value_id": "7199382",
+          "value_name": "Caixa"
+        },
+        {
+          "id": "CHANNELS_SETUP",
+          "value_id": "353330",
+          "value_name": "2.1"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WI_FI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BASE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_KARAOKE_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_VOICE_EFFECT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_RADIO",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_PORTABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATERPROOF",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_RECHARGEABLE_BATTERY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "22869157",
+          "value_name": "7898597133439"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB25986636",
+        "catalogProductName": "Caixa de Som Gamer Evus AS225D Color Wave USB LED Multicolorido",
+        "catalogDomainId": "MLB-SPEAKERS",
+        "predictedDomainId": "MLB-SPEAKERS",
+        "categoryId": "MLB3378",
+        "categoryName": "Caixas de Som e Subwoofer",
+        "linkedListingsInCategory": 6,
+        "validatedGtin": "7898597133439"
+      }
+    },
+    {
+      "produtoId": "81dec7ce-5710-4159-9e36-11850d528f4f",
+      "sku": "VTK017992",
+      "nome": "Caixa Hermética Multitoc Vedada 14,5x10,5x7,0 Completa Preta",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 15.9,
+      "estoque": 17,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 44.32,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898179764624",
+        "validatedNcm": "39231090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB6952",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "79916",
+          "value_name": "Multitoc"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17305",
+          "value_name": "Baby"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "2430221",
+          "value_name": "14.5 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "36600",
+          "value_name": "10.5 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "1115182",
+          "value_name": "7 cm"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "19528094",
+          "value_name": "Caixa estanque"
+        },
+        {
+          "id": "PROTECTION_DEGREE",
+          "value_id": "6322687",
+          "value_name": "IP65"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "SHAPE",
+          "value_id": "1163800",
+          "value_name": "Retangular"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "20115134",
+          "value_name": "7898179764624"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB23987668",
+        "catalogProductName": "Caixa Hermética Preta Baby 14,5x10,5x7cm Multiuso Cor Preto",
+        "catalogDomainId": "MLB-CABINETS_AND_JUNCTION_BOXES",
+        "predictedDomainId": "MLB-CABINETS_AND_JUNCTION_BOXES",
+        "categoryId": "MLB6952",
+        "categoryName": "Caixas de Passagem Herméticas",
+        "linkedListingsInCategory": 14,
+        "validatedGtin": "7898179764624"
+      }
+    },
+    {
+      "produtoId": "207bbe26-574f-4577-8d76-3cc05839a46c",
+      "sku": "VTK017231",
+      "nome": "Caixa Hermética Multitoc Vedada 17x13,5x6,5 Completa Cinza",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 22.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 52.96,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898179318612",
+        "validatedNcm": "39231090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB6952",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "79916",
+          "value_name": "Multitoc"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "26549123",
+          "value_name": "CCCX0140"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "283165",
+          "value_name": "Cinza"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "2430221",
+          "value_name": "14.5 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "36600",
+          "value_name": "10.5 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "999599",
+          "value_name": "5.5 cm"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "19528094",
+          "value_name": "Caixa estanque"
+        },
+        {
+          "id": "PROTECTION_DEGREE",
+          "value_id": "6322687",
+          "value_name": "IP65"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "SHAPE",
+          "value_id": "1163800",
+          "value_name": "Retangular"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "26549124",
+          "value_name": "7898179318612"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB28395822",
+        "catalogProductName": "Caixa Hermética Multiuso Plástica Baby Slim Wireless Cinza",
+        "catalogDomainId": "MLB-CABINETS_AND_JUNCTION_BOXES",
+        "predictedDomainId": "MLB-CABINETS_AND_JUNCTION_BOXES",
+        "categoryId": "MLB6952",
+        "categoryName": "Caixas de Passagem Herméticas",
+        "linkedListingsInCategory": 5,
+        "validatedGtin": "7898179318612"
+      }
+    },
+    {
+      "produtoId": "62b94ab7-5634-4ba4-b527-e0009068eb80",
+      "sku": "VTK017232",
+      "nome": "Caixa Hermética Multitoc Vedada 17x13,5x6,5 Completa Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 22.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 52.96,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898179318629",
+        "validatedNcm": "39231090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB6952",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "79916",
+          "value_name": "Multitoc"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "26545680",
+          "value_name": "3135"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "2517251",
+          "value_name": "13.5 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "570691",
+          "value_name": "17 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "999607",
+          "value_name": "6.5 cm"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "19528094",
+          "value_name": "Caixa estanque"
+        },
+        {
+          "id": "PROTECTION_DEGREE",
+          "value_id": "6322687",
+          "value_name": "IP65"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "SHAPE",
+          "value_id": "1163800",
+          "value_name": "Retangular"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27267376",
+          "value_name": "7898179318629"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB28848643",
+        "catalogProductName": "Kit 5 Mini Caixas Herméticas Preta Vedada Completa",
+        "catalogDomainId": "MLB-CABINETS_AND_JUNCTION_BOXES",
+        "predictedDomainId": "MLB-CABINETS_AND_JUNCTION_BOXES",
+        "categoryId": "MLB6952",
+        "categoryName": "Caixas de Passagem Herméticas",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898179318629"
+      }
+    },
+    {
+      "produtoId": "50bd0ac9-f2c6-4be2-9dbf-6bd068e3318b",
+      "sku": "VTK000337",
+      "nome": "Caixa Multimídia C3Tech SP-301BK 2.0",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 22.9,
+      "estoque": 46,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 52.96,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898555211193",
+        "validatedNcm": "85182100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3378",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "8774306",
+          "value_name": "C3Tech"
+        },
+        {
+          "id": "LINE",
+          "value_id": "14790294",
+          "value_name": "caixa de som"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "34513506",
+          "value_name": "SP-301BK"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "19926306",
+          "value_name": "C3tech"
+        },
+        {
+          "id": "POWER_OUTPUT_RMS",
+          "value_id": "118135",
+          "value_name": "3 W"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "value_id": "5422206",
+          "value_name": "USB"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "946874",
+          "value_name": "2"
+        },
+        {
+          "id": "PICKUPS_NUMBER",
+          "value_id": "2297315",
+          "value_name": "1"
+        },
+        {
+          "id": "SPEAKER_TYPES",
+          "value_id": "7199380",
+          "value_name": "Subwoofer"
+        },
+        {
+          "id": "SPEAKER_FILTER_TYPES",
+          "value_id": "13339817",
+          "value_name": "Ativo/Passivo"
+        },
+        {
+          "id": "SPEAKER_FORMAT",
+          "value_id": "7199382",
+          "value_name": "Caixa"
+        },
+        {
+          "id": "INSTALLATION_PLACEMENTS",
+          "value_id": "20999128",
+          "value_name": "Computador, Mesa, Notebook, Pc"
+        },
+        {
+          "id": "CHANNELS_SETUP",
+          "value_id": "6564475",
+          "value_name": "2.0"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WI_FI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BASE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_INTEGRATED_DJ_CONTROLLERS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_KARAOKE_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_VOICE_EFFECT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_RADIO",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_PORTABLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATERPROOF",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_SUPPORT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_RECHARGEABLE_BATTERY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "34513510",
+          "value_name": "7898555211193"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "8774306",
+          "value_name": "C3Tech"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_OUTDOOR_USE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_REMOTE_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_WHEELS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_LATCH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INPUT_CONNECTORS",
+          "value_id": "26751841",
+          "value_name": "Auxiliar USB"
+        },
+        {
+          "id": "MIN_FREQUENCY_RESPONSE",
+          "value_id": "7213595",
+          "value_name": "20 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY_RESPONSE",
+          "value_id": "7689024",
+          "value_name": "16 kHz"
+        },
+        {
+          "id": "DISTORTION",
+          "value_id": "8199054",
+          "value_name": "0.5 %"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7853115",
+          "value_name": "6.3 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8936483",
+          "value_name": "6.3 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "7748243",
+          "value_name": "220 g"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB34222480",
+        "catalogProductName": "Caixa de Som 2.0 USB C3Tech SP-301BK Preta Portátil para PC e Notebook",
+        "catalogDomainId": "MLB-SPEAKERS",
+        "predictedDomainId": "MLB-SPEAKERS",
+        "categoryId": "MLB3378",
+        "categoryName": "Caixas de Som e Subwoofer",
+        "linkedListingsInCategory": 36,
+        "validatedGtin": "7898555211193"
+      }
+    },
+    {
+      "produtoId": "f541dcdc-ae72-4d38-bcd2-53f142f57430",
+      "sku": "VTK018384",
+      "nome": "Calculadora Cientifica Procalc Sc82p 10+2 Dígitos 240 Funções",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 23.99,
+      "estoque": 9,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 54.31,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "4891454082027",
+        "validatedNcm": "84701000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB99957",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2431515",
+          "value_name": "Procalc"
+        },
+        {
+          "id": "LINE",
+          "value_id": "40349599",
+          "value_name": "Ciêntifica"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18465484",
+          "value_name": "SC82P"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DISPLAY_DIGITS_NUMBER",
+          "value_id": "17969197",
+          "value_name": "12"
+        },
+        {
+          "id": "CALCULATOR_TYPE",
+          "value_id": "244828",
+          "value_name": "Científica"
+        },
+        {
+          "id": "FUNCTIONS_NUMBER",
+          "value_id": "7242471",
+          "value_name": "240"
+        },
+        {
+          "id": "FUNCTIONS",
+          "value_id": "63927651",
+          "value_name": "240 funções científicas, igual ao padrao do mercado fx82ms"
+        },
+        {
+          "id": "WITH_PRINTER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18465508",
+          "value_name": "4891454082027"
+        },
+        {
+          "id": "CELL_BATTERY_TYPE",
+          "value_id": "68006329",
+          "value_name": "LR1130"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "4491927",
+          "value_name": "Bateria"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "2087858",
+          "value_name": "153 g"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "3603255",
+          "value_name": "3 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "3259574",
+          "value_name": "8 cm"
+        },
+        {
+          "id": "DISPLAY_LINES_NUMBER",
+          "value_id": "10469281",
+          "value_name": "2"
+        },
+        {
+          "id": "CELL_BATTERIES_NUMBER",
+          "value_id": "8053106",
+          "value_name": "2"
+        },
+        {
+          "id": "WITH_BICOLOR_PRINTING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_MEMORY",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22770488",
+        "catalogProductName": "Calculadora Científica Procalc SC82P 12 Dígitos 240 Funções 2 Linhas",
+        "catalogDomainId": "MLB-CALCULATORS",
+        "predictedDomainId": "MLB-CALCULATORS",
+        "categoryId": "MLB99957",
+        "categoryName": "Calculadoras",
+        "linkedListingsInCategory": 18,
+        "validatedGtin": "4891454082027"
+      }
+    }
+  ]
+}

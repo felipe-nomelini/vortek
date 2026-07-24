@@ -1,0 +1,145 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/014-evolusom-catalog-create-014.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-014",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "4ed6d374-c7f1-496c-afa1-bb6a12bccdcf",
+      "sku": "VTK017323",
+      "category": {
+        "id": "MLB38205",
+        "nome": "Para TV",
+        "dominio": "MLB-TV_REMOTE_CONTROLS"
+      },
+      "basePrice": 45.96,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2b00baa2-e74c-45df-a380-29de77f0cf37",
+      "sku": "VTK017688",
+      "category": {
+        "id": "MLB196072",
+        "nome": "Controles Remotos",
+        "dominio": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS"
+      },
+      "basePrice": 45.63,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "66334528-bebb-48e7-9330-c329c57ed13c",
+      "sku": "VTK017576",
+      "category": {
+        "id": "MLB196072",
+        "nome": "Controles Remotos",
+        "dominio": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS"
+      },
+      "basePrice": 47.37,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ea2fe766-d9c3-46ad-b189-b2c90043d2ee",
+      "sku": "VTK018063",
+      "category": {
+        "id": "MLB196072",
+        "nome": "Controles Remotos",
+        "dominio": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS"
+      },
+      "basePrice": 49.99,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2ef8265f-99a0-4fef-86a9-09d0c25cba7e",
+      "sku": "VTK017996",
+      "category": {
+        "id": "MLB11883",
+        "nome": "Controles Remotos",
+        "dominio": "MLB-UNIVERSAL_CAR_REMOTES"
+      },
+      "basePrice": 103.63,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "32da06c2-d52e-48e9-8e94-72b428ebd10f",
+      "sku": "VTK017978",
+      "category": {
+        "id": "MLB11883",
+        "nome": "Controles Remotos",
+        "dominio": "MLB-UNIVERSAL_CAR_REMOTES"
+      },
+      "basePrice": 106.13,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f456cea2-8ff3-4e77-974c-9a1d52b090ee",
+      "sku": "VTK018029",
+      "category": {
+        "id": "MLB60182",
+        "nome": "Transmissores FM",
+        "dominio": "MLB-VEHICLE_WIRELESS_FM_TRANSMITTERS"
+      },
+      "basePrice": 109.88,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b86652d3-9c98-4c60-9dc2-1771c2855f3e",
+      "sku": "VTK019158",
+      "category": {
+        "id": "MLB60182",
+        "nome": "Transmissores FM",
+        "dominio": "MLB-VEHICLE_WIRELESS_FM_TRANSMITTERS"
+      },
+      "basePrice": 148.66,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "f713b5db-60e1-4bbd-93f1-bd3ebaa839fd",
+      "sku": "VTK018294",
+      "nome": "Controle Remoto Intelbras Rf Ir3",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f28de582-af94-4f5d-9b29-2e3584891db3",
+      "sku": "VTK017375",
+      "nome": "Cooler Gamer Evus F-12rgb Fan 12cm Com Led Rgb",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB2676",
+            "nome": "Coolers e Ventoinhas"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

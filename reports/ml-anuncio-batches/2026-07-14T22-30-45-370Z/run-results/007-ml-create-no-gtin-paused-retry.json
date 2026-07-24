@@ -1,0 +1,122 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-14T22-30-45-370Z/006-ml-create-no-gtin-paused.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-no-gtin-paused",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "8cb5d3fd-bc1b-43b8-ae57-90d883127c28",
+      "sku": "VTK015924",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "anuncio": {
+        "id": "MLB7170081338",
+        "title": "02 Baterias Cr2 3v Panasonic",
+        "price": 83.12,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7170081338-02-baterias-cr2-3v-panasonic-_JM",
+        "status": "paused",
+        "sub_status": [
+          "out_of_stock",
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Anúncio será criado pausado por estoque zero e reativado pela sincronização quando houver disponibilidade.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB7170081338: NSOPublicAPI error",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "cd773c34-b7bc-4d7a-b461-7e4e272147f1",
+      "sku": "VTK015937",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "anuncio": {
+        "id": "MLB4895031657",
+        "title": "10 Baterias Cr2450 Panasonic (2 Cartelas)",
+        "price": 155.58,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4895031657-10-baterias-cr2450-panasonic-2-cartelas-_JM",
+        "status": "paused",
+        "sub_status": [
+          "out_of_stock",
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Anúncio será criado pausado por estoque zero e reativado pela sincronização quando houver disponibilidade.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB4895031657: NSOPublicAPI error",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "1cef65d0-d601-4686-ab0c-58e0321fec79",
+      "sku": "VTK016048",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "anuncio": {
+        "id": "MLB4895031745",
+        "title": "20 Baterias Cr2450 Panasonic (4 Cartelas)",
+        "price": 283.38,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4895031745-20-baterias-cr2450-panasonic-4-cartelas-_JM",
+        "status": "paused",
+        "sub_status": [
+          "out_of_stock",
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Anúncio será criado pausado por estoque zero e reativado pela sincronização quando houver disponibilidade.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB4895031745: NSOPublicAPI error",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ed557c4d-00b3-4882-b152-9e05e3471c9c",
+      "sku": "VTK016182",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "anuncio": {
+        "id": "MLB4895036265",
+        "title": "50 Baterias Cr1620 Panasonic (10 Cartelas)",
+        "price": 359.2,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4895036265-50-baterias-cr1620-panasonic-10-cartelas-_JM",
+        "status": "paused",
+        "sub_status": [
+          "out_of_stock",
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Anúncio será criado pausado por estoque zero e reativado pela sincronização quando houver disponibilidade.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB4895036265: NSOPublicAPI error",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    }
+  ],
+  "failed": []
+}

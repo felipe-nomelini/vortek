@@ -1,0 +1,29 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-018-ml-create-018.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-018",
+  "selected": 1,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "1108d86d-b2bd-45ee-a95f-2519198c67b1",
+      "sku": "VTK012523",
+      "nome": "Knobs Andaluz Kp (kit C/2 Vol+2ton) Preto",
+      "error": "Atributos obrigatórios pendentes: Instrumentos recomendados",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72751",
+            "nome": "Knobs"
+          },
+          "missing": [
+            "Instrumentos recomendados"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

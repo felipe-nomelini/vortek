@@ -1,0 +1,45 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-052-ml-create-052.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-052",
+  "selected": 1,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "4c8f9858-3d11-469e-b618-60f1858f58d1",
+      "sku": "VTK012790",
+      "nome": "Refletor Tr Led 50w Slim 6500k Preto",
+      "error": "Dados fiscais obrigatórios inválidos. Corrija antes de criar o anúncio.",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": false
+          },
+          "anuncio": {
+            "ok": false
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false,
+            "error": "NCM inválido. Use 8 dígitos (com ou sem pontos)."
+          }
+        },
+        "warnings": [],
+        "missing_required_attributes": [],
+        "error": "Dados fiscais obrigatórios inválidos. Corrija antes de criar o anúncio."
+      }
+    }
+  ]
+}

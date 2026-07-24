@@ -1,0 +1,1101 @@
+{
+  "batchId": "evolusom-remaining-019",
+  "strategy": "verified_dry_run_exact_catalog",
+  "items": [
+    {
+      "produtoId": "baaae1b2-3872-4f68-bd88-b2c08902ff02",
+      "sku": "VTK001672",
+      "nome": "Jogo de Soquete Com 11 Peças e Catraca Brasfort",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 50.7,
+      "estoque": 32,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 87.28,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898464731409",
+        "validatedNcm": "82042000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB236055",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "1120727",
+          "value_name": "Brasfort"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "4146076",
+          "value_name": "6175"
+        },
+        {
+          "id": "WRENCH_TYPE",
+          "value_id": "4937884",
+          "value_name": "Esticado"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52053",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "WRENCH_FINISH",
+          "value_id": "22506891",
+          "value_name": "Cromado"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7175734",
+          "value_name": "20 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8053397",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7600402",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "5991223",
+          "value_name": "1 kg"
+        },
+        {
+          "id": "HEAD_TYPE",
+          "value_id": "22506897",
+          "value_name": "Fixa"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "4086949",
+          "value_name": "Aço inoxidável"
+        },
+        {
+          "id": "MAX_APERTURE",
+          "value_id": "23907605",
+          "value_name": "21mm"
+        },
+        {
+          "id": "WITH_NON_SLIP_GRIP",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ERGONOMIC_DESIGN",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "26290390",
+          "value_name": "7898464731409"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB28217446",
+        "catalogProductName": "Jogo Soquete Brasfort Sextavado C/catraca 3/8 11un 6175 Cor Prateado",
+        "catalogDomainId": "MLB-WRENCHES",
+        "categoryId": "MLB236055",
+        "categoryName": "Kit de Chaves",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898464731409"
+      }
+    },
+    {
+      "produtoId": "00472e3e-1484-4aff-b15b-9f47863d7ed6",
+      "sku": "VTK017552",
+      "nome": "Jogo De Potes Tramontina Mixcolor 02 Peças 2l Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 29.9,
+      "estoque": 46,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 61.6,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7891112359284",
+        "validatedNcm": "39241000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB244658",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "433",
+          "value_name": "Tramontina"
+        },
+        {
+          "id": "VOLUME_CAPACITY",
+          "value_id": "86512",
+          "value_name": "2 L"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "FOOD_STORAGE_CONTAINER_SHAPE",
+          "value_id": "21014479",
+          "value_name": "Quadrado"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2482319",
+          "value_name": "Polipropileno"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "5230416",
+          "value_name": "20.2 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "5230416",
+          "value_name": "20.2 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "4743405",
+          "value_name": "9.3 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "75170561",
+          "value_name": "07891112359284"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB66987415",
+        "catalogProductName": "Jogo De Potes Tramontina Mixcolor Preto 2 Litros 2 Preto",
+        "catalogDomainId": "MLB-FOOD_STORAGE_CONTAINERS",
+        "categoryId": "MLB244658",
+        "categoryName": "Potes para Alimentos",
+        "linkedListingsInCategory": 8,
+        "validatedGtin": "7891112359284"
+      }
+    },
+    {
+      "produtoId": "25145b39-46b2-49fd-9a0b-ac457e1720bf",
+      "sku": "VTK017774",
+      "nome": "Jogo De Panelas Tramontina Loreto Alumínio Starflon Max 5 Peças Vermelho",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 259.9,
+      "estoque": 27,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 368.99,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7891112228726",
+        "validatedNcm": "76151000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB107564",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "433",
+          "value_name": "Tramontina"
+        },
+        {
+          "id": "LINE",
+          "value_id": "13943597",
+          "value_name": "Loreto"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "73236906",
+          "value_name": "20399/082"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "value_id": "3402025",
+          "value_name": "5"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "51993",
+          "value_name": "Vermelho"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450307",
+          "value_name": "Vermelho"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "2748301",
+          "value_name": "Alumínio"
+        },
+        {
+          "id": "PIECES_INCLUDED",
+          "value_id": "40107532",
+          "value_name": "Panela, Frigideira, Fervedor, Caçarola"
+        },
+        {
+          "id": "IS_FACTORY_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_INDUCTION_COOKER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NONSTICK_COATING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "33331861",
+          "value_name": "7891112228726"
+        },
+        {
+          "id": "HANDLE_MATERIAL",
+          "value_id": "43958513",
+          "value_name": "Baquelite antitérmico"
+        },
+        {
+          "id": "IS_DISHWASHWE_SAFE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB33309662",
+        "catalogProductName": "Jogo de 5 Panelas Loreto Alumínio Com Revestimento Interno E Externo Antiaderente Starflon Max Cor Vermelho Tramontina",
+        "catalogDomainId": "MLB-KITCHEN_COOKWARE_KITS",
+        "categoryId": "MLB107564",
+        "categoryName": "Jogo de Panelas",
+        "linkedListingsInCategory": 16,
+        "validatedGtin": "7891112228726"
+      }
+    },
+    {
+      "produtoId": "ed62b1b8-d140-4d21-aebd-5c42f87c8e27",
+      "sku": "VTK017824",
+      "nome": "Lâminas Para Ratinho Nwt Insf0013 Para Aplicação De Insulfilm 100 Unidades",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 65.92,
+      "estoque": 23,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 106.07,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566207772",
+        "validatedNcm": "73261900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB268504",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "43475668",
+          "value_name": "Stom"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "52112270",
+          "value_name": "Raspador Ratinho 4 cm"
+        },
+        {
+          "id": "PART_NUMBER",
+          "value_id": "43475672",
+          "value_name": "100 Lâminas para Raspador Ratinho"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "WITH_ANTIVANDALIC_SHEET",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "43475669",
+          "value_name": "7898566207772"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB41798993",
+        "catalogProductName": "Kit 100 Lâminas Poker Tool Aço Carbono 4 cm Para Raspador Ratinho Vidros",
+        "catalogDomainId": "MLB-VEHICLE_TINTED_GLASSES",
+        "categoryId": "MLB268504",
+        "categoryName": "Insulfilms",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7898566207772"
+      }
+    },
+    {
+      "produtoId": "39fd438d-5bee-4fac-8a8a-8d65e654b6fb",
+      "sku": "VTK004423",
+      "nome": "Leitor De Código De Barras C3Tech LB-W300BK Sem Fio",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 194.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 276.71,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898555215535",
+        "validatedNcm": "84719012",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB5906",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "8774306",
+          "value_name": "C3Tech"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "8316958",
+          "value_name": "LB-W300"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "94306",
+          "value_name": "Verde/Branco/Preto"
+        },
+        {
+          "id": "CABLE_CONNECTOR_TYPE",
+          "value_id": "354728",
+          "value_name": "USB"
+        },
+        {
+          "id": "INCLUDES_SUPPORT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "8316961",
+          "value_name": "LB-W300BK"
+        },
+        {
+          "id": "BARCODE_SCANNER_TYPE",
+          "value_id": "354700",
+          "value_name": "De Mão"
+        },
+        {
+          "id": "SENSOR_TECHNOLOGY",
+          "value_id": "354703",
+          "value_name": "CCD"
+        },
+        {
+          "id": "SCANNING_TYPE",
+          "value_id": "8037648",
+          "value_name": "Area imager"
+        },
+        {
+          "id": "SCAN_PATTERN",
+          "value_id": "354707",
+          "value_name": "1D"
+        },
+        {
+          "id": "SUPPORTED_INTERFACES",
+          "value_id": "7414267",
+          "value_name": "Windows, Linux"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "8641603",
+          "value_name": "7898555215535"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "8774306",
+          "value_name": "C3Tech"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "11682719",
+          "value_name": "172 g"
+        },
+        {
+          "id": "BATTERY_LIFE",
+          "value_id": "964031",
+          "value_name": "20 h"
+        },
+        {
+          "id": "LIGHT_SOURCE",
+          "value_id": "2656184",
+          "value_name": "LED"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "SCAN_RATE",
+          "value_id": "8047509",
+          "value_name": "300"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB15715400",
+        "catalogProductName": "Leitor de Código de Barras USB Sem Fio C3Tech LB-W300 1D Verde/Branco/Preto",
+        "catalogDomainId": "MLB-BAR_CODE_SCANNERS",
+        "categoryId": "MLB5906",
+        "categoryName": "Leitores de Código de Barras",
+        "linkedListingsInCategory": 35,
+        "validatedGtin": "7898555215535"
+      }
+    },
+    {
+      "produtoId": "8da178e0-a746-4e3a-8272-7cbbed68bca6",
+      "sku": "VTK001157",
+      "nome": "Lupa Com Suporte E Pinça Hikari HLS-10",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 39.95,
+      "estoque": 14,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 74.01,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810411891",
+        "validatedNcm": "90138000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB49093",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "3714880",
+          "value_name": "HL-S10"
+        },
+        {
+          "id": "MAGNIFYING_GLASS_TYPE",
+          "value_id": "2868274",
+          "value_name": "Mãos livres"
+        },
+        {
+          "id": "LENSES_NUMBER",
+          "value_id": "5978434",
+          "value_name": "1"
+        },
+        {
+          "id": "WITH_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MAX_MAGNIFICATION",
+          "value_id": "3359483",
+          "value_name": "3x"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "36806847",
+          "value_name": "7893007718527, 7899810411891"
+        },
+        {
+          "id": "LENS_DIAMETER",
+          "value_id": "48580245",
+          "value_name": "6 cm"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB36086380",
+        "catalogProductName": "Lupa Mãos Livres Hikari HL-S10 com Suporte e Pinça Aumento 3X",
+        "catalogDomainId": "MLB-MAGNIFYING_GLASSES",
+        "categoryId": "MLB49093",
+        "categoryName": "Lupas",
+        "linkedListingsInCategory": 25,
+        "validatedGtin": "7899810411891"
+      }
+    },
+    {
+      "produtoId": "1e9cf426-cadd-4295-b050-872acf4f79bf",
+      "sku": "VTK017376",
+      "nome": "Mastro Proeletronic Ktaa-2000 De Alumínio Para Fixação De Antena",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 18.8,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 47.9,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898419499132",
+        "validatedNcm": "73269090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB11529",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "1175465",
+          "value_name": "Proeletronic"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16289470",
+          "value_name": "Suporte Antena Externa"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52053",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "MOUNTING_PLACES",
+          "value_id": "7720908",
+          "value_name": "Parede"
+        },
+        {
+          "id": "IS_INCLINABLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_ARTICULATED_MOUNT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SWIVELLING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_FIXED_MOUNT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_MOTORIZED",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16289516",
+          "value_name": "7898419499132, 17898419502389"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7877821",
+          "value_name": "40 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7847007",
+          "value_name": "6 cm"
+        },
+        {
+          "id": "INCLUDES_INSTALLATION_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_CABLE_ORGANIZER",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21469644",
+        "catalogProductName": "Mastro Articulado P/ Instalação De Antenas Proeletronic Suporte Antena Externa",
+        "catalogDomainId": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS",
+        "categoryId": "MLB11529",
+        "categoryName": "Suportes",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7898419499132"
+      }
+    },
+    {
+      "produtoId": "59e3ed8d-333a-499d-8377-3502909a29aa",
+      "sku": "VTK017991",
+      "nome": "Mesa De Som Stetsom Stm1206 6 Canais 12v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 486.9,
+      "estoque": 17,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 721.33,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897748704801",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB29281",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "345468",
+          "value_name": "Stetsom"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16036088",
+          "value_name": "STM1206"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "909022",
+          "value_name": "12V"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "value_id": "16036094",
+          "value_name": "12"
+        },
+        {
+          "id": "WITH_PHANTOM_POWER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_EFFECTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MAIN_EFFECTS_INCLUDED",
+          "value_id": "16036093",
+          "value_name": "1"
+        },
+        {
+          "id": "CONNECTORS",
+          "value_id": "56382039",
+          "value_name": "RCA"
+        },
+        {
+          "id": "CHANNELS_NUMBER",
+          "value_id": "1072396",
+          "value_name": "6"
+        },
+        {
+          "id": "CONNECTIVITY",
+          "value_id": "22640054",
+          "value_name": "6"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16036092",
+          "value_name": "7897748704801"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "345468",
+          "value_name": "Stetsom"
+        },
+        {
+          "id": "CASE_MATERIAL",
+          "value_id": "415334",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "FREQUENCY_RESPONSE",
+          "value_id": "30298792",
+          "value_name": "1 Hz - 75 kHz"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "25022141",
+          "value_name": "4.65 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "48686978",
+          "value_name": "19.95 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "22600681",
+          "value_name": "19.65 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "9643849",
+          "value_name": "930 g"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21300567",
+        "catalogProductName": "Mesa de Som Automotiva Stetsom STM1206 com 6 Canais e Equalização por Canal",
+        "catalogDomainId": "MLB-SOUND_CONSOLES_AND_MIXERS",
+        "categoryId": "MLB29281",
+        "categoryName": "Mesas de Som",
+        "linkedListingsInCategory": 24,
+        "validatedGtin": "7897748704801"
+      }
+    },
+    {
+      "produtoId": "3c04ddfc-a789-43eb-8918-0f398ded5d8a",
+      "sku": "VTK002218",
+      "nome": "Microfone de Mão Leson LS50 Dinâmico Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 77.95,
+      "estoque": 17,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 120.93,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898944650794",
+        "validatedNcm": "85181090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB4469",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "118039",
+          "value_name": "Le Son"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "2481874",
+          "value_name": "LS-50"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "83150",
+          "value_name": "Preto/Prateado"
+        },
+        {
+          "id": "MICROPHONE_FORMATS",
+          "value_id": "182426",
+          "value_name": "De mão"
+        },
+        {
+          "id": "MICROPHONE_TYPES",
+          "value_id": "103745",
+          "value_name": "Dinâmico"
+        },
+        {
+          "id": "POLAR_PATTERNS",
+          "value_id": "2253807",
+          "value_name": "Cardioide"
+        },
+        {
+          "id": "MICROPHONES_NUMBER",
+          "value_id": "934836",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129130",
+          "value_name": "3 m"
+        },
+        {
+          "id": "CONNECTION_TYPES",
+          "value_id": "1210905",
+          "value_name": "Com fio"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "value_id": "7230283",
+          "value_name": "70 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_id": "7230296",
+          "value_name": "13 kHz"
+        },
+        {
+          "id": "MICROPHONE_RECOMMENDED_USES",
+          "value_id": "9272714",
+          "value_name": "Para vozes"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BUILT_IN_SPEAKERS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "118039",
+          "value_name": "Le Son"
+        },
+        {
+          "id": "INCLUDES_ACCESSORIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "19708458",
+          "value_name": "LS50"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS",
+          "value_id": "2305169",
+          "value_name": "XLR"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "9783105",
+          "value_name": "7898944650794"
+        },
+        {
+          "id": "WITH_POWER_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "1247698",
+          "value_name": "-54 dB"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_id": "934861",
+          "value_name": "600 Ω"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "9766109",
+          "value_name": "1 cabo"
+        },
+        {
+          "id": "INPUT_CONNECTORS",
+          "value_id": "2305169",
+          "value_name": "XLR"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "2511571",
+          "value_name": "ABS"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7978730",
+          "value_name": "18 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "8156924",
+          "value_name": "250 g"
+        },
+        {
+          "id": "MPN",
+          "value_id": "12799684",
+          "value_name": "LS-50"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB15957000",
+        "catalogProductName": "Microfone Dinâmico Cardioide Le Son LS-50 com Cabo XLR 3m",
+        "catalogDomainId": "MLB-MICROPHONES",
+        "categoryId": "MLB4469",
+        "categoryName": "Microfones",
+        "linkedListingsInCategory": 27,
+        "validatedGtin": "7898944650794"
+      }
+    },
+    {
+      "produtoId": "c1586888-7a8e-4553-954d-530816c2d000",
+      "sku": "VTK017932",
+      "nome": "Mini Morsa Hikari Hk-201 Abertura Máxima: 2\"/ 50mm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 79.5,
+      "estoque": 19,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 122.84,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810412553",
+        "validatedNcm": "82057000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB235594",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17655798",
+          "value_name": "HK-201"
+        },
+        {
+          "id": "JAW_WIDTH",
+          "value_id": "47738780",
+          "value_name": "6 cm"
+        },
+        {
+          "id": "VISE_TYPE",
+          "value_id": "4636253",
+          "value_name": "De bancada"
+        },
+        {
+          "id": "BASE_TYPE",
+          "value_id": "4636257",
+          "value_name": "Fixa"
+        },
+        {
+          "id": "WITH_ANVIL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "17655835",
+          "value_name": "7899810412553"
+        },
+        {
+          "id": "STRUCTURE_MATERIAL",
+          "value_id": "15358846",
+          "value_name": "Aço fundido"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22355161",
+        "catalogProductName": "Mini Morsa Bancada Hikari HK-201 Aço Carbono Mandíbula 6cm",
+        "catalogDomainId": "MLB-VISES",
+        "categoryId": "MLB235594",
+        "categoryName": "Morsas",
+        "linkedListingsInCategory": 13,
+        "validatedGtin": "7899810412553"
+      }
+    }
+  ]
+}

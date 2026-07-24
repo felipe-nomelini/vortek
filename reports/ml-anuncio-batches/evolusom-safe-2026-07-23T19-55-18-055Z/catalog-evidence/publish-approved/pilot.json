@@ -1,0 +1,79 @@
+{
+  "batchId": "evolusom-pilot",
+  "strategy": "single_item_pilot",
+  "items": [
+    {
+      "produtoId": "9cbbbf6d-4826-418f-bbfe-6fa035b3bb8e",
+      "sku": "VTK019167",
+      "nome": "Adaptador De 9\" Para 10.1\" Fiamon - Black Piano",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 57.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 96.17,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908262119153",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "5917651",
+          "value_name": "5873"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2685628",
+          "value_name": "9 \""
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27132267",
+          "value_name": "7908262119153"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB39024060",
+        "catalogProductName": "Moldura Adaptadora 2 Din Dvd Multimidia 9 Para 10 Polegadas",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 18,
+        "validatedGtin": "7908262119153"
+      }
+    }
+  ]
+}

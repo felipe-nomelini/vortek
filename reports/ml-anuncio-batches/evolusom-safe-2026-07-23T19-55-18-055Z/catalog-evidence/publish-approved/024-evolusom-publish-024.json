@@ -1,0 +1,1341 @@
+{
+  "batchId": "evolusom-publish-024",
+  "strategy": "dry_run_and_exact_catalog_approved",
+  "items": [
+    {
+      "produtoId": "bb8bea58-61c4-4e41-9d68-46f486032eef",
+      "sku": "VTK017193",
+      "nome": "Resistencia Para Ducha Eletrônica Hydra Hit 5500w 127v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 14.57,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.68,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896650400740",
+        "validatedNcm": "85168010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB269858",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "7512",
+          "value_name": "Hydra"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18592178",
+          "value_name": "Revitalizada / HIT"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "4089400",
+          "value_name": "Termoplástico"
+        },
+        {
+          "id": "SHAPE",
+          "value_id": "39977660",
+          "value_name": "Redonda"
+        },
+        {
+          "id": "IS_FIXED",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_FLEXIBLE_HOSE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_SUPPORT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18592204",
+          "value_name": "7896650400740"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22861621",
+        "catalogProductName": "Resistência Chuveiro Revitalizada Hit Hydra 127v 5200w",
+        "catalogDomainId": "MLB-SHOWER_HEADS",
+        "categoryId": "MLB269858",
+        "categoryName": "Convencionais",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7896650400740"
+      }
+    },
+    {
+      "produtoId": "4bfdca7e-c32e-47f5-b90a-39956cd2f323",
+      "sku": "VTK018545",
+      "nome": "Resistencia Para Ducha Corona Spot 8t 5500w 127v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 15.29,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.57,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896650401334",
+        "validatedNcm": "85168010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB269858",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "7512",
+          "value_name": "Hydra"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "5194784",
+          "value_name": "Spot 8T"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "14408005",
+          "value_name": "Aleatória"
+        },
+        {
+          "id": "FINISH",
+          "value_id": "2102514",
+          "value_name": "Brilhante"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2697958",
+          "value_name": "PVC"
+        },
+        {
+          "id": "SHAPE",
+          "value_id": "415473",
+          "value_name": "Oval"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "75087351",
+          "value_name": "23.35 cm"
+        },
+        {
+          "id": "DIAMETER",
+          "value_id": "75087350",
+          "value_name": "12.15 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7622426",
+          "value_name": "34 cm"
+        },
+        {
+          "id": "INSTALLATION_TYPE",
+          "value_id": "3964545",
+          "value_name": "De parede"
+        },
+        {
+          "id": "IS_FIXED",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_FLEXIBLE_HOSE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_SUPPORT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "17660507",
+          "value_name": "7896650401334"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450312",
+          "value_name": "Rosa"
+        },
+        {
+          "id": "MPN",
+          "value_id": "20923498",
+          "value_name": "Spot 8t"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB24563752",
+        "catalogProductName": "Resistência Ducha Hydra Spot 8T Multitemperatura 127V 5500W",
+        "catalogDomainId": "MLB-SHOWER_HEADS",
+        "categoryId": "MLB269858",
+        "categoryName": "Convencionais",
+        "linkedListingsInCategory": 8,
+        "validatedGtin": "7896650401334"
+      }
+    },
+    {
+      "produtoId": "faa94e70-9a36-4481-b43e-a16291e0542d",
+      "sku": "VTK018231",
+      "nome": "Resistencia Para Ferro De Solda Hikari Power 30 127v Conjunto 2 Peças",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 18.2,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 47.16,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810400581",
+        "validatedNcm": "85159000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB48611",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "35735997",
+          "value_name": "21K407"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52053",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "SOLDERING_IRON_TYPE",
+          "value_id": "5572229",
+          "value_name": "Lápis"
+        },
+        {
+          "id": "POWER",
+          "value_id": "154354",
+          "value_name": "30 W"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_REMOVABLE_TIP",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "35735998",
+          "value_name": "7899810400581"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB35176563",
+        "catalogProductName": "Ferro De Solda Tipo Lápis Hikari 30W Modelo 21K407 Prateado",
+        "catalogDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "categoryId": "MLB48611",
+        "categoryName": "Ferros de Solda",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7899810400581"
+      }
+    },
+    {
+      "produtoId": "3b16b01f-16ee-45c7-9d98-f4112c06e0f0",
+      "sku": "VTK018278",
+      "nome": "Resistência Para Ferro De Solda Hikari Power 40 127v Com 2 Peças",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 19.5,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 48.77,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810400604",
+        "validatedNcm": "85159000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB48611",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "61149",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "POWER",
+          "value_id": "154354",
+          "value_name": "30 W"
+        },
+        {
+          "id": "TIP_MATERIAL",
+          "value_id": "48241873",
+          "value_name": "Ferro e Alumínio"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "32012023",
+          "value_name": "7899810400604, 7893007713003"
+        },
+        {
+          "id": "MAX_TEMPERATURE",
+          "value_id": "25629679",
+          "value_name": "425 °C"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB32227955",
+        "catalogProductName": "Resistência Para Ferro De Solda Hikari Power 40 Com 2",
+        "catalogDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "categoryId": "MLB48611",
+        "categoryName": "Ferros de Solda",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7899810400604"
+      }
+    },
+    {
+      "produtoId": "074533de-3625-4ac5-87e6-970a7b9add7c",
+      "sku": "VTK017251",
+      "nome": "Resistência Zagonel Sublime/ Move 127v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 12.13,
+      "estoque": 44,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 39.67,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897273200847",
+        "validatedNcm": "85168010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB269858",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2997256",
+          "value_name": "Zagonel"
+        },
+        {
+          "id": "LINE",
+          "value_id": "15020217",
+          "value_name": "Resistência"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "49734619",
+          "value_name": "Resistência Zagonel"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "FINISH",
+          "value_id": "4042441",
+          "value_name": "Fosco"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "76142750",
+          "value_name": "TERMOPLASTICO E ALUMINIO"
+        },
+        {
+          "id": "SHAPE",
+          "value_id": "39977660",
+          "value_name": "Redonda"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7828417",
+          "value_name": "6 cm"
+        },
+        {
+          "id": "DIAMETER",
+          "value_id": "7574681",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "8129828",
+          "value_name": "7 cm"
+        },
+        {
+          "id": "INSTALLATION_TYPE",
+          "value_id": "43133063",
+          "value_name": "220V"
+        },
+        {
+          "id": "IS_FIXED",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_FLEXIBLE_HOSE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_SUPPORT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "22003045",
+          "value_name": "7897273200847"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB25360456",
+        "catalogProductName": "Resistência para Ducha Moment Eletrônica Sublime e Move 127v 5500w - Zagonel",
+        "catalogDomainId": "MLB-SHOWER_HEADS",
+        "categoryId": "MLB269858",
+        "categoryName": "Convencionais",
+        "linkedListingsInCategory": 33,
+        "validatedGtin": "7897273200847"
+      }
+    },
+    {
+      "produtoId": "a1d92fec-8eff-476e-9961-b52b396dc3a3",
+      "sku": "VTK017268",
+      "nome": "Roteador Wi-fi Tp-link Gpon Voip Archer Xr500v Dual Band Gibabit Ac1200",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 356.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 506.71,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898544552801",
+        "validatedNcm": "85176241",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB5867",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "7885",
+          "value_name": "TP-Link"
+        },
+        {
+          "id": "LINE",
+          "value_id": "181506",
+          "value_name": "Archer"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18843498",
+          "value_name": "ARCHER XR500V"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "7386989",
+          "value_name": "1"
+        },
+        {
+          "id": "WITH_POE_CONNECTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "FUNCTIONS",
+          "value_id": "279956",
+          "value_name": "Roteador"
+        },
+        {
+          "id": "CONNECTION_TYPES",
+          "value_id": "360058",
+          "value_name": "Com fio/Sem fio"
+        },
+        {
+          "id": "FREQUENCY_TYPE",
+          "value_id": "6059549",
+          "value_name": "Banda dupla"
+        },
+        {
+          "id": "INTERNAL_ANTENNAS_NUMBER",
+          "value_id": "13355281",
+          "value_name": "0"
+        },
+        {
+          "id": "EXTERNAL_ANTENNAS_NUMBER",
+          "value_id": "8641899",
+          "value_name": "2"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "41658859",
+          "value_name": "39491903177"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "9644130",
+          "value_name": "6935364086176, 728072107570, 7898544552801"
+        },
+        {
+          "id": "ROUTERS_AND_WIRELESS_SYSTEMS_BANDWIDTH",
+          "value_id": "10612688",
+          "value_name": "AC1200"
+        },
+        {
+          "id": "TOTAL_PORTS_NUMBER",
+          "value_id": "7520021",
+          "value_name": "8"
+        },
+        {
+          "id": "LAN_PORTS_NUMBER",
+          "value_id": "7881192",
+          "value_name": "4"
+        },
+        {
+          "id": "WAN_PORTS_NUMBER",
+          "value_id": "7881190",
+          "value_name": "1"
+        },
+        {
+          "id": "WAN_LAN_PORTS_NUMBER",
+          "value_id": "7913404",
+          "value_name": "1"
+        },
+        {
+          "id": "USB_PORTS_NUMBER",
+          "value_id": "517204",
+          "value_name": "1"
+        },
+        {
+          "id": "WITH_INTEGRATED_FIREWALL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_RESET_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_PARENTAL_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SECURITY_PROTOCOLS",
+          "value_id": "7179629",
+          "value_name": "SPI"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB23026659",
+        "catalogProductName": "Roteador 4p TP-Link Archer XR500v Wifi Gpon Voip Gigabit Dualb",
+        "catalogDomainId": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS",
+        "categoryId": "MLB5867",
+        "categoryName": "Roteadores",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7898544552801"
+      }
+    },
+    {
+      "produtoId": "6b83bc22-9a5e-498d-9886-981eb73e1f6e",
+      "sku": "VTK018565",
+      "nome": "Roteador Wi-fi Tp-link Hx510 Ax3000",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 454.9,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 673.93,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "4897098684573",
+        "validatedNcm": "85176241",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB5867",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "7885",
+          "value_name": "TP-Link"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "14793332",
+          "value_name": "Hx510"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "12472061",
+          "value_name": "Branco"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "7386989",
+          "value_name": "1"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "WITH_POE_CONNECTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "FUNCTIONS",
+          "value_id": "279956",
+          "value_name": "Roteador"
+        },
+        {
+          "id": "CONNECTION_TYPES",
+          "value_id": "1210905",
+          "value_name": "Com fio"
+        },
+        {
+          "id": "WIRELESS_SPEED",
+          "value_id": "73457179",
+          "value_name": "0 Mbps"
+        },
+        {
+          "id": "FREQUENCIES",
+          "value_id": "41426301",
+          "value_name": "5 GHz, 2.4 GHz"
+        },
+        {
+          "id": "FREQUENCY_TYPE",
+          "value_id": "6059549",
+          "value_name": "Banda dupla"
+        },
+        {
+          "id": "INTERNAL_ANTENNAS_NUMBER",
+          "value_id": "13355281",
+          "value_name": "0"
+        },
+        {
+          "id": "EXTERNAL_ANTENNAS_NUMBER",
+          "value_id": "8637174",
+          "value_name": "4"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "40365867",
+          "value_name": "61042203177"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "14793403",
+          "value_name": "4897098684573"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "7885",
+          "value_name": "TP-Link"
+        },
+        {
+          "id": "ROUTERS_AND_WIRELESS_SYSTEMS_BANDWIDTH",
+          "value_id": "11633568",
+          "value_name": "AX3000"
+        },
+        {
+          "id": "SATELLITES_NUMBER",
+          "value_id": "20794531",
+          "value_name": "3"
+        },
+        {
+          "id": "TOTAL_PORTS_NUMBER",
+          "value_id": "1000079",
+          "value_name": "2"
+        },
+        {
+          "id": "LAN_PORTS_NUMBER",
+          "value_id": "7881192",
+          "value_name": "4"
+        },
+        {
+          "id": "WAN_PORTS_NUMBER",
+          "value_id": "7881190",
+          "value_name": "1"
+        },
+        {
+          "id": "WAN_LAN_PORTS_NUMBER",
+          "value_id": "7913404",
+          "value_name": "1"
+        },
+        {
+          "id": "USB_PORTS_NUMBER",
+          "value_id": "517257",
+          "value_name": "2"
+        },
+        {
+          "id": "WITH_INTEGRATED_FIREWALL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_HOTSPOT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_RESET_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_PARENTAL_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ADAPTATIVE_QOS_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SECURITY_PROTOCOLS",
+          "value_id": "40935453",
+          "value_name": "SPI, WPA, WPA2, WPA3"
+        },
+        {
+          "id": "OPERATING_TEMPERATURE",
+          "value_id": "10589259",
+          "value_name": "0 °C - 40 °C"
+        },
+        {
+          "id": "ROUTERS_AND_WIRELESS_SYSTEMS_OPERATING_HUMIDITY",
+          "value_id": "10589260",
+          "value_name": "10 % - 90 %"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "57237",
+          "value_name": "860 g"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "1010928",
+          "value_name": "11.4 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "45551",
+          "value_name": "11 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "45551",
+          "value_name": "11 cm"
+        },
+        {
+          "id": "DIAMETER",
+          "value_id": "14953013",
+          "value_name": "11 cm"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB20567147",
+        "catalogProductName": "Roteador Tp-link Wifi 6 Easy Mesh Ax3000 Hx510",
+        "catalogDomainId": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS",
+        "categoryId": "MLB5867",
+        "categoryName": "Roteadores",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "4897098684573"
+      }
+    },
+    {
+      "produtoId": "018f9e02-57ce-4766-a127-8cbee6d3cabc",
+      "sku": "VTK017630",
+      "nome": "Sensor Externo Sulton Spw 700 Pet 30 Kg",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 161.9,
+      "estoque": 38,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 229.86,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898911419904",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB33447",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "515755",
+          "value_name": "Peccinin"
+        },
+        {
+          "id": "LINE",
+          "value_id": "16958287",
+          "value_name": "Gatter"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "27350004",
+          "value_name": "STD 400"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "GEAR_RACK_MATERIAL",
+          "value_id": "515822",
+          "value_name": "Aço"
+        },
+        {
+          "id": "OPENING_TIME",
+          "value_id": "3036959",
+          "value_name": "10 s"
+        },
+        {
+          "id": "POWER",
+          "value_id": "49554410",
+          "value_name": "1.015 hp"
+        },
+        {
+          "id": "MAX_SUPPORTED_WEIGHT",
+          "value_id": "3021632",
+          "value_name": "300 kg"
+        },
+        {
+          "id": "GARAGE_DOOR_TYPES",
+          "value_id": "5022627",
+          "value_name": "Deslizante"
+        },
+        {
+          "id": "INCLUDES_GEAR_RACK",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GEAR_RACK_LENGTH",
+          "value_id": "7537950",
+          "value_name": "4 m"
+        },
+        {
+          "id": "ELECTRICAL_PHASE",
+          "value_id": "2482010",
+          "value_name": "Monofásica"
+        },
+        {
+          "id": "OPENING_DISTANCE",
+          "value_id": "9704489",
+          "value_name": "4 m"
+        },
+        {
+          "id": "CYCLES_PER_HOUR",
+          "value_id": "8854247",
+          "value_name": "20"
+        },
+        {
+          "id": "USE",
+          "value_id": "10162778",
+          "value_name": "Residencial"
+        },
+        {
+          "id": "OPENING_SPEED",
+          "value_id": "15673353",
+          "value_name": "10 m/min"
+        },
+        {
+          "id": "LEAFS_NUMBER",
+          "value_id": "13157532",
+          "value_name": "1"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27486050",
+          "value_name": "7898911419904"
+        },
+        {
+          "id": "CONTROLLERS_NUMBER_INCLUDED",
+          "value_id": "8833560",
+          "value_name": "2"
+        },
+        {
+          "id": "GEAR_RACKS_NUMBER",
+          "value_id": "8854244",
+          "value_name": "3"
+        },
+        {
+          "id": "WITH_MANUAL_UNLOCKING_SYSTEM",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_MAGNETIC_LIMIT_SWITCH",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_PHOTOCELL_INPUT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_COURTESY_LIGHT_OUTPUT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_PUSH_BUTTON_INPUT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_ASSEMBLY_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "2296420",
+          "value_name": "Controle remoto"
+        },
+        {
+          "id": "GEAR_MATERIAL",
+          "value_id": "8843574",
+          "value_name": "Alumínio"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29005091",
+        "catalogProductName": "Kit Motor Portão Deslizante Peccinin Gatter STD 400 4m Automático",
+        "catalogDomainId": "MLB-GATE_MOTORS",
+        "categoryId": "MLB33447",
+        "categoryName": "Motores para Portões",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898911419904"
+      }
+    },
+    {
+      "produtoId": "7db7cb53-5677-49a6-9af3-c0b365d12555",
+      "sku": "VTK017529",
+      "nome": "Solda Tubinho Cobix Azul 22 Gramas",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 11.7,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 39.14,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898249430015",
+        "validatedNcm": "80012000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB48611",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "22273154",
+          "value_name": "Barcelona Utilidades"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "22273155",
+          "value_name": "G60w"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52053",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "198813",
+          "value_name": "220V"
+        },
+        {
+          "id": "SOLDERING_IRON_TYPE",
+          "value_id": "5572229",
+          "value_name": "Lápis"
+        },
+        {
+          "id": "POWER",
+          "value_id": "112954",
+          "value_name": "60 W"
+        },
+        {
+          "id": "ELECTRODE_DIAMETER",
+          "value_id": "14350763",
+          "value_name": "1 mm"
+        },
+        {
+          "id": "TIP_MATERIAL",
+          "value_id": "33479679",
+          "value_name": "ESTANHO E CHUMBO"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_REMOVABLE_TIP",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "44589643",
+          "value_name": "7898249430015"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB43505629",
+        "catalogProductName": "Kit 2 Tubos Solda Estanho 1mm Azul 63x37 Cobix Com Fluxo",
+        "catalogDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "categoryId": "MLB48611",
+        "categoryName": "Ferros de Solda",
+        "linkedListingsInCategory": 18,
+        "validatedGtin": "7898249430015"
+      }
+    },
+    {
+      "produtoId": "abbe4587-7010-4303-b677-107e0c471833",
+      "sku": "VTK017909",
+      "nome": "Ssd Kingston Nv3 M.2 2280 Nvme 4.0 500gb",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 822.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1219.11,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "740617344806",
+        "validatedNcm": "84717040",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1672",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16360",
+          "value_name": "Kingston"
+        },
+        {
+          "id": "LINE",
+          "value_id": "41394484",
+          "value_name": "NV3"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "40885950",
+          "value_name": "SNV3S/500G"
+        },
+        {
+          "id": "CAPACITY",
+          "value_id": "151013",
+          "value_name": "500 GB"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52031",
+          "value_name": "Azul-aço"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "42934942",
+          "value_name": "SNV3S/500G"
+        },
+        {
+          "id": "SSD_MAX_READ_SPEED",
+          "value_id": "53429719",
+          "value_name": "5000 MB/s"
+        },
+        {
+          "id": "SSD_MAX_WRITE_SPEED",
+          "value_id": "53762336",
+          "value_name": "3000 MB/s"
+        },
+        {
+          "id": "DRIVE_STORAGE_TYPE",
+          "value_id": "122392",
+          "value_name": "SSD"
+        },
+        {
+          "id": "INTERFACES",
+          "value_id": "7967927",
+          "value_name": "PCIe 4.0"
+        },
+        {
+          "id": "HARD_DRIVE_AND_SSD_LOCATION",
+          "value_id": "96008",
+          "value_name": "Interno"
+        },
+        {
+          "id": "APPLICATIONS",
+          "value_id": "289314",
+          "value_name": "Notebook"
+        },
+        {
+          "id": "HARD_DRIVE_AND_SSD_FORM_FACTOR",
+          "value_id": "405403",
+          "value_name": "M.2 2280"
+        },
+        {
+          "id": "EXTERNAL_HARD_DRIVE_AND_SSD_TYPE",
+          "value_id": "1216151",
+          "value_name": "Desktop"
+        },
+        {
+          "id": "OPERATING_TEMPERATURE",
+          "value_id": "11642676",
+          "value_name": "0 °C - 70 °C"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_RAID",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_DUST_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "DATA_TRANSFER",
+          "value_id": "47270467",
+          "value_name": "5000 MB de leitura"
+        },
+        {
+          "id": "CONNECTIVITY",
+          "value_id": "24215273",
+          "value_name": "Pcie 4, NVMe PCIe 4.0 x4"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "40885959",
+          "value_name": "740617344806"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SHOCK_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SECURITY_DATA_SYSTEM",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CLOUD_BACKUP",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_3D_NAND_TECHNOLOGY",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_HEATSINK",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_RGB_LIGHTING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "OS_SUPPORTED",
+          "value_id": "11305604",
+          "value_name": "Chrome OS, Linux, MacOS, Windows 10 Pro"
+        },
+        {
+          "id": "STORAGE_TEMPERATURE",
+          "value_id": "18360467",
+          "value_name": "40 °C x 85 °C"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "13000157",
+          "value_name": "2.2 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "14753351",
+          "value_name": "0.23 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "8167140",
+          "value_name": "8 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "8626437",
+          "value_name": "7 g"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB39410080",
+        "catalogProductName": "SSD Kingston NV3 500GB M2 2280 NVME PCIe 4.0 Gen 4x4 Ultra Rápido",
+        "catalogDomainId": "MLB-HARD_DRIVES_AND_SSDS",
+        "categoryId": "MLB1672",
+        "categoryName": "HDs e SSDs",
+        "linkedListingsInCategory": 78,
+        "validatedGtin": "740617344806"
+      }
+    }
+  ]
+}

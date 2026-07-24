@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-066-ml-create-066.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-066",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "27f2495d-930e-483d-b2ad-86c5f491fd2f",
+      "sku": "VTK006318",
+      "category": {
+        "id": "MLB456075",
+        "nome": "Carregadores para Baterias",
+        "dominio": "Carregadores de Bateria para Ferramentas Elétricas"
+      },
+      "anuncio": {
+        "id": "MLB4877417123",
+        "title": "Carregador Gan 60w Fortrek Cg633",
+        "price": 146.82,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877417123-carregador-gan-60w-fortrek-cg633-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Produto sem imagens locais. Será usada imagem placeholder.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 120.18 → R$ 146.82."
+      ]
+    }
+  ],
+  "failed": []
+}

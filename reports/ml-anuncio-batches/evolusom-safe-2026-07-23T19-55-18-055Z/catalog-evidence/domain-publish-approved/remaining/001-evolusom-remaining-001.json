@@ -1,0 +1,993 @@
+{
+  "batchNumber": 1,
+  "batchId": "evolusom-domain-approved-001",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "dfae7484-7e88-4734-97f9-8b6c21617dfc",
+      "sku": "VTK017900",
+      "nome": "Autotransformador Blindado Indusat 2000va Tripolar",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 132.5,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 188.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897643848440",
+        "validatedNcm": "85043211",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB30197",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2746860",
+          "value_name": "Indusat"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "55602881",
+          "value_name": "2000VA, TRIPOLAR, 2P+T"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "POWER",
+          "value_id": "52303999",
+          "value_name": "1300 W"
+        },
+        {
+          "id": "MAX_POWER_SUPPORTED",
+          "value_id": "65966843",
+          "value_name": "1300 W"
+        },
+        {
+          "id": "INPUT_VOLTAGES",
+          "value_id": "39205162",
+          "value_name": "127V, 220V"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "10981338",
+          "value_name": "60"
+        },
+        {
+          "id": "OUTPUT_VOLTAGES",
+          "value_id": "5592405",
+          "value_name": "110V, 220V"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "4503757",
+          "value_name": "15.9 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "1749",
+          "value_name": "9.1 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "2095008",
+          "value_name": "12.5 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18201753",
+          "value_name": "7897643848440"
+        },
+        {
+          "id": "WITH_USB_PORT",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB51506162",
+        "catalogProductName": "Transformador 2000va P/ Máquina Lavar Micro-ondas 110v 220v",
+        "catalogDomainId": "MLB-VOLTAGE_CONVERTERS",
+        "predictedDomainId": "MLB-VOLTAGE_CONVERTERS",
+        "categoryId": "MLB30197",
+        "categoryName": "Transformadores",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7897643848440"
+      }
+    },
+    {
+      "produtoId": "83b49b10-7148-4d7f-b154-8082f4fae58e",
+      "sku": "VTK018587",
+      "nome": "Auxiliar De Partida / Acumulador De Bateria Thork 6310",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 384.9,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 546.46,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "4895239063102",
+        "validatedNcm": "85076000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB63455",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "58761426",
+          "value_name": "Thork by Tech One"
+        },
+        {
+          "id": "LINE",
+          "value_id": "58761428",
+          "value_name": "ACUMULADOR"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "58761430",
+          "value_name": "7500mAh"
+        },
+        {
+          "id": "OUTPUT_CURRENT",
+          "value_id": "47396331",
+          "value_name": "12 A"
+        },
+        {
+          "id": "LOAD_VOLTAGE",
+          "value_id": "47397135",
+          "value_name": "5V"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "21536021",
+          "value_name": "Vermelho e Branco"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "58761433",
+          "value_name": "4895239063102"
+        },
+        {
+          "id": "MAXIMUM_LOAD",
+          "value_id": "63369332",
+          "value_name": "7.5 A"
+        },
+        {
+          "id": "FEATURES",
+          "value_id": "75353630",
+          "value_name": "Lanterna de LED, Indicação de carga com LED azul, Garra para função de start, Conector tipo C"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "28258268",
+          "value_name": "CABO E CASE"
+        },
+        {
+          "id": "RECOMMENDED_USES",
+          "value_id": "63369333",
+          "value_name": "VEICULO"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "8184",
+          "value_name": "500 g"
+        },
+        {
+          "id": "DIMENSIONS",
+          "value_id": "58761427",
+          "value_name": "130 mm x 75 mm x 25 mm"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB53434515",
+        "catalogProductName": "Auxiliar de Partida Thork Tech One Automotivo Portátil 7500mAh 12V Carro/Moto",
+        "catalogDomainId": "MLB-VEHICLE_BATTERY_CHARGERS",
+        "predictedDomainId": "MLB-VEHICLE_BATTERY_CHARGERS",
+        "categoryId": "MLB63455",
+        "categoryName": "Carregadores de Baterías",
+        "linkedListingsInCategory": 11,
+        "validatedGtin": "4895239063102"
+      }
+    },
+    {
+      "produtoId": "cad1ab58-6d25-4c99-bd68-4d2a56976c6b",
+      "sku": "VTK017679",
+      "nome": "Bateria Selada De Chumbo Elgin Vrla 6v 4,5ah",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 33.9,
+      "estoque": 24,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 66.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897013578472",
+        "validatedNcm": "85072010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB57843",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "LINE",
+          "value_id": "40167283",
+          "value_name": "6v 4,5ah"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18139945",
+          "value_name": "6v 4,5ah"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "value_id": "4222707",
+          "value_name": "4.5 Ah"
+        },
+        {
+          "id": "BATTERY_COMPOSITION",
+          "value_id": "10998348",
+          "value_name": "Gel ácido"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_id": "4416142",
+          "value_name": "6V"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "40167282",
+          "value_name": "7897013578472"
+        },
+        {
+          "id": "TERMINAL_TYPE",
+          "value_id": "2693202",
+          "value_name": "F1"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB65347168",
+        "catalogProductName": "Bateria Selada 6v 4,5ah Chumbo Vrla 1 Unidad",
+        "catalogDomainId": "MLB-UPS_BATTERIES",
+        "predictedDomainId": "MLB-UPS_BATTERIES",
+        "categoryId": "MLB57843",
+        "categoryName": "Baterias",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7897013578472"
+      }
+    },
+    {
+      "produtoId": "ccc74733-b03e-42d6-a201-31712065c86d",
+      "sku": "VTK017571",
+      "nome": "Bateria Selada De Chumbo Elgin Vrla 12v Alarme",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 56.9,
+      "estoque": 42,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 94.94,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897013582233",
+        "validatedNcm": "85072010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB57843",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "LINE",
+          "value_id": "16811873",
+          "value_name": "Selada"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "38760196",
+          "value_name": "ELE000000082315"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "value_id": "38889818",
+          "value_name": "Bateria Selada 12 V"
+        },
+        {
+          "id": "COMPATIBLE_UPS",
+          "value_id": "2693207",
+          "value_name": "APC BX650CI-AR, Lyonn CTB-800A"
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "value_id": "4222719",
+          "value_name": "7 Ah"
+        },
+        {
+          "id": "BATTERY_COMPOSITION",
+          "value_id": "18114863",
+          "value_name": "Íon de lítio"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_id": "909022",
+          "value_name": "12V"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "1487",
+          "value_name": "9.4 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "57324",
+          "value_name": "6.4 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "570734",
+          "value_name": "15 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "59112",
+          "value_name": "1 kg"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "20349829",
+          "value_name": "7897013582233, 7903219718373"
+        },
+        {
+          "id": "TERMINAL_TYPE",
+          "value_id": "2693202",
+          "value_name": "F1"
+        },
+        {
+          "id": "LIFE_EXPECTANCY",
+          "value_id": "17107451",
+          "value_name": "1 anos"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB24116658",
+        "catalogProductName": "Elgin Selada Bateria 12v 7a Alarme E Cerca Elétrica",
+        "catalogDomainId": "MLB-UPS_BATTERIES",
+        "predictedDomainId": "MLB-UPS_BATTERIES",
+        "categoryId": "MLB57843",
+        "categoryName": "Baterias",
+        "linkedListingsInCategory": 13,
+        "validatedGtin": "7897013582233"
+      }
+    },
+    {
+      "produtoId": "a540d98f-8112-4d22-b21e-26f7f528a1f1",
+      "sku": "VTK017908",
+      "nome": "Bateria Selada De Chumbo Elgin Vrla 12v 5ah",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 67.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 108.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908412528118",
+        "validatedNcm": "85072010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB57843",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "LINE",
+          "value_id": "16811873",
+          "value_name": "Selada"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24753549",
+          "value_name": "12v 5ah"
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "value_id": "2896218",
+          "value_name": "5 Ah"
+        },
+        {
+          "id": "BATTERY_COMPOSITION",
+          "value_id": "19758947",
+          "value_name": "Selada"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_id": "909022",
+          "value_name": "12V"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "1016264",
+          "value_name": "11 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "3001",
+          "value_name": "9 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "1115182",
+          "value_name": "7 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24753548",
+          "value_name": "7908412528118"
+        },
+        {
+          "id": "TERMINAL_TYPE",
+          "value_id": "2693202",
+          "value_name": "F1"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27391580",
+        "catalogProductName": "Bateria Selada Elgin Chumbo 12v X 5ah - Ele000000082350",
+        "catalogDomainId": "MLB-UPS_BATTERIES",
+        "predictedDomainId": "MLB-UPS_BATTERIES",
+        "categoryId": "MLB57843",
+        "categoryName": "Baterias",
+        "linkedListingsInCategory": 5,
+        "validatedGtin": "7908412528118"
+      }
+    },
+    {
+      "produtoId": "b0fff073-49cb-48d6-9904-5a035e2cc85b",
+      "sku": "VTK005073",
+      "nome": "Cabo Blindado Y 1FX2M 20cm Vermelho Storm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 19.9,
+      "estoque": 48,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": 59.81,
+      "suggestedPricePreview": 49.26,
+      "priceSource": "custom_price",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566205723",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB431813",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2785980",
+          "value_name": "Storm"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "27371021",
+          "value_name": "Cbay0010"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788220",
+          "value_name": "RCA"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27371020",
+          "value_name": "7898566205723"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB28921309",
+        "catalogProductName": "Cabo De Audio Y Rca Blindado Profissional Vermelho Storm",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB431813",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898566205723"
+      }
+    },
+    {
+      "produtoId": "acf02ebc-acb3-4ced-b072-2b6768aebab8",
+      "sku": "VTK005071",
+      "nome": "Cabo Blindado 2RCA X 2RCA 5m Azul Storm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 28.5,
+      "estoque": 28,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 59.88,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566207970",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB38279",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16890593",
+          "value_name": "Stormtech"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "13834606",
+          "value_name": "Blindado"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788220",
+          "value_name": "RCA"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "12290005",
+          "value_name": "Azul"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129121",
+          "value_name": "5 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "16088626",
+          "value_name": "5 mm"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15289674",
+          "value_name": "2"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15290095",
+          "value_name": "2"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6778113",
+          "value_name": "RCA"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6778116",
+          "value_name": "RCA"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "22788370",
+          "value_name": "Banhado a ouro"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18184421",
+          "value_name": "7898566207970"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22587823",
+        "catalogProductName": "Kit Cabo Rca Blindado 5 Metros E 2 Y 2 Machos 1 Fêmea Ouro",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB38279",
+        "categoryName": "Outros Cabos",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7898566207970"
+      }
+    },
+    {
+      "produtoId": "d9c5a098-54a7-48c9-a7a1-045129600cc8",
+      "sku": "VTK003185",
+      "nome": "Cabo Cannon Macho para Cannon Fêmea 10m CBCN0002 Storm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 27.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 59.14,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566206737",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB432437",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2785980",
+          "value_name": "Storm"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17482611",
+          "value_name": "CBCN0002"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788227",
+          "value_name": "XLR"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129133",
+          "value_name": "10 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6778114",
+          "value_name": "XLR"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "2305169",
+          "value_name": "XLR"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "17482633",
+          "value_name": "7898566206737"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22235279",
+        "catalogProductName": "Cabo XLR Storm Profissional Macho para Fêmea de 10 m",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB432437",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7898566206737"
+      }
+    },
+    {
+      "produtoId": "73680629-ca61-4ed3-ab19-4edfe1eb90c0",
+      "sku": "VTK018652",
+      "nome": "Cabo Coaxial Flexível 4,0mm Multitoc 80% Malha Cobre +2 Alimentações Internas Branco 100m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 82.9,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 127.04,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898179317226",
+        "validatedNcm": "85444900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB270088",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "15436071",
+          "value_name": "TELECAM"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17155918",
+          "value_name": "CAT5"
+        },
+        {
+          "id": "NETWORK_CABLE_TYPE",
+          "value_id": "2623686",
+          "value_name": "Par trançado UTP"
+        },
+        {
+          "id": "SALES_UNIT",
+          "value_id": "5203052",
+          "value_name": "Bobina"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "4392266",
+          "value_name": "300 m"
+        },
+        {
+          "id": "NETWORK_CABLE_CATEGORY",
+          "value_id": "2623701",
+          "value_name": "Categoria 5e"
+        },
+        {
+          "id": "COATING_MATERIAL",
+          "value_id": "1237600",
+          "value_name": "PVC"
+        },
+        {
+          "id": "CONDUCTOR_MATERIAL",
+          "value_id": "74149906",
+          "value_name": "Fio liga de cobre"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6787154",
+          "value_name": "RJ-45"
+        },
+        {
+          "id": "AMBIENT",
+          "value_id": "417560",
+          "value_name": "Interior/Exterior"
+        },
+        {
+          "id": "INCLUDES_CONNECTORS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "31797877",
+          "value_name": "7898179317226"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB32061965",
+        "catalogProductName": "Cabo de Rede Categoria 5e TELECAM de 300 m para Câmeras e CFTV",
+        "catalogDomainId": "MLB-NETWORK_CABLES",
+        "predictedDomainId": "MLB-NETWORK_CABLES",
+        "categoryId": "MLB270088",
+        "categoryName": "Cabos de Rede",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898179317226"
+      }
+    },
+    {
+      "produtoId": "b15206b3-9651-402e-a1b1-89d70a6e1de7",
+      "sku": "VTK019031",
+      "nome": "Cabo De Guitarra Tiaflex 1x22 Awg 0,30 Mm Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 479.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 710.96,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898429984192",
+        "validatedNcm": "85444900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB432437",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "12235577",
+          "value_name": "Tiaflex"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "25266467",
+          "value_name": "701000"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "16088604",
+          "value_name": "Cabo"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "AWG_SIZE",
+          "value_id": "16240127",
+          "value_name": "22"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "29661973",
+          "value_name": "7898429984192"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "20201450",
+          "value_name": "Instrumentos musicais, Microfones, Equipamento de áudio, Instalações eletro-eletrônicos"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB30456286",
+        "catalogProductName": "Cabo De Guitarra Emborrachado 1 X 0,30mm2 6mm 100 Metros",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB432437",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898429984192"
+      }
+    }
+  ]
+}

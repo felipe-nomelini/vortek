@@ -1,0 +1,53 @@
+{
+  "batchId": "evolusom-vtk018650-category-correction",
+  "strategy": "manufacturer_verified_manual_correction",
+  "items": [
+    {
+      "produtoId": "df7923c5-fdc1-42a0-8e83-6a5776ae0136",
+      "sku": "VTK018650",
+      "nome": "Antena Automotiva de Teto Shark Permak Branca 100/M1 FM/AM",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 34.9,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 13.25,
+      "customPrice": 84.14,
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253505679",
+        "validatedNcm": "85291090",
+        "imagesOnVortekStorage": true,
+        "trustedOptionalAttributeOverrides": true,
+        "categoryAndConditionalAttributes": "manufacturer_and_ml_domain_discovery"
+      },
+      "categoryId": "MLB45256",
+      "description": "Antena automotiva de teto no formato shark, fabricada pela Permak. Possui receptor FM/AM integrado, instalação sem furos e corpo em plástico ABS. É universal para veículos com superfície reta no teto. Dimensões: 10 cm de altura, 16 cm de comprimento e 9 cm de largura. Cor branca. Conteúdo: uma antena e dois parafusos.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "Shark 100/M1"
+        },
+        {
+          "id": "COLOR",
+          "value_name": "Branco"
+        },
+        {
+          "id": "GTIN",
+          "value_name": "7898253505679"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "manufacturer_page_and_ml_domain_discovery",
+        "categoryId": "MLB45256",
+        "categoryName": "Antenas",
+        "catalogDomainId": "MLB-VEHICLE_ANTENNAS",
+        "validatedGtin": "7898253505679"
+      }
+    }
+  ]
+}

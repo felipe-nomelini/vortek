@@ -1,0 +1,130 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/027-evolusom-catalog-create-027.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-027",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "b1f9c24c-9a5b-4e26-b1c7-ee0a8bda5172",
+      "sku": "VTK018455",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "basePrice": 56.67,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2e386618-3225-41f1-90ea-b7ecd541d968",
+      "sku": "VTK018727",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "basePrice": 43.67,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "bb8bea58-61c4-4e41-9d68-46f486032eef",
+      "sku": "VTK017193",
+      "category": {
+        "id": "MLB269858",
+        "nome": "Convencionais",
+        "dominio": "MLB-SHOWER_HEADS"
+      },
+      "basePrice": 43.48,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4bfdca7e-c32e-47f5-b90a-39956cd2f323",
+      "sku": "VTK018545",
+      "category": {
+        "id": "MLB269858",
+        "nome": "Convencionais",
+        "dominio": "MLB-SHOWER_HEADS"
+      },
+      "basePrice": 44.39,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "faa94e70-9a36-4481-b43e-a16291e0542d",
+      "sku": "VTK018231",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "basePrice": 48.35,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "3b16b01f-16ee-45c7-9d98-f4112c06e0f0",
+      "sku": "VTK018278",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "basePrice": 50,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "074533de-3625-4ac5-87e6-970a7b9add7c",
+      "sku": "VTK017251",
+      "category": {
+        "id": "MLB269858",
+        "nome": "Convencionais",
+        "dominio": "MLB-SHOWER_HEADS"
+      },
+      "basePrice": 40.42,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a1d92fec-8eff-476e-9961-b52b396dc3a3",
+      "sku": "VTK017268",
+      "category": {
+        "id": "MLB5867",
+        "nome": "Roteadores",
+        "dominio": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS"
+      },
+      "basePrice": 526.2,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6b83bc22-9a5e-498d-9886-981eb73e1f6e",
+      "sku": "VTK018565",
+      "category": {
+        "id": "MLB5867",
+        "nome": "Roteadores",
+        "dominio": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS"
+      },
+      "basePrice": 699.85,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "018f9e02-57ce-4766-a127-8cbee6d3cabc",
+      "sku": "VTK017630",
+      "category": {
+        "id": "MLB33447",
+        "nome": "Motores para Portões",
+        "dominio": "MLB-GATE_MOTORS"
+      },
+      "basePrice": 234.19,
+      "missing": []
+    }
+  ],
+  "failed": []
+}

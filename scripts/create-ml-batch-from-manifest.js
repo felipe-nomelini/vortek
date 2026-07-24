@@ -288,9 +288,38 @@ function missingRequired(attrs, { allowEmptyGtinForKit = false } = {}) {
   });
 }
 
+function sanitizeCatalogOverrides(overrides) {
+  const candidates = Array.isArray(overrides) ? overrides : [];
+  const alphanumericModel = candidates.find(
+    (attribute) =>
+      String(attribute?.id || '').toUpperCase() === 'ALPHANUMERIC_MODELS' &&
+      hasText(attribute?.value_name),
+  );
+
+  return candidates.flatMap((attribute) => {
+    const id = String(attribute?.id || '').toUpperCase();
+    const valueName = String(attribute?.value_name || '').trim();
+
+    // Some catalog records contain SEO text instead of the actual model.
+    if (id === 'MODEL' && valueName.length > 120) {
+      return alphanumericModel
+        ? [{ ...attribute, value_id: '', value_name: alphanumericModel.value_name }]
+        : [];
+    }
+
+    // Reject clearly corrupt catalog powers instead of publishing an unsafe value.
+    if (id === 'POWER_OUTPUT') {
+      const numericPower = Number(valueName.replace(/[^\d.,]/g, '').replace(',', '.'));
+      if (Number.isFinite(numericPower) && numericPower > 100000) return [];
+    }
+
+    return [attribute];
+  });
+}
+
 function applyAttributeOverrides(attrs, overrides) {
   const byId = new Map(
-    (Array.isArray(overrides) ? overrides : [])
+    sanitizeCatalogOverrides(overrides)
       .filter((attribute) => hasText(attribute?.id))
       .map((attribute) => [String(attribute.id).toUpperCase(), attribute]),
   );
@@ -327,6 +356,175 @@ function fillKnownBatteryAttributes(attrs, productName) {
       value_name: rechargeable,
     };
   });
+}
+
+function plainSupplierText(value) {
+  return String(value || '')
+    .replace(/<\s*br\s*\/?>/gi, '\n')
+    .replace(/<\s*\/p\s*>/gi, '\n\n')
+    .replace(/<\s*p[^>]*>/gi, '')
+    .replace(/<\s*li[^>]*>/gi, '• ')
+    .replace(/<\s*\/li\s*>/gi, '\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'")
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) =>
+      String.fromCodePoint(Number.parseInt(hex, 16)),
+    )
+    .replace(/&#(\d+);/g, (_, decimal) =>
+      String.fromCodePoint(Number.parseInt(decimal, 10)),
+    )
+    .replace(/&lt;/gi, '')
+    .replace(/&gt;/gi, '')
+    .replace(/&(?:ndash|mdash);/gi, '-')
+    .replace(/&[a-z0-9#]+;/gi, ' ')
+    .replace(/Ω/g, ' ohms')
+    .replace(/<|>/g, '')
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '')
+    .replace(/\p{Extended_Pictographic}|\uFE0F/gu, '')
+    .normalize('NFC')
+    .replace(/[^\x09\x0A\x0D\x20-\x7E\u00A0-\u00FF\u2022]/g, ' ')
+    .replace(/\r/g, '')
+    .replace(/[ \t]+/g, ' ')
+    .replace(/\n{3,}/g, '\n\n')
+    .replace(/Ω/g, ' ohms')
+    .trim();
+}
+
+function readableParagraphs(value) {
+  const text = plainSupplierText(value);
+  if (!text) return '';
+  return text
+    .split(/\n+/)
+    .flatMap((line) => {
+      if (line.startsWith('• ') || line.length <= 320) return [line];
+      const sentences = line.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [line];
+      const paragraphs = [];
+      for (let index = 0; index < sentences.length; index += 3) {
+        paragraphs.push(
+          sentences
+            .slice(index, index + 3)
+            .map((sentence) => sentence.trim())
+            .join(' '),
+        );
+      }
+      return paragraphs;
+    })
+    .filter(Boolean)
+    .join('\n\n');
+}
+
+function validPackageDimensions(product) {
+  const values = [
+    Number(product?.altura || 0),
+    Number(product?.largura || 0),
+    Number(product?.profundidade || 0),
+  ];
+  if (!values.every((value) => Number.isFinite(value) && value > 0)) return false;
+  return !(values[0] === 1 && values[1] === 1 && values[2] === 1);
+}
+
+function buildRichBatchDescription(item, prepared) {
+  const product = item.product || {};
+  const sections = [String(product.nome || item.nome || '').trim()];
+  const overview = readableParagraphs(item.description || product.descricao);
+  if (overview) sections.push(`VISÃO GERAL\n${overview}`);
+
+  const ignoredAttributes = new Set([
+    'GTIN',
+    'SELLER_SKU',
+    'ITEM_CONDITION',
+    'PACKAGE_HEIGHT',
+    'PACKAGE_WIDTH',
+    'PACKAGE_LENGTH',
+    'PACKAGE_WEIGHT',
+  ]);
+  const confirmed = [];
+  const seen = new Set();
+  for (const attribute of [...(prepared.required || []), ...(prepared.optional || [])]) {
+    const id = String(attribute?.id || '').toUpperCase();
+    const name = String(attribute?.name || id).trim();
+    const value = String(attribute?.value_name || '').trim();
+    const valueId = String(attribute?.value_id || '').trim();
+    if (
+      !id ||
+      ignoredAttributes.has(id) ||
+      (!value && !valueId) ||
+      valueId === '-1' ||
+      /^n[aã]o se aplica$/i.test(value)
+    ) {
+      continue;
+    }
+    const displayValue =
+      value ||
+      (attribute?.values || []).find(
+        (candidate) => String(candidate?.id || '') === valueId,
+      )?.name ||
+      '';
+    if (!displayValue) continue;
+    const key = `${name.toLowerCase()}:${String(displayValue).toLowerCase()}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    confirmed.push(`• ${name}: ${displayValue}`);
+    if (confirmed.length >= 24) break;
+  }
+  if (confirmed.length) {
+    sections.push(`CARACTERÍSTICAS CONFIRMADAS\n${confirmed.join('\n')}`);
+  }
+
+  const identifiers = [];
+  if (String(product.marca || '').trim()) {
+    identifiers.push(`• Marca: ${String(product.marca).trim()}`);
+  }
+  if (String(product.gtin || item.preflight?.validatedGtin || '').trim()) {
+    identifiers.push(
+      `• GTIN: ${String(product.gtin || item.preflight.validatedGtin).trim()}`,
+    );
+  }
+  if (String(product.ncm || item.preflight?.validatedNcm || '').trim()) {
+    identifiers.push(
+      `• NCM: ${String(product.ncm || item.preflight.validatedNcm).trim()}`,
+    );
+  }
+  if (String(product.sku || item.sku || '').trim()) {
+    identifiers.push(`• SKU: ${String(product.sku || item.sku).trim()}`);
+  }
+  if (identifiers.length) {
+    sections.push(`IDENTIFICAÇÃO DO PRODUTO\n${identifiers.join('\n')}`);
+  }
+
+  const packageDetails = [];
+  if (validPackageDimensions(product)) {
+    packageDetails.push(
+      `• Dimensões informadas: ${product.altura} × ${product.largura} × ${product.profundidade} cm`,
+    );
+  }
+  if (Number(product.peso_bruto) > 0) {
+    packageDetails.push(
+      `• Peso bruto informado: ${Number(product.peso_bruto).toLocaleString('pt-BR', {
+        maximumFractionDigits: 3,
+      })} kg`,
+    );
+  }
+  if (packageDetails.length) {
+    sections.push(`EMBALAGEM\n${packageDetails.join('\n')}`);
+  }
+
+  // Marker keeps route formatter from wrapping this verified structure again.
+  sections.push('Informações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre.');
+  return sections
+    .filter(Boolean)
+    .join('\n\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .replace(/<|>/g, '')
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '')
+    .replace(/\p{Extended_Pictographic}|\uFE0F/gu, '')
+    .normalize('NFC')
+    .replace(/[^\x09\x0A\x0D\x20-\x7E\u00A0-\u00FF\u2022]/g, ' ')
+    .trim()
+    .slice(0, 5000);
 }
 
 async function prepareCategory(produtoId, categoryId, description, productName) {
@@ -375,12 +573,20 @@ async function prepareCategory(produtoId, categoryId, description, productName) 
 }
 
 async function createOne(item) {
-  let categories = [];
-  try {
-    const categoriesData = await postJson('/api/ml/anuncio/categorias', { produtoId: item.produtoId });
-    categories = (categoriesData?.categorias || []).filter((category) => category?.id).slice(0, 8);
-  } catch (error) {
-    categories = [];
+  let categories = item.categoryId
+    ? [{
+        id: String(item.categoryId),
+        nome: item.catalogEvidence?.categoryName || String(item.categoryId),
+        dominio: item.catalogEvidence?.catalogDomainId || '',
+      }]
+    : [];
+  if (categories.length === 0) {
+    try {
+      const categoriesData = await postJson('/api/ml/anuncio/categorias', { produtoId: item.produtoId });
+      categories = (categoriesData?.categorias || []).filter((category) => category?.id).slice(0, 8);
+    } catch (error) {
+      categories = [];
+    }
   }
 
   if (categories.length === 0) {
@@ -405,7 +611,12 @@ async function createOne(item) {
     try {
       const current = await prepareCategory(item.produtoId, category.id, item.description || '', item.nome || '');
       current.required = applyAttributeOverrides(current.required, item.attributeOverrides);
-      current.optional = applyAttributeOverrides(current.optional, item.attributeOverrides);
+      // Exact GTIN catalog matches are strong evidence for category and required
+      // fields, but optional catalog specs can still contain seller-generated errors.
+      // Keep optional values sourced from the local/DSLite product preparation.
+      if (item.preflight?.trustedOptionalAttributeOverrides === true) {
+        current.optional = applyAttributeOverrides(current.optional, item.attributeOverrides);
+      }
       current.missing = missingRequired(current.required, {
         allowEmptyGtinForKit: ALLOW_EMPTY_GTIN_FOR_KITS,
       });
@@ -443,7 +654,7 @@ async function createOne(item) {
     listingType: 'gold_pro',
     basePrice: prepared.schema.prefill?.base_price,
     fiscal: prepared.schema.fiscal_fields,
-    description: prepared.smartData.description || prepared.schema.prefill?.description || item.description || '',
+    description: buildRichBatchDescription(item, prepared),
     attributes: [...prepared.required, ...prepared.optional].map((attr) => ({
       id: attr.id,
       value_id: attr.value_id || '',
@@ -489,8 +700,14 @@ async function createOne(item) {
 
   for (const item of items) {
     try {
-      const { data: produto } = await supabase.from('produtos').select('id, nome, marca, descricao').eq('id', item.produtoId).single();
-      const payload = await createOne({ ...item, nome: produto?.nome || item.nome, marca: produto?.marca || '', description: produto?.descricao || '' });
+      const { data: produto } = await supabase.from('produtos').select('*').eq('id', item.produtoId).single();
+      const payload = await createOne({
+        ...item,
+        product: produto || null,
+        nome: produto?.nome || item.nome,
+        marca: produto?.marca || '',
+        description: produto?.descricao || '',
+      });
       result.created.push(payload);
       console.log(`[ok] ${item.sku} ${payload.anuncio?.id || payload.category?.id || ''}`);
     } catch (error) {

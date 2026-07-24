@@ -1,0 +1,248 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/009-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-009",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "0ee590bb-5657-480e-b748-166319acefe7",
+      "sku": "VTK017224",
+      "category": {
+        "id": "MLB105468",
+        "nome": "Fitas Adesivas",
+        "dominio": "MLB-ADHESIVE_TAPES"
+      },
+      "anuncio": {
+        "id": "MLB7239023028",
+        "title": "Fita Dupla Face Vonder Espuma 19mmx10 0m",
+        "price": 64.62,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239023028-fita-dupla-face-vonder-espuma-19mmx10-0m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 47.02 → R$ 64.62."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "5791ea8f-f7b4-4afc-9928-ac6583fa7b83",
+      "sku": "VTK017607",
+      "category": {
+        "id": "MLB105468",
+        "nome": "Fitas Adesivas",
+        "dominio": "MLB-ADHESIVE_TAPES"
+      },
+      "anuncio": {
+        "id": "MLB4937523479",
+        "title": "Fita Dupla Face Vonder Acrílica 12mmx20m",
+        "price": 77.67,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937523479-fita-dupla-face-vonder-acrilica-12mmx20m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 60.25 → R$ 77.67."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9e217af3-d066-4d41-b48e-24c8d116225c",
+      "sku": "VTK017792",
+      "category": {
+        "id": "MLB105468",
+        "nome": "Fitas Adesivas",
+        "dominio": "MLB-ADHESIVE_TAPES"
+      },
+      "anuncio": {
+        "id": "MLB7239012274",
+        "title": "Fixa Forte 3m Espuma 24mm X 1 5m 76686",
+        "price": 68.86,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239012274-fixa-forte-3m-espuma-24mm-x-1-5m-76686-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 53.32 → R$ 68.86."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b2e9be0a-14ae-4a91-9653-cedbd6f23106",
+      "sku": "VTK017537",
+      "category": {
+        "id": "MLB1664",
+        "nome": "Fones",
+        "dominio": "MLB-HEADPHONES"
+      },
+      "anuncio": {
+        "id": "MLB7239023352",
+        "title": "Fone Com Microfone C3 Tech Ph-60bk Voicer Comfort",
+        "price": 85.96,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239023352-fone-com-microfone-c3-tech-ph-60bk-voicer-comfort-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 67.82 → R$ 85.96."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "edbe286e-77be-4f7a-b83f-9d96fb9087b0",
+      "sku": "VTK017222",
+      "category": {
+        "id": "MLB1664",
+        "nome": "Fones",
+        "dominio": "MLB-HEADPHONES"
+      },
+      "anuncio": {
+        "id": "MLB4937523785",
+        "title": "Fone De Ouvido Evus F-09 Intra Auricular Premium Rosa",
+        "price": 65.58,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937523785-fone-de-ouvido-evus-f-09-intra-auricular-premium-rosa-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Descrição pendente no ML: HTTP 500: KvsException for ItemDescription MLB4937523785: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_SAVE_KVSAPI_ERROR::Could not save item DESC_MLB4937523785 to KVS API: {\"code\":\"unexpected.error\",\"error\":\"HTTP request execution did not complete before the specified timeout configuration: 250 millis (SDK Attempt Count: 1)\",\"status\":500}",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 48.59 → R$ 65.58."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ed5f9de6-35fc-4ad4-bec8-2561a086aa31",
+      "sku": "VTK017368",
+      "category": {
+        "id": "MLB6777",
+        "nome": "Fontes",
+        "dominio": "MLB-DESKTOP_COMPUTER_POWER_SUPPLIES"
+      },
+      "anuncio": {
+        "id": "MLB4937523881",
+        "title": "Fonte Atx Evus Ft-200w Atx 200w Real 20/24p 3 Sata Com Cabo",
+        "price": 107.37,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937523881-fonte-atx-evus-ft-200w-atx-200w-real-2024p-3-sata-com-cabo-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 89.62 → R$ 107.37."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "1809f7f6-fe29-49b8-ae58-c006462b7d9e",
+      "sku": "VTK018645",
+      "category": {
+        "id": "MLB6777",
+        "nome": "Fontes",
+        "dominio": "MLB-DESKTOP_COMPUTER_POWER_SUPPLIES"
+      },
+      "anuncio": {
+        "id": "MLB4937523965",
+        "title": "Fonte Atx Gamemax Gp400a 400w Real 80plus/pfc/bivolt Auto Preto",
+        "price": 429.53,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937523965-fonte-atx-gamemax-gp400a-400w-real-80pluspfcbivolt-auto-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 397.93 → R$ 429.53."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "012e08b0-57bf-4bda-87ba-3b87c5ae04d2",
+      "sku": "VTK017597",
+      "category": {
+        "id": "MLB420411",
+        "nome": "Fontes Chaveadas",
+        "dominio": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES"
+      },
+      "anuncio": {
+        "id": "MLB4937524045",
+        "title": "Fonte Chaveada 9v 2a P4 C+ 2.1 X 5.5 Mm",
+        "price": 67.1,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937524045-fonte-chaveada-9v-2a-p4-c-21-x-55-mm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 51.27 → R$ 67.10."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "cace1590-4ac4-48a0-b5a1-902e38b66b3c",
+      "sku": "VTK018132",
+      "category": {
+        "id": "MLB420411",
+        "nome": "Fontes Chaveadas",
+        "dominio": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES"
+      },
+      "anuncio": {
+        "id": "MLB7239023860",
+        "title": "Fonte Chaveada Colmeia 12v 10a 120w",
+        "price": 137.24,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239023860-fonte-chaveada-colmeia-12v-10a-120w-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 116.54 → R$ 137.24."
+      ]
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "bb82582c-4fa7-4fd0-bdee-6d5fc037345d",
+      "sku": "VTK017698",
+      "nome": "Fonte Chaveada Mxt Para Cftv Com Led 12v 2a",
+      "error": "Produto sem estoque. Sincronize estoque ou aguarde disponibilidade antes de anunciar.",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "error": "Produto sem estoque. Sincronize estoque ou aguarde disponibilidade antes de anunciar."
+      }
+    }
+  ]
+}

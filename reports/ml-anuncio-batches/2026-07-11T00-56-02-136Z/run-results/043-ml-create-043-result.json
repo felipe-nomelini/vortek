@@ -1,0 +1,29 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-043-ml-create-043.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-043",
+  "selected": 1,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "0f063293-5f4c-4f87-8dc4-b219f40ba782",
+      "sku": "VTK012613",
+      "nome": "Palheta Royal Tenor Rkb0125 D Addario",
+      "error": "Atributos obrigatórios pendentes: Tipo de instrumento",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB278096",
+            "nome": "Para Saxos e Clarinetes"
+          },
+          "missing": [
+            "Tipo de instrumento"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

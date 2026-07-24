@@ -1,0 +1,99 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-016-ml-create-016.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-016",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "152c9798-dbe4-4b88-b148-ce039f610dc8",
+      "sku": "VTK012152",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "anuncio": {
+        "id": "MLB4877403851",
+        "title": "Kit 02 Bornes Vermelhos Para Alto Falante Wc 1159 Wireconex",
+        "price": 59.42,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877403851-kit-02-bornes-vermelhos-para-alto-falante-wc-1159-wireconex-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 43.59 → R$ 59.42."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "50e744ce-239b-4bd9-a574-15a984dc5bb1",
+      "sku": "VTK012185",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "anuncio": {
+        "id": "MLB4877412451",
+        "title": "Kit 02 Bornes Para Alto Falante Wc 1159 Wireconex Preto",
+        "price": 59.42,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877412451-kit-02-bornes-para-alto-falante-wc-1159-wireconex-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 43.59 → R$ 59.42."
+      ]
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "95daea06-82b0-44ed-b2ef-d18461cd0e68",
+      "sku": "VTK012195",
+      "nome": "Cavalete Scarlett 3/4 Para Violino Em Maple",
+      "error": "Atributos obrigatórios pendentes: Instrumento recomendado",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45713",
+            "nome": "Pontes para Guitarras"
+          },
+          "missing": [
+            "Instrumento recomendado"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2c33194a-e839-435b-80db-d60776f2805c",
+      "sku": "VTK012228",
+      "nome": "Cavalete Scarlett 4/4 Para Violino Em Maple",
+      "error": "Atributos obrigatórios pendentes: Instrumento recomendado",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45713",
+            "nome": "Pontes para Guitarras"
+          },
+          "missing": [
+            "Instrumento recomendado"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

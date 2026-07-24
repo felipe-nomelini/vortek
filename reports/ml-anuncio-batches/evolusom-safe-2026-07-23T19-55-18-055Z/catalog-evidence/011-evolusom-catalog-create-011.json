@@ -1,0 +1,1223 @@
+{
+  "batchNumber": 11,
+  "batchId": "evolusom-catalog-create-011",
+  "strategy": "exact_gtin_catalog_evidence",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "cace1590-4ac4-48a0-b5a1-902e38b66b3c",
+      "sku": "VTK018132",
+      "nome": "Fonte Chaveada Colmeia 12v 10a 120w",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 70.9,
+      "estoque": 13,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 112.22,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899471828632",
+        "validatedNcm": "85044029",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB420411",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24742715",
+          "value_name": "FONTE CHAVEADA PARA CFTV"
+        },
+        {
+          "id": "POWER",
+          "value_id": "112931",
+          "value_name": "120 W"
+        },
+        {
+          "id": "MIN_INPUT_VOLTAGE",
+          "value_id": "17561522",
+          "value_name": "110V"
+        },
+        {
+          "id": "MAX_INPUT_VOLTAGE",
+          "value_id": "198813",
+          "value_name": "220V"
+        },
+        {
+          "id": "MIN_OUTPUT_VOLTAGE",
+          "value_id": "18114370",
+          "value_name": "12V"
+        },
+        {
+          "id": "MAX_OUTPUT_VOLTAGE",
+          "value_id": "24742717",
+          "value_name": "13.4V"
+        },
+        {
+          "id": "WITH_SHORT_CIRCUIT_PROTECTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24742716",
+          "value_name": "7899471828632"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27383535",
+        "catalogProductName": "Fonte Colmeia Chaveada 12vcc 10a 120w Mxt",
+        "catalogDomainId": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES",
+        "predictedDomainId": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES",
+        "categoryId": "MLB420411",
+        "categoryName": "Fontes Chaveadas",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7899471828632"
+      }
+    },
+    {
+      "produtoId": "e9c302c3-3983-4f4e-9943-6cdfc87021bb",
+      "sku": "VTK017358",
+      "nome": "Fonte Colmeia Evus Psu-30a 12v 30a 360w Bivolt",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 114.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 166.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597132036",
+        "validatedNcm": "85044090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB420411",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "15169328",
+          "value_name": "GNA"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "14201060",
+          "value_name": "Fonte"
+        },
+        {
+          "id": "POWER",
+          "value_id": "3680068",
+          "value_name": "360 W"
+        },
+        {
+          "id": "POWER_OUTPUT",
+          "value_id": "2273357",
+          "value_name": "360 W"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "112648",
+          "value_name": "Metal"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "11066333",
+          "value_name": "50 Hz x 60 Hz"
+        },
+        {
+          "id": "MIN_OUTPUT_VOLTAGE",
+          "value_id": "18114370",
+          "value_name": "12V"
+        },
+        {
+          "id": "MAX_OUTPUT_VOLTAGE",
+          "value_id": "909022",
+          "value_name": "12V"
+        },
+        {
+          "id": "WITH_SHORT_CIRCUIT_PROTECTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "47547153",
+          "value_name": "7898597132036"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB46114333",
+        "catalogProductName": "Fonte Colmeia 12V 30A 360W AC/DC Bivolt GNA Para CFTV e LED",
+        "catalogDomainId": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES",
+        "predictedDomainId": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES",
+        "categoryId": "MLB420411",
+        "categoryName": "Fontes Chaveadas",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7898597132036"
+      }
+    },
+    {
+      "produtoId": "f71fe375-f27f-4881-b24d-fdf9a5044d9b",
+      "sku": "VTK005794",
+      "nome": "Gabinete Gamer C3Tech Aquarius MT-G810 Sem Fans Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 164.9,
+      "estoque": 19,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 234.12,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908639900629",
+        "validatedNcm": "84733019",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1696",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "8774306",
+          "value_name": "C3Tech"
+        },
+        {
+          "id": "LINE",
+          "value_id": "25736589",
+          "value_name": "AQUARIUS MT-G810BK"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "25736587",
+          "value_name": "MT-G810 PRETO"
+        },
+        {
+          "id": "INCLUDES_POWER_SUPPLY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "BAYS",
+          "value_id": "17160345",
+          "value_name": "2.5, 3.5"
+        },
+        {
+          "id": "STRUCTURE_TYPE",
+          "value_id": "39452808",
+          "value_name": "Mini tower"
+        },
+        {
+          "id": "CASE_MATERIALS",
+          "value_id": "3325160",
+          "value_name": "Aço carbono, Vidro temperado"
+        },
+        {
+          "id": "MOTHERBOARDS_COMPATIBILITY",
+          "value_id": "3398725",
+          "value_name": "ITX, Micro-ATX"
+        },
+        {
+          "id": "POWER_SUPPLY_WATTAGE",
+          "value_id": "7225304",
+          "value_name": "0 W"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "121927",
+          "value_name": "33 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "1130943",
+          "value_name": "27.6 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "1130958",
+          "value_name": "33.9 cm"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "CONNECTIVITY",
+          "value_id": "68012004",
+          "value_name": "1 USB-C, 1 USB 3.0, 1 USB 2.0"
+        },
+        {
+          "id": "CASE_COOLING_TYPE",
+          "value_id": "59161823",
+          "value_name": "Ar"
+        },
+        {
+          "id": "MAX_FANS_NUMBER",
+          "value_id": "27104364",
+          "value_name": "6"
+        },
+        {
+          "id": "INCLUDES_SIDE_PANEL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25736588",
+          "value_name": "7908639900629"
+        },
+        {
+          "id": "INCLUDES_ACCESSORIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27946547",
+        "catalogProductName": "Gabinete Gamer Atx Cube Aquário Lateral De Vidro Temperado Cor Preto",
+        "catalogDomainId": "MLB-DESKTOP_COMPUTER_CASES",
+        "predictedDomainId": "MLB-DESKTOP_COMPUTER_CASES",
+        "categoryId": "MLB1696",
+        "categoryName": "Gabinetes",
+        "linkedListingsInCategory": 27,
+        "validatedGtin": "7908639900629"
+      }
+    },
+    {
+      "produtoId": "c15e3f28-f4b9-4757-90c3-e83d57d5c513",
+      "sku": "VTK019115",
+      "nome": "Grampeador/pinador Elétrico Vonder Gpe 916 127v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 369.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 525.17,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893946534301",
+        "validatedNcm": "84672999",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB430493",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "275828",
+          "value_name": "Vonder"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "49777524",
+          "value_name": "GPE 916"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "25741115",
+          "value_name": "Grampeador"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7818798",
+          "value_name": "28 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "9132833",
+          "value_name": "5.7 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7855226",
+          "value_name": "28 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "5996893",
+          "value_name": "1.6 kg"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "49713698",
+          "value_name": "Corrente doméstica"
+        },
+        {
+          "id": "TECHNOLOGY_MOTOR_TYPE",
+          "value_id": "20444254",
+          "value_name": "Com escovas"
+        },
+        {
+          "id": "INCLUDES_ACCESSORIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "21111879",
+          "value_name": "7893946534301"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB24684484",
+        "catalogProductName": "Grampeador Pinador Elétrico Profissional Madeira Vonder Gpe 916",
+        "catalogDomainId": "MLB-ELECTRIC_STAPLERS_AND_BRAD_NAILERS",
+        "predictedDomainId": "MLB-ELECTRIC_STAPLERS_AND_BRAD_NAILERS",
+        "categoryId": "MLB430493",
+        "categoryName": "Grampeadores e Pinadores",
+        "linkedListingsInCategory": 59,
+        "validatedGtin": "7893946534301"
+      }
+    },
+    {
+      "produtoId": "8e3dc4a9-f886-467a-92ec-d7eb50745ffc",
+      "sku": "VTK017218",
+      "nome": "Guia Organizador Cabos Max Eletron 2ux19\"",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 26.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 57.9,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908060203146",
+        "validatedNcm": "94032090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB271708",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "15425638",
+          "value_name": "Max Eletron"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "26316727",
+          "value_name": "MAX ELETRON"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "UNITS_PER_PACKAGE",
+          "value_id": "2726555",
+          "value_name": "2"
+        },
+        {
+          "id": "CABLE_ORGANIZER_FORMAT",
+          "value_id": "5959787",
+          "value_name": "Rack"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "42938167",
+          "value_name": "7908060203146"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB41144807",
+        "catalogProductName": "Guia Organizador Cabos 2ux19",
+        "catalogDomainId": "MLB-CABLE_ORGANIZERS",
+        "predictedDomainId": "MLB-CABLE_ORGANIZERS",
+        "categoryId": "MLB271708",
+        "categoryName": "Organizadores de Cabos",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7908060203146"
+      }
+    },
+    {
+      "produtoId": "a5e2ddf7-aba8-4f7d-a542-f99a5f99873f",
+      "sku": "VTK017223",
+      "nome": "Headset Gamer Evus F-02r Supreme",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 49.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 86.3,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597131541",
+        "validatedNcm": "85183000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1664",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "LINE",
+          "value_id": "126366",
+          "value_name": "Gamer"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "23046348",
+          "value_name": "F-02"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "12300635",
+          "value_name": "Preto e Vermelho"
+        },
+        {
+          "id": "HEADPHONE_FORMAT",
+          "value_id": "182358",
+          "value_name": "Headset"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_MONAURAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_INFANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "23046422",
+          "value_name": "7898597131541"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "23046419",
+          "value_name": "F-02"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_id": "447286",
+          "value_name": "32 Ω"
+        },
+        {
+          "id": "FREQUENCY_RESPONSE",
+          "value_id": "925820",
+          "value_name": "20 Hz - 20 kHz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "964034",
+          "value_name": "108 dB"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "3585733",
+          "value_name": "2.6 m"
+        },
+        {
+          "id": "INCLUDES_CHARGING_CASE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIRELESS_CHARGING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TWS_TECHNOLOGY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_PROXIMITY_SENSOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_MP3_PLAYER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_FM_RADIO",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NOISE_CANCELLING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATERPROOF",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_DUST_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DETACHABLE_CABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DETACHABLE_MICROPHONE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_FLEXIBLE_MICROPHONE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_INTEGRATED_VOICE_ASSISTANTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "CONNECTOR_TYPES",
+          "value_id": "19808090",
+          "value_name": "P2"
+        },
+        {
+          "id": "SUITABLE_USES",
+          "value_id": "19992751",
+          "value_name": "Entretenimento"
+        },
+        {
+          "id": "CONTROL_FUNCTIONS",
+          "value_id": "11559796",
+          "value_name": "Controle de volume, Controle de chamadas"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "8117352",
+          "value_name": "Manual"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB26110004",
+        "catalogProductName": "Fone Ouvido Headset Gamer Microfone P2 Supreme F-02 Evus Cor Preto e Vermelho",
+        "catalogDomainId": "MLB-HEADPHONES",
+        "predictedDomainId": "MLB-HEADPHONES",
+        "categoryId": "MLB1664",
+        "categoryName": "Fones",
+        "linkedListingsInCategory": 5,
+        "validatedGtin": "7898597131541"
+      }
+    },
+    {
+      "produtoId": "a59a337c-ab45-4600-90b9-3bfb03179c4a",
+      "sku": "VTK017599",
+      "nome": "Interfone Hdl Az-s01 Ajuste Volume E Toque Branco",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 97.9,
+      "estoque": 39,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 145.56,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898314173991",
+        "validatedNcm": "85176256",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7075",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2445255",
+          "value_name": "HDL"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24317336",
+          "value_name": "Interfone Az-S"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "BUTTONS_NUMBER",
+          "value_id": "24778972",
+          "value_name": "2"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "value_id": "3010075",
+          "value_name": "3"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "8152567",
+          "value_name": "Corrente elétrica"
+        },
+        {
+          "id": "PHONE_TYPE",
+          "value_id": "2237107",
+          "value_name": "Com fio"
+        },
+        {
+          "id": "INTERCOM_HEIGHT",
+          "value_id": "25929795",
+          "value_name": "19.7 cm"
+        },
+        {
+          "id": "INTERCOM_WIDTH",
+          "value_id": "28643614",
+          "value_name": "7.4 cm"
+        },
+        {
+          "id": "INTERCOM_LENGTH",
+          "value_id": "26538006",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "FRONT_HEIGHT",
+          "value_id": "26645050",
+          "value_name": "20 cm"
+        },
+        {
+          "id": "FRONT_WIDTH",
+          "value_id": "26538003",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "FRONT_LENGTH",
+          "value_id": "34183734",
+          "value_name": "20 cm"
+        },
+        {
+          "id": "INCLUDES_EXTERNAL_CAMERA",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NIGHT_VISION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LOCK_CONTROL_SYSTEM",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SPEAKERPHONE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SCREEN_VIEWER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_COLOR_SCREEN",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_VIDEO_RECORDER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_INTERNET_CONNECTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_APP_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_ANTIVANDALIC",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24317355",
+          "value_name": "7898314173991, 7898314175803"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "4375480",
+          "value_name": "Legrand"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "53931752",
+          "value_name": "AZ-S01"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        },
+        {
+          "id": "MPN",
+          "value_id": "53931753",
+          "value_name": "AZ-S01"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27070506",
+        "catalogProductName": "Interfone Com Fio HDL Monofone AZ-S Áudio Residencial Branco",
+        "catalogDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+        "predictedDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+        "categoryId": "MLB7075",
+        "categoryName": "Porteiros Elétricos",
+        "linkedListingsInCategory": 41,
+        "validatedGtin": "7898314173991"
+      }
+    },
+    {
+      "produtoId": "baaae1b2-3872-4f68-bd88-b2c08902ff02",
+      "sku": "VTK001672",
+      "nome": "Jogo de Soquete Com 11 Peças e Catraca Brasfort",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 50.7,
+      "estoque": 32,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 87.28,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898464731409",
+        "validatedNcm": "82042000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB236055",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "1120727",
+          "value_name": "Brasfort"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "4146076",
+          "value_name": "6175"
+        },
+        {
+          "id": "WRENCH_TYPE",
+          "value_id": "4937884",
+          "value_name": "Esticado"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52053",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "WRENCH_FINISH",
+          "value_id": "22506891",
+          "value_name": "Cromado"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7175734",
+          "value_name": "20 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8053397",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7600402",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "5991223",
+          "value_name": "1 kg"
+        },
+        {
+          "id": "HEAD_TYPE",
+          "value_id": "22506897",
+          "value_name": "Fixa"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "4086949",
+          "value_name": "Aço inoxidável"
+        },
+        {
+          "id": "MAX_APERTURE",
+          "value_id": "23907605",
+          "value_name": "21mm"
+        },
+        {
+          "id": "WITH_NON_SLIP_GRIP",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ERGONOMIC_DESIGN",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "26290390",
+          "value_name": "7898464731409"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB28217446",
+        "catalogProductName": "Jogo Soquete Brasfort Sextavado C/catraca 3/8 11un 6175 Cor Prateado",
+        "catalogDomainId": "MLB-WRENCHES",
+        "predictedDomainId": "MLB-WRENCHES",
+        "categoryId": "MLB236055",
+        "categoryName": "Kit de Chaves",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898464731409"
+      }
+    },
+    {
+      "produtoId": "00472e3e-1484-4aff-b15b-9f47863d7ed6",
+      "sku": "VTK017552",
+      "nome": "Jogo De Potes Tramontina Mixcolor 02 Peças 2l Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 29.9,
+      "estoque": 46,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 61.6,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7891112359284",
+        "validatedNcm": "39241000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB244658",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "433",
+          "value_name": "Tramontina"
+        },
+        {
+          "id": "VOLUME_CAPACITY",
+          "value_id": "86512",
+          "value_name": "2 L"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "FOOD_STORAGE_CONTAINER_SHAPE",
+          "value_id": "21014479",
+          "value_name": "Quadrado"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2482319",
+          "value_name": "Polipropileno"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "5230416",
+          "value_name": "20.2 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "5230416",
+          "value_name": "20.2 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "4743405",
+          "value_name": "9.3 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "75170561",
+          "value_name": "07891112359284"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB66987415",
+        "catalogProductName": "Jogo De Potes Tramontina Mixcolor Preto 2 Litros 2 Preto",
+        "catalogDomainId": "MLB-FOOD_STORAGE_CONTAINERS",
+        "predictedDomainId": "MLB-FOOD_STORAGE_CONTAINERS",
+        "categoryId": "MLB244658",
+        "categoryName": "Potes para Alimentos",
+        "linkedListingsInCategory": 8,
+        "validatedGtin": "7891112359284"
+      }
+    },
+    {
+      "produtoId": "25145b39-46b2-49fd-9a0b-ac457e1720bf",
+      "sku": "VTK017774",
+      "nome": "Jogo De Panelas Tramontina Loreto Alumínio Starflon Max 5 Peças Vermelho",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 259.9,
+      "estoque": 27,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 368.99,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7891112228726",
+        "validatedNcm": "76151000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB107564",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "433",
+          "value_name": "Tramontina"
+        },
+        {
+          "id": "LINE",
+          "value_id": "13943597",
+          "value_name": "Loreto"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "73236906",
+          "value_name": "20399/082"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "value_id": "3402025",
+          "value_name": "5"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "51993",
+          "value_name": "Vermelho"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450307",
+          "value_name": "Vermelho"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "2748301",
+          "value_name": "Alumínio"
+        },
+        {
+          "id": "PIECES_INCLUDED",
+          "value_id": "40107532",
+          "value_name": "Panela, Frigideira, Fervedor, Caçarola"
+        },
+        {
+          "id": "IS_FACTORY_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_INDUCTION_COOKER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NONSTICK_COATING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "33331861",
+          "value_name": "7891112228726"
+        },
+        {
+          "id": "HANDLE_MATERIAL",
+          "value_id": "43958513",
+          "value_name": "Baquelite antitérmico"
+        },
+        {
+          "id": "IS_DISHWASHWE_SAFE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB33309662",
+        "catalogProductName": "Jogo de 5 Panelas Loreto Alumínio Com Revestimento Interno E Externo Antiaderente Starflon Max Cor Vermelho Tramontina",
+        "catalogDomainId": "MLB-KITCHEN_COOKWARE_KITS",
+        "predictedDomainId": "MLB-KITCHEN_COOKWARE_KITS",
+        "categoryId": "MLB107564",
+        "categoryName": "Jogo de Panelas",
+        "linkedListingsInCategory": 16,
+        "validatedGtin": "7891112228726"
+      }
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/010-evolusom-catalog-create-010.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-010",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "81dec7ce-5710-4159-9e36-11850d528f4f",
+      "sku": "VTK017992",
+      "category": {
+        "id": "MLB6952",
+        "nome": "Caixas de Passagem Herméticas",
+        "dominio": "MLB-CABINETS_AND_JUNCTION_BOXES"
+      },
+      "basePrice": 45.44,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "207bbe26-574f-4577-8d76-3cc05839a46c",
+      "sku": "VTK017231",
+      "category": {
+        "id": "MLB6952",
+        "nome": "Caixas de Passagem Herméticas",
+        "dominio": "MLB-CABINETS_AND_JUNCTION_BOXES"
+      },
+      "basePrice": 54.3,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "62b94ab7-5634-4ba4-b527-e0009068eb80",
+      "sku": "VTK017232",
+      "category": {
+        "id": "MLB6952",
+        "nome": "Caixas de Passagem Herméticas",
+        "dominio": "MLB-CABINETS_AND_JUNCTION_BOXES"
+      },
+      "basePrice": 54.3,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "50bd0ac9-f2c6-4be2-9dbf-6bd068e3318b",
+      "sku": "VTK000337",
+      "category": {
+        "id": "MLB3378",
+        "nome": "Caixas de Som e Subwoofer",
+        "dominio": "MLB-SPEAKERS"
+      },
+      "basePrice": 55,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f541dcdc-ae72-4d38-bcd2-53f142f57430",
+      "sku": "VTK018384",
+      "category": {
+        "id": "MLB99957",
+        "nome": "Calculadoras",
+        "dominio": "MLB-CALCULATORS"
+      },
+      "basePrice": 55.33,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "5be26c44-3aca-411b-9d37-16181b0dbcca",
+      "sku": "VTK018453",
+      "category": {
+        "id": "MLB99957",
+        "nome": "Calculadoras",
+        "dominio": "MLB-CALCULATORS"
+      },
+      "basePrice": 40.88,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b572a9b1-cb6b-46d5-9283-bc63cba867a3",
+      "sku": "VTK018298",
+      "category": {
+        "id": "MLB99957",
+        "nome": "Calculadoras",
+        "dominio": "MLB-CALCULATORS"
+      },
+      "basePrice": 43.9,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6c3584cf-235b-4f73-9ed9-11da5c32d26b",
+      "sku": "VTK017895",
+      "category": {
+        "id": "MLB193616",
+        "nome": "Bandejas",
+        "dominio": "MLB-SERVING_AND_HOME_TRAYS"
+      },
+      "basePrice": 108.93,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "065903be-45b2-48b6-9023-7735925177ef",
+      "sku": "VTK018636",
+      "category": {
+        "id": "MLB432035",
+        "nome": "Monitores de Segurança",
+        "dominio": "MLB-SECURITY_MONITORS"
+      },
+      "basePrice": 529.29,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "cc84bed0-6160-4af3-b00e-148814686007",
+      "sku": "VTK017982",
+      "nome": "Calculadora Pessoal Procalc Pc986-p 8 Dígitos Pink",
+      "error": "Atributos obrigatórios pendentes: Tipo de calculadora",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB99957",
+            "nome": "Calculadoras"
+          },
+          "missing": [
+            "Tipo de calculadora"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

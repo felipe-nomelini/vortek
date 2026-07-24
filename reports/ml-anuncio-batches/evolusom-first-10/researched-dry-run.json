@@ -1,0 +1,94 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-first-10/current.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-first-10-researched",
+  "selected": 7,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "01bd76c0-70dd-467d-95c0-af8d5da2f640",
+      "sku": "VTK017266",
+      "category": {
+        "id": "MLB38205",
+        "nome": "Para TV",
+        "dominio": "Controles remotos para TV"
+      },
+      "basePrice": 37.45,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f5fc8a52-9f1a-4255-8751-2032a4acce3d",
+      "sku": "VTK017191",
+      "category": {
+        "id": "MLB38205",
+        "nome": "Para TV",
+        "dominio": "Controles remotos para TV"
+      },
+      "basePrice": 37.82,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "93df8701-8b92-4419-b95e-f023d28b0043",
+      "sku": "VTK017513",
+      "category": {
+        "id": "MLB438559",
+        "nome": "Cabos e Conectores",
+        "dominio": "Cabos e adaptadores de áudio e vídeo"
+      },
+      "basePrice": 38.33,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "61e0477d-0e46-4418-a1ca-16074ed26c59",
+      "sku": "VTK017226",
+      "category": {
+        "id": "MLB260685",
+        "nome": "Discos e Rebolos",
+        "dominio": "Discos e rebolos de corte e desbaste"
+      },
+      "basePrice": 38,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "bbf74430-ce5a-4e8c-80af-c7adee3642e3",
+      "sku": "VTK017605",
+      "category": {
+        "id": "MLB269588",
+        "nome": "Convencionais",
+        "dominio": "Duchas"
+      },
+      "basePrice": 37.79,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8e5c59d9-f0c0-410e-af13-4b4ba1c8c476",
+      "sku": "VTK017381",
+      "category": {
+        "id": "MLB38205",
+        "nome": "Para TV",
+        "dominio": "Controles remotos para TV"
+      },
+      "basePrice": 38.72,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "3919d318-bb85-4e52-941e-3dc223014587",
+      "sku": "VTK018725",
+      "category": {
+        "id": "MLB11529",
+        "nome": "Suportes",
+        "dominio": "Suportes de chão e de parede para TV e monitor"
+      },
+      "basePrice": 38.85,
+      "missing": []
+    }
+  ],
+  "failed": []
+}

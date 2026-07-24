@@ -1,0 +1,60 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-first-10/current.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-first-10-researched",
+  "selected": 2,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "93df8701-8b92-4419-b95e-f023d28b0043",
+      "sku": "VTK017513",
+      "category": {
+        "id": "MLB438559",
+        "nome": "Cabos e Conectores",
+        "dominio": "Cabos e adaptadores de áudio e vídeo"
+      },
+      "anuncio": {
+        "id": "MLB7217233340",
+        "title": "Cabo Rca Injetado Technoise Series 300 Pro 4mm - 1m",
+        "price": 55.32,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7217233340-cabo-rca-injetado-technoise-series-300-pro-4mm-1m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 38.33 → R$ 55.32."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "61e0477d-0e46-4418-a1ca-16074ed26c59",
+      "sku": "VTK017226",
+      "category": {
+        "id": "MLB260685",
+        "nome": "Discos e Rebolos",
+        "dominio": "Discos e rebolos de corte e desbaste"
+      },
+      "anuncio": {
+        "id": "MLB7217233526",
+        "title": "Disco Diamantado Vonder 110mm V1 Furo 20",
+        "price": 55.53,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7217233526-disco-diamantado-vonder-110mm-v1-furo-20-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 38.00 → R$ 55.53."
+      ]
+    }
+  ],
+  "failed": []
+}

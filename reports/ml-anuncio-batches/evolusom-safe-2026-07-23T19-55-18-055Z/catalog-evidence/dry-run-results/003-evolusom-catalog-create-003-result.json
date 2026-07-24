@@ -1,0 +1,130 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/003-evolusom-catalog-create-003.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-003",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "733420e1-bdc4-4a14-92c1-74b818da5106",
+      "sku": "VTK018917",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "basePrice": 844.3,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "46d92423-968a-4095-8167-e18accd45752",
+      "sku": "VTK018988",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "basePrice": 851.7,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1388f38a-f023-4f26-8503-680e3c4bbb8d",
+      "sku": "VTK018501",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "basePrice": 952.44,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "59a867c4-15c8-47ab-ab14-ef55e5c0628e",
+      "sku": "VTK019005",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "basePrice": 2070.83,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "05000abc-702b-494f-983f-b4bf1c02970d",
+      "sku": "VTK017940",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "basePrice": 2160.34,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d80da422-b849-4659-b0f6-ff0efe36e765",
+      "sku": "VTK018489",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "basePrice": 2353.24,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "7c433078-cf08-4965-8cba-fe1e9c822b33",
+      "sku": "VTK005357",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "basePrice": 290.83,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "27a4c9ea-fe09-4dc0-9ea3-db3c6bd9139e",
+      "sku": "VTK017836",
+      "category": {
+        "id": "MLB3385",
+        "nome": "Módulos Amplificadores",
+        "dominio": "MLB-VEHICLE_AMPLIFIERS"
+      },
+      "basePrice": 411.37,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "cd06c332-0ee8-427d-b8c1-5356fdded359",
+      "sku": "VTK017876",
+      "category": {
+        "id": "MLB3385",
+        "nome": "Módulos Amplificadores",
+        "dominio": "MLB-VEHICLE_AMPLIFIERS"
+      },
+      "basePrice": 436.31,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "47cb6019-e097-4198-aa5d-da6beb61dbd6",
+      "sku": "VTK017609",
+      "category": {
+        "id": "MLB3385",
+        "nome": "Módulos Amplificadores",
+        "dominio": "MLB-VEHICLE_AMPLIFIERS"
+      },
+      "basePrice": 607.08,
+      "missing": []
+    }
+  ],
+  "failed": []
+}

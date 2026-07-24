@@ -1,0 +1,29 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-first-10/current.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-first-10-item-5",
+  "selected": 1,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "10a950d3-61c6-4fa0-ac24-e43c5e6642d8",
+      "sku": "VTK017542",
+      "nome": "Alicate Mini Universal Western A-5 4.1/2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB188428",
+            "nome": "Alicate Universal"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

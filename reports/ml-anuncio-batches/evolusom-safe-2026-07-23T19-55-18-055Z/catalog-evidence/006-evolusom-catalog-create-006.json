@@ -1,0 +1,1143 @@
+{
+  "batchNumber": 6,
+  "batchId": "evolusom-catalog-create-006",
+  "strategy": "exact_gtin_catalog_evidence",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "063dbebd-b445-4a04-af92-4036ba27b15d",
+      "sku": "VTK017637",
+      "nome": "Central De Alarme Sulton Cls 1400 Não Monitorada 10 Zonas",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 122.9,
+      "estoque": 37,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 176.42,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898911419775",
+        "validatedNcm": "85311090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7070",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3736389",
+          "value_name": "Sulton"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16811831",
+          "value_name": "CLS 1400"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16811830",
+          "value_name": "7898911419775"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21757400",
+        "catalogProductName": "Central De Alarme 10 Setores Cls 1400 Com Discadora",
+        "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898911419775"
+      }
+    },
+    {
+      "produtoId": "b920dbaf-4373-4d46-b084-174113435531",
+      "sku": "VTK018969",
+      "nome": "Central Multimídia Evolve Gp348 7\" Capacitiva Com Espelhamento Ios Android",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 359.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 510.97,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899838891828",
+        "validatedNcm": "85269100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB135679",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "9982797",
+          "value_name": "Evolve"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "38870469",
+          "value_name": "GP348"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "40491280",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7600402",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "12097451",
+          "value_name": "18 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7828417",
+          "value_name": "6 cm"
+        },
+        {
+          "id": "WITH_GPS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_USB_PORT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TV_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TOUCHSCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "26860289",
+          "value_name": "7899838891828"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "9982797",
+          "value_name": "Evolve"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "55867294",
+          "value_name": "GP348"
+        },
+        {
+          "id": "WITH_FLIP_OUT_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_FM_TRANSMITTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REMOTE_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MEMORY_CARD_READER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "OEM",
+          "value_id": "26860291",
+          "value_name": "7899838825717"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB47121199",
+        "catalogProductName": "Multimídia Evolve 7pol. Com Espelhamento Ios Android Gp348 Cor Preto",
+        "catalogDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "predictedDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "categoryId": "MLB135679",
+        "categoryName": "Com Tela",
+        "linkedListingsInCategory": 5,
+        "validatedGtin": "7899838891828"
+      }
+    },
+    {
+      "produtoId": "2351f349-537e-4081-9553-801bb9193fa7",
+      "sku": "VTK018800",
+      "nome": "Central Multimídia Roadstar Android Com Carplay 7\" - Rs815br",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 479.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 710.96,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898587424882",
+        "validatedNcm": "85272100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB135679",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "37213445",
+          "value_name": "RS-815BR Prime"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "9680365",
+          "value_name": "10.3 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "15945276",
+          "value_name": "4.5 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8943738",
+          "value_name": "17.8 cm"
+        },
+        {
+          "id": "WITH_GPS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_USB_PORT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TV_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TOUCHSCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27063304",
+          "value_name": "7898587424882"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "40583904",
+          "value_name": "RS-815BR Prime"
+        },
+        {
+          "id": "WITH_FLIP_OUT_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_FM_TRANSMITTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REMOTE_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_MEMORY_CARD_READER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB36486045",
+        "catalogProductName": "Sistema multimídia para veículo Roadstar RS-815BR Prime 7\" - preto",
+        "catalogDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "predictedDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "categoryId": "MLB135679",
+        "categoryName": "Com Tela",
+        "linkedListingsInCategory": 64,
+        "validatedGtin": "7898587424882"
+      }
+    },
+    {
+      "produtoId": "279cd801-e10c-410a-9986-22b88a4a331b",
+      "sku": "VTK019007",
+      "nome": "Central Multimídia Svart S900x Octacore Carplay/android Auto 9\"",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 959.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1422.07,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "4895228224989",
+        "validatedNcm": "85272100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB135679",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "9073710",
+          "value_name": "Svart"
+        },
+        {
+          "id": "LINE",
+          "value_id": "46630193",
+          "value_name": "MULTIMIDIA SV S900X OCTA-PRO"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "46630194",
+          "value_name": "S900X"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "40491280",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2685628",
+          "value_name": "9 \""
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7600402",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "20280308",
+          "value_name": "29.5 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7727669",
+          "value_name": "18 cm"
+        },
+        {
+          "id": "WITH_GPS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_USB_PORT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TV_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TOUCHSCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "46630195",
+          "value_name": "4895228224989"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "9073710",
+          "value_name": "Svart"
+        },
+        {
+          "id": "WITH_FLIP_OUT_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_FM_TRANSMITTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REMOTE_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MEMORY_CARD_READER",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB45424354",
+        "catalogProductName": "Multimídia Svart S900x 9 Pol Android Carplay Wifi 4g Octapro",
+        "catalogDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "predictedDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "categoryId": "MLB135679",
+        "categoryName": "Com Tela",
+        "linkedListingsInCategory": 18,
+        "validatedGtin": "4895228224989"
+      }
+    },
+    {
+      "produtoId": "a2fe7003-2d7f-4fbc-8e73-9d62fd95718e",
+      "sku": "VTK018759",
+      "nome": "Central Viaweb Vw8z Ip Star Caixa Abs",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 323.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 459.86,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898936319036",
+        "validatedNcm": "85311090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7070",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16717793",
+          "value_name": "Viaweb"
+        },
+        {
+          "id": "LINE",
+          "value_id": "4463526",
+          "value_name": "IP"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18723527",
+          "value_name": "VW8ZIP"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "value_id": "395193",
+          "value_name": "Alarme"
+        },
+        {
+          "id": "SENSOR_TYPES",
+          "value_id": "395198",
+          "value_name": "Infravermelho"
+        },
+        {
+          "id": "DETECTOR_TYPES",
+          "value_id": "8616768",
+          "value_name": "De movimento"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "8616773",
+          "value_name": "Celular"
+        },
+        {
+          "id": "WITH_WIFI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "ZONES_NUMBER",
+          "value_id": "1261287",
+          "value_name": "8"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18723526",
+          "value_name": "7898936319036"
+        },
+        {
+          "id": "MPN",
+          "value_id": "11208715",
+          "value_name": "154"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22948770",
+        "catalogProductName": "Central de Alarme Viaweb VW8ZIP IP 8 Zonas Sensor Infravermelho",
+        "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7898936319036"
+      }
+    },
+    {
+      "produtoId": "4496d44d-9117-415d-850b-da315f3b4d8e",
+      "sku": "VTK001028",
+      "nome": "Chaleira Elétrica Agratto CE02 Prata Em Aço Inox 220V",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 44.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 80.12,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898461964534",
+        "validatedNcm": "85161000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB31678",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "97494",
+          "value_name": "Agratto"
+        },
+        {
+          "id": "LINE",
+          "value_id": "83597809",
+          "value_name": "784"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "97495",
+          "value_name": "CE-02"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "3513251",
+          "value_name": "Preto/Inox"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "198813",
+          "value_name": "220V"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "5783673",
+          "value_name": "CE-02"
+        },
+        {
+          "id": "VOLUME_CAPACITY",
+          "value_id": "97471",
+          "value_name": "1.8 L"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "4086949",
+          "value_name": "Aço inoxidável"
+        },
+        {
+          "id": "WITH_THERMOMETER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TEMPERATURE_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_AUTOMATIC_SHUT_OFF",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "8291604",
+          "value_name": "7898461964534, 7893590698497, 07905678106388"
+        },
+        {
+          "id": "ENERGY_EFFICIENCY",
+          "value_id": "98473",
+          "value_name": "A"
+        },
+        {
+          "id": "POWER",
+          "value_id": "109598",
+          "value_name": "1500 W"
+        },
+        {
+          "id": "WITH_WATER_INDICATOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_FILTER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_INFUSER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DIGITAL_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MATE_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ROTATING_BASE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_WORKING_INDICATOR_LIGHT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MPN",
+          "value_id": "36995989",
+          "value_name": "GR31241"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB11400063",
+        "catalogProductName": "Chaleira Elétrica Inox Agratto 1,8l Aquecimento Rápido - Preto Inox",
+        "catalogDomainId": "MLB-ELECTRIC_JUGS",
+        "predictedDomainId": "MLB-ELECTRIC_JUGS",
+        "categoryId": "MLB31678",
+        "categoryName": "Chaleiras Elétricas",
+        "linkedListingsInCategory": 98,
+        "validatedGtin": "7898461964534"
+      }
+    },
+    {
+      "produtoId": "735ca2f4-69b8-4d81-93d7-c721650be7df",
+      "sku": "VTK017640",
+      "nome": "Cinta Metálica Permak Para Auto Rádio Bosch 130",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 10.9,
+      "estoque": 36,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 38.15,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253491446",
+        "validatedNcm": "83023000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB433273",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "8299",
+          "value_name": "130"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27992343",
+          "value_name": "7898253491446"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29335709",
+        "catalogProductName": "Cinta De Rádio Universal Prata Gaveta Fixação Cd Bosch",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_CAGES",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_CAGES",
+        "categoryId": "MLB433273",
+        "categoryName": "Gavetas de Fixação",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7898253491446"
+      }
+    },
+    {
+      "produtoId": "1bdbc526-1a1f-4927-a1d2-148506f84f0a",
+      "sku": "VTK018492",
+      "nome": "Climatizador Evaporativo Symphony Diet 8i 8l 127v 60hz",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 499.9,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 740.59,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "8901791100455",
+        "validatedNcm": "84796000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB72503",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2942489",
+          "value_name": "Symphony"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "46155569",
+          "value_name": "DiET8i"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "12472061",
+          "value_name": "Branco"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "AIR_CONDITIONING_TYPE",
+          "value_id": "83444",
+          "value_name": "Frio"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "7640907",
+          "value_name": "6.3 kg"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "9234684",
+          "value_name": "78 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7855225",
+          "value_name": "33 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "5662649",
+          "value_name": "30 cm"
+        },
+        {
+          "id": "IS_HUMIDIFIER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_AIR_PURIFIER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_VENTILATION_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WATER_CAPACITY",
+          "value_id": "1263431",
+          "value_name": "8 L"
+        },
+        {
+          "id": "POWER",
+          "value_id": "1000386",
+          "value_name": "105 W"
+        },
+        {
+          "id": "SPEEDS_NUMBER",
+          "value_id": "1000288",
+          "value_name": "3"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16432051",
+          "value_name": "8901791100455"
+        },
+        {
+          "id": "ENERGY_EFFICIENCY",
+          "value_id": "2307502",
+          "value_name": "A+"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        },
+        {
+          "id": "WITH_TIMER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_REMOTE_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21569054",
+        "catalogProductName": "Climatizador De Ar Symphony Diet 8i-g, 8 Litros, Controle Re",
+        "catalogDomainId": "MLB-PORTABLE_EVAPORATIVE_AIR_COOLERS",
+        "predictedDomainId": "MLB-PORTABLE_EVAPORATIVE_AIR_COOLERS",
+        "categoryId": "MLB72503",
+        "categoryName": "Climatizador Portátil",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "8901791100455"
+      }
+    },
+    {
+      "produtoId": "4ed6d374-c7f1-496c-afa1-bb6a12bccdcf",
+      "sku": "VTK017323",
+      "nome": "Controle Remoto Mxt 01374 Tv Samsung 4k Netflix",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 15.85,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 44.26,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908324701319",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB38205",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "28170404",
+          "value_name": "un49k6500agxzd"
+        },
+        {
+          "id": "INCLUDES_CELL_BATTERIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NETFLIX_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_YOUTUBE_BUTTON",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_UNIVERSAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_PRIME_VIDEO_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "28170403",
+          "value_name": "7908324701319"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29448741",
+        "catalogProductName": "Controle Remoto Smart Tv Un49k6500agxzd - Un 49k6500 Agxzd",
+        "catalogDomainId": "MLB-TV_REMOTE_CONTROLS",
+        "predictedDomainId": "MLB-TV_REMOTE_CONTROLS",
+        "categoryId": "MLB38205",
+        "categoryName": "Para TV",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7908324701319"
+      }
+    },
+    {
+      "produtoId": "2b00baa2-e74c-45df-a380-29de77f0cf37",
+      "sku": "VTK017688",
+      "nome": "Controle Remoto Ar Condicionado Mxt 01300 Samsung Db93-13553a",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 16.5,
+      "estoque": 33,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 45.06,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899903112032",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB196072",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "39103903",
+          "value_name": "DB93-13553A"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7891817",
+          "value_name": "3 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8058567",
+          "value_name": "4.5 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "13822632",
+          "value_name": "100 g"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7857374",
+          "value_name": "14 cm"
+        },
+        {
+          "id": "MAX_REACH",
+          "value_id": "4822898",
+          "value_name": "10 m"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "81834",
+          "value_name": "LCD"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "1176674",
+          "value_name": "Pilha"
+        },
+        {
+          "id": "CELL_BATTERIES_TYPE",
+          "value_id": "6073399",
+          "value_name": "AAA"
+        },
+        {
+          "id": "INCLUDES_CELL_BATTERIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_UNIVERSAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIFI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "28122349",
+          "value_name": "7899903112032"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "124338",
+          "value_name": "Lelong"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "56981792",
+          "value_name": "8456"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB37992271",
+        "catalogProductName": "Controle ar condicionado split Samsung virus doctor inverter MXT",
+        "catalogDomainId": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS",
+        "predictedDomainId": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS",
+        "categoryId": "MLB196072",
+        "categoryName": "Controles Remotos",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7899903112032"
+      }
+    }
+  ]
+}

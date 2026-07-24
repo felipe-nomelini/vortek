@@ -1,0 +1,1328 @@
+{
+  "batchNumber": 14,
+  "batchId": "evolusom-catalog-create-014",
+  "strategy": "exact_gtin_catalog_evidence",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "7fda2d8f-fb0f-4c74-91a6-d212f659df64",
+      "sku": "VTK002745",
+      "nome": "Multímetro Analógico Minipa ET-3021C Azul",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 184.9,
+      "estoque": 22,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 262.51,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898112602761",
+        "validatedNcm": "90303100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB30214",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3053665",
+          "value_name": "Minipa"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "19464592",
+          "value_name": "ET-3021C"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "value_id": "4491927",
+          "value_name": "Bateria"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "103443",
+          "value_name": "Analógico"
+        },
+        {
+          "id": "MAX_TENSION_AC",
+          "value_id": "8127020",
+          "value_name": "1000V"
+        },
+        {
+          "id": "MAX_TENSION_CC",
+          "value_id": "8120868",
+          "value_name": "1000V"
+        },
+        {
+          "id": "MAX_CURRENT_AC",
+          "value_id": "13438234",
+          "value_name": "0 mA"
+        },
+        {
+          "id": "MAX_CURRENT_CC",
+          "value_id": "14216434",
+          "value_name": "10 A"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_id": "13651717",
+          "value_name": "0 Hz"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7337",
+          "value_name": "16 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "3157",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "1115139",
+          "value_name": "4 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "15329851",
+          "value_name": "380 g"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "19464591",
+          "value_name": "7898112602761"
+        },
+        {
+          "id": "CELL_BATTERY_TYPE",
+          "value_id": "6178424",
+          "value_name": "AA"
+        },
+        {
+          "id": "MPN",
+          "value_id": "19464594",
+          "value_name": "Et-3021b"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB23513507",
+        "catalogProductName": "Multímetro Analógico Minipa ET-3021C Medição Tensão Corrente Resistência",
+        "catalogDomainId": "MLB-MULTIMETERS",
+        "predictedDomainId": "MLB-MULTIMETERS",
+        "categoryId": "MLB30214",
+        "categoryName": "Multímetros",
+        "linkedListingsInCategory": 45,
+        "validatedGtin": "7898112602761"
+      }
+    },
+    {
+      "produtoId": "7bcea606-379c-495c-8d56-8f0b46cc6e5a",
+      "sku": "VTK017162",
+      "nome": "Multímetro Digital Dt-830b 2 Mega",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 21.7,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 51.48,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899471825372",
+        "validatedNcm": "90303100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB30214",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18124734",
+          "value_name": "Dt830b"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "value_id": "4491927",
+          "value_name": "Bateria"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "102258",
+          "value_name": "Digital"
+        },
+        {
+          "id": "MAX_TENSION_AC",
+          "value_id": "8120867",
+          "value_name": "750V"
+        },
+        {
+          "id": "MAX_TENSION_CC",
+          "value_id": "8120868",
+          "value_name": "1000V"
+        },
+        {
+          "id": "MAX_CURRENT_AC",
+          "value_id": "16667858",
+          "value_name": "10 A"
+        },
+        {
+          "id": "MAX_CURRENT_CC",
+          "value_id": "14216434",
+          "value_name": "10 A"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_id": "13408320",
+          "value_name": "60 Hz"
+        },
+        {
+          "id": "MAX_ELECTRIC_RESISTANCE",
+          "value_id": "17197235",
+          "value_name": "200 Ω"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "4422043",
+          "value_name": "6.7 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "1111569",
+          "value_name": "12.2 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7474",
+          "value_name": "2.5 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "14410270",
+          "value_name": "200 g"
+        },
+        {
+          "id": "IS_WATERPROOF",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18124876",
+          "value_name": "7899471825372"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22546817",
+        "catalogProductName": "Multimetro Digital Amarelo Volts, Amper E Ohmimetro MXT Dt 830b",
+        "catalogDomainId": "MLB-MULTIMETERS",
+        "predictedDomainId": "MLB-MULTIMETERS",
+        "categoryId": "MLB30214",
+        "categoryName": "Multímetros",
+        "linkedListingsInCategory": 12,
+        "validatedGtin": "7899471825372"
+      }
+    },
+    {
+      "produtoId": "5949378e-ce6f-4dbb-9010-b67535ed68e5",
+      "sku": "VTK018086",
+      "nome": "Multimidia Mp5 Roadstar Pro Line Rs7200br",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 334.9,
+      "estoque": 14,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 475.48,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898587425452",
+        "validatedNcm": "85272100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB135679",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "55209918",
+          "value_name": "Modelo X123"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "40491280",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7600523",
+          "value_name": "11.5 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "15945276",
+          "value_name": "4.5 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8775263",
+          "value_name": "18.5 cm"
+        },
+        {
+          "id": "WITH_GPS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_USB_PORT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TV_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TOUCHSCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "61192000",
+          "value_name": "26592513940"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "55209923",
+          "value_name": "7898587425452"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "58680737",
+          "value_name": "Rs7200br"
+        },
+        {
+          "id": "WITH_FLIP_OUT_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_FM_TRANSMITTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REMOTE_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MEMORY_CARD_READER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB51277144",
+        "catalogProductName": "Multimídia Mp5 7' Roadstar Rs7200br Pro Line Carplay Sem Fio Cor Preto",
+        "catalogDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "predictedDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "categoryId": "MLB135679",
+        "categoryName": "Com Tela",
+        "linkedListingsInCategory": 48,
+        "validatedGtin": "7898587425452"
+      }
+    },
+    {
+      "produtoId": "d541fae9-7963-4b5e-8cc4-819e06baa282",
+      "sku": "VTK018499",
+      "nome": "Multimídia Mp5 Roadstar Rs-9200br Pro Line Carplay Sem Fio 9\"",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 375.9,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 533.69,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898587425469",
+        "validatedNcm": "85272100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB135679",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "LINE",
+          "value_id": "14747237",
+          "value_name": "Carro"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "40491280",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2685628",
+          "value_name": "9 \""
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7567048",
+          "value_name": "9 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "13664337",
+          "value_name": "32 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7768276",
+          "value_name": "21 cm"
+        },
+        {
+          "id": "WITH_GPS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_USB_PORT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TV_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TOUCHSCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "54350219",
+          "value_name": "7898587425469"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "54350218",
+          "value_name": "RS-9200BR PRO LINE"
+        },
+        {
+          "id": "WITH_FLIP_OUT_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_FM_TRANSMITTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REMOTE_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MEMORY_CARD_READER",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB50641501",
+        "catalogProductName": "Multimídia Mp5 9' Roadstar Rs9200br Pro Line Carplay Sem Fio Cor Preto",
+        "catalogDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "predictedDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "categoryId": "MLB135679",
+        "categoryName": "Com Tela",
+        "linkedListingsInCategory": 44,
+        "validatedGtin": "7898587425469"
+      }
+    },
+    {
+      "produtoId": "01109b63-0778-4a85-b0cd-744429e3f1c9",
+      "sku": "VTK018210",
+      "nome": "Nobreak Intelbras Attiv 700va 120v 4822203",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 459.9,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 681.33,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637699907",
+        "validatedNcm": "85044040",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB270504",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "LINE",
+          "value_id": "13369569",
+          "value_name": "Attiv"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "13680807",
+          "value_name": "700VA 120V 4822203"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "value_id": "13680806",
+          "value_name": "4822203"
+        },
+        {
+          "id": "PEAK_POWER",
+          "value_id": "2287699",
+          "value_name": "700VA"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "INPUT_VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "OUTPUT_VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "VOLTAGE_DENOMINATION",
+          "value_id": "368998",
+          "value_name": "Monovolt"
+        },
+        {
+          "id": "PRODUCT_TYPES",
+          "value_id": "8869731",
+          "value_name": "No break"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "13680810",
+          "value_name": "7896637699907, 9200111511964"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "SOUND_ALARM_TYPES",
+          "value_id": "13680811",
+          "value_name": "Bateria baixa/sobrecarga"
+        },
+        {
+          "id": "OUTLETS_NUMBER",
+          "value_id": "260584",
+          "value_name": "4"
+        },
+        {
+          "id": "WITH_ON_OFF_POWER_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_WHEELS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_LCD_SCREEN",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "RATED_POWER",
+          "value_id": "13369656",
+          "value_name": "700 VA"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "7779360",
+          "value_name": "5 kg"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8063649",
+          "value_name": "12.4 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "13680809",
+          "value_name": "26.9 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "9874387",
+          "value_name": "21.4 cm"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB19877873",
+        "catalogProductName": "Nobreak Attiv 700va-120v Intelbras Cor Preto",
+        "catalogDomainId": "MLB-STABILIZERS_AND_UPS",
+        "predictedDomainId": "MLB-STABILIZERS_AND_UPS",
+        "categoryId": "MLB270504",
+        "categoryName": "No-Breaks",
+        "linkedListingsInCategory": 41,
+        "validatedGtin": "7896637699907"
+      }
+    },
+    {
+      "produtoId": "1640b9dc-2be6-4571-9703-3866ce763d9c",
+      "sku": "VTK004012",
+      "nome": "Nobreak Ts Shara Ups Compact 700VA 7Ah Bivolt",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 480.9,
+      "estoque": 23,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 712.44,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897103544400",
+        "validatedNcm": "85044040",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB270504",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "6286105",
+          "value_name": "Ts Shara"
+        },
+        {
+          "id": "LINE",
+          "value_id": "9881807",
+          "value_name": "Compact XPro"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "3010757",
+          "value_name": "4440"
+        },
+        {
+          "id": "PEAK_POWER",
+          "value_id": "2287699",
+          "value_name": "700VA"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "INPUT_VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "OUTPUT_VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "VOLTAGE_DENOMINATION",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "INPUT_VOLTAGE_RANGE",
+          "value_id": "14347809",
+          "value_name": "115v ou 220v"
+        },
+        {
+          "id": "INPUT_VOLTAGE_RANGE_AC",
+          "value_id": "14347811",
+          "value_name": "99V - 264V"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "52294529",
+          "value_name": "TS Shara Compact XPro 4440"
+        },
+        {
+          "id": "PRODUCT_TYPES",
+          "value_id": "8869731",
+          "value_name": "No break"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "14347808",
+          "value_name": "7897103544400"
+        },
+        {
+          "id": "BIVOLT_INPUT_SELECTION_METHOD",
+          "value_id": "355390",
+          "value_name": "Automático"
+        },
+        {
+          "id": "SOUND_ALARM_TYPES",
+          "value_id": "52294531",
+          "value_name": "Bateria baixa e sobrecarga"
+        },
+        {
+          "id": "UPS_TYPE",
+          "value_id": "8869722",
+          "value_name": "Interactiva"
+        },
+        {
+          "id": "SUITABLE_DEVICES",
+          "value_id": "15374097",
+          "value_name": "Computador ou notebook, Câmeras e cftv, Impressoras de jato de tinta, Modem, periféricos em geral e roteador"
+        },
+        {
+          "id": "OUTLETS_NUMBER",
+          "value_id": "260600",
+          "value_name": "6"
+        },
+        {
+          "id": "USB_PORTS_NUMBER",
+          "value_id": "1247837",
+          "value_name": "1"
+        },
+        {
+          "id": "WITH_ON_OFF_POWER_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_WHEELS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_LCD_SCREEN",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "7821662",
+          "value_name": "5.9 kg"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7624902",
+          "value_name": "11 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "11927995",
+          "value_name": "35.5 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7847914",
+          "value_name": "19 cm"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB20283405",
+        "catalogProductName": "Nobreak Ts Shara 700va/490w Biv/115v 4440 Compact Xpro",
+        "catalogDomainId": "MLB-STABILIZERS_AND_UPS",
+        "predictedDomainId": "MLB-STABILIZERS_AND_UPS",
+        "categoryId": "MLB270504",
+        "categoryName": "No-Breaks",
+        "linkedListingsInCategory": 9,
+        "validatedGtin": "7897103544400"
+      }
+    },
+    {
+      "produtoId": "20e9cd55-44b9-4c36-bd1c-27d13a681aba",
+      "sku": "VTK017785",
+      "nome": "Pasta Térmica Implastec Silicone Pote 100g",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 13.9,
+      "estoque": 25,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 41.85,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898446730482",
+        "validatedNcm": "29319029",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB63102",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "13510590",
+          "value_name": "Nobre Brasil"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "26394534",
+          "value_name": "Pasta Térmica"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "13062691",
+          "value_name": "Branco"
+        },
+        {
+          "id": "PACKAGING_TYPE",
+          "value_id": "130169",
+          "value_name": "Pote"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        },
+        {
+          "id": "THERMAL_COMPOUND_PASTE_COMPONENTS",
+          "value_id": "27525284",
+          "value_name": "Silicone"
+        },
+        {
+          "id": "RECOMMENDED_USES",
+          "value_id": "168365",
+          "value_name": "Celulares, Computadores, Microprocessadores, Placas de vídeo, Tablets, Térmico, microprocessador"
+        },
+        {
+          "id": "UNIT_WEIGHT",
+          "value_id": "1457",
+          "value_name": "100 g"
+        },
+        {
+          "id": "UNIT_VOLUME",
+          "value_id": "12269894",
+          "value_name": "0 mL"
+        },
+        {
+          "id": "IS_ELECTRICALLY_CONDUCTIVE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_SPATULA",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24292056",
+          "value_name": "7898446730482"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27050345",
+        "catalogProductName": "Pasta Térmica Implastec 100g Cor Branco",
+        "catalogDomainId": "MLB-PC_THERMAL_COMPOUND_PASTES",
+        "predictedDomainId": "MLB-PC_THERMAL_COMPOUND_PASTES",
+        "categoryId": "MLB63102",
+        "categoryName": "Pasta Térmica",
+        "linkedListingsInCategory": 31,
+        "validatedGtin": "7898446730482"
+      }
+    },
+    {
+      "produtoId": "7c745d31-473a-46d6-88d1-27b0947db63b",
+      "sku": "VTK017388",
+      "nome": "Patch Cord Furukawa Cat5e 0.5m Cinza T568a",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 12.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 40.62,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893137302535",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB270088",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3646767",
+          "value_name": "Furukawa"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "27366479",
+          "value_name": "35104009"
+        },
+        {
+          "id": "NETWORK_CABLE_TYPE",
+          "value_id": "27366481",
+          "value_name": "Cabo de Rede Par trançado U/UTP"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "283165",
+          "value_name": "Cinza"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "943435",
+          "value_name": "50 cm"
+        },
+        {
+          "id": "CABLE_SHAPE",
+          "value_id": "25871411",
+          "value_name": "U/UTP"
+        },
+        {
+          "id": "NETWORK_CABLE_CATEGORY",
+          "value_id": "2623701",
+          "value_name": "Categoria 5e"
+        },
+        {
+          "id": "COATING_MATERIAL",
+          "value_id": "25871412",
+          "value_name": "Poliolefina ou Polietileno"
+        },
+        {
+          "id": "CONDUCTOR_MATERIAL",
+          "value_id": "1237602",
+          "value_name": "Cobre"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6787154",
+          "value_name": "RJ-45"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6343183",
+          "value_name": "RJ45"
+        },
+        {
+          "id": "AMBIENT",
+          "value_id": "115340",
+          "value_name": "Interior"
+        },
+        {
+          "id": "BANDWIDTH",
+          "value_id": "3765310",
+          "value_name": "100 MHz"
+        },
+        {
+          "id": "INCLUDES_CONNECTORS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27366483",
+          "value_name": "7893137302535"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "40316516",
+          "value_name": "Furukawa Electric"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "40582931",
+          "value_name": "CMX-1648"
+        },
+        {
+          "id": "FIBERS_NUMBER",
+          "value_id": "17549960",
+          "value_name": "0"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB28918331",
+        "catalogProductName": "Cabo de Rede U/UTP Categoria 5e Furukawa 0,5m Cinza RJ-45",
+        "catalogDomainId": "MLB-NETWORK_CABLES",
+        "predictedDomainId": "MLB-NETWORK_CABLES",
+        "categoryId": "MLB270088",
+        "categoryName": "Cabos de Rede",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7893137302535"
+      }
+    },
+    {
+      "produtoId": "4bdc2871-1bbd-4523-84de-770b9f3f0916",
+      "sku": "VTK017386",
+      "nome": "Patch Cord Furukawa Cat5e 2.5m Preto T568a 35104008",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 16.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 45.56,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893137302597",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB270088",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3646767",
+          "value_name": "Furukawa"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "49753952",
+          "value_name": "Patch Cord U/Utp Cat.5E Cmx"
+        },
+        {
+          "id": "NETWORK_CABLE_TYPE",
+          "value_id": "2623689",
+          "value_name": "Patch cord"
+        },
+        {
+          "id": "SALES_UNIT",
+          "value_id": "5203053",
+          "value_name": "m"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "1008366",
+          "value_name": "2.5 m"
+        },
+        {
+          "id": "NETWORK_CABLE_CATEGORY",
+          "value_id": "2623701",
+          "value_name": "Categoria 5e"
+        },
+        {
+          "id": "COATING_MATERIAL",
+          "value_id": "74703222",
+          "value_name": "PVC retardante à chama CMX"
+        },
+        {
+          "id": "CONDUCTOR_MATERIAL",
+          "value_id": "74712602",
+          "value_name": "Cobre eletrolítico flexível nu"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6787154",
+          "value_name": "RJ-45"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6343183",
+          "value_name": "RJ45"
+        },
+        {
+          "id": "AMBIENT",
+          "value_id": "115340",
+          "value_name": "Interior"
+        },
+        {
+          "id": "INCLUDES_CONNECTORS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24309052",
+          "value_name": "7893137302597"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "3646767",
+          "value_name": "Furukawa"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27063983",
+        "catalogProductName": "Patch Cord Categoria 5e de 2.5 Metros com Conector RJ-45",
+        "catalogDomainId": "MLB-NETWORK_CABLES",
+        "predictedDomainId": "MLB-NETWORK_CABLES",
+        "categoryId": "MLB270088",
+        "categoryName": "Cabos de Rede",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7893137302597"
+      }
+    },
+    {
+      "produtoId": "225614c7-9cbf-47a8-b8e4-fb20c84b61bf",
+      "sku": "VTK000016",
+      "nome": "Patch Cord U/UTP CAT.5e CMX 2,5m T568A Azul Furukawa Sohoplus",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 17.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 46.79,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893137302580",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB270088",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3646767",
+          "value_name": "Furukawa"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "25871407",
+          "value_name": "35104004 - Kit com 5 Cabos"
+        },
+        {
+          "id": "NETWORK_CABLE_TYPE",
+          "value_id": "17155927",
+          "value_name": "Par trançado U/UTP"
+        },
+        {
+          "id": "SALES_UNIT",
+          "value_id": "5203052",
+          "value_name": "Bobina"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52029",
+          "value_name": "Azul-claro"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "1008366",
+          "value_name": "2.5 m"
+        },
+        {
+          "id": "CABLE_SHAPE",
+          "value_id": "25871411",
+          "value_name": "U/UTP"
+        },
+        {
+          "id": "NETWORK_CABLE_CATEGORY",
+          "value_id": "2623701",
+          "value_name": "Categoria 5e"
+        },
+        {
+          "id": "COATING_MATERIAL",
+          "value_id": "25871412",
+          "value_name": "Poliolefina ou Polietileno"
+        },
+        {
+          "id": "CONDUCTOR_MATERIAL",
+          "value_id": "1237602",
+          "value_name": "Cobre"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6787154",
+          "value_name": "RJ-45"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6343183",
+          "value_name": "RJ45"
+        },
+        {
+          "id": "AMBIENT",
+          "value_id": "115340",
+          "value_name": "Interior"
+        },
+        {
+          "id": "BANDWIDTH",
+          "value_id": "3765310",
+          "value_name": "100 MHz"
+        },
+        {
+          "id": "INCLUDES_CONNECTORS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25871417",
+          "value_name": "7893137302580"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "52249194",
+          "value_name": "171952100256"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "40731269",
+          "value_name": "Furukawa Electric Latam S.A."
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27977197",
+        "catalogProductName": "Kit 5 Cabos Patch Cord Cat5e Furukawa 2.5m RJ45 U/UTP Alta Performance",
+        "catalogDomainId": "MLB-NETWORK_CABLES",
+        "predictedDomainId": "MLB-NETWORK_CABLES",
+        "categoryId": "MLB270088",
+        "categoryName": "Cabos de Rede",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7893137302580"
+      }
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/013-evolusom-catalog-create-013.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-013",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "47638703-a897-463e-ae17-0d9ad238732d",
+      "sku": "VTK018616",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "basePrice": 40.11,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "61eddeb1-1475-4a17-8344-adbeca5cc8af",
+      "sku": "VTK018714",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "basePrice": 43.09,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b0da7ce9-8848-4a03-ad41-138294477102",
+      "sku": "VTK018870",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "basePrice": 71.48,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2d23d922-5228-4a5a-97f0-35903478d514",
+      "sku": "VTK018723",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "basePrice": 92.07,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1395fed2-dc1c-43ed-9dd5-6ce0c42743b7",
+      "sku": "VTK018868",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "basePrice": 104.81,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f890678d-4601-445e-ae96-e7580dabdd80",
+      "sku": "VTK018869",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "basePrice": 130.74,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1be0b415-c95b-460a-bab8-2525814bcfbd",
+      "sku": "VTK018943",
+      "category": {
+        "id": "MLB276330",
+        "nome": "Tags NFC",
+        "dominio": "MLB-RFID_TAGS"
+      },
+      "basePrice": 783.65,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "10a2a623-2b58-438c-a0c2-aa46022bb855",
+      "sku": "VTK018325",
+      "category": {
+        "id": "MLB7892",
+        "nome": "Amplificadores",
+        "dominio": "MLB-AUDIO_AMPLIFIERS"
+      },
+      "basePrice": 143.63,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "24a37bf9-448f-4d52-8ef3-2ed05512ba8e",
+      "sku": "VTK019030",
+      "nome": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din Cinza 89/m3",
+      "error": "Atributos obrigatórios pendentes: Dimensão estándar do estéreo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45320",
+            "nome": "Molduras para Estéreos"
+          },
+          "missing": [
+            "Dimensão estándar do estéreo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "78771007-6730-4434-ae9f-f8094ad3ac11",
+      "sku": "VTK018517",
+      "nome": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din Prata 89/m2",
+      "error": "Atributos obrigatórios pendentes: Dimensão estándar do estéreo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45320",
+            "nome": "Molduras para Estéreos"
+          },
+          "missing": [
+            "Dimensão estándar do estéreo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

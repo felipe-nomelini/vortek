@@ -1,0 +1,130 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/004-evolusom-catalog-create-004.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-004",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "2aacede6-1481-45c5-842a-255b6e79a372",
+      "sku": "VTK017945",
+      "category": {
+        "id": "MLB5080",
+        "nome": "Cabos",
+        "dominio": "MLB-DATA_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 83.46,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "40833916-0332-443e-a228-277eb34c12c9",
+      "sku": "VTK017183",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 47.31,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8088fd1a-2748-4164-b1cf-848f7ffb9f9b",
+      "sku": "VTK017329",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 64.74,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "fb082eb6-7b7d-41e6-b744-08855f2b5ae8",
+      "sku": "VTK004200",
+      "category": {
+        "id": "MLB11507",
+        "nome": "Caixas Acústicas ",
+        "dominio": "MLB-SPEAKERS"
+      },
+      "basePrice": 922.92,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e502444e-ea1e-4e20-9a24-da10069b6668",
+      "sku": "VTK017338",
+      "category": {
+        "id": "MLB3378",
+        "nome": "Caixas de Som e Subwoofer",
+        "dominio": "MLB-SPEAKERS"
+      },
+      "basePrice": 76.81,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "81dec7ce-5710-4159-9e36-11850d528f4f",
+      "sku": "VTK017992",
+      "category": {
+        "id": "MLB6952",
+        "nome": "Caixas de Passagem Herméticas",
+        "dominio": "MLB-CABINETS_AND_JUNCTION_BOXES"
+      },
+      "basePrice": 45.44,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "207bbe26-574f-4577-8d76-3cc05839a46c",
+      "sku": "VTK017231",
+      "category": {
+        "id": "MLB6952",
+        "nome": "Caixas de Passagem Herméticas",
+        "dominio": "MLB-CABINETS_AND_JUNCTION_BOXES"
+      },
+      "basePrice": 54.3,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "62b94ab7-5634-4ba4-b527-e0009068eb80",
+      "sku": "VTK017232",
+      "category": {
+        "id": "MLB6952",
+        "nome": "Caixas de Passagem Herméticas",
+        "dominio": "MLB-CABINETS_AND_JUNCTION_BOXES"
+      },
+      "basePrice": 54.3,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "50bd0ac9-f2c6-4be2-9dbf-6bd068e3318b",
+      "sku": "VTK000337",
+      "category": {
+        "id": "MLB3378",
+        "nome": "Caixas de Som e Subwoofer",
+        "dominio": "MLB-SPEAKERS"
+      },
+      "basePrice": 55,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f541dcdc-ae72-4d38-bcd2-53f142f57430",
+      "sku": "VTK018384",
+      "category": {
+        "id": "MLB99957",
+        "nome": "Calculadoras",
+        "dominio": "MLB-CALCULATORS"
+      },
+      "basePrice": 55.33,
+      "missing": []
+    }
+  ],
+  "failed": []
+}

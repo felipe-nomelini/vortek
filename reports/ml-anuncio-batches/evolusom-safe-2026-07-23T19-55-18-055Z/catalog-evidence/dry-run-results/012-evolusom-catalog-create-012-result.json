@@ -1,0 +1,130 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/012-evolusom-catalog-create-012.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-012",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "b920dbaf-4373-4d46-b084-174113435531",
+      "sku": "VTK018969",
+      "category": {
+        "id": "MLB135679",
+        "nome": "Com Tela",
+        "dominio": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS"
+      },
+      "basePrice": 510.97,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2351f349-537e-4081-9553-801bb9193fa7",
+      "sku": "VTK018800",
+      "category": {
+        "id": "MLB135679",
+        "nome": "Com Tela",
+        "dominio": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS"
+      },
+      "basePrice": 728.96,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "279cd801-e10c-410a-9986-22b88a4a331b",
+      "sku": "VTK019007",
+      "category": {
+        "id": "MLB135679",
+        "nome": "Com Tela",
+        "dominio": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS"
+      },
+      "basePrice": 1458.08,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a2fe7003-2d7f-4fbc-8e73-9d62fd95718e",
+      "sku": "VTK018759",
+      "category": {
+        "id": "MLB7070",
+        "nome": "Alarmes e Sensores",
+        "dominio": "MLB-HOME_ALARMS_AND_SENSORS"
+      },
+      "basePrice": 468.53,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4496d44d-9117-415d-850b-da315f3b4d8e",
+      "sku": "VTK001028",
+      "category": {
+        "id": "MLB31678",
+        "nome": "Chaleiras Elétricas",
+        "dominio": "MLB-ELECTRIC_JUGS"
+      },
+      "basePrice": 81.13,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2f410b69-9b05-49fd-95ab-487e32bfb552",
+      "sku": "VTK017924",
+      "category": {
+        "id": "MLB440299",
+        "nome": "Alarmes para Automotores",
+        "dominio": "MLB-VEHICLE_ALARMS"
+      },
+      "basePrice": 78.35,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "853ee0d7-5ad0-4312-a297-4af55b2194d2",
+      "sku": "VTK018751",
+      "category": {
+        "id": "MLB440299",
+        "nome": "Alarmes para Automotores",
+        "dominio": "MLB-VEHICLE_ALARMS"
+      },
+      "basePrice": 94.92,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "735ca2f4-69b8-4d81-93d7-c721650be7df",
+      "sku": "VTK017640",
+      "category": {
+        "id": "MLB433273",
+        "nome": "Gavetas de Fixação",
+        "dominio": "MLB-VEHICLE_STEREO_CAGES"
+      },
+      "basePrice": 39.11,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1bdbc526-1a1f-4927-a1d2-148506f84f0a",
+      "sku": "VTK018492",
+      "category": {
+        "id": "MLB72503",
+        "nome": "Climatizador Portátil",
+        "dominio": "MLB-PORTABLE_EVAPORATIVE_AIR_COOLERS"
+      },
+      "basePrice": 749.85,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "df5f076d-34e3-4055-8bb1-4a5c31aade74",
+      "sku": "VTK018454",
+      "category": {
+        "id": "MLB38279",
+        "nome": "Outros Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 57.68,
+      "missing": []
+    }
+  ],
+  "failed": []
+}

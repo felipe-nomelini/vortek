@@ -1,0 +1,66 @@
+{
+  "batchNumber": 2,
+  "batchId": "retry-502-002",
+  "items": [
+    {
+      "produtoId": "140f0532-8d7c-4863-8ccb-559355ed369b",
+      "sku": "VTK012470",
+      "nome": "Palheta Bori Grl At-r16114 Azul Crystal 0,82 Mm R21007 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "84ebeb50-8e9e-4528-a628-79255507f7b9",
+      "sku": "VTK012543",
+      "nome": "Palheta Bori Grl At-r16109 S.t.d 0,89 Mm (roxo) R21013 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "8bd947dc-4f73-4a57-a02c-ffa28acf126f",
+      "sku": "VTK012694",
+      "nome": "Palheta Bori Grl At-r16111 S.t.d 1,04 Mm (branco) R21015 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "a2243285-b7ee-4217-9225-22df8cd9d6a5",
+      "sku": "VTK012420",
+      "nome": "Bateria 9v Alcalina Unidade Flex",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "1bbbffef-7733-4f79-a62f-5bfccd76e3cc",
+      "sku": "VTK012237",
+      "nome": "Palheta Bori Grl At-r16147 Rio Xxl (preto) R21032 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "87cdd472-e303-43a5-a712-339a38abc358",
+      "sku": "VTK012283",
+      "nome": "Palheta Bori Grl At-r16146 Rio Xxl (vermelho) R21028 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "73012fb6-c36a-42bf-97c5-df0dd984de1d",
+      "sku": "VTK012301",
+      "nome": "Palheta Bori Grl At-r16145 Rio Iii (preto) R21031 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "e9198188-46cf-49eb-b90f-b7b7eaf37b3b",
+      "sku": "VTK012310",
+      "nome": "Palheta Bori Grl At-r16142 Rio Ii (vermelho) R21026 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "2900f5c0-284c-4f25-afdf-02e041156354",
+      "sku": "VTK012320",
+      "nome": "Palheta Bori Grl At-r16136 Drip Gota 2,50 Mm (azul) R21019 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "04e730e5-b9d0-4147-b1c5-4428e8fc4c71",
+      "sku": "VTK012321",
+      "nome": "Palheta Bori Grl At-r16144 Rio Iii (vermelho) R21027 10un",
+      "fornecedor": "RETRY_502"
+    }
+  ]
+}

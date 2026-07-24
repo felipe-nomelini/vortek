@@ -1,0 +1,260 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/013-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-013",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "536a4c15-bd1a-47b7-b3bd-7d4da64d0a8b",
+      "sku": "VTK004940",
+      "category": {
+        "id": "MLB270088",
+        "nome": "Cabos de Rede",
+        "dominio": "MLB-NETWORK_CABLES"
+      },
+      "anuncio": {
+        "id": "MLB4937552207",
+        "title": "Patch Cord Cat6 10m Azul Pluscable",
+        "price": 69.29,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937552207-patch-cord-cat6-10m-azul-pluscable-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 51.15 → R$ 69.29."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "1c223bca-7a89-4a38-a0e9-302117cebc2d",
+      "sku": "VTK003308",
+      "category": {
+        "id": "MLB270088",
+        "nome": "Cabos de Rede",
+        "dominio": "MLB-NETWORK_CABLES"
+      },
+      "anuncio": {
+        "id": "MLB4937563411",
+        "title": "Patch Cord U/utp Cat.6 Cmx 10m T568a/b Azul Furukawa",
+        "price": 146.73,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937563411-patch-cord-uutp-cat6-cmx-10m-t568ab-azul-furukawa-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 123.08 → R$ 146.73."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "cd8688fe-dbea-4f06-aef6-1f4c9a02a122",
+      "sku": "VTK022563",
+      "category": {
+        "id": "MLB100698",
+        "nome": "Patch Painéis",
+        "dominio": "MLB-PATCH_PANELS"
+      },
+      "anuncio": {
+        "id": "MLB4937563495",
+        "title": "Patch Panel Sohoplus T568a/b Cat6 24 Portas",
+        "price": 799.4,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937563495-patch-panel-sohoplus-t568ab-cat6-24-portas-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 769.08 → R$ 799.40."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "01230107-7150-4839-9397-5df4e772d309",
+      "sku": "VTK018860",
+      "category": {
+        "id": "MLB4980",
+        "nome": "Pen Drives",
+        "dominio": "MLB-PENDRIVES"
+      },
+      "anuncio": {
+        "id": "MLB4937563583",
+        "title": "Pen Drive Emtec Angry Birds Yellow Bird 08gb 2.0",
+        "price": 100.19,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937563583-pen-drive-emtec-angry-birds-yellow-bird-08gb-20-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 83.21 → R$ 100.19."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "8c5ea493-5817-4020-b43b-f57f10c5c67a",
+      "sku": "VTK018637",
+      "category": {
+        "id": "MLB277318",
+        "nome": "Pistolas de Cola",
+        "dominio": "MLB-ELECTRIC_GLUE_AND_SILICONE_GUNS"
+      },
+      "anuncio": {
+        "id": "MLB4937531879",
+        "title": "Pistola De Cola Quente Hikari Hpc-280 280w Bivolt 21k913",
+        "price": 172.34,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937531879-pistola-de-cola-quente-hikari-hpc-280-280w-bivolt-21k913-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 145.70 → R$ 172.34."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "e5bee835-d54d-4ec4-a391-7830d3c36bde",
+      "sku": "VTK018090",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "anuncio": {
+        "id": "MLB4937563737",
+        "title": "Ponta Fenda Para Ferro De Solda Hikari Hk Plus Sc-40 Com 4",
+        "price": 76.9,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937563737-ponta-fenda-para-ferro-de-solda-hikari-hk-plus-sc-40-com-4-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 59.37 → R$ 76.90."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "5fd29c7c-8617-46f0-80fd-309199798d3a",
+      "sku": "VTK017398",
+      "category": {
+        "id": "MLB270084",
+        "nome": "Fusíveis",
+        "dominio": "MLB-INDUSTRIAL_FUSES"
+      },
+      "anuncio": {
+        "id": "MLB4937563807",
+        "title": "Porta Fusível Technoise 1 Via Niquel Faca Anl",
+        "price": 65.21,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937563807-porta-fusivel-technoise-1-via-niquel-faca-anl-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 47.79 → R$ 65.21."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "437ff9ec-67b2-40d3-801a-5a3950b3ae06",
+      "sku": "VTK018665",
+      "category": {
+        "id": "MLB63114",
+        "nome": "Filtros de Linha",
+        "dominio": "MLB-POWER_STRIPS"
+      },
+      "anuncio": {
+        "id": "MLB4937563877",
+        "title": "Protetor Eletrônico Intelbras Com 5 Tomadas Epe 205+",
+        "price": 85.4,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937563877-protetor-eletrnico-intelbras-com-5-tomadas-epe-205-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 72.83 → R$ 85.40."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "d5c4e481-5712-4c0d-8783-5ad4c7bd86e0",
+      "sku": "VTK018118",
+      "category": {
+        "id": "MLB3561",
+        "nome": "Tintas",
+        "dominio": "MLB-PRINTER_INKS"
+      },
+      "anuncio": {
+        "id": "MLB4937563951",
+        "title": "Refil De Tinta Magenta Multilaser Epson T664 100ml",
+        "price": 61.73,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937563951-refil-de-tinta-magenta-multilaser-epson-t664-100ml-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 44.74 → R$ 61.73."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "503d5406-8395-4b04-bae6-5194a0b18084",
+      "sku": "VTK018829",
+      "category": {
+        "id": "MLB189884",
+        "nome": "Refletores",
+        "dominio": "MLB-FLOOD_LIGHTS"
+      },
+      "anuncio": {
+        "id": "MLB4937552987",
+        "title": "Refletor Led Elgin 400w 6500k Preto",
+        "price": 320.17,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937552987-refletor-led-elgin-400w-6500k-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 289.16 → R$ 320.17."
+      ]
+    }
+  ],
+  "failed": []
+}

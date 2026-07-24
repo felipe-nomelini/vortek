@@ -1,0 +1,138 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/025-evolusom-catalog-create-025.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-025",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "225614c7-9cbf-47a8-b8e4-fb20c84b61bf",
+      "sku": "VTK000016",
+      "category": {
+        "id": "MLB270088",
+        "nome": "Cabos de Rede",
+        "dominio": "MLB-NETWORK_CABLES"
+      },
+      "basePrice": 48.59,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "536a4c15-bd1a-47b7-b3bd-7d4da64d0a8b",
+      "sku": "VTK004940",
+      "category": {
+        "id": "MLB270088",
+        "nome": "Cabos de Rede",
+        "dominio": "MLB-NETWORK_CABLES"
+      },
+      "basePrice": 51.15,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1c223bca-7a89-4a38-a0e9-302117cebc2d",
+      "sku": "VTK003308",
+      "category": {
+        "id": "MLB270088",
+        "nome": "Cabos de Rede",
+        "dominio": "MLB-NETWORK_CABLES"
+      },
+      "basePrice": 123.08,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "cd8688fe-dbea-4f06-aef6-1f4c9a02a122",
+      "sku": "VTK022563",
+      "category": {
+        "id": "MLB100698",
+        "nome": "Patch Painéis",
+        "dominio": "MLB-PATCH_PANELS"
+      },
+      "basePrice": 769.08,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "01230107-7150-4839-9397-5df4e772d309",
+      "sku": "VTK018860",
+      "category": {
+        "id": "MLB4980",
+        "nome": "Pen Drives",
+        "dominio": "MLB-PENDRIVES"
+      },
+      "basePrice": 83.21,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8c5ea493-5817-4020-b43b-f57f10c5c67a",
+      "sku": "VTK018637",
+      "category": {
+        "id": "MLB277318",
+        "nome": "Pistolas de Cola",
+        "dominio": "MLB-ELECTRIC_GLUE_AND_SILICONE_GUNS"
+      },
+      "basePrice": 145.7,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "865b05da-58b8-4c3b-9fc4-9c7b58cc19bd",
+      "sku": "VTK017185",
+      "category": {
+        "id": "MLB72745",
+        "nome": "Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 40,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e5bee835-d54d-4ec4-a391-7830d3c36bde",
+      "sku": "VTK018090",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "basePrice": 59.37,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "5fd29c7c-8617-46f0-80fd-309199798d3a",
+      "sku": "VTK017398",
+      "category": {
+        "id": "MLB270084",
+        "nome": "Fusíveis",
+        "dominio": "MLB-INDUSTRIAL_FUSES"
+      },
+      "basePrice": 47.79,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "3e731d68-d11e-4a79-b40e-5904840154d1",
+      "sku": "VTK018766",
+      "nome": "Pedestal Ask Para Caixa Acústica Cxt Regulagem Telescópica",
+      "error": "Atributos obrigatórios pendentes: Lugar de colocação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB10233",
+            "nome": "Suportes para Caixas de Som"
+          },
+          "missing": [
+            "Lugar de colocação"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "startedAt": "2026-07-23T20:58:19.229Z",
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/publish-approved/remaining",
+  "startBatch": 4,
+  "batches": [
+    {
+      "fileName": "004-evolusom-remaining-004.json",
+      "selected": 10,
+      "created": 10,
+      "failed": 0,
+      "exitCode": 0,
+      "failureReasons": [],
+      "verification": {
+        "ok": false,
+        "reason": "fatal_listing_validation",
+        "rows": [
+          {
+            "itemId": "MLB7238888912",
+            "produtoId": "cab1f7b1-3f10-458c-acc6-673834a79050",
+            "categoryOk": true,
+            "status": "active",
+            "subStatuses": [],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 4,
+            "price": 3155.66
+          },
+          {
+            "itemId": "MLB7238889012",
+            "produtoId": "d897bf5b-12ec-4364-a9d6-d4b8bb4be6bc",
+            "categoryOk": true,
+            "status": "active",
+            "subStatuses": [],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 15,
+            "price": 72.56
+          },
+          {
+            "itemId": "MLB7238889146",
+            "produtoId": "cc8af7ed-6b7e-44f6-88f3-e8113e723824",
+            "categoryOk": true,
+            "status": "active",
+            "subStatuses": [],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 50,
+            "price": 73.53
+          },
+          {
+            "itemId": "MLB7238909634",
+            "produtoId": "2d3c2932-8844-4fd5-9727-2a80d82b3c5a",
+            "categoryOk": true,
+            "status": "paused",
+            "subStatuses": [
+              "picture_download_pending"
+            ],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 19,
+            "price": 63.97
+          },
+          {
+            "itemId": "MLB7238889442",
+            "produtoId": "d48054f1-8ad9-470a-a00a-79ac81a4aa8e",
+            "categoryOk": true,
+            "status": "paused",
+            "subStatuses": [
+              "picture_download_pending"
+            ],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 27,
+            "price": 71.67
+          },
+          {
+            "itemId": "MLB7238909924",
+            "produtoId": "4b1023f4-e51c-4b9a-9d9a-aee65923629a",
+            "categoryOk": true,
+            "status": "under_review",
+            "subStatuses": [
+              "waiting_for_patch",
+              "picture_download_pending"
+            ],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 50,
+            "price": 58.97
+          },
+          {
+            "itemId": "MLB7238889666",
+            "produtoId": "2b3dbc5d-3fcf-4445-b10e-a34dba4a9e3e",
+            "categoryOk": true,
+            "status": "active",
+            "subStatuses": [],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 22,
+            "price": 116.64
+          },
+          {
+            "itemId": "MLB4937414559",
+            "produtoId": "df7923c5-fdc1-42a0-8e83-6a5776ae0136",
+            "categoryOk": true,
+            "status": "paused",
+            "subStatuses": [
+              "picture_download_pending"
+            ],
+            "pictureReady": false,
+            "richDescription": true,
+            "quantity": 6,
+            "price": 84.14
+          },
+          {
+            "itemId": "MLB7238889924",
+            "produtoId": "b80ad054-8c24-4c4e-8f95-73c01c3f5f18",
+            "categoryOk": true,
+            "status": "paused",
+            "subStatuses": [
+              "picture_download_pending"
+            ],
+            "pictureReady": false,
+            "richDescription": true,
+            "quantity": 4,
+            "price": 58.92
+          },
+          {
+            "itemId": "MLB7238910500",
+            "produtoId": "194c7dcb-be07-4295-ba39-fa55be846782",
+            "categoryOk": true,
+            "status": "paused",
+            "subStatuses": [
+              "picture_download_pending"
+            ],
+            "pictureReady": false,
+            "richDescription": true,
+            "quantity": 16,
+            "price": 289.47
+          }
+        ],
+        "fatal": [
+          {
+            "itemId": "MLB7238909924",
+            "produtoId": "4b1023f4-e51c-4b9a-9d9a-aee65923629a",
+            "categoryOk": true,
+            "status": "under_review",
+            "subStatuses": [
+              "waiting_for_patch",
+              "picture_download_pending"
+            ],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 50,
+            "price": 58.97
+          }
+        ]
+      }
+    }
+  ],
+  "totals": {
+    "selected": 10,
+    "created": 10,
+    "failed": 0,
+    "verified": 0
+  }
+}

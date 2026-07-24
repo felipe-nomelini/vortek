@@ -1,0 +1,85 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-054-ml-create-054.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-054",
+  "selected": 3,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "84a8e8a2-41b9-4915-b6ca-fe8ff151c280",
+      "sku": "VTK012183",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "anuncio": {
+        "id": "MLB7145205476",
+        "title": "Kit 05 Conectores P2 Stereo Linha Femea Wc 336 Wireconex",
+        "price": 114.17,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7145205476-kit-05-conectores-p2-stereo-linha-femea-wc-336-wireconex-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 92.31 → R$ 114.17."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "333fa5ab-1e85-4ef1-8d16-9e1aba8dc118",
+      "sku": "VTK012243",
+      "category": {
+        "id": "MLB73431",
+        "nome": "Cabos Flat",
+        "dominio": "Cabos flat para computadores e TV"
+      },
+      "anuncio": {
+        "id": "MLB4877415237",
+        "title": "Cabo Flat Para Pedal Emborrachado 3 Polegadas Wireconex",
+        "price": 109.29,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877415237-cabo-flat-para-pedal-emborrachado-3-polegadas-wireconex-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 92.31 → R$ 109.29."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "f647e8bf-dd32-482f-bfad-f01260f0cd3b",
+      "sku": "VTK002299",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "anuncio": {
+        "id": "MLB4877415313",
+        "title": "Adaptador P10 Mono X Xlr Cannon Fêmea Metal Adap0028 Prata",
+        "price": 114.21,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877415313-adaptador-p10-mono-x-xlr-cannon-fmea-metal-adap0028-prata-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 92.35 → R$ 114.21."
+      ]
+    }
+  ],
+  "failed": []
+}

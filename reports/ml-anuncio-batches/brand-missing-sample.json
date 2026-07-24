@@ -1,0 +1,31 @@
+{
+  "batchNumber": 0,
+  "batchId": "brand-missing-sample",
+  "items": [
+    {
+      "produtoId": "f2a7ffe9-398e-4578-bcda-c3c899abeb3f",
+      "sku": "VTK010190",
+      "nome": "Garg Tamp Reser Arla 32 C/ch Scania Seriev Ap07"
+    },
+    {
+      "produtoId": "3f50a943-4b0f-421d-a351-ef911fea1d40",
+      "sku": "VTK010191",
+      "nome": "Tampa Reserv Arla 32 S/ch Mb Cam Atego Apos16"
+    },
+    {
+      "produtoId": "190d8940-f5ba-4bd3-a20b-1cd480155258",
+      "sku": "VTK010192",
+      "nome": "Tampa Reserv Arla 32 S/ch Mb Sprinter Giii Ap19"
+    },
+    {
+      "produtoId": "3f3caa6a-9fec-427e-99e5-8a603ca8a58d",
+      "sku": "VTK010193",
+      "nome": "Tpa Arrefecimento Valvulada 0,5bar Actros Ap10"
+    },
+    {
+      "produtoId": "825a06fb-8bd1-4b8a-b406-e7e45c58eca2",
+      "sku": "VTK010194",
+      "nome": "Tampa Reserv Limp P/brisa Preta Gm Onix Gi 12a19"
+    }
+  ]
+}

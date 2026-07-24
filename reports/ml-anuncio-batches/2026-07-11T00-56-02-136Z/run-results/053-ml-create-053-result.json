@@ -1,0 +1,110 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-053-ml-create-053.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-053",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "cf2dcc02-31a2-4264-8472-6f634a5f09e4",
+      "sku": "VTK002577",
+      "category": {
+        "id": "MLB49488",
+        "nome": "Pés de Microfone",
+        "dominio": "Suportes para microfone"
+      },
+      "anuncio": {
+        "id": "MLB7145205138",
+        "title": "Suporte Para Caixa De Som Ch10 Ask Preto",
+        "price": 107.1,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7145205138-suporte-para-caixa-de-som-ch10-ask-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 89.19 → R$ 107.10."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "113a84f2-443d-4c91-a4d9-c5eaed4aa443",
+      "sku": "VTK002507",
+      "category": {
+        "id": "MLB72812",
+        "nome": "Suportes",
+        "dominio": "Suportes para teclados e pianos digitais"
+      },
+      "anuncio": {
+        "id": "MLB4877406405",
+        "title": "Expositor Telescópico Para Teclado At Ask - Par / 2 Preto",
+        "price": 169.67,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877406405-expositor-telescopico-para-teclado-at-ask-par-2-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 89.11 → R$ 169.67."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "dd2c2d75-77b4-40d8-90fd-25f620f62f20",
+      "sku": "VTK000989",
+      "category": {
+        "id": "MLB29319",
+        "nome": "Pandeiros",
+        "dominio": "Pandeiros"
+      },
+      "anuncio": {
+        "id": "MLB7145205308",
+        "title": "Pandeiro 10 Standart Pele Sambrasil Liverpool Preto",
+        "price": 108.99,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7145205308-pandeiro-10-standart-pele-sambrasil-liverpool-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 89.18 → R$ 108.99."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "3d8cc95a-e0a9-4de2-8029-91121277cb1c",
+      "sku": "VTK012120",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "anuncio": {
+        "id": "MLB7145205372",
+        "title": "Conector Xlr Macho Wc 1033 10 Unidades Painel Wireconex Preto",
+        "price": 112.88,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7145205372-conector-xlr-macho-wc-1033-10-unidades-painel-wireconex-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 91.03 → R$ 112.88."
+      ]
+    }
+  ],
+  "failed": []
+}

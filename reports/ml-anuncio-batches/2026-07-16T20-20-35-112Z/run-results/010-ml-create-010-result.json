@@ -1,0 +1,360 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-16T20-20-35-112Z/run-results/run-010-ml-create-010.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-010",
+  "selected": 14,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "71506af7-3fdd-446c-960b-dcd3f4bf326a",
+      "sku": "VTK016029",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184804010",
+        "title": "192 Pilhas Alcalinas Aaa Panasonic (32 Cartelas C/6 Un)",
+        "price": 792.73,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184804010-192-pilhas-alcalinas-aaa-panasonic-32-cartelas-c6-un-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 762.02 → R$ 792.73."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b42d58ac-a200-43bd-b986-55ff808c4eda",
+      "sku": "VTK016147",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903869905",
+        "title": "40 Baterias Alcalinas 9v Panasonic",
+        "price": 802.51,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903869905-40-baterias-alcalinas-9v-panasonic-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 770.49 → R$ 802.51."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "a9377629-9633-4825-a71e-f973f5ac3498",
+      "sku": "VTK016064",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903870039",
+        "title": "20 Pilhas Recarregaveis Eneloop Std Aa Panasonic (10 Cart)",
+        "price": 823.65,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903870039-20-pilhas-recarregaveis-eneloop-std-aa-panasonic-10-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 792.94 → R$ 823.65."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "64e02f06-6be7-4254-88bf-9841d48b316d",
+      "sku": "VTK016030",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903859693",
+        "title": "192 Pilhas Alcalinas Aaa Panasonic (48 Cartelas C/4 Un)",
+        "price": 834.12,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903859693-192-pilhas-alcalinas-aaa-panasonic-48-cartelas-c4-un-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 803.41 → R$ 834.12."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "0db33ccc-5570-4098-b6e6-905c863a05ab",
+      "sku": "VTK016179",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903870249",
+        "title": "50 Baterias Alcalinas 9v Panasonic",
+        "price": 997.21,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903870249-50-baterias-alcalinas-9v-panasonic-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 963.12 → R$ 997.21."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "49a96508-bc37-4ed7-9293-bc4004a30b44",
+      "sku": "VTK016066",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903859897",
+        "title": "200 Pilhas Baterias Cr2032 3v Panasonic 40 Cartelas",
+        "price": 991.57,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903859897-200-pilhas-baterias-cr2032-3v-panasonic-40-cartelas-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 964.36 → R$ 991.57."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "0b8e97d2-9e57-4a55-9ac9-e0bc70e36cb5",
+      "sku": "VTK016031",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903870453",
+        "title": "192 Pilhas Alcalinas Premium Aa Panasonic (32 Cartelas C/6",
+        "price": 999.99,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903870453-192-pilhas-alcalinas-premium-aa-panasonic-32-cartelas-c6-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 967.98 → R$ 999.99."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "f763d8b2-065a-4366-9cde-1f6c7c012ad4",
+      "sku": "VTK016032",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903860215",
+        "title": "192 Pilhas Alcalinas Premium Aaa Panasonic (32 Cartelas C/6",
+        "price": 1095.44,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903860215-192-pilhas-alcalinas-premium-aaa-panasonic-32-cartelas-c6-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 1064.73 → R$ 1095.44."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "18d25e53-ae7c-4df1-bd0a-c809f9651f9f",
+      "sku": "VTK015951",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903870811",
+        "title": "100 Baterias Alcalinas 12v Panasonic Lr-v08-1bt (10 Cart)",
+        "price": 1142.19,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903870811-100-baterias-alcalinas-12v-panasonic-lr-v08-1bt-10-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 1111.48 → R$ 1142.19."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "c0df37cf-7da6-4089-832f-5dc54811704f",
+      "sku": "VTK016084",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184805096",
+        "title": "250 Pilhas Baterias Cr2032 3v Panasonic 50 Cartelas",
+        "price": 1232.66,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184805096-250-pilhas-baterias-cr2032-3v-panasonic-50-cartelas-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 1205.45 → R$ 1232.66."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "88ae9c83-5967-4e4e-86e7-e90250e674d3",
+      "sku": "VTK016108",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903860485",
+        "title": "300 Pilhas Baterias Cr2032 3v Panasonic 60 Cartelas",
+        "price": 1473.75,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903860485-300-pilhas-baterias-cr2032-3v-panasonic-60-cartelas-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 1446.55 → R$ 1473.75."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "60493c8f-8d0b-4c73-9ba3-c6127c8b3be8",
+      "sku": "VTK015952",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184805262",
+        "title": "100 Baterias Alcalinas 9v Panasonic",
+        "price": 2040.58,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184805262-100-baterias-alcalinas-9v-panasonic-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 2006.49 → R$ 2040.58."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "8b8ad238-56c0-431a-9111-2be6d2869309",
+      "sku": "VTK016159",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7184805336",
+        "title": "400 Pilhas Baterias Cr2032 3v Panasonic 80 Cartelas",
+        "price": 2036.3,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7184805336-400-pilhas-baterias-cr2032-3v-panasonic-80-cartelas-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 2009.09 → R$ 2036.30."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "61fba183-852d-4a42-90f7-15aedef79d09",
+      "sku": "VTK016186",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4903871149",
+        "title": "500 Pilhas Baterias Cr2032 3v Panasonic 100 Cartelas",
+        "price": 2538.57,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4903871149-500-pilhas-baterias-cr2032-3v-panasonic-100-cartelas-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 2511.36 → R$ 2538.57."
+      ]
+    }
+  ],
+  "failed": []
+}

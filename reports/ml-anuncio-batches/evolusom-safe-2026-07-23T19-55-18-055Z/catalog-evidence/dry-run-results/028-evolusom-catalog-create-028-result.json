@@ -1,0 +1,166 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/028-evolusom-catalog-create-028.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-028",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "7db7cb53-5677-49a6-9af3-c0b365d12555",
+      "sku": "VTK017529",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "basePrice": 40.13,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "abbe4587-7010-4303-b677-107e0c471833",
+      "sku": "VTK017909",
+      "category": {
+        "id": "MLB1672",
+        "nome": "HDs e SSDs",
+        "dominio": "MLB-HARD_DRIVES_AND_SSDS"
+      },
+      "basePrice": 1266,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "fbc3d59d-5046-43ea-ace9-8247ea227645",
+      "sku": "VTK017910",
+      "category": {
+        "id": "MLB1672",
+        "nome": "HDs e SSDs",
+        "dominio": "MLB-HARD_DRIVES_AND_SSDS"
+      },
+      "basePrice": 1807.53,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d416d068-469b-49d8-8363-dd08943f331b",
+      "sku": "VTK000384",
+      "category": {
+        "id": "MLB11529",
+        "nome": "Suportes",
+        "dominio": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS"
+      },
+      "basePrice": 81.99,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "87e2129f-2d51-4335-a5c0-6363a41b77a0",
+      "sku": "VTK018559",
+      "category": {
+        "id": "MLB11529",
+        "nome": "Suportes",
+        "dominio": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS"
+      },
+      "basePrice": 259.34,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "960911fa-1318-4eb5-9e22-dbcf1f944e8b",
+      "sku": "VTK018451",
+      "nome": "Sensor Magnético Abertura Intelbras Sem Fio Is3",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "152f7e88-3187-4dd5-b483-200878ef45b3",
+      "sku": "VTK018927",
+      "nome": "Sensor Presenca Intelbras Sem Fio Is5",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "cb1d8fa6-2b15-4c15-a92b-146c2007213a",
+      "sku": "VTK018926",
+      "nome": "Sirene Sem Fio Intelbras Is7",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4264a425-c8f3-4835-89a1-1bdea2647e0a",
+      "sku": "VTK018973",
+      "nome": "Sirene Smart Isi 1001 Intelbras",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2c2705af-8d9d-4155-a010-0213811f3a67",
+      "sku": "VTK004115",
+      "nome": "Suporte Magnético Para Antena Móvel PX M-700K Preto AQUÁRIO",
+      "error": "Atributos obrigatórios pendentes: Tipo de relógio comparador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB433459",
+            "nome": "Relógios Comparadores"
+          },
+          "missing": [
+            "Tipo de relógio comparador"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/001-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-001",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "dfae7484-7e88-4734-97f9-8b6c21617dfc",
+      "sku": "VTK017900",
+      "category": {
+        "id": "MLB30197",
+        "nome": "Transformadores",
+        "dominio": "MLB-VOLTAGE_CONVERTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937474577",
+        "title": "Autotransformador Blindado Indusat 2000va Tripolar",
+        "price": 270.61,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937474577-autotransformador-blindado-indusat-2000va-tripolar-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 184.85 → R$ 270.61."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "83b49b10-7148-4d7f-b154-8082f4fae58e",
+      "sku": "VTK018587",
+      "category": {
+        "id": "MLB63455",
+        "nome": "Carregadores de Baterías",
+        "dominio": "MLB-VEHICLE_BATTERY_CHARGERS"
+      },
+      "anuncio": {
+        "id": "MLB4937474669",
+        "title": "Auxiliar De Partida / Acumulador De Bateria Thork 6310",
+        "price": 590.23,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937474669-auxiliar-de-partida-acumulador-de-bateria-thork-6310-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 560.30 → R$ 590.23."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "cad1ab58-6d25-4c99-bd68-4d2a56976c6b",
+      "sku": "VTK017679",
+      "category": {
+        "id": "MLB57843",
+        "nome": "Baterias",
+        "dominio": "MLB-UPS_BATTERIES"
+      },
+      "anuncio": {
+        "id": "MLB4937467285",
+        "title": "Bateria Selada De Chumbo Elgin Vrla 6v 4 5ah",
+        "price": 86.09,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937467285-bateria-selada-de-chumbo-elgin-vrla-6v-4-5ah-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 69.10 → R$ 86.09."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ccc74733-b03e-42d6-a201-31712065c86d",
+      "sku": "VTK017571",
+      "category": {
+        "id": "MLB57843",
+        "nome": "Baterias",
+        "dominio": "MLB-UPS_BATTERIES"
+      },
+      "anuncio": {
+        "id": "MLB4937486049",
+        "title": "Bateria Selada De Chumbo Elgin Vrla 12v Alarme",
+        "price": 116.73,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937486049-bateria-selada-de-chumbo-elgin-vrla-12v-alarme-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 98.59 → R$ 116.73."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "a540d98f-8112-4d22-b21e-26f7f528a1f1",
+      "sku": "VTK017908",
+      "category": {
+        "id": "MLB57843",
+        "nome": "Baterias",
+        "dominio": "MLB-UPS_BATTERIES"
+      },
+      "anuncio": {
+        "id": "MLB4937486141",
+        "title": "Bateria Selada De Chumbo Elgin Vrla 12v 5ah",
+        "price": 134.29,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937486141-bateria-selada-de-chumbo-elgin-vrla-12v-5ah-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 112.69 → R$ 134.29."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b0fff073-49cb-48d6-9904-5a035e2cc85b",
+      "sku": "VTK005073",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB7238961532",
+        "title": "Cabo Blindado Y 1fx2m 20cm Vermelho Storm",
+        "price": 68.14,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238961532-cabo-blindado-y-1fx2m-20cm-vermelho-storm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 59.81 → R$ 68.14."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "acf02ebc-acb3-4ced-b072-2b6768aebab8",
+      "sku": "VTK005071",
+      "category": {
+        "id": "MLB38279",
+        "nome": "Outros Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937486417",
+        "title": "Cabo Blindado 2rca X 2rca 5m Azul Storm",
+        "price": 80.71,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937486417-cabo-blindado-2rca-x-2rca-5m-azul-storm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 62.18 → R$ 80.71."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "d9c5a098-54a7-48c9-a7a1-045129600cc8",
+      "sku": "VTK003185",
+      "category": {
+        "id": "MLB432437",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937486509",
+        "title": "Cabo Cannon Macho Para Cannon Fêmea 10m Cbcn0002 Storm",
+        "price": 78.4,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937486509-cabo-cannon-macho-para-cannon-fmea-10m-cbcn0002-storm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 61.41 → R$ 78.40."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "73680629-ca61-4ed3-ab19-4edfe1eb90c0",
+      "sku": "VTK018652",
+      "category": {
+        "id": "MLB270088",
+        "nome": "Cabos de Rede",
+        "dominio": "MLB-NETWORK_CABLES"
+      },
+      "anuncio": {
+        "id": "MLB4937486637",
+        "title": "Cabo Coaxial Flexível 4 0mm Multitoc 80% Malha Cobre +2",
+        "price": 156.6,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937486637-cabo-coaxial-flexivel-4-0mm-multitoc-80-malha-cobre-2-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 131.92 → R$ 156.60."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b15206b3-9651-402e-a1b1-89d70a6e1de7",
+      "sku": "VTK019031",
+      "category": {
+        "id": "MLB432437",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937475593",
+        "title": "Cabo De Guitarra Tiaflex 1x22 Awg 0 30 Mm",
+        "price": 777.73,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937475593-cabo-de-guitarra-tiaflex-1x22-awg-0-30-mm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 738.31 → R$ 777.73."
+      ]
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,260 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/004-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-004",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "fb082eb6-7b7d-41e6-b744-08855f2b5ae8",
+      "sku": "VTK004200",
+      "category": {
+        "id": "MLB11507",
+        "nome": "Caixas Acústicas ",
+        "dominio": "MLB-SPEAKERS"
+      },
+      "anuncio": {
+        "id": "MLB7238967636",
+        "title": "Caixa De Som Ambiente Frahm Outdoor 120w Hs5 Preta - Par / 2",
+        "price": 1012.99,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238967636-caixa-de-som-ambiente-frahm-outdoor-120w-hs5-preta-par-2-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 922.92 → R$ 1012.99."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "e502444e-ea1e-4e20-9a24-da10069b6668",
+      "sku": "VTK017338",
+      "category": {
+        "id": "MLB3378",
+        "nome": "Caixas de Som e Subwoofer",
+        "dominio": "MLB-SPEAKERS"
+      },
+      "anuncio": {
+        "id": "MLB7238967728",
+        "title": "Caixa De Som Evus As-225d Color Wave",
+        "price": 95.33,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238967728-caixa-de-som-evus-as-225d-color-wave-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 76.81 → R$ 95.33."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "81dec7ce-5710-4159-9e36-11850d528f4f",
+      "sku": "VTK017992",
+      "category": {
+        "id": "MLB6952",
+        "nome": "Caixas de Passagem Herméticas",
+        "dominio": "MLB-CABINETS_AND_JUNCTION_BOXES"
+      },
+      "anuncio": {
+        "id": "MLB7239001348",
+        "title": "Caixa Hermética Multitoc Vedada 14 5x10 5x7 0 Completa Preto",
+        "price": 54.11,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239001348-caixa-hermetica-multitoc-vedada-14-5x10-5x7-0-completa-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 45.44 → R$ 54.11."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "207bbe26-574f-4577-8d76-3cc05839a46c",
+      "sku": "VTK017231",
+      "category": {
+        "id": "MLB6952",
+        "nome": "Caixas de Passagem Herméticas",
+        "dominio": "MLB-CABINETS_AND_JUNCTION_BOXES"
+      },
+      "anuncio": {
+        "id": "MLB7238967906",
+        "title": "Caixa Hermética Multitoc Vedada 17x13 5x6 5 Completa Cinza Preto",
+        "price": 101.13,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238967906-caixa-hermetica-multitoc-vedada-17x13-5x6-5-completa-cinza-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 54.30 → R$ 101.13."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "62b94ab7-5634-4ba4-b527-e0009068eb80",
+      "sku": "VTK017232",
+      "category": {
+        "id": "MLB6952",
+        "nome": "Caixas de Passagem Herméticas",
+        "dominio": "MLB-CABINETS_AND_JUNCTION_BOXES"
+      },
+      "anuncio": {
+        "id": "MLB7238967994",
+        "title": "Caixa Hermética Multitoc Vedada 17x13 5x6 5 Completa Preto",
+        "price": 72.22,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238967994-caixa-hermetica-multitoc-vedada-17x13-5x6-5-completa-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 54.30 → R$ 72.22."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "50bd0ac9-f2c6-4be2-9dbf-6bd068e3318b",
+      "sku": "VTK000337",
+      "category": {
+        "id": "MLB3378",
+        "nome": "Caixas de Som e Subwoofer",
+        "dominio": "MLB-SPEAKERS"
+      },
+      "anuncio": {
+        "id": "MLB7238968080",
+        "title": "Caixa Multimídia C3tech Sp-301bk 2.0",
+        "price": 70.37,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238968080-caixa-multimidia-c3tech-sp-301bk-20-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 55.00 → R$ 70.37."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "f541dcdc-ae72-4d38-bcd2-53f142f57430",
+      "sku": "VTK018384",
+      "category": {
+        "id": "MLB99957",
+        "nome": "Calculadoras",
+        "dominio": "MLB-CALCULATORS"
+      },
+      "anuncio": {
+        "id": "MLB7239001698",
+        "title": "Calculadora Cientifica Procalc Sc82p 10+2 Dígitos 240",
+        "price": 73.13,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239001698-calculadora-cientifica-procalc-sc82p-102-digitos-240-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 55.33 → R$ 73.13."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "5be26c44-3aca-411b-9d37-16181b0dbcca",
+      "sku": "VTK018453",
+      "category": {
+        "id": "MLB99957",
+        "nome": "Calculadoras",
+        "dominio": "MLB-CALCULATORS"
+      },
+      "anuncio": {
+        "id": "MLB4937492823",
+        "title": "Calculadora De Mesa Zeta Zt718 8 Dígitos Preta",
+        "price": 57.55,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937492823-calculadora-de-mesa-zeta-zt718-8-digitos-preta-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 40.88 → R$ 57.55."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b572a9b1-cb6b-46d5-9283-bc63cba867a3",
+      "sku": "VTK018298",
+      "category": {
+        "id": "MLB99957",
+        "nome": "Calculadoras",
+        "dominio": "MLB-CALCULATORS"
+      },
+      "anuncio": {
+        "id": "MLB4937492925",
+        "title": "Calculadora De Mesa Zeta Zt712 12 Dígitos Preto",
+        "price": 60.57,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937492925-calculadora-de-mesa-zeta-zt712-12-digitos-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 43.90 → R$ 60.57."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "efd00848-1f79-4e04-a0f0-e9c17dec0c23",
+      "sku": "VTK017997",
+      "category": {
+        "id": "MLB7073",
+        "nome": "Câmeras de Segurança",
+        "dominio": "MLB-SURVEILLANCE_CAMERAS"
+      },
+      "anuncio": {
+        "id": "MLB7238968484",
+        "title": "Câmera De Segurança Rotacional Elsys Esc-wr4f",
+        "price": 384.07,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238968484-cmera-de-seguranca-rotacional-elsys-esc-wr4f-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 355.70 → R$ 384.07."
+      ]
+    }
+  ],
+  "failed": []
+}

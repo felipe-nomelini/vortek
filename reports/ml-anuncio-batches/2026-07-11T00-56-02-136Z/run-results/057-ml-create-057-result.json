@@ -1,0 +1,162 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-057-ml-create-057.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-057",
+  "selected": 6,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "67b24205-6321-479c-8e2c-e4f68c4326f8",
+      "sku": "VTK001246",
+      "category": {
+        "id": "MLB49488",
+        "nome": "Pés de Microfone",
+        "dominio": "Suportes para microfone"
+      },
+      "anuncio": {
+        "id": "MLB4877415665",
+        "title": "Suporte Para Caixa De Som Cp10 Ask",
+        "price": 116.81,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877415665-suporte-para-caixa-de-som-cp10-ask-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 95.23 → R$ 116.81."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b5727e47-7584-4559-83b4-475ecab1a6ba",
+      "sku": "VTK012139",
+      "category": {
+        "id": "MLB270131",
+        "nome": "Microfones",
+        "dominio": "Microfones infantis"
+      },
+      "anuncio": {
+        "id": "MLB4877415769",
+        "title": "Microfone Custom Sound Csms 58 Com Cabo",
+        "price": 116.08,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877415769-microfone-custom-sound-csms-58-com-cabo-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 94.63 → R$ 116.08."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "3e7bbd7e-13cf-4e25-b8cb-50b93c8fa62a",
+      "sku": "VTK001226",
+      "category": {
+        "id": "MLB422401",
+        "nome": "Fitas Isolantes",
+        "dominio": "Fitas adesivas"
+      },
+      "anuncio": {
+        "id": "MLB4877415847",
+        "title": "Fita Isolante 18mm X 10m Vermelha Imperial 3m - Pct / 10 Preto",
+        "price": 126.83,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877415847-fita-isolante-18mm-x-10m-vermelha-imperial-3m-pct-10-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 94.82 → R$ 126.83."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "08d86827-1d6b-4d5a-b870-dc8076577173",
+      "sku": "VTK001104",
+      "category": {
+        "id": "MLB422401",
+        "nome": "Fitas Isolantes",
+        "dominio": "Fitas adesivas"
+      },
+      "anuncio": {
+        "id": "MLB4877416163",
+        "title": "Fita Isolante 18mm X 10m Imperial Azul 3m - Pct / 10",
+        "price": 94.88,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877416163-fita-isolante-18mm-x-10m-imperial-azul-3m-pct-10-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB4877416163: NSOPublicAPI error",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "5d8a5312-c7f7-4521-afcd-48855ea329a8",
+      "sku": "VTK001135",
+      "category": {
+        "id": "MLB422401",
+        "nome": "Fitas Isolantes",
+        "dominio": "Fitas adesivas"
+      },
+      "anuncio": {
+        "id": "MLB4877416299",
+        "title": "Fita Isolante 18mm X 10m Verde Imperial 3m - Pct / 10 Preto",
+        "price": 94.88,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877416299-fita-isolante-18mm-x-10m-verde-imperial-3m-pct-10-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB4877416299: NSOPublicAPI error",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "f3e31b38-d115-44e5-8b57-64081c0521ed",
+      "sku": "VTK001294",
+      "category": {
+        "id": "MLB422401",
+        "nome": "Fitas Isolantes",
+        "dominio": "Fitas adesivas"
+      },
+      "anuncio": {
+        "id": "MLB4877416391",
+        "title": "Fita Isolante 18mm X 10m Amarela Imperial 3m - Pct / 10 Preto",
+        "price": 126.89,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877416391-fita-isolante-18mm-x-10m-amarela-imperial-3m-pct-10-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 94.88 → R$ 126.89."
+      ]
+    }
+  ],
+  "failed": []
+}

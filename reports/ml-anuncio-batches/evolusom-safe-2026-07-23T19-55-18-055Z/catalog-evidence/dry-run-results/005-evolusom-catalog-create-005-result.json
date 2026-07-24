@@ -1,0 +1,139 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/005-evolusom-catalog-create-005.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-005",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "df7923c5-fdc1-42a0-8e83-6a5776ae0136",
+      "sku": "VTK018650",
+      "category": {
+        "id": "MLB120498",
+        "nome": "Antenas",
+        "dominio": "MLB-GPS_ANTENNAS"
+      },
+      "basePrice": 67.78,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b80ad054-8c24-4c4e-8f95-73c01c3f5f18",
+      "sku": "VTK018929",
+      "category": {
+        "id": "MLB363814",
+        "nome": "Tratamentos",
+        "dominio": "MLB-VEHICLE_COATING_PRODUCTS"
+      },
+      "basePrice": 41.39,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "194c7dcb-be07-4295-ba39-fa55be846782",
+      "sku": "VTK018041",
+      "category": {
+        "id": "MLB11507",
+        "nome": "Caixas Acústicas ",
+        "dominio": "MLB-SPEAKERS"
+      },
+      "basePrice": 257.87,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "71df1618-1fef-4c80-888d-4b54b63e6271",
+      "sku": "VTK018027",
+      "category": {
+        "id": "MLB11507",
+        "nome": "Caixas Acústicas ",
+        "dominio": "MLB-SPEAKERS"
+      },
+      "basePrice": 160.13,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1135a138-405e-4964-9a12-9044e528901a",
+      "sku": "VTK019124",
+      "category": {
+        "id": "MLB11507",
+        "nome": "Caixas Acústicas ",
+        "dominio": "MLB-SPEAKERS"
+      },
+      "basePrice": 162.69,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "dfae7484-7e88-4734-97f9-8b6c21617dfc",
+      "sku": "VTK017900",
+      "category": {
+        "id": "MLB30197",
+        "nome": "Transformadores",
+        "dominio": "MLB-VOLTAGE_CONVERTERS"
+      },
+      "basePrice": 184.85,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "83b49b10-7148-4d7f-b154-8082f4fae58e",
+      "sku": "VTK018587",
+      "category": {
+        "id": "MLB63455",
+        "nome": "Carregadores de Baterías",
+        "dominio": "MLB-VEHICLE_BATTERY_CHARGERS"
+      },
+      "basePrice": 560.3,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "cad1ab58-6d25-4c99-bd68-4d2a56976c6b",
+      "sku": "VTK017679",
+      "category": {
+        "id": "MLB57843",
+        "nome": "Baterias",
+        "dominio": "MLB-UPS_BATTERIES"
+      },
+      "basePrice": 69.1,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ccc74733-b03e-42d6-a201-31712065c86d",
+      "sku": "VTK017571",
+      "category": {
+        "id": "MLB57843",
+        "nome": "Baterias",
+        "dominio": "MLB-UPS_BATTERIES"
+      },
+      "basePrice": 98.59,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "d582fb22-bb15-4de1-a0b3-1b3ac4d07de0",
+      "sku": "VTK018424",
+      "nome": "ANTENA Móvel Aquário B-2070 COM BOBINA NA BASE PARA Rádio PX POSSUI HASTE Dobrável",
+      "error": "Atributos obrigatórios pendentes: Localização, É TV digital terrestre",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB44572",
+            "nome": "Antenas de TV"
+          },
+          "missing": [
+            "Localização",
+            "É TV digital terrestre"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

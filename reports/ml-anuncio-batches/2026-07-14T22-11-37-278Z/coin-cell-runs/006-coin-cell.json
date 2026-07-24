@@ -1,0 +1,81 @@
+{
+  "batchId": "coin-cell-006",
+  "items": [
+    {
+      "produtoId": "c0df37cf-7da6-4089-832f-5dc54811704f",
+      "sku": "VTK016084",
+      "nome": "250 Pilhas Baterias Cr2032 3v Panasonic 50 Cartelas",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 773.5,
+      "estoque": 2,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1145.93,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "88ae9c83-5967-4e4e-86e7-e90250e674d3",
+      "sku": "VTK016108",
+      "nome": "300 Pilhas Baterias Cr2032 3v Panasonic 60 Cartelas",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 928.2,
+      "estoque": 1,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1375.11,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "8b8ad238-56c0-431a-9111-2be6d2869309",
+      "sku": "VTK016159",
+      "nome": "400 Pilhas Baterias Cr2032 3v Panasonic 80 Cartelas",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 1237.6,
+      "estoque": 1,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1909.88,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    },
+    {
+      "produtoId": "61fba183-852d-4a42-90f7-15aedef79d09",
+      "sku": "VTK016186",
+      "nome": "500 Pilhas Baterias Cr2032 3v Panasonic 100 Cartelas",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": null,
+      "custo": 1547,
+      "estoque": 1,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 2387.35,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "strategyNotes": "Na execução, usar schema/base_price do sistema para recalcular taxa ML real e respeitar custom_price quando existir."
+    }
+  ]
+}

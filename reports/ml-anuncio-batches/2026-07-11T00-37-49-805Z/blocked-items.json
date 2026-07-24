@@ -1,0 +1,5072 @@
+[
+  {
+    "produtoId": "037a0d81-85b9-4458-9b07-148b399bb557",
+    "sku": "VTK000504",
+    "nome": "Mecanismo Sync6 Para Cadeira Core ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 299.32,
+    "estoque": 15,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "1be46bf9-1cd1-4665-a868-2ccb25db3529",
+    "sku": "VTK000518",
+    "nome": "Assento Para Cadeira Core Modern Black ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 933.3,
+    "estoque": 15,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "48b26ccf-bce7-4bef-b447-ae46449f4ff4",
+    "sku": "VTK000533",
+    "nome": "MECANISMO SYNC5 XTC",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 309.65,
+    "estoque": 15,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "58b46fa0-9db3-4758-98c8-455c3e5ecbbd",
+    "sku": "VTK000540",
+    "nome": "Assento Para Cadeira Core Loft Black ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 319.97,
+    "estoque": 15,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "6caf1e64-3a88-4430-abb8-5a055f233c32",
+    "sku": "VTK000552",
+    "nome": "Pistão À Gás Guardian Yama1 Core ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 164.17,
+    "estoque": 15,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "9156a2bd-4ef2-4805-86f6-8e35a4ab746f",
+    "sku": "VTK000569",
+    "nome": "Pacote de Parafusos Para Cadeira TC3 ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 933.49,
+    "estoque": 15,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "a6d325ba-0786-4395-8fd6-e847d6212ffe",
+    "sku": "VTK000572",
+    "nome": "Encosto Para Cadeira XTC Mesh Black ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 302.42,
+    "estoque": 15,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "af98219d-f00e-4ddc-b256-2f10b861b515",
+    "sku": "VTK000765",
+    "nome": "Figurinhas Copa América 2024 Env.C/5 Panini",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 250,
+    "estoque": 15,
+    "reason": "missing_height"
+  },
+  {
+    "produtoId": "5d78c1f7-39c4-43ca-b250-c69bb037d4ce",
+    "sku": "VTK001039",
+    "nome": "Assento Para Cadeira XTC Mesh Black ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 867.27,
+    "estoque": 12,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "81eb4321-c34a-4746-8acf-7f89446e22ab",
+    "sku": "VTK001057",
+    "nome": "Pistão A Gás BC1 ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 508.3,
+    "estoque": 14,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "91215b9f-aab9-485f-8aa2-b8d400cbd617",
+    "sku": "VTK001063",
+    "nome": "Pistão A Gás BC1 ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 1011.85,
+    "estoque": 13,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "08d86827-1d6b-4d5a-b870-dc8076577173",
+    "sku": "VTK001104",
+    "nome": "Fita Isolante 18mm x 10m Imperial Azul 3M - PCT / 10",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 55.43,
+    "estoque": 15,
+    "reason": "missing_height"
+  },
+  {
+    "produtoId": "1016b5d8-5964-427a-b5f6-f6d9299f52ae",
+    "sku": "VTK001109",
+    "nome": "ENCOSTO CAD THUNDER TGC12 RS",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 145.48,
+    "estoque": 11,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "28098ee5-7fbf-4d6c-b634-43e5bad60e7a",
+    "sku": "VTK001119",
+    "nome": "ASSENTO CAD THUNDER EC3 RS",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 133.19,
+    "estoque": 9,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "5d8a5312-c7f7-4521-afcd-48855ea329a8",
+    "sku": "VTK001135",
+    "nome": "Fita Isolante 18mm x 10m Verde Imperial 3M - PCT / 10",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 55.43,
+    "estoque": 12,
+    "reason": "missing_height"
+  },
+  {
+    "produtoId": "5dd76647-9206-47be-b8f8-bd739f3887d2",
+    "sku": "VTK001137",
+    "nome": "Pistão A Gás BC1 ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 340.58,
+    "estoque": 9,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "9ac90e1e-88d2-4e43-9dab-4db91c3bc203",
+    "sku": "VTK001165",
+    "nome": "ASSENTO CAD THUNDER TGC12 RS",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 118.74,
+    "estoque": 10,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "ac893d3f-2c0b-4407-b358-d4030fce1181",
+    "sku": "VTK001173",
+    "nome": "Pistão A Gás BC1 ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 712.39,
+    "estoque": 10,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "d9930b7b-c377-4f02-8e24-9f36c3d78f1e",
+    "sku": "VTK001187",
+    "nome": "ALMOFADA DE CABECA CORE LOFT BLACK",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 1084.05,
+    "estoque": 9,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "f0635871-89a2-4e66-a415-02ac568622b6",
+    "sku": "VTK001195",
+    "nome": "ENCOSTO CAD THUNDER EC3 RS",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 134.12,
+    "estoque": 10,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "12e4dd09-6ad6-40f5-b870-a012960efabe",
+    "sku": "VTK001207",
+    "nome": "Encosto Para Cadeira Core Loft Grafite ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 1022.14,
+    "estoque": 7,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "3e7bbd7e-13cf-4e25-b8cb-50b93c8fa62a",
+    "sku": "VTK001226",
+    "nome": "Fita Isolante 18mm X 10m Vermelha Imperial 3M - PCT / 10",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 55.38,
+    "estoque": 13,
+    "reason": "missing_height"
+  },
+  {
+    "produtoId": "83721b7f-51ea-4795-92bb-610caa79bc10",
+    "sku": "VTK001258",
+    "nome": "Almofada Para Lombar BC3 Preto ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 321.11,
+    "estoque": 6,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "8637321a-e7e8-49f6-99d4-f632205d62ef",
+    "sku": "VTK001259",
+    "nome": "Kit de Palhetas Harmonics Com 200 Unidades",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 160.02,
+    "estoque": 15,
+    "reason": "missing_width"
+  },
+  {
+    "produtoId": "de045a9f-a54e-454d-8c71-6ad50a201b1f",
+    "sku": "VTK001286",
+    "nome": "Assento p/ Cadeira TGC12 Preto/Vermelho ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 145.48,
+    "estoque": 8,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "f3e31b38-d115-44e5-8b57-64081c0521ed",
+    "sku": "VTK001294",
+    "nome": "Fita Isolante 18mm x 10m Amarela Imperial 3M - PCT / 10",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 55.43,
+    "estoque": 13,
+    "reason": "missing_height"
+  },
+  {
+    "produtoId": "e528b430-e3e3-4f5a-b60a-53f97b995fd6",
+    "sku": "VTK001390",
+    "nome": "Almofada Para Lombar BC3 Preto ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 321.11,
+    "estoque": 4,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "69df5c41-2a36-4f2c-bcb1-c563df1d92d8",
+    "sku": "VTK001439",
+    "nome": "Apoio de Braço Esquerdo Core Loft Grey ThunderX3",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 340.71,
+    "estoque": 4,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "8867cc4a-acbf-42d1-8ece-538470d172f0",
+    "sku": "VTK001454",
+    "nome": "Encordoamento Para Viola Aço Média Série Cobra Giannini GESVM",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 26.44,
+    "estoque": 83,
+    "reason": "missing_width"
+  },
+  {
+    "produtoId": "d0881aca-c3ea-4e03-af2a-4ad9fa429d18",
+    "sku": "VTK001483",
+    "nome": "Dedeira Shell Grande Dunlop (Com 12 unidades) - PCT / 12",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 119.57,
+    "estoque": 15,
+    "reason": "missing_description"
+  },
+  {
+    "produtoId": "89e62786-1bd8-4b94-8a36-d3c324f70659",
+    "sku": "VTK001860",
+    "nome": "Conector XLR Macho 3 Pinos Azul Genérico - PCT / 5",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 16.69,
+    "estoque": 20,
+    "reason": "missing_height"
+  },
+  {
+    "produtoId": "f647e8bf-dd32-482f-bfad-f01260f0cd3b",
+    "sku": "VTK002299",
+    "nome": "Adaptador P10 Mono x XLR Cannon Fêmea Metal ADAP0028 Prata Storm - PCT / 5",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 52.03,
+    "estoque": 9,
+    "reason": "missing_height"
+  },
+  {
+    "produtoId": "72ed9484-db1a-4565-a10f-57f7b76afb33",
+    "sku": "VTK004352",
+    "nome": "Fone de Ouvido Sennheiser IE 100 Pro Preto",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 954.31,
+    "estoque": 11,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "05ab405c-21f6-48fe-a95d-c45963af73a8",
+    "sku": "VTK004505",
+    "nome": "ASSENTO CAD THUNDER TGC12 BR",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 464.61,
+    "estoque": 15,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "0e89519b-7baa-46d2-918c-876e90ba4953",
+    "sku": "VTK004609",
+    "nome": "77384",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 53.14,
+    "estoque": 8,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "24bc4010-0afb-4752-824e-d87a5faddf1b",
+    "sku": "VTK005320",
+    "nome": "Fone de Ouvido Sennheiser HD25 Light Preto",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 715.17,
+    "estoque": 11,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "0085a48c-daf4-4a5c-b52d-de1a763c984d",
+    "sku": "VTK006102",
+    "nome": "Conjunto Jarra Twister Ri7769 Walita - CX / 6",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 652.92,
+    "estoque": 15,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "27f2495d-930e-483d-b2ad-86c5f491fd2f",
+    "sku": "VTK006318",
+    "nome": "CARREGADOR GAN 60W FORTREK CG633",
+    "fornecedor": "HAYAMAX-PR",
+    "dsliteFornecedorId": "2",
+    "custo": 74.94,
+    "estoque": 15,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "f2a7ffe9-398e-4578-bcda-c3c899abeb3f",
+    "sku": "VTK010190",
+    "nome": "Garg Tamp Reser Arla 32 C/ch Scania Seriev Ap07",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 17.84,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "3f50a943-4b0f-421d-a351-ef911fea1d40",
+    "sku": "VTK010191",
+    "nome": "Tampa Reserv Arla 32 S/ch Mb Cam Atego Apos16",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 36.42,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "190d8940-f5ba-4bd3-a20b-1cd480155258",
+    "sku": "VTK010192",
+    "nome": "Tampa Reserv Arla 32 S/ch Mb Sprinter Giii Ap19",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 18.68,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "3f3caa6a-9fec-427e-99e5-8a603ca8a58d",
+    "sku": "VTK010193",
+    "nome": "Tpa Arrefecimento Valvulada 0,5bar Actros Ap10",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 17.39,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "825a06fb-8bd1-4b8a-b406-e7e45c58eca2",
+    "sku": "VTK010194",
+    "nome": "Tampa Reserv Limp P/brisa Preta Gm Onix Gi 12a19",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 12.86,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "7e7dadff-702f-4325-be40-cc160784cb30",
+    "sku": "VTK010195",
+    "nome": "Tampa Do Radiador 0,9bar Toyota Corolla 02 A 08",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 25.81,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "67b21657-faae-4ef4-8921-dba107ed7653",
+    "sku": "VTK010196",
+    "nome": "Tampa Comb C/ch Vedada Mb Cam Actros Apos 20",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 75.49,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "6c9a62b8-0179-4f6e-9891-66b97830916b",
+    "sku": "VTK010240",
+    "nome": "Tampa Reserv Oleo Do Freio Mb Cam 70 A 90",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 17.59,
+    "estoque": 60,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "25bfe7ed-fb8e-4b0f-9a5d-7b2e64292a34",
+    "sku": "VTK010242",
+    "nome": "Tampa Oleo Motor Com Rosca Mwm Diversos",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 30.04,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "e0ab8c09-17d5-4d4a-90ab-2dc7ed9f8eb9",
+    "sku": "VTK010247",
+    "nome": "Tampa Reserv Limp Para-brisa Vw Gol Gi 80 A 96",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 27.06,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "3405f7ed-88ec-4b53-b81a-0589c09225a6",
+    "sku": "VTK010256",
+    "nome": "Tampa Do Radiador 1,1 Bar Ford Ranger 94 A 12",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 20.23,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "210cd44f-56f3-4c7f-8a57-5d1d6ee7c4b5",
+    "sku": "VTK010257",
+    "nome": "Tampa Reserv Limp Para-brisa Fiat Diversos",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 28.77,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "6fd558ae-47bb-496d-9836-902eb4632a82",
+    "sku": "VTK010258",
+    "nome": "Tpa Reserv Limp P/brisa Branco Gm Celta Gi 00a15",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 8.39,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "fcfc7bd8-c7cf-4255-b273-00df26eea14d",
+    "sku": "VTK010259",
+    "nome": "Tampa Reserv Limp Para-brisa Wv Diversos Ap95",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 8.39,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "ac4724da-f34b-4e2d-911d-8ed84088de75",
+    "sku": "VTK010266",
+    "nome": "Tampa Reserv Limp Para-brisa Mb Cam 1618 90a13",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 110.05,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "29eda495-2c3b-4df6-942a-ceba0ed89643",
+    "sku": "VTK010286",
+    "nome": "Tampa Radiador Reserv Inf 7 Lbs Mb 1618 90 A 13",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 13.2,
+    "estoque": 84,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "e7fff1ed-8044-4430-b8a0-db10754b1ebb",
+    "sku": "VTK010287",
+    "nome": "Tampa Do Radiador 10 Lbs Ford F-1000 79 A 98",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 12.9,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "bf26661e-5918-4435-80bb-691c271a77fb",
+    "sku": "VTK010293",
+    "nome": "Tampa Radiador 1,1 Bar Honda Civic 92a16",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 20.23,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "de8587b9-8f11-4527-9d22-259f4a432420",
+    "sku": "VTK010310",
+    "nome": "Tampa Do Radiador 14 Lbs Mb Sprinter Apos 97",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 20.13,
+    "estoque": 98,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "7fc882f3-c5bd-40f5-9fd3-996087f875ab",
+    "sku": "VTK010314",
+    "nome": "Reserv Oleo Hidr Direcao Comp Ford F1000",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 95.36,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "3ff0c31a-83f2-4e30-95b7-a925cbcf2ed5",
+    "sku": "VTK010316",
+    "nome": "Reparo Bocal Tanq Comb Palio 96/00",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 16.26,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "7fde0548-02b8-40c7-bc7a-23ac5e2f8a72",
+    "sku": "VTK010318",
+    "nome": "Tpa Reserv Gas Verm Valv C/rosc Ext Corsa 02a12",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 8.77,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "b661681d-165d-4d8f-8cdf-082e4213aad7",
+    "sku": "VTK010351",
+    "nome": "Tampa Reserv Limp Para-brisa Volvo Cam Fh Ap12",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 11.52,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "31326f62-77e7-4141-98c2-0b24fc01985d",
+    "sku": "VTK010356",
+    "nome": "Tampa Reserv Gasol Veic Alc/flex Vw Golf 07a13",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 8.77,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "c9b64510-479e-45f8-a384-8795aff95af2",
+    "sku": "VTK010360",
+    "nome": "Tampa Reserv Limp Para-brisa Volvo Fh Apos 12",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 32.86,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "1f663921-aa3b-40a2-a560-8f9a8d17aead",
+    "sku": "VTK010390",
+    "nome": "Tampa Cobertura Reserv Freio Vw Cam Ate 90",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 11.64,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "853b6d74-5c57-433d-a53b-4063f08af074",
+    "sku": "VTK010391",
+    "nome": "Tampa Cobertura Reserv Freio Vw Cam 90 A 00",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 9.69,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a4cdd098-1b88-4c8a-93f5-c8d66d77fc18",
+    "sku": "VTK010392",
+    "nome": "Tampa Combustivel Vedada Vw Fusca 59 A 96",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 20.42,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "40014cdc-c5a3-4ad3-a7b6-a7f045d8e7c4",
+    "sku": "VTK010408",
+    "nome": "Tamp Radiador 0,9 Bar Mitsubishi Pajero Tr4 At14",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 17.7,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "2a75c1cc-67bd-40b9-80ed-d08f4ffc049d",
+    "sku": "VTK010414",
+    "nome": "Tamp Reserv Gasol Veic Alcool/flex Vw Gol 08a12",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 8.77,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "f18d4ae9-823b-426d-b6ab-6888b0620a16",
+    "sku": "VTK010415",
+    "nome": "Tampa Reserv Gasol Veic Flex Fiat Doblo 01 A 09",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 8.77,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a5201031-283b-475d-8262-88b3cd4ea86f",
+    "sku": "VTK010416",
+    "nome": "Tampa Reserv Gasol Veic Flex Ford Fiesta 02 A 14",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 8.77,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "1fd8c308-ccf3-45c8-9bd9-7dd9840d13cc",
+    "sku": "VTK010417",
+    "nome": "Tampa Do Radiador 13 A 16 Lbs Mb Om-355 88 A 00",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 16.9,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "418d7a52-6b6d-412a-93cc-7ed7b8950526",
+    "sku": "VTK010418",
+    "nome": "Tampa Do óleo Do Motor. - Mercedes-benz Atego Após 97",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 17,
+    "estoque": 100,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "923bf701-3d50-4b52-8b07-7ee7e89de401",
+    "sku": "VTK010420",
+    "nome": "Tampa Sup Rad 10lbs/0,9bar Ford Cargo 85a01",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 14.31,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "c42043d5-addc-4d1d-a69f-926f46d44e9d",
+    "sku": "VTK010425",
+    "nome": "Tampa Reserv Limp Para-brisa Ford Diversos",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 8.87,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "889c78cb-550a-4504-a346-1032a9c7e6f4",
+    "sku": "VTK010426",
+    "nome": "Tampa Abast Oleo Motor Gm Cruze Sedan 11 A 16",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 35.29,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "174ac271-49fd-456d-b590-99aecf610d58",
+    "sku": "VTK010427",
+    "nome": "Tpa Comb Pret Valvulad Alcool/gasol/flex S/ch",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 47.33,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "ffeaa973-632f-4309-8594-c711544e7398",
+    "sku": "VTK010433",
+    "nome": "Tampa Reserv Arla 32 S/chav Scania Serie V Ap07",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 18.37,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "51f37a8d-0d6a-4a5c-bacb-32a1182ba47f",
+    "sku": "VTK010434",
+    "nome": "Tampa Do óleo Do Motor.  - Com Rosca - Scania Série V Após 07",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 19.45,
+    "estoque": 100,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "934feeb3-244e-44a0-9649-af5417eefd0a",
+    "sku": "VTK010437",
+    "nome": "Tampa Oleo Do Motor Peugeot 206 2.0/16v 01 A 09",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 35,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a4269574-c182-4636-9a2f-3fecdf72945b",
+    "sku": "VTK010439",
+    "nome": "Tampa Do Radiador Nissan Frontier 07 A 16",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 23.01,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "0accb137-3d7c-449f-ab71-bb6ddf7601ed",
+    "sku": "VTK010444",
+    "nome": "Tampa Reserv Limp Para-brisa Volvo Fh Apos 12",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 35.17,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "20a3dfb6-1a2b-4750-ba60-bc93b5e198e6",
+    "sku": "VTK010445",
+    "nome": "Tampa Reserv Limp Para-brisa Iveco Daily 07 A 11",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 11.64,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "4e93dabb-00d5-4ecc-9eb1-a17525a09dd7",
+    "sku": "VTK010446",
+    "nome": "Tampa Reserv Gasol Veic Flex Fiat Punto Apos 07",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 17.98,
+    "estoque": 80,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "591bc147-af8a-47de-9ea7-6a43bfc7a7e4",
+    "sku": "VTK010447",
+    "nome": "Tampa Reserv Limp Para-brisa Peugeot 208 Apos13",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 14.45,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "b17ee2ed-0598-4f8e-84c9-ed74fcfcf881",
+    "sku": "VTK010452",
+    "nome": "Tampa Reserv Limp Para-brisa Amarelo Clio 06a16",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 17.47,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "41c5b163-faac-47d0-891f-92ad3607b9b0",
+    "sku": "VTK010453",
+    "nome": "Tampa Do Radiador 88kpa Nissan March 11 A 14",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 33.08,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "ee7e8320-75af-4e92-8661-25ce4f0c3262",
+    "sku": "VTK010454",
+    "nome": "Tpa Reserv Gas Vedada Alcool/flex Linha Renault",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 9.63,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "0f75eebb-3ad6-4e7b-b76c-8fe38172c5bf",
+    "sku": "VTK010457",
+    "nome": "Tampa Reserv Limp P-brisa Amarelo Ford Ka 14a18",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 34.72,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "6b6e11d3-3fc7-4709-b822-5bf1d7bf5af8",
+    "sku": "VTK010461",
+    "nome": "Tampa Reserv Oleo Direcao Dhb Gm Astra 95 A 11",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 28.76,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "fa88d5ac-65eb-4928-978e-3086dfc33e37",
+    "sku": "VTK010463",
+    "nome": "Tampa Reser Limp Para-brisa Mt L200 Triton 07a16",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 38.87,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "feff10f3-dae2-4e8f-8966-5b24b5dc6eb6",
+    "sku": "VTK010467",
+    "nome": "Tampa Comb Vedada S/chave Peugeot 208 Apos 20",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 44.83,
+    "estoque": 92,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "ad5d1e2e-6559-4953-bf9d-5a5c7dbd5dca",
+    "sku": "VTK010468",
+    "nome": "Tampa Arrefecimento 1,4bar C/rosc Vw Cam Ap12",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 15.64,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "7109c2e3-5068-4f61-8a03-a09354b366bc",
+    "sku": "VTK010469",
+    "nome": "Tpa Reserv Gas Valvulada Veic Flex Linha Renault",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 11.51,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "0c3c21a6-2b02-4a50-8d11-56fb8c4e63b2",
+    "sku": "VTK010504",
+    "nome": "Comutador De Ignicao Renault 21 Nevada 89a94",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 31.01,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "19d2fee4-5406-40c5-9d2b-efb13b2bfe71",
+    "sku": "VTK010506",
+    "nome": "Comutador Ignicao Renault Megane Hatch 97a05",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 46.22,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "27c9ae17-f7c9-415c-ab7f-57a68d4fc782",
+    "sku": "VTK010518",
+    "nome": "Batente Tampa Porta Malas Renault Kangoo 00a10",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 49.36,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "f8e8a9ee-4b93-43b9-a323-b7574e083eba",
+    "sku": "VTK010520",
+    "nome": "Cilindro C/chave Diant Renault Logan 07a13 Dir",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 51.28,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "b7400c00-f599-462c-ae5d-d38b1682b13c",
+    "sku": "VTK010521",
+    "nome": "Par Cilind C/chav Diant Renault Logan 07a13 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 99.66,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "103d9425-82a3-489f-98e0-e836c420be2a",
+    "sku": "VTK010559",
+    "nome": "Guia Porta Kangoo 2000 Até 2010",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 140.39,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "c7d9c7cc-ced2-42e5-8fe1-aee9f51732d1",
+    "sku": "VTK010563",
+    "nome": "Botao P/mal C/sup P/trav Elet Clio Sedan Ii 06a16",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 71.93,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "cad0972f-5c31-4546-a35b-05ced4b2b94a",
+    "sku": "VTK010572",
+    "nome": "Suporte Do Vidro Da Pta. Diant. - Renault Trafic à 02",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 92.77,
+    "estoque": 100,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "a7378071-c2bb-42e3-a6ff-373da38f9e8a",
+    "sku": "VTK010576",
+    "nome": "Capa Telecomando 2botoes (frente) Renault",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 10.24,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "b339a1e3-596a-4458-b222-8a5d4f0d2edd",
+    "sku": "VTK010590",
+    "nome": "Fech Int Tras Bau Predis P/elet Master Ii Ap13 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 231.71,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "2c6d228d-6cac-41ca-a88f-f0a51ed29369",
+    "sku": "VTK010591",
+    "nome": "Fech Porta Tras Bau Esq Sup/inf Dir Inf Master",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 103.12,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "f4905d89-e58f-4aa5-989d-cff9ea3fbd0d",
+    "sku": "VTK010592",
+    "nome": "Batente Sup/inf Pta Tras Bau Master Apos 13 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 67.02,
+    "estoque": 82,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "20e217f0-7974-4406-9358-f69a362e1ded",
+    "sku": "VTK010596",
+    "nome": "Fechadura Meca Porta Diant Dir Renault Master Ap 13",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 473.59,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "67d1d7e0-2ced-4816-ba54-baec9d99b5f2",
+    "sku": "VTK010597",
+    "nome": "Fechadura Meca Porta Diant Renault Master Ap 13 Esq",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 473.59,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "b7a5695e-798c-4c23-a11c-358626feeebf",
+    "sku": "VTK010598",
+    "nome": "Fechadura Elé Porta Diant Renault Master Ap 13 Dir",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 517.86,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "44a8a716-7724-41da-8dce-2e4603f820e1",
+    "sku": "VTK010599",
+    "nome": "Fechadura Elé Porta Diant Renault Master Ap 13 Esq",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 517.86,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "c8a1a0df-7ddf-44d0-abf8-2450d65e1384",
+    "sku": "VTK010605",
+    "nome": "Cilindro Ignicao C/ch Renault Sandero Gii Ap14",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 68.95,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "16f61dac-4f25-4aa9-8ccd-ac24cc85dc40",
+    "sku": "VTK010610",
+    "nome": "Cil Tpa Porta Malas C/ch Renault Sandero Ii Ap14",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 70.94,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "965c77e4-9291-4ff8-b9c2-fd45c691c766",
+    "sku": "VTK010611",
+    "nome": "Guia Centr Pt Lat Corr S/base Fix Master Gi 02a13",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 82.75,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "2d80d32d-95be-46cc-b3fa-5260140b831d",
+    "sku": "VTK010612",
+    "nome": "Comutador De Ignicao Renault Sandero Apos 14",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 85.33,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "c8c85c28-c1f1-44b5-8f92-a5a4d0685c77",
+    "sku": "VTK010622",
+    "nome": "Mq V E S/m F/ori Renault Sandero Ap 14/logan Ap 13 Tras D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 120.88,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "b370623c-ed87-49c3-a734-b6d895999695",
+    "sku": "VTK010623",
+    "nome": "Mq V E S/m F/ori Renault Sandero Ap 14/logan Ap 13 Tras E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 120.88,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "df4ec6bb-b20d-4073-9b38-cf93b2141615",
+    "sku": "VTK010624",
+    "nome": "Maq Vid Mec Renault Sandero Ap 14/logan Ap 13 Diant D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 114.69,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "6f20d8e4-b33c-4813-9f87-0bda055364dd",
+    "sku": "VTK010625",
+    "nome": "Maq Vid Mec Renault Sandero Ap 14/logan Ap 13 Diant E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 114.69,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "4c53b77c-82b4-433f-8c84-6c0387c3c880",
+    "sku": "VTK010628",
+    "nome": "Cabo Acion Fech Pt Dian Renault Master Ii Ap13 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 19.11,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "e831f931-3350-4ce5-a74e-d0a543ad87c7",
+    "sku": "VTK010637",
+    "nome": "Guia Porta Besta 1997 Até 2005",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 60.64,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "c4af07b2-d1a2-4f3e-b91a-03414177fc3c",
+    "sku": "VTK010638",
+    "nome": "Guia Porta Besta 1997 Até 2005",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 21.46,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "c96c6962-fd7a-4186-a96e-ba3f832057f5",
+    "sku": "VTK010639",
+    "nome": "Guia Inf Porta Topic 2008",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 50.51,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a0a99774-d160-47d3-b534-6718ae98d566",
+    "sku": "VTK010640",
+    "nome": "Guia Porta Correr Sup Asia Motors Topic Apos08",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 26.55,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "45943107-927d-4654-a3ef-265f95c3c236",
+    "sku": "VTK010656",
+    "nome": "Miolo Porta Malas Duster 2011",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 132.05,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "bf039acc-b51d-4ac9-a6b4-2d95ca408dcf",
+    "sku": "VTK010666",
+    "nome": "Mac Int Dian/tras Base Prt/pux Cro Kwid I Ap17 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 50.51,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "5d5c974d-0e21-46a5-8d1c-d416021f73e2",
+    "sku": "VTK010667",
+    "nome": "Mac Int Dian/tras Base Prt/pux Cro Kwid I Ap17 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 50.51,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "a8abcc1e-54b3-4fb4-94a4-10d167a2ba19",
+    "sku": "VTK010671",
+    "nome": "Guia Pta Corredica Central Hyundai H100 87a96",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 60.28,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "da84ee74-885a-437e-b156-e98a61645583",
+    "sku": "VTK010672",
+    "nome": "Guia Inf Porta Lat Corredica Hyundai H100 87a96",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 115.97,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "72a3ec66-75a9-494e-93b0-4efa24cb28f3",
+    "sku": "VTK010675",
+    "nome": "Cabo Abert P/malas S/mac Int C2670mm Kwid Ap17",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 33.56,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "68280db1-c71a-4f76-a72d-e0356c682fa4",
+    "sku": "VTK010676",
+    "nome": "Gancho Amarracao Cacamb Renault Duster 16a21",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 23.61,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "b6d6941b-5d99-4b2c-807e-0e12306ec54d",
+    "sku": "VTK010677",
+    "nome": "Mac Int Pta Dian/tras Preta C/base Captur Ap17 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 35.91,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "6a4f6f3f-bd0d-4810-b881-474c2f07be8a",
+    "sku": "VTK010678",
+    "nome": "Mac Int Pta Dian/tras Preta C/base Captur Ap17 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 35.91,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "d830c08e-ead5-44f7-bdde-098e44bb9ffe",
+    "sku": "VTK010679",
+    "nome": "Fech Inf Capo C/switch Renault Master Gii Ap13",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 127.37,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "5335a50a-2457-4c04-82f0-dc59e1ea5a0c",
+    "sku": "VTK010680",
+    "nome": "Botao Porta-malas Elet 2pinos Megane 03a09",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 63.19,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "7dd5d58a-35ac-429b-bd83-ca3744d65d5d",
+    "sku": "VTK010681",
+    "nome": "Interruptor Igncao Cielo 2010 Até 2013 - Espero 1994 Até 19",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 28.96,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "0b1a6028-756f-4167-83df-73c4b7e7e938",
+    "sku": "VTK010688",
+    "nome": "Cilind Tampa Porta Mala C/chave Honda Fit 03a08",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 128.91,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "ed9d06fa-de49-40bb-8dea-d000539c8a26",
+    "sku": "VTK010700",
+    "nome": "Fech Int Tpa P/mal C/micr Switch Civic Gvii 01a06",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 60.31,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "6283477f-d5a7-4c76-9966-35decb857e82",
+    "sku": "VTK010701",
+    "nome": "Mac Ext Pta Tras S/furo S/ch Honda Fit 08a14 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 173.41,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "1aa5a582-fe9a-4561-aab2-352c00123054",
+    "sku": "VTK010712",
+    "nome": "Ch Oca 3b C/b Pan Pf Snake Key Honda City 09a18",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 24.04,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "3c9c0649-19c0-40b1-b8c3-2f23cd9c13c6",
+    "sku": "VTK010714",
+    "nome": "Guia Porta Jumper 2006 Até 2014",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 87.34,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "6aa8b827-f7e5-48c0-b2e9-bd44a534e87c",
+    "sku": "VTK010718",
+    "nome": "Par Cilindros Pta Diant C/ch Hyundai Hr Ap07 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 98.11,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "58ee1162-24d9-4866-b14d-4b63055533f4",
+    "sku": "VTK010719",
+    "nome": "Par Cilindro Diant C/ch Kia Bongo 2/4pt Ap05 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 87.12,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "e9ffa667-c4e8-46c8-95b4-795c28f9788f",
+    "sku": "VTK010720",
+    "nome": "Cilindro Pta Diant C/ch Kia Bongo 2/4pt Ap05 Dir",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 40.3,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "ea1048bd-40f4-4a34-b0ec-25c66ca4db5d",
+    "sku": "VTK010721",
+    "nome": "Cilindro Pta Diant C/ch Kia Bongo 2/4pt Ap05 Esq",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 40.3,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "123ca80e-9131-422b-acab-db829e7a8010",
+    "sku": "VTK010722",
+    "nome": "Cil Tpa P-malas C/ch Hyundai Elantra Gv 11a16",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 98.46,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "746f7369-7647-4a9f-8048-720ae187c27a",
+    "sku": "VTK010723",
+    "nome": "Cilindr Porta Diant C/chaves Hyundai Ix35 Ap10 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 109.51,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "d63f1426-b8d3-4dc5-8661-e9b7bd7dc1fe",
+    "sku": "VTK010724",
+    "nome": "Miolo Porta Diant Cerato 2006 Até 2009",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 96.34,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a7c5223c-6dc2-4bff-8cbe-8a09e68352ef",
+    "sku": "VTK010726",
+    "nome": "Mac Int Pt Base:pret/pux:bege Tucson Gi 05a09 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 44.35,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "843602be-6338-4911-96a2-d383dc654349",
+    "sku": "VTK010727",
+    "nome": "Mac Int Pt Base:pret/pux:bege Tucson Gi 05a09 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 44.35,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "c292674a-d92e-4258-9740-9bae9f711968",
+    "sku": "VTK010728",
+    "nome": "Mac Int Pt Base:pret/pux:crom Tucson Gi 05a09 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 49.78,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "da7fab81-d25b-411b-955d-a168c35897f8",
+    "sku": "VTK010729",
+    "nome": "Mac Int Pt Base:pret/pux:crom Tucson Gi 05a09 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 49.78,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "4822a021-d562-40ca-855e-f82b9e57d0f4",
+    "sku": "VTK010730",
+    "nome": "Mac Int Pt Base:pret/pux:prata Tucson Gi 05a09 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 47.19,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "e4b51022-efd6-424b-b5dc-9c7e0141487f",
+    "sku": "VTK010731",
+    "nome": "Mac Int Pt Base:pret/pux:prata Tucson Gi 05a09 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 47.19,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "b0496e98-5112-4968-bcf3-88e356840d2e",
+    "sku": "VTK010732",
+    "nome": "Mac Int Porta Preta Hyundai Tucson Gi 05a09 Dir",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 44.35,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "a1c1d72c-ec45-4772-81d6-66e80b57fc1d",
+    "sku": "VTK010733",
+    "nome": "Mac Int Porta Preta Hyundai Tucson Gi 05a09 Esq",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 44.35,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "9f68e072-48e0-4928-a0a3-ba7587d598bc",
+    "sku": "VTK010738",
+    "nome": "Mac Int Pt Base:pret/pux:graf Tucson Gi 05a09 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 34.77,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "51bc7bc4-a7e8-4a60-a492-e9eae2509004",
+    "sku": "VTK010739",
+    "nome": "Mac Int Pt Base:pret/pux:graf Tucson Gi 05a09 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 34.77,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "cc6b2f3d-f3d0-44f8-a709-dc3baa6c428e",
+    "sku": "VTK010759",
+    "nome": "Mac Int Abert Porta Hyundai Hr 2.5 Tci Ap07 Dir",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 27.09,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "2f93beba-9136-4ee0-b934-f65d5f67ae33",
+    "sku": "VTK010785",
+    "nome": "Guia Central Porta H100 1987 Até 1996",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 50.51,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "3d4a11b1-d4a2-4ca6-8c9d-9139eae911a4",
+    "sku": "VTK010786",
+    "nome": "Miolo Porta Diant H100 1987 Até 1996",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 60.97,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "1eff7eee-b06d-405a-bc03-dc740799556d",
+    "sku": "VTK010788",
+    "nome": "Mac Int Porta Porta",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 22.61,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "bd84f68d-2af4-41bd-8403-4e029c048040",
+    "sku": "VTK010791",
+    "nome": "Maq Vid Ele S/m F/mabuchi Hr D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 152.07,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "09604b5f-ded3-4e86-a3ac-32a95f75a4c8",
+    "sku": "VTK010806",
+    "nome": "Cilindro Da Porta Dianteira Esq Hb20 G1 2012 A 2019",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 114,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "0956dbf3-bb31-4728-8927-1ad85f8601d5",
+    "sku": "VTK010807",
+    "nome": "Cilindr Porta Diant C/chave Hyundai Hb20 Ap12 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 114,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "4ac314c4-61e3-4f82-ad60-bbda5b1cbd0b",
+    "sku": "VTK010808",
+    "nome": "Fech Int Tampa Porta-malas 3pinos Hb20s Gi 13a19",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 146.36,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "14523909-93ba-42c7-b486-c6ca32e4feb2",
+    "sku": "VTK010809",
+    "nome": "Cilindro C/chav Porta Diant Hyundai H1 97a07 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 56.99,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "fde92f8b-c1cb-4f01-9ed4-bc9add8f7aa8",
+    "sku": "VTK010810",
+    "nome": "Miolo Porta Diant H1 1997 Até 2007",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 56.99,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "05acff59-be21-4324-806d-1350584eb41f",
+    "sku": "VTK010812",
+    "nome": "Fech Tp Tras Besta Gs 98/04",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 65.57,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "d01dee68-6ddd-4575-bd27-fad9f0c0dae1",
+    "sku": "VTK010814",
+    "nome": "Maçaneta Interna Gatilho Diant/tras Cromado Dir Hb20 12 A 19",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 36.85,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "0b56dfe1-1bf8-4109-b606-0deba103a8d1",
+    "sku": "VTK010815",
+    "nome": "Maçaneta Interna Gatilho Diant/tras Cromado Esq Hb20 12 A 20",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 36.85,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "f994dd98-d9a1-4118-b863-907ab1b78fed",
+    "sku": "VTK010816",
+    "nome": "Fech Eletrica Porta Diant Hyundai Hb20 12 A 19 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 270.98,
+    "estoque": 42,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "10dd0a72-3c2e-40b7-87af-5a286f350f42",
+    "sku": "VTK010817",
+    "nome": "Maçaneta Externa Dianteira/traseira Cromada Hb20 12 A 19",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 58.09,
+    "estoque": 100,
+    "reason": "missing_height"
+  },
+  {
+    "produtoId": "53fdd656-dfb7-4092-abe7-4d9f33164814",
+    "sku": "VTK010819",
+    "nome": "Mac Int Diant/tras Pret Pux Cinz Hb20 Gi 12a19 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 80.78,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "11a8b05d-fa3b-4764-b356-158bf543dbe6",
+    "sku": "VTK010820",
+    "nome": "Mac Int Diant/tras Pret Pux Cinz Hb20 Gi 12a19 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 80.78,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "654ce8ed-94a3-417b-bc19-04d7e6b893d3",
+    "sku": "VTK010845",
+    "nome": "Mac Ext Pt Dia S/ch C/furo Kia Bongo 2/4pt Ap05 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 52.64,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "2188959b-fcba-4e8e-97bf-2523fec63bea",
+    "sku": "VTK010847",
+    "nome": "Mac Int Diant/tras Cinza Kia Bongo 2/4pt Ap05 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 35.57,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "f8f2ad51-739c-4d62-b36c-394effe1dbe4",
+    "sku": "VTK010848",
+    "nome": "Mac Int Diant/tras Cinza Kia Bongo 2/4pt Ap05 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 35.57,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "3eb8d6df-f27d-418b-be3f-883e69db5ca4",
+    "sku": "VTK010849",
+    "nome": "Mac Ext Porta C/furo S/ch Hyundai Hr Ap07 Dir",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 40.42,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "11a3afcb-961f-4f1c-ba94-cb8eda079f65",
+    "sku": "VTK010850",
+    "nome": "Mac Ext Porta S/ch C/furo Hyundai Hr Ap07 Esq",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 40.42,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "65df3a47-95e0-4e36-ba11-292be0d81bb6",
+    "sku": "VTK010852",
+    "nome": "Guia Porta Correr Central Peugeot Boxer 02a06",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 87.38,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "caba4a50-17e1-47c3-a238-89ec5a4ba285",
+    "sku": "VTK010858",
+    "nome": "Par Miolo Porta D/e  206 2001 Até 2009",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 55.7,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "610bfc0b-7109-4ed2-b016-b0366f705621",
+    "sku": "VTK010865",
+    "nome": "Capa Telecom Oca C/aloj P/trans 2b C3 I/ii Ap03",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 18.45,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "68e5b534-2713-43c2-b1f3-30bb97a4895d",
+    "sku": "VTK010870",
+    "nome": "Interruptor Igncao 306 Sedan 1994 Até 2001",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 81.28,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "669ab65b-99b8-4fee-ba0b-009aa6b43e8c",
+    "sku": "VTK010880",
+    "nome": "Miolo Porta Diant Berlingo 1998 Até 2007 - Partner 1999 Até",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 57.23,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "b53dd19e-0145-4e5b-a4fa-44eb13b17cca",
+    "sku": "VTK010895",
+    "nome": "Interruptor Igncao C3 2003 Até 2012",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 174.48,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "71d87b21-f3bf-4110-adc5-e6db32688788",
+    "sku": "VTK010905",
+    "nome": "Chave S/segredo Oca Pf Snake Key Peugeot 307",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 26.09,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "8962151e-4676-4e85-a138-94d89fe41f82",
+    "sku": "VTK010908",
+    "nome": "Guia Porta Berlingo 1998 Até 2007 - Partner 1999 Até 2013",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 108.15,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "69ba56ba-8772-4682-82f1-5d6d323a4796",
+    "sku": "VTK010928",
+    "nome": "Tirante Tp Bag 206/207/306/307",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 31.22,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "2084f597-c182-4062-a832-bd04cb9a2d51",
+    "sku": "VTK010939",
+    "nome": "Trava Da Tampa Cac (gancho) L-200 96 A 07",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 51.77,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "2d8dbfef-7adf-4a12-b087-2dc4580f12de",
+    "sku": "VTK010943",
+    "nome": "Mac Ext Tra Crom S/fur S/ch L200 Triton Ap08 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 125.1,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "7f222350-c9ec-419f-a40a-33f80191e470",
+    "sku": "VTK010959",
+    "nome": "Cabo Aciona Fec Capo S/mac Nissan Frontier Ap17",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 32.7,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "fbc677f1-1905-4194-9751-abab0f8f56c2",
+    "sku": "VTK010965",
+    "nome": "Cilindro Porta Malas Mitsubishi Pajero Tr4 03 A 08",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 54.92,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "0719b6a9-e30c-44d2-8efd-24ebaa62f1a2",
+    "sku": "VTK010973",
+    "nome": "Regulador Do Vidro Eletrico C/m Di Adpt March D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 111.55,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "c98098d2-c528-493b-b006-cd29729cfc6e",
+    "sku": "VTK010974",
+    "nome": "Regulador Do Vidro Eletrico C/m Di Adpt March E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 111.55,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "41fab929-4a04-4410-afcb-2c2787947b5f",
+    "sku": "VTK010975",
+    "nome": "Regulador Do Vidro Eletrico C/m Tr Adpt March D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 112.79,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "08525236-bd92-4f10-bbed-ec7aec92360b",
+    "sku": "VTK010976",
+    "nome": "Regulador Do Vidro Eletrico C/m Tr Adpt March E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 112.79,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "776e1da7-7c4a-48e5-990e-f6934bde8e97",
+    "sku": "VTK010980",
+    "nome": "Mac Ext Diant Dir/tra D/e S/fur S/ch March 11a14",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 33.3,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "0ca305b1-4c63-47c5-ab31-07c0628a3983",
+    "sku": "VTK010983",
+    "nome": "Miolo Porta Diant Livina 2009 Até 2014",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 98.36,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "cf1211e9-f812-49a5-b08e-930c408f838f",
+    "sku": "VTK010992",
+    "nome": "Cabo Aciona Capo S/mac Int Nissan Versa Ap11",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 32.99,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "493d2d6b-081f-4501-ae84-95755c323e52",
+    "sku": "VTK010997",
+    "nome": "Mac Ext Tpa Cacamb C/fur P/cam Frontier Iii Ap17",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 264.57,
+    "estoque": 67,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "4d2b4b95-2a9d-4e43-9070-92fab178a331",
+    "sku": "VTK010998",
+    "nome": "Mac Ext Pt Dia Crom C/fur S/ch L200 Triton Ap08 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 141.85,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "7ad0246a-e72f-4b4e-a581-acce90bd0247",
+    "sku": "VTK010999",
+    "nome": "Chave Plast Oca 2b Mitsubishi Asx / L200 / Pajero",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 22.27,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "fff7f379-625c-4258-b6f0-3ecc33be3453",
+    "sku": "VTK011003",
+    "nome": "Cilindro Porta Malas C/chave Mitsubishi Pajero Tr4 08 A 14",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 52.18,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "79c1c582-ac77-42bc-810a-717df49ee4de",
+    "sku": "VTK011004",
+    "nome": "Mac Int Pta Dian/tras Crom Nissan March Ap11 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 91.48,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "b0f1784b-3a1e-4248-9f75-4d27334709c2",
+    "sku": "VTK011005",
+    "nome": "Mac Int Pta Dian/tras Crom Nissan March Ap11 D9",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 108.64,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "1fcc64d4-22ab-4f2d-a243-1ee2d86cee0d",
+    "sku": "VTK011027",
+    "nome": "Triângulo Segurança Simples Emergência Todos Os Veículos",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 20.67,
+    "estoque": 100,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "cc4e74b1-878a-444b-9e07-0b420262287b",
+    "sku": "VTK011053",
+    "nome": "Calco Da Mac Tampa Motor Vw Fusca/kombi Ate96",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 9.64,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "8c26df61-b5f4-4b32-a650-0d20317b1a77",
+    "sku": "VTK011054",
+    "nome": "Trinco Basc Lat K Clipper Crom-d",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 78.23,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "b4886842-bae1-4deb-9ddc-a5b595d062c3",
+    "sku": "VTK011077",
+    "nome": "Trinco Q Vento Passat /88 Crom-d",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 34.05,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "54bc4e41-870b-45ce-a418-ed0e8dd2fd83",
+    "sku": "VTK011107",
+    "nome": "Regulador Do Vidro Eletrico C/m Tr Pointer 4p D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 79.89,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "b809c59c-5f13-4b5c-9019-151204739839",
+    "sku": "VTK011108",
+    "nome": "Regulador Do Vidro Eletrico C/m Tr Pointer 4p E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 78.86,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "c0257f5f-d4ab-442b-9dac-1d82c985a9ea",
+    "sku": "VTK011126",
+    "nome": "Grampo Fixacao P Luva Gol/voy/sa (20.334-20.407)",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 41.73,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "32263f96-c19b-471c-a4e7-e94c0100d588",
+    "sku": "VTK011129",
+    "nome": "Porca Fecho P Mala Gol/pas/voyage",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 31.3,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "327fdd31-2ddc-4c33-af77-152aaded7b3e",
+    "sku": "VTK011143",
+    "nome": "Gatilho Da Mac Ext Cromado Vw Fusca Apos 77",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 68.64,
+    "estoque": 95,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "dcba6186-90e3-485a-8f3a-4dd5c4ba2b19",
+    "sku": "VTK011144",
+    "nome": "Gatilho Da Mac Ext Preto Vw Gol Gi 80 A 94",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 22.01,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "48e4f3d0-f05f-41ca-98dc-f3995b2eecfc",
+    "sku": "VTK011151",
+    "nome": "Respiro Do Oleo Sem Tampa Vw Fusca 59 A 96",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 48.63,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "b4c9dd82-1266-47c2-a45b-1daed7067364",
+    "sku": "VTK011163",
+    "nome": "Gatilho Mac Ext Cromado Vw Passat 74 A 88",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 70.71,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "4c693245-9bf0-480b-bce3-d179c06e1f40",
+    "sku": "VTK011164",
+    "nome": "Gatilho Mac Ext Tl/variant Crom",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 15.32,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "964665b2-58ee-4f10-a2a1-2302aee849a5",
+    "sku": "VTK011165",
+    "nome": "Gatilho Macaneta Ext Cromado Vw Kombi 75a13",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 54.92,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "b697482e-9c54-4711-a396-e89b7537f51c",
+    "sku": "VTK011176",
+    "nome": "Guia Lat Vid Vw - Todos",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 10.95,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "ab124c55-7ca2-48eb-99f1-8321247a26d8",
+    "sku": "VTK011178",
+    "nome": "Alavanca Ac Fech P Mala Parati/gol",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 30.26,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "fd241a22-6a89-4f71-bf95-47fbc5837026",
+    "sku": "VTK011231",
+    "nome": "Gatilho Mac Ext Vt/brasilia - Prt",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 39.13,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "61727120-81ef-4e92-988b-5460a59cb4b4",
+    "sku": "VTK011232",
+    "nome": "Conj Presilh Banco Tras Vw Kombi Clipper 75a96",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 15.43,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "1597bf63-42ec-4a45-b0b0-56b6b85a0c87",
+    "sku": "VTK011234",
+    "nome": "Gatilho Da Mac Ext Preto Vw Kombi 75 A 13 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 26.83,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "3e3f7095-23dd-42ba-92aa-f85efb2b9a30",
+    "sku": "VTK011243",
+    "nome": "Espelho Da Maçaneta Int. Da Pta. Diant. - Dir./esq. Preto - Volkswagen Fusca Gi 1200 59 à 70  - Fusca Gi 1300 67 à 70",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 47.23,
+    "estoque": 100,
+    "reason": "missing_weight"
+  },
+  {
+    "produtoId": "79a8ecec-1ade-4ec8-b079-e61a10dd1ac2",
+    "sku": "VTK011245",
+    "nome": "Espelho Da Manivela Reguladora Do Vidro Da Pta. Diant. - Dir./esq. Preto - Volkswagen Fusca Gi 71 à 77",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 32.73,
+    "estoque": 100,
+    "reason": "missing_weight"
+  },
+  {
+    "produtoId": "1ff2adde-ba3b-4158-ac24-78f3e06d9bb8",
+    "sku": "VTK011256",
+    "nome": "Capa Pedal Freio/embreagem Vw",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 17.71,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "3749b631-dfca-4dd4-b1f8-4c3255ce7ff1",
+    "sku": "VTK011257",
+    "nome": "Pedal Acelerador Vw/brasilia/variant",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 18.5,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "725b3271-3a5b-4243-bccd-22137f9ecd6b",
+    "sku": "VTK011277",
+    "nome": "Comutador Ig 2pinos Excentr Vw Fusca Ate 77",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 54.24,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "4750a03c-f0cd-44d1-b0ea-3b35656946df",
+    "sku": "VTK011278",
+    "nome": "Excentrico Da Trava De Direção Fusca Apos 77",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 54.24,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "b67d6be5-ab50-4b33-acb9-4da7a4d45879",
+    "sku": "VTK011310",
+    "nome": "Alojamento Vareta Med Oleo Vw Gol Gi 80a96",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 39.06,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "76569a6b-608b-4f7d-ba9a-b86d219dc883",
+    "sku": "VTK011311",
+    "nome": "Porca Menor Do Fech Porta Malas Vw Gol 80 A 96",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 36.32,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "dbce40c5-f27c-419d-b67f-936b0799e002",
+    "sku": "VTK011313",
+    "nome": "Gatilho Da Macaneta Ext Preto Ford Versailles",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 35.54,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "c9f31fab-ddb6-4309-b797-aefaf36e937e",
+    "sku": "VTK011316",
+    "nome": "Trava/mola Fech Inf Capo Vw Gol Gi 80a94",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 29.05,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "510c4400-ee3f-4567-bf9d-3fffc17d54ab",
+    "sku": "VTK011340",
+    "nome": "Conj Presilha Banco Vw Kombi Moderna 97a13",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 54.61,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "f5525594-5f63-4a46-8a16-2cc520e32a84",
+    "sku": "VTK011412",
+    "nome": "Calco Mac Ext Peq Capo Vw Fusca Gi 1300 71a96",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 17.27,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "ab001d3c-3b0b-46d5-9328-80a770bfd1cc",
+    "sku": "VTK011417",
+    "nome": "Chave S/segr Perf Convencional Vw Kombi 57a97",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 23.58,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "d1ebd40c-98fe-4053-83c0-80865a022000",
+    "sku": "VTK011418",
+    "nome": "Chave S/segredo Perfil Tecmisa Vw Gol 80a96",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 42,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "22739f11-d34b-4da8-a797-d6bd5350b7a2",
+    "sku": "VTK011419",
+    "nome": "Chave S/seg Valeo C/aloj P/transp Vw Gol 94a99",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 46.78,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "982135db-1e18-41ab-a4db-97aace1c98da",
+    "sku": "VTK011420",
+    "nome": "Chave S/segr Pf Maxion S/aloj P/trans Gol 94a99",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 23.5,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "bdc33d73-76d7-476f-961b-c8c09efeb3f5",
+    "sku": "VTK011429",
+    "nome": "Grampo Desliz Trilho Banco Vw Gol 94a16",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 7.18,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "2c15b1a8-a10a-475d-996c-91a669977c2b",
+    "sku": "VTK011430",
+    "nome": "Bot Tr Banco Gol/voy/par/sav Ap 97 Cz-d",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 38.14,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a24b33df-5726-4fa0-bce9-66b6cf044f4c",
+    "sku": "VTK011431",
+    "nome": "Bot Tr Banco Gol/voy/par/sav Ap 97 Cz-e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 39.36,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "d6c60022-41ba-4ccf-990a-ee606caae718",
+    "sku": "VTK011432",
+    "nome": "Capa Recl Bco Mot Gol/par/sav Ap 97 Pr-e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 6.37,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "f843c422-4449-4389-ade0-7f4875d2a36f",
+    "sku": "VTK011433",
+    "nome": "Comp Fix Para Choque Tras Vw Gol Giii 99a05 Dir",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 16.28,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "dd312599-a26d-41b6-9802-54cb4029c250",
+    "sku": "VTK011434",
+    "nome": "Mold Mac Int Pe Baixo Port Vw Gol 94a99 Cinza D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 12.46,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "4e5265ee-3793-44f5-9d7f-6d02a7cf5b82",
+    "sku": "VTK011435",
+    "nome": "Moldura Porta Gol Gi 1987 Até 1996",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 14.06,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "1910b7df-29fc-4b45-b78b-5977b897c029",
+    "sku": "VTK011436",
+    "nome": "Moldura Porta Gol Gi 1987 Até 1996",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 14.06,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "6544646b-2b2d-4127-9367-c182a528fe26",
+    "sku": "VTK011437",
+    "nome": "Interruptor Moldura Porta Diant. Gol Gi 1987 Até 1996",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 11.38,
+    "estoque": 90,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "9a7562e2-1e19-4a38-9d1d-0a0b05dd8f59",
+    "sku": "VTK011438",
+    "nome": "Interruptor Moldura Porta Diant. Gol Gi 1987 Até 1996",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 11.38,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "dfa818a6-60f2-48f8-a428-1a5003af5edc",
+    "sku": "VTK011446",
+    "nome": "Chave S/segr Pf Snake Key C/aloj P/trans Vw Gol",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 17.83,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "2c7fc203-a384-4f17-a151-67852a8c9876",
+    "sku": "VTK011455",
+    "nome": "Grampo Forracao Pta Gol/parati Ap 94",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 5.81,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "99d17372-0455-4452-8b27-4a4e06713364",
+    "sku": "VTK011458",
+    "nome": "Fechadura Inf Do Capo Vw Polo 02 A 14",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 145.84,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "742151c7-f6d1-4c57-9831-fe70460c59a5",
+    "sku": "VTK011460",
+    "nome": "Batente Do Porta Malas Vw Fox Apos 09",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 35.82,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "70ae5340-3e9b-4a90-acba-e1c426ce5ca3",
+    "sku": "VTK011524",
+    "nome": "Interruptor Moldura Porta Diant. Gol Gi 1980 Até 1996",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 25.75,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "cb445591-36c2-4cd9-adbf-03f54c651d7b",
+    "sku": "VTK011525",
+    "nome": "Interruptor Moldura Porta Diant. Gol Gi 1980 Até 1996",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 25.75,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "123f146f-48c0-4bb5-9558-3379897f5f83",
+    "sku": "VTK011532",
+    "nome": "Porca Borboleta Embreagem M7 Vw Sedan/br",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 49.87,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "86dcc6db-b58d-4e10-9bfc-11f492a7be07",
+    "sku": "VTK011533",
+    "nome": "Respiro Do Oleo Do Motor Mwm Vw Worker 05a14",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 39.45,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "5e24a0ee-47ae-429d-bf3d-5aa8dfc761be",
+    "sku": "VTK011564",
+    "nome": "Pino Porta Gol Giv 2005 Até 2014",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 52.47,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "84599bf5-511a-4eec-833a-a79587b3d0de",
+    "sku": "VTK011566",
+    "nome": "Botao Trava Freio Mao Vw Gol Gii 94 A 99",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 27.59,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "fd3aaf0f-1345-4e12-bc67-30827aa18072",
+    "sku": "VTK011567",
+    "nome": "Pino Eixo Sup (cavalete) Mac Int Pta Vw Gol 94a05",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 29.35,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a5eb932d-b02a-4a6b-92a0-e6f9bc37df26",
+    "sku": "VTK011570",
+    "nome": "Capa Braco Limp P/brisa Gol Giii Preto",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 20.36,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "3b23abde-fb16-47c6-99b7-4fef2a85ccef",
+    "sku": "VTK011582",
+    "nome": "Pino Porta Gol Gi 1980 Até 1996",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 20.33,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "316717b5-bd36-4e5b-924a-a3414fa16249",
+    "sku": "VTK011583",
+    "nome": "Pino Porta Gol Gi 1980 Até 1996",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 19.53,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "de442015-d050-4e9b-b96b-88e2f2b524ab",
+    "sku": "VTK011584",
+    "nome": "Pino Porta Passat 1974 Até 1988",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 22.17,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "0cce69d9-a1c4-435c-bf9e-186aa15dccd8",
+    "sku": "VTK011586",
+    "nome": "Trilho Guia Do Vidro Vw Worker 81 A 18",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 9.75,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "097ce68f-2f9c-4d8d-86cb-aa555c0a4d90",
+    "sku": "VTK011605",
+    "nome": "Chave S/segr Pf Convencional Vw Worker 05a14",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 62.44,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "2e7d5708-3e78-4789-8efd-f1af5d2c4b06",
+    "sku": "VTK011606",
+    "nome": "Chave S/segr Pf Convencional Ford Verona 89a92",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 25.95,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "aa635841-326f-47ee-a2db-023321f92a99",
+    "sku": "VTK011609",
+    "nome": "Grampo Da Vareta Capo 20pcs Vw Gol I 80 A 96",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 7.95,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "c9ebb84e-1e35-4891-b722-6cf90a00e419",
+    "sku": "VTK011622",
+    "nome": "Gatilho Da Mac Original Vw Santana Giii 98a06",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 48.69,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "517e7055-d7f7-40e5-9aab-bff0f3b4ae60",
+    "sku": "VTK011656",
+    "nome": "Interruptor Moldura Banco Gol Gi",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 14.68,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "9d4f56b8-a03c-4ca6-a15a-2406fb74b5d6",
+    "sku": "VTK011659",
+    "nome": "Manopla Do Banco Cinza Vw Golf 94 A 97",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 6.51,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "dbc70e88-f04f-4847-be63-274685319d4c",
+    "sku": "VTK011667",
+    "nome": "Maq Vid El Tras S/mt F.mab Polohatch Giv 02a14 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 130.74,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "0bd976c0-e9f9-4a9e-8b29-936469c10876",
+    "sku": "VTK011680",
+    "nome": "Presilha Da Grade Vw Caminhoes",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 24.61,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "10c8ef80-93e9-4118-a303-be7f733d34d1",
+    "sku": "VTK011684",
+    "nome": "Espelho Da Maçaneta Int. Da Pta. Diant. - Dir./esq. Bege - Volkswagen Fusca Gi 1200 59 à 70",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 30.67,
+    "estoque": 100,
+    "reason": "missing_weight"
+  },
+  {
+    "produtoId": "9fe6cb58-c46c-48d4-8330-40571453e31a",
+    "sku": "VTK011726",
+    "nome": "Maq Vid El Tras S/mt F/org Amarok Ap10 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 106.11,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "ffecedbd-fac1-4a14-80c2-c3103bf35599",
+    "sku": "VTK011750",
+    "nome": "Interruptor Igncao Fox Gii 2014",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 173.93,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "f8283fe5-d1e1-4c4f-98fe-0cb8de2c1d10",
+    "sku": "VTK011755",
+    "nome": "Pino Porta Gol Gii 1994 Até 1999",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 7.95,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "15f9ed35-c9ff-4ece-a558-eecf5abbff05",
+    "sku": "VTK011759",
+    "nome": "Pino Porta Gol Gii 1994 Até 1999",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 7.95,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "b5408117-ab1c-447b-9d22-e241ab19fab6",
+    "sku": "VTK011760",
+    "nome": "Pino Porta Gol Gii 1994 Até 1999",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 7.95,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "3a7469eb-3445-42b4-b7bf-925a439f38bd",
+    "sku": "VTK011798",
+    "nome": "Calco Mac Ext Porta Gol Giii/iv(grande+pequeno)",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 32.02,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "9adc939a-0f3f-44b6-9ce7-9c55fe829a0d",
+    "sku": "VTK011799",
+    "nome": "Calco Mac Ext Porta Gol Gii(grande +pequeno)",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 39.67,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "258b63b4-44b4-428b-ac10-bb68b94682e7",
+    "sku": "VTK011802",
+    "nome": "Miolo Porta Diant A4 2000 Até 2004",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 275.32,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "8e36af2b-6534-454f-b5bf-61a90bf0c535",
+    "sku": "VTK011812",
+    "nome": "Interruptor Moldura Da Porta Gol Gv E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 6.69,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "0c3a0071-058e-43f7-bf5e-7f07e3184628",
+    "sku": "VTK011813",
+    "nome": "Moldura Da Porta Tras C/ Suporte Vw Gol Gv E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 6.88,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "6a1ed762-2b9c-487c-975e-555bce3b3418",
+    "sku": "VTK011819",
+    "nome": "Miolo Porta Diant A6 2011",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 275.32,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "9630ff5f-50c0-4b2e-aaaf-58b875c42239",
+    "sku": "VTK011820",
+    "nome": "Miolo Porta Diant A6 Até 2011",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 152.97,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "abec51f2-7a29-43f4-aa2f-ca40318e1b9f",
+    "sku": "VTK011821",
+    "nome": "Miolo Porta Diant Q7 2005",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 260.83,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "ab429957-fc6f-4f85-86e6-e4161d2498cb",
+    "sku": "VTK011825",
+    "nome": "Chapa Embreagem Guia Vw Fusca 59 A 96",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 7.39,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "d67e2de0-65a6-4dad-953e-719b2b128edb",
+    "sku": "VTK011827",
+    "nome": "Travessa Cambio Fusca/kombi 59 A 96",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 42.48,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "f57eb8a6-185e-47dd-8722-82facf1ad923",
+    "sku": "VTK011828",
+    "nome": "Cilindro C/chave Porta Diant Audi Q5 Apos 09 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 347.78,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "6145d95c-9e94-4016-a981-813557f4a76d",
+    "sku": "VTK011831",
+    "nome": "Aro Quebra Vento Fusca Cromado Dir Apos71",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 111.47,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "d81e0f3f-2a1b-4937-8cef-84554e3926e0",
+    "sku": "VTK011836",
+    "nome": "Cilindro Tampa Cacamba C/chave Vw Saveiro Ap17",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 114.46,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a038a3ea-28b2-4230-8815-50a8a7207794",
+    "sku": "VTK011837",
+    "nome": "Miolo Porta Malas Golf Giv 1998 Até 2007",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 95.91,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "6f43fc8f-f499-49ee-ba5d-294407079cdc",
+    "sku": "VTK011839",
+    "nome": "Fechadura Pta Diant Eletrica Vw Polo Gvi Ap17 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 564.81,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "af761598-e926-4079-b653-147c7bfd8407",
+    "sku": "VTK011840",
+    "nome": "Fechadura Pta Tras Eletrica Vw Polo Gvi Ap17 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 564.81,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "3c67e126-28e4-4813-830a-22c188b50142",
+    "sku": "VTK011841",
+    "nome": "Fechadura Pta Tras Eletrica Vw Polo Gvi Ap17 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 564.81,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "728b7ff8-3a41-43a4-a3c5-a81d70ae5316",
+    "sku": "VTK011842",
+    "nome": "Mac Ext Pt Pret S/ch C/furo Delivery Gii Ap18 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 69.41,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "2b47381b-95f1-497b-82b7-7ef23825d8c6",
+    "sku": "VTK011843",
+    "nome": "Cilindro Da Pta C/chave Vw Delivery Gii Ap18 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 126.96,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "8d2ef850-73f7-40a7-81df-fb7f03586498",
+    "sku": "VTK011844",
+    "nome": "Cilindro Da Pta C/chave Vw Delivery Gii Ap18 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 126.96,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a435c51e-a58f-4608-b5f7-7c4877d34ed2",
+    "sku": "VTK011845",
+    "nome": "Cilindro De Ignicao C/ch Vw Delivery Gii Ap18",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 179.44,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a6ff8ff6-49dc-42b8-8f66-07c879e231a2",
+    "sku": "VTK011854",
+    "nome": "Cj Calco Mac Ext Diant/tras Gol Gi D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 25.37,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "e24ae505-0ac1-4ae4-bb41-47f79b78a37e",
+    "sku": "VTK011855",
+    "nome": "Cj Calco Mac Ext Pta Santana Gii 91a98 - Versaill D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 27.64,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "b9e09028-80df-48af-9a32-7faee08be19e",
+    "sku": "VTK011856",
+    "nome": "Cj Calco Mac Ext Polo Classic Gi 96a02 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 26.67,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "e0b53a80-debf-4943-af54-579b5f74d190",
+    "sku": "VTK011857",
+    "nome": "Calco Mac Ext Pta Grand/peq Santana Giii 98a06 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 22.47,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a80c055f-6f85-419f-8a99-e69aa3c03a82",
+    "sku": "VTK011858",
+    "nome": "Cj Calco Mac Ext Santana Gii 98a06 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 15.43,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "cdf5d7b6-2eaf-45f5-a859-99948e11abfb",
+    "sku": "VTK011859",
+    "nome": "Maq Vidr El Pta Diant S/mt F.orig Polo Gvi Ap17 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 215.94,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "f1da41d5-8200-42ee-8e1d-a9e53439d09d",
+    "sku": "VTK011860",
+    "nome": "Maq Vidr El Pta Diant S/mt F.orig Polo Gvi Ap17 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 215.94,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "212dd55b-f38c-4d93-97b5-4ed2577a37fc",
+    "sku": "VTK011861",
+    "nome": "Maq Vidr El Pta Tras S/mt F.orig Polo Gvi Ap17 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 110.39,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "1298140e-dc8a-4a79-aa07-be539d3a1d3a",
+    "sku": "VTK011862",
+    "nome": "Maq Vidr El Pta Tras S/mt F.orig Polo Gvi Ap17 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 110.39,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "03dfa58a-85a3-4369-a48e-6a67be07f20e",
+    "sku": "VTK011863",
+    "nome": "Mac Int Pta Diant/tras Prata Vw Polo Giv Ap17 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 51.34,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "cba68115-9841-48d9-93a5-6d58f7ed9c6b",
+    "sku": "VTK011864",
+    "nome": "Mac Int Pta Diant/tras Prata Vw Polo Giv Ap17 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 51.34,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "e74efa01-b4d7-4be0-84cd-108746d9a234",
+    "sku": "VTK011865",
+    "nome": "Mac Int Pta Diant/tras Preta Vw Polo Giv Ap17 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 29.69,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "c69a93b1-5567-40fc-a0e5-3ed5a36b5deb",
+    "sku": "VTK011866",
+    "nome": "Fech Pta Diant Eletr C/trav Vw Tiguan Gi 09a11 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 1013.47,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "659ca4f3-be79-4765-aaa6-528561e8d19d",
+    "sku": "VTK011867",
+    "nome": "Fech Pta Diant Eletr C/trav Vw Tiguan Gi 09a11 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 1013.47,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "5c3f53c6-68f2-4061-aaa4-6f04b2253cfa",
+    "sku": "VTK011868",
+    "nome": "Fech Porta Tras Elet 6pinos Vw Up Apos 14 Dir",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 244.84,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "bbf2a3af-8401-49f3-abe5-e23e2cde2af0",
+    "sku": "VTK011869",
+    "nome": "Fech Porta Tras Elet 6pinos Vw Up Apos 14 Esq",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 244.84,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "838f84a9-747e-426b-a851-af6c2b85fdc1",
+    "sku": "VTK011874",
+    "nome": "Cilindro Da Porta Diant C/chave Vw Up Ap14 Dir",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 241.08,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "064655d8-62c2-4018-a9d1-0c6571dc44f2",
+    "sku": "VTK011880",
+    "nome": "Mac Int Porta Porta  Up 2014",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 6.13,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "ecd18aa4-d2d5-4012-9f99-cd97f2b7024a",
+    "sku": "VTK011881",
+    "nome": "Mac Int Porta Porta  Up 2014",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 6.13,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "fe756b1e-f085-4d89-a22b-fa8df003418d",
+    "sku": "VTK011882",
+    "nome": "Maq Vid Elet Pt Dian S/mt F.orig Audi A3 I 96a03 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 426.57,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "fa46ec64-2317-4f7a-9b6b-6396a17a66af",
+    "sku": "VTK011883",
+    "nome": "Maq Vid Elet Pt Dian S/mt F.orig Audi A3 I 96a03 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 426.57,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "69cd12ae-d91e-40a8-8084-f233afb90992",
+    "sku": "VTK011884",
+    "nome": "Maq Vid Elet Pt Tras S/mt F.orig Vw Golf 99a08 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 333.17,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "3006f163-239d-44c3-b9c4-9f28a89d8a9c",
+    "sku": "VTK011885",
+    "nome": "Maq Vid Elet Pt Tras S/mt F.orig Vw Golf 99a08 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 333.17,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "1d75358e-a0a6-47a0-a674-f28c69152301",
+    "sku": "VTK011886",
+    "nome": "Cilindro Da Porta C/chave Vw Meteor Ap21 Esq",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 127.72,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "78083a6e-060e-48ac-a059-b9a7cae5d586",
+    "sku": "VTK011887",
+    "nome": "Maq Vidr Elet S/mt Diant F.orig Vw Jetta 05a11 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 378.03,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "1e77d370-32ec-4500-a80c-024a0a80a09e",
+    "sku": "VTK011888",
+    "nome": "Maq Vidr Elet S/mt Dian F.orig Vw Golf 13a16 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 334.4,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a4a21136-f3fe-42aa-809a-383760e9f423",
+    "sku": "VTK011889",
+    "nome": "Mac Ext C/ch Completo Vw Delivery Ii Ap18 Dir",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 149.69,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "cd77e2d4-c715-48fe-97f7-c9e0c6b3b53b",
+    "sku": "VTK011890",
+    "nome": "Mac Ext C/ch Completo Vw Delivery Ii Ap18 Esq",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 149.69,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "0e2362c6-e271-4ed5-ba5f-cbb355e815d9",
+    "sku": "VTK011897",
+    "nome": "Kit 4 Batentes E Limitador Dianteiro Fox Após 2009.",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 12.82,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "6309903e-e566-4c9b-a0cf-32a32c86ae3d",
+    "sku": "VTK011901",
+    "nome": "Calco Mac Ext Da Porta Vw Constellation Dir",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 31.3,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "ca255e88-e66d-4c23-b0ab-855f65c2b286",
+    "sku": "VTK011902",
+    "nome": "Calco Mac Ext Da Porta Vw Constellation Esq",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 31.3,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "69a88e7e-2ab3-4499-bcd8-f4ece1c9514c",
+    "sku": "VTK011912",
+    "nome": "Miolo Porta Diant Vw Passat 11 A 15",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 96.3,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "8b31dab7-cc4a-4cc9-9523-b7493ddbf0f0",
+    "sku": "VTK011913",
+    "nome": "Mac Ext Porta S/ Miolo Golf 2007 Até 2013",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 97.06,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "2ab72c8b-9206-4018-895e-279841ef7c9f",
+    "sku": "VTK011914",
+    "nome": "Eixo Estr Coman Maq Manual Dian Amarok Ap10 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 29.38,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "33d61c24-de61-4cd0-8b5f-8a8f429d861d",
+    "sku": "VTK011915",
+    "nome": "Eixo Estr Diant P/maq Manual Vw Amarok Ap10 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 29.38,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a0799c0c-d168-4a7a-ac34-e2b1e7daaff4",
+    "sku": "VTK011916",
+    "nome": "Eixo Estria Maq Manual Tras Vw Amarok Ap10 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 19.87,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "27b222b7-dbca-4dbf-9f77-f53fe916850f",
+    "sku": "VTK011917",
+    "nome": "Eixo Estr P/maq Manual Tras Vw Amarok Apos10 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 19.87,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "680b21a7-0546-485e-a98b-6288a0097e3a",
+    "sku": "VTK011923",
+    "nome": "Miolo Botao C/ch Uso Geral Gancho Inox",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 74.87,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "42a289a0-076a-4287-a902-2dfad9b63456",
+    "sku": "VTK011928",
+    "nome": "Alavanca Maior (ling) Abert Capo Vw Golf 08a14",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 10.67,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "fa2df49e-56a4-465d-8364-d5e79b84717b",
+    "sku": "VTK011932",
+    "nome": "Cabo Abert Pta C470mm Vw Delivery Ap18 Dir",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 11.48,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "49903674-e078-4590-a3fb-adef500af717",
+    "sku": "VTK011933",
+    "nome": "Mac Ext Da Porta C/chave Vw Meteor Gi Ap21 Dir",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 170.23,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "84cf11b0-80bd-4335-ad3a-a96f71b56e47",
+    "sku": "VTK011934",
+    "nome": "Mac Ext Da Porta C/chave Vw Meteor Gi Ap21 Esq",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 170.23,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "623080b9-19cf-4c57-ad42-c006977dc692",
+    "sku": "VTK011935",
+    "nome": "Mac Int Pta Prata Vw Delivery Gii/express Ap18 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 47.07,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "65286248-47e4-4089-93ba-e0dbdb90c3c1",
+    "sku": "VTK011936",
+    "nome": "Mac Int Pta Prata Vw Delivery Gii/express Ap18 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 47.07,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "3a670007-277a-4085-a4ab-19125188fcf4",
+    "sku": "VTK011937",
+    "nome": "Mac Ext Pt C/ch C/micro Switch Vw Meteor Ap21 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 289.69,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "1bbb8141-6d3b-4713-a275-f6f5011832fe",
+    "sku": "VTK011938",
+    "nome": "Conj Cil Mac Ext + Cil Ign C/ch Delivery Gii Ap18",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 359.59,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "2dd46fca-a6be-41a5-a774-8a67597a5969",
+    "sku": "VTK011939",
+    "nome": "Fech Pta Predisp P/eletr Man Tga/tgs/tgx Dir",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 171.36,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "92c4d478-1a3e-4611-b99a-663fdb3b5066",
+    "sku": "VTK011940",
+    "nome": "Trinco Jan Basculante Vw Saveiro Apos98",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 37.79,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "b673bba2-9ed5-4348-b3f4-68ef10923171",
+    "sku": "VTK011941",
+    "nome": "Haste Fech Da Cacamba Vw Saveiro Ii/iii/iv 97a08",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 30.16,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "03591c06-a726-4029-b1ca-d79e6d139f1a",
+    "sku": "VTK011942",
+    "nome": "Mac Int Abert Cap Cinza S/base Vw Golf Gvii Ap13",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 21.34,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "69dd654d-7127-49ef-a335-19f0fbdf0d59",
+    "sku": "VTK011943",
+    "nome": "Mac Int Abert Cap Preta S/base Vw Golf Gvii Ap13",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 19.99,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "08b4c8a5-66d9-4b0b-b49f-cb79ef787772",
+    "sku": "VTK011944",
+    "nome": "Fech Cab Basc Vw Meteor Ap21/man Tgx D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 360.49,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "e86e5d29-42c6-4cf9-9536-a25c2f3eb81f",
+    "sku": "VTK011947",
+    "nome": "Fech Dian Elet 5p Trav Elet Orig Gol 08a22 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 376.64,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "0615197b-5fde-4936-8cf8-9cd8f4f739fa",
+    "sku": "VTK011948",
+    "nome": "Fecha Elet Porta Diant 5 Pinos Vw Gol 12a16 Dir",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 376.64,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a322d505-442c-4901-8c80-8a023567df04",
+    "sku": "VTK011982",
+    "nome": "Tampa Do Oleo Motor Perkins Gm D20 85 A 97",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 13.61,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "4e5cbe95-f03e-424e-8240-69c8832296df",
+    "sku": "VTK011983",
+    "nome": "Tampa Reserv Limp Para-brisa Vw Passat 79 A 85",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 29.77,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a6d7a9a2-eb08-4902-b6db-a9136a5ec239",
+    "sku": "VTK011985",
+    "nome": "Tampa Radiador Sup 13lbs/0,9bar Vw 16-210 87a99",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 13.2,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "1a2d77a2-0f83-4ae4-abc2-c4c4e99e3b94",
+    "sku": "VTK011986",
+    "nome": "Tamp Rad Reserv Inf 13lbs Vw Constellation 05a12",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 13.2,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "22da04fb-4edf-427d-9721-c0b601a10ea7",
+    "sku": "VTK011987",
+    "nome": "Tampa Reserv Oleo Do Freio Vw Brasilia 73 A 82",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 27.08,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "0aeb82cf-839b-45df-b9b9-81d4945497d9",
+    "sku": "VTK011990",
+    "nome": "Tampa Do óleo Do Motor. - Com Rosca - Scania Série Iv T/r/p-114 95 à 07",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 25.32,
+    "estoque": 100,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "d63548bc-a94a-42bd-b6cb-53ae8976bb03",
+    "sku": "VTK012014",
+    "nome": "Conector Para Cabo Fêmea P/ac - Corpo Azul Wc 3 Fca Wireconex 02 Unidades",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 40,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "dd75d2e4-4280-41b5-93e5-5d719abbb97e",
+    "sku": "VTK012016",
+    "nome": "Kit Conectores Xlr 1003 1013 20un (10 Machos/10 Femeas) Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 129.9,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "289f321c-9b4d-4fee-bdbf-b5758f88ae17",
+    "sku": "VTK012018",
+    "nome": "Kit Conector Xlr Macho Wc 1013 (10un) Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 69.9,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "25ea579a-df21-4e4c-a729-a8b1f351b239",
+    "sku": "VTK012022",
+    "nome": "Conector Combo Xlr Fêmea Painel 3p Wc 330 Wireconex 04 Unidades",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 64,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "480e76d0-22bc-45a3-b407-a2e2584361a4",
+    "sku": "VTK012035",
+    "nome": "Bateria Cr2032 Botão Panasonic 10 Cartelas Com 05 Baterias Por Cartela",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 155,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "4be0b818-3bb2-41b9-b9a6-d8198fbd2850",
+    "sku": "VTK012039",
+    "nome": "Kit Conector Xlr Macho Wc 1013 (10un) Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 69.9,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "2705a1d3-e329-475b-a11c-8153c6385604",
+    "sku": "VTK012040",
+    "nome": "Kit Conectores Xlr 1003 1013 20un (10 Machos/10 Femeas) Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 129.9,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "c6d3413f-28b4-4a7c-af4e-28d47564215f",
+    "sku": "VTK012130",
+    "nome": "Correia Ny 01 Bkr Preto Basso",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 18,
+    "estoque": 88,
+    "reason": "missing_weight"
+  },
+  {
+    "produtoId": "70fb5f79-40a8-4eb9-a48c-5e2ddb29c4fa",
+    "sku": "VTK012148",
+    "nome": "Adaptador Rca Fêmea P/xlr 3p Fêmea Niq. Wc 244 Ad 02 Unidades Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 19,
+    "estoque": 78,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "6a9a1c80-deca-4f21-b05a-0875587836dd",
+    "sku": "VTK012176",
+    "nome": "Correia Standard - 5 Cm Fita Cce (cinto De Segurana)",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 12,
+    "estoque": 60,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "c4eab70d-1d2c-4621-9887-aba1a951aca9",
+    "sku": "VTK012203",
+    "nome": "Baqueta Vanguarda",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 6.97,
+    "estoque": 50,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "3d89cea5-4142-4587-9e80-f83fb967c9e6",
+    "sku": "VTK012233",
+    "nome": "Palheta Bori Grl At-r16102 Picker 0,73 Mm (azul) R21003 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 8,
+    "estoque": 39,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "521f017d-10c5-4043-950e-aa4d05920e70",
+    "sku": "VTK012236",
+    "nome": "Palheta Bori Grl At-r16104 Picker 0,96 Mm (amarelo) R21005 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 8,
+    "estoque": 37,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "1bbbffef-7733-4f79-a62f-5bfccd76e3cc",
+    "sku": "VTK012237",
+    "nome": "Palheta Bori Grl At-r16147 Rio Xxl (preto) R21032 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 10,
+    "estoque": 37,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "333fa5ab-1e85-4ef1-8d16-9e1aba8dc118",
+    "sku": "VTK012243",
+    "nome": "Cabo Flat Para Pedal Emborrachado 3 Polegadas Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 52,
+    "estoque": 36,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "543cd6ae-f86f-473c-8c3c-55cd8e70e50c",
+    "sku": "VTK012248",
+    "nome": "Palheta Bori Grl At-r16103 Picker 0,82 Mm (vermelho) R21004 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 8,
+    "estoque": 33,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "dbecc552-4f0b-4abf-a874-654a26eb0818",
+    "sku": "VTK012267",
+    "nome": "Adaptador Rca Macho P/xlr 3p Fêmea Niq. Wc 242 Ad 02 Unidades Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 20.68,
+    "estoque": 28,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "878494a4-238b-4e01-9d02-8b9db1660faa",
+    "sku": "VTK012275",
+    "nome": "Palheta Bori Grl At-r16110 S.t.d 0,94 Mm (verde Esc) R21014 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 8,
+    "estoque": 27,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "a09e2e5d-9958-4bdc-92d8-4d4f070ce0b7",
+    "sku": "VTK012281",
+    "nome": "Kit Conector Speakon Wc 605 (20un) Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 194.9,
+    "estoque": 26,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "b4916f7e-70e1-426c-a271-bd7ab2ac90ee",
+    "sku": "VTK012282",
+    "nome": "Palheta Bori Grl At-r16108 S.t.d 0,80 Mm (azul) R21012 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 8,
+    "estoque": 26,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "87cdd472-e303-43a5-a712-339a38abc358",
+    "sku": "VTK012283",
+    "nome": "Palheta Bori Grl At-r16146 Rio Xxl (vermelho) R21028 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 10,
+    "estoque": 26,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "152238b0-74d4-4e71-b611-3e3950e1ed9c",
+    "sku": "VTK012297",
+    "nome": "Kit 04 Conectores Xlr Macho P/ Pci 3 Polos Wc 4050 Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 27.87,
+    "estoque": 24,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "73012fb6-c36a-42bf-97c5-df0dd984de1d",
+    "sku": "VTK012301",
+    "nome": "Palheta Bori Grl At-r16145 Rio Iii (preto) R21031 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 10,
+    "estoque": 23,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "f899d217-66f3-479a-bd1d-5bcaad5e0bad",
+    "sku": "VTK012304",
+    "nome": "Palheta Guitarra Color 1cap6 D Addario 1.00mm 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 35.48,
+    "estoque": 22,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "e9198188-46cf-49eb-b90f-b7b7eaf37b3b",
+    "sku": "VTK012310",
+    "nome": "Palheta Bori Grl At-r16142 Rio Ii (vermelho) R21026 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 10,
+    "estoque": 22,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "34ced274-3d7d-41ce-bde4-ede040014072",
+    "sku": "VTK012319",
+    "nome": "Palheta Bori Grl At-r16115 Azul Crystal 0,96 Mm R21008 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 8,
+    "estoque": 21,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "2900f5c0-284c-4f25-afdf-02e041156354",
+    "sku": "VTK012320",
+    "nome": "Palheta Bori Grl At-r16136 Drip Gota 2,50 Mm (azul) R21019 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 10,
+    "estoque": 21,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "04e730e5-b9d0-4147-b1c5-4428e8fc4c71",
+    "sku": "VTK012321",
+    "nome": "Palheta Bori Grl At-r16144 Rio Iii (vermelho) R21027 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 10,
+    "estoque": 21,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "ea1b9a83-6435-4677-a052-870c41fde6bf",
+    "sku": "VTK012327",
+    "nome": "Kit 04 Conectores Xlr Femea P/ Pci 3 Polos Wc 4046 Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 27.87,
+    "estoque": 21,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "c71efd1f-eea6-43ba-adee-9d6dfb0699e9",
+    "sku": "VTK012335",
+    "nome": "Palheta Bori Grl At-r16112 S.t.d 1,14 Mm (preto) R21016 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 8,
+    "estoque": 20,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "6e303597-dc2a-4632-b320-fd3b92447ee5",
+    "sku": "VTK012336",
+    "nome": "Palheta Bori Grl At-r16132 Drip Gota 1,50 Mm (azul) R21017 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 10,
+    "estoque": 20,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "e6b1f9d9-cb95-4695-ad62-b9593259ae60",
+    "sku": "VTK012337",
+    "nome": "Palheta Bori Grl At-r16138 Drip Gota 3,00 Mm (azul) R21020 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 10,
+    "estoque": 20,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "dd3f1501-4017-4ed3-b8d2-07361277e10a",
+    "sku": "VTK012353",
+    "nome": "Cabo Para Pedal Emborrachado Cachibmo Pedem 0,25 Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 14.8,
+    "estoque": 19,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "8b244ff4-cd3c-4be7-9e79-07d65a6a4e22",
+    "sku": "VTK012359",
+    "nome": "Palheta Bori Grl At-r16134 Drip Gota 2,00 Mm (azul) R21018 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 10,
+    "estoque": 19,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "df0fe9d6-90ce-49e9-b554-bb3b026a3574",
+    "sku": "VTK012369",
+    "nome": "Adaptadores Rca Fêmea P/xlr 3p Macho Niq. Wc 245 Ad 02 Unidades Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 20,
+    "estoque": 17,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "422bcabd-a745-4698-a59a-9b376e947f2c",
+    "sku": "VTK012383",
+    "nome": "Palheta Guitarra Mul Lght 1cmc2 D Addario .50mm 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 35.33,
+    "estoque": 16,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "6c4f65db-7cd0-448b-90fe-076a6b3ceb7d",
+    "sku": "VTK012384",
+    "nome": "Palheta Guitarra Color 1cap2 D Addario .50mm 10 Un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 35.36,
+    "estoque": 16,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "4b8e4e44-3472-4439-bf59-650b983a24bd",
+    "sku": "VTK012408",
+    "nome": "Palheta Bori Grl At-r16107 S.t.d 0,78 Mm (rosa) R21011 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 8,
+    "estoque": 14,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "ddd9f12b-6a56-4456-874f-e60cee322f9a",
+    "sku": "VTK012414",
+    "nome": "Adaptador 3,5 Femea Trs 6,3mm Macho Wc347 Wireconex 06 Unidades",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 55,
+    "estoque": 13,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "59491d00-93ec-497f-a8a1-756fcaa8cf25",
+    "sku": "VTK012418",
+    "nome": "Bateria Cr123 3v Panasonic",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 23.9,
+    "estoque": 13,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "a2243285-b7ee-4217-9225-22df8cd9d6a5",
+    "sku": "VTK012420",
+    "nome": "Bateria 9v Alcalina Unidade Flex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 9.5,
+    "estoque": 13,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "9bba78bf-6c76-45dd-afa1-c460ae550ace",
+    "sku": "VTK012421",
+    "nome": "Palheta Guitarra Shl Lght 1csh2 D Addario .50mm 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 32.27,
+    "estoque": 12,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "ee29fdf0-5caf-40ff-8a2e-63bfaa7e671e",
+    "sku": "VTK012422",
+    "nome": "Palheta Guitarra Mul Med 1cmc4 D Addario .70mm 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 35.48,
+    "estoque": 12,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "88a53941-34de-417d-be27-594938a09e58",
+    "sku": "VTK012468",
+    "nome": "Baqueta Nova 7a Ponta De Madeira N7a Vic Firth",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 53,
+    "estoque": 10,
+    "reason": "missing_description"
+  },
+  {
+    "produtoId": "140f0532-8d7c-4863-8ccb-559355ed369b",
+    "sku": "VTK012470",
+    "nome": "Palheta Bori Grl At-r16114 Azul Crystal 0,82 Mm R21007 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 8,
+    "estoque": 10,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "c2f077aa-c3b3-4f24-b9cd-4f71e77d002e",
+    "sku": "VTK012502",
+    "nome": "Polidor Spray Shine Pw-pl-03 D Addario",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 63,
+    "estoque": 9,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "c200f082-f31b-4611-8aee-c559692325f5",
+    "sku": "VTK012517",
+    "nome": "Arco De Violino Scarlett 4/4 Crina Animal Octogonal Em Madeira Cor - Natural",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 109.68,
+    "estoque": 8,
+    "reason": "missing_weight"
+  },
+  {
+    "produtoId": "86d06e3c-d1e8-4110-b213-94479b55b881",
+    "sku": "VTK012522",
+    "nome": "Bateria 2cr5 6v Panasonic",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 40,
+    "estoque": 8,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "c3d0cd4c-6e9f-40de-bd79-326f4b8a2f39",
+    "sku": "VTK012530",
+    "nome": "Bateria Alcalina A76 Cart 1 Energizer",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 7.74,
+    "estoque": 8,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "84ebeb50-8e9e-4528-a628-79255507f7b9",
+    "sku": "VTK012543",
+    "nome": "Palheta Bori Grl At-r16109 S.t.d 0,89 Mm (roxo) R21013 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 8,
+    "estoque": 7,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "8c694aee-0247-4dfa-b013-667b06147ba3",
+    "sku": "VTK012597",
+    "nome": "Palheta Big Stubby 1mm Pct C/6 475r1.0 Dunlop Vermelha (1841)",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 29.23,
+    "estoque": 5,
+    "reason": "missing_weight"
+  },
+  {
+    "produtoId": "0f063293-5f4c-4f87-8dc4-b219f40ba782",
+    "sku": "VTK012613",
+    "nome": "Palheta Royal Tenor Rkb0125 D Addario",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 38,
+    "estoque": 5,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "8b592f10-8f1d-41f2-bebc-4dac2666cf77",
+    "sku": "VTK012616",
+    "nome": "Palheta Plasticover Ten Rrptsx300 Un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 62.17,
+    "estoque": 5,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "67bc35b4-73bf-484f-8bbb-6d39710108c9",
+    "sku": "VTK012628",
+    "nome": "Palheta Guitarra Dur Prec 6dbu5 D Addario 1.00mm 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 26.77,
+    "estoque": 4,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "beb1e6a3-9ff6-44b2-9e87-93213f7cb65b",
+    "sku": "VTK012668",
+    "nome": "Palheta Guitarra Med 1ccf4 D Addario .70mm 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 34.53,
+    "estoque": 3,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "8df5a908-5df3-4e17-a4ad-ebff58570bde",
+    "sku": "VTK012669",
+    "nome": "Palheta Guitarra Dur Prec 6dbk7 D Addario 1.50mm 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 30.08,
+    "estoque": 3,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "c5a3ac69-aaa3-408d-ba6a-981ceaa94a52",
+    "sku": "VTK012670",
+    "nome": "Palheta Guitarra Color 1cap7 D Addario 1.25mm 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 32.27,
+    "estoque": 3,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "bace5096-725d-4223-9089-87c59c22c289",
+    "sku": "VTK012687",
+    "nome": "Cabo De Microfone Pro Balanceado Emborrachado Xlr Xlr 0,40 Cm Mpbe-0,40 Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 20,
+    "estoque": 3,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "f8906f65-7eb8-4b23-b5c5-f4a6b25a6157",
+    "sku": "VTK012688",
+    "nome": "Carregador De Pilhas Usb Com 2x Aa1500mah",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 116.2,
+    "estoque": 3,
+    "reason": "missing_description"
+  },
+  {
+    "produtoId": "8bd947dc-4f73-4a57-a02c-ffa28acf126f",
+    "sku": "VTK012694",
+    "nome": "Palheta Bori Grl At-r16111 S.t.d 1,04 Mm (branco) R21015 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 8,
+    "estoque": 3,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "4ed1ab3f-f23e-4aa7-8880-648d839c887d",
+    "sku": "VTK012699",
+    "nome": "Painel Medusa 28 Furos Xlr Com Conectores Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 366.01,
+    "estoque": 3,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "0d57c2ab-e6cc-4a93-bf80-5ba272763223",
+    "sku": "VTK012729",
+    "nome": "Cabo P10 Prowire Em L Tweed Lilás/prata 6,10m Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 60.51,
+    "estoque": 3,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "3d3e8419-30ba-4171-a441-126deb7ecb98",
+    "sku": "VTK012763",
+    "nome": "Palheta Guitarra Shl Hvy 1csh6 D Addario 1.00mm 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 32.27,
+    "estoque": 2,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "5b1a9381-ca77-406b-a24e-8b8b5aee9efe",
+    "sku": "VTK012764",
+    "nome": "Palheta Guitarra Dur Prec 6dpr6 D Addario 1.20mm 10un",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 26.77,
+    "estoque": 2,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "da6cc1ad-f9dd-42ee-becd-0f6d7f9fdcdd",
+    "sku": "VTK012765",
+    "nome": "Adaptador Rca Macho P/xlr 3p Macho Niq. Wc 243 Ad 02 Unidades Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 21,
+    "estoque": 2,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "14ac74a6-6f78-4a3d-9580-6cb4c7efc075",
+    "sku": "VTK012766",
+    "nome": "Cabo Para Caixa 4 Polos 5 Metros Spk 4p 05 225 Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 84.55,
+    "estoque": 2,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "9804a031-2e05-4dea-a4ab-1924080ba9b8",
+    "sku": "VTK012772",
+    "nome": "Caixa De Som Passiva 8 Polegadas 100 W Rms - Attack Vrf810",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 1006.98,
+    "estoque": 2,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "53162da4-f825-4a3c-a7c4-5bdc1dfb24c5",
+    "sku": "VTK012781",
+    "nome": "Mesa Som 16 Canais Analógica Usb Cmx016 Mark Audio",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 1320,
+    "estoque": 2,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "0ac22844-da0e-48d9-8578-f0e2f81dbac5",
+    "sku": "VTK012784",
+    "nome": "Amplificador Potência 200w Rms Mk1200 Mark Audio",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 828.71,
+    "estoque": 2,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "f1219523-c041-4366-8a85-6890d27030b4",
+    "sku": "VTK012800",
+    "nome": "Painel 48 Furos Xlr Com Conectores 2 Saídas Wireconex",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "custo": 647.78,
+    "estoque": 2,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "9b059dc8-f3a0-4996-976e-882783351a95",
+    "sku": "VTK013102",
+    "nome": "Tampa Do óleo Do Motor.  - Renault Gi 1.0 07 à 13 - Gii Após 13 - Master 1.0 02 à 13 - Nissan March 1.0 11 à 14",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 32.54,
+    "estoque": 100,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "b9b6aa28-1686-48e7-99eb-fe77a1a6b490",
+    "sku": "VTK013109",
+    "nome": "Bat Porta Lateral Master Gi 2003 Até 2012",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 52.03,
+    "estoque": 89,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "776ebc03-c9cb-4f97-bc82-8a99a98ef873",
+    "sku": "VTK013113",
+    "nome": "Mac Int Pta Diant/tras C/base Pret Kwid Gi Ap17 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 37.97,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "8cabb399-360f-46c6-8d38-5ab45431c73f",
+    "sku": "VTK013114",
+    "nome": "Cabo Aco Limit Tampa Cacamb Renault Oroch Ap15",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 42.82,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "84b52b77-1e40-40d2-bc31-bc2910c00625",
+    "sku": "VTK013116",
+    "nome": "Fech Mec/pre El Pta Mla (bau) H100 Ap 97",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 44.03,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "889defd8-74c5-4333-b2da-d087ccc25e90",
+    "sku": "VTK013122",
+    "nome": "Interruptor Moldura Banco Apollo - Verona",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 16.81,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "5008db79-ebee-4ed6-b7c2-67b3413a1c85",
+    "sku": "VTK013127",
+    "nome": "Tampa Reserv Gasol Veic Flex Vw/ford Diversos",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 8.96,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "97d77897-836f-4850-b425-1ea105dfdb9c",
+    "sku": "VTK013148",
+    "nome": "Capa Recl Bco Pas Gol/par/sav Ap 97 Pr-d",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 6.37,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "e004f0e4-6f82-4813-9a11-5704839dfa3f",
+    "sku": "VTK013155",
+    "nome": "Mac Int Abert Capo Preta Vw Gol Giii 93a98",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 28.35,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a20e7f19-328b-453b-9f12-3e4bfdd2e051",
+    "sku": "VTK013170",
+    "nome": "Interruptor Moldura Porta Diant/tras Gol Gv D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 7.04,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "00cf23e1-18db-4bc2-abe6-71b9a97f876b",
+    "sku": "VTK013172",
+    "nome": "Cj Calco Mac Ext Porta Grand E Peq Vw Gol Gv D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 26.67,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "58aa5788-6807-461f-8c88-387294caf5b3",
+    "sku": "VTK013184",
+    "nome": "Cj. C/6 Cil Avibras",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 134.42,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "4585f890-04f3-4eb1-a5cf-b1a4ae94e59c",
+    "sku": "VTK013189",
+    "nome": "Maçaneta Externa Dianteira Direita Metal Gol 1980 Até 1994",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 31.08,
+    "estoque": 100,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "2356e5a0-b8c6-47a9-adb3-1312f042b300",
+    "sku": "VTK013219",
+    "nome": "Chave Seta C/controle Limpador/buzina 24v Prt Mb Axor/onibus",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 220.68,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "26d9fd8e-22fe-4678-bfe4-75ae25b11598",
+    "sku": "VTK013220",
+    "nome": "Chave Seta C/controle Limpador/buzina 24v Cza Mb Axor/onibus",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 223.83,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "c95f4421-bed0-4c02-9865-b525c8d1b5c4",
+    "sku": "VTK013224",
+    "nome": "Cilindro Da Porta Diant C/chave Ford Ka Ap14 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 105.35,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "223ca687-b5f4-4c12-b287-da6ea7f5f828",
+    "sku": "VTK013225",
+    "nome": "Cab Aco Limit Tp Cacamb C370mm Ranger Ap13 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 31.29,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "c89f3fc4-eea1-4fc2-b56c-1c5c97324f82",
+    "sku": "VTK013259",
+    "nome": "Espelho Mac Int F1000/2000/4000/91 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 9.9,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "349e1795-70c0-4966-8b6c-5bd5defabcdf",
+    "sku": "VTK013275",
+    "nome": "Batente Da Porta Dianteira - Dir. - Unv30178",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 10.4,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "c46d1c32-1b1d-46de-80d9-6bac111ccd30",
+    "sku": "VTK013298",
+    "nome": "Interruptor Moldura Da Mac Int Pta Diant/tras Corcel Ii E/d",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 16.59,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "38f2f20d-4c20-473d-b370-035a8e3f6f8b",
+    "sku": "VTK013345",
+    "nome": "Tampa Do Radiador 7 Lbs Ford Cargo Apos 85",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 11.82,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "0afeda9d-033e-444c-8d9b-9ee19d8b9f24",
+    "sku": "VTK013346",
+    "nome": "Tampa Radiador 13 Lbs/0,9 Bar Gm Chevette 73a82",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 13.47,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "ae6046c8-065e-4858-b6c9-21b5c9b1dd3d",
+    "sku": "VTK013347",
+    "nome": "Tampa Radiador Sup 8 Lbs Ford Cargo Apos 85",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 11.93,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "67c8c666-14bb-442a-bb40-f5d83af17392",
+    "sku": "VTK013348",
+    "nome": "Tampa Do Radiador Gm Chevette 83 A 93",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 12.34,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "b73d57af-51c1-4251-a96b-0cd459185c52",
+    "sku": "VTK013357",
+    "nome": "Roldana Maq Do Vidro Ford Escort 83a92",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 28.89,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "89369fff-8596-49f4-9046-94d8f939179c",
+    "sku": "VTK013407",
+    "nome": "Tampa Do Radiador Selada Ford Corcel 68 A 77",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 12.99,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "f4569d5c-bd78-41dc-8a7f-e1910673520e",
+    "sku": "VTK013476",
+    "nome": "Maq Vidr Eletr Pta Diant C/motor Focus 00a08 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 361.14,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "225deb0e-9b96-408d-9460-3d51f78d84e7",
+    "sku": "VTK013477",
+    "nome": "Maq Vidr Eletr Pta Diant C/motor Focus 00a08 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 361.14,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a153cac8-45b6-4326-9044-4830ad6817f3",
+    "sku": "VTK013480",
+    "nome": "Chave S/segr Pf Convencional Ford F-1000 79a98",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 31.61,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "c66822a4-84b3-4ac7-a719-21aee22c80fc",
+    "sku": "VTK013481",
+    "nome": "Chave S/segr Perfil Conven Ford Del Rey 81a91",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 31.61,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "947fab29-3196-4269-805a-eeee9d87615f",
+    "sku": "VTK013482",
+    "nome": "Chave S/segr Convencional Ford Escort 83 A 92",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 31.61,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "1a2a4192-4e0f-4800-8f11-e4568680c439",
+    "sku": "VTK013497",
+    "nome": "Mac Ext Porta S/ Miolo Focus Gi 2000 Até 2009",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 81.89,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "81b4e283-b0b7-4ff1-bcef-263f3804d925",
+    "sku": "VTK013516",
+    "nome": "Maq Vid El S/mt Ranger G1 2/4 Pts D 94/12",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 137.7,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "5a108dce-f236-442d-8e38-7115000c90c6",
+    "sku": "VTK013534",
+    "nome": "Coman (fech) Abert Int Tp Cacamba Courier 97a13",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 55.51,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "6e829cb3-a5e1-40e1-a89a-2a53477e46ab",
+    "sku": "VTK013540",
+    "nome": "Man Reg Vidr Pta Cinza Ford Ranger Gi 04a12",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 11.41,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "98cb65aa-3cef-4b61-9dbe-86aa3e5f86b8",
+    "sku": "VTK013549",
+    "nome": "Grampo Teto Preto Escort/verona/f1000",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 10.76,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "1439dc9f-aee9-4548-8ef5-1cadf633259c",
+    "sku": "VTK013613",
+    "nome": "Fecho Inf Capo C/pn/mla Cargo Ap 11 E",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 70.36,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "6d3b4d31-56e9-4e65-b845-7b34605f5e28",
+    "sku": "VTK013631",
+    "nome": "Maçaneta Tampa Caçamba Ranger 98 A 04 Plástica (cromada)",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 45.47,
+    "estoque": 100,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "f1ea984d-98c3-4e46-b3b9-015695d0e104",
+    "sku": "VTK013638",
+    "nome": "Cj Mac Ext Diant/tras Ford Fiesta Amazon 02a14 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 7.07,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a3add9a2-6e8a-4407-9d26-5f38edab42c3",
+    "sku": "VTK013645",
+    "nome": "Arm Inf Pta Trav Guia Carg D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 45.68,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "54f3cb30-785d-4669-96f1-b708ab390741",
+    "sku": "VTK013686",
+    "nome": "Mac Ext Pt Diant Pret C/fur S/ch Ka Giii 14a21 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 142.75,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "250fc439-65c9-430f-8d8c-bca186be4693",
+    "sku": "VTK013691",
+    "nome": "Fech Elet Pta Diant Ford Ecosport Gii 12a21 Esq",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 462.71,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "8b2ef36b-b57e-49f1-8916-66007cf41515",
+    "sku": "VTK013692",
+    "nome": "Fech Elet Pta Tras Ford Ecosport Gii 12a21 Esq",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 462.71,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "8b251c98-fa29-4f64-8c2e-5d8996e7bae6",
+    "sku": "VTK013699",
+    "nome": "Fech Elet Pta Diant Ford Fiesta Hatch Giii 13a19 D",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 224.71,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "a99ff92e-7092-439a-87da-ae44bc6be0b6",
+    "sku": "VTK013712",
+    "nome": "Cabo De Velocimetro C1749mm Ford Jeep Ap67",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 35.33,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "755a9bd7-0744-48a1-a8aa-d433588f51eb",
+    "sku": "VTK013781",
+    "nome": "Terminal De Direção - Dianteira Esquerdo - Ecosport Após 13 - Fiesta Após 11 - Ka Após 14 -",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 49.04,
+    "estoque": 100,
+    "reason": "missing_image"
+  },
+  {
+    "produtoId": "1d85c97e-de3e-4f65-a63e-8892d988f43d",
+    "sku": "VTK013795",
+    "nome": "Prato De Mola Do Amort Diant Vw Gol 80 A 96",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 30.09,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "34dee801-f32d-442e-a7eb-a856b1faf01c",
+    "sku": "VTK013833",
+    "nome": "Bieleta Dianteira Etios Apòs/12 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 27.83,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "2e2fcb92-a9e6-43f4-b17c-f5fde2b328c5",
+    "sku": "VTK013839",
+    "nome": "Biel Bar Estab Diant Golf 95/9",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 21.73,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "a7da4199-f48a-4c50-8ee9-78e6d06f3c4f",
+    "sku": "VTK013846",
+    "nome": "Ter Dir Curto/barra Curta F-250 Após 99",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 78.95,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "0577c4b4-3a04-46aa-b1a1-1779d5681976",
+    "sku": "VTK013847",
+    "nome": "Biel Bar Est Dian C310mm Nylon Cruze I 11a16 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 37.33,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "d480794d-25c7-4cf9-bda9-af905c65861d",
+    "sku": "VTK013848",
+    "nome": "Kit Junta Homocinetica Ld Roda Passat 94a05 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 180.57,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "dc3f2a59-050b-4f7f-839c-c0bcf28cc1ad",
+    "sku": "VTK013850",
+    "nome": "Kit Amort Diant C/coxim/rol/bat/coifa Up Ap 14",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 62.43,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "9a006f12-8a48-4075-af31-5ce1f48201d7",
+    "sku": "VTK013854",
+    "nome": "Haste Engate Trambulador Cambio 350mm Prêmio 85",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 52.59,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "6659d5a9-c692-4db5-8f60-15f7b1ef6e25",
+    "sku": "VTK013857",
+    "nome": "Kit Eixo C/rep Parcial Tramb Gm Corsa/celta",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 83.67,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "c515175e-8221-4379-be81-e942f1c42c06",
+    "sku": "VTK013859",
+    "nome": "Pino E Bucha Conexao Cb Tramb Volvo Cam 76a84",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 7.16,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "e21b4b9b-265f-4019-906c-d2e98bd475a0",
+    "sku": "VTK013861",
+    "nome": "Reparo Parcial C/bucha Ala Cambio Vw Fox 03a09",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 38.82,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "4d320aa8-4d6d-48bb-b4e7-90eec061ea34",
+    "sku": "VTK013862",
+    "nome": "Kit Reparo Barra Estab Diant Mb Classe A 98a05",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 26.48,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "29dc214c-b356-4a40-8f9d-7b18fd43c024",
+    "sku": "VTK013863",
+    "nome": "Kit Rep Alavanca De Cambio Punto",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 8.82,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "2b5b0421-c5b5-4d14-bbd4-47c84587213d",
+    "sku": "VTK013864",
+    "nome": "Kit Alav Sel Do Trambulador Corsa",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 18.88,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "8a42644c-5db4-4c6f-8edb-be504cf90557",
+    "sku": "VTK013866",
+    "nome": "Kit Tramb Conec Cx De Camb Corsa Gi E Gii",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 11.85,
+    "estoque": 100,
+    "reason": "missing_gtin"
+  },
+  {
+    "produtoId": "95719c55-a3e5-4e8b-b49b-d2e8699f3592",
+    "sku": "VTK013887",
+    "nome": "Kit Amort Dia C/bat C/cf Escort Zt Ap 97",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 15.23,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "fd9e76d3-e9fc-4a4b-b53e-6f45467d6e9e",
+    "sku": "VTK013888",
+    "nome": "Kit Amor Di C/bat C/cf Escort 93/96",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 15.59,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "67238aa6-c441-48f5-b99b-d7b1087c5e90",
+    "sku": "VTK013900",
+    "nome": "Kit Reparo Barra Estab Vw Fusca 81a96 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 19.12,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "d1b20080-4e27-4281-9675-10ad37572ed1",
+    "sku": "VTK013901",
+    "nome": "Kit Estab Dian Monza Apos 91",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 9.64,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "a007298c-6f02-4349-963f-1e76903aa706",
+    "sku": "VTK013902",
+    "nome": "Kit Estab Dian Cen Uno Apos 91",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 5.31,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "de232422-262e-4cdf-9806-db19c9fcfa0e",
+    "sku": "VTK013903",
+    "nome": "Kit Estab Dian Fox Apos 03 Dir",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 14.09,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "ff0c93a3-df13-436d-a1d2-efdb95264156",
+    "sku": "VTK013904",
+    "nome": "Kit Reparo Barra Estab Vw Kombi 69 A 07 Esq",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 19.48,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "c59a3fd0-66f4-4153-a781-cd044f0277c5",
+    "sku": "VTK013905",
+    "nome": "Kit Estab Dian Ext Gol Apos 82",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 5.95,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "85511c37-1c1f-4866-8e2e-17b96bf1cbb7",
+    "sku": "VTK013907",
+    "nome": "Kit Rep Amort Dian C/ Rol/cox/bat/gp Spin",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 134.98,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "aca3c806-fbea-4db9-ade0-98401f703384",
+    "sku": "VTK013914",
+    "nome": "Kit Tramb C/ Liame Corsa Ap04",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 11.9,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "281c76ad-b99c-4883-9fbf-197835661793",
+    "sku": "VTK013915",
+    "nome": "Kit Trambulador C/liame Gm Corsa Gi 94a02 D/e",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 6.34,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "3ee59e59-c9f2-4a9f-9945-411721fe11a7",
+    "sku": "VTK013916",
+    "nome": "Kit Rep Alav Camb Tramb C/tubo 5m Passat 79a88",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 9.2,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "1e333f73-8e6e-4c65-af0d-66524f0a62af",
+    "sku": "VTK013917",
+    "nome": "Kit Ala/tramb Cambio Uno 85/88",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 10.23,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "b51d7208-9228-4489-af77-03dce722d052",
+    "sku": "VTK013918",
+    "nome": "Kit Rep Brac Osc C/rol Tras Palio Weekend 97a17",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 156.81,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "e1dd88f5-314f-4071-8a22-32b9c4df746d",
+    "sku": "VTK013919",
+    "nome": "Kit Amo Di C/bat C/coi Onix",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 34.11,
+    "estoque": 100,
+    "reason": "missing_brand"
+  },
+  {
+    "produtoId": "379b3c26-d9cb-4577-8177-9f1a17b69f0e",
+    "sku": "VTK013920",
+    "nome": "Kit Amo Ci C/bat C/coi Hb20",
+    "fornecedor": "SHOPPECAS",
+    "dsliteFornecedorId": "103",
+    "custo": 21.36,
+    "estoque": 100,
+    "reason": "missing_brand"
+  }
+]

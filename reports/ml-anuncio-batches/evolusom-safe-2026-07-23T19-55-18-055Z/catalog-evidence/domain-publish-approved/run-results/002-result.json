@@ -1,0 +1,261 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/002-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-002",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "7662b862-f0b9-422c-b290-36a91b89094f",
+      "sku": "VTK017182",
+      "category": {
+        "id": "MLB54168",
+        "nome": "Cabos de Dados",
+        "dominio": "MLB-DATA_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB7238963230",
+        "title": "Cabo Extensor Usb 2.0 Plus Cable Pc-usb5002 A Macho X A",
+        "price": 57.31,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238963230-cabo-extensor-usb-20-plus-cable-pc-usb5002-a-macho-x-a-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 40.32 → R$ 57.31."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "e8674c3c-3f08-4334-ad46-264e6f16fae8",
+      "sku": "VTK017453",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937477027",
+        "title": "Cabo Hdmi Aquário 2.0 4k 3 Metro",
+        "price": 58.78,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937477027-cabo-hdmi-aquario-20-4k-3-metro-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 42.95 → R$ 58.78."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "de035017-d2c7-4aba-8c31-1d9377798e26",
+      "sku": "VTK017332",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937477103",
+        "title": "Cabo Hdmi Evus C-050 4k Macho X Macho V2.0 3 0m",
+        "price": 66.09,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937477103-cabo-hdmi-evus-c-050-4k-macho-x-macho-v20-3-0m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 50.26 → R$ 66.09."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "213e9b98-abe7-43ab-a94b-e3787ff5301e",
+      "sku": "VTK017334",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937488303",
+        "title": "Cabo Hdmi Evus C-052 4k Macho X Macho V2.0 10 0m",
+        "price": 106.6,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937488303-cabo-hdmi-evus-c-052-4k-macho-x-macho-v20-10-0m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 89.62 → R$ 106.60."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "0523a7d3-ad05-4145-bd38-861394fa8460",
+      "sku": "VTK018479",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937477311",
+        "title": "Cabo Hdmi Aquário 4k20 4k Macho X Macho 2.0 20m",
+        "price": 212.76,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937477311-cabo-hdmi-aquario-4k20-4k-macho-x-macho-20-20m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 186.15 → R$ 212.76."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "27ea6643-9a65-460b-b273-b4ceff3ef159",
+      "sku": "VTK017475",
+      "category": {
+        "id": "MLB270088",
+        "nome": "Cabos de Rede",
+        "dominio": "MLB-NETWORK_CABLES"
+      },
+      "anuncio": {
+        "id": "MLB7238963762",
+        "title": "Cabo Lan Mpt Cat6 U/utp 23awgx4p 305 Metros Cmx Azul",
+        "price": 1394.78,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238963762-cabo-lan-mpt-cat6-uutp-23awgx4p-305-metros-cmx-azul-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 1338.31 → R$ 1394.78."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9c27b9af-ea06-435e-9e87-3831e0b0b8b3",
+      "sku": "VTK017755",
+      "category": {
+        "id": "MLB272149",
+        "nome": "Splitters de Fibra Óptica",
+        "dominio": "MLB-FIBER_OPTIC_SPLITTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937477495",
+        "title": "Cabo Óptico Splitter Intelbras Xfs 142 Plc 1x4 Sc/apc",
+        "price": 90.82,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937477495-cabo-optico-splitter-intelbras-xfs-142-plc-1x4-scapc-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 72.53 → R$ 90.82."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "bdbc13db-3dc6-4a93-8db3-b75f6002c777",
+      "sku": "VTK017213",
+      "category": {
+        "id": "MLB272149",
+        "nome": "Splitters de Fibra Óptica",
+        "dominio": "MLB-FIBER_OPTIC_SPLITTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937477631",
+        "title": "Cabo Óptico Splitter Intelbras Xfs 141 Plc 1x4 Sc/upc",
+        "price": 88.29,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937477631-cabo-optico-splitter-intelbras-xfs-141-plc-1x4-scupc-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 72.66 → R$ 88.29."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "82b944b7-f599-448b-9773-67db42871613",
+      "sku": "VTK017717",
+      "category": {
+        "id": "MLB272149",
+        "nome": "Splitters de Fibra Óptica",
+        "dominio": "MLB-FIBER_OPTIC_SPLITTERS"
+      },
+      "anuncio": {
+        "id": "MLB7238964084",
+        "title": "Cabo Óptico Splitter Intelbras Xfs1320 Plc 1x32 Nc 4830017",
+        "price": 198.6,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238964084-cabo-optico-splitter-intelbras-xfs1320-plc-1x32-nc-4830017-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 173.29 → R$ 198.60.",
+        "Não foi possível configurar os preços de atacado neste momento. Motivo: Mercado Livre retornou HTTP 500"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "10e0a3f8-0e1d-41f7-8529-ac507e7be94a",
+      "sku": "VTK017622",
+      "category": {
+        "id": "MLB272149",
+        "nome": "Splitters de Fibra Óptica",
+        "dominio": "MLB-FIBER_OPTIC_SPLITTERS"
+      },
+      "anuncio": {
+        "id": "MLB4937488947",
+        "title": "Cabo Óptico Splitter Intelbras Xfs 1322 Plc 1x32 Sc/apc",
+        "price": 275.77,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937488947-cabo-optico-splitter-intelbras-xfs-1322-plc-1x32-scapc-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 245.71 → R$ 275.77."
+      ]
+    }
+  ],
+  "failed": []
+}

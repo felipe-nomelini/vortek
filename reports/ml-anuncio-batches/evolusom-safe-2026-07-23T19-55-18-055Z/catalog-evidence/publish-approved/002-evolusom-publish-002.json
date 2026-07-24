@@ -1,0 +1,1226 @@
+{
+  "batchId": "evolusom-publish-002",
+  "strategy": "dry_run_and_exact_catalog_approved",
+  "items": [
+    {
+      "produtoId": "73961361-53a0-41ec-a09a-615a7215d95e",
+      "sku": "VTK019038",
+      "nome": "Alicate Amperimetro Digital Minipa Et-3111 Cat Iii",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 234.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 333.5,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898112603560",
+        "validatedNcm": "90303100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB30162",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3053665",
+          "value_name": "Minipa"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "48884641",
+          "value_name": "Alicate Amperímetro Digital"
+        },
+        {
+          "id": "MAX_TENSION_AC",
+          "value_id": "8120867",
+          "value_name": "750V"
+        },
+        {
+          "id": "MAX_TENSION_CC",
+          "value_id": "8120868",
+          "value_name": "1000V"
+        },
+        {
+          "id": "MAX_CURRENT_AC",
+          "value_id": "8120871",
+          "value_name": "1000 A"
+        },
+        {
+          "id": "MAX_CURRENT_CC",
+          "value_id": "8127019",
+          "value_name": "1000 A"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_id": "8153322",
+          "value_name": "400 Hz"
+        },
+        {
+          "id": "MIN_TEMPERATURE",
+          "value_id": "7218567",
+          "value_name": "0 °C"
+        },
+        {
+          "id": "MAX_TEMPERATURE",
+          "value_id": "8151798",
+          "value_name": "40 °C"
+        },
+        {
+          "id": "BATTERIES_NUMBER",
+          "value_id": "8114690",
+          "value_name": "1"
+        },
+        {
+          "id": "BATTERY_VOLTAGE",
+          "value_id": "8149915",
+          "value_name": "9V"
+        },
+        {
+          "id": "BATTERY_TYPE",
+          "value_id": "2351060",
+          "value_name": "PP3"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "102258",
+          "value_name": "Digital"
+        },
+        {
+          "id": "WITH_TRUE_RMS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CONTINUITY_TEST",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_DIODE_TEST",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18617348",
+          "value_name": "7898112603560"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "7675715",
+          "value_name": "350 g"
+        },
+        {
+          "id": "WITH_AUTO_RANGE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_AUTO_SHUTDOWN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_LOW_BATTERY_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BACKLIGHTING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "8151794",
+          "value_name": "Chumbo de teste, Manual"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22882006",
+        "catalogProductName": "Alicate Amperímetro Digital Et-3111 Minipa 1000 A",
+        "catalogDomainId": "MLB-CLAMP_METERS",
+        "categoryId": "MLB30162",
+        "categoryName": "Amperímetros",
+        "linkedListingsInCategory": 21,
+        "validatedGtin": "7898112603560"
+      }
+    },
+    {
+      "produtoId": "0bb807c5-99a6-45bd-9e57-c04f8b389b5e",
+      "sku": "VTK017920",
+      "nome": "Alicate Bico Redondo Longo Hikari 6\" 150 Mm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 16.9,
+      "estoque": 19,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 45.56,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810413468",
+        "validatedNcm": "82032010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB236047",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24856946",
+          "value_name": "HK-507"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "47740304",
+          "value_name": "5.906 \""
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "25840699",
+          "value_name": "Aço ao carbono"
+        },
+        {
+          "id": "TIP_TYPE",
+          "value_id": "2632876",
+          "value_name": "Redonda"
+        },
+        {
+          "id": "WITH_NON_SLIP_HANDLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ERGONOMIC_HANDLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_THERMAL_INSULATION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24856947",
+          "value_name": "7899810413468"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27445909",
+        "catalogProductName": "Alicate Bico Redondo Longo Hikari Aço Carbono 150mm Hk-507",
+        "catalogDomainId": "MLB-LONG_NOSE_PLIERS",
+        "categoryId": "MLB236047",
+        "categoryName": "Alicates de Bico",
+        "linkedListingsInCategory": 12,
+        "validatedGtin": "7899810413468"
+      }
+    },
+    {
+      "produtoId": "d127a44a-9282-4da7-9c62-64de8800241a",
+      "sku": "VTK018238",
+      "nome": "Alicate Decapador/cortador Ajustável Hikari Hk-312",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 37.9,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 71.48,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810412560",
+        "validatedNcm": "82032010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB188425",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "31453358",
+          "value_name": "HK-312"
+        },
+        {
+          "id": "PEEL_CALIBER",
+          "value_id": "31453359",
+          "value_name": "Ajustável manualmente"
+        },
+        {
+          "id": "CUT_CALIBER",
+          "value_id": "31453356",
+          "value_name": "Ajustável manualmente"
+        },
+        {
+          "id": "IS_SELF_ADJUSTING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NON_SLIP_HANDLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_CRIMPER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "PRODUCT_TYPES",
+          "value_id": "31453360",
+          "value_name": "Tools & Home Improvement > Electrical > Tools & Hardware > Wire Strippers"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "31453357",
+          "value_name": "7899810412560"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB31797167",
+        "catalogProductName": "Alicate Decapador Cortador de Cabo Coaxial Hikari HK-312 Ajustável",
+        "catalogDomainId": "MLB-WIRE_STRIPPERS_AND_WIRE_STRIPPING_PLIERS",
+        "categoryId": "MLB188425",
+        "categoryName": "Alicate Desencapador",
+        "linkedListingsInCategory": 11,
+        "validatedGtin": "7899810412560"
+      }
+    },
+    {
+      "produtoId": "ecbcdad8-db77-45dc-875c-ea4b2172a9e9",
+      "sku": "VTK018239",
+      "nome": "Alicate Multiuso Vonder 954 Para Eletrecista 9\"",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 34.9,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 67.78,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893946468033",
+        "validatedNcm": "82032010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB188428",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2727634",
+          "value_name": "Nove54"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24020999",
+          "value_name": "Eletrecista"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24021016",
+          "value_name": "7893946468033"
+        },
+        {
+          "id": "MPN",
+          "value_id": "24021017",
+          "value_name": "2433_11"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB26849182",
+        "catalogProductName": "Alicate Multiuso Eletricista Nove54 9 Polegadas MPN 2433_11",
+        "catalogDomainId": "MLB-LINEMAN_PLIERS",
+        "categoryId": "MLB188428",
+        "categoryName": "Alicate Universal",
+        "linkedListingsInCategory": 9,
+        "validatedGtin": "7893946468033"
+      }
+    },
+    {
+      "produtoId": "72f144ad-5948-4d1c-9d7e-d8cb42100aaf",
+      "sku": "VTK017221",
+      "nome": "Alicate Vonder Corte Diagonal 6\" 1000v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 29.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 61.6,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893946160142",
+        "validatedNcm": "82032010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB439330",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "275828",
+          "value_name": "Vonder"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24518499",
+          "value_name": "3662061503"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "8040495",
+          "value_name": "15.24 cm"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52007",
+          "value_name": "Amarelo"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "14410270",
+          "value_name": "200 g"
+        },
+        {
+          "id": "CUTTING_TYPE",
+          "value_id": "3723806",
+          "value_name": "Diagonal"
+        },
+        {
+          "id": "GRIP_MATERIAL",
+          "value_id": "5884734",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "4086949",
+          "value_name": "Aço inoxidável"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "84189831",
+          "value_name": "07893946160142"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB74922157",
+        "catalogProductName": "Alicate Corte Diagonal 6 Pol 1000v Vonder",
+        "catalogDomainId": "MLB-CUTTING_PLIERS",
+        "categoryId": "MLB439330",
+        "categoryName": "Alicates de Corte",
+        "linkedListingsInCategory": 35,
+        "validatedGtin": "7893946160142"
+      }
+    },
+    {
+      "produtoId": "0bf6be56-986c-4f32-8386-04a217cac39e",
+      "sku": "VTK017229",
+      "nome": "Alto Falante Pioneer 6\" Ts-1760br 100rms Par",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 113.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 165.31,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "4988028352836",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3905",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "9838",
+          "value_name": "Pioneer"
+        },
+        {
+          "id": "LINE",
+          "value_id": "24787073",
+          "value_name": "Triaxial"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "2292868",
+          "value_name": "TS-1760BR"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_id": "8737281",
+          "value_name": "6 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_LENGTH",
+          "value_id": "8737290",
+          "value_name": "6 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_id": "8737280",
+          "value_name": "6 \""
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "999572",
+          "value_name": "2"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "24739488",
+          "value_name": "Falante"
+        },
+        {
+          "id": "WAYS_NUMBER",
+          "value_id": "8704191",
+          "value_name": "3"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_id": "8704186",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_id": "161266",
+          "value_name": "50 W"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "4424",
+          "value_name": "6.1 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27062484",
+          "value_name": "4988028352836, 7893468929883"
+        },
+        {
+          "id": "CONE_MATERIALS",
+          "value_id": "166446",
+          "value_name": "IMPP"
+        },
+        {
+          "id": "INTEGRATED_SPEAKERS_TYPES",
+          "value_id": "8694536",
+          "value_name": "Tweeter"
+        },
+        {
+          "id": "MAX_POWER_PMPO",
+          "value_id": "24914298",
+          "value_name": "180 W"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "945336",
+          "value_name": "86 dB"
+        },
+        {
+          "id": "WITH_PROTECTIVE_SCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SUBWOOFER_BOX",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB28723580",
+        "catalogProductName": "Par Alto Falante Pioneer 6 Polegadas 100w Triaxial Ts1760br",
+        "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "linkedListingsInCategory": 79,
+        "validatedGtin": "4988028352836"
+      }
+    },
+    {
+      "produtoId": "512135ba-a87a-4168-9e67-e8176adf6f5d",
+      "sku": "VTK017264",
+      "nome": "Alto Falante Triaxial 6\" Pioneer Ts-1790br 120wrms Par",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 159.99,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 227.15,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "4988028352843",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3905",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "9838",
+          "value_name": "Pioneer"
+        },
+        {
+          "id": "LINE",
+          "value_id": "13700285",
+          "value_name": "Alto Falante"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "2424745",
+          "value_name": "TS-1790BR"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_id": "8737281",
+          "value_name": "6 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_id": "8737280",
+          "value_name": "6 \""
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "999572",
+          "value_name": "2"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "8257690",
+          "value_name": "Triaxial"
+        },
+        {
+          "id": "WAYS_NUMBER",
+          "value_id": "8704191",
+          "value_name": "3"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_id": "8704186",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_id": "945366",
+          "value_name": "120 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_id": "8722426",
+          "value_name": "40 Hz - 20000 Hz"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "517235",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25539163",
+          "value_name": "4988028352843"
+        },
+        {
+          "id": "SUSPENSION_MATERIALS",
+          "value_id": "59346890",
+          "value_name": "Boleada"
+        },
+        {
+          "id": "CASING_MATERIALS",
+          "value_id": "457501",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "CONE_MATERIALS",
+          "value_id": "37211634",
+          "value_name": "Polipropileno moldado por injeção"
+        },
+        {
+          "id": "INTEGRATED_SPEAKERS_TYPES",
+          "value_id": "8694536",
+          "value_name": "Tweeter"
+        },
+        {
+          "id": "MAX_POWER_PMPO",
+          "value_id": "8260712",
+          "value_name": "440 W"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "945336",
+          "value_name": "86 dB"
+        },
+        {
+          "id": "WITH_PROTECTIVE_SCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SUBWOOFER_BOX",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MPN",
+          "value_id": "25539164",
+          "value_name": "TS-1790BR"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27842529",
+        "catalogProductName": "Kit alto falante Pioneer Ts-1790br 6 polegadas 120w Rms par cor preto",
+        "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "linkedListingsInCategory": 50,
+        "validatedGtin": "4988028352843"
+      }
+    },
+    {
+      "produtoId": "cf5c1f11-8e83-4264-a0b6-e07509697ec5",
+      "sku": "VTK019205",
+      "nome": "Alto Falante Subwoofer 10'' Roadstar Rs1000mbr Marine Slim 500w Rms",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 379.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 539.36,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898587425551",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3905",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "54115236",
+          "value_name": "RS-1000MBR"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_id": "24723591",
+          "value_name": "10 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_LENGTH",
+          "value_id": "24723590",
+          "value_name": "10 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_id": "8737332",
+          "value_name": "10 \""
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "7452068",
+          "value_name": "1"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "7509874",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "WAYS_NUMBER",
+          "value_id": "8704194",
+          "value_name": "1"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_id": "24770678",
+          "value_name": "4"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_id": "2378568",
+          "value_name": "500 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_id": "25618576",
+          "value_name": "30 Hz - 200 Hz"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "54115238",
+          "value_name": "7898587425551"
+        },
+        {
+          "id": "CASING_MATERIALS",
+          "value_id": "457501",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "INTEGRATED_SPEAKERS_TYPES",
+          "value_id": "8694538",
+          "value_name": "Subwoofer"
+        },
+        {
+          "id": "MAX_POWER_PMPO",
+          "value_id": "8704198",
+          "value_name": "1000 W"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "945346",
+          "value_name": "92 dB"
+        },
+        {
+          "id": "WITH_PROTECTIVE_SCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB50442775",
+        "catalogProductName": "Subwoofer 10' Slim Marinizado Roadstar 500w 4+4 Ohms Ip65 Cor Branco",
+        "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7898587425551"
+      }
+    },
+    {
+      "produtoId": "b5968200-7844-4534-8a12-803115e30310",
+      "sku": "VTK018500",
+      "nome": "Alto Falante Roadstar Rs650mbr Marine Coaxial 6,5'' 200w Rms 4 Ohms Par",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 476.9,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 706.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898587425520",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3905",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "LINE",
+          "value_id": "54465762",
+          "value_name": "RS650 Marine Line"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "54465764",
+          "value_name": "RS650BR MI"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_id": "24750615",
+          "value_name": "6.5 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_LENGTH",
+          "value_id": "24750614",
+          "value_name": "6.5 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_id": "8736897",
+          "value_name": "6.5 \""
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "999572",
+          "value_name": "2"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "7536715",
+          "value_name": "Coaxial"
+        },
+        {
+          "id": "WAYS_NUMBER",
+          "value_id": "7509882",
+          "value_name": "2"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_id": "8704186",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_id": "165544",
+          "value_name": "400 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_id": "8704192",
+          "value_name": "60 Hz - 20 kHz"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "2095006",
+          "value_name": "6 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "54465773",
+          "value_name": "7898587425520"
+        },
+        {
+          "id": "WITH_PROTECTIVE_SCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB50732399",
+        "catalogProductName": "Par Alto Falantes 6,5' Náutico Roadstar 200w Tw.titânio Ip65 Cor Branco",
+        "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "linkedListingsInCategory": 10,
+        "validatedGtin": "7898587425520"
+      }
+    },
+    {
+      "produtoId": "733420e1-bdc4-4a14-92c1-74b818da5106",
+      "sku": "VTK018917",
+      "nome": "Alto Falante Eros Linha Pro E-510 10\" 8r 500w Rms",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 569.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 844.3,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899021909729",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3905",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "164541",
+          "value_name": "Eros"
+        },
+        {
+          "id": "LINE",
+          "value_id": "25499302",
+          "value_name": "WOOFER"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_id": "24723591",
+          "value_name": "10 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_LENGTH",
+          "value_id": "24723590",
+          "value_name": "10 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_id": "8737332",
+          "value_name": "10 \""
+        },
+        {
+          "id": "COLOR",
+          "value_id": "20785868",
+          "value_name": "Preto e amarelo"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "7452068",
+          "value_name": "1"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "24725378",
+          "value_name": "Woofer, Midbass, Médio Grave"
+        },
+        {
+          "id": "WAYS_NUMBER",
+          "value_id": "8704194",
+          "value_name": "1"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_id": "8704186",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_id": "2378568",
+          "value_name": "500 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_id": "26172549",
+          "value_name": "60 ~ 6.500 Hz"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "570708",
+          "value_name": "13 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "38450016",
+          "value_name": "7899021909729"
+        },
+        {
+          "id": "CONE_MATERIALS",
+          "value_id": "160245",
+          "value_name": "Celulose"
+        },
+        {
+          "id": "MAX_POWER_PMPO",
+          "value_id": "8704198",
+          "value_name": "1000 W"
+        },
+        {
+          "id": "RESONANCE_FREQUENCY",
+          "value_id": "68161605",
+          "value_name": "72.4 Hz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "45998446",
+          "value_name": "97.26 dB"
+        },
+        {
+          "id": "WITH_PROTECTIVE_SCREEN",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SUBWOOFER_BOX",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB37483974",
+        "catalogProductName": "Woofer Médio Grave Eros 10 Polegadas 500W RMS 8 Ohms E-510 PRO Preto Amarelo",
+        "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "linkedListingsInCategory": 36,
+        "validatedGtin": "7899021909729"
+      }
+    }
+  ]
+}

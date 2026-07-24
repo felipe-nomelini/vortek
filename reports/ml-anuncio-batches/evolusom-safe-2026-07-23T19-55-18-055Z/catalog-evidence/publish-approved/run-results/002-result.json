@@ -1,0 +1,261 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/publish-approved/run-results/002-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-remaining-002",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "0bb807c5-99a6-45bd-9e57-c04f8b389b5e",
+      "sku": "VTK017920",
+      "category": {
+        "id": "MLB236047",
+        "nome": "Alicates de Bico",
+        "dominio": "MLB-LONG_NOSE_PLIERS"
+      },
+      "anuncio": {
+        "id": "MLB4937383945",
+        "title": "Alicate Bico Redondo Longo Hikari 6  150 Mm",
+        "price": 65,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937383945-alicate-bico-redondo-longo-hikari-6-150-mm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 46.71 → R$ 65.00."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "d127a44a-9282-4da7-9c62-64de8800241a",
+      "sku": "VTK018238",
+      "category": {
+        "id": "MLB188425",
+        "nome": "Alicate Desencapador",
+        "dominio": "MLB-WIRE_STRIPPERS_AND_WIRE_STRIPPING_PLIERS"
+      },
+      "anuncio": {
+        "id": "MLB4937391243",
+        "title": "Alicate Decapador/cortador Ajustável Hikari Hk-312",
+        "price": 90.82,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937391243-alicate-decapadorcortador-ajustavel-hikari-hk-312-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 73.29 → R$ 90.82."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ecbcdad8-db77-45dc-875c-ea4b2172a9e9",
+      "sku": "VTK018239",
+      "category": {
+        "id": "MLB188428",
+        "nome": "Alicate Universal",
+        "dominio": "MLB-LINEMAN_PLIERS"
+      },
+      "anuncio": {
+        "id": "MLB4937384359",
+        "title": "Alicate Multiuso Vonder 954 Para Eletrecista 9 ",
+        "price": 86.27,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937384359-alicate-multiuso-vonder-954-para-eletrecista-9-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 69.49 → R$ 86.27."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "72f144ad-5948-4d1c-9d7e-d8cb42100aaf",
+      "sku": "VTK017221",
+      "category": {
+        "id": "MLB439330",
+        "nome": "Alicates de Corte",
+        "dominio": "MLB-CUTTING_PLIERS"
+      },
+      "anuncio": {
+        "id": "MLB4937384547",
+        "title": "Alicate Vonder Corte Diagonal 6  1000v Amarelo",
+        "price": 79.61,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937384547-alicate-vonder-corte-diagonal-6-1000v-amarelo-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 63.16 → R$ 79.61."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "0bf6be56-986c-4f32-8386-04a217cac39e",
+      "sku": "VTK017229",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "anuncio": {
+        "id": "MLB4937384875",
+        "title": "Alto Falante Pioneer 6  Ts-1760br 100rms Par Preto",
+        "price": 186.81,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937384875-alto-falante-pioneer-6-ts-1760br-100rms-par-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Descrição pendente no ML: HTTP 400: The description must be in plain text",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 161.33 → R$ 186.81."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "512135ba-a87a-4168-9e67-e8176adf6f5d",
+      "sku": "VTK017264",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "anuncio": {
+        "id": "MLB4937404067",
+        "title": "Alto Falante Triaxial 6  Pioneer Ts-1790br 120wrms Par Preto",
+        "price": 253.3,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937404067-alto-falante-triaxial-6-pioneer-ts-1790br-120wrms-par-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 221.67 → R$ 253.30."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "cf5c1f11-8e83-4264-a0b6-e07509697ec5",
+      "sku": "VTK019205",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "anuncio": {
+        "id": "MLB4937392735",
+        "title": "Alto Falante Subwoofer 10'' Roadstar Rs1000mbr Marine Slim Branco",
+        "price": 560.52,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937392735-alto-falante-subwoofer-10-roadstar-rs1000mbr-marine-slim-branco-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 526.37 → R$ 560.52."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b5968200-7844-4534-8a12-803115e30310",
+      "sku": "VTK018500",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "anuncio": {
+        "id": "MLB4937392937",
+        "title": "Alto Falante Roadstar Rs650mbr Marine Coaxial 6 5'' 200w Branco",
+        "price": 706.52,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937392937-alto-falante-roadstar-rs650mbr-marine-coaxial-6-5-200w-branco-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"code\":\"conflict.error\",\"error\":\"Conflict\",\"status\":409}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "733420e1-bdc4-4a14-92c1-74b818da5106",
+      "sku": "VTK018917",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "anuncio": {
+        "id": "MLB4937404789",
+        "title": "Alto Falante Eros Linha Pro E-510 10  8r 500w Rms Preto E Amarelo",
+        "price": 905.22,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937404789-alto-falante-eros-linha-pro-e-510-10-8r-500w-rms-preto-e-amarelo-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 844.30 → R$ 905.22."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "46d92423-968a-4095-8167-e18accd45752",
+      "sku": "VTK018988",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "anuncio": {
+        "id": "MLB4937405043",
+        "title": "Alto Falante Eros E908 Trio Evo 8r 450w Amarelo",
+        "price": 912.63,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937405043-alto-falante-eros-e908-trio-evo-8r-450w-amarelo-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 851.70 → R$ 912.63."
+      ]
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,15 @@
+{
+  "batchId": "vanral-guitarras-2026-07-22",
+  "items": [
+    { "produtoId": "1e4cf2fc-29d9-4ba5-bbe1-88c34a0f03f5", "sku": "MUSIC63105", "nome": "Guitarra Elétrica Thomaz Teg 300 Azul", "fornecedor": "VANRAL" },
+    { "produtoId": "2ad77597-a9a9-45af-8623-24a09e9b4453", "sku": "MUSIC63106", "nome": "Guitarra Elétrica Thomaz Teg 300 Sunburst", "fornecedor": "VANRAL" },
+    { "produtoId": "5d088f81-fdcd-4ee1-994d-26d40dae98ce", "sku": "MUSIC63113", "nome": "Guitarra Elétrica Sg De Madeira Maciça Thomaz Teg 340 Azul", "fornecedor": "VANRAL" },
+    { "produtoId": "2b262288-add9-4909-949f-e44b2b4f23c5", "sku": "MUSIC63114", "nome": "Guitarra Elétrica Sg De Madeira Maciça Thomaz Teg 340 Preto", "fornecedor": "VANRAL" },
+    { "produtoId": "17835b2e-6c3f-4ec1-9099-b4ea3f3aa0de", "sku": "MUSIC63115", "nome": "Guitarra Elétrica Sg De Madeira Maciça Thomaz Teg 340 Vermelho", "fornecedor": "VANRAL" },
+    { "produtoId": "b9eca1ad-a18e-4966-9e2f-9440c857e99c", "sku": "MUSIC63116", "nome": "Guitarra Elétrica Sg De Madeira Maciça Thomaz Teg 340 Vinho", "fornecedor": "VANRAL" },
+    { "produtoId": "b9a5f1ae-e15c-4b15-804c-6f291fdf1667", "sku": "MUSIC63127", "nome": "Guitarra Elétrica Vintage Thomaz Teg 400v Verde", "fornecedor": "VANRAL" },
+    { "produtoId": "73bbb010-9fca-4aa7-951d-f6e3e8b17a4c", "sku": "MUSIC63601", "nome": "Guitarra Elétrica Infantil Kids Profissional Teg 30 Sunburst Thomaz", "fornecedor": "VANRAL" },
+    { "produtoId": "17241421-0827-4a53-8a11-7eb6c593a03e", "sku": "MUSIC63602", "nome": "Guitarra Elétrica Infantil Kids Profissional Teg 30 Preto", "fornecedor": "VANRAL" },
+    { "produtoId": "e60ff922-03dc-413f-a2be-016da21ebbbc", "sku": "MUSIC63603", "nome": "Guitarra Elétrica Infantil Kids Profissional Teg 30 Rosa Thomaz", "fornecedor": "VANRAL" }
+  ]
+}

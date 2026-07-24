@@ -1,0 +1,1123 @@
+{
+  "batchNumber": 11,
+  "batchId": "evolusom-domain-approved-011",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "59e3ed8d-333a-499d-8377-3502909a29aa",
+      "sku": "VTK017991",
+      "nome": "Mesa De Som Stetsom Stm1206 6 Canais 12v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 486.9,
+      "estoque": 17,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 721.33,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897748704801",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB29281",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "345468",
+          "value_name": "Stetsom"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16036088",
+          "value_name": "STM1206"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "909022",
+          "value_name": "12V"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "value_id": "16036094",
+          "value_name": "12"
+        },
+        {
+          "id": "WITH_PHANTOM_POWER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_EFFECTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MAIN_EFFECTS_INCLUDED",
+          "value_id": "16036093",
+          "value_name": "1"
+        },
+        {
+          "id": "CONNECTORS",
+          "value_id": "56382039",
+          "value_name": "RCA"
+        },
+        {
+          "id": "CHANNELS_NUMBER",
+          "value_id": "1072396",
+          "value_name": "6"
+        },
+        {
+          "id": "CONNECTIVITY",
+          "value_id": "22640054",
+          "value_name": "6"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16036092",
+          "value_name": "7897748704801"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "345468",
+          "value_name": "Stetsom"
+        },
+        {
+          "id": "CASE_MATERIAL",
+          "value_id": "415334",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "FREQUENCY_RESPONSE",
+          "value_id": "30298792",
+          "value_name": "1 Hz - 75 kHz"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "25022141",
+          "value_name": "4.65 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "48686978",
+          "value_name": "19.95 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "22600681",
+          "value_name": "19.65 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "9643849",
+          "value_name": "930 g"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21300567",
+        "catalogProductName": "Mesa de Som Automotiva Stetsom STM1206 com 6 Canais e Equalização por Canal",
+        "catalogDomainId": "MLB-SOUND_CONSOLES_AND_MIXERS",
+        "predictedDomainId": "MLB-SOUND_CONSOLES_AND_MIXERS",
+        "categoryId": "MLB29281",
+        "categoryName": "Mesas de Som",
+        "linkedListingsInCategory": 24,
+        "validatedGtin": "7897748704801"
+      }
+    },
+    {
+      "produtoId": "3c04ddfc-a789-43eb-8918-0f398ded5d8a",
+      "sku": "VTK002218",
+      "nome": "Microfone de Mão Leson LS50 Dinâmico Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 77.95,
+      "estoque": 17,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 120.93,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898944650794",
+        "validatedNcm": "85181090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB4469",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "118039",
+          "value_name": "Le Son"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "2481874",
+          "value_name": "LS-50"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "83150",
+          "value_name": "Preto/Prateado"
+        },
+        {
+          "id": "MICROPHONE_FORMATS",
+          "value_id": "182426",
+          "value_name": "De mão"
+        },
+        {
+          "id": "MICROPHONE_TYPES",
+          "value_id": "103745",
+          "value_name": "Dinâmico"
+        },
+        {
+          "id": "POLAR_PATTERNS",
+          "value_id": "2253807",
+          "value_name": "Cardioide"
+        },
+        {
+          "id": "MICROPHONES_NUMBER",
+          "value_id": "934836",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129130",
+          "value_name": "3 m"
+        },
+        {
+          "id": "CONNECTION_TYPES",
+          "value_id": "1210905",
+          "value_name": "Com fio"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "value_id": "7230283",
+          "value_name": "70 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_id": "7230296",
+          "value_name": "13 kHz"
+        },
+        {
+          "id": "MICROPHONE_RECOMMENDED_USES",
+          "value_id": "9272714",
+          "value_name": "Para vozes"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BUILT_IN_SPEAKERS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "118039",
+          "value_name": "Le Son"
+        },
+        {
+          "id": "INCLUDES_ACCESSORIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "19708458",
+          "value_name": "LS50"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS",
+          "value_id": "2305169",
+          "value_name": "XLR"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "9783105",
+          "value_name": "7898944650794"
+        },
+        {
+          "id": "WITH_POWER_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "1247698",
+          "value_name": "-54 dB"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_id": "934861",
+          "value_name": "600 Ω"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "9766109",
+          "value_name": "1 cabo"
+        },
+        {
+          "id": "INPUT_CONNECTORS",
+          "value_id": "2305169",
+          "value_name": "XLR"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "2511571",
+          "value_name": "ABS"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7978730",
+          "value_name": "18 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "8156924",
+          "value_name": "250 g"
+        },
+        {
+          "id": "MPN",
+          "value_id": "12799684",
+          "value_name": "LS-50"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB15957000",
+        "catalogProductName": "Microfone Dinâmico Cardioide Le Son LS-50 com Cabo XLR 3m",
+        "catalogDomainId": "MLB-MICROPHONES",
+        "predictedDomainId": "MLB-MICROPHONES",
+        "categoryId": "MLB4469",
+        "categoryName": "Microfones",
+        "linkedListingsInCategory": 27,
+        "validatedGtin": "7898944650794"
+      }
+    },
+    {
+      "produtoId": "c1586888-7a8e-4553-954d-530816c2d000",
+      "sku": "VTK017932",
+      "nome": "Mini Morsa Hikari Hk-201 Abertura Máxima: 2\"/ 50mm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 79.5,
+      "estoque": 19,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 122.84,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810412553",
+        "validatedNcm": "82057000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB235594",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17655798",
+          "value_name": "HK-201"
+        },
+        {
+          "id": "JAW_WIDTH",
+          "value_id": "47738780",
+          "value_name": "6 cm"
+        },
+        {
+          "id": "VISE_TYPE",
+          "value_id": "4636253",
+          "value_name": "De bancada"
+        },
+        {
+          "id": "BASE_TYPE",
+          "value_id": "4636257",
+          "value_name": "Fixa"
+        },
+        {
+          "id": "WITH_ANVIL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "17655835",
+          "value_name": "7899810412553"
+        },
+        {
+          "id": "STRUCTURE_MATERIAL",
+          "value_id": "15358846",
+          "value_name": "Aço fundido"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22355161",
+        "catalogProductName": "Mini Morsa Bancada Hikari HK-201 Aço Carbono Mandíbula 6cm",
+        "catalogDomainId": "MLB-VISES",
+        "predictedDomainId": "MLB-VISES",
+        "categoryId": "MLB235594",
+        "categoryName": "Morsas",
+        "linkedListingsInCategory": 13,
+        "validatedGtin": "7899810412553"
+      }
+    },
+    {
+      "produtoId": "9817c9d6-b436-441f-bef3-66a24fa6fb34",
+      "sku": "VTK018595",
+      "nome": "Módulo Amplificador H-buster Maxpower Hbm6400 6 Canais",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 471.27,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 698.18,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898296020481",
+        "validatedNcm": "85189090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3385",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "161257",
+          "value_name": "H-Buster"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "49337380",
+          "value_name": "H-Buster HBM6400"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "NUMBER_OF_CHANNELS",
+          "value_id": "925797",
+          "value_name": "1"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_id": "945360",
+          "value_name": "2 Ω"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25636016",
+          "value_name": "7898296020481"
+        },
+        {
+          "id": "OEM",
+          "value_id": "25636017",
+          "value_name": "H-buster"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "161257",
+          "value_name": "H-Buster"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "81854536",
+          "value_name": "H-Buster HBM6400"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27891656",
+        "catalogProductName": "Módulo Amplificador H-buster Maxpower Hbm6400 6 Canais",
+        "catalogDomainId": "MLB-VEHICLE_AMPLIFIERS",
+        "predictedDomainId": "MLB-VEHICLE_AMPLIFIERS",
+        "categoryId": "MLB3385",
+        "categoryName": "Módulos Amplificadores",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898296020481"
+      }
+    },
+    {
+      "produtoId": "ebb97279-ff85-4141-8978-16408c4d8e67",
+      "sku": "VTK017769",
+      "nome": "Módulo Mini Gbic Tp-link Tl-sm311ls Sfp Monomodo",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 90.9,
+      "estoque": 27,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 136.91,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "6935364030216",
+        "validatedNcm": "85176259",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB9635",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "7885",
+          "value_name": "TP-Link"
+        },
+        {
+          "id": "LINE",
+          "value_id": "15164150",
+          "value_name": "fibra otica"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18117330",
+          "value_name": "Tl-sm311ls"
+        },
+        {
+          "id": "CONNECTIVITY_TECHNOLOGY",
+          "value_id": "182267",
+          "value_name": "WLAN"
+        },
+        {
+          "id": "NETWORK_CARD_INTERFACE",
+          "value_id": "18117331",
+          "value_name": "Gbic SFP"
+        },
+        {
+          "id": "OPERATING_SYSTEM_COMPATIBILITY",
+          "value_id": "30389150",
+          "value_name": "linux, todos, windows"
+        },
+        {
+          "id": "ANTENNA_TYPE",
+          "value_id": "64037399",
+          "value_name": "ND"
+        },
+        {
+          "id": "STANDARDS",
+          "value_id": "25305797",
+          "value_name": "IEEE 802.3u"
+        },
+        {
+          "id": "RECEIVING_SENSITIVITY",
+          "value_id": "64037400",
+          "value_name": "ND"
+        },
+        {
+          "id": "DATA_TRANSFER_RATE",
+          "value_id": "77054508",
+          "value_name": "10 Gbps"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18115968",
+          "value_name": "845973030216, 6935364030216"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "40366081",
+          "value_name": "33561503177"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "7885",
+          "value_name": "TP-Link"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "65277165",
+          "value_name": "Tplink Tl-sm311lm"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22541077",
+        "catalogProductName": "Módulo Sfp Mini Gbic Monomodo Lc/upc Tplink Tl-sm311ls Fibra",
+        "catalogDomainId": "MLB-NETWORK_CARDS",
+        "predictedDomainId": "MLB-NETWORK_CARDS",
+        "categoryId": "MLB9635",
+        "categoryName": "Placas de Rede",
+        "linkedListingsInCategory": 21,
+        "validatedGtin": "6935364030216"
+      }
+    },
+    {
+      "produtoId": "f949f3a6-8ced-417f-a0e4-535729c58232",
+      "sku": "VTK018981",
+      "nome": "Moldura Fiamon 9\" Toyota Corolla G10 Preta Fosca",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 73.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 115.93,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908262119269",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "5069782",
+          "value_name": "4112"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "24938417",
+          "value_name": "Preta fosca"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "26341399",
+          "value_name": "7908262119269"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB55459642",
+        "catalogProductName": "Moldura Multimidia 9 Poleg Toyota Corolla 2008 A 2013 Cor Preta Fosca",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 9,
+        "validatedGtin": "7908262119269"
+      }
+    },
+    {
+      "produtoId": "5a1f5294-f462-4ad3-a46b-baf3fdc81161",
+      "sku": "VTK019132",
+      "nome": "Moldura Fiamon Fit 15/19 G3 Black Piano",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 142.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 202.88,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898478319891",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "84059421",
+          "value_name": "Fit 2015-2021 / WRV 2015-2021"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2511571",
+          "value_name": "ABS"
+        },
+        {
+          "id": "EXTERIOR_HEIGHT",
+          "value_id": "9935859",
+          "value_name": "17.9 cm"
+        },
+        {
+          "id": "EXTERIOR_WIDTH",
+          "value_id": "9680368",
+          "value_name": "10.3 cm"
+        },
+        {
+          "id": "EXTERIOR_LENGTH",
+          "value_id": "10361558",
+          "value_name": "10.3 cm"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24761138",
+          "value_name": "7898478319891"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27395527",
+        "catalogProductName": "Moldura Central Multimidia Honda Fit 2015 A 2021 Wr-v 2 Din 7 Pol",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 21,
+        "validatedGtin": "7898478319891"
+      }
+    },
+    {
+      "produtoId": "bde0f3ff-a8df-40b7-b957-b17515ef8709",
+      "sku": "VTK018979",
+      "nome": "Moldura Fiamon 9\" Modelo Chinês Com Adaptador 7\" Cruze 2016/2017",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 212.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 302.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908262116336",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "66905",
+          "value_name": "Cruze"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "47396005",
+          "value_name": "7908262116336"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB46000868",
+        "catalogProductName": "Moldura Cruze 15/16 9 Adaptador 7 Black Piano Friso Prata",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7908262116336"
+      }
+    },
+    {
+      "produtoId": "a8f76d87-5844-4140-8265-a630618ccf9d",
+      "sku": "VTK017455",
+      "nome": "Mouse Sem Fio C3tech M-w15bk - Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 13.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 41.85,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908639901787",
+        "validatedNcm": "84716053",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1714",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "8774306",
+          "value_name": "C3Tech"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "44620924",
+          "value_name": "M-W15BK"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "value_id": "74471954",
+          "value_name": "M-W15BK Sem Fio"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "COMPUTER_MOUSE_TYPE",
+          "value_id": "192740",
+          "value_name": "Convencional"
+        },
+        {
+          "id": "SENSOR_TYPE",
+          "value_id": "192736",
+          "value_name": "Laser"
+        },
+        {
+          "id": "SENSOR_TECHNOLOGY",
+          "value_id": "20197759",
+          "value_name": "Óptico"
+        },
+        {
+          "id": "HAND_ORIENTATION",
+          "value_id": "2862903",
+          "value_name": "Ambidestro"
+        },
+        {
+          "id": "COMPATIBLE_OPERATING_SYSTEMS",
+          "value_id": "17889964",
+          "value_name": "Compatível com windows, Linux Chrome OS, macOS"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIRE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SENSOR_RESOLUTION",
+          "value_id": "249272",
+          "value_name": "1200 dpi"
+        },
+        {
+          "id": "MAX_SPEED",
+          "value_id": "13745836",
+          "value_name": "15 ips"
+        },
+        {
+          "id": "BUTTONS_NUMBER",
+          "value_id": "1021242",
+          "value_name": "3"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "44620932",
+          "value_name": "7908639901787"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7175738",
+          "value_name": "16 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7800080",
+          "value_name": "9 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7841468",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "8774306",
+          "value_name": "C3Tech"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "8695106",
+          "value_name": "70 g"
+        },
+        {
+          "id": "POLLING_RATE",
+          "value_id": "74047487",
+          "value_name": "240 Hz"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "2296418",
+          "value_name": "Adaptador"
+        },
+        {
+          "id": "WIRELESS_TECHNOLOGY",
+          "value_id": "73460133",
+          "value_name": "Wireless 2.4"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB43425843",
+        "catalogProductName": "Mouse Sem Fio C3Tech M-W15BK 1200dpi Óptico Nano USB Preto Ambidestro",
+        "catalogDomainId": "MLB-COMPUTER_MICE",
+        "predictedDomainId": "MLB-COMPUTER_MICE",
+        "categoryId": "MLB1714",
+        "categoryName": "Mouses",
+        "linkedListingsInCategory": 43,
+        "validatedGtin": "7908639901787"
+      }
+    },
+    {
+      "produtoId": "9e289fe6-3c2f-4c6c-9700-c2e825741f6d",
+      "sku": "VTK018584",
+      "nome": "Mouse Sem Fio Recarregável Lenovo Lecoo Ws207 Branco",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 55.9,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 93.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "6971859344840",
+        "validatedNcm": "84716053",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1714",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "7494",
+          "value_name": "Lenovo"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "37326920",
+          "value_name": "WS207"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        },
+        {
+          "id": "COMPUTER_MOUSE_TYPE",
+          "value_id": "192740",
+          "value_name": "Convencional"
+        },
+        {
+          "id": "SENSOR_TYPE",
+          "value_id": "109003",
+          "value_name": "Óptico"
+        },
+        {
+          "id": "SENSOR_TECHNOLOGY",
+          "value_id": "20197759",
+          "value_name": "Óptico"
+        },
+        {
+          "id": "HAND_ORIENTATION",
+          "value_id": "2862903",
+          "value_name": "Ambidestro"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIRE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SENSOR_RESOLUTION",
+          "value_id": "255138",
+          "value_name": "1600 dpi"
+        },
+        {
+          "id": "MAX_SPEED",
+          "value_id": "12269948",
+          "value_name": "1600 ips"
+        },
+        {
+          "id": "BUTTONS_NUMBER",
+          "value_id": "1021250",
+          "value_name": "4"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "39311919",
+          "value_name": "6971859344840"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "47439",
+          "value_name": "Coletek"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB38170552",
+        "catalogProductName": "Mouse Recarregável Sem Fio Lenovo Ws207 Branco",
+        "catalogDomainId": "MLB-COMPUTER_MICE",
+        "predictedDomainId": "MLB-COMPUTER_MICE",
+        "categoryId": "MLB1714",
+        "categoryName": "Mouses",
+        "linkedListingsInCategory": 6,
+        "validatedGtin": "6971859344840"
+      }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/retry-502/test-kit-only.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "retry-502-005",
+  "selected": 2,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "7f8dc378-533d-4c5c-8c3e-b1e6899dc334",
+      "sku": "VTK012276",
+      "category": {
+        "id": "MLB38172",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "anuncio": {
+        "id": "MLB4877760911",
+        "title": "Kit 05 Conectores P2 Trrs Linha Wc 2314 Wireconex",
+        "price": 88.45,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877760911-kit-05-conectores-p2-trrs-linha-wc-2314-wireconex-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 75.64 → R$ 88.45."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "90da20c8-f381-45a1-a976-bae92365c8fd",
+      "sku": "VTK012171",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": "Conectores de áudio e vídeo"
+      },
+      "anuncio": {
+        "id": "MLB4877761065",
+        "title": "Kit 05 Conectores P2 Linha Stereo Wc 2313 Wireconex",
+        "price": 89.73,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877761065-kit-05-conectores-p2-linha-stereo-wc-2313-wireconex-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 76.92 → R$ 89.73."
+      ]
+    }
+  ],
+  "failed": []
+}

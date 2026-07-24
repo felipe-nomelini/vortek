@@ -1,0 +1,23 @@
+{
+  "supplier": "BKR1",
+  "checked_at": "2026-07-22",
+  "result": "GTIN exigido na criação real pelo Mercado Livre",
+  "items": [
+    {
+      "sku": "VTK012014",
+      "category_id": "MLB38172",
+      "error": "item.attribute.missing_conditional_required: GTIN"
+    },
+    {
+      "sku": "VTK012016",
+      "category_id": "MLB38172",
+      "error": "item.attribute.missing_conditional_required: GTIN"
+    },
+    {
+      "sku": "VTK012018",
+      "category_id": "MLB420707",
+      "error": "item.attribute.missing_conditional_required: GTIN"
+    }
+  ],
+  "note": "A consulta condicional isolada não refletiu a exigência aplicada na criação para esta conta/marca/categoria. A criação real é a evidência determinante."
+}

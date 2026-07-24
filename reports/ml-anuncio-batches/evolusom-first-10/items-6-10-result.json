@@ -1,0 +1,98 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-first-10/current.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-first-10-items-6-10",
+  "selected": 5,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "61e0477d-0e46-4418-a1ca-16074ed26c59",
+      "sku": "VTK017226",
+      "nome": "Disco Diamantado Vonder 110mm V1 Furo 20",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB260685",
+            "nome": "Discos e Rebolos"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "bbf74430-ce5a-4e8c-80af-c7adee3642e3",
+      "sku": "VTK017605",
+      "nome": "Resistencia Zagonel Pratica 127v 9205000027",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB269588",
+            "nome": "Convencionais"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "134f7356-371b-4435-8917-fb6ae3be2700",
+      "sku": "VTK017805",
+      "nome": "Espuma Limpadora Orbi Limpa Estofados",
+      "error": "Produto já possui anúncio vinculado no Mercado Livre.",
+      "status": 409,
+      "attempts": null,
+      "data": {
+        "error": "Produto já possui anúncio vinculado no Mercado Livre."
+      }
+    },
+    {
+      "produtoId": "8e5c59d9-f0c0-410e-af13-4b4ba1c8c476",
+      "sku": "VTK017381",
+      "nome": "Controle Remoto Mxt C01367 Tv Philco Smart Ph55",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB38205",
+            "nome": "Para TV"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3919d318-bb85-4e52-941e-3dc223014587",
+      "sku": "VTK018725",
+      "nome": "Suporte Para Tv Fixo Multivisão Easy Até 71\"",
+      "error": "Atributos obrigatórios pendentes: Modelo, Lugares de montagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB11529",
+            "nome": "Suportes"
+          },
+          "missing": [
+            "Modelo",
+            "Lugares de montagem"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

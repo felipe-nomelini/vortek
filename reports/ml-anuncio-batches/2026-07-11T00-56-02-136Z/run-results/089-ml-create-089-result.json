@@ -1,0 +1,140 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-089-ml-create-089.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-089",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "58b46fa0-9db3-4758-98c8-455c3e5ecbbd",
+      "sku": "VTK000540",
+      "category": {
+        "id": "MLB186462",
+        "nome": "Almofadas",
+        "dominio": "Almofadas"
+      },
+      "anuncio": {
+        "id": "MLB4877419511",
+        "title": "Assento Para Cadeira Core Loft Black Thunderx3 Preto",
+        "price": 504.26,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877419511-assento-para-cadeira-core-loft-black-thunderx3-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Produto sem imagens locais. Será usada imagem placeholder.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 446.02 → R$ 504.26."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "83721b7f-51ea-4795-92bb-610caa79bc10",
+      "sku": "VTK001258",
+      "category": {
+        "id": "MLB186462",
+        "nome": "Almofadas",
+        "dominio": "Almofadas"
+      },
+      "anuncio": {
+        "id": "MLB4877489825",
+        "title": "Almofada Para Lombar Bc3 Thunderx3 Preto",
+        "price": 530.82,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877489825-almofada-para-lombar-bc3-thunderx3-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Produto sem imagens locais. Será usada imagem placeholder.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 447.61 → R$ 530.82."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "e528b430-e3e3-4f5a-b60a-53f97b995fd6",
+      "sku": "VTK001390",
+      "category": {
+        "id": "MLB186462",
+        "nome": "Almofadas",
+        "dominio": "Almofadas"
+      },
+      "anuncio": {
+        "id": "MLB4877419729",
+        "title": "Almofada Para Lombar Bc3 Thunderx3 Preto",
+        "price": 530.82,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877419729-almofada-para-lombar-bc3-thunderx3-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Produto sem imagens locais. Será usada imagem placeholder.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 447.61 → R$ 530.82."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "5dd76647-9206-47be-b8f8-bd739f3887d2",
+      "sku": "VTK001137",
+      "category": {
+        "id": "MLB270349",
+        "nome": "Pistões Pneumático",
+        "dominio": "Pistões pneumáticos para portas"
+      },
+      "anuncio": {
+        "id": "MLB4877419867",
+        "title": "Pistão A Gás Bc1 Thunderx3",
+        "price": 504.63,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877419867-pisto-a-gas-bc1-thunderx3-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Produto sem imagens locais. Será usada imagem placeholder.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 474.75 → R$ 504.63."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "69df5c41-2a36-4f2c-bcb1-c563df1d92d8",
+      "sku": "VTK001439",
+      "category": {
+        "id": "MLB31156",
+        "nome": "Apoios de Braço",
+        "dominio": "Apoios de braço para carros e caminhonetes"
+      },
+      "anuncio": {
+        "id": "MLB4877419983",
+        "title": "Apoio De Braço Esquerdo Core Loft Grey Thunderx3",
+        "price": 534.89,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877419983-apoio-de-braco-esquerdo-core-loft-grey-thunderx3-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Produto sem imagens locais. Será usada imagem placeholder.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 495.97 → R$ 534.89."
+      ]
+    }
+  ],
+  "failed": []
+}

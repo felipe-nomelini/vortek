@@ -1,0 +1,160 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/015-evolusom-catalog-create-015.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-015",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "176a4745-f8ad-45c3-8f42-574d401a096a",
+      "sku": "VTK018555",
+      "category": {
+        "id": "MLB278076",
+        "nome": "Cordas para Instrumentos",
+        "dominio": "MLB-STRING_INSTRUMENT_STRINGS"
+      },
+      "basePrice": 155.21,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "698dd152-3b2b-4615-a9ad-e1db2cf40024",
+      "sku": "VTK001740",
+      "category": {
+        "id": "MLB260688",
+        "nome": "Busca-Pólos",
+        "dominio": "MLB-VOLTAGE_DETECTORS"
+      },
+      "basePrice": 79.59,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d99a77db-5a33-4072-9a3f-13bdacc9c5c0",
+      "sku": "VTK017739",
+      "category": {
+        "id": "MLB260685",
+        "nome": "Discos e Rebolos",
+        "dominio": "MLB-CUTTING_AND_GRINDING_DISCS_AND_STONES"
+      },
+      "basePrice": 40.54,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e36211d7-3653-4686-93c6-40619e689f76",
+      "sku": "VTK017228",
+      "category": {
+        "id": "MLB260685",
+        "nome": "Discos e Rebolos",
+        "dominio": "MLB-CUTTING_AND_GRINDING_DISCS_AND_STONES"
+      },
+      "basePrice": 41.97,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "781de69e-d4ba-4115-b898-3d0a5b5f1d4b",
+      "sku": "VTK017254",
+      "category": {
+        "id": "MLB195961",
+        "nome": "Adaptadores",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 110.13,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9646acd3-c2c3-4e28-97f6-3cf5fa0d55ed",
+      "sku": "VTK017636",
+      "category": {
+        "id": "MLB38172",
+        "nome": "Conectores",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CONNECTORS"
+      },
+      "basePrice": 40.32,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "d561c22c-cd28-4f4a-bd9e-6c2618eb8b1a",
+      "sku": "VTK017362",
+      "nome": "Cooler Gamer Evus F12s-argb Singularity",
+      "error": "Atributos obrigatórios pendentes: Modelo, Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB2676",
+            "nome": "Coolers e Ventoinhas"
+          },
+          "missing": [
+            "Modelo",
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "55e5a029-8564-453f-8031-6017d3253370",
+      "sku": "VTK017363",
+      "nome": "Cooler Gamer Evus F12d-argb Double Ring",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB2676",
+            "nome": "Coolers e Ventoinhas"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3e20ce56-00dd-491e-a9d0-0a26e0431bfb",
+      "sku": "VTK017238",
+      "nome": "Detector De Temperatura 12/ 24v Segurimax Contato Seco",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e1010b67-3341-4029-af06-99c399d85197",
+      "sku": "VTK002792",
+      "nome": "Detector Óptico de Fumaça 12V/24V SEGURIMAX",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

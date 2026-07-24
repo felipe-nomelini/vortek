@@ -1,0 +1,225 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-14T22-11-37-278Z/coin-cell-runs/run-results/run-004-ml-create-004.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "coin-cell-004",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "af9f5f1d-6cd3-49bf-8965-63990a47bc6d",
+      "sku": "VTK016117",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "anuncio": {
+        "id": "MLB4894913207",
+        "title": "35 Baterias Cr2016 Panasonic (7 Cart)",
+        "price": 197.89,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4894913207-35-baterias-cr2016-panasonic-7-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 171.78 → R$ 197.89."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b849bcdd-63bc-4d5a-a5c5-c08d19dcc24e",
+      "sku": "VTK016148",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "anuncio": {
+        "id": "MLB4894913453",
+        "title": "40 Baterias Cr2016 Panasonic (8 Cart)",
+        "price": 222.51,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4894913453-40-baterias-cr2016-panasonic-8-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 193.31 → R$ 222.51."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "22e7ed2e-9088-4779-8b7f-a45b46e9b863",
+      "sku": "VTK016044",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "anuncio": {
+        "id": "MLB7169866140",
+        "title": "20 Baterias Cr1632 Panasonic (04 Cartelas)",
+        "price": 230.18,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7169866140-20-baterias-cr1632-panasonic-04-cartelas-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 200.98 → R$ 230.18."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "93b600cd-7476-4d0c-8b25-50fc8f1fdee7",
+      "sku": "VTK016164",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "anuncio": {
+        "id": "MLB7169866316",
+        "title": "45 Baterias Cr2016 Panasonic (9 Cart)",
+        "price": 249.89,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7169866316-45-baterias-cr2016-panasonic-9-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 217.48 → R$ 249.89."
+      ]
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "158b0d1e-e0fd-47aa-8813-201c05bee935",
+      "sku": "VTK016119",
+      "nome": "35 Baterias Cr2032 Panasonic (7 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "0d20de01-489a-4d85-b8a7-62ac18239ad0",
+      "sku": "VTK016118",
+      "nome": "35 Baterias Cr2025 Panasonic (7 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "956a2291-8e29-44e2-a64a-c9f50f03a85b",
+      "sku": "VTK016150",
+      "nome": "40 Baterias Cr2032 Panasonic (8 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "00ae5b7d-c049-4612-890c-868595ea89b7",
+      "sku": "VTK016149",
+      "nome": "40 Baterias Cr2025 Panasonic (8 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6cfad522-b262-439d-9887-0c7971e0311f",
+      "sku": "VTK016166",
+      "nome": "45 Baterias Cr2032 Panasonic (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c9c41d90-5bcd-4217-8717-6eedd0834da9",
+      "sku": "VTK016165",
+      "nome": "45 Baterias Cr2025 Panasonic (9 Cart)",
+      "error": "Atributos obrigatórios pendentes: Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7051",
+            "nome": "Baterias"
+          },
+          "missing": [
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

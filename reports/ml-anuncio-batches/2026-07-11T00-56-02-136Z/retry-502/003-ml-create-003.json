@@ -1,0 +1,66 @@
+{
+  "batchNumber": 3,
+  "batchId": "retry-502-003",
+  "items": [
+    {
+      "produtoId": "6e303597-dc2a-4632-b320-fd3b92447ee5",
+      "sku": "VTK012336",
+      "nome": "Palheta Bori Grl At-r16132 Drip Gota 1,50 Mm (azul) R21017 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "e6b1f9d9-cb95-4695-ad62-b9593259ae60",
+      "sku": "VTK012337",
+      "nome": "Palheta Bori Grl At-r16138 Drip Gota 3,00 Mm (azul) R21020 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "8b244ff4-cd3c-4be7-9e79-07d65a6a4e22",
+      "sku": "VTK012359",
+      "nome": "Palheta Bori Grl At-r16134 Drip Gota 2,00 Mm (azul) R21018 10un",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "70fb5f79-40a8-4eb9-a48c-5e2ddb29c4fa",
+      "sku": "VTK012148",
+      "nome": "Adaptador Rca Fêmea P/xlr 3p Fêmea Niq. Wc 244 Ad 02 Unidades Wireconex",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "df0fe9d6-90ce-49e9-b554-bb3b026a3574",
+      "sku": "VTK012369",
+      "nome": "Adaptadores Rca Fêmea P/xlr 3p Macho Niq. Wc 245 Ad 02 Unidades Wireconex",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "dbecc552-4f0b-4abf-a874-654a26eb0818",
+      "sku": "VTK012267",
+      "nome": "Adaptador Rca Macho P/xlr 3p Fêmea Niq. Wc 242 Ad 02 Unidades Wireconex",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "da6cc1ad-f9dd-42ee-becd-0f6d7f9fdcdd",
+      "sku": "VTK012765",
+      "nome": "Adaptador Rca Macho P/xlr 3p Macho Niq. Wc 243 Ad 02 Unidades Wireconex",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "59491d00-93ec-497f-a8a1-756fcaa8cf25",
+      "sku": "VTK012418",
+      "nome": "Bateria Cr123 3v Panasonic",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "1c59d28b-6921-492e-a5f6-8e66e60a8cdc",
+      "sku": "VTK012595",
+      "nome": "Tartaruga Suprema E-27 Alumínio Saco Plástico Branca",
+      "fornecedor": "RETRY_502"
+    },
+    {
+      "produtoId": "67bc35b4-73bf-484f-8bbb-6d39710108c9",
+      "sku": "VTK012628",
+      "nome": "Palheta Guitarra Dur Prec 6dbu5 D Addario 1.00mm 10un",
+      "fornecedor": "RETRY_502"
+    }
+  ]
+}

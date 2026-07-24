@@ -1,0 +1,138 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/026-evolusom-catalog-create-026.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-026",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "437ff9ec-67b2-40d3-801a-5a3950b3ae06",
+      "sku": "VTK018665",
+      "category": {
+        "id": "MLB63114",
+        "nome": "Filtros de Linha",
+        "dominio": "MLB-POWER_STRIPS"
+      },
+      "basePrice": 72.83,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6529db06-96ae-4f36-873c-e673c801cdaa",
+      "sku": "VTK017783",
+      "category": {
+        "id": "MLB45905",
+        "nome": "Sensores de Estacionamento",
+        "dominio": "MLB-VEHICLE_PARKING_SENSORS"
+      },
+      "basePrice": 196.37,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d5c4e481-5712-4c0d-8783-5ad4c7bd86e0",
+      "sku": "VTK018118",
+      "category": {
+        "id": "MLB3561",
+        "nome": "Tintas",
+        "dominio": "MLB-PRINTER_INKS"
+      },
+      "basePrice": 44.74,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "503d5406-8395-4b04-bae6-5194a0b18084",
+      "sku": "VTK018829",
+      "category": {
+        "id": "MLB189884",
+        "nome": "Refletores",
+        "dominio": "MLB-FLOOD_LIGHTS"
+      },
+      "basePrice": 289.16,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8a878e68-5db7-460f-9f43-638b88b4c676",
+      "sku": "VTK017825",
+      "category": {
+        "id": "MLB63114",
+        "nome": "Filtros de Linha",
+        "dominio": "MLB-POWER_STRIPS"
+      },
+      "basePrice": 119.37,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "bdd22a64-bf53-4d11-865c-97dd9a6eb776",
+      "sku": "VTK017821",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "basePrice": 83.33,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "65cf91e9-4975-4825-8c8b-6236c64fa2aa",
+      "sku": "VTK017872",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "basePrice": 86.41,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f4830746-74a9-401b-a711-2ccee41787d1",
+      "sku": "VTK017534",
+      "category": {
+        "id": "MLB38250",
+        "nome": "Resistores",
+        "dominio": "MLB-RESISTORS"
+      },
+      "basePrice": 90.9,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9c77b5a6-03a8-43a1-bb04-7c2e30e2c9c1",
+      "sku": "VTK017970",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "basePrice": 55.43,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "14432b65-d259-4231-be60-04113a28dc7a",
+      "sku": "VTK018874",
+      "nome": "Reparo Jbl Rpd450 Trio Para Driver D450 Trio",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB255051",
+            "nome": "Adaptadores de Tomadas"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

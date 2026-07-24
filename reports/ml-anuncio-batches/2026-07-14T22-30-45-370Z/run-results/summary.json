@@ -1,0 +1,71 @@
+{
+  "startedAt": "2026-07-14T22:30:58.092Z",
+  "baseUrl": "https://app.vortek.shop",
+  "sourceDir": "reports/ml-anuncio-batches/2026-07-14T22-30-45-370Z",
+  "excludedSuppliers": [
+    "SHOPPECAS"
+  ],
+  "batches": [
+    {
+      "fileName": "001-ml-create-001.json",
+      "manifestPath": "reports/ml-anuncio-batches/2026-07-14T22-30-45-370Z/run-results/run-001-ml-create-001.json",
+      "resultPath": "reports/ml-anuncio-batches/2026-07-14T22-30-45-370Z/run-results/001-ml-create-001-result.json",
+      "exitCode": 2,
+      "originalCount": 100,
+      "excludedCount": 0,
+      "executedCount": 100,
+      "createdCount": 0,
+      "failedCount": 100,
+      "validation": {
+        "selected": 100,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 100
+      }
+    },
+    {
+      "fileName": "002-ml-create-002.json",
+      "manifestPath": "reports/ml-anuncio-batches/2026-07-14T22-30-45-370Z/run-results/run-002-ml-create-002.json",
+      "resultPath": "reports/ml-anuncio-batches/2026-07-14T22-30-45-370Z/run-results/002-ml-create-002-result.json",
+      "exitCode": 2,
+      "originalCount": 100,
+      "excludedCount": 0,
+      "executedCount": 100,
+      "createdCount": 0,
+      "failedCount": 100,
+      "validation": {
+        "selected": 100,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 100
+      }
+    },
+    {
+      "fileName": "003-ml-create-003.json",
+      "manifestPath": "reports/ml-anuncio-batches/2026-07-14T22-30-45-370Z/run-results/run-003-ml-create-003.json",
+      "resultPath": "reports/ml-anuncio-batches/2026-07-14T22-30-45-370Z/run-results/003-ml-create-003-result.json",
+      "exitCode": 2,
+      "originalCount": 64,
+      "excludedCount": 0,
+      "executedCount": 64,
+      "createdCount": 0,
+      "failedCount": 64,
+      "validation": {
+        "selected": 64,
+        "withMlItemId": 0,
+        "withLinkedAnuncio": 0,
+        "semAnuncioStill": 64
+      }
+    }
+  ],
+  "totals": {
+    "sourceItems": 264,
+    "excludedItems": 0,
+    "executedItems": 264,
+    "createdItems": 0,
+    "failedItems": 264,
+    "withMlItemId": 0,
+    "withLinkedAnuncio": 0
+  },
+  "finishedAt": "2026-07-14T22:53:23.240Z"
+}

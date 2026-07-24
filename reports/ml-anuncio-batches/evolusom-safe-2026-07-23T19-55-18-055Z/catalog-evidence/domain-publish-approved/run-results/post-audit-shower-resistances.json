@@ -1,0 +1,108 @@
+{
+  "batchId": "evolusom-post-audit-shower-resistances",
+  "strategy": "manufacturer_verified_replacement_part_category",
+  "items": [
+    {
+      "produtoId": "4bfdca7e-c32e-47f5-b90a-39956cd2f323",
+      "sku": "VTK018545",
+      "nome": "Resistência para Ducha Hydra Spot 8T 5500W 127V",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 15.29,
+      "estoque": 6,
+      "mlFee": 0.165,
+      "mlShipping": 14.15,
+      "customPrice": 62.19,
+      "categoryId": "MLB455086",
+      "description": "Resistência elétrica de reposição original Hydra para a ducha Spot 8T. Versão de 127 V e 5.500 W. A fabricante informa uso de fiação mínima de 6 mm² e proteção de 40 A. Antes da compra, confira o modelo, a tensão e a potência da ducha. A instalação elétrica deve ser feita com o circuito desligado e conforme o manual do fabricante.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896650401334",
+        "validatedNcm": "85168010",
+        "imagesOnVortekStorage": true,
+        "trustedOptionalAttributeOverrides": true,
+        "categoryAndConditionalAttributes": "manufacturer_and_ml_category_tree"
+      },
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Hydra"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "Spot 8T"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "1"
+        },
+        {
+          "id": "POWER",
+          "value_name": "5500 W"
+        },
+        {
+          "id": "GTIN",
+          "value_name": "7896650401334"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "manufacturer_manual_and_ml_category_tree",
+        "categoryId": "MLB455086",
+        "categoryName": "Resistências para Aquecedores de Água",
+        "catalogDomainId": "MLB-RESISTORS",
+        "validatedGtin": "7896650401334"
+      }
+    },
+    {
+      "produtoId": "074533de-3625-4ac5-87e6-970a7b9add7c",
+      "sku": "VTK017251",
+      "nome": "Resistência para Ducha Zagonel Sublime Move 5500W 127V",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 12.13,
+      "estoque": 44,
+      "mlFee": 0.165,
+      "mlShipping": 13.25,
+      "customPrice": 57.08,
+      "categoryId": "MLB455086",
+      "description": "Resistência elétrica original Zagonel para reposição nas duchas eletrônicas Sublime, Move e Moment compatíveis. Versão de 127 V e 5.500 W. Antes da compra, confira o modelo, a tensão e a potência indicados no aparelho. Para segurança, desligue o circuito e siga o manual do fabricante durante a substituição.",
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897273200847",
+        "validatedNcm": "85168010",
+        "imagesOnVortekStorage": true,
+        "trustedOptionalAttributeOverrides": true,
+        "categoryAndConditionalAttributes": "manufacturer_and_ml_category_tree"
+      },
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Zagonel"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "Sublime Move Moment"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "1"
+        },
+        {
+          "id": "POWER",
+          "value_name": "5500 W"
+        },
+        {
+          "id": "GTIN",
+          "value_name": "7897273200847"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "manufacturer_page_and_ml_category_tree",
+        "categoryId": "MLB455086",
+        "categoryName": "Resistências para Aquecedores de Água",
+        "catalogDomainId": "MLB-RESISTORS",
+        "validatedGtin": "7897273200847"
+      }
+    }
+  ]
+}

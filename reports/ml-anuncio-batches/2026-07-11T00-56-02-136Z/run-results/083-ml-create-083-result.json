@@ -1,0 +1,104 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-083-ml-create-083.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-083",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "480e76d0-22bc-45a3-b407-a2e2584361a4",
+      "sku": "VTK012035",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "anuncio": {
+        "id": "MLB7145207436",
+        "title": "Bateria Cr2032 Botão Panasonic 10 Cartelas Com 05 Baterias",
+        "price": 250.49,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7145207436-bateria-cr2032-boto-panasonic-10-cartelas-com-05-baterias-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 220.06 → R$ 250.49."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "8637321a-e7e8-49f6-99d4-f632205d62ef",
+      "sku": "VTK001259",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "anuncio": {
+        "id": "MLB4877418085",
+        "title": "Kit De Palhetas Harmonics Com 200 Unidades",
+        "price": 254.81,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877418085-kit-de-palhetas-harmonics-com-200-unidades-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 225.80 → R$ 254.81."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "6caf1e64-3a88-4430-abb8-5a055f233c32",
+      "sku": "VTK000552",
+      "category": {
+        "id": "MLB270349",
+        "nome": "Pistões Pneumático",
+        "dominio": "Pistões pneumáticos para portas"
+      },
+      "anuncio": {
+        "id": "MLB4877488505",
+        "title": "Pistão À Gás Guardian Yama1 Core Thunderx3",
+        "price": 260.66,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877488505-pisto-gas-guardian-yama1-core-thunderx3-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Produto sem imagens locais. Será usada imagem placeholder.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 228.84 → R$ 260.66."
+      ]
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "ebb84cd8-c62e-4c91-8f53-85d294b6ce03",
+      "sku": "VTK012632",
+      "nome": "Painel Multicabo 36 Vias Xlr Sem Conectores Wireconex",
+      "error": "fetch failed",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB455650",
+            "nome": "Painéis de Controle"
+          },
+          "error": "fetch failed"
+        }
+      ],
+      "data": null
+    }
+  ]
+}

@@ -1,0 +1,963 @@
+{
+  "batchNumber": 7,
+  "batchId": "evolusom-catalog-create-007",
+  "strategy": "exact_gtin_catalog_evidence",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "66334528-bebb-48e7-9330-c329c57ed13c",
+      "sku": "VTK017576",
+      "nome": "Controle Remoto Ar Condicionado Mxt 01315 York Gz-12a-e1",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 17.9,
+      "estoque": 44,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 46.79,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899903126756",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB196072",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "28482970",
+          "value_name": "Gz-12b-e1"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7891537",
+          "value_name": "2 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8053397",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "16091364",
+          "value_name": "70 g"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "8865109",
+          "value_name": "11.5 cm"
+        },
+        {
+          "id": "MAX_REACH",
+          "value_id": "7449446",
+          "value_name": "5 m"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "81834",
+          "value_name": "LCD"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "6073399",
+          "value_name": "AAA"
+        },
+        {
+          "id": "CELL_BATTERIES_TYPE",
+          "value_id": "6073399",
+          "value_name": "AAA"
+        },
+        {
+          "id": "INCLUDES_CELL_BATTERIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_UNIVERSAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIFI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "28482969",
+          "value_name": "7899903126756"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB46031859",
+        "catalogProductName": "Controle Remoto Mxt Compativel C/ar Condicionado Gz-12a-e1",
+        "catalogDomainId": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS",
+        "predictedDomainId": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS",
+        "categoryId": "MLB196072",
+        "categoryName": "Controles Remotos",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7899903126756"
+      }
+    },
+    {
+      "produtoId": "ea2fe766-d9c3-46ad-b189-b2c90043d2ee",
+      "sku": "VTK018063",
+      "nome": "Controle Remoto Mxt 01340 Ar Condicionado Split Artcool Libero E+lg",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 19.99,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 49.37,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899903143081",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB196072",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "14983341",
+          "value_name": "Compatível"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "426405",
+          "value_name": "Split"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7893549",
+          "value_name": "1.9 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8053397",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "14328536",
+          "value_name": "80 g"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "12048945",
+          "value_name": "14.7 cm"
+        },
+        {
+          "id": "MAX_REACH",
+          "value_id": "7796027",
+          "value_name": "8 m"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "81834",
+          "value_name": "LCD"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "28540593",
+          "value_name": "dc3v"
+        },
+        {
+          "id": "CELL_BATTERIES_TYPE",
+          "value_id": "6073399",
+          "value_name": "AAA"
+        },
+        {
+          "id": "INCLUDES_CELL_BATTERIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_UNIVERSAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIFI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "36995537",
+          "value_name": "7899903143081"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "75283365",
+          "value_name": "AKB73315601, AKB73215509, AKB73315602, AKB73315603, AKB73315605, AKB73315606, AKB73315607, AKB73315608, AKB73315609, AKB73455711, AKB73875902, AKB73856302, AKB73855710, AKB74955617, AKB36637501, AKB73855717, AKB73215508, AKB74375404, AKB73757605, AKB74375"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB36263019",
+        "catalogProductName": "Controle Remoto Compatível Ar Condicionado LG Inverter Split Branco",
+        "catalogDomainId": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS",
+        "predictedDomainId": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS",
+        "categoryId": "MLB196072",
+        "categoryName": "Controles Remotos",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7899903143081"
+      }
+    },
+    {
+      "produtoId": "2ef8265f-99a0-4fef-86a9-09d0c25cba7e",
+      "sku": "VTK017996",
+      "nome": "Controle Remoto Jfa Acqua 1200 Branco",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 62.9,
+      "estoque": 17,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 102.35,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898554806406",
+        "validatedNcm": "85272900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB11883",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2466336",
+          "value_name": "JFA"
+        },
+        {
+          "id": "LINE",
+          "value_id": "2225628",
+          "value_name": "Acqua"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "25271137",
+          "value_name": "K1200 ACQUA"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "UNIVERSAL_CAR_REMOTE_NUMBER_OF_BUTTONS",
+          "value_id": "24729982",
+          "value_name": "8"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "6810531",
+          "value_name": "Universal"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25271139",
+          "value_name": "7898554806406"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "2466336",
+          "value_name": "JFA"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "40676796",
+          "value_name": "Acqua 1200"
+        },
+        {
+          "id": "MAXIMUM_RANGE",
+          "value_id": "26799473",
+          "value_name": "1200 m"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "24556082",
+          "value_name": "433"
+        },
+        {
+          "id": "MODULATION_TYPE",
+          "value_id": "37440293",
+          "value_name": "FSK"
+        },
+        {
+          "id": "BATTERY_TYPE",
+          "value_id": "6059223",
+          "value_name": "23A"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27685629",
+        "catalogProductName": "Controle Jfa Acqua Branco K1200 Longa Distância",
+        "catalogDomainId": "MLB-UNIVERSAL_CAR_REMOTES",
+        "predictedDomainId": "MLB-UNIVERSAL_CAR_REMOTES",
+        "categoryId": "MLB11883",
+        "categoryName": "Controles Remotos",
+        "linkedListingsInCategory": 100,
+        "validatedGtin": "7898554806406"
+      }
+    },
+    {
+      "produtoId": "32da06c2-d52e-48e9-8e94-72b428ebd10f",
+      "sku": "VTK017978",
+      "nome": "Controle Stetsom Sx2 Ultra Grafite",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 64.9,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 104.81,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897748705853",
+        "validatedNcm": "85269200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB11883",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "345468",
+          "value_name": "Stetsom"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "50456294",
+          "value_name": "SX ULTRA + MINI VT"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "2324",
+          "value_name": "Grafite"
+        },
+        {
+          "id": "UNIVERSAL_CAR_REMOTE_NUMBER_OF_BUTTONS",
+          "value_id": "24729982",
+          "value_name": "8"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "9645705",
+          "value_name": "Radio"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "59171335",
+          "value_name": "7897748705853"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "345468",
+          "value_name": "Stetsom"
+        },
+        {
+          "id": "MAXIMUM_RANGE",
+          "value_id": "26089930",
+          "value_name": "500 m"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB53799483",
+        "catalogProductName": "Controle Sx2 Ultra Longa Distância Stetsom + Mini Vt Cor Grafite",
+        "catalogDomainId": "MLB-UNIVERSAL_CAR_REMOTES",
+        "predictedDomainId": "MLB-UNIVERSAL_CAR_REMOTES",
+        "categoryId": "MLB11883",
+        "categoryName": "Controles Remotos",
+        "linkedListingsInCategory": 9,
+        "validatedGtin": "7897748705853"
+      }
+    },
+    {
+      "produtoId": "f28de582-af94-4f5d-9b29-2e3584891db3",
+      "sku": "VTK017375",
+      "nome": "Cooler Gamer Evus F-12rgb Fan 12cm Com Led Rgb",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 15.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 44.32,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597133125",
+        "validatedNcm": "84145990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB2676",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "32528941",
+          "value_name": "Kit 03 F12RGB"
+        },
+        {
+          "id": "LED_COLOR",
+          "value_id": "2347690",
+          "value_name": "RGB"
+        },
+        {
+          "id": "REFRIGERATION_TYPE",
+          "value_id": "2425649",
+          "value_name": "Air cooling"
+        },
+        {
+          "id": "PINS_NUMBER",
+          "value_id": "10620398",
+          "value_name": "4"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "32528942",
+          "value_name": "7898597133125"
+        },
+        {
+          "id": "AIRFLOW",
+          "value_id": "73924457",
+          "value_name": "35.8 cfm"
+        },
+        {
+          "id": "NOISE_LEVEL",
+          "value_id": "73940059",
+          "value_name": "19.6 dB"
+        },
+        {
+          "id": "MTBF",
+          "value_id": "73940060",
+          "value_name": "58000 h"
+        },
+        {
+          "id": "COOLER_SPEED",
+          "value_id": "60608122",
+          "value_name": "1000 rpm"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB32633601",
+        "catalogProductName": "Kit 3 Coolers Gamer Evus F12rgb Fan 12cm Com Led Rgb",
+        "catalogDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+        "predictedDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+        "categoryId": "MLB2676",
+        "categoryName": "Coolers e Ventoinhas",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7898597133125"
+      }
+    },
+    {
+      "produtoId": "d561c22c-cd28-4f4a-bd9e-6c2618eb8b1a",
+      "sku": "VTK017362",
+      "nome": "Cooler Gamer Evus F12s-argb Singularity",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 24.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 55.43,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597133569",
+        "validatedNcm": "84145990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB2676",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "35784695",
+          "value_name": "7898597133569"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB35213478",
+        "catalogProductName": "Cooler Gamer Evus F12s-argb Singularity",
+        "catalogDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+        "predictedDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+        "categoryId": "MLB2676",
+        "categoryName": "Coolers e Ventoinhas",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7898597133569"
+      }
+    },
+    {
+      "produtoId": "55e5a029-8564-453f-8031-6017d3253370",
+      "sku": "VTK017363",
+      "nome": "Cooler Gamer Evus F12d-argb Double Ring",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 29.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 61.6,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597133576",
+        "validatedNcm": "84145990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB2676",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "LINE",
+          "value_id": "114459",
+          "value_name": "Gaming"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "35771081",
+          "value_name": "F12D-ARGB"
+        },
+        {
+          "id": "LED_COLOR",
+          "value_id": "17967198",
+          "value_name": "RGB"
+        },
+        {
+          "id": "REFRIGERATION_TYPE",
+          "value_id": "37745160",
+          "value_name": "Ar"
+        },
+        {
+          "id": "PINS_NUMBER",
+          "value_id": "10620398",
+          "value_name": "4"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "35771080",
+          "value_name": "7898597133576"
+        },
+        {
+          "id": "WITH_RGB_LIGHTING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB35202628",
+        "catalogProductName": "Cooler Gamer Evus F12d-argb Double Ring Led Rgb",
+        "catalogDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+        "predictedDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+        "categoryId": "MLB2676",
+        "categoryName": "Coolers e Ventoinhas",
+        "linkedListingsInCategory": 5,
+        "validatedGtin": "7898597133576"
+      }
+    },
+    {
+      "produtoId": "176a4745-f8ad-45c3-8f42-574d401a096a",
+      "sku": "VTK018555",
+      "nome": "Corda Giannini Contrabaixo Geebrl 6 0.030\" Leve",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 106.5,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 156.17,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898159187252",
+        "validatedNcm": "92093000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB278076",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "45321",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16343176",
+          "value_name": "GEEBRL6"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_id": "16040035",
+          "value_name": "BAIXO"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_id": "15146",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_id": "20965405",
+          "value_name": "030"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "112648",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_id": "19811932",
+          "value_name": "Leve"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16343226",
+          "value_name": "7898159187252, 843104100678"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21505965",
+        "catalogProductName": "Encordoamento Giannnini Para Baixo 6 Cordas 030 Geebrl",
+        "catalogDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+        "predictedDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+        "categoryId": "MLB278076",
+        "categoryName": "Cordas para Instrumentos",
+        "linkedListingsInCategory": 14,
+        "validatedGtin": "7898159187252"
+      }
+    },
+    {
+      "produtoId": "698dd152-3b2b-4615-a9ad-e1db2cf40024",
+      "sku": "VTK001740",
+      "nome": "Detector de Tensão HKVolt HIKARI",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 45.5,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": 79.59,
+      "suggestedPricePreview": 80.86,
+      "priceSource": "custom_price",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810412591",
+        "validatedNcm": "90303319",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB260688",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "50577718",
+          "value_name": "Hkvolt Hikari"
+        },
+        {
+          "id": "VOLTAGE_DETECTOR_TYPE",
+          "value_id": "32247736",
+          "value_name": "Luminoso / sonoro / CAT lll 1000V"
+        },
+        {
+          "id": "MIN_VOLTAGE_MEASUREMENT",
+          "value_id": "3323363",
+          "value_name": "24V"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_FLASHLIGHT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_BATTERY",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27025985",
+          "value_name": "7899810412591"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "5230413",
+          "value_name": "15.8 cm"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB28698920",
+        "catalogProductName": "Detector De Tensão Hikari Ac 24v A 1000v Bip E Led Hk-volt",
+        "catalogDomainId": "MLB-VOLTAGE_DETECTORS",
+        "predictedDomainId": "MLB-VOLTAGE_DETECTORS",
+        "categoryId": "MLB260688",
+        "categoryName": "Busca-Pólos",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7899810412591"
+      }
+    },
+    {
+      "produtoId": "d99a77db-5a33-4072-9a3f-13bdacc9c5c0",
+      "sku": "VTK017739",
+      "nome": "Disco Diamantado Vonder V3 Furo 20 110mm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 12.03,
+      "estoque": 29,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 39.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893946026585",
+        "validatedNcm": "68042119",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB260685",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "275828",
+          "value_name": "Vonder"
+        },
+        {
+          "id": "LINE",
+          "value_id": "18474474",
+          "value_name": "Disco Diamantado"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "23583650",
+          "value_name": "12.68.300.000"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52007",
+          "value_name": "Amarelo"
+        },
+        {
+          "id": "CUT_OFF_WHEEL_DIAMETER",
+          "value_id": "65958626",
+          "value_name": "110 mm"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "NUMBER_TEETH",
+          "value_id": "22389388",
+          "value_name": "9"
+        },
+        {
+          "id": "CENTRAL_DIAMETER",
+          "value_id": "65958534",
+          "value_name": "20 mm"
+        },
+        {
+          "id": "THICKNESS",
+          "value_id": "6234633",
+          "value_name": "1.8 mm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "18029263",
+          "value_name": "112 g"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "82588555",
+          "value_name": "V3 - 12.68.300.000"
+        },
+        {
+          "id": "WITH_REDUCTION_BUSHING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_BRUSH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "DISCS_AND_STONES_TYPE",
+          "value_id": "7362779",
+          "value_name": "De corte"
+        },
+        {
+          "id": "APT_SURFACES",
+          "value_id": "23827309",
+          "value_name": "Concreto, Granito, Mármore, Tijolo, Alvenaria e pedras, Telhas"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "25660792",
+          "value_name": "Diamantado"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "23583664",
+          "value_name": "7893946026585"
+        },
+        {
+          "id": "MAX_RPM",
+          "value_id": "18057108",
+          "value_name": "14000 rpm"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB26526264",
+        "catalogProductName": "Disco Diamantado Segmentado Vonder V3 110mm, Uso A Seco Cor Cinza",
+        "catalogDomainId": "MLB-CUTTING_AND_GRINDING_DISCS_AND_STONES",
+        "predictedDomainId": "MLB-CUTTING_AND_GRINDING_DISCS_AND_STONES",
+        "categoryId": "MLB260685",
+        "categoryName": "Discos e Rebolos",
+        "linkedListingsInCategory": 44,
+        "validatedGtin": "7893946026585"
+      }
+    }
+  ]
+}

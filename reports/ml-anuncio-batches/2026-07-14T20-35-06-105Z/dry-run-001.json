@@ -1,0 +1,310 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-14T20-35-06-105Z/001-ml-create-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "ml-create-001",
+  "selected": 25,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "fc7b30c3-6a84-4dff-b414-b60a236491e8",
+      "sku": "VTK016233",
+      "category": {
+        "id": "MLB11421",
+        "nome": "Aparelhos",
+        "dominio": "Máquinas de fax"
+      },
+      "basePrice": 34.6,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "c62de9b0-bfc7-42c1-ac3a-7c36b2b81401",
+      "sku": "VTK016133",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "basePrice": 38.49,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "dd088cec-e31b-4f21-94b6-7d9269078109",
+      "sku": "VTK016035",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "basePrice": 40.29,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "7747d461-a149-4051-b295-1df6133d64bb",
+      "sku": "VTK016234",
+      "category": {
+        "id": "MLB11400",
+        "nome": "Adaptadores e Gateways",
+        "dominio": "Gateways"
+      },
+      "basePrice": 40.38,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6c19cff7-d381-420b-8884-0aab46031b72",
+      "sku": "VTK015968",
+      "category": {
+        "id": "MLB11421",
+        "nome": "Aparelhos",
+        "dominio": "Máquinas de fax"
+      },
+      "basePrice": 39.4,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "c2e3eddb-2174-44ef-8acc-3eec58612558",
+      "sku": "VTK016134",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "basePrice": 42.16,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6d0da09d-d5f7-4671-9e3b-42a980824330",
+      "sku": "VTK016139",
+      "category": {
+        "id": "MLB1003",
+        "nome": "Vídeo Cassetes",
+        "dominio": "Tocadores de videocassete"
+      },
+      "basePrice": 40.95,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "bc643e7e-ffb7-427c-bf99-c6245f31956c",
+      "sku": "VTK016137",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "basePrice": 42.94,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "610b81ae-8e70-476c-8568-59f1974273c8",
+      "sku": "VTK016003",
+      "category": {
+        "id": "MLB11421",
+        "nome": "Aparelhos",
+        "dominio": "Máquinas de fax"
+      },
+      "basePrice": 42.28,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "324519d7-c7fa-4269-a75c-01020ae4b81c",
+      "sku": "VTK016138",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "basePrice": 44.65,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1dcb8354-b7eb-4cf9-8038-ccd8b55d2160",
+      "sku": "VTK016196",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "basePrice": 44.75,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "14a08576-8ce2-4748-a18d-234205bdfcf7",
+      "sku": "VTK016004",
+      "category": {
+        "id": "MLB11421",
+        "nome": "Aparelhos",
+        "dominio": "Máquinas de fax"
+      },
+      "basePrice": 44.2,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4f5a8b8d-6686-430e-a134-1397759edc95",
+      "sku": "VTK016033",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "basePrice": 46.55,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "76d759fb-35ec-4956-9c68-f4067a5b5653",
+      "sku": "VTK016093",
+      "category": {
+        "id": "MLB431681",
+        "nome": "Pilhas",
+        "dominio": "Acessórios e peças de reposição para relógios"
+      },
+      "basePrice": 47.44,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4b62ced5-ed1e-459e-a9bd-0728604cd4ed",
+      "sku": "VTK015969",
+      "category": {
+        "id": "MLB11400",
+        "nome": "Adaptadores e Gateways",
+        "dominio": "Gateways"
+      },
+      "basePrice": 47.76,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e7be3b5d-0d89-48a0-a26d-47056a32f13a",
+      "sku": "VTK016197",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "basePrice": 50.25,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "99490df1-c730-401d-ac58-03e66c93a55c",
+      "sku": "VTK016202",
+      "category": {
+        "id": "MLB1003",
+        "nome": "Vídeo Cassetes",
+        "dominio": "Tocadores de videocassete"
+      },
+      "basePrice": 48.93,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "cd3bb814-3b09-4b9b-80f3-3dc4e0e2cff4",
+      "sku": "VTK016005",
+      "category": {
+        "id": "MLB11400",
+        "nome": "Adaptadores e Gateways",
+        "dominio": "Gateways"
+      },
+      "basePrice": 50.23,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9d7b3bf4-9bd3-48a9-8041-43cc5b3b0315",
+      "sku": "VTK016059",
+      "category": {
+        "id": "MLB11421",
+        "nome": "Aparelhos",
+        "dominio": "Máquinas de fax"
+      },
+      "basePrice": 49,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "60e4baf1-b751-4645-9fdf-e1b0ee9b6ef0",
+      "sku": "VTK016224",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "basePrice": 51.01,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "17d7c241-7220-4a0c-97fb-8ba790f890bc",
+      "sku": "VTK016200",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "basePrice": 51.42,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "55b225b0-7a11-4323-97a9-692b28a54b9a",
+      "sku": "VTK016223",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "basePrice": 52.1,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d31f5bbf-c954-4241-b623-e41b3457297f",
+      "sku": "VTK016077",
+      "category": {
+        "id": "MLB11421",
+        "nome": "Aparelhos",
+        "dominio": "Máquinas de fax"
+      },
+      "basePrice": 50.91,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9fb9e04b-81b9-4a0b-a206-315be7b0ca1d",
+      "sku": "VTK016225",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "basePrice": 53.87,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "c00b625a-fb68-4a9b-9daf-49340f297e31",
+      "sku": "VTK016201",
+      "category": {
+        "id": "MLB7060",
+        "nome": "Pilhas",
+        "dominio": "Pilhas"
+      },
+      "basePrice": 53.99,
+      "missing": []
+    }
+  ],
+  "failed": []
+}

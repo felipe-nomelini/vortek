@@ -1,0 +1,184 @@
+[
+  {
+    "produtoId": "3fd032f8-334a-4c6c-9631-72f675c533ce",
+    "sku": "VTK018604",
+    "nome": "Alto Falante Bravox Tr55u 5\" 40w Rms 4r Universal Par",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Largura do alto-falante"
+  },
+  {
+    "produtoId": "e666735c-5699-4787-9273-2e2be34c872a",
+    "sku": "VTK017848",
+    "nome": "Cabo Alarme Telecam 100 Metros 50 X 10 Vias Cca Liga Cobre",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Voltagem"
+  },
+  {
+    "produtoId": "aede4efb-eb6d-4bfe-9bbb-bdb616fb02f3",
+    "sku": "VTK017787",
+    "nome": "Cabo De Aço Galvanizado Vonder 1,5mm 6x7 Bobina 500m",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Quantidade de torções por cabo"
+  },
+  {
+    "produtoId": "cc84bed0-6160-4af3-b00e-148814686007",
+    "sku": "VTK017982",
+    "nome": "Calculadora Pessoal Procalc Pc986-p 8 Dígitos Pink",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de calculadora"
+  },
+  {
+    "produtoId": "0a650f64-edae-4284-a0e7-e5c3cbdc13eb",
+    "sku": "VTK018150",
+    "nome": "Câmera Bullet Hikvision Plast Ds-2ce16d8t-itf 2.8 1080p",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Localizações da câmera"
+  },
+  {
+    "produtoId": "063dbebd-b445-4a04-af92-4036ba27b15d",
+    "sku": "VTK017637",
+    "nome": "Central De Alarme Sulton Cls 1400 Não Monitorada 10 Zonas",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Voltagem, Tipo de dispositivo"
+  },
+  {
+    "produtoId": "f28de582-af94-4f5d-9b29-2e3584891db3",
+    "sku": "VTK017375",
+    "nome": "Cooler Gamer Evus F-12rgb Fan 12cm Com Led Rgb",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de produto"
+  },
+  {
+    "produtoId": "d561c22c-cd28-4f4a-bd9e-6c2618eb8b1a",
+    "sku": "VTK017362",
+    "nome": "Cooler Gamer Evus F12s-argb Singularity",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo, Tipo de produto"
+  },
+  {
+    "produtoId": "55e5a029-8564-453f-8031-6017d3253370",
+    "sku": "VTK017363",
+    "nome": "Cooler Gamer Evus F12d-argb Double Ring",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de produto"
+  },
+  {
+    "produtoId": "a6160be9-23b2-46f5-85a5-a915f24806a1",
+    "sku": "VTK017328",
+    "nome": "Fan Para Pc Gamer Gf12r 12cm Vermelho 32 Led",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de produto"
+  },
+  {
+    "produtoId": "8d23282f-5f35-4856-b5e7-8cfe11c885c5",
+    "sku": "VTK018787",
+    "nome": "Fone Headset Intelbras Chs-55 Conector Usb 4010058",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Voltagem"
+  },
+  {
+    "produtoId": "a59a337c-ab45-4600-90b9-3bfb03179c4a",
+    "sku": "VTK017599",
+    "nome": "Interfone Hdl Az-s01 Ajuste Volume E Toque Branco",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de produto"
+  },
+  {
+    "produtoId": "a61b46d2-bd8e-4552-98b9-e15bf512bbf3",
+    "sku": "VTK018925",
+    "nome": "Kit Telefone Intelbras Celular Fixo Gsm Cfa4212",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº"
+  },
+  {
+    "produtoId": "6749a6a8-ea48-4057-bdae-f02dc8dadecd",
+    "sku": "VTK018198",
+    "nome": "Liquidificador Philco Ph900 Com Filtro 12 Velocidades 3 Litros Vermelho 127v",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de alimentação"
+  },
+  {
+    "produtoId": "aac0b9b3-eafd-4013-a7c3-a68118e9b81a",
+    "sku": "VTK017760",
+    "nome": "Miniprocessador Agratto Ampr01i-01 350ml 100w 127v",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de alimentação"
+  },
+  {
+    "produtoId": "dc9ab654-a53f-4415-9c79-c302399113f3",
+    "sku": "VTK018376",
+    "nome": "Moldura 2 Din Fiamon Gm Vectra Gt/ Meriva/ Corsa/ Montana Black",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Dimensão estándar do estéreo"
+  },
+  {
+    "produtoId": "8d6e28e6-7d85-4f4a-aa42-8f9a5b4b2e37",
+    "sku": "VTK018910",
+    "nome": "Moldura Fiamon 2 Din Gm Vectra Gt/meriva/corsa/montana Prata",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Dimensão estándar do estéreo"
+  },
+  {
+    "produtoId": "c094ad9e-26fa-43c7-87f7-c0c65895290c",
+    "sku": "VTK018928",
+    "nome": "Moldura Fiamon 2 Din Duster/ Sandero/ Logan/ Kwid/ Captur Black Piano",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Dimensão estándar do estéreo"
+  },
+  {
+    "produtoId": "525b3946-a305-41d4-bd4f-5ae3e60a1f64",
+    "sku": "VTK018773",
+    "nome": "Moldura Fiamon 2 Din Idea/ Idea Adventure 13/ 18 Prata",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Dimensão estándar do estéreo"
+  },
+  {
+    "produtoId": "6a7f85c3-1e7e-406b-9575-82a576b68c8f",
+    "sku": "VTK018602",
+    "nome": "Moldura Universal Permak 2 Din 90/g",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Dimensão estándar do estéreo"
+  },
+  {
+    "produtoId": "3e731d68-d11e-4a79-b40e-5904840154d1",
+    "sku": "VTK018766",
+    "nome": "Pedestal Ask Para Caixa Acústica Cxt Regulagem Telescópica",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Lugar de colocação"
+  },
+  {
+    "produtoId": "960911fa-1318-4eb5-9e22-dbcf1f944e8b",
+    "sku": "VTK018451",
+    "nome": "Sensor Magnético Abertura Intelbras Sem Fio Is3",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Voltagem"
+  },
+  {
+    "produtoId": "152f7e88-3187-4dd5-b483-200878ef45b3",
+    "sku": "VTK018927",
+    "nome": "Sensor Presenca Intelbras Sem Fio Is5",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Voltagem"
+  },
+  {
+    "produtoId": "cb1d8fa6-2b15-4c15-a92b-146c2007213a",
+    "sku": "VTK018926",
+    "nome": "Sirene Sem Fio Intelbras Is7",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Voltagem"
+  },
+  {
+    "produtoId": "4264a425-c8f3-4835-89a1-1bdea2647e0a",
+    "sku": "VTK018973",
+    "nome": "Sirene Smart Isi 1001 Intelbras",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Voltagem"
+  },
+  {
+    "produtoId": "43d93697-e343-4216-8636-d73515ee50f3",
+    "sku": "VTK018148",
+    "nome": "Telefone Sem Fio Intelbras Ts 3110 Branco/vermelho 4123101",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº"
+  }
+]

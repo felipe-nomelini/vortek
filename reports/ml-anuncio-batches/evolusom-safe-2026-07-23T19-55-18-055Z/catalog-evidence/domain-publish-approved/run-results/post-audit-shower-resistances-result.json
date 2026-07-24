@@ -1,0 +1,61 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/post-audit-shower-resistances.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-post-audit-shower-resistances",
+  "selected": 2,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "4bfdca7e-c32e-47f5-b90a-39956cd2f323",
+      "sku": "VTK018545",
+      "category": {
+        "id": "MLB455086",
+        "nome": "Resistências para Aquecedores de Água",
+        "dominio": "MLB-RESISTORS"
+      },
+      "anuncio": {
+        "id": "MLB7239105048",
+        "title": "Resistencia Para Ducha Corona Spot 8t 5500w 127v",
+        "price": 61.08,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239105048-resistencia-para-ducha-corona-spot-8t-5500w-127v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço ajustado automaticamente para R$ 63.38 para evitar frete/taxa desatualizados.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 63.38 → R$ 61.08."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "074533de-3625-4ac5-87e6-970a7b9add7c",
+      "sku": "VTK017251",
+      "category": {
+        "id": "MLB455086",
+        "nome": "Resistências para Aquecedores de Água",
+        "dominio": "MLB-RESISTORS"
+      },
+      "anuncio": {
+        "id": "MLB7239094324",
+        "title": "Resistência Zagonel Sublime/ Move 127v",
+        "price": 58.18,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239094324-resistncia-zagonel-sublime-move-127v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço ajustado automaticamente para R$ 58.18 para evitar frete/taxa desatualizados.",
+        "ML está processando imagens; isso costuma liberar automaticamente."
+      ]
+    }
+  ],
+  "failed": []
+}

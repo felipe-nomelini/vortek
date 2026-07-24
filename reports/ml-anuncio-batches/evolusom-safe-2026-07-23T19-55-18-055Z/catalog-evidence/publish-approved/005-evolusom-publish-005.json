@@ -1,0 +1,1421 @@
+{
+  "batchId": "evolusom-publish-005",
+  "strategy": "dry_run_and_exact_catalog_approved",
+  "items": [
+    {
+      "produtoId": "194c7dcb-be07-4295-ba39-fa55be846782",
+      "sku": "VTK018041",
+      "nome": "Arandela 6\" Frahm Cs Cx 50w - Branca",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 174.9,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 248.31,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896673814586",
+        "validatedNcm": "85182100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB11507",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "116881",
+          "value_name": "Frahm"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18358714",
+          "value_name": "6CX"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "POWER_OUTPUT_RMS",
+          "value_id": "109786",
+          "value_name": "50 W"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "value_id": "17413368",
+          "value_name": "Amplificador"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "977967",
+          "value_name": "1"
+        },
+        {
+          "id": "SPEAKER_TYPES",
+          "value_id": "18080636",
+          "value_name": "Coaxial"
+        },
+        {
+          "id": "SPEAKER_FILTER_TYPES",
+          "value_id": "352987",
+          "value_name": "Passivo"
+        },
+        {
+          "id": "SPEAKER_FORMAT",
+          "value_id": "7199382",
+          "value_name": "Caixa"
+        },
+        {
+          "id": "INSTALLATION_PLACEMENTS",
+          "value_id": "4061553",
+          "value_name": "De teto"
+        },
+        {
+          "id": "CHANNELS_SETUP",
+          "value_id": "353330",
+          "value_name": "2.1"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WI_FI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BASE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_INTEGRATED_DJ_CONTROLLERS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_KARAOKE_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_VOICE_EFFECT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_RADIO",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_PORTABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATERPROOF",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_SUPPORT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_RECHARGEABLE_BATTERY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18358746",
+          "value_name": "7896673814586"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        },
+        {
+          "id": "IS_PROFESSIONAL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7742895",
+          "value_name": "7.5 cm"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22695265",
+        "catalogProductName": "Caixa De Som Arandela Redonda 50w 8 Ohms Frahm Cs 6 Polegada Cor Branco",
+        "catalogDomainId": "MLB-SPEAKERS",
+        "categoryId": "MLB11507",
+        "categoryName": "Caixas Acústicas ",
+        "linkedListingsInCategory": 17,
+        "validatedGtin": "7896673814586"
+      }
+    },
+    {
+      "produtoId": "71df1618-1fef-4c80-888d-4b54b63e6271",
+      "sku": "VTK018027",
+      "nome": "Arandela Sem Borda Frahm 6\" 40w Full Ranger Quadrada",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 104.9,
+      "estoque": 13,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 154.2,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896673814074",
+        "validatedNcm": "85182100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB11507",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "116881",
+          "value_name": "Frahm"
+        },
+        {
+          "id": "LINE",
+          "value_id": "8853690",
+          "value_name": "Ceiling Loudspeaker"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "8786532",
+          "value_name": "Quadrada 6\"FR"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "POWER_OUTPUT_RMS",
+          "value_id": "115963",
+          "value_name": "40 W"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "977967",
+          "value_name": "1"
+        },
+        {
+          "id": "SPEAKER_TYPES",
+          "value_id": "7199379",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "SPEAKER_FILTER_TYPES",
+          "value_id": "352987",
+          "value_name": "Passivo"
+        },
+        {
+          "id": "SPEAKER_FORMAT",
+          "value_id": "7199382",
+          "value_name": "Caixa"
+        },
+        {
+          "id": "INSTALLATION_PLACEMENTS",
+          "value_id": "4061553",
+          "value_name": "De teto, De parede"
+        },
+        {
+          "id": "CHANNELS_SETUP",
+          "value_id": "353330",
+          "value_name": "2.1"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WI_FI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BASE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_INTEGRATED_DJ_CONTROLLERS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_KARAOKE_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_VOICE_EFFECT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_RADIO",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_PORTABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATERPROOF",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_SUPPORT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_RECHARGEABLE_BATTERY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "8786534",
+          "value_name": "7896673814074"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "116881",
+          "value_name": "Frahm"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_OUTDOOR_USE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_DUST_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_REMOTE_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_CHARGER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_WHEELS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_LATCH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_PROFESSIONAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_A_STAGE_MONITOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SCREEN",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NFC",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MIN_FREQUENCY_RESPONSE",
+          "value_id": "7213587",
+          "value_name": "100 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY_RESPONSE",
+          "value_id": "7213590",
+          "value_name": "18 kHz"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "8786530",
+          "value_name": "22.2 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8786531",
+          "value_name": "22.2 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "7694964",
+          "value_name": "7 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "7675711",
+          "value_name": "750 g"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB15927799",
+        "catalogProductName": "Arandela Quadrada 6 Som Ambiente Embutir Teto Gesso Auto Falante Full Range Borderless 40w Rms Frahm Cor Branco Bivolt",
+        "catalogDomainId": "MLB-SPEAKERS",
+        "categoryId": "MLB11507",
+        "categoryName": "Caixas Acústicas ",
+        "linkedListingsInCategory": 51,
+        "validatedGtin": "7896673814074"
+      }
+    },
+    {
+      "produtoId": "1135a138-405e-4964-9a12-9044e528901a",
+      "sku": "VTK019124",
+      "nome": "Arandela Sem Borda Frahm 6\" 40w Full Ranger Redonda",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 106.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 156.67,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896673814067",
+        "validatedNcm": "85182100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB11507",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "116881",
+          "value_name": "Frahm"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "26929187",
+          "value_name": "REDONDA 6FR 40W"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "POWER_OUTPUT_RMS",
+          "value_id": "115963",
+          "value_name": "40 W"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "value_id": "4494121",
+          "value_name": "CA"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "977967",
+          "value_name": "1"
+        },
+        {
+          "id": "SPEAKER_TYPES",
+          "value_id": "7199379",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "SPEAKER_FILTER_TYPES",
+          "value_id": "352987",
+          "value_name": "Passivo"
+        },
+        {
+          "id": "SPEAKER_FORMAT",
+          "value_id": "7199382",
+          "value_name": "Caixa"
+        },
+        {
+          "id": "INSTALLATION_PLACEMENTS",
+          "value_id": "17589846",
+          "value_name": "Embutir, Gesso, Teto"
+        },
+        {
+          "id": "CHANNELS_SETUP",
+          "value_id": "353330",
+          "value_name": "2.1"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WI_FI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BASE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_INTEGRATED_DJ_CONTROLLERS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_KARAOKE_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_VOICE_EFFECT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_RADIO",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_PORTABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATERPROOF",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_SUPPORT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_RECHARGEABLE_BATTERY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "9814738",
+          "value_name": "7896673814067"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "116881",
+          "value_name": "Frahm"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_OUTDOOR_USE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_PROFESSIONAL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INPUT_CONNECTORS",
+          "value_id": "43151729",
+          "value_name": "born"
+        },
+        {
+          "id": "MIN_FREQUENCY_RESPONSE",
+          "value_id": "7213587",
+          "value_name": "100 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY_RESPONSE",
+          "value_id": "7213590",
+          "value_name": "18 kHz"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "15410197",
+          "value_name": "6.5 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8095289",
+          "value_name": "29 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "8158788",
+          "value_name": "23 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "8644828",
+          "value_name": "0.75 g"
+        },
+        {
+          "id": "MPN",
+          "value_id": "26929188",
+          "value_name": "31822"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB25986758",
+        "catalogProductName": "Caixa De Som Arandela Frahm Redonda 6fr 40w Embutir Cor Branco",
+        "catalogDomainId": "MLB-SPEAKERS",
+        "categoryId": "MLB11507",
+        "categoryName": "Caixas Acústicas ",
+        "linkedListingsInCategory": 29,
+        "validatedGtin": "7896673814067"
+      }
+    },
+    {
+      "produtoId": "dfae7484-7e88-4734-97f9-8b6c21617dfc",
+      "sku": "VTK017900",
+      "nome": "Autotransformador Blindado Indusat 2000va Tripolar",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 132.5,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 188.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897643848440",
+        "validatedNcm": "85043211",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB30197",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2746860",
+          "value_name": "Indusat"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "55602881",
+          "value_name": "2000VA, TRIPOLAR, 2P+T"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "POWER",
+          "value_id": "52303999",
+          "value_name": "1300 W"
+        },
+        {
+          "id": "MAX_POWER_SUPPORTED",
+          "value_id": "65966843",
+          "value_name": "1300 W"
+        },
+        {
+          "id": "INPUT_VOLTAGES",
+          "value_id": "39205162",
+          "value_name": "127V, 220V"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "10981338",
+          "value_name": "60"
+        },
+        {
+          "id": "OUTPUT_VOLTAGES",
+          "value_id": "5592405",
+          "value_name": "110V, 220V"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "4503757",
+          "value_name": "15.9 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "1749",
+          "value_name": "9.1 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "2095008",
+          "value_name": "12.5 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18201753",
+          "value_name": "7897643848440"
+        },
+        {
+          "id": "WITH_USB_PORT",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB51506162",
+        "catalogProductName": "Transformador 2000va P/ Máquina Lavar Micro-ondas 110v 220v",
+        "catalogDomainId": "MLB-VOLTAGE_CONVERTERS",
+        "categoryId": "MLB30197",
+        "categoryName": "Transformadores",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7897643848440"
+      }
+    },
+    {
+      "produtoId": "83b49b10-7148-4d7f-b154-8082f4fae58e",
+      "sku": "VTK018587",
+      "nome": "Auxiliar De Partida / Acumulador De Bateria Thork 6310",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 384.9,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 546.46,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "4895239063102",
+        "validatedNcm": "85076000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB63455",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "58761426",
+          "value_name": "Thork by Tech One"
+        },
+        {
+          "id": "LINE",
+          "value_id": "58761428",
+          "value_name": "ACUMULADOR"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "58761430",
+          "value_name": "7500mAh"
+        },
+        {
+          "id": "OUTPUT_CURRENT",
+          "value_id": "47396331",
+          "value_name": "12 A"
+        },
+        {
+          "id": "LOAD_VOLTAGE",
+          "value_id": "47397135",
+          "value_name": "5V"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "21536021",
+          "value_name": "Vermelho e Branco"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "58761433",
+          "value_name": "4895239063102"
+        },
+        {
+          "id": "MAXIMUM_LOAD",
+          "value_id": "63369332",
+          "value_name": "7.5 A"
+        },
+        {
+          "id": "FEATURES",
+          "value_id": "75353630",
+          "value_name": "Lanterna de LED, Indicação de carga com LED azul, Garra para função de start, Conector tipo C"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "28258268",
+          "value_name": "CABO E CASE"
+        },
+        {
+          "id": "RECOMMENDED_USES",
+          "value_id": "63369333",
+          "value_name": "VEICULO"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "8184",
+          "value_name": "500 g"
+        },
+        {
+          "id": "DIMENSIONS",
+          "value_id": "58761427",
+          "value_name": "130 mm x 75 mm x 25 mm"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB53434515",
+        "catalogProductName": "Auxiliar de Partida Thork Tech One Automotivo Portátil 7500mAh 12V Carro/Moto",
+        "catalogDomainId": "MLB-VEHICLE_BATTERY_CHARGERS",
+        "categoryId": "MLB63455",
+        "categoryName": "Carregadores de Baterías",
+        "linkedListingsInCategory": 11,
+        "validatedGtin": "4895239063102"
+      }
+    },
+    {
+      "produtoId": "cad1ab58-6d25-4c99-bd68-4d2a56976c6b",
+      "sku": "VTK017679",
+      "nome": "Bateria Selada De Chumbo Elgin Vrla 6v 4,5ah",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 33.9,
+      "estoque": 24,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 66.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897013578472",
+        "validatedNcm": "85072010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB57843",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "LINE",
+          "value_id": "40167283",
+          "value_name": "6v 4,5ah"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18139945",
+          "value_name": "6v 4,5ah"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "value_id": "4222707",
+          "value_name": "4.5 Ah"
+        },
+        {
+          "id": "BATTERY_COMPOSITION",
+          "value_id": "10998348",
+          "value_name": "Gel ácido"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_id": "4416142",
+          "value_name": "6V"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "40167282",
+          "value_name": "7897013578472"
+        },
+        {
+          "id": "TERMINAL_TYPE",
+          "value_id": "2693202",
+          "value_name": "F1"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB65347168",
+        "catalogProductName": "Bateria Selada 6v 4,5ah Chumbo Vrla 1 Unidad",
+        "catalogDomainId": "MLB-UPS_BATTERIES",
+        "categoryId": "MLB57843",
+        "categoryName": "Baterias",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7897013578472"
+      }
+    },
+    {
+      "produtoId": "ccc74733-b03e-42d6-a201-31712065c86d",
+      "sku": "VTK017571",
+      "nome": "Bateria Selada De Chumbo Elgin Vrla 12v Alarme",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 56.9,
+      "estoque": 42,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 94.94,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897013582233",
+        "validatedNcm": "85072010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB57843",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "LINE",
+          "value_id": "16811873",
+          "value_name": "Selada"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "38760196",
+          "value_name": "ELE000000082315"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "value_id": "38889818",
+          "value_name": "Bateria Selada 12 V"
+        },
+        {
+          "id": "COMPATIBLE_UPS",
+          "value_id": "2693207",
+          "value_name": "APC BX650CI-AR, Lyonn CTB-800A"
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "value_id": "4222719",
+          "value_name": "7 Ah"
+        },
+        {
+          "id": "BATTERY_COMPOSITION",
+          "value_id": "18114863",
+          "value_name": "Íon de lítio"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_id": "909022",
+          "value_name": "12V"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "1487",
+          "value_name": "9.4 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "57324",
+          "value_name": "6.4 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "570734",
+          "value_name": "15 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "59112",
+          "value_name": "1 kg"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "20349829",
+          "value_name": "7897013582233, 7903219718373"
+        },
+        {
+          "id": "TERMINAL_TYPE",
+          "value_id": "2693202",
+          "value_name": "F1"
+        },
+        {
+          "id": "LIFE_EXPECTANCY",
+          "value_id": "17107451",
+          "value_name": "1 anos"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB24116658",
+        "catalogProductName": "Elgin Selada Bateria 12v 7a Alarme E Cerca Elétrica",
+        "catalogDomainId": "MLB-UPS_BATTERIES",
+        "categoryId": "MLB57843",
+        "categoryName": "Baterias",
+        "linkedListingsInCategory": 11,
+        "validatedGtin": "7897013582233"
+      }
+    },
+    {
+      "produtoId": "a540d98f-8112-4d22-b21e-26f7f528a1f1",
+      "sku": "VTK017908",
+      "nome": "Bateria Selada De Chumbo Elgin Vrla 12v 5ah",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 67.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 108.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908412528118",
+        "validatedNcm": "85072010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB57843",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "LINE",
+          "value_id": "16811873",
+          "value_name": "Selada"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24753549",
+          "value_name": "12v 5ah"
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "value_id": "2896218",
+          "value_name": "5 Ah"
+        },
+        {
+          "id": "BATTERY_COMPOSITION",
+          "value_id": "19758947",
+          "value_name": "Selada"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_id": "909022",
+          "value_name": "12V"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "1016264",
+          "value_name": "11 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "3001",
+          "value_name": "9 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "1115182",
+          "value_name": "7 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24753548",
+          "value_name": "7908412528118"
+        },
+        {
+          "id": "TERMINAL_TYPE",
+          "value_id": "2693202",
+          "value_name": "F1"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27391580",
+        "catalogProductName": "Bateria Selada Elgin Chumbo 12v X 5ah - Ele000000082350",
+        "catalogDomainId": "MLB-UPS_BATTERIES",
+        "categoryId": "MLB57843",
+        "categoryName": "Baterias",
+        "linkedListingsInCategory": 5,
+        "validatedGtin": "7908412528118"
+      }
+    },
+    {
+      "produtoId": "6aad7bc9-9c00-4597-86de-37c6ddde778e",
+      "sku": "VTK017933",
+      "nome": "Botão De Pânico Ipec Nf",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 21.9,
+      "estoque": 19,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 51.73,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898663560183",
+        "validatedNcm": "85269200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB33412",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "5333037",
+          "value_name": "Ipec"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "29339794",
+          "value_name": "A2064"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "1176674",
+          "value_name": "Pilha"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "24556082",
+          "value_name": "433"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7818800",
+          "value_name": "33 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7627437",
+          "value_name": "55 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "8038984",
+          "value_name": "27 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "16045938",
+          "value_name": "19 g"
+        },
+        {
+          "id": "CONTROL_BUTTONS_NUMBER",
+          "value_id": "28101208",
+          "value_name": "1"
+        },
+        {
+          "id": "WITH_ANTENNA",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "RECOMMENDED_USES",
+          "value_id": "17608281",
+          "value_name": "Casa"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "29339796",
+          "value_name": "7898663560183"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "5333037",
+          "value_name": "Ipec"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "74511123",
+          "value_name": "A2064"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB30220377",
+        "catalogProductName": "Botão De Panico Para Acionamento De Alarme - Ipec",
+        "catalogDomainId": "MLB-ALARM_REMOTE_CONTROLS",
+        "categoryId": "MLB33412",
+        "categoryName": "Controles Remotos para Alarmes",
+        "linkedListingsInCategory": 5,
+        "validatedGtin": "7898663560183"
+      }
+    },
+    {
+      "produtoId": "3cd63a03-f703-4590-9acc-4a6e017a1d6a",
+      "sku": "VTK004724",
+      "nome": "Cabo Adaptador USB-C Para Mini DisplayPort Flex",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 37.9,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 71.48,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908417102245",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB431813",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2138072",
+          "value_name": "Flex"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "25941079",
+          "value_name": "USB-C"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "37437603",
+          "value_name": "7908417102245"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB36679917",
+        "catalogProductName": "Cabo Adaptador Usb-c Para Mini Displayport Flex",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB431813",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7908417102245"
+      }
+    }
+  ]
+}

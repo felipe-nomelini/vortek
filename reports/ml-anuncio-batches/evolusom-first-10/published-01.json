@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-first-10/current.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-first-10-researched",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "01bd76c0-70dd-467d-95c0-af8d5da2f640",
+      "sku": "VTK017266",
+      "category": {
+        "id": "MLB38205",
+        "nome": "Para TV",
+        "dominio": "Controles remotos para TV"
+      },
+      "anuncio": {
+        "id": "MLB4923539289",
+        "title": "Controle Remoto Mxt Receptor Tocomsat Combate 01360",
+        "price": 53.28,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4923539289-controle-remoto-mxt-receptor-tocomsat-combate-01360-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 37.45 → R$ 53.28."
+      ]
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,856 @@
+{
+  "batchId": "evolusom-publish-012",
+  "strategy": "dry_run_and_exact_catalog_approved",
+  "items": [
+    {
+      "produtoId": "df5f076d-34e3-4055-8bb1-4a5c31aade74",
+      "sku": "VTK018454",
+      "nome": "Conector Para Cd Vw Jetta/passat",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 24.99,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 55.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253504511",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB38279",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16088677",
+          "value_name": "35D12"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788223",
+          "value_name": "Plug"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827368",
+          "value_name": "Cabo adaptador"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "17642536",
+          "value_name": "Padrão"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "28311656",
+          "value_name": "Normal"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16088703",
+          "value_name": "7898253504511"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21341534",
+        "catalogProductName": "Chicote De Ligação New Quadrilock 2016 Gol G7 Jetta Passat",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB38279",
+        "categoryName": "Outros Cabos",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7898253504511"
+      }
+    },
+    {
+      "produtoId": "47638703-a897-463e-ae17-0d9ad238732d",
+      "sku": "VTK018616",
+      "nome": "Contra Frente Plástica Permak Ka Focus Escot Ranger 2 Din 89/c2",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 12.49,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 40.11,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253498094",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "52648139",
+          "value_name": "89-C2"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2511571",
+          "value_name": "ABS"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24788482",
+          "value_name": "7898253498094"
+        },
+        {
+          "id": "MPN",
+          "value_id": "52648140",
+          "value_name": "89-C2"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB49204248",
+        "catalogProductName": "Moldura 2din Ka/focus/escort/ranger Preto",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 5,
+        "validatedGtin": "7898253498094"
+      }
+    },
+    {
+      "produtoId": "61eddeb1-1475-4a17-8344-adbeca5cc8af",
+      "sku": "VTK018714",
+      "nome": "Contra Frente Plástica Permak Toyota Hilux Sw4 2 Din 89/z3",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 14.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.09,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253497813",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "55335403",
+          "value_name": "89-Z3"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2511571",
+          "value_name": "ABS"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24747056",
+          "value_name": "7898253497813"
+        },
+        {
+          "id": "MPN",
+          "value_id": "55335404",
+          "value_name": "89-Z3"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB51341026",
+        "catalogProductName": "Moldura 2 Din Toyota Hilux/sw4 2005 2015 Preto",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898253497813"
+      }
+    },
+    {
+      "produtoId": "b0da7ce9-8848-4a03-ad41-138294477102",
+      "sku": "VTK018870",
+      "nome": "Contra Frente Plástica Permak Fiat Stilo 2 Din Preta",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 37.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 71.48,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253497981",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "54372530",
+          "value_name": "89-E2"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2511571",
+          "value_name": "ABS"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25193403",
+          "value_name": "7898253497981"
+        },
+        {
+          "id": "MPN",
+          "value_id": "54372531",
+          "value_name": "89-E2"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB50657370",
+        "catalogProductName": "Moldura 2 Din Fiat Stilo 2003 - 2010 | Preto",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7898253497981"
+      }
+    },
+    {
+      "produtoId": "2d23d922-5228-4a5a-97f0-35903478d514",
+      "sku": "VTK018723",
+      "nome": "Contra Frente Plástica Permak Fiat Bravo 2 Din Preta",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 54.58,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 92.07,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253498131",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "48890584",
+          "value_name": "Fiat Bravo 2 Din"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2511571",
+          "value_name": "ABS"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25230469",
+          "value_name": "7898253498131"
+        },
+        {
+          "id": "MPN",
+          "value_id": "54481712",
+          "value_name": "89/E3"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB50745398",
+        "catalogProductName": "Contra Frente Plastica Permak Fiat Bravo 2 Din Preta",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 6,
+        "validatedGtin": "7898253498131"
+      }
+    },
+    {
+      "produtoId": "1395fed2-dc1c-43ed-9dd5-6ce0c42743b7",
+      "sku": "VTK018868",
+      "nome": "Contra Frente Plástica Permak Toyota Etios 2 Din Preta",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 64.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 104.81,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253499558",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "56843656",
+          "value_name": "89-Z6"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24877342",
+          "value_name": "7898253499558"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB52194075",
+        "catalogProductName": "Moldura de Painel Permak 2 DIN Preta para Toyota Hilux e Etios 2012",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898253499558"
+      }
+    },
+    {
+      "produtoId": "f890678d-4601-445e-ae96-e7580dabdd80",
+      "sku": "VTK018869",
+      "nome": "Contra Frente Plástica Permak Honda New Civic 2012 2 Din",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 85.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 130.74,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253495581",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "55335410",
+          "value_name": "89-V4"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "18579829",
+          "value_name": "Grafite"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2511571",
+          "value_name": "ABS"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "GTIN",
+          "value_id": "54799265",
+          "value_name": "7898253495581"
+        },
+        {
+          "id": "MPN",
+          "value_id": "55335412",
+          "value_name": "89-V4"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB51341037",
+        "catalogProductName": "Moldura 2 Din Honda Civic 2012 2016 Grafite",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7898253495581"
+      }
+    },
+    {
+      "produtoId": "1be0b415-c95b-460a-bab8-2525814bcfbd",
+      "sku": "VTK018943",
+      "nome": "Controlador Acesso Ip Wide Cx-7006",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 515.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 764.3,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898954353630",
+        "validatedNcm": "84714100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB276330",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3249259",
+          "value_name": "Citrox"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "27538208",
+          "value_name": "RFID 900MHZ - CX 7404"
+        },
+        {
+          "id": "UNITS_PER_PACKAGE",
+          "value_id": "133896",
+          "value_name": "50"
+        },
+        {
+          "id": "SHAPE",
+          "value_id": "1163800",
+          "value_name": "Retangular"
+        },
+        {
+          "id": "DATA_STORAGE_CAPACITY",
+          "value_id": "65958723",
+          "value_name": "0 TB"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "3157",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "31966",
+          "value_name": "3 cm"
+        },
+        {
+          "id": "DIAMETER",
+          "value_id": "24738557",
+          "value_name": "0.01 mm"
+        },
+        {
+          "id": "MAX_READ_DISTANCE",
+          "value_id": "66039724",
+          "value_name": "400 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27538211",
+          "value_name": "7898954353630"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29031503",
+        "catalogProductName": "Etiqueta Veícular Tag Rfid 900 Mhz Citrox Cx-7404 50 Peças",
+        "catalogDomainId": "MLB-RFID_TAGS",
+        "categoryId": "MLB276330",
+        "categoryName": "Tags NFC",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898954353630"
+      }
+    },
+    {
+      "produtoId": "10a2a623-2b58-438c-a0c2-aa46022bb855",
+      "sku": "VTK018325",
+      "nome": "Controlador De Volume Frahm Cv-10 10w Mono",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 94.9,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 141.85,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896673815262",
+        "validatedNcm": "85333910",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7892",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "116881",
+          "value_name": "Frahm"
+        },
+        {
+          "id": "LINE",
+          "value_id": "6563",
+          "value_name": "Slim"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "25915856",
+          "value_name": "FRAHM"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "RMS_POWER_OUTPUT",
+          "value_id": "25080004",
+          "value_name": "10 W"
+        },
+        {
+          "id": "NUMBER_OF_CHANNELS",
+          "value_id": "925814",
+          "value_name": "2"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "570720",
+          "value_name": "38 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "2937",
+          "value_name": "5.8 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "2491442",
+          "value_name": "12.5 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "2767",
+          "value_name": "80 g"
+        },
+        {
+          "id": "FREQUENCY_RESPONSE",
+          "value_id": "14457380",
+          "value_name": "60 Hz - 20 kHz"
+        },
+        {
+          "id": "WITH_USB",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_DISPLAY",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "81830",
+          "value_name": "LED"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "32953824",
+          "value_name": "7896673815262"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "116881",
+          "value_name": "Frahm"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "75641888",
+          "value_name": "31653"
+        },
+        {
+          "id": "INCLUDES_ACCESSORIES",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "8136003",
+          "value_name": "Antena"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB32967617",
+        "catalogProductName": "Atenuador - Controlador De Volume Frahm Cor Branco Potência De Saída Rms 10 W",
+        "catalogDomainId": "MLB-AUDIO_AMPLIFIERS",
+        "categoryId": "MLB7892",
+        "categoryName": "Amplificadores",
+        "linkedListingsInCategory": 10,
+        "validatedGtin": "7896673815262"
+      }
+    },
+    {
+      "produtoId": "4ed6d374-c7f1-496c-afa1-bb6a12bccdcf",
+      "sku": "VTK017323",
+      "nome": "Controle Remoto Mxt 01374 Tv Samsung 4k Netflix",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 15.85,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 44.26,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908324701319",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB38205",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "28170404",
+          "value_name": "un49k6500agxzd"
+        },
+        {
+          "id": "INCLUDES_CELL_BATTERIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NETFLIX_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_YOUTUBE_BUTTON",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_UNIVERSAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_PRIME_VIDEO_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "28170403",
+          "value_name": "7908324701319"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29448741",
+        "catalogProductName": "Controle Remoto Smart Tv Un49k6500agxzd - Un 49k6500 Agxzd",
+        "catalogDomainId": "MLB-TV_REMOTE_CONTROLS",
+        "categoryId": "MLB38205",
+        "categoryName": "Para TV",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7908324701319"
+      }
+    }
+  ]
+}

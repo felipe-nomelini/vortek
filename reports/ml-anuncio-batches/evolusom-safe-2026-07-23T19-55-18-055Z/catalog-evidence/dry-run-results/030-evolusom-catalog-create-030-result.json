@@ -1,0 +1,114 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/030-evolusom-catalog-create-030.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-030",
+  "selected": 8,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "ffdf05d8-a020-46f4-949c-d2cc0e1c87b0",
+      "sku": "VTK017843",
+      "category": {
+        "id": "MLB1053",
+        "nome": "Telefones",
+        "dominio": "MLB-TELEPHONES"
+      },
+      "basePrice": 380.79,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "df364e36-4318-4d5a-bb86-2dd7546b7bc0",
+      "sku": "VTK018921",
+      "category": {
+        "id": "MLB271716",
+        "nome": "Testadores de Cabos",
+        "dominio": "MLB-NETWORK_CABLE_TESTERS"
+      },
+      "basePrice": 324.21,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f3f3cd94-1937-4c01-942e-6af744df50dc",
+      "sku": "VTK017604",
+      "category": {
+        "id": "MLB271716",
+        "nome": "Testadores de Cabos",
+        "dominio": "MLB-NETWORK_CABLE_TESTERS"
+      },
+      "basePrice": 65.96,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8fb3551e-691c-46ca-b878-137a487091dc",
+      "sku": "VTK019006",
+      "category": {
+        "id": "MLB30214",
+        "nome": "Multímetros",
+        "dominio": "MLB-MULTIMETERS"
+      },
+      "basePrice": 232.66,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2c5e0906-98c4-4662-a36d-79ca3ff4d691",
+      "sku": "VTK018659",
+      "category": {
+        "id": "MLB194301",
+        "nome": "Elétricas",
+        "dominio": "MLB-ELECTRIC_LOCKS"
+      },
+      "basePrice": 141.18,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0441737a-1226-4d3c-a346-bc81227ea1e6",
+      "sku": "VTK018643",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "basePrice": 60.37,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6871afaf-6da3-4473-858a-0bd4d7a5fbc1",
+      "sku": "VTK018980",
+      "category": {
+        "id": "MLB7075",
+        "nome": "Porteiros Elétricos",
+        "dominio": "MLB-ELECTRIC_ENTRANCE_INTERCOMS"
+      },
+      "basePrice": 419.35,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "0c58abd1-d64a-4139-9563-b4c28dde8baf",
+      "sku": "VTK017885",
+      "nome": "Termopar Tipo K Minipa Mtk-01 Com Blister",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB270374",
+            "nome": "Sensores de Fluxo de Água"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

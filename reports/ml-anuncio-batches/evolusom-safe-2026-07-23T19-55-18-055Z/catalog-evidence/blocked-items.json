@@ -1,0 +1,3778 @@
+[
+  {
+    "produtoId": "c2bc53ad-df5d-4a5b-a3ec-f98ab519a418",
+    "sku": "VTK017708",
+    "nome": "Acessório Cabo De Antena Ford Fusion / Gm",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB32224655/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "9cbbbf6d-4826-418f-bbfe-6fa035b3bb8e",
+    "sku": "VTK019167",
+    "nome": "Adaptador De 9\" Para 10.1\" Fiamon - Black Piano",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "d35df101-0356-4658-b6e1-fa9656b214ad",
+    "sku": "VTK001685",
+    "nome": "Adaptador DVI Fêmea x HDMI Macho Gold ST-HDMI-DMF Storm",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "6f2d02a9-a507-459b-9a90-7faf9d50b92c",
+    "sku": "VTK018179",
+    "nome": "Adaptador Rca Stetsom St-6100 Com Saída Remoto/filtro Antirruído",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "23325240-e7c1-4a4f-805f-79f7ac369f98",
+    "sku": "VTK002611",
+    "nome": "Adaptador USB Tipo C Macho Para VGA Femea ADAP0057 Branca Storm",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "5f74e994-77a1-42f4-8f56-af442f8c8c7f",
+    "sku": "VTK018588",
+    "nome": "Airfryer Black + Decker Digital Afmdv360-b2 4,5l - 220v",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "78ebcbfc-5953-44ca-803a-a4b40bbfae1e",
+    "sku": "VTK017861",
+    "nome": "Alarme Automotivo Fks Fk902 Plus Universal Função Desliga Rádio",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "724b7d33-2fc4-4905-ab51-2ca45664aab0",
+    "sku": "VTK018009",
+    "nome": "Alarme Automotivo Universal Fks Fk902 Plus - Sem Bloqueio",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "75abcf4e-d3a5-40f5-816a-50b997706d46",
+    "sku": "VTK018503",
+    "nome": "Alarme Automotivo Universal Fks Fk904 Cb Com Bloqueador",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "fef3489e-d7b8-483b-a5f4-1921740369be",
+    "sku": "VTK018349",
+    "nome": "Alarme Automotivo Fks Fki505rf Conector Original Fiat 2012 Controle Cr963",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "f0cfdc8d-c860-43a0-88c6-2cae875582df",
+    "sku": "VTK018080",
+    "nome": "Alarme Automotivo Positron Cyber Ex-360 Blade",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "73961361-53a0-41ec-a09a-615a7215d95e",
+    "sku": "VTK019038",
+    "nome": "Alicate Amperimetro Digital Minipa Et-3111 Cat Iii",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "0bb807c5-99a6-45bd-9e57-c04f8b389b5e",
+    "sku": "VTK017920",
+    "nome": "Alicate Bico Redondo Longo Hikari 6\" 150 Mm",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "d127a44a-9282-4da7-9c62-64de8800241a",
+    "sku": "VTK018238",
+    "nome": "Alicate Decapador/cortador Ajustável Hikari Hk-312",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "ecbcdad8-db77-45dc-875c-ea4b2172a9e9",
+    "sku": "VTK018239",
+    "nome": "Alicate Multiuso Vonder 954 Para Eletrecista 9\"",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "72f144ad-5948-4d1c-9d7e-d8cb42100aaf",
+    "sku": "VTK017221",
+    "nome": "Alicate Vonder Corte Diagonal 6\" 1000v",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "0bf6be56-986c-4f32-8386-04a217cac39e",
+    "sku": "VTK017229",
+    "nome": "Alto Falante Pioneer 6\" Ts-1760br 100rms Par",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "6b567a46-935d-4828-9e0c-3fe87355a5f1",
+    "sku": "VTK017236",
+    "nome": "Alto Falante 5\" Pioneer Ts-1360br 100rms/ Par",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB22432562",
+      "catalogDomainId": "MLB-VEHICLE_STEREOS",
+      "predictedDomainId": "MLB-VEHICLE_SPEAKERS",
+      "predictedCategoryId": "MLB3905"
+    }
+  },
+  {
+    "produtoId": "512135ba-a87a-4168-9e67-e8176adf6f5d",
+    "sku": "VTK017264",
+    "nome": "Alto Falante Triaxial 6\" Pioneer Ts-1790br 120wrms Par",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "cf5c1f11-8e83-4264-a0b6-e07509697ec5",
+    "sku": "VTK019205",
+    "nome": "Alto Falante Subwoofer 10'' Roadstar Rs1000mbr Marine Slim 500w Rms",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "f85d881e-1485-487f-aaad-19c03f40c054",
+    "sku": "VTK018292",
+    "nome": "Alto Falante Subwoofer Pioneer 12\" Ts-w3090br 600w Rms 2x4 Ohms Bobina Dupla",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB27668505",
+      "catalogDomainId": "MLB-AUTOMOTIVE_SPEAKER_BOXES",
+      "predictedDomainId": "MLB-VEHICLE_SPEAKERS",
+      "predictedCategoryId": "MLB3905"
+    }
+  },
+  {
+    "produtoId": "b5968200-7844-4534-8a12-803115e30310",
+    "sku": "VTK018500",
+    "nome": "Alto Falante Roadstar Rs650mbr Marine Coaxial 6,5'' 200w Rms 4 Ohms Par",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "733420e1-bdc4-4a14-92c1-74b818da5106",
+    "sku": "VTK018917",
+    "nome": "Alto Falante Eros Linha Pro E-510 10\" 8r 500w Rms",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "46d92423-968a-4095-8167-e18accd45752",
+    "sku": "VTK018988",
+    "nome": "Alto Falante Eros E908 Trio Evo 8r 450w",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "8f8b8004-2749-4790-b626-6bdc31c30dfd",
+    "sku": "VTK018702",
+    "nome": "Alto Falante Hinor Hpl 18\" 1000w Rms 8r Subwoofer",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "5b434d9c-8393-4dfa-8948-6f4888be8dc2",
+    "sku": "VTK019018",
+    "nome": "Alto Falante Eros Neo E-515-neo-4 15\" 4r 500w Rms",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "1388f38a-f023-4f26-8503-680e3c4bbb8d",
+    "sku": "VTK018501",
+    "nome": "Alto Falante Roadstar Rs850br Marine Coaxial 8'' Par",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "92fa2aa7-5d9c-4765-ace4-e5114af5848d",
+    "sku": "VTK018857",
+    "nome": "Alto Falante Selenium Jbl Original Pro 2206-h 12\" 8r 600w Rms Woofer",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "59a867c4-15c8-47ab-ab14-ef55e5c0628e",
+    "sku": "VTK019005",
+    "nome": "Alto Falante Subwoofer 15\" Eros Target Xbass 5k 2500w Rms 4 Ohms - Amarelo",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "05000abc-702b-494f-983f-b4bf1c02970d",
+    "sku": "VTK017940",
+    "nome": "Alto Falante Jbl Tornado 18swt5600 18\"",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "d80da422-b849-4659-b0f6-ff0efe36e765",
+    "sku": "VTK018489",
+    "nome": "Alto Falante Eros E-15 Hammer 7200 Xbass 4hms Amarelo",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "7c433078-cf08-4965-8cba-fe1e9c822b33",
+    "sku": "VTK005357",
+    "nome": "Alto-Falante 5\" JBL Multisystem 5TRMS80 (PAR)",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB27500703",
+      "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+      "predictedDomainId": "MLB-TABLET_INTERNAL_SPEAKERS",
+      "predictedCategoryId": "MLB129666"
+    }
+  },
+  {
+    "produtoId": "0d6a38d6-d7f4-42f5-9962-787ee81ff0e5",
+    "sku": "VTK005507",
+    "nome": "Alto-falantes 6\" Leson LS6 140w (PAR)",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB42936273",
+      "catalogDomainId": "MLB-VEHICLE_STEREOS",
+      "predictedDomainId": "MLB-VEHICLE_STEREOS_AND_SPEAKERS_KITS",
+      "predictedCategoryId": "MLB443814"
+    }
+  },
+  {
+    "produtoId": "27a4c9ea-fe09-4dc0-9ea3-db3c6bd9139e",
+    "sku": "VTK017836",
+    "nome": "Amplificador Digital Stetsom Cl800.4 800w",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "cd06c332-0ee8-427d-b8c1-5356fdded359",
+    "sku": "VTK017876",
+    "nome": "Amplificador Digital Stetsom Db500 500w 1 Canal 4 Ohms",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "47cb6019-e097-4198-aa5d-da6beb61dbd6",
+    "sku": "VTK017609",
+    "nome": "Amplificador Digital Stetsom Hl800.4 900w 4 Canais 2 Ohms",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "0ec77509-59db-43d9-8ecf-66fbff84f60d",
+    "sku": "VTK018568",
+    "nome": "Amplificador Digital Stetsom Vulcan 3000 1 Canal 2 Ohms",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "31a2970c-b34d-4256-a66f-90bbb08c80f9",
+    "sku": "VTK005814",
+    "nome": "Amplificador Frahm Rd Bt Ceiling Amplifier Rd Bluetooth 56w",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "cab1f7b1-3f10-458c-acc6-673834a79050",
+    "sku": "VTK005880",
+    "nome": "Amplificador Frahm Home Sense 320.4 Dual 320W Bluetooth",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "b220ccb7-0ec1-4976-8cb9-b631697a5aba",
+    "sku": "VTK017944",
+    "nome": "Antena Aquário Px Viuva Negra Base Prolongada Com Bobina Central",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "c3465729-640a-485e-9ea0-9030b622b642",
+    "sku": "VTK018113",
+    "nome": "Antena Aquário Px Viúva Negra 11 Metros Com Base Pu E Bobina Central",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "d897bf5b-12ec-4364-a9d6-d4b8bb4be6bc",
+    "sku": "VTK018075",
+    "nome": "Antena Digital Interna Slim Aquário Dtv-250",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "cc8af7ed-6b7e-44f6-88f3-e8113e723824",
+    "sku": "VTK000275",
+    "nome": "Antena Digital com Cabo 2,5m VHF/UHF/FM/HDTV DTV-100 Aquário",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "2d3c2932-8844-4fd5-9727-2a80d82b3c5a",
+    "sku": "VTK004716",
+    "nome": "Antena Externa Log Para TV LU-20 Aquário",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "d48054f1-8ad9-470a-a00a-79ac81a4aa8e",
+    "sku": "VTK000585",
+    "nome": "Antena Externa Log Para TV LU-30 Aquário",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "4b1023f4-e51c-4b9a-9d9a-aee65923629a",
+    "sku": "VTK000534",
+    "nome": "Antena Interna TV Digital DTV-200 2,5m Aquário",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "2b3dbc5d-3fcf-4445-b10e-a34dba4a9e3e",
+    "sku": "VTK020760",
+    "nome": "Antena Log Digital Proeletronic Prohd-1040db 14db 28 Elementos",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "a153f631-21b1-4b34-8cd6-97c861505e72",
+    "sku": "VTK018866",
+    "nome": "Antena Móvel Aquário M-400c 5/8 De Onda Para Rádio Vhf",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB53413417",
+      "catalogDomainId": "MLB-TV_ANTENNAS",
+      "predictedDomainId": "MLB-VEHICLE_ANTENNAS",
+      "predictedCategoryId": "MLB45256"
+    }
+  },
+  {
+    "produtoId": "68a538a3-9321-4795-9d79-516d4db17feb",
+    "sku": "VTK018865",
+    "nome": "Antena Móvel Aquário B-2003p Marinox 1/4 De Onda Para Rádio Px Com Base De Poliuretano",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB26447292",
+      "catalogDomainId": "MLB-TV_ANTENNAS",
+      "predictedDomainId": "MLB-VEHICLE_ANTENNAS",
+      "predictedCategoryId": "MLB45256"
+    }
+  },
+  {
+    "produtoId": "d582fb22-bb15-4de1-a0b3-1b3ac4d07de0",
+    "sku": "VTK018424",
+    "nome": "ANTENA Móvel Aquário B-2070 COM BOBINA NA BASE PARA Rádio PX POSSUI HASTE Dobrável",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB25374765",
+      "catalogDomainId": "MLB-TV_ANTENNAS",
+      "predictedDomainId": "MLB-TELEPHONY_AND_RADIO_COMMUNICATION_PRODUCTS",
+      "predictedCategoryId": "MLB432450"
+    }
+  },
+  {
+    "produtoId": "e7f7754e-1462-4dda-858a-893478dae2de",
+    "sku": "VTK018968",
+    "nome": "Antena Olimpus New Flex Fiat Traseira 12+",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "5a3285c8-cf05-41c4-ba80-dde3d8e8839f",
+    "sku": "VTK018664",
+    "nome": "Antena Permak Am/fm 2 Estágio Preta",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "83b8f2ec-1894-4f3e-a1f1-01b0a8c62309",
+    "sku": "VTK018562",
+    "nome": "Antena Permak Para Palio/ Mobi Com Cabo 3 Metros - Ref. 100/g",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB52591992",
+      "catalogDomainId": "MLB-GPS_ANTENNAS",
+      "predictedDomainId": "MLB-WIRELESS_ANTENNAS_AND_ADAPTERS",
+      "predictedCategoryId": "MLB457887"
+    }
+  },
+  {
+    "produtoId": "df7923c5-fdc1-42a0-8e83-6a5776ae0136",
+    "sku": "VTK018650",
+    "nome": "Antena Permak Shark Branca 100/m1",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "5f074728-4dc5-48f5-b9f7-bc62d43f9955",
+    "sku": "VTK018935",
+    "nome": "Antena Permak Shark Preta 100/m",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "4e093141-393f-4066-a00b-6db56844533a",
+    "sku": "VTK018936",
+    "nome": "Antena Permak Shark Prata 100/m2",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "b80ad054-8c24-4c4e-8f95-73c01c3f5f18",
+    "sku": "VTK018929",
+    "nome": "Anti Chios (freios A Disco) Orbi 200ml/ 140g",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "5ca865f2-7300-4e91-b8f2-7d3e85c07fb8",
+    "sku": "VTK004137",
+    "nome": "Arandela 6\" FRAHM 50W Quadrada 6CX Preta",
+    "reason": "catalog_parent_product",
+    "details": null
+  },
+  {
+    "produtoId": "194c7dcb-be07-4295-ba39-fa55be846782",
+    "sku": "VTK018041",
+    "nome": "Arandela 6\" Frahm Cs Cx 50w - Branca",
+    "reason": "already_listed",
+    "details": null
+  },
+  {
+    "produtoId": "e854a49a-deb0-4714-8aed-425c4fdbe378",
+    "sku": "VTK017215",
+    "nome": "Arandela Fiamon Sem Falante Redonda Branca 6\"",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "a2a8c7b8-aae0-4782-8b91-d74299209621",
+    "sku": "VTK018598",
+    "nome": "Arandela Frahm 6\" Coaxial 30w Rms 8r Redonda 30158",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "f0e66d56-21a1-4492-a513-cd64fbb9d708",
+    "sku": "VTK018107",
+    "nome": "Arandela Frahm Sem Borda 6\" 100w Quadrada",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "71df1618-1fef-4c80-888d-4b54b63e6271",
+    "sku": "VTK018027",
+    "nome": "Arandela Sem Borda Frahm 6\" 40w Full Ranger Quadrada",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB15927799",
+      "catalogDomainId": "MLB-SPEAKERS",
+      "predictedDomainId": "MLB-VEHICLE_SKIRTS",
+      "predictedCategoryId": "MLB5665"
+    }
+  },
+  {
+    "produtoId": "1135a138-405e-4964-9a12-9044e528901a",
+    "sku": "VTK019124",
+    "nome": "Arandela Sem Borda Frahm 6\" 40w Full Ranger Redonda",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB25986758",
+      "catalogDomainId": "MLB-SPEAKERS",
+      "predictedDomainId": "",
+      "predictedCategoryId": ""
+    }
+  },
+  {
+    "produtoId": "37b54719-9216-4a9d-aee6-7f2e8cf0f67f",
+    "sku": "VTK019114",
+    "nome": "Aw32 Soft Cn Orig 4v Toyota Etios 4v 14+",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "71e8cbf9-9eba-45b9-8902-5f177dc768bc",
+    "sku": "VTK018448",
+    "nome": "Bandeja Móvel Max Eletron 19 1u X 600mm Ventilada 4 Pontos",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "10b4f8c6-17e8-4975-aa31-e59dc829f935",
+    "sku": "VTK017352",
+    "nome": "Base Para Notebook Evus Bpn-03 Twins",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB27661698/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "d4502a54-13c9-46ce-8e55-1629be055604",
+    "sku": "VTK017570",
+    "nome": "Bateria Selada De Chumbo Elgin Vrla 12v 9ah",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB52773191",
+      "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "predictedDomainId": "MLB-UPS_BATTERIES",
+      "predictedCategoryId": "MLB57843"
+    }
+  },
+  {
+    "produtoId": "6aad7bc9-9c00-4597-86de-37c6ddde778e",
+    "sku": "VTK017933",
+    "nome": "Botão De Pânico Ipec Nf",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB30220377",
+      "catalogDomainId": "MLB-ALARM_REMOTE_CONTROLS",
+      "predictedDomainId": "MLB-HABERDASHERY_BUTTONS",
+      "predictedCategoryId": "MLB270272"
+    }
+  },
+  {
+    "produtoId": "188de9f1-b776-4c71-ac01-956b8cdbf07c",
+    "sku": "VTK018388",
+    "nome": "Botoeira Citrox Inox Cube Na/ Nf Cx-4508",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB33121368",
+      "catalogDomainId": "MLB-DOOR_AND_GATE_REMOTE_CONTROLS",
+      "predictedDomainId": "MLB-PUSH_BUTTONS",
+      "predictedCategoryId": "MLB455032"
+    }
+  },
+  {
+    "produtoId": "fb10f581-ba0e-4f24-94a8-c66f60a04a5e",
+    "sku": "VTK017159",
+    "nome": "Bucha Para Alto Falante Original Permak Palio 237/c",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB32056500",
+      "catalogDomainId": "MLB-WALL_ANCHOR_PLUGS",
+      "predictedDomainId": "",
+      "predictedCategoryId": ""
+    }
+  },
+  {
+    "produtoId": "3cd63a03-f703-4590-9acc-4a6e017a1d6a",
+    "sku": "VTK004724",
+    "nome": "Cabo Adaptador USB-C Para Mini DisplayPort Flex",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB36679917",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-DATA_CABLES_AND_ADAPTERS",
+      "predictedCategoryId": "MLB57851"
+    }
+  },
+  {
+    "produtoId": "f47d255f-b6a1-4dc7-81b1-83de6402e1cc",
+    "sku": "VTK002697",
+    "nome": "Cabo Adaptador USB Tipo C Macho Para 3 X USB 3.0 Femea e 1 X RJ45 Femea ADAP 0055 Branca STORM",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "83b3b0f6-a434-4493-a180-1444c69381db",
+    "sku": "VTK018297",
+    "nome": "Cabo Alarme Telecam 50 X 10 Vias Cobre 100 Metros",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB36887558",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "predictedCategoryId": "MLB7070"
+    }
+  },
+  {
+    "produtoId": "fa369a69-3db1-4dcd-9395-e6555e4310d7",
+    "sku": "VTK018078",
+    "nome": "Cabo Auto Permak 0.75mm Branco 100m",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB65356688",
+      "catalogDomainId": "MLB-ELECTRICAL_CABLES",
+      "predictedDomainId": "MLB-POWER_CORDS",
+      "predictedCategoryId": "MLB9600"
+    }
+  },
+  {
+    "produtoId": "880a70e1-bdd1-403c-b372-fa7973ec70bf",
+    "sku": "VTK019181",
+    "nome": "Cabo Automotivo Pompeia 2.50mm Reduzido - Preto",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "34f64d00-5dce-4cfa-8259-8031076be6b9",
+    "sku": "VTK005024",
+    "nome": "Cabo Blindado 2RCA X 2RCA 3m Azul Storm",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "bfbab574-2b33-4d6b-a51a-0daaaa04735b",
+    "sku": "VTK005078",
+    "nome": "Cabo Blindado 2RCA X 2RCA 3m Vermelho Storm",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "2e94b237-3fcd-4a0d-a186-8371feb849a5",
+    "sku": "VTK019484",
+    "nome": "Cabo Blindado Para áudio Estéreo Tiaflex 2x0,20 Mm Preto 602010",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB34725689/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "2359f7d7-9a83-420e-bfc1-9de10ab7ff14",
+    "sku": "VTK019485",
+    "nome": "Cabo Blindado Para áudio Estéreo Tiaflex 2x0,30 Mm Preto 603010",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB32837378/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "09d0f758-10d5-47a9-bb3d-d5cc6408937f",
+    "sku": "VTK018940",
+    "nome": "Cabo Coaxial Rf0,4/2,5+2x26awg Mono 100m",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB63899556",
+      "catalogDomainId": "MLB-POWER_CORDS",
+      "predictedDomainId": "MLB-NETWORK_CABLES",
+      "predictedCategoryId": "MLB431815"
+    }
+  },
+  {
+    "produtoId": "35803dad-4127-4945-8abc-f3b26978f7d8",
+    "sku": "VTK018134",
+    "nome": "Cabo Coaxial Cabletech Master 40 40% Rgc 06 Preto 100 Metros",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "dcb99854-65d0-487e-bde0-29e63e2bc630",
+    "sku": "VTK018428",
+    "nome": "Cabo Coaxial Cabletech Std-40+tp3 Branco 100 Metros 801214000p01cb12",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "3976c413-68d3-4285-af05-5343e8998473",
+    "sku": "VTK019016",
+    "nome": "Cabo Coaxial Cabletech Rge-58 75% Preto 100 Metros",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "9b0406aa-0e5a-4d61-b8b8-59a436652109",
+    "sku": "VTK000462",
+    "nome": "Cabo de Áudio Y 1 Fêmea X 2 Machos 20cm Azul Storm",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB26631784/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "fbb175b5-eb44-44bb-9633-567f8d679cb7",
+    "sku": "VTK017336",
+    "nome": "Cabo De Microfone P10 Macho X Cannon Femea",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "bdb61763-ddc9-479f-ac49-4e0838a61a11",
+    "sku": "VTK019466",
+    "nome": "Cabo De Descida Proeletronic Para Celular Fixo Rgc58 10 Metros Caco-0190",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB31977569",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-TELEPHONE_CABLES",
+      "predictedCategoryId": "MLB48605"
+    }
+  },
+  {
+    "produtoId": "8e8e0eb5-3444-46b0-a0ef-5a5710893440",
+    "sku": "VTK017384",
+    "nome": "Cabo De Força Tripolar Megacabos 1,2m Tipo Mickey - Preto - PC / 5",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "381240fd-88a1-4b16-8802-7b4ee043dc97",
+    "sku": "VTK018712",
+    "nome": "Cabo De Descida Proeletronic Para Celular Fixo Rgc213 20 Metros Caco0192",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB50278127",
+      "catalogDomainId": "MLB-CELLPHONE_SIGNAL_BOOSTER_ANTENNAS",
+      "predictedDomainId": "MLB-TELEPHONE_CABLES",
+      "predictedCategoryId": "MLB48605"
+    }
+  },
+  {
+    "produtoId": "beb75014-53f4-4191-8f04-9a23233f74b1",
+    "sku": "VTK018908",
+    "nome": "Cabo De Guitarra Tiaflex 100 Metros 0,20 Mm Preto 902010",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB34809272/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "32ae1d48-0811-42ef-8520-77c616419c26",
+    "sku": "VTK018830",
+    "nome": "Cabo De Bateria Technoise 70,00mm² Vermelho - Rolo Com 10m",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "dc408ec6-8e7c-420d-951c-00c68ca7256d",
+    "sku": "VTK005491",
+    "nome": "Cabo Display Port 1.2v Para DVI Fêmea Storm",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "ce5d444a-08a2-43c0-80c1-044a25d139f8",
+    "sku": "VTK005775",
+    "nome": "Cabo Display Port 1.2v Para USB- C Macho Storm",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "fc83972a-ead2-4687-b53a-07c3fd56c4a3",
+    "sku": "VTK019044",
+    "nome": "Cabo Flexível Remoto Technoise 100% Cobre Azul 1.50 Mm Rolo 100 Metros",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "928958aa-5d36-44cf-98ea-52a9cb8d4f71",
+    "sku": "VTK022016",
+    "nome": "Cabo Hdmi Evus C-002 3d Macho X Macho Com Filtro V1.4 3,0m",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB38302545/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "bb4de30e-91de-4753-9d50-38cf1bdc7a5c",
+    "sku": "VTK017389",
+    "nome": "Cabo Hdmi Proeletronic Cahd-2010 4k Macho X Macho 2.0 10m",
+    "reason": "catalog_exact_gtin_ambiguous",
+    "details": {
+      "found": 2
+    }
+  },
+  {
+    "produtoId": "281246e0-659e-486d-91cc-32e3ec745aef",
+    "sku": "VTK018941",
+    "nome": "Cabo Lan Megacabos Cat5e 8 Vias Interno 1km",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "748ef8dc-e186-42ef-b716-45e8c3440915",
+    "sku": "VTK017347",
+    "nome": "Cabo Optico Splitter Evus Opf-plc1x16-nc250 Plc 1x16 Nc 1,5m G657a1",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "8398a3fb-8b3b-47e4-8530-c5cc54ec40fe",
+    "sku": "VTK017212",
+    "nome": "Cabo óptico Intelbras Plc 1x2 Nc Xfs 120 Com Divisor 4830013",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB48722734",
+      "catalogDomainId": "MLB-FIBER_OPTIC_SPLITTERS",
+      "predictedDomainId": "MLB-NETWORK_CABLES",
+      "predictedCategoryId": "MLB431815"
+    }
+  },
+  {
+    "produtoId": "a633a5df-049b-4273-bcac-810a3287c1e0",
+    "sku": "VTK017968",
+    "nome": "Cabo óptico Splitter Intelbras Xfs 1321 Plc 1x32 Sc/upc 4830044",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "22d9976e-39c2-4948-9d0b-b5f4d0bbc6ce",
+    "sku": "VTK018526",
+    "nome": "Cabo Para Microfone Santo Angelo Ninja Hg P10 X Xlrf 03ft 091 Cm 8827 Preto",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB22707216",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-DATA_CABLES_AND_ADAPTERS",
+      "predictedCategoryId": "MLB455641"
+    }
+  },
+  {
+    "produtoId": "c56848d6-3f38-496d-aeec-e4e0cc8f22c9",
+    "sku": "VTK020602",
+    "nome": "Cabo Para Microfone Mono Tiaflex Espiralado 100 Metros 1x0,20 Mm 502010",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "7094a8c1-ddd3-4036-9bb7-0c1d3e8cf883",
+    "sku": "VTK020597",
+    "nome": "Cabo Para Microfone Mono Tiaflex Espiralado 100 Metros 1x0,50 Mm 505010",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB36145188/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "bb565648-f8de-4e3b-83cf-2e3bbea9318d",
+    "sku": "VTK019623",
+    "nome": "Cabo Para Microfone Balanceado Tiaflex Af(t)2x0,20 Mm 24awg Preto 100 Metros",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB36104685/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "a5896f14-568a-4e58-8c5a-b26b4964a92a",
+    "sku": "VTK018752",
+    "nome": "Cabo Prolongador Aquário Ac-13 Marinox 60cm",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB36913125",
+      "catalogDomainId": "MLB-AQUARIUM_NETS",
+      "predictedDomainId": "",
+      "predictedCategoryId": ""
+    }
+  },
+  {
+    "produtoId": "6b931c2e-c7cf-40cc-8864-3d5a9de25b4b",
+    "sku": "VTK003138",
+    "nome": "Cabo Speakon Macho Para Speakon Macho 10m CBSP0002 Storm",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB45746417",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+      "predictedCategoryId": "MLB420707"
+    }
+  },
+  {
+    "produtoId": "1f6d9bb7-1e90-44db-a3e2-8202ba78fdf9",
+    "sku": "VTK017884",
+    "nome": "Cabo St- Dvi-dvi 2m Cabo Dvi Com Filtro",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB38401446/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "74e36afb-8ff2-4b14-97b5-b3ee6c588aad",
+    "sku": "VTK017331",
+    "nome": "Cabo Vga Evus C-044 Hd15 Macho X Hd15 Macho Com Filtro 20,0m",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "54bc0755-95dc-4dfc-adb2-a15310c16650",
+    "sku": "VTK017456",
+    "nome": "Cabo Y Rca Blindado Nwt 1mx2f 20cm - Azul",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "f5cfb659-11f6-4bf2-8d4f-4cff5a3e9880",
+    "sku": "VTK017781",
+    "nome": "Cabo Y Rca Blindado Nwt 1mx2f 20cm - Vermelho",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "ab377dea-6051-4411-8920-6a151a28d355",
+    "sku": "VTK019206",
+    "nome": "Caixa Amplificada Frahm Cmf270 Tws",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB41405708",
+      "catalogDomainId": "MLB-SPEAKERS",
+      "predictedDomainId": "MLB-AUTOMOTIVE_SPEAKER_BOXES",
+      "predictedCategoryId": "MLB3904"
+    }
+  },
+  {
+    "produtoId": "27b47229-10ae-4bff-a78b-13e061e90781",
+    "sku": "VTK019003",
+    "nome": "Caixa Amplificada Multiuso Frahm Pw 600 App",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB22589817",
+      "catalogDomainId": "MLB-SPEAKERS",
+      "predictedDomainId": "MLB-AUTOMOTIVE_SPEAKER_BOXES",
+      "predictedCategoryId": "MLB3904"
+    }
+  },
+  {
+    "produtoId": "8e2465a6-d87e-46f7-bfd2-4b923d50ee97",
+    "sku": "VTK018378",
+    "nome": "Caixa Rlp Vazia Para Moto Emborrachada 2 10\" + 2tw + 2driver",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "62f31e56-d0cf-41b4-a36e-f4201c72af16",
+    "sku": "VTK022568",
+    "nome": "Caixa Vazia 2 Alto-falantes 12\" + 4 Cornetas + 2 Tweeter Dutada",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "7394323c-cc8f-4ac4-b3a7-cd19d8bb4fcf",
+    "sku": "VTK017812",
+    "nome": "Calota Aro 14p 879cp-pta Mod Kwid Zen 2020",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "0c3eb874-24a5-4ec7-91d1-67f6a64c4e62",
+    "sku": "VTK017645",
+    "nome": "Calota Aro 14p 879cp-gft Mod Kwid Zen 2020",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "d4cff4da-5e9b-4e1e-84c5-a47b6fca215a",
+    "sku": "VTK018952",
+    "nome": "Calota Aro 15p 193cp-pof Mod Hb20 2020",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "6888f8e5-27b0-4ec5-891f-2e151cf53614",
+    "sku": "VTK018299",
+    "nome": "Calota Aro 14p 344cb-pta Mod Ka+ 2019 Cb - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "f1f626a4-0a7a-4240-9c63-208c480ebb6a",
+    "sku": "VTK018414",
+    "nome": "Calota Aro Grid 382cb-pta-u 14p Onix 2013/19 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "82f7fc43-6138-445c-8742-c0d5c96d168d",
+    "sku": "VTK018764",
+    "nome": "Calota Aro 14p 877cp-pta Mod Kwid 2018/ 19 Cp - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "c40adbdb-8165-4b3b-92f0-354ef1665fa9",
+    "sku": "VTK018242",
+    "nome": "Calota Aro 15p 193cp-pta Mod Hb20 2020 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "4672dd90-0d90-417e-93e7-5e238c2c863d",
+    "sku": "VTK017972",
+    "nome": "Calota Aro 15a 878ar-pta Mod Logan / Sandero 2020 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "bdf6a199-3a7c-4799-b050-6f8305a403df",
+    "sku": "VTK018216",
+    "nome": "Calota Aro Grid 381ca-pbp-u 14p Onix 20/24 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "8ffcc863-e077-4522-9122-aad5a141dd4f",
+    "sku": "VTK018386",
+    "nome": "Calota Aro 14p 133cb-pof Mod Onix / Prisma 2014/ 16 Cb - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "33fa36fb-592a-41d6-86e0-91779c9d7a19",
+    "sku": "VTK018551",
+    "nome": "Calota Aro 14p 373cb-gft Mod Onix / Prisma 2017/ 18 Cb - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "43119194-4bc8-44fd-a470-6485b9015b8a",
+    "sku": "VTK018586",
+    "nome": "Calota Aro Grid 150cp-pbp-u 15p Sport T-cross 25 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "eb1dc2f3-745a-475c-a7aa-6b7c421bf968",
+    "sku": "VTK018647",
+    "nome": "Calota Aro 14p 009ca-gft Mod Gol G5/ Voyage/saveiro 2009/ 11 Ca - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "0f642e19-edf7-4149-98e6-4c2081dd78df",
+    "sku": "VTK018648",
+    "nome": "Calota Aro 14p 026cb-gft Mod Fiesta Hatch / Sedan 2011/ 13 Cb - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "b442b345-b4ea-4bdb-bc32-462d06d305a4",
+    "sku": "VTK018933",
+    "nome": "Calota Aro 14p 877cp-gft Mod Kwid 2018/ 19 Cp - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "bbabf116-70b9-4dbf-bd2c-803a8d4f51bb",
+    "sku": "VTK019004",
+    "nome": "Calota Aro Grid 246cp-pbp-u Idea 15p Gol G7 17/18 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "f6f65b43-d002-43f9-9f4f-868b8821c3fc",
+    "sku": "VTK019122",
+    "nome": "Calota Aro 14p 344cb-gft Mod Ka+ 2019 Cb - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "568c02db-0587-43aa-9519-8be93805d1f7",
+    "sku": "VTK017686",
+    "nome": "Calota Grid Aro 13p 015cb-pta Fiat Modelo Mercurio/ Linea Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "5a73c510-32f0-476c-bfeb-4c8aab0ad8e8",
+    "sku": "VTK017701",
+    "nome": "Calota Grid Aro 13p 158cb-pta Fiat Modelo Palio Fire 2014 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "7c8971e2-d889-4815-9dc5-1ffb7a9cdbdb",
+    "sku": "VTK017823",
+    "nome": "Calota Grid Aro 13p 050cb-pta Fiat Modelo Palio Fire 2004 Cubo Baixo - PC / 4",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB46677996",
+      "catalogDomainId": "MLB-VEHICLE_PARKING_SENSORS",
+      "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+      "predictedCategoryId": "MLB22664"
+    }
+  },
+  {
+    "produtoId": "f2de4847-5634-4e1d-a228-c5daa413381d",
+    "sku": "VTK017844",
+    "nome": "Calota Grid Aro 13p 069cb-pta Gm Modelo Corsa Classic 2012/ 15 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "45aeffa2-db8f-4f1b-a455-c6df9bf927b2",
+    "sku": "VTK017893",
+    "nome": "Calota Grid Aro 13p 227cb-pta Fiat Modelo Uno Mille Way Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "29f9002f-94b4-4c44-a91b-11b2f75dc931",
+    "sku": "VTK017927",
+    "nome": "Calota Grid Aro 13p 080cb-pta Modulo Palio Fire 2011/ 13 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "c46c966a-2ae0-411d-acb7-f60af73095f4",
+    "sku": "VTK017929",
+    "nome": "Calota Grid Aro 13a 101ar-pta Modelo Orbital Aro Pressão - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "e0babeaa-0840-4e16-bb83-6dbcc2860632",
+    "sku": "VTK017964",
+    "nome": "Calota Grid Aro 13p 054cb-pta Fiat Modelo Uno Fire 2004/ 05 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "6122b056-07e8-467e-abde-16f0f444f400",
+    "sku": "VTK017990",
+    "nome": "Calota Grid 244ca-pta Aro 13 P Mod Gol G7 2017 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "4961a105-0e29-459b-a28a-089f6bf6c3ee",
+    "sku": "VTK018020",
+    "nome": "Calota Grid Aro 13p 004cb-pta Gm Modelo Corsa Wind 2000 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "517c586e-5d47-4acb-9b88-bf704dbf2b2f",
+    "sku": "VTK018054",
+    "nome": "Calota Grid Aro 13p 074cb-pta Fiat Modelo Siena/ Palio 2009/ 10 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "81cf05d0-b56d-430e-866c-d8ab737c0399",
+    "sku": "VTK018098",
+    "nome": "Calota Grid Aro 13p 230cb-pta Fiat Modelo Palio Fire 20015/ 16 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "49393922-ecf3-4d99-a801-07855add94d7",
+    "sku": "VTK018182",
+    "nome": "Calota Grid Aro 13p 092cb-pta Fiat Modelo Grand Siena 2012/ 13 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "835a6274-ce59-4205-a804-af2334fd2527",
+    "sku": "VTK018183",
+    "nome": "Calota Grid Aro 13p 220cb-pta Fiat Modelo Palio Essence 2014/ 15 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "984c0e20-dfe6-489f-9d83-087dbe30d3f0",
+    "sku": "VTK018362",
+    "nome": "Calota Grid Aro 13p 013cb-pta Ford Modelo Ka 2008/ 12 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "e4735140-1762-4a17-b399-d1b5c63d5b9d",
+    "sku": "VTK018533",
+    "nome": "Calota Grid Aro 13p 060ca-pta Modelo Volkswaggen Gol G4 2006 Cubo Alto - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "f77ee66f-5cd4-4dab-9b60-8ad9a590e092",
+    "sku": "VTK018621",
+    "nome": "Calota Grid Aro 13p 047ca-pta Modelo Volkswaggen Gol G5 1.6 2012/ 13 Cubo Alto - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "54d72c15-06e1-470f-9b49-e8f1d8aaa519",
+    "sku": "VTK018622",
+    "nome": "Calota Grid Aro 13p 082ca-pta Modelo Gol G5/ Voyage/ Saveiro 2009/ 11 Cubo Alto - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "734887c9-acb9-4bfe-8e3c-43904756b143",
+    "sku": "VTK019068",
+    "nome": "Calota Grid Aro 13p 124cb-pta Ford Ka 2014 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "e0058e46-ee57-4906-b1c3-3ebcb69b1ba7",
+    "sku": "VTK019069",
+    "nome": "Calota Grid Aro 13p 057cb-pta Gm Modelo Celta 2000 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "7a542791-beba-4f20-876d-488896970d59",
+    "sku": "VTK017644",
+    "nome": "Calota Grid 245ca-pta Aro 14 P Mod Gol G7 2017 Ca - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "a8213fcb-acf1-45b1-8b12-5f5d8b193420",
+    "sku": "VTK017687",
+    "nome": "Calota Grid Aro 14p 133cb-pta Gm Modelo Onix/ Prisma 2014/ 15 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "06c5baf0-7d98-4d8e-8d8a-e450233fd2e0",
+    "sku": "VTK017707",
+    "nome": "Calota Grid Aro 14p 026cb-pta Ford Modelo Fiesta Sedan 2011/ 13 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "afc093cd-e079-4781-b679-280b8dbbfd65",
+    "sku": "VTK017754",
+    "nome": "Calota Grid Aro 14p 053cb-pta Gm Modelo Corsa Hatch 2004 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "5c657eda-5181-4de4-a07a-da764c07cfea",
+    "sku": "VTK017786",
+    "nome": "Calota Grid Aro 14p 094cb-pta Fiat Modelo Palio Attractive 2012/ 13 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "eba042c3-ac6e-4320-bdf0-458150d3e0fa",
+    "sku": "VTK017815",
+    "nome": "Calota Grid Aro 14p 295cb Prata Argo/cronos 2022 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "119ec9ba-867b-4cec-abb6-03c5dc4615cf",
+    "sku": "VTK017831",
+    "nome": "Calota Grid Aro 14p 293cb Prata Mobi 2021 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "9db16535-0fd2-444d-b455-b4c27e192bae",
+    "sku": "VTK017846",
+    "nome": "Calota Grid Aro 14p 048ca-pta Volkswaggen Modelo Gol/ Saveiro G5 1.6 2012/ 13 Cubo Alto - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "cba08661-a3f3-4fed-8d21-c2e24966bf09",
+    "sku": "VTK017862",
+    "nome": "Calota Grid Aro 14p 079cb-pta Fiat Modelo Uno Way 2011/ 12 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "7e995d63-797e-461a-829d-c08eb7dc9b89",
+    "sku": "VTK017864",
+    "nome": "Calota Grid Aro 14a 870ar-pta Modelo Renault Logan 2014/ 16 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "8cbafe22-99c7-40b0-b239-d07cc5cef4c0",
+    "sku": "VTK017894",
+    "nome": "Calota Grid Aro 14p 340cb-pta Ford Modelo Novo Ka / K+ 2015 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "4bd36d66-d4ba-4cfc-9226-482d085559ca",
+    "sku": "VTK017928",
+    "nome": "Calota Grid Aro 14p 109cb-pta Gm Modelo Agile 2012/ 13 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "dadf008c-d494-4df6-ba1e-417a9427b73f",
+    "sku": "VTK017966",
+    "nome": "Calota Grid Aro 14p 014cb-pta Ford Modelo Fiesta 2008/ 10 Cubo Baixo - PC / 4",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB43234800",
+      "catalogDomainId": "MLB-VEHICLE_FOG_LIGHT_GRILLS",
+      "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+      "predictedCategoryId": "MLB22664"
+    }
+  },
+  {
+    "produtoId": "74a87a28-0f9d-4d63-b436-f4f71c06f455",
+    "sku": "VTK018053",
+    "nome": "Calota Grid Aro 14a 136ar-pta Citroen Modelo C3/ C4 2014/ 15 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "68afbc5a-0d55-4e6e-b84c-adaf15e8a4ae",
+    "sku": "VTK018058",
+    "nome": "Calota Grid Aro 14p 185cb-pta Modelo Hb20/ Hb20s 2014/ 15 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "e7aff2ca-5c05-49d8-9421-94f098725214",
+    "sku": "VTK018059",
+    "nome": "Calota Grid Aro 14p 067ca-pta Volkswaggen Modelo Gol Trend G5 2007/ 08 Cubo Alto - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "94cff049-0b44-4e29-93f3-addbf4c528c9",
+    "sku": "VTK018099",
+    "nome": "Calota Grid Aro 14p 166ca-pta Fiat Modelo Strada Trekking 2014 Cubo Alto - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "7e8a1843-15aa-40df-980e-251c81e205bf",
+    "sku": "VTK018100",
+    "nome": "Calota Grid Aro 14p 025cb-pta Ford Modelo Fiesta Hatch 2011/ 12 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "b5dab376-3ee2-4ab4-9fec-f265e14a9571",
+    "sku": "VTK018140",
+    "nome": "Calota Grid Aro 14p 073cb-pta Fiat Modelo Siena/ Palio 2009/ 10 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "5269bed4-69b0-40dd-9736-0fd82a6af42d",
+    "sku": "VTK018184",
+    "nome": "Calota Grid Aro 14p 370cb-pta Gm Modelo Montana 2013/ 15 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "d3fcd8c7-7e42-4e39-a426-d95c0ed0896b",
+    "sku": "VTK018188",
+    "nome": "Calota Grid Aro 14p 117ca-pta Volkswaggen Modelo Gol/ Voyage G5/ G6 2014 Cubo Alto - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "550d26b3-0bde-4e1c-929c-07cd1e4bb9eb",
+    "sku": "VTK018234",
+    "nome": "Calota Grid Aro 14p 241ca-pta Volkswaggen Modelo Gol / Voyage G6 2015 Cubo Alto - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "25022deb-1633-405b-a57b-abda1abf9bd6",
+    "sku": "VTK018235",
+    "nome": "Calota Grid Aro 14p 112ca-pta Volkswaggen Modelo Gol/ Voyage G5/ G6 2013 Cubo Alto - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "612c7e99-5d81-4b62-922b-4e0c36836499",
+    "sku": "VTK018286",
+    "nome": "Calota Grid Aro 14p 016ca-pta Volkswaggen Modelo Gol/ Voyage/ Saveiro 2009/ 12 Cubo Alto - PC / 4",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB46678024",
+      "catalogDomainId": "MLB-VEHICLE_PARKING_SENSORS",
+      "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+      "predictedCategoryId": "MLB22664"
+    }
+  },
+  {
+    "produtoId": "86bd6e2f-f918-40c2-9ccd-f8d8b98ea671",
+    "sku": "VTK018363",
+    "nome": "Calota Grid Aro 14a 100ar-pta Modelo Orbital Aro De Pressão - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "ffab32eb-a442-4037-8195-3f8d816205f0",
+    "sku": "VTK018364",
+    "nome": "Calota Grid Aro 14p 049cb-pta Modelo Volkswaggen Fox Até 2012/ 13 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "02ff96cf-f107-4ba3-8c5c-5a3dc73cb51b",
+    "sku": "VTK018379",
+    "nome": "Calota Grid 291cb-pta Aro 14 P Mod Mobi 2017 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "f1986b63-bdaf-4a6c-8fa7-2feebcbb4577",
+    "sku": "VTK018380",
+    "nome": "Calota Grid 373cb-pta Aro 14 P Mod Onix 2017 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "07e0dab8-0657-4cf2-a21c-6c9d1251f80b",
+    "sku": "VTK018535",
+    "nome": "Calota Grid Aro 14p 121cp-pta Modelo Volkswaggen Fox/ Polo 2014 Cubo Padrão - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "13a203d1-dce9-4049-86de-0ae60f4d0cb1",
+    "sku": "VTK018619",
+    "nome": "Calota Grid Aro 14p 191cb-pta Modelo Hb20/ Hb20s 2016 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "cb9aa568-0eb9-4f56-88dc-ca44f1bbb210",
+    "sku": "VTK018738",
+    "nome": "Calota Grid Aro 14a 065ar-pta Modelo Renault Clio / Logan 2007/ 08 Aro De Pressão - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "76b393ca-42e3-41c6-bc37-f3fc7de7e52d",
+    "sku": "VTK018739",
+    "nome": "Calota Grid Aro 14p 108ca-pta Volkswaggen Modelo Saveiro 2013 Cubo Alto - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "0e5e463b-c8e8-46bd-a1e8-6696e56cfdc7",
+    "sku": "VTK018740",
+    "nome": "Calota Grid Aro 14p 190ca-pta Volkswaggen Modelo Saveiro 2014/ 15 Cubo Alto - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "dcc53781-faa4-4b59-9095-2d08fe8d42a1",
+    "sku": "VTK018795",
+    "nome": "Calota Grid Aro 14p 378cb Prata Onix/prisma 2021 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "74fc5054-2e2f-4297-942d-b10c77a6879e",
+    "sku": "VTK018886",
+    "nome": "Calota Grid Aro 14p 093cb-pta Fiat Modelo Grand Siena 2012/ 13 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "0ec807e8-4f8e-4586-94bd-a682d2f91486",
+    "sku": "VTK018892",
+    "nome": "Calota Grid Aro 14p 061ca-pta Volkswaggen Modelo Gol G4 / Parati 2006 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "845cfcfb-dae2-4def-ae77-38ddb8539ddb",
+    "sku": "VTK018915",
+    "nome": "Calota Grid 292cb-pta Aro 14 P Mod Argo 2017 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "8f6b30bf-e75f-4fd2-8c72-a8acb80930ad",
+    "sku": "VTK018916",
+    "nome": "Calota Grid 374cb-pta Aro 14 P Mod Onix 2017 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "fac8ca75-73f8-47a0-a2f0-c977f1e2330c",
+    "sku": "VTK019070",
+    "nome": "Calota Grid Aro 14a 086ar-pta Modelo Renault Sandero/ Logan 2009/ 13 Aro De Pressão - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "ac9bdcdd-d878-422b-ab40-a38fe6f20669",
+    "sku": "VTK019071",
+    "nome": "Calota Grid Aro 14p Volkswaggen Modelo Gol/ Voyage G5/ G6 2013 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "27091cef-3f06-4657-b1e1-46c9a625ced1",
+    "sku": "VTK017721",
+    "nome": "Calota Grid Aro 15p 296cp Prata Argo/cronos 2022 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "5abcf2f7-bbd1-4357-95fd-1f174b3ba313",
+    "sku": "VTK017742",
+    "nome": "Calota Grid Aro 15\" Modelo Nova Strada 2021 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "5a3583c5-dc63-40b7-b052-7734be444e4a",
+    "sku": "VTK017845",
+    "nome": "Calota Grid Aro 15a 869ar-pta Modelo Renault Sandero 2014/ 16 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "6c3584cf-235b-4f73-9ed9-11da5c32d26b",
+    "sku": "VTK017895",
+    "nome": "Calota Grid Aro 15p 195cp-pta Modelo Onix / Prisma Lt 2014/ 16 - PC / 4",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB45075573",
+      "catalogDomainId": "MLB-SERVING_AND_HOME_TRAYS",
+      "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+      "predictedCategoryId": "MLB22664"
+    }
+  },
+  {
+    "produtoId": "5d58c687-7dc3-4c97-94f6-3ea1b180b095",
+    "sku": "VTK018101",
+    "nome": "Calota Grid Aro 15p 078cp-pta Volkswaggen Modelo Fox/ Space 2012/ 13 Cubo Padrão - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "fcaf1426-0108-4adf-831c-21a28a836637",
+    "sku": "VTK018141",
+    "nome": "Calota Grid Aro 14p 192 Cp-pta Hyundai Hb20/ Hb20s 2016 Cubo Padrão - PC / 4",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB51222696",
+      "catalogDomainId": "MLB-VEHICLE_EMBLEMS",
+      "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+      "predictedCategoryId": "MLB22664"
+    }
+  },
+  {
+    "produtoId": "9d3efdfd-a524-44d0-b933-7cb0428d7a9e",
+    "sku": "VTK018142",
+    "nome": "Calota Grid Aro 15p 119cp-pta Volkswaggen Modelo Fox/ Space/ Polo 2014 Cubo Padrao - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "4e1ebdb8-8099-409c-b1e4-555c6ad8402b",
+    "sku": "VTK018185",
+    "nome": "Calota Grid Aro 15p 030cp-pta Modelo Agile 2010/2013 Cubo Padrão - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "85eb2f12-906a-4476-b259-a5b030f645ae",
+    "sku": "VTK018237",
+    "nome": "Calota Grid 602ar-pta Aro 15 Ar Universal Gss - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "4b7a51f1-b417-4989-b3ae-0658389adde2",
+    "sku": "VTK018438",
+    "nome": "Calota Grid Aro 15a 120ar-pta Modelo Honda Fit / City 2015/ 16 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "694415e3-f592-4241-a9e2-f69065c99469",
+    "sku": "VTK018735",
+    "nome": "Calota Grid Aro 15a 130ar-pta Citroen Modelo C3 2014/ 15 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "65ecfa9c-ca72-42a4-87f9-6c361ea3b99f",
+    "sku": "VTK018741",
+    "nome": "Calota Grid Aro 15p 242cp-pta Gol/ Voyage 15 Cubo Pequeno - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "045481f2-3f3c-49a1-bdbc-69291edce62c",
+    "sku": "VTK018755",
+    "nome": "Calota Grid 375cb-pta Aro 15 P Mod Onix/prisma 17/18 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "ce690196-141a-4bec-ae0a-8566f738fe50",
+    "sku": "VTK018796",
+    "nome": "Calota Grid Aro 15p 379cp Prata Onix/prisma 2021 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "828e41d5-6add-4e5e-8307-abdf57aa57fc",
+    "sku": "VTK018890",
+    "nome": "Calota Grid Aro 15a 085ar-pta Modelo Renault Sandero/ Logan/ Scenic 2008/ 11 Aro De Pressão - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "94e27278-e6da-4ca4-bf95-3128314025ad",
+    "sku": "VTK018914",
+    "nome": "Calota Grid 248cp-pta Aro 15 P Mod Saveiro 2017 - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "08df3be3-519f-45c5-bab3-1dfd20a27fc9",
+    "sku": "VTK018649",
+    "nome": "Calota Grid Aro 14a 461ar-grafite Modelo Etios 2014/2015 Ar - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "943bcbd7-cb62-4761-adaf-085d4551822f",
+    "sku": "VTK018931",
+    "nome": "Calota Grid Aro 14p 292cb-pof Mod Argo 2017/18 Cb - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "065903be-45b2-48b6-9023-7735925177ef",
+    "sku": "VTK018636",
+    "nome": "Camera Bullet Sohoplus Ip 2 Mp Poe Ip66 Ipc002",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB32453654",
+      "catalogDomainId": "MLB-SECURITY_MONITORS",
+      "predictedDomainId": "MLB-SURVEILLANCE_CAMERAS",
+      "predictedCategoryId": "MLB7073"
+    }
+  },
+  {
+    "produtoId": "2dc9047a-b734-40dd-a3e9-2b46a8c03b3e",
+    "sku": "VTK019100",
+    "nome": "Camera Dome Hikvision 3.0 Ds-2ce16c2t-vfir 2.8-12mm 960p",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB14892185/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "04602138-b77d-480a-a48e-010ba2404e1f",
+    "sku": "VTK017907",
+    "nome": "Capa Marítima Protetora Roadstar Rs4201m Para Rádio De Lancha / Barco",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB62242572",
+      "catalogDomainId": "MLB-WALKIE_TALKIE_COVERS",
+      "predictedDomainId": "MLB-VEHICLE_COVERS",
+      "predictedCategoryId": "MLB271431"
+    }
+  },
+  {
+    "produtoId": "7d3cadf6-0d21-4fb1-8167-9f11804ce7d6",
+    "sku": "VTK019090",
+    "nome": "Capota Marítima Concórdia Flash Cover Ba093l Volkswagen Saveiro Sem Grade 1982/1997 Baguete",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "93869b7d-12a3-4370-95ba-92ec02b61cfc",
+    "sku": "VTK019089",
+    "nome": "Capota Marítima Concórdia Flash Cover Ba130l Mitsubishi L200 Triton 2009/2017 Baguete",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "7144b025-bbee-4764-b1c7-7bf5380b2ca6",
+    "sku": "VTK019095",
+    "nome": "Capota Marítima Flash Cover Ff126 Fiat Strada Cabine Estendida Com Gancho Com Step 1998/2013 Force",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "4266bea0-14ff-4ee1-9fc4-524d61b64221",
+    "sku": "VTK018635",
+    "nome": "Capota Marítima Concórdia Flash Cover Ba155l Volkwagen Saveiro Cabine Simples Com Gancho 2010+ Baguete",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "788b2551-cb0c-4e6d-9be9-a3a1947fd354",
+    "sku": "VTK019097",
+    "nome": "Capota Marítima Flash Cover Ff184 Fiat Strada Working Cabine Dupla 2014/2019 Force",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "2feb7e97-6953-4508-8055-755956acb219",
+    "sku": "VTK019099",
+    "nome": "Capota Marítima Flash Cover Ff147 Fiat Strada Cabine Dupla Sem Gancho Com Step 2010/2013 Force",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "c95e7e90-3c29-4006-96c2-24f3d61e2b16",
+    "sku": "VTK018748",
+    "nome": "Capota Marítima Flash Cover Ff154 Volkswagen Saveiro Ce Sem Gancho 2010/2020 Force",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "8718e533-fbbf-4dcc-9fa6-b0769c8682c9",
+    "sku": "VTK019174",
+    "nome": "Capota Marítima Flash Cover Ff223 Renault Duster Oroch Cabine Dupla 2022+ Force",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "e92d8175-c067-44e4-ac0a-6c104db748f2",
+    "sku": "VTK018911",
+    "nome": "Capota Marítima Flash Cover Ff123 Nissan Frontier Sel D40 Cabine Dupla 2009/2015 Force",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "4fff33d4-ab0a-43e5-bb40-0aa655154278",
+    "sku": "VTK019094",
+    "nome": "Capota Marítima Flash Cover Ff194 Toyota Hilux Cabine Dupla 2016+ Force",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "1241c218-6126-42f2-9cc9-46cb16e9a1fd",
+    "sku": "VTK019092",
+    "nome": "Capota Marítima Flash Cover Ff166 Chevrolet Montana 2011/2021 Force",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "f1c7ae2c-2877-4518-987c-94920709e072",
+    "sku": "VTK019108",
+    "nome": "Capota Marítima Flash Cover Ff173 Volkswagen Amarok Cabine Simples 2010+ Force",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "8d365f94-35d8-4b2d-a675-1afe14d709c9",
+    "sku": "VTK017562",
+    "nome": "Carregador Veicular Elgin Usb 12v - 2 Saídas",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "c67795dd-f96b-478b-9af7-f7265d3f6071",
+    "sku": "VTK018944",
+    "nome": "Central Laço Indutivo Citrox 2 Pontos Cx-7602",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB30417363",
+      "catalogDomainId": "MLB-GATE_MOTORS",
+      "predictedDomainId": "MLB-TOOL_AND_CONSTRUCTION_SUPPLIES",
+      "predictedCategoryId": "MLB455017"
+    }
+  },
+  {
+    "produtoId": "acb93d87-11f9-4c26-8c81-b56ef6738607",
+    "sku": "VTK018669",
+    "nome": "Central Soft Unique Aw52 2v Kwid 2017+",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "f14e83a0-cb35-42ff-ac02-1d46f738ba75",
+    "sku": "VTK018449",
+    "nome": "Central Viaweb Vw8z Gprs Ip Caixa Metálica",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB33583521",
+      "catalogDomainId": "MLB-BUSINESS_TELEPHONE_SYSTEMS",
+      "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "predictedCategoryId": "MLB7070"
+    }
+  },
+  {
+    "produtoId": "05e201f2-e8d0-4c81-bb82-c0b058e0c6a0",
+    "sku": "VTK019169",
+    "nome": "Centralina Soft Aw53 4v Motorista Inteligente",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB56742327/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "9dd61838-7a13-4344-9aae-bbae51ff98de",
+    "sku": "VTK017904",
+    "nome": "Centralina Soft Aw54 4 Vidros Comum + Ae",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB54623145/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "6ec281b5-3857-4cf0-9370-8f62d1af46a2",
+    "sku": "VTK017930",
+    "nome": "Chave Canivete B&s Gm Cruze/ Cobalt/ Agile 3 Botoes Sem Circuito",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "2f410b69-9b05-49fd-95ab-487e32bfb552",
+    "sku": "VTK017924",
+    "nome": "Chaveiro Positron Novo Px-32 Cyber 4 Botões Preto",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB27040732",
+      "catalogDomainId": "MLB-VEHICLE_ALARMS",
+      "predictedDomainId": "MLB-KEYCHAINS",
+      "predictedCategoryId": "MLB22642"
+    }
+  },
+  {
+    "produtoId": "853ee0d7-5ad0-4312-a297-4af55b2194d2",
+    "sku": "VTK018751",
+    "nome": "Chaveiro Presença Positron Dpn62 Para Duoblock Fx G6/ Cg150/ 125",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB32352012",
+      "catalogDomainId": "MLB-VEHICLE_ALARMS",
+      "predictedDomainId": "MLB-ACCESS_TURNSTILES",
+      "predictedCategoryId": "MLB263765"
+    }
+  },
+  {
+    "produtoId": "b24b2c62-e1e9-4db8-a1e7-e091641fc30d",
+    "sku": "VTK018608",
+    "nome": "Chicote Dedicado Positron Pronnect Hyundai Veloster 2013",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "224a8e84-1f7c-4167-9bc0-7a48b468338e",
+    "sku": "VTK018304",
+    "nome": "Chicote Permak Para Cd Honda Civic 2007 A 2011 - 35/d2",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "bdc1df2c-e4c2-448c-973f-59fdc44a7186",
+    "sku": "VTK018408",
+    "nome": "Climatizador Evaporativo Symphony Hicool I 31l 127v 60hz",
+    "reason": "catalog_exact_gtin_ambiguous",
+    "details": {
+      "found": 2
+    }
+  },
+  {
+    "produtoId": "203acc55-b562-43c6-b837-06e93101fac7",
+    "sku": "VTK018502",
+    "nome": "Conector Derivação Permak Taplink 1,50 A 2,50mm - Azul",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB64965281/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "6402c25d-e7cd-4c19-8a5f-516193abda74",
+    "sku": "VTK018828",
+    "nome": "Conector Derivação Permak Taplink 2,50 A 6,00mm Com 25 Unidades - Amarelo",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB27888167/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "dc803a1a-6674-4bd4-a183-adae5eaeecf9",
+    "sku": "VTK017899",
+    "nome": "Conector Para Cd Nissan Kicks",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "df5f076d-34e3-4055-8bb1-4a5c31aade74",
+    "sku": "VTK018454",
+    "nome": "Conector Para Cd Vw Jetta/passat",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB21341534",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-VEHICLE_OBD_CONNECTORS",
+      "predictedCategoryId": "MLB116341"
+    }
+  },
+  {
+    "produtoId": "9d9f9acd-f081-4617-9b76-7a108bdd7a72",
+    "sku": "VTK018753",
+    "nome": "Conector Permak Cd Do Nissan March Livina Versa 35-d7",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB24598053",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-VEHICLE_OBD_CONNECTORS",
+      "predictedCategoryId": "MLB116341"
+    }
+  },
+  {
+    "produtoId": "47638703-a897-463e-ae17-0d9ad238732d",
+    "sku": "VTK018616",
+    "nome": "Contra Frente Plástica Permak Ka Focus Escot Ranger 2 Din 89/c2",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB49204248",
+      "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "predictedDomainId": "",
+      "predictedCategoryId": ""
+    }
+  },
+  {
+    "produtoId": "61eddeb1-1475-4a17-8344-adbeca5cc8af",
+    "sku": "VTK018714",
+    "nome": "Contra Frente Plástica Permak Toyota Hilux Sw4 2 Din 89/z3",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB51341026",
+      "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "predictedDomainId": "",
+      "predictedCategoryId": ""
+    }
+  },
+  {
+    "produtoId": "24a37bf9-448f-4d52-8ef3-2ed05512ba8e",
+    "sku": "VTK019030",
+    "nome": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din Cinza 89/m3",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB28674283",
+      "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "predictedDomainId": "MLB-LIGHT_VEHICLE_REPLACEMENTS",
+      "predictedCategoryId": "MLB447347"
+    }
+  },
+  {
+    "produtoId": "78771007-6730-4434-ae9f-f8094ad3ac11",
+    "sku": "VTK018517",
+    "nome": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din Prata 89/m2",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB27488461",
+      "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "predictedDomainId": "MLB-LIGHT_VEHICLE_REPLACEMENTS",
+      "predictedCategoryId": "MLB447347"
+    }
+  },
+  {
+    "produtoId": "b0da7ce9-8848-4a03-ad41-138294477102",
+    "sku": "VTK018870",
+    "nome": "Contra Frente Plástica Permak Fiat Stilo 2 Din Preta",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB50657370",
+      "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "predictedDomainId": "MLB-LIGHT_VEHICLE_REPLACEMENTS",
+      "predictedCategoryId": "MLB447347"
+    }
+  },
+  {
+    "produtoId": "2d23d922-5228-4a5a-97f0-35903478d514",
+    "sku": "VTK018723",
+    "nome": "Contra Frente Plástica Permak Fiat Bravo 2 Din Preta",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB50745398",
+      "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "predictedDomainId": "",
+      "predictedCategoryId": ""
+    }
+  },
+  {
+    "produtoId": "1395fed2-dc1c-43ed-9dd5-6ce0c42743b7",
+    "sku": "VTK018868",
+    "nome": "Contra Frente Plástica Permak Toyota Etios 2 Din Preta",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB52194075",
+      "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "predictedDomainId": "MLB-LIGHT_VEHICLE_REPLACEMENTS",
+      "predictedCategoryId": "MLB458635"
+    }
+  },
+  {
+    "produtoId": "f890678d-4601-445e-ae96-e7580dabdd80",
+    "sku": "VTK018869",
+    "nome": "Contra Frente Plástica Permak Honda New Civic 2012 2 Din",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB51341037",
+      "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "predictedDomainId": "",
+      "predictedCategoryId": ""
+    }
+  },
+  {
+    "produtoId": "1be0b415-c95b-460a-bab8-2525814bcfbd",
+    "sku": "VTK018943",
+    "nome": "Controlador Acesso Ip Wide Cx-7006",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB29031503",
+      "catalogDomainId": "MLB-RFID_TAGS",
+      "predictedDomainId": "MLB-PROXIMITY_READERS",
+      "predictedCategoryId": "MLB276631"
+    }
+  },
+  {
+    "produtoId": "10a2a623-2b58-438c-a0c2-aa46022bb855",
+    "sku": "VTK018325",
+    "nome": "Controlador De Volume Frahm Cv-10 10w Mono",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB32967617",
+      "catalogDomainId": "MLB-AUDIO_AMPLIFIERS",
+      "predictedDomainId": "MLB-VOLTAGE_REGULATORS",
+      "predictedCategoryId": "MLB435615"
+    }
+  },
+  {
+    "produtoId": "94af03bd-25f4-44ad-9d6e-86f57700f57d",
+    "sku": "VTK017267",
+    "nome": "Controle Remoto Ar Condicionado Elgin Ecoplus Mxt",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "c70c150e-5fa1-4aa1-a8a1-063284f3e000",
+    "sku": "VTK018566",
+    "nome": "Controle Remoto Original Para Smart Box Stv-3000 Ace-stv30-cnt",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "29dc5fa4-1b4d-4261-b981-ac9de650b853",
+    "sku": "VTK017246",
+    "nome": "Controle Remoto Copiar Hombrus 433mhz Code Learn 3 Botões",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB30425946",
+      "catalogDomainId": "MLB-ALARM_REMOTE_CONTROLS",
+      "predictedDomainId": "MLB-REMOTE_CONTROL_TOY_VEHICLES",
+      "predictedCategoryId": "MLB2963"
+    }
+  },
+  {
+    "produtoId": "d8263926-b944-4847-9b7f-ace42c2f5dcf",
+    "sku": "VTK017980",
+    "nome": "Controle Remoto Fks Cr961 02 Botões Fiat",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "f713b5db-60e1-4bbd-93f1-bd3ebaa839fd",
+    "sku": "VTK018294",
+    "nome": "Controle Remoto Intelbras Rf Ir3",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB21742606",
+      "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "predictedDomainId": "MLB-ALARM_REMOTE_CONTROLS",
+      "predictedCategoryId": "MLB33412"
+    }
+  },
+  {
+    "produtoId": "97dd3f7b-07a8-4252-9a66-c2616ad2f1f0",
+    "sku": "VTK018768",
+    "nome": "Conversor Balun Max Eletron Câmera Rack Power Rj 45 Bnc + P4 C/2",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "dc303f1e-c351-47b5-b84f-fd288ba331e4",
+    "sku": "VTK017995",
+    "nome": "Conversor De Audio/video Evus C-085 Hdmi Para 3 Rca",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "f456cea2-8ff3-4e77-974c-9a1d52b090ee",
+    "sku": "VTK018029",
+    "nome": "Conversor De Audio Rca Bee Link 4ch",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB29492270",
+      "catalogDomainId": "MLB-VEHICLE_WIRELESS_FM_TRANSMITTERS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONVERTERS",
+      "predictedCategoryId": "MLB421298"
+    }
+  },
+  {
+    "produtoId": "b86652d3-9c98-4c60-9dc2-1771c2855f3e",
+    "sku": "VTK019158",
+    "nome": "Conversor De Audio Rca Bee Link 4 Ch + Superbass",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB28851943",
+      "catalogDomainId": "MLB-VEHICLE_WIRELESS_FM_TRANSMITTERS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONVERTERS",
+      "predictedCategoryId": "MLB421298"
+    }
+  },
+  {
+    "produtoId": "0fbfe801-7b4c-4828-81ce-e00873bca1d6",
+    "sku": "VTK017847",
+    "nome": "Conversor Mxt De áudio ótico Para áudio Analógico Estéreo",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "9c3663e8-0acd-468c-8bc8-1a946e462418",
+    "sku": "VTK018345",
+    "nome": "Corneta Jbl Hl14-50 Trio Alumínio",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB43554008",
+      "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+      "predictedDomainId": "MLB-HORN_DRIVERS",
+      "predictedCategoryId": "MLB439390"
+    }
+  },
+  {
+    "produtoId": "44b3d34d-83bb-4fea-bc12-bbaa2d4b8912",
+    "sku": "VTK017969",
+    "nome": "Corneta Profissional Jbl Hl11-25 Trio Branca",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "4687b5e3-c51a-4e90-9878-e5b29d544e29",
+    "sku": "VTK019019",
+    "nome": "Corzus Ftd 80 Hi-tech Conversor Ac/dc 80a 13,8v Fonte Digital",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "3e20ce56-00dd-491e-a9d0-0a26e0431bfb",
+    "sku": "VTK017238",
+    "nome": "Detector De Temperatura 12/ 24v Segurimax Contato Seco",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB29264886",
+      "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "predictedDomainId": "MLB-METAL_DETECTORS",
+      "predictedCategoryId": "MLB278141"
+    }
+  },
+  {
+    "produtoId": "e1010b67-3341-4029-af06-99c399d85197",
+    "sku": "VTK002792",
+    "nome": "Detector Óptico de Fumaça 12V/24V SEGURIMAX",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB22503600",
+      "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "predictedDomainId": "MLB-VOLTAGE_DETECTORS",
+      "predictedCategoryId": "MLB260688"
+    }
+  },
+  {
+    "produtoId": "33cc5faf-5178-4aea-827e-0d86c55784b7",
+    "sku": "VTK018381",
+    "nome": "Detector Pyronix Fp02302 Octopus Dq 360 Graus 12 Metros",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB36239262",
+      "catalogDomainId": "MLB-SECURITY_MONITORS",
+      "predictedDomainId": "MLB-METAL_DETECTORS",
+      "predictedCategoryId": "MLB278141"
+    }
+  },
+  {
+    "produtoId": "9646acd3-c2c3-4e28-97f6-3cf5fa0d55ed",
+    "sku": "VTK017636",
+    "nome": "Divisor Proeletronic Pqdv-2024 1:4 Satélite 5 2400mhz",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB57792827",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+      "predictedDomainId": "MLB-MANUAL_DOUGH_DIVIDERS",
+      "predictedCategoryId": "MLB277352"
+    }
+  },
+  {
+    "produtoId": "7c2e6935-5434-49e1-aa54-97e66714c919",
+    "sku": "VTK017986",
+    "nome": "Driver Fenólico Jbl D450 Trio 300w 8r Rms",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "d2cdc58b-6096-4cbe-a10a-5ff9f7672199",
+    "sku": "VTK018594",
+    "nome": "Driver Titânio Jbl D220-ti 160w Rms 8r",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB32331692",
+      "catalogDomainId": "MLB-SPEAKERS",
+      "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+      "predictedCategoryId": "MLB46559"
+    }
+  },
+  {
+    "produtoId": "88b69e08-8f01-4735-a01b-f48c99ddae31",
+    "sku": "VTK023618",
+    "nome": "Espaguete Corrugado Permak 4,5mm 3/16 20m",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB22145359",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-CORRUGATED_PIPES",
+      "predictedCategoryId": "MLB411424"
+    }
+  },
+  {
+    "produtoId": "6adc4bfa-de2c-4f5f-9c9f-b26dc4df07e2",
+    "sku": "VTK023619",
+    "nome": "Espaguete Corrugado Permak 7,5mm 1/4 20m",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB22235561",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-CORRUGATED_PIPES",
+      "predictedCategoryId": "MLB411424"
+    }
+  },
+  {
+    "produtoId": "9a85a55b-bbc9-47a0-b4de-ff561b1b5fac",
+    "sku": "VTK023620",
+    "nome": "Espaguete Corrugado Permak 10mm 3/8 20m",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB21852246",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-CORRUGATED_PIPES",
+      "predictedCategoryId": "MLB411424"
+    }
+  },
+  {
+    "produtoId": "dfeca35e-dda6-4ba1-bdb8-93a8d42c11c1",
+    "sku": "VTK023621",
+    "nome": "Espaguete Corrugado Permak 13mm 1/2 20m",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB22235170",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-CORRUGATED_PIPES",
+      "predictedCategoryId": "MLB411424"
+    }
+  },
+  {
+    "produtoId": "ef5659a4-a991-457d-b5da-c0ffaa4d2b41",
+    "sku": "VTK018261",
+    "nome": "Espaguete Liso Permak 6mm 100m",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB32085423/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "d5887456-14b1-43d1-8f33-27159dc5fe20",
+    "sku": "VTK019219",
+    "nome": "Espaguete Liso Permak 12mm 100m",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB44833164",
+      "catalogDomainId": "MLB-THERMAL_ADHESIVE_TAPES",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedCategoryId": "MLB38279"
+    }
+  },
+  {
+    "produtoId": "8d7fbad6-a59b-4aaa-a799-abfc41331b28",
+    "sku": "VTK019117",
+    "nome": "Expansor Corneta Fiamon 1450 Red. Curta Bicolor Amarelo Fluorescente",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "8a8a4390-0070-46df-a3a0-eb0ef957c9a1",
+    "sku": "VTK000240",
+    "nome": "Expositor Para Instrumentos de Corda ASL Preto ASK",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB29157075",
+      "catalogDomainId": "MLB-STRING_INSTRUMENT_STANDS_AND_WALL_HANGERS",
+      "predictedDomainId": "MLB-WIND_INSTRUMENT_STANDS",
+      "predictedCategoryId": "MLB29341"
+    }
+  },
+  {
+    "produtoId": "d4f2810e-11b2-4b4c-8ae7-91328bb0cbaa",
+    "sku": "VTK017868",
+    "nome": "Extensão Sort Pl 2x0.75mm² 3 Metros Cores Sortidas Ref.1513",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB21641958",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "",
+      "predictedCategoryId": ""
+    }
+  },
+  {
+    "produtoId": "11460c2a-409a-43e8-9fe7-becc8ce904b8",
+    "sku": "VTK003511",
+    "nome": "Extensão Tripla 2 X 0,75 x 3,0M Preta Megatron",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB27282165",
+      "catalogDomainId": "MLB-POWER_STRIPS",
+      "predictedDomainId": "MLB-ELECTRICAL_CABLES",
+      "predictedCategoryId": "MLB455454"
+    }
+  },
+  {
+    "produtoId": "9ff924af-b743-4a0e-964d-2496d5c3d148",
+    "sku": "VTK002762",
+    "nome": "Extensão Tripla 3 X 0,75 X 3,0M Preta Megatron",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB22953875",
+      "catalogDomainId": "MLB-POWER_STRIPS",
+      "predictedDomainId": "MLB-ELECTRICAL_CABLES",
+      "predictedCategoryId": "MLB455454"
+    }
+  },
+  {
+    "produtoId": "bd66dfee-21ff-49d5-98a1-20a721d54527",
+    "sku": "VTK002772",
+    "nome": "Extensão Tripla 3,0 X 0,75 X 5,0M Preta Megatron",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB22911147",
+      "catalogDomainId": "MLB-POWER_STRIPS",
+      "predictedDomainId": "MLB-ELECTRICAL_CABLES",
+      "predictedCategoryId": "MLB455454"
+    }
+  },
+  {
+    "produtoId": "60e548fa-6043-48bd-bb98-1a16fd75e09c",
+    "sku": "VTK019104",
+    "nome": "Extensor De Controle Remoto Proeletronic Pqec-8020 G2",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB32274330/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "e72bc21d-d22d-4bd3-a0eb-b4c6fda4e144",
+    "sku": "VTK019126",
+    "nome": "Fechadura Solenoide De Embutir Intelbras Fs 1010",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB28223714",
+      "catalogDomainId": "MLB-DOOR_AND_WINDOW_LOCKS",
+      "predictedDomainId": "MLB-ELECTRIC_LOCKS",
+      "predictedCategoryId": "MLB194301"
+    }
+  },
+  {
+    "produtoId": "ad9bb504-524a-48d3-a56c-146c4f1781ab",
+    "sku": "VTK017577",
+    "nome": "Fone De Ouvido Para Radio Comunicador Intelbras Hc20pt 4161020",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB24962898",
+      "catalogDomainId": "MLB-HEADPHONES",
+      "predictedDomainId": "MLB-TELEPHONY_AND_RADIO_COMMUNICATION_PRODUCTS",
+      "predictedCategoryId": "MLB418302"
+    }
+  },
+  {
+    "produtoId": "78d60d02-7936-4e09-9279-ad8ec2833a35",
+    "sku": "VTK017898",
+    "nome": "Fone Headset Intelbras Ths 55 Conector Usb 4010055",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB21895542",
+      "catalogDomainId": "MLB-HEADPHONES",
+      "predictedDomainId": "MLB-HEADSET_TELEPHONES",
+      "predictedCategoryId": "MLB3828"
+    }
+  },
+  {
+    "produtoId": "09fca44b-d25b-47a5-87f2-703b2bf431a5",
+    "sku": "VTK018133",
+    "nome": "Fonte Adaptadora Carregador Universal Alltech 12v Dc 2a Automotiva",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB29648494",
+      "catalogDomainId": "MLB-VEHICLE_WIRELESS_FM_TRANSMITTERS",
+      "predictedDomainId": "MLB-VEHICLE_BATTERY_CHARGERS",
+      "predictedCategoryId": "MLB455982"
+    }
+  },
+  {
+    "produtoId": "591902e9-de99-4206-963e-e3cfa1dd1f48",
+    "sku": "VTK017751",
+    "nome": "Fonte Chaveada 6v 1a Plug P4 C+ 2.1 X 5.5 Mm",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "b66ea9c7-d92a-4cd6-b22d-b193173904d6",
+    "sku": "VTK017360",
+    "nome": "Fonte Chaveada Evus Pdc-5a 12v 5a 60w Bivolt",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB28483887/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "88c2c031-ae59-4897-be9f-b0aeab88adc8",
+    "sku": "VTK019103",
+    "nome": "Frente Falsa Max Eletron 1ux19",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB47208821",
+      "catalogDomainId": "MLB-CABLE_ORGANIZERS",
+      "predictedDomainId": "MLB-ELECTRIC_SHOWER_HEADS",
+      "predictedCategoryId": "MLB269874"
+    }
+  },
+  {
+    "produtoId": "fd649d0c-7e6b-413f-bf09-c85949c0d588",
+    "sku": "VTK018435",
+    "nome": "Golden Waffle 2 Britânia 220v",
+    "reason": "catalog_exact_gtin_ambiguous",
+    "details": {
+      "found": 2
+    }
+  },
+  {
+    "produtoId": "0c91a533-35c0-433b-9037-fb32747eeaf8",
+    "sku": "VTK017391",
+    "nome": "Grampo Vonder 16mm Para Pinador Elétrico Com 1000 Grampos",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB45909109",
+      "catalogDomainId": "MLB-STAPLER_STAPLES",
+      "predictedDomainId": "MLB-ELECTRIC_STAPLERS_AND_BRAD_NAILERS",
+      "predictedCategoryId": "MLB430493"
+    }
+  },
+  {
+    "produtoId": "511c8cb3-fab6-4b79-81c0-e44c37eef5cd",
+    "sku": "VTK017219",
+    "nome": "Guia Organizador Cabos 2u X 19 Alta Densidade",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB46421583/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "7dde8a4f-c47f-4ff5-9863-f3280d96d753",
+    "sku": "VTK018912",
+    "nome": "Haste Curta Olimpus Da Antena Para Onix",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "012712bb-bbe0-4eeb-9695-fd7f03106462",
+    "sku": "VTK018923",
+    "nome": "Haste New Shark Olimpus Teto Traseira Prata",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "bb4405ed-880e-4c06-8c90-f0afd1b56abc",
+    "sku": "VTK018480",
+    "nome": "Haste Olimpus Curta New Flex M5/m6",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "a8d1a439-22ab-4e2b-8e23-e49e1a686d12",
+    "sku": "VTK017789",
+    "nome": "Haste Permak Ray Flex Vw Gol Rosca M5/m6",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "cdb8d53f-f752-4163-9b44-8aa7e50ff71c",
+    "sku": "VTK018422",
+    "nome": "Haste Permak Para Antena De Teto Gti 095",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB52897049",
+      "catalogDomainId": "MLB-GPS_ANTENNAS",
+      "predictedDomainId": "MLB-WIRELESS_ANTENNAS_AND_ADAPTERS",
+      "predictedCategoryId": "MLB457886"
+    }
+  },
+  {
+    "produtoId": "763534a9-bab7-45c6-8077-37f2627abc28",
+    "sku": "VTK018965",
+    "nome": "Haste Permak Fiat Toro Argus Cronos Jeep Compas",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "7dacfcf1-5f2e-4722-b068-6929c49c070c",
+    "sku": "VTK018074",
+    "nome": "Haste Permak Peugeot/ Renault/ Dianteira 70cm",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "a6cc0e72-9a06-454e-afc7-483734544be1",
+    "sku": "VTK018663",
+    "nome": "Haste Permak Fiat Toro/ Jeep Renegade/ Compass Ov",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB52370340",
+      "catalogDomainId": "MLB-GPS_ANTENNAS",
+      "predictedDomainId": "",
+      "predictedCategoryId": ""
+    }
+  },
+  {
+    "produtoId": "f45d249a-4ad2-43de-894c-dc80c6fe361f",
+    "sku": "VTK018550",
+    "nome": "Interface De Desbloqueio De Central Multimídia Original Bee Link Fiat Argo/cronos 2019",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "c0f66f7b-fdbb-4f94-810d-4071c132ab9b",
+    "sku": "VTK019164",
+    "nome": "Interruptor Controlador De Cargas Wi-fi Ews 211 4850005 Intelbras",
+    "reason": "catalog_exact_gtin_ambiguous",
+    "details": {
+      "found": 2
+    }
+  },
+  {
+    "produtoId": "bc040ab0-3aa3-4126-b12a-d24c2897bac0",
+    "sku": "VTK003270",
+    "nome": "Interruptor Inteligente 1 Tecla Wi-Fi SE235 Branco MULTILASER",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB25559029",
+      "catalogDomainId": "MLB-WALL_LIGHT_SWITCHES",
+      "predictedDomainId": "MLB-DIMMERS",
+      "predictedCategoryId": "MLB269928"
+    }
+  },
+  {
+    "produtoId": "c50c8d36-5035-48e2-99e1-86447ebaf2d1",
+    "sku": "VTK017504",
+    "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 300ml Preto",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "cf0793f9-8968-4bd0-82ae-ea1a3d0cf86d",
+    "sku": "VTK017505",
+    "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 300ml Vermelho",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "19b3bc02-9ea5-46be-8974-5f02c52c78bf",
+    "sku": "VTK017506",
+    "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Preto",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "1849bcec-0b10-4888-84c4-4d942dd3c8b0",
+    "sku": "VTK017507",
+    "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Vermelho",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "1ea7953e-04c7-4345-a104-4b1bcc01f941",
+    "sku": "VTK017508",
+    "nome": "Jogo De Potes Tramontina Mixcolor 02 Peças 2l Vermelho",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "ec92357c-bf98-4e74-9876-6f6d42556024",
+    "sku": "VTK018710",
+    "nome": "Kit Adaptador Aquário Cf-265 Para Nokia 8265",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "68f6d99c-4fb0-45c0-be30-7359b34e7ddc",
+    "sku": "VTK017735",
+    "nome": "Kit Adaptador Aquário Cf-375 Para Motorola",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "1dd2a3e6-40d8-4f0b-b302-07e176700573",
+    "sku": "VTK017633",
+    "nome": "Kit Carregadores De Parede + Veicular Elgin Com Cabo Micro Usb 1m",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "4d070eba-1f9d-4bee-8fbd-7e1c483a84dc",
+    "sku": "VTK018729",
+    "nome": "Kit Conforto Linha Fiat Tury Lvx5 Tw2pt",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB41368352",
+      "catalogDomainId": "MLB-VEHICLE_ALARMS",
+      "predictedDomainId": "MLB-LIGHT_VEHICLE_REPLACEMENTS",
+      "predictedCategoryId": "MLB193613"
+    }
+  },
+  {
+    "produtoId": "9d6b0a25-8deb-4a95-9124-3661034f8503",
+    "sku": "VTK018585",
+    "nome": "Kit De Lâmpada Tarponn Tp-6108 Ultraled Hb4 12v 40w",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "8cd9f449-5a4a-4e4b-9751-74f753be32a5",
+    "sku": "VTK017791",
+    "nome": "Kit Fibra óptica Universal Evus Ev-1 Com Power Meter",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB36262776/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "9c02c8db-a5e2-45ae-8c77-e25a00e9a0a0",
+    "sku": "VTK018639",
+    "nome": "Kit Ventilador Universal Para Rack Piso Max Eletron Com 4 Coolers",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "0cd3928f-2185-4a0d-bac0-05862a066d7d",
+    "sku": "VTK019131",
+    "nome": "Laço Indutivo Citrox 1,90x0,80 Cx-4001",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB28393443",
+      "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "predictedDomainId": "MLB-TOOL_AND_CONSTRUCTION_SUPPLIES",
+      "predictedCategoryId": "MLB435265"
+    }
+  },
+  {
+    "produtoId": "ed62b1b8-d140-4d21-aebd-5c42f87c8e27",
+    "sku": "VTK017824",
+    "nome": "Lâminas Para Ratinho Nwt Insf0013 Para Aplicação De Insulfilm 100 Unidades",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB41798993",
+      "catalogDomainId": "MLB-VEHICLE_TINTED_GLASSES",
+      "predictedDomainId": "MLB-TOOL_AND_CONSTRUCTION_SUPPLIES",
+      "predictedCategoryId": "MLB60658"
+    }
+  },
+  {
+    "produtoId": "43ca7193-7d61-4189-b4cf-029de62be4f5",
+    "sku": "VTK017926",
+    "nome": "Lampada Multilaser Super Led H3 6200k Par",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "c7461bea-93fe-4456-be60-f12ea4708e58",
+    "sku": "VTK017608",
+    "nome": "Lâmpada Super Branca Techone H9 55w 6000k Com Inmetro",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "91f4e341-291c-42c2-b832-dfb9349e0d52",
+    "sku": "VTK018867",
+    "nome": "Lv8fc20 Mod Vidro Eletrico Kia",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB55083927",
+      "catalogDomainId": "MLB-VEHICLE_INTERIOR_WINDOW_CRANKS",
+      "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+      "predictedCategoryId": "MLB191714"
+    }
+  },
+  {
+    "produtoId": "1e9cf426-cadd-4295-b050-872acf4f79bf",
+    "sku": "VTK017376",
+    "nome": "Mastro Proeletronic Ktaa-2000 De Alumínio Para Fixação De Antena",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB21469644",
+      "catalogDomainId": "MLB-TV_AND_MONITOR_STANDS_AND_WALL_HANGERS",
+      "predictedDomainId": "MLB-WIRELESS_ANTENNAS_AND_ADAPTERS",
+      "predictedCategoryId": "MLB457889"
+    }
+  },
+  {
+    "produtoId": "9552e566-6f75-4b16-af3f-3e6a4ad589ed",
+    "sku": "VTK018344",
+    "nome": "Microfone Csr Ht-58-a Profissional Sem Chave Anti Queda",
+    "reason": "catalog_exact_gtin_ambiguous",
+    "details": {
+      "found": 2
+    }
+  },
+  {
+    "produtoId": "cae67c09-608d-4237-a4ee-6044081f0fad",
+    "sku": "VTK018079",
+    "nome": "Microventilador Nwt 172x150x5mm Tensão 110v/220vac",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "dc1632af-808a-4acd-bfb2-ac85add0ea3a",
+    "sku": "VTK018522",
+    "nome": "Minipa Ez Test Ii Testador De Tensao",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB22546869",
+      "catalogDomainId": "MLB-MULTIMETERS",
+      "predictedDomainId": "MLB-VOLTAGE_DETECTORS",
+      "predictedCategoryId": "MLB260688"
+    }
+  },
+  {
+    "produtoId": "4745913c-5b34-40ab-b200-2dd027053231",
+    "sku": "VTK018549",
+    "nome": "Modulador ágil De áudio E Vídeo Aquário Mod-002 Para Tv/ Catv",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB22543218",
+      "catalogDomainId": "MLB-TV_ANTENNAS",
+      "predictedDomainId": "MLB-ELECTRONIC_ACCESSORIES_AND_REPLACEMENTS",
+      "predictedCategoryId": "MLB4915"
+    }
+  },
+  {
+    "produtoId": "b9a8de34-93e1-4414-bf4e-b1478e028334",
+    "sku": "VTK018613",
+    "nome": "Modulo De Vidro Fks Mlv408 Co Para Hyundai Ix35 Top Com Conector Original",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "7dca48d5-d209-4431-81cc-33bbae63bcda",
+    "sku": "VTK018224",
+    "nome": "Módulo De Vidro Elétrico Soft Infinity 2.0 - Aa.56.0001",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB26447611",
+      "catalogDomainId": "MLB-VEHICLE_TRAILER_LIGHT_POWER_MODULES",
+      "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+      "predictedCategoryId": "MLB191714"
+    }
+  },
+  {
+    "produtoId": "c3f99da0-1421-4dad-baab-9f99faf9c173",
+    "sku": "VTK019039",
+    "nome": "Módulo De Vidro Elétrico Quantum Lv8fc54 Hyundai Novo I30 2014",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "9f0d2f23-998b-498b-83d7-47de78190c32",
+    "sku": "VTK018518",
+    "nome": "Módulo De Vidro Elétrico Quantum Lv8fc50 Para Ranger 2013 2 Portas",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "8b1706cd-6206-4ba6-9071-ddf2e39378f9",
+    "sku": "VTK019168",
+    "nome": "Módulo De Vidro Tury Ae Pro3.4b",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "d3fe4596-8ab2-422c-a164-fa78e0d6bc11",
+    "sku": "VTK019118",
+    "nome": "Módulo De Vidro Elétrico Tury Ae Pro 4.78br",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "692b237a-3f67-40e9-9ef8-967908073216",
+    "sku": "VTK019046",
+    "nome": "Módulo De Vidro Elétrico Tury Ae Tw14/pro4.16bm Peugeot Active/griffe/allur",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB43110776/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "fda6c327-084a-41a6-949d-96dbdf76ee5c",
+    "sku": "VTK018291",
+    "nome": "Módulo Para Rebatimento De Espelho Retrovisor Fks Mce300 Re",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "aba1d12d-dcd0-4808-8cf4-100a871aaf08",
+    "sku": "VTK019098",
+    "nome": "Módulo Speed-lock Tury Trava Eletrica Ac03b Toyota Etios A Partir De 2017",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "72c29fc9-3c8b-4a5b-9e0f-613b676a3c50",
+    "sku": "VTK019052",
+    "nome": "Módulo Trava Elétrica Speed-lock Tury Lock2.0",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "e1e008c0-ad82-46a3-942e-00613cab6d2e",
+    "sku": "VTK017842",
+    "nome": "Módulo Tury Para Vidro Elétrico Ae Pro2.10cr",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "ccfba758-dc8b-4a27-a854-fa33c05bdfd7",
+    "sku": "VTK017888",
+    "nome": "Módulo Tury Para Vidro Elétrico Ae Pro2.8cw",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "c33cb2ab-d5b1-4b07-ad47-28dd4b2d4a76",
+    "sku": "VTK018546",
+    "nome": "Módulo Viaweb Gprs 2.4",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB64192526",
+      "catalogDomainId": "MLB-CELLPHONE_SIGNAL_BOOSTER_ANTENNAS",
+      "predictedDomainId": "",
+      "predictedCategoryId": ""
+    }
+  },
+  {
+    "produtoId": "68880dd5-048c-47b3-985d-ecb732a46b06",
+    "sku": "VTK018106",
+    "nome": "Módulo Viaweb Gprs Ip 2.3",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "fc4aa25f-81b8-40c9-8e1a-d2cac8343222",
+    "sku": "VTK017317",
+    "nome": "Mouse Pad Evus Mp-500b Pan",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB25811388",
+      "catalogDomainId": "MLB-KEYBOARD_AND_MOUSE_KITS",
+      "predictedDomainId": "MLB-MOUSE_PADS",
+      "predictedCategoryId": "MLB1716"
+    }
+  },
+  {
+    "produtoId": "e759a24c-52f8-4d87-98d5-4166efd87c42",
+    "sku": "VTK018446",
+    "nome": "Multiplicador Usb Daneva Carregador 2 Usb Saída 5v 1,5a + 2 Tomadas",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB27787543",
+      "catalogDomainId": "MLB-POWER_STRIPS",
+      "predictedDomainId": "MLB-USB_HUBS",
+      "predictedCategoryId": "MLB11187"
+    }
+  },
+  {
+    "produtoId": "965a501e-b56c-4afd-a0c2-5c4e0ebecab0",
+    "sku": "VTK017666",
+    "nome": "Multitoc Telefone Gondola C/ Fio Grafite",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB9004870",
+      "catalogDomainId": "MLB-TELEPHONES",
+      "predictedDomainId": "MLB-ANTIQUE_TELEPHONES",
+      "predictedCategoryId": "MLB47581"
+    }
+  },
+  {
+    "produtoId": "4ea07bb8-abd6-4952-97c9-27e508def1db",
+    "sku": "VTK019659",
+    "nome": "Palheta Automotiva Isoflex Flexível Silicone 26\"",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "e7e76e6e-649f-4e31-9369-6875f254f206",
+    "sku": "VTK018077",
+    "nome": "Par De Lâmpadas Super Led Cob Multilaser H8 20w 6200k Lumens Au836",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB45026556",
+      "catalogDomainId": "MLB-LIGHT_BULBS",
+      "predictedDomainId": "MLB-VEHICLE_LED_BULBS",
+      "predictedCategoryId": "MLB5759"
+    }
+  },
+  {
+    "produtoId": "9604ecb9-3f7c-4191-ac91-4e954384c7f5",
+    "sku": "VTK002550",
+    "nome": "Pedestal Com Bandeja Multiuso BMU Preto ASK",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB27645000",
+      "catalogDomainId": "MLB-DJ_EQUIPMENT_CASES",
+      "predictedDomainId": "MLB-QUEUE_STANCHIONS",
+      "predictedCategoryId": "MLB270690"
+    }
+  },
+  {
+    "produtoId": "ecbe9735-b7c3-4b49-a088-50eed520c458",
+    "sku": "VTK018922",
+    "nome": "Placa Viaweb Central Vw16z Ip Star",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB36842846/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "865b05da-58b8-4c3b-9fc4-9c7b58cc19bd",
+    "sku": "VTK017185",
+    "nome": "Plug Santo Angelo P10 Ninja Estéreo Com Mola Níquel",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB22501238",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+      "predictedCategoryId": "MLB420707"
+    }
+  },
+  {
+    "produtoId": "1544174a-fb73-4341-a200-58afd115a08d",
+    "sku": "VTK018920",
+    "nome": "Power Coaxial Onix Hd 3000 16ch Com Fonte",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "b5780ff4-6de2-445c-b982-5fdc52d192aa",
+    "sku": "VTK018706",
+    "nome": "Protetor De Carter Dhf-240 Stilo 2003",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "6529db06-96ae-4f36-873c-e673c801cdaa",
+    "sku": "VTK017783",
+    "nome": "Quantum Qps Plus4004 Sensor De Estacion. C/ 4 Sensores Sonoros",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB26280451",
+      "catalogDomainId": "MLB-VEHICLE_PARKING_SENSORS",
+      "predictedDomainId": "MLB-VEHICLE_ECT_SENSORS",
+      "predictedCategoryId": "MLB457570"
+    }
+  },
+  {
+    "produtoId": "c9711af5-7089-4ad7-9c21-987a25e208e0",
+    "sku": "VTK017625",
+    "nome": "Receptor Sulton Srx 302 3 Rele",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "bdd22a64-bf53-4d11-865c-97dd9a6eb776",
+    "sku": "VTK017821",
+    "nome": "Reparo Jbl Selenium Rpst302-x Para Super Tweeter St302-x",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB36764150",
+      "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+      "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+      "predictedCategoryId": "MLB46559"
+    }
+  },
+  {
+    "produtoId": "65cf91e9-4975-4825-8c8b-6236c64fa2aa",
+    "sku": "VTK017872",
+    "nome": "Reparo Jbl Rpst330 Para Super Tweeter St330 Poly T",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB37709755",
+      "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+      "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+      "predictedCategoryId": "MLB418066"
+    }
+  },
+  {
+    "produtoId": "f4830746-74a9-401b-a711-2ccee41787d1",
+    "sku": "VTK017534",
+    "nome": "Reparo Jbl Selenium Rpd250-x Para Driver D250-x",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB35295622",
+      "catalogDomainId": "MLB-RESISTORS",
+      "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+      "predictedCategoryId": "MLB46559"
+    }
+  },
+  {
+    "produtoId": "14432b65-d259-4231-be60-04113a28dc7a",
+    "sku": "VTK018874",
+    "nome": "Reparo Jbl Rpd450 Trio Para Driver D450 Trio",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB34199321",
+      "catalogDomainId": "MLB-PLUG_ADAPTERS",
+      "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+      "predictedCategoryId": "MLB46559"
+    }
+  },
+  {
+    "produtoId": "05d26ff9-dde6-4df0-a2d0-325817eeb4e7",
+    "sku": "VTK017189",
+    "nome": "Reparo Para Driver Shock D-250 Selenium",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "b6daed03-8deb-461c-9472-059f25c252ea",
+    "sku": "VTK017545",
+    "nome": "Reparo Para Driver Shock D-250 Trio Selenium",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "f81b4271-4fe9-46a1-a208-9c85e4167364",
+    "sku": "VTK018385",
+    "nome": "Reparo Para Driver Shock Completo Kd-305 Keybass",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "9c77b5a6-03a8-43a1-bb04-7c2e30e2c9c1",
+    "sku": "VTK017970",
+    "nome": "Reparo Tweeter Shock Completo St-400 Selenium",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB37823742",
+      "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+      "predictedDomainId": "MLB-ELECTRONIC_PRODUCTS",
+      "predictedCategoryId": "MLB432949"
+    }
+  },
+  {
+    "produtoId": "b1f9c24c-9a5b-4e26-b1c7-ee0a8bda5172",
+    "sku": "VTK018455",
+    "nome": "Reparo Tweeter Shock Completo St-450 Trio",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB37331534",
+      "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+      "predictedDomainId": "MLB-ELECTRONIC_PRODUCTS",
+      "predictedCategoryId": "MLB432949"
+    }
+  },
+  {
+    "produtoId": "5385c6d7-c16c-4bce-9394-adf20c11f3fa",
+    "sku": "VTK017801",
+    "nome": "Resistência Hikari Hplus Sc-40 W 220v Com 2 Peças",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB34366313/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "5b9c27d8-c667-43dc-89c7-9322067883df",
+    "sku": "VTK018524",
+    "nome": "Roteador Wi-fi Max Aquário Apr-2410 N 150 Mbps",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB36904293/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "a36eb13e-4ce9-4355-8caa-a96c4846232d",
+    "sku": "VTK019035",
+    "nome": "Roteador Wireless 3g E 4g Tp-link Tl-mr3420 300mbps",
+    "reason": "catalog_exact_gtin_ambiguous",
+    "details": {
+      "found": 2
+    }
+  },
+  {
+    "produtoId": "018f9e02-57ce-4766-a127-8cbee6d3cabc",
+    "sku": "VTK017630",
+    "nome": "Sensor Externo Sulton Spw 700 Pet 30 Kg",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB29005091",
+      "catalogDomainId": "MLB-GATE_MOTORS",
+      "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "predictedCategoryId": "MLB7070"
+    }
+  },
+  {
+    "produtoId": "b9da6dfa-378f-4668-b43c-3ffeffe92b49",
+    "sku": "VTK017539",
+    "nome": "Sensor Magnético Smart Sulton V3 Smw250",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB25742661",
+      "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "predictedDomainId": "MLB-VEHICLE_ENGINE_CAMSHAFT_SENSORS",
+      "predictedCategoryId": "MLB192363"
+    }
+  },
+  {
+    "produtoId": "4e6f2b8c-85c5-4392-bbe5-7c9ca2482a60",
+    "sku": "VTK018199",
+    "nome": "Sensor Ultrasom Locktronic",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB47241839",
+      "catalogDomainId": "MLB-VEHICLE_ALARMS",
+      "predictedDomainId": "MLB-MEDICAL_ULTRASOUND_SCANNERS",
+      "predictedCategoryId": "MLB432550"
+    }
+  },
+  {
+    "produtoId": "3b9aac29-31ad-49c0-8be1-46dfafa771cb",
+    "sku": "VTK019150",
+    "nome": "Shock Reparo Driver Titanium Sd-110 145-ti Snake",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "e80419ea-3228-4e4d-93df-a8931fea6bba",
+    "sku": "VTK018149",
+    "nome": "Sinalizador Veicular Gcp Ss 1000",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "22f24876-10e5-49e7-82a3-af3218d1e5c9",
+    "sku": "VTK018130",
+    "nome": "Sirene Bitonal Fks 12v Preta",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "1a4468b9-0d4e-4635-ba58-17fcd661e9e1",
+    "sku": "VTK017819",
+    "nome": "Sirene De Ré Fks 12/24v",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "06794e08-6c98-4ebd-9930-dead3d6accda",
+    "sku": "VTK018909",
+    "nome": "Sub Conjunto Almapy Novo Palio 12+ Dnt Sensorizado",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "e9f9219e-762c-4719-aaa8-df2d9f065d73",
+    "sku": "VTK018746",
+    "nome": "Sub Conjunto Almapy Up 13+ Traseiro Sensorizado",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB51671242",
+      "catalogDomainId": "MLB-VEHICLE_MOLDINGS",
+      "predictedDomainId": "MLB-TOYS_AND_GAMES",
+      "predictedCategoryId": "MLB437975"
+    }
+  },
+  {
+    "produtoId": "2c2705af-8d9d-4155-a010-0213811f3a67",
+    "sku": "VTK004115",
+    "nome": "Suporte Magnético Para Antena Móvel PX M-700K Preto AQUÁRIO",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB26250590",
+      "catalogDomainId": "MLB-DIAL_INDICATORS",
+      "predictedDomainId": "MLB-PORTABLE_SATELLITE_DISH_ANTENNA_KITS",
+      "predictedCategoryId": "MLB245398"
+    }
+  },
+  {
+    "produtoId": "59eda7a6-d2a4-4553-9d25-6383cfa1c027",
+    "sku": "VTK017211",
+    "nome": "Suporte Para Microfone De Bateria/precussão Ask B10",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB27380888",
+      "catalogDomainId": "MLB-DRUM_CLAMPS",
+      "predictedDomainId": "MLB-MICROPHONE_STANDS",
+      "predictedCategoryId": "MLB439386"
+    }
+  },
+  {
+    "produtoId": "9bb36bae-d17e-41e2-983e-df7fff19e78a",
+    "sku": "VTK018934",
+    "nome": "Suporte Para Caixa Acústica Ask Ou Cubo Com Regulagem Inclinação",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB35305936",
+      "catalogDomainId": "MLB-STRING_INSTRUMENT_STANDS_AND_WALL_HANGERS",
+      "predictedDomainId": "MLB-SPEAKERS_STANDS",
+      "predictedCategoryId": "MLB10233"
+    }
+  },
+  {
+    "produtoId": "f6fc077a-bac5-41d3-b5e0-d84f076d32ab",
+    "sku": "VTK018129",
+    "nome": "Teclado Para Central Monitorada Intelbras Xat 1018 Mt",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB38386677",
+      "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "predictedDomainId": "MLB-CELLPHONES_AND_TELEPHONY",
+      "predictedCategoryId": "MLB10676"
+    }
+  },
+  {
+    "produtoId": "85bd6a53-e81c-426c-9450-ae424299e482",
+    "sku": "VTK018024",
+    "nome": "Teclado Viaweb 16s",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB21742933",
+      "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "predictedDomainId": "MLB-PDA_KEYBOARDS",
+      "predictedCategoryId": "MLB5005"
+    }
+  },
+  {
+    "produtoId": "b0e6b26e-fd4a-4e69-98b4-b257063c109f",
+    "sku": "VTK018434",
+    "nome": "Tela Para Alto Falante Permak 114/o 12\" Plástica - PC / 2",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "c54f2b59-7bce-4952-b226-754db5b9d543",
+    "sku": "VTK002982",
+    "nome": "Telefone Celular Fixo 4G 2 Chip CA42S Preto Aquário",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB19772163",
+      "catalogDomainId": "MLB-TELEPHONES",
+      "predictedDomainId": "MLB-CELLPHONES",
+      "predictedCategoryId": "MLB1055"
+    }
+  },
+  {
+    "produtoId": "17218e85-3802-4e3d-950e-fb5ff8eff639",
+    "sku": "VTK018924",
+    "nome": "Telefone Celular Fixo Intelbras Gsm Cfa 4211 4114211",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB24453976",
+      "catalogDomainId": "MLB-TELEPHONES",
+      "predictedDomainId": "MLB-CELLPHONES",
+      "predictedCategoryId": "MLB1055"
+    }
+  },
+  {
+    "produtoId": "8ee7da40-3033-49ac-bf6e-7092339e734d",
+    "sku": "VTK018930",
+    "nome": "Telefone Sem Fio Intelbras Ts 2512 Id Preto 4122512",
+    "reason": "catalog_exact_gtin_ambiguous",
+    "details": {
+      "found": 2
+    }
+  },
+  {
+    "produtoId": "0c58abd1-d64a-4139-9563-b4c28dde8baf",
+    "sku": "VTK017885",
+    "nome": "Termopar Tipo K Minipa Mtk-01 Com Blister",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB28158692",
+      "catalogDomainId": "MLB-WATER_FLOW_SENSORS",
+      "predictedDomainId": "MLB-AMBIENT_THERMOMETERS",
+      "predictedCategoryId": "MLB431221"
+    }
+  },
+  {
+    "produtoId": "8fb3551e-691c-46ca-b878-137a487091dc",
+    "sku": "VTK019006",
+    "nome": "Testador Smd Com Pinça Hikari Hm-10",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB57588961",
+      "catalogDomainId": "MLB-MULTIMETERS",
+      "predictedDomainId": "MLB-POWER_SUPPLY_TESTERS",
+      "predictedCategoryId": "MLB97774"
+    }
+  },
+  {
+    "produtoId": "054e7b91-653d-4f52-b332-1ca9da3994af",
+    "sku": "VTK017397",
+    "nome": "Trava Elétrica Roadstar 2 Fios Individual - Rs101br",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB41494854",
+      "catalogDomainId": "MLB-THERMAL_REFRIGERATORS_AND_BAGS",
+      "predictedDomainId": "MLB-VEHICLE_ELECTRIC_DOOR_LOCKS",
+      "predictedCategoryId": "MLB22369"
+    }
+  },
+  {
+    "produtoId": "04b72773-20e9-4de9-be70-92efa36f8a69",
+    "sku": "VTK018089",
+    "nome": "Trava Elétrica Soft Aa420012 Novo Uno / Palio / Strada / Celta 2 Portas",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB33257109",
+      "catalogDomainId": "MLB-BABY_SAFETY_LOCKS",
+      "predictedDomainId": "MLB-VEHICLE_ELECTRIC_DOOR_LOCKS",
+      "predictedCategoryId": "MLB22369"
+    }
+  },
+  {
+    "produtoId": "b02d0763-0ef6-473a-ac17-5c63cd3a6dfc",
+    "sku": "VTK018013",
+    "nome": "Trava Elétrica Soft Aa420011 Novo Uno / Celta / Eco / Fiest / Palio 99 4portas",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "6fd8c5c2-1073-4dc9-9566-97933b90f4ee",
+    "sku": "VTK019096",
+    "nome": "Ultra Led Shocklight (par) H27 12v 50w 6000k 4000lm",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "a6ddb6c2-67fc-4358-9cb9-61976352eff0",
+    "sku": "VTK018749",
+    "nome": "Ultraled Headlight Shocklight H3 (par) 12v 50w 6000k 4000lm",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB46847584",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CONVERTERS",
+      "predictedDomainId": "MLB-VEHICLE_LED_BULBS",
+      "predictedCategoryId": "MLB5759"
+    }
+  },
+  {
+    "produtoId": "72ead0c9-8e4f-483a-9444-e586d8989844",
+    "sku": "VTK017244",
+    "nome": "Video Balun Evus C-067 1 Canal Mini Cctv Bnc Para Hdcvi Cftv",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  }
+]

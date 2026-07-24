@@ -1,0 +1,260 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/012-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-012",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "7fda2d8f-fb0f-4c74-91a6-d212f659df64",
+      "sku": "VTK002745",
+      "category": {
+        "id": "MLB30214",
+        "nome": "Multímetros",
+        "dominio": "MLB-MULTIMETERS"
+      },
+      "anuncio": {
+        "id": "MLB4937560361",
+        "title": "Multímetro Analógico Minipa Et-3021c Azul",
+        "price": 289.37,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937560361-multimetro-analogico-minipa-et-3021c-azul-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 259.31 → R$ 289.37."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "7bcea606-379c-495c-8d56-8f0b46cc6e5a",
+      "sku": "VTK017162",
+      "category": {
+        "id": "MLB30214",
+        "nome": "Multímetros",
+        "dominio": "MLB-MULTIMETERS"
+      },
+      "anuncio": {
+        "id": "MLB4937549367",
+        "title": "Multímetro Digital Dt-830b 2 Mega",
+        "price": 70.7,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937549367-multimetro-digital-dt-830b-2-mega-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 52.78 → R$ 70.70."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "5949378e-ce6f-4dbb-9010-b67535ed68e5",
+      "sku": "VTK018086",
+      "category": {
+        "id": "MLB135679",
+        "nome": "Com Tela",
+        "dominio": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS"
+      },
+      "anuncio": {
+        "id": "MLB4937528811",
+        "title": "Multimidia Mp5 Roadstar Pro Line Rs7200br",
+        "price": 504.67,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937528811-multimidia-mp5-roadstar-pro-line-rs7200br-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 475.48 → R$ 504.67."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "d541fae9-7963-4b5e-8cc4-819e06baa282",
+      "sku": "VTK018499",
+      "category": {
+        "id": "MLB135679",
+        "nome": "Com Tela",
+        "dominio": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS"
+      },
+      "anuncio": {
+        "id": "MLB4937560615",
+        "title": "Multimídia Mp5 Roadstar Rs-9200br Pro Line Carplay Sem Fio",
+        "price": 566.09,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937560615-multimidia-mp5-roadstar-rs-9200br-pro-line-carplay-sem-fio-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 533.69 → R$ 566.09."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "01109b63-0778-4a85-b0cd-744429e3f1c9",
+      "sku": "VTK018210",
+      "category": {
+        "id": "MLB270504",
+        "nome": "No-Breaks",
+        "dominio": "MLB-STABILIZERS_AND_UPS"
+      },
+      "anuncio": {
+        "id": "MLB4937549629",
+        "title": "Nobreak Intelbras Attiv 700va 120v 4822203",
+        "price": 758.5,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937549629-nobreak-intelbras-attiv-700va-120v-4822203-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 707.54 → R$ 758.50."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "1640b9dc-2be6-4571-9703-3866ce763d9c",
+      "sku": "VTK004012",
+      "category": {
+        "id": "MLB270504",
+        "nome": "No-Breaks",
+        "dominio": "MLB-STABILIZERS_AND_UPS"
+      },
+      "anuncio": {
+        "id": "MLB4937529073",
+        "title": "Nobreak Ts Shara Ups Compact 700va 7ah Bivolt",
+        "price": 796.32,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937529073-nobreak-ts-shara-ups-compact-700va-7ah-bivolt-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 739.85 → R$ 796.32."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "20e9cd55-44b9-4c36-bd1c-27d13a681aba",
+      "sku": "VTK017785",
+      "category": {
+        "id": "MLB63102",
+        "nome": "Pasta Térmica",
+        "dominio": "MLB-PC_THERMAL_COMPOUND_PASTES"
+      },
+      "anuncio": {
+        "id": "MLB4937560855",
+        "title": "Pasta Térmica Implastec Silicone Pote 100g",
+        "price": 60.12,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937560855-pasta-termica-implastec-silicone-pote-100g-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 43.46 → R$ 60.12."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "7c745d31-473a-46d6-88d1-27b0947db63b",
+      "sku": "VTK017388",
+      "category": {
+        "id": "MLB270088",
+        "nome": "Cabos de Rede",
+        "dominio": "MLB-NETWORK_CABLES"
+      },
+      "anuncio": {
+        "id": "MLB4937561087",
+        "title": "Patch Cord Furukawa Cat5e 0.5m Cinza T568a",
+        "price": 67.81,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937561087-patch-cord-furukawa-cat5e-05m-cinza-t568a-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 42.18 → R$ 67.81."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "4bdc2871-1bbd-4523-84de-770b9f3f0916",
+      "sku": "VTK017386",
+      "category": {
+        "id": "MLB270088",
+        "nome": "Cabos de Rede",
+        "dominio": "MLB-NETWORK_CABLES"
+      },
+      "anuncio": {
+        "id": "MLB4937550225",
+        "title": "Patch Cord Furukawa Cat5e 2.5m T568a 35104008",
+        "price": 71.65,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937550225-patch-cord-furukawa-cat5e-25m-t568a-35104008-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 47.31 → R$ 71.65."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "225614c7-9cbf-47a8-b8e4-fb20c84b61bf",
+      "sku": "VTK000016",
+      "category": {
+        "id": "MLB270088",
+        "nome": "Cabos de Rede",
+        "dominio": "MLB-NETWORK_CABLES"
+      },
+      "anuncio": {
+        "id": "MLB4937561455",
+        "title": "Patch Cord U/utp Cat.5e Cmx 2 5m T568a Azul Furukawa",
+        "price": 64.42,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937561455-patch-cord-uutp-cat5e-cmx-2-5m-t568a-azul-furukawa-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 48.59 → R$ 64.42."
+      ]
+    }
+  ],
+  "failed": []
+}

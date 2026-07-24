@@ -1,0 +1,90 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-14T22-11-37-278Z/coin-cell-runs/run-results/run-006-ml-create-006.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "coin-cell-006",
+  "selected": 4,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "c0df37cf-7da6-4089-832f-5dc54811704f",
+      "sku": "VTK016084",
+      "nome": "250 Pilhas Baterias Cr2032 3v Panasonic 50 Cartelas",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "88ae9c83-5967-4e4e-86e7-e90250e674d3",
+      "sku": "VTK016108",
+      "nome": "300 Pilhas Baterias Cr2032 3v Panasonic 60 Cartelas",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8b8ad238-56c0-431a-9111-2be6d2869309",
+      "sku": "VTK016159",
+      "nome": "400 Pilhas Baterias Cr2032 3v Panasonic 80 Cartelas",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "61fba183-852d-4a42-90f7-15aedef79d09",
+      "sku": "VTK016186",
+      "nome": "500 Pilhas Baterias Cr2032 3v Panasonic 100 Cartelas",
+      "error": "Atributos obrigatórios pendentes: É recarregável, Código universal de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7060",
+            "nome": "Pilhas"
+          },
+          "missing": [
+            "É recarregável",
+            "Código universal de produto"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

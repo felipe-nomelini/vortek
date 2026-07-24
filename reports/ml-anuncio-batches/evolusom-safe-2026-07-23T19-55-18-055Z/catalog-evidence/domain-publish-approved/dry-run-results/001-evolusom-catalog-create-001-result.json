@@ -1,0 +1,145 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/001-evolusom-catalog-create-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-001",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "dfae7484-7e88-4734-97f9-8b6c21617dfc",
+      "sku": "VTK017900",
+      "category": {
+        "id": "MLB30197",
+        "nome": "Transformadores",
+        "dominio": "MLB-VOLTAGE_CONVERTERS"
+      },
+      "basePrice": 184.85,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "83b49b10-7148-4d7f-b154-8082f4fae58e",
+      "sku": "VTK018587",
+      "category": {
+        "id": "MLB63455",
+        "nome": "Carregadores de Baterías",
+        "dominio": "MLB-VEHICLE_BATTERY_CHARGERS"
+      },
+      "basePrice": 560.3,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "cad1ab58-6d25-4c99-bd68-4d2a56976c6b",
+      "sku": "VTK017679",
+      "category": {
+        "id": "MLB57843",
+        "nome": "Baterias",
+        "dominio": "MLB-UPS_BATTERIES"
+      },
+      "basePrice": 69.1,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ccc74733-b03e-42d6-a201-31712065c86d",
+      "sku": "VTK017571",
+      "category": {
+        "id": "MLB57843",
+        "nome": "Baterias",
+        "dominio": "MLB-UPS_BATTERIES"
+      },
+      "basePrice": 98.59,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a540d98f-8112-4d22-b21e-26f7f528a1f1",
+      "sku": "VTK017908",
+      "category": {
+        "id": "MLB57843",
+        "nome": "Baterias",
+        "dominio": "MLB-UPS_BATTERIES"
+      },
+      "basePrice": 112.69,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b0fff073-49cb-48d6-9904-5a035e2cc85b",
+      "sku": "VTK005073",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 59.81,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "acf02ebc-acb3-4ced-b072-2b6768aebab8",
+      "sku": "VTK005071",
+      "category": {
+        "id": "MLB38279",
+        "nome": "Outros Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 62.18,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d9c5a098-54a7-48c9-a7a1-045129600cc8",
+      "sku": "VTK003185",
+      "category": {
+        "id": "MLB432437",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 61.41,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "3fd032f8-334a-4c6c-9631-72f675c533ce",
+      "sku": "VTK018604",
+      "nome": "Alto Falante Bravox Tr55u 5\" 40w Rms 4r Universal Par",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Largura do alto-falante"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e666735c-5699-4787-9273-2e2be34c872a",
+      "sku": "VTK017848",
+      "nome": "Cabo Alarme Telecam 100 Metros 50 X 10 Vias Cca Liga Cobre",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

@@ -1,0 +1,619 @@
+{
+  "batchNumber": 16,
+  "batchId": "evolusom-domain-approved-016",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "f3f3cd94-1937-4c01-942e-6af744df50dc",
+      "sku": "VTK017604",
+      "nome": "Testador Digital De Cabos De Rede Mxt Ns-468-b",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 31.45,
+      "estoque": 40,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 63.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899471825464",
+        "validatedNcm": "90303100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB271716",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "15147964",
+          "value_name": "Rede"
+        },
+        {
+          "id": "COMPATIBLE_CONNECTORS",
+          "value_id": "27525262",
+          "value_name": "RJ45"
+        },
+        {
+          "id": "WIRELESS_POWER_SUPPLY_TYPE",
+          "value_id": "11580887",
+          "value_name": "Bateria"
+        },
+        {
+          "id": "WITH_LED_INDICATOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_AUTO_SHUT_OFF",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LOW_BATTERY_INDICATOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "21281793",
+          "value_name": "7899471825464"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "2296418",
+          "value_name": "Adaptador"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB24799244",
+        "catalogProductName": "Ferramenta Digital Para Cabo De Rede Lan Rj45 Rj11 MXT",
+        "catalogDomainId": "MLB-NETWORK_CABLE_TESTERS",
+        "predictedDomainId": "MLB-NETWORK_CABLE_TESTERS",
+        "categoryId": "MLB271716",
+        "categoryName": "Testadores de Cabos",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7899471825464"
+      }
+    },
+    {
+      "produtoId": "2c5e0906-98c4-4662-a36d-79ca3ff4d691",
+      "sku": "VTK018659",
+      "nome": "Trava Portao Ipec Eco Lock 127v Com Temporizador",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 92.24,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 138.57,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898663560039",
+        "validatedNcm": "83014000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB194301",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "5333037",
+          "value_name": "Ipec"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "50214278",
+          "value_name": "Ipec Eco Lock 220V"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "18876884",
+          "value_name": "Preto"
+        },
+        {
+          "id": "FINISH",
+          "value_id": "25751571",
+          "value_name": "Chapa de engenharia automobilística"
+        },
+        {
+          "id": "LOCK_DIRECTION",
+          "value_id": "14738893",
+          "value_name": "Direita/Esquerda"
+        },
+        {
+          "id": "OPENING_MECHANISMS",
+          "value_id": "15431462",
+          "value_name": "Chave, Automatizador"
+        },
+        {
+          "id": "PROXIMITY_CARD_TYPE",
+          "value_id": "34496431",
+          "value_name": "NÃO"
+        },
+        {
+          "id": "OPERATIVE_SYSTEMS_COMPATIBILITY",
+          "value_id": "34506950",
+          "value_name": "CHAVE"
+        },
+        {
+          "id": "INSTALLATION_TYPE",
+          "value_id": "5776958",
+          "value_name": "Sobreposta"
+        },
+        {
+          "id": "APERTURE_MATERIALS",
+          "value_id": "25585521",
+          "value_name": "Pino de aço especial com tratamento cromo"
+        },
+        {
+          "id": "USE_ENVIRONMENTS",
+          "value_id": "25585526",
+          "value_name": "Interno/Externo"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "49713698",
+          "value_name": "Corrente doméstica"
+        },
+        {
+          "id": "MIN_RECOMMENDED_DOOR_THICKNESS",
+          "value_id": "16023917",
+          "value_name": "2 mm"
+        },
+        {
+          "id": "MAX_RECOMMENDED_DOOR_THICKNESS",
+          "value_id": "16977021",
+          "value_name": "3 cm"
+        },
+        {
+          "id": "SUPPORTED_CARDS_NUMBER",
+          "value_id": "17507121",
+          "value_name": "0"
+        },
+        {
+          "id": "SUPPORTED_NUMERIC_CODES_NUMBER",
+          "value_id": "23260874",
+          "value_name": "0"
+        },
+        {
+          "id": "IS_DIGITAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WI_FI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "30382459",
+          "value_name": "7898663560039"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "75127363",
+          "value_name": "Ipec Eco Lock 220V"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "6034640",
+          "value_name": "Plástico ABS"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "7636436",
+          "value_name": "2 chaves, Batedor, Temporizador, Base e 4 Parafusos"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "15348648",
+          "value_name": "10.8 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7853082",
+          "value_name": "9.7 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "13684993",
+          "value_name": "7.2 cm"
+        },
+        {
+          "id": "INCLUDED_KEYS_NUMBER",
+          "value_id": "16016085",
+          "value_name": "2"
+        },
+        {
+          "id": "INCLUDES_CELL_BATTERIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LOW_BATTERY_INDICATOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ANTISHOCK_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_DOOR_HANDLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB30998095",
+        "catalogProductName": "Trava Para Portão Basculante C/ Temporizador Ótima Qualidade 220v",
+        "catalogDomainId": "MLB-ELECTRIC_LOCKS",
+        "predictedDomainId": "MLB-ELECTRIC_LOCKS",
+        "categoryId": "MLB194301",
+        "categoryName": "Elétricas",
+        "linkedListingsInCategory": 11,
+        "validatedGtin": "7898663560039"
+      }
+    },
+    {
+      "produtoId": "0441737a-1226-4d3c-a346-bc81227ea1e6",
+      "sku": "VTK018643",
+      "nome": "Tweeter Permak 160 Watts Ref. 242",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 28.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 60.37,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253496809",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3905",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "LINE",
+          "value_id": "52807160",
+          "value_name": "High-frequency tweeters"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "52807161",
+          "value_name": "Mini tweeter 600w"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_id": "48675846",
+          "value_name": "1.181 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_LENGTH",
+          "value_id": "48665595",
+          "value_name": "1.417 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_id": "48675848",
+          "value_name": "1.181 \""
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "999572",
+          "value_name": "2"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "296918",
+          "value_name": "Tweeter"
+        },
+        {
+          "id": "WAYS_NUMBER",
+          "value_id": "7509882",
+          "value_name": "2"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_id": "8704186",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_id": "164549",
+          "value_name": "600 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_id": "24767341",
+          "value_name": "600w"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "1642",
+          "value_name": "12.7 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24767342",
+          "value_name": "7898253496809"
+        },
+        {
+          "id": "SUSPENSION_MATERIALS",
+          "value_id": "160253",
+          "value_name": "Espuma"
+        },
+        {
+          "id": "CASING_MATERIALS",
+          "value_id": "457501",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "COIL_MATERIALS",
+          "value_id": "160257",
+          "value_name": "Alumínio"
+        },
+        {
+          "id": "CONE_MATERIALS",
+          "value_id": "160243",
+          "value_name": "Polipropileno"
+        },
+        {
+          "id": "INTEGRATED_SPEAKERS_TYPES",
+          "value_id": "8694536",
+          "value_name": "Tweeter"
+        },
+        {
+          "id": "MAX_POWER_PMPO",
+          "value_id": "161521",
+          "value_name": "600 W"
+        },
+        {
+          "id": "RESONANCE_FREQUENCY",
+          "value_id": "24767343",
+          "value_name": "600 Hz"
+        },
+        {
+          "id": "CROSSOVER_FREQUENCY",
+          "value_id": "24767340",
+          "value_name": "600 Hz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "24767344",
+          "value_name": "2.8 dB"
+        },
+        {
+          "id": "WITH_PROTECTIVE_SCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SUBWOOFER_BOX",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27398842",
+        "catalogProductName": "Mini Tweeter De Alta Frequencia 600w Painel Porta Coluna Par",
+        "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+        "predictedDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "linkedListingsInCategory": 49,
+        "validatedGtin": "7898253496809"
+      }
+    },
+    {
+      "produtoId": "6871afaf-6da3-4473-858a-0bd4d7a5fbc1",
+      "sku": "VTK018980",
+      "nome": "Vídeo Porteiro Multilaser Smart Wi-fi - Se220",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 289.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 411.59,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899838864488",
+        "validatedNcm": "85176277",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7075",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "31163",
+          "value_name": "Multilaser"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24317770",
+          "value_name": "SE220"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "25834955",
+          "value_name": "Porteiro eletrônico/frente"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "BUTTONS_NUMBER",
+          "value_id": "24540126",
+          "value_name": "1"
+        },
+        {
+          "id": "PHONE_TYPE",
+          "value_id": "2237108",
+          "value_name": "Sem fio"
+        },
+        {
+          "id": "INCLUDES_EXTERNAL_CAMERA",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NIGHT_VISION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_LOCK_CONTROL_SYSTEM",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SPEAKERPHONE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SCREEN_VIEWER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_COLOR_SCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_VIDEO_RECORDER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_INTERNET_CONNECTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_APP_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_ANTIVANDALIC",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24317791",
+          "value_name": "7899838864488"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "31163",
+          "value_name": "Multilaser"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27070808",
+        "catalogProductName": "Vídeo Porteiro Inteligente Hd Wi-fi Multilaser Se220 - Preto",
+        "catalogDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+        "predictedDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+        "categoryId": "MLB7075",
+        "categoryName": "Porteiros Elétricos",
+        "linkedListingsInCategory": 14,
+        "validatedGtin": "7899838864488"
+      }
+    }
+  ]
+}

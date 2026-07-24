@@ -1,0 +1,122 @@
+[
+  {
+    "ok": false,
+    "produtoId": "f2a7ffe9-398e-4578-bcda-c3c899abeb3f",
+    "sku": "VTK010190",
+    "nome": "Garg Tamp Reser Arla 32 C/ch Scania Seriev Ap07",
+    "brand": null,
+    "confidence": 0,
+    "trustedSources": 0,
+    "reason": "Nenhuma evidência confiável encontrada para identificar a marca do produto.",
+    "evidence": "",
+    "sourceUrls": []
+  },
+  {
+    "ok": false,
+    "produtoId": "3f50a943-4b0f-421d-a351-ef911fea1d40",
+    "sku": "VTK010191",
+    "nome": "Tampa Reserv Arla 32 S/ch Mb Cam Atego Apos16",
+    "brand": null,
+    "confidence": 0,
+    "trustedSources": 0,
+    "reason": "Não foi encontrada evidência confiável para identificar a marca do produto.",
+    "evidence": "",
+    "sourceUrls": []
+  },
+  {
+    "ok": false,
+    "produtoId": "190d8940-f5ba-4bd3-a20b-1cd480155258",
+    "sku": "VTK010192",
+    "nome": "Tampa Reserv Arla 32 S/ch Mb Sprinter Giii Ap19",
+    "brand": null,
+    "confidence": 0,
+    "trustedSources": 0,
+    "reason": "Não foi encontrada evidência confiável para identificar a marca do produto.",
+    "evidence": "",
+    "sourceUrls": []
+  },
+  {
+    "ok": false,
+    "produtoId": "3f3caa6a-9fec-427e-99e5-8a603ca8a58d",
+    "sku": "VTK010193",
+    "nome": "Tpa Arrefecimento Valvulada 0,5bar Actros Ap10",
+    "brand": "NULL",
+    "confidence": 0,
+    "trustedSources": 0,
+    "reason": "Não foi encontrada evidência confiável para identificar a marca do produto.",
+    "evidence": "",
+    "sourceUrls": []
+  },
+  {
+    "ok": false,
+    "produtoId": "825a06fb-8bd1-4b8a-b406-e7e45c58eca2",
+    "sku": "VTK010194",
+    "nome": "Tampa Reserv Limp P/brisa Preta Gm Onix Gi 12a19",
+    "brand": null,
+    "confidence": 0,
+    "trustedSources": 0,
+    "reason": "Nenhuma evidência confiável encontrada para a marca do produto.",
+    "evidence": "",
+    "sourceUrls": []
+  },
+  {
+    "ok": false,
+    "produtoId": "7e7dadff-702f-4325-be40-cc160784cb30",
+    "sku": "VTK010195",
+    "nome": "Tampa Do Radiador 0,9bar Toyota Corolla 02 A 08",
+    "brand": null,
+    "confidence": 0,
+    "trustedSources": 0,
+    "reason": "Não foi encontrada evidência confiável para identificar a marca do produto.",
+    "evidence": "",
+    "sourceUrls": []
+  },
+  {
+    "ok": false,
+    "produtoId": "67b21657-faae-4ef4-8921-dba107ed7653",
+    "sku": "VTK010196",
+    "nome": "Tampa Comb C/ch Vedada Mb Cam Actros Apos 20",
+    "brand": "NULL",
+    "confidence": 0,
+    "trustedSources": 0,
+    "reason": "Não foi encontrada evidência confiável para identificar a marca do produto.",
+    "evidence": "Nenhuma informação disponível na pesquisa web.",
+    "sourceUrls": []
+  },
+  {
+    "ok": false,
+    "produtoId": "6c9a62b8-0179-4f6e-9891-66b97830916b",
+    "sku": "VTK010240",
+    "nome": "Tampa Reserv Oleo Do Freio Mb Cam 70 A 90",
+    "brand": null,
+    "confidence": 0,
+    "trustedSources": 0,
+    "reason": "Nenhuma evidência confiável encontrada para a marca do produto.",
+    "evidence": "",
+    "sourceUrls": []
+  },
+  {
+    "ok": false,
+    "produtoId": "25bfe7ed-fb8e-4b0f-9a5d-7b2e64292a34",
+    "sku": "VTK010242",
+    "nome": "Tampa Oleo Motor Com Rosca Mwm Diversos",
+    "brand": null,
+    "confidence": 0,
+    "trustedSources": 0,
+    "reason": "Não foi encontrada evidência confiável para identificar a marca do produto.",
+    "evidence": "",
+    "sourceUrls": []
+  },
+  {
+    "ok": false,
+    "produtoId": "e0ab8c09-17d5-4d4a-90ab-2dc7ed9f8eb9",
+    "sku": "VTK010247",
+    "nome": "Tampa Reserv Limp Para-brisa Vw Gol Gi 80 A 96",
+    "brand": null,
+    "confidence": 0,
+    "trustedSources": 0,
+    "reason": "Não foi encontrada evidência confiável para identificar a marca do produto.",
+    "evidence": "",
+    "sourceUrls": []
+  }
+]

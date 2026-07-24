@@ -1,0 +1,1661 @@
+{
+  "batchId": "evolusom-publish-003",
+  "strategy": "dry_run_and_exact_catalog_approved",
+  "items": [
+    {
+      "produtoId": "46d92423-968a-4095-8167-e18accd45752",
+      "sku": "VTK018988",
+      "nome": "Alto Falante Eros E908 Trio Evo 8r 450w",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 574.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 851.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899021962212",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3905",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "164541",
+          "value_name": "Eros"
+        },
+        {
+          "id": "LINE",
+          "value_id": "45159916",
+          "value_name": "TRIO EVO"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "50488895",
+          "value_name": "Eros E908 Trio Evo"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_id": "48665951",
+          "value_name": "8.661 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_LENGTH",
+          "value_id": "24719412",
+          "value_name": "8 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_id": "8737279",
+          "value_name": "8 \""
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52007",
+          "value_name": "Amarelo"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "7452068",
+          "value_name": "1"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "24748890",
+          "value_name": "Médio Grave"
+        },
+        {
+          "id": "WAYS_NUMBER",
+          "value_id": "8704194",
+          "value_name": "1"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_id": "8704186",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_id": "1174134",
+          "value_name": "450 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_id": "50488896",
+          "value_name": "79 Hz - 4.8 Hz"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "4099936",
+          "value_name": "1.2 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "37642861",
+          "value_name": "7899021962212"
+        },
+        {
+          "id": "SUSPENSION_MATERIALS",
+          "value_id": "8266188",
+          "value_name": "Borracha"
+        },
+        {
+          "id": "CASING_MATERIALS",
+          "value_id": "15997246",
+          "value_name": "Chapa de Aço"
+        },
+        {
+          "id": "COIL_MATERIALS",
+          "value_id": "8266191",
+          "value_name": "CCAW"
+        },
+        {
+          "id": "CONE_MATERIALS",
+          "value_id": "160245",
+          "value_name": "Celulose"
+        },
+        {
+          "id": "INTEGRATED_SPEAKERS_TYPES",
+          "value_id": "8694535",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "MAX_POWER_PMPO",
+          "value_id": "7509885",
+          "value_name": "1240 W"
+        },
+        {
+          "id": "RESONANCE_FREQUENCY",
+          "value_id": "8266193",
+          "value_name": "76.94 Hz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "8266192",
+          "value_name": "93.89 dB"
+        },
+        {
+          "id": "WITH_PROTECTIVE_SCREEN",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SUBWOOFER_BOX",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB36845621",
+        "catalogProductName": "Alto Falante Médio Grave Eros E908 Trio 8 Pol 450 Rms 8 Ohms Cor Amarelo",
+        "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "linkedListingsInCategory": 43,
+        "validatedGtin": "7899021962212"
+      }
+    },
+    {
+      "produtoId": "1388f38a-f023-4f26-8503-680e3c4bbb8d",
+      "sku": "VTK018501",
+      "nome": "Alto Falante Roadstar Rs850br Marine Coaxial 8'' Par",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 642.9,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 952.44,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898587425575",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3905",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "LINE",
+          "value_id": "54718379",
+          "value_name": "RS850 Marine Line"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "65041943",
+          "value_name": "Rs-850M"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_id": "24719415",
+          "value_name": "8 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_LENGTH",
+          "value_id": "24719412",
+          "value_name": "8 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_id": "8737279",
+          "value_name": "8 \""
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "999572",
+          "value_name": "2"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "7536715",
+          "value_name": "Coaxial"
+        },
+        {
+          "id": "WAYS_NUMBER",
+          "value_id": "7509882",
+          "value_name": "2"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_id": "8704186",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_id": "2378577",
+          "value_name": "800 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_id": "8704494",
+          "value_name": "40 Hz - 20 kHz"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "3259574",
+          "value_name": "8 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "54718377",
+          "value_name": "7898587425575"
+        },
+        {
+          "id": "CASING_MATERIALS",
+          "value_id": "457501",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "CROSSOVER_FREQUENCY",
+          "value_id": "65041944",
+          "value_name": "40.2 Hz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "945343",
+          "value_name": "91 dB"
+        },
+        {
+          "id": "WITH_PROTECTIVE_SCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB50923331",
+        "catalogProductName": "Par Alto Falantes 8' Náutico Roadstar 400w Tw.titânio Ip65 Cor Branco",
+        "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "linkedListingsInCategory": 8,
+        "validatedGtin": "7898587425575"
+      }
+    },
+    {
+      "produtoId": "59a867c4-15c8-47ab-ab14-ef55e5c0628e",
+      "sku": "VTK019005",
+      "nome": "Alto Falante Subwoofer 15\" Eros Target Xbass 5k 2500w Rms 4 Ohms - Amarelo",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 1341.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 2070.83,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899021962366",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3905",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "164541",
+          "value_name": "Eros"
+        },
+        {
+          "id": "LINE",
+          "value_id": "55231683",
+          "value_name": "TARGET XBASS"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "55231684",
+          "value_name": "TARGET XBASS 5K"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_id": "24719556",
+          "value_name": "0 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_LENGTH",
+          "value_id": "24719555",
+          "value_name": "0 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_id": "8736895",
+          "value_name": "15 \""
+        },
+        {
+          "id": "COLOR",
+          "value_id": "55516288",
+          "value_name": "Preto/Amarelo"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "7452068",
+          "value_name": "1"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "7509874",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "WAYS_NUMBER",
+          "value_id": "8704194",
+          "value_name": "1"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_id": "8704186",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_id": "24757395",
+          "value_name": "2500 W"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "55231686",
+          "value_name": "7899021962366"
+        },
+        {
+          "id": "SUSPENSION_MATERIALS",
+          "value_id": "160252",
+          "value_name": "Tecido"
+        },
+        {
+          "id": "CASING_MATERIALS",
+          "value_id": "108309",
+          "value_name": "Alumínio"
+        },
+        {
+          "id": "CONE_MATERIALS",
+          "value_id": "160245",
+          "value_name": "Celulose"
+        },
+        {
+          "id": "INTEGRATED_SPEAKERS_TYPES",
+          "value_id": "8694538",
+          "value_name": "Subwoofer"
+        },
+        {
+          "id": "MAX_POWER_PMPO",
+          "value_id": "25533239",
+          "value_name": "5000 W"
+        },
+        {
+          "id": "RESONANCE_FREQUENCY",
+          "value_id": "56840930",
+          "value_name": "56.9 Hz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "9257470",
+          "value_name": "95.5 dB"
+        },
+        {
+          "id": "WITH_PROTECTIVE_SCREEN",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SUBWOOFER_BOX",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB51296330",
+        "catalogProductName": "Alto Falante Eros Target Xbass 5k Woofer 2500w 15\" 4 Ohms Amarelo",
+        "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "linkedListingsInCategory": 21,
+        "validatedGtin": "7899021962366"
+      }
+    },
+    {
+      "produtoId": "05000abc-702b-494f-983f-b4bf1c02970d",
+      "sku": "VTK017940",
+      "nome": "Alto Falante Jbl Tornado 18swt5600 18\"",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 1399.9,
+      "estoque": 19,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 2160.34,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359558964",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3905",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "17265",
+          "value_name": "JBL"
+        },
+        {
+          "id": "LINE",
+          "value_id": "165513",
+          "value_name": "Tornado"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "36934568",
+          "value_name": "18SWT5600"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_id": "24758247",
+          "value_name": "18 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_id": "8737310",
+          "value_name": "18 \""
+        },
+        {
+          "id": "COLOR",
+          "value_id": "976",
+          "value_name": "Prata"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "7452068",
+          "value_name": "1"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "7119772",
+          "value_name": "Subwoofer"
+        },
+        {
+          "id": "WAYS_NUMBER",
+          "value_id": "8704194",
+          "value_name": "1"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_id": "8704186",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_id": "3486751",
+          "value_name": "2800 W"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "1018446",
+          "value_name": "25 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24999797",
+          "value_name": "7896359558964"
+        },
+        {
+          "id": "SUSPENSION_MATERIALS",
+          "value_id": "24737291",
+          "value_name": "Pano"
+        },
+        {
+          "id": "CASING_MATERIALS",
+          "value_id": "108309",
+          "value_name": "Alumínio"
+        },
+        {
+          "id": "COIL_MATERIALS",
+          "value_id": "160257",
+          "value_name": "Alumínio"
+        },
+        {
+          "id": "CONE_MATERIALS",
+          "value_id": "160245",
+          "value_name": "Celulose"
+        },
+        {
+          "id": "MAX_POWER_PMPO",
+          "value_id": "24795237",
+          "value_name": "5600 W"
+        },
+        {
+          "id": "RESONANCE_FREQUENCY",
+          "value_id": "36950826",
+          "value_name": "46 Hz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "7509878",
+          "value_name": "94 dB"
+        },
+        {
+          "id": "WITH_PROTECTIVE_SCREEN",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SUBWOOFER_BOX",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27525020",
+        "catalogProductName": "Subwoofer 18 Pol Tornado Jbl Selenium 2800w 18swt5600 4 Ohms Cor Prata",
+        "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "linkedListingsInCategory": 41,
+        "validatedGtin": "7896359558964"
+      }
+    },
+    {
+      "produtoId": "d80da422-b849-4659-b0f6-ff0efe36e765",
+      "sku": "VTK018489",
+      "nome": "Alto Falante Eros E-15 Hammer 7200 Xbass 4hms Amarelo",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 1524.9,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 2353.24,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899021962106",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3905",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "164541",
+          "value_name": "Eros"
+        },
+        {
+          "id": "LINE",
+          "value_id": "2628286",
+          "value_name": "Hammer"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24736050",
+          "value_name": "Hammer Xbass 7200"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_id": "24719043",
+          "value_name": "15 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_LENGTH",
+          "value_id": "24719041",
+          "value_name": "15 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_id": "8736895",
+          "value_name": "15 \""
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52007",
+          "value_name": "Amarelo"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "7037897",
+          "value_name": "4"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "7509874",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "WAYS_NUMBER",
+          "value_id": "8704194",
+          "value_name": "1"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_id": "8704186",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_id": "24736052",
+          "value_name": "2.25 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_id": "24759727",
+          "value_name": "42 Hz - 2.8 Hz"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24736051",
+          "value_name": "7899021962106"
+        },
+        {
+          "id": "SUSPENSION_MATERIALS",
+          "value_id": "8266188",
+          "value_name": "Borracha"
+        },
+        {
+          "id": "CASING_MATERIALS",
+          "value_id": "108309",
+          "value_name": "Alumínio"
+        },
+        {
+          "id": "COIL_MATERIALS",
+          "value_id": "8266191",
+          "value_name": "CCAW"
+        },
+        {
+          "id": "CONE_MATERIALS",
+          "value_id": "160245",
+          "value_name": "Celulose"
+        },
+        {
+          "id": "INTEGRATED_SPEAKERS_TYPES",
+          "value_id": "8694535",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "MAX_POWER_PMPO",
+          "value_id": "26408994",
+          "value_name": "7200 W"
+        },
+        {
+          "id": "CROSSOVER_FREQUENCY",
+          "value_id": "26408995",
+          "value_name": "62 Hz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "25063335",
+          "value_name": "94.77 dB"
+        },
+        {
+          "id": "WITH_PROTECTIVE_SCREEN",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SUBWOOFER_BOX",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LED_LIGHTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27378346",
+        "catalogProductName": "Alto Falante Woofer Eros Hammer Xbass 7200 15 Pol 2250w 4ohm Cor Amarelo",
+        "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "linkedListingsInCategory": 8,
+        "validatedGtin": "7899021962106"
+      }
+    },
+    {
+      "produtoId": "7c433078-cf08-4965-8cba-fe1e9c822b33",
+      "sku": "VTK005357",
+      "nome": "Alto-Falante 5\" JBL Multisystem 5TRMS80 (PAR)",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 209.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 298.01,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359568963",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3905",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "17265",
+          "value_name": "JBL"
+        },
+        {
+          "id": "LINE",
+          "value_id": "25546418",
+          "value_name": "5trms80"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "50686330",
+          "value_name": "JBL Triaxial 80W RMS"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_id": "43008444",
+          "value_name": "6.8 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_LENGTH",
+          "value_id": "43008445",
+          "value_name": "6.8 \""
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_id": "8737288",
+          "value_name": "5 \""
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_id": "945309",
+          "value_name": "4 Ω"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_id": "999572",
+          "value_name": "2"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "8257690",
+          "value_name": "Triaxial"
+        },
+        {
+          "id": "WAYS_NUMBER",
+          "value_id": "8704191",
+          "value_name": "3"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_id": "8704186",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_id": "164536",
+          "value_name": "80 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_id": "43008446",
+          "value_name": "76 Hz - 91 Hz"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "4615823",
+          "value_name": "6.8 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24941278",
+          "value_name": "7892908209707, 7896359568963"
+        },
+        {
+          "id": "SUSPENSION_MATERIALS",
+          "value_id": "8266188",
+          "value_name": "Borracha"
+        },
+        {
+          "id": "CASING_MATERIALS",
+          "value_id": "457501",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "COIL_MATERIALS",
+          "value_id": "160257",
+          "value_name": "Alumínio"
+        },
+        {
+          "id": "CONE_MATERIALS",
+          "value_id": "160243",
+          "value_name": "Polipropileno"
+        },
+        {
+          "id": "INTEGRATED_SPEAKERS_TYPES",
+          "value_id": "8694536",
+          "value_name": "Tweeter"
+        },
+        {
+          "id": "MAX_POWER_PMPO",
+          "value_id": "167202",
+          "value_name": "160 W"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_id": "945310",
+          "value_name": "87 dB"
+        },
+        {
+          "id": "WITH_PROTECTIVE_SCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27500703",
+        "catalogProductName": "Par Alto Falante 5 Polegadas Selenium Jbl 160 Watts 5trms80 Cor Preto",
+        "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "linkedListingsInCategory": 85,
+        "validatedGtin": "7896359568963"
+      }
+    },
+    {
+      "produtoId": "27a4c9ea-fe09-4dc0-9ea3-db3c6bd9139e",
+      "sku": "VTK017836",
+      "nome": "Amplificador Digital Stetsom Cl800.4 800w",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 296.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 421.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897748706454",
+        "validatedNcm": "85184000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3385",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "345468",
+          "value_name": "Stetsom"
+        },
+        {
+          "id": "LINE",
+          "value_id": "50775333",
+          "value_name": "COMBAT 800"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18141286",
+          "value_name": "CL800"
+        },
+        {
+          "id": "POWER_OUTPUT",
+          "value_id": "1082278",
+          "value_name": "800 W"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "NUMBER_OF_CHANNELS",
+          "value_id": "925823",
+          "value_name": "4"
+        },
+        {
+          "id": "VEHICLE_AMPLIFIER_CLASS",
+          "value_id": "1098877",
+          "value_name": "D"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_id": "945360",
+          "value_name": "2 Ω"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "50775340",
+          "value_name": "7897748706454"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "345468",
+          "value_name": "Stetsom"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "50775331",
+          "value_name": "CL800_4CANAIS 2 OHMS"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "ORIGIN",
+          "value_id": "97214",
+          "value_name": "Brasil"
+        },
+        {
+          "id": "VEHICLE_AMPLIFIER_HEIGHT",
+          "value_id": "36764669",
+          "value_name": "5.4 cm"
+        },
+        {
+          "id": "VEHICLE_AMPLIFIER_LENGTH",
+          "value_id": "48543264",
+          "value_name": "16.3 cm"
+        },
+        {
+          "id": "VEHICLE_AMPLIFIER_WIDTH",
+          "value_id": "25758698",
+          "value_name": "11.3 cm"
+        },
+        {
+          "id": "MOSFET_POWER_SUPPLY",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_RCA_INPUT_CONNECTORS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_USB",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "LOW_PASS_FILTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "HIGH_PASS_FILTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MINIMUM_SUPPLY_VOLTAGE",
+          "value_id": "10762695",
+          "value_name": "9V"
+        },
+        {
+          "id": "MAXIMUM_SUPPLY_VOLTAGE",
+          "value_id": "10757484",
+          "value_name": "15V"
+        },
+        {
+          "id": "MINIMUM_FREQUENCY",
+          "value_id": "2261308",
+          "value_name": "10 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_id": "2261347",
+          "value_name": "20 kHz"
+        },
+        {
+          "id": "VEHICLE_AMPLIFIER_WEIGHT",
+          "value_id": "56439633",
+          "value_name": "740 g"
+        },
+        {
+          "id": "AUTOMATIC_THERMAL_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_REMOTE_SUBWOOFER_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB47890100",
+        "catalogProductName": "Módulo Amplificador Stetsom Combat CL800 800W RMS 4 Canais para Som Automotivo",
+        "catalogDomainId": "MLB-VEHICLE_AMPLIFIERS",
+        "categoryId": "MLB3385",
+        "categoryName": "Módulos Amplificadores",
+        "linkedListingsInCategory": 100,
+        "validatedGtin": "7897748706454"
+      }
+    },
+    {
+      "produtoId": "cd06c332-0ee8-427d-b8c1-5356fdded359",
+      "sku": "VTK017876",
+      "nome": "Amplificador Digital Stetsom Db500 500w 1 Canal 4 Ohms",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 314.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 447.08,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897748704863",
+        "validatedNcm": "85184000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3385",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "345468",
+          "value_name": "Stetsom"
+        },
+        {
+          "id": "LINE",
+          "value_id": "16510235",
+          "value_name": "Digital Bass"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16510236",
+          "value_name": "Db500.1"
+        },
+        {
+          "id": "POWER_OUTPUT",
+          "value_id": "2091979",
+          "value_name": "500 W"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "NUMBER_OF_CHANNELS",
+          "value_id": "925797",
+          "value_name": "1"
+        },
+        {
+          "id": "VEHICLE_AMPLIFIER_CLASS",
+          "value_id": "16510255",
+          "value_name": "DB500.1"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_id": "945309",
+          "value_name": "4 Ω"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16510252",
+          "value_name": "7897748704863"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "345468",
+          "value_name": "Stetsom"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "84785374",
+          "value_name": "Db500.1 4 Ohms"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "ORIGIN",
+          "value_id": "97214",
+          "value_name": "Brasil"
+        },
+        {
+          "id": "VEHICLE_AMPLIFIER_HEIGHT",
+          "value_id": "10890812",
+          "value_name": "5.5 cm"
+        },
+        {
+          "id": "VEHICLE_AMPLIFIER_LENGTH",
+          "value_id": "54982710",
+          "value_name": "12.55 cm"
+        },
+        {
+          "id": "VEHICLE_AMPLIFIER_WIDTH",
+          "value_id": "38469886",
+          "value_name": "16.2 cm"
+        },
+        {
+          "id": "MOSFET_POWER_SUPPLY",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_RCA_INPUT_CONNECTORS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_USB",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "LOW_PASS_FILTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "HIGH_PASS_FILTER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MINIMUM_SUPPLY_VOLTAGE",
+          "value_id": "10762695",
+          "value_name": "9V"
+        },
+        {
+          "id": "MAXIMUM_SUPPLY_VOLTAGE",
+          "value_id": "23699468",
+          "value_name": "15.5V"
+        },
+        {
+          "id": "MINIMUM_FREQUENCY",
+          "value_id": "10763882",
+          "value_name": "5 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_id": "10753771",
+          "value_name": "250 Hz"
+        },
+        {
+          "id": "VEHICLE_AMPLIFIER_WEIGHT",
+          "value_id": "43400989",
+          "value_name": "750 g"
+        },
+        {
+          "id": "AUTOMATIC_THERMAL_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_REMOTE_SUBWOOFER_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21621296",
+        "catalogProductName": "Módulo Amplificador Stetsom Db500.1 Digital Bass de 500W para Grave e Subgrave",
+        "catalogDomainId": "MLB-VEHICLE_AMPLIFIERS",
+        "categoryId": "MLB3385",
+        "categoryName": "Módulos Amplificadores",
+        "linkedListingsInCategory": 51,
+        "validatedGtin": "7897748704863"
+      }
+    },
+    {
+      "produtoId": "47cb6019-e097-4198-aa5d-da6beb61dbd6",
+      "sku": "VTK017609",
+      "nome": "Amplificador Digital Stetsom Hl800.4 900w 4 Canais 2 Ohms",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 419.9,
+      "estoque": 40,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 622.07,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897748704047",
+        "validatedNcm": "85184000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3385",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "345468",
+          "value_name": "Stetsom"
+        },
+        {
+          "id": "LINE",
+          "value_id": "899021",
+          "value_name": "High Line"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "7293968",
+          "value_name": "HL 800.4 2"
+        },
+        {
+          "id": "POWER_OUTPUT",
+          "value_id": "2255276",
+          "value_name": "900 W"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "NUMBER_OF_CHANNELS",
+          "value_id": "925823",
+          "value_name": "4"
+        },
+        {
+          "id": "VEHICLE_AMPLIFIER_CLASS",
+          "value_id": "1098877",
+          "value_name": "D"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "80782534",
+          "value_name": "07897748704047"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "345468",
+          "value_name": "Stetsom"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "58543571",
+          "value_name": "Hl800.4"
+        },
+        {
+          "id": "ORIGIN",
+          "value_id": "97214",
+          "value_name": "Brasil"
+        },
+        {
+          "id": "INCLUDES_RCA_INPUT_CONNECTORS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "LOW_PASS_FILTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "HIGH_PASS_FILTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MINIMUM_FREQUENCY",
+          "value_id": "2261308",
+          "value_name": "10 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_id": "10777545",
+          "value_name": "26 kHz"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB72037620",
+        "catalogProductName": "Modulo Amplificador Stetson 900w Rms Hl 800x4 4 Canais",
+        "catalogDomainId": "MLB-VEHICLE_AMPLIFIERS",
+        "categoryId": "MLB3385",
+        "categoryName": "Módulos Amplificadores",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7897748704047"
+      }
+    },
+    {
+      "produtoId": "0ec77509-59db-43d9-8ecf-66fbff84f60d",
+      "sku": "VTK018568",
+      "nome": "Amplificador Digital Stetsom Vulcan 3000 1 Canal 2 Ohms",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 658.99,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 976.28,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897748705525",
+        "validatedNcm": "85184000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB3385",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "345468",
+          "value_name": "Stetsom"
+        },
+        {
+          "id": "LINE",
+          "value_id": "2078174",
+          "value_name": "Vulcan"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16510243",
+          "value_name": "Vulcan 3000 - Vulcan - Vulcan3000 - Stetsom - Potência - Barra - Amplificador - Módulo - Bass boost - Stetsom 3000 - Módulo mono - Potência mono - Modulo 2 ohms - 2 homos - 2 omes - Som automotivo - Modulo Best Online"
+        },
+        {
+          "id": "POWER_OUTPUT",
+          "value_id": "65447172",
+          "value_name": "3000000 W"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "NUMBER_OF_CHANNELS",
+          "value_id": "925797",
+          "value_name": "1"
+        },
+        {
+          "id": "VEHICLE_AMPLIFIER_CLASS",
+          "value_id": "1098877",
+          "value_name": "D"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_id": "945360",
+          "value_name": "2 Ω"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16510269",
+          "value_name": "7897748705525"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "345468",
+          "value_name": "Stetsom"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "77962322",
+          "value_name": "Vulcan 3000 2 Ohms"
+        },
+        {
+          "id": "ORIGIN",
+          "value_id": "97214",
+          "value_name": "Brasil"
+        },
+        {
+          "id": "VEHICLE_AMPLIFIER_HEIGHT",
+          "value_id": "25798756",
+          "value_name": "7.8 cm"
+        },
+        {
+          "id": "VEHICLE_AMPLIFIER_LENGTH",
+          "value_id": "48577217",
+          "value_name": "23.95 cm"
+        },
+        {
+          "id": "VEHICLE_AMPLIFIER_WIDTH",
+          "value_id": "48577218",
+          "value_name": "23.15 cm"
+        },
+        {
+          "id": "MOSFET_POWER_SUPPLY",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_RCA_INPUT_CONNECTORS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_USB",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "LOW_PASS_FILTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "HIGH_PASS_FILTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MINIMUM_SUPPLY_VOLTAGE",
+          "value_id": "10762695",
+          "value_name": "9V"
+        },
+        {
+          "id": "MAXIMUM_SUPPLY_VOLTAGE",
+          "value_id": "2261320",
+          "value_name": "16V"
+        },
+        {
+          "id": "MINIMUM_FREQUENCY",
+          "value_id": "2261308",
+          "value_name": "10 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_id": "2261339",
+          "value_name": "22 kHz"
+        },
+        {
+          "id": "VEHICLE_AMPLIFIER_WEIGHT",
+          "value_id": "54652496",
+          "value_name": "2.8 kg"
+        },
+        {
+          "id": "AUTOMATIC_THERMAL_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_REMOTE_SUBWOOFER_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21621307",
+        "catalogProductName": "Módulo Amplificador Stetsom Vulcan 3000 Full Range de 3000W RMS e 2 Ohms",
+        "catalogDomainId": "MLB-VEHICLE_AMPLIFIERS",
+        "categoryId": "MLB3385",
+        "categoryName": "Módulos Amplificadores",
+        "linkedListingsInCategory": 92,
+        "validatedGtin": "7897748705525"
+      }
+    }
+  ]
+}

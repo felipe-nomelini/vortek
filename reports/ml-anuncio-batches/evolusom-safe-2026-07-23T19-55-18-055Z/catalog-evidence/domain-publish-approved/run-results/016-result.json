@@ -1,0 +1,110 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/016-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-016",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "f3f3cd94-1937-4c01-942e-6af744df50dc",
+      "sku": "VTK017604",
+      "category": {
+        "id": "MLB271716",
+        "nome": "Testadores de Cabos",
+        "dominio": "MLB-NETWORK_CABLE_TESTERS"
+      },
+      "anuncio": {
+        "id": "MLB7239070138",
+        "title": "Testador Digital De Cabos De Rede Mxt Ns-468-b",
+        "price": 81.79,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239070138-testador-digital-de-cabos-de-rede-mxt-ns-468-b-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 65.96 → R$ 81.79."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "2c5e0906-98c4-4662-a36d-79ca3ff4d691",
+      "sku": "VTK018659",
+      "category": {
+        "id": "MLB194301",
+        "nome": "Elétricas",
+        "dominio": "MLB-ELECTRIC_LOCKS"
+      },
+      "anuncio": {
+        "id": "MLB7239070270",
+        "title": "Trava Portao Ipec Eco Lock 127v Com Temporizador",
+        "price": 165.4,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239070270-trava-portao-ipec-eco-lock-127v-com-temporizador-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 141.18 → R$ 165.40."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "0441737a-1226-4d3c-a346-bc81227ea1e6",
+      "sku": "VTK018643",
+      "category": {
+        "id": "MLB3905",
+        "nome": "Alto-Falantes",
+        "dominio": "MLB-VEHICLE_SPEAKERS"
+      },
+      "anuncio": {
+        "id": "MLB4937558181",
+        "title": "Tweeter Permak 160 Watts Ref. 242",
+        "price": 75.62,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937558181-tweeter-permak-160-watts-ref-242-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 60.37 → R$ 75.62."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "6871afaf-6da3-4473-858a-0bd4d7a5fbc1",
+      "sku": "VTK018980",
+      "category": {
+        "id": "MLB7075",
+        "nome": "Porteiros Elétricos",
+        "dominio": "MLB-ELECTRIC_ENTRANCE_INTERCOMS"
+      },
+      "anuncio": {
+        "id": "MLB7239070510",
+        "title": "Vídeo Porteiro Multilaser Smart Wi-fi - Se220",
+        "price": 447.72,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239070510-video-porteiro-multilaser-smart-wi-fi-se220-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 419.35 → R$ 447.72."
+      ]
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,260 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/domain-publish-approved/run-results/014-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-014",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "8a878e68-5db7-460f-9f43-638b88b4c676",
+      "sku": "VTK017825",
+      "category": {
+        "id": "MLB63114",
+        "nome": "Filtros de Linha",
+        "dominio": "MLB-POWER_STRIPS"
+      },
+      "anuncio": {
+        "id": "MLB4937554143",
+        "title": "Régua Elétrica Max Eletron 19  08 Tomadas 10 Âmperes 220v",
+        "price": 139.69,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937554143-regua-eletrica-max-eletron-19-08-tomadas-10-mperes-220v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 119.37 → R$ 139.69."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "2e386618-3225-41f1-90ea-b7ecd541d968",
+      "sku": "VTK018727",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "anuncio": {
+        "id": "MLB7239066390",
+        "title": "Resistencia Para Ferro De Solda Hikari Power 30 220v Conj 2 220v",
+        "price": 59.3,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239066390-resistencia-para-ferro-de-solda-hikari-power-30-220v-conj-2-220v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 43.67 → R$ 59.30."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "bb8bea58-61c4-4e41-9d68-46f486032eef",
+      "sku": "VTK017193",
+      "category": {
+        "id": "MLB269858",
+        "nome": "Convencionais",
+        "dominio": "MLB-SHOWER_HEADS"
+      },
+      "anuncio": {
+        "id": "MLB4937565215",
+        "title": "Resistencia Para Ducha Eletrônica Hydra Hit 5500w 127v",
+        "price": 59.82,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937565215-resistencia-para-ducha-eletrnica-hydra-hit-5500w-127v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 43.48 → R$ 59.82."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "4bfdca7e-c32e-47f5-b90a-39956cd2f323",
+      "sku": "VTK018545",
+      "category": {
+        "id": "MLB269858",
+        "nome": "Convencionais",
+        "dominio": "MLB-SHOWER_HEADS"
+      },
+      "anuncio": {
+        "id": "MLB7239066574",
+        "title": "Resistencia Para Ducha Corona Spot 8t 5500w 127v",
+        "price": 62.19,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239066574-resistencia-para-ducha-corona-spot-8t-5500w-127v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 44.39 → R$ 62.19."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "faa94e70-9a36-4481-b43e-a16291e0542d",
+      "sku": "VTK018231",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "anuncio": {
+        "id": "MLB7239066650",
+        "title": "Resistencia Para Ferro De Solda Hikari Power 30 127v 127v",
+        "price": 63.99,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7239066650-resistencia-para-ferro-de-solda-hikari-power-30-127v-127v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 48.35 → R$ 63.99."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "3b16b01f-16ee-45c7-9d98-f4112c06e0f0",
+      "sku": "VTK018278",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "anuncio": {
+        "id": "MLB4937554555",
+        "title": "Resistência Para Ferro De Solda Hikari Power 40 127v Com 2 127v",
+        "price": 65.63,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937554555-resistncia-para-ferro-de-solda-hikari-power-40-127v-com-2-127v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 50.00 → R$ 65.63."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "074533de-3625-4ac5-87e6-970a7b9add7c",
+      "sku": "VTK017251",
+      "category": {
+        "id": "MLB269858",
+        "nome": "Convencionais",
+        "dominio": "MLB-SHOWER_HEADS"
+      },
+      "anuncio": {
+        "id": "MLB4937554633",
+        "title": "Resistência Zagonel Sublime/ Move 127v",
+        "price": 57.08,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937554633-resistncia-zagonel-sublime-move-127v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 40.42 → R$ 57.08."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "a1d92fec-8eff-476e-9961-b52b396dc3a3",
+      "sku": "VTK017268",
+      "category": {
+        "id": "MLB5867",
+        "nome": "Roteadores",
+        "dominio": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS"
+      },
+      "anuncio": {
+        "id": "MLB4937565601",
+        "title": "Roteador Wi-fi Tp-link Gpon Voip Archer Xr500v Dual Band",
+        "price": 557.8,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937565601-roteador-wi-fi-tp-link-gpon-voip-archer-xr500v-dual-band-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 526.20 → R$ 557.80."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "6b83bc22-9a5e-498d-9886-981eb73e1f6e",
+      "sku": "VTK018565",
+      "category": {
+        "id": "MLB5867",
+        "nome": "Roteadores",
+        "dominio": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS"
+      },
+      "anuncio": {
+        "id": "MLB4937565685",
+        "title": "Roteador Wi-fi Tp-link Hx510 Ax3000",
+        "price": 728.76,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937565685-roteador-wi-fi-tp-link-hx510-ax3000-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 699.85 → R$ 728.76."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "7db7cb53-5677-49a6-9af3-c0b365d12555",
+      "sku": "VTK017529",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "anuncio": {
+        "id": "MLB4937565793",
+        "title": "Solda Tubinho Cobix Azul 22 Gramas",
+        "price": 58.04,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4937565793-solda-tubinho-cobix-azul-22-gramas-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 40.13 → R$ 58.04."
+      ]
+    }
+  ],
+  "failed": []
+}

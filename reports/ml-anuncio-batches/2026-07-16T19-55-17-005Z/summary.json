@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-07-16T19:55:21.462Z",
+  "scope": "active_simple_kits",
+  "batchSize": 25,
+  "rpcCandidatesSeen": 255,
+  "skippedExistingCount": 0,
+  "readyCount": 250,
+  "blockedCount": 5,
+  "batchCount": 10,
+  "expectedOriginalCreateUniverse": 255,
+  "priceRule": {
+    "upto400": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "upto1000": {
+      "margin": 0.2,
+      "minProfit": 60
+    },
+    "above1000": {
+      "margin": 0.25,
+      "minProfit": 150
+    },
+    "taxRate": 0.04,
+    "runtimeSourceOfTruth": "src/services/pricing.ts + /api/ml/anuncio/schema"
+  },
+  "blockedReasonCounts": {
+    "missing_image": 5
+  },
+  "files": {
+    "batchesDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-16T19-55-17-005Z",
+    "summary": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-16T19-55-17-005Z/summary.json",
+    "blocked": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-16T19-55-17-005Z/blocked-items.json",
+    "skippedExisting": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-16T19-55-17-005Z/skipped-existing.json"
+  }
+}

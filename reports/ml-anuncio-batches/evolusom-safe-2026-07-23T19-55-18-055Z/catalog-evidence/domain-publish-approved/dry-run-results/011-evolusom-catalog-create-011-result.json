@@ -1,0 +1,138 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/011-evolusom-catalog-create-011.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-011",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "cace1590-4ac4-48a0-b5a1-902e38b66b3c",
+      "sku": "VTK018132",
+      "category": {
+        "id": "MLB420411",
+        "nome": "Fontes Chaveadas",
+        "dominio": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES"
+      },
+      "basePrice": 116.54,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e9c302c3-3983-4f4e-9943-6cdfc87021bb",
+      "sku": "VTK017358",
+      "category": {
+        "id": "MLB420411",
+        "nome": "Fontes Chaveadas",
+        "dominio": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES"
+      },
+      "basePrice": 172.95,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f71fe375-f27f-4881-b24d-fdf9a5044d9b",
+      "sku": "VTK005794",
+      "category": {
+        "id": "MLB1696",
+        "nome": "Gabinetes",
+        "dominio": "MLB-DESKTOP_COMPUTER_CASES"
+      },
+      "basePrice": 243.12,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "c15e3f28-f4b9-4757-90c3-e83d57d5c513",
+      "sku": "VTK019115",
+      "category": {
+        "id": "MLB430493",
+        "nome": "Grampeadores e Pinadores",
+        "dominio": "MLB-ELECTRIC_STAPLERS_AND_BRAD_NAILERS"
+      },
+      "basePrice": 518.76,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8e3dc4a9-f886-467a-92ec-d7eb50745ffc",
+      "sku": "VTK017218",
+      "category": {
+        "id": "MLB271708",
+        "nome": "Organizadores de Cabos",
+        "dominio": "MLB-CABLE_ORGANIZERS"
+      },
+      "basePrice": 60.13,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a5e2ddf7-aba8-4f7d-a542-f99a5f99873f",
+      "sku": "VTK017223",
+      "category": {
+        "id": "MLB1664",
+        "nome": "Fones",
+        "dominio": "MLB-HEADPHONES"
+      },
+      "basePrice": 89.62,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "baaae1b2-3872-4f68-bd88-b2c08902ff02",
+      "sku": "VTK001672",
+      "category": {
+        "id": "MLB236055",
+        "nome": "Kit de Chaves",
+        "dominio": "MLB-WRENCHES"
+      },
+      "basePrice": 89.49,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "00472e3e-1484-4aff-b15b-9f47863d7ed6",
+      "sku": "VTK017552",
+      "category": {
+        "id": "MLB244658",
+        "nome": "Potes para Alimentos",
+        "dominio": "MLB-FOOD_STORAGE_CONTAINERS"
+      },
+      "basePrice": 62.77,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "25145b39-46b2-49fd-9a0b-ac457e1720bf",
+      "sku": "VTK017774",
+      "category": {
+        "id": "MLB107564",
+        "nome": "Jogo de Panelas",
+        "dominio": "MLB-KITCHEN_COOKWARE_KITS"
+      },
+      "basePrice": 362.28,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "a59a337c-ab45-4600-90b9-3bfb03179c4a",
+      "sku": "VTK017599",
+      "nome": "Interfone Hdl Az-s01 Ajuste Volume E Toque Branco",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7075",
+            "nome": "Porteiros Elétricos"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

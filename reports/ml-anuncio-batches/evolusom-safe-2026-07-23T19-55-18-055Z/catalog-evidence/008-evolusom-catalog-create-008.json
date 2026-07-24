@@ -1,0 +1,1053 @@
+{
+  "batchNumber": 8,
+  "batchId": "evolusom-catalog-create-008",
+  "strategy": "exact_gtin_catalog_evidence",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "e36211d7-3653-4686-93c6-40619e689f76",
+      "sku": "VTK017228",
+      "nome": "Disco Diamantado Vonder V4 110mm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 13.16,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 40.94,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893946054533",
+        "validatedNcm": "68042119",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB260685",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "275828",
+          "value_name": "Vonder"
+        },
+        {
+          "id": "LINE",
+          "value_id": "3110782",
+          "value_name": "Disco"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "35613",
+          "value_name": "V4"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52007",
+          "value_name": "Amarelo"
+        },
+        {
+          "id": "CUT_OFF_WHEEL_DIAMETER",
+          "value_id": "65958626",
+          "value_name": "110 mm"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CENTRAL_DIAMETER",
+          "value_id": "65958534",
+          "value_name": "20 mm"
+        },
+        {
+          "id": "THICKNESS",
+          "value_id": "2999312",
+          "value_name": "2 mm"
+        },
+        {
+          "id": "WITH_REDUCTION_BUSHING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_BRUSH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "DISCS_AND_STONES_TYPE",
+          "value_id": "7362779",
+          "value_name": "De corte"
+        },
+        {
+          "id": "APT_SURFACES",
+          "value_id": "3580127",
+          "value_name": "Cerâmica"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "3650572",
+          "value_name": "Carboneto de silício"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "30282571",
+          "value_name": "7893946054533"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB30912904",
+        "catalogProductName": "Disco Diamantado 110mm V4 Furo 20 Vonder",
+        "catalogDomainId": "MLB-CUTTING_AND_GRINDING_DISCS_AND_STONES",
+        "predictedDomainId": "MLB-CUTTING_AND_GRINDING_DISCS_AND_STONES",
+        "categoryId": "MLB260685",
+        "categoryName": "Discos e Rebolos",
+        "linkedListingsInCategory": 17,
+        "validatedGtin": "7893946054533"
+      }
+    },
+    {
+      "produtoId": "781de69e-d4ba-4115-b898-3d0a5b5f1d4b",
+      "sku": "VTK017254",
+      "nome": "Divisor Hdmi Evus C-081 4k Fêmea X Fêmea 2 Saídas 1 Entrada 1,8m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 65.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 106.05,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597132319",
+        "validatedNcm": "85365090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB195961",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "72726507",
+          "value_name": "HDMI 1.3"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "20425791",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827369",
+          "value_name": "Adaptador"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6739225",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6739227",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116080",
+          "value_name": "Fêmea"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116087",
+          "value_name": "Fêmea"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "72726509",
+          "value_name": "7898597132319"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "68008582",
+          "value_name": "TVs LED, LCD, Plasma, BLUE-RAY, Receptores Digitais, Videogame, DVD"
+        },
+        {
+          "id": "MAX_RESOLUTION_SUPPORTED",
+          "value_id": "128798",
+          "value_name": "4K"
+        },
+        {
+          "id": "VERSION_TYPE",
+          "value_id": "63532249",
+          "value_name": "2.0"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB64634886",
+        "catalogProductName": "Divisor Hdmi Evus C-081 4k 2 Saidas 1 Entrada",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB195961",
+        "categoryName": "Adaptadores",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898597132319"
+      }
+    },
+    {
+      "produtoId": "788a2606-cf31-4cb8-9788-4b043ac3ce22",
+      "sku": "VTK018674",
+      "nome": "Dvr Gravador De Vídeo Frahm 8 Canais Fgd2008l",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 449.9,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 666.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896673816658",
+        "validatedNcm": "85437039",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB420039",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "116881",
+          "value_name": "Frahm"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "25018979",
+          "value_name": "FGD2008L (Série 200)"
+        },
+        {
+          "id": "CHANNELS_NUMBER",
+          "value_id": "2682394",
+          "value_name": "8"
+        },
+        {
+          "id": "RESOLUTION_TYPE",
+          "value_id": "290770",
+          "value_name": "Full HD"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS",
+          "value_id": "6739227",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "INCLUDES_HARD_DRIVE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25018978",
+          "value_name": "7896673816658"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27536009",
+        "catalogProductName": "Dvr 8 Canais 1080p 2mp Frahm Fgd2008l",
+        "catalogDomainId": "MLB-SURVEILLANCE_VIDEO_RECORDERS",
+        "predictedDomainId": "MLB-SURVEILLANCE_VIDEO_RECORDERS",
+        "categoryId": "MLB420039",
+        "categoryName": "Gravadores DVR",
+        "linkedListingsInCategory": 5,
+        "validatedGtin": "7896673816658"
+      }
+    },
+    {
+      "produtoId": "d9f4b7a2-5aab-41a5-8342-b0f684f24883",
+      "sku": "VTK012908",
+      "nome": "Encordoamento Giannini P/guitarra Niquel 0.011 Geegst.11",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 25.2,
+      "estoque": 41,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 55.8,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898159187115",
+        "validatedNcm": "92093000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB278076",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "45321",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "LINE",
+          "value_id": "16505953",
+          "value_name": "niquel"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16505954",
+          "value_name": "GEEGST"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_id": "16040015",
+          "value_name": "GUITARRA"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_id": "15146",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_id": "16667153",
+          "value_name": "0.28 0.36 0.46 0.71 0.97 1.24"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "2342782",
+          "value_name": "Níquel"
+        },
+        {
+          "id": "TENSION",
+          "value_id": "5344248",
+          "value_name": "Média"
+        },
+        {
+          "id": "NOTES",
+          "value_id": "74705278",
+          "value_name": "Selo de Qualidade ISO 9001, Fabricação Brasil"
+        },
+        {
+          "id": "SCALE",
+          "value_id": "15312686",
+          "value_name": "1:2"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16667154",
+          "value_name": "7906955935332, 7898159187115"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21714902",
+        "catalogProductName": "Encordoamento Guitarra Giannini Geegst.11 Nickel Round Wound",
+        "catalogDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+        "predictedDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+        "categoryId": "MLB278076",
+        "categoryName": "Cordas para Instrumentos",
+        "linkedListingsInCategory": 63,
+        "validatedGtin": "7898159187115"
+      }
+    },
+    {
+      "produtoId": "dfe522d7-96b8-498f-a240-322254c7e2ab",
+      "sku": "VTK012916",
+      "nome": "Encordoamento Giannini P/contra Baixo Pesado 0.045 Geebrs/5",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 102.5,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 151.23,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898159187238",
+        "validatedNcm": "92093000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB278076",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "45321",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "LINE",
+          "value_id": "16343332",
+          "value_name": "cordas"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16343333",
+          "value_name": "geebrs5"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_id": "15992504",
+          "value_name": "Contrabaixo"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "330041",
+          "value_name": "5"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_id": "15136",
+          "value_name": "5"
+        },
+        {
+          "id": "GAUGES",
+          "value_id": "16040122",
+          "value_name": "045"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "4837600",
+          "value_name": "Aço"
+        },
+        {
+          "id": "TENSION",
+          "value_id": "5344248",
+          "value_name": "Média"
+        },
+        {
+          "id": "NOTES",
+          "value_id": "23928876",
+          "value_name": "1.G\t2.D\t3.A\t4.E\t5.B"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16343408",
+          "value_name": "7898159187238"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21506075",
+        "catalogProductName": "Encordoamento Para Baixo De 5 Cordas Giannini 045 Geebrs5",
+        "catalogDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+        "predictedDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+        "categoryId": "MLB278076",
+        "categoryName": "Cordas para Instrumentos",
+        "linkedListingsInCategory": 26,
+        "validatedGtin": "7898159187238"
+      }
+    },
+    {
+      "produtoId": "ba19ca70-f5ef-4b25-8b16-4be18ca8e356",
+      "sku": "VTK001671",
+      "nome": "Encordoamento Para Guitarra .010 Niquel Round Wound Giannini GEEGST10",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 27.5,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 58.64,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898159187122",
+        "validatedNcm": "92093000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB278076",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "45321",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "LINE",
+          "value_id": "16505953",
+          "value_name": "niquel"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16546753",
+          "value_name": "GEEGST10"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_id": "15312680",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_id": "15146",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_id": "16505978",
+          "value_name": "2533436689117"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "55963000",
+          "value_name": "Níquel"
+        },
+        {
+          "id": "TENSION",
+          "value_id": "55963002",
+          "value_name": "Leve"
+        },
+        {
+          "id": "NOTES",
+          "value_id": "15312682",
+          "value_name": "Mi, Si, Sol, Re, La, Mi6"
+        },
+        {
+          "id": "SCALE",
+          "value_id": "15312683",
+          "value_name": "4:4"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16505979",
+          "value_name": "7898159187122"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21618562",
+        "catalogProductName": "Encordoamento Guitarra Giannini Nickel 10/46 Geegst10",
+        "catalogDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+        "predictedDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+        "categoryId": "MLB278076",
+        "categoryName": "Cordas para Instrumentos",
+        "linkedListingsInCategory": 82,
+        "validatedGtin": "7898159187122"
+      }
+    },
+    {
+      "produtoId": "65a634ab-5ce4-4c01-9a1e-e88e70bf7fa0",
+      "sku": "VTK019116",
+      "nome": "Esmerilhadeira Vonder 4.1/ 2\" Eav 860 127v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 274.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 390.29,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893946510596",
+        "validatedNcm": "84672999",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB188790",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "275828",
+          "value_name": "Vonder"
+        },
+        {
+          "id": "LINE",
+          "value_id": "9218",
+          "value_name": "Profissional"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "9820521",
+          "value_name": "EAV 860N"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "value_id": "74898634",
+          "value_name": "EAV 860N"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "49713698",
+          "value_name": "Corrente doméstica"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52007",
+          "value_name": "Amarelo"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "8223837",
+          "value_name": "50 Hz/60 Hz"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "25757905",
+          "value_name": "EAV 860"
+        },
+        {
+          "id": "MIN_ROTATION_SPEED",
+          "value_id": "8542276",
+          "value_name": "11000 rpm"
+        },
+        {
+          "id": "MAX_ROTATION_SPEED",
+          "value_id": "7913512",
+          "value_name": "11000 rpm"
+        },
+        {
+          "id": "POWER",
+          "value_id": "4369697",
+          "value_name": "860 W"
+        },
+        {
+          "id": "POWER_GRINDER_TYPE",
+          "value_id": "5285127",
+          "value_name": "Angular"
+        },
+        {
+          "id": "IS_MINI_POWER_GRINDER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "DISC_DIAMETER",
+          "value_id": "5285126",
+          "value_name": "115 mm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "8293730",
+          "value_name": "7893946510596"
+        },
+        {
+          "id": "SWITCH_TYPE",
+          "value_id": "7643689",
+          "value_name": "Gatilho"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "999652",
+          "value_name": "2 kg"
+        },
+        {
+          "id": "WITH_PROGRESSIVE_START",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SPEED_REGULATION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DISC_LOCK_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SIDE_HANDLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_ANTI_VIBRATION_HANDLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_BATTERY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_DISC_PROTECTOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "8305546",
+          "value_name": "1 chave"
+        },
+        {
+          "id": "MPN",
+          "value_id": "8012155",
+          "value_name": "60.01.860.127"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB13481779",
+        "catalogProductName": "Esmerilhadeira Angular 4.1/2 860W Profissional Vonder EAV860N",
+        "catalogDomainId": "MLB-POWER_GRINDERS",
+        "predictedDomainId": "MLB-POWER_GRINDERS",
+        "categoryId": "MLB188790",
+        "categoryName": "Esmerilhadeiras Angulares",
+        "linkedListingsInCategory": 60,
+        "validatedGtin": "7893946510596"
+      }
+    },
+    {
+      "produtoId": "77e833d7-3487-4b9b-8b1c-298a9a540694",
+      "sku": "VTK018195",
+      "nome": "Extensão Daneva No Shock Pl 10m Grafite 2 X 0,75mm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 30.9,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 62.84,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896586814673",
+        "validatedNcm": "85444900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB63114",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "12046553",
+          "value_name": "Daneva"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "23056114",
+          "value_name": "1467 NO SHOCK"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "18033133",
+          "value_name": "Extensão"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "OUTLETS_NUMBER",
+          "value_id": "5755463",
+          "value_name": "3"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129133",
+          "value_name": "10 m"
+        },
+        {
+          "id": "MAX_CURRENT",
+          "value_id": "5755450",
+          "value_name": "10 A"
+        },
+        {
+          "id": "WITH_USB",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "23056165",
+          "value_name": "7896586814673"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB26117522",
+        "catalogProductName": "Extensão Elétrica Pl 2x0,75 Mm² 10m 10a 1467 No Shock Daneva Cor Preto",
+        "catalogDomainId": "MLB-POWER_STRIPS",
+        "predictedDomainId": "MLB-POWER_STRIPS",
+        "categoryId": "MLB63114",
+        "categoryName": "Filtros de Linha",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7896586814673"
+      }
+    },
+    {
+      "produtoId": "a6160be9-23b2-46f5-85a5-a915f24806a1",
+      "sku": "VTK017328",
+      "nome": "Fan Para Pc Gamer Gf12r 12cm Vermelho 32 Led",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 36.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 70.25,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "5055492400659",
+        "validatedNcm": "84145990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB2676",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "14232561",
+          "value_name": "Geral"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "35709929",
+          "value_name": "5055492400659"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB35155590",
+        "catalogProductName": "Cooler 32 Led Vermelho 120mm 12cm Ventoinha Gamemax Gf12r",
+        "catalogDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+        "predictedDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+        "categoryId": "MLB2676",
+        "categoryName": "Coolers e Ventoinhas",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "5055492400659"
+      }
+    },
+    {
+      "produtoId": "93a09e68-ab81-4aba-96e1-f5168eab6007",
+      "sku": "VTK019109",
+      "nome": "Fechadura Hdl Elétrica Pv90 1f Bola",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 363.16,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 515.6,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896423522792",
+        "validatedNcm": "83014000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB194301",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2445255",
+          "value_name": "HDL"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "39235797",
+          "value_name": "HDL"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "2133143",
+          "value_name": "Inox"
+        },
+        {
+          "id": "FINISH",
+          "value_id": "2439618",
+          "value_name": "Aço inoxidável"
+        },
+        {
+          "id": "OPENING_MECHANISMS",
+          "value_id": "75100193",
+          "value_name": "Cilindro embutido com 3 chaves, Maçaneta"
+        },
+        {
+          "id": "INSTALLATION_TYPE",
+          "value_id": "312345",
+          "value_name": "De embutir"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "3739569",
+          "value_name": "12V"
+        },
+        {
+          "id": "IS_DIGITAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WI_FI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "39235798",
+          "value_name": "7896423522792"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "62835364",
+          "value_name": "HDL DA AMAZONIA IND. ELETRONICA LTDA"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "67698173",
+          "value_name": "90.01.03.094"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450303",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "2132854",
+          "value_name": "Zinco"
+        },
+        {
+          "id": "INCLUDED_KEYS_NUMBER",
+          "value_id": "18189908",
+          "value_name": "3"
+        },
+        {
+          "id": "INCLUDES_DOOR_HANDLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB38100716",
+        "catalogProductName": "Fechadura Hdl Elétrica Pv90 1f Bola",
+        "catalogDomainId": "MLB-ELECTRIC_LOCKS",
+        "predictedDomainId": "MLB-ELECTRIC_LOCKS",
+        "categoryId": "MLB194301",
+        "categoryName": "Elétricas",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7896423522792"
+      }
+    }
+  ]
+}

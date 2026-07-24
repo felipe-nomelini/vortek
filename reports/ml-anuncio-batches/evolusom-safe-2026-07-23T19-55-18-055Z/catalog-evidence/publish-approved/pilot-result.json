@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/publish-approved/pilot.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-pilot",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "9cbbbf6d-4826-418f-bbfe-6fa035b3bb8e",
+      "sku": "VTK019167",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB7238799642",
+        "title": "Adaptador De 9  Para 10.1  Fiamon - Black Piano Preto",
+        "price": 113.27,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7238799642-adaptador-de-9-para-101-fiamon-black-piano-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 96.17 → R$ 113.27."
+      ]
+    }
+  ],
+  "failed": []
+}

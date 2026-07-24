@@ -1,0 +1,1593 @@
+{
+  "batchNumber": 5,
+  "batchId": "evolusom-domain-approved-005",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "945c4793-9382-4754-ae81-ce54acc0b82a",
+      "sku": "VTK019180",
+      "nome": "Câmera De Segurança Externa Elsys Full Hd - Esc-wb3f",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 339.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 482.57,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898348535994",
+        "validatedNcm": "85258929",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7073",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "45918",
+          "value_name": "Elsys"
+        },
+        {
+          "id": "LINE",
+          "value_id": "21840634",
+          "value_name": "Câmeras de Segurança"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "11734386",
+          "value_name": "ESC-WB3F"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "7386989",
+          "value_name": "1"
+        },
+        {
+          "id": "RESOLUTION_QUALITY",
+          "value_id": "11296601",
+          "value_name": "2MP"
+        },
+        {
+          "id": "RESOLUTION_TYPE",
+          "value_id": "290770",
+          "value_name": "Full HD"
+        },
+        {
+          "id": "MOUNTING_PLACES",
+          "value_id": "7720908",
+          "value_name": "Parede"
+        },
+        {
+          "id": "CONNECTIVITY",
+          "value_id": "2511537",
+          "value_name": "Wi-Fi, LAN"
+        },
+        {
+          "id": "SURVEILLANCE_CAMERA_TYPE",
+          "value_id": "372564",
+          "value_name": "Bala"
+        },
+        {
+          "id": "IS_MOTORIZED",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MOVEMENT_TYPE",
+          "value_id": "14993665",
+          "value_name": "Rotacional"
+        },
+        {
+          "id": "CAMERA_LENS_DIAMETER",
+          "value_id": "25764085",
+          "value_name": "3.6 mm"
+        },
+        {
+          "id": "OPTICAL_ZOOM",
+          "value_id": "960",
+          "value_name": "3x"
+        },
+        {
+          "id": "CAMERA_LOCATIONS",
+          "value_id": "11296608",
+          "value_name": "Exterior"
+        },
+        {
+          "id": "DIGITAL_ZOOM",
+          "value_id": "7199622",
+          "value_name": "3x"
+        },
+        {
+          "id": "WITH_NIGHT_VISION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MIN_TEMPERATURE_SUPPORTED",
+          "value_id": "11314143",
+          "value_name": "-10 °C"
+        },
+        {
+          "id": "MAX_TEMPERATURE_SUPPORTED",
+          "value_id": "11334977",
+          "value_name": "60 °C"
+        },
+        {
+          "id": "WITH_COLOR_NIGHT_VISION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "45918",
+          "value_name": "Elsys"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "11734388",
+          "value_name": "7898348535994, 998901151320"
+        },
+        {
+          "id": "SPY_CAMERA_FORMAT",
+          "value_id": "18405328",
+          "value_name": "MP4 e JPEG"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        },
+        {
+          "id": "WITH_WI_FI",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_MOTION_SENSOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_ACCESSORIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ALARM",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TWO_WAY_AUDIO",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "COMPATIBLE_SMART_APPS",
+          "value_id": "12306601",
+          "value_name": "Google Home"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "value_id": "8152567",
+          "value_name": "Corrente elétrica"
+        },
+        {
+          "id": "POWER",
+          "value_id": "10582643",
+          "value_name": "5 W"
+        },
+        {
+          "id": "WITH_MOBILE_ALERT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_ANTIVANDALIC",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_LIVE_VIDEO",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "CONNECTION_TYPES",
+          "value_id": "11296606",
+          "value_name": "Sem fio, Com fio"
+        },
+        {
+          "id": "WATERPROOF_RATING",
+          "value_id": "11296611",
+          "value_name": "IP66"
+        },
+        {
+          "id": "NIGHT_SCOPE_DISTANCE",
+          "value_id": "11334970",
+          "value_name": "30 m"
+        },
+        {
+          "id": "LENS_FOCAL_LENGTH",
+          "value_id": "11312201",
+          "value_name": "3.6 mm"
+        },
+        {
+          "id": "MAX_FPS_NUMBER",
+          "value_id": "7479583",
+          "value_name": "25"
+        },
+        {
+          "id": "CONTROL_TYPES",
+          "value_id": "11296613",
+          "value_name": "App"
+        },
+        {
+          "id": "VIDEO_COMPRESSION_FORMATS",
+          "value_id": "11311868",
+          "value_name": "H.264, H.264+, H.265X"
+        },
+        {
+          "id": "IMAGE_SENSOR_TYPE",
+          "value_id": "11970348",
+          "value_name": "1/3\" sensor CMOS"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "517391",
+          "value_name": "19 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "45552",
+          "value_name": "7 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "1352",
+          "value_name": "400 g"
+        },
+        {
+          "id": "COMPATIBLE_VIRTUAL_ASSISTANTS",
+          "value_id": "11336625",
+          "value_name": "Amazon Alexa"
+        },
+        {
+          "id": "OPERATIVE_SYSTEMS_COMPATIBILITY",
+          "value_id": "8846210",
+          "value_name": "Android, iOS"
+        },
+        {
+          "id": "STORAGE_TYPES",
+          "value_id": "8978035",
+          "value_name": "SD, Nuvem"
+        },
+        {
+          "id": "STORAGE_CAPACITY",
+          "value_id": "86242",
+          "value_name": "128 GB"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "9021792",
+          "value_name": "1 carregador, 1 protetor de cabo à prova d’água, Manual de instruções, Base de montagem"
+        },
+        {
+          "id": "MPN",
+          "value_id": "11097041",
+          "value_name": "526"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB18946706",
+        "catalogProductName": "Câmera de segurança Elsys ESC-WB3F com resolução de 2MP visão noturna incluída branca",
+        "catalogDomainId": "MLB-SURVEILLANCE_CAMERAS",
+        "predictedDomainId": "MLB-SURVEILLANCE_CAMERAS",
+        "categoryId": "MLB7073",
+        "categoryName": "Câmeras de Segurança",
+        "linkedListingsInCategory": 21,
+        "validatedGtin": "7898348535994"
+      }
+    },
+    {
+      "produtoId": "e28979c3-f974-4b95-b02b-7a3b756c437d",
+      "sku": "VTK018245",
+      "nome": "Câmera Dome Citrox Jetcolor 4x1 2mp Ir20m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 158.9,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 225.6,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898481913666",
+        "validatedNcm": "85258913",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7073",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "515753",
+          "value_name": "PPA"
+        },
+        {
+          "id": "LINE",
+          "value_id": "15873152",
+          "value_name": "JetColor"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "108361",
+          "value_name": "Dome"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "7386989",
+          "value_name": "1"
+        },
+        {
+          "id": "RESOLUTION_QUALITY",
+          "value_id": "15873155",
+          "value_name": "FULL HD 2MP"
+        },
+        {
+          "id": "RESOLUTION_TYPE",
+          "value_id": "290770",
+          "value_name": "Full HD"
+        },
+        {
+          "id": "MOUNTING_PLACES",
+          "value_id": "7720909",
+          "value_name": "Teto, Parede"
+        },
+        {
+          "id": "CONNECTIVITY",
+          "value_id": "13726936",
+          "value_name": "Dvr"
+        },
+        {
+          "id": "SURVEILLANCE_CAMERA_TYPE",
+          "value_id": "347867",
+          "value_name": "Domo"
+        },
+        {
+          "id": "IS_MOTORIZED",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "VISUAL_FIELD",
+          "value_id": "11334978",
+          "value_name": "95 °"
+        },
+        {
+          "id": "MOVEMENT_TYPE",
+          "value_id": "20148590",
+          "value_name": "Fixo"
+        },
+        {
+          "id": "CAMERA_LENS_DIAMETER",
+          "value_id": "25834104",
+          "value_name": "2.8 mm"
+        },
+        {
+          "id": "OPTICAL_ZOOM",
+          "value_id": "1344",
+          "value_name": "2x"
+        },
+        {
+          "id": "CAMERA_LOCATIONS",
+          "value_id": "11296607",
+          "value_name": "Interior, Exterior"
+        },
+        {
+          "id": "DIGITAL_ZOOM",
+          "value_id": "990",
+          "value_name": "2x"
+        },
+        {
+          "id": "WITH_NIGHT_VISION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MIN_TEMPERATURE_SUPPORTED",
+          "value_id": "19116078",
+          "value_name": "6 °C"
+        },
+        {
+          "id": "MAX_TEMPERATURE_SUPPORTED",
+          "value_id": "11334977",
+          "value_name": "60 °C"
+        },
+        {
+          "id": "WITH_COLOR_NIGHT_VISION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "515753",
+          "value_name": "PPA"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "76856501",
+          "value_name": "A408017"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "15873154",
+          "value_name": "7898481913666, 1000008141506, 1000010091318"
+        },
+        {
+          "id": "SPY_CAMERA_FORMAT",
+          "value_id": "375352",
+          "value_name": "Foco"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        },
+        {
+          "id": "WITH_WI_FI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MOTION_SENSOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_ACCESSORIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ALARM",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TWO_WAY_AUDIO",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LIVE_VIDEO",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "CONNECTION_TYPES",
+          "value_id": "20999251",
+          "value_name": "BNC"
+        },
+        {
+          "id": "SCOPE_DISTANCE",
+          "value_id": "7479555",
+          "value_name": "30 m"
+        },
+        {
+          "id": "MAX_FPS_NUMBER",
+          "value_id": "7479583",
+          "value_name": "25"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "45551",
+          "value_name": "11 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "1016264",
+          "value_name": "11 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "3968",
+          "value_name": "270 g"
+        },
+        {
+          "id": "STORAGE_CAPACITY",
+          "value_id": "65438231",
+          "value_name": "0 GB"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21204264",
+        "catalogProductName": "Câmera Segurança Dome Jetcolor Ppa Full Hd Colorido Noite Cor Branco",
+        "catalogDomainId": "MLB-SURVEILLANCE_CAMERAS",
+        "predictedDomainId": "MLB-SURVEILLANCE_CAMERAS",
+        "categoryId": "MLB7073",
+        "categoryName": "Câmeras de Segurança",
+        "linkedListingsInCategory": 44,
+        "validatedGtin": "7898481913666"
+      }
+    },
+    {
+      "produtoId": "d401d3c6-dbf0-4bc9-89bc-f8a2f0677e3f",
+      "sku": "VTK018458",
+      "nome": "Câmera Dome Hikvision Plastica Ds-2ce56d8t-itmf 2mp",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 193.9,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 275.29,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898646193612",
+        "validatedNcm": "85258300",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7073",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "195091",
+          "value_name": "Hikvision"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "25134988",
+          "value_name": "DS-2CE56D8T-ITMF"
+        },
+        {
+          "id": "RESOLUTION_QUALITY",
+          "value_id": "8101560",
+          "value_name": "HD 1080p"
+        },
+        {
+          "id": "MOUNTING_PLACES",
+          "value_id": "7720909",
+          "value_name": "Teto"
+        },
+        {
+          "id": "SURVEILLANCE_CAMERA_TYPE",
+          "value_id": "347867",
+          "value_name": "Domo"
+        },
+        {
+          "id": "IS_MOTORIZED",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "CAMERA_LOCATIONS",
+          "value_id": "11296607",
+          "value_name": "Interior, Exterior"
+        },
+        {
+          "id": "WITH_NIGHT_VISION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25134987",
+          "value_name": "7898646193612"
+        },
+        {
+          "id": "SPY_CAMERA_FORMAT",
+          "value_id": "13357616",
+          "value_name": "Lente"
+        },
+        {
+          "id": "IS_WATER_RESISTANT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "CONNECTION_TYPES",
+          "value_id": "1210905",
+          "value_name": "Com fio"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "3092250",
+          "value_name": "238 g"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27595359",
+        "catalogProductName": "Câmera Dome Hikvision Ds-2ce56d8t-itmf 2.8mm 1080p Ip66 30m",
+        "catalogDomainId": "MLB-SURVEILLANCE_CAMERAS",
+        "predictedDomainId": "MLB-SURVEILLANCE_CAMERAS",
+        "categoryId": "MLB7073",
+        "categoryName": "Câmeras de Segurança",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7898646193612"
+      }
+    },
+    {
+      "produtoId": "ee30888e-c6fa-4bae-bd20-a28bb0fa1f6e",
+      "sku": "VTK017886",
+      "nome": "Câmera Multitoc Ccd Color Ir100 1/ 3\" Sharp 420 Linhas 100mts",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 209.95,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 298.08,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898179313327",
+        "validatedNcm": "85258300",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7073",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "79916",
+          "value_name": "Multitoc"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "39560393",
+          "value_name": "M990D1-100"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52053",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "RESOLUTION_QUALITY",
+          "value_id": "73924437",
+          "value_name": "420 linhas"
+        },
+        {
+          "id": "RESOLUTION_TYPE",
+          "value_id": "16519662",
+          "value_name": "420 TVL"
+        },
+        {
+          "id": "MOUNTING_PLACES",
+          "value_id": "7720908",
+          "value_name": "Parede"
+        },
+        {
+          "id": "CONNECTIVITY",
+          "value_id": "1210905",
+          "value_name": "Com fio"
+        },
+        {
+          "id": "SURVEILLANCE_CAMERA_TYPE",
+          "value_id": "372564",
+          "value_name": "Bala"
+        },
+        {
+          "id": "CAMERA_LOCATIONS",
+          "value_id": "11296608",
+          "value_name": "Exterior"
+        },
+        {
+          "id": "WITH_NIGHT_VISION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "39560396",
+          "value_name": "7898179313327"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450303",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "CONNECTION_TYPES",
+          "value_id": "1210905",
+          "value_name": "Com fio"
+        },
+        {
+          "id": "NIGHT_SCOPE_DISTANCE",
+          "value_id": "11499041",
+          "value_name": "100 m"
+        },
+        {
+          "id": "IMAGE_SENSOR_TYPE",
+          "value_id": "73924438",
+          "value_name": "CCD Color"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB38396781",
+        "catalogProductName": "Câmera Ccd Color Ir100 1/ 3 Sharp 420 Linhas 100mts",
+        "catalogDomainId": "MLB-SURVEILLANCE_CAMERAS",
+        "predictedDomainId": "MLB-SURVEILLANCE_CAMERAS",
+        "categoryId": "MLB7073",
+        "categoryName": "Câmeras de Segurança",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898179313327"
+      }
+    },
+    {
+      "produtoId": "e0a218a8-ef6e-4c71-abbf-a699845bd913",
+      "sku": "VTK019204",
+      "nome": "Camera Roadstar Dash Cam Rs25 Dvr Br Es",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 449.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 666.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898587425698",
+        "validatedNcm": "85258929",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB186150",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "PART_NUMBER",
+          "value_id": "53714700",
+          "value_name": "RS25DVR BR"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "909022",
+          "value_name": "12V"
+        },
+        {
+          "id": "VISION_ANGLE",
+          "value_id": "11796876",
+          "value_name": "170°"
+        },
+        {
+          "id": "VIDEO_RESOLUTION",
+          "value_id": "53714702",
+          "value_name": "2.5K (2560x1440 @ 30FPS)"
+        },
+        {
+          "id": "STORAGE_CAPACITY",
+          "value_id": "6378200",
+          "value_name": "256 GB"
+        },
+        {
+          "id": "IS_COMPATIBLE_WITH_SD_STORAGE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_LOOP_RECORDING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SCREEN_SIZE",
+          "value_id": "7093863",
+          "value_name": "3.2 \""
+        },
+        {
+          "id": "WITH_MOTION_SENSOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ASSISTED_DRIVING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIFI",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_MOBILE_APP",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_MICROPHONE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_WATERPROOF",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_CABLES",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "53714698",
+          "value_name": "7898587425698"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "84828853",
+          "value_name": "RS-25DVR"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB50131699",
+        "catalogProductName": "Câmera Veicular Dash Camdvr Qhd 2.5k Rs-25dvr Roadstar +",
+        "catalogDomainId": "MLB-VEHICLE_CAMERAS",
+        "predictedDomainId": "MLB-VEHICLE_CAMERAS",
+        "categoryId": "MLB186150",
+        "categoryName": "Câmera Veicular",
+        "linkedListingsInCategory": 6,
+        "validatedGtin": "7898587425698"
+      }
+    },
+    {
+      "produtoId": "b920dbaf-4373-4d46-b084-174113435531",
+      "sku": "VTK018969",
+      "nome": "Central Multimídia Evolve Gp348 7\" Capacitiva Com Espelhamento Ios Android",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 359.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 510.97,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899838891828",
+        "validatedNcm": "85269100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB135679",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "9982797",
+          "value_name": "Evolve"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "38870469",
+          "value_name": "GP348"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "40491280",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7600402",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "12097451",
+          "value_name": "18 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7828417",
+          "value_name": "6 cm"
+        },
+        {
+          "id": "WITH_GPS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_USB_PORT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TV_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TOUCHSCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "26860289",
+          "value_name": "7899838891828"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "9982797",
+          "value_name": "Evolve"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "55867294",
+          "value_name": "GP348"
+        },
+        {
+          "id": "WITH_FLIP_OUT_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_FM_TRANSMITTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REMOTE_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MEMORY_CARD_READER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "OEM",
+          "value_id": "26860291",
+          "value_name": "7899838825717"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB47121199",
+        "catalogProductName": "Multimídia Evolve 7pol. Com Espelhamento Ios Android Gp348 Cor Preto",
+        "catalogDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "predictedDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "categoryId": "MLB135679",
+        "categoryName": "Com Tela",
+        "linkedListingsInCategory": 5,
+        "validatedGtin": "7899838891828"
+      }
+    },
+    {
+      "produtoId": "2351f349-537e-4081-9553-801bb9193fa7",
+      "sku": "VTK018800",
+      "nome": "Central Multimídia Roadstar Android Com Carplay 7\" - Rs815br",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 479.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 710.96,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898587424882",
+        "validatedNcm": "85272100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB135679",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "37213445",
+          "value_name": "RS-815BR Prime"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "9680365",
+          "value_name": "10.3 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "15945276",
+          "value_name": "4.5 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8943738",
+          "value_name": "17.8 cm"
+        },
+        {
+          "id": "WITH_GPS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_USB_PORT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TV_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TOUCHSCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27063304",
+          "value_name": "7898587424882"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "40583904",
+          "value_name": "RS-815BR Prime"
+        },
+        {
+          "id": "WITH_FLIP_OUT_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_FM_TRANSMITTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REMOTE_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_MEMORY_CARD_READER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB36486045",
+        "catalogProductName": "Sistema multimídia para veículo Roadstar RS-815BR Prime 7\" - preto",
+        "catalogDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "predictedDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "categoryId": "MLB135679",
+        "categoryName": "Com Tela",
+        "linkedListingsInCategory": 64,
+        "validatedGtin": "7898587424882"
+      }
+    },
+    {
+      "produtoId": "279cd801-e10c-410a-9986-22b88a4a331b",
+      "sku": "VTK019007",
+      "nome": "Central Multimídia Svart S900x Octacore Carplay/android Auto 9\"",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 959.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1422.07,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "4895228224989",
+        "validatedNcm": "85272100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB135679",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "9073710",
+          "value_name": "Svart"
+        },
+        {
+          "id": "LINE",
+          "value_id": "46630193",
+          "value_name": "MULTIMIDIA SV S900X OCTA-PRO"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "46630194",
+          "value_name": "S900X"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "40491280",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2685628",
+          "value_name": "9 \""
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7600402",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "20280308",
+          "value_name": "29.5 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7727669",
+          "value_name": "18 cm"
+        },
+        {
+          "id": "WITH_GPS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_USB_PORT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TV_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TOUCHSCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "46630195",
+          "value_name": "4895228224989"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "9073710",
+          "value_name": "Svart"
+        },
+        {
+          "id": "WITH_FLIP_OUT_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_FM_TRANSMITTER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REMOTE_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MEMORY_CARD_READER",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB45424354",
+        "catalogProductName": "Multimídia Svart S900x 9 Pol Android Carplay Wifi 4g Octapro",
+        "catalogDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "predictedDomainId": "MLB-VEHICLE_MULTIMEDIA_SYSTEMS",
+        "categoryId": "MLB135679",
+        "categoryName": "Com Tela",
+        "linkedListingsInCategory": 18,
+        "validatedGtin": "4895228224989"
+      }
+    },
+    {
+      "produtoId": "a2fe7003-2d7f-4fbc-8e73-9d62fd95718e",
+      "sku": "VTK018759",
+      "nome": "Central Viaweb Vw8z Ip Star Caixa Abs",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 323.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 459.86,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898936319036",
+        "validatedNcm": "85311090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7070",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16717793",
+          "value_name": "Viaweb"
+        },
+        {
+          "id": "LINE",
+          "value_id": "4463526",
+          "value_name": "IP"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18723527",
+          "value_name": "VW8ZIP"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "value_id": "395193",
+          "value_name": "Alarme"
+        },
+        {
+          "id": "SENSOR_TYPES",
+          "value_id": "395198",
+          "value_name": "Infravermelho"
+        },
+        {
+          "id": "DETECTOR_TYPES",
+          "value_id": "8616768",
+          "value_name": "De movimento"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "8616773",
+          "value_name": "Celular"
+        },
+        {
+          "id": "WITH_WIFI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "ZONES_NUMBER",
+          "value_id": "1261287",
+          "value_name": "8"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18723526",
+          "value_name": "7898936319036"
+        },
+        {
+          "id": "MPN",
+          "value_id": "11208715",
+          "value_name": "154"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22948770",
+        "catalogProductName": "Central de Alarme Viaweb VW8ZIP IP 8 Zonas Sensor Infravermelho",
+        "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7898936319036"
+      }
+    },
+    {
+      "produtoId": "4496d44d-9117-415d-850b-da315f3b4d8e",
+      "sku": "VTK001028",
+      "nome": "Chaleira Elétrica Agratto CE02 Prata Em Aço Inox 220V",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 44.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 80.12,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898461964534",
+        "validatedNcm": "85161000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB31678",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "97494",
+          "value_name": "Agratto"
+        },
+        {
+          "id": "LINE",
+          "value_id": "83597809",
+          "value_name": "784"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "97495",
+          "value_name": "CE-02"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "3513251",
+          "value_name": "Preto/Inox"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "198813",
+          "value_name": "220V"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "5783673",
+          "value_name": "CE-02"
+        },
+        {
+          "id": "VOLUME_CAPACITY",
+          "value_id": "97471",
+          "value_name": "1.8 L"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "4086949",
+          "value_name": "Aço inoxidável"
+        },
+        {
+          "id": "WITH_THERMOMETER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TEMPERATURE_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_AUTOMATIC_SHUT_OFF",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "8291604",
+          "value_name": "7898461964534, 7893590698497, 07905678106388"
+        },
+        {
+          "id": "ENERGY_EFFICIENCY",
+          "value_id": "98473",
+          "value_name": "A"
+        },
+        {
+          "id": "POWER",
+          "value_id": "109598",
+          "value_name": "1500 W"
+        },
+        {
+          "id": "WITH_WATER_INDICATOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_FILTER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_INFUSER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DIGITAL_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_MATE_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ROTATING_BASE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_WORKING_INDICATOR_LIGHT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MPN",
+          "value_id": "36995989",
+          "value_name": "GR31241"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB11400063",
+        "catalogProductName": "Chaleira Elétrica Inox Agratto 1,8l Aquecimento Rápido - Preto Inox",
+        "catalogDomainId": "MLB-ELECTRIC_JUGS",
+        "predictedDomainId": "MLB-ELECTRIC_JUGS",
+        "categoryId": "MLB31678",
+        "categoryName": "Chaleiras Elétricas",
+        "linkedListingsInCategory": 98,
+        "validatedGtin": "7898461964534"
+      }
+    }
+  ]
+}

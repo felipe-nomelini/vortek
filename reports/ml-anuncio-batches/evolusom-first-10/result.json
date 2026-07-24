@@ -1,0 +1,224 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-first-10/001-ml-create-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-first-10",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "134f7356-371b-4435-8917-fb6ae3be2700",
+      "sku": "VTK017805",
+      "category": {
+        "id": "MLB277837",
+        "nome": "Limpadores de Carpetes",
+        "dominio": "Limpa carpetes e estofados"
+      },
+      "anuncio": {
+        "id": "MLB7217007432",
+        "title": "Espuma Limpadora Orbi Limpa Estofados",
+        "price": 50.12,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7217007432-espuma-limpadora-orbi-limpa-estofados-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 38.59 → R$ 50.12."
+      ]
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "01bd76c0-70dd-467d-95c0-af8d5da2f640",
+      "sku": "VTK017266",
+      "nome": "Controle Remoto Mxt Receptor Tocomsat Combate 01360",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB38205",
+            "nome": "Para TV"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f5fc8a52-9f1a-4255-8751-2032a4acce3d",
+      "sku": "VTK017191",
+      "nome": "Controle Remoto Mxt Universal Co1064",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB38205",
+            "nome": "Para TV"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "54749ec9-e1fa-4be2-8398-1a9634fd85e3",
+      "sku": "VTK017440",
+      "nome": "Lâmpada Halógena Code/tech One 12v 4300k 9005 Hb3 60w Unitária",
+      "error": "Validation error | item.attributes.ignored: Attribute [GTIN] ignored because it is not modifiable. | invalid.item.attribute.values: Attribute [VEHICLE_TYPE] is not valid, item values [(null:Carro/Caminhonete)] | item.attributes.dropped: Value of attribute VEHICLE_TYPE was dropped by category fixed-value (13222040 - Linha Pesada). | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attributes.ignored: Attribute [GTIN] ignored because it is not modifiable. | invalid.item.attribute.values: Attribute [VEHICLE_TYPE] is not valid, item values [(null:Carro/Caminhonete)] | item.attributes.dropped: Value of attribute VEHICLE_TYPE was dropped by category fixed-value (13222040 - Linha Pesada). | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attributes.ignored: Attribute [GTIN] ignored because it is not modifiable. | invalid.item.attribute.values: Attribute [VEHICLE_TYPE] is not valid, item values [(null:Carro/Caminhonete)] | item.attributes.dropped: Value of attribute VEHICLE_TYPE was dropped by category fixed-value (13222040 - Linha Pesada). | code=validation_error | http=400"
+      }
+    },
+    {
+      "produtoId": "93df8701-8b92-4419-b95e-f023d28b0043",
+      "sku": "VTK017513",
+      "nome": "Cabo Rca Injetado Technoise Series 300 Pro 4mm - 1m",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB438559",
+            "nome": "Cabos e Conectores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "10a950d3-61c6-4fa0-ac24-e43c5e6642d8",
+      "sku": "VTK017542",
+      "nome": "Alicate Mini Universal Western A-5 4.1/2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB188428",
+            "nome": "Alicate Universal"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "61e0477d-0e46-4418-a1ca-16074ed26c59",
+      "sku": "VTK017226",
+      "nome": "Disco Diamantado Vonder 110mm V1 Furo 20",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB260685",
+            "nome": "Discos e Rebolos"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "bbf74430-ce5a-4e8c-80af-c7adee3642e3",
+      "sku": "VTK017605",
+      "nome": "Resistencia Zagonel Pratica 127v 9205000027",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB269588",
+            "nome": "Convencionais"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8e5c59d9-f0c0-410e-af13-4b4ba1c8c476",
+      "sku": "VTK017381",
+      "nome": "Controle Remoto Mxt C01367 Tv Philco Smart Ph55",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB38205",
+            "nome": "Para TV"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3919d318-bb85-4e52-941e-3dc223014587",
+      "sku": "VTK018725",
+      "nome": "Suporte Para Tv Fixo Multivisão Easy Até 71\"",
+      "error": "Atributos obrigatórios pendentes: Modelo, Lugares de montagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB11529",
+            "nome": "Suportes"
+          },
+          "missing": [
+            "Modelo",
+            "Lugares de montagem"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

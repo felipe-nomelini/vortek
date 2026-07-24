@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/2026-07-11T00-56-02-136Z/run-results/run-033-ml-create-033.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-create-033",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "8c694aee-0247-4dfa-b013-667b06147ba3",
+      "sku": "VTK012597",
+      "category": {
+        "id": "MLB45712",
+        "nome": "Palhetas para Guitarras",
+        "dominio": "Palhetas para instrumentos de cordas"
+      },
+      "anuncio": {
+        "id": "MLB4877405093",
+        "title": "Palheta Big Stubby 1mm Pct C/6 475r1.0 Dunlop Vermelha",
+        "price": 77.46,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4877405093-palheta-big-stubby-1mm-pct-c6-475r10-dunlop-vermelha-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 61.92 → R$ 77.46."
+      ]
+    }
+  ],
+  "failed": []
+}

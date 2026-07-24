@@ -1,0 +1,138 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/017-evolusom-catalog-create-017.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-017",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "8a8a4390-0070-46df-a3a0-eb0ef957c9a1",
+      "sku": "VTK000240",
+      "category": {
+        "id": "MLB278064",
+        "nome": "Suportes",
+        "dominio": "MLB-STRING_INSTRUMENT_STANDS_AND_WALL_HANGERS"
+      },
+      "basePrice": 49.69,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "77e833d7-3487-4b9b-8b1c-298a9a540694",
+      "sku": "VTK018195",
+      "category": {
+        "id": "MLB63114",
+        "nome": "Filtros de Linha",
+        "dominio": "MLB-POWER_STRIPS"
+      },
+      "basePrice": 64.03,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d4f2810e-11b2-4b4c-8ae7-91328bb0cbaa",
+      "sku": "VTK017868",
+      "category": {
+        "id": "MLB195961",
+        "nome": "Adaptadores",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 40.96,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "11460c2a-409a-43e8-9fe7-becc8ce904b8",
+      "sku": "VTK003511",
+      "category": {
+        "id": "MLB63114",
+        "nome": "Filtros de Linha",
+        "dominio": "MLB-POWER_STRIPS"
+      },
+      "basePrice": 39.62,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9ff924af-b743-4a0e-964d-2496d5c3d148",
+      "sku": "VTK002762",
+      "category": {
+        "id": "MLB63114",
+        "nome": "Filtros de Linha",
+        "dominio": "MLB-POWER_STRIPS"
+      },
+      "basePrice": 48.43,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "bd66dfee-21ff-49d5-98a1-20a721d54527",
+      "sku": "VTK002772",
+      "category": {
+        "id": "MLB63114",
+        "nome": "Filtros de Linha",
+        "dominio": "MLB-POWER_STRIPS"
+      },
+      "basePrice": 58.49,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "93a09e68-ab81-4aba-96e1-f5168eab6007",
+      "sku": "VTK019109",
+      "category": {
+        "id": "MLB194301",
+        "nome": "Elétricas",
+        "dominio": "MLB-ELECTRIC_LOCKS"
+      },
+      "basePrice": 525.33,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e72bc21d-d22d-4bd3-a0eb-b4c6fda4e144",
+      "sku": "VTK019126",
+      "category": {
+        "id": "MLB420116",
+        "nome": "Manuais",
+        "dominio": "MLB-DOOR_AND_WINDOW_LOCKS"
+      },
+      "basePrice": 1221.25,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "5ca84246-49db-4c82-a69a-da5dd3009089",
+      "sku": "VTK001736",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "basePrice": 68.23,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "a6160be9-23b2-46f5-85a5-a915f24806a1",
+      "sku": "VTK017328",
+      "nome": "Fan Para Pc Gamer Gf12r 12cm Vermelho 32 Led",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB2676",
+            "nome": "Coolers e Ventoinhas"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

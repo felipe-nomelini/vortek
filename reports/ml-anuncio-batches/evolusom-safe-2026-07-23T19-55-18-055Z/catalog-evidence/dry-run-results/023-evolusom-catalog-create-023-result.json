@@ -1,0 +1,159 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-23T19-55-18-055Z/catalog-evidence/023-evolusom-catalog-create-023.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-023",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "f949f3a6-8ced-417f-a0e4-535729c58232",
+      "sku": "VTK018981",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "basePrice": 115.93,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "5a1f5294-f462-4ad3-a46b-baf3fdc81161",
+      "sku": "VTK019132",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "basePrice": 202.88,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "bde0f3ff-a8df-40b7-b957-b17515ef8709",
+      "sku": "VTK018979",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "basePrice": 302.27,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a8f76d87-5844-4140-8265-a630618ccf9d",
+      "sku": "VTK017455",
+      "category": {
+        "id": "MLB1714",
+        "nome": "Mouses",
+        "dominio": "MLB-COMPUTER_MICE"
+      },
+      "basePrice": 43.46,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9e289fe6-3c2f-4c6c-9700-c2e825741f6d",
+      "sku": "VTK018584",
+      "category": {
+        "id": "MLB1714",
+        "nome": "Mouses",
+        "dominio": "MLB-COMPUTER_MICE"
+      },
+      "basePrice": 97.31,
+      "missing": []
+    },
+    {
+      "dryRun": true,
+      "produtoId": "7fda2d8f-fb0f-4c74-91a6-d212f659df64",
+      "sku": "VTK002745",
+      "category": {
+        "id": "MLB30214",
+        "nome": "Multímetros",
+        "dominio": "MLB-MULTIMETERS"
+      },
+      "basePrice": 259.31,
+      "missing": []
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "8d6e28e6-7d85-4f4a-aa42-8f9a5b4b2e37",
+      "sku": "VTK018910",
+      "nome": "Moldura Fiamon 2 Din Gm Vectra Gt/meriva/corsa/montana Prata",
+      "error": "Atributos obrigatórios pendentes: Dimensão estándar do estéreo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45320",
+            "nome": "Molduras para Estéreos"
+          },
+          "missing": [
+            "Dimensão estándar do estéreo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c094ad9e-26fa-43c7-87f7-c0c65895290c",
+      "sku": "VTK018928",
+      "nome": "Moldura Fiamon 2 Din Duster/ Sandero/ Logan/ Kwid/ Captur Black Piano",
+      "error": "Atributos obrigatórios pendentes: Dimensão estándar do estéreo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45320",
+            "nome": "Molduras para Estéreos"
+          },
+          "missing": [
+            "Dimensão estándar do estéreo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "525b3946-a305-41d4-bd4f-5ae3e60a1f64",
+      "sku": "VTK018773",
+      "nome": "Moldura Fiamon 2 Din Idea/ Idea Adventure 13/ 18 Prata",
+      "error": "Atributos obrigatórios pendentes: Dimensão estándar do estéreo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45320",
+            "nome": "Molduras para Estéreos"
+          },
+          "missing": [
+            "Dimensão estándar do estéreo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6a7f85c3-1e7e-406b-9575-82a576b68c8f",
+      "sku": "VTK018602",
+      "nome": "Moldura Universal Permak 2 Din 90/g",
+      "error": "Atributos obrigatórios pendentes: Dimensão estándar do estéreo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45320",
+            "nome": "Molduras para Estéreos"
+          },
+          "missing": [
+            "Dimensão estándar do estéreo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

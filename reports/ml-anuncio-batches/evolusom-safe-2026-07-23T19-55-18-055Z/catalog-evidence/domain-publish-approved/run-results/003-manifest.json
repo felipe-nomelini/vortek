@@ -1,0 +1,1078 @@
+{
+  "batchNumber": 3,
+  "batchId": "evolusom-domain-approved-003",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "a0f81105-6d12-45f8-922b-6bb331e66985",
+      "sku": "VTK002166",
+      "nome": "Cabo Para Instrumento XLR(F) x P10 5M CBMC0001 Preto Storm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 11.2,
+      "estoque": 22,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 38.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566202951",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB72745",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18989065",
+          "value_name": "CANON M X CANON F"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788227",
+          "value_name": "XLR"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129133",
+          "value_name": "10 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "16088632",
+          "value_name": "6 mm"
+        },
+        {
+          "id": "AWG_SIZE",
+          "value_id": "16505706",
+          "value_name": "5"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "16554647",
+          "value_name": "XLR macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "18989082",
+          "value_name": "XLT FEMEA"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116080",
+          "value_name": "Fêmea"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "5520057",
+          "value_name": "Metal"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18989081",
+          "value_name": "7898566202951"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "53917696",
+          "value_name": "Equipamentos de áudio profissional, Microfones"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB23159688",
+        "catalogProductName": "Cabo Microfone Dmx Xlr Balanceado Xlr Canon M X F 10 Metros",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB72745",
+        "categoryName": "Cabos",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7898566202951"
+      }
+    },
+    {
+      "produtoId": "6a24bd0f-5570-4ce3-8f45-e2471766cd5e",
+      "sku": "VTK002145",
+      "nome": "Cabo Para Instrumento XLR(F) x P10 10M CBMC0002 Preto Storm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 17.5,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 46.3,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566202968",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB432437",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2785980",
+          "value_name": "Storm"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "36817470",
+          "value_name": "CBMC0006"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "16088608",
+          "value_name": "P10"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "11163179",
+          "value_name": "Azul"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "15991808",
+          "value_name": "P10"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "16958457",
+          "value_name": "CANNON"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116080",
+          "value_name": "Fêmea"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "36817472",
+          "value_name": "7898566202968"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB65029687",
+        "catalogProductName": "Cabo Profissional P10 Mono para Cannon de 10 Metros Storm",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB432437",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898566202968"
+      }
+    },
+    {
+      "produtoId": "b84edd78-1253-4a91-89d3-8fbbd54e6662",
+      "sku": "VTK019026",
+      "nome": "Cabo Para Microfone Mono Tiaflex Espiralado 100 Metros 1x0,14 Mm 501410",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 179.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 255.41,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898429981443",
+        "validatedNcm": "85444900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB431813",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "12235577",
+          "value_name": "Tiaflex"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "39670722",
+          "value_name": "501410"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788220",
+          "value_name": "RCA"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "2693635",
+          "value_name": "100 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827369",
+          "value_name": "Adaptador"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "16505609",
+          "value_name": "2.5 mm"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "39670719",
+          "value_name": "7898429981443"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB38488491",
+        "catalogProductName": "Cabo Para Microfone Mono Tiaflex Espiralado 100 Metros 1x0.1",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB431813",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898429981443"
+      }
+    },
+    {
+      "produtoId": "9e16c14e-c3ad-4a84-b9da-206719bcc0c0",
+      "sku": "VTK018177",
+      "nome": "Cabo Paralelo Technoise 100% Cobre Cristal 2x4.00mm - 50 Metros",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 459.9,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 681.33,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898530518668",
+        "validatedNcm": "85444900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB38279",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "7198818",
+          "value_name": "Technoise"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "50730597",
+          "value_name": "Fio Paralelo 2 x 4,00 mm2"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "17320026",
+          "value_name": "Fio Paralelo"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "9721609",
+          "value_name": "Vermelho"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "130428",
+          "value_name": "50 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "16272110",
+          "value_name": "4 mm"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15289674",
+          "value_name": "2"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15290095",
+          "value_name": "2"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "16233079",
+          "value_name": "Polo"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "16233080",
+          "value_name": "Polo"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "15991803",
+          "value_name": "Cobre"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "15991805",
+          "value_name": "Cobre"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "16233077",
+          "value_name": "PVC ultra flexível"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16233078",
+          "value_name": "7898530518668"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21425585",
+        "catalogProductName": "Rolo 50m Fio Paralelo Puro Cobre 2x4mm Alto Falante",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB38279",
+        "categoryName": "Outros Cabos",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7898530518668"
+      }
+    },
+    {
+      "produtoId": "6ffcce6b-c3ab-4a4e-a7ce-97587710dc71",
+      "sku": "VTK017396",
+      "nome": "Cabo Rca 'y' Technoise Series 400 Pro 2 Macho X 1 Femea Vermelho - 20cm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 23.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 54.2,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899924900793",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB38279",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "7198818",
+          "value_name": "Technoise"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17482709",
+          "value_name": "400 PRO"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788220",
+          "value_name": "RCA"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "9721609",
+          "value_name": "Vermelho"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "1018395",
+          "value_name": "20 cm"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827368",
+          "value_name": "Cabo adaptador"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "16088626",
+          "value_name": "5 mm"
+        },
+        {
+          "id": "AWG_SIZE",
+          "value_id": "16201379",
+          "value_name": "20"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15290095",
+          "value_name": "2"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6778113",
+          "value_name": "RCA"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6778116",
+          "value_name": "RCA"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116087",
+          "value_name": "Fêmea"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "13788230",
+          "value_name": "Ouro"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "17482731",
+          "value_name": "7899924900793"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "44240431",
+          "value_name": "CARPLAY, CD, DVD, MP3, Modulo Amplificador, Multimídia, Plug de Audio, Radio"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22235370",
+        "catalogProductName": "Cabo Y Blindado Technoise Vermelho 2 M / 1 F Som Automotivo",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB38279",
+        "categoryName": "Outros Cabos",
+        "linkedListingsInCategory": 8,
+        "validatedGtin": "7899924900793"
+      }
+    },
+    {
+      "produtoId": "c497f1b5-5846-41f9-9c58-b3153185677d",
+      "sku": "VTK017449",
+      "nome": "Cabo Rca 2x2 Nwt Profissional Blindado Vermelho 1m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 30.6,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 62.47,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566206485",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB438559",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16890593",
+          "value_name": "Stormtech"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17188680",
+          "value_name": "CBRC0035"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788220",
+          "value_name": "RCA"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "9721609",
+          "value_name": "Vermelho"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "127485",
+          "value_name": "1 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15289674",
+          "value_name": "2"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15290095",
+          "value_name": "2"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6778113",
+          "value_name": "RCA"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6778116",
+          "value_name": "RCA"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "17188702",
+          "value_name": "7898566206485"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22016251",
+        "catalogProductName": "Cabo Rca Profissional 2x2 Blindado 1 Metro Vermelho",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB438559",
+        "categoryName": "Cabos e Conectores",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898566206485"
+      }
+    },
+    {
+      "produtoId": "5997dcbb-205e-44c0-b291-c54c6a6b98fc",
+      "sku": "VTK018520",
+      "nome": "Cabo Santo Angelo Rca Paredão 5 Metros Estéreo Vermelho Cristal",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 97.9,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 145.56,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899028811230",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB38186",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2200699",
+          "value_name": "Santo Angelo"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16505672",
+          "value_name": "PAREDÃO 5 metros"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788220",
+          "value_name": "RCA"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "9721609",
+          "value_name": "Vermelho"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129121",
+          "value_name": "5 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15289674",
+          "value_name": "2"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15290095",
+          "value_name": "2"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6778113",
+          "value_name": "RCA"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6778116",
+          "value_name": "RCA"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "13788230",
+          "value_name": "Ouro"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16505693",
+          "value_name": "7899028811230"
+        },
+        {
+          "id": "MPN",
+          "value_id": "16505694",
+          "value_name": "3839paredão 5 metros"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21618342",
+        "catalogProductName": "Cabo RCA Santo Angelo PAREDÃO Estéreo 5m com Conectores de Ouro e Dupla Blindagem",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB38186",
+        "categoryName": "Áudio e Vídeo",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7899028811230"
+      }
+    },
+    {
+      "produtoId": "2aacede6-1481-45c5-842a-255b6e79a372",
+      "sku": "VTK017945",
+      "nome": "Cabo Usb A X Lightning Proeletronic Caus-100l Branco 1,0m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 45.1,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 80.37,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898419499552",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB5080",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "1175465",
+          "value_name": "Proeletronic"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16408149",
+          "value_name": "CAUS-100 L"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "2230455",
+          "value_name": "USB"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "48550954",
+          "value_name": "Conector de 8 pinos"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "127485",
+          "value_name": "1 m"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16408210",
+          "value_name": "7898419499552"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21551509",
+        "catalogProductName": "Cabo Lightning Usb Recarga E Dados Caus-100l Proeletronic Cor Branco",
+        "catalogDomainId": "MLB-DATA_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-DATA_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB5080",
+        "categoryName": "Cabos",
+        "linkedListingsInCategory": 8,
+        "validatedGtin": "7898419499552"
+      }
+    },
+    {
+      "produtoId": "40833916-0332-443e-a228-277eb34c12c9",
+      "sku": "VTK017183",
+      "nome": "Cabo Vga Para Monitor Plus Cable Pc-mon1802 Conector Ouro 1.8 Metros",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 16.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 45.56,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898555212343",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB431813",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3756317",
+          "value_name": "Plus Cable"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "20234019",
+          "value_name": "PC-MON1802"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788222",
+          "value_name": "VGA"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129119",
+          "value_name": "1.8 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6739226",
+          "value_name": "VGA"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6739228",
+          "value_name": "VGA"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "20234046",
+          "value_name": "7898555212343"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB24033618",
+        "catalogProductName": "Cabo Plus Cable Vga 1,8m Para Monitor Com Filtro Pc-mon1802",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB431813",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 16,
+        "validatedGtin": "7898555212343"
+      }
+    },
+    {
+      "produtoId": "8088fd1a-2748-4164-b1cf-848f7ffb9f9b",
+      "sku": "VTK017329",
+      "nome": "Cabo Vga Evus C-041 Hd15 Macho X Hd15 Macho Com Filtro 10,0m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 30.5,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 62.35,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597131640",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB431813",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24132791",
+          "value_name": "EVUS"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788222",
+          "value_name": "VGA"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "16041615",
+          "value_name": "7 mm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "36724119",
+          "value_name": "7898597131640"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB36002261",
+        "catalogProductName": "Cabo VGA Evus de 10m com Filtro",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB431813",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898597131640"
+      }
+    }
+  ]
+}

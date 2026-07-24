@@ -1,0 +1,6 @@
+{
+  "batchId": "evolusom-first-10-researched",
+  "items": [
+    { "produtoId": "3919d318-bb85-4e52-941e-3dc223014587", "sku": "VTK018725", "nome": "Suporte Para Tv Fixo Multivisão Easy Até 71\"", "attributeOverrides": [{ "id": "MODEL", "value_name": "Easy" }, { "id": "MOUNTING_PLACES", "value_id": "7720908" }] }
+  ]
+}
