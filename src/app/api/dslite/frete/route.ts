@@ -43,6 +43,27 @@ export async function POST(req: Request) {
     ? await fetchML<unknown>(`/orders/${encodeURIComponent(mlOrderId)}`).catch(() => null)
     : null;
   const shippingMode = parseMlOrderShippingMode(mlOrder);
+  if (shippingMode.isNoShippingFulfilled) {
+    await client
+      .from('pedidos')
+      .update({ situacao: 'entregue' } as any)
+      .eq('id', pedidoId);
+    await registrarEventoNfAuditoria({
+      pedidoId,
+      mlOrderId: mlOrderId || null,
+      evento: 'ml_no_shipping_detected',
+      respostaMl: {
+        fulfilled: true,
+        flow: 'dslite_paid_shipping_selection',
+        action: 'blocked_already_fulfilled',
+      },
+      statusResultante: 'fulfilled_blocked',
+    });
+    return NextResponse.json(
+      { error: 'Venda já concluída no Mercado Livre. Frete DSLite não será alterado.' },
+      { status: 409 },
+    );
+  }
   if (!shippingMode.isNoShipping) {
     return NextResponse.json(
       { error: 'Seleção de frete DSLite permitida somente para venda sem Mercado Envios.' },

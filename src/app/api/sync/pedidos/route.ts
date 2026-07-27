@@ -12,6 +12,10 @@ import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync
 import { extractMlFiscalReleaseWindow } from '@/lib/ml/fiscal-release';
 import { resolveOrderSaleDate, type SaleDateSource } from '@/lib/ml/order-sale-date';
 import { mapearStatusShipment } from '@/lib/ml/shipment-status';
+import {
+  parseMlOrderShippingMode,
+  resolveMlOrderSituation,
+} from '@/lib/ml/order-shipping-mode';
 import { getSkuLookupVariants } from '@/lib/sku';
 import { alertClaimOpened, alertMlLabelReleased, alertNewSale } from '@/services/whatsapp-alerts';
 import { isEnderecoEstoqueInternoMl, registrarDevolucaoInterna } from '@/lib/estoque-interno';
@@ -450,17 +454,6 @@ async function fetchMLResultWithRetryConfig<T>(
 
   const fallback = await fetchMLResult<T>(path);
   return { result: fallback, retries };
-}
-
-function determinarSituacao(status: string, tags: string[], isDevolvido: boolean): Database['public']['Enums']['pedido_status'] {
-  // Prioridade 1: devolução confirmada
-  if (isDevolvido) return 'devolvido';
-  // Prioridade 2: entregue
-  if (tags.includes('delivered')) return 'entregue';
-  // Prioridade 3: cancelado
-  if (tags.includes('not_delivered') && status === 'cancelled') return 'cancelado';
-  if (status === 'cancelled') return 'cancelado';
-  return 'aberto';
 }
 
 function classificarMotivoDevolucao(raw: unknown): string | null {
@@ -1047,9 +1040,15 @@ async function processOrder(params: {
     devolucao: devolucaoMl,
   } = await buscarClaims(o.id);
 
-  // 4. Status: usa tags 'delivered'/'not_delivered' para refinar (considerando devolução)
+  // 4. Status: em no_shipping, fulfilled=true confirma conclusão mesmo com tag not_delivered residual.
   const tags: string[] = sourceOrder?.tags || o.tags || [];
-  let situacao = determinarSituacao(sourceOrder?.status || o.status, tags, isDevolvido);
+  const shippingMode = parseMlOrderShippingMode(sourceOrder);
+  let situacao: Database['public']['Enums']['pedido_status'] = resolveMlOrderSituation({
+    status: sourceOrder?.status || o.status,
+    tags,
+    isReturned: isDevolvido,
+    isNoShippingFulfilled: shippingMode.isNoShippingFulfilled,
+  });
 
   // 5. NF-e via ML desativada por política: sync não importa nem sobrescreve campos fiscais.
   const packResolution = await resolvePackId({

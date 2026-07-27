@@ -1934,6 +1934,33 @@ async function runDsliteCreateJob(
     ).catch(() => null);
     const mlShippingMode = parseMlOrderShippingMode(mlOrderForShipping);
     isMlNoShipping = mlShippingMode.isNoShipping;
+    if (mlShippingMode.isNoShippingFulfilled) {
+      await client
+        .from("pedidos")
+        .update({ situacao: "entregue" } as any)
+        .eq("id", pedidoId);
+      await registrarEventoNfAuditoria({
+        pedidoId,
+        mlOrderId: syncMlOrderId,
+        evento: "ml_no_shipping_detected",
+        respostaMl: {
+          fulfilled: true,
+          shipment_id: mlShippingMode.shipmentId,
+          flow: "dslite_create_job",
+          action: "skipped_already_fulfilled",
+        },
+        statusResultante: "fulfilled_skipped",
+      });
+      state = "success";
+      result = {
+        stage: "order_already_fulfilled",
+        skipped: true,
+        message:
+          "Venda já concluída no Mercado Livre. Pedido DSLite, frete e etiqueta não foram alterados.",
+      };
+      await syncJob();
+      return;
+    }
     if (isMlNoShipping) {
       await registrarEventoNfAuditoria({
         pedidoId,

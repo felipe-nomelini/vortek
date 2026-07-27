@@ -282,10 +282,40 @@ export async function POST(req: Request) {
       });
     }
     const releaseAt = releaseAtRaw ? new Date(releaseAtRaw) : null;
-    const mlOrderForShipping = !directShipping
-      ? await fetchML<unknown>(`/orders/${encodeURIComponent(mlOrderId)}`).catch(() => null)
-      : null;
+    const mlOrderForShipping = await fetchML<unknown>(
+      `/orders/${encodeURIComponent(mlOrderId)}`,
+    ).catch(() => null);
     const mlShippingMode = parseMlOrderShippingMode(mlOrderForShipping);
+
+    if (mlShippingMode.isNoShippingFulfilled) {
+      await client
+        .from('pedidos')
+        .update({ situacao: 'entregue' } as any)
+        .eq('id', pedidoId);
+      (Object.keys(STEP_LABELS) as StepKey[]).forEach((stepKey) => {
+        updateStep(steps, stepKey, {
+          status: 'skipped',
+          detail: 'Etapa pulada: venda já concluída no Mercado Livre',
+        });
+      });
+      await registrarEventoNfAuditoria({
+        pedidoId: String(pedidoId),
+        mlOrderId,
+        evento: 'ml_no_shipping_detected',
+        respostaMl: {
+          fulfilled: true,
+          flow: directShipping ? 'internal_shipping' : 'complete_dslite_label',
+          action: 'skipped_already_fulfilled',
+        },
+        statusResultante: 'fulfilled_skipped',
+      });
+      return finalizeSuccess(steps, {
+        partial: false,
+        operationStatus: 'order_already_fulfilled',
+        nextAction: 'done',
+        message: 'Venda já entregue. Nenhuma etapa de frete ou etiqueta foi executada.',
+      });
+    }
 
     if (!directShipping && mlShippingMode.isNoShipping) {
       const [pedidoDslite, shippingOptions] = await Promise.all([

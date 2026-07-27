@@ -1096,6 +1096,8 @@ export default function PedidosPage() {
           messageApi.warning(data?.data?.message || 'Etiqueta genérica Hayamax enviada. Etiqueta real ainda ficará pendente.');
         } else if (operationStatus === 'waiting_ml_label') {
           messageApi.warning(data?.data?.message || 'Etiqueta ainda não liberada pelo Mercado Livre.');
+        } else if (operationStatus === 'order_already_fulfilled') {
+          messageApi.info(data?.data?.message || 'Venda já concluída no Mercado Livre.');
         } else if (operationStatus === 'already_done') {
           messageApi.info('Etiqueta já havia sido enviada anteriormente.');
         } else if (operationStatus === 'dslite_paid_shipping_ready') {
