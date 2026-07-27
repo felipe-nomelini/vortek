@@ -26,12 +26,14 @@ export interface WahaSendFileInput {
   mimetype: string;
   data: Buffer;
   session?: string;
+  messageId?: string;
 }
 
 export interface WahaSendTextInput {
   chatId: string;
   text: string;
   session?: string;
+  messageId?: string;
 }
 
 function getWahaConfig() {
@@ -49,6 +51,7 @@ async function wahaRequest<T>(path: string, init: RequestInit = {}): Promise<T> 
   const { baseUrl, apiKey } = getWahaConfig();
   const res = await fetch(`${baseUrl}${path}`, {
     ...init,
+    signal: init.signal || AbortSignal.timeout(20_000),
     headers: {
       Accept: 'application/json',
       'X-Api-Key': apiKey,
@@ -145,6 +148,15 @@ export async function ensureWahaSessionWorking(sessionName?: string) {
   return session;
 }
 
+export async function getWahaNewMessageId(sessionName?: string): Promise<string> {
+  const { session } = getWahaConfig();
+  const name = encodeURIComponent(sessionName || session);
+  const response = await wahaRequest<{ id?: string }>(`/api/${name}/new-message-id`);
+  const id = String(response?.id || '').trim();
+  if (!id) throw new Error('WAHA não retornou ID para a mensagem');
+  return id;
+}
+
 export async function sendWahaFile(input: WahaSendFileInput) {
   const { session } = getWahaConfig();
   const sessionName = input.session || session;
@@ -155,6 +167,7 @@ export async function sendWahaFile(input: WahaSendFileInput) {
     body: JSON.stringify({
       session: sessionName,
       chatId: input.chatId,
+      ...(input.messageId ? { id: input.messageId } : {}),
       caption: input.caption,
       file: {
         mimetype: input.mimetype,
@@ -175,6 +188,7 @@ export async function sendWahaText(input: WahaSendTextInput) {
     body: JSON.stringify({
       session: sessionName,
       chatId: input.chatId,
+      ...(input.messageId ? { id: input.messageId } : {}),
       text: input.text,
     }),
   });

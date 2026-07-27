@@ -6,7 +6,12 @@ import {
   upsertInvoiceDataMLByShipment,
 } from '@/services/integration';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
-import { normalizeWhatsappChatId, sendWahaFile, sendWahaText } from '@/services/waha';
+import {
+  getWahaNewMessageId,
+  normalizeWhatsappChatId,
+  sendWahaFile,
+  sendWahaText,
+} from '@/services/waha';
 import {
   downloadShippingLabelFromStorage,
   storeShippingLabelForPedido,
@@ -34,9 +39,66 @@ type WhatsappLabelStep = {
   updatedAt?: string;
 };
 
-type JobState = 'running' | 'success' | 'warning' | 'error';
+type JobState = 'running' | 'success' | 'warning' | 'error' | 'on_hold';
+
+export type WhatsappLabelJobRequest = {
+  pedidoId: string;
+  phoneNumber: string;
+  usePlaceholderLabel?: boolean;
+  appBaseUrl: string;
+};
+
+const WHATSAPP_RETRY_DELAYS_MS = [60_000, 5 * 60_000, 15 * 60_000, 30 * 60_000];
 
 const now = () => new Date().toISOString();
+
+export function parseWhatsappLabelJobLog(log: unknown): any[] {
+  if (Array.isArray(log)) return log;
+  if (typeof log !== 'string') return [];
+  try {
+    const parsed = JSON.parse(log || '[]');
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+export function getWhatsappLabelJobRequest(log: unknown): WhatsappLabelJobRequest | null {
+  const entry = parseWhatsappLabelJobLog(log)
+    .find((item: any) => item?.event === 'request_received');
+  const payload = entry?.payload;
+  if (!payload?.pedidoId || !payload?.phoneNumber || !payload?.appBaseUrl) return null;
+  return {
+    pedidoId: String(payload.pedidoId),
+    phoneNumber: String(payload.phoneNumber),
+    usePlaceholderLabel: Boolean(payload.usePlaceholderLabel),
+    appBaseUrl: String(payload.appBaseUrl),
+  };
+}
+
+export function getWhatsappLabelRetry(log: unknown) {
+  const holds = parseWhatsappLabelJobLog(log)
+    .filter((item: any) => item?.event === 'queue_hold');
+  const latest = holds.length ? holds[holds.length - 1] : null;
+  return {
+    attempt: Number(latest?.retry_attempt || holds.length || 0),
+    nextRetryAt: String(latest?.next_retry_at || '') || null,
+  };
+}
+
+export function isWhatsappLabelJobDue(log: unknown, at = Date.now()): boolean {
+  const { nextRetryAt } = getWhatsappLabelRetry(log);
+  if (!nextRetryAt) return true;
+  const dueAt = new Date(nextRetryAt).getTime();
+  return !Number.isFinite(dueAt) || dueAt <= at;
+}
+
+function nextRetry(attempt: number) {
+  const delay = WHATSAPP_RETRY_DELAYS_MS[
+    Math.min(Math.max(attempt - 1, 0), WHATSAPP_RETRY_DELAYS_MS.length - 1)
+  ];
+  return new Date(Date.now() + delay).toISOString();
+}
 
 export function initWhatsappLabelJobSteps(): WhatsappLabelStep[] {
   return [
@@ -247,11 +309,7 @@ function failPendingSteps(steps: WhatsappLabelStep[]) {
 
 export async function runWhatsappLabelJob(input: {
   jobId: string;
-  pedidoId: string;
-  phoneNumber: string;
-  usePlaceholderLabel?: boolean;
-  appBaseUrl: string;
-}) {
+} & WhatsappLabelJobRequest) {
   const client = createServiceClient();
   const steps = initWhatsappLabelJobSteps();
   const { data: claimedJob, error: claimError } = await client
@@ -259,19 +317,22 @@ export async function runWhatsappLabelJob(input: {
     .update({ status: 'rodando' })
     .eq('id', input.jobId)
     .eq('tipo', 'whatsapp_label_send')
-    .eq('status', 'pendente')
+    .in('status', ['pendente', 'on_hold'])
     .select('id,log')
     .maybeSingle();
 
   if (claimError) throw new Error(`Falha ao assumir job de WhatsApp: ${claimError.message}`);
   if (!claimedJob?.id) return;
 
-  const existingLog = Array.isArray(claimedJob.log)
-    ? claimedJob.log
-    : typeof claimedJob.log === 'string'
-      ? JSON.parse(claimedJob.log || '[]')
-      : [];
-  const logEntries: any[] = Array.isArray(existingLog) ? existingLog : [];
+  const logEntries = parseWhatsappLabelJobLog(claimedJob.log);
+  const priorRetry = getWhatsappLabelRetry(logEntries);
+  if (priorRetry.attempt > 0) {
+    logEntries.push({
+      event: 'queue_retry_started',
+      at: now(),
+      retry_attempt: priorRetry.attempt,
+    });
+  }
   let state: JobState = 'running';
   let result: any = null;
   let pedidoIdForError: string | null = input.pedidoId;
@@ -285,12 +346,20 @@ export async function runWhatsappLabelJob(input: {
     const { error } = await client
       .from('jobs')
       .update({
-        status: state === 'success' ? 'completo' : state === 'warning' ? 'completo_parcial' : state === 'error' ? 'erro' : 'rodando',
+        status: state === 'success'
+          ? 'completo'
+          : state === 'warning'
+            ? 'completo_parcial'
+            : state === 'error'
+              ? 'erro'
+              : state === 'on_hold'
+                ? 'on_hold'
+                : 'rodando',
         progresso: progress,
         total: steps.length,
         processados: done,
         log: JSON.parse(JSON.stringify(logEntries)),
-        finished_at: state === 'running' ? null : now(),
+        finished_at: state === 'running' || state === 'on_hold' ? null : now(),
       })
       .eq('id', input.jobId);
     if (error) throw new Error(`Falha ao atualizar job de WhatsApp: ${error.message}`);
@@ -467,6 +536,14 @@ export async function runWhatsappLabelJob(input: {
 
     let wahaResponse: unknown = null;
     let whatsappSendMode: 'file' | 'text_link' = 'file';
+    let messageId = String(
+      [...logEntries].reverse().find((entry: any) => entry?.event === 'whatsapp_message_id_allocated')?.message_id || '',
+    ).trim();
+    if (!messageId) {
+      messageId = await getWahaNewMessageId();
+      logEntries.push({ event: 'whatsapp_message_id_allocated', at: now(), message_id: messageId });
+      await syncJob();
+    }
     await setStep('send_whatsapp', 'loading', 'Enviando PDF pelo WAHA');
     try {
       wahaResponse = await sendWahaFile({
@@ -475,13 +552,14 @@ export async function runWhatsappLabelJob(input: {
         filename,
         mimetype: 'application/pdf',
         data: labelPdf,
+        messageId,
       });
     } catch (err) {
       if (!isWahaPlusOnlyError(err)) throw err;
       if (!labelShortUrl) throw new Error('WAHA Core não envia arquivos e não foi possível gerar link da etiqueta.');
       whatsappSendMode = 'text_link';
       await setStep('send_whatsapp', 'loading', 'WAHA Core não envia arquivo; enviando mensagem com link');
-      wahaResponse = await sendWahaText({ chatId, text: caption });
+      wahaResponse = await sendWahaText({ chatId, text: caption, messageId });
     }
     await registrarEventoNfAuditoria({
       pedidoId,
@@ -496,6 +574,7 @@ export async function runWhatsappLabelJob(input: {
         label_source: labelSource,
         test_placeholder_label: Boolean(input.usePlaceholderLabel),
         whatsapp_send_mode: whatsappSendMode,
+        whatsapp_message_id: messageId,
         label_download_url_generated: Boolean(labelDownloadUrl),
         label_bytes: labelPdf.length,
         label_attempts: labelAttempts,
@@ -539,14 +618,36 @@ export async function runWhatsappLabelJob(input: {
     const idx = loadingIdx >= 0 ? loadingIdx : pendingIdx;
     if (idx >= 0) steps[idx] = { ...steps[idx], status: 'error', error: message, updatedAt: now() };
     failPendingSteps(steps);
-    result = { error: message };
-    state = 'error';
+    const retryAttempt = priorRetry.attempt + 1;
+    const nextRetryAt = nextRetry(retryAttempt);
+    logEntries.push({
+      event: 'queue_hold',
+      at: now(),
+      retry_attempt: retryAttempt,
+      next_retry_at: nextRetryAt,
+      error: message,
+    });
+    result = {
+      error: message,
+      queued: true,
+      queueStatus: 'on_hold',
+      retryAttempt,
+      nextRetryAt,
+    };
+    state = 'on_hold';
     await registrarEventoNfAuditoria({
       pedidoId: pedidoIdForError || undefined,
       mlOrderId: mlOrderIdForError,
       evento: 'whatsapp_label_send_failed',
-      respostaMl: { job_id: input.jobId, error: message, steps },
-      statusResultante: 'failed',
+      respostaMl: {
+        job_id: input.jobId,
+        error: message,
+        steps,
+        queue_status: 'on_hold',
+        retry_attempt: retryAttempt,
+        next_retry_at: nextRetryAt,
+      },
+      statusResultante: 'on_hold',
     }).catch(() => undefined);
     await syncJob().catch((syncError: any) => {
       console.error('[whatsapp-label-job] Falha ao registrar encerramento:', syncError?.message || syncError);

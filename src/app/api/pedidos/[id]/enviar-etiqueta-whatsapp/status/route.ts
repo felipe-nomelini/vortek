@@ -1,6 +1,12 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
-import { runWhatsappLabelJob } from '@/services/whatsapp-label-job';
+import {
+  getWhatsappLabelJobRequest,
+  getWhatsappLabelRetry,
+  isWhatsappLabelJobDue,
+  parseWhatsappLabelJobLog,
+  runWhatsappLabelJob,
+} from '@/services/whatsapp-label-job';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -21,20 +27,13 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
     return NextResponse.json({ error: 'Job não encontrado' }, { status: 404 });
   }
 
-  const log = Array.isArray(data.log)
-    ? data.log
-    : typeof data.log === 'string'
-      ? JSON.parse(data.log || '[]')
-      : [];
+  const log = parseWhatsappLabelJobLog(data.log);
   const snapshots = Array.isArray(log) ? log.filter((x: any) => x?.event === 'progress_snapshot') : [];
   const latest = snapshots.length ? snapshots[snapshots.length - 1] : null;
 
   const dbStatus = String(data.status || '');
-  if (dbStatus === 'pendente') {
-    const requestEntry = Array.isArray(log)
-      ? log.find((entry: any) => entry?.event === 'request_received')
-      : null;
-    const payload = requestEntry?.payload;
+  if (dbStatus === 'pendente' || (dbStatus === 'on_hold' && isWhatsappLabelJobDue(log))) {
+    const payload = getWhatsappLabelJobRequest(log);
     if (
       payload?.pedidoId === params.id
       && payload?.phoneNumber
@@ -56,7 +55,9 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
     || (dbStatus === 'completo' ? 'success'
       : dbStatus === 'completo_parcial' ? 'warning'
         : dbStatus === 'erro' ? 'error'
+          : dbStatus === 'on_hold' ? 'on_hold'
           : 'running');
+  const retry = getWhatsappLabelRetry(log);
 
   return NextResponse.json({
     success: true,
@@ -68,5 +69,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
     total: data.total ?? 0,
     processed: data.processados ?? 0,
     finishedAt: data.finished_at,
+    nextRetryAt: retry.nextRetryAt,
+    retryAttempt: retry.attempt,
   });
 }

@@ -11,6 +11,13 @@ import {
   sendSalesReport,
 } from '@/services/whatsapp-alerts';
 import { dispatchPushNotifications } from '@/services/push-notifications';
+import {
+  getWhatsappLabelJobRequest,
+  getWhatsappLabelRetry,
+  isWhatsappLabelJobDue,
+  parseWhatsappLabelJobLog,
+  runWhatsappLabelJob,
+} from '@/services/whatsapp-label-job';
 
 export const maxDuration = 300;
 
@@ -32,6 +39,55 @@ function parseLog(log: any): any[] {
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function processWhatsappLabelQueue(serviceClient: ReturnType<typeof createServiceClient>) {
+  const { data: queuedJobs, error } = await serviceClient
+    .from('jobs')
+    .select('id,status,log,created_at')
+    .eq('tipo', 'whatsapp_label_send')
+    .in('status', ['pendente', 'on_hold'])
+    .order('created_at', { ascending: true })
+    .limit(20);
+
+  if (error) {
+    console.error('[cron-dispatch] falha ao listar fila de WhatsApp', error.message);
+    return { processed: 0, error: error.message };
+  }
+
+  const dueJobs = (queuedJobs || [])
+    .filter((job: any) => job.status === 'pendente' || isWhatsappLabelJobDue(job.log))
+    .slice(0, 5);
+
+  const settled = await Promise.allSettled(dueJobs.map(async (job: any) => {
+    const payload = getWhatsappLabelJobRequest(job.log);
+    if (!payload) {
+      const log = parseWhatsappLabelJobLog(job.log);
+      const retryAttempt = getWhatsappLabelRetry(log).attempt + 1;
+      const nextRetryAt = new Date(Date.now() + 30 * 60_000).toISOString();
+      log.push({
+        event: 'queue_hold',
+        at: nowIso(),
+        retry_attempt: retryAttempt,
+        next_retry_at: nextRetryAt,
+        error: 'Payload original do envio não encontrado',
+      });
+      await serviceClient
+        .from('jobs')
+        .update({ status: 'on_hold', log, finished_at: null })
+        .eq('id', job.id)
+        .in('status', ['pendente', 'on_hold']);
+      return;
+    }
+
+    await runWhatsappLabelJob({ jobId: job.id, ...payload });
+  }));
+
+  return {
+    processed: dueJobs.length,
+    fulfilled: settled.filter((item) => item.status === 'fulfilled').length,
+    rejected: settled.filter((item) => item.status === 'rejected').length,
+  };
 }
 
 function getSaoPauloDateParts() {
@@ -208,6 +264,28 @@ export async function POST(request: Request) {
   } else {
     for (const job of runningJobs || []) {
       if (!isJobStale(job as any, DEFAULT_STALE_JOB_THRESHOLD_MINUTES)) continue;
+      if (job.tipo === 'whatsapp_label_send') {
+        const log = parseWhatsappLabelJobLog(job.log);
+        const retryAttempt = getWhatsappLabelRetry(log).attempt + 1;
+        log.push({
+          event: 'queue_hold',
+          at: nowIso(),
+          retry_attempt: retryAttempt,
+          next_retry_at: nowIso(),
+          error: 'Job travado recuperado automaticamente pelo cron',
+        });
+        await serviceClient
+          .from('jobs')
+          .update({ status: 'on_hold', log, finished_at: null })
+          .eq('id', job.id)
+          .in('status', ['pendente', 'rodando']);
+        results.push({
+          task: job.tipo,
+          action: 'stale_job_queued_for_retry',
+          jobId: job.id,
+        });
+        continue;
+      }
       await markJobAsStale(job as any);
       results.push({
         task: job.tipo,
@@ -217,6 +295,9 @@ export async function POST(request: Request) {
       });
     }
   }
+
+  const whatsappQueueResult = await processWhatsappLabelQueue(serviceClient);
+  results.push({ task: 'whatsapp_label_send', action: 'queue_processed', ...whatsappQueueResult });
 
   await Promise.allSettled([
     alertIntegrationStatus().then((result) => alertResults.push({ alert: 'integration_status', ...result })),

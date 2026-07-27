@@ -19,9 +19,6 @@ import { getSkuLookupVariants } from '@/lib/sku';
 
 const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
-const HAYAMAX_FORNECEDOR_ID = '2';
-const BKR1_FORNECEDOR_ID = '108';
-
 function getPedidoItemDisplaySku(sellerSku: string | null): string | null {
   if (!sellerSku) return null;
   return getSkuLookupVariants(sellerSku).find((sku) => /^VTK[A-Z0-9]+$/.test(sku)) || sellerSku;
@@ -555,6 +552,18 @@ export default function PedidosPage() {
           messageApi.success(statusData.data?.message || 'Etiqueta enviada por WhatsApp.');
           setWhatsappOrder(null);
           setWhatsappUsePlaceholderLabel(false);
+          return;
+        }
+
+        if (state === 'on_hold') {
+          const retryAt = statusData.nextRetryAt
+            ? new Date(statusData.nextRetryAt).toLocaleString('pt-BR')
+            : null;
+          messageApi.warning(
+            retryAt
+              ? `Falha temporária. Envio mantido na fila para nova tentativa em ${retryAt}.`
+              : 'Falha temporária. Envio mantido na fila para nova tentativa automática.',
+          );
           return;
         }
 
@@ -1589,8 +1598,6 @@ export default function PedidosPage() {
         }
         const hasDsliteId = !!isValidDsliteId(record.dslite_id);
         const nextAction = record.dslite_next_action;
-        const isHayamaxOrder = String(record.fornecedor_id || '') === HAYAMAX_FORNECEDOR_ID;
-        const isBkr1Order = String(record.fornecedor_id || '') === BKR1_FORNECEDOR_ID;
         const releaseAt = record.ml_fiscal_release_at ? getMlReleaseComparableDate(record.ml_fiscal_release_at) : null;
         const mlLabelStillBlocked = Boolean(releaseAt && releaseAt.getTime() > Date.now());
         if ((!hasDsliteId || nextAction === 'create_dslite_order') && !record.internal_stock_available && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
@@ -1629,10 +1636,10 @@ export default function PedidosPage() {
             icon: <UploadOutlined />,
           });
         }
-        if ((isHayamaxOrder || (isBkr1Order && record.supplier_payment_status === 'paid')) && !mlLabelStillBlocked && (record.ml_shipment_id || record.ml_order_id || record.ml_label_storage_path)) {
+        if (!mlLabelStillBlocked && (record.ml_shipment_id || record.ml_order_id || record.ml_label_storage_path)) {
           items.push({
             key: 'send_whatsapp_label',
-            label: isBkr1Order ? 'Enviar etiqueta real BKR1' : 'Enviar etiqueta real Hayamax',
+            label: 'Enviar etiqueta real por WhatsApp',
             icon: <UploadOutlined />,
           });
         }
@@ -1835,7 +1842,9 @@ export default function PedidosPage() {
         orderStatus={trackingOrderStatus}
       />
       <Modal
-        title={whatsappUsePlaceholderLabel ? 'Enviar etiqueta genérica por WhatsApp' : `Enviar etiqueta real ${String(whatsappOrder?.fornecedor_id || '') === BKR1_FORNECEDOR_ID ? 'BKR1' : 'Hayamax'}`}
+        title={whatsappUsePlaceholderLabel
+          ? 'Enviar etiqueta genérica por WhatsApp'
+          : `Enviar etiqueta real${whatsappOrder?.fornecedor_nome ? ` — ${whatsappOrder.fornecedor_nome}` : ''}`}
         open={whatsappModalOpen}
         onCancel={closeWhatsappLabelModal}
         onOk={handleSendWhatsappLabel}
