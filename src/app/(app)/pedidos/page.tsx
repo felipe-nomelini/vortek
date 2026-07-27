@@ -2079,11 +2079,11 @@ export default function PedidosPage() {
         <Row gutter={[8, 8]} align="middle">
           <Col>
             <Input
-              placeholder="Buscar venda ou cliente"
+              placeholder="Buscar venda, cliente, SKU, produto ou fornecedor"
               prefix={<SearchOutlined />}
               value={search}
               onChange={e => setSearch(e.target.value)}
-              style={{ width: 220 }}
+              style={{ width: 360, maxWidth: '100%' }}
               allowClear
             />
           </Col>
