@@ -50,6 +50,7 @@ function mapDsliteLabelStatus(event: OperationalAuditRow): DsliteLabelOperationa
 export async function enrichOrdersWithWhatsappStatus<T extends {
   id?: string | null;
   dslite_etiqueta_enviada?: boolean | null;
+  dslite_label_source?: string | null;
 }>(
   rows: T[],
   serviceClient: ServiceClient,
@@ -68,9 +69,12 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
   if (!pedidoIds.length) {
     return rows.map((row) => ({
       ...row,
-      dslite_label_operational_status: row.dslite_etiqueta_enviada
-        ? 'sent_unverified' as const
-        : 'pending' as const,
+      dslite_label_operational_status:
+        row.dslite_label_source === 'dslite_paid_shipping'
+          ? 'provider_shipping' as const
+          : row.dslite_etiqueta_enviada
+            ? 'sent_unverified' as const
+            : 'pending' as const,
       dslite_label_operational_updated_at: null,
       dslite_label_operational_error: null,
       whatsapp_label_status: 'not_sent' as const,
@@ -124,15 +128,18 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
     const dsliteLabelEvent = latestDsliteLabelByPedido.get(pedidoId);
     const whatsappResponse = whatsappEvent?.resposta_ml || {};
     const dsliteLabelResponse = dsliteLabelEvent?.resposta_ml || {};
+    const usesProviderShipping = row.dslite_label_source === 'dslite_paid_shipping';
     return {
       ...row,
-      dslite_label_operational_status: dsliteLabelEvent
-        ? mapDsliteLabelStatus(dsliteLabelEvent)
-        : auditReadFailed
-          ? 'unknown'
-          : row.dslite_etiqueta_enviada
-            ? 'sent_unverified'
-            : 'pending',
+      dslite_label_operational_status: usesProviderShipping
+        ? 'provider_shipping'
+        : dsliteLabelEvent
+          ? mapDsliteLabelStatus(dsliteLabelEvent)
+          : auditReadFailed
+            ? 'unknown'
+            : row.dslite_etiqueta_enviada
+              ? 'sent_unverified'
+              : 'pending',
       dslite_label_operational_updated_at: dsliteLabelEvent?.created_at || null,
       dslite_label_operational_error: String(dsliteLabelResponse.error || '').trim() || null,
       whatsapp_label_status: whatsappEvent

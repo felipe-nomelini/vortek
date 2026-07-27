@@ -107,7 +107,7 @@ function initDsliteOrderSteps(): ProgressStep[] {
     { label: 'Buscando produto no catálogo DSLite', status: 'pending' },
     { label: 'Criando pedido na DSLite', status: 'pending' },
     { label: 'Informando fornecedor', status: 'pending' },
-    { label: 'Definindo transportadora (Correios)', status: 'pending' },
+    { label: 'Definindo transporte na DSLite', status: 'pending' },
     { label: 'Baixando etiqueta do Mercado Livre', status: 'pending' },
     { label: 'Enviando etiqueta para DSLite', status: 'pending' },
   ];
@@ -244,6 +244,8 @@ function getDsliteLabelFlowStatus(order: Order) {
       return { color: '#52c41a', label: 'Real confirmada' };
     case 'generic_sent':
       return { color: '#faad14', label: 'Genérica confirmada' };
+    case 'provider_shipping':
+      return { color: '#52c41a', label: 'Frete DSLite' };
     case 'sent_unverified':
       return { color: '#8c8c8c', label: 'Sem confirmação' };
     case 'failed':
@@ -395,6 +397,26 @@ interface DslitePaymentPrompt {
   supplierPhoneMissing?: boolean;
 }
 
+interface DsliteShippingOption {
+  transportadoraId: string;
+  serviceId: string | null;
+  name: string;
+  nickname: string;
+  serviceName: string;
+  price: number;
+  deliveryDays: number;
+  note: string | null;
+  error: string | null;
+  requiresLabel: boolean;
+}
+
+interface DsliteShippingPrompt {
+  order: Order;
+  pedidoId: string;
+  dsid: string;
+  options: DsliteShippingOption[];
+}
+
 export default function PedidosPage() {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -445,6 +467,10 @@ export default function PedidosPage() {
   const [dslitePaymentNotes, setDslitePaymentNotes] = useState('');
   const [dslitePaymentReceiptFile, setDslitePaymentReceiptFile] = useState<File | null>(null);
   const [confirmingDslitePayment, setConfirmingDslitePayment] = useState(false);
+  const [dsliteShippingPrompt, setDsliteShippingPrompt] = useState<DsliteShippingPrompt | null>(null);
+  const [dsliteShippingModalOpen, setDsliteShippingModalOpen] = useState(false);
+  const [dsliteShippingSelection, setDsliteShippingSelection] = useState<string | null>(null);
+  const [confirmingDsliteShipping, setConfirmingDsliteShipping] = useState(false);
   const [dsliteSteps, setDsliteSteps] = useState<ProgressStep[]>([
     { label: 'Sincronizando pedido no Mercado Livre', status: 'loading', detail: 'Atualizando snapshot fiscal e itens do pedido' },
     { label: 'Emitindo NF na Brasil NFe', status: 'pending' },
@@ -454,7 +480,7 @@ export default function PedidosPage() {
     { label: 'Buscando produto no catálogo DSLite', status: 'pending' },
     { label: 'Criando pedido na DSLite', status: 'pending' },
     { label: 'Informando fornecedor', status: 'pending' },
-    { label: 'Definindo transportadora (Correios)', status: 'pending' },
+    { label: 'Definindo transporte na DSLite', status: 'pending' },
     { label: 'Baixando etiqueta do Mercado Livre', status: 'pending' },
     { label: 'Enviando etiqueta para DSLite', status: 'pending' },
   ]);
@@ -468,7 +494,7 @@ export default function PedidosPage() {
     { label: 'Garantindo NF na Brasil NFe', status: 'pending' },
     { label: 'Vinculando NF Brasil NFe no Mercado Livre', status: 'pending' },
     { label: 'Baixando etiqueta do Mercado Livre', status: 'pending' },
-    { label: 'Definindo transportadora (Correios)', status: 'pending' },
+    { label: 'Definindo transporte na DSLite', status: 'pending' },
     { label: 'Enviando etiqueta para DSLite', status: 'pending' },
   ]);
 
@@ -752,6 +778,23 @@ export default function PedidosPage() {
           } : o
         ));
       }
+      if (
+        payload.stage === 'choose_dslite_shipping'
+        && payload.actionRequired === 'choose_dslite_shipping'
+        && payload.dsid
+        && Array.isArray(payload.shippingOptions)
+      ) {
+        setDsliteShippingPrompt({
+          order,
+          pedidoId: String(order.dbId),
+          dsid: String(payload.dsid),
+          options: payload.shippingOptions,
+        });
+        setDsliteShippingSelection(null);
+        setDsliteProgressOpen(false);
+        setDsliteShippingModalOpen(true);
+        return;
+      }
       if (state === 'warning' && payload.stage === 'await_supplier_payment' && payload.compra_id) {
         setDslitePaymentPrompt({
           order,
@@ -930,6 +973,42 @@ export default function PedidosPage() {
     }
   };
 
+  const confirmarFreteDslite = async () => {
+    if (!dsliteShippingPrompt || !dsliteShippingSelection) {
+      messageApi.warning('Escolha uma opção de frete.');
+      return;
+    }
+
+    setConfirmingDsliteShipping(true);
+    try {
+      const res = await fetch('/api/dslite/frete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          pedidoId: dsliteShippingPrompt.pedidoId,
+          dsid: dsliteShippingPrompt.dsid,
+          transportadoraId: dsliteShippingSelection,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data?.success) {
+        throw new Error(data?.error || 'Falha ao selecionar frete na DSLite.');
+      }
+
+      setDsliteShippingModalOpen(false);
+      setDsliteShippingPrompt(null);
+      setDsliteShippingSelection(null);
+      setDsliteProgressOpen(false);
+      setEtiquetaProgressOpen(false);
+      messageApi.success(data?.data?.message || 'Frete selecionado na DSLite.');
+      fetchData();
+    } catch (err: any) {
+      messageApi.error(err?.message || 'Erro ao selecionar frete na DSLite.');
+    } finally {
+      setConfirmingDsliteShipping(false);
+    }
+  };
+
   const enviarEtiquetaAutomatica = async (
     order: Order,
     duplicateAction?: 'use_existing' | 'reissue',
@@ -946,7 +1025,7 @@ export default function PedidosPage() {
         { label: 'Garantindo NF na Brasil NFe', status: 'pending' },
         { label: 'Vinculando NF Brasil NFe no Mercado Livre', status: 'pending' },
         { label: 'Baixando etiqueta do Mercado Livre', status: 'pending' },
-        { label: 'Definindo transportadora (Correios)', status: 'pending' },
+        { label: 'Definindo transporte na DSLite', status: 'pending' },
         { label: 'Enviando etiqueta para DSLite', status: 'pending' },
       ]);
       setEtiquetaProgressOpen(true);
@@ -959,7 +1038,7 @@ export default function PedidosPage() {
         if (
           s.label === 'Vinculando NF Brasil NFe no Mercado Livre'
           || s.label === 'Baixando etiqueta do Mercado Livre'
-          || s.label === 'Definindo transportadora (Correios)'
+          || s.label === 'Definindo transporte na DSLite'
           || s.label === 'Enviando etiqueta para DSLite'
         ) {
           return { ...s, status: 'pending', error: undefined };
@@ -1019,11 +1098,36 @@ export default function PedidosPage() {
           messageApi.warning(data?.data?.message || 'Etiqueta ainda não liberada pelo Mercado Livre.');
         } else if (operationStatus === 'already_done') {
           messageApi.info('Etiqueta já havia sido enviada anteriormente.');
+        } else if (operationStatus === 'dslite_paid_shipping_ready') {
+          messageApi.success(data?.data?.message || 'Frete pago confirmado na DSLite.');
         }
       } else {
         const step = String(data?.step || '');
         const actionRequired = String(data?.actionRequired || data?.details?.actionRequired || '');
         const errMsg = data?.error || 'Falha ao completar etiqueta DSLite';
+        if (
+          actionRequired === 'choose_dslite_shipping'
+          && data?.dsid
+          && Array.isArray(data?.shippingOptions)
+        ) {
+          const shippingSteps: ProgressStep[] = (data?.data?.steps || []).map((s: any) => ({
+            label: String(s?.label || ''),
+            status: s?.status === 'skipped' ? 'success' : (s?.status || 'pending'),
+            detail: s?.detail,
+            error: s?.error,
+          }));
+          if (shippingSteps.length) setEtiquetaSteps(shippingSteps);
+          setDsliteShippingPrompt({
+            order,
+            pedidoId: String(order.dbId),
+            dsid: String(data.dsid),
+            options: data.shippingOptions,
+          });
+          setDsliteShippingSelection(null);
+          setEtiquetaProgressOpen(false);
+          setDsliteShippingModalOpen(true);
+          return;
+        }
         const errorType = String(data?.errorType || data?.details?.errorType || '');
         const dbCode = String(data?.details?.db_code || '');
         const isDbSchemaError = errorType === 'db_schema' || dbCode === '42703';
@@ -1078,7 +1182,7 @@ export default function PedidosPage() {
               ensure_brasilnfe_invoice: 'Garantindo NF na Brasil NFe',
               upload_invoice_ml: 'Vinculando NF Brasil NFe no Mercado Livre',
               download_label_ml: 'Baixando etiqueta do Mercado Livre',
-              set_carrier_dslite: 'Definindo transportadora (Correios)',
+              set_carrier_dslite: 'Definindo transporte na DSLite',
               send_label_dslite: 'Enviando etiqueta para DSLite',
             };
             const labelToMark = stepToLabel[step];
@@ -2194,6 +2298,48 @@ export default function PedidosPage() {
           {dslitePaymentPrompt?.resumeAfterConfirm && dslitePaymentPrompt.order.supplier_payment_status === 'paid' && dslitePaymentPrompt.order.supplier_payment_receipt_path && (
             <Text type="secondary">Comprovante já salvo e já enviado. Nenhum novo envio será feito.</Text>
           )}
+        </Space>
+      </Modal>
+      <Modal
+        title="Escolher frete pago da DSLite"
+        open={dsliteShippingModalOpen}
+        onCancel={() => {
+          setDsliteShippingModalOpen(false);
+          setDsliteShippingPrompt(null);
+          setDsliteShippingSelection(null);
+        }}
+        onOk={confirmarFreteDslite}
+        okText="Selecionar frete"
+        cancelText="Depois"
+        confirmLoading={confirmingDsliteShipping}
+        okButtonProps={{ disabled: !dsliteShippingSelection }}
+        maskClosable={false}
+      >
+        <Space direction="vertical" size={14} style={{ width: '100%' }}>
+          <Text type="secondary">
+            Venda sem Mercado Envios. O fornecedor fará o transporte pelo próprio convênio e cobrará o frete da Vortek.
+          </Text>
+          <Text>
+            <b>Pedido DSLite:</b> #{dsliteShippingPrompt?.dsid || '—'}
+          </Text>
+          <Select
+            style={{ width: '100%' }}
+            placeholder="Selecione preço e prazo"
+            value={dsliteShippingSelection}
+            onChange={setDsliteShippingSelection}
+            disabled={confirmingDsliteShipping}
+            options={(dsliteShippingPrompt?.options || []).map((option) => ({
+              value: option.transportadoraId,
+              label: `${option.serviceName} · ${formatCurrency(option.price)} · ${
+                option.deliveryDays > 0
+                  ? `${option.deliveryDays} dia${option.deliveryDays === 1 ? '' : 's'}`
+                  : 'prazo não informado'
+              }`,
+            }))}
+          />
+          <Text type="secondary">
+            Valor estimado pela DSLite. Cobrança final do fornecedor pode sofrer ajuste.
+          </Text>
         </Space>
       </Modal>
       <ProgressModal

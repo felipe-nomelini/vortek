@@ -104,7 +104,7 @@ export interface Order {
   compra_produto_sku?: string | null;
   compra_quantidade?: number | null;
   cliente_id?: string | null;
-  dslite_label_operational_status?: 'real_sent' | 'generic_sent' | 'sent_unverified' | 'pending' | 'failed' | 'unknown';
+  dslite_label_operational_status?: 'real_sent' | 'generic_sent' | 'provider_shipping' | 'sent_unverified' | 'pending' | 'failed' | 'unknown';
   dslite_label_operational_updated_at?: string | null;
   dslite_label_operational_error?: string | null;
   whatsapp_label_status?: 'sent' | 'test_sent' | 'pending' | 'on_hold' | 'failed' | 'not_sent' | 'unknown';

@@ -17,6 +17,7 @@ export type WhatsappLabelOperationalStatus =
 export type DsliteLabelOperationalStatus =
   | 'real_sent'
   | 'generic_sent'
+  | 'provider_shipping'
   | 'sent_unverified'
   | 'pending'
   | 'failed'
@@ -107,7 +108,9 @@ export function getOperationalUrgencyReasons(
   const whatsappStatus = String(order.whatsapp_label_status || '');
   const dsliteLabelStatus = String(order.dslite_label_operational_status || '');
   const dsliteLabelConfirmed = dsliteLabelStatus
-    ? dsliteLabelStatus === 'real_sent' || dsliteLabelStatus === 'generic_sent'
+    ? dsliteLabelStatus === 'real_sent'
+      || dsliteLabelStatus === 'generic_sent'
+      || dsliteLabelStatus === 'provider_shipping'
     : Boolean(order.dslite_etiqueta_enviada);
 
   if (order.ml_claim_id) reasons.push('Reclamação no Mercado Livre');

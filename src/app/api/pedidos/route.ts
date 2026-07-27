@@ -401,7 +401,10 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
     const paymentMode = String(compra.supplier_payment_mode || '');
     const paymentStatus = String(compra.supplier_payment_status || '');
     const hasReceipt = Boolean(compra.supplier_payment_receipt_path);
-    const labelSent = Boolean(row?.dslite_etiqueta_enviada);
+    const labelSent = Boolean(
+      row?.dslite_etiqueta_enviada
+      || String(row?.dslite_label_source || '') === 'dslite_paid_shipping',
+    );
     const fornecedor = fornecedorByDsliteId.get(String(compra.fornecedor_id || ''));
     const deferBkr1PaymentUntilRealLabel = Boolean(
       isBkr1Supplier(compra.fornecedor_id, compra.fornecedor_nome)

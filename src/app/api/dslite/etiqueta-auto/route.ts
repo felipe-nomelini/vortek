@@ -1,8 +1,15 @@
 import { NextResponse } from 'next/server';
-import { consultarPedido, definirTransportadoraPedido, enviarEtiqueta } from '@/services/dslite';
+import {
+  consultarPedido,
+  definirTransportadoraPedido,
+  enviarEtiqueta,
+  findDsliteShippingOptionForCarrier,
+  listarTransportadorasPedido,
+} from '@/services/dslite';
 import {
   baixarEtiquetaML,
   consultarInvoiceDataPorShipmentML,
+  fetchML,
   upsertInvoiceDataMLByShipment,
 } from '@/services/integration';
 import { createServiceClient } from '@/lib/supabase';
@@ -25,6 +32,7 @@ import {
   usesThermalMlLabelSupplier,
 } from '@/lib/supplier-balance';
 import { reservarEnvioInterno, validarEstoqueEnvioInterno } from '@/lib/estoque-interno';
+import { parseMlOrderShippingMode } from '@/lib/ml/order-shipping-mode';
 
 const LABEL_RETRY_INTERVAL_MS = 5000;
 const LABEL_WAIT_TIMEOUT_MS = 60000;
@@ -64,7 +72,7 @@ const STEP_LABELS: Record<StepKey, string> = {
   ensure_brasilnfe_invoice: 'Garantindo NF na Brasil NFe',
   upload_invoice_ml: 'Vinculando NF Brasil NFe no Mercado Livre',
   download_label_ml: 'Baixando etiqueta do Mercado Livre',
-  set_carrier_dslite: 'Definindo transportadora (Correios)',
+  set_carrier_dslite: 'Definindo transporte na DSLite',
   send_label_dslite: 'Enviando etiqueta para DSLite',
 };
 
@@ -171,7 +179,7 @@ export async function POST(req: Request) {
     const client = createServiceClient();
     const { data: pedido, error: pedidoError } = await client
       .from('pedidos')
-      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nfe_protocolo,nota_fiscal_numero,total,nfe_cfop,dslite_etiqueta_enviada,dslite_label_source,ml_pack_id')
+      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nfe_protocolo,nota_fiscal_numero,total,frete,lucro,nfe_cfop,dslite_etiqueta_enviada,dslite_label_source,ml_pack_id')
       .eq('id', pedidoId)
       .maybeSingle();
 
@@ -274,6 +282,164 @@ export async function POST(req: Request) {
       });
     }
     const releaseAt = releaseAtRaw ? new Date(releaseAtRaw) : null;
+    const mlOrderForShipping = !directShipping
+      ? await fetchML<unknown>(`/orders/${encodeURIComponent(mlOrderId)}`).catch(() => null)
+      : null;
+    const mlShippingMode = parseMlOrderShippingMode(mlOrderForShipping);
+
+    if (!directShipping && mlShippingMode.isNoShipping) {
+      const [pedidoDslite, shippingOptions] = await Promise.all([
+        consultarPedido(dsliteId),
+        listarTransportadorasPedido(dsliteId),
+      ]);
+      const currentCarrierId = String(
+        pedidoDslite?.transportadora?.transportadoraid || '',
+      ).trim();
+      const currentOption = findDsliteShippingOptionForCarrier(
+        shippingOptions,
+        currentCarrierId,
+      );
+      const currentRequiresLabel = String(
+        pedidoDslite?.transportadora?.exige_etiqueta || '',
+      ).trim().toLowerCase();
+      const hasPaidCarrier = Boolean(
+        currentCarrierId &&
+        (currentOption
+          ? !currentOption.requiresLabel && !currentOption.error
+          : ['n', 'nao', 'não', 'false', '0'].includes(currentRequiresLabel)),
+      );
+
+      updateStep(steps, 'check_ml_invoice_xml', {
+        status: 'warning',
+        detail: 'Venda sem Mercado Envios; vínculo fiscal por shipment não se aplica',
+      });
+      updateStep(steps, 'ensure_brasilnfe_invoice', {
+        status: 'skipped',
+        detail: 'Etapa pulada: NF já tratada no fluxo fiscal da venda',
+      });
+      updateStep(steps, 'upload_invoice_ml', {
+        status: 'skipped',
+        detail: 'Etapa pulada: venda no_shipping não possui shipment no ML',
+      });
+      updateStep(steps, 'download_label_ml', {
+        status: 'skipped',
+        detail: 'Etapa pulada: fornecedor usará frete próprio da DSLite',
+      });
+
+      if (!hasPaidCarrier) {
+        const availableOptions = shippingOptions.filter(
+          (option) =>
+            !option.requiresLabel &&
+            !option.error &&
+            option.price > 0,
+        );
+        const msg = availableOptions.length > 0
+          ? 'Escolha o frete pago da DSLite para continuar.'
+          : 'DSLite não retornou frete pago válido para este pedido.';
+        updateStep(steps, 'set_carrier_dslite', {
+          status: 'warning',
+          detail: msg,
+        });
+        updateStep(steps, 'send_label_dslite', {
+          status: 'skipped',
+          detail: 'Etapa pulada: frete DSLite ainda não selecionado',
+        });
+        await registrarEventoNfAuditoria({
+          pedidoId: String(pedidoId),
+          mlOrderId,
+          evento: 'dslite_paid_shipping_choice_required',
+          respostaMl: {
+            dsid: dsliteId,
+            options_count: availableOptions.length,
+          },
+          statusResultante: 'waiting_user_choice',
+        });
+        return NextResponse.json({
+          success: false,
+          step: 'set_carrier_dslite',
+          actionRequired: 'choose_dslite_shipping',
+          error: msg,
+          shippingOptions: availableOptions,
+          dsid: dsliteId,
+          data: { steps },
+        }, { status: 409 });
+      }
+
+      const selectedFreight = currentOption?.price || Number(pedidoDslite?.valor_frete || 0);
+      const tracking = String(pedidoDslite?.rastreamento || '').trim() || null;
+      const currentServiceName =
+        String(pedidoDslite?.transportadora?.servico_nome || '').trim() ||
+        currentOption?.serviceName ||
+        String(pedidoDslite?.transportadora?.nome || '').trim() ||
+        'Frete pago DSLite';
+      const previousFreight = Number((pedido as any).frete || 0);
+      const previousProfit = (pedido as any).lucro == null
+        ? null
+        : Number((pedido as any).lucro);
+      const nextProfit =
+        selectedFreight > 0 &&
+        previousProfit != null &&
+        Number.isFinite(previousProfit)
+          ? Number((previousProfit - (selectedFreight - previousFreight)).toFixed(2))
+          : null;
+
+      await Promise.all([
+        client
+          .from('compras')
+          .update({
+            ...(selectedFreight > 0 ? { valor_frete: selectedFreight } : {}),
+            ...(tracking ? { rastreio: tracking } : {}),
+            ...(pedidoDslite?.status ? { status_dslite: pedidoDslite.status } : {}),
+          } as any)
+          .eq('dsid', dsliteId),
+        client
+          .from('pedidos')
+          .update({
+            ...(selectedFreight > 0 ? { frete: selectedFreight } : {}),
+            ...(nextProfit == null ? {} : { lucro: nextProfit }),
+            ...(tracking ? { rastreio: tracking } : {}),
+            ...(pedidoDslite?.status ? { dslite_status: pedidoDslite.status } : {}),
+            dslite_etiqueta_enviada: false,
+            dslite_label_source: 'dslite_paid_shipping',
+          } as any)
+          .eq('id', pedidoId),
+      ]);
+
+      updateStep(steps, 'set_carrier_dslite', {
+        status: 'success',
+        detail: `${currentServiceName}${selectedFreight > 0 ? ` · estimado R$ ${selectedFreight.toFixed(2)}` : ''}`,
+      });
+      updateStep(steps, 'send_label_dslite', {
+        status: 'skipped',
+        detail: 'Etapa pulada: transportadora DSLite não exige etiqueta externa',
+      });
+      await registrarEventoNfAuditoria({
+        pedidoId: String(pedidoId),
+        mlOrderId,
+        evento: 'dslite_paid_shipping_ready',
+        respostaMl: {
+          dsid: dsliteId,
+          carrier_id: currentCarrierId,
+          carrier_name: currentServiceName,
+          estimated_price: selectedFreight || null,
+          tracking,
+        },
+        statusResultante: 'success',
+      });
+      return finalizeSuccess(steps, {
+        partial: false,
+        operationStatus: 'dslite_paid_shipping_ready',
+        nextAction: 'done',
+        shipping: currentOption || {
+          transportadoraId: currentCarrierId,
+          serviceName: currentServiceName,
+          price: selectedFreight,
+        },
+        tracking,
+        message: `${currentServiceName} confirmado na DSLite.`,
+      });
+    }
+
     if (!directShipping && releaseAt && !Number.isNaN(releaseAt.getTime()) && releaseAt.getTime() > Date.now()) {
       const releaseLabel = releaseAt.toLocaleString('pt-BR', {
         day: '2-digit',

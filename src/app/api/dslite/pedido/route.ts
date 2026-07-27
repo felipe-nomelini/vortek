@@ -7,6 +7,8 @@ import {
   consultarPedidoPorChaveAcesso,
   definirTransportadoraPedido,
   enviarEtiqueta,
+  findDsliteShippingOptionForCarrier,
+  listarTransportadorasPedido,
   obterProdutoEspecifico,
   resolverProdutoMapeadoDslite,
   vincularProdutoItem,
@@ -67,6 +69,7 @@ import {
 } from "@/lib/dslite/placeholder-label";
 import { storeShippingLabelForPedido } from "@/lib/shipping-label-storage";
 import { resolveSimpleKitOrderPlan } from "@/lib/produto-kits";
+import { parseMlOrderShippingMode } from "@/lib/ml/order-shipping-mode";
 
 const TRANSPORTADORA_PADRAO_CORREIOS = 31;
 const WAIT_AUTH_TIMEOUT_MS = 180_000;
@@ -555,7 +558,7 @@ const STEP_DEFS: Array<{ key: string; label: string }> = [
   { key: "find_product_dslite", label: "Buscando produto no catálogo DSLite" },
   { key: "create_order_dslite", label: "Criando pedido na DSLite" },
   { key: "set_supplier_dslite", label: "Informando fornecedor" },
-  { key: "set_carrier_dslite", label: "Definindo transportadora (Correios)" },
+  { key: "set_carrier_dslite", label: "Definindo transporte na DSLite" },
   { key: "download_label_ml", label: "Baixando etiqueta do Mercado Livre" },
   { key: "send_label_dslite", label: "Enviando etiqueta para DSLite" },
 ];
@@ -1586,6 +1589,7 @@ async function runDsliteCreateJob(
   let xml: string | null = null;
   let invoiceId: string | number | null = null;
   let danfeUrlAtual: string | null = null;
+  let isMlNoShipping = false;
   const externalWarnings: string[] = [];
   const resumeAfterSupplierPayment = Boolean(
     options?.resumeAfterSupplierPayment,
@@ -1925,10 +1929,29 @@ async function runDsliteCreateJob(
       `Pedido sincronizado com sucesso (${itensCountPosSync} itens)`,
     );
 
+    const mlOrderForShipping = await fetchML<unknown>(
+      `/orders/${encodeURIComponent(syncMlOrderId)}`,
+    ).catch(() => null);
+    const mlShippingMode = parseMlOrderShippingMode(mlOrderForShipping);
+    isMlNoShipping = mlShippingMode.isNoShipping;
+    if (isMlNoShipping) {
+      await registrarEventoNfAuditoria({
+        pedidoId,
+        mlOrderId: syncMlOrderId,
+        evento: "ml_no_shipping_detected",
+        respostaMl: {
+          tags: mlShippingMode.tags,
+          shipment_id: mlShippingMode.shipmentId,
+          flow: "dslite_paid_shipping",
+        },
+        statusResultante: "detected",
+      });
+    }
+
     const { data: pedidoRow, error: pedidoRowError } = await client
       .from("pedidos")
       .select(
-        "numero,total,frete,billing_nome,billing_documento,nfe_xml,nfe_status,nfe_chave,nota_fiscal_numero,nota_fiscal_emitida,nfe_external_id,nfe_protocolo,nfe_cfop,dslite_id,dslite_etiqueta_enviada,dslite_label_source,ml_shipment_id,ml_pack_id,nfe_danfe_url",
+        "numero,total,frete,lucro,billing_nome,billing_documento,nfe_xml,nfe_status,nfe_chave,nota_fiscal_numero,nota_fiscal_emitida,nfe_external_id,nfe_protocolo,nfe_cfop,dslite_id,dslite_etiqueta_enviada,dslite_label_source,ml_shipment_id,ml_pack_id,nfe_danfe_url",
       )
       .eq("id", pedidoId)
       .maybeSingle();
@@ -3083,7 +3106,12 @@ async function runDsliteCreateJob(
       });
     }
 
-    if (selectedProvider === "brasilnfe" && mlOrderId && xml) {
+    if (
+      selectedProvider === "brasilnfe" &&
+      mlOrderId &&
+      xml &&
+      !isMlNoShipping
+    ) {
       const shipmentResolutionForInvoice = await resolveShipmentIdWithWait({
         client,
         pedidoId,
@@ -3256,6 +3284,18 @@ async function runDsliteCreateJob(
           }
         }
       }
+    } else if (selectedProvider === "brasilnfe" && mlOrderId && xml && isMlNoShipping) {
+      await registrarEventoNfAuditoria({
+        pedidoId,
+        mlOrderId: String(mlOrderId),
+        evento: "ml_invoice_data_upload_skipped",
+        respostaMl: {
+          reason: "ml_order_no_shipping",
+          shipment_id: null,
+          fiscal_source: "brasilnfe",
+        },
+        statusResultante: "skipped",
+      });
     }
 
     const xmlAmbienteCheck = validarXmlNfeProducao(xml);
@@ -4172,11 +4212,159 @@ async function runDsliteCreateJob(
     }
 
     await setStep("set_carrier_dslite", "loading");
+    let transportadoraOk = true;
+
+    if (isMlNoShipping) {
+      const [pedidoDsliteAtual, shippingOptions] = await Promise.all([
+        consultarPedido(dsidAtual as number),
+        listarTransportadorasPedido(dsidAtual as number),
+      ]);
+      const currentCarrierId = String(
+        pedidoDsliteAtual?.transportadora?.transportadoraid || "",
+      ).trim();
+      const currentOption = findDsliteShippingOptionForCarrier(
+        shippingOptions,
+        currentCarrierId,
+      );
+      const currentRequiresLabel = String(
+        pedidoDsliteAtual?.transportadora?.exige_etiqueta || "",
+      ).trim().toLowerCase();
+      const hasPaidCarrier = Boolean(
+        currentCarrierId &&
+        (currentOption
+          ? !currentOption.requiresLabel && !currentOption.error
+          : ["n", "nao", "não", "false", "0"].includes(currentRequiresLabel)),
+      );
+
+      if (!hasPaidCarrier) {
+        const availableOptions = shippingOptions.filter(
+          (option) =>
+            !option.requiresLabel &&
+            !option.error &&
+            option.price > 0,
+        );
+        const msg = availableOptions.length > 0
+          ? "Escolha o frete pago da DSLite para continuar."
+          : "DSLite não retornou frete pago válido para este pedido.";
+        await setStep("set_carrier_dslite", "warning", msg);
+        await completeAsSkipped(
+          "download_label_ml",
+          "venda sem Mercado Envios; não existe etiqueta ML",
+        );
+        await completeAsSkipped(
+          "send_label_dslite",
+          "frete DSLite ainda não selecionado",
+        );
+        state = "warning";
+        result = {
+          stage: "choose_dslite_shipping",
+          actionRequired: "choose_dslite_shipping",
+          message: msg,
+          dsid: dsidAtual,
+          shippingOptions: availableOptions,
+          fornecedor_nome: fornecedorNomeResolved,
+        };
+        await syncJob();
+        return;
+      }
+
+      const selectedFreight = currentOption?.price || Number(pedidoDsliteAtual?.valor_frete || 0);
+      const tracking = String(pedidoDsliteAtual?.rastreamento || "").trim() || null;
+      const currentServiceName =
+        String(pedidoDsliteAtual?.transportadora?.servico_nome || "").trim() ||
+        currentOption?.serviceName ||
+        String(pedidoDsliteAtual?.transportadora?.nome || "").trim() ||
+        "Frete pago DSLite";
+      const previousFreight = Number((pedidoRow as any)?.frete || 0);
+      const previousProfit = (pedidoRow as any)?.lucro == null
+        ? null
+        : Number((pedidoRow as any).lucro);
+      const nextProfit =
+        selectedFreight > 0 &&
+        previousProfit != null &&
+        Number.isFinite(previousProfit)
+          ? Number((previousProfit - (selectedFreight - previousFreight)).toFixed(2))
+          : null;
+
+      await Promise.all([
+        client
+          .from("compras")
+          .update({
+            ...(selectedFreight > 0 ? { valor_frete: selectedFreight } : {}),
+            ...(tracking ? { rastreio: tracking } : {}),
+            ...(pedidoDsliteAtual?.status
+              ? { status_dslite: pedidoDsliteAtual.status }
+              : {}),
+          } as any)
+          .eq("dsid", String(dsidAtual)),
+        client
+          .from("pedidos")
+          .update({
+            ...(selectedFreight > 0 ? { frete: selectedFreight } : {}),
+            ...(nextProfit == null ? {} : { lucro: nextProfit }),
+            ...(tracking ? { rastreio: tracking } : {}),
+            ...(pedidoDsliteAtual?.status
+              ? { dslite_status: pedidoDsliteAtual.status }
+              : {}),
+            dslite_etiqueta_enviada: false,
+            dslite_label_source: "dslite_paid_shipping",
+            nfe_chave: chaveAcesso || undefined,
+            nfe_provider: selectedProvider,
+            nfe_last_sync_at: now(),
+            nfe_cfop: extractCfopsFromXml(xml)[0] || null,
+          } as any)
+          .eq("id", pedidoId),
+      ]);
+
+      await setStep(
+        "set_carrier_dslite",
+        "success",
+        `${currentServiceName}${selectedFreight > 0 ? ` · estimado R$ ${selectedFreight.toFixed(2)}` : ""}`,
+      );
+      await completeAsSkipped(
+        "download_label_ml",
+        "venda sem Mercado Envios; fornecedor usa frete próprio",
+      );
+      await completeAsSkipped(
+        "send_label_dslite",
+        "transportadora DSLite não exige etiqueta externa",
+      );
+      await registrarEventoNfAuditoria({
+        pedidoId,
+        mlOrderId: mlOrderId ? String(mlOrderId) : null,
+        evento: "dslite_paid_shipping_ready",
+        respostaMl: {
+          dsid: dsidAtual,
+          carrier_id: currentCarrierId,
+          carrier_name: currentServiceName,
+          estimated_price: selectedFreight || null,
+          tracking,
+        },
+        statusResultante: "success",
+      });
+
+      result = {
+        dsid: dsidAtual,
+        status: pedidoDsliteAtual?.status || pedidoStatusFinal,
+        etiquetaStatus: "nao_aplicavel",
+        shippingMode: "dslite_paid_shipping",
+        shipping: currentOption || {
+          transportadoraId: currentCarrierId,
+          serviceName: currentServiceName,
+          price: selectedFreight,
+        },
+        tracking,
+        pendencias,
+      };
+      state = pendencias.length > 0 ? "warning" : "success";
+      await syncJob();
+      return;
+    }
+
     const transportadoraResult = await definirTransportadoraPedido(
       dsidAtual as number,
       TRANSPORTADORA_PADRAO_CORREIOS,
     );
-    let transportadoraOk = true;
     if (!transportadoraResult?.success) {
       transportadoraOk = false;
       const msg =

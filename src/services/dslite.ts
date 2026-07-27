@@ -4,6 +4,7 @@
  * Autenticação via token fixo no header `Token:`.
  */
 import { createServiceClient } from '@/lib/supabase';
+import { z } from 'zod';
 
 interface DsliteConfig {
   url: string;
@@ -236,6 +237,106 @@ export interface DslitePedidoRetorno {
   status: string;
   chave_acesso: string;
   nf_numero: string;
+  valor_frete?: number;
+  rastreamento?: string | null;
+  transportadora?: {
+    transportadoraid?: number | string;
+    nome?: string;
+    apelido?: string;
+    servico_nome?: string;
+    exige_etiqueta?: boolean | 'S' | 'N' | string;
+    gera_etiqueta?: boolean | 'S' | 'N' | string;
+  } | null;
+}
+
+const dsliteFreightSchema = z.object({
+  valor_frete: z.coerce.number().nonnegative().catch(0),
+  prazo_entrega: z.coerce.number().nonnegative().catch(0),
+  obs: z.string().optional().catch(''),
+  erro: z.string().optional().catch(''),
+  servicoid: z.union([z.string(), z.number()]).optional().nullable(),
+  servico_nome: z.string().optional().catch(''),
+}).passthrough();
+
+const dsliteCarrierSchema = z.object({
+  transportadoraid: z.union([z.string(), z.number()]),
+  nome: z.string().optional().catch(''),
+  apelido: z.string().optional().catch(''),
+  exige_etiqueta: z.union([z.boolean(), z.string()]).optional().catch(false),
+  gera_etiqueta: z.union([z.boolean(), z.string()]).optional().catch(false),
+  tipo_etiqueta: z.string().optional().catch(''),
+  frete: z.array(dsliteFreightSchema).optional().catch([]),
+}).passthrough();
+
+const dsliteCarriersResponseSchema = z.object({
+  transportadoras: z.array(dsliteCarrierSchema),
+}).passthrough();
+
+export type DsliteShippingOption = {
+  transportadoraId: string;
+  serviceId: string | null;
+  name: string;
+  nickname: string;
+  serviceName: string;
+  price: number;
+  deliveryDays: number;
+  note: string | null;
+  error: string | null;
+  requiresLabel: boolean;
+  generatesLabel: boolean;
+  labelType: string | null;
+};
+
+function parseDsliteFlag(value: unknown): boolean {
+  if (typeof value === 'boolean') return value;
+  return ['1', 's', 'sim', 'true', 'y', 'yes'].includes(
+    String(value || '').trim().toLowerCase(),
+  );
+}
+
+export function normalizeDsliteShippingOptions(payload: unknown): DsliteShippingOption[] {
+  const parsed = dsliteCarriersResponseSchema.safeParse(payload);
+  if (!parsed.success) return [];
+
+  return parsed.data.transportadoras.flatMap((carrier) => {
+    const carrierFreights = carrier.frete ?? [];
+    const freights = carrierFreights.length > 0
+      ? carrierFreights
+      : [{
+          valor_frete: 0,
+          prazo_entrega: 0,
+          obs: '',
+          erro: '',
+          servicoid: null,
+          servico_nome: '',
+        }];
+
+    return freights.map((freight) => ({
+      transportadoraId: String(carrier.transportadoraid),
+      serviceId: freight.servicoid == null ? null : String(freight.servicoid),
+      name: carrier.nome || carrier.apelido || 'Transportadora DSLite',
+      nickname: carrier.apelido || '',
+      serviceName: freight.servico_nome || carrier.nome || carrier.apelido || 'Frete DSLite',
+      price: Number(freight.valor_frete || 0),
+      deliveryDays: Number(freight.prazo_entrega || 0),
+      note: freight.obs || null,
+      error: freight.erro || null,
+      requiresLabel: parseDsliteFlag(carrier.exige_etiqueta),
+      generatesLabel: parseDsliteFlag(carrier.gera_etiqueta),
+      labelType: carrier.tipo_etiqueta || null,
+    }));
+  });
+}
+
+export function findDsliteShippingOptionForCarrier(
+  options: DsliteShippingOption[],
+  carrierId: string | number | null | undefined,
+): DsliteShippingOption | null {
+  const id = String(carrierId || '').trim();
+  if (!id) return null;
+  return options.find((option) =>
+    option.transportadoraId === id || option.serviceId === id
+  ) || null;
 }
 
 export type DsliteCreateOrderFailureType =
@@ -525,6 +626,17 @@ export async function criarPedidoDropshippingComFornecedor(
 
 export async function consultarPedido(dsid: number | string): Promise<DslitePedidoRetorno | null> {
   return fetchDslite<DslitePedidoRetorno>(`/v1/DropShipping/${dsid}`);
+}
+
+/**
+ * Retorna opções de transporte calculadas pela DSLite para o pedido.
+ * O fornecedor precisa estar vinculado antes desta consulta.
+ */
+export async function listarTransportadorasPedido(
+  dsid: number | string,
+): Promise<DsliteShippingOption[]> {
+  const payload = await fetchDslite<unknown>(`/v1/DropShipping/${dsid}/transportadora`);
+  return normalizeDsliteShippingOptions(payload);
 }
 
 export async function consultarPedidoPorChaveAcesso(
