@@ -19,7 +19,11 @@ import {
   storeThermalShippingLabelForPedido,
 } from '@/lib/shipping-label-storage';
 import { buildPublicShippingLabelUrl } from '@/lib/public-shipping-label-links';
-import { HAYAMAX_FORNECEDOR_ID, isBkr1Supplier, usesThermalMlLabelSupplier } from '@/lib/supplier-balance';
+import {
+  allowsDslitePlaceholderLabel,
+  isBkr1Supplier,
+  usesThermalMlLabelSupplier,
+} from '@/lib/supplier-balance';
 import { reservarEnvioInterno, validarEstoqueEnvioInterno } from '@/lib/estoque-interno';
 
 const LABEL_RETRY_INTERVAL_MS = 5000;
@@ -286,7 +290,7 @@ export async function POST(req: Request) {
         .maybeSingle();
       const fornecedorId = String((compraVinculada as any)?.fornecedor_id || '').trim();
       const fornecedorNome = String((compraVinculada as any)?.fornecedor_nome || '').trim();
-      const allowsPlaceholder = fornecedorId === HAYAMAX_FORNECEDOR_ID || isBkr1Supplier(fornecedorId, fornecedorNome);
+      const allowsPlaceholder = allowsDslitePlaceholderLabel(fornecedorId, fornecedorNome);
       if (!allowsPlaceholder) {
         const msg = `Etiqueta ML ainda não liberada até ${releaseLabel}; etiqueta padrão não configurada para este fornecedor.`;
         await registrarEventoNfAuditoria({
@@ -299,7 +303,7 @@ export async function POST(req: Request) {
             reason: releaseReasonRaw || null,
             fornecedor_id: fornecedorId || null,
             fornecedor_nome: (compraVinculada as any)?.fornecedor_nome || null,
-            allowed_fornecedores: [HAYAMAX_FORNECEDOR_ID, '108'],
+            allowed_fornecedores: ['2', '108', '133'],
             stage: 'etiqueta_auto_precheck',
             label_source: 'placeholder_release_window',
           },
@@ -327,7 +331,7 @@ export async function POST(req: Request) {
         });
         updateStep(steps, 'send_label_dslite', {
           status: 'warning',
-          detail: 'Etapa não executada: etiqueta genérica bloqueada para fornecedor diferente da Hayamax',
+          detail: 'Etapa não executada: fornecedor sem etiqueta genérica configurada',
         });
         return finalizeSuccess(steps, {
           partial: true,
@@ -441,7 +445,10 @@ export async function POST(req: Request) {
         } as any)
         .eq('id', pedidoId);
 
-      updateStep(steps, 'send_label_dslite', { status: 'success', detail: 'Etiqueta padrão Hayamax enviada com sucesso para DSLite' });
+      updateStep(steps, 'send_label_dslite', {
+        status: 'success',
+        detail: `Etiqueta padrão ${placeholderConfig.supplierLabel} enviada com sucesso para DSLite`,
+      });
       await registrarEventoNfAuditoria({
         pedidoId: String(pedidoId),
         mlOrderId,

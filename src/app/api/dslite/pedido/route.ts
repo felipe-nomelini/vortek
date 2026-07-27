@@ -41,7 +41,7 @@ import {
   type SupplierPaymentMode,
 } from "@/lib/produto-fornecedor";
 import {
-  HAYAMAX_FORNECEDOR_ID,
+  allowsDslitePlaceholderLabel,
   isBkr1Supplier,
   recordSupplierPurchaseDebit,
   usesThermalMlLabelSupplier,
@@ -3395,7 +3395,7 @@ async function runDsliteCreateJob(
       fornecedorId = String(existingCompra?.fornecedor_id || "").trim();
       usePlaceholderLabel =
         isMlLabelReleasePending &&
-        (fornecedorId === HAYAMAX_FORNECEDOR_ID || isBkr1Supplier(fornecedorId, existingCompra?.fornecedor_nome));
+        allowsDslitePlaceholderLabel(fornecedorId, existingCompra?.fornecedor_nome);
       fornecedorNomeResolved = existingCompra?.fornecedor_nome
         ? String(existingCompra.fornecedor_nome)
         : null;
@@ -3498,7 +3498,7 @@ async function runDsliteCreateJob(
       fornecedorId = String(selectedOffer.offer.dslite_fornecedor_id);
       usePlaceholderLabel =
         isMlLabelReleasePending &&
-        (fornecedorId === HAYAMAX_FORNECEDOR_ID || isBkr1Supplier(fornecedorId, fornecedorNomeResolved));
+        allowsDslitePlaceholderLabel(fornecedorId, fornecedorNomeResolved);
       fornecedorNomeResolved = selectedOffer.offer.fornecedor_nome
         ? String(selectedOffer.offer.fornecedor_nome)
         : null;
@@ -3613,8 +3613,7 @@ async function runDsliteCreateJob(
     if (
       isMlLabelReleasePending &&
       releaseAt &&
-      fornecedorId !== HAYAMAX_FORNECEDOR_ID &&
-      !isBkr1Supplier(fornecedorId, fornecedorNomeResolved)
+      !allowsDslitePlaceholderLabel(fornecedorId, fornecedorNomeResolved)
     ) {
       const msg = `Etiqueta ML ainda não liberada até ${placeholderReleaseLabel}; etiqueta padrão não configurada para este fornecedor.`;
       await registrarEventoNfAuditoria({
@@ -3628,7 +3627,7 @@ async function runDsliteCreateJob(
           release_at: releaseAt.toISOString(),
           fornecedor_id: fornecedorId || null,
           fornecedor_nome: fornecedorNomeResolved || null,
-          allowed_fornecedores: [HAYAMAX_FORNECEDOR_ID, '108'],
+          allowed_fornecedores: ['2', '108', '133'],
           label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
         },
         statusResultante: "blocked",
@@ -4145,8 +4144,7 @@ async function runDsliteCreateJob(
     const isRealLabelPendingForNonPlaceholderSupplier = Boolean(
       isMlLabelReleasePending &&
       releaseAt &&
-      fornecedorId !== HAYAMAX_FORNECEDOR_ID &&
-      !isBkr1Supplier(fornecedorId, fornecedorNomeResolved),
+      !allowsDslitePlaceholderLabel(fornecedorId, fornecedorNomeResolved),
     );
 
     if (supplierDefinedAtCreation) {

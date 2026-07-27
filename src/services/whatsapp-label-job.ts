@@ -17,7 +17,6 @@ import {
   storeShippingLabelForPedido,
 } from '@/lib/shipping-label-storage';
 import {
-  DSLITE_MERCADO_LIVRE_LABEL_SOURCE,
   DSLITE_PLACEHOLDER_LABEL_FILE_NAME,
   loadDslitePlaceholderLabel,
 } from '@/lib/dslite/placeholder-label';
@@ -590,13 +589,11 @@ export async function runWhatsappLabelJob(input: {
       const { error: pedidoUpdateError } = await client
         .from('pedidos')
         .update({
-          dslite_etiqueta_enviada: true,
-          dslite_label_source: DSLITE_MERCADO_LIVRE_LABEL_SOURCE,
           ml_label_storage_path: labelStoragePath || undefined,
           ml_label_bytes: labelPdf.length,
         } as any)
         .eq('id', pedidoId);
-      if (pedidoUpdateError) throw new Error(`Mensagem enviada, mas falhou ao atualizar pedido: ${pedidoUpdateError.message}`);
+      if (pedidoUpdateError) throw new Error(`Mensagem enviada, mas falhou ao salvar a etiqueta no pedido: ${pedidoUpdateError.message}`);
     }
 
     result = {

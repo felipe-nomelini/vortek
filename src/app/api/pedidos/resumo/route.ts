@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import { createClient, createServiceClient } from "@/lib/supabase";
 import { saoPauloDateParamToUtcIso } from "@/lib/timezone";
+import {
+  PREPARATION_ORDER_STATUSES,
+  matchesOrdersOperationalView,
+} from "@/lib/orders/operational-view";
+import { enrichOrdersWithWhatsappStatus } from "@/services/order-operational-status";
 
 function logDbError(
   event: string,
@@ -52,6 +57,17 @@ function hasApprovedPayment(pagamentoResumo: unknown): {
 
 function normalizeStatus(value: unknown): string {
   return String(value || "aberto").trim() || "aberto";
+}
+
+async function countUrgentOrders(
+  rows: any[],
+  serviceClient: ReturnType<typeof createServiceClient>,
+): Promise<number> {
+  const activeRows = (rows || []).filter((row) => (
+    PREPARATION_ORDER_STATUSES.includes(normalizeStatus(row?.situacao) as any)
+  ));
+  const enrichedRows = await enrichOrdersWithWhatsappStatus(activeRows, serviceClient);
+  return enrichedRows.filter((row) => matchesOrdersOperationalView(row, "urgent")).length;
 }
 
 function isCancelledStatus(value: unknown): boolean {
@@ -137,6 +153,7 @@ export async function GET(request: Request) {
       pagamento_resumo?: unknown;
       situacao?: unknown;
     }> = [];
+    const operationalRows: any[] = [];
 
     while (true) {
       const { data: rpcData, error: rpcError } = await (
@@ -182,6 +199,7 @@ export async function GET(request: Request) {
           pagamento_resumo: row?.pagamento_resumo,
           situacao: row?.situacao,
         });
+        operationalRows.push(row);
       }
 
       if (rows.length < pageSize || financialRows.length >= count) break;
@@ -195,6 +213,7 @@ export async function GET(request: Request) {
       financial.totalSum > 0
         ? (financial.lucroSum / financial.totalSum) * 100
         : 0;
+    const urgentCount = await countUrgentOrders(operationalRows, serviceClient);
 
     return NextResponse.json({
       count,
@@ -206,6 +225,7 @@ export async function GET(request: Request) {
       mlCompatibleCount: financial.mlCompatibleCount,
       mlCompatibleTotal: financial.mlCompatibleTotal,
       mlCompatibleMissingPaymentData: financial.mlCompatibleMissingPaymentData,
+      urgentCount,
     });
   }
 
@@ -230,6 +250,28 @@ export async function GET(request: Request) {
     return query;
   }
 
+  async function loadAllActiveOperationalRows(useSaleDate: boolean) {
+    const pageSize = 500;
+    const rows: any[] = [];
+    const columns = useSaleDate
+      ? "id,data,data_venda,situacao,dslite_id,dslite_status,dslite_etiqueta_enviada,envio_interno_at,ml_fiscal_release_at,ml_claim_id"
+      : "id,data,situacao,dslite_id,dslite_status,dslite_etiqueta_enviada,envio_interno_at,ml_fiscal_release_at,ml_claim_id";
+
+    for (let offset = 0; ; offset += pageSize) {
+      let query = serviceClient
+        .from("pedidos")
+        .select(columns)
+        .in("situacao", [...PREPARATION_ORDER_STATUSES])
+        .order("id", { ascending: true })
+        .range(offset, offset + pageSize - 1);
+      query = applyFilters(query, useSaleDate);
+      const { data, error } = await query;
+      if (error) return { data: rows, error };
+      rows.push(...(data || []));
+      if ((data || []).length < pageSize) return { data: rows, error: null };
+    }
+  }
+
   // Count total
   async function runSummaryQueries(useSaleDate: boolean) {
     let countQuery = serviceClient
@@ -239,9 +281,12 @@ export async function GET(request: Request) {
     countQuery = applyFilters(countQuery, useSaleDate);
     const countResult = await countQuery;
 
-    let sumQuery = serviceClient
+    const sumColumns = useSaleDate
+      ? "id,data,data_venda,total,lucro,pagamento_resumo,situacao,dslite_id,dslite_status,dslite_etiqueta_enviada,envio_interno_at,ml_fiscal_release_at,ml_claim_id"
+      : "id,data,total,lucro,pagamento_resumo,situacao,dslite_id,dslite_status,dslite_etiqueta_enviada,envio_interno_at,ml_fiscal_release_at,ml_claim_id";
+    let sumQuery = (serviceClient as any)
       .from("pedidos")
-      .select("total, lucro, pagamento_resumo, situacao");
+      .select(sumColumns);
     sumQuery = applyFilters(sumQuery, useSaleDate);
     const sumResult = await sumQuery;
 
@@ -260,12 +305,14 @@ export async function GET(request: Request) {
     sumResult: { data: sumData, error: sumError },
     statusResult: { data: statusData, error: statusError },
   } = await runSummaryQueries(true);
+  let summaryUsesSaleDate = true;
 
   const missingSaleDateColumn =
     isMissingSaleDateColumnError(countError) ||
     isMissingSaleDateColumnError(sumError) ||
     isMissingSaleDateColumnError(statusError);
   if (missingSaleDateColumn) {
+    summaryUsesSaleDate = false;
     logDbError(
       "pedidos_resumo_schema_drift_fallback_data",
       "/api/pedidos/resumo",
@@ -304,7 +351,7 @@ export async function GET(request: Request) {
     );
   }
 
-  const financial = accumulateFinancialSummary(sumData || []);
+  const financial = accumulateFinancialSummary((sumData || []) as any[]);
 
   // Status counts via RPC ou group by
   if (statusError) {
@@ -332,6 +379,23 @@ export async function GET(request: Request) {
     financial.totalSum > 0
       ? (financial.lucroSum / financial.totalSum) * 100
       : 0;
+  const {
+    data: operationalRows,
+    error: operationalError,
+  } = await loadAllActiveOperationalRows(summaryUsesSaleDate);
+  if (operationalError) {
+    logDbError(
+      "pedidos_resumo_urgent_query_failed",
+      "/api/pedidos/resumo",
+      normalizedSearch,
+      operationalError,
+    );
+    return NextResponse.json(
+      { erro: "Falha ao calcular pedidos urgentes." },
+      { status: 500 },
+    );
+  }
+  const urgentCount = await countUrgentOrders(operationalRows, serviceClient);
 
   return NextResponse.json({
     count: count || 0,
@@ -343,5 +407,6 @@ export async function GET(request: Request) {
     mlCompatibleCount: financial.mlCompatibleCount,
     mlCompatibleTotal: financial.mlCompatibleTotal,
     mlCompatibleMissingPaymentData: financial.mlCompatibleMissingPaymentData,
+    urgentCount,
   });
 }

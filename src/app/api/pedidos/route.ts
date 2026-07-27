@@ -5,6 +5,14 @@ import { reconcileLocalNfeSnapshotFromXml } from '@/lib/fiscal/nfe-local-reconci
 import { isBkr1Supplier } from '@/lib/supplier-balance';
 import { inferSupplierPaymentMode, resolvePreferredOfferForProduct } from '@/lib/produto-fornecedor';
 import { getSkuLookupVariants } from '@/lib/sku';
+import {
+  PREPARATION_ORDER_STATUSES,
+  SHIPPING_ORDER_STATUSES,
+  matchesOrdersOperationalView,
+  parseOrdersOperationalView,
+  type OrdersOperationalView,
+} from '@/lib/orders/operational-view';
+import { enrichOrdersWithWhatsappStatus } from '@/services/order-operational-status';
 
 function logDbError(
   event: string,
@@ -354,6 +362,27 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
   const fornecedorByDsliteId = new Map(fornecedores.map((fornecedor) => [String(fornecedor.dslite_id), fornecedor]));
 
   return rows.map((row) => {
+    if (row?.envio_interno_at) {
+      return {
+        ...row,
+        pedido_itens: itensPorPedido.get(String(row?.id || '')) || [],
+        cliente_id: clienteIdPorMlId.get(String(row?.buyer_ml_id || '')) || null,
+        compra_id: null,
+        fornecedor_id: null,
+        fornecedor_nome: 'Estoque Interno',
+        fornecedor_telefone: null,
+        supplier_payment_mode: null,
+        supplier_payment_status: null,
+        supplier_payment_amount: null,
+        supplier_payment_receipt_path: null,
+        supplier_payment_reference: null,
+        supplier_payment_notes: null,
+        supplier_pix_key: null,
+        dslite_next_action: 'internal_shipping',
+        dslite_next_action_label: 'Envio interno',
+      };
+    }
+
     const compra = comprasByDsid.get(String(row?.dslite_id || ''));
     if (!compra) {
       return {
@@ -425,6 +454,15 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
   });
 }
 
+async function enrichPedidosForOperationalView(
+  rows: any[],
+  serviceClient: ReturnType<typeof createServiceClient>,
+) {
+  const reconciledRows = await persistReconciledPedidos(rows);
+  const withPurchases = await enrichPedidosWithCompras(reconciledRows, serviceClient);
+  return enrichOrdersWithWhatsappStatus(withPurchases, serviceClient);
+}
+
 function applyPedidoFilters(query: any, filters: {
   status: string;
   dateFrom: string | null;
@@ -457,6 +495,22 @@ function applyPedidoFilters(query: any, filters: {
   }
   if (priceMax !== null) {
     query = query.lte('total', priceMax);
+  }
+  return query;
+}
+
+function applyOperationalViewFilter(query: any, view: OrdersOperationalView) {
+  if (view === 'urgent') {
+    return query.in('situacao', [...PREPARATION_ORDER_STATUSES]);
+  }
+  if (view === 'preparation') {
+    return query.in('situacao', [...PREPARATION_ORDER_STATUSES]);
+  }
+  if (view === 'shipping') {
+    return query.in('situacao', [...SHIPPING_ORDER_STATUSES]);
+  }
+  if (view === 'delivered') {
+    return query.eq('situacao', 'entregue');
   }
   return query;
 }
@@ -515,6 +569,7 @@ export async function GET(request: Request) {
   const normalizedSearch = search.trim();
   const rawSortBy = searchParams.get('sortBy') || 'data';
   const rawSortOrder = searchParams.get('sortOrder') || 'desc';
+  const operationalView = parseOrdersOperationalView(searchParams.get('operationalView'));
   const allowedSortBy = new Set([
     'numero',
     'data',
@@ -532,6 +587,51 @@ export async function GET(request: Request) {
   const to = from + pageSize - 1;
   const startDateIso = dateFrom ? saoPauloDateParamToUtcIso(dateFrom, 'start') : null;
   const endDateIso = dateTo ? saoPauloDateParamToUtcIso(dateTo, 'end') : null;
+
+  if (normalizedSearch && operationalView !== 'all') {
+    const allRows: any[] = [];
+    let searchTotal = 0;
+    let searchPage = 1;
+
+    while (true) {
+      const { data: rpcData, error: rpcError } = await (serviceClient as any).rpc('search_pedidos_paginated', {
+        p_search: normalizedSearch,
+        p_status: status || null,
+        p_date_from: startDateIso,
+        p_date_to: endDateIso,
+        p_price_min: priceMin,
+        p_price_max: priceMax,
+        p_page: searchPage,
+        p_page_size: 100,
+        p_sort_by: sortBy,
+        p_sort_order: sortOrder,
+      });
+
+      if (rpcError) {
+        logDbError('pedidos_operational_search_rpc_failed', '/api/pedidos', normalizedSearch, rpcError, {
+          operationalView,
+          searchPage,
+        });
+        return NextResponse.json({ erro: 'Falha ao buscar pedidos na visão operacional.' }, { status: 500 });
+      }
+
+      const rows = Array.isArray(rpcData?.data) ? rpcData.data : [];
+      searchTotal = Number(rpcData?.total ?? searchTotal ?? 0);
+      allRows.push(...rows);
+      if (rows.length < 100 || allRows.length >= searchTotal) break;
+      searchPage += 1;
+    }
+
+    const enrichedRows = await enrichPedidosForOperationalView(allRows, serviceClient);
+    const filteredRows = enrichedRows.filter((row) => matchesOrdersOperationalView(row, operationalView));
+
+    return NextResponse.json({
+      data: filteredRows.slice(from, to + 1),
+      total: filteredRows.length,
+      page,
+      pageSize,
+    });
+  }
 
   if (normalizedSearch) {
     const { data: rpcData, error: rpcError } = await (serviceClient as any).rpc('search_pedidos_paginated', {
@@ -560,8 +660,7 @@ export async function GET(request: Request) {
 
     const rows = Array.isArray(rpcData?.data) ? rpcData.data : [];
     const total = Number(rpcData?.total ?? 0) || 0;
-    const reconciledRows = await persistReconciledPedidos(rows);
-    const enrichedRows = await enrichPedidosWithCompras(reconciledRows, serviceClient);
+    const enrichedRows = await enrichPedidosForOperationalView(rows, serviceClient);
 
     return NextResponse.json({
       data: enrichedRows,
@@ -579,13 +678,54 @@ export async function GET(request: Request) {
     priceMax,
   };
 
+  if (operationalView === 'urgent') {
+    async function loadUrgentCandidates(useSaleDate: boolean) {
+      const candidates: any[] = [];
+      const chunkSize = 500;
+
+      while (true) {
+        let query = serviceClient.from('pedidos').select('*');
+        query = applyPedidoFilters(query, { ...filterContext, useSaleDate });
+        query = applyOperationalViewFilter(query, operationalView);
+        query = applyPedidoSortWithMode(query, sortBy, sortOrder, useSaleDate);
+        const offset = candidates.length;
+        const { data: chunk, error: chunkError } = await query.range(offset, offset + chunkSize - 1);
+        if (chunkError) return { data: candidates, error: chunkError };
+        candidates.push(...(chunk || []));
+        if ((chunk || []).length < chunkSize) return { data: candidates, error: null };
+      }
+    }
+
+    let urgentResult = await loadUrgentCandidates(true);
+    if (isMissingSaleDateColumnError(urgentResult.error)) {
+      urgentResult = await loadUrgentCandidates(false);
+    }
+    if (urgentResult.error) {
+      logDbError('pedidos_urgent_query_failed', '/api/pedidos', normalizedSearch, urgentResult.error, {
+        operationalView,
+      });
+      return NextResponse.json({ erro: 'Falha ao carregar pedidos urgentes.' }, { status: 500 });
+    }
+
+    const enrichedRows = await enrichPedidosForOperationalView(urgentResult.data, serviceClient);
+    const urgentRows = enrichedRows.filter((row) => matchesOrdersOperationalView(row, 'urgent'));
+    return NextResponse.json({
+      data: urgentRows.slice(from, to + 1),
+      total: urgentRows.length,
+      page,
+      pageSize,
+    });
+  }
+
   async function runListQueries(useSaleDate: boolean) {
     let countQuery = serviceClient.from('pedidos').select('*', { count: 'exact', head: false }).range(0, 0);
     countQuery = applyPedidoFilters(countQuery, { ...filterContext, useSaleDate });
+    countQuery = applyOperationalViewFilter(countQuery, operationalView);
     const countResult = await countQuery;
 
     let dataQuery = serviceClient.from('pedidos').select('*');
     dataQuery = applyPedidoFilters(dataQuery, { ...filterContext, useSaleDate });
+    dataQuery = applyOperationalViewFilter(dataQuery, operationalView);
     dataQuery = applyPedidoSortWithMode(dataQuery, sortBy, sortOrder, useSaleDate);
     const dataResult = await dataQuery.range(from, to);
 
@@ -633,8 +773,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ erro: 'Falha ao carregar pedidos.' }, { status: 500 });
   }
 
-  const reconciledRows = await persistReconciledPedidos(data || []);
-  const enrichedRows = await enrichPedidosWithCompras(reconciledRows, serviceClient);
+  const enrichedRows = await enrichPedidosForOperationalView(data || [], serviceClient);
 
   return NextResponse.json({
     data: enrichedRows,

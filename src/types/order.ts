@@ -64,6 +64,7 @@ export interface Order {
   fornecedor_nome?: string | null;
   fornecedor_telefone?: string | null;
   internal_stock_available?: boolean;
+  envio_interno_at?: string | null;
   supplier_pix_key?: string | null;
   dslite_next_action?:
     | 'create_dslite_order'
@@ -103,4 +104,11 @@ export interface Order {
   compra_produto_sku?: string | null;
   compra_quantidade?: number | null;
   cliente_id?: string | null;
+  dslite_label_operational_status?: 'real_sent' | 'generic_sent' | 'sent_unverified' | 'pending' | 'failed' | 'unknown';
+  dslite_label_operational_updated_at?: string | null;
+  dslite_label_operational_error?: string | null;
+  whatsapp_label_status?: 'sent' | 'test_sent' | 'pending' | 'on_hold' | 'failed' | 'not_sent' | 'unknown';
+  whatsapp_label_updated_at?: string | null;
+  whatsapp_label_error?: string | null;
+  whatsapp_label_next_retry_at?: string | null;
 }

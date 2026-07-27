@@ -3,7 +3,7 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import {
-  Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic, Divider, Tooltip, Upload, Descriptions,
+  Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, DatePicker, Space, Spin, Modal, message, Statistic, Divider, Tooltip, Upload, Descriptions, Tabs,
 } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import type { TableProps } from 'antd';
@@ -16,6 +16,13 @@ import type { Order, OrderStatus } from '@/types/order';
 import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resolveRemoteSortState } from '@/lib/remote-sort';
 import { formatMlReleaseWindow, getMlReleaseComparableDate } from '@/lib/ml/release-window-display';
 import { getSkuLookupVariants } from '@/lib/sku';
+import {
+  PREPARATION_ORDER_STATUSES,
+  SHIPPING_ORDER_STATUSES,
+  getOperationalUrgencyReasons,
+  isPostDispatchOrder,
+  type OrdersOperationalView,
+} from '@/lib/orders/operational-view';
 
 const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
@@ -195,6 +202,63 @@ function getDsliteActionTag(action: Order['dslite_next_action']) {
   }
 }
 
+function FlowStatusLine(props: {
+  label: string;
+  value: React.ReactNode;
+  color: string;
+  tooltip?: string | null;
+}) {
+  const content = (
+    <div style={{ display: 'grid', gridTemplateColumns: '8px 84px minmax(0, 1fr)', gap: 6, alignItems: 'center', lineHeight: 1.25 }}>
+      <span style={{ width: 7, height: 7, borderRadius: '50%', background: props.color }} />
+      <Text type="secondary" style={{ fontSize: 11 }}>{props.label}</Text>
+      <span style={{ color: '#e0e0e0', fontSize: 11, minWidth: 0 }}>{props.value}</span>
+    </div>
+  );
+  return props.tooltip ? <Tooltip title={props.tooltip}>{content}</Tooltip> : content;
+}
+
+function getWhatsappFlowStatus(order: Order) {
+  switch (order.whatsapp_label_status) {
+    case 'sent':
+      return { color: '#52c41a', label: 'Enviada' };
+    case 'test_sent':
+      return { color: '#faad14', label: 'Teste enviado' };
+    case 'pending':
+      return { color: '#1677ff', label: 'Processando' };
+    case 'on_hold':
+      return { color: '#faad14', label: 'Na fila' };
+    case 'failed':
+      return { color: '#ff4d4f', label: 'Falhou' };
+    case 'unknown':
+      return { color: '#8c8c8c', label: 'Indisponível' };
+    case 'not_sent':
+    default:
+      return { color: '#8c8c8c', label: 'Não enviada' };
+  }
+}
+
+function getDsliteLabelFlowStatus(order: Order) {
+  switch (order.dslite_label_operational_status) {
+    case 'real_sent':
+      return { color: '#52c41a', label: 'Real confirmada' };
+    case 'generic_sent':
+      return { color: '#faad14', label: 'Genérica confirmada' };
+    case 'sent_unverified':
+      return { color: '#8c8c8c', label: 'Sem confirmação' };
+    case 'failed':
+      return { color: '#ff4d4f', label: 'Falhou' };
+    case 'unknown':
+      return { color: '#8c8c8c', label: 'Indisponível' };
+    case 'pending':
+    default:
+      if (order.dslite_next_action === 'wait_ml_label') {
+        return { color: '#1677ff', label: 'Aguardando ML' };
+      }
+      return { color: '#faad14', label: 'Pendente' };
+  }
+}
+
 function formatSupplierWhatsappReason(reason: unknown): string {
   switch (String(reason || '')) {
     case 'supplier_phone_missing':
@@ -252,6 +316,7 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     fornecedor_id: (item as any).fornecedor_id || null,
     fornecedor_telefone: (item as any).fornecedor_telefone || null,
     internal_stock_available: Boolean((item as any).internal_stock_available),
+    envio_interno_at: (item as any).envio_interno_at || null,
     supplier_payment_mode: (item as any).supplier_payment_mode || null,
     supplier_payment_status: (item as any).supplier_payment_status || null,
     supplier_payment_amount: (item as any).supplier_payment_amount ?? null,
@@ -281,6 +346,13 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     compra_produto_sku: (item as any).compra_produto_sku || null,
     compra_quantidade: (item as any).compra_quantidade ?? null,
     cliente_id: (item as any).cliente_id || null,
+    whatsapp_label_status: (item as any).whatsapp_label_status || 'not_sent',
+    whatsapp_label_updated_at: (item as any).whatsapp_label_updated_at || null,
+    whatsapp_label_error: (item as any).whatsapp_label_error || null,
+    whatsapp_label_next_retry_at: (item as any).whatsapp_label_next_retry_at || null,
+    dslite_label_operational_status: (item as any).dslite_label_operational_status || 'pending',
+    dslite_label_operational_updated_at: (item as any).dslite_label_operational_updated_at || null,
+    dslite_label_operational_error: (item as any).dslite_label_operational_error || null,
   };
 }
 
@@ -294,6 +366,7 @@ interface SummaryData {
   mlCompatibleCount: number;
   mlCompatibleTotal: number;
   mlCompatibleMissingPaymentData: number;
+  urgentCount: number;
 }
 
 interface EtiquetaDuplicateDecision {
@@ -338,8 +411,10 @@ export default function PedidosPage() {
     mlCompatibleCount: 0,
     mlCompatibleTotal: 0,
     mlCompatibleMissingPaymentData: 0,
+    urgentCount: 0,
   });
 
+  const [operationalView, setOperationalView] = useState<OrdersOperationalView>('urgent');
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<OrderStatus | ''>('');
   const [dateRange, setDateRange] = useState<[string | null, string | null]>([null, null]);
@@ -404,10 +479,8 @@ export default function PedidosPage() {
     setPage(1);
   }, []);
 
-  const buildParams = useCallback(() => {
+  const buildFilterParams = useCallback(() => {
     const params = new URLSearchParams();
-    params.set('page', String(page));
-    appendRemoteSortParams(params, sort);
     if (search) params.set('search', search);
     if (statusFilter) params.set('status', statusFilter);
     if (dateRange[0]) params.set('dateFrom', dateRange[0]);
@@ -415,15 +488,19 @@ export default function PedidosPage() {
     if (priceMin !== null) params.set('priceMin', String(priceMin));
     if (priceMax !== null) params.set('priceMax', String(priceMax));
     return params;
-  }, [page, sort, search, statusFilter, dateRange, priceMin, priceMax]);
+  }, [search, statusFilter, dateRange, priceMin, priceMax]);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
-    const params = buildParams();
+    const filterParams = buildFilterParams();
+    const listParams = new URLSearchParams(filterParams);
+    listParams.set('page', String(page));
+    listParams.set('operationalView', operationalView);
+    appendRemoteSortParams(listParams, sort);
     try {
       const [listRes, summaryRes] = await Promise.all([
-        fetch(`/api/pedidos?${params}`),
-        fetch(`/api/pedidos/resumo?${params}`),
+        fetch(`/api/pedidos?${listParams}`),
+        fetch(`/api/pedidos/resumo?${filterParams}`),
       ]);
 
       if (listRes.ok) {
@@ -444,11 +521,12 @@ export default function PedidosPage() {
           mlCompatibleCount: json.mlCompatibleCount || 0,
           mlCompatibleTotal: json.mlCompatibleTotal || 0,
           mlCompatibleMissingPaymentData: json.mlCompatibleMissingPaymentData || 0,
+          urgentCount: json.urgentCount || 0,
         });
       }
     } catch {}
     setLoading(false);
-  }, [buildParams]);
+  }, [buildFilterParams, operationalView, page, sort]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -459,7 +537,7 @@ export default function PedidosPage() {
 
   useEffect(() => {
     setPage(1);
-  }, [search, statusFilter, dateRange, priceMin, priceMax]);
+  }, [operationalView, search, statusFilter, dateRange, priceMin, priceMax]);
 
   useEffect(() => () => {
     if (dslitePollRef.current) clearTimeout(dslitePollRef.current);
@@ -536,15 +614,15 @@ export default function PedidosPage() {
 
         setSendingWhatsappLabel(false);
         if (state === 'success' || state === 'warning') {
-          if (!whatsappUsePlaceholderLabel && whatsappOrder?.dbId) {
+          if (whatsappOrder?.dbId) {
             setOrders(prev => prev.map((order) => (
               order.dbId === whatsappOrder.dbId
                 ? {
                     ...order,
-                    dslite_etiqueta_enviada: true,
-                    dslite_label_source: 'mercado_livre',
-                    dslite_next_action: 'done',
-                    dslite_next_action_label: 'OK',
+                    whatsapp_label_status: whatsappUsePlaceholderLabel ? 'test_sent' : 'sent',
+                    whatsapp_label_updated_at: new Date().toISOString(),
+                    whatsapp_label_error: null,
+                    whatsapp_label_next_retry_at: null,
                   }
                 : order
             )));
@@ -559,6 +637,19 @@ export default function PedidosPage() {
           const retryAt = statusData.nextRetryAt
             ? new Date(statusData.nextRetryAt).toLocaleString('pt-BR')
             : null;
+          if (whatsappOrder?.dbId) {
+            setOrders(prev => prev.map((order) => (
+              order.dbId === whatsappOrder.dbId
+                ? {
+                    ...order,
+                    whatsapp_label_status: 'on_hold',
+                    whatsapp_label_updated_at: new Date().toISOString(),
+                    whatsapp_label_error: statusData.data?.error || null,
+                    whatsapp_label_next_retry_at: statusData.nextRetryAt || null,
+                  }
+                : order
+            )));
+          }
           messageApi.warning(
             retryAt
               ? `Falha temporária. Envio mantido na fila para nova tentativa em ${retryAt}.`
@@ -1182,6 +1273,8 @@ export default function PedidosPage() {
   };
 
   const renderOrderDetails = (order: Order) => {
+    const postDispatch = isPostDispatchOrder(order);
+    const isInternalShipping = Boolean(order.envio_interno_at);
     const address = (order.billing_endereco || {}) as {
       street_name?: string;
       street_number?: string;
@@ -1200,14 +1293,25 @@ export default function PedidosPage() {
     ].filter(Boolean);
     const canCreateDslite = !isValidDsliteId(order.dslite_id)
       && !order.internal_stock_available
+      && !isInternalShipping
+      && !postDispatch
       && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(order.situacao.valor);
-    const canCompleteLabel = Boolean(isValidDsliteId(order.dslite_id) && order.dslite_next_action === 'complete_dslite_label');
+    const canCompleteLabel = Boolean(
+      !isInternalShipping
+      && !postDispatch
+      && isValidDsliteId(order.dslite_id)
+      && order.dslite_next_action === 'complete_dslite_label',
+    );
     const canConfirmPayment = Boolean(
-      isValidDsliteId(order.dslite_id)
+      !isInternalShipping
+      && !postDispatch
+      && isValidDsliteId(order.dslite_id)
       && ['confirm_supplier_payment', 'send_supplier_receipt', 'resume_dslite_flow'].includes(order.dslite_next_action || ''),
     );
     const canProcessDirectShipping = Boolean(
-      !isValidDsliteId(order.dslite_id)
+      !isInternalShipping
+      && !postDispatch
+      && !isValidDsliteId(order.dslite_id)
       && order.internal_stock_available
       && order.ml_shipment_id
       && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(order.situacao.valor),
@@ -1255,18 +1359,28 @@ export default function PedidosPage() {
             </div>
           </Col>
           <Col xs={24} lg={12}>
-            <Text strong>Compra e fornecedor</Text>
-            <Descriptions size="small" column={1} style={{ marginTop: 8 }}>
-              <Descriptions.Item label="Pedido DSLite">
-                {order.dslite_id ? <Link href={`/compras?search=${encodeURIComponent(order.dslite_id)}`}>{order.dslite_id}</Link> : 'Não criado'}
-              </Descriptions.Item>
-              <Descriptions.Item label={order.compra_id ? 'Fornecedor' : 'Fornecedor previsto'}>{order.fornecedor_nome || '—'}</Descriptions.Item>
-              <Descriptions.Item label="Pagamento">
-                {order.supplier_payment_amount !== null && order.supplier_payment_amount !== undefined
-                  ? `${formatCurrency(order.supplier_payment_amount)} · ${order.supplier_payment_status || 'pendente'}`
-                  : '—'}
-              </Descriptions.Item>
-            </Descriptions>
+            <Text strong>{isInternalShipping ? 'Envio interno' : 'Compra e fornecedor'}</Text>
+            {isInternalShipping ? (
+              <Descriptions size="small" column={1} style={{ marginTop: 8 }}>
+                <Descriptions.Item label="Origem">Estoque interno</Descriptions.Item>
+                <Descriptions.Item label="DSLite">Não utilizada</Descriptions.Item>
+                <Descriptions.Item label="Processado em">
+                  {order.envio_interno_at ? new Date(order.envio_interno_at).toLocaleString('pt-BR') : '—'}
+                </Descriptions.Item>
+              </Descriptions>
+            ) : (
+              <Descriptions size="small" column={1} style={{ marginTop: 8 }}>
+                <Descriptions.Item label="Pedido DSLite">
+                  {order.dslite_id ? <Link href={`/compras?search=${encodeURIComponent(order.dslite_id)}`}>{order.dslite_id}</Link> : 'Não criado'}
+                </Descriptions.Item>
+                <Descriptions.Item label={order.compra_id ? 'Fornecedor' : 'Fornecedor previsto'}>{order.fornecedor_nome || '—'}</Descriptions.Item>
+                <Descriptions.Item label="Pagamento">
+                  {order.supplier_payment_amount !== null && order.supplier_payment_amount !== undefined
+                    ? `${formatCurrency(order.supplier_payment_amount)} · ${order.supplier_payment_status || 'pendente'}`
+                    : '—'}
+                </Descriptions.Item>
+              </Descriptions>
+            )}
           </Col>
           <Col xs={24} lg={12}>
             <Text strong>Logística e fiscal</Text>
@@ -1500,72 +1614,116 @@ export default function PedidosPage() {
       },
     },
     {
-      title: 'Pedido Compra',
+      title: 'Fluxo fornecedor',
       key: 'pedido_compra',
       dataIndex: 'dslite_id',
-      width: 120,
-      align: 'center',
+      width: 285,
       sorter: true,
       sortOrder: getRemoteSortOrder('pedido_compra', sort),
       render: (_: string | null, record: Order) => {
+        const isInternalShipping = Boolean(record.envio_interno_at);
+        const postDispatch = isPostDispatchOrder(record);
         const purchaseOrderId = isValidDsliteId(record.dslite_id);
-        const actionTag = getDsliteActionTag(record.dslite_next_action);
-        const supplierWarning = getSupplierSetupWarning(record);
-        const usesPlaceholderLabel = record.dslite_label_source === DSLITE_PLACEHOLDER_LABEL_SOURCE;
-        const usesBkr1PlaceholderLabel = record.dslite_label_source === 'placeholder_release_window_bkr1';
-        const supplierWarningTag = supplierWarning ? (
-          <Tooltip title={supplierWarning}>
-            <Tag color="red" style={{ marginInlineEnd: 0, fontSize: 11 }}>
-              Fornecedor incompleto
-            </Tag>
-          </Tooltip>
-        ) : null;
-        if (!purchaseOrderId) {
+        const purchaseRejected = isDsliteRejected(record.dslite_status);
+        const actionTag = postDispatch
+          ? { color: 'green', label: 'Somente acompanhar' }
+          : record.dslite_label_operational_status === 'sent_unverified'
+          && record.dslite_next_action === 'done'
+            ? { color: 'default', label: 'Verificar DSLite' }
+            : getDsliteActionTag(record.dslite_next_action);
+        const supplierWarning = postDispatch || isInternalShipping
+          ? null
+          : getSupplierSetupWarning(record);
+        const labelStatus = getDsliteLabelFlowStatus(record);
+        const whatsappStatus = getWhatsappFlowStatus(record);
+        const urgencyReasons = getOperationalUrgencyReasons(record);
+        const whatsappUpdatedAt = record.whatsapp_label_updated_at
+          ? new Date(record.whatsapp_label_updated_at).toLocaleString('pt-BR')
+          : null;
+        const whatsappTooltip = [
+          whatsappUpdatedAt ? `Última atualização: ${whatsappUpdatedAt}` : null,
+          record.whatsapp_label_error,
+          record.whatsapp_label_next_retry_at
+            ? `Nova tentativa: ${new Date(record.whatsapp_label_next_retry_at).toLocaleString('pt-BR')}`
+            : null,
+        ].filter(Boolean).join(' · ');
+        const dsliteLabelUpdatedAt = record.dslite_label_operational_updated_at
+          ? new Date(record.dslite_label_operational_updated_at).toLocaleString('pt-BR')
+          : null;
+        const dsliteLabelTooltip = [
+          dsliteLabelUpdatedAt ? `Última confirmação: ${dsliteLabelUpdatedAt}` : null,
+          record.dslite_label_operational_error,
+          record.dslite_label_operational_status === 'sent_unverified'
+            ? 'O campo antigo indica envio, mas não existe auditoria que confirme o recebimento pela DSLite.'
+            : null,
+        ].filter(Boolean).join(' · ');
+
+        if (isInternalShipping) {
           return (
-            <Space direction="vertical" size={2} align="center">
-              <Tag color="orange" style={{ marginInlineEnd: 0 }}>NÃO</Tag>
-              <Tag color={actionTag.color} style={{ marginInlineEnd: 0, fontSize: 11 }}>
-                {actionTag.label}
+            <Space direction="vertical" size={4} style={{ width: '100%' }}>
+              <Text strong style={{ fontSize: 11 }}>Estoque Interno</Text>
+              <FlowStatusLine label="Modalidade" color="#52c41a" value="Envio interno" />
+              <FlowStatusLine
+                label="Etiqueta"
+                color={record.ml_label_storage_path ? '#52c41a' : '#faad14'}
+                value={record.ml_label_storage_path ? 'Pronta para uso' : 'Não localizada'}
+              />
+              <Tag color={postDispatch ? 'green' : 'blue'} style={{ marginInlineEnd: 0, fontSize: 11, width: 'fit-content' }}>
+                {postDispatch ? 'Somente acompanhar' : 'Preparar despacho'}
               </Tag>
-              {usesPlaceholderLabel ? (
-                <Tag color="orange" style={{ marginInlineEnd: 0, fontSize: 11 }}>
-                  Padrão Hayamax
-                </Tag>
-              ) : null}
-              {usesBkr1PlaceholderLabel ? (
-                <Tag color="orange" style={{ marginInlineEnd: 0, fontSize: 11 }}>
-                  Padrão BKR1
-                </Tag>
-              ) : null}
-              {supplierWarningTag}
             </Space>
           );
         }
-        if (isDsliteRejected(record.dslite_status)) return <Tag color="red">REJEITADO</Tag>;
+
         return (
-          <Space direction="vertical" size={2} align="center">
-            <Link
-              href={`/compras?search=${encodeURIComponent(purchaseOrderId)}`}
-              style={{ textDecoration: 'none' }}
-            >
-              <Tag color="green" style={{ cursor: 'pointer', marginInlineEnd: 0 }}>
-                {purchaseOrderId}
+          <Space direction="vertical" size={4} style={{ width: '100%' }}>
+            <Tooltip title={record.fornecedor_nome || 'Fornecedor ainda não definido'}>
+              <Text strong style={{ display: 'block', maxWidth: 250, fontSize: 11 }} ellipsis>
+                {record.fornecedor_nome || 'Fornecedor não definido'}
+              </Text>
+            </Tooltip>
+            {urgencyReasons.length > 0 && (
+              <Tooltip title={urgencyReasons.join(' · ')}>
+                <div style={{ color: '#ff7875', fontSize: 11, fontWeight: 600 }}>
+                  Resolver: {urgencyReasons[0]}
+                  {urgencyReasons.length > 1 ? ` +${urgencyReasons.length - 1}` : ''}
+                </div>
+              </Tooltip>
+            )}
+            <FlowStatusLine
+              label="Compra"
+              color={purchaseRejected ? '#ff4d4f' : purchaseOrderId ? '#52c41a' : '#faad14'}
+              value={purchaseRejected ? 'Rejeitada' : purchaseOrderId ? (
+                <Link href={`/compras?search=${encodeURIComponent(purchaseOrderId)}`}>
+                  #{purchaseOrderId}
+                </Link>
+              ) : 'Não criada'}
+              tooltip={purchaseRejected ? record.dslite_status : record.fornecedor_nome}
+            />
+            <FlowStatusLine
+              label="Etiqueta DSLite"
+              color={labelStatus.color}
+              value={labelStatus.label}
+              tooltip={dsliteLabelTooltip || null}
+            />
+            <FlowStatusLine
+              label="WhatsApp real"
+              color={whatsappStatus.color}
+              value={whatsappStatus.label}
+              tooltip={whatsappTooltip || null}
+            />
+            <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', paddingTop: 2 }}>
+              <Tag color={actionTag.color} style={{ marginInlineEnd: 0, fontSize: 11 }}>
+                Próxima: {actionTag.label}
               </Tag>
-            </Link>
-            <Tag color={actionTag.color} style={{ marginInlineEnd: 0, fontSize: 11 }}>
-              {actionTag.label}
-            </Tag>
-            {usesPlaceholderLabel ? (
-              <Tag color="orange" style={{ marginInlineEnd: 0, fontSize: 11 }}>
-                Padrão Hayamax
-              </Tag>
-            ) : null}
-            {usesBkr1PlaceholderLabel ? (
-              <Tag color="orange" style={{ marginInlineEnd: 0, fontSize: 11 }}>
-                Padrão BKR1
-              </Tag>
-            ) : null}
-            {supplierWarningTag}
+              {supplierWarning && (
+                <Tooltip title={supplierWarning}>
+                  <Tag color="red" style={{ marginInlineEnd: 0, fontSize: 11 }}>
+                    Cadastro incompleto
+                  </Tag>
+                </Tooltip>
+              )}
+            </div>
           </Space>
         );
       },
@@ -1597,17 +1755,19 @@ export default function PedidosPage() {
           });
         }
         const hasDsliteId = !!isValidDsliteId(record.dslite_id);
+        const isInternalShipping = Boolean(record.envio_interno_at);
+        const postDispatch = isPostDispatchOrder(record);
         const nextAction = record.dslite_next_action;
         const releaseAt = record.ml_fiscal_release_at ? getMlReleaseComparableDate(record.ml_fiscal_release_at) : null;
         const mlLabelStillBlocked = Boolean(releaseAt && releaseAt.getTime() > Date.now());
-        if ((!hasDsliteId || nextAction === 'create_dslite_order') && !record.internal_stock_available && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
+        if (!isInternalShipping && !postDispatch && (!hasDsliteId || nextAction === 'create_dslite_order') && !record.internal_stock_available && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
           items.push({
             key: 'dslite',
             label: 'Criar Pedido DSLite (Brasil NFe)',
             icon: <CarOutlined />,
           });
         }
-        if (!hasDsliteId && record.internal_stock_available && record.ml_shipment_id && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
+        if (!isInternalShipping && !postDispatch && !hasDsliteId && record.internal_stock_available && record.ml_shipment_id && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
           items.push({ key: 'direct_shipping', label: 'Processar envio interno', icon: <UploadOutlined /> });
         }
         if (record.ml_label_storage_path && record.dslite_next_action === 'internal_shipping') {
@@ -1618,14 +1778,14 @@ export default function PedidosPage() {
         if (record.ml_thermal_label_storage_path) {
           items.push({ key: 'download_thermal_label', label: 'Baixar etiqueta ZPL', icon: <UploadOutlined /> });
         }
-        if (hasDsliteId && nextAction === 'complete_dslite_label') {
+        if (!isInternalShipping && !postDispatch && hasDsliteId && nextAction === 'complete_dslite_label') {
           items.push({
             key: 'etiqueta',
             label: 'Completar etiqueta DSLite',
             icon: <UploadOutlined />,
           });
         }
-        if (hasDsliteId && (nextAction === 'confirm_supplier_payment' || nextAction === 'send_supplier_receipt' || nextAction === 'resume_dslite_flow')) {
+        if (!isInternalShipping && !postDispatch && hasDsliteId && (nextAction === 'confirm_supplier_payment' || nextAction === 'send_supplier_receipt' || nextAction === 'resume_dslite_flow')) {
           items.push({
             key: 'confirm_supplier_payment',
             label: nextAction === 'resume_dslite_flow'
@@ -1688,10 +1848,51 @@ export default function PedidosPage() {
     setPage(sortChanged ? 1 : (pagination.current || 1));
   };
 
+  const preparationCount = PREPARATION_ORDER_STATUSES.reduce(
+    (count, status) => count + Number(summary.statusCounts[status] || 0),
+    0,
+  );
+  const shippingCount = SHIPPING_ORDER_STATUSES.reduce(
+    (count, status) => count + Number(summary.statusCounts[status] || 0),
+    0,
+  );
+  const operationalViewDescriptions: Record<OrdersOperationalView, string> = {
+    urgent: 'Falhas ou etapas internas atrasadas antes da coleta.',
+    preparation: 'Vendas ainda em compra, pagamento, nota fiscal ou preparação da etiqueta.',
+    shipping: 'Pedidos já despachados: somente acompanhamento do transporte.',
+    delivered: 'Pedidos confirmados como entregues ao comprador.',
+    all: 'Todas as vendas, incluindo canceladas e devolvidas.',
+  };
+  const operationalTabs = [
+    { key: 'urgent', label: <>Urgentes <Tag color="red">{summary.urgentCount}</Tag></> },
+    { key: 'preparation', label: <>Preparação <Tag>{preparationCount}</Tag></> },
+    { key: 'shipping', label: <>Em transporte <Tag>{shippingCount}</Tag></> },
+    { key: 'delivered', label: <>Entregues <Tag>{summary.statusCounts.entregue || 0}</Tag></> },
+    { key: 'all', label: <>Todos <Tag>{summary.count}</Tag></> },
+  ];
+
   return (
     <div>
       {contextHolder}
-      <Title level={4} style={{ color: '#e0e0e0', marginBottom: 16 }}>Pedidos</Title>
+      <Title level={4} style={{ color: '#e0e0e0', marginBottom: 4 }}>Vendas</Title>
+      <Text type="secondary" style={{ display: 'block', marginBottom: 16 }}>
+        Acompanhe compra DSLite, etiqueta enviada ao fornecedor e confirmação do WhatsApp em um único fluxo.
+      </Text>
+
+      <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: '0 16px 10px', marginBottom: 16 }}>
+        <Tabs
+          activeKey={operationalView}
+          items={operationalTabs}
+          onChange={(key) => {
+            setOperationalView(key as OrdersOperationalView);
+            setStatusFilter('');
+            setPage(1);
+          }}
+        />
+        <Text type="secondary" style={{ fontSize: 12 }}>
+          {operationalViewDescriptions[operationalView]}
+        </Text>
+      </div>
 
       {/* Mini Dashboard */}
       <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16, marginBottom: 16 }}>
@@ -1742,10 +1943,14 @@ export default function PedidosPage() {
                   tabIndex={0}
                   aria-pressed={active}
                   title={active ? 'Clique para limpar este filtro' : 'Clique para filtrar por este status'}
-                  onClick={() => setStatusFilter(active ? '' : typedStatus)}
+                  onClick={() => {
+                    setOperationalView('all');
+                    setStatusFilter(active ? '' : typedStatus);
+                  }}
                   onKeyDown={(event) => {
                     if (event.key === 'Enter' || event.key === ' ') {
                       event.preventDefault();
+                      setOperationalView('all');
                       setStatusFilter(active ? '' : typedStatus);
                     }
                   }}
@@ -1770,7 +1975,7 @@ export default function PedidosPage() {
         <Row gutter={[8, 8]} align="middle">
           <Col>
             <Input
-              placeholder="Buscar por número ou cliente"
+              placeholder="Buscar venda ou cliente"
               prefix={<SearchOutlined />}
               value={search}
               onChange={e => setSearch(e.target.value)}
@@ -1810,7 +2015,7 @@ export default function PedidosPage() {
       <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
         <div style={{ background: '#141414', border: '1px solid #303030', borderRadius: 8, padding: 16 }}>
           <ResizableTable<Order>
-            storageKey="pedidos"
+            storageKey="pedidos-operational-v2"
             dataSource={orders}
             columns={columns}
             rowKey="id"
@@ -1829,7 +2034,7 @@ export default function PedidosPage() {
               showTotal: (t) => `${t} pedidos`,
             }}
             onChange={handleTableChange}
-            scroll={{ x: 900 }}
+            scroll={{ x: 1200 }}
             style={{ background: 'transparent' }}
             size="small"
           />

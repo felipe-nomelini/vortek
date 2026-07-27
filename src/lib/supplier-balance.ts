@@ -1,6 +1,7 @@
 export const HAYAMAX_FORNECEDOR_ID = '2';
 export const VANRAL_FORNECEDOR_ID = '97';
 export const BKR1_FORNECEDOR_ID = '108';
+export const EVOLUSOM_FORNECEDOR_ID = '133';
 export const HAYAMAX_MIN_TOPUP_AMOUNT = 1000;
 
 export type SupplierBalanceMovementType = 'topup' | 'purchase_debit' | 'adjustment';
@@ -26,6 +27,24 @@ export function isBkr1Supplier(
   if (id === BKR1_FORNECEDOR_ID) return true;
   const normalized = String(fornecedorNome || '').trim().toLowerCase();
   return normalized.includes('bkr1') || normalized.includes('bkr 1');
+}
+
+export function isEvolusomSupplier(
+  fornecedorId: string | number | null | undefined,
+  fornecedorNome?: string | null,
+) {
+  const id = String(fornecedorId || '').trim();
+  if (id === EVOLUSOM_FORNECEDOR_ID) return true;
+  return String(fornecedorNome || '').trim().toLowerCase().includes('evolusom');
+}
+
+export function allowsDslitePlaceholderLabel(
+  fornecedorId: string | number | null | undefined,
+  fornecedorNome?: string | null,
+) {
+  return isBalanceAccountSupplier(fornecedorId)
+    || isBkr1Supplier(fornecedorId, fornecedorNome)
+    || isEvolusomSupplier(fornecedorId, fornecedorNome);
 }
 
 export function usesThermalMlLabelSupplier(
