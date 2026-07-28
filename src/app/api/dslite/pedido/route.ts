@@ -68,6 +68,7 @@ import {
   getDslitePlaceholderLabelConfig,
   loadDslitePlaceholderLabel,
 } from "@/lib/dslite/placeholder-label";
+import { isDsliteCarrierAlreadyConfigured } from "@/lib/dslite/api-contract";
 import { storeShippingLabelForPedido } from "@/lib/shipping-label-storage";
 import { resolveSimpleKitOrderPlan } from "@/lib/produto-kits";
 import { parseMlOrderShippingMode } from "@/lib/ml/order-shipping-mode";
@@ -4422,22 +4423,36 @@ async function runDsliteCreateJob(
       return;
     }
 
-    const transportadoraResult = await definirTransportadoraPedido(
-      dsidAtual as number,
-      TRANSPORTADORA_PADRAO_CORREIOS,
-    );
-    if (!transportadoraResult?.success) {
-      transportadoraOk = false;
-      const msg =
-        transportadoraResult?.message || "Falha ao definir transportadora";
-      pendencias.push(`Transportadora: ${msg}`);
-      await setStep("set_carrier_dslite", "warning", msg);
-    } else {
+    const pedidoDsliteAtual = await consultarPedido(dsidAtual as number);
+    if (
+      isDsliteCarrierAlreadyConfigured(
+        pedidoDsliteAtual?.transportadora?.transportadoraid,
+        TRANSPORTADORA_PADRAO_CORREIOS,
+      )
+    ) {
       await setStep(
         "set_carrier_dslite",
         "success",
-        "Transportadora definida com sucesso",
+        "Transportadora Correios já definida",
       );
+    } else {
+      const transportadoraResult = await definirTransportadoraPedido(
+        dsidAtual as number,
+        TRANSPORTADORA_PADRAO_CORREIOS,
+      );
+      if (!transportadoraResult?.success) {
+        transportadoraOk = false;
+        const msg =
+          transportadoraResult?.message || "Falha ao definir transportadora";
+        pendencias.push(`Transportadora: ${msg}`);
+        await setStep("set_carrier_dslite", "warning", msg);
+      } else {
+        await setStep(
+          "set_carrier_dslite",
+          "success",
+          "Transportadora definida com sucesso",
+        );
+      }
     }
 
     await setStep("download_label_ml", "loading");

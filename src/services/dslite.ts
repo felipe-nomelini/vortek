@@ -4,6 +4,7 @@
  * Autenticação via token fixo no header `Token:`.
  */
 import { createServiceClient } from '@/lib/supabase';
+import { DSLITE_LABEL_FORM_FIELD } from '@/lib/dslite/api-contract';
 import { z } from 'zod';
 
 interface DsliteConfig {
@@ -968,12 +969,12 @@ export async function enviarEtiqueta(
   const cfg = await getConfig();
   if (!cfg) return null;
 
-  const sendWithField = async (fieldName: 'file' | 'files') => {
+  const sendLabel = async () => {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 60000);
     const formData = new FormData();
     const blob = new Blob([new Uint8Array(labelBuffer)], { type: contentType });
-    formData.append(fieldName, blob, fileName);
+    formData.append(DSLITE_LABEL_FORM_FIELD, blob, fileName);
 
     try {
       const res = await fetch(`${cfg.url}/v1/DropShipping/${dsid}/etiqueta`, {
@@ -1002,19 +1003,19 @@ export async function enviarEtiqueta(
     }
   };
 
-  const primary = await sendWithField('file');
+  const primary = await sendLabel();
   if (primary.ok) return { success: true };
 
-  const shouldRetryWithFiles =
+  const shouldRetry =
     primary.status === null ||
     primary.status >= 500 ||
     String(primary.message || '').toLowerCase().includes('html');
-  if (shouldRetryWithFiles) {
-    const fallback = await sendWithField('files');
-    if (fallback.ok) return { success: true };
+  if (shouldRetry) {
+    const retry = await sendLabel();
+    if (retry.ok) return { success: true };
     return {
       success: false,
-      message: `Falha ao enviar etiqueta na DSLite. Campo file: ${primary.message}; campo files: ${fallback.message}`,
+      message: `Falha ao enviar etiqueta na DSLite. Tentativa inicial: ${primary.message}; nova tentativa: ${retry.message}`,
     };
   }
 
