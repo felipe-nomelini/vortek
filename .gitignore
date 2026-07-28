@@ -15,4 +15,5 @@ scripts/build_dataset/data/*.parquet
 public/downloads/
 reports/etiquetas-ml/
 reports/waha/
+reports/auditoria-anuncios-*/
 .ops-autofix.patch
