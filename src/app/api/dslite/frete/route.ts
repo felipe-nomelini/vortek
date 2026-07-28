@@ -10,6 +10,7 @@ import { fetchML } from '@/services/integration';
 import { createServiceClient } from '@/lib/supabase';
 import { parseMlOrderShippingMode } from '@/lib/ml/order-shipping-mode';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
+import { calculateOrderProfit } from '@/services/orders';
 
 const requestSchema = z.object({
   pedidoId: z.string().uuid(),
@@ -100,13 +101,10 @@ export async function POST(req: Request) {
   const pedidoDslite = await consultarPedido(dsid);
   const tracking = String(pedidoDslite?.rastreamento || '').trim() || null;
   const statusDslite = String(pedidoDslite?.status || '').trim() || null;
-  const previousFreight = Number((pedido as any).frete || 0);
-  const previousProfit = (pedido as any).lucro == null
-    ? null
-    : Number((pedido as any).lucro);
-  const nextProfit = previousProfit != null && Number.isFinite(previousProfit)
-    ? Number((previousProfit - (selected.price - previousFreight)).toFixed(2))
-    : null;
+  const { lucro: nextProfit } = await calculateOrderProfit(mlOrder as any, null, {
+    allowShipmentFetch: false,
+    sellerShippingCost: selected.price,
+  });
 
   await Promise.all([
     client

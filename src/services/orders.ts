@@ -6,10 +6,15 @@
 import { createServiceClient } from '@/lib/supabase';
 import { fetchML } from './integration';
 import { getSkuLookupVariants } from '@/lib/sku';
+import {
+  calculateFinalOrderProfit,
+  resolveMlSellerShippingCost,
+} from '@/lib/ml/order-profit';
 
 export interface OrderDetail {
   id: string | number;
   total_amount?: number;
+  seller?: { id?: string | number | null };
   order_items?: Array<{
     item?: { id?: string; seller_sku?: string };
     quantity?: number;
@@ -25,6 +30,7 @@ export interface OrderProfitResult {
   imposto: number;
   itensEncontrados: number;
   rastreio: string | null;
+  freteDisponivel: boolean;
 }
 
 export interface ShipmentDetail {
@@ -38,6 +44,7 @@ export interface ShipmentDetail {
 
 export interface CalculateOrderProfitOptions {
   allowShipmentFetch?: boolean;
+  sellerShippingCost?: number | null;
 }
 
 export async function calculateOrderProfit(
@@ -46,7 +53,16 @@ export async function calculateOrderProfit(
   options?: CalculateOrderProfitOptions,
 ): Promise<OrderProfitResult> {
   if (!detail) {
-    return { lucro: null, custoTotal: 0, taxasTotal: 0, frete: 0, imposto: 0, itensEncontrados: 0, rastreio: null };
+    return {
+      lucro: null,
+      custoTotal: 0,
+      taxasTotal: 0,
+      frete: 0,
+      imposto: 0,
+      itensEncontrados: 0,
+      rastreio: null,
+      freteDisponivel: false,
+    };
   }
 
   const serviceClient = createServiceClient();
@@ -135,7 +151,7 @@ export async function calculateOrderProfit(
       if (produto) {
         itensEncontrados++;
         const custo = produto.custo || 0;
-        const taxa = item.sale_fee || produto.ml_fee || 0;
+        const taxa = item.sale_fee ?? produto.ml_fee ?? 0;
         custoTotal += custo * qty;
         taxasTotal += taxa * qty;
       }
@@ -145,25 +161,48 @@ export async function calculateOrderProfit(
   // 2. Buscar frete
   let rastreio: string | null = null;
   let frete = 0;
+  let freteDisponivel = false;
   const allowShipmentFetch = options?.allowShipmentFetch ?? true;
+  const explicitSellerShippingCost = options?.sellerShippingCost;
   try {
     const shipment = shipmentDetail ?? (allowShipmentFetch ? await fetchML<any>(`/orders/${detail.id}/shipments`) : null);
     if (shipment?.tracking_number) {
       rastreio = shipment.tracking_number;
     }
-    const shipOpt = shipment?.shipping_option;
-    if (shipOpt && typeof shipOpt.list_cost === 'number') {
-      const buyerCost = typeof shipOpt.cost === 'number' ? shipOpt.cost : 0;
-      frete = shipOpt.list_cost - buyerCost;
+
+    if (
+      explicitSellerShippingCost !== null
+      && explicitSellerShippingCost !== undefined
+      && Number.isFinite(Number(explicitSellerShippingCost))
+      && Number(explicitSellerShippingCost) >= 0
+    ) {
+      frete = Number(explicitSellerShippingCost);
+      freteDisponivel = true;
+    } else if (allowShipmentFetch && shipment?.id) {
+      const costs = await fetchML<any>(`/shipments/${encodeURIComponent(String(shipment.id))}/costs`, {
+        headers: { 'x-format-new': 'true' },
+      });
+      const sellerCost = resolveMlSellerShippingCost(costs, detail.seller?.id);
+      if (sellerCost !== null) {
+        frete = sellerCost;
+        freteDisponivel = true;
+      }
     }
   } catch {
-    // Ignora erros de shipping
+    // Lucro permanece pendente até o custo final do frete ficar disponível.
   }
 
   // 3. Calcular lucro
   const total = detail.total_amount || 0;
   const imposto = total * 0.04;
-  const lucro = itensEncontrados > 0 ? total - custoTotal - taxasTotal - frete - imposto : null;
+  const lucro = calculateFinalOrderProfit({
+    total,
+    productCost: custoTotal,
+    saleFees: taxasTotal,
+    sellerShippingCost: freteDisponivel ? frete : null,
+    tax: imposto,
+    matchedItems: itensEncontrados,
+  });
 
   return {
     lucro,
@@ -173,5 +212,6 @@ export async function calculateOrderProfit(
     imposto,
     itensEncontrados,
     rastreio,
+    freteDisponivel,
   };
 }

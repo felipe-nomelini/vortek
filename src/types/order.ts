@@ -49,6 +49,7 @@ export interface Order {
   nfe_danfe_url: string | null;
   rastreio: string | null;
   lucro: number | null;
+  profit_pending?: boolean;
   dslite_id: string | null;
   dslite_status?: string | null;
   dslite_etiqueta_enviada?: boolean;

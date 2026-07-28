@@ -34,6 +34,7 @@ import {
 } from '@/lib/supplier-balance';
 import { reservarEnvioInterno, validarEstoqueEnvioInterno } from '@/lib/estoque-interno';
 import { parseMlOrderShippingMode } from '@/lib/ml/order-shipping-mode';
+import { calculateOrderProfit } from '@/services/orders';
 
 const LABEL_RETRY_INTERVAL_MS = 5000;
 const LABEL_WAIT_TIMEOUT_MS = 60000;
@@ -437,16 +438,12 @@ export async function POST(req: Request) {
         currentOption?.serviceName ||
         String(pedidoDslite?.transportadora?.nome || '').trim() ||
         'Frete pago DSLite';
-      const previousFreight = Number((pedido as any).frete || 0);
-      const previousProfit = (pedido as any).lucro == null
-        ? null
-        : Number((pedido as any).lucro);
-      const nextProfit =
-        selectedFreight > 0 &&
-        previousProfit != null &&
-        Number.isFinite(previousProfit)
-          ? Number((previousProfit - (selectedFreight - previousFreight)).toFixed(2))
-          : null;
+      const { lucro: nextProfit } = selectedFreight > 0
+        ? await calculateOrderProfit(mlOrderForShipping as any, null, {
+            allowShipmentFetch: false,
+            sellerShippingCost: selectedFreight,
+          })
+        : { lucro: null };
 
       await Promise.all([
         client

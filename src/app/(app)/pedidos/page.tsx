@@ -323,6 +323,8 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     nfe_danfe_url: item.nfe_danfe_url,
     rastreio: item.rastreio,
     lucro: item.lucro ?? null,
+    profit_pending: Array.isArray(item.snapshot_pendencias)
+      && item.snapshot_pendencias.some((value) => String(value) === 'lucro_pendente_frete'),
     dslite_id: isValidDsliteId(item.dslite_id),
     dslite_status: item.dslite_status,
     dslite_etiqueta_enviada: item.dslite_etiqueta_enviada || false,
@@ -1862,7 +1864,10 @@ export default function PedidosPage() {
       title: 'Lucro', dataIndex: 'lucro', key: 'lucro', width: 110,
       sorter: true,
       sortOrder: getRemoteSortOrder('lucro', sort),
-      render: (v: number | null) => {
+      render: (v: number | null, record: Order) => {
+        if (v === null && record.profit_pending) {
+          return <Tag color="processing" style={{ marginInlineEnd: 0 }}>Calculando</Tag>;
+        }
         if (v === null) return <span style={{ color: '#666' }}>—</span>;
         return (
           <span style={{ color: v >= 0 ? '#52c41a' : '#ff4d4f', fontWeight: 600 }}>

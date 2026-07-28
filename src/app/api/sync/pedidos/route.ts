@@ -19,6 +19,10 @@ import {
 import { getSkuLookupVariants } from '@/lib/sku';
 import { alertClaimOpened, alertMlLabelReleased, alertNewSale } from '@/services/whatsapp-alerts';
 import { isEnderecoEstoqueInternoMl, registrarDevolucaoInterna } from '@/lib/estoque-interno';
+import {
+  resolveMlSellerShippingCost,
+  type MlShipmentCosts,
+} from '@/lib/ml/order-profit';
 
 export const maxDuration = 300;
 
@@ -428,20 +432,26 @@ async function fetchMLResultWithRetry<T>(path: string): Promise<{ result: MLRequ
 
 async function fetchMLResultWithRetryConfig<T>(
   path: string,
-  options?: { attempts?: number; baseDelayMs?: number },
+  options?: {
+    attempts?: number;
+    baseDelayMs?: number;
+    retryStatuses?: number[];
+    requestInit?: RequestInit;
+  },
 ): Promise<{ result: MLRequestResult<T>; retries: number }> {
   let retries = 0;
   const attempts = Math.max(1, Number(options?.attempts || TRANSIENT_RETRY_ATTEMPTS));
   const baseDelayMs = Math.max(100, Number(options?.baseDelayMs || TRANSIENT_RETRY_BASE_DELAY_MS));
 
   for (let attempt = 0; attempt < attempts; attempt++) {
-    const result = await fetchMLResult<T>(path);
+    const result = await fetchMLResult<T>(path, options?.requestInit);
 
     if (result.ok) {
       return { result, retries };
     }
 
-    const isRetryable = result.error?.category === 'retryable';
+    const isRetryable = result.error?.category === 'retryable'
+      || Boolean(result.status && options?.retryStatuses?.includes(result.status));
     const hasNextAttempt = attempt < attempts - 1;
 
     if (!isRetryable || !hasNextAttempt) {
@@ -452,7 +462,7 @@ async function fetchMLResultWithRetryConfig<T>(
     await sleep(baseDelayMs * (attempt + 1));
   }
 
-  const fallback = await fetchMLResult<T>(path);
+  const fallback = await fetchMLResult<T>(path, options?.requestInit);
   return { result: fallback, retries };
 }
 
@@ -554,6 +564,7 @@ async function buscarClaims(orderId: string | number): Promise<{
 type SyncOrderResult = {
   salvo: boolean;
   semShipment: number;
+  lucroPendente: number;
   authFailures: number;
   authFatal: boolean;
   retriesTransient: number;
@@ -844,7 +855,7 @@ async function processOrder(params: {
 
   const { data: existingPedido } = await serviceClient
     .from('pedidos')
-    .select('id, ml_pack_id, billing_ie, billing_endereco, ml_fiscal_release_at, ml_claim_id')
+    .select('id, ml_pack_id, billing_ie, billing_endereco, ml_fiscal_release_at, ml_claim_id, frete, lucro, dslite_label_source, snapshot_incompleto')
     .eq('ml_order_id', String(o.id))
     .maybeSingle();
   existingPackId = existingPedido?.ml_pack_id ? String(existingPedido.ml_pack_id) : null;
@@ -1078,7 +1089,11 @@ async function processOrder(params: {
   const situacaoAnteriorShipment = situacao;
 
   try {
-    const shipmentFetch = await fetchMLResultWithRetry<any>(`/orders/${o.id}/shipments`);
+    const shipmentFetch = await fetchMLResultWithRetryConfig<any>(`/orders/${o.id}/shipments`, {
+      attempts: 5,
+      baseDelayMs: 750,
+      retryStatuses: [404],
+    });
     retriesTransient += shipmentFetch.retries;
     const shipmentResult = shipmentFetch.result;
 
@@ -1133,8 +1148,47 @@ async function processOrder(params: {
     // ignora falha pontual de shipment
   }
 
-  // 7. Lucro real: não refazer chamada de shipment quando já tratada acima
-  const { lucro, rastreio } = await calculateOrderProfit(detail, shipmentDetail, { allowShipmentFetch: false });
+  // 7. Lucro real: usar o custo final do vendedor retornado pelo endpoint oficial.
+  let sellerShippingCost: number | null = null;
+  if (mlShipmentId) {
+    const costsFetch = await fetchMLResultWithRetryConfig<MlShipmentCosts>(
+      `/shipments/${encodeURIComponent(mlShipmentId)}/costs`,
+      {
+        attempts: 5,
+        baseDelayMs: 750,
+        retryStatuses: [404],
+        requestInit: { headers: { 'x-format-new': 'true' } },
+      },
+    );
+    retriesTransient += costsFetch.retries;
+    if (costsFetch.result.ok) {
+      sellerShippingCost = resolveMlSellerShippingCost(
+        costsFetch.result.data,
+        sourceOrder?.seller?.id || o?.seller?.id,
+      );
+    } else if (costsFetch.result.error?.category === 'auth_fatal') {
+      authFailures++;
+      authFatal = true;
+    }
+  } else if (
+    shippingMode.isNoShipping
+    && String((existingPedido as any)?.dslite_label_source || '') === 'dslite_paid_shipping'
+  ) {
+    const storedDsliteFreight = Number((existingPedido as any)?.frete);
+    if (Number.isFinite(storedDsliteFreight) && storedDsliteFreight >= 0) {
+      sellerShippingCost = storedDsliteFreight;
+    }
+  }
+
+  const {
+    lucro,
+    rastreio,
+    freteDisponivel,
+  } = await calculateOrderProfit(detail, shipmentDetail, {
+    allowShipmentFetch: false,
+    sellerShippingCost,
+  });
+  const lucroPendente = !freteDisponivel;
 
   // 8. Claim: usar dados da busca ou detalhe do pedido
   let mlClaimId: string | null = claimIdFromSearch;
@@ -1207,6 +1261,14 @@ async function processOrder(params: {
       freteTotal,
       emitUf,
     });
+    if (lucroPendente && !snapshot.pendencias.includes('lucro_pendente_frete')) {
+      snapshot.pendencias.push('lucro_pendente_frete');
+      // Vendas no_shipping precisam criar o pedido DSLite antes de conhecer o
+      // frete. Não bloquear esse fluxo por uma pendência financeira esperada.
+      if (!shippingMode.isNoShipping) {
+        snapshot.incompleto = true;
+      }
+    }
     await registrarEventoNfAuditoria({
       mlOrderId: String(o.id),
       mlPackId,
@@ -1243,6 +1305,19 @@ async function processOrder(params: {
 
   const hasFutureRelease = Boolean(releaseWindow.releaseAt && releaseWindow.isBlockedNow);
   const hadReleaseBefore = Boolean((existingPedido as any)?.ml_fiscal_release_at);
+  const shouldClearPendingProfit = Boolean(
+    !(existingPedido as any)?.id
+    || (existingPedido as any)?.snapshot_incompleto,
+  );
+  const profitUpdate = lucro !== null
+    ? { lucro }
+    : (shouldClearPendingProfit ? { lucro: null } : {});
+  const persistedFreight = (
+    shippingMode.isNoShipping
+    && String((existingPedido as any)?.dslite_label_source || '') === 'dslite_paid_shipping'
+  )
+    ? Number((existingPedido as any)?.frete || 0)
+    : snapshot?.totais.frete_total;
 
   const { data: upsertedPedido, error } = await serviceClient.from('pedidos').upsert({
     ml_order_id: String(o.id),
@@ -1256,7 +1331,7 @@ async function processOrder(params: {
     total: sourceOrder?.total_amount || o.total_amount || 0,
     situacao,
     rastreio,
-    lucro: lucro ?? undefined,
+    ...profitUpdate,
     ml_shipment_id: mlShipmentId,
     ml_claim_id: mlClaimId,
     ml_claim_status: mlClaimStatus,
@@ -1282,7 +1357,7 @@ async function processOrder(params: {
       pagamento_resumo: snapshot.pagamentos,
       totais_snapshot: snapshot.totais,
       sincronizado_em: new Date().toISOString(),
-      frete: snapshot.totais.frete_total,
+      frete: persistedFreight,
     } : {}),
   } as any, { onConflict: 'ml_order_id' }).select('id').maybeSingle();
 
@@ -1447,6 +1522,7 @@ async function processOrder(params: {
   return {
     salvo: !error,
     semShipment,
+    lucroPendente: lucroPendente ? 1 : 0,
     authFailures,
     authFatal,
     retriesTransient,
@@ -1618,6 +1694,7 @@ export async function POST(request: Request) {
       acabou: true,
       sem_nota_fiscal: 0,
       sem_shipment: 0,
+      lucro_pendente: 0,
       auth_failures: 0,
       retries_transient: 0,
       nf_autorizada: 0,
@@ -1671,6 +1748,7 @@ export async function POST(request: Request) {
 
   const salvos = processedResults.filter((r) => r.salvo).length;
   const semShipmentCount = processedResults.reduce((sum, r) => sum + r.semShipment, 0);
+  const lucroPendenteCount = processedResults.reduce((sum, r) => sum + r.lucroPendente, 0);
   const authFailures = processedResults.reduce((sum, r) => sum + r.authFailures, 0);
   const retriesTransient = processedResults.reduce((sum, r) => sum + r.retriesTransient, 0);
   const semNfCount = 0;
@@ -1767,6 +1845,7 @@ export async function POST(request: Request) {
     acabou,
     sem_nota_fiscal: semNfCount,
     sem_shipment: semShipmentCount,
+    lucro_pendente: lucroPendenteCount,
     auth_failures: authFailures,
     retries_transient: retriesTransient,
     nf_autorizada: nfAutorizada,
@@ -1785,6 +1864,7 @@ export async function POST(request: Request) {
       synced: salvos,
       failed: results.length - salvos,
       sem_shipment: semShipmentCount,
+      lucro_pendente: lucroPendenteCount,
       retries_transient: retriesTransient,
     },
     errors: [],

@@ -72,6 +72,7 @@ import { isDsliteCarrierAlreadyConfigured } from "@/lib/dslite/api-contract";
 import { storeShippingLabelForPedido } from "@/lib/shipping-label-storage";
 import { resolveSimpleKitOrderPlan } from "@/lib/produto-kits";
 import { parseMlOrderShippingMode } from "@/lib/ml/order-shipping-mode";
+import { calculateOrderProfit } from "@/services/orders";
 
 const TRANSPORTADORA_PADRAO_CORREIOS = 31;
 const WAIT_AUTH_TIMEOUT_MS = 180_000;
@@ -4337,16 +4338,12 @@ async function runDsliteCreateJob(
         currentOption?.serviceName ||
         String(pedidoDsliteAtual?.transportadora?.nome || "").trim() ||
         "Frete pago DSLite";
-      const previousFreight = Number((pedidoRow as any)?.frete || 0);
-      const previousProfit = (pedidoRow as any)?.lucro == null
-        ? null
-        : Number((pedidoRow as any).lucro);
-      const nextProfit =
-        selectedFreight > 0 &&
-        previousProfit != null &&
-        Number.isFinite(previousProfit)
-          ? Number((previousProfit - (selectedFreight - previousFreight)).toFixed(2))
-          : null;
+      const { lucro: nextProfit } = selectedFreight > 0
+        ? await calculateOrderProfit(mlOrderForShipping as any, null, {
+            allowShipmentFetch: false,
+            sellerShippingCost: selectedFreight,
+          })
+        : { lucro: null };
 
       await Promise.all([
         client
