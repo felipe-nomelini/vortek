@@ -21,6 +21,13 @@ type ReleaseWindowInput = {
   leadTime?: any;
 };
 
+export function isMlShipmentLabelPrintable(shipment: any): boolean {
+  const status = String(shipment?.status || '').trim().toLowerCase();
+  const substatus = String(shipment?.substatus || '').trim().toLowerCase();
+  return status === 'ready_to_ship'
+    && (substatus === 'ready_to_print' || substatus === 'printed');
+}
+
 function normalizeDate(value: unknown): string | null {
   if (!value) return null;
   const parsed = new Date(String(value));
@@ -46,6 +53,17 @@ export function extractMlFiscalReleaseWindow(shipmentPayload: any): MlFiscalRele
   const reason = reasonCandidates
     .map((value) => String(value || '').trim())
     .find(Boolean) || null;
+
+  // No ML, status/substatus do shipment prevalecem sobre a janela operacional.
+  // `buffering.date` é previsão de SLA, não trava obrigatória da etiqueta.
+  if (isMlShipmentLabelPrintable(shipment)) {
+    return {
+      releaseAt: null,
+      reason,
+      isBlockedNow: false,
+      sourcePath: 'shipment.status/substatus',
+    };
+  }
 
   const candidates: Array<{ path: string; value: unknown }> = [
     // Fonte primária de janela operacional (SLA/lead_time)

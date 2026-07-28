@@ -15,6 +15,7 @@ import {
 } from "@/services/dslite";
 import {
   baixarEtiquetaML,
+  consultarDisponibilidadeEtiquetaML,
   consultarInvoiceDataPorShipmentML,
   fetchML,
   upsertInvoiceDataMLByShipment,
@@ -2070,12 +2071,45 @@ async function runDsliteCreateJob(
         statusResultante: "migration_missing_ignored",
       });
     }
-    const releaseAt = releaseAtRaw ? new Date(releaseAtRaw) : null;
-    const isMlLabelReleasePending = Boolean(
+    let releaseAt = releaseAtRaw ? new Date(releaseAtRaw) : null;
+    let isMlLabelReleasePending = Boolean(
       releaseAt &&
       !Number.isNaN(releaseAt.getTime()) &&
       releaseAt.getTime() > Date.now(),
     );
+    if (isMlLabelReleasePending && existingShipmentId) {
+      const availability = await consultarDisponibilidadeEtiquetaML(existingShipmentId);
+      if (availability.printable) {
+        const checkedAt = new Date().toISOString();
+        await client
+          .from("pedidos")
+          .update({
+            ml_fiscal_release_at: null,
+            ml_fiscal_release_reason: null,
+            ml_fiscal_release_source: "shipment.status/substatus",
+            ml_fiscal_release_checked_at: checkedAt,
+          } as any)
+          .eq("id", pedidoId);
+        await registrarEventoNfAuditoria({
+          pedidoId,
+          mlOrderId: mlOrderId ? String(mlOrderId) : null,
+          mlPackId: (pedidoRow as any)?.ml_pack_id
+            ? String((pedidoRow as any).ml_pack_id)
+            : null,
+          evento: "ml_fiscal_release_window_cleared",
+          respostaMl: {
+            previous_release_at: releaseAt?.toISOString() || null,
+            shipment_status: availability.status,
+            shipment_substatus: availability.substatus,
+            checked_at: checkedAt,
+            source: "dslite_pedido_precheck",
+          },
+          statusResultante: "cleared_early",
+        });
+        releaseAt = null;
+        isMlLabelReleasePending = false;
+      }
+    }
     let usePlaceholderLabel = false;
     const placeholderReleaseLabel =
       isMlLabelReleasePending && releaseAt

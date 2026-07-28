@@ -8,6 +8,7 @@ import {
 } from '@/services/dslite';
 import {
   baixarEtiquetaML,
+  consultarDisponibilidadeEtiquetaML,
   consultarInvoiceDataPorShipmentML,
   fetchML,
   upsertInvoiceDataMLByShipment,
@@ -281,7 +282,41 @@ export async function POST(req: Request) {
         statusResultante: 'migration_missing_ignored',
       });
     }
-    const releaseAt = releaseAtRaw ? new Date(releaseAtRaw) : null;
+    let releaseAt = releaseAtRaw ? new Date(releaseAtRaw) : null;
+    if (
+      releaseAt
+      && !Number.isNaN(releaseAt.getTime())
+      && releaseAt.getTime() > Date.now()
+      && shipmentId
+    ) {
+      const availability = await consultarDisponibilidadeEtiquetaML(shipmentId);
+      if (availability.printable) {
+        const checkedAt = new Date().toISOString();
+        await client
+          .from('pedidos')
+          .update({
+            ml_fiscal_release_at: null,
+            ml_fiscal_release_reason: null,
+            ml_fiscal_release_source: 'shipment.status/substatus',
+            ml_fiscal_release_checked_at: checkedAt,
+          } as any)
+          .eq('id', pedidoId);
+        await registrarEventoNfAuditoria({
+          pedidoId: String(pedidoId),
+          mlOrderId: mlOrderId || null,
+          evento: 'ml_fiscal_release_window_cleared',
+          respostaMl: {
+            previous_release_at: releaseAt.toISOString(),
+            shipment_status: availability.status,
+            shipment_substatus: availability.substatus,
+            checked_at: checkedAt,
+            source: 'etiqueta_auto_precheck',
+          },
+          statusResultante: 'cleared_early',
+        });
+        releaseAt = null;
+      }
+    }
     const mlOrderForShipping = await fetchML<unknown>(
       `/orders/${encodeURIComponent(mlOrderId)}`,
     ).catch(() => null);

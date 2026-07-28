@@ -397,7 +397,13 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
       };
     }
     const releaseAt = row?.ml_fiscal_release_at ? new Date(row.ml_fiscal_release_at) : null;
-    const labelPendingByMl = Boolean(releaseAt && !Number.isNaN(releaseAt.getTime()) && releaseAt.getTime() > Date.now());
+    const labelKnownPrintable = String(row?.situacao || '') === 'etiqueta_impressa';
+    const labelPendingByMl = Boolean(
+      !labelKnownPrintable
+      && releaseAt
+      && !Number.isNaN(releaseAt.getTime())
+      && releaseAt.getTime() > Date.now(),
+    );
     const paymentMode = String(compra.supplier_payment_mode || '');
     const paymentStatus = String(compra.supplier_payment_status || '');
     const hasReceipt = Boolean(compra.supplier_payment_receipt_path);

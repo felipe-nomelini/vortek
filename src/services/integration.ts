@@ -7,6 +7,7 @@ import { randomUUID } from "crypto";
 import { inflateRawSync } from "zlib";
 import { createServiceClient } from "@/lib/supabase";
 import { validateMercadoLivreTokenOwner } from "@/lib/ml-account-guard";
+import { isMlShipmentLabelPrintable } from "@/lib/ml/fiscal-release";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
 import type { Database } from "@/types/database";
 
@@ -857,6 +858,33 @@ export async function fetchML<T>(
 ): Promise<T | null> {
   const result = await fetchMLResult<T>(path, options);
   return result.ok ? result.data : null;
+}
+
+export async function consultarDisponibilidadeEtiquetaML(
+  shipmentId: string,
+): Promise<{
+  checked: boolean;
+  printable: boolean;
+  status: string | null;
+  substatus: string | null;
+  error: string | null;
+}> {
+  const result = await fetchMLResult<any>(
+    `/shipments/${encodeURIComponent(shipmentId)}`,
+  );
+  const status = result.ok
+    ? String(result.data?.status || "").trim().toLowerCase() || null
+    : null;
+  const substatus = result.ok
+    ? String(result.data?.substatus || "").trim().toLowerCase() || null
+    : null;
+  return {
+    checked: result.ok,
+    printable: result.ok && isMlShipmentLabelPrintable(result.data),
+    status,
+    substatus,
+    error: result.error?.message || null,
+  };
 }
 
 export async function fetchMLRaw(

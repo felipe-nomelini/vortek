@@ -26,6 +26,20 @@ import {
 
 const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;
+const OPERATIONAL_VIEW_KEYS: OrdersOperationalView[] = [
+  'urgent',
+  'preparation',
+  'shipping',
+  'delivered',
+  'all',
+];
+
+function parsePersistedOperationalView(value: string | null): OrdersOperationalView | null {
+  return OPERATIONAL_VIEW_KEYS.includes(value as OrdersOperationalView)
+    ? value as OrdersOperationalView
+    : null;
+}
+
 function getPedidoItemDisplaySku(sellerSku: string | null): string | null {
   if (!sellerSku) return null;
   return getSkuLookupVariants(sellerSku).find((sku) => /^VTK[A-Z0-9]+$/.test(sku)) || sellerSku;
@@ -437,6 +451,12 @@ export default function PedidosPage() {
   });
 
   const [operationalView, setOperationalView] = useState<OrdersOperationalView>('urgent');
+  const selectOperationalView = useCallback((view: OrdersOperationalView) => {
+    setOperationalView(view);
+    const url = new URL(window.location.href);
+    url.searchParams.set('view', view);
+    window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+  }, []);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<OrderStatus | ''>('');
   const [dateRange, setDateRange] = useState<[string | null, string | null]>([null, null]);
@@ -499,7 +519,11 @@ export default function PedidosPage() {
   ]);
 
   useEffect(() => {
-    const initialSearch = new URLSearchParams(window.location.search).get('search')?.trim();
+    const initialParams = new URLSearchParams(window.location.search);
+    const initialView = parsePersistedOperationalView(initialParams.get('view'));
+    if (initialView) setOperationalView(initialView);
+
+    const initialSearch = initialParams.get('search')?.trim();
     if (!initialSearch) return;
     setSearch(initialSearch);
     setPage(1);
@@ -1673,7 +1697,7 @@ export default function PedidosPage() {
       sorter: true,
       sortOrder: getRemoteSortOrder('nota_fiscal_numero', sort),
       render: (nf: { numero: string; emitida: boolean } | null, record: Order) => {
-        if (record.ml_fiscal_release_at) {
+        if (record.ml_fiscal_release_at && record.situacao.valor !== 'etiqueta_impressa') {
           const releaseAt = getMlReleaseComparableDate(record.ml_fiscal_release_at);
           if (releaseAt && releaseAt.getTime() > Date.now()) {
             const formatted = formatReleaseWindow(record.ml_fiscal_release_at);
@@ -1865,7 +1889,11 @@ export default function PedidosPage() {
         const postDispatch = isPostDispatchOrder(record);
         const nextAction = record.dslite_next_action;
         const releaseAt = record.ml_fiscal_release_at ? getMlReleaseComparableDate(record.ml_fiscal_release_at) : null;
-        const mlLabelStillBlocked = Boolean(releaseAt && releaseAt.getTime() > Date.now());
+        const mlLabelStillBlocked = Boolean(
+          record.situacao.valor !== 'etiqueta_impressa'
+          && releaseAt
+          && releaseAt.getTime() > Date.now(),
+        );
         if (!isInternalShipping && !postDispatch && (!hasDsliteId || nextAction === 'create_dslite_order') && !record.internal_stock_available && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
           items.push({
             key: 'dslite',
@@ -1990,7 +2018,7 @@ export default function PedidosPage() {
           activeKey={operationalView}
           items={operationalTabs}
           onChange={(key) => {
-            setOperationalView(key as OrdersOperationalView);
+            selectOperationalView(key as OrdersOperationalView);
             setStatusFilter('');
             setPage(1);
           }}
@@ -2050,13 +2078,13 @@ export default function PedidosPage() {
                   aria-pressed={active}
                   title={active ? 'Clique para limpar este filtro' : 'Clique para filtrar por este status'}
                   onClick={() => {
-                    setOperationalView('all');
+                    selectOperationalView('all');
                     setStatusFilter(active ? '' : typedStatus);
                   }}
                   onKeyDown={(event) => {
                     if (event.key === 'Enter' || event.key === ' ') {
                       event.preventDefault();
-                      setOperationalView('all');
+                      selectOperationalView('all');
                       setStatusFilter(active ? '' : typedStatus);
                     }
                   }}

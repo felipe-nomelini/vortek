@@ -1,6 +1,9 @@
 import { createHash } from "node:crypto";
 import { createServiceClient } from "@/lib/supabase";
-import { getMLAuthDiagnostics } from "@/services/integration";
+import {
+  consultarDisponibilidadeEtiquetaML,
+  getMLAuthDiagnostics,
+} from "@/services/integration";
 import {
   getWahaDiagnostics,
   normalizeWhatsappChatId,
@@ -584,16 +587,30 @@ export async function scanAndAlertReleasedLabels(limit = 20) {
     .order("ml_fiscal_release_at", { ascending: true })
     .limit(limit);
   let alerted = 0;
+  let releasedEarly = 0;
   for (const row of data || []) {
     if (!isActionableLabelRelease(row as any)) continue;
+    const availability = await consultarDisponibilidadeEtiquetaML(
+      String(row.ml_shipment_id),
+    );
+    if (!availability.printable) continue;
     const comparable = row.ml_fiscal_release_at
       ? getMlReleaseComparableDate(row.ml_fiscal_release_at)
       : null;
-    if (!comparable || comparable.getTime() > Date.now()) continue;
+    if (comparable && comparable.getTime() > Date.now()) releasedEarly += 1;
+    await client
+      .from("pedidos")
+      .update({
+        ml_fiscal_release_at: null,
+        ml_fiscal_release_reason: null,
+        ml_fiscal_release_source: "shipment.status/substatus",
+        ml_fiscal_release_checked_at: new Date().toISOString(),
+      } as any)
+      .eq("id", row.id);
     const result = await alertMlLabelReleased(row as any);
     alerted += result.sent > 0 ? 1 : 0;
   }
-  return { checked: data?.length || 0, alerted };
+  return { checked: data?.length || 0, releasedEarly, alerted };
 }
 
 export async function alertIntegrationStatus() {
