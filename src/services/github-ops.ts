@@ -210,3 +210,35 @@ export async function commentOpsIssue(issueNumber: number, body: string) {
     body: { body },
   });
 }
+
+export async function resolveOpenIntegrationOpsIssues(message: string) {
+  const { owner, repo } = getGitHubConfig();
+  const labels = encodeURIComponent('ops:error,alert:integration_status');
+  const issues = await githubRequest<GitHubIssue[]>(
+    `/repos/${owner}/${repo}/issues?state=open&labels=${labels}&per_page=100`,
+  );
+  let resolved = 0;
+
+  for (const issue of issues) {
+    if (
+      issue.pull_request ||
+      !String(issue.body || '').includes(
+        'vortek-fingerprint:integration_status:',
+      )
+    ) {
+      continue;
+    }
+
+    await commentOpsIssue(issue.number, message);
+    await githubRequest<GitHubIssue>(
+      `/repos/${owner}/${repo}/issues/${issue.number}`,
+      {
+        method: 'PATCH',
+        body: { state: 'closed', state_reason: 'completed' },
+      },
+    );
+    resolved += 1;
+  }
+
+  return { resolved };
+}

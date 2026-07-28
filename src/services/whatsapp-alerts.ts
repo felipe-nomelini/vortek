@@ -16,7 +16,10 @@ import {
   getMlReleaseComparableDate,
 } from "@/lib/ml/release-window-display";
 import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
-import { createOrUpdateOpsIssue } from "@/services/github-ops";
+import {
+  createOrUpdateOpsIssue,
+  resolveOpenIntegrationOpsIssues,
+} from "@/services/github-ops";
 
 type AlertType =
   | "new_sale"
@@ -631,8 +634,25 @@ export async function alertIntegrationStatus() {
     );
   if (wahaStatus !== "WORKING") problems.push(`WAHA: ${wahaStatus}`);
 
+  let githubIssuesResolved = 0;
+  if (
+    problems.length === 0 &&
+    String(process.env.GITHUB_OPS_TOKEN || process.env.GITHUB_TOKEN || "").trim()
+  ) {
+    const recovery = await resolveOpenIntegrationOpsIssues(
+      [
+        "Recuperação confirmada automaticamente.",
+        "",
+        `- Mercado Livre: ${ml.state}`,
+        `- WAHA: ${wahaStatus}`,
+        `- Verificado em: ${new Date().toISOString()}`,
+      ].join("\n"),
+    ).catch(() => ({ resolved: 0 }));
+    githubIssuesResolved = recovery.resolved;
+  }
+
   const stateKey = problems.length ? problems.join("|") : "ok";
-  return sendWhatsappAlert({
+  const alertResult = await sendWhatsappAlert({
     type: "integration_status",
     severity: problems.length ? "critical" : "info",
     title: problems.length
@@ -645,6 +665,7 @@ export async function alertIntegrationStatus() {
       : "Mercado Livre e WAHA estão conectados.",
     payload: { ml, wahaStatus, waha },
   });
+  return { ...alertResult, githubIssuesResolved };
 }
 
 export async function alertCriticalJobs() {

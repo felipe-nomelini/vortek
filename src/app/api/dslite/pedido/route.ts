@@ -73,6 +73,7 @@ import { storeShippingLabelForPedido } from "@/lib/shipping-label-storage";
 import { resolveSimpleKitOrderPlan } from "@/lib/produto-kits";
 import { parseMlOrderShippingMode } from "@/lib/ml/order-shipping-mode";
 import { calculateOrderProfit } from "@/services/orders";
+import { canReuseExistingOrderSnapshot } from "@/lib/order-sync-lock-fallback";
 
 const TRANSPORTADORA_PADRAO_CORREIOS = 31;
 const WAIT_AUTH_TIMEOUT_MS = 180_000;
@@ -1814,7 +1815,31 @@ async function runDsliteCreateJob(
       }),
     );
 
-    if (!syncSnapshot.ok) {
+    let reusedExistingSnapshot = false;
+    if (!syncSnapshot.ok && syncSnapshot.status === 409) {
+      const [{ data: existingSnapshot }, { count: existingItemCount }] =
+        await Promise.all([
+          client
+            .from("pedidos")
+            .select("snapshot_incompleto")
+            .eq("id", pedidoId)
+            .maybeSingle(),
+          client
+            .from("pedido_itens")
+            .select("*", { head: true, count: "exact" })
+            .eq("pedido_id", pedidoId),
+        ]);
+
+      reusedExistingSnapshot = canReuseExistingOrderSnapshot({
+        syncResult: syncSnapshot,
+        snapshotIncomplete: Boolean(
+          (existingSnapshot as any)?.snapshot_incompleto,
+        ),
+        itemCount: existingItemCount || 0,
+      });
+    }
+
+    if (!syncSnapshot.ok && !reusedExistingSnapshot) {
       const msg =
         "Falha ao sincronizar pedido automaticamente. Tente novamente.";
       const failureReason =
@@ -1886,7 +1911,9 @@ async function runDsliteCreateJob(
         evento: "sync_order_snapshot_failed",
         respostaMl: {
           sync_http_status: syncSnapshot.status,
-          sync_ok: true,
+          sync_ok: syncSnapshot.ok || reusedExistingSnapshot,
+          sync_http_ok: syncSnapshot.ok,
+          reused_existing_snapshot: reusedExistingSnapshot,
           sync_diagnostico: syncSnapshot.data?.sync_diagnostico || null,
           duration_ms: syncSnapshot.durationMs,
           failure_reason: snapshotIncompletoPosSync
@@ -1918,7 +1945,9 @@ async function runDsliteCreateJob(
       evento: "sync_order_snapshot_success",
       respostaMl: {
         sync_http_status: syncSnapshot.status,
-        sync_ok: true,
+        sync_ok: syncSnapshot.ok || reusedExistingSnapshot,
+        sync_http_ok: syncSnapshot.ok,
+        reused_existing_snapshot: reusedExistingSnapshot,
         sync_diagnostico: syncSnapshot.data?.sync_diagnostico || null,
         duration_ms: syncSnapshot.durationMs,
         pedido_itens_count: itensCountPosSync,
@@ -1929,7 +1958,9 @@ async function runDsliteCreateJob(
     await setStep(
       "sync_order_snapshot",
       "success",
-      `Pedido sincronizado com sucesso (${itensCountPosSync} itens)`,
+      reusedExistingSnapshot
+        ? `Snapshot existente validado durante sincronização concorrente (${itensCountPosSync} itens)`
+        : `Pedido sincronizado com sucesso (${itensCountPosSync} itens)`,
     );
 
     const mlOrderForShipping = await fetchML<unknown>(
