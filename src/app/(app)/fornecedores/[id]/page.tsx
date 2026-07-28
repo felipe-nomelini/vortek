@@ -113,8 +113,8 @@ export default function FornecedorDetailPage() {
           throw new Error(statusJson.error || 'Erro ao atualizar status do fornecedor');
         }
         if (statusRes.status === 207 || statusJson?.success === false) {
-          const failed = Number(statusJson?.records?.ml_pause_failed || 0);
-          message.warning(`Fornecedor atualizado, mas ${failed} anúncios não entraram na fila de pausa.`);
+          const failed = Number(statusJson?.records?.ml_delete_failed || 0);
+          message.warning(`Fornecedor atualizado, mas ${failed} anúncios não entraram na fila de exclusão.`);
         }
       }
 

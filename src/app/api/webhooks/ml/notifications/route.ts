@@ -14,6 +14,7 @@ import {
   isEnderecoEstoqueInternoMl,
   registrarDevolucaoInterna,
 } from '@/lib/estoque-interno';
+import { detachDeletedMlListing, isMlListingDeleted } from '@/lib/ml/listing-deletion';
 
 const WEBHOOK_STUB_PENDING_TAGS = ['pedido_sem_itens', 'webhook_hydration_pending', 'snapshot_origem_webhook_stub'];
 
@@ -505,6 +506,25 @@ export async function POST(request: Request) {
         }));
       } else {
         const mlItemId = String(itemResult.data.id || '').trim();
+        if (mlItemId && isMlListingDeleted(itemResult.data)) {
+          try {
+            await detachDeletedMlListing(serviceClient, mlItemId);
+            console.log(JSON.stringify({
+              event: 'ml_deleted_listing_detached',
+              timestamp_utc: new Date().toISOString(),
+              ml_item_id: mlItemId,
+              source: 'items_webhook',
+            }));
+          } catch (error: any) {
+            console.error(JSON.stringify({
+              event: 'ml_deleted_listing_detach_failed',
+              timestamp_utc: new Date().toISOString(),
+              ml_item_id: mlItemId,
+              error: error?.message || 'Falha ao remover referências de anúncio excluído',
+            }));
+          }
+          return NextResponse.json({ received: true, deleted_listing_detached: true });
+        }
         const reconcileResult = await reconcileAnuncioMlFromItem(
           serviceClient,
           itemResult.data,

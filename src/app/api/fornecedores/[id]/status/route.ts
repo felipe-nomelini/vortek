@@ -137,10 +137,53 @@ async function loadProductIdsWithAlternativeStock(
   return alternatives;
 }
 
-function buildImpact(products: ImpactProduct[], offers: ImpactOffer[], alternativeProductIds = new Set<string>()) {
+async function loadMlListingTargets(
+  client: any,
+  products: ImpactProduct[],
+): Promise<Map<string, string[]>> {
+  const targetsByProductId = new Map<string, string[]>();
+  for (const product of products) {
+    const itemId = String(product.ml_item_id || '').trim();
+    targetsByProductId.set(product.id, itemId ? [itemId] : []);
+  }
+
+  for (const idsChunk of chunk(products.map((product) => product.id), SUPABASE_IN_FILTER_CHUNK_SIZE)) {
+    const [listingResult, snapshotResult] = await Promise.all([
+      client
+        .from('anuncios_ml')
+        .select('produto_id,ml_item_id')
+        .in('produto_id', idsChunk),
+      client
+        .from('catalogo_ml_snapshot')
+        .select('produto_id,ml_item_id')
+        .in('produto_id', idsChunk),
+    ]);
+    if (listingResult.error) throw new Error(listingResult.error.message);
+    if (snapshotResult.error) throw new Error(snapshotResult.error.message);
+
+    for (const row of [...(listingResult.data || []), ...(snapshotResult.data || [])]) {
+      const productId = String((row as any).produto_id || '').trim();
+      const itemId = String((row as any).ml_item_id || '').trim();
+      if (!productId || !itemId) continue;
+      const targets = targetsByProductId.get(productId) || [];
+      if (!targets.includes(itemId)) targets.push(itemId);
+      targetsByProductId.set(productId, targets);
+    }
+  }
+
+  return targetsByProductId;
+}
+
+function buildImpact(
+  products: ImpactProduct[],
+  offers: ImpactOffer[],
+  alternativeProductIds = new Set<string>(),
+  listingTargets = new Map<string, string[]>(),
+) {
   const activeProducts = products.filter((product) => product.ativo !== false);
   const activeOffers = offers.filter((offer) => offer.ativo !== false);
   const productsWithAlternativeStock = activeProducts.filter((product) => alternativeProductIds.has(product.id));
+  const productsWithoutAlternative = products.filter((product) => !alternativeProductIds.has(product.id));
   return {
     products_found: products.length,
     products_active: activeProducts.length,
@@ -149,9 +192,10 @@ function buildImpact(products: ImpactProduct[], offers: ImpactOffer[], alternati
     supplier_offers_active: activeOffers.length,
     supplier_offers_already_inactive: offers.length - activeOffers.length,
     products_with_alternative_stock: productsWithAlternativeStock.length,
-    ml_pause_candidates: activeProducts.filter((product) => (
-      String(product.ml_item_id || '').trim() && !alternativeProductIds.has(product.id)
-    )).length,
+    ml_delete_candidates: productsWithoutAlternative.reduce(
+      (total, product) => total + (listingTargets.get(product.id)?.length || 0),
+      0,
+    ),
   };
 }
 
@@ -178,9 +222,10 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
       products.map((product) => product.id),
       dsliteFornecedorId,
     );
+    const listingTargets = await loadMlListingTargets(client, products);
     return NextResponse.json({
       fornecedor,
-      impact: buildImpact(products, offers, alternativeProductIds),
+      impact: buildImpact(products, offers, alternativeProductIds, listingTargets),
     });
   } catch (err: any) {
     return NextResponse.json({ error: toPublicError(err, 'Erro ao calcular impacto do fornecedor') }, { status: 500 });
@@ -222,10 +267,10 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         records: {
           products_found: 0,
           products_inactivated: 0,
-          ml_pause_enqueued: 0,
-          ml_pause_updated_existing: 0,
-          ml_pause_skipped_no_item: 0,
-          ml_pause_failed: 0,
+          ml_delete_enqueued: 0,
+          ml_delete_updated_existing: 0,
+          ml_delete_skipped_no_item: 0,
+          ml_delete_failed: 0,
           supplier_offers_found: 0,
           supplier_offers_inactivated: 0,
         },
@@ -262,9 +307,8 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     );
     const productsWithAlternativeStock = activeProducts.filter((product) => alternativeProductIds.has(product.id));
     const productsToInactivate = activeProducts.filter((product) => !alternativeProductIds.has(product.id));
-    const productsToPause = products.filter((product) => (
-      !alternativeProductIds.has(product.id) && String(product.ml_item_id || '').trim()
-    ));
+    const productsToDelete = products.filter((product) => !alternativeProductIds.has(product.id));
+    const listingTargets = await loadMlListingTargets(client, productsToDelete);
 
     let productsReassigned = 0;
     const preferredSnapshots: Awaited<ReturnType<typeof syncPreferredProductSnapshot>> = [];
@@ -287,24 +331,24 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
       productsInactivated += idsChunk.length;
     }
 
-    let productsMlMarkedPaused = 0;
-    for (const idsChunk of chunk(productsToPause.map((product) => product.id), SUPABASE_IN_FILTER_CHUNK_SIZE)) {
+    let productsMlMarkedWithoutListing = 0;
+    for (const idsChunk of chunk(productsToDelete.map((product) => product.id), SUPABASE_IN_FILTER_CHUNK_SIZE)) {
       const { error } = await client
         .from('produtos')
-        .update({ ml_status: 'pausado', estoque: 0 } as any)
+        .update({ ml_status: 'sem_anuncio', estoque: 0 } as any)
         .in('id', idsChunk);
 
       if (error) {
         return NextResponse.json({ error: error.message }, { status: 500 });
       }
-      productsMlMarkedPaused += idsChunk.length;
+      productsMlMarkedWithoutListing += idsChunk.length;
     }
 
-    let mlPauseEnqueued = 0;
-    let mlPauseUpdatedExisting = 0;
-    let mlPauseReopenedFailed = 0;
-    let mlPauseSkippedNoItem = 0;
-    let mlPauseFailed = 0;
+    let mlDeleteEnqueued = 0;
+    let mlDeleteUpdatedExisting = 0;
+    let mlDeleteReopenedFailed = 0;
+    let mlDeleteSkippedNoItem = 0;
+    let mlDeleteFailed = 0;
     let mlStockEnqueued = 0;
     let mlStockFailed = 0;
     let mlPriceProductsUpdated = 0;
@@ -336,44 +380,47 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
       });
     }
 
-    for (const product of productsToPause) {
-      const mlItemId = String(product.ml_item_id || '').trim();
+    for (const product of productsToDelete) {
       const sku = String(product.sku || '').trim();
-      if (!mlItemId) {
-        mlPauseSkippedNoItem += 1;
+      const itemIds = listingTargets.get(product.id) || [];
+      if (itemIds.length === 0) {
+        mlDeleteSkippedNoItem += 1;
         continue;
       }
 
-      const outbox = await enqueueMlPublishOutbox(client, {
-        produtoId: product.id,
-        mlItemId,
-        desiredStatus: 'pausado',
-        desiredQuantity: 0,
-        desiredPrice: null,
-        source: 'fornecedor_inativo',
-        dedupePending: true,
-        payload: {
-          apply_price: false,
-          apply_quantity_pricing: false,
-          apply_quantity: true,
-          apply_status: true,
-          fornecedor_id: params.id,
-          fornecedor_dslite_id: String(fornecedor.dslite_id || ''),
-          fornecedor_apelido: String(fornecedor.apelido || ''),
-          sku,
-          origin: 'api/fornecedores/[id]/status',
-        },
-      });
+      for (const mlItemId of itemIds) {
+        const outbox = await enqueueMlPublishOutbox(client, {
+          produtoId: product.id,
+          mlItemId,
+          desiredStatus: null,
+          desiredQuantity: null,
+          desiredPrice: null,
+          source: 'fornecedor_inativo_delete',
+          dedupePending: true,
+          payload: {
+            delete_listing: true,
+            apply_price: false,
+            apply_quantity_pricing: false,
+            apply_quantity: false,
+            apply_status: false,
+            fornecedor_id: params.id,
+            fornecedor_dslite_id: String(fornecedor.dslite_id || ''),
+            fornecedor_apelido: String(fornecedor.apelido || ''),
+            sku,
+            origin: 'api/fornecedores/[id]/status',
+          },
+        });
 
-      if (!outbox.ok) {
-        mlPauseFailed += 1;
-        errors.push({ product_id: product.id, sku, ml_item_id: mlItemId, error: outbox.error });
-      } else if (outbox.action === 'updated_existing') {
-        mlPauseUpdatedExisting += 1;
-      } else if (outbox.action === 'reopened_failed') {
-        mlPauseReopenedFailed += 1;
-      } else {
-        mlPauseEnqueued += 1;
+        if (!outbox.ok) {
+          mlDeleteFailed += 1;
+          errors.push({ product_id: product.id, sku, ml_item_id: mlItemId, error: outbox.error });
+        } else if (outbox.action === 'updated_existing') {
+          mlDeleteUpdatedExisting += 1;
+        } else if (outbox.action === 'reopened_failed') {
+          mlDeleteReopenedFailed += 1;
+        } else {
+          mlDeleteEnqueued += 1;
+        }
       }
     }
 
@@ -412,7 +459,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     }
 
     return NextResponse.json({
-      success: mlPauseFailed === 0 && mlStockFailed === 0 && mlPriceFailed === 0,
+      success: mlDeleteFailed === 0 && mlStockFailed === 0 && mlPriceFailed === 0,
       fornecedor_id: params.id,
       ativo: false,
       records: {
@@ -420,14 +467,14 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         products_with_alternative_stock: productsWithAlternativeStock.length,
         products_reassigned: productsReassigned,
         products_inactivated: productsInactivated,
-        products_ml_marked_paused: productsMlMarkedPaused,
+        products_ml_marked_without_listing: productsMlMarkedWithoutListing,
         supplier_offers_found: offers.length,
         supplier_offers_inactivated: supplierOffersInactivated,
-        ml_pause_enqueued: mlPauseEnqueued,
-        ml_pause_updated_existing: mlPauseUpdatedExisting,
-        ml_pause_reopened_failed: mlPauseReopenedFailed,
-        ml_pause_skipped_no_item: mlPauseSkippedNoItem,
-        ml_pause_failed: mlPauseFailed,
+        ml_delete_enqueued: mlDeleteEnqueued,
+        ml_delete_updated_existing: mlDeleteUpdatedExisting,
+        ml_delete_reopened_failed: mlDeleteReopenedFailed,
+        ml_delete_skipped_no_item: mlDeleteSkippedNoItem,
+        ml_delete_failed: mlDeleteFailed,
         ml_stock_enqueued: mlStockEnqueued,
         ml_stock_failed: mlStockFailed,
         ml_price_products_updated: mlPriceProductsUpdated,
@@ -435,7 +482,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         ml_price_failed: mlPriceFailed,
       },
       errors,
-    }, { status: mlPauseFailed === 0 && mlStockFailed === 0 && mlPriceFailed === 0 ? 200 : 207 });
+    }, { status: mlDeleteFailed === 0 && mlStockFailed === 0 && mlPriceFailed === 0 ? 200 : 207 });
   } catch (err: any) {
     return NextResponse.json({ error: toPublicError(err, 'Erro ao atualizar fornecedor') }, { status: 500 });
   }

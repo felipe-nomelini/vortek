@@ -6,6 +6,7 @@ import { getSyncRuntimeConfigValue, setSyncRuntimeConfigValue } from '@/lib/sync
 import { buildCatalogEnrichment } from '@/lib/catalogo/no-catalogo';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
+import { detachDeletedMlListing, isMlListingDeleted } from '@/lib/ml/listing-deletion';
 
 export const maxDuration = 300;
 
@@ -487,6 +488,7 @@ export async function POST(request: Request) {
     let performanceFailed = 0;
     let authoritativeStockEnqueued = 0;
     let authoritativeStockUnchanged = 0;
+    let deletedListingsDetached = 0;
 
     await runPool(itemIds, CONCURRENCY, async (itemId) => {
       const itemResult = await fetchMLResult<any>(`/items/${itemId}`);
@@ -501,6 +503,20 @@ export async function POST(request: Request) {
       }
 
       let item = itemResult.data;
+      if (isMlListingDeleted(item)) {
+        try {
+          await detachDeletedMlListing(serviceClient, String(item.id));
+          deletedListingsDetached += 1;
+        } catch (error: any) {
+          recordsFailed += 1;
+          errors.push({
+            code: 'ml_deleted_listing_detach_failed',
+            message: error?.message || 'Falha ao remover referências de anúncio excluído',
+            context: { itemId: String(item.id) },
+          });
+        }
+        return;
+      }
       const sku = extractSku(item);
 
       let produtoId: string | null = null;
@@ -508,14 +524,14 @@ export async function POST(request: Request) {
 
       const { data: byItem } = await serviceClient
         .from('produtos')
-        .select('id, sku, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque')
+        .select('id, sku, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque, ativo')
         .eq('ml_item_id', String(item.id))
         .maybeSingle();
 
       const bySku = !byItem && sku
         ? await serviceClient
             .from('produtos')
-            .select('id, sku, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque')
+            .select('id, sku, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque, ativo')
             .eq('sku', sku)
             .maybeSingle()
         : { data: null } as any;
@@ -540,7 +556,7 @@ export async function POST(request: Request) {
         if (productId) {
           const { data: productByOffer } = await serviceClient
             .from('produtos')
-            .select('id, sku, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque')
+            .select('id, sku, custo, ml_fee, ml_shipping, custom_price, ml_status, estoque, ativo')
             .eq('id', productId)
             .maybeSingle();
           produto = productByOffer || null;
@@ -550,65 +566,66 @@ export async function POST(request: Request) {
         produtoId = String(produto.id);
         skuLocal = String(produto.sku || '') || null;
 
-        const pricing = await resolveCurrentMlPricing(item, sellerZipResult.zip);
-        if (pricing.warning) {
-          warnings.push({
-            code: 'ml_pricing_shipping_unavailable',
-            message: pricing.warning,
-            context: { mlItemId: String(item.id), produtoId },
-          });
-        }
-
-        const pauseForNoCoverage = shouldPauseForNoCoverage(item, pricing.warning);
-        const pauseForInvalidMode = requiresMercadoEnviosPause(item);
-        if (pauseForInvalidMode || pauseForNoCoverage) {
-          const pauseResult = await pauseListing(String(item.id));
-          if (pauseResult.ok) {
-            item = { ...item, status: 'paused' };
+        if (produto.ativo !== false) {
+          const pricing = await resolveCurrentMlPricing(item, sellerZipResult.zip);
+          if (pricing.warning) {
             warnings.push({
-              code: 'ml_listing_paused_due_invalid_shipping',
-              message: pauseForNoCoverage
-                ? `Anúncio ${String(item.id)} pausado automaticamente: frete sem cobertura no ML.`
-                : `Anúncio ${String(item.id)} pausado automaticamente: não possui entrega Mercado Livre (ME2).`,
-              context: { mlItemId: String(item.id), produtoId },
-            });
-          } else {
-            warnings.push({
-              code: 'ml_listing_pause_failed',
-              message: `Falha ao pausar anúncio ${String(item.id)} após frete inválido: ${pauseResult.error || 'erro desconhecido'}`,
+              code: 'ml_pricing_shipping_unavailable',
+              message: pricing.warning,
               context: { mlItemId: String(item.id), produtoId },
             });
           }
-        }
 
-        const productPatch: Record<string, unknown> = {};
-        if (pricing.mlFee !== null && Math.abs(Number(produto.ml_fee || 0) - pricing.mlFee) >= 0.0001) productPatch.ml_fee = pricing.mlFee;
-        if (pricing.mlShipping !== null && Math.abs(Number(produto.ml_shipping || 0) - pricing.mlShipping) >= 0.01) productPatch.ml_shipping = pricing.mlShipping;
-        if (pricing.mlShipping !== null) productPatch.ml_shipping_warning = null;
-        else if (pricing.warning) productPatch.ml_shipping_warning = pricing.warning;
+          const pauseForNoCoverage = shouldPauseForNoCoverage(item, pricing.warning);
+          const pauseForInvalidMode = requiresMercadoEnviosPause(item);
+          if (pauseForInvalidMode || pauseForNoCoverage) {
+            const pauseResult = await pauseListing(String(item.id));
+            if (pauseResult.ok) {
+              item = { ...item, status: 'paused' };
+              warnings.push({
+                code: 'ml_listing_paused_due_invalid_shipping',
+                message: pauseForNoCoverage
+                  ? `Anúncio ${String(item.id)} pausado automaticamente: frete sem cobertura no ML.`
+                  : `Anúncio ${String(item.id)} pausado automaticamente: não possui entrega Mercado Livre (ME2).`,
+                context: { mlItemId: String(item.id), produtoId },
+              });
+            } else {
+              warnings.push({
+                code: 'ml_listing_pause_failed',
+                message: `Falha ao pausar anúncio ${String(item.id)} após frete inválido: ${pauseResult.error || 'erro desconhecido'}`,
+                context: { mlItemId: String(item.id), produtoId },
+              });
+            }
+          }
 
-        if (Object.keys(productPatch).length > 0) {
-          productPatch.updated_at = new Date().toISOString();
-          const { error: pricingUpdateError } = await serviceClient
-            .from('produtos')
-            .update(productPatch as any)
-            .eq('id', produtoId);
+          const productPatch: Record<string, unknown> = {};
+          if (pricing.mlFee !== null && Math.abs(Number(produto.ml_fee || 0) - pricing.mlFee) >= 0.0001) productPatch.ml_fee = pricing.mlFee;
+          if (pricing.mlShipping !== null && Math.abs(Number(produto.ml_shipping || 0) - pricing.mlShipping) >= 0.01) productPatch.ml_shipping = pricing.mlShipping;
+          if (pricing.mlShipping !== null) productPatch.ml_shipping_warning = null;
+          else if (pricing.warning) productPatch.ml_shipping_warning = pricing.warning;
 
-          if (pricingUpdateError) {
-            errors.push({
-              code: 'produto_ml_pricing_update_failed',
-              message: pricingUpdateError.message,
-              context: { mlItemId: String(item.id), produtoId },
-            });
-          } else {
-            pricingFieldsUpdated += 1;
+          if (Object.keys(productPatch).length > 0) {
+            productPatch.updated_at = new Date().toISOString();
+            const { error: pricingUpdateError } = await serviceClient
+              .from('produtos')
+              .update(productPatch as any)
+              .eq('id', produtoId);
+
+            if (pricingUpdateError) {
+              errors.push({
+                code: 'produto_ml_pricing_update_failed',
+                message: pricingUpdateError.message,
+                context: { mlItemId: String(item.id), produtoId },
+              });
+            } else {
+              pricingFieldsUpdated += 1;
+            }
           }
         }
-
       }
 
       const observedStatus = String(item.status || '').trim().toLowerCase();
-      if (produtoId && ['active', 'paused'].includes(observedStatus)) {
+      if (produtoId && produto?.ativo !== false && ['active', 'paused'].includes(observedStatus)) {
         try {
           const stockSync = await enfileirarSyncMlEstoqueInterno(produtoId, {
             mlItemId: String(item.id),
@@ -965,6 +982,7 @@ export async function POST(request: Request) {
         performance_failed: performanceFailed,
         authoritative_stock_enqueued: authoritativeStockEnqueued,
         authoritative_stock_unchanged: authoritativeStockUnchanged,
+        deleted_listings_detached: deletedListingsDetached,
       },
       errors,
       warnings,

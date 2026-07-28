@@ -112,11 +112,14 @@ export async function enfileirarSyncMlEstoqueInterno(
   const db = createServiceClient();
   const { data: produto, error: produtoError } = await db
     .from('produtos')
-    .select('id,sku,estoque,ml_item_id')
+    .select('id,sku,estoque,ml_item_id,ativo')
     .eq('id', produtoId)
     .maybeSingle();
   if (produtoError) throw new Error(produtoError.message);
   if (!produto) return { enfileirados: 0, bloqueadosManualmente: 0, semAlteracao: 0, emProcessamento: 0 };
+  if (produto.ativo === false) {
+    return { enfileirados: 0, bloqueadosManualmente: 0, semAlteracao: 0, emProcessamento: 0 };
+  }
 
   const saldoInterno = await obterSaldoEstoqueInternoProduto(String(produto.id));
   const estoqueDisponivel = Math.max(Number(produto.estoque || 0), saldoInterno);

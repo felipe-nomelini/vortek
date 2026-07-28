@@ -157,15 +157,15 @@ export default function FornecedoresPage() {
           messageApi.success(`Fornecedor ${fornecedorLabel} ativado. Produtos continuam inativos até ativação manual.`);
         } else {
           const records = json?.records || {};
-          const paused =
-            Number(records.ml_pause_enqueued || 0)
-            + Number(records.ml_pause_updated_existing || 0)
-            + Number(records.ml_pause_reopened_failed || 0);
+          const deleted =
+            Number(records.ml_delete_enqueued || 0)
+            + Number(records.ml_delete_updated_existing || 0)
+            + Number(records.ml_delete_reopened_failed || 0);
           messageApi.success(
-            `Fornecedor ${fornecedorLabel} inativado. ${records.products_inactivated || 0} produtos e ${records.supplier_offers_inactivated || 0} ofertas inativadas; ${paused} pausas ML enfileiradas.`,
+            `Fornecedor ${fornecedorLabel} inativado. ${records.products_inactivated || 0} produtos e ${records.supplier_offers_inactivated || 0} ofertas inativadas; ${deleted} exclusões ML enfileiradas.`,
           );
-          if (Number(records.ml_pause_failed || 0) > 0) {
-            messageApi.warning(`${records.ml_pause_failed} anúncios não entraram na fila de pausa. Verifique logs.`);
+          if (Number(records.ml_delete_failed || 0) > 0) {
+            messageApi.warning(`${records.ml_delete_failed} anúncios não entraram na fila de exclusão. Verifique logs.`);
           }
         }
 
@@ -201,11 +201,12 @@ export default function FornecedoresPage() {
         content: (
           <div>
             <p>Isso vai inativar produtos vinculados a este fornecedor.</p>
+            <p><strong>Os anúncios sem outro fornecedor ativo serão excluídos definitivamente do Mercado Livre.</strong></p>
             <p>
               Produtos encontrados: <strong>{impact.products_found || 0}</strong><br />
               Produtos ativos afetados: <strong>{impact.products_active || 0}</strong><br />
               Ofertas ativas afetadas: <strong>{impact.supplier_offers_active || 0}</strong><br />
-              Anúncios ML que serão pausados: <strong>{impact.ml_pause_candidates || 0}</strong>
+              Anúncios ML que serão excluídos: <strong>{impact.ml_delete_candidates || 0}</strong>
             </p>
             <p>Se o fornecedor voltar, os produtos continuarão inativos até ativação manual.</p>
           </div>

@@ -6,6 +6,11 @@ import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 import { loadMlStockContext, publishAndVerifyMlStock } from '@/lib/ml/stock-publish';
+import {
+  deleteMlListingPermanently,
+  detachDeletedMlListing,
+  isMlListingDeletionPayload,
+} from '@/lib/ml/listing-deletion';
 
 export const maxDuration = 300;
 
@@ -280,6 +285,7 @@ export async function POST(request: Request) {
       const { data: produtos } = await client
         .from('produtos')
         .select('id, ml_item_id, ml_status, custom_price, estoque')
+        .eq('ativo', true)
         .not('ml_item_id', 'is', null)
         .order('updated_at', { ascending: false })
         .limit(limit);
@@ -351,12 +357,29 @@ export async function POST(request: Request) {
     let permanentFailed = 0;
     const requiresStockPublish = rows.some((row) => resolveApplyMode(row).applyQuantity);
     const mlStockContext = requiresStockPublish ? await loadMlStockContext() : null;
+    const productIds = Array.from(new Set(
+      rows.map((row) => String(row.produto_id || '').trim()).filter(Boolean),
+    ));
+    const activeProductIds = new Set<string>();
+    if (productIds.length > 0) {
+      const { data: productStates, error: productStatesError } = await client
+        .from('produtos')
+        .select('id,ativo')
+        .in('id', productIds);
+      if (productStatesError) {
+        throw new Error(`Falha ao validar produtos da fila ML: ${productStatesError.message}`);
+      }
+      for (const product of productStates || []) {
+        if (product.ativo !== false) activeProductIds.add(String(product.id));
+      }
+    }
 
     for (const row of rows) {
       const outboxId = String(row.id);
       const mlItemId = String(row.ml_item_id || '').trim();
       const attempts = Number(row.attempts || 0) + 1;
       const outboxPayloadBase = normalizeOutboxPayload((row as any).payload);
+      const deleteListing = isMlListingDeletionPayload(outboxPayloadBase);
       let lastOperationMarker: string | null = null;
       const updateProcessingMarker = async (operation: string) => {
         lastOperationMarker = operation;
@@ -389,9 +412,42 @@ export async function POST(request: Request) {
 
       const operations: Array<{ op: string; ok: boolean; error?: string; code?: string | null }> = [];
 
+      const rowProductId = String(row.produto_id || '').trim();
+      if (rowProductId && !activeProductIds.has(rowProductId) && !deleteListing) {
+        await (client
+          .from('anuncios_ml_outbox' as any)
+          .update({
+            status: 'cancelled',
+            last_error: 'Cancelado: produto inativo não pode publicar preço, estoque ou status no ML',
+            payload: withPublishProgress(outboxPayloadBase, {
+              state: 'cancelled',
+              last_operation: 'skip_inactive_product',
+              attempts,
+            }) as any,
+            processed_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          } as any)
+          .eq('id', outboxId) as any);
+        warnings.push({
+          code: 'ml_publish_skip_inactive_product',
+          message: 'Publicação cancelada para produto inativo',
+          context: { outboxId, mlItemId, produtoId: rowProductId },
+        });
+        continue;
+      }
+
       if (!mlItemId) {
         await updateProcessingMarker('validate');
         operations.push({ op: 'validate', ok: false, error: 'ml_item_id ausente no outbox' });
+      } else if (deleteListing) {
+        await updateProcessingMarker('delete_listing');
+        const deletion = await deleteMlListingPermanently(mlItemId);
+        operations.push({
+          op: 'delete_listing',
+          ok: deletion.ok,
+          error: deletion.ok ? undefined : deletion.error,
+          code: deletion.ok ? null : deletion.code,
+        });
       } else {
         const applyMode = resolveApplyMode(row);
         const outboxSource = String((row as any).source || '').trim().toLowerCase();
@@ -537,6 +593,28 @@ export async function POST(request: Request) {
             updated_at: new Date().toISOString(),
           } as any)
           .eq('id', outboxId) as any);
+
+        if (deleteListing) {
+          try {
+            await detachDeletedMlListing(client, mlItemId);
+            await (client
+              .from('anuncios_ml_outbox' as any)
+              .update({
+                status: 'done',
+                last_error: null,
+                processed_at: new Date().toISOString(),
+                updated_at: new Date().toISOString(),
+              } as any)
+              .eq('id', outboxId) as any);
+          } catch (error: any) {
+            errors.push({
+              code: 'ml_listing_detach_failed',
+              message: error?.message || 'Anúncio excluído no ML, mas referências locais não foram removidas',
+              context: { outboxId, mlItemId },
+            });
+          }
+          continue;
+        }
 
         const itemStateResult = await fetchMLResult<any>(`/items/${mlItemId}`);
         if (!itemStateResult.ok || !itemStateResult.data) {
