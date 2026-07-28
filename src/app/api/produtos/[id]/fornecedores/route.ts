@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { inferSupplierPaymentMode, syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
 import { obterSaldoEstoqueInternoProduto } from '@/lib/estoque-interno';
+import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
 
 export async function GET(
   _request: Request,
@@ -85,6 +86,11 @@ export async function PATCH(
   if (!offerId) {
     return NextResponse.json({ error: 'offerId é obrigatório' }, { status: 422 });
   }
+  if (body?.preferred === true) {
+    return NextResponse.json({
+      error: 'Fornecedor principal é definido automaticamente pelo menor custo válido com estoque.',
+    }, { status: 409 });
+  }
 
   const service = createServiceClient();
   const { data: offer, error: offerError } = await service
@@ -116,8 +122,6 @@ export async function PATCH(
       ? value
       : inferSupplierPaymentMode(offer.dslite_fornecedor_id);
   }
-  const shouldSetPreferred = body?.preferred === true;
-
   const { error: updateError } = await service
     .from('produto_fornecedor_ofertas')
     .update(patch as any)
@@ -127,20 +131,8 @@ export async function PATCH(
     return NextResponse.json({ error: updateError.message }, { status: 500 });
   }
 
-  if (shouldSetPreferred) {
-    const { error: preferredError } = await service
-      .from('produtos')
-      .update({
-        oferta_preferencial_id: offerId,
-      } as any)
-      .eq('id', params.id);
-
-    if (preferredError) {
-      return NextResponse.json({ error: preferredError.message }, { status: 500 });
-    }
-  }
-
-  await syncPreferredProductSnapshot(service, [params.id]);
+  const snapshots = await syncPreferredProductSnapshot(service, [params.id]);
+  const automaticPricing = await enqueueAutomaticPricesForCostChanges(service, snapshots);
 
   const refreshed = await service
     .from('produto_fornecedor_ofertas')
@@ -173,5 +165,6 @@ export async function PATCH(
           && currentDsliteProdutoId === String(row.dslite_produto_id || '').trim()
         ),
     })),
-  });
+    automatic_pricing: automaticPricing,
+  }, { status: automaticPricing.errors.length > 0 ? 207 : 200 });
 }

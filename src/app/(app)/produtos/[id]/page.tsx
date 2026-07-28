@@ -401,23 +401,14 @@ export default function ProductDetailPage() {
                       key: 'preferred',
                       width: 160,
                       render: (_, offer) => {
-                        const isSavingOffer = savingOfferId === offer.id;
                         return offer.is_internal_stock ? (
                           <Tag color="green">Atual</Tag>
                         ) : offer.preferred ? (
-                          <Tag color="green">Atual</Tag>
+                          <Tag color="green">Atual · menor custo</Tag>
                         ) : supplierOffers.some((item) => item.is_internal_stock) ? (
                           <Tag>Estoque interno prioritário</Tag>
                         ) : (
-                          <Button
-                            size="small"
-                            type="primary"
-                            disabled={isSavingOffer}
-                            loading={isSavingOffer}
-                            onClick={() => { void persistOffer(offer.id, { preferred: true } as any); }}
-                          >
-                            Tornar principal
-                          </Button>
+                          <Tag>Alternativa</Tag>
                         );
                       },
                     },

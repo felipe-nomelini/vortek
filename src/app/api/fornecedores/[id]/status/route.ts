@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchAllRowsPaginated } from '@/lib/produto-filtering';
 import { syncPreferredProductSnapshot } from '@/lib/produto-fornecedor';
+import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 
 export const maxDuration = 300;
@@ -306,7 +307,34 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     let mlPauseFailed = 0;
     let mlStockEnqueued = 0;
     let mlStockFailed = 0;
+    let mlPriceProductsUpdated = 0;
+    let mlPriceOutboxEnqueued = 0;
+    let mlPriceFailed = 0;
     const errors: Array<{ product_id: string; sku: string; ml_item_id: string; error: string }> = [];
+
+    try {
+      const automaticPricing = await enqueueAutomaticPricesForCostChanges(client, preferredSnapshots);
+      mlPriceProductsUpdated = automaticPricing.productsUpdated;
+      mlPriceOutboxEnqueued = automaticPricing.outboxEnqueued;
+      mlPriceFailed = automaticPricing.errors.length;
+      for (const priceError of automaticPricing.errors) {
+        const snapshot = preferredSnapshots.find((item) => item.productId === priceError.productId);
+        errors.push({
+          product_id: priceError.productId,
+          sku: snapshot?.previous.sku || '',
+          ml_item_id: snapshot?.previous.ml_item_id || '',
+          error: `Preço automático: ${priceError.message}`,
+        });
+      }
+    } catch (error) {
+      mlPriceFailed = 1;
+      errors.push({
+        product_id: '',
+        sku: '',
+        ml_item_id: '',
+        error: `Preço automático: ${toPublicError(error, 'falha ao recalcular preços')}`,
+      });
+    }
 
     for (const product of productsToPause) {
       const mlItemId = String(product.ml_item_id || '').trim();
@@ -384,7 +412,7 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     }
 
     return NextResponse.json({
-      success: mlPauseFailed === 0 && mlStockFailed === 0,
+      success: mlPauseFailed === 0 && mlStockFailed === 0 && mlPriceFailed === 0,
       fornecedor_id: params.id,
       ativo: false,
       records: {
@@ -402,9 +430,12 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
         ml_pause_failed: mlPauseFailed,
         ml_stock_enqueued: mlStockEnqueued,
         ml_stock_failed: mlStockFailed,
+        ml_price_products_updated: mlPriceProductsUpdated,
+        ml_price_outbox_enqueued: mlPriceOutboxEnqueued,
+        ml_price_failed: mlPriceFailed,
       },
       errors,
-    }, { status: mlPauseFailed === 0 && mlStockFailed === 0 ? 200 : 207 });
+    }, { status: mlPauseFailed === 0 && mlStockFailed === 0 && mlPriceFailed === 0 ? 200 : 207 });
   } catch (err: any) {
     return NextResponse.json({ error: toPublicError(err, 'Erro ao atualizar fornecedor') }, { status: 500 });
   }

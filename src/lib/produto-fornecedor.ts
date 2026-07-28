@@ -1,5 +1,16 @@
 import type { Database } from '@/types/database';
 import { isBalanceAccountSupplier } from '@/lib/supplier-balance';
+import {
+  choosePreferredOffer,
+  normalizeOfferPriority,
+  resolvePreferredOfferForProduct,
+} from '@/lib/preferred-offer';
+
+export {
+  choosePreferredOffer,
+  normalizeOfferPriority,
+  resolvePreferredOfferForProduct,
+} from '@/lib/preferred-offer';
 
 export type ProdutoFornecedorOfertaRow = Database['public']['Tables']['produto_fornecedor_ofertas']['Row'];
 export type SupplierPaymentMode = 'postpaid' | 'prepaid_pix' | 'balance_account';
@@ -8,12 +19,6 @@ export type SupplierPaymentStatus = 'pending' | 'paid' | 'failed' | 'cancelled';
 export function inferSupplierPaymentMode(fornecedorId: string | number | null | undefined): SupplierPaymentMode {
   if (isBalanceAccountSupplier(fornecedorId)) return 'balance_account';
   return 'prepaid_pix';
-}
-
-export function normalizeOfferPriority(value: unknown, fallback = 100): number {
-  const parsed = Number(value);
-  if (!Number.isFinite(parsed)) return fallback;
-  return Math.trunc(parsed);
 }
 
 export function normalizeProductMatchText(value: unknown): string {
@@ -28,65 +33,6 @@ export function normalizeProductMatchText(value: unknown): string {
 
 export function normalizeGtin(value: unknown): string {
   return String(value || '').replace(/\D+/g, '').trim();
-}
-
-export function choosePreferredOffer<T extends {
-  id?: string | null;
-  ativo?: boolean | null;
-  estoque?: number | null;
-  custo?: number | null;
-  prioridade?: number | null;
-}>(offers: T[]): T | null {
-  if (!Array.isArray(offers) || offers.length === 0) return null;
-
-  const activeOffers = offers.filter((offer) => offer.ativo !== false);
-  const source = activeOffers.length > 0 ? activeOffers : offers;
-  const withStock = source.filter((offer) => Number(offer.estoque || 0) > 0);
-  const eligible = withStock.length > 0 ? withStock : source;
-
-  const sorted = [...eligible].sort((left, right) => {
-    const costDiff = Number(left.custo || 0) - Number(right.custo || 0);
-    if (costDiff !== 0) return costDiff;
-
-    const priorityDiff = normalizeOfferPriority(left.prioridade) - normalizeOfferPriority(right.prioridade);
-    if (priorityDiff !== 0) return priorityDiff;
-
-    return Number(right.estoque || 0) - Number(left.estoque || 0);
-  });
-
-  return sorted[0] || null;
-}
-
-export function resolvePreferredOfferForProduct<T extends {
-  id?: string | null;
-  ativo?: boolean | null;
-  estoque?: number | null;
-  custo?: number | null;
-  prioridade?: number | null;
-}>(
-  offers: T[],
-  preferredOfferId?: string | null,
-): T | null {
-  if (!Array.isArray(offers) || offers.length === 0) return null;
-
-  const explicitPreferredId = String(preferredOfferId || '').trim();
-  if (explicitPreferredId) {
-    const explicitPreferred = offers.find((offer) => String(offer.id || '').trim() === explicitPreferredId) || null;
-    const hasActiveStockAlternative = offers.some((offer) => (
-      String(offer.id || '').trim() !== explicitPreferredId
-      && offer.ativo !== false
-      && Number(offer.estoque || 0) > 0
-    ));
-    if (
-      explicitPreferred
-      && explicitPreferred.ativo !== false
-      && (Number(explicitPreferred.estoque || 0) > 0 || !hasActiveStockAlternative)
-    ) {
-      return explicitPreferred;
-    }
-  }
-
-  return choosePreferredOffer(offers);
 }
 
 export function resolveCompraStatus(params: {

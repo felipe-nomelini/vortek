@@ -1,3 +1,5 @@
+import { resolvePreferredOfferForProduct } from "@/lib/preferred-offer";
+
 const CRITICAL_ML_ATTRIBUTE_IDS = new Set([
   "VOLTAGE",
   "NOMINAL_VOLTAGE",
@@ -62,44 +64,9 @@ export function normalizeCriticalAttributeValue(
   return String(value).trim() || null;
 }
 
-function choosePreferredOffer(offers: any[], preferredOfferId: unknown) {
-  const explicitId = String(preferredOfferId || "").trim();
-  if (explicitId) {
-    const explicit = offers.find((offer) => String(offer?.id || "").trim() === explicitId);
-    const hasAlt = offers.some(
-      (offer) =>
-        String(offer?.id || "").trim() !== explicitId &&
-        offer?.ativo !== false &&
-        Number(offer?.estoque || 0) > 0,
-    );
-    if (
-      explicit &&
-      explicit.ativo !== false &&
-      (Number(explicit.estoque || 0) > 0 || !hasAlt)
-    ) {
-      return explicit;
-    }
-  }
-  const active = offers.filter((offer) => offer?.ativo !== false);
-  const source = active.length > 0 ? active : offers;
-  const withStock = source.filter((offer) => Number(offer?.estoque || 0) > 0);
-  const eligible = withStock.length > 0 ? withStock : source;
-  return (
-    [...eligible].sort((a, b) => {
-      const costDiff = Number(a?.custo || 0) - Number(b?.custo || 0);
-      if (costDiff !== 0) return costDiff;
-      const priorityDiff =
-        Math.trunc(Number(a?.prioridade || 100)) -
-        Math.trunc(Number(b?.prioridade || 100));
-      if (priorityDiff !== 0) return priorityDiff;
-      return Number(b?.estoque || 0) - Number(a?.estoque || 0);
-    })[0] || null
-  );
-}
-
 export function resolveMlCriticalFacts(produto: any, offers: any[] = []) {
   const safeOffers = Array.isArray(offers) ? offers : [];
-  const preferredOffer = choosePreferredOffer(
+  const preferredOffer = resolvePreferredOfferForProduct(
     safeOffers,
     produto?.oferta_preferencial_id || null,
   );

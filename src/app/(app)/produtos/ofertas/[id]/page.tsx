@@ -269,15 +269,10 @@ export default function ProductOfferDetailPage() {
                 />
               </Col>
               <Col xs={24} md={8}>
-                <div style={{ color: '#a0a0a0', fontSize: 13 }}>Preferencial</div>
-                <Button
-                  size="small"
-                  disabled={saving || preferred}
-                  type={preferred ? 'default' : 'primary'}
-                  onClick={() => { void persistOffer({ preferred: true } as any); }}
-                >
-                  {preferred ? 'Oferta atual' : 'Tornar preferencial'}
-                </Button>
+                <div style={{ color: '#a0a0a0', fontSize: 13 }}>Seleção automática</div>
+                <Tag color={preferred ? 'green' : 'default'} style={{ marginTop: 4 }}>
+                  {preferred ? 'Atual · menor custo' : 'Oferta alternativa'}
+                </Tag>
               </Col>
             </Row>
           </Card>
