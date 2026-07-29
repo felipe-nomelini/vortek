@@ -3,7 +3,10 @@ import { NextResponse, type NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  if (pathname === "/fornecedor/bkr1/kits-sem-anuncio") {
+  if (
+    pathname === "/fornecedor/bkr1/kits-sem-anuncio" ||
+    pathname === "/fornecedor/evolusom/produtos-sem-gtin"
+  ) {
     return NextResponse.next();
   }
 
