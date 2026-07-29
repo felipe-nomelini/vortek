@@ -1,0 +1,542 @@
+{
+  "batchNumber": 2,
+  "batchId": "evolusom-domain-approved-002",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "a6160be9-23b2-46f5-85a5-a915f24806a1",
+      "sku": "VTK017328",
+      "nome": "Fan Para Pc Gamer Gf12r 12cm Vermelho 32 Led",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 36.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 70.25,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "5055492400659",
+        "validatedNcm": "84145990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "PRODUCT_TYPE"
+        ]
+      },
+      "categoryId": "MLB2676",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "14232561",
+          "value_name": "Geral"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "35709929",
+          "value_name": "5055492400659"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "37745159",
+          "value_name": "Ventoinha"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB35155590",
+        "catalogProductName": "Cooler 32 Led Vermelho 120mm 12cm Ventoinha Gamemax Gf12r",
+        "catalogDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+        "predictedDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+        "categoryId": "MLB2676",
+        "categoryName": "Coolers e Ventoinhas",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "5055492400659"
+      }
+    },
+    {
+      "produtoId": "8d23282f-5f35-4856-b5e7-8cfe11c885c5",
+      "sku": "VTK018787",
+      "nome": "Fone Headset Intelbras Chs-55 Conector Usb 4010058",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 290.72,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 412.75,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637685375",
+        "validatedNcm": "85183000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": []
+      },
+      "categoryId": "MLB1664",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24716402",
+          "value_name": "CHS 55 - USB"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24716399",
+          "value_name": "7896637685375"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27363905",
+        "catalogProductName": "Headset Intelbras Chs 55 Usb",
+        "catalogDomainId": "MLB-HEADPHONES",
+        "predictedDomainId": "MLB-HEADSET_TELEPHONES",
+        "categoryId": "MLB3828",
+        "categoryName": "Fones",
+        "linkedListingsInCategory": 23,
+        "validatedGtin": "7896637685375"
+      }
+    },
+    {
+      "produtoId": "a59a337c-ab45-4600-90b9-3bfb03179c4a",
+      "sku": "VTK017599",
+      "nome": "Interfone Hdl Az-s01 Ajuste Volume E Toque Branco",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 97.9,
+      "estoque": 39,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 145.56,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898314173991",
+        "validatedNcm": "85176256",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "PRODUCT_TYPE"
+        ]
+      },
+      "categoryId": "MLB7075",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2445255",
+          "value_name": "HDL"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24317336",
+          "value_name": "Interfone Az-S"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "BUTTONS_NUMBER",
+          "value_id": "24778972",
+          "value_name": "2"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "value_id": "3010075",
+          "value_name": "3"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "8152567",
+          "value_name": "Corrente elétrica"
+        },
+        {
+          "id": "PHONE_TYPE",
+          "value_id": "2237107",
+          "value_name": "Com fio"
+        },
+        {
+          "id": "INTERCOM_HEIGHT",
+          "value_id": "25929795",
+          "value_name": "19.7 cm"
+        },
+        {
+          "id": "INTERCOM_WIDTH",
+          "value_id": "28643614",
+          "value_name": "7.4 cm"
+        },
+        {
+          "id": "INTERCOM_LENGTH",
+          "value_id": "26538006",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "FRONT_HEIGHT",
+          "value_id": "26645050",
+          "value_name": "20 cm"
+        },
+        {
+          "id": "FRONT_WIDTH",
+          "value_id": "26538003",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "FRONT_LENGTH",
+          "value_id": "34183734",
+          "value_name": "20 cm"
+        },
+        {
+          "id": "INCLUDES_EXTERNAL_CAMERA",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NIGHT_VISION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LOCK_CONTROL_SYSTEM",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SPEAKERPHONE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SCREEN_VIEWER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_COLOR_SCREEN",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_VIDEO_RECORDER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_INTERNET_CONNECTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_APP_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_ANTIVANDALIC",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24317355",
+          "value_name": "7898314173991, 7898314175803"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "4375480",
+          "value_name": "Legrand"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "53931752",
+          "value_name": "AZ-S01"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        },
+        {
+          "id": "MPN",
+          "value_id": "53931753",
+          "value_name": "AZ-S01"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "25834954",
+          "value_name": "Porteiro eletrônico"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27070506",
+        "catalogProductName": "Interfone Com Fio HDL Monofone AZ-S Áudio Residencial Branco",
+        "catalogDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+        "predictedDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+        "categoryId": "MLB7075",
+        "categoryName": "Porteiros Elétricos",
+        "linkedListingsInCategory": 40,
+        "validatedGtin": "7898314173991"
+      }
+    },
+    {
+      "produtoId": "e7082089-80b5-4c92-b5d0-d3834e9bf04c",
+      "sku": "VTK017955",
+      "nome": "Jogo De Panelas Tramontina Loreto Alumínio Starflon Max 5 Peças Grafite",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 259.9,
+      "estoque": 19,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 368.99,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7891112267015",
+        "validatedNcm": "76151000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB107564",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "433",
+          "value_name": "Tramontina"
+        },
+        {
+          "id": "LINE",
+          "value_id": "13943597",
+          "value_name": "Loreto"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "73236906",
+          "value_name": "20399/082"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "value_id": "3402025",
+          "value_name": "5"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "2748301",
+          "value_name": "Alumínio"
+        },
+        {
+          "id": "PIECES_INCLUDED",
+          "value_id": "2511613",
+          "value_name": "Panela, Frigideira, Chaleira, Panela 16 cm, Panela 18 cm"
+        },
+        {
+          "id": "IS_FACTORY_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_INDUCTION_COOKER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_NONSTICK_COATING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "73252016",
+          "value_name": "7891112267015"
+        },
+        {
+          "id": "HANDLE_MATERIAL",
+          "value_id": "5884734",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "IS_DISHWASHWE_SAFE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB65303162",
+        "catalogProductName": "Conjunto de panelas de bateria de cozinha Tramontina Loreto Teflon de 5 peças",
+        "catalogDomainId": "MLB-KITCHEN_COOKWARE_KITS",
+        "predictedDomainId": "MLB-KITCHEN_COOKWARE_KITS",
+        "categoryId": "MLB107564",
+        "categoryName": "Jogo de Panelas",
+        "linkedListingsInCategory": 10,
+        "validatedGtin": "7891112267015"
+      }
+    },
+    {
+      "produtoId": "a61b46d2-bd8e-4552-98b9-e15bf512bbf3",
+      "sku": "VTK018925",
+      "nome": "Kit Telefone Intelbras Celular Fixo Gsm Cfa4212",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 424.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 629.48,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637677462",
+        "validatedNcm": "85171439",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "ANATEL_HOMOLOGATION_NUMBER"
+        ]
+      },
+      "categoryId": "MLB1053",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17484093",
+          "value_name": "CFA4212"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MOBILE_NETWORK",
+          "value_id": "7472026",
+          "value_name": "2G"
+        },
+        {
+          "id": "TALK_TIME",
+          "value_id": "6973762",
+          "value_name": "5 h"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "38446075",
+          "value_name": "850/900/1800/1900 MHz"
+        },
+        {
+          "id": "HEADPHONES_NUMBER_INCLUDED",
+          "value_id": "7512605",
+          "value_name": "1"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CALLER_IDENTIFICATION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "value_id": "160433",
+          "value_name": "800 mAh"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "17484116",
+          "value_name": "7896637677462"
+        },
+        {
+          "id": "PHONEBOOK_ENTRIES_CAPACITY",
+          "value_id": "17484118",
+          "value_name": "300"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_name": "056181600160"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22236494",
+        "catalogProductName": "Telefone Com Fio Gsm Cfa4212 Intelbras Preto",
+        "catalogDomainId": "MLB-TELEPHONES",
+        "predictedDomainId": "MLB-TELEPHONES",
+        "categoryId": "MLB1053",
+        "categoryName": "Telefones",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7896637677462"
+      }
+    }
+  ]
+}

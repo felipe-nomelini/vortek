@@ -1,0 +1,105 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/catalog-evidence/003-evolusom-catalog-create-003.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-003",
+  "selected": 5,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "a61b46d2-bd8e-4552-98b9-e15bf512bbf3",
+      "sku": "VTK018925",
+      "nome": "Kit Telefone Intelbras Celular Fixo Gsm Cfa4212",
+      "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB1053",
+            "nome": "Telefones"
+          },
+          "missing": [
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6749a6a8-ea48-4057-bdae-f02dc8dadecd",
+      "sku": "VTK018198",
+      "nome": "Liquidificador Philco Ph900 Com Filtro 12 Velocidades 3 Litros Vermelho 127v",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB73055",
+            "nome": "Liquidificadores"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "aac0b9b3-eafd-4013-a7c3-a68118e9b81a",
+      "sku": "VTK017760",
+      "nome": "Miniprocessador Agratto Ampr01i-01 350ml 100w 127v",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB31674",
+            "nome": "Processadores"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "dc9ab654-a53f-4415-9c79-c302399113f3",
+      "sku": "VTK018376",
+      "nome": "Moldura 2 Din Fiamon Gm Vectra Gt/ Meriva/ Corsa/ Montana Black",
+      "error": "Atributos obrigatórios pendentes: Dimensão estándar do estéreo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45320",
+            "nome": "Molduras para Estéreos"
+          },
+          "missing": [
+            "Dimensão estándar do estéreo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8d6e28e6-7d85-4f4a-aa42-8f9a5b4b2e37",
+      "sku": "VTK018910",
+      "nome": "Moldura Fiamon 2 Din Gm Vectra Gt/meriva/corsa/montana Prata",
+      "error": "Atributos obrigatórios pendentes: Dimensão estándar do estéreo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45320",
+            "nome": "Molduras para Estéreos"
+          },
+          "missing": [
+            "Dimensão estándar do estéreo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

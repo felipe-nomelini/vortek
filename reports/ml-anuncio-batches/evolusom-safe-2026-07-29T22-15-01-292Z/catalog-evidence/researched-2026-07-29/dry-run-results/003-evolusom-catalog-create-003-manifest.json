@@ -1,0 +1,697 @@
+{
+  "batchNumber": 3,
+  "batchId": "evolusom-catalog-create-003",
+  "strategy": "exact_gtin_catalog_evidence",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "a61b46d2-bd8e-4552-98b9-e15bf512bbf3",
+      "sku": "VTK018925",
+      "nome": "Kit Telefone Intelbras Celular Fixo Gsm Cfa4212",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 424.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 629.48,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637677462",
+        "validatedNcm": "85171439",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "ANATEL_HOMOLOGATION_NUMBER"
+        ]
+      },
+      "categoryId": "MLB1053",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17484093",
+          "value_name": "CFA4212"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MOBILE_NETWORK",
+          "value_id": "7472026",
+          "value_name": "2G"
+        },
+        {
+          "id": "TALK_TIME",
+          "value_id": "6973762",
+          "value_name": "5 h"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "38446075",
+          "value_name": "850/900/1800/1900 MHz"
+        },
+        {
+          "id": "HEADPHONES_NUMBER_INCLUDED",
+          "value_id": "7512605",
+          "value_name": "1"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CALLER_IDENTIFICATION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "value_id": "160433",
+          "value_name": "800 mAh"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "17484116",
+          "value_name": "7896637677462"
+        },
+        {
+          "id": "PHONEBOOK_ENTRIES_CAPACITY",
+          "value_id": "17484118",
+          "value_name": "300"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_name": "056181600160"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22236494",
+        "catalogProductName": "Telefone Com Fio Gsm Cfa4212 Intelbras Preto",
+        "catalogDomainId": "MLB-TELEPHONES",
+        "predictedDomainId": "MLB-TELEPHONES",
+        "categoryId": "MLB1053",
+        "categoryName": "Telefones",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7896637677462"
+      }
+    },
+    {
+      "produtoId": "6749a6a8-ea48-4057-bdae-f02dc8dadecd",
+      "sku": "VTK018198",
+      "nome": "Liquidificador Philco Ph900 Com Filtro 12 Velocidades 3 Litros Vermelho 127v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 139.9,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 198.62,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899466417131",
+        "validatedNcm": "85094010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "POWER_SUPPLY_TYPE"
+        ]
+      },
+      "categoryId": "MLB73055",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "479",
+          "value_name": "Philco"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "8202241",
+          "value_name": "PH900"
+        },
+        {
+          "id": "VOLUME_CAPACITY",
+          "value_id": "86501",
+          "value_name": "3 L"
+        },
+        {
+          "id": "TOTAL_CAPACITY",
+          "value_id": "86501",
+          "value_name": "3 L"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "51993",
+          "value_name": "Vermelho"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "BLENDER_JAR_MATERIAL",
+          "value_id": "7942747",
+          "value_name": "Acrílico"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450307",
+          "value_name": "Vermelho"
+        },
+        {
+          "id": "POWER",
+          "value_id": "104555",
+          "value_name": "1200 W"
+        },
+        {
+          "id": "RECOMMENDED_USES",
+          "value_id": "2439631",
+          "value_name": "Doméstico"
+        },
+        {
+          "id": "SPEEDS_NUMBER",
+          "value_id": "1028895",
+          "value_name": "12"
+        },
+        {
+          "id": "IS_INDUSTRIAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "USEFUL_CAPACITY",
+          "value_id": "16718413",
+          "value_name": "2 L"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "10140426",
+          "value_name": "7899466417131"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "3725721",
+          "value_name": "Filtro"
+        },
+        {
+          "id": "DISHWASHER_UNSUITABLE_PARTS",
+          "value_id": "19327300",
+          "value_name": "Nenhuma peça é adequada para lava-louças"
+        },
+        {
+          "id": "IS_PORTABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ON_OFF_POWER_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_USB_CHARGE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_BPA_FREE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_ICE_CRUSHING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "BLENDER_PROGRAMS",
+          "value_id": "20969761",
+          "value_name": "Função Ice, Função autolimpeza, Função Pulsar"
+        },
+        {
+          "id": "BLENDER_BLADES_NUMBER",
+          "value_id": "11471069",
+          "value_name": "6"
+        },
+        {
+          "id": "WITH_REMOVABLE_BLADE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_STAINLESS_STEEL_BLADE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TURBO_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_PULSE_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ANTI_SLIP_BASE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_DOSING_LID",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_POURING_SPOUT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SECURITY_SEAL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_DIGITAL_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_HEAT_RESISTANT_JAR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SOUND_ENCLOSURE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DUAL_DIRECTION_TECHNOLOGY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TIMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CORD_STORAGE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "9095106",
+          "value_name": "22.5 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "13774048",
+          "value_name": "42.2 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8062077",
+          "value_name": "22.5 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "8662259",
+          "value_name": "2.01 kg"
+        },
+        {
+          "id": "MPN",
+          "value_id": "10224542",
+          "value_name": "945"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "49713698",
+          "value_name": "Corrente doméstica"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB15578943",
+        "catalogProductName": "Liquidificador Ph900 Vermelho 1200w Philco 110v Vermelho",
+        "catalogDomainId": "MLB-BLENDERS",
+        "predictedDomainId": "MLB-BLENDERS",
+        "categoryId": "MLB73055",
+        "categoryName": "Liquidificadores",
+        "linkedListingsInCategory": 15,
+        "validatedGtin": "7899466417131"
+      }
+    },
+    {
+      "produtoId": "aac0b9b3-eafd-4013-a7c3-a68118e9b81a",
+      "sku": "VTK017760",
+      "nome": "Miniprocessador Agratto Ampr01i-01 350ml 100w 127v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 61.9,
+      "estoque": 24,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 101.11,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898461976179",
+        "validatedNcm": "85094090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "POWER_SUPPLY_TYPE"
+        ]
+      },
+      "categoryId": "MLB31674",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "97494",
+          "value_name": "Agratto"
+        },
+        {
+          "id": "LINE",
+          "value_id": "34597845",
+          "value_name": "Pequeno Leve Portátil Compacto"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "34597846",
+          "value_name": "Multiprocessador AMPR01L"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "value_id": "43841916",
+          "value_name": "AMPRO1L-01"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "POWER",
+          "value_id": "109880",
+          "value_name": "100 W"
+        },
+        {
+          "id": "FOOD_PROCESSOR_FUNCTIONS",
+          "value_id": "100110",
+          "value_name": "Fatiar, Bater, Picar"
+        },
+        {
+          "id": "PROCESSOR_BOWL_CAPACITY",
+          "value_id": "1165524",
+          "value_name": "350 mL"
+        },
+        {
+          "id": "BLENDER_JAR_CAPACITY",
+          "value_id": "14999729",
+          "value_name": "350 mL"
+        },
+        {
+          "id": "SPEEDS_NUMBER",
+          "value_id": "577736",
+          "value_name": "1"
+        },
+        {
+          "id": "WITH_PULSE_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SAFETY_LOCK",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "34597847",
+          "value_name": "7898461976179"
+        },
+        {
+          "id": "ENERGY_EFFICIENCY",
+          "value_id": "98473",
+          "value_name": "A"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "21334061",
+          "value_name": "1 mini processador, 1 Jarra, 1 tampa, 1 hélice, 1 manual de instruções"
+        },
+        {
+          "id": "CUTTING_BLADES_MATERIALS",
+          "value_id": "8616752",
+          "value_name": "Metal"
+        },
+        {
+          "id": "BODY_MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "PROCESSOR_BOWL_MATERIAL",
+          "value_id": "8784030",
+          "value_name": "Acrílico"
+        },
+        {
+          "id": "WITH_ANTI_SLIP_BASE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TOUCH_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "49713698",
+          "value_name": "Corrente doméstica"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB34291754",
+        "catalogProductName": "Mini Processador de Alimentos 5 em 1 Elétrico 350 ml 2 Lâminas Preto Agratto Ampr01i-01",
+        "catalogDomainId": "MLB-FOOD_PROCESSORS",
+        "predictedDomainId": "MLB-FOOD_PROCESSORS",
+        "categoryId": "MLB31674",
+        "categoryName": "Processadores",
+        "linkedListingsInCategory": 17,
+        "validatedGtin": "7898461976179"
+      }
+    },
+    {
+      "produtoId": "dc9ab654-a53f-4415-9c79-c302399113f3",
+      "sku": "VTK018376",
+      "nome": "Moldura 2 Din Fiamon Gm Vectra Gt/ Meriva/ Corsa/ Montana Black",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 20.9,
+      "estoque": 9,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 50.49,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898478318306",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "STEREO_STANDARD_DIMENSIONS"
+        ]
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "49216669",
+          "value_name": "Fiamon 2261 2 Din"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25261638",
+          "value_name": "7898478318306"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27679084",
+        "catalogProductName": "Moldura multimídia 2 Din Corsa 2002 A 2012 Hatch Sedan",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 21,
+        "validatedGtin": "7898478318306"
+      }
+    },
+    {
+      "produtoId": "8d6e28e6-7d85-4f4a-aa42-8f9a5b4b2e37",
+      "sku": "VTK018910",
+      "nome": "Moldura Fiamon 2 Din Gm Vectra Gt/meriva/corsa/montana Prata",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 20.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 50.49,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898478318337",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "STEREO_STANDARD_DIMENSIONS"
+        ]
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24746521",
+          "value_name": "89/M2"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52053",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2511571",
+          "value_name": "ABS"
+        },
+        {
+          "id": "EXTERIOR_HEIGHT",
+          "value_id": "7816576",
+          "value_name": "15 cm"
+        },
+        {
+          "id": "EXTERIOR_WIDTH",
+          "value_id": "5662660",
+          "value_name": "20 cm"
+        },
+        {
+          "id": "EXTERIOR_LENGTH",
+          "value_id": "7816454",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24746520",
+          "value_name": "7898478318337"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29614284",
+        "catalogProductName": "Moldura Painel 2din Vectra Meriva Corsa Montana - Cinza",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 26,
+        "validatedGtin": "7898478318337"
+      }
+    }
+  ]
+}

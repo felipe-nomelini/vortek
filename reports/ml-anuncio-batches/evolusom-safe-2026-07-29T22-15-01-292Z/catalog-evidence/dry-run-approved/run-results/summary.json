@@ -1,0 +1,51 @@
+{
+  "startedAt": "2026-07-29T22:23:11.501Z",
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/catalog-evidence/dry-run-approved/remaining",
+  "startBatch": 1,
+  "endBatch": 1,
+  "batches": [
+    {
+      "fileName": "001-evolusom-remaining-001.json",
+      "selected": 2,
+      "created": 2,
+      "failed": 0,
+      "exitCode": 0,
+      "failureReasons": [],
+      "verification": {
+        "ok": true,
+        "attempt": 10,
+        "rows": [
+          {
+            "itemId": "MLB7285984342",
+            "produtoId": "e7082089-80b5-4c92-b5d0-d3834e9bf04c",
+            "categoryOk": true,
+            "status": "active",
+            "subStatuses": [],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 19,
+            "price": 410.47
+          },
+          {
+            "itemId": "MLB7285971620",
+            "produtoId": "074533de-3625-4ac5-87e6-970a7b9add7c",
+            "categoryOk": true,
+            "status": "active",
+            "subStatuses": [],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 39,
+            "price": 52.98
+          }
+        ]
+      }
+    }
+  ],
+  "totals": {
+    "selected": 2,
+    "created": 2,
+    "failed": 0,
+    "verified": 2
+  },
+  "finishedAt": "2026-07-29T22:26:00.672Z"
+}

@@ -1,0 +1,113 @@
+{
+  "startedAt": "2026-07-29T22:37:24.558Z",
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/catalog-evidence/verified-dry-run-approved/remaining",
+  "startBatch": 2,
+  "endBatch": 4,
+  "batches": [
+    {
+      "fileName": "002-evolusom-remaining-002.json",
+      "skipped": true,
+      "reason": "already_listed"
+    },
+    {
+      "fileName": "003-evolusom-remaining-003.json",
+      "selected": 5,
+      "created": 5,
+      "failed": 0,
+      "exitCode": 0,
+      "failureReasons": [],
+      "verification": {
+        "ok": true,
+        "attempt": 7,
+        "rows": [
+          {
+            "itemId": "MLB7285954282",
+            "produtoId": "dc9ab654-a53f-4415-9c79-c302399113f3",
+            "categoryOk": true,
+            "status": "active",
+            "subStatuses": [],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 9,
+            "price": 67.59
+          },
+          {
+            "itemId": "MLB7285978902",
+            "produtoId": "8d6e28e6-7d85-4f4a-aa42-8f9a5b4b2e37",
+            "categoryOk": true,
+            "status": "active",
+            "subStatuses": [],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 3,
+            "price": 67.59
+          },
+          {
+            "itemId": "MLB7285954586",
+            "produtoId": "c094ad9e-26fa-43c7-87f7-c0c65895290c",
+            "categoryOk": true,
+            "status": "active",
+            "subStatuses": [],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 4,
+            "price": 91.67
+          },
+          {
+            "itemId": "MLB7285954730",
+            "produtoId": "525b3946-a305-41d4-bd4f-5ae3e60a1f64",
+            "categoryOk": true,
+            "status": "active",
+            "subStatuses": [],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 5,
+            "price": 152.53
+          },
+          {
+            "itemId": "MLB7285979328",
+            "produtoId": "6a7f85c3-1e7e-406b-9575-82a576b68c8f",
+            "categoryOk": true,
+            "status": "active",
+            "subStatuses": [],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 6,
+            "price": 55.25
+          }
+        ]
+      }
+    },
+    {
+      "fileName": "004-evolusom-remaining-004.json",
+      "selected": 4,
+      "created": 1,
+      "failed": 3,
+      "exitCode": 0,
+      "failureReasons": [
+        {
+          "sku": "VTK018451",
+          "error": "Atributos obrigatórios pendentes. Revise antes de criar o anúncio."
+        },
+        {
+          "sku": "VTK018927",
+          "error": "Atributos obrigatórios pendentes. Revise antes de criar o anúncio."
+        },
+        {
+          "sku": "VTK018926",
+          "error": "Atributos obrigatórios pendentes. Revise antes de criar o anúncio."
+        }
+      ],
+      "verification": {
+        "ok": false,
+        "reason": "three_or_more_creation_failures"
+      }
+    }
+  ],
+  "totals": {
+    "selected": 9,
+    "created": 6,
+    "failed": 3,
+    "verified": 5
+  }
+}

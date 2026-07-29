@@ -1,0 +1,105 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/catalog-evidence/005-evolusom-catalog-create-005.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-005",
+  "selected": 5,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "960911fa-1318-4eb5-9e22-dbcf1f944e8b",
+      "sku": "VTK018451",
+      "nome": "Sensor Magnético Abertura Intelbras Sem Fio Is3",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "152f7e88-3187-4dd5-b483-200878ef45b3",
+      "sku": "VTK018927",
+      "nome": "Sensor Presenca Intelbras Sem Fio Is5",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "cb1d8fa6-2b15-4c15-a92b-146c2007213a",
+      "sku": "VTK018926",
+      "nome": "Sirene Sem Fio Intelbras Is7",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4264a425-c8f3-4835-89a1-1bdea2647e0a",
+      "sku": "VTK018973",
+      "nome": "Sirene Smart Isi 1001 Intelbras",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "43d93697-e343-4216-8636-d73515ee50f3",
+      "sku": "VTK018148",
+      "nome": "Telefone Sem Fio Intelbras Ts 3110 Branco/vermelho 4123101",
+      "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB1053",
+            "nome": "Telefones"
+          },
+          "missing": [
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

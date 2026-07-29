@@ -1,0 +1,39 @@
+{
+  "finishedAt": "2026-07-29T22:44:03.136Z",
+  "createdAndVerified": 17,
+  "createdListings": [
+    { "sku": "VTK017955", "mlItemId": "MLB7285984342" },
+    { "sku": "VTK017251", "mlItemId": "MLB7285971620" },
+    { "sku": "VTK017787", "mlItemId": "MLB7285987734" },
+    { "sku": "VTK018150", "mlItemId": "MLB7285950578" },
+    { "sku": "VTK017375", "mlItemId": "MLB7285987892" },
+    { "sku": "VTK017362", "mlItemId": "MLB7285987972" },
+    { "sku": "VTK017363", "mlItemId": "MLB7285975146" },
+    { "sku": "VTK017328", "mlItemId": "MLB7285976274" },
+    { "sku": "VTK017599", "mlItemId": "MLB7285976496" },
+    { "sku": "VTK018198", "mlItemId": "MLB7285952348" },
+    { "sku": "VTK017760", "mlItemId": "MLB7285976880" },
+    { "sku": "VTK018376", "mlItemId": "MLB7285954282" },
+    { "sku": "VTK018910", "mlItemId": "MLB7285978902" },
+    { "sku": "VTK018928", "mlItemId": "MLB7285954586" },
+    { "sku": "VTK018773", "mlItemId": "MLB7285954730" },
+    { "sku": "VTK018602", "mlItemId": "MLB7285979328" },
+    { "sku": "VTK018766", "mlItemId": "MLB7285980812" }
+  ],
+  "remainingWithoutListing": 596,
+  "remainingWithLocalPrerequisites": 353,
+  "remainingBlockedByLocalPrerequisites": {
+    "total": 243,
+    "missingGtin": 239,
+    "missingImages": 3,
+    "missingDimensions": 1
+  },
+  "remainingSafetyBlocks": {
+    "catalogOrDomainEvidence": 344,
+    "requiredAttributes": 9
+  },
+  "preferredEvolusomListings": {
+    "active": 118,
+    "paused": 42
+  }
+}

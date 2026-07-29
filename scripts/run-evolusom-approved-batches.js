@@ -15,6 +15,10 @@ const END_BATCH = Math.max(
 const RESULT_DIR = path.join(path.dirname(SOURCE_DIR), 'run-results');
 const POLL_MS = Math.max(5000, Number(process.env.ML_BATCH_VERIFY_POLL_MS || '15000'));
 const MAX_POLLS = Math.max(1, Number(process.env.ML_BATCH_VERIFY_MAX_POLLS || '20'));
+const ML_READ_RETRIES = Math.max(
+  1,
+  Number(process.env.ML_BATCH_READ_RETRIES || '4'),
+);
 
 if (!process.env.ML_BATCH_SOURCE_DIR || !fs.existsSync(SOURCE_DIR)) {
   throw new Error('Defina ML_BATCH_SOURCE_DIR com os lotes aprovados.');
@@ -54,24 +58,50 @@ async function getAccessToken() {
 }
 
 async function fetchMl(apiPath) {
-  const token = await getAccessToken();
-  const response = await fetch(`https://api.mercadolibre.com${apiPath}`, {
-    headers: { Authorization: `Bearer ${token}` },
-    signal: AbortSignal.timeout(30000),
-  });
-  const text = await response.text();
-  let data = null;
-  try {
-    data = text ? JSON.parse(text) : null;
-  } catch {
-    data = null;
+  for (let attempt = 1; attempt <= ML_READ_RETRIES; attempt += 1) {
+    try {
+      const token = await getAccessToken();
+      const response = await fetch(`https://api.mercadolibre.com${apiPath}`, {
+        headers: { Authorization: `Bearer ${token}` },
+        signal: AbortSignal.timeout(30000),
+      });
+      const text = await response.text();
+      let data = null;
+      try {
+        data = text ? JSON.parse(text) : null;
+      } catch {
+        data = null;
+      }
+      if (response.ok) return data;
+
+      const transient = response.status === 429 || response.status >= 500;
+      if (!transient || attempt === ML_READ_RETRIES) {
+        const error = new Error(
+          `${apiPath} HTTP ${response.status}: ${data?.message || text.slice(0, 200)}`,
+        );
+        error.retryable = transient;
+        throw error;
+      }
+      const retryAfterSeconds = Number(response.headers.get('retry-after') || 0);
+      const backoffMs = retryAfterSeconds > 0
+        ? retryAfterSeconds * 1000
+        : Math.min(15000, 1000 * 2 ** (attempt - 1)) + Math.floor(Math.random() * 500);
+      console.log(
+        `[ml-retry] ${apiPath} HTTP ${response.status} attempt=${attempt}/${ML_READ_RETRIES}`,
+      );
+      await sleep(backoffMs);
+    } catch (error) {
+      if (error.retryable === false || attempt === ML_READ_RETRIES) throw error;
+      const backoffMs =
+        Math.min(15000, 1000 * 2 ** (attempt - 1)) +
+        Math.floor(Math.random() * 500);
+      console.log(
+        `[ml-retry] ${apiPath} ${error.message} attempt=${attempt}/${ML_READ_RETRIES}`,
+      );
+      await sleep(backoffMs);
+    }
   }
-  if (!response.ok) {
-    throw new Error(
-      `${apiPath} HTTP ${response.status}: ${data?.message || text.slice(0, 200)}`,
-    );
-  }
-  return data;
+  throw new Error(`${apiPath}: leitura ML esgotou tentativas`);
 }
 
 async function filterAlreadyListed(manifest) {

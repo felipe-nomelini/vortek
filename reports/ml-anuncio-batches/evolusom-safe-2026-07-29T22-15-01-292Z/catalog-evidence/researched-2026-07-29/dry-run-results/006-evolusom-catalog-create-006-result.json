@@ -1,0 +1,67 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/catalog-evidence/researched-2026-07-29/dry-run-results/006-evolusom-catalog-create-006-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-006",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "d4bf1161-e883-4b56-8ad4-a1333e1fab38",
+      "sku": "VTK019951",
+      "category": {
+        "id": "MLB1053",
+        "nome": "Telefones",
+        "dominio": "MLB-TELEPHONES"
+      },
+      "basePrice": 229.86,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "1175468",
+          "value_name": "TS 5120"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "name": "É sem fio",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "name": "Homologação Anatel Nº",
+          "value_id": "",
+          "value_name": "005501500160"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "9076726",
+          "value_name": "7896637647588"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Telefone Sem Fio Intelbras Ts5120 Digital\n\nVISÃO GERAL\nTecnologia digital - Sim - DECT 6. 0 Identificação de chamadas - Sim - DTMF/FSK Viva-voz - Sim Display Luminoso - Sim Teclado luminoso - Sim Secretária eletrônica digital - Não Capacidade de expansão - Sim - 7 ramais (base + 6 ramais) Tipos de toque - 10 Capacidade da agenda - 70 contatos Registro de chamadas recebidas - 15 atendidas e 20 não atendidas Registro de chamadas originadas - 15 chamadas Função Eco Mode - Sim Comunicação interna - Sim Conferência a três - Sim Transferência de chamadas - Sim Compatibilidade - Telefones sem fio Intelbras da série TS 51 *Imagens meramente ilustrativas\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Intelbras\n• Modelo: TS 5120\n• É sem fio: Sim\n• Homologação Anatel Nº: 005501500160\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INTELBRAS\n• GTIN: 7896637647588\n• NCM: 85171100\n• SKU: VTK019951\n\nEMBALAGEM\n• Dimensões informadas: 9.5 × 14 × 16.5 cm\n• Peso bruto informado: 0,42 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

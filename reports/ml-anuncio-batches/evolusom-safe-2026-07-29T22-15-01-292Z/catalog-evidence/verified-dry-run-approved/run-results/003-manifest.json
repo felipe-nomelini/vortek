@@ -1,0 +1,373 @@
+{
+  "batchNumber": 3,
+  "batchId": "evolusom-domain-approved-003",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "dc9ab654-a53f-4415-9c79-c302399113f3",
+      "sku": "VTK018376",
+      "nome": "Moldura 2 Din Fiamon Gm Vectra Gt/ Meriva/ Corsa/ Montana Black",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 20.9,
+      "estoque": 9,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 50.49,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898478318306",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "STEREO_STANDARD_DIMENSIONS"
+        ]
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "49216669",
+          "value_name": "Fiamon 2261 2 Din"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25261638",
+          "value_name": "7898478318306"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27679084",
+        "catalogProductName": "Moldura multimídia 2 Din Corsa 2002 A 2012 Hatch Sedan",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 21,
+        "validatedGtin": "7898478318306"
+      }
+    },
+    {
+      "produtoId": "8d6e28e6-7d85-4f4a-aa42-8f9a5b4b2e37",
+      "sku": "VTK018910",
+      "nome": "Moldura Fiamon 2 Din Gm Vectra Gt/meriva/corsa/montana Prata",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 20.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 50.49,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898478318337",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "STEREO_STANDARD_DIMENSIONS"
+        ]
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24746521",
+          "value_name": "89/M2"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52053",
+          "value_name": "Prateado"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2511571",
+          "value_name": "ABS"
+        },
+        {
+          "id": "EXTERIOR_HEIGHT",
+          "value_id": "7816576",
+          "value_name": "15 cm"
+        },
+        {
+          "id": "EXTERIOR_WIDTH",
+          "value_id": "5662660",
+          "value_name": "20 cm"
+        },
+        {
+          "id": "EXTERIOR_LENGTH",
+          "value_id": "7816454",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24746520",
+          "value_name": "7898478318337"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29614284",
+        "catalogProductName": "Moldura Painel 2din Vectra Meriva Corsa Montana - Cinza",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 26,
+        "validatedGtin": "7898478318337"
+      }
+    },
+    {
+      "produtoId": "c094ad9e-26fa-43c7-87f7-c0c65895290c",
+      "sku": "VTK018928",
+      "nome": "Moldura Fiamon 2 Din Duster/ Sandero/ Logan/ Kwid/ Captur Black Piano",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 41.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 76.42,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898478318412",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "STEREO_STANDARD_DIMENSIONS"
+        ]
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "25631358",
+          "value_name": "2380R"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25631356",
+          "value_name": "7898478318412"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27888414",
+        "catalogProductName": "Moldura Fiamon Duster/sandero/logan/kwid/captur Black Piano",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 29,
+        "validatedGtin": "7898478318412"
+      }
+    },
+    {
+      "produtoId": "525b3946-a305-41d4-bd4f-5ae3e60a1f64",
+      "sku": "VTK018773",
+      "nome": "Moldura Fiamon 2 Din Idea/ Idea Adventure 13/ 18 Prata",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 78.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 122.1,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898478318238",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "STEREO_STANDARD_DIMENSIONS"
+        ]
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "52381437",
+          "value_name": "Idea Adventure 2014-2017"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25244311",
+          "value_name": "7898478318238"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27666506",
+        "catalogProductName": "Moldura Painel 2 Din Prata Idea/ideia Adventure 2013 A 2018",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 8,
+        "validatedGtin": "7898478318238"
+      }
+    },
+    {
+      "produtoId": "6a7f85c3-1e7e-406b-9575-82a576b68c8f",
+      "sku": "VTK018602",
+      "nome": "Moldura Universal Permak 2 Din 90/g",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 10.6,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.78,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253497905",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "STEREO_STANDARD_DIMENSIONS"
+        ]
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "28134761",
+          "value_name": "90/G"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "28134760",
+          "value_name": "7898253497905"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29422300",
+        "catalogProductName": "Moldura 2 Din Universal Somente Aro Permak 90/g",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 6,
+        "validatedGtin": "7898253497905"
+      }
+    }
+  ]
+}

@@ -1,0 +1,398 @@
+{
+  "batchNumber": 4,
+  "batchId": "evolusom-catalog-create-004",
+  "strategy": "exact_gtin_catalog_evidence",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "c094ad9e-26fa-43c7-87f7-c0c65895290c",
+      "sku": "VTK018928",
+      "nome": "Moldura Fiamon 2 Din Duster/ Sandero/ Logan/ Kwid/ Captur Black Piano",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 41.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 76.42,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898478318412",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "25631358",
+          "value_name": "2380R"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25631356",
+          "value_name": "7898478318412"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27888414",
+        "catalogProductName": "Moldura Fiamon Duster/sandero/logan/kwid/captur Black Piano",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 29,
+        "validatedGtin": "7898478318412"
+      }
+    },
+    {
+      "produtoId": "525b3946-a305-41d4-bd4f-5ae3e60a1f64",
+      "sku": "VTK018773",
+      "nome": "Moldura Fiamon 2 Din Idea/ Idea Adventure 13/ 18 Prata",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 78.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 122.1,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898478318238",
+        "validatedNcm": "39263000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "52381437",
+          "value_name": "Idea Adventure 2014-2017"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25244311",
+          "value_name": "7898478318238"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27666506",
+        "catalogProductName": "Moldura Painel 2 Din Prata Idea/ideia Adventure 2013 A 2018",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 8,
+        "validatedGtin": "7898478318238"
+      }
+    },
+    {
+      "produtoId": "6a7f85c3-1e7e-406b-9575-82a576b68c8f",
+      "sku": "VTK018602",
+      "nome": "Moldura Universal Permak 2 Din 90/g",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 10.6,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.78,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253497905",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "28134761",
+          "value_name": "90/G"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "28134760",
+          "value_name": "7898253497905"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29422300",
+        "catalogProductName": "Moldura 2 Din Universal Somente Aro Permak 90/g",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 6,
+        "validatedGtin": "7898253497905"
+      }
+    },
+    {
+      "produtoId": "3e731d68-d11e-4a79-b40e-5904840154d1",
+      "sku": "VTK018766",
+      "nome": "Pedestal Ask Para Caixa Acústica Cxt Regulagem Telescópica",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 95.95,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 143.15,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898939971675",
+        "validatedNcm": "92099900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB10233",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4238929",
+          "value_name": "ASK"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "53909383",
+          "value_name": "Acústica CXT"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "4837600",
+          "value_name": "Aço"
+        },
+        {
+          "id": "IS_ADJUSTABLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MIN_HEIGHT",
+          "value_id": "66001610",
+          "value_name": "180 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "26454298",
+          "value_name": "7898939971675"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB28325639",
+        "catalogProductName": "Suporte Tripé Para Caixa Acústica Cxt 1,80m 40 Kg Preto",
+        "catalogDomainId": "MLB-SPEAKERS_STANDS",
+        "predictedDomainId": "MLB-SPEAKERS_STANDS",
+        "categoryId": "MLB10233",
+        "categoryName": "Suportes para Caixas de Som",
+        "linkedListingsInCategory": 12,
+        "validatedGtin": "7898939971675"
+      }
+    },
+    {
+      "produtoId": "074533de-3625-4ac5-87e6-970a7b9add7c",
+      "sku": "VTK017251",
+      "nome": "Resistência Zagonel Sublime/ Move 127v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 12.13,
+      "estoque": 39,
+      "mlFee": 0.18,
+      "mlShipping": 13.25,
+      "customPrice": 58.18,
+      "suggestedPricePreview": 58.18,
+      "priceSource": "custom_price",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897273200847",
+        "validatedNcm": "85168010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB269858",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2997256",
+          "value_name": "Zagonel"
+        },
+        {
+          "id": "LINE",
+          "value_id": "15020217",
+          "value_name": "Resistência"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "49734619",
+          "value_name": "Resistência Zagonel"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "FINISH",
+          "value_id": "4042441",
+          "value_name": "Fosco"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "76142750",
+          "value_name": "TERMOPLASTICO E ALUMINIO"
+        },
+        {
+          "id": "SHAPE",
+          "value_id": "39977660",
+          "value_name": "Redonda"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7828417",
+          "value_name": "6 cm"
+        },
+        {
+          "id": "DIAMETER",
+          "value_id": "7574681",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "8129828",
+          "value_name": "7 cm"
+        },
+        {
+          "id": "INSTALLATION_TYPE",
+          "value_id": "43133063",
+          "value_name": "220V"
+        },
+        {
+          "id": "IS_FIXED",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_FLEXIBLE_HOSE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_SUPPORT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "22003045",
+          "value_name": "7897273200847"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB25360456",
+        "catalogProductName": "Resistência para Ducha Moment Eletrônica Sublime e Move 127v 5500w - Zagonel",
+        "catalogDomainId": "MLB-SHOWER_HEADS",
+        "predictedDomainId": "MLB-SHOWER_HEADS",
+        "categoryId": "MLB269858",
+        "categoryName": "Convencionais",
+        "linkedListingsInCategory": 30,
+        "validatedGtin": "7897273200847"
+      }
+    }
+  ]
+}

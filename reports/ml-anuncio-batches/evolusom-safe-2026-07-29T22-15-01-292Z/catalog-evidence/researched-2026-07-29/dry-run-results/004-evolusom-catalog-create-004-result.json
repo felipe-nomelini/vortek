@@ -1,0 +1,265 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/catalog-evidence/researched-2026-07-29/dry-run-results/004-evolusom-catalog-create-004-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-004",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "c094ad9e-26fa-43c7-87f7-c0c65895290c",
+      "sku": "VTK018928",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "basePrice": 91.67,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "25631358",
+          "value_name": "2380R"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "name": "Dimensão estándar do estéreo",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898478318412"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Moldura Fiamon 2 Din Duster/ Sandero/ Logan/ Kwid/ Captur Black Piano\n\nVISÃO GERAL\nInformações do Produto Moldura 2 DIN Aplicação RENAULT KWID/CAPTUR/DUSTER/ SANDERO/LOGAN Cor Black Piano\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Fiamon\n• Modelo: 2380R\n• Dimensão estándar do estéreo: 2 DIN\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FIAMON\n• GTIN: 7898478318412\n• NCM: 39263000\n• SKU: VTK018928\n\nEMBALAGEM\n• Dimensões informadas: 3 × 13 × 26 cm\n• Peso bruto informado: 0,156 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "525b3946-a305-41d4-bd4f-5ae3e60a1f64",
+      "sku": "VTK018773",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "basePrice": 152.53,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "52381437",
+          "value_name": "Idea Adventure 2014-2017"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "name": "Dimensão estándar do estéreo",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898478318238"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Moldura Fiamon 2 Din Idea/ Idea Adventure 13/ 18 Prata\n\nVISÃO GERAL\nInformações do Produto Características ORIGEM PADRÃO MODELO CHICOTE: 40128 - 40129 ANT: 40106\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Fiamon\n• Modelo: Idea Adventure 2014-2017\n• Dimensão estándar do estéreo: 2 DIN\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FIAMON\n• GTIN: 7898478318238\n• NCM: 39263000\n• SKU: VTK018773\n\nEMBALAGEM\n• Dimensões informadas: 9 × 10 × 28 cm\n• Peso bruto informado: 0,366 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6a7f85c3-1e7e-406b-9575-82a576b68c8f",
+      "sku": "VTK018602",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "basePrice": 55.25,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "28134761",
+          "value_name": "90/G"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "name": "Dimensão estándar do estéreo",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898253497905"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Moldura Universal Permak 2 Din 90/g\n\nVISÃO GERAL\nMoldura Universal 2 Din Permak 90/G\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Permak\n• Modelo: 90/G\n• Dimensão estándar do estéreo: 2 DIN\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7898253497905\n• NCM: 85299090\n• SKU: VTK018602\n\nEMBALAGEM\n• Dimensões informadas: 1 × 12 × 19 cm\n• Peso bruto informado: 0,03 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "3e731d68-d11e-4a79-b40e-5904840154d1",
+      "sku": "VTK018766",
+      "category": {
+        "id": "MLB10233",
+        "nome": "Suportes para Caixas de Som",
+        "dominio": "MLB-SPEAKERS_STANDS"
+      },
+      "basePrice": 175.64,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "4238929",
+          "value_name": "ASK"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "53909383",
+          "value_name": "Acústica CXT"
+        },
+        {
+          "id": "INSTALLATION_PLACEMENT",
+          "name": "Lugar de colocação",
+          "value_id": "4502036",
+          "value_name": "De chão"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898939971675"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Pedestal Ask Para Caixa Acústica Cxt Regulagem Telescópica\n\nVISÃO GERAL\nInformações do Produto Pedestal para caixa de som com regulagem telescópica de altura e pino trava - Suporte Musical Preto - CXT Suporte telescópico, leve e fácil de transportar. Informações Técnicas Capacidade de carga 60 kg Embalagem (c x l x a) 13 x 13 x 90cm Altura max. 180 cm Altura min.\n\n140 cm Diâmetro do tripe 80 cm Material Aço / Plástico Ajustes Altura Peso 2,51 kg\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: ASK\n• Modelo: Acústica CXT\n• Lugar de colocação: De chão\n• Cor: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ASK\n• GTIN: 7898939971675\n• NCM: 92099900\n• SKU: VTK018766\n\nEMBALAGEM\n• Dimensões informadas: 7 × 9 × 89 cm\n• Peso bruto informado: 2,406 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "074533de-3625-4ac5-87e6-970a7b9add7c",
+      "sku": "VTK017251",
+      "category": {
+        "id": "MLB269858",
+        "nome": "Convencionais",
+        "dominio": "MLB-SHOWER_HEADS"
+      },
+      "basePrice": 52.98,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2997256",
+          "value_name": "Zagonel"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "49734619",
+          "value_name": "Resistência Zagonel"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "22003045",
+          "value_name": "7897273200847"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Resistência Zagonel Sublime/ Move 127v\n\nVISÃO GERAL\nInformações do Produto Modelos Sublime/ Move Tensão 127V\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Zagonel\n• Modelo: Resistência Zagonel\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ZAGONEL\n• GTIN: 7897273200847\n• NCM: 85168010\n• SKU: VTK017251\n\nEMBALAGEM\n• Dimensões informadas: 4 × 3.5 × 7 cm\n• Peso bruto informado: 0,022 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

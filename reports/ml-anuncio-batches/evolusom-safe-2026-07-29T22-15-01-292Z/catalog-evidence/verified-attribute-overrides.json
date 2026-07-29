@@ -1,0 +1,247 @@
+[
+  {
+    "sku": "VTK017787",
+    "attributes": [
+      {
+        "id": "CABLE_STRANDS_NUMBER",
+        "value_name": "6"
+      }
+    ]
+  },
+  {
+    "sku": "VTK018150",
+    "attributes": [
+      {
+        "id": "CAMERA_LOCATIONS",
+        "value_id": "28284812",
+        "value_name": "Interior/Exterior"
+      }
+    ]
+  },
+  {
+    "sku": "VTK017375",
+    "attributes": [
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "37745159",
+        "value_name": "Ventoinha"
+      }
+    ]
+  },
+  {
+    "sku": "VTK017362",
+    "attributes": [
+      {
+        "id": "MODEL",
+        "value_name": "F12S-ARGB"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "37745159",
+        "value_name": "Ventoinha"
+      }
+    ]
+  },
+  {
+    "sku": "VTK017363",
+    "attributes": [
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "37745159",
+        "value_name": "Ventoinha"
+      }
+    ]
+  },
+  {
+    "sku": "VTK017328",
+    "attributes": [
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "37745159",
+        "value_name": "Ventoinha"
+      }
+    ]
+  },
+  {
+    "sku": "VTK017599",
+    "attributes": [
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "25834954",
+        "value_name": "Porteiro eletrônico"
+      }
+    ]
+  },
+  {
+    "sku": "VTK018198",
+    "attributes": [
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_id": "49713698",
+        "value_name": "Corrente doméstica"
+      }
+    ]
+  },
+  {
+    "sku": "VTK017760",
+    "attributes": [
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_id": "49713698",
+        "value_name": "Corrente doméstica"
+      }
+    ]
+  },
+  {
+    "sku": "VTK018376",
+    "attributes": [
+      {
+        "id": "STEREO_STANDARD_DIMENSIONS",
+        "value_id": "38480992",
+        "value_name": "2 DIN"
+      }
+    ]
+  },
+  {
+    "sku": "VTK018910",
+    "attributes": [
+      {
+        "id": "STEREO_STANDARD_DIMENSIONS",
+        "value_id": "38480992",
+        "value_name": "2 DIN"
+      }
+    ]
+  },
+  {
+    "sku": "VTK018928",
+    "attributes": [
+      {
+        "id": "STEREO_STANDARD_DIMENSIONS",
+        "value_id": "38480992",
+        "value_name": "2 DIN"
+      }
+    ]
+  },
+  {
+    "sku": "VTK018773",
+    "attributes": [
+      {
+        "id": "STEREO_STANDARD_DIMENSIONS",
+        "value_id": "38480992",
+        "value_name": "2 DIN"
+      }
+    ]
+  },
+  {
+    "sku": "VTK018602",
+    "attributes": [
+      {
+        "id": "STEREO_STANDARD_DIMENSIONS",
+        "value_id": "38480992",
+        "value_name": "2 DIN"
+      }
+    ]
+  },
+  {
+    "sku": "VTK018766",
+    "attributes": [
+      {
+        "id": "INSTALLATION_PLACEMENT",
+        "value_id": "4502036",
+        "value_name": "De chão"
+      }
+    ]
+  },
+  {
+    "sku": "VTK018451",
+    "attributes": [
+      {
+        "id": "VOLTAGE",
+        "value_name": "3 Vdc"
+      }
+    ]
+  },
+  {
+    "sku": "VTK018927",
+    "attributes": [
+      {
+        "id": "VOLTAGE",
+        "value_name": "3 Vdc"
+      }
+    ]
+  },
+  {
+    "sku": "VTK018926",
+    "attributes": [
+      {
+        "id": "VOLTAGE",
+        "value_name": "5 Vdc"
+      }
+    ],
+    "evidence": [
+      "https://backend.intelbras.com/sites/default/files/integration/datasheet_is7_portugues_01-18_site_0.pdf"
+    ]
+  },
+  {
+    "sku": "VTK018787",
+    "categoryId": "MLB1664",
+    "categoryName": "Fones",
+    "catalogDomainId": "MLB-HEADPHONES",
+    "attributes": [],
+    "evidence": [
+      "https://www.intelbras.com/pt-br/headset-mono-usb-chs-55-usb",
+      "https://backend.intelbras.com/sites/default/files/2019-04/Datasheet_CHS_55_USB.pdf"
+    ]
+  },
+  {
+    "sku": "VTK018925",
+    "attributes": [
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_name": "056181600160"
+      }
+    ],
+    "evidence": [
+      "https://www.anatel.gov.br/dadosabertos/PDA/Certificacao/Produtos_Homologados_Anatel.csv",
+      "https://www.intelbras.com/pt-br/ajuda-download/faq/kit-celular-fixo-de-longo-alcance-cfa-4212"
+    ]
+  },
+  {
+    "sku": "VTK018973",
+    "attributes": [
+      {
+        "id": "VOLTAGE",
+        "value_name": "12 Vdc"
+      }
+    ],
+    "evidence": [
+      "https://backend.intelbras.com/sites/default/files/2021-02/guia-do-usuario-ISI-1001.pdf"
+    ]
+  },
+  {
+    "sku": "VTK018148",
+    "attributes": [
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_name": "020121300160"
+      }
+    ],
+    "evidence": [
+      "https://www.anatel.gov.br/dadosabertos/PDA/Certificacao/Produtos_Homologados_Anatel.csv",
+      "https://www.intelbras.com/pt-br/ajuda-download/download/telefone-sem-fio-digital-ts-3110"
+    ]
+  },
+  {
+    "sku": "VTK019951",
+    "attributes": [
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_name": "005501500160"
+      }
+    ],
+    "evidence": [
+      "https://www.anatel.gov.br/dadosabertos/PDA/Certificacao/Produtos_Homologados_Anatel.csv",
+      "https://www.intelbras.com/pt-br/ajuda-download/download/telefone-sem-fio-digital-ts-5120"
+    ]
+  }
+]

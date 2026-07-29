@@ -1,0 +1,44 @@
+[
+  {
+    "produtoId": "e666735c-5699-4787-9273-2e2be34c872a",
+    "sku": "VTK017848",
+    "nome": "Cabo Alarme Telecam 100 Metros 50 X 10 Vias Cca Liga Cobre",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Voltagem"
+  },
+  {
+    "produtoId": "8d23282f-5f35-4856-b5e7-8cfe11c885c5",
+    "sku": "VTK018787",
+    "nome": "Fone Headset Intelbras Chs-55 Conector Usb 4010058",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Voltagem"
+  },
+  {
+    "produtoId": "a61b46d2-bd8e-4552-98b9-e15bf512bbf3",
+    "sku": "VTK018925",
+    "nome": "Kit Telefone Intelbras Celular Fixo Gsm Cfa4212",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº"
+  },
+  {
+    "produtoId": "4264a425-c8f3-4835-89a1-1bdea2647e0a",
+    "sku": "VTK018973",
+    "nome": "Sirene Smart Isi 1001 Intelbras",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Voltagem"
+  },
+  {
+    "produtoId": "43d93697-e343-4216-8636-d73515ee50f3",
+    "sku": "VTK018148",
+    "nome": "Telefone Sem Fio Intelbras Ts 3110 Branco/vermelho 4123101",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº"
+  },
+  {
+    "produtoId": "d4bf1161-e883-4b56-8ad4-a1333e1fab38",
+    "sku": "VTK019951",
+    "nome": "Telefone Sem Fio Intelbras Ts5120 Digital",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº"
+  }
+]

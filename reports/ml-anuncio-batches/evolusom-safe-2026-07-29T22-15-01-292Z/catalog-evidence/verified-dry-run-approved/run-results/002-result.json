@@ -1,0 +1,110 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/catalog-evidence/verified-dry-run-approved/run-results/002-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-002",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "a6160be9-23b2-46f5-85a5-a915f24806a1",
+      "sku": "VTK017328",
+      "category": {
+        "id": "MLB2676",
+        "nome": "Coolers e Ventoinhas",
+        "dominio": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS"
+      },
+      "anuncio": {
+        "id": "MLB7285976274",
+        "title": "Fan Para Pc Gamer Gf12r 12cm Vermelho 32 Led",
+        "price": 88.78,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7285976274-fan-para-pc-gamer-gf12r-12cm-vermelho-32-led-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 72.95 → R$ 88.78."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "a59a337c-ab45-4600-90b9-3bfb03179c4a",
+      "sku": "VTK017599",
+      "category": {
+        "id": "MLB7075",
+        "nome": "Porteiros Elétricos",
+        "dominio": "MLB-ELECTRIC_ENTRANCE_INTERCOMS"
+      },
+      "anuncio": {
+        "id": "MLB7285976496",
+        "title": "Interfone Hdl Az-s01 Ajuste Volume E Toque Branco",
+        "price": 170.5,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7285976496-interfone-hdl-az-s01-ajuste-volume-e-toque-branco-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 148.30 → R$ 170.50."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "6749a6a8-ea48-4057-bdae-f02dc8dadecd",
+      "sku": "VTK018198",
+      "category": {
+        "id": "MLB73055",
+        "nome": "Liquidificadores",
+        "dominio": "MLB-BLENDERS"
+      },
+      "anuncio": {
+        "id": "MLB7285952348",
+        "title": "Liquidificador Philco Ph900 Com Filtro 12 Velocidades 3 127v",
+        "price": 239.54,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7285952348-liquidificador-philco-ph900-com-filtro-12-velocidades-3-127v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 201.11 → R$ 239.54."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "aac0b9b3-eafd-4013-a7c3-a68118e9b81a",
+      "sku": "VTK017760",
+      "category": {
+        "id": "MLB31674",
+        "nome": "Processadores",
+        "dominio": "MLB-FOOD_PROCESSORS"
+      },
+      "anuncio": {
+        "id": "MLB7285976880",
+        "title": "Miniprocessador Agratto Ampr01i-01 350ml 100w 127v 127v",
+        "price": 122.94,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7285976880-miniprocessador-agratto-ampr01i-01-350ml-100w-127v-127v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 102.38 → R$ 122.94."
+      ]
+    }
+  ],
+  "failed": []
+}

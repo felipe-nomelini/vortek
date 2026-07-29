@@ -1,0 +1,110 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/catalog-evidence/researched-2026-07-29/run-results/001-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-researched-ready-now-001",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "8d23282f-5f35-4856-b5e7-8cfe11c885c5",
+      "sku": "VTK018787",
+      "category": {
+        "id": "MLB1664",
+        "nome": "Fones",
+        "dominio": "MLB-HEADPHONES"
+      },
+      "anuncio": {
+        "id": "MLB4966507939",
+        "title": "Fone Headset Intelbras Chs-55 Conector Usb 4010058",
+        "price": 457.54,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4966507939-fone-headset-intelbras-chs-55-conector-usb-4010058-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 428.63 → R$ 457.54."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "a61b46d2-bd8e-4552-98b9-e15bf512bbf3",
+      "sku": "VTK018925",
+      "category": {
+        "id": "MLB1053",
+        "nome": "Telefones",
+        "dominio": "MLB-TELEPHONES"
+      },
+      "anuncio": {
+        "id": "MLB4966508243",
+        "title": "Kit Telefone Intelbras Celular Fixo Gsm Cfa4212",
+        "price": 687.04,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4966508243-kit-telefone-intelbras-celular-fixo-gsm-cfa4212-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 637.35 → R$ 687.04."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "43d93697-e343-4216-8636-d73515ee50f3",
+      "sku": "VTK018148",
+      "category": {
+        "id": "MLB1053",
+        "nome": "Telefones",
+        "dominio": "MLB-TELEPHONES"
+      },
+      "anuncio": {
+        "id": "MLB4966508585",
+        "title": "Telefone Sem Fio Intelbras Ts 3110 /vermelho 4123101 Branco",
+        "price": 252.04,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4966508585-telefone-sem-fio-intelbras-ts-3110-vermelho-4123101-branco-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 223.85 → R$ 252.04."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "d4bf1161-e883-4b56-8ad4-a1333e1fab38",
+      "sku": "VTK019951",
+      "category": {
+        "id": "MLB1053",
+        "nome": "Telefones",
+        "dominio": "MLB-TELEPHONES"
+      },
+      "anuncio": {
+        "id": "MLB7286113796",
+        "title": "Telefone Sem Fio Intelbras Ts5120 Digital",
+        "price": 262.67,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7286113796-telefone-sem-fio-intelbras-ts5120-digital-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 229.86 → R$ 262.67."
+      ]
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,241 @@
+{
+  "batchNumber": 1,
+  "batchId": "evolusom-domain-approved-001",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "e7082089-80b5-4c92-b5d0-d3834e9bf04c",
+      "sku": "VTK017955",
+      "nome": "Jogo De Panelas Tramontina Loreto Alumínio Starflon Max 5 Peças Grafite",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 259.9,
+      "estoque": 19,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 368.99,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7891112267015",
+        "validatedNcm": "76151000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB107564",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "433",
+          "value_name": "Tramontina"
+        },
+        {
+          "id": "LINE",
+          "value_id": "13943597",
+          "value_name": "Loreto"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "73236906",
+          "value_name": "20399/082"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "value_id": "3402025",
+          "value_name": "5"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "2748301",
+          "value_name": "Alumínio"
+        },
+        {
+          "id": "PIECES_INCLUDED",
+          "value_id": "2511613",
+          "value_name": "Panela, Frigideira, Chaleira, Panela 16 cm, Panela 18 cm"
+        },
+        {
+          "id": "IS_FACTORY_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_INDUCTION_COOKER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_NONSTICK_COATING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "73252016",
+          "value_name": "7891112267015"
+        },
+        {
+          "id": "HANDLE_MATERIAL",
+          "value_id": "5884734",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "IS_DISHWASHWE_SAFE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB65303162",
+        "catalogProductName": "Conjunto de panelas de bateria de cozinha Tramontina Loreto Teflon de 5 peças",
+        "catalogDomainId": "MLB-KITCHEN_COOKWARE_KITS",
+        "predictedDomainId": "MLB-KITCHEN_COOKWARE_KITS",
+        "categoryId": "MLB107564",
+        "categoryName": "Jogo de Panelas",
+        "linkedListingsInCategory": 10,
+        "validatedGtin": "7891112267015"
+      }
+    },
+    {
+      "produtoId": "074533de-3625-4ac5-87e6-970a7b9add7c",
+      "sku": "VTK017251",
+      "nome": "Resistência Zagonel Sublime/ Move 127v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 12.13,
+      "estoque": 39,
+      "mlFee": 0.18,
+      "mlShipping": 13.25,
+      "customPrice": 58.18,
+      "suggestedPricePreview": 58.18,
+      "priceSource": "custom_price",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897273200847",
+        "validatedNcm": "85168010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB269858",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2997256",
+          "value_name": "Zagonel"
+        },
+        {
+          "id": "LINE",
+          "value_id": "15020217",
+          "value_name": "Resistência"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "49734619",
+          "value_name": "Resistência Zagonel"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "FINISH",
+          "value_id": "4042441",
+          "value_name": "Fosco"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "76142750",
+          "value_name": "TERMOPLASTICO E ALUMINIO"
+        },
+        {
+          "id": "SHAPE",
+          "value_id": "39977660",
+          "value_name": "Redonda"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7828417",
+          "value_name": "6 cm"
+        },
+        {
+          "id": "DIAMETER",
+          "value_id": "7574681",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "8129828",
+          "value_name": "7 cm"
+        },
+        {
+          "id": "INSTALLATION_TYPE",
+          "value_id": "43133063",
+          "value_name": "220V"
+        },
+        {
+          "id": "IS_FIXED",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_FLEXIBLE_HOSE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "INCLUDES_SUPPORT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "22003045",
+          "value_name": "7897273200847"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB25360456",
+        "catalogProductName": "Resistência para Ducha Moment Eletrônica Sublime e Move 127v 5500w - Zagonel",
+        "catalogDomainId": "MLB-SHOWER_HEADS",
+        "predictedDomainId": "MLB-SHOWER_HEADS",
+        "categoryId": "MLB269858",
+        "categoryName": "Convencionais",
+        "linkedListingsInCategory": 30,
+        "validatedGtin": "7897273200847"
+      }
+    }
+  ]
+}

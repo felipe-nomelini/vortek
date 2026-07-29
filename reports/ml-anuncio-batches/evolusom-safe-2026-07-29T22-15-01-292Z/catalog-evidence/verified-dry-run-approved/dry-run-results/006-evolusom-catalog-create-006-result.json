@@ -1,0 +1,29 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/catalog-evidence/verified-dry-run-approved/dry-run-results/006-evolusom-catalog-create-006-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-006",
+  "selected": 1,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "d4bf1161-e883-4b56-8ad4-a1333e1fab38",
+      "sku": "VTK019951",
+      "nome": "Telefone Sem Fio Intelbras Ts5120 Digital",
+      "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB1053",
+            "nome": "Telefones"
+          },
+          "missing": [
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

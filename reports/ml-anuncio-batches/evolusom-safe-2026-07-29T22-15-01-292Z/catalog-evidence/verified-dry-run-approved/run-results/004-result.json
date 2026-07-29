@@ -1,0 +1,162 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/catalog-evidence/verified-dry-run-approved/run-results/004-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-004",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "3e731d68-d11e-4a79-b40e-5904840154d1",
+      "sku": "VTK018766",
+      "category": {
+        "id": "MLB10233",
+        "nome": "Suportes para Caixas de Som",
+        "dominio": "MLB-SPEAKERS_STANDS"
+      },
+      "anuncio": {
+        "id": "MLB7285980812",
+        "title": "Pedestal Ask Para Caixa Acústica Cxt Regulagem Telescópica Preto",
+        "price": 175.64,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7285980812-pedestal-ask-para-caixa-acustica-cxt-regulagem-telescopica-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 148.65 → R$ 175.64."
+      ]
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "960911fa-1318-4eb5-9e22-dbcf1f944e8b",
+      "sku": "VTK018451",
+      "nome": "Sensor Magnético Abertura Intelbras Sem Fio Is3",
+      "error": "Atributos obrigatórios pendentes. Revise antes de criar o anúncio.",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": false,
+            "error": "Existem atributos obrigatórios sem preenchimento."
+          },
+          "anuncio": {
+            "ok": false
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Voltagem: valor removido porque não há evidência local/DSLite confiável para atributo crítico."
+        ],
+        "missing_required_attributes": [
+          {
+            "id": "VOLTAGE",
+            "name": "Voltagem"
+          }
+        ],
+        "error": "Atributos obrigatórios pendentes. Revise antes de criar o anúncio."
+      }
+    },
+    {
+      "produtoId": "152f7e88-3187-4dd5-b483-200878ef45b3",
+      "sku": "VTK018927",
+      "nome": "Sensor Presenca Intelbras Sem Fio Is5",
+      "error": "Atributos obrigatórios pendentes. Revise antes de criar o anúncio.",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": false,
+            "error": "Existem atributos obrigatórios sem preenchimento."
+          },
+          "anuncio": {
+            "ok": false
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Voltagem: valor removido porque não há evidência local/DSLite confiável para atributo crítico."
+        ],
+        "missing_required_attributes": [
+          {
+            "id": "VOLTAGE",
+            "name": "Voltagem"
+          }
+        ],
+        "error": "Atributos obrigatórios pendentes. Revise antes de criar o anúncio."
+      }
+    },
+    {
+      "produtoId": "cb1d8fa6-2b15-4c15-a92b-146c2007213a",
+      "sku": "VTK018926",
+      "nome": "Sirene Sem Fio Intelbras Is7",
+      "error": "Atributos obrigatórios pendentes. Revise antes de criar o anúncio.",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": false,
+            "error": "Existem atributos obrigatórios sem preenchimento."
+          },
+          "anuncio": {
+            "ok": false
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Voltagem: valor removido porque não há evidência local/DSLite confiável para atributo crítico."
+        ],
+        "missing_required_attributes": [
+          {
+            "id": "VOLTAGE",
+            "name": "Voltagem"
+          }
+        ],
+        "error": "Atributos obrigatórios pendentes. Revise antes de criar o anúncio."
+      }
+    }
+  ]
+}

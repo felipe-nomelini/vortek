@@ -1,0 +1,325 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/catalog-evidence/researched-2026-07-29/dry-run-results/005-evolusom-catalog-create-005-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-005",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "960911fa-1318-4eb5-9e22-dbcf1f944e8b",
+      "sku": "VTK018451",
+      "category": {
+        "id": "MLB7070",
+        "nome": "Alarmes e Sensores",
+        "dominio": "MLB-HOME_ALARMS_AND_SENSORS"
+      },
+      "basePrice": 142.01,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "18196176",
+          "value_name": "iS3"
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "",
+          "value_name": "3 Vdc"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "name": "Tipo de dispositivo",
+          "value_id": "395195",
+          "value_name": "Sensor"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "18196175",
+          "value_name": "7896637680363"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "7462936",
+          "value_name": "Bateria/Pilha"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Sensor Magnético Abertura Intelbras Sem Fio Is3\n\nVISÃO GERAL\nInformações do Produto Sensor de abertura IS3 Para utilização com iC7s. Informações Técnicas Frequência de operação 433,92 MHz Alcance RF 80 metros sem barreiras Alimentação 3 Vdc, bateria de lítio CR2450 inclusa Corrente de operação Repouso: 20 A Máximo: 40 mA Peso 42 g com bateria Dimensões (L × A × P) 71,9 × 50 × 18,5 mm Temperatura de operação -10 °C ~ 50 °C Umidade 10% ~ 90% Anti-jamming Imunidade contra interferências de sinais mal intencionados Alarme de bateria baixa 2,4 V 0,1 *Imagens meramente ilustrativas\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Intelbras\n• Modelo: iS3\n• Voltagem: 3 Vdc\n• Tipo de dispositivo: Sensor\n• Tipo de alimentação: Bateria/Pilha\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INTELBRAS\n• GTIN: 7896637680363\n• NCM: 85437099\n• SKU: VTK018451\n\nEMBALAGEM\n• Dimensões informadas: 4 × 9 × 10 cm\n• Peso bruto informado: 0,076 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "152f7e88-3187-4dd5-b483-200878ef45b3",
+      "sku": "VTK018927",
+      "category": {
+        "id": "MLB7070",
+        "nome": "Alarmes e Sensores",
+        "dominio": "MLB-HOME_ALARMS_AND_SENSORS"
+      },
+      "basePrice": 245.77,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "16716867",
+          "value_name": "iS5"
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "",
+          "value_name": "3 Vdc"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "name": "Tipo de dispositivo",
+          "value_id": "395195",
+          "value_name": "Sensor"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "16716866",
+          "value_name": "7896637680387"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "7462936",
+          "value_name": "Bateria/Pilha"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Sensor Presenca Intelbras Sem Fio Is5\n\nVISÃO GERAL\nInformações do Produto Sensor de presença sem fio IS5 O sensor de presença sem fio iS5 funciona exclusivamente com a câmera de segurança com alarme integrado iC7s e o aplicativo Mibo. O sensor é totalmente sem fio e Pet Imune, o que garante que o alarme não será acionado com seu animal de estimação de até 25 kg. De fácil configuração e instalação, envia notificações de alarme ao aplicativo Mibo sempre que for ativado.\n\n- Sensor de presença para uso interno - Comunicação sem fios e alimentação por bateria de lítio - Pet Imune: não detecta animais de pequeno porte de até 25 kg - Fixação por parafusos ou fita dupla face (inclusos na embalagem) - Funciona exclusivamente com a câmera de segurança com alarme integrado iC7s e o aplicativo Mibo. Informações Técnicas Frequência 433,92 MHz Alcance RF 80 metros sem barreiras Cobertura grade angular 90° Alcance de detecção Até 12 m Temperatura de operação -10 °C a +50 °C umidade 0-95% (sem condensação) Imunidade a animais Até 25 kg Altura de instalação 1,8 a 2,5 m Método de detecção PIR Alimentação Bateria de lítio 3 Vdc, CR123A Alarme de bateria baixa Sim, notificação através do aplicativo Intelbras Mibo Corrente de operação Repouso: 15 uA Máximo: 22 mA *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Intelbras\n• Modelo: iS5\n• Voltagem: 3 Vdc\n• Tipo de dispositivo: Sensor\n• Tipo de alimentação: Bateria/Pilha\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INTELBRAS\n• GTIN: 7896637680387\n• NCM: 85437099\n• SKU: VTK018927\n\nEMBALAGEM\n• Dimensões informadas: 4 × 6 × 10 cm\n• Peso bruto informado: 0,051 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "cb1d8fa6-2b15-4c15-a92b-146c2007213a",
+      "sku": "VTK018926",
+      "category": {
+        "id": "MLB7070",
+        "nome": "Alarmes e Sensores",
+        "dominio": "MLB-HOME_ALARMS_AND_SENSORS"
+      },
+      "basePrice": 267.47,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "16811808",
+          "value_name": "iS7"
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "",
+          "value_name": "5 Vdc"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "name": "Tipo de dispositivo",
+          "value_id": "395193",
+          "value_name": "Alarme"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "16811807",
+          "value_name": "7896637680349"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Sirene Sem Fio Intelbras Is7\n\nVISÃO GERAL\nInformações do Produto A sirene iS7 funciona exclusivamente com a câmera de segurança com alarme integrado iC7s e aplicativo Mibo. Funcional, ela gera aviso luminoso e sonoro sempre que o alarme da câmera iC7s for ativado. De fácil configuração e instalação, a comunicação dela com a câmera iC7s é feita sem uso de fio.\n\n- Sirene para uso interno - Comunicação sem fios - Aviso luminoso, e sonoro de 85 dB - Fixação por parafusos ou fita dupla face (inclusos na embalagem) - Funciona exclusivamente com a câmera de segurança com alarme integrado iC7s e o aplicativo Mibo - Alimentação 5 Vdc (fonte inclusa) Informações Técnicas Frequência de operação 433,92 MHz Alcance RF 80 metros sem barreiras Alimentação 5 Vdc (micro-USB) Corrente operacional 22 mA ~ 200 mA Potência sonora 85 dB (3 m) Temperatura de operação -10 °C a 55 °C Umidade relativa 10% ~ 90% Dimensões (LxAxP) 67x121x33 mm Peso 235g\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Intelbras\n• Modelo: iS7\n• Voltagem: 5 Vdc\n• Tipo de dispositivo: Alarme\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INTELBRAS\n• GTIN: 7896637680349\n• NCM: 85318000\n• SKU: VTK018926\n\nEMBALAGEM\n• Dimensões informadas: 5 × 15 × 16 cm\n• Peso bruto informado: 0,226 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4264a425-c8f3-4835-89a1-1bdea2647e0a",
+      "sku": "VTK018973",
+      "category": {
+        "id": "MLB7070",
+        "nome": "Alarmes e Sensores",
+        "dominio": "MLB-HOME_ALARMS_AND_SENSORS"
+      },
+      "basePrice": 333.25,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "16716869",
+          "value_name": "ISI 1001"
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "",
+          "value_name": "12 Vdc"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "name": "Tipo de dispositivo",
+          "value_id": "395193",
+          "value_name": "Alarme"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "16716868",
+          "value_name": "7899298603979, 8100000033595, 7804518874060"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "7462936",
+          "value_name": "Bateria/Pilha"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Sirene Smart Isi 1001 Intelbras\n\nVISÃO GERAL\nAdicione mais segurança ao seu sistema de automação IZY. A Sirene Smart ISI 1001 possui um alarme visual e sonoro de 100dB. A sirene pode disparar caso o algum sensor seja violado ou conforme programado através do app IZY.\n\nNecessita de um HUB da linha IZY para funcionamento. Alarme visual e sonoro Para garantir mais segurança, a sirene gera aviso luminoso e sonoro de 100 dB. Bateria interna Sua sirene funciona mesmo com falta de energia.\n\nO hub, porém, também precisa estar energizado. Instalação fácil Para instalar, basta fixar no local desejado e adicionar ao hub da linha IZY. Tecnologia ZigBee A tecnologia de comunicação sem fio garante mais segurança, velocidade e baixo consumo de bateria.\n\nAmplie seu sistema Adicione mais produtos da linha IZY e tenha uma solução com a sua cara. *Imagens meramente ilustrativas.\n\nESPECIFICAÇÕES TÉCNICAS CONFIRMADAS PELO FABRICANTE\n\n- Fonte de alimentação: DC 12 V, 1 A\n\n- Bateria interna: 3,7 V (lítio)\n\n- Potência sonora: 100 dB\n\n- Uso indicado: ambiente interno\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Intelbras\n• Modelo: ISI 1001\n• Voltagem: 12 Vdc\n• Tipo de dispositivo: Alarme\n• Tipo de alimentação: Bateria/Pilha\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INTELBRAS\n• GTIN: 7899298603979\n• NCM: 85318000\n• SKU: VTK018973\n\nEMBALAGEM\n• Dimensões informadas: 8 × 8 × 8 cm\n• Peso bruto informado: 0,186 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "43d93697-e343-4216-8636-d73515ee50f3",
+      "sku": "VTK018148",
+      "category": {
+        "id": "MLB1053",
+        "nome": "Telefones",
+        "dominio": "MLB-TELEPHONES"
+      },
+      "basePrice": 223.85,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "45983580",
+          "value_name": "TS 3110 Branco/Vermelho"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "name": "É sem fio",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "name": "Homologação Anatel Nº",
+          "value_id": "",
+          "value_name": "020121300160"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "9076720",
+          "value_name": "7896637675888, 8100000013412"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Telefone Sem Fio Intelbras Ts 3110 Branco/vermelho 4123101\n\nVISÃO GERAL\nInformações do Produto O telefone sem fio TS 3110 possui design ergonômico, display luminoso e bateria de alta duração, perfeito para quem utiliza o aparelho por longas horas ou necessita de mobilidade durante as ligações. - Tecnologia DECT 6. 0 - Identificação de chamadas - Display luminoso - Capacidade para até 7 ramais (base + 6 ramais)¹ - Agenda para 70 contatos - Registro de 15 chamadas atendidas, 20 não atendidas e 15 originadas - Discagem rápida para até 10 números - Data, hora e alarme - Menu trilíngue em português, espanhol e inglês - 7 tipos de toque com 5 opções de volume - Bloqueio de chamadas originadas - Comunicação interna, conferência a três e transferência de chamadas¹ ¹Funções realizáveis entre telefones Intelbras das séries TS 31, TS 40 e TS 60.\n\nInformações Técnicas Tecnologia digital Sim: DECT 6. 0 Frequência 1,9 Ghz (1. 910 - 1.\n\n920 Mhz) Identificação de chamadas Sim: DTMF/FSK Capacidade de expansão Sim: 7 ramais (base + 6 ramais) Comunicação interna Sim Conferência a três Sim Transferência de chamadas Sim Compartilhamento de agenda Não Compatibilidade Telefones sem fio Intelbras das séries TS 31, TS 40 e TS 60 Secretária eletrônica Secretária eletrônica digital Não Display Display luminoso Sim: âmbar Tipo de display Alfanumérico Tamanho do display 1,5 Indicação de carga da bateria Sim Indicação de intensidade do sinal Não Áudio Viva-voz Não Ajuste de volume do viva-voz N/A Tipos de toque 7 monofônicos Ajuste de volume de toque Sim: 5 opções Ajuste de volume de áudio Sim: 5 opções Som do teclado ajustável Sim Memória Capacidade da agenda 70 contatos Registro de chamadas recebidas Sim: 15 atendidas e 20 não atendidas Registro de chamadas originadas Sim: 15 chamadas Características externas Teclado luminoso Não Entrada para fone de ouvido Não Teclas para navegação no display Sim Prendedor de cinto (clip belt) Não Posições de uso Mesa Facilidades Data/Hora Sim Alarme Sim Idiomas do menu Português, espanhol e inglês Funções Flash Rediscar Mudo Pausa Menu de fácil navegação Sim Discagem rápida Sim: 10 números Bloqueio de chamadas Sim: Originadas Bloqueio de teclado Sim Eco Mode Sim Discagem direta Não LED no fone Sim: Indicação de carga e Chamadas não atendidas Autoatendimento Sim Modo repouso automático ao colocar o fone na base Sim Seleção Pública/PABX Sim Ajuste de tempo de flash Sim: 100 a 900 ms Código de área Sim Modos de discagem Tom/Pul Page (localizador do fone) Sim Monitoramento de ambiente/Babá eletrônica Não Gravação de chamadas em curso Não Alimentação Capacidade da bateria 600 mAh Duração da bateria 20 h em uso ou 200 h em repouso Tipo de bateria NiMH Alimentação Bivolt (100 - 240 V) Consumo de energia 0,8 W (em espera) 1,1 W (em uso) 2,2 W (em carga) Informações técnicas Dimensões (L x A x P) Fone: 50 x 154 x 34 mm Base: 105 x 87 x 95 mm Fone + base: 105 x 160 x 100 mm Peso Líquido: 309 g Peso Bruto: 408 g Cor Branco/Vermelho Conteúdo da Embalagem - 1 fone; - 1 base, - 1 bateria recarregável; - 1 adaptador de tensão bivolt; - 1 cabo de linha telefônica; - 1 manual do usuário.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Intelbras\n• Modelo: TS 3110 Branco/Vermelho\n• É sem fio: Sim\n• Homologação Anatel Nº: 020121300160\n• Cor: Branco\n• Cor principal: Branco\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INTELBRAS\n• GTIN: 7896637675888\n• NCM: 85171100\n• SKU: VTK018148\n\nEMBALAGEM\n• Dimensões informadas: 11 × 8.5 × 16 cm\n• Peso bruto informado: 0,346 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

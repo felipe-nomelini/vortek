@@ -1,0 +1,636 @@
+{
+  "batchNumber": 1,
+  "batchId": "evolusom-researched-ready-now-001",
+  "strategy": "official_research_verified",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "8d23282f-5f35-4856-b5e7-8cfe11c885c5",
+      "sku": "VTK018787",
+      "nome": "Fone Headset Intelbras Chs-55 Conector Usb 4010058",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 290.72,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 412.75,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637685375",
+        "validatedNcm": "85183000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": []
+      },
+      "categoryId": "MLB1664",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24716402",
+          "value_name": "CHS 55 - USB"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24716399",
+          "value_name": "7896637685375"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27363905",
+        "catalogProductName": "Headset Intelbras Chs 55 Usb",
+        "catalogDomainId": "MLB-HEADPHONES",
+        "predictedDomainId": "MLB-HEADSET_TELEPHONES",
+        "categoryId": "MLB3828",
+        "categoryName": "Fones",
+        "linkedListingsInCategory": 23,
+        "validatedGtin": "7896637685375"
+      }
+    },
+    {
+      "produtoId": "a61b46d2-bd8e-4552-98b9-e15bf512bbf3",
+      "sku": "VTK018925",
+      "nome": "Kit Telefone Intelbras Celular Fixo Gsm Cfa4212",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 424.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 629.48,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637677462",
+        "validatedNcm": "85171439",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "ANATEL_HOMOLOGATION_NUMBER"
+        ]
+      },
+      "categoryId": "MLB1053",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17484093",
+          "value_name": "CFA4212"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MOBILE_NETWORK",
+          "value_id": "7472026",
+          "value_name": "2G"
+        },
+        {
+          "id": "TALK_TIME",
+          "value_id": "6973762",
+          "value_name": "5 h"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "38446075",
+          "value_name": "850/900/1800/1900 MHz"
+        },
+        {
+          "id": "HEADPHONES_NUMBER_INCLUDED",
+          "value_id": "7512605",
+          "value_name": "1"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CALLER_IDENTIFICATION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "value_id": "160433",
+          "value_name": "800 mAh"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "17484116",
+          "value_name": "7896637677462"
+        },
+        {
+          "id": "PHONEBOOK_ENTRIES_CAPACITY",
+          "value_id": "17484118",
+          "value_name": "300"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_name": "056181600160"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22236494",
+        "catalogProductName": "Telefone Com Fio Gsm Cfa4212 Intelbras Preto",
+        "catalogDomainId": "MLB-TELEPHONES",
+        "predictedDomainId": "MLB-TELEPHONES",
+        "categoryId": "MLB1053",
+        "categoryName": "Telefones",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7896637677462"
+      }
+    },
+    {
+      "produtoId": "43d93697-e343-4216-8636-d73515ee50f3",
+      "sku": "VTK018148",
+      "nome": "Telefone Sem Fio Intelbras Ts 3110 Branco/vermelho 4123101",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 155.72,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 221.08,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637675888",
+        "validatedNcm": "85171100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "ANATEL_HOMOLOGATION_NUMBER"
+        ]
+      },
+      "categoryId": "MLB1053",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "LINE",
+          "value_id": "45983579",
+          "value_name": "Serie TS 31"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "45983580",
+          "value_name": "TS 3110 Branco/Vermelho"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450307",
+          "value_name": "Vermelho"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "102258",
+          "value_name": "Digital"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "value_id": "19502195",
+          "value_name": "Fonte de alimentação"
+        },
+        {
+          "id": "STANDBY_MODE_BATTERY_DURATION",
+          "value_id": "30390044",
+          "value_name": "200 h"
+        },
+        {
+          "id": "TALK_TIME",
+          "value_id": "2087877",
+          "value_name": "20 h"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "8744458",
+          "value_name": "1.9 GHz"
+        },
+        {
+          "id": "HEADPHONES_OUTPUTS_NUMBER",
+          "value_id": "16012652",
+          "value_name": "0"
+        },
+        {
+          "id": "HEADPHONES_NUMBER_INCLUDED",
+          "value_id": "14232117",
+          "value_name": "0"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_CALLER_IDENTIFICATION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ANSWERING_MACHINE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WALL_MOUNTABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_DUAL_SIM",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_RURAL_TELEPHONE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "value_id": "149366",
+          "value_name": "600 mAh"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "9076720",
+          "value_name": "7896637675888, 8100000013412"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "45983582",
+          "value_name": "4123101"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "6397418",
+          "value_name": "1.5 \""
+        },
+        {
+          "id": "WITH_BATTERY_CHARGE_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "PHONEBOOK_ENTRIES_CAPACITY",
+          "value_id": "8801844",
+          "value_name": "70"
+        },
+        {
+          "id": "RINGTONES_NUMBER",
+          "value_id": "8801843",
+          "value_name": "7"
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CALL_BLOCKING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ALARM_CLOCK_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BACKLIT_KEYPAD",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DATE_AND_TIME_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_FLASH_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REDIAL_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_HANDSET_VOLUME_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SILENCE_MODE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_name": "020121300160"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB44806959",
+        "catalogProductName": "Telefone Sem Fio Com Bina Branco Vermelho Ts 3110 Intelbras",
+        "catalogDomainId": "MLB-TELEPHONES",
+        "predictedDomainId": "MLB-TELEPHONES",
+        "categoryId": "MLB1053",
+        "categoryName": "Telefones",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7896637675888"
+      }
+    },
+    {
+      "produtoId": "d4bf1161-e883-4b56-8ad4-a1333e1fab38",
+      "sku": "VTK019951",
+      "nome": "Telefone Sem Fio Intelbras Ts5120 Digital",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 159.9,
+      "estoque": 19,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 227.02,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637647588",
+        "validatedNcm": "85171100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "ANATEL_HOMOLOGATION_NUMBER"
+        ]
+      },
+      "categoryId": "MLB1053",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "LINE",
+          "value_id": "6134174",
+          "value_name": "Serie 2000"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "1175468",
+          "value_name": "TS 5120"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "40522399",
+          "value_name": "TS 5120"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "102258",
+          "value_name": "Digital"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "value_id": "18538119",
+          "value_name": "110V/220V"
+        },
+        {
+          "id": "STANDBY_MODE_BATTERY_DURATION",
+          "value_id": "30390044",
+          "value_name": "200 h"
+        },
+        {
+          "id": "TALK_TIME",
+          "value_id": "2087877",
+          "value_name": "20 h"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "35699413",
+          "value_name": "1,9Ghz"
+        },
+        {
+          "id": "HEADPHONES_OUTPUTS_NUMBER",
+          "value_id": "16631742",
+          "value_name": "1"
+        },
+        {
+          "id": "HEADPHONES_NUMBER_INCLUDED",
+          "value_id": "7512605",
+          "value_name": "1"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_CALLER_IDENTIFICATION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ANSWERING_MACHINE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WALL_MOUNTABLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_DUAL_SIM",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_RURAL_TELEPHONE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "value_id": "149366",
+          "value_name": "600 mAh"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "9076726",
+          "value_name": "7896637647588"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "40742705",
+          "value_name": "TS 5120"
+        },
+        {
+          "id": "WITH_BATTERY_CHARGE_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "PHONEBOOK_ENTRIES_CAPACITY",
+          "value_id": "8801844",
+          "value_name": "70"
+        },
+        {
+          "id": "RINGTONES_NUMBER",
+          "value_id": "8761289",
+          "value_name": "10"
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_CALL_BLOCKING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ALARM_CLOCK_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ECO_MODE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BACKLIT_KEYPAD",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DATE_AND_TIME_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_FLASH_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REDIAL_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_HANDSET_VOLUME_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SILENCE_MODE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_name": "005501500160"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB47805561",
+        "catalogProductName": "Telefone Sem Fio Com Identi Chamada Intelbras Ts 5120",
+        "catalogDomainId": "MLB-TELEPHONES",
+        "predictedDomainId": "MLB-TELEPHONES",
+        "categoryId": "MLB1053",
+        "categoryName": "Telefones",
+        "linkedListingsInCategory": 11,
+        "validatedGtin": "7896637647588"
+      }
+    }
+  ]
+}

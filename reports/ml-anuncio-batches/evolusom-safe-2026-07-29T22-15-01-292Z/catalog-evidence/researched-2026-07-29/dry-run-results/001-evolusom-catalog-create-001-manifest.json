@@ -1,0 +1,474 @@
+{
+  "batchNumber": 1,
+  "batchId": "evolusom-catalog-create-001",
+  "strategy": "exact_gtin_catalog_evidence",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "e666735c-5699-4787-9273-2e2be34c872a",
+      "sku": "VTK017848",
+      "nome": "Cabo Alarme Telecam 100 Metros 50 X 10 Vias Cca Liga Cobre",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 79.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 123.33,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898619565781",
+        "validatedNcm": "85441100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7070",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "15436071",
+          "value_name": "TELECAM"
+        },
+        {
+          "id": "LINE",
+          "value_id": "73704585",
+          "value_name": "Tipo CCI aluminio cobreado"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "97819",
+          "value_name": "10x50"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "value_id": "395193",
+          "value_name": "Alarme"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "73704586",
+          "value_name": "CCI (Cobre Cladado de Alumínio)"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "23024505",
+          "value_name": "10000 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "73704587",
+          "value_name": "7900940025114, 7898619565781"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "15436071",
+          "value_name": "TELECAM"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "73704584",
+          "value_name": "10x50 200103701"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB65825760",
+        "catalogProductName": "Cabo Para Alarme 10 Vias 10x50 100 Metros Tipo Cci Telecam Branco",
+        "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7898619565781"
+      }
+    },
+    {
+      "produtoId": "aede4efb-eb6d-4bfe-9bbb-bdb616fb02f3",
+      "sku": "VTK017787",
+      "nome": "Cabo De Aço Galvanizado Vonder 1,5mm 6x7 Bobina 500m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 294.84,
+      "estoque": 25,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 418.6,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893946146917",
+        "validatedNcm": "73121090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "CABLE_STRANDS_NUMBER"
+        ]
+      },
+      "categoryId": "MLB455240",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "275828",
+          "value_name": "Vonder"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "22567979",
+          "value_name": "3516015607"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "16505765",
+          "value_name": "1.5 mm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "20418340",
+          "value_name": "500 m"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "11705594",
+          "value_name": "4.6 kg"
+        },
+        {
+          "id": "CLOSED_STRENGTH",
+          "value_id": "34722849",
+          "value_name": "146 kN"
+        },
+        {
+          "id": "WITH_TEXTILE_CORE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_STEEL_CORE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "22567978",
+          "value_name": "7893946146917, 07801226842190"
+        },
+        {
+          "id": "CABLE_STRANDS_NUMBER",
+          "value_name": "6"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB25777139",
+        "catalogProductName": "Cabo De Aço Galvanizado Vonder 1.5mm 6x7 Bobina 500m",
+        "catalogDomainId": "MLB-GALVANIZED_STEEL_CABLES",
+        "predictedDomainId": "MLB-GALVANIZED_STEEL_CABLES",
+        "categoryId": "MLB455240",
+        "categoryName": "Cabos de Aço Galvanizado",
+        "linkedListingsInCategory": 13,
+        "validatedGtin": "7893946146917"
+      }
+    },
+    {
+      "produtoId": "0a650f64-edae-4284-a0e7-e5c3cbdc13eb",
+      "sku": "VTK018150",
+      "nome": "Câmera Bullet Hikvision Plast Ds-2ce16d8t-itf 2.8 1080p",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 194.9,
+      "estoque": 13,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 276.71,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898646193605",
+        "validatedNcm": "85258300",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "CAMERA_LOCATIONS"
+        ]
+      },
+      "categoryId": "MLB7073",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "195091",
+          "value_name": "Hikvision"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "25220700",
+          "value_name": "Ds-2ce16d8t-itf"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "RESOLUTION_QUALITY",
+          "value_id": "20854587",
+          "value_name": "1080p"
+        },
+        {
+          "id": "RESOLUTION_TYPE",
+          "value_id": "290771",
+          "value_name": "HD"
+        },
+        {
+          "id": "SURVEILLANCE_CAMERA_TYPE",
+          "value_id": "372564",
+          "value_name": "Bala"
+        },
+        {
+          "id": "IS_MOTORIZED",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MOVEMENT_TYPE",
+          "value_id": "24899006",
+          "value_name": "Bullet"
+        },
+        {
+          "id": "WITH_NIGHT_VISION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "15425784",
+          "value_name": "7898646193605"
+        },
+        {
+          "id": "SPY_CAMERA_FORMAT",
+          "value_id": "13357616",
+          "value_name": "Lente"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "8261086",
+          "value_name": "3000 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "2319",
+          "value_name": "340 g"
+        },
+        {
+          "id": "CAMERA_LOCATIONS",
+          "value_id": "28284812",
+          "value_name": "Interior/Exterior"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21009405",
+        "catalogProductName": "Camera Bullet 1080p 2mp 4x1 2.8mm Ds-2ce16d8t-itf Hikvision Cor Branco",
+        "catalogDomainId": "MLB-SURVEILLANCE_CAMERAS",
+        "predictedDomainId": "MLB-SURVEILLANCE_CAMERAS",
+        "categoryId": "MLB7073",
+        "categoryName": "Câmeras de Segurança",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7898646193605"
+      }
+    },
+    {
+      "produtoId": "f28de582-af94-4f5d-9b29-2e3584891db3",
+      "sku": "VTK017375",
+      "nome": "Cooler Gamer Evus F-12rgb Fan 12cm Com Led Rgb",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 15.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 44.32,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597133125",
+        "validatedNcm": "84145990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "PRODUCT_TYPE"
+        ]
+      },
+      "categoryId": "MLB2676",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "32528941",
+          "value_name": "Kit 03 F12RGB"
+        },
+        {
+          "id": "LED_COLOR",
+          "value_id": "2347690",
+          "value_name": "RGB"
+        },
+        {
+          "id": "REFRIGERATION_TYPE",
+          "value_id": "2425649",
+          "value_name": "Air cooling"
+        },
+        {
+          "id": "PINS_NUMBER",
+          "value_id": "10620398",
+          "value_name": "4"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "32528942",
+          "value_name": "7898597133125"
+        },
+        {
+          "id": "AIRFLOW",
+          "value_id": "73924457",
+          "value_name": "35.8 cfm"
+        },
+        {
+          "id": "NOISE_LEVEL",
+          "value_id": "73940059",
+          "value_name": "19.6 dB"
+        },
+        {
+          "id": "MTBF",
+          "value_id": "73940060",
+          "value_name": "58000 h"
+        },
+        {
+          "id": "COOLER_SPEED",
+          "value_id": "60608122",
+          "value_name": "1000 rpm"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "37745159",
+          "value_name": "Ventoinha"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB32633601",
+        "catalogProductName": "Kit 3 Coolers Gamer Evus F12rgb Fan 12cm Com Led Rgb",
+        "catalogDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+        "predictedDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+        "categoryId": "MLB2676",
+        "categoryName": "Coolers e Ventoinhas",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7898597133125"
+      }
+    },
+    {
+      "produtoId": "d561c22c-cd28-4f4a-bd9e-6c2618eb8b1a",
+      "sku": "VTK017362",
+      "nome": "Cooler Gamer Evus F12s-argb Singularity",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 24.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 55.43,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597133569",
+        "validatedNcm": "84145990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "MODEL",
+          "PRODUCT_TYPE"
+        ]
+      },
+      "categoryId": "MLB2676",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "35784695",
+          "value_name": "7898597133569"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "F12S-ARGB"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "37745159",
+          "value_name": "Ventoinha"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB35213478",
+        "catalogProductName": "Cooler Gamer Evus F12s-argb Singularity",
+        "catalogDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+        "predictedDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+        "categoryId": "MLB2676",
+        "categoryName": "Coolers e Ventoinhas",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898597133569"
+      }
+    }
+  ]
+}

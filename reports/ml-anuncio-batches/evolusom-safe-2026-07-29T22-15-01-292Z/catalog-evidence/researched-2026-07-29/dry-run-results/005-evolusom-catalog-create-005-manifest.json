@@ -1,0 +1,733 @@
+{
+  "batchNumber": 5,
+  "batchId": "evolusom-catalog-create-005",
+  "strategy": "exact_gtin_catalog_evidence",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "960911fa-1318-4eb5-9e22-dbcf1f944e8b",
+      "sku": "VTK018451",
+      "nome": "Sensor Magnético Abertura Intelbras Sem Fio Is3",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 92.9,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 139.38,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637680363",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "VOLTAGE"
+        ]
+      },
+      "categoryId": "MLB7070",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18196176",
+          "value_name": "iS3"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "value_id": "395195",
+          "value_name": "Sensor"
+        },
+        {
+          "id": "SENSOR_TYPES",
+          "value_id": "16716930",
+          "value_name": "Magneticos"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18196175",
+          "value_name": "7896637680363"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "65947969",
+          "value_name": "20031800160"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_name": "3 Vdc"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22595787",
+        "catalogProductName": "Sensor Porta E Janela Sem Fio Magnético Intelbras Is3",
+        "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7896637680363"
+      }
+    },
+    {
+      "produtoId": "152f7e88-3187-4dd5-b483-200878ef45b3",
+      "sku": "VTK018927",
+      "nome": "Sensor Presenca Intelbras Sem Fio Is5",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 169.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 241.22,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637680387",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "VOLTAGE"
+        ]
+      },
+      "categoryId": "MLB7070",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "LINE",
+          "value_id": "4157388",
+          "value_name": "Mibo"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16716867",
+          "value_name": "iS5"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "value_id": "3071720",
+          "value_name": "7"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "value_id": "395195",
+          "value_name": "Sensor"
+        },
+        {
+          "id": "SENSOR_TYPES",
+          "value_id": "395198",
+          "value_name": "Infravermelho"
+        },
+        {
+          "id": "DETECTOR_TYPES",
+          "value_id": "8616768",
+          "value_name": "De movimento"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ZONES_NUMBER",
+          "value_id": "2649263",
+          "value_name": "1"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16716866",
+          "value_name": "7896637680387"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "65950700",
+          "value_name": "20051800160"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "77736468",
+          "value_name": "4605253"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_name": "3 Vdc"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21742485",
+        "catalogProductName": "Sensor De Presenca Sem Fio Is5 Intelbras",
+        "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7896637680387"
+      }
+    },
+    {
+      "produtoId": "cb1d8fa6-2b15-4c15-a92b-146c2007213a",
+      "sku": "VTK018926",
+      "nome": "Sirene Sem Fio Intelbras Is7",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 184.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 262.51,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637680349",
+        "validatedNcm": "85318000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "VOLTAGE"
+        ]
+      },
+      "categoryId": "MLB7070",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "LINE",
+          "value_id": "4157388",
+          "value_name": "Mibo"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16811808",
+          "value_name": "iS7"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "value_id": "395193",
+          "value_name": "Alarme"
+        },
+        {
+          "id": "SENSOR_TYPES",
+          "value_id": "16717502",
+          "value_name": "Sonoro"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16811807",
+          "value_name": "7896637680349"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "65950380",
+          "value_name": "20541800160"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_name": "5 Vdc"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21757393",
+        "catalogProductName": "Sirene Intelbras Is7 Sem Fio Para Alarme Integrado Cor Unico",
+        "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7896637680349"
+      }
+    },
+    {
+      "produtoId": "4264a425-c8f3-4835-89a1-1bdea2647e0a",
+      "sku": "VTK018973",
+      "nome": "Sirene Smart Isi 1001 Intelbras",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 230.38,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 327.08,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899298603979",
+        "validatedNcm": "85318000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "VOLTAGE"
+        ]
+      },
+      "categoryId": "MLB7070",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "LINE",
+          "value_id": "39340612",
+          "value_name": "Izi"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16716869",
+          "value_name": "ISI 1001"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "value_id": "2637839",
+          "value_name": "1"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "value_id": "395193",
+          "value_name": "Alarme"
+        },
+        {
+          "id": "SENSOR_TYPES",
+          "value_id": "39502990",
+          "value_name": "visual, Sonoro, por violação"
+        },
+        {
+          "id": "DETECTOR_TYPES",
+          "value_id": "24100214",
+          "value_name": "Sensores"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "39340615",
+          "value_name": "Centro"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "16844667",
+          "value_name": "Corrente elétrica/Bateria"
+        },
+        {
+          "id": "WITH_BACKUP_BATTERY",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7566493",
+          "value_name": "8 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7817388",
+          "value_name": "8 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "11112079",
+          "value_name": "3.5 cm"
+        },
+        {
+          "id": "SOUND_LEVEL",
+          "value_id": "28028033",
+          "value_name": "100 dB"
+        },
+        {
+          "id": "COVERAGE_DISTANCE",
+          "value_id": "7555954",
+          "value_name": "100 m"
+        },
+        {
+          "id": "IS_PET_IMMUNE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WEATHER_RESISTANT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIFI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_REMOTE_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_AUTOMATIC_DIALLING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SOUND_ALARM",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_DISCREET_ALARM",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "ZONES_NUMBER",
+          "value_id": "2649263",
+          "value_name": "1"
+        },
+        {
+          "id": "MAX_SENSORS_NUMBER",
+          "value_id": "7551710",
+          "value_name": "1"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16716868",
+          "value_name": "7899298603979, 8100000033595, 7804518874060"
+        },
+        {
+          "id": "ALARMS_NUMBER",
+          "value_id": "25759997",
+          "value_name": "1"
+        },
+        {
+          "id": "SENSORS_NUMBER",
+          "value_id": "8791504",
+          "value_name": "1"
+        },
+        {
+          "id": "SIRENS_NUMBER",
+          "value_id": "8628092",
+          "value_name": "1"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "75559686",
+          "value_name": "ISI 1001"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_name": "12 Vdc"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB38196594",
+        "catalogProductName": "Alarme Residencial Sirene Smart Isi 1001 cor Branco 100-240V Intelbras",
+        "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "linkedListingsInCategory": 17,
+        "validatedGtin": "7899298603979"
+      }
+    },
+    {
+      "produtoId": "43d93697-e343-4216-8636-d73515ee50f3",
+      "sku": "VTK018148",
+      "nome": "Telefone Sem Fio Intelbras Ts 3110 Branco/vermelho 4123101",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 155.72,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 221.08,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637675888",
+        "validatedNcm": "85171100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution",
+        "verifiedRequiredAttributes": [
+          "ANATEL_HOMOLOGATION_NUMBER"
+        ]
+      },
+      "categoryId": "MLB1053",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "LINE",
+          "value_id": "45983579",
+          "value_name": "Serie TS 31"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "45983580",
+          "value_name": "TS 3110 Branco/Vermelho"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450307",
+          "value_name": "Vermelho"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "102258",
+          "value_name": "Digital"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "value_id": "19502195",
+          "value_name": "Fonte de alimentação"
+        },
+        {
+          "id": "STANDBY_MODE_BATTERY_DURATION",
+          "value_id": "30390044",
+          "value_name": "200 h"
+        },
+        {
+          "id": "TALK_TIME",
+          "value_id": "2087877",
+          "value_name": "20 h"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "8744458",
+          "value_name": "1.9 GHz"
+        },
+        {
+          "id": "HEADPHONES_OUTPUTS_NUMBER",
+          "value_id": "16012652",
+          "value_name": "0"
+        },
+        {
+          "id": "HEADPHONES_NUMBER_INCLUDED",
+          "value_id": "14232117",
+          "value_name": "0"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_CALLER_IDENTIFICATION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ANSWERING_MACHINE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WALL_MOUNTABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_DUAL_SIM",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_RURAL_TELEPHONE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "value_id": "149366",
+          "value_name": "600 mAh"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "9076720",
+          "value_name": "7896637675888, 8100000013412"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "45983582",
+          "value_name": "4123101"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "6397418",
+          "value_name": "1.5 \""
+        },
+        {
+          "id": "WITH_BATTERY_CHARGE_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "PHONEBOOK_ENTRIES_CAPACITY",
+          "value_id": "8801844",
+          "value_name": "70"
+        },
+        {
+          "id": "RINGTONES_NUMBER",
+          "value_id": "8801843",
+          "value_name": "7"
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CALL_BLOCKING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ALARM_CLOCK_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BACKLIT_KEYPAD",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DATE_AND_TIME_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_FLASH_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REDIAL_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_HANDSET_VOLUME_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SILENCE_MODE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_name": "020121300160"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB44806959",
+        "catalogProductName": "Telefone Sem Fio Com Bina Branco Vermelho Ts 3110 Intelbras",
+        "catalogDomainId": "MLB-TELEPHONES",
+        "predictedDomainId": "MLB-TELEPHONES",
+        "categoryId": "MLB1053",
+        "categoryName": "Telefones",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7896637675888"
+      }
+    }
+  ]
+}

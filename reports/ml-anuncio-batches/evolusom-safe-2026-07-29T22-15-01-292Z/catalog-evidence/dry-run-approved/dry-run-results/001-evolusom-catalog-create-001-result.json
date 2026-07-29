@@ -1,0 +1,106 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/catalog-evidence/001-evolusom-catalog-create-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-001",
+  "selected": 5,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "e666735c-5699-4787-9273-2e2be34c872a",
+      "sku": "VTK017848",
+      "nome": "Cabo Alarme Telecam 100 Metros 50 X 10 Vias Cca Liga Cobre",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "aede4efb-eb6d-4bfe-9bbb-bdb616fb02f3",
+      "sku": "VTK017787",
+      "nome": "Cabo De Aço Galvanizado Vonder 1,5mm 6x7 Bobina 500m",
+      "error": "Atributos obrigatórios pendentes: Quantidade de torções por cabo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB455240",
+            "nome": "Cabos de Aço Galvanizado"
+          },
+          "missing": [
+            "Quantidade de torções por cabo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "0a650f64-edae-4284-a0e7-e5c3cbdc13eb",
+      "sku": "VTK018150",
+      "nome": "Câmera Bullet Hikvision Plast Ds-2ce16d8t-itf 2.8 1080p",
+      "error": "Atributos obrigatórios pendentes: Localizações da câmera",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7073",
+            "nome": "Câmeras de Segurança"
+          },
+          "missing": [
+            "Localizações da câmera"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f28de582-af94-4f5d-9b29-2e3584891db3",
+      "sku": "VTK017375",
+      "nome": "Cooler Gamer Evus F-12rgb Fan 12cm Com Led Rgb",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB2676",
+            "nome": "Coolers e Ventoinhas"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d561c22c-cd28-4f4a-bd9e-6c2618eb8b1a",
+      "sku": "VTK017362",
+      "nome": "Cooler Gamer Evus F12s-argb Singularity",
+      "error": "Atributos obrigatórios pendentes: Modelo, Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB2676",
+            "nome": "Coolers e Ventoinhas"
+          },
+          "missing": [
+            "Modelo",
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

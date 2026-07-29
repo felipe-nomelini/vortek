@@ -1,4 +1,13 @@
 import { resolvePreferredOfferForProduct } from "@/lib/preferred-offer";
+import {
+  extractStrictVoltage,
+  normalizeVoltageValue,
+} from "@/lib/ml-voltage";
+
+export {
+  extractStrictVoltage,
+  normalizeVoltageValue,
+} from "@/lib/ml-voltage";
 
 const CRITICAL_ML_ATTRIBUTE_IDS = new Set([
   "VOLTAGE",
@@ -18,24 +27,6 @@ function normalizeText(input: unknown): string {
 
 export function isMlCriticalAttributeId(input: unknown): boolean {
   return CRITICAL_ML_ATTRIBUTE_IDS.has(String(input || "").trim().toUpperCase());
-}
-
-export function extractStrictVoltage(input: unknown): string | null {
-  const text = normalizeText(input);
-  const direct = text.match(/\b(110|127|220)\s*v\b/);
-  if (direct?.[1]) return `${direct[1]}V`;
-  const labeled = text.match(/voltag(?:em)?[^\d]{0,20}(110|127|220)\s*v?/);
-  if (labeled?.[1]) return `${labeled[1]}V`;
-  return null;
-}
-
-export function normalizeVoltageValue(input: unknown): string | null {
-  const raw = String(input ?? "").trim().toUpperCase();
-  if (!raw) return null;
-  const match = raw.match(/(110|127|220)(?:\s*V)?(?:\/(110|127|220)(?:\s*V)?)?/i);
-  if (!match?.[1]) return raw;
-  if (match[2]) return `${match[1]}/${match[2]}V`;
-  return `${match[1]}V`;
 }
 
 export function extractPackagesNumber(input: unknown): number | null {

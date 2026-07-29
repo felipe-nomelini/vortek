@@ -1,0 +1,2077 @@
+[
+  {
+    "produtoId": "aede4efb-eb6d-4bfe-9bbb-bdb616fb02f3",
+    "sku": "VTK017787",
+    "nome": "Cabo De Aço Galvanizado Vonder 1,5mm 6x7 Bobina 500m",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 294.84,
+    "estoque": 25,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 418.6,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7893946146917",
+      "validatedNcm": "73121090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "CABLE_STRANDS_NUMBER"
+      ]
+    },
+    "categoryId": "MLB455240",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "275828",
+        "value_name": "Vonder"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "22567979",
+        "value_name": "3516015607"
+      },
+      {
+        "id": "CABLE_DIAMETER",
+        "value_id": "16505765",
+        "value_name": "1.5 mm"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "20418340",
+        "value_name": "500 m"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "11705594",
+        "value_name": "4.6 kg"
+      },
+      {
+        "id": "CLOSED_STRENGTH",
+        "value_id": "34722849",
+        "value_name": "146 kN"
+      },
+      {
+        "id": "WITH_TEXTILE_CORE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_STEEL_CORE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "22567978",
+        "value_name": "7893946146917, 07801226842190"
+      },
+      {
+        "id": "CABLE_STRANDS_NUMBER",
+        "value_name": "6"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB25777139",
+      "catalogProductName": "Cabo De Aço Galvanizado Vonder 1.5mm 6x7 Bobina 500m",
+      "catalogDomainId": "MLB-GALVANIZED_STEEL_CABLES",
+      "predictedDomainId": "MLB-GALVANIZED_STEEL_CABLES",
+      "categoryId": "MLB455240",
+      "categoryName": "Cabos de Aço Galvanizado",
+      "linkedListingsInCategory": 13,
+      "validatedGtin": "7893946146917"
+    }
+  },
+  {
+    "produtoId": "0a650f64-edae-4284-a0e7-e5c3cbdc13eb",
+    "sku": "VTK018150",
+    "nome": "Câmera Bullet Hikvision Plast Ds-2ce16d8t-itf 2.8 1080p",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 194.9,
+    "estoque": 13,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 276.71,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898646193605",
+      "validatedNcm": "85258300",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "CAMERA_LOCATIONS"
+      ]
+    },
+    "categoryId": "MLB7073",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "195091",
+        "value_name": "Hikvision"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "25220700",
+        "value_name": "Ds-2ce16d8t-itf"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52055",
+        "value_name": "Branco"
+      },
+      {
+        "id": "RESOLUTION_QUALITY",
+        "value_id": "20854587",
+        "value_name": "1080p"
+      },
+      {
+        "id": "RESOLUTION_TYPE",
+        "value_id": "290771",
+        "value_name": "HD"
+      },
+      {
+        "id": "SURVEILLANCE_CAMERA_TYPE",
+        "value_id": "372564",
+        "value_name": "Bala"
+      },
+      {
+        "id": "IS_MOTORIZED",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "MOVEMENT_TYPE",
+        "value_id": "24899006",
+        "value_name": "Bullet"
+      },
+      {
+        "id": "WITH_NIGHT_VISION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "15425784",
+        "value_name": "7898646193605"
+      },
+      {
+        "id": "SPY_CAMERA_FORMAT",
+        "value_id": "13357616",
+        "value_name": "Lente"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450308",
+        "value_name": "Branco"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "8261086",
+        "value_name": "3000 cm"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "2319",
+        "value_name": "340 g"
+      },
+      {
+        "id": "CAMERA_LOCATIONS",
+        "value_id": "28284812",
+        "value_name": "Interior/Exterior"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB21009405",
+      "catalogProductName": "Camera Bullet 1080p 2mp 4x1 2.8mm Ds-2ce16d8t-itf Hikvision Cor Branco",
+      "catalogDomainId": "MLB-SURVEILLANCE_CAMERAS",
+      "predictedDomainId": "MLB-SURVEILLANCE_CAMERAS",
+      "categoryId": "MLB7073",
+      "categoryName": "Câmeras de Segurança",
+      "linkedListingsInCategory": 3,
+      "validatedGtin": "7898646193605"
+    }
+  },
+  {
+    "produtoId": "f28de582-af94-4f5d-9b29-2e3584891db3",
+    "sku": "VTK017375",
+    "nome": "Cooler Gamer Evus F-12rgb Fan 12cm Com Led Rgb",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 15.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 44.32,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898597133125",
+      "validatedNcm": "84145990",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "PRODUCT_TYPE"
+      ]
+    },
+    "categoryId": "MLB2676",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "216711",
+        "value_name": "Evus"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "32528941",
+        "value_name": "Kit 03 F12RGB"
+      },
+      {
+        "id": "LED_COLOR",
+        "value_id": "2347690",
+        "value_name": "RGB"
+      },
+      {
+        "id": "REFRIGERATION_TYPE",
+        "value_id": "2425649",
+        "value_name": "Air cooling"
+      },
+      {
+        "id": "PINS_NUMBER",
+        "value_id": "10620398",
+        "value_name": "4"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "32528942",
+        "value_name": "7898597133125"
+      },
+      {
+        "id": "AIRFLOW",
+        "value_id": "73924457",
+        "value_name": "35.8 cfm"
+      },
+      {
+        "id": "NOISE_LEVEL",
+        "value_id": "73940059",
+        "value_name": "19.6 dB"
+      },
+      {
+        "id": "MTBF",
+        "value_id": "73940060",
+        "value_name": "58000 h"
+      },
+      {
+        "id": "COOLER_SPEED",
+        "value_id": "60608122",
+        "value_name": "1000 rpm"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "37745159",
+        "value_name": "Ventoinha"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB32633601",
+      "catalogProductName": "Kit 3 Coolers Gamer Evus F12rgb Fan 12cm Com Led Rgb",
+      "catalogDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+      "predictedDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+      "categoryId": "MLB2676",
+      "categoryName": "Coolers e Ventoinhas",
+      "linkedListingsInCategory": 2,
+      "validatedGtin": "7898597133125"
+    }
+  },
+  {
+    "produtoId": "d561c22c-cd28-4f4a-bd9e-6c2618eb8b1a",
+    "sku": "VTK017362",
+    "nome": "Cooler Gamer Evus F12s-argb Singularity",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 24.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 55.43,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898597133569",
+      "validatedNcm": "84145990",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "MODEL",
+        "PRODUCT_TYPE"
+      ]
+    },
+    "categoryId": "MLB2676",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "216711",
+        "value_name": "Evus"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "35784695",
+        "value_name": "7898597133569"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "F12S-ARGB"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "37745159",
+        "value_name": "Ventoinha"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB35213478",
+      "catalogProductName": "Cooler Gamer Evus F12s-argb Singularity",
+      "catalogDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+      "predictedDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+      "categoryId": "MLB2676",
+      "categoryName": "Coolers e Ventoinhas",
+      "linkedListingsInCategory": 1,
+      "validatedGtin": "7898597133569"
+    }
+  },
+  {
+    "produtoId": "55e5a029-8564-453f-8031-6017d3253370",
+    "sku": "VTK017363",
+    "nome": "Cooler Gamer Evus F12d-argb Double Ring",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 29.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 61.6,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898597133576",
+      "validatedNcm": "84145990",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "PRODUCT_TYPE"
+      ]
+    },
+    "categoryId": "MLB2676",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "216711",
+        "value_name": "Evus"
+      },
+      {
+        "id": "LINE",
+        "value_id": "114459",
+        "value_name": "Gaming"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "35771081",
+        "value_name": "F12D-ARGB"
+      },
+      {
+        "id": "LED_COLOR",
+        "value_id": "17967198",
+        "value_name": "RGB"
+      },
+      {
+        "id": "REFRIGERATION_TYPE",
+        "value_id": "37745160",
+        "value_name": "Ar"
+      },
+      {
+        "id": "PINS_NUMBER",
+        "value_id": "10620398",
+        "value_name": "4"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "35771080",
+        "value_name": "7898597133576"
+      },
+      {
+        "id": "WITH_RGB_LIGHTING",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "37745159",
+        "value_name": "Ventoinha"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB35202628",
+      "catalogProductName": "Cooler Gamer Evus F12d-argb Double Ring Led Rgb",
+      "catalogDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+      "predictedDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+      "categoryId": "MLB2676",
+      "categoryName": "Coolers e Ventoinhas",
+      "linkedListingsInCategory": 4,
+      "validatedGtin": "7898597133576"
+    }
+  },
+  {
+    "produtoId": "a6160be9-23b2-46f5-85a5-a915f24806a1",
+    "sku": "VTK017328",
+    "nome": "Fan Para Pc Gamer Gf12r 12cm Vermelho 32 Led",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 36.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 70.25,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "5055492400659",
+      "validatedNcm": "84145990",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "PRODUCT_TYPE"
+      ]
+    },
+    "categoryId": "MLB2676",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "14232561",
+        "value_name": "Geral"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "35709929",
+        "value_name": "5055492400659"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "37745159",
+        "value_name": "Ventoinha"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB35155590",
+      "catalogProductName": "Cooler 32 Led Vermelho 120mm 12cm Ventoinha Gamemax Gf12r",
+      "catalogDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+      "predictedDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+      "categoryId": "MLB2676",
+      "categoryName": "Coolers e Ventoinhas",
+      "linkedListingsInCategory": 4,
+      "validatedGtin": "5055492400659"
+    }
+  },
+  {
+    "produtoId": "a59a337c-ab45-4600-90b9-3bfb03179c4a",
+    "sku": "VTK017599",
+    "nome": "Interfone Hdl Az-s01 Ajuste Volume E Toque Branco",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 97.9,
+    "estoque": 39,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 145.56,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898314173991",
+      "validatedNcm": "85176256",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "PRODUCT_TYPE"
+      ]
+    },
+    "categoryId": "MLB7075",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "2445255",
+        "value_name": "HDL"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "24317336",
+        "value_name": "Interfone Az-S"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52055",
+        "value_name": "Branco"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "39205163",
+        "value_name": "127/220V"
+      },
+      {
+        "id": "BUTTONS_NUMBER",
+        "value_id": "24778972",
+        "value_name": "2"
+      },
+      {
+        "id": "PIECES_NUMBER",
+        "value_id": "3010075",
+        "value_name": "3"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_id": "8152567",
+        "value_name": "Corrente elétrica"
+      },
+      {
+        "id": "PHONE_TYPE",
+        "value_id": "2237107",
+        "value_name": "Com fio"
+      },
+      {
+        "id": "INTERCOM_HEIGHT",
+        "value_id": "25929795",
+        "value_name": "19.7 cm"
+      },
+      {
+        "id": "INTERCOM_WIDTH",
+        "value_id": "28643614",
+        "value_name": "7.4 cm"
+      },
+      {
+        "id": "INTERCOM_LENGTH",
+        "value_id": "26538006",
+        "value_name": "5 cm"
+      },
+      {
+        "id": "FRONT_HEIGHT",
+        "value_id": "26645050",
+        "value_name": "20 cm"
+      },
+      {
+        "id": "FRONT_WIDTH",
+        "value_id": "26538003",
+        "value_name": "10 cm"
+      },
+      {
+        "id": "FRONT_LENGTH",
+        "value_id": "34183734",
+        "value_name": "20 cm"
+      },
+      {
+        "id": "INCLUDES_EXTERNAL_CAMERA",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_NIGHT_VISION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_LOCK_CONTROL_SYSTEM",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_SPEAKERPHONE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_SCREEN_VIEWER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_COLOR_SCREEN",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_VIDEO_RECORDER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_INTERNET_CONNECTION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_APP_CONTROL",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_ANTIVANDALIC",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "24317355",
+        "value_name": "7898314173991, 7898314175803"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "4375480",
+        "value_name": "Legrand"
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "value_id": "53931752",
+        "value_name": "AZ-S01"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450308",
+        "value_name": "Branco"
+      },
+      {
+        "id": "MPN",
+        "value_id": "53931753",
+        "value_name": "AZ-S01"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "25834954",
+        "value_name": "Porteiro eletrônico"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB27070506",
+      "catalogProductName": "Interfone Com Fio HDL Monofone AZ-S Áudio Residencial Branco",
+      "catalogDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+      "predictedDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+      "categoryId": "MLB7075",
+      "categoryName": "Porteiros Elétricos",
+      "linkedListingsInCategory": 40,
+      "validatedGtin": "7898314173991"
+    }
+  },
+  {
+    "produtoId": "e7082089-80b5-4c92-b5d0-d3834e9bf04c",
+    "sku": "VTK017955",
+    "nome": "Jogo De Panelas Tramontina Loreto Alumínio Starflon Max 5 Peças Grafite",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 259.9,
+    "estoque": 19,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 368.99,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7891112267015",
+      "validatedNcm": "76151000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB107564",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "433",
+        "value_name": "Tramontina"
+      },
+      {
+        "id": "LINE",
+        "value_id": "13943597",
+        "value_name": "Loreto"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "73236906",
+        "value_name": "20399/082"
+      },
+      {
+        "id": "PIECES_NUMBER",
+        "value_id": "3402025",
+        "value_name": "5"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MATERIALS",
+        "value_id": "2748301",
+        "value_name": "Alumínio"
+      },
+      {
+        "id": "PIECES_INCLUDED",
+        "value_id": "2511613",
+        "value_name": "Panela, Frigideira, Chaleira, Panela 16 cm, Panela 18 cm"
+      },
+      {
+        "id": "IS_FACTORY_KIT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_SUITABLE_FOR_INDUCTION_COOKER",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_NONSTICK_COATING",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "73252016",
+        "value_name": "7891112267015"
+      },
+      {
+        "id": "HANDLE_MATERIAL",
+        "value_id": "5884734",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "IS_DISHWASHWE_SAFE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB65303162",
+      "catalogProductName": "Conjunto de panelas de bateria de cozinha Tramontina Loreto Teflon de 5 peças",
+      "catalogDomainId": "MLB-KITCHEN_COOKWARE_KITS",
+      "predictedDomainId": "MLB-KITCHEN_COOKWARE_KITS",
+      "categoryId": "MLB107564",
+      "categoryName": "Jogo de Panelas",
+      "linkedListingsInCategory": 10,
+      "validatedGtin": "7891112267015"
+    }
+  },
+  {
+    "produtoId": "6749a6a8-ea48-4057-bdae-f02dc8dadecd",
+    "sku": "VTK018198",
+    "nome": "Liquidificador Philco Ph900 Com Filtro 12 Velocidades 3 Litros Vermelho 127v",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 139.9,
+    "estoque": 11,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 198.62,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899466417131",
+      "validatedNcm": "85094010",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "POWER_SUPPLY_TYPE"
+      ]
+    },
+    "categoryId": "MLB73055",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "479",
+        "value_name": "Philco"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "8202241",
+        "value_name": "PH900"
+      },
+      {
+        "id": "VOLUME_CAPACITY",
+        "value_id": "86501",
+        "value_name": "3 L"
+      },
+      {
+        "id": "TOTAL_CAPACITY",
+        "value_id": "86501",
+        "value_name": "3 L"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "51993",
+        "value_name": "Vermelho"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "39205162",
+        "value_name": "127V"
+      },
+      {
+        "id": "BLENDER_JAR_MATERIAL",
+        "value_id": "7942747",
+        "value_name": "Acrílico"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450307",
+        "value_name": "Vermelho"
+      },
+      {
+        "id": "POWER",
+        "value_id": "104555",
+        "value_name": "1200 W"
+      },
+      {
+        "id": "RECOMMENDED_USES",
+        "value_id": "2439631",
+        "value_name": "Doméstico"
+      },
+      {
+        "id": "SPEEDS_NUMBER",
+        "value_id": "1028895",
+        "value_name": "12"
+      },
+      {
+        "id": "IS_INDUSTRIAL",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "USEFUL_CAPACITY",
+        "value_id": "16718413",
+        "value_name": "2 L"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "10140426",
+        "value_name": "7899466417131"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "value_id": "3725721",
+        "value_name": "Filtro"
+      },
+      {
+        "id": "DISHWASHER_UNSUITABLE_PARTS",
+        "value_id": "19327300",
+        "value_name": "Nenhuma peça é adequada para lava-louças"
+      },
+      {
+        "id": "IS_PORTABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_ON_OFF_POWER_BUTTON",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_USB_CHARGE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_BPA_FREE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_SUITABLE_FOR_ICE_CRUSHING",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "BLENDER_PROGRAMS",
+        "value_id": "20969761",
+        "value_name": "Função Ice, Função autolimpeza, Função Pulsar"
+      },
+      {
+        "id": "BLENDER_BLADES_NUMBER",
+        "value_id": "11471069",
+        "value_name": "6"
+      },
+      {
+        "id": "WITH_REMOVABLE_BLADE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_STAINLESS_STEEL_BLADE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_TURBO_FUNCTION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_PULSE_FUNCTION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_ANTI_SLIP_BASE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_DOSING_LID",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_POURING_SPOUT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_SECURITY_SEAL",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_DIGITAL_DISPLAY",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_HEAT_RESISTANT_JAR",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_SOUND_ENCLOSURE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_DUAL_DIRECTION_TECHNOLOGY",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_TIMER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_CORD_STORAGE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "DEPTH",
+        "value_id": "9095106",
+        "value_name": "22.5 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "13774048",
+        "value_name": "42.2 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "8062077",
+        "value_name": "22.5 cm"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "8662259",
+        "value_name": "2.01 kg"
+      },
+      {
+        "id": "MPN",
+        "value_id": "10224542",
+        "value_name": "945"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_id": "49713698",
+        "value_name": "Corrente doméstica"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB15578943",
+      "catalogProductName": "Liquidificador Ph900 Vermelho 1200w Philco 110v Vermelho",
+      "catalogDomainId": "MLB-BLENDERS",
+      "predictedDomainId": "MLB-BLENDERS",
+      "categoryId": "MLB73055",
+      "categoryName": "Liquidificadores",
+      "linkedListingsInCategory": 15,
+      "validatedGtin": "7899466417131"
+    }
+  },
+  {
+    "produtoId": "aac0b9b3-eafd-4013-a7c3-a68118e9b81a",
+    "sku": "VTK017760",
+    "nome": "Miniprocessador Agratto Ampr01i-01 350ml 100w 127v",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 61.9,
+    "estoque": 24,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 101.11,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898461976179",
+      "validatedNcm": "85094090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "POWER_SUPPLY_TYPE"
+      ]
+    },
+    "categoryId": "MLB31674",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "97494",
+        "value_name": "Agratto"
+      },
+      {
+        "id": "LINE",
+        "value_id": "34597845",
+        "value_name": "Pequeno Leve Portátil Compacto"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "34597846",
+        "value_name": "Multiprocessador AMPR01L"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "value_id": "43841916",
+        "value_name": "AMPRO1L-01"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "39205162",
+        "value_name": "127V"
+      },
+      {
+        "id": "POWER",
+        "value_id": "109880",
+        "value_name": "100 W"
+      },
+      {
+        "id": "FOOD_PROCESSOR_FUNCTIONS",
+        "value_id": "100110",
+        "value_name": "Fatiar, Bater, Picar"
+      },
+      {
+        "id": "PROCESSOR_BOWL_CAPACITY",
+        "value_id": "1165524",
+        "value_name": "350 mL"
+      },
+      {
+        "id": "BLENDER_JAR_CAPACITY",
+        "value_id": "14999729",
+        "value_name": "350 mL"
+      },
+      {
+        "id": "SPEEDS_NUMBER",
+        "value_id": "577736",
+        "value_name": "1"
+      },
+      {
+        "id": "WITH_PULSE_FUNCTION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_SAFETY_LOCK",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "34597847",
+        "value_name": "7898461976179"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY",
+        "value_id": "98473",
+        "value_name": "A"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "value_id": "21334061",
+        "value_name": "1 mini processador, 1 Jarra, 1 tampa, 1 hélice, 1 manual de instruções"
+      },
+      {
+        "id": "CUTTING_BLADES_MATERIALS",
+        "value_id": "8616752",
+        "value_name": "Metal"
+      },
+      {
+        "id": "BODY_MATERIAL",
+        "value_id": "2748302",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "PROCESSOR_BOWL_MATERIAL",
+        "value_id": "8784030",
+        "value_name": "Acrílico"
+      },
+      {
+        "id": "WITH_ANTI_SLIP_BASE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_TOUCH_CONTROL",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_id": "49713698",
+        "value_name": "Corrente doméstica"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB34291754",
+      "catalogProductName": "Mini Processador de Alimentos 5 em 1 Elétrico 350 ml 2 Lâminas Preto Agratto Ampr01i-01",
+      "catalogDomainId": "MLB-FOOD_PROCESSORS",
+      "predictedDomainId": "MLB-FOOD_PROCESSORS",
+      "categoryId": "MLB31674",
+      "categoryName": "Processadores",
+      "linkedListingsInCategory": 17,
+      "validatedGtin": "7898461976179"
+    }
+  },
+  {
+    "produtoId": "dc9ab654-a53f-4415-9c79-c302399113f3",
+    "sku": "VTK018376",
+    "nome": "Moldura 2 Din Fiamon Gm Vectra Gt/ Meriva/ Corsa/ Montana Black",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 20.9,
+    "estoque": 9,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 50.49,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898478318306",
+      "validatedNcm": "39263000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "STEREO_STANDARD_DIMENSIONS"
+      ]
+    },
+    "categoryId": "MLB45320",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "4156010",
+        "value_name": "Fiamon"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "49216669",
+        "value_name": "Fiamon 2261 2 Din"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2748302",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "25261638",
+        "value_name": "7898478318306"
+      },
+      {
+        "id": "STEREO_STANDARD_DIMENSIONS",
+        "value_id": "38480992",
+        "value_name": "2 DIN"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB27679084",
+      "catalogProductName": "Moldura multimídia 2 Din Corsa 2002 A 2012 Hatch Sedan",
+      "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "categoryId": "MLB45320",
+      "categoryName": "Molduras para Estéreos",
+      "linkedListingsInCategory": 21,
+      "validatedGtin": "7898478318306"
+    }
+  },
+  {
+    "produtoId": "8d6e28e6-7d85-4f4a-aa42-8f9a5b4b2e37",
+    "sku": "VTK018910",
+    "nome": "Moldura Fiamon 2 Din Gm Vectra Gt/meriva/corsa/montana Prata",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 20.9,
+    "estoque": 3,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 50.49,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898478318337",
+      "validatedNcm": "39263000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "STEREO_STANDARD_DIMENSIONS"
+      ]
+    },
+    "categoryId": "MLB45320",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "4156010",
+        "value_name": "Fiamon"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "24746521",
+        "value_name": "89/M2"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52053",
+        "value_name": "Prateado"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2511571",
+        "value_name": "ABS"
+      },
+      {
+        "id": "EXTERIOR_HEIGHT",
+        "value_id": "7816576",
+        "value_name": "15 cm"
+      },
+      {
+        "id": "EXTERIOR_WIDTH",
+        "value_id": "5662660",
+        "value_name": "20 cm"
+      },
+      {
+        "id": "EXTERIOR_LENGTH",
+        "value_id": "7816454",
+        "value_name": "10 cm"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "24746520",
+        "value_name": "7898478318337"
+      },
+      {
+        "id": "STEREO_STANDARD_DIMENSIONS",
+        "value_id": "38480992",
+        "value_name": "2 DIN"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB29614284",
+      "catalogProductName": "Moldura Painel 2din Vectra Meriva Corsa Montana - Cinza",
+      "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "categoryId": "MLB45320",
+      "categoryName": "Molduras para Estéreos",
+      "linkedListingsInCategory": 26,
+      "validatedGtin": "7898478318337"
+    }
+  },
+  {
+    "produtoId": "c094ad9e-26fa-43c7-87f7-c0c65895290c",
+    "sku": "VTK018928",
+    "nome": "Moldura Fiamon 2 Din Duster/ Sandero/ Logan/ Kwid/ Captur Black Piano",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 41.9,
+    "estoque": 4,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 76.42,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898478318412",
+      "validatedNcm": "39263000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "STEREO_STANDARD_DIMENSIONS"
+      ]
+    },
+    "categoryId": "MLB45320",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "4156010",
+        "value_name": "Fiamon"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "25631358",
+        "value_name": "2380R"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2748302",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "DISPLAY_SIZE",
+        "value_id": "2399979",
+        "value_name": "7 \""
+      },
+      {
+        "id": "GTIN",
+        "value_id": "25631356",
+        "value_name": "7898478318412"
+      },
+      {
+        "id": "STEREO_STANDARD_DIMENSIONS",
+        "value_id": "38480992",
+        "value_name": "2 DIN"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB27888414",
+      "catalogProductName": "Moldura Fiamon Duster/sandero/logan/kwid/captur Black Piano",
+      "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "categoryId": "MLB45320",
+      "categoryName": "Molduras para Estéreos",
+      "linkedListingsInCategory": 29,
+      "validatedGtin": "7898478318412"
+    }
+  },
+  {
+    "produtoId": "525b3946-a305-41d4-bd4f-5ae3e60a1f64",
+    "sku": "VTK018773",
+    "nome": "Moldura Fiamon 2 Din Idea/ Idea Adventure 13/ 18 Prata",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 78.9,
+    "estoque": 5,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 122.1,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898478318238",
+      "validatedNcm": "39263000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "STEREO_STANDARD_DIMENSIONS"
+      ]
+    },
+    "categoryId": "MLB45320",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "4156010",
+        "value_name": "Fiamon"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "52381437",
+        "value_name": "Idea Adventure 2014-2017"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2748302",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "DISPLAY_SIZE",
+        "value_id": "2399979",
+        "value_name": "7 \""
+      },
+      {
+        "id": "GTIN",
+        "value_id": "25244311",
+        "value_name": "7898478318238"
+      },
+      {
+        "id": "STEREO_STANDARD_DIMENSIONS",
+        "value_id": "38480992",
+        "value_name": "2 DIN"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB27666506",
+      "catalogProductName": "Moldura Painel 2 Din Prata Idea/ideia Adventure 2013 A 2018",
+      "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "categoryId": "MLB45320",
+      "categoryName": "Molduras para Estéreos",
+      "linkedListingsInCategory": 8,
+      "validatedGtin": "7898478318238"
+    }
+  },
+  {
+    "produtoId": "6a7f85c3-1e7e-406b-9575-82a576b68c8f",
+    "sku": "VTK018602",
+    "nome": "Moldura Universal Permak 2 Din 90/g",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 10.6,
+    "estoque": 6,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 37.78,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898253497905",
+      "validatedNcm": "85299090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "STEREO_STANDARD_DIMENSIONS"
+      ]
+    },
+    "categoryId": "MLB45320",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "3289477",
+        "value_name": "Permak"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "28134761",
+        "value_name": "90/G"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "28134760",
+        "value_name": "7898253497905"
+      },
+      {
+        "id": "STEREO_STANDARD_DIMENSIONS",
+        "value_id": "38480992",
+        "value_name": "2 DIN"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB29422300",
+      "catalogProductName": "Moldura 2 Din Universal Somente Aro Permak 90/g",
+      "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "categoryId": "MLB45320",
+      "categoryName": "Molduras para Estéreos",
+      "linkedListingsInCategory": 6,
+      "validatedGtin": "7898253497905"
+    }
+  },
+  {
+    "produtoId": "3e731d68-d11e-4a79-b40e-5904840154d1",
+    "sku": "VTK018766",
+    "nome": "Pedestal Ask Para Caixa Acústica Cxt Regulagem Telescópica",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 95.95,
+    "estoque": 6,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 143.15,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898939971675",
+      "validatedNcm": "92099900",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "INSTALLATION_PLACEMENT"
+      ]
+    },
+    "categoryId": "MLB10233",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "4238929",
+        "value_name": "ASK"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "53909383",
+        "value_name": "Acústica CXT"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "4837600",
+        "value_name": "Aço"
+      },
+      {
+        "id": "IS_ADJUSTABLE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "MIN_HEIGHT",
+        "value_id": "66001610",
+        "value_name": "180 cm"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "26454298",
+        "value_name": "7898939971675"
+      },
+      {
+        "id": "INSTALLATION_PLACEMENT",
+        "value_id": "4502036",
+        "value_name": "De chão"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB28325639",
+      "catalogProductName": "Suporte Tripé Para Caixa Acústica Cxt 1,80m 40 Kg Preto",
+      "catalogDomainId": "MLB-SPEAKERS_STANDS",
+      "predictedDomainId": "MLB-SPEAKERS_STANDS",
+      "categoryId": "MLB10233",
+      "categoryName": "Suportes para Caixas de Som",
+      "linkedListingsInCategory": 12,
+      "validatedGtin": "7898939971675"
+    }
+  },
+  {
+    "produtoId": "074533de-3625-4ac5-87e6-970a7b9add7c",
+    "sku": "VTK017251",
+    "nome": "Resistência Zagonel Sublime/ Move 127v",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 12.13,
+    "estoque": 39,
+    "mlFee": 0.18,
+    "mlShipping": 13.25,
+    "customPrice": 58.18,
+    "suggestedPricePreview": 58.18,
+    "priceSource": "custom_price",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7897273200847",
+      "validatedNcm": "85168010",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB269858",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "2997256",
+        "value_name": "Zagonel"
+      },
+      {
+        "id": "LINE",
+        "value_id": "15020217",
+        "value_name": "Resistência"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "49734619",
+        "value_name": "Resistência Zagonel"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52055",
+        "value_name": "Branco"
+      },
+      {
+        "id": "FINISH",
+        "value_id": "4042441",
+        "value_name": "Fosco"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "76142750",
+        "value_name": "TERMOPLASTICO E ALUMINIO"
+      },
+      {
+        "id": "SHAPE",
+        "value_id": "39977660",
+        "value_name": "Redonda"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "7828417",
+        "value_name": "6 cm"
+      },
+      {
+        "id": "DIAMETER",
+        "value_id": "7574681",
+        "value_name": "5 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "8129828",
+        "value_name": "7 cm"
+      },
+      {
+        "id": "INSTALLATION_TYPE",
+        "value_id": "43133063",
+        "value_name": "220V"
+      },
+      {
+        "id": "IS_FIXED",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_FLEXIBLE_HOSE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "INCLUDES_SUPPORT",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "22003045",
+        "value_name": "7897273200847"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450308",
+        "value_name": "Branco"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB25360456",
+      "catalogProductName": "Resistência para Ducha Moment Eletrônica Sublime e Move 127v 5500w - Zagonel",
+      "catalogDomainId": "MLB-SHOWER_HEADS",
+      "predictedDomainId": "MLB-SHOWER_HEADS",
+      "categoryId": "MLB269858",
+      "categoryName": "Convencionais",
+      "linkedListingsInCategory": 30,
+      "validatedGtin": "7897273200847"
+    }
+  },
+  {
+    "produtoId": "960911fa-1318-4eb5-9e22-dbcf1f944e8b",
+    "sku": "VTK018451",
+    "nome": "Sensor Magnético Abertura Intelbras Sem Fio Is3",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 92.9,
+    "estoque": 8,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 139.38,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896637680363",
+      "validatedNcm": "85437099",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "VOLTAGE"
+      ]
+    },
+    "categoryId": "MLB7070",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "18196176",
+        "value_name": "iS3"
+      },
+      {
+        "id": "DEVICE_TYPE",
+        "value_id": "395195",
+        "value_name": "Sensor"
+      },
+      {
+        "id": "SENSOR_TYPES",
+        "value_id": "16716930",
+        "value_name": "Magneticos"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "18196175",
+        "value_name": "7896637680363"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_id": "65947969",
+        "value_name": "20031800160"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_name": "3 Vdc"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB22595787",
+      "catalogProductName": "Sensor Porta E Janela Sem Fio Magnético Intelbras Is3",
+      "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "categoryId": "MLB7070",
+      "categoryName": "Alarmes e Sensores",
+      "linkedListingsInCategory": 3,
+      "validatedGtin": "7896637680363"
+    }
+  },
+  {
+    "produtoId": "152f7e88-3187-4dd5-b483-200878ef45b3",
+    "sku": "VTK018927",
+    "nome": "Sensor Presenca Intelbras Sem Fio Is5",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 169.9,
+    "estoque": 4,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 241.22,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896637680387",
+      "validatedNcm": "85437099",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "VOLTAGE"
+      ]
+    },
+    "categoryId": "MLB7070",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "LINE",
+        "value_id": "4157388",
+        "value_name": "Mibo"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "16716867",
+        "value_name": "iS5"
+      },
+      {
+        "id": "PIECES_NUMBER",
+        "value_id": "3071720",
+        "value_name": "7"
+      },
+      {
+        "id": "DEVICE_TYPE",
+        "value_id": "395195",
+        "value_name": "Sensor"
+      },
+      {
+        "id": "SENSOR_TYPES",
+        "value_id": "395198",
+        "value_name": "Infravermelho"
+      },
+      {
+        "id": "DETECTOR_TYPES",
+        "value_id": "8616768",
+        "value_name": "De movimento"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2748302",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "ZONES_NUMBER",
+        "value_id": "2649263",
+        "value_name": "1"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "16716866",
+        "value_name": "7896637680387"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_id": "65950700",
+        "value_name": "20051800160"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "value_id": "77736468",
+        "value_name": "4605253"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_name": "3 Vdc"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB21742485",
+      "catalogProductName": "Sensor De Presenca Sem Fio Is5 Intelbras",
+      "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "categoryId": "MLB7070",
+      "categoryName": "Alarmes e Sensores",
+      "linkedListingsInCategory": 1,
+      "validatedGtin": "7896637680387"
+    }
+  },
+  {
+    "produtoId": "cb1d8fa6-2b15-4c15-a92b-146c2007213a",
+    "sku": "VTK018926",
+    "nome": "Sirene Sem Fio Intelbras Is7",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 184.9,
+    "estoque": 4,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 262.51,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896637680349",
+      "validatedNcm": "85318000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution",
+      "verifiedRequiredAttributes": [
+        "VOLTAGE"
+      ]
+    },
+    "categoryId": "MLB7070",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "LINE",
+        "value_id": "4157388",
+        "value_name": "Mibo"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "16811808",
+        "value_name": "iS7"
+      },
+      {
+        "id": "DEVICE_TYPE",
+        "value_id": "395193",
+        "value_name": "Alarme"
+      },
+      {
+        "id": "SENSOR_TYPES",
+        "value_id": "16717502",
+        "value_name": "Sonoro"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2748302",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "16811807",
+        "value_name": "7896637680349"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_id": "65950380",
+        "value_name": "20541800160"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_name": "5 Vdc"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB21757393",
+      "catalogProductName": "Sirene Intelbras Is7 Sem Fio Para Alarme Integrado Cor Unico",
+      "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "categoryId": "MLB7070",
+      "categoryName": "Alarmes e Sensores",
+      "linkedListingsInCategory": 3,
+      "validatedGtin": "7896637680349"
+    }
+  }
+]

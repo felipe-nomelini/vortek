@@ -1,0 +1,246 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/catalog-evidence/researched-2026-07-29/dry-run-results/001-evolusom-catalog-create-001-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-001",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "aede4efb-eb6d-4bfe-9bbb-bdb616fb02f3",
+      "sku": "VTK017787",
+      "category": {
+        "id": "MLB455240",
+        "nome": "Cabos de Aço Galvanizado",
+        "dominio": "MLB-GALVANIZED_STEEL_CABLES"
+      },
+      "basePrice": 448.26,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "275828",
+          "value_name": "Vonder"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "22567979",
+          "value_name": "3516015607"
+        },
+        {
+          "id": "CABLE_STRANDS_NUMBER",
+          "name": "Quantidade de torções por cabo",
+          "value_id": "",
+          "value_name": "6"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "22567978",
+          "value_name": "7893946146917, 07801226842190"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo De Aço Galvanizado Vonder 1,5mm 6x7 Bobina 500m\n\nVISÃO GERAL\nInformações do Produto Cabo de Aço Galvanizado, Alma de Aço, 1,5 mm, 6 x 7 - 35. 16. 015.\n\n607 Indicado para cargas estáticas e operações sujeitas a atrito. ATENÇÃO: para segurança e garantia do produto, mantenha sempre a etiqueta com o selo de conformidade do Inmetro junto à bobina do cabo de aço. Possui ótima resistência à abrasão, pouca flexibilidade e maior resistência à corrosão/oxidação.\n\nProduto certificado em conformidade com as portarias nº 176 de 16/06/2009, nº 209 de 10/07/2009, nº 181 de 11/04/2013 e Regulamento de Avaliação da Conformidade para cabos de uso geral do Inmetro. Informações Técnicas Diâmetro do cabo de aço 1,50 mm Tipo de alma do cabo de aço AA - alma de aço Construção do cabo de aço 6 x 7 Comprimento da bobina do cabo de aço 500 m Categoria de resistência do cabo de aço 1770 N/mm Carga de ruptura mínima do cabo de aço 1,43 kN Carga de ruptura mínima do cabo de aço 146 kgf Tipo de torção do cabo de aço TRD - torção regular a direita Qualidade da camada de zinco do cabo de aço B Norma do cabo de aço ABNT NBR ISO 2408 Construção da perna do cabo de aço 1-6 Lubrificação no cabo de aço Não Massa aproximada kg/m do cabo de aço 0,01 kg/m Garantia - E (CDC) Garantia legal 90 dias Conteúdo da Embalagem - 1 Bobina com 500 metros de cabo de aço galvanizado.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Vonder\n• Modelo: 3516015607\n• Quantidade de torções por cabo: 6\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: VONDER\n• GTIN: 7893946146917\n• NCM: 73121090\n• SKU: VTK017787\n\nEMBALAGEM\n• Dimensões informadas: 11.5 × 15.5 × 15.5 cm\n• Peso bruto informado: 4,572 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0a650f64-edae-4284-a0e7-e5c3cbdc13eb",
+      "sku": "VTK018150",
+      "category": {
+        "id": "MLB7073",
+        "nome": "Câmeras de Segurança",
+        "dominio": "MLB-SURVEILLANCE_CAMERAS"
+      },
+      "basePrice": 312.94,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "195091",
+          "value_name": "Hikvision"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "25220700",
+          "value_name": "Ds-2ce16d8t-itf"
+        },
+        {
+          "id": "SURVEILLANCE_CAMERA_TYPE",
+          "name": "Tipo de câmera de vigilância",
+          "value_id": "372564",
+          "value_name": "Bala"
+        },
+        {
+          "id": "CAMERA_LOCATIONS",
+          "name": "Localizações da câmera",
+          "value_id": "28284812",
+          "value_name": "Interior/Exterior"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "15425784",
+          "value_name": "7898646193605"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Câmera Bullet Hikvision Plast Ds-2ce16d8t-itf 2.8 1080p\n\nVISÃO GERAL\nInformações do Produto Características . ESPECIFICAÇÕES TÉCNICAS | DIMENSÕES Image Sensor: 2MP CMOS Image Sensor Signal System: PAL/NTSC Effective Pixels: 1920(H)*1080(V) Shutter Time: 1/25(1/30) s to 1/50,000 s Lens Mount: M12 Adjustment Range: Pan: 0°to 360°, Tilt: 0°to 180, Rotate: 0°to 360° Day& Night: IR cut filter Video Frame Rate: 1080p@25fps/1080p@30fps Synchronization: Internal Synchronization Up the Coax: Support Menu White Balance: Auto / Manual BLC: Support AGC: Support Language: English/Chinese General Operating Conditions: -40 °C - 60 °C (-40 °F - 140 °F) Humidity 90% or less (non-condensing) Power Supply: 12 VDC 25% *You are recommended to use one power adapter to supply the power for one camera. Weather Proof: IP67 IR Range: Up to 30m Communication : Up the coax Protocol: HIKVISION-C(Coaxitron) Dimension: 58 mm × 61 mm × 163 mm (2.\n\n28\" × 2. 40\" × 6. 42\") Weight: Approx.\n\n340 g (0. 75 lb. ) *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Hikvision\n• Modelo: Ds-2ce16d8t-itf\n• Tipo de câmera de vigilância: Bala\n• Localizações da câmera: Interior/Exterior\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: HIKVISION\n• GTIN: 7898646193605\n• NCM: 85258300\n• SKU: VTK018150\n\nEMBALAGEM\n• Dimensões informadas: 8 × 10 × 16 cm\n• Peso bruto informado: 0,444 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f28de582-af94-4f5d-9b29-2e3584891db3",
+      "sku": "VTK017375",
+      "category": {
+        "id": "MLB2676",
+        "nome": "Coolers e Ventoinhas",
+        "dominio": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS"
+      },
+      "basePrice": 61.86,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "32528941",
+          "value_name": "Kit 03 F12RGB"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "37745159",
+          "value_name": "Ventoinha"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898597133125"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cooler Gamer Evus F-12rgb Fan 12cm Com Led Rgb\n\nVISÃO GERAL\nO Cooler FAN F-12RGB foi desenvolvido para jogadores que não abrem mão de verdadeiros LEDs RGB em seu setup. Com alta tecnologia em seu desenvolvimento, seu ruído é quase imperceptível, possui alta durabilidade e ótima iluminação em LED. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Evus\n• Modelo: Kit 03 F12RGB\n• Tipo de produto: Ventoinha\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: EVUS\n• GTIN: 7898597133125\n• NCM: 84145990\n• SKU: VTK017375\n\nEMBALAGEM\n• Dimensões informadas: 3 × 18 × 13 cm\n• Peso bruto informado: 0,164 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d561c22c-cd28-4f4a-bd9e-6c2618eb8b1a",
+      "sku": "VTK017362",
+      "category": {
+        "id": "MLB2676",
+        "nome": "Coolers e Ventoinhas",
+        "dominio": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS"
+      },
+      "basePrice": 73.4,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "F12S-ARGB"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "37745159",
+          "value_name": "Ventoinha"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "",
+          "value_name": "Medium"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898597133569"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cooler Gamer Evus F12s-argb Singularity\n\nVISÃO GERAL\nO Cooler Gamer Evus F12S-ARGB Singularity possui LEDs ARGB para combinar com o seu setup gamer, e é capaz de sincronizar a sua iluminação com a maioria das principais marcas de placas-mãe e controladoras ARGB do mercado. Este cooler foi desenvolvido para aumentar o fluxo de ar do seu gabinete com baixo nível de ruídos, diminuindo a temperatura média interna, evitando que seu hardware trabalhe constantemente em altas temperaturas. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Evus\n• Modelo: F12S-ARGB\n• Tipo de produto: Ventoinha\n• Linha: Medium\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: EVUS\n• GTIN: 7898597133569\n• NCM: 84145990\n• SKU: VTK017362\n\nEMBALAGEM\n• Dimensões informadas: 3 × 12 × 18 cm\n• Peso bruto informado: 0,154 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "e666735c-5699-4787-9273-2e2be34c872a",
+      "sku": "VTK017848",
+      "nome": "Cabo Alarme Telecam 100 Metros 50 X 10 Vias Cca Liga Cobre",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

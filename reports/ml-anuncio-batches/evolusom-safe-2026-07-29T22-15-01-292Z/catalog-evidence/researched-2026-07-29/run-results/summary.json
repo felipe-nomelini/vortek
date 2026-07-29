@@ -1,0 +1,73 @@
+{
+  "startedAt": "2026-07-29T23:04:51.298Z",
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/catalog-evidence/researched-2026-07-29/ready-now",
+  "startBatch": 1,
+  "endBatch": 1,
+  "batches": [
+    {
+      "fileName": "001-evolusom-remaining-001.json",
+      "selected": 4,
+      "created": 4,
+      "failed": 0,
+      "exitCode": 0,
+      "failureReasons": [],
+      "verification": {
+        "ok": true,
+        "attempt": 9,
+        "rows": [
+          {
+            "itemId": "MLB4966507939",
+            "produtoId": "8d23282f-5f35-4856-b5e7-8cfe11c885c5",
+            "categoryOk": true,
+            "status": "active",
+            "subStatuses": [],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 3,
+            "price": 457.54
+          },
+          {
+            "itemId": "MLB4966508243",
+            "produtoId": "a61b46d2-bd8e-4552-98b9-e15bf512bbf3",
+            "categoryOk": true,
+            "status": "active",
+            "subStatuses": [],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 4,
+            "price": 687.04
+          },
+          {
+            "itemId": "MLB4966508585",
+            "produtoId": "43d93697-e343-4216-8636-d73515ee50f3",
+            "categoryOk": true,
+            "status": "active",
+            "subStatuses": [],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 12,
+            "price": 252.04
+          },
+          {
+            "itemId": "MLB7286113796",
+            "produtoId": "d4bf1161-e883-4b56-8ad4-a1333e1fab38",
+            "categoryOk": true,
+            "status": "active",
+            "subStatuses": [],
+            "pictureReady": true,
+            "richDescription": true,
+            "quantity": 19,
+            "price": 262.67
+          }
+        ]
+      }
+    }
+  ],
+  "totals": {
+    "selected": 4,
+    "created": 4,
+    "failed": 0,
+    "verified": 4
+  },
+  "finishedAt": "2026-07-29T23:08:55.312Z"
+}

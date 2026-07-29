@@ -1,0 +1,37 @@
+{
+  "generatedAt": "2026-07-29T22:15:07.865Z",
+  "supplier": {
+    "name": "EVOLUSOM-PR",
+    "dsliteId": "133"
+  },
+  "mode": "audit_only",
+  "batchSize": 5,
+  "activeOffersWithStock": 2391,
+  "distinctProductsWithStock": 2391,
+  "candidateUniverseCount": 613,
+  "locallyReadyCount": 370,
+  "readyCount": 370,
+  "blockedCount": 243,
+  "batchCount": 74,
+  "blockedReasonCounts": {
+    "missing_gtin": 239,
+    "missing_images": 3,
+    "missing_dimensions": 1
+  },
+  "safetyRules": [
+    "produto e oferta ativos com estoque",
+    "Evolusom como oferta preferencial",
+    "nenhum ml_item_id ou vínculo em anuncios_ml",
+    "GTIN válido e não usado por outro anúncio",
+    "NCM, marca, descrição, dimensões e peso presentes",
+    "imagem validada e servida pelo Storage Vortek",
+    "categoria e atributos condicionais obrigatoriamente revalidados na execução",
+    "execução sequencial após dry-run"
+  ],
+  "files": {
+    "reportDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z",
+    "blocked": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/blocked-items.json",
+    "ready": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/ready-items.json",
+    "imageMigrations": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/image-migrations.json"
+  }
+}

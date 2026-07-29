@@ -1,0 +1,295 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/catalog-evidence/researched-2026-07-29/dry-run-results/003-evolusom-catalog-create-003-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-003",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "a61b46d2-bd8e-4552-98b9-e15bf512bbf3",
+      "sku": "VTK018925",
+      "category": {
+        "id": "MLB1053",
+        "nome": "Telefones",
+        "dominio": "MLB-TELEPHONES"
+      },
+      "basePrice": 637.35,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "17484093",
+          "value_name": "CFA4212"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "name": "É sem fio",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "name": "Homologação Anatel Nº",
+          "value_id": "",
+          "value_name": "056181600160"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "17484116",
+          "value_name": "7896637677462"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit Telefone Intelbras Celular Fixo Gsm Cfa4212\n\nVISÃO GERAL\nInformações do Produto Informações do Produto Kit Celular Fixo de Longo Alcance CFA 4212 O kit de telefone celular CFA 4212 é uma solução completa com telefone celular fixo GSM dual chip, antena externa dual band (850 e 900 MHz) e cabo coaxial de 10 metros. Ideal para locais com baixa cobertura celular ou sem acesso a linhas telefônicas fixas. Com sua antena externa dual band de alta potência, o CFA 4212 amplia o sinal em até 50 vezes, se comparado a um telefone celular comum, e aceita 2 chips SIM card de qualquer operadora de telefonia móvel.\n\n- Dual chip; - 50 vezes mais sinal se comparado a um celular comum; - Desbloqueado para todas as operadas; - Permite acesso a internet GPRS; - Rádio FM. Informações Técnicas Telefone Dimensões (L × A × P) 230 × 208 × 172 mm Peso 608 g Frequência de operação 850/900/1800/1900 MHz Alimentação 5 Vdc (via USB) Ganho da antena 3 dBi Conector da antena TNC fêmea Bateria Tipo de bateria 3,7 Li-ion Capacidade 800 mAh Tempo de conversação Aprox. 5h Tempo de repouso Aprox.\n\n200h Adaptador Entrada 100 ~ 240 Vac 50/60 Hz Saída 5 Vdc 750 mA Consumo de energia Aprox. 0,69 Wh em operação Aprox. 0,11 Wh em repouso Antena Frequência 824 a 960 MHz Ganho 17 dBi Peso 1,2 kg VSWR 2 Conector N fêmea Impedância 50 ohms Diâmetro do mastro 30 a 53 mm Dimensões (L × A × P) 390 × 250 × 1500 mm Número de elementos 22 Conteúdo da Embalagem - 1 Telefone celular fixo GSM; - 1 Cordão espiralado; - 1 Antena 3 dBi; - 1 Bateria recarregável; - 1 Cabo USB; - 1 Adaptador de tensão bivolt; - 1 Cabo coaxial de 10 metros; - 1 Antena externa de 17 dBi; - 1 Guia de instalação; - 1 Manual do usuário.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Intelbras\n• Modelo: CFA4212\n• É sem fio: Não\n• Homologação Anatel Nº: 056181600160\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INTELBRAS\n• GTIN: 7896637677462\n• NCM: 85171439\n• SKU: VTK018925\n\nEMBALAGEM\n• Dimensões informadas: 24 × 15 × 92 cm\n• Peso bruto informado: 3 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6749a6a8-ea48-4057-bdae-f02dc8dadecd",
+      "sku": "VTK018198",
+      "category": {
+        "id": "MLB73055",
+        "nome": "Liquidificadores",
+        "dominio": "MLB-BLENDERS"
+      },
+      "basePrice": 239.54,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "479",
+          "value_name": "Philco"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "8202241",
+          "value_name": "PH900"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "49713698",
+          "value_name": "Corrente doméstica"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "10140426",
+          "value_name": "7899466417131"
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "39205162",
+          "value_name": "127V"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Liquidificador Philco Ph900 Com Filtro 12 Velocidades 3 Litros Vermelho 127v\n\nVISÃO GERAL\nLiquidificador Philco PH900 Vermelho 1200W Se tem algo que vai te surpreender é o Liquidificador Philco PH900 Vermelho 1200W! Ao primeiro giro do seu botão, você irá se apaixonar! São 1200W de potência e 12 velocidades, além de função pulsar, para você ir muito além do esperado.\n\nConta com capacidade máxima de 3 litros , para que não haja limites para sua imaginação e criatividade. Possui ainda lâminas serrilhadas ultra afiadas e resistentes para você triturar até gelo. A palavra coar não existirá mais no seu vocabulário, pois o Liquidificador Philco conta com filtro que separa o suco das sementes e bagaço.\n\nSe quiser adicionar mais algum ingrediente, enquanto está preparando sua receita, não tem problema, pois sua tampa com orifício lhe dá esse benefício. E para que sua única preocupação seja cozinhar suas deliciosas receitas, conta com base antiderrapante, trazendo muito mais segurança! - 12 velocidades + Pulsar / autolimpeza + Ice - Função pulsar: auxilia no preparo de vitaminas, sopas cremosas e molhos - Função autolimpeza: facilita a limpeza - Função Ice: tritura gelo com mais facilidade e rapidez - Copo de plástico com capacidade total para 3L litros e útil de 2L - Alça do copo anatômica - Tampa que permite servir sem retirá-la (posições fechada e servir) - Tampa com sobretampa transparente com graduação - Tecnologia Pro Maxx 6: 6 lâminas com altíssimo poder de trituração - Porta-fio - Base antiderrapante - Potência de 1200W.\n\n*Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Philco\n• Modelo: PH900\n• Tipo de alimentação: Corrente doméstica\n• Voltagem: 127V\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PHILCO\n• GTIN: 7899466417131\n• NCM: 85094010\n• SKU: VTK018198\n\nEMBALAGEM\n• Dimensões informadas: 25.5 × 22.5 × 33 cm\n• Peso bruto informado: 2,27 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "aac0b9b3-eafd-4013-a7c3-a68118e9b81a",
+      "sku": "VTK017760",
+      "category": {
+        "id": "MLB31674",
+        "nome": "Processadores",
+        "dominio": "MLB-FOOD_PROCESSORS"
+      },
+      "basePrice": 122.94,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "97494",
+          "value_name": "Agratto"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "34597846",
+          "value_name": "Multiprocessador AMPR01L"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "49713698",
+          "value_name": "Corrente doméstica"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "",
+          "value_name": "Light"
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898461976179"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Miniprocessador Agratto Ampr01i-01 350ml 100w 127v\n\nVISÃO GERAL\nMINIPROCESSADOR Compacto e eficiente, o melhor para a sua cozinha! 5 em 1 Pica, mói, tritura, fatia e rala O Miniprocessador Agratto tritura sem esforço. Com lâminas em aço inox e 100W de potência, em alguns segundos você terá os ingredientes prontos para sua receita.\n\nReceitas rápidas e deliciosas com o miniprocessador Agratto. Versátil e eficiente O Miniprocessador Agratto é compacto, leve e desmontável, facilitando na hora da limpeza e do armazenamento. São somente três peças: reservatório, tampa e lâmina.\n\nSuper fácil de limpar. 100W de potência Compacto no tamanho e eficiente no resultado. O Miniprocessador Agratto proporciona agilidade nos preparos com ótimo desempenho.\n\nReservatório de 350ml O reservatório tem capacidade de 350ml. Lâminas em inox Possui lâmina dupla em aço inox, ajudando a triturar mais rápido os ingredientes. Seguro e prático Possui travas de segurança no reservatório e na tampa, só permitindo ligar o produto se estiverem bem encaixados.\n\n*Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Agratto\n• Modelo: Multiprocessador AMPR01L\n• Tipo de alimentação: Corrente doméstica\n• Linha: Light\n• Voltagem: 127V\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: AGRATTO\n• GTIN: 7898461976179\n• NCM: 85094090\n• SKU: VTK017760\n\nEMBALAGEM\n• Dimensões informadas: 14 × 13 × 20 cm\n• Peso bruto informado: 0,78 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "dc9ab654-a53f-4415-9c79-c302399113f3",
+      "sku": "VTK018376",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "basePrice": 67.59,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "49216669",
+          "value_name": "Fiamon 2261 2 Din"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "name": "Dimensão estándar do estéreo",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898478318306"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Moldura 2 Din Fiamon Gm Vectra Gt/ Meriva/ Corsa/ Montana Black\n\nVISÃO GERAL\nInformações do Produto Mantenha a originalidade e qualidade no acabamento de seu veículo com a Moldura 2 Din Fiamon. Informações Técnicas Material Plástico Cor Preto Compatibilidade GM Vectra GT 05/11, Meriva 03/11, Corsa 02/11, Montana 03/11\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Fiamon\n• Modelo: Fiamon 2261 2 Din\n• Dimensão estándar do estéreo: 2 DIN\n• Cor: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FIAMON\n• GTIN: 7898478318306\n• NCM: 39263000\n• SKU: VTK018376\n\nEMBALAGEM\n• Dimensões informadas: 3 × 13.5 × 26 cm\n• Peso bruto informado: 0,096 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8d6e28e6-7d85-4f4a-aa42-8f9a5b4b2e37",
+      "sku": "VTK018910",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "basePrice": 67.59,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "4156010",
+          "value_name": "Fiamon"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "24746521",
+          "value_name": "89/M2"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "name": "Dimensão estándar do estéreo",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898478318337"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Moldura Fiamon 2 Din Gm Vectra Gt/meriva/corsa/montana Prata\n\nVISÃO GERAL\nInformações do Produto Moldura 2 DIN Aplicação Vectra GT 05/11 Meriva 03/11 Corsa 02/11 Montana 03/11 Cor Prata\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Fiamon\n• Modelo: 89/M2\n• Dimensão estándar do estéreo: 2 DIN\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FIAMON\n• GTIN: 7898478318337\n• NCM: 39263000\n• SKU: VTK018910\n\nEMBALAGEM\n• Dimensões informadas: 3 × 13.5 × 26 cm\n• Peso bruto informado: 0,121 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

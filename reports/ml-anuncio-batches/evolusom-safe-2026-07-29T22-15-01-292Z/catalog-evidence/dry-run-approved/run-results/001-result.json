@@ -1,0 +1,60 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/catalog-evidence/dry-run-approved/run-results/001-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-001",
+  "selected": 2,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "e7082089-80b5-4c92-b5d0-d3834e9bf04c",
+      "sku": "VTK017955",
+      "category": {
+        "id": "MLB107564",
+        "nome": "Jogo de Panelas",
+        "dominio": "MLB-KITCHEN_COOKWARE_KITS"
+      },
+      "anuncio": {
+        "id": "MLB7285984342",
+        "title": "Jogo De Panelas Tramontina Loreto Alumínio Starflon Max 5",
+        "price": 410.47,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7285984342-jogo-de-panelas-tramontina-loreto-aluminio-starflon-max-5-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 362.28 → R$ 410.47."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "074533de-3625-4ac5-87e6-970a7b9add7c",
+      "sku": "VTK017251",
+      "category": {
+        "id": "MLB269858",
+        "nome": "Convencionais",
+        "dominio": "MLB-SHOWER_HEADS"
+      },
+      "anuncio": {
+        "id": "MLB7285971620",
+        "title": "Resistência Zagonel Sublime/ Move 127v",
+        "price": 52.98,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7285971620-resistncia-zagonel-sublime-move-127v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 58.18 → R$ 52.98."
+      ]
+    }
+  ],
+  "failed": []
+}

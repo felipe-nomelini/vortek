@@ -1,0 +1,156 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T22-15-01-292Z/catalog-evidence/002-evolusom-catalog-create-002.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-002",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "e7082089-80b5-4c92-b5d0-d3834e9bf04c",
+      "sku": "VTK017955",
+      "category": {
+        "id": "MLB107564",
+        "nome": "Jogo de Panelas",
+        "dominio": "MLB-KITCHEN_COOKWARE_KITS"
+      },
+      "basePrice": 362.28,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "433",
+          "value_name": "Tramontina"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "73236906",
+          "value_name": "20399/082"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "name": "Quantidade de peças",
+          "value_id": "3402025",
+          "value_name": "5"
+        },
+        {
+          "id": "IS_FACTORY_KIT",
+          "name": "É kit de fábrica",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_INDUCTION_COOKER",
+          "name": "Adequado para fogão de indução",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "73252016",
+          "value_name": "7891112267015"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "",
+          "value_name": "Aço niquelado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Jogo De Panelas Tramontina Loreto Alumínio Starflon Max 5 Peças Grafite\n\nVISÃO GERAL\nA escolha certa para quem busca um jogo de panelas com ótimo custo-benefício e um design moderno, certamente é o jogo de panelas Tramontina Loreto em alumínio com revestimento interno e externo antiaderente Starflon Max grafite 5 peças. Perfeito para deixar seu dia a dia muito mais prático e elegante, é composto por frigideira, caçarola, panelas e fervedor. As peças são produzidas em alumínio com revestimento interno e externo em antiaderente Starflon Max, que não gruda, é fácil de limpar, durável e não é prejudicial a saúde.\n\nAs panelas e a caçarola possuem tampas de vidro temperado com bordas em aço inox e o cabos e alças em baquelite antitérmico garantem segurança e conforto durante o manuseio, pois não aquecem. Um jogo prático, fácil de limpar e que pode ir à máquina de lavar louças. Equipe sua cozinha com a Tramontina e transforme seus momentos na cozinha!\n\n*Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Tramontina\n• Modelo: 20399/082\n• Quantidade de peças: 5\n• É kit de fábrica: Sim\n• Adequado para fogão de indução: Sim\n• Materiais: Aço niquelado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: TRAMONTINA\n• GTIN: 7891112267015\n• NCM: 76151000\n• SKU: VTK017955\n\nEMBALAGEM\n• Dimensões informadas: 12 × 44.5 × 64.5 cm\n• Peso bruto informado: 3,324 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "55e5a029-8564-453f-8031-6017d3253370",
+      "sku": "VTK017363",
+      "nome": "Cooler Gamer Evus F12d-argb Double Ring",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB2676",
+            "nome": "Coolers e Ventoinhas"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "a6160be9-23b2-46f5-85a5-a915f24806a1",
+      "sku": "VTK017328",
+      "nome": "Fan Para Pc Gamer Gf12r 12cm Vermelho 32 Led",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB2676",
+            "nome": "Coolers e Ventoinhas"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8d23282f-5f35-4856-b5e7-8cfe11c885c5",
+      "sku": "VTK018787",
+      "nome": "Fone Headset Intelbras Chs-55 Conector Usb 4010058",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3828",
+            "nome": "Telefones Headset"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "a59a337c-ab45-4600-90b9-3bfb03179c4a",
+      "sku": "VTK017599",
+      "nome": "Interfone Hdl Az-s01 Ajuste Volume E Toque Branco",
+      "error": "Atributos obrigatórios pendentes: Tipo de produto",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7075",
+            "nome": "Porteiros Elétricos"
+          },
+          "missing": [
+            "Tipo de produto"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}
