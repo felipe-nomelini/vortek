@@ -11,6 +11,7 @@ export type WhatsappLabelOperationalStatus =
   | 'pending'
   | 'on_hold'
   | 'failed'
+  | 'not_applicable'
   | 'not_sent'
   | 'unknown';
 

@@ -1,5 +1,10 @@
 import { createServiceClient } from '@/lib/supabase';
 import { releaseDomainLock } from '@/lib/sync/domain-lock';
+import {
+  getJobLastActivityMs,
+  isJobStale as isJobStaleByActivity,
+  parseJobLog,
+} from '@/lib/sync/job-staleness';
 import { SYNC_TASKS } from '@/lib/sync/registry';
 import type { Database } from '@/types/database';
 
@@ -11,31 +16,20 @@ function nowIso() {
   return new Date().toISOString();
 }
 
-function parseLog(log: unknown): any[] {
-  if (Array.isArray(log)) return log;
-  if (typeof log === 'string') {
-    try {
-      return JSON.parse(log || '[]');
-    } catch {
-      return [];
-    }
-  }
-  return [];
-}
-
 export function isJobStale(
-  job: Pick<JobRow, 'created_at' | 'finished_at' | 'status'> | null | undefined,
+  job: (
+    Pick<JobRow, 'created_at' | 'finished_at' | 'status'>
+    & Partial<Pick<JobRow, 'log'>>
+  ) | null | undefined,
   thresholdMinutes: number = DEFAULT_STALE_JOB_THRESHOLD_MINUTES,
 ): boolean {
-  if (!job?.created_at || job.finished_at) return false;
-  if (!['pendente', 'rodando'].includes(String(job.status || ''))) return false;
-  const ageMs = Date.now() - new Date(job.created_at).getTime();
-  return ageMs > thresholdMinutes * 60 * 1000;
+  return isJobStaleByActivity(job, thresholdMinutes);
 }
 
 export async function markJobAsStale(job: Pick<JobRow, 'id' | 'tipo' | 'status' | 'created_at' | 'finished_at' | 'log'>) {
   const serviceClient = createServiceClient();
-  const log = parseLog(job.log);
+  const log = parseJobLog(job.log);
+  const latestActivityMs = getJobLastActivityMs(job);
   const finishedAt = nowIso();
   let domainLockReleased = false;
   let domainLockReleaseSkipped: string | null = null;
@@ -48,7 +42,10 @@ export async function markJobAsStale(job: Pick<JobRow, 'id' | 'tipo' | 'status' 
     stale_threshold_minutes: DEFAULT_STALE_JOB_THRESHOLD_MINUTES,
     previous_status: job.status,
     created_at: job.created_at,
-    age_minutes: Math.round((Date.now() - new Date(job.created_at).getTime()) / 60000),
+    last_activity_at: latestActivityMs ? new Date(latestActivityMs).toISOString() : null,
+    age_minutes: latestActivityMs
+      ? Math.round((Date.now() - latestActivityMs) / 60000)
+      : null,
   });
 
   const { error } = await serviceClient

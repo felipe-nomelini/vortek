@@ -8,6 +8,7 @@ import { inflateRawSync } from "zlib";
 import { createServiceClient } from "@/lib/supabase";
 import { validateMercadoLivreTokenOwner } from "@/lib/ml-account-guard";
 import { isMlShipmentLabelPrintable } from "@/lib/ml/fiscal-release";
+import { classifyMlLabelHttpFailure } from "@/lib/ml/label-http-failure";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
 import type { Database } from "@/types/database";
 
@@ -1749,31 +1750,15 @@ export async function baixarEtiquetaML(
         console.error(
           `[baixarEtiquetaML] ML retornou HTTP ${res.status}: ${text.substring(0, 300)}`,
         );
-        const lowered = text.toLowerCase();
-        const isNotReady =
-          lowered.includes("invoice_pending") ||
-          lowered.includes("not_printable_status") ||
-          lowered.includes("shplab0200");
-        const isInvalidCaller =
-          lowered.includes("invalid_shipment_caller") ||
-          lowered.includes("not printable by caller");
-        const isBuffered = lowered.includes("buffered");
-        const isRetryableStatus = [
-          404, 408, 409, 423, 424, 425, 429, 500, 502, 503, 504,
-        ].includes(res.status);
+        const failure = classifyMlLabelHttpFailure(res.status, text);
         return emptyResult({
-          error: isInvalidCaller
+          error: failure.invalidCaller
             ? "Etiqueta ML não é imprimível por esta conta/token do Mercado Livre (INVALID_SHIPMENT_CALLER)."
             : text
               ? text.substring(0, 300)
               : `ML retornou HTTP ${res.status}`,
-          reason: isBuffered
-            ? "buffered"
-            : isNotReady
-              ? "not_ready"
-              : "http_error",
-          retryable:
-            !isInvalidCaller && (isBuffered || isNotReady || isRetryableStatus),
+          reason: failure.reason,
+          retryable: failure.retryable,
           statusCode: res.status,
         });
       }

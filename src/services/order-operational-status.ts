@@ -8,6 +8,7 @@ const WHATSAPP_AUDIT_EVENTS = [
   'whatsapp_label_send_requested',
   'whatsapp_label_send_success',
   'whatsapp_label_send_failed',
+  'whatsapp_label_send_not_applicable',
 ] as const;
 
 const DSLITE_LABEL_AUDIT_EVENTS = [
@@ -33,6 +34,7 @@ type OperationalAuditRow = {
 };
 
 function mapWhatsappStatus(event: OperationalAuditRow): WhatsappLabelOperationalStatus {
+  if (event.evento === 'whatsapp_label_send_not_applicable') return 'not_applicable';
   if (event.evento === 'whatsapp_label_send_success') {
     return event.resposta_ml?.test_placeholder_label === true ? 'test_sent' : 'sent';
   }

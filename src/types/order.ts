@@ -108,7 +108,7 @@ export interface Order {
   dslite_label_operational_status?: 'real_sent' | 'generic_sent' | 'provider_shipping' | 'sent_unverified' | 'pending' | 'failed' | 'unknown';
   dslite_label_operational_updated_at?: string | null;
   dslite_label_operational_error?: string | null;
-  whatsapp_label_status?: 'sent' | 'test_sent' | 'pending' | 'on_hold' | 'failed' | 'not_sent' | 'unknown';
+  whatsapp_label_status?: 'sent' | 'test_sent' | 'pending' | 'on_hold' | 'failed' | 'not_applicable' | 'not_sent' | 'unknown';
   whatsapp_label_updated_at?: string | null;
   whatsapp_label_error?: string | null;
   whatsapp_label_next_retry_at?: string | null;

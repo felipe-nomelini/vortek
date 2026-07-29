@@ -51,6 +51,35 @@ const WHATSAPP_RETRY_DELAYS_MS = [60_000, 5 * 60_000, 15 * 60_000, 30 * 60_000];
 
 const now = () => new Date().toISOString();
 
+class WhatsappLabelDownloadError extends Error {
+  retryable: boolean;
+  reason: string | null;
+  statusCode: number | null;
+
+  constructor(params: {
+    message: string;
+    retryable: boolean;
+    reason: string | null;
+    statusCode: number | null;
+  }) {
+    super(params.message);
+    this.name = 'WhatsappLabelDownloadError';
+    this.retryable = params.retryable;
+    this.reason = params.reason;
+    this.statusCode = params.statusCode;
+  }
+}
+
+function isDeliveredNonPrintableError(error: WhatsappLabelDownloadError): boolean {
+  const message = error.message.toLowerCase();
+  return !error.retryable
+    && error.reason === 'http_error'
+    && (
+      message.includes('status is delivered')
+      || message.includes('"status":"delivered"')
+    );
+}
+
 export function parseWhatsappLabelJobLog(log: unknown): any[] {
   if (Array.isArray(log)) return log;
   if (typeof log !== 'string') return [];
@@ -181,6 +210,7 @@ async function downloadLabelWithRetry(pedidoId: string, mlOrderId: string | null
   let lastError = 'Falha ao baixar etiqueta do ML';
   let lastStatusCode: number | null = null;
   let lastReason: string | null = null;
+  let lastRetryable = false;
 
   while (Date.now() - startedAt <= LABEL_WAIT_TIMEOUT_MS) {
     attempts += 1;
@@ -205,8 +235,9 @@ async function downloadLabelWithRetry(pedidoId: string, mlOrderId: string | null
     lastError = result.error || lastError;
     lastStatusCode = result.statusCode ?? null;
     lastReason = result.reason || null;
+    lastRetryable = Boolean(result.retryable);
 
-    const canRetry = Boolean(result.retryable);
+    const canRetry = lastRetryable;
     const wouldExceed = Date.now() - startedAt + LABEL_RETRY_INTERVAL_MS > LABEL_WAIT_TIMEOUT_MS;
     if (!canRetry || wouldExceed) break;
     await new Promise((resolve) => setTimeout(resolve, LABEL_RETRY_INTERVAL_MS));
@@ -227,7 +258,12 @@ async function downloadLabelWithRetry(pedidoId: string, mlOrderId: string | null
     statusResultante: 'failed',
   });
 
-  throw new Error(lastError || 'Etiqueta ainda indisponível no ML');
+  throw new WhatsappLabelDownloadError({
+    message: lastError || 'Etiqueta ainda indisponível no ML',
+    retryable: lastRetryable,
+    reason: lastReason,
+    statusCode: lastStatusCode,
+  });
 }
 
 async function ensureInvoiceDataIfNeeded(params: {
@@ -613,8 +649,63 @@ export async function runWhatsappLabelJob(input: {
     const loadingIdx = steps.findIndex((step) => step.status === 'loading');
     const pendingIdx = steps.findIndex((step) => step.status === 'pending');
     const idx = loadingIdx >= 0 ? loadingIdx : pendingIdx;
-    if (idx >= 0) steps[idx] = { ...steps[idx], status: 'error', error: message, updatedAt: now() };
+    const terminalDownloadError =
+      err instanceof WhatsappLabelDownloadError && !err.retryable;
+    const deliveredNonPrintable =
+      terminalDownloadError && isDeliveredNonPrintableError(err);
+
+    if (idx >= 0) {
+      steps[idx] = {
+        ...steps[idx],
+        status: deliveredNonPrintable ? 'warning' : 'error',
+        ...(deliveredNonPrintable
+          ? { detail: 'Envio já entregue; etiqueta não pode mais ser reemitida pelo Mercado Livre' }
+          : { error: message }),
+        updatedAt: now(),
+      };
+    }
     failPendingSteps(steps);
+
+    if (terminalDownloadError) {
+      if (deliveredNonPrintable && pedidoIdForError) {
+        await client
+          .from('pedidos')
+          .update({ situacao: 'entregue' } as any)
+          .eq('id', pedidoIdForError);
+      }
+
+      result = {
+        error: message,
+        queued: false,
+        queueStatus: deliveredNonPrintable ? 'not_applicable' : 'failed',
+        reason: deliveredNonPrintable
+          ? 'shipment_delivered'
+          : err.reason || 'non_retryable_ml_label_error',
+      };
+      state = deliveredNonPrintable ? 'warning' : 'error';
+      await registrarEventoNfAuditoria({
+        pedidoId: pedidoIdForError || undefined,
+        mlOrderId: mlOrderIdForError,
+        evento: deliveredNonPrintable
+          ? 'whatsapp_label_send_not_applicable'
+          : 'whatsapp_label_send_failed',
+        respostaMl: {
+          job_id: input.jobId,
+          error: message,
+          steps,
+          queue_status: result.queueStatus,
+          retryable: false,
+          reason: result.reason,
+          status_http: err.statusCode,
+        },
+        statusResultante: deliveredNonPrintable ? 'not_applicable' : 'failed',
+      }).catch(() => undefined);
+      await syncJob().catch((syncError: any) => {
+        console.error('[whatsapp-label-job] Falha ao registrar encerramento terminal:', syncError?.message || syncError);
+      });
+      return;
+    }
+
     const retryAttempt = priorRetry.attempt + 1;
     const nextRetryAt = nextRetry(retryAttempt);
     logEntries.push({

@@ -103,6 +103,7 @@ type AuditEvent =
   | 'whatsapp_label_send_requested'
   | 'whatsapp_label_send_success'
   | 'whatsapp_label_send_failed'
+  | 'whatsapp_label_send_not_applicable'
   | 'sync_order_snapshot_start'
   | 'sync_order_snapshot_success'
   | 'sync_order_snapshot_failed'

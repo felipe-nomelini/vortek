@@ -244,6 +244,8 @@ function getWhatsappFlowStatus(order: Order) {
       return { color: '#faad14', label: 'Na fila' };
     case 'failed':
       return { color: '#ff4d4f', label: 'Falhou' };
+    case 'not_applicable':
+      return { color: '#8c8c8c', label: 'Não aplicável' };
     case 'unknown':
       return { color: '#8c8c8c', label: 'Indisponível' };
     case 'not_sent':
