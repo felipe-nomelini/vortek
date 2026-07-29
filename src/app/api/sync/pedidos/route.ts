@@ -19,7 +19,11 @@ import {
 import { parseMlVirtualKitOrderGroup } from '@/lib/ml/virtual-kit-orders';
 import { getSkuLookupVariants } from '@/lib/sku';
 import { alertClaimOpened, alertMlLabelReleased, alertNewSale } from '@/services/whatsapp-alerts';
-import { isEnderecoEstoqueInternoMl, registrarDevolucaoInterna } from '@/lib/estoque-interno';
+import {
+  estornarReservaEnvioInternoCancelado,
+  isEnderecoEstoqueInternoMl,
+  registrarDevolucaoInterna,
+} from '@/lib/estoque-interno';
 import {
   resolveMlSellerShippingCost,
   type MlShipmentCosts,
@@ -1382,7 +1386,7 @@ async function processOrder(params: {
 
   const hasFutureRelease = Boolean(releaseWindow.releaseAt && releaseWindow.isBlockedNow);
   const hadReleaseBefore = Boolean((existingPedido as any)?.ml_fiscal_release_at);
-  const profitUpdate = lucro !== null
+  const profitUpdate = typeof lucro === 'number' && Number.isFinite(lucro)
     ? { lucro }
     : {};
   const persistedFreight = (
@@ -1465,6 +1469,26 @@ async function processOrder(params: {
       contato_nome: contatoNome,
       total: Number(sourceOrder?.total_amount || o.total_amount || 0),
     });
+  }
+
+  if (!error && upsertedPedido?.id && situacao === 'cancelado') {
+    const estorno = await estornarReservaEnvioInternoCancelado(
+      String(upsertedPedido.id),
+      `Pedido ${String(o.id)} cancelado no Mercado Livre`,
+    );
+    if (estorno.estornadas > 0) {
+      await registrarEventoNfAuditoria({
+        pedidoId: String(upsertedPedido.id),
+        mlOrderId: String(o.id),
+        mlPackId,
+        evento: 'estoque_interno_saida_estornada_cancelamento',
+        respostaMl: {
+          movimentos_estornados: estorno.estornadas,
+          produtos: estorno.produtoIds,
+        },
+        statusResultante: 'success',
+      });
+    }
   }
 
   if (!error && upsertedPedido?.id && mlClaimId && !(existingPedido as any)?.ml_claim_id) {

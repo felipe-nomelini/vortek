@@ -1,0 +1,60 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T19-47-28-737Z/publish-upscaled/run-results/001-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-001",
+  "selected": 2,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "d78ca0ba-75a3-4802-9ebd-a6fbe4476a6d",
+      "sku": "VTK017592",
+      "category": {
+        "id": "MLB196072",
+        "nome": "Controles Remotos",
+        "dominio": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS"
+      },
+      "anuncio": {
+        "id": "MLB4966000715",
+        "title": "Controle Remoto Mxt 1065 Para Ar-condicionado Universal",
+        "price": 64.31,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4966000715-controle-remoto-mxt-1065-para-ar-condicionado-universal-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 48.88 → R$ 64.31."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "fcd2f8c4-e574-421b-96eb-02753bb4f4d4",
+      "sku": "VTK017837",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "anuncio": {
+        "id": "MLB4965988433",
+        "title": "Ponta Fenda Para Ferro De Solda Hikari Hk Plus Sc-60 Com 4",
+        "price": 90.19,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4965988433-ponta-fenda-para-ferro-de-solda-hikari-hk-plus-sc-60-com-4-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 74.56 → R$ 90.19."
+      ]
+    }
+  ],
+  "failed": []
+}

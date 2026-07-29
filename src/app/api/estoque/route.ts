@@ -16,6 +16,7 @@ export async function GET() {
       .from('estoque_interno_movimentacoes')
       .select('id,produto_id,pedido_id,quantidade,motivo,created_at,produtos(sku,nome),pedidos(ml_order_id,envio_interno_at)')
       .eq('tipo', 'saida_envio_interno')
+      .is('estornada_em', null)
       .order('created_at', { ascending: false }),
   ]);
   if (entradasResult.error) return NextResponse.json({ error: entradasResult.error.message }, { status: 500 });

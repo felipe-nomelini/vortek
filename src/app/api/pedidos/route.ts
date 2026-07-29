@@ -13,6 +13,7 @@ import {
   type OrdersOperationalView,
 } from '@/lib/orders/operational-view';
 import { enrichOrdersWithWhatsappStatus } from '@/services/order-operational-status';
+import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
 
 function logDbError(
   event: string,
@@ -128,25 +129,26 @@ async function resolveFornecedorPreviewByPedido(
   const { data: movimentosInternos, error: movimentosInternosError } = productIds.length
     ? await (serviceClient as any)
       .from('estoque_interno_movimentacoes')
-      .select('produto_id,tipo,quantidade,situacao_estoque')
+      .select('produto_id,tipo,quantidade,situacao_estoque,estornada_em')
       .in('produto_id', productIds)
     : { data: [], error: null as any };
   if (movimentosInternosError) {
     logDbError('pedidos_internal_stock_preview_failed', '/api/pedidos', '', movimentosInternosError);
   }
-  const saldoInternoPorProduto = new Map<string, number>();
+  const movimentosInternosPorProduto = new Map<string, any[]>();
   for (const movimento of movimentosInternos || []) {
     const produtoId = String((movimento as any).produto_id || '');
     if (!produtoId) continue;
-    const atual = saldoInternoPorProduto.get(produtoId) || 0;
-    const quantidade = Number((movimento as any).quantidade || 0);
-    const saldo = (movimento as any).tipo === 'entrada_devolucao' && (movimento as any).situacao_estoque === 'liberado'
-      ? atual + quantidade
-      : (movimento as any).tipo === 'saida_envio_interno'
-        ? atual - quantidade
-        : atual;
-    saldoInternoPorProduto.set(produtoId, saldo);
+    const atuais = movimentosInternosPorProduto.get(produtoId) || [];
+    atuais.push(movimento);
+    movimentosInternosPorProduto.set(produtoId, atuais);
   }
+  const saldoInternoPorProduto = new Map(
+    Array.from(movimentosInternosPorProduto.entries()).map(([produtoId, movimentos]) => [
+      produtoId,
+      calcularSaldoEstoqueInterno(movimentos),
+    ]),
+  );
 
   const offersByProductId = new Map<string, any[]>();
   for (const offer of offers || []) {

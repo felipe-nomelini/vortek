@@ -1,6 +1,7 @@
 import { createServiceClient } from '@/lib/supabase';
 import { getSkuLookupVariants } from '@/lib/sku';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
+import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
 
 type ItemEstoquePedido = {
   produtoId: string;
@@ -112,15 +113,11 @@ export async function obterSaldoEstoqueInternoProduto(produtoId: string): Promis
   const db = createServiceClient();
   const { data: movimentos, error } = await (db as any)
     .from('estoque_interno_movimentacoes')
-    .select('tipo,quantidade,situacao_estoque')
+    .select('tipo,quantidade,situacao_estoque,estornada_em')
     .eq('produto_id', produtoId);
   if (error) throw new Error(error.message);
 
-  return (movimentos || []).reduce((saldo: number, movimento: any) => (
-    saldo
-      + (movimento.tipo === 'entrada_devolucao' && movimento.situacao_estoque === 'liberado' ? Number(movimento.quantidade) : 0)
-      - (movimento.tipo === 'saida_envio_interno' ? Number(movimento.quantidade) : 0)
-  ), 0);
+  return calcularSaldoEstoqueInterno(movimentos || []);
 }
 
 export type MlObservedStock = {
@@ -249,7 +246,8 @@ async function obterReservasDoPedido(pedidoId: string): Promise<Map<string, numb
     .from('estoque_interno_movimentacoes')
     .select('produto_id,quantidade')
     .eq('pedido_id', pedidoId)
-    .eq('tipo', 'saida_envio_interno');
+    .eq('tipo', 'saida_envio_interno')
+    .is('estornada_em', null);
   if (error) throw new Error(error.message);
 
   return new Map((data || []).map((row: any) => [
@@ -304,6 +302,52 @@ export async function reservarEnvioInterno(pedidoId: string) {
       console.error('[internal_stock_ml_sync_failed]', { pedidoId, produtoId: item.produtoId, error: error?.message || error });
     }
   }));
+}
+
+/**
+ * Estorna de forma idempotente as reservas de um pedido cancelado.
+ * A movimentação permanece no banco para auditoria.
+ */
+export async function estornarReservaEnvioInternoCancelado(
+  pedidoId: string,
+  motivo: string,
+) {
+  const db = createServiceClient();
+  const estornadaEm = new Date().toISOString();
+  const { data: movimentos, error } = await (db as any)
+    .from('estoque_interno_movimentacoes')
+    .update({
+      estornada_em: estornadaEm,
+      estorno_motivo: motivo,
+    })
+    .eq('pedido_id', pedidoId)
+    .eq('tipo', 'saida_envio_interno')
+    .is('estornada_em', null)
+    .select('id,produto_id,quantidade');
+  if (error) throw new Error(error.message);
+
+  const produtoIds = Array.from(new Set<string>(
+    (movimentos || [])
+      .map((movimento: any) => String(movimento.produto_id || '').trim())
+      .filter(Boolean),
+  ));
+
+  await Promise.all(produtoIds.map(async (produtoId) => {
+    try {
+      await enfileirarSyncMlEstoqueInterno(produtoId);
+    } catch (syncError: any) {
+      console.error('[internal_stock_cancel_reversal_ml_sync_failed]', {
+        pedidoId,
+        produtoId,
+        error: syncError?.message || syncError,
+      });
+    }
+  }));
+
+  return {
+    estornadas: (movimentos || []).length,
+    produtoIds,
+  };
 }
 
 /** Toda devolução entra bloqueada; operador libera somente após conferência física. */

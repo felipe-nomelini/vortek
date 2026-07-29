@@ -11,6 +11,7 @@ import { alertMlLabelReleased, alertNewQuestion, alertNewSale } from '@/services
 import { pushEvents } from '@/services/push-notifications';
 import {
   enfileirarSyncMlEstoqueInterno,
+  estornarReservaEnvioInternoCancelado,
   isEnderecoEstoqueInternoMl,
   registrarDevolucaoInterna,
 } from '@/lib/estoque-interno';
@@ -48,7 +49,9 @@ function buildWebhookStubPayload(order: any, existing: any) {
     contato_nome: order.buyer?.nickname || existing?.contato_nome || 'Desconhecido',
     contato_documento: String(order.buyer?.identification?.number || existing?.contato_documento || ''),
     total: order.total_amount || existing?.total || 0,
-    situacao: order.status === 'paid' ? 'aberto' : 'atendido' as any,
+    situacao: order.status === 'cancelled'
+      ? 'cancelado'
+      : existing?.situacao || (order.status === 'paid' ? 'aberto' : 'atendido') as any,
     ml_order_id: String(order.id || ''),
     ml_pack_id: order.pack_id ? String(order.pack_id) : null,
     ...(needsHydration
@@ -364,6 +367,26 @@ export async function POST(request: Request) {
         });
         pedidoId = stubResult?.pedidoId || null;
         shouldHydrate = stubResult?.shouldHydrate ?? shouldHydrate;
+        if (pedidoId && order.status === 'cancelled') {
+          const estorno = await estornarReservaEnvioInternoCancelado(
+            pedidoId,
+            `Pedido ${String(order.id)} cancelado no Mercado Livre`,
+          );
+          if (estorno.estornadas > 0) {
+            await registrarEventoNfAuditoria({
+              pedidoId,
+              mlOrderId: String(order.id),
+              mlPackId: order.pack_id ? String(order.pack_id) : null,
+              evento: 'estoque_interno_saida_estornada_cancelamento',
+              respostaMl: {
+                movimentos_estornados: estorno.estornadas,
+                produtos: estorno.produtoIds,
+                source: 'webhook_orders_v2',
+              },
+              statusResultante: 'success',
+            });
+          }
+        }
         if (stubResult?.action === 'inserted') {
           void alertNewSale({
             id: pedidoId,

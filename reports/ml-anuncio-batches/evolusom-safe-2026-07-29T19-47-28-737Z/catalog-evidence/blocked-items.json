@@ -1,0 +1,92 @@
+[
+  {
+    "produtoId": "dc8faf94-109e-49a1-9760-1862a9725af2",
+    "sku": "VTK018703",
+    "nome": "Cabo Auto Plastic Pompéia Profissional 50,00 Mm Rolo Com 12 Metros",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB24069676",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-BROOM_AND_SQUEEGEE_HANDLES",
+      "predictedCategoryId": "MLB277565"
+    }
+  },
+  {
+    "produtoId": "10ee8601-3127-4287-b1f5-1f1efb237573",
+    "sku": "VTK018536",
+    "nome": "Calota Grid Aro 14p 117cb-pta Volkswaggen Modelo Gol/ Voyage G5/ G6 2014 Cubo Baixo - PC / 4",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "5eee7696-b9e4-451b-b23d-8ab664485a66",
+    "sku": "VTK017889",
+    "nome": "Espelho Retrovisor Com Monitor Orbe Om43gps-c 4,3\"",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB26156079/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  },
+  {
+    "produtoId": "5a4b4c6f-1ac7-4521-a079-9e94cc7cda5c",
+    "sku": "VTK017173",
+    "nome": "Fonte Chaveada Para Cftv 9v 500ma Com Led",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "9b4b0e17-aed3-489e-ba82-986ce39263d5",
+    "sku": "VTK018513",
+    "nome": "Lampada 9005 White 12v 60w P20d 98551",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "d7f5ebae-4237-45ba-9163-dfad19de911f",
+    "sku": "VTK017985",
+    "nome": "Módulo De Vidro Elétrico Soft Trt31 Fechamento Teto / Retrovisor Com Rele Tempo",
+    "reason": "catalog_exact_gtin_not_found",
+    "details": {
+      "found": 0
+    }
+  },
+  {
+    "produtoId": "cebcd52e-a040-4e2b-82c5-25c93dcd3d01",
+    "sku": "VTK017714",
+    "nome": "Ponta De Prova Minipa Mtl-1 Cat Ii 1000v",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB27119766",
+      "catalogDomainId": "MLB-MULTIMETERS",
+      "predictedDomainId": "MLB-OSCILLOSCOPES",
+      "predictedCategoryId": "MLB45283"
+    }
+  },
+  {
+    "produtoId": "407d2a79-e120-4db1-a9c8-8c766b428974",
+    "sku": "VTK017521",
+    "nome": "Reparo Jbl Selenium Rpst304 Para Super Tweeter St304",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB35845744",
+      "catalogDomainId": "MLB-VEHICLE_SPEAKERS",
+      "predictedDomainId": "MLB-ELECTRONIC_PRODUCTS",
+      "predictedCategoryId": "MLB432949"
+    }
+  },
+  {
+    "produtoId": "297f1b6d-1440-4894-923e-fe83f8d679f8",
+    "sku": "VTK018171",
+    "nome": "Suporte Para Tv Multivisão Led-180 Preto Para Tv Samsung Led 26 A 55\"",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB23063342/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  }
+]

@@ -51,3 +51,14 @@ test('calcula lucro final com custo real do frete', () => {
     matchedItems: 1,
   }), 6.52);
 });
+
+test('não persiste lucro inválido quando a origem contém valor não finito', () => {
+  assert.equal(calculateFinalOrderProfit({
+    total: 89,
+    productCost: Number.NaN,
+    saleFees: 10.24,
+    sellerShippingCost: 13.25,
+    tax: 3.56,
+    matchedItems: 1,
+  }), null);
+});

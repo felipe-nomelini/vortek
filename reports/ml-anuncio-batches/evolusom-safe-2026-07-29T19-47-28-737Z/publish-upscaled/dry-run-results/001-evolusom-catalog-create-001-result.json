@@ -1,0 +1,100 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T19-47-28-737Z/catalog-evidence/001-evolusom-catalog-create-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-001",
+  "selected": 2,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "d78ca0ba-75a3-4802-9ebd-a6fbe4476a6d",
+      "sku": "VTK017592",
+      "category": {
+        "id": "MLB196072",
+        "nome": "Controles Remotos",
+        "dominio": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS"
+      },
+      "basePrice": 48.88,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "28126556",
+          "value_name": "Controle Universal"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "34887996",
+          "value_name": "7899471820902"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Controle Remoto Mxt 1065 Para Ar-condicionado Universal Kt-1000\n\nVISÃO GERAL\nCONTROLE REMOTO UNIVERSAL MXT KT-1000 PARA AR-CONDICIONADO\n\nControle remoto universal para ar-condicionado, indicado para reposição de controles compatíveis. A programação é feita pelo código da marca conforme instruções do manual em português.\n\nCARACTERÍSTICAS\n\n• Marca: MXT\n\n• Modelo: KT-1000 / C01065\n\n• Aplicação: ar-condicionado\n\n• Compatibilidade informada pelo fornecedor: até 98% dos modelos\n\n• Alcance informado: até 8 metros\n\n• Programação pelo código da marca\n\n• Manual em português\n\nCONTEÚDO DA EMBALAGEM\n\n• 1 controle remoto universal MXT KT-1000\n\n• 1 manual de instruções\n\nAntes da compra, confira o modelo do aparelho e a tabela de códigos do fabricante.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MXT\n• Modelo: Controle Universal\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MXT\n• GTIN: 7899471820902\n• NCM: 85437099\n• SKU: VTK017592\n\nEMBALAGEM\n• Dimensões informadas: 2.5 × 5 × 13.5 cm\n• Peso bruto informado: 0,062 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "fcd2f8c4-e574-421b-96eb-02753bb4f4d4",
+      "sku": "VTK017837",
+      "category": {
+        "id": "MLB48611",
+        "nome": "Ferros de Solda",
+        "dominio": "MLB-ELECTRIC_SOLDERING_IRONS"
+      },
+      "basePrice": 74.56,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "25328984",
+          "value_name": "Sc-60"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "25328985",
+          "value_name": "7899810414014"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Ponta Fenda Para Ferro De Solda Hikari Hk Plus Sc-60 Com 4 Peças\n\nVISÃO GERAL\nKIT COM 4 PONTAS FENDA HIKARI PARA FERRO DE SOLDA PLUS SC-60\n\nConjunto de pontas de reposição Hikari para manutenção do ferro de solda compatível. Produto indicado para substituir pontas desgastadas, preservando encaixe e aplicação corretos.\n\nCARACTERÍSTICAS\n\n• Marca: Hikari\n\n• Tipo: ponta fenda para ferro de solda\n\n• Compatibilidade informada: linha Hikari Plus SC-60\n\n• Quantidade: 4 pontas\n\n• Produto de reposição\n\nCONTEÚDO DA EMBALAGEM\n\n• 4 pontas fenda Hikari\n\nConfira o modelo do ferro de solda antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Hikari\n• Modelo: Sc-60\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: HIKARI\n• GTIN: 7899810414014\n• NCM: 85159000\n• SKU: VTK017837\n\nEMBALAGEM\n• Dimensões informadas: 0.5 × 6.5 × 9 cm\n• Peso bruto informado: 0,066 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

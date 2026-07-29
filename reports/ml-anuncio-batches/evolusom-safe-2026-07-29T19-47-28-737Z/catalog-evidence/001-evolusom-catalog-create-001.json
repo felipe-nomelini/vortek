@@ -1,0 +1,241 @@
+{
+  "batchNumber": 1,
+  "batchId": "evolusom-catalog-create-001",
+  "strategy": "exact_gtin_catalog_evidence",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "d78ca0ba-75a3-4802-9ebd-a6fbe4476a6d",
+      "sku": "VTK017592",
+      "nome": "Controle Remoto Mxt 1065 Para Ar-condicionado Universal Kt-1000",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 19.1,
+      "estoque": 37,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 48.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899471820902",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB196072",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "28126556",
+          "value_name": "Controle Universal"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7891537",
+          "value_name": "2 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7828417",
+          "value_name": "6 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "18185316",
+          "value_name": "0.05 g"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7175738",
+          "value_name": "16 cm"
+        },
+        {
+          "id": "MAX_REACH",
+          "value_id": "7796027",
+          "value_name": "8 m"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "81834",
+          "value_name": "LCD"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "1176674",
+          "value_name": "Pilha"
+        },
+        {
+          "id": "CELL_BATTERIES_TYPE",
+          "value_id": "28174443",
+          "value_name": "2 pilhas AAA"
+        },
+        {
+          "id": "INCLUDES_CELL_BATTERIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_UNIVERSAL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_WIFI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "34887996",
+          "value_name": "7899471820902"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "72456339",
+          "value_name": "kt1000"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB34493962",
+        "catalogProductName": "Controle Remoto Ar Condicionado Universal Kt1000 - Mxt Cor Branco",
+        "catalogDomainId": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS",
+        "predictedDomainId": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS",
+        "categoryId": "MLB196072",
+        "categoryName": "Controles Remotos",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7899471820902"
+      }
+    },
+    {
+      "produtoId": "fcd2f8c4-e574-421b-96eb-02753bb4f4d4",
+      "sku": "VTK017837",
+      "nome": "Ponta Fenda Para Ferro De Solda Hikari Hk Plus Sc-60 Com 4 Peças",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 38.9,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 72.72,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810414014",
+        "validatedNcm": "85159000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB48611",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "101159",
+          "value_name": "Hikari"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "25328984",
+          "value_name": "Sc-60"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "976",
+          "value_name": "Prata"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "SOLDERING_IRON_TYPE",
+          "value_id": "5572229",
+          "value_name": "Lápis"
+        },
+        {
+          "id": "POWER",
+          "value_id": "112953",
+          "value_name": "50 W"
+        },
+        {
+          "id": "ELECTRODE_DIAMETER",
+          "value_id": "13289105",
+          "value_name": "1.5 mm"
+        },
+        {
+          "id": "TIP_MATERIAL",
+          "value_id": "48241873",
+          "value_name": "Ferro e Alumínio"
+        },
+        {
+          "id": "WITH_LED_LIGHT",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_REMOVABLE_TIP",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25328985",
+          "value_name": "7899810414014"
+        },
+        {
+          "id": "INCLUDES_STAND",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27719774",
+        "catalogProductName": "Ponta Fenda Ferro De Solda Plus Sc-60 E Power 60 Hikari",
+        "catalogDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "predictedDomainId": "MLB-ELECTRIC_SOLDERING_IRONS",
+        "categoryId": "MLB48611",
+        "categoryName": "Ferros de Solda",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7899810414014"
+      }
+    }
+  ]
+}
