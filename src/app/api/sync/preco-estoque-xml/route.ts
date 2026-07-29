@@ -6,12 +6,14 @@ import { getSyncRuntimeJson } from '@/lib/sync/runtime-config';
 import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
 import { enqueueKitStockUpdates, recalculateProductKits } from '@/lib/produto-kits';
 import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
+import { shouldReconcilePreferredOfferCandidate } from '@/lib/preferred-offer';
 
 export const maxDuration = 300;
 
 const CONFIG_KEY = 'dslite_catalog_xml_urls';
 const OFFER_PAGE_SIZE = 1000;
 const UPSERT_CHUNK_SIZE = 300;
+const PREFERRED_RECONCILIATION_CHUNK_SIZE = 100;
 const XML_FETCH_MAX_ATTEMPTS = 2;
 const XML_FETCH_RETRY_DELAYS_MS = [1_000];
 const XML_FETCH_CONCURRENCY = 2;
@@ -123,7 +125,7 @@ async function loadSupplierOffers(client: ReturnType<typeof createServiceClient>
   for (let from = 0; ; from += OFFER_PAGE_SIZE) {
     const { data, error } = await client
       .from('produto_fornecedor_ofertas')
-      .select('id,produto_id,dslite_produto_id,sku_oferta,nome,custo,estoque,product:produtos!produto_fornecedor_ofertas_produto_id_fkey(ativo)')
+      .select('id,produto_id,dslite_produto_id,sku_oferta,nome,custo,estoque,product:produtos!produto_fornecedor_ofertas_produto_id_fkey(ativo,oferta_preferencial_id,custo,estoque,dslite_fornecedor_id)')
       .eq('dslite_fornecedor_id', supplierId)
       .eq('ativo', true)
       .order('id', { ascending: true })
@@ -170,8 +172,10 @@ export async function POST(request: Request) {
       .not('dslite_id', 'is', null);
     if (activeSuppliersError) throw new Error(activeSuppliersError.message);
 
-    const supplierIds = (activeSuppliers || [])
+    const activeSupplierIdSet = new Set((activeSuppliers || [])
       .map((supplier) => String(supplier.dslite_id || '').trim())
+      .filter(Boolean));
+    const supplierIds = Array.from(activeSupplierIdSet)
       .filter((supplierId) => Boolean(supplierId && configuredFeeds[supplierId]))
       .filter((supplierId) => !selectedSupplierIds || selectedSupplierIds.has(supplierId));
 
@@ -183,6 +187,7 @@ export async function POST(request: Request) {
     let kitsUpdated = 0;
     let mlPriceProductsUpdated = 0;
     let mlPriceOutboxEnqueued = 0;
+    const reconciledWithoutOfferChangeProductIds = new Set<string>();
 
     for (const supplierBatch of chunk(supplierIds, XML_FETCH_CONCURRENCY)) {
       const downloadedFeeds = new Map<string, XmlCatalogItem[]>();
@@ -206,10 +211,29 @@ export async function POST(request: Request) {
         const localOffers = await loadSupplierOffers(client, supplierId);
         feedsDownloaded += 1;
         const xmlByProductId = new Map(xmlProducts.map((item) => [item.produtoId, item]));
+        const reconciliationProductIds = new Set<string>();
         const changedOffers = localOffers.flatMap((offer) => {
           if (offer?.product?.ativo === false) return [];
           const xml = xmlByProductId.get(String(offer.dslite_produto_id || '').trim());
           if (!xml) return [];
+
+          const productId = String(offer.produto_id || '').trim();
+          if (productId && shouldReconcilePreferredOfferCandidate({
+            oferta_preferencial_id: offer?.product?.oferta_preferencial_id,
+            custo: offer?.product?.custo,
+            estoque: offer?.product?.estoque,
+            fornecedor_atual_ativo: activeSupplierIdSet.has(
+              String(offer?.product?.dslite_fornecedor_id || '').trim(),
+            ),
+          }, {
+            id: offer.id,
+            ativo: true,
+            custo: xml.custo,
+            estoque: xml.estoque,
+          })) {
+            reconciliationProductIds.add(productId);
+          }
+
           const oldCost = Number(offer.custo || 0);
           const oldStock = Number(offer.estoque || 0);
           if (Math.abs(oldCost - xml.custo) < 0.0001 && oldStock === xml.estoque) return [];
@@ -227,16 +251,28 @@ export async function POST(request: Request) {
           }];
         });
         offersChanged += changedOffers.length;
+        const changedProductIds = new Set(changedOffers.map((offer) => offer.produto_id));
 
         for (const rows of chunk(changedOffers, UPSERT_CHUNK_SIZE)) {
           const { error } = await client
             .from('produto_fornecedor_ofertas')
             .upsert(rows as any, { onConflict: 'id' });
           if (error) throw new Error(`Falha ao atualizar ofertas: ${error.message}`);
+        }
 
-          const productIds = Array.from(new Set(rows.map((row) => row.produto_id)));
+        const productIdsToReconcile = Array.from(new Set([
+          ...changedProductIds,
+          ...reconciliationProductIds,
+        ]));
+
+        for (const productIds of chunk(productIdsToReconcile, PREFERRED_RECONCILIATION_CHUNK_SIZE)) {
           const snapshots = await syncPreferredProductSnapshot(client, productIds);
           productsRecalculated += snapshots.length;
+          for (const snapshot of snapshots) {
+            if (snapshot.changed && !changedProductIds.has(snapshot.productId)) {
+              reconciledWithoutOfferChangeProductIds.add(snapshot.productId);
+            }
+          }
           const automaticPricing = await enqueueAutomaticPricesForCostChanges(client, snapshots);
           mlPriceProductsUpdated += automaticPricing.productsUpdated;
           mlPriceOutboxEnqueued += automaticPricing.outboxEnqueued;
@@ -266,6 +302,7 @@ export async function POST(request: Request) {
       feeds_downloaded: feedsDownloaded,
       offers_changed: offersChanged,
       products_recalculated: productsRecalculated,
+      products_reconciled_without_offer_change: reconciledWithoutOfferChangeProductIds.size,
       kits_updated: kitsUpdated,
       ml_enqueued: mlEnqueued,
       ml_manual_blocked: mlManualBlocked,

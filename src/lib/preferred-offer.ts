@@ -6,6 +6,13 @@ export type PreferredOfferCandidate = {
   prioridade?: number | null;
 };
 
+export type PreferredProductSnapshotCandidate = {
+  oferta_preferencial_id?: string | null;
+  custo?: number | null;
+  estoque?: number | null;
+  fornecedor_atual_ativo?: boolean | null;
+};
+
 export function normalizeOfferPriority(value: unknown, fallback = 100): number {
   const parsed = Number(value);
   if (!Number.isFinite(parsed)) return fallback;
@@ -52,4 +59,38 @@ export function resolvePreferredOfferForProduct<T extends PreferredOfferCandidat
   _preferredOfferId?: string | null,
 ): T | null {
   return choosePreferredOffer(offers);
+}
+
+/**
+ * Detecta snapshots preferenciais obsoletos durante a leitura do catálogo.
+ * Permite reconciliar apenas produtos divergentes, mesmo quando custo e estoque
+ * da oferta não mudaram desde a sincronização anterior.
+ */
+export function shouldReconcilePreferredOfferCandidate(
+  product: PreferredProductSnapshotCandidate,
+  candidate: PreferredOfferCandidate,
+): boolean {
+  if (candidate.ativo === false) return false;
+
+  const candidateId = String(candidate.id || '').trim();
+  const candidateCost = Number(candidate.custo || 0);
+  const candidateStock = Number(candidate.estoque || 0);
+  if (!candidateId || candidateCost <= 0) return false;
+
+  const currentId = String(product.oferta_preferencial_id || '').trim();
+  const currentCost = Number(product.custo || 0);
+  const currentStock = Number(product.estoque || 0);
+
+  if (candidateId === currentId) {
+    return (
+      Math.abs(candidateCost - currentCost) >= 0.0001 ||
+      candidateStock !== currentStock
+    );
+  }
+
+  if (candidateStock <= 0) return false;
+  if (!currentId || product.fornecedor_atual_ativo === false) return true;
+  if (currentCost <= 0 || currentStock <= 0) return true;
+
+  return candidateCost < currentCost - 0.0001;
 }

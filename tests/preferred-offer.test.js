@@ -4,6 +4,7 @@ const test = require('node:test');
 const {
   choosePreferredOffer,
   resolvePreferredOfferForProduct,
+  shouldReconcilePreferredOfferCandidate,
 } = require('../src/lib/preferred-offer.ts');
 
 test('troca fornecedor atual por alternativa ativa mais barata com estoque', () => {
@@ -40,4 +41,92 @@ test('usa prioridade e estoque somente para desempate de custo', () => {
   ];
 
   assert.equal(choosePreferredOffer(offers)?.id, 'mais-prioritaria');
+});
+
+test('reconcilia alternativa com estoque e custo menor mesmo sem mudança no XML', () => {
+  const product = {
+    oferta_preferencial_id: 'hayamax',
+    custo: 52.78,
+    estoque: 15,
+    fornecedor_atual_ativo: true,
+  };
+  const evolusom = { id: 'evolusom', ativo: true, custo: 50.5, estoque: 5 };
+
+  assert.equal(shouldReconcilePreferredOfferCandidate(product, evolusom), true);
+});
+
+test('não reconcilia alternativa mais cara quando atual possui estoque', () => {
+  const product = {
+    oferta_preferencial_id: 'evolusom',
+    custo: 50.5,
+    estoque: 5,
+    fornecedor_atual_ativo: true,
+  };
+  const hayamax = { id: 'hayamax', ativo: true, custo: 52.78, estoque: 15 };
+
+  assert.equal(shouldReconcilePreferredOfferCandidate(product, hayamax), false);
+});
+
+test('reconcilia alternativa com estoque quando fornecedor atual está indisponível', () => {
+  const product = {
+    oferta_preferencial_id: 'atual',
+    custo: 40,
+    estoque: 0,
+    fornecedor_atual_ativo: true,
+  };
+  const alternativa = { id: 'alternativa', ativo: true, custo: 50, estoque: 2 };
+
+  assert.equal(shouldReconcilePreferredOfferCandidate(product, alternativa), true);
+});
+
+test('reconcilia alternativa com estoque quando fornecedor atual está inativo', () => {
+  const product = {
+    oferta_preferencial_id: 'atual',
+    custo: 40,
+    estoque: 3,
+    fornecedor_atual_ativo: false,
+  };
+  const alternativa = { id: 'alternativa', ativo: true, custo: 50, estoque: 2 };
+
+  assert.equal(shouldReconcilePreferredOfferCandidate(product, alternativa), true);
+});
+
+test('reconcilia fornecedor atual quando snapshot está obsoleto', () => {
+  const product = {
+    oferta_preferencial_id: 'evolusom',
+    custo: 52.78,
+    estoque: 15,
+    fornecedor_atual_ativo: true,
+  };
+  const evolusom = { id: 'evolusom', ativo: true, custo: 50.5, estoque: 5 };
+
+  assert.equal(shouldReconcilePreferredOfferCandidate(product, evolusom), true);
+});
+
+test('ignora alternativa inativa ou sem estoque quando atual está disponível', () => {
+  const product = {
+    oferta_preferencial_id: 'atual',
+    custo: 50,
+    estoque: 2,
+    fornecedor_atual_ativo: true,
+  };
+
+  assert.equal(
+    shouldReconcilePreferredOfferCandidate(product, {
+      id: 'inativa',
+      ativo: false,
+      custo: 40,
+      estoque: 3,
+    }),
+    false,
+  );
+  assert.equal(
+    shouldReconcilePreferredOfferCandidate(product, {
+      id: 'sem-estoque',
+      ativo: true,
+      custo: 40,
+      estoque: 0,
+    }),
+    false,
+  );
 });
