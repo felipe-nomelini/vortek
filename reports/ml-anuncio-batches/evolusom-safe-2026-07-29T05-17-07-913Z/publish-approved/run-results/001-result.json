@@ -1,0 +1,85 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T05-17-07-913Z/publish-approved/run-results/001-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-001",
+  "selected": 3,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "934b9787-bd56-4e3e-bf98-350cfd1f98e5",
+      "sku": "VTK021396",
+      "category": {
+        "id": "MLB30197",
+        "nome": "Transformadores",
+        "dominio": "MLB-VOLTAGE_CONVERTERS"
+      },
+      "anuncio": {
+        "id": "MLB4961725223",
+        "title": "Autotransformador Blindado Indusat 500va Tripolar",
+        "price": 141.19,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4961725223-autotransformador-blindado-indusat-500va-tripolar-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 118.11 → R$ 141.19."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "24d66112-e934-4031-bc4a-7e386a3e0c9f",
+      "sku": "VTK021397",
+      "category": {
+        "id": "MLB30197",
+        "nome": "Transformadores",
+        "dominio": "MLB-VOLTAGE_CONVERTERS"
+      },
+      "anuncio": {
+        "id": "MLB4961750989",
+        "title": "Autotransformador Blindado Indusat 750va Tripolar",
+        "price": 157.17,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4961750989-autotransformador-blindado-indusat-750va-tripolar-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 130.69 → R$ 157.17."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "6742a579-f347-4460-98cf-70f92c0dcdb7",
+      "sku": "VTK021398",
+      "category": {
+        "id": "MLB30197",
+        "nome": "Transformadores",
+        "dominio": "MLB-VOLTAGE_CONVERTERS"
+      },
+      "anuncio": {
+        "id": "MLB4961738321",
+        "title": "Autotransformador Blindado Indusat 1010va Tripolar",
+        "price": 171.01,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4961738321-autotransformador-blindado-indusat-1010va-tripolar-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 144.53 → R$ 171.01."
+      ]
+    }
+  ],
+  "failed": []
+}

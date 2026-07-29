@@ -8,7 +8,9 @@ const { assertAllowedMercadoLivreToken } = require('./lib/ml-token-guard');
 
 dotenv.config({ path: '.env.local', quiet: true });
 
-const SUPPLIER_ID = '2';
+const SUPPLIER_ID = String(argValue('--supplier-id', '2'));
+const SUPPLIER_NAME = String(argValue('--supplier-name', 'Hayamax')).trim();
+const IS_HAYAMAX = SUPPLIER_ID === '2';
 const DEFAULT_BATCH_SIZE = 20;
 const localDate = new Intl.DateTimeFormat('en-CA', {
   timeZone: 'America/Sao_Paulo',
@@ -251,7 +253,7 @@ async function main() {
       offer.sku_fornecedor,
       offer.dslite_produto_id,
     ]) {
-      if (/^\d+$/.test(String(legacySku || '').trim())) {
+      if (IS_HAYAMAX && /^\d+$/.test(String(legacySku || '').trim())) {
         registerProductAlias(`HYX${String(legacySku).trim()}`, product);
       }
     }
@@ -514,8 +516,12 @@ async function main() {
     if (titleMissing.length) flags.push('title_may_miss_relevant_attributes');
     if (localGtin && mlGtin && localGtin !== mlGtin) flags.push('gtin_conflict');
     if (localBrand && mlBrand && localBrand !== mlBrand) flags.push('brand_conflict');
-    if (/^HYX/i.test(mlSellerSku)) flags.push('legacy_hayamax_seller_sku');
-    if (/^HYX/i.test(sellerCustomField)) flags.push('legacy_hayamax_seller_custom_field');
+    if (/^HYX/i.test(mlSellerSku)) {
+      flags.push('legacy_hayamax_seller_sku');
+    }
+    if (/^HYX/i.test(sellerCustomField)) {
+      flags.push('legacy_hayamax_seller_custom_field');
+    }
     if (
       mlSellerSku &&
       targetSellerSku &&
@@ -569,7 +575,7 @@ async function main() {
       mapping_strategy: listing.mapping_strategy,
       evidence: {
         erp_product: true,
-        hayamax_offer: true,
+        supplier_offer: true,
         mercado_livre_item: true,
         manufacturer_source: null,
       },
@@ -635,11 +641,12 @@ async function main() {
   const summary = {
     generated_at: new Date().toISOString(),
     supplier_id: SUPPLIER_ID,
+    supplier_name: SUPPLIER_NAME,
     seller_id: sellerId,
     definition:
-      'Todo item active da conta cujo SELLER_SKU, seller_custom_field ou vínculo do ERP mapeia para produto com oferta preferencial atual Hayamax',
-    hayamax_offer_rows: offers.length,
-    preferred_hayamax_products: preferredProducts.length,
+      `Todo item active da conta cujo SELLER_SKU, seller_custom_field ou vínculo do ERP mapeia para produto com oferta preferencial atual ${SUPPLIER_NAME}`,
+    supplier_offer_rows: offers.length,
+    preferred_supplier_products: preferredProducts.length,
     erp_ads_loaded: ads.length,
     seller_active_items: activeAccountItemIds.length,
     seller_active_items_returned_by_multiget: itemById.size,

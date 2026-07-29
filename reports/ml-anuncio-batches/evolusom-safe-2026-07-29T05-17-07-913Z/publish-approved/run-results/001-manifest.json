@@ -1,0 +1,280 @@
+{
+  "batchNumber": 1,
+  "batchId": "evolusom-domain-approved-001",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "934b9787-bd56-4e3e-bf98-350cfd1f98e5",
+      "sku": "VTK021396",
+      "nome": "Autotransformador Blindado Indusat 500va Tripolar",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 73.9,
+      "estoque": 39,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 115.93,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897643848563",
+        "validatedNcm": "85043211",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB30197",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2746860",
+          "value_name": "Indusat"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "9843737",
+          "value_name": "500VA"
+        },
+        {
+          "id": "MAX_POWER_SUPPORTED",
+          "value_id": "49564359",
+          "value_name": "325 W"
+        },
+        {
+          "id": "INPUT_VOLTAGES",
+          "value_id": "39205162",
+          "value_name": "127V, 220V"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "10789270",
+          "value_name": "60Hz"
+        },
+        {
+          "id": "OUTPUT_VOLTAGES",
+          "value_id": "5592405",
+          "value_name": "110V, 220V"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "2450144",
+          "value_name": "11.5 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "1115173",
+          "value_name": "7.5 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "216344",
+          "value_name": "14 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18121720",
+          "value_name": "7897643848563"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22544420",
+        "catalogProductName": "Autotransformador Blindado Tripolar Indusat De 500va 325w",
+        "catalogDomainId": "MLB-VOLTAGE_CONVERTERS",
+        "predictedDomainId": "MLB-VOLTAGE_CONVERTERS",
+        "categoryId": "MLB30197",
+        "categoryName": "Transformadores",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7897643848563"
+      }
+    },
+    {
+      "produtoId": "24d66112-e934-4031-bc4a-7e386a3e0c9f",
+      "sku": "VTK021397",
+      "nome": "Autotransformador Blindado Indusat 750va Tripolar",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 83.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 128.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897643848488",
+        "validatedNcm": "85043211",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB30197",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2746860",
+          "value_name": "Indusat"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18121565",
+          "value_name": "750VA"
+        },
+        {
+          "id": "MAX_POWER_SUPPORTED",
+          "value_id": "49558103",
+          "value_name": "487 W"
+        },
+        {
+          "id": "INPUT_VOLTAGES",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "10789270",
+          "value_name": "60Hz"
+        },
+        {
+          "id": "OUTPUT_VOLTAGES",
+          "value_id": "5592405",
+          "value_name": "110V, 220V"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "2450144",
+          "value_name": "11.5 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "1115173",
+          "value_name": "7.5 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "216344",
+          "value_name": "14 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18915064",
+          "value_name": "7897643848488"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB23083565",
+        "catalogProductName": "Autotransformador Blindado Tripolar Indusat De 750va 487w",
+        "catalogDomainId": "MLB-VOLTAGE_CONVERTERS",
+        "predictedDomainId": "MLB-VOLTAGE_CONVERTERS",
+        "categoryId": "MLB30197",
+        "categoryName": "Transformadores",
+        "linkedListingsInCategory": 4,
+        "validatedGtin": "7897643848488"
+      }
+    },
+    {
+      "produtoId": "6742a579-f347-4460-98cf-70f92c0dcdb7",
+      "sku": "VTK021398",
+      "nome": "Autotransformador Blindado Indusat 1010va Tripolar",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 94.9,
+      "estoque": 35,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 141.85,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897643848464",
+        "validatedNcm": "85043211",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB30197",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2746860",
+          "value_name": "Indusat"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18885528",
+          "value_name": "1010VA"
+        },
+        {
+          "id": "MAX_POWER_SUPPORTED",
+          "value_id": "36198250",
+          "value_name": "656 W"
+        },
+        {
+          "id": "INPUT_VOLTAGES",
+          "value_id": "39205162",
+          "value_name": "127V, 220V"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "10789270",
+          "value_name": "60Hz"
+        },
+        {
+          "id": "OUTPUT_VOLTAGES",
+          "value_id": "5592405",
+          "value_name": "110V, 220V"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "2450144",
+          "value_name": "11.5 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "1115173",
+          "value_name": "7.5 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "216344",
+          "value_name": "14 cm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18236369",
+          "value_name": "7897643848464"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22614760",
+        "catalogProductName": "Autotransformador Blindado Tripolar Indusat De 1010va 656w",
+        "catalogDomainId": "MLB-VOLTAGE_CONVERTERS",
+        "predictedDomainId": "MLB-VOLTAGE_CONVERTERS",
+        "categoryId": "MLB30197",
+        "categoryName": "Transformadores",
+        "linkedListingsInCategory": 6,
+        "validatedGtin": "7897643848464"
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T05-17-07-913Z/catalog-evidence/003-evolusom-catalog-create-003.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-003",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "d350793d-e006-423e-8fa7-198bcfa1feaa",
+      "sku": "VTK020780",
+      "category": {
+        "id": "MLB7075",
+        "nome": "Porteiros Elétricos",
+        "dominio": "MLB-ELECTRIC_ENTRANCE_INTERCOMS"
+      },
+      "basePrice": 709.28,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "24317332",
+          "value_name": "Interfone Residencial IVR 1010"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "25834955",
+          "value_name": "Porteiro eletrônico/frente"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "24317349",
+          "value_name": "7896637674263, 7898963592877"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Vídeo Porteiro Intelbras Ivr1010 Branco 4520042\n\nVISÃO GERAL\nInformações do Produto O IVR 1010 é um videoporteiro residencial com fabricação 100% nacional e a já reconhecida qualidade Intelbras. Sua alimentação é feita através do módulo interno, não sendo necessário ponto de energia no módulo externo. Com o videoporteiro IVR 1010 é possível abrir até 2 portões: 1 social e 1 de garagem.\n\nCom excelente custo-benefício, é fácil de instalar e usar, com funções que garantem mais segurança aos usuários. - Alimentação pelo módulo interno; - Fabricação nacional; - Tela de 4,3 ; - Câmera com visualização noturna; - Entrada para botoeira; - Alarme antiviolação; - Abertura de até 2 portões; - Permite adicionar mais 1 câmera ou 1 portão de garagem; - Permite adicionar até 1 extensão de vídeo (IVR 1010 IN) ou 3 extensões de áudio (1010 EA); - Função; - Não perturbe. Informações Técnicas Módulo interno Tecnologia do display TFT - LCD 4,3 widescreen Tamanho da tela 4,3 Formato da tela 16:9 Resolução (H × V) 480 × 272 RGB Brilho 230 cd / m Ângulo de visão 50° Dimensões (L × A × P) 20,7 × 19,1 × 6,1 cm Tensão de operação Rede 100 a 240 Vac (automática) Frequência de operação 50/60 Hz Consumo 6,5 W (em uso) 1,5 W (em repouso) Peso 408 g Temperatura de operação -10 °C a 50 °C Acionamento relé NA/NF 24 V/1 A Módulo externo Câmera pinhole 1/4 Lente 3.\n\n7 mm Resolução horizontal 580 linhas Iluminação mínima - modo colorido 1,5 lux Iluminação mínima - modo P&B 0,2 lux LEDs infravermelhos 2 Abertura fechadura elétrica 12 V/1 A Frequência de operação 50/60 Hz Dimensões (L × A × P) 9,5 × 14,9 × 5,5 cm Peso 146 g Temperatura de operação -10 °C a 50 °C\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Intelbras\n• Modelo: Interfone Residencial IVR 1010\n• Tipo de produto: Porteiro eletrônico/frente\n• Cor: Branco\n• Cor principal: Branco\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INTELBRAS\n• GTIN: 7896637674263\n• NCM: 85176256\n• SKU: VTK020780\n\nEMBALAGEM\n• Dimensões informadas: 25 × 8 × 36 cm\n• Peso bruto informado: 0,824 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

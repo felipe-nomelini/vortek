@@ -1,0 +1,376 @@
+{
+  "batchNumber": 3,
+  "batchId": "evolusom-domain-approved-003",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "9f479275-3958-46a6-a8f8-fb23cc5ca4e1",
+      "sku": "VTK019526",
+      "nome": "Módulo Para Porteiro Residencial Intelbras Ipr 8000n Módulo Interno",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 89.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 135.68,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637619486",
+        "validatedNcm": "85176256",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7075",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "2851294",
+          "value_name": "IPR 8000"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "25834954",
+          "value_name": "Porteiro eletrônico"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "BUTTONS_NUMBER",
+          "value_id": "24778972",
+          "value_name": "2"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "value_id": "2637839",
+          "value_name": "1"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "3739569",
+          "value_name": "12V"
+        },
+        {
+          "id": "PHONE_TYPE",
+          "value_id": "2237107",
+          "value_name": "Com fio"
+        },
+        {
+          "id": "INTERCOM_HEIGHT",
+          "value_id": "30432467",
+          "value_name": "16 cm"
+        },
+        {
+          "id": "INTERCOM_WIDTH",
+          "value_id": "35781508",
+          "value_name": "12 cm"
+        },
+        {
+          "id": "INTERCOM_LENGTH",
+          "value_id": "28410961",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "FRONT_HEIGHT",
+          "value_id": "27807128",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "FRONT_WIDTH",
+          "value_id": "31807456",
+          "value_name": "12 cm"
+        },
+        {
+          "id": "FRONT_LENGTH",
+          "value_id": "35584421",
+          "value_name": "15 cm"
+        },
+        {
+          "id": "INCLUDES_EXTERNAL_CAMERA",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NIGHT_VISION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LOCK_CONTROL_SYSTEM",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SPEAKERPHONE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SCREEN_VIEWER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_COLOR_SCREEN",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_VIDEO_RECORDER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_INTERNET_CONNECTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_APP_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_ANTIVANDALIC",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24317352",
+          "value_name": "7896637619486"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "61755899",
+          "value_name": "IPR 8000 in"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB50240665",
+        "catalogProductName": "Extensão Para O Porteiro Intelbras IPR 8000 IN Cor Branco",
+        "catalogDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+        "predictedDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+        "categoryId": "MLB7075",
+        "categoryName": "Porteiros Elétricos",
+        "linkedListingsInCategory": 20,
+        "validatedGtin": "7896637619486"
+      }
+    },
+    {
+      "produtoId": "d350793d-e006-423e-8fa7-198bcfa1feaa",
+      "sku": "VTK020780",
+      "nome": "Vídeo Porteiro Intelbras Ivr1010 Branco 4520042",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 469.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 696.15,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637674263",
+        "validatedNcm": "85176256",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7075",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24317332",
+          "value_name": "Interfone Residencial IVR 1010"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "25834955",
+          "value_name": "Porteiro eletrônico/frente"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "BUTTONS_NUMBER",
+          "value_id": "24540126",
+          "value_name": "1"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "value_id": "297910",
+          "value_name": "2"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "8152567",
+          "value_name": "Corrente elétrica"
+        },
+        {
+          "id": "PHONE_TYPE",
+          "value_id": "2237107",
+          "value_name": "Com fio"
+        },
+        {
+          "id": "INTERCOM_HEIGHT",
+          "value_id": "27189183",
+          "value_name": "19.1 cm"
+        },
+        {
+          "id": "INTERCOM_WIDTH",
+          "value_id": "28652240",
+          "value_name": "20.7 cm"
+        },
+        {
+          "id": "INTERCOM_LENGTH",
+          "value_id": "26624572",
+          "value_name": "6.1 cm"
+        },
+        {
+          "id": "FRONT_HEIGHT",
+          "value_id": "27189180",
+          "value_name": "14.9 cm"
+        },
+        {
+          "id": "FRONT_WIDTH",
+          "value_id": "27189181",
+          "value_name": "9.5 cm"
+        },
+        {
+          "id": "FRONT_LENGTH",
+          "value_id": "26344714",
+          "value_name": "5.5 cm"
+        },
+        {
+          "id": "INCLUDES_EXTERNAL_CAMERA",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_NIGHT_VISION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_LOCK_CONTROL_SYSTEM",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SPEAKERPHONE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SCREEN_VIEWER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_COLOR_SCREEN",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_VIDEO_RECORDER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_INTERNET_CONNECTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_APP_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_ANTIVANDALIC",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24317349",
+          "value_name": "7896637674263, 7898963592877"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "40480356",
+          "value_name": "IVR 1010"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27070501",
+        "catalogProductName": "Video Porteiro Ivr 1010 Branco E Preto Intelbras 110V/220V",
+        "catalogDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+        "predictedDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+        "categoryId": "MLB7075",
+        "categoryName": "Porteiros Elétricos",
+        "linkedListingsInCategory": 42,
+        "validatedGtin": "7896637674263"
+      }
+    }
+  ]
+}

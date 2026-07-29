@@ -8,6 +8,12 @@ dotenv.config({ path: '.env.local' });
 const SOURCE_DIR = process.env.ML_BATCH_SOURCE_DIR;
 const CONCURRENCY = Math.max(1, Number(process.env.ML_CATALOG_CONCURRENCY || '4'));
 const BATCH_SIZE = Math.max(1, Number(process.env.ML_BATCH_SIZE || '10'));
+const SELECTED_SKUS = new Set(
+  String(process.env.ML_PRODUCT_SKUS || '')
+    .split(',')
+    .map((sku) => sku.trim())
+    .filter(Boolean),
+);
 
 if (!SOURCE_DIR) {
   throw new Error('Defina ML_BATCH_SOURCE_DIR com o diretório dos lotes Evolusom.');
@@ -121,9 +127,20 @@ async function loadProducts(ids) {
 
 async function main() {
   const sourcePath = path.resolve(SOURCE_DIR);
-  const readyItems = JSON.parse(
+  const allReadyItems = JSON.parse(
     fs.readFileSync(path.join(sourcePath, 'ready-items.json'), 'utf8'),
   );
+  const readyItems = SELECTED_SKUS.size > 0
+    ? allReadyItems.filter((item) => SELECTED_SKUS.has(String(item.sku)))
+    : allReadyItems;
+  const missingSelectedSkus = [...SELECTED_SKUS].filter(
+    (sku) => !readyItems.some((item) => String(item.sku) === sku),
+  );
+  if (missingSelectedSkus.length > 0) {
+    throw new Error(
+      `SKUs solicitados não estão prontos: ${missingSelectedSkus.join(', ')}`,
+    );
+  }
   const productById = await loadProducts(
     readyItems.map((item) => String(item.produtoId)),
   );

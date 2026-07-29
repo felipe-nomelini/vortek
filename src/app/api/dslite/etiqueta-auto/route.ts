@@ -35,6 +35,7 @@ import {
 import { reservarEnvioInterno, validarEstoqueEnvioInterno } from '@/lib/estoque-interno';
 import { parseMlOrderShippingMode } from '@/lib/ml/order-shipping-mode';
 import { calculateOrderProfit } from '@/services/orders';
+import { retryMlLabelDownload } from '@/lib/ml/label-download-retry';
 
 const LABEL_RETRY_INTERVAL_MS = 5000;
 const LABEL_WAIT_TIMEOUT_MS = 60000;
@@ -1290,8 +1291,84 @@ export async function POST(req: Request) {
     }
 
     if (directShipping) {
-      const etiquetaResult = await baixarEtiquetaML(shipmentId, { responseType: 'pdf' });
+      const directLabelStartedAt = Date.now();
+      const downloadDirectLabel = async (responseType: 'pdf' | 'zpl2') => {
+        const remainingTimeoutMs = Math.max(
+          0,
+          LABEL_WAIT_TIMEOUT_MS - (Date.now() - directLabelStartedAt),
+        );
+        return retryMlLabelDownload(
+          () => baixarEtiquetaML(shipmentId, { responseType }),
+          {
+            intervalMs: LABEL_RETRY_INTERVAL_MS,
+            timeoutMs: remainingTimeoutMs,
+            onAttempt: async ({ attempt, elapsedMs }) => {
+              await registrarEventoNfAuditoria({
+                pedidoId: String(pedidoId),
+                mlOrderId,
+                evento: 'ml_label_download_attempt',
+                payloadEnviado: {
+                  ml_shipment_id: shipmentId,
+                  tentativa: attempt,
+                  elapsed_ms: elapsedMs,
+                  response_type: responseType,
+                  flow: 'internal_shipping',
+                },
+                statusResultante: 'attempt',
+              });
+            },
+            onRetry: async ({
+              attempt,
+              elapsedMs,
+              retryInMs,
+              result,
+            }) => {
+              await registrarEventoNfAuditoria({
+                pedidoId: String(pedidoId),
+                mlOrderId,
+                evento: 'ml_label_download_retry',
+                respostaMl: {
+                  ml_shipment_id: shipmentId,
+                  tentativa: attempt,
+                  elapsed_ms: elapsedMs,
+                  status_http: result.statusCode || null,
+                  reason: result.reason || null,
+                  error: result.error || null,
+                  retry_in_ms: retryInMs,
+                  response_type: responseType,
+                  flow: 'internal_shipping',
+                },
+                statusResultante: 'retrying',
+              });
+            },
+          },
+        );
+      };
+
+      updateStep(steps, 'download_label_ml', {
+        status: 'loading',
+        detail: 'Aguardando liberação e baixando PDF do Mercado Livre',
+      });
+      const pdfDownload = await downloadDirectLabel('pdf');
+      const etiquetaResult = pdfDownload.result;
       if (!etiquetaResult.pdf) {
+        await registrarEventoNfAuditoria({
+          pedidoId: String(pedidoId),
+          mlOrderId,
+          evento: 'ml_label_download_timeout',
+          respostaMl: {
+            ml_shipment_id: shipmentId,
+            attempts: pdfDownload.attempts,
+            elapsed_ms: pdfDownload.elapsedMs,
+            status_http: etiquetaResult.statusCode || null,
+            reason: etiquetaResult.reason || null,
+            error: etiquetaResult.error || null,
+            response_type: 'pdf',
+            flow: 'internal_shipping',
+            timed_out: pdfDownload.timedOut,
+          },
+          statusResultante: pdfDownload.timedOut ? 'timeout' : 'failed',
+        });
         return stepError(
           steps,
           'download_label_ml',
@@ -1301,8 +1378,45 @@ export async function POST(req: Request) {
           'business',
         );
       }
-      const thermalLabelResult = await baixarEtiquetaML(shipmentId, { responseType: 'zpl2' });
+      await registrarEventoNfAuditoria({
+        pedidoId: String(pedidoId),
+        mlOrderId,
+        evento: 'ml_label_download_success',
+        respostaMl: {
+          ml_shipment_id: shipmentId,
+          tentativa: pdfDownload.attempts,
+          elapsed_ms: pdfDownload.elapsedMs,
+          bytes: etiquetaResult.pdf.length,
+          response_type: 'pdf',
+          flow: 'internal_shipping',
+        },
+        statusResultante: 'success',
+      });
+
+      updateStep(steps, 'download_label_ml', {
+        status: 'loading',
+        detail: 'PDF liberado; baixando versão térmica ZPL2',
+      });
+      const thermalDownload = await downloadDirectLabel('zpl2');
+      const thermalLabelResult = thermalDownload.result;
       if (!thermalLabelResult.file) {
+        await registrarEventoNfAuditoria({
+          pedidoId: String(pedidoId),
+          mlOrderId,
+          evento: 'ml_label_download_timeout',
+          respostaMl: {
+            ml_shipment_id: shipmentId,
+            attempts: thermalDownload.attempts,
+            elapsed_ms: thermalDownload.elapsedMs,
+            status_http: thermalLabelResult.statusCode || null,
+            reason: thermalLabelResult.reason || null,
+            error: thermalLabelResult.error || null,
+            response_type: 'zpl2',
+            flow: 'internal_shipping',
+            timed_out: thermalDownload.timedOut,
+          },
+          statusResultante: thermalDownload.timedOut ? 'timeout' : 'failed',
+        });
         return stepError(
           steps,
           'download_label_ml',
@@ -1312,6 +1426,20 @@ export async function POST(req: Request) {
           'business',
         );
       }
+      await registrarEventoNfAuditoria({
+        pedidoId: String(pedidoId),
+        mlOrderId,
+        evento: 'ml_label_download_success',
+        respostaMl: {
+          ml_shipment_id: shipmentId,
+          tentativa: thermalDownload.attempts,
+          elapsed_ms: thermalDownload.elapsedMs,
+          bytes: thermalLabelResult.file.length,
+          response_type: 'zpl2',
+          flow: 'internal_shipping',
+        },
+        statusResultante: 'success',
+      });
       const stored = await storeShippingLabelForPedido({
         client,
         pedidoId: String(pedidoId),

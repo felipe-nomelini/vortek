@@ -1,0 +1,201 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T05-17-07-913Z/catalog-evidence/002-evolusom-catalog-create-002.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-002",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "6bff52a1-f593-4ffe-9bff-f885a087c607",
+      "sku": "VTK021272",
+      "category": {
+        "id": "MLB11347",
+        "nome": "Telefones",
+        "dominio": "MLB-IP_TELEPHONES"
+      },
+      "basePrice": 316.84,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "14785238",
+          "value_name": "TIP 125i"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "name": "Homologação Anatel Nº",
+          "value_id": "40364797",
+          "value_name": "54371800160"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7896637683289"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Intelbras Telefone Ip Tip 125i Cz 4201251\n\nVISÃO GERAL\nInformações do Produto Intelbras Telefone IP Tip 125I Cz O TIP 125I é um terminal inteligente IP para quem quer economizar no preço, sem economizar na qualidade. Com a tecnologia IP, o usuário realiza chamadas telefônicas pela internet, economiza em infraestrutura, tem maior flexibilidade para trocar de mesa de trabalho, por exemplo, sem precisar alterar seu ramal ou puxar fios, e tem muitas outras vantagens¹. - Suporte a uma conta SIP - Display gráfico de 128 × 32 pixels - Tecla dedicada para realização de conferência - Tecla Menu para acesso as configurações básicas do terminal - Teclas para correio de voz , sigilo (mute), viva-voz e atendimento via headset, todas com sinalização por LED - Teclas para ajuste de volume de áudio e campainha, flash e rediscar - 2 portas Ethernet de 10/100 Mbps - Possibilidade de instalação em mesa ou parede - Sinalização de campainha por LED - Garantia de qualidade na voz com suporte a QoS ¹ Compatível com a plataforma OpenSource.\n\nO Correio de voz é um recurso do servidor IP. Informações Técnicas Temperatura 0 a 45 °C Umidade 0 a 85% LAN (PC port) 10/100 Mbps WAN (Internet port) 10/100 Mbps Consumo aproximado 2,5 W Fonte Entrada: AC 100 a 240 V / Saída: DC 7 V / 500 mA Tipo do display 128 × 32 gráfico monocromático Codecs de áudio G711-A, G711-U, G722, G726 e G729 Histórico 400 entradas (100-orig/100-rec/100-não atend/100-desv) Protocolos IPv4 e IPv6 Segurança VLAN IEEE 802. 1q Alimentação PoE IEEE 802.\n\n3af Garantia 1 ano Dimensões (LxAxP) 150X145X145mm Peso 782g\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Intelbras\n• Modelo: TIP 125i\n• Homologação Anatel Nº: 54371800160\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INTELBRAS\n• GTIN: 7896637683289\n• NCM: 85171890\n• SKU: VTK021272\n\nEMBALAGEM\n• Dimensões informadas: 24 × 20.5 × 8.5 cm\n• Peso bruto informado: 0,9 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e7082089-80b5-4c92-b5d0-d3834e9bf04c",
+      "sku": "VTK017955",
+      "category": {
+        "id": "MLB107564",
+        "nome": "Jogo de Panelas",
+        "dominio": "MLB-KITCHEN_COOKWARE_KITS"
+      },
+      "basePrice": 362.28,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "433",
+          "value_name": "Tramontina"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "73236906",
+          "value_name": "20399/082"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "name": "Quantidade de peças",
+          "value_id": "3402025",
+          "value_name": "5"
+        },
+        {
+          "id": "IS_FACTORY_KIT",
+          "name": "É kit de fábrica",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_INDUCTION_COOKER",
+          "name": "Adequado para fogão de indução",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "73252016",
+          "value_name": "7891112267015"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "",
+          "value_name": "Aço niquelado"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Jogo De Panelas Tramontina Loreto Alumínio Starflon Max 5 Peças Grafite\n\nVISÃO GERAL\nA escolha certa para quem busca um jogo de panelas com ótimo custo-benefício e um design moderno, certamente é o jogo de panelas Tramontina Loreto em alumínio com revestimento interno e externo antiaderente Starflon Max grafite 5 peças. Perfeito para deixar seu dia a dia muito mais prático e elegante, é composto por frigideira, caçarola, panelas e fervedor. As peças são produzidas em alumínio com revestimento interno e externo em antiaderente Starflon Max, que não gruda, é fácil de limpar, durável e não é prejudicial a saúde.\n\nAs panelas e a caçarola possuem tampas de vidro temperado com bordas em aço inox e o cabos e alças em baquelite antitérmico garantem segurança e conforto durante o manuseio, pois não aquecem. Um jogo prático, fácil de limpar e que pode ir à máquina de lavar louças. Equipe sua cozinha com a Tramontina e transforme seus momentos na cozinha!\n\n*Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Tramontina\n• Modelo: 20399/082\n• Quantidade de peças: 5\n• É kit de fábrica: Sim\n• Adequado para fogão de indução: Sim\n• Materiais: Aço niquelado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: TRAMONTINA\n• GTIN: 7891112267015\n• NCM: 76151000\n• SKU: VTK017955\n\nEMBALAGEM\n• Dimensões informadas: 12 × 44.5 × 64.5 cm\n• Peso bruto informado: 3,324 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9f479275-3958-46a6-a8f8-fb23cc5ca4e1",
+      "sku": "VTK019526",
+      "category": {
+        "id": "MLB7075",
+        "nome": "Porteiros Elétricos",
+        "dominio": "MLB-ELECTRIC_ENTRANCE_INTERCOMS"
+      },
+      "basePrice": 138.24,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "2851294",
+          "value_name": "IPR 8000"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "25834954",
+          "value_name": "Porteiro eletrônico"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "24317352",
+          "value_name": "7896637619486"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Módulo Para Porteiro Residencial Intelbras Ipr 8000n Módulo Interno\n\nVISÃO GERAL\nMódulo Interno 2 botões para acionamento distintos Até 3 módulos internos para cada módulo externo Comunicação via protocolo digital: mais segurança no acionamento dos dispositivos Volume da campainha ajustável Aviso sonoro de porta aberta¹ Aviso sonoro de violação do módulo externo Necessário Sensor Magnético\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Intelbras\n• Modelo: IPR 8000\n• Tipo de produto: Porteiro eletrônico\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INTELBRAS\n• GTIN: 7896637619486\n• NCM: 85176256\n• SKU: VTK019526\n\nEMBALAGEM\n• Dimensões informadas: 20 × 6 × 11 cm\n• Peso bruto informado: 0,276 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "d4bf1161-e883-4b56-8ad4-a1333e1fab38",
+      "sku": "VTK019951",
+      "nome": "Telefone Sem Fio Intelbras Ts5120 Digital",
+      "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB1053",
+            "nome": "Telefones"
+          },
+          "missing": [
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

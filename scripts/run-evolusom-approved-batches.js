@@ -8,6 +8,10 @@ dotenv.config({ path: '.env.local' });
 
 const SOURCE_DIR = path.resolve(process.env.ML_BATCH_SOURCE_DIR || '');
 const START_BATCH = Math.max(1, Number(process.env.ML_BATCH_START || '1'));
+const END_BATCH = Math.max(
+  START_BATCH,
+  Number(process.env.ML_BATCH_END || Number.MAX_SAFE_INTEGER),
+);
 const RESULT_DIR = path.join(path.dirname(SOURCE_DIR), 'run-results');
 const POLL_MS = Math.max(5000, Number(process.env.ML_BATCH_VERIFY_POLL_MS || '15000'));
 const MAX_POLLS = Math.max(1, Number(process.env.ML_BATCH_VERIFY_MAX_POLLS || '20'));
@@ -30,7 +34,10 @@ function batchFiles() {
   return fs
     .readdirSync(SOURCE_DIR)
     .filter((name) => /^\d{3}-evolusom-remaining-\d{3}\.json$/.test(name))
-    .filter((name) => Number(name.slice(0, 3)) >= START_BATCH)
+    .filter((name) => {
+      const batchNumber = Number(name.slice(0, 3));
+      return batchNumber >= START_BATCH && batchNumber <= END_BATCH;
+    })
     .sort();
 }
 
@@ -202,6 +209,7 @@ async function main() {
     startedAt: new Date().toISOString(),
     sourceDir: SOURCE_DIR,
     startBatch: START_BATCH,
+    endBatch: END_BATCH,
     batches: [],
     totals: { selected: 0, created: 0, failed: 0, verified: 0 },
   };

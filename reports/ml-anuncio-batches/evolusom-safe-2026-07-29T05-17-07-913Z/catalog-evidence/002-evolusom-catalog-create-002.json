@@ -1,0 +1,624 @@
+{
+  "batchNumber": 2,
+  "batchId": "evolusom-catalog-create-002",
+  "strategy": "exact_gtin_catalog_evidence",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "6bff52a1-f593-4ffe-9bff-f885a087c607",
+      "sku": "VTK021272",
+      "nome": "Intelbras Telefone Ip Tip 125i Cz 4201251",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 214.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 305.1,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637683289",
+        "validatedNcm": "85171890",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB11347",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "14785238",
+          "value_name": "TIP 125i"
+        },
+        {
+          "id": "LINES_NUMBER",
+          "value_id": "4157987",
+          "value_name": "1"
+        },
+        {
+          "id": "SIP_ACCOUNTS_NUMBER",
+          "value_id": "4372620",
+          "value_name": "1"
+        },
+        {
+          "id": "WITH_LCD_DISPLAY",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_POE_DEVICE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "40364797",
+          "value_name": "54371800160"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24397174",
+          "value_name": "7896637683289"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "44246696",
+          "value_name": "tip 125i"
+        },
+        {
+          "id": "WITH_LOUDSPEAKER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_DIRECTORY",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB27133748",
+        "catalogProductName": "Telefone Ip Voip Tip 125i Display Viva-voz Intelbras",
+        "catalogDomainId": "MLB-IP_TELEPHONES",
+        "predictedDomainId": "MLB-IP_TELEPHONES",
+        "categoryId": "MLB11347",
+        "categoryName": "Telefones",
+        "linkedListingsInCategory": 62,
+        "validatedGtin": "7896637683289"
+      }
+    },
+    {
+      "produtoId": "e7082089-80b5-4c92-b5d0-d3834e9bf04c",
+      "sku": "VTK017955",
+      "nome": "Jogo De Panelas Tramontina Loreto Alumínio Starflon Max 5 Peças Grafite",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 259.9,
+      "estoque": 19,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 368.99,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7891112267015",
+        "validatedNcm": "76151000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB107564",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "433",
+          "value_name": "Tramontina"
+        },
+        {
+          "id": "LINE",
+          "value_id": "13943597",
+          "value_name": "Loreto"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "73236906",
+          "value_name": "20399/082"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "value_id": "3402025",
+          "value_name": "5"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "2748301",
+          "value_name": "Alumínio"
+        },
+        {
+          "id": "PIECES_INCLUDED",
+          "value_id": "2511613",
+          "value_name": "Panela, Frigideira, Chaleira, Panela 16 cm, Panela 18 cm"
+        },
+        {
+          "id": "IS_FACTORY_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_INDUCTION_COOKER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_NONSTICK_COATING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "73252016",
+          "value_name": "7891112267015"
+        },
+        {
+          "id": "HANDLE_MATERIAL",
+          "value_id": "5884734",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "IS_DISHWASHWE_SAFE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB65303162",
+        "catalogProductName": "Conjunto de panelas de bateria de cozinha Tramontina Loreto Teflon de 5 peças",
+        "catalogDomainId": "MLB-KITCHEN_COOKWARE_KITS",
+        "predictedDomainId": "MLB-KITCHEN_COOKWARE_KITS",
+        "categoryId": "MLB107564",
+        "categoryName": "Jogo de Panelas",
+        "linkedListingsInCategory": 10,
+        "validatedGtin": "7891112267015"
+      }
+    },
+    {
+      "produtoId": "9f479275-3958-46a6-a8f8-fb23cc5ca4e1",
+      "sku": "VTK019526",
+      "nome": "Módulo Para Porteiro Residencial Intelbras Ipr 8000n Módulo Interno",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 89.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 135.68,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637619486",
+        "validatedNcm": "85176256",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7075",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "2851294",
+          "value_name": "IPR 8000"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "25834954",
+          "value_name": "Porteiro eletrônico"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "BUTTONS_NUMBER",
+          "value_id": "24778972",
+          "value_name": "2"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "value_id": "2637839",
+          "value_name": "1"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "3739569",
+          "value_name": "12V"
+        },
+        {
+          "id": "PHONE_TYPE",
+          "value_id": "2237107",
+          "value_name": "Com fio"
+        },
+        {
+          "id": "INTERCOM_HEIGHT",
+          "value_id": "30432467",
+          "value_name": "16 cm"
+        },
+        {
+          "id": "INTERCOM_WIDTH",
+          "value_id": "35781508",
+          "value_name": "12 cm"
+        },
+        {
+          "id": "INTERCOM_LENGTH",
+          "value_id": "28410961",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "FRONT_HEIGHT",
+          "value_id": "27807128",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "FRONT_WIDTH",
+          "value_id": "31807456",
+          "value_name": "12 cm"
+        },
+        {
+          "id": "FRONT_LENGTH",
+          "value_id": "35584421",
+          "value_name": "15 cm"
+        },
+        {
+          "id": "INCLUDES_EXTERNAL_CAMERA",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_NIGHT_VISION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_LOCK_CONTROL_SYSTEM",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SPEAKERPHONE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SCREEN_VIEWER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_COLOR_SCREEN",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_VIDEO_RECORDER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_INTERNET_CONNECTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_APP_CONTROL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_ANTIVANDALIC",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "24317352",
+          "value_name": "7896637619486"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "61755899",
+          "value_name": "IPR 8000 in"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB50240665",
+        "catalogProductName": "Extensão Para O Porteiro Intelbras IPR 8000 IN Cor Branco",
+        "catalogDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+        "predictedDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+        "categoryId": "MLB7075",
+        "categoryName": "Porteiros Elétricos",
+        "linkedListingsInCategory": 20,
+        "validatedGtin": "7896637619486"
+      }
+    },
+    {
+      "produtoId": "d4bf1161-e883-4b56-8ad4-a1333e1fab38",
+      "sku": "VTK019951",
+      "nome": "Telefone Sem Fio Intelbras Ts5120 Digital",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 159.9,
+      "estoque": 19,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 227.02,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637647588",
+        "validatedNcm": "85171100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1053",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "LINE",
+          "value_id": "6134174",
+          "value_name": "Serie 2000"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "1175468",
+          "value_name": "TS 5120"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "40522399",
+          "value_name": "TS 5120"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "102258",
+          "value_name": "Digital"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "value_id": "18538119",
+          "value_name": "110V/220V"
+        },
+        {
+          "id": "STANDBY_MODE_BATTERY_DURATION",
+          "value_id": "30390044",
+          "value_name": "200 h"
+        },
+        {
+          "id": "TALK_TIME",
+          "value_id": "2087877",
+          "value_name": "20 h"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "35699413",
+          "value_name": "1,9Ghz"
+        },
+        {
+          "id": "HEADPHONES_OUTPUTS_NUMBER",
+          "value_id": "16631742",
+          "value_name": "1"
+        },
+        {
+          "id": "HEADPHONES_NUMBER_INCLUDED",
+          "value_id": "7512605",
+          "value_name": "1"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_CALLER_IDENTIFICATION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ANSWERING_MACHINE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WALL_MOUNTABLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_DUAL_SIM",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_RURAL_TELEPHONE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "value_id": "149366",
+          "value_name": "600 mAh"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "9076726",
+          "value_name": "7896637647588"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "40742705",
+          "value_name": "TS 5120"
+        },
+        {
+          "id": "WITH_BATTERY_CHARGE_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "PHONEBOOK_ENTRIES_CAPACITY",
+          "value_id": "8801844",
+          "value_name": "70"
+        },
+        {
+          "id": "RINGTONES_NUMBER",
+          "value_id": "8761289",
+          "value_name": "10"
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_CALL_BLOCKING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ALARM_CLOCK_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ECO_MODE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BACKLIT_KEYPAD",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DATE_AND_TIME_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_FLASH_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REDIAL_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_HANDSET_VOLUME_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SILENCE_MODE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB47805561",
+        "catalogProductName": "Telefone Sem Fio Com Identi Chamada Intelbras Ts 5120",
+        "catalogDomainId": "MLB-TELEPHONES",
+        "predictedDomainId": "MLB-TELEPHONES",
+        "categoryId": "MLB1053",
+        "categoryName": "Telefones",
+        "linkedListingsInCategory": 11,
+        "validatedGtin": "7896637647588"
+      }
+    }
+  ]
+}

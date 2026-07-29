@@ -1,0 +1,909 @@
+[
+  {
+    "produtoId": "934b9787-bd56-4e3e-bf98-350cfd1f98e5",
+    "sku": "VTK021396",
+    "nome": "Autotransformador Blindado Indusat 500va Tripolar",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 73.9,
+    "estoque": 39,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 115.93,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7897643848563",
+      "validatedNcm": "85043211",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB30197",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "2746860",
+        "value_name": "Indusat"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "9843737",
+        "value_name": "500VA"
+      },
+      {
+        "id": "MAX_POWER_SUPPORTED",
+        "value_id": "49564359",
+        "value_name": "325 W"
+      },
+      {
+        "id": "INPUT_VOLTAGES",
+        "value_id": "39205162",
+        "value_name": "127V, 220V"
+      },
+      {
+        "id": "FREQUENCY",
+        "value_id": "10789270",
+        "value_name": "60Hz"
+      },
+      {
+        "id": "OUTPUT_VOLTAGES",
+        "value_id": "5592405",
+        "value_name": "110V, 220V"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "2450144",
+        "value_name": "11.5 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "1115173",
+        "value_name": "7.5 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "216344",
+        "value_name": "14 cm"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "18121720",
+        "value_name": "7897643848563"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB22544420",
+      "catalogProductName": "Autotransformador Blindado Tripolar Indusat De 500va 325w",
+      "catalogDomainId": "MLB-VOLTAGE_CONVERTERS",
+      "predictedDomainId": "MLB-VOLTAGE_CONVERTERS",
+      "categoryId": "MLB30197",
+      "categoryName": "Transformadores",
+      "linkedListingsInCategory": 2,
+      "validatedGtin": "7897643848563"
+    }
+  },
+  {
+    "produtoId": "24d66112-e934-4031-bc4a-7e386a3e0c9f",
+    "sku": "VTK021397",
+    "nome": "Autotransformador Blindado Indusat 750va Tripolar",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 83.9,
+    "estoque": 20,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 128.27,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7897643848488",
+      "validatedNcm": "85043211",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB30197",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "2746860",
+        "value_name": "Indusat"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "18121565",
+        "value_name": "750VA"
+      },
+      {
+        "id": "MAX_POWER_SUPPORTED",
+        "value_id": "49558103",
+        "value_name": "487 W"
+      },
+      {
+        "id": "INPUT_VOLTAGES",
+        "value_id": "39205163",
+        "value_name": "127/220V"
+      },
+      {
+        "id": "FREQUENCY",
+        "value_id": "10789270",
+        "value_name": "60Hz"
+      },
+      {
+        "id": "OUTPUT_VOLTAGES",
+        "value_id": "5592405",
+        "value_name": "110V, 220V"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "2450144",
+        "value_name": "11.5 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "1115173",
+        "value_name": "7.5 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "216344",
+        "value_name": "14 cm"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "18915064",
+        "value_name": "7897643848488"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB23083565",
+      "catalogProductName": "Autotransformador Blindado Tripolar Indusat De 750va 487w",
+      "catalogDomainId": "MLB-VOLTAGE_CONVERTERS",
+      "predictedDomainId": "MLB-VOLTAGE_CONVERTERS",
+      "categoryId": "MLB30197",
+      "categoryName": "Transformadores",
+      "linkedListingsInCategory": 4,
+      "validatedGtin": "7897643848488"
+    }
+  },
+  {
+    "produtoId": "6742a579-f347-4460-98cf-70f92c0dcdb7",
+    "sku": "VTK021398",
+    "nome": "Autotransformador Blindado Indusat 1010va Tripolar",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 94.9,
+    "estoque": 35,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 141.85,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7897643848464",
+      "validatedNcm": "85043211",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB30197",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "2746860",
+        "value_name": "Indusat"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "18885528",
+        "value_name": "1010VA"
+      },
+      {
+        "id": "MAX_POWER_SUPPORTED",
+        "value_id": "36198250",
+        "value_name": "656 W"
+      },
+      {
+        "id": "INPUT_VOLTAGES",
+        "value_id": "39205162",
+        "value_name": "127V, 220V"
+      },
+      {
+        "id": "FREQUENCY",
+        "value_id": "10789270",
+        "value_name": "60Hz"
+      },
+      {
+        "id": "OUTPUT_VOLTAGES",
+        "value_id": "5592405",
+        "value_name": "110V, 220V"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "2450144",
+        "value_name": "11.5 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "1115173",
+        "value_name": "7.5 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "216344",
+        "value_name": "14 cm"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "18236369",
+        "value_name": "7897643848464"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB22614760",
+      "catalogProductName": "Autotransformador Blindado Tripolar Indusat De 1010va 656w",
+      "catalogDomainId": "MLB-VOLTAGE_CONVERTERS",
+      "predictedDomainId": "MLB-VOLTAGE_CONVERTERS",
+      "categoryId": "MLB30197",
+      "categoryName": "Transformadores",
+      "linkedListingsInCategory": 6,
+      "validatedGtin": "7897643848464"
+    }
+  },
+  {
+    "produtoId": "4538055c-1221-4a5c-87ad-ad1537822bdd",
+    "sku": "VTK021130",
+    "nome": "Controle Remoto Mxt 01347 Tv Led Lg Akb 75095308",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 10.7,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 37.9,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899903154377",
+      "validatedNcm": "85437099",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB38205",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "2153976",
+        "value_name": "MXT"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "28102920",
+        "value_name": "AKB75095308"
+      },
+      {
+        "id": "INCLUDES_CELL_BATTERIES",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_NETFLIX_BUTTON",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_YOUTUBE_BUTTON",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "28102919",
+        "value_name": "7899903154377"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB29399990",
+      "catalogProductName": "Controle Tv Compatível Com LG Smart 4k Netflix Akb75095308",
+      "catalogDomainId": "MLB-TV_REMOTE_CONTROLS",
+      "predictedDomainId": "MLB-TV_REMOTE_CONTROLS",
+      "categoryId": "MLB38205",
+      "categoryName": "Para TV",
+      "linkedListingsInCategory": 2,
+      "validatedGtin": "7899903154377"
+    }
+  },
+  {
+    "produtoId": "6bff52a1-f593-4ffe-9bff-f885a087c607",
+    "sku": "VTK021272",
+    "nome": "Intelbras Telefone Ip Tip 125i Cz 4201251",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 214.9,
+    "estoque": 20,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 305.1,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896637683289",
+      "validatedNcm": "85171890",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB11347",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "14785238",
+        "value_name": "TIP 125i"
+      },
+      {
+        "id": "LINES_NUMBER",
+        "value_id": "4157987",
+        "value_name": "1"
+      },
+      {
+        "id": "SIP_ACCOUNTS_NUMBER",
+        "value_id": "4372620",
+        "value_name": "1"
+      },
+      {
+        "id": "WITH_LCD_DISPLAY",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_POE_DEVICE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_id": "40364797",
+        "value_name": "54371800160"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "24397174",
+        "value_name": "7896637683289"
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "value_id": "44246696",
+        "value_name": "tip 125i"
+      },
+      {
+        "id": "WITH_LOUDSPEAKER",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_DIRECTORY",
+        "value_id": "242084",
+        "value_name": "Não"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB27133748",
+      "catalogProductName": "Telefone Ip Voip Tip 125i Display Viva-voz Intelbras",
+      "catalogDomainId": "MLB-IP_TELEPHONES",
+      "predictedDomainId": "MLB-IP_TELEPHONES",
+      "categoryId": "MLB11347",
+      "categoryName": "Telefones",
+      "linkedListingsInCategory": 62,
+      "validatedGtin": "7896637683289"
+    }
+  },
+  {
+    "produtoId": "e7082089-80b5-4c92-b5d0-d3834e9bf04c",
+    "sku": "VTK017955",
+    "nome": "Jogo De Panelas Tramontina Loreto Alumínio Starflon Max 5 Peças Grafite",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 259.9,
+    "estoque": 19,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 368.99,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7891112267015",
+      "validatedNcm": "76151000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB107564",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "433",
+        "value_name": "Tramontina"
+      },
+      {
+        "id": "LINE",
+        "value_id": "13943597",
+        "value_name": "Loreto"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "73236906",
+        "value_name": "20399/082"
+      },
+      {
+        "id": "PIECES_NUMBER",
+        "value_id": "3402025",
+        "value_name": "5"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MATERIALS",
+        "value_id": "2748301",
+        "value_name": "Alumínio"
+      },
+      {
+        "id": "PIECES_INCLUDED",
+        "value_id": "2511613",
+        "value_name": "Panela, Frigideira, Chaleira, Panela 16 cm, Panela 18 cm"
+      },
+      {
+        "id": "IS_FACTORY_KIT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_SUITABLE_FOR_INDUCTION_COOKER",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_NONSTICK_COATING",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "73252016",
+        "value_name": "7891112267015"
+      },
+      {
+        "id": "HANDLE_MATERIAL",
+        "value_id": "5884734",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "IS_DISHWASHWE_SAFE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB65303162",
+      "catalogProductName": "Conjunto de panelas de bateria de cozinha Tramontina Loreto Teflon de 5 peças",
+      "catalogDomainId": "MLB-KITCHEN_COOKWARE_KITS",
+      "predictedDomainId": "MLB-KITCHEN_COOKWARE_KITS",
+      "categoryId": "MLB107564",
+      "categoryName": "Jogo de Panelas",
+      "linkedListingsInCategory": 10,
+      "validatedGtin": "7891112267015"
+    }
+  },
+  {
+    "produtoId": "9f479275-3958-46a6-a8f8-fb23cc5ca4e1",
+    "sku": "VTK019526",
+    "nome": "Módulo Para Porteiro Residencial Intelbras Ipr 8000n Módulo Interno",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 89.9,
+    "estoque": 20,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 135.68,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896637619486",
+      "validatedNcm": "85176256",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB7075",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "2851294",
+        "value_name": "IPR 8000"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "25834954",
+        "value_name": "Porteiro eletrônico"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52055",
+        "value_name": "Branco"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "39205163",
+        "value_name": "127/220V"
+      },
+      {
+        "id": "BUTTONS_NUMBER",
+        "value_id": "24778972",
+        "value_name": "2"
+      },
+      {
+        "id": "PIECES_NUMBER",
+        "value_id": "2637839",
+        "value_name": "1"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_id": "3739569",
+        "value_name": "12V"
+      },
+      {
+        "id": "PHONE_TYPE",
+        "value_id": "2237107",
+        "value_name": "Com fio"
+      },
+      {
+        "id": "INTERCOM_HEIGHT",
+        "value_id": "30432467",
+        "value_name": "16 cm"
+      },
+      {
+        "id": "INTERCOM_WIDTH",
+        "value_id": "35781508",
+        "value_name": "12 cm"
+      },
+      {
+        "id": "INTERCOM_LENGTH",
+        "value_id": "28410961",
+        "value_name": "10 cm"
+      },
+      {
+        "id": "FRONT_HEIGHT",
+        "value_id": "27807128",
+        "value_name": "10 cm"
+      },
+      {
+        "id": "FRONT_WIDTH",
+        "value_id": "31807456",
+        "value_name": "12 cm"
+      },
+      {
+        "id": "FRONT_LENGTH",
+        "value_id": "35584421",
+        "value_name": "15 cm"
+      },
+      {
+        "id": "INCLUDES_EXTERNAL_CAMERA",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_NIGHT_VISION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_LOCK_CONTROL_SYSTEM",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_SPEAKERPHONE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_SCREEN_VIEWER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_COLOR_SCREEN",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_VIDEO_RECORDER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_INTERNET_CONNECTION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_APP_CONTROL",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_ANTIVANDALIC",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "24317352",
+        "value_name": "7896637619486"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "value_id": "61755899",
+        "value_name": "IPR 8000 in"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450308",
+        "value_name": "Branco"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB50240665",
+      "catalogProductName": "Extensão Para O Porteiro Intelbras IPR 8000 IN Cor Branco",
+      "catalogDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+      "predictedDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+      "categoryId": "MLB7075",
+      "categoryName": "Porteiros Elétricos",
+      "linkedListingsInCategory": 20,
+      "validatedGtin": "7896637619486"
+    }
+  },
+  {
+    "produtoId": "d350793d-e006-423e-8fa7-198bcfa1feaa",
+    "sku": "VTK020780",
+    "nome": "Vídeo Porteiro Intelbras Ivr1010 Branco 4520042",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 469.9,
+    "estoque": 20,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 696.15,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.2,
+      "minProfit": 60
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896637674263",
+      "validatedNcm": "85176256",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB7075",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "24317332",
+        "value_name": "Interfone Residencial IVR 1010"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "25834955",
+        "value_name": "Porteiro eletrônico/frente"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52055",
+        "value_name": "Branco"
+      },
+      {
+        "id": "BUTTONS_NUMBER",
+        "value_id": "24540126",
+        "value_name": "1"
+      },
+      {
+        "id": "PIECES_NUMBER",
+        "value_id": "297910",
+        "value_name": "2"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_id": "8152567",
+        "value_name": "Corrente elétrica"
+      },
+      {
+        "id": "PHONE_TYPE",
+        "value_id": "2237107",
+        "value_name": "Com fio"
+      },
+      {
+        "id": "INTERCOM_HEIGHT",
+        "value_id": "27189183",
+        "value_name": "19.1 cm"
+      },
+      {
+        "id": "INTERCOM_WIDTH",
+        "value_id": "28652240",
+        "value_name": "20.7 cm"
+      },
+      {
+        "id": "INTERCOM_LENGTH",
+        "value_id": "26624572",
+        "value_name": "6.1 cm"
+      },
+      {
+        "id": "FRONT_HEIGHT",
+        "value_id": "27189180",
+        "value_name": "14.9 cm"
+      },
+      {
+        "id": "FRONT_WIDTH",
+        "value_id": "27189181",
+        "value_name": "9.5 cm"
+      },
+      {
+        "id": "FRONT_LENGTH",
+        "value_id": "26344714",
+        "value_name": "5.5 cm"
+      },
+      {
+        "id": "INCLUDES_EXTERNAL_CAMERA",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_NIGHT_VISION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_LOCK_CONTROL_SYSTEM",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_SPEAKERPHONE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_SCREEN_VIEWER",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_COLOR_SCREEN",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_VIDEO_RECORDER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_INTERNET_CONNECTION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_APP_CONTROL",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_ANTIVANDALIC",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "24317349",
+        "value_name": "7896637674263, 7898963592877"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "value_id": "40480356",
+        "value_name": "IVR 1010"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450308",
+        "value_name": "Branco"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB27070501",
+      "catalogProductName": "Video Porteiro Ivr 1010 Branco E Preto Intelbras 110V/220V",
+      "catalogDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+      "predictedDomainId": "MLB-ELECTRIC_ENTRANCE_INTERCOMS",
+      "categoryId": "MLB7075",
+      "categoryName": "Porteiros Elétricos",
+      "linkedListingsInCategory": 42,
+      "validatedGtin": "7896637674263"
+    }
+  }
+]

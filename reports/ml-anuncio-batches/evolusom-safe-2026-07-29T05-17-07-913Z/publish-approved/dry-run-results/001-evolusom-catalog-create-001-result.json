@@ -1,0 +1,190 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-07-29T05-17-07-913Z/catalog-evidence/001-evolusom-catalog-create-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-catalog-create-001",
+  "selected": 4,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "934b9787-bd56-4e3e-bf98-350cfd1f98e5",
+      "sku": "VTK021396",
+      "category": {
+        "id": "MLB30197",
+        "nome": "Transformadores",
+        "dominio": "MLB-VOLTAGE_CONVERTERS"
+      },
+      "basePrice": 118.11,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2746860",
+          "value_name": "Indusat"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "9843737",
+          "value_name": "500VA"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897643848563"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Autotransformador Blindado Indusat 500va Tripolar\n\nVISÃO GERAL\nO autotransformador BLINDADO INDUSAT é um produto fabricado com tecnologia que garante excelente funcionamento, com durabilidade e segurança ao usuário. Nessa gama de produtos temos a confiabilidade da nossa marca, a qualidade e o suporte técnico de fábrica, com mais de 40 anos de tradição no mercado. *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Indusat\n• Modelo: 500VA\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INDUSAT\n• GTIN: 7897643848563\n• NCM: 85043211\n• SKU: VTK021396\n\nEMBALAGEM\n• Dimensões informadas: 12 × 16.5 × 8 cm\n• Peso bruto informado: 2,018 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "24d66112-e934-4031-bc4a-7e386a3e0c9f",
+      "sku": "VTK021397",
+      "category": {
+        "id": "MLB30197",
+        "nome": "Transformadores",
+        "dominio": "MLB-VOLTAGE_CONVERTERS"
+      },
+      "basePrice": 130.69,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2746860",
+          "value_name": "Indusat"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "18121565",
+          "value_name": "750VA"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897643848488"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Autotransformador Blindado Indusat 750va Tripolar\n\nVISÃO GERAL\nO autotransformador BLINDADO INDUSAT é um produto fabricado com tecnologia que garante excelente funcionamento, com durabilidade e segurança ao usuário. Nessa gama de produtos temos a confiabilidade da nossa marca, a qualidade e o suporte técnico de fábrica, com mais de 40 anos de tradição no mercado. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Indusat\n• Modelo: 750VA\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INDUSAT\n• GTIN: 7897643848488\n• NCM: 85043211\n• SKU: VTK021397\n\nEMBALAGEM\n• Dimensões informadas: 12 × 16.5 × 8 cm\n• Peso bruto informado: 2,068 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6742a579-f347-4460-98cf-70f92c0dcdb7",
+      "sku": "VTK021398",
+      "category": {
+        "id": "MLB30197",
+        "nome": "Transformadores",
+        "dominio": "MLB-VOLTAGE_CONVERTERS"
+      },
+      "basePrice": 144.53,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2746860",
+          "value_name": "Indusat"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "18885528",
+          "value_name": "1010VA"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897643848464"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Autotransformador Blindado Indusat 1010va Tripolar\n\nVISÃO GERAL\nO autotransformador BLINDADO INDUSAT é um produto fabricado com tecnologia que garante excelente funcionamento, com durabilidade e segurança ao usuário. Nessa gama de produtos temos a confiabilidade da nossa marca, a qualidade e o suporte técnico de fábrica, com mais de 40 anos de tradição no mercado. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Indusat\n• Modelo: 1010VA\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INDUSAT\n• GTIN: 7897643848464\n• NCM: 85043211\n• SKU: VTK021398\n\nEMBALAGEM\n• Dimensões informadas: 12 × 16.5 × 8.5 cm\n• Peso bruto informado: 2,141 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4538055c-1221-4a5c-87ad-ad1537822bdd",
+      "sku": "VTK021130",
+      "category": {
+        "id": "MLB38205",
+        "nome": "Para TV",
+        "dominio": "MLB-TV_REMOTE_CONTROLS"
+      },
+      "basePrice": 39.36,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2153976",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "28102920",
+          "value_name": "AKB75095308"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "28102919",
+          "value_name": "7899903154377"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Controle Remoto Mxt 01347 Tv Led Lg Akb 75095308\n\nVISÃO GERAL\nInformações do Produto Controle Remoto Modelo MXT 01347 Para TV Led LG AKB 75095308\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MXT\n• Modelo: AKB75095308\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MXT\n• GTIN: 7899903154377\n• NCM: 85437099\n• SKU: VTK021130\n\nEMBALAGEM\n• Dimensões informadas: 2 × 4.5 × 17 cm\n• Peso bruto informado: 0,058 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

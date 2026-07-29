@@ -645,6 +645,22 @@ async function createOne(item) {
       category: { id: prepared.category.id, nome: prepared.category.nome, dominio: prepared.category.dominio },
       basePrice: prepared.schema.prefill?.base_price ?? null,
       missing: prepared.missing,
+      attributes: [...prepared.required, ...prepared.optional]
+        .filter((attribute) => hasText(attribute.value_id) || hasText(attribute.value_name))
+        .map((attribute) => ({
+          id: attribute.id,
+          name: attribute.name || attribute.id,
+          value_id: attribute.value_id || '',
+          value_name: attribute.value_name || '',
+        })),
+      saleTerms: (prepared.schema.sale_terms || [])
+        .filter((term) => hasText(term.value_id) || hasText(term.value_name))
+        .map((term) => ({
+          id: term.id,
+          value_id: term.value_id || '',
+          value_name: term.value_name || '',
+        })),
+      description: buildRichBatchDescription(item, prepared),
     };
   }
 

@@ -1,0 +1,32 @@
+[
+  {
+    "produtoId": "0136a5ae-54d6-4606-b235-c862c1e34817",
+    "sku": "VTK022968",
+    "nome": "Liquidificador Oster Oliq610 1400w 220v",
+    "reason": "catalog_exact_gtin_ambiguous",
+    "details": {
+      "found": 2
+    }
+  },
+  {
+    "produtoId": "978e980c-d329-416e-8bfd-b1c303f0a5a8",
+    "sku": "VTK021108",
+    "nome": "Telefone Headset Intelbras Hsb-50 Para Telemarketing Com Fio 4013330",
+    "reason": "catalog_domain_mismatch",
+    "details": {
+      "catalogProductId": "MLB20801741",
+      "catalogDomainId": "MLB-TELEPHONES",
+      "predictedDomainId": "MLB-HEADSET_TELEPHONES",
+      "predictedCategoryId": "MLB3828"
+    }
+  },
+  {
+    "produtoId": "6aadcd86-f85e-4608-9de5-1cb16f6bfacc",
+    "sku": "VTK019952",
+    "nome": "Telefone Sem Fio Intelbras Ts5121 Ramal Digital",
+    "reason": "catalog_api_error",
+    "details": {
+      "error": "/products/MLB44779696/items?limit=100 retornou HTTP 404: No winners found"
+    }
+  }
+]

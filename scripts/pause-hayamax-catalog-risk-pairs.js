@@ -314,6 +314,8 @@ async function main() {
     }
     if (
       !traditionalBefore.ok ||
+      traditionalBefore.data?.catalog_listing === true ||
+      traditionalBefore.data?.status === 'closed' ||
       sellerSku(traditionalBefore.data) !== target.sku
     ) {
       results.push({
@@ -321,12 +323,15 @@ async function main() {
         related_traditional_id: relatedId,
         sku: target.sku,
         status: 'blocked_related_precondition',
+        related_catalog_listing:
+          traditionalBefore.data?.catalog_listing ?? null,
+        related_status: traditionalBefore.data?.status || null,
         related_sku_before: relatedSkuBefore || null,
         related_sku_update_http: relatedSkuUpdate?.status || null,
         error:
           traditionalBefore.data?.message ||
-          traditionalBefore.text ||
-          'Anúncio tradicional relacionado não confere',
+          (!traditionalBefore.ok ? traditionalBefore.text : null) ||
+          'Relação não aponta para anúncio tradicional editável',
       });
       continue;
     }
