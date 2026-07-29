@@ -31,6 +31,7 @@ import {
   resolveTrustedMlCriticalValue,
 } from "@/lib/ml-critical-attributes";
 import { persistSingleAnuncioBySku } from "@/lib/ml/persist-single-anuncio";
+import { mapCreatedListingDesiredStatus } from "@/lib/ml/status";
 import { resolveGtinForMlListing } from "@/lib/produto-kits";
 import { buildEvidenceBasedMlDescription } from "@/lib/ml-listing-description";
 
@@ -629,14 +630,23 @@ async function persistListingLink(params: {
   mlFee: number;
   mlShipping: number;
   mlStatus: "ativo" | "pausado";
+  desiredMlStatus?: "ativo" | "pausado";
 }) {
-  const { supabase, produto, produtoId, item, mlFee, mlShipping, mlStatus } =
-    params;
+  const {
+    supabase,
+    produto,
+    produtoId,
+    item,
+    mlFee,
+    mlShipping,
+    mlStatus,
+    desiredMlStatus = mlStatus,
+  } = params;
   await supabase
     .from("produtos")
     .update({
       ml_item_id: item.id,
-      ml_status: mlStatus,
+      ml_status: desiredMlStatus,
       ml_fee: mlFee,
       ml_shipping: mlShipping,
     })
@@ -1176,6 +1186,7 @@ export async function POST(req: Request) {
         mlFee: produto.ml_fee || 0.15,
         mlShipping: existingShipping.mlShipping || produto.ml_shipping || 0,
         mlStatus: mapMlItemStatus(existingItemForPersist),
+        desiredMlStatus: mapCreatedListingDesiredStatus(existingItemForPersist),
       });
       steps.anuncio.ok = true;
       steps.descricao = {
@@ -1565,6 +1576,7 @@ export async function POST(req: Request) {
       mlFee,
       mlShipping,
       mlStatus: mapMlItemStatus(latestItem),
+      desiredMlStatus: mapCreatedListingDesiredStatus(latestItem),
     });
 
     await supabase
