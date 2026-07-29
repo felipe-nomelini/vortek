@@ -194,8 +194,8 @@ export async function GET(request: Request) {
         const rowStatus = normalizeStatus(row?.situacao);
         statusCounts[rowStatus] = (statusCounts[rowStatus] || 0) + 1;
         financialRows.push({
-          total: row?.total,
-          lucro: row?.lucro,
+          total: row?.operational_total ?? row?.total,
+          lucro: row?.operational_lucro ?? row?.lucro,
           pagamento_resumo: row?.pagamento_resumo,
           situacao: row?.situacao,
         });
@@ -242,10 +242,10 @@ export async function GET(request: Request) {
       query = query.lte(dateColumn, endDateIso);
     }
     if (priceMin !== null) {
-      query = query.gte("total", priceMin);
+      query = query.gte("operational_total", priceMin);
     }
     if (priceMax !== null) {
-      query = query.lte("total", priceMax);
+      query = query.lte("operational_total", priceMax);
     }
     return query;
   }
@@ -254,12 +254,12 @@ export async function GET(request: Request) {
     const pageSize = 500;
     const rows: any[] = [];
     const columns = useSaleDate
-      ? "id,data,data_venda,situacao,dslite_id,dslite_status,dslite_etiqueta_enviada,envio_interno_at,ml_fiscal_release_at,ml_claim_id"
-      : "id,data,situacao,dslite_id,dslite_status,dslite_etiqueta_enviada,envio_interno_at,ml_fiscal_release_at,ml_claim_id";
+      ? "id,data,data_venda,situacao,dslite_id,dslite_status,dslite_etiqueta_enviada,dslite_label_source,envio_interno_at,ml_fiscal_release_at,ml_claim_id,operational_pedido_ids"
+      : "id,data,situacao,dslite_id,dslite_status,dslite_etiqueta_enviada,dslite_label_source,envio_interno_at,ml_fiscal_release_at,ml_claim_id,operational_pedido_ids";
 
     for (let offset = 0; ; offset += pageSize) {
-      let query = serviceClient
-        .from("pedidos")
+      let query = (serviceClient as any)
+        .from("pedidos_operacionais")
         .select(columns)
         .in("situacao", [...PREPARATION_ORDER_STATUSES])
         .order("id", { ascending: true })
@@ -274,24 +274,24 @@ export async function GET(request: Request) {
 
   // Count total
   async function runSummaryQueries(useSaleDate: boolean) {
-    let countQuery = serviceClient
-      .from("pedidos")
+    let countQuery = (serviceClient as any)
+      .from("pedidos_operacionais")
       .select("*", { count: "exact", head: false })
       .range(0, 0);
     countQuery = applyFilters(countQuery, useSaleDate);
     const countResult = await countQuery;
 
     const sumColumns = useSaleDate
-      ? "id,data,data_venda,total,lucro,pagamento_resumo,situacao,dslite_id,dslite_status,dslite_etiqueta_enviada,envio_interno_at,ml_fiscal_release_at,ml_claim_id"
-      : "id,data,total,lucro,pagamento_resumo,situacao,dslite_id,dslite_status,dslite_etiqueta_enviada,envio_interno_at,ml_fiscal_release_at,ml_claim_id";
+      ? "id,data,data_venda,total,lucro,operational_total,operational_lucro,operational_pedido_ids,pagamento_resumo,situacao,dslite_id,dslite_status,dslite_etiqueta_enviada,dslite_label_source,envio_interno_at,ml_fiscal_release_at,ml_claim_id"
+      : "id,data,total,lucro,operational_total,operational_lucro,operational_pedido_ids,pagamento_resumo,situacao,dslite_id,dslite_status,dslite_etiqueta_enviada,dslite_label_source,envio_interno_at,ml_fiscal_release_at,ml_claim_id";
     let sumQuery = (serviceClient as any)
-      .from("pedidos")
+      .from("pedidos_operacionais")
       .select(sumColumns);
     sumQuery = applyFilters(sumQuery, useSaleDate);
     const sumResult = await sumQuery;
 
-    let statusQuery = serviceClient
-      .from("pedidos")
+    let statusQuery = (serviceClient as any)
+      .from("pedidos_operacionais")
       .select("situacao")
       .not("situacao", "is", null);
     statusQuery = applyFilters(statusQuery, useSaleDate);
@@ -351,7 +351,11 @@ export async function GET(request: Request) {
     );
   }
 
-  const financial = accumulateFinancialSummary((sumData || []) as any[]);
+  const financial = accumulateFinancialSummary(((sumData || []) as any[]).map((row) => ({
+    ...row,
+    total: row.operational_total ?? row.total,
+    lucro: row.operational_lucro ?? row.lucro,
+  })));
 
   // Status counts via RPC ou group by
   if (statusError) {

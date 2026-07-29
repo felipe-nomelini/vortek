@@ -83,6 +83,8 @@ export interface Order {
   ml_invoice_reported?: boolean;
   ml_order_id?: string | null;
   ml_pack_id?: string | null;
+  is_virtual_kit?: boolean;
+  kit_order_ids?: string[];
   billing_nome?: string | null;
   ml_fiscal_release_at?: string | null;
   ml_fiscal_release_reason?: string | null;

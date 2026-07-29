@@ -351,6 +351,8 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     ml_invoice_reported: item.ml_invoice_reported || false,
     ml_order_id: item.ml_order_id,
     ml_pack_id: item.ml_pack_id,
+    is_virtual_kit: Boolean((item as any).is_virtual_kit),
+    kit_order_ids: Array.isArray((item as any).kit_order_ids) ? (item as any).kit_order_ids : [],
     billing_nome: item.billing_nome,
     billing_endereco: item.billing_endereco as Record<string, unknown> | null,
     ml_fiscal_release_at: item.ml_fiscal_release_at,
@@ -1586,22 +1588,33 @@ export default function PedidosPage() {
       title: 'Número', dataIndex: 'numero', key: 'numero', width: 180,
       sorter: true,
       sortOrder: getRemoteSortOrder('numero', sort),
-      render: (num: number, record: Order) => (
-        <div>
-          <a
-            href={`https://www.mercadolivre.com.br/vendas/${record.ml_pack_id || num}/detalhe`}
-            target="_blank"
-            rel="noopener noreferrer"
-            title={`Order ID: ${record.ml_order_id || '—'} | Pack ID: ${record.ml_pack_id || '—'}`}
-            style={{ fontFamily: 'monospace', color: '#1677ff', textDecoration: 'none' }}
-          >
-            #{String(num).padStart(6, '0')}
-          </a>
-          <div style={{ color: '#888', fontSize: 11, fontFamily: 'monospace' }}>
-            PACK ID {record.ml_pack_id || '—'}
+      render: (num: number, record: Order) => {
+        const displayNumber = record.is_virtual_kit && record.ml_pack_id
+          ? record.ml_pack_id
+          : String(num);
+        const orderIds = record.kit_order_ids || [];
+        return (
+          <div>
+            <Space size={4}>
+              <a
+                href={`https://www.mercadolivre.com.br/vendas/${record.ml_pack_id || num}/detalhe`}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`Order IDs: ${orderIds.length ? orderIds.join(', ') : record.ml_order_id || '—'} | Pack ID: ${record.ml_pack_id || '—'}`}
+                style={{ fontFamily: 'monospace', color: '#1677ff', textDecoration: 'none' }}
+              >
+                #{displayNumber}
+              </a>
+              {record.is_virtual_kit && <Tag color="purple" style={{ marginInlineEnd: 0 }}>KIT</Tag>}
+            </Space>
+            <div style={{ color: '#888', fontSize: 11, fontFamily: 'monospace' }}>
+              {record.is_virtual_kit
+                ? `${orderIds.length} ORDERS ML`
+                : `PACK ID ${record.ml_pack_id || '—'}`}
+            </div>
           </div>
-        </div>
-      ),
+        );
+      },
     },
     {
       title: 'Data', dataIndex: 'data', key: 'data', width: 160,

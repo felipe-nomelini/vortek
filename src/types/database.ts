@@ -520,6 +520,9 @@ export type Database = {
           ml_claim_status: string | null
           ml_invoice_id: string | null
           ml_invoice_reported: boolean
+          ml_bundle_parent_item_id: string | null
+          ml_bundle_primary: boolean | null
+          ml_bundle_type: string | null
           ml_order_id: string | null
           ml_pack_id: string | null
           ml_fiscal_release_at: string | null
@@ -586,6 +589,9 @@ export type Database = {
           ml_claim_status?: string | null
           ml_invoice_id?: string | null
           ml_invoice_reported?: boolean
+          ml_bundle_parent_item_id?: string | null
+          ml_bundle_primary?: boolean | null
+          ml_bundle_type?: string | null
           ml_order_id?: string | null
           ml_pack_id?: string | null
           ml_fiscal_release_at?: string | null
@@ -652,6 +658,9 @@ export type Database = {
           ml_claim_status?: string | null
           ml_invoice_id?: string | null
           ml_invoice_reported?: boolean
+          ml_bundle_parent_item_id?: string | null
+          ml_bundle_primary?: boolean | null
+          ml_bundle_type?: string | null
           ml_order_id?: string | null
           ml_pack_id?: string | null
           ml_fiscal_release_at?: string | null

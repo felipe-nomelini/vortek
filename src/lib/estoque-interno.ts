@@ -30,7 +30,7 @@ async function carregarItensEstoquePedido(pedidoId: string): Promise<ItemEstoque
   const db = createServiceClient();
   const { data: itens, error } = await db
     .from('pedido_itens')
-    .select('seller_sku,quantidade')
+    .select('ml_item_id,seller_sku,quantidade')
     .eq('pedido_id', pedidoId);
 
   if (error) throw new Error(error.message);
@@ -38,20 +38,30 @@ async function carregarItensEstoquePedido(pedidoId: string): Promise<ItemEstoque
 
   const agrupados = new Map<string, ItemEstoquePedido>();
   for (const item of itens) {
-    const sku = String(item.seller_sku || '').trim();
+    let sku = String(item.seller_sku || '').trim();
+    const mlItemId = String(item.ml_item_id || '').trim();
     const quantidade = Number(item.quantidade || 0);
-    if (!sku || quantidade <= 0) throw new Error('Pedido possui item sem SKU ou quantidade válida.');
+    if (quantidade <= 0) throw new Error('Pedido possui item sem quantidade válida.');
 
     const variantesSku = getSkuLookupVariants(sku);
-    const { data: produtoDireto, error: produtoError } = await db
-      .from('produtos')
-      .select('id')
-      .in('sku', variantesSku)
-      .maybeSingle();
+    const { data: produtoDireto, error: produtoError } = variantesSku.length > 0
+      ? await db
+          .from('produtos')
+          .select('id,sku')
+          .in('sku', variantesSku)
+          .maybeSingle()
+      : mlItemId
+        ? await db
+            .from('produtos')
+            .select('id,sku')
+            .eq('ml_item_id', mlItemId)
+            .maybeSingle()
+        : { data: null, error: null };
     if (produtoError) throw new Error(produtoError.message);
 
     let produtoId = produtoDireto?.id ? String(produtoDireto.id) : null;
-    if (!produtoId) {
+    if (!sku && produtoDireto?.sku) sku = String(produtoDireto.sku).trim();
+    if (!produtoId && variantesSku.length > 0) {
       const [ofertasPorSku, ofertasPorSkuFornecedor] = await Promise.all([
         db
           .from('produto_fornecedor_ofertas')
@@ -66,7 +76,26 @@ async function carregarItensEstoquePedido(pedidoId: string): Promise<ItemEstoque
       if (ofertasPorSkuFornecedor.error) throw new Error(ofertasPorSkuFornecedor.error.message);
       produtoId = String(ofertasPorSku.data?.[0]?.produto_id || ofertasPorSkuFornecedor.data?.[0]?.produto_id || '').trim() || null;
     }
-    if (!produtoId) throw new Error(`Produto interno não encontrado: ${sku}`);
+    if (!produtoId && mlItemId) {
+      const { data: catalogLink, error: catalogError } = await db
+        .from('catalogo_ml_snapshot')
+        .select('produto_id,sku_local')
+        .eq('ml_item_id', mlItemId)
+        .maybeSingle();
+      if (catalogError) throw new Error(catalogError.message);
+      produtoId = String(catalogLink?.produto_id || '').trim() || null;
+      if (!sku && catalogLink?.sku_local) sku = String(catalogLink.sku_local).trim();
+    }
+    if (!produtoId) throw new Error(`Produto interno não encontrado: ${sku || mlItemId || 'sem identificação'}`);
+    if (!sku) {
+      const { data: produto } = await db
+        .from('produtos')
+        .select('sku')
+        .eq('id', produtoId)
+        .maybeSingle();
+      sku = String(produto?.sku || '').trim();
+    }
+    if (!sku) throw new Error(`Produto interno sem SKU: ${produtoId}`);
 
     const atual = agrupados.get(produtoId);
     agrupados.set(produtoId, {

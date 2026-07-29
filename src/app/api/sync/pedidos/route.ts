@@ -16,6 +16,7 @@ import {
   parseMlOrderShippingMode,
   resolveMlOrderSituation,
 } from '@/lib/ml/order-shipping-mode';
+import { parseMlVirtualKitOrderGroup } from '@/lib/ml/virtual-kit-orders';
 import { getSkuLookupVariants } from '@/lib/sku';
 import { alertClaimOpened, alertMlLabelReleased, alertNewSale } from '@/services/whatsapp-alerts';
 import { isEnderecoEstoqueInternoMl, registrarDevolucaoInterna } from '@/lib/estoque-interno';
@@ -662,13 +663,44 @@ async function buildOrderItemsSnapshot(params: {
 
   let productsByMlItem = new Map<string, any>();
   let productsBySku = new Map<string, any>();
+  let productsByCatalogItem = new Map<string, any>();
+  let catalogSkuByMlItem = new Map<string, string>();
 
   if (itemIds.length > 0) {
-    const { data } = await serviceClient
-      .from('produtos')
-      .select('ml_item_id,sku,ncm,cest,gtin,origem_fiscal,csosn')
-      .in('ml_item_id', itemIds);
+    const [{ data }, { data: catalogLinks }] = await Promise.all([
+      serviceClient
+        .from('produtos')
+        .select('id,ml_item_id,sku,ncm,cest,gtin,origem_fiscal,csosn')
+        .in('ml_item_id', itemIds),
+      serviceClient
+        .from('catalogo_ml_snapshot')
+        .select('ml_item_id,produto_id,sku_local')
+        .in('ml_item_id', itemIds),
+    ]);
     productsByMlItem = new Map((data || []).map((p: any) => [String(p.ml_item_id || ''), p]));
+
+    const catalogProductIds = Array.from(new Set(
+      ((catalogLinks || []) as any[])
+        .map((link) => String(link.produto_id || '').trim())
+        .filter(Boolean),
+    ));
+    const { data: catalogProducts } = catalogProductIds.length > 0
+      ? await serviceClient
+          .from('produtos')
+          .select('id,ml_item_id,sku,ncm,cest,gtin,origem_fiscal,csosn')
+          .in('id', catalogProductIds)
+      : { data: [] };
+    const catalogProductsById = new Map(
+      (catalogProducts || []).map((p: any) => [String(p.id || ''), p]),
+    );
+
+    for (const link of (catalogLinks || []) as any[]) {
+      const mlItemId = String(link.ml_item_id || '').trim();
+      const product = catalogProductsById.get(String(link.produto_id || ''));
+      const skuLocal = String(link.sku_local || product?.sku || '').trim();
+      if (mlItemId && product) productsByCatalogItem.set(mlItemId, product);
+      if (mlItemId && skuLocal) catalogSkuByMlItem.set(mlItemId, skuLocal);
+    }
   }
   if (skuLookupVariants.length > 0) {
     const { data } = await serviceClient
@@ -738,13 +770,18 @@ async function buildOrderItemsSnapshot(params: {
 
     const skuVariants = getSkuLookupVariants(sellerSku);
     const produto = (mlItemId && productsByMlItem.get(mlItemId))
+      || (mlItemId && productsByCatalogItem.get(mlItemId))
       || (sellerSku && productsBySku.get(sellerSku))
       || skuVariants.map((variant) => productsBySku.get(variant)).find(Boolean)
+      || null;
+    const resolvedSellerSku = sellerSku
+      || (mlItemId ? catalogSkuByMlItem.get(mlItemId) : null)
+      || String(produto?.sku || '').trim()
       || null;
 
     return {
       ml_item_id: mlItemId,
-      seller_sku: sellerSku,
+      seller_sku: resolvedSellerSku,
       titulo: String(it?.item?.title || it?.item?.description || 'Item sem título'),
       quantidade,
       unidade: String(it?.item?.unit || 'UN'),
@@ -855,7 +892,7 @@ async function processOrder(params: {
 
   const { data: existingPedido } = await serviceClient
     .from('pedidos')
-    .select('id, ml_pack_id, billing_ie, billing_endereco, ml_fiscal_release_at, ml_claim_id, frete, lucro, dslite_label_source, snapshot_incompleto')
+    .select('id, ml_pack_id, ml_bundle_type, ml_bundle_parent_item_id, ml_bundle_primary, billing_ie, billing_endereco, ml_fiscal_release_at, ml_claim_id, frete, lucro, dslite_label_source, snapshot_incompleto')
     .eq('ml_order_id', String(o.id))
     .maybeSingle();
   existingPackId = existingPedido?.ml_pack_id ? String(existingPedido.ml_pack_id) : null;
@@ -1068,6 +1105,39 @@ async function processOrder(params: {
     existingPackId,
   });
   const mlPackId = packResolution.packId;
+  const isVirtualKit = tags.includes('kit') || tags.includes('kit_component');
+  const parentItemId = Array.isArray(sourceOrder?.order_items)
+    ? String(
+        sourceOrder.order_items
+          .map((item: any) => item?.bundle?.parent_item?.id)
+          .find(Boolean) || '',
+      ).trim() || null
+    : null;
+  let virtualKitOrderIds: string[] = [];
+  let virtualKitPrimaryOrderId: string | null = null;
+
+  if (isVirtualKit) {
+    const bundlePayload = await fetchML<unknown>(
+      `/orders/${encodeURIComponent(String(o.id))}/bundle`,
+    ).catch(() => null);
+    const virtualKitGroup = parseMlVirtualKitOrderGroup(bundlePayload, String(o.id));
+    virtualKitOrderIds = virtualKitGroup?.orderIds || [];
+    virtualKitPrimaryOrderId = virtualKitOrderIds.length > 0
+      ? [...virtualKitOrderIds].sort((a, b) => a.localeCompare(b))[0]
+      : null;
+  }
+
+  const bundleType = isVirtualKit
+    ? 'virtual_kit'
+    : null;
+  const bundleParentItemId = isVirtualKit
+    ? parentItemId || String((existingPedido as any)?.ml_bundle_parent_item_id || '').trim() || null
+    : null;
+  const bundlePrimary = isVirtualKit
+    ? virtualKitPrimaryOrderId
+      ? virtualKitPrimaryOrderId === String(o.id)
+      : (existingPedido as any)?.ml_bundle_primary ?? null
+    : null;
   await registrarEventoNfAuditoria({
     pedidoId: existingPedidoId,
     mlOrderId: String(o.id),
@@ -1184,11 +1254,14 @@ async function processOrder(params: {
     lucro,
     rastreio,
     freteDisponivel,
+    itensEncontrados,
   } = await calculateOrderProfit(detail, shipmentDetail, {
     allowShipmentFetch: false,
     sellerShippingCost,
   });
-  const lucroPendente = !freteDisponivel;
+  const quantidadeItensPedido = Array.isArray(detail?.order_items) ? detail.order_items.length : 0;
+  const custoProdutoPendente = quantidadeItensPedido > 0 && itensEncontrados < quantidadeItensPedido;
+  const lucroPendente = !freteDisponivel || custoProdutoPendente;
 
   // 8. Claim: usar dados da busca ou detalhe do pedido
   let mlClaimId: string | null = claimIdFromSearch;
@@ -1261,13 +1334,17 @@ async function processOrder(params: {
       freteTotal,
       emitUf,
     });
-    if (lucroPendente && !snapshot.pendencias.includes('lucro_pendente_frete')) {
+    if (!freteDisponivel && !snapshot.pendencias.includes('lucro_pendente_frete')) {
       snapshot.pendencias.push('lucro_pendente_frete');
       // Vendas no_shipping precisam criar o pedido DSLite antes de conhecer o
       // frete. Não bloquear esse fluxo por uma pendência financeira esperada.
       if (!shippingMode.isNoShipping) {
         snapshot.incompleto = true;
       }
+    }
+    if (custoProdutoPendente && !snapshot.pendencias.includes('lucro_pendente_produto')) {
+      snapshot.pendencias.push('lucro_pendente_produto');
+      snapshot.incompleto = true;
     }
     await registrarEventoNfAuditoria({
       mlOrderId: String(o.id),
@@ -1305,13 +1382,9 @@ async function processOrder(params: {
 
   const hasFutureRelease = Boolean(releaseWindow.releaseAt && releaseWindow.isBlockedNow);
   const hadReleaseBefore = Boolean((existingPedido as any)?.ml_fiscal_release_at);
-  const shouldClearPendingProfit = Boolean(
-    !(existingPedido as any)?.id
-    || (existingPedido as any)?.snapshot_incompleto,
-  );
   const profitUpdate = lucro !== null
     ? { lucro }
-    : (shouldClearPendingProfit ? { lucro: null } : {});
+    : {};
   const persistedFreight = (
     shippingMode.isNoShipping
     && String((existingPedido as any)?.dslite_label_source || '') === 'dslite_paid_shipping'
@@ -1333,6 +1406,9 @@ async function processOrder(params: {
     rastreio,
     ...profitUpdate,
     ml_shipment_id: mlShipmentId,
+    ml_bundle_type: bundleType,
+    ml_bundle_parent_item_id: bundleParentItemId,
+    ml_bundle_primary: bundlePrimary,
     ml_claim_id: mlClaimId,
     ml_claim_status: mlClaimStatus,
     ...(releaseWindowCheckOk
@@ -1360,6 +1436,25 @@ async function processOrder(params: {
       frete: persistedFreight,
     } : {}),
   } as any, { onConflict: 'ml_order_id' }).select('id').maybeSingle();
+
+  if (
+    !error
+    && virtualKitOrderIds.length > 1
+    && virtualKitPrimaryOrderId
+  ) {
+    await serviceClient
+      .from('pedidos')
+      .update({
+        ml_bundle_type: 'virtual_kit',
+        ml_bundle_parent_item_id: bundleParentItemId,
+        ml_bundle_primary: false,
+      } as any)
+      .in('ml_order_id', virtualKitOrderIds);
+    await serviceClient
+      .from('pedidos')
+      .update({ ml_bundle_primary: true } as any)
+      .eq('ml_order_id', virtualKitPrimaryOrderId);
+  }
 
   if (!error && upsertedPedido?.id && !existingPedidoId) {
     void alertNewSale({
@@ -1747,6 +1842,7 @@ export async function POST(request: Request) {
   const processedResults = workerOutputs.flat();
 
   const salvos = processedResults.filter((r) => r.salvo).length;
+  const failedCount = processedResults.length - salvos;
   const semShipmentCount = processedResults.reduce((sum, r) => sum + r.semShipment, 0);
   const lucroPendenteCount = processedResults.reduce((sum, r) => sum + r.lucroPendente, 0);
   const authFailures = processedResults.reduce((sum, r) => sum + r.authFailures, 0);
@@ -1770,7 +1866,7 @@ export async function POST(request: Request) {
         .pop() || null
     : null;
 
-  if (maxLastUpdated) {
+  if (maxLastUpdated && failedCount === 0) {
     await setSyncRuntimeConfigValue('sync_ml_orders_ingest_watermark', maxLastUpdated);
   }
 
@@ -1828,6 +1924,32 @@ export async function POST(request: Request) {
     }, { status: 401 });
   }
 
+  if (failedCount > 0) {
+    const syncError = {
+      code: 'ml_orders_not_saved',
+      category: 'database',
+      message: `${failedCount} pedido(s) não foram salvos durante a sincronização`,
+    };
+    return NextResponse.json({
+      ok: false,
+      success: false,
+      domain,
+      error: syncError.message,
+      code: syncError.code,
+      category: syncError.category,
+      sincronizados: salvos,
+      processed_count: processedResults.length,
+      records: {
+        seen: results.length,
+        synced: salvos,
+        failed: failedCount,
+      },
+      errors: [syncError],
+      duration: { ms: totalDurationMs },
+      ...(syncDiagnostico ? { sync_diagnostico: syncDiagnostico } : {}),
+    }, { status: 500 });
+  }
+
   return NextResponse.json({
     ok: true,
     success: true,
@@ -1862,7 +1984,7 @@ export async function POST(request: Request) {
     records: {
       seen: results.length,
       synced: salvos,
-      failed: results.length - salvos,
+      failed: failedCount,
       sem_shipment: semShipmentCount,
       lucro_pendente: lucroPendenteCount,
       retries_transient: retriesTransient,

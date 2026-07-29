@@ -80,18 +80,23 @@ export async function calculateOrderProfit(
   if (itemIds.length > 0) {
     const { data: produtosPorMlItem } = await serviceClient
       .from('produtos')
-      .select('ml_item_id, sku, custo, ml_fee')
+      .select('id, ml_item_id, sku, custo, ml_fee')
       .in('ml_item_id', itemIds);
 
     const { data: produtosPorSku } = skuLookupVariants.length > 0
       ? await serviceClient
           .from('produtos')
-          .select('ml_item_id, sku, custo, ml_fee')
+          .select('id, ml_item_id, sku, custo, ml_fee')
           .in('sku', skuLookupVariants)
       : { data: [] };
 
-    const [{ data: ofertasPorSku }, { data: ofertasPorSkuFornecedor }] = skuLookupVariants.length > 0
-      ? await Promise.all([
+    const [
+      { data: ofertasPorSku },
+      { data: ofertasPorSkuFornecedor },
+      { data: vinculosCatalogo },
+    ] = await Promise.all([
+      ...(skuLookupVariants.length > 0
+        ? [
           serviceClient
             .from('produto_fornecedor_ofertas')
             .select('produto_id,sku_oferta,custo')
@@ -100,25 +105,38 @@ export async function calculateOrderProfit(
             .from('produto_fornecedor_ofertas')
             .select('produto_id,sku_fornecedor,custo')
             .in('sku_fornecedor', skuLookupVariants),
-        ])
-      : [{ data: [] }, { data: [] }];
+        ]
+        : [Promise.resolve({ data: [] }), Promise.resolve({ data: [] })]),
+      serviceClient
+        .from('catalogo_ml_snapshot')
+        .select('ml_item_id,produto_id,sku_local')
+        .in('ml_item_id', itemIds),
+    ]);
 
-    const offerProductIds = Array.from(new Set([
+    const linkedProductIds = Array.from(new Set([
       ...((ofertasPorSku || []) as any[]).map((row) => String(row.produto_id || '').trim()),
       ...((ofertasPorSkuFornecedor || []) as any[]).map((row) => String(row.produto_id || '').trim()),
+      ...((vinculosCatalogo || []) as any[]).map((row) => String(row.produto_id || '').trim()),
     ].filter(Boolean)));
 
-    const { data: produtosPorOferta } = offerProductIds.length > 0
+    const { data: produtosVinculados } = linkedProductIds.length > 0
       ? await serviceClient
           .from('produtos')
           .select('id, ml_item_id, sku, custo, ml_fee')
-          .in('id', offerProductIds)
+          .in('id', linkedProductIds)
       : { data: [] };
 
     const mlItemMap = new Map(produtosPorMlItem?.map((p) => [p.ml_item_id, p]) || []);
     const skuMap = new Map(produtosPorSku?.map((p) => [p.sku, p]) || []);
-    const productsById = new Map((produtosPorOferta || []).map((p: any) => [String(p.id || ''), p]));
+    const productsById = new Map((produtosVinculados || []).map((p: any) => [String(p.id || ''), p]));
+    const catalogItemMap = new Map<string, any>();
     const offerSkuMap = new Map<string, any>();
+
+    for (const vinculo of (vinculosCatalogo || []) as any[]) {
+      const product = productsById.get(String(vinculo.produto_id || ''));
+      const mlItemId = String(vinculo.ml_item_id || '').trim();
+      if (product && mlItemId) catalogItemMap.set(mlItemId, product);
+    }
 
     const registerOfferSku = (skuValue: unknown, offer: any) => {
       const offerSku = String(skuValue || '').trim();
@@ -145,6 +163,7 @@ export async function calculateOrderProfit(
       const qty = item.quantity || 1;
       const skuVariants = getSkuLookupVariants(sku);
       const produto = (mlItemId && mlItemMap.get(mlItemId))
+        || (mlItemId && catalogItemMap.get(mlItemId))
         || (sku && skuMap.get(sku))
         || skuVariants.map((variant) => skuMap.get(variant) || offerSkuMap.get(variant)).find(Boolean)
         || (sku && offerSkuMap.get(sku));

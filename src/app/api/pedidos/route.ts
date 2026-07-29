@@ -257,12 +257,24 @@ async function resolveFornecedorPreviewByPedido(
 }
 
 async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<typeof createServiceClient>) {
+  rows = rows.map((row) => ({
+    ...row,
+    total: Number(row?.operational_total ?? row?.total ?? 0),
+    lucro: row?.operational_lucro ?? row?.lucro ?? null,
+    is_virtual_kit: row?.ml_bundle_type === 'virtual_kit',
+    kit_order_ids: Array.isArray(row?.operational_order_ids) ? row.operational_order_ids : [],
+  }));
   const pedidoIds = Array.from(new Set(
     rows
-      .map((row) => String(row?.id || '').trim())
+      .flatMap((row) => (
+        Array.isArray(row?.operational_pedido_ids) && row.operational_pedido_ids.length > 0
+          ? row.operational_pedido_ids
+          : [row?.id]
+      ))
+      .map((id) => String(id || '').trim())
       .filter(Boolean),
   ));
-  const itensPorPedido = new Map<string, any[]>();
+  const itensPorPedidoRaw = new Map<string, any[]>();
   if (pedidoIds.length) {
     const { data, error } = await serviceClient
       .from('pedido_itens')
@@ -276,10 +288,21 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
     } else {
       for (const item of data || []) {
         const pedidoId = String(item.pedido_id || '');
-        if (!itensPorPedido.has(pedidoId)) itensPorPedido.set(pedidoId, []);
-        itensPorPedido.get(pedidoId)!.push(item);
+        if (!itensPorPedidoRaw.has(pedidoId)) itensPorPedidoRaw.set(pedidoId, []);
+        itensPorPedidoRaw.get(pedidoId)!.push(item);
       }
     }
+  }
+  const itensPorPedido = new Map<string, any[]>();
+  for (const row of rows) {
+    const rowId = String(row?.id || '');
+    const operationalIds = Array.isArray(row?.operational_pedido_ids) && row.operational_pedido_ids.length > 0
+      ? row.operational_pedido_ids
+      : [row?.id];
+    itensPorPedido.set(
+      rowId,
+      operationalIds.flatMap((id: unknown) => itensPorPedidoRaw.get(String(id || '')) || []),
+    );
   }
   const fornecedorPreviewByPedido = await resolveFornecedorPreviewByPedido(itensPorPedido, serviceClient);
 
@@ -500,10 +523,10 @@ function applyPedidoFilters(query: any, filters: {
     query = query.lte(dateColumn, endDateIso);
   }
   if (priceMin !== null) {
-    query = query.gte('total', priceMin);
+    query = query.gte('operational_total', priceMin);
   }
   if (priceMax !== null) {
-    query = query.lte('total', priceMax);
+    query = query.lte('operational_total', priceMax);
   }
   return query;
 }
@@ -539,7 +562,7 @@ function applyPedidoSortWithMode(query: any, sortBy: string, sortOrder: 'asc' | 
         .order('billing_nome', { ascending, nullsFirst: false })
         .order('contato_nome', { ascending, nullsFirst: false });
     case 'total':
-      return query.order('total', { ascending });
+      return query.order('operational_total', { ascending });
     case 'rastreio':
       return query.order('rastreio', { ascending, nullsFirst: false });
     case 'situacao':
@@ -549,7 +572,7 @@ function applyPedidoSortWithMode(query: any, sortBy: string, sortOrder: 'asc' | 
     case 'pedido_compra':
       return query.order('dslite_id', { ascending, nullsFirst: false });
     case 'lucro':
-      return query.order('lucro', { ascending });
+      return query.order('operational_lucro', { ascending });
     case 'data':
     default:
       return useSaleDate
@@ -693,7 +716,7 @@ export async function GET(request: Request) {
       const chunkSize = 500;
 
       while (true) {
-        let query = serviceClient.from('pedidos').select('*');
+        let query = (serviceClient as any).from('pedidos_operacionais').select('*');
         query = applyPedidoFilters(query, { ...filterContext, useSaleDate });
         query = applyOperationalViewFilter(query, operationalView);
         query = applyPedidoSortWithMode(query, sortBy, sortOrder, useSaleDate);
@@ -727,12 +750,12 @@ export async function GET(request: Request) {
   }
 
   async function runListQueries(useSaleDate: boolean) {
-    let countQuery = serviceClient.from('pedidos').select('*', { count: 'exact', head: false }).range(0, 0);
+    let countQuery = (serviceClient as any).from('pedidos_operacionais').select('*', { count: 'exact', head: false }).range(0, 0);
     countQuery = applyPedidoFilters(countQuery, { ...filterContext, useSaleDate });
     countQuery = applyOperationalViewFilter(countQuery, operationalView);
     const countResult = await countQuery;
 
-    let dataQuery = serviceClient.from('pedidos').select('*');
+    let dataQuery = (serviceClient as any).from('pedidos_operacionais').select('*');
     dataQuery = applyPedidoFilters(dataQuery, { ...filterContext, useSaleDate });
     dataQuery = applyOperationalViewFilter(dataQuery, operationalView);
     dataQuery = applyPedidoSortWithMode(dataQuery, sortBy, sortOrder, useSaleDate);

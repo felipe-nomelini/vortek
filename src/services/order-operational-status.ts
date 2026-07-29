@@ -51,6 +51,7 @@ function mapDsliteLabelStatus(event: OperationalAuditRow): DsliteLabelOperationa
 
 export async function enrichOrdersWithWhatsappStatus<T extends {
   id?: string | null;
+  operational_pedido_ids?: string[] | null;
   dslite_etiqueta_enviada?: boolean | null;
   dslite_label_source?: string | null;
 }>(
@@ -66,7 +67,14 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
   whatsapp_label_next_retry_at: string | null;
 }>> {
   const pedidoIds = Array.from(new Set(
-    rows.map((row) => String(row.id || '').trim()).filter(Boolean),
+    rows
+      .flatMap((row) => (
+        Array.isArray(row.operational_pedido_ids) && row.operational_pedido_ids.length > 0
+          ? row.operational_pedido_ids
+          : [row.id]
+      ))
+      .map((id) => String(id || '').trim())
+      .filter(Boolean),
   ));
   if (!pedidoIds.length) {
     return rows.map((row) => ({
@@ -126,8 +134,20 @@ export async function enrichOrdersWithWhatsappStatus<T extends {
 
   return rows.map((row) => {
     const pedidoId = String(row.id || '');
-    const whatsappEvent = latestWhatsappByPedido.get(pedidoId);
-    const dsliteLabelEvent = latestDsliteLabelByPedido.get(pedidoId);
+    const operationalPedidoIds = Array.isArray(row.operational_pedido_ids) && row.operational_pedido_ids.length > 0
+      ? row.operational_pedido_ids.map((id) => String(id || '')).filter(Boolean)
+      : [pedidoId];
+    const latestEvent = (events: Array<OperationalAuditRow | undefined>) => (
+      events
+        .filter((event): event is OperationalAuditRow => Boolean(event))
+        .sort((a, b) => String(b.created_at).localeCompare(String(a.created_at)))[0]
+    );
+    const whatsappEvent = latestEvent(
+      operationalPedidoIds.map((id) => latestWhatsappByPedido.get(id)),
+    );
+    const dsliteLabelEvent = latestEvent(
+      operationalPedidoIds.map((id) => latestDsliteLabelByPedido.get(id)),
+    );
     const whatsappResponse = whatsappEvent?.resposta_ml || {};
     const dsliteLabelResponse = dsliteLabelEvent?.resposta_ml || {};
     const usesProviderShipping = row.dslite_label_source === 'dslite_paid_shipping';
