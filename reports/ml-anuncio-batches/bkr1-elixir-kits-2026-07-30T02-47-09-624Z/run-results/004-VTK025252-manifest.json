@@ -1,0 +1,67 @@
+{
+  "batchNumber": 4,
+  "batchId": "bkr1-live-004-VTK025252",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "79e7cfa9-8614-4038-96d8-098334c6eb58",
+      "sku": "VTK025252",
+      "nome": "2 Jogos de Cordas 010 Extra Light Phosphor Violão Aço Elixir",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 354.72,
+      "estoque": 7,
+      "suggestedPricePreview": 503.61,
+      "description": "2 Jogos de Cordas 010 Extra Light Phosphor Violão Aço Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Violão .010 Extra Light Phosphor Bronze Nanoweb 16002 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 010 Extra Light Phosphor Violão Aço Elixir\n\n A corda Elixir .010 Extra Light Phosphor Bronze é perfeita para violonistas que buscam um som equilibrado, com brilho suave e excelente definição. Com revestimento Nanoweb, oferece toque confortável e durabilidade muito superior às cordas convencionais.\n\n Fabricada com liga de fósforo bronze, essa corda entrega timbre quente, encorpado e com excelente projeção. O calibre extra leve (.010 - .047) facilita a execução de solos e dedilhados, ideal para quem valoriza leveza e sensibilidade ao tocar.\n\n Principais características:\n•    Calibre: Extra Light (.010 - .047)\n•    Material: Phosphor Bronze (bronze com fósforo)\n•    Revestimento: Nanoweb (sensação natural com proteção duradoura)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Quente, suave e com brilho equilibrado\n•    Toque: Macio e responsivo\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n A linha Elixir é reconhecida mundialmente por sua qualidade, sendo a escolha de músicos exigentes que desejam manter o som limpo e consistente por muito mais tempo.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Elixir"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "16002"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".010 - .047"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Extra Light"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elixir.xls",
+        "sourceSku": "1428K2",
+        "componentSku": "VTK001978",
+        "componentGtin": "733132160020",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7087407818 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "001-bkr1-kit-elixir-001.json"
+    }
+  ]
+}

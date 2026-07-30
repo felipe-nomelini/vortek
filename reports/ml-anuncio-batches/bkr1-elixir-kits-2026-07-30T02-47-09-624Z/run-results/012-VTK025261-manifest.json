@@ -1,0 +1,63 @@
+{
+  "batchNumber": 12,
+  "batchId": "bkr1-live-012-VTK025261",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "ffb26214-19cc-4987-882c-1ef6934f597d",
+      "sku": "VTK025261",
+      "nome": "2 Jogos de Cordas 12 Phosphor Violão Aço Nanoweb Elixir",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 395.78,
+      "estoque": 3,
+      "suggestedPricePreview": 561.91,
+      "description": "2 Jogos de Cordas 12 Phosphor Violão Aço Nanoweb Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Cordas 012 Light Phosphor Violão Aço Nanoweb Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 012 Light Phosphor Violão Aço Nanoweb Elixir\n\n A corda Elixir .012 Light Phosphor Bronze é ideal para quem busca um timbre equilibrado, com brilho suave, graves definidos e toque confortável. Produzida com liga de fósforo bronze e o exclusivo revestimento Nanoweb, oferece sonoridade rica e durabilidade muito superior às cordas convencionais.\n\n Com calibre Light (.012 - .053), entrega projeção sonora excelente e sensação firme ao tocar, sem abrir mão da suavidade nos dedilhados e acordes.\n\n Principais características:\n•    Calibre: Light (.012 - .053)\n•    Material: Phosphor Bronze (bronze com fósforo)\n•    Revestimento: Nanoweb (proteção contra oxidação com toque natural)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Quente, definido e com brilho suave\n•    Toque: Leve, porém com presença\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n A Elixir é a marca preferida de músicos que valorizam qualidade, estabilidade e desempenho sonoro duradouro em qualquer ambiente.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Elixir"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "16052"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".012 - .053"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elixir.xls",
+        "sourceSku": "2043K2",
+        "componentSku": "VTK012539",
+        "componentGtin": "733132160525",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4880587351 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "003-bkr1-kit-elixir-003.json"
+    }
+  ]
+}

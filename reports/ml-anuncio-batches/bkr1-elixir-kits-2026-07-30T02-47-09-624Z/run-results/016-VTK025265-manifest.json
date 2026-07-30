@@ -1,0 +1,67 @@
+{
+  "batchNumber": 16,
+  "batchId": "bkr1-live-016-VTK025265",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "0817d59b-d595-4d08-b208-2602e709d36b",
+      "sku": "VTK025265",
+      "nome": "3 Jogos de Cordas 010 Extra Light 80/20 Violão Aço Elixir",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 419.49,
+      "estoque": 5,
+      "suggestedPricePreview": 621.47,
+      "description": "3 Jogos de Cordas 010 Extra Light 80/20 Violão Aço Elixir\n\nKit com 3 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 3x Encordoamento Para Violão .010 Extra Light Bronze Nanoweb 11002 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 3 unidades\n- Embalagem: Pacote / Caixa\n\n3 Jogos de Cordas 010 Extra Light 80/20 Violão Aço Elixir\n\n A corda Elixir .010 Extra Light é a escolha ideal para quem busca um som brilhante, maciez ao tocar e alta durabilidade. Fabricada com liga Bronze 80/20 e com o exclusivo revestimento Nanoweb, oferece desempenho superior em violões de aço.\n\n Com calibre leve (.010 - .047), é perfeita para dedilhados suaves e solos precisos, entregando um timbre claro e encorpado desde o primeiro acorde. O revestimento Nanoweb protege contra oxidação e sujeira, mantendo o som limpo por muito mais tempo.\n\n Principais características:\n•    Calibre: Extra Light (.010 - .047)\n•    Material: Bronze 80/20 (80% cobre, 20% zinco)\n•    Revestimento: Nanoweb (sensação de corda tradicional com maior durabilidade)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Brilhante, definido e com excelente projeção sonora\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n Recomendada por músicos que valorizam qualidade, conforto e som consistente. Compatível com qualquer violão de aço.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Elixir"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "11002"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "3"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".010 - .047"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Extra Light"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elixir.xls",
+        "sourceSku": "1421K3",
+        "componentSku": "VTK003694",
+        "componentGtin": "733132110025",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4582573509 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "004-bkr1-kit-elixir-004.json"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "batchNumber": 2,
+  "batchId": "bkr1-live-002-VTK025250",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "c0e73cd4-07d3-4919-83b3-f55c4a2c2d9c",
+      "sku": "VTK025250",
+      "nome": "2 Jogos de Cordas 009 Super Light Guitarra Optiweb Elixir",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 260.6,
+      "estoque": 7,
+      "suggestedPricePreview": 369.99,
+      "description": "2 Jogos de Cordas 009 Super Light Guitarra Optiweb Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Guitarra .009 Super Light Optiweb 19002 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 009 Super Light Guitarra Optiweb Elixir\n\n O encordoamento Elixir .009 Super Light com revestimento Optiweb é a escolha ideal para guitarristas que buscam leveza, resposta rápida e timbre brilhante com sensação natural. A tecnologia Optiweb proporciona o toque de cordas não revestidas, mas com a durabilidade que só a Elixir oferece.\n\n Com calibre leve (.009 - .042), é perfeito para solos rápidos, bends suaves e ótima pegada nas bases, sem perder clareza sonora.\n\n Principais características:\n•    Calibre: .009 – .042 (Super Light)\n•    Revestimento: Optiweb (sensação de corda tradicional com proteção avançada)\n•    Timbre: Brilhante, definido e com excelente sustain\n•    Toque: Macio e natural, ideal para velocidade e expressividade\n•    Aplicação: Guitarras elétricas de qualquer marca ou modelo\n•    Modelo: Elixir 19002\n•    Durabilidade: Até 3 vezes maior que cordas convencionais\n\n Perfeito para músicos que valorizam som limpo, conforto ao tocar e menos trocas de encordoamento.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Elixir"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "19002"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".009 - .042"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Super Light"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elixir.xls",
+        "sourceSku": "2496K2",
+        "componentSku": "VTK003672",
+        "componentGtin": "733132190027",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4846402331 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "001-bkr1-kit-elixir-001.json"
+    }
+  ]
+}

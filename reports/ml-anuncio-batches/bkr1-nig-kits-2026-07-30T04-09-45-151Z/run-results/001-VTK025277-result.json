@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-nig-kits-2026-07-30T04-09-45-151Z/run-results/001-VTK025277-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-001-VTK025277",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "292d1772-f195-471e-b79a-2783c09e9825",
+      "sku": "VTK025277",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7287821724",
+        "title": "10 Jogos De Cordas Guitarra 009 1ª Mi Extra + Palheta N63",
+        "price": 391.29,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7287821724-10-jogos-de-cordas-guitarra-009-1-mi-extra-palheta-n63-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 363.63 → R$ 391.29."
+      ]
+    }
+  ],
+  "failed": []
+}

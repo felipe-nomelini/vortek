@@ -1,0 +1,67 @@
+{
+  "batchNumber": 25,
+  "batchId": "bkr1-live-025-VTK025310",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "052c71f3-3512-4fe3-9308-f2bbfe8a9475",
+      "sku": "VTK025310",
+      "nome": "5 Jogos de Cordas Violão Nylon-Cristal/Prateada Média Nig",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 133.55,
+      "estoque": 16,
+      "suggestedPricePreview": 189.61,
+      "description": "5 Jogos de Cordas Violão Nylon-Cristal/Prateada Média Nig\n\nKit com 5 unidades originais NIG.\n\nConteúdo da embalagem:\n- 5x Encordoamento Para Violão Nylon .028 N475 NIG\n\nInformações principais:\n- Marca: NIG\n- Quantidade: 5 unidades\n- Embalagem: Pacote / Caixa\n\nEncordoamento Violão Nylon Cristal/Prateada Nig N475 Tensão Média com 4ª Corda (Ré) Extra\n\n Toque clássico com clareza, conforto e equilíbrio! O encordoamento Nig N475 oferece tensão média e combina agudos de nylon cristal com bordões prateados, entregando timbre encorpado e projeção suave. Acompanha corda Ré (4ª) extra para maior durabilidade.\n\n Detalhes Técnicos\n•    Marca: Nig Strings\n•    Modelo: N475\n•    Indicação: Violão clássico (cordas de nylon)\n•    Material:\n•    Agudos: Nylon cristal\n•    Bordões (4ª, 5ª e 6ª): Aço revestido com cobre prateado\n•    Tensão: Média\nExtras inclusos:\n•    1 corda Ré (4ª) extra\n\n Timbre: Encorpado nos graves e suave nos agudos\nConforto: Excelente tocabilidade, ideal para estudo e apresentações\nOrigem: Nacional\nEstilos indicados: Música clássica, MPB, Bossa Nova, Sertanejo raiz, Gospel, entre outros\n\n O Encordoamento Nig N475 é a escolha certa para quem busca sonoridade refinada, equilíbrio tonal e conforto ao tocar. Com tensão média e 4ª corda extra, é ideal para violonistas que querem confiança e durabilidade no dia a dia. Leve o seu agora e sinta o som limpo e definido da Nig!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "NIG"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "N475"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "5"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Nylon cristal e bordões de aço revestido com cobre prateado"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Média"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Nig.xls",
+        "sourceSku": "1403K5",
+        "componentSku": "VTK001718",
+        "componentGtin": "7897813404759",
+        "componentQuantity": 5,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111652440 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "006-bkr1-kit-nig-006.json"
+    }
+  ]
+}

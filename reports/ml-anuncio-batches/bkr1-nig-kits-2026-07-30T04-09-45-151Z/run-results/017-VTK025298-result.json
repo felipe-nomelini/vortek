@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-nig-kits-2026-07-30T04-09-45-151Z/run-results/017-VTK025298-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-017-VTK025298",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "51bb9dbc-16b6-49df-a3b6-a3feea7ce16c",
+      "sku": "VTK025298",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4967487089",
+        "title": "4 Jogos De Cordas Violão Aço 010 1ª Corda Mí Extra N500 Nig",
+        "price": 163.94,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4967487089-4-jogos-de-cordas-violo-aco-010-1-corda-mi-extra-n500-nig-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 141.74 → R$ 163.94."
+      ]
+    }
+  ],
+  "failed": []
+}

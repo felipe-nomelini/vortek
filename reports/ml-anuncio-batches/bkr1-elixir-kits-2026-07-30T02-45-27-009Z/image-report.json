@@ -1,0 +1,892 @@
+[
+  {
+    "produtoId": "20070eb4-bc64-45aa-8ac6-157a41ada896",
+    "sku": "VTK025248",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/744d9de8c1f95582e4fc87c06d8748f4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/08c391a655d12f81dee09ed34d76d7ee.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4cc624787db6a2bf39020f19b4fde176.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/bfac941858e4d2be2e8438c39ab7b969.jpg",
+      "https://static.hayapek.com.br/produtos/20007/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/744d9de8c1f95582e4fc87c06d8748f4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/08c391a655d12f81dee09ed34d76d7ee.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4cc624787db6a2bf39020f19b4fde176.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/bfac941858e4d2be2e8438c39ab7b969.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/20007/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "6a349936-dd80-4b11-bc2a-8d6dadbea47c",
+    "sku": "VTK025251",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/73483187ce25e808217331317430f7a6.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a669b3521f9f3df9a783279bbde60ff3.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/8960f8a83db4cae5ed82b6c95d6e9a0b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/51f5bb9e8806ea995d9b701570970276.jpg",
+      "https://static.hayapek.com.br/produtos/74160/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/73483187ce25e808217331317430f7a6.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a669b3521f9f3df9a783279bbde60ff3.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/8960f8a83db4cae5ed82b6c95d6e9a0b.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/51f5bb9e8806ea995d9b701570970276.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/74160/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "37ce954f-cd87-48ed-960f-932ddeedc952",
+    "sku": "VTK025254",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5b73b8c4dcca6e4287d7e9897aebda77.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/440f71f0c20163637c168fb33d8eef1b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/84c3e7a3303a260692f73d56f1cac5be.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/56267a7adaa5e3d69bb4a599e2181d4d.jpg",
+      "https://static.hayapek.com.br/produtos/74135/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5b73b8c4dcca6e4287d7e9897aebda77.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/440f71f0c20163637c168fb33d8eef1b.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/84c3e7a3303a260692f73d56f1cac5be.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/56267a7adaa5e3d69bb4a599e2181d4d.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/74135/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "e0c0d735-32f3-47ad-b871-73645ac85e16",
+    "sku": "VTK025260",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2e57b3baa4eb1cf00fd44ad974517997.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/59b862dd1a68ff766239715396ae7361.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6abf2b3bf792a7e558f90e33297e3a91.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/753726167dd8d58caabce1264d9f916c.jpg",
+      "https://static.hayapek.com.br/produtos/55127/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2e57b3baa4eb1cf00fd44ad974517997.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/59b862dd1a68ff766239715396ae7361.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6abf2b3bf792a7e558f90e33297e3a91.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/753726167dd8d58caabce1264d9f916c.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/55127/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "bbc65f77-625a-4bf8-8735-eb065d5018bd",
+    "sku": "VTK025263",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5c8d832d9a8e482269c6d215d337eb0d.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/284d58600ed8877499d1f469557a65f7.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c15246ebd42883a45a1a5533ce06e702.jpg",
+      "https://static.hayapek.com.br/produtos/38109/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5c8d832d9a8e482269c6d215d337eb0d.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/284d58600ed8877499d1f469557a65f7.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c15246ebd42883a45a1a5533ce06e702.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/38109/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "f01bcca5-9c19-4284-9e09-be2925ab6bef",
+    "sku": "VTK025266",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e10d90b112b8334ec6b810f00f1abd36.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/554a374218ac788ab00b9ae92d0237b9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/32d017aea1e73bb560fbc2f9da10e618.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/8c02bfdd5002195c54e8382778e415bd.jpg",
+      "https://static.hayapek.com.br/produtos/55126/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e10d90b112b8334ec6b810f00f1abd36.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/554a374218ac788ab00b9ae92d0237b9.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/32d017aea1e73bb560fbc2f9da10e618.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/8c02bfdd5002195c54e8382778e415bd.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/55126/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "4fe03d30-a57b-4f92-b3b7-9c20bc277d07",
+    "sku": "VTK025269",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/da9cfad969f783a257b649891c28ba00.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/beb854a4357240fa6cc084fb78d7586c.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7932531a0021789187ddbb4b055a6217.jpg",
+      "https://static.hayapek.com.br/produtos/74161/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/da9cfad969f783a257b649891c28ba00.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/beb854a4357240fa6cc084fb78d7586c.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7932531a0021789187ddbb4b055a6217.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/74161/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "7dfa02d9-e6e3-4dc9-97e4-c9b0552bf2db",
+    "sku": "VTK025272",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0f5beffe2681603eb4fec19a33e2d336.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b097fc7ddd947cc98c917d600ace2c4d.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/623e6e454b03a1e06dd14dafba72caf8.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/516162c9880c777079029f47c768d257.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/eff3c31aff74b52d3d41abaa265c3cc1.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/9ccb9de1c5e14043f4ecd54e0007e1fa.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5ab75a435e5f3d4a1aec86cdbce8b90e.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0f5beffe2681603eb4fec19a33e2d336.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b097fc7ddd947cc98c917d600ace2c4d.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/623e6e454b03a1e06dd14dafba72caf8.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/516162c9880c777079029f47c768d257.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/eff3c31aff74b52d3d41abaa265c3cc1.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/9ccb9de1c5e14043f4ecd54e0007e1fa.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5ab75a435e5f3d4a1aec86cdbce8b90e.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "2c67ecf2-ba89-4679-96fa-f66a0133f5fb",
+    "sku": "VTK025275",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0dace24e7df5ade1657e29cb3e6367cc.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/df643c1aa05581e26fbc4a359b4908a8.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/60bd816ff13d0689002575feffcb16e2.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/13075b58c15c900d45c19ef0e358c374.jpg",
+      "https://static.hayapek.com.br/produtos/55127/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0dace24e7df5ade1657e29cb3e6367cc.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/df643c1aa05581e26fbc4a359b4908a8.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/60bd816ff13d0689002575feffcb16e2.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/13075b58c15c900d45c19ef0e358c374.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/55127/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "91814ab8-b773-42fd-8340-b2d1d3f54c05",
+    "sku": "VTK025249",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/155e01651491b384ddb7d6568e3db1cb.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e0015c98f069e6a8c61ad657e3101194.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/75b2f5601894c315bef79e2369ba3dac.jpg",
+      "https://static.hayapek.com.br/produtos/38109/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/155e01651491b384ddb7d6568e3db1cb.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e0015c98f069e6a8c61ad657e3101194.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/75b2f5601894c315bef79e2369ba3dac.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/38109/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "79e7cfa9-8614-4038-96d8-098334c6eb58",
+    "sku": "VTK025252",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/8bda09879aeb4ce654a1cda247153d05.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/379e608e148ea2c255fbdc6d29f9eca8.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/61328b4e84e6cd327600430a9dc2141d.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2e30a43d22c7206dbd0ce7254448fe6a.jpg",
+      "https://static.hayapek.com.br/produtos/55126/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/8bda09879aeb4ce654a1cda247153d05.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/379e608e148ea2c255fbdc6d29f9eca8.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/61328b4e84e6cd327600430a9dc2141d.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2e30a43d22c7206dbd0ce7254448fe6a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/55126/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "5cfec365-2dac-4547-8bcb-8d003de852ab",
+    "sku": "VTK025255",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2724489587c68eccfbb9e34bc0c1cba4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0d4e2daaaa229c99c25109068689227f.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7edfd1cf70e5ab7915e71516daed4d52.jpg",
+      "https://static.hayapek.com.br/produtos/74161/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2724489587c68eccfbb9e34bc0c1cba4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0d4e2daaaa229c99c25109068689227f.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7edfd1cf70e5ab7915e71516daed4d52.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/74161/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "b8fea603-9ba4-4629-8b01-1cea5a4e300a",
+    "sku": "VTK025258",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/33379a31347a663e351d8136e7477ff5.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c1745ad70eb50f71c2d06afdece476ff.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/dd14cb469b6d9dd7c3c593e6e70748ac.jpg",
+      "https://static.hayapek.com.br/produtos/20014/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/33379a31347a663e351d8136e7477ff5.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c1745ad70eb50f71c2d06afdece476ff.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/dd14cb469b6d9dd7c3c593e6e70748ac.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/20014/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "ffb26214-19cc-4987-882c-1ef6934f597d",
+    "sku": "VTK025261",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/44c7faf1a90c49a54b721dee35a666f0.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f29fdf1592c233d57c1d0c4e9aeab63a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6e039d1480aa13acdbb7da0b5cb3b881.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f52ed3b728d87728eb935b0fc59a0502.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/eff3c31aff74b52d3d41abaa265c3cc1.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/9ccb9de1c5e14043f4ecd54e0007e1fa.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5ab75a435e5f3d4a1aec86cdbce8b90e.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/44c7faf1a90c49a54b721dee35a666f0.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f29fdf1592c233d57c1d0c4e9aeab63a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6e039d1480aa13acdbb7da0b5cb3b881.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f52ed3b728d87728eb935b0fc59a0502.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/eff3c31aff74b52d3d41abaa265c3cc1.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/9ccb9de1c5e14043f4ecd54e0007e1fa.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5ab75a435e5f3d4a1aec86cdbce8b90e.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "f8dfb1c4-2aa6-4cef-b720-c87527c49ab4",
+    "sku": "VTK025264",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e29c82a1213e0caaad195a8a4544b9c1.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/debd6d8394c1fe9a1f332402440410fc.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/60a550fb3f71607d45ccb327c3e877db.jpg",
+      "https://static.hayapek.com.br/produtos/74136/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e29c82a1213e0caaad195a8a4544b9c1.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/debd6d8394c1fe9a1f332402440410fc.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/60a550fb3f71607d45ccb327c3e877db.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/74136/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "6196e695-34fa-49b6-8e73-66915bca3727",
+    "sku": "VTK025267",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e8cf1734c2822998334058d2bf5d12df.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/62b92d45b5f5eab838df0a29d6877f2d.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/eb1555ef36364b48f52a6a73064601b3.jpg",
+      "https://static.hayapek.com.br/produtos/55392/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e8cf1734c2822998334058d2bf5d12df.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/62b92d45b5f5eab838df0a29d6877f2d.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/eb1555ef36364b48f52a6a73064601b3.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/55392/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "25f2572f-75a8-4758-9510-ef0a4e92f679",
+    "sku": "VTK025270",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2caae57ce9853f82938ded3b6531aa59.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4e34d5001b8747eb1ec3313e396bbd54.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5377c66c7ddc6b7e207a58e5ad83ea3e.jpg",
+      "https://static.hayapek.com.br/produtos/22676/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2caae57ce9853f82938ded3b6531aa59.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4e34d5001b8747eb1ec3313e396bbd54.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5377c66c7ddc6b7e207a58e5ad83ea3e.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/22676/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "cb3493f3-500f-4f0f-81b1-15ebc47df890",
+    "sku": "VTK025273",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e93180f994b45596e7a47748338e15f8.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/53bdb6c989850a779a972b588b6f9866.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c0bb45c057a18b423155d995bfddb800.jpg",
+      "https://static.hayapek.com.br/produtos/20014/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e93180f994b45596e7a47748338e15f8.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/53bdb6c989850a779a972b588b6f9866.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c0bb45c057a18b423155d995bfddb800.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/20014/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "c0e73cd4-07d3-4919-83b3-f55c4a2c2d9c",
+    "sku": "VTK025250",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/59b190b629785a0131ec07c29d93a480.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac48418be147b2271bbdc0a160b590b5.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5d98d2d50c79681509d4d167636536d8.jpg",
+      "https://static.hayapek.com.br/produtos/74136/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/59b190b629785a0131ec07c29d93a480.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac48418be147b2271bbdc0a160b590b5.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5d98d2d50c79681509d4d167636536d8.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/74136/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "660c76e3-1c3f-4ded-ac62-c6397d32f32e",
+    "sku": "VTK025253",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0779e59d40e611fc130a500392b01a10.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e84f0f4ce66eb3e1647b362adfcbb60c.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fbbc242fc2f874a0761c4dcfd528816e.jpg",
+      "https://static.hayapek.com.br/produtos/55392/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0779e59d40e611fc130a500392b01a10.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e84f0f4ce66eb3e1647b362adfcbb60c.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fbbc242fc2f874a0761c4dcfd528816e.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/55392/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "e00481fb-898b-44ca-9638-ac16147955fd",
+    "sku": "VTK025256",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/df4430c7b381b0b5abd0846d03f55fe7.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/98103ea0dd072fbeee76725238946934.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f692edc04116778ea1572623ceb1677.jpg",
+      "https://static.hayapek.com.br/produtos/22676/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/df4430c7b381b0b5abd0846d03f55fe7.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/98103ea0dd072fbeee76725238946934.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f692edc04116778ea1572623ceb1677.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/22676/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "9122a76b-fd59-41d8-b98b-9d4a30da75ed",
+    "sku": "VTK025259",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/9f3c8d68e97a45e676e78fd953457d2d.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f0bd39d9e6c6eac9fa1f9c13d93aa6fb.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/856a34bf25812cd441fe98dd9a401c01.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ade90f639681c8c84e7639ce6becfee2.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6aa9929cd49ea9f492281aa27c4b8f50.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4cd76845ff19338ffe7739c5cff649ae.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/8777484cfbb3d111733f2acbf2148564.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/9f3c8d68e97a45e676e78fd953457d2d.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f0bd39d9e6c6eac9fa1f9c13d93aa6fb.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/856a34bf25812cd441fe98dd9a401c01.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ade90f639681c8c84e7639ce6becfee2.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6aa9929cd49ea9f492281aa27c4b8f50.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4cd76845ff19338ffe7739c5cff649ae.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/8777484cfbb3d111733f2acbf2148564.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "3f941a86-44e3-45cf-ba6c-b67d365d4a6f",
+    "sku": "VTK025262",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d982c00b9b66ec2739e07a6956152b16.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d84c22b9ab53284e6f310e1b7e281dbb.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d9466f0fbc53df172b7802bf62952bd0.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7014b5684f14544ea027c0a7f3fc09ac.jpg",
+      "https://static.hayapek.com.br/produtos/20007/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d982c00b9b66ec2739e07a6956152b16.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d84c22b9ab53284e6f310e1b7e281dbb.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d9466f0fbc53df172b7802bf62952bd0.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7014b5684f14544ea027c0a7f3fc09ac.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/20007/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "0817d59b-d595-4d08-b208-2602e709d36b",
+    "sku": "VTK025265",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/662772b3534c2ef28c3aafb1ccb7d1e5.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/bfb6ffd954ed9c69a4501b6d7a6decb2.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ab08ce3649d33de1e134368bffc7261d.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e176afae71ac913cd8508c0ecd1f90ea.jpg",
+      "https://static.hayapek.com.br/produtos/74160/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/662772b3534c2ef28c3aafb1ccb7d1e5.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/bfb6ffd954ed9c69a4501b6d7a6decb2.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ab08ce3649d33de1e134368bffc7261d.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e176afae71ac913cd8508c0ecd1f90ea.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/74160/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "05bab235-81b9-4d6d-98a7-ef8cfb783045",
+    "sku": "VTK025268",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/07fc6377b4c97460dc2ad891f7bcc4ee.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/41c1a85d1c29f49ec20ed95314ac5044.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a093a947600c0589d7c4bf00f348fde8.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/17f5cc3cc16b49c66d78aebb1bfbfe1f.jpg",
+      "https://static.hayapek.com.br/produtos/74135/550/1.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/07fc6377b4c97460dc2ad891f7bcc4ee.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/41c1a85d1c29f49ec20ed95314ac5044.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a093a947600c0589d7c4bf00f348fde8.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/17f5cc3cc16b49c66d78aebb1bfbfe1f.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://static.hayapek.com.br/produtos/74135/550/1.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "cea7507b-0464-451f-aba2-d21b9433071c",
+    "sku": "VTK025274",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e6813c082848bff4924dbf6f401c0905.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/50ddef9a37e6c0580936646bad3c2e32.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e1dd3d5ed136d66a388868729c35d42c.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4b30d11bce33529f8accdf64ea4c3eaa.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6aa9929cd49ea9f492281aa27c4b8f50.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4cd76845ff19338ffe7739c5cff649ae.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/8777484cfbb3d111733f2acbf2148564.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e6813c082848bff4924dbf6f401c0905.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/50ddef9a37e6c0580936646bad3c2e32.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e1dd3d5ed136d66a388868729c35d42c.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4b30d11bce33529f8accdf64ea4c3eaa.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6aa9929cd49ea9f492281aa27c4b8f50.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4cd76845ff19338ffe7739c5cff649ae.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/8777484cfbb3d111733f2acbf2148564.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  }
+]

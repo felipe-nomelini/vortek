@@ -10,6 +10,7 @@ dotenv.config({ path: '.env.local' });
 const SOURCE_DIR = path.resolve(process.env.ML_BATCH_SOURCE_DIR || '');
 const RESULT_DIR = path.join(SOURCE_DIR, 'run-results');
 const START_SKU = String(process.env.ML_BATCH_START_SKU || '').trim();
+const KIT_MODE = process.env.ML_BATCH_KIT_MODE === '1';
 const ONLY_SKUS = new Set(
   String(process.env.ML_BATCH_ONLY_SKUS || '')
     .split(',')
@@ -43,8 +44,11 @@ function readJson(filePath) {
 }
 
 function batchFiles() {
+  const pattern = KIT_MODE
+    ? /^\d{3}-bkr1-kit-[a-z0-9-]+-\d{3}\.json$/
+    : /^\d{3}-bkr1-publish-\d{3}\.json$/;
   return fs.readdirSync(SOURCE_DIR)
-    .filter((name) => /^\d{3}-bkr1-publish-\d{3}\.json$/.test(name))
+    .filter((name) => pattern.test(name))
     .sort();
 }
 
@@ -148,19 +152,75 @@ async function preflightItem(account, item) {
     throw new Error(`${item.sku}: imagem fora do Storage Vortek`);
   }
 
-  const { data: offer, error: offerError } = await supabase
-    .from('produto_fornecedor_ofertas')
-    .select('id,dslite_fornecedor_id,ativo,estoque,custo')
-    .eq('id', product.oferta_preferencial_id)
-    .single();
-  if (
-    offerError ||
-    !offer ||
-    String(offer.dslite_fornecedor_id) !== SUPPLIER_ID ||
-    !offer.ativo ||
-    Number(offer.estoque) <= 0
-  ) {
-    throw new Error(`${item.sku}: oferta preferencial BKR1 indisponível`);
+  let offer = null;
+  if (KIT_MODE) {
+    const { data: kit, error: kitError } = await supabase
+      .from('produto_kits')
+      .select('produto_id,ativo')
+      .eq('produto_id', product.id)
+      .maybeSingle();
+    if (kitError || !kit?.ativo) {
+      throw new Error(`${item.sku}: configuração de kit BKR1 indisponível`);
+    }
+    const { data: components, error: componentsError } = await supabase
+      .from('produto_kit_componentes')
+      .select('componente_produto_id,quantidade')
+      .eq('kit_produto_id', product.id);
+    const component = Array.isArray(components) ? components[0] : null;
+    const expectedQuantity = Number(item.preflight?.componentQuantity || 0);
+    if (
+      componentsError ||
+      components?.length !== 1 ||
+      !component ||
+      Number(component.quantidade) !== expectedQuantity
+    ) {
+      throw new Error(`${item.sku}: vínculo unitário do kit divergente`);
+    }
+    const [{ data: source, error: sourceError }, { data: offers, error: offersError }] =
+      await Promise.all([
+        supabase
+          .from('produtos')
+          .select('id,sku,ativo,estoque')
+          .eq('id', component.componente_produto_id)
+          .single(),
+        supabase
+          .from('produto_fornecedor_ofertas')
+          .select('id,dslite_fornecedor_id,ativo,estoque,custo')
+          .eq('produto_id', component.componente_produto_id)
+          .eq('dslite_fornecedor_id', SUPPLIER_ID)
+          .eq('ativo', true),
+      ]);
+    offer = (offers || []).find(
+      (candidate) =>
+        Number(candidate.estoque) >= expectedQuantity &&
+        Number(candidate.custo) > 0,
+    );
+    if (
+      sourceError ||
+      offersError ||
+      !source?.ativo ||
+      String(source?.sku || '') !== String(item.preflight?.componentSku || '') ||
+      Number(source?.estoque) < expectedQuantity ||
+      !offer
+    ) {
+      throw new Error(`${item.sku}: componente ou oferta BKR1 indisponível`);
+    }
+  } else {
+    const { data: preferredOffer, error: offerError } = await supabase
+      .from('produto_fornecedor_ofertas')
+      .select('id,dslite_fornecedor_id,ativo,estoque,custo')
+      .eq('id', product.oferta_preferencial_id)
+      .single();
+    offer = preferredOffer;
+    if (
+      offerError ||
+      !offer ||
+      String(offer.dslite_fornecedor_id) !== SUPPLIER_ID ||
+      !offer.ativo ||
+      Number(offer.estoque) <= 0
+    ) {
+      throw new Error(`${item.sku}: oferta preferencial BKR1 indisponível`);
+    }
   }
 
   const { data: localListings, error: listingError } = await supabase
@@ -217,6 +277,9 @@ async function verifyCreated(account, created, expectedItem) {
     ]);
     const subStatuses = Array.isArray(item?.sub_status) ? item.sub_status : [];
     const attributes = Array.isArray(item?.attributes) ? item.attributes : [];
+    const attributesById = new Map(
+      attributes.map((attribute) => [String(attribute?.id || ''), attribute]),
+    );
     const hasGtin = attributes.some(
       (attribute) =>
         String(attribute?.id) === 'GTIN' &&
@@ -249,14 +312,27 @@ async function verifyCreated(account, created, expectedItem) {
         /CARACTERÍSTICAS CONFIRMADAS/.test(plainText) &&
         /IDENTIFICAÇÃO DO PRODUTO/.test(plainText),
       identifierOk: hasGtin || hasEmptyGtinReason,
+      kitAttributesOk:
+        !KIT_MODE ||
+        (String(attributesById.get('SALE_FORMAT')?.value_name || '') === 'Kit' &&
+          String(attributesById.get('UNITS_PER_PACK')?.value_name || '') ===
+            String(expectedItem.preflight?.componentQuantity || '') &&
+          hasText(attributesById.get('MODEL')?.value_name) &&
+          hasText(attributesById.get('RECOMMENDED_INSTRUMENT')?.value_name)),
       quantity: Number(item?.available_quantity),
+      quantityOk:
+        Number(item?.available_quantity) === Number(expectedItem.estoque),
       price: Number(item?.price),
+      priceAboveCost: Number(item?.price) > Number(expectedItem.custo),
     };
 
     const fatal =
       !last.categoryOk ||
       !last.richDescription ||
       !last.identifierOk ||
+      !last.kitAttributesOk ||
+      !last.quantityOk ||
+      !last.priceAboveCost ||
       !Number.isFinite(last.price) ||
       last.price <= 0 ||
       last.status === 'closed' ||

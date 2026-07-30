@@ -1,0 +1,71 @@
+{
+  "batchNumber": 43,
+  "batchId": "bkr1-live-043-VTK025334",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "0f246374-3f03-4a6b-8edc-007a579daf64",
+      "sku": "VTK025334",
+      "nome": "9 Jogos de Cordas Guitarra 010 1ª Mi Extra + Palheta N64 Nig",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 243.45,
+      "estoque": 11,
+      "suggestedPricePreview": 345.64,
+      "description": "9 Jogos de Cordas Guitarra 010 1ª Mi Extra + Palheta N64 Nig\n\nKit com 9 unidades originais NIG.\n\nConteúdo da embalagem:\n- 9x Encordoamento Para Guitarra .010 N64 NIG\n\nInformações principais:\n- Marca: NIG\n- Quantidade: 9 unidades\n- Embalagem: Pacote / Caixa\n\nEncordoamento Guitarra 0.010 – 0.046 Nig N64 Tradicional com 1ª Mi Extra + Palheta\n\n Timbre encorpado e pegada firme para quem busca equilíbrio entre ataque e controle. O encordoamento Nig N64 oferece tensão média, ideal para bases pesadas e solos com precisão. Acompanha corda Mi extra e palheta — mais durabilidade e economia para seu set.\n\n Detalhes Técnicos\n•    Marca: Nig Strings\n•    Modelo: N64\n•    Indicação: Guitarra de 6 cordas\n•    Tipo: Tradicional (níquel)\n•    Material: Aço niquelado\n•    Revestimento: Sem revestimento\n•    Espessuras (calibres):\n•    E (1ª): 0.010\n•    B: 0.013\n•    G: 0.017\n•    D: 0.026\n•    A: 0.036\n•    E (6ª): 0.046\nExtras inclusos:\n•    1 corda extra Mi (1ª) 0.010\n•    1 palheta Nig\nTimbre: Encorpado com boa projeção\nTensão: Média\nOrigem: Nacional\nEstilos indicados: Rock, Blues, Sertanejo, Gospel, MPB, entre outros\n\n O Nig N64 é o encordoamento ideal para quem busca equilíbrio entre conforto e potência sonora. Com tensão média, garante firmeza nas bases e definição nos solos. Leve com você mais confiança e durabilidade com a corda extra e a palheta Nig. Adicione ao carrinho e turbine seu som agora mesmo!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "NIG"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "N64"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "9"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".010 - .046"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Aço niquelado"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Média"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Nig.xls",
+        "sourceSku": "1407K9",
+        "componentSku": "VTK001452",
+        "componentGtin": "7897813400645",
+        "componentQuantity": 9,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4880581535 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "009-bkr1-kit-nig-009.json"
+    }
+  ]
+}

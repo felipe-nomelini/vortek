@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elixir-kits-2026-07-30T02-47-09-624Z/run-results/014-VTK025263-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-014-VTK025263",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "bbc65f77-625a-4bf8-8735-eb065d5018bd",
+      "sku": "VTK025263",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4967164665",
+        "title": "3 Jogos De Cordas 009 Super Light Guitarra Nanoweb Elixir",
+        "price": 505.36,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4967164665-3-jogos-de-cordas-009-super-light-guitarra-nanoweb-elixir-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 479.66 → R$ 505.36."
+      ]
+    }
+  ],
+  "failed": []
+}

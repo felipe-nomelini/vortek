@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elixir-kits-2026-07-30T02-47-09-624Z/run-results/012-VTK025261-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-012-VTK025261",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "ffb26214-19cc-4987-882c-1ef6934f597d",
+      "sku": "VTK025261",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4967188037",
+        "title": "2 Jogos De Cordas 12 Phosphor Violão Aço Nanoweb Elixir",
+        "price": 584.17,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4967188037-2-jogos-de-cordas-12-phosphor-violo-aco-nanoweb-elixir-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 558.46 → R$ 584.17."
+      ]
+    }
+  ],
+  "failed": []
+}

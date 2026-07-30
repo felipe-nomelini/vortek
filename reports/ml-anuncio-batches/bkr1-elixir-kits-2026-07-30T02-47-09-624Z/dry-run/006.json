@@ -1,0 +1,103 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elixir-kits-2026-07-30T02-47-09-624Z/006-bkr1-kit-elixir-006.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "bkr1-kit-elixir-006",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "2c67ecf2-ba89-4679-96fa-f66a0133f5fb",
+      "sku": "VTK025275",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "basePrice": 761.8,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Elixir"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "16027"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "3"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "733132160273"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "",
+          "value_name": "Light"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "name": "Calibres",
+          "value_id": "",
+          "value_name": ".011 - .052"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "112648",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "name": "Tensão",
+          "value_id": "",
+          "value_name": "Custom Light"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "3 Jogos de Cordas 11 Custom Light Phosphor Violão Aço Elixir\n\nVISÃO GERAL\n3 Jogos de Cordas 11 Custom Light Phosphor Violão Aço Elixir\n\nKit com 3 unidades originais Elixir.\n\nConteúdo da embalagem:\n\n- 3x Encordoamento Para Violão .011 Custom Light Phosphor Nanoweb Elixir\n\nInformações principais:\n\n- Marca: Elixir\n\n- Quantidade: 3 unidades\n\n- Embalagem: Pacote / Caixa\n\n3 Jogos de Cordas 011 Custom Light Phosphor Violão Aço Elixir\n\n A corda Elixir .011 Custom Light Phosphor Bronze é a escolha ideal para violonistas que procuram equilíbrio entre leveza no toque e sonoridade encorpada. Produzida com liga de fósforo bronze e revestimento Nanoweb, oferece timbre quente, detalhado e com excelente durabilidade.\n\n Seu calibre (.011 - .052) proporciona resposta dinâmica, com agudos suaves e graves presentes, sendo perfeita para diferentes estilos musicais e técnicas de execução.\n\n Principais características:\n\n•    Calibre: Custom Light (.011 - .052)\n\n•    Material: Phosphor Bronze (bronze com fósforo)\n\n•    Revestimento: Nanoweb (proteção contra oxidação sem perder a sensação natural)\n\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n\n•    Timbre: Quente, equilibrado e com ótimo sustain\n\n•    Toque: Leve nos agudos e firme nos graves\n\n•    Durabilidade: Até 3 vezes maior que cordas tradicionais\n\n As cordas Elixir são reconhecidas por manterem o som novo por muito mais tempo, garantindo confiabilidade e desempenho consistente em qualquer situação.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elixir\n• Modelo: 16027\n• Instrumento recomendado: Violão acústico\n• Unidades por kit: 3\n• Linha: Light\n• Formato de venda: Kit\n• Quantidade de cordas: 6\n• Calibres: .011 - .052\n• Materiais: Metal\n• Tensão: Custom Light\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elixir\n• NCM: 9209.30.00\n• SKU: VTK025275\n\nEMBALAGEM\n• Dimensões informadas: 2 × 11 × 16 cm\n• Peso bruto informado: 0,05 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

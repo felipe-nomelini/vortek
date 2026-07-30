@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-nig-kits-2026-07-30T04-09-45-151Z/run-results/014-VTK025295-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-014-VTK025295",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "961f85a9-28b1-4b94-8cf6-8e41ea5ba835",
+      "sku": "VTK025295",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4967485725",
+        "title": "3 Jogos De Cordas Violão Aço Fósforo Bronze 011 Npb520 Nig",
+        "price": 171.21,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4967485725-3-jogos-de-cordas-violo-aco-fosforo-bronze-011-npb520-nig-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 150.55 → R$ 171.21."
+      ]
+    }
+  ],
+  "failed": []
+}

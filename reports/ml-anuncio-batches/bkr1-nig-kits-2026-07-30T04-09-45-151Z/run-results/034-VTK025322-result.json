@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-nig-kits-2026-07-30T04-09-45-151Z/run-results/034-VTK025322-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-034-VTK025322",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "94ebee34-5d9f-4083-b0d4-38cf3b4c55a3",
+      "sku": "VTK025322",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4967557183",
+        "title": "7 Jogos De Cordas Violão Aço Fósforo Bronze 010 Npb560 Nig",
+        "price": 343.94,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4967557183-7-jogos-de-cordas-violo-aco-fosforo-bronze-010-npb560-nig-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 316.27 → R$ 343.94."
+      ]
+    }
+  ],
+  "failed": []
+}

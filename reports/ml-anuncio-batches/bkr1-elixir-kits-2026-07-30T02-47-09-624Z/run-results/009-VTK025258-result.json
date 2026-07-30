@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elixir-kits-2026-07-30T02-47-09-624Z/run-results/009-VTK025258-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-009-VTK025258",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "b8fea603-9ba4-4629-8b01-1cea5a4e300a",
+      "sku": "VTK025258",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4967186763",
+        "title": "2 Jogos De Cordas 012 Light Violão Aço Nanoweb Elixir",
+        "price": 443.15,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4967186763-2-jogos-de-cordas-012-light-violo-aco-nanoweb-elixir-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 417.44 → R$ 443.15."
+      ]
+    }
+  ],
+  "failed": []
+}

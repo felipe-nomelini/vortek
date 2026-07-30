@@ -329,13 +329,19 @@ async function main() {
       });
       continue;
     }
-    if (!/^HYX/i.test(liveSku)) {
+    const expectedOldSku = String(candidate.old_seller_sku || '').trim();
+    if (
+      !/^HYX/i.test(liveSku) &&
+      (!expectedOldSku || liveSku !== expectedOldSku)
+    ) {
       results.push({
         ...candidate,
         live_sku_before: liveSku,
         status: 'blocked_live_conflict',
         http_status: 409,
-        error: `SKU ao vivo não é HYX: ${liveSku || '(vazio)'}`,
+        error: `SKU ao vivo diverge do valor anterior esperado: ${
+          liveSku || '(vazio)'
+        }`,
       });
       continue;
     }
@@ -347,7 +353,8 @@ async function main() {
           value_name: candidate.target_seller_sku,
         },
       ],
-      ...(/^HYX/i.test(liveCustomField)
+      ...((/^HYX/i.test(liveCustomField) ||
+      (expectedOldSku && liveCustomField === expectedOldSku))
         ? { seller_custom_field: candidate.target_seller_sku }
         : {}),
     };
@@ -372,7 +379,8 @@ async function main() {
       ? String(verify.data?.seller_custom_field || '').trim()
       : '';
     const customFieldOk =
-      !/^HYX/i.test(liveCustomField) ||
+      !/^HYX/i.test(liveCustomField) &&
+      (!expectedOldSku || liveCustomField !== expectedOldSku) ||
       verifiedCustomField === candidate.target_seller_sku;
     const verified =
       verify.ok &&

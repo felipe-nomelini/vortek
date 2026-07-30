@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elixir-kits-2026-07-30T02-47-09-624Z/run-results/017-VTK025266-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-017-VTK025266",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "f01bcca5-9c19-4284-9e09-be2925ab6bef",
+      "sku": "VTK025266",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4967165957",
+        "title": "3 Jogos De Cordas 010 Extra Light Phosphor Violão Aço Elixir",
+        "price": 834.15,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4967165957-3-jogos-de-cordas-010-extra-light-phosphor-violo-aco-elixir-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 803.14 → R$ 834.15."
+      ]
+    }
+  ],
+  "failed": []
+}

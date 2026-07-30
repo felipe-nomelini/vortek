@@ -1,0 +1,128 @@
+[
+  {
+    "produtoId": "3ea2dd88-0148-48f7-8484-55c4229f1a62",
+    "sku": "VTK025279",
+    "sourceSku": "1405K10",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "e4c25d45-e40e-4f69-a73b-fc1ac3c3edf1",
+    "sku": "VTK025307",
+    "sourceSku": "1405K5",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "9ccedf39-b00e-4fca-a011-4bfa51ffa767",
+    "sku": "VTK025314",
+    "sourceSku": "1405K6",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "954e8ad8-f8cb-4885-a98b-1630fbaf9dcc",
+    "sku": "VTK025337",
+    "sourceSku": "1417K9",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "843e1fcd-e181-4e58-932d-f7f81755b678",
+    "sku": "VTK025280",
+    "sourceSku": "1418K10",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "d91d07f7-32ce-4d45-a218-cbd6bbef6fdb",
+    "sku": "VTK025286",
+    "sourceSku": "1405K2",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "a7cbc69d-cfcc-412a-ab11-db3aa1ae3565",
+    "sku": "VTK025335",
+    "sourceSku": "1405K9",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "ea282d8f-50d7-4efb-b2f3-3b67b3f21edb",
+    "sku": "VTK025281",
+    "sourceSku": "1417K10",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "421959d0-d0b6-4e39-b311-63153e500c0d",
+    "sku": "VTK025309",
+    "sourceSku": "1417K5",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "743e6d0b-c818-4f64-9e6c-5bdda987d8bd",
+    "sku": "VTK025316",
+    "sourceSku": "1417K6",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "07c275ab-b202-44d9-a372-380761b41483",
+    "sku": "VTK025329",
+    "sourceSku": "1405K8",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "7af488cf-22e8-4969-95e8-f62f2a97ad54",
+    "sku": "VTK025336",
+    "sourceSku": "1418K9",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "f08f8cde-9d5a-4688-9994-0b00dcd2c5c5",
+    "sku": "VTK025330",
+    "sourceSku": "1417K8",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "a11ef363-d47c-4146-bce7-3bc05099f6e2",
+    "sku": "VTK025321",
+    "sourceSku": "1405K7",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "99bb0161-c0c0-4b9b-b948-c09902a90231",
+    "sku": "VTK025293",
+    "sourceSku": "1405K3",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "b252c704-3caa-44cf-800e-0277d94d48b2",
+    "sku": "VTK025302",
+    "sourceSku": "1417K4",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "60146bf4-6eb8-471d-b729-b87103917959",
+    "sku": "VTK025300",
+    "sourceSku": "1405K4",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "3e5d80f3-f9c3-4624-a97b-7619990f8d83",
+    "sku": "VTK025323",
+    "sourceSku": "1417K7",
+    "reason": "out_of_stock",
+    "details": null
+  }
+]

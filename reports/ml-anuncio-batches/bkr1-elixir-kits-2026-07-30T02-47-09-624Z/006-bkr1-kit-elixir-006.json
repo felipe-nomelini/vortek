@@ -1,0 +1,66 @@
+{
+  "batchNumber": 6,
+  "batchId": "bkr1-kit-elixir-006",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "2c67ecf2-ba89-4679-96fa-f66a0133f5fb",
+      "sku": "VTK025275",
+      "nome": "3 Jogos de Cordas 11 Custom Light Phosphor Violão Aço Elixir",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 504.69,
+      "estoque": 5,
+      "suggestedPricePreview": 747.69,
+      "description": "3 Jogos de Cordas 11 Custom Light Phosphor Violão Aço Elixir\n\nKit com 3 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 3x Encordoamento Para Violão .011 Custom Light Phosphor Nanoweb Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 3 unidades\n- Embalagem: Pacote / Caixa\n\n3 Jogos de Cordas 011 Custom Light Phosphor Violão Aço Elixir\n\n A corda Elixir .011 Custom Light Phosphor Bronze é a escolha ideal para violonistas que procuram equilíbrio entre leveza no toque e sonoridade encorpada. Produzida com liga de fósforo bronze e revestimento Nanoweb, oferece timbre quente, detalhado e com excelente durabilidade.\n\n Seu calibre (.011 - .052) proporciona resposta dinâmica, com agudos suaves e graves presentes, sendo perfeita para diferentes estilos musicais e técnicas de execução.\n\n Principais características:\n•    Calibre: Custom Light (.011 - .052)\n•    Material: Phosphor Bronze (bronze com fósforo)\n•    Revestimento: Nanoweb (proteção contra oxidação sem perder a sensação natural)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Quente, equilibrado e com ótimo sustain\n•    Toque: Leve nos agudos e firme nos graves\n•    Durabilidade: Até 3 vezes maior que cordas tradicionais\n\n As cordas Elixir são reconhecidas por manterem o som novo por muito mais tempo, garantindo confiabilidade e desempenho consistente em qualquer situação.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Elixir"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "16027"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "3"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".011 - .052"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Custom Light"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elixir.xls",
+        "sourceSku": "1429K3",
+        "componentSku": "VTK000169",
+        "componentGtin": "733132160273",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4841871323 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

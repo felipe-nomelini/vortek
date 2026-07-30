@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elixir-kits-2026-07-30T02-47-09-624Z/run-results/005-VTK025253-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-005-VTK025253",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "660c76e3-1c3f-4ded-ac62-c6397d32f32e",
+      "sku": "VTK025253",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4967160835",
+        "title": "2 Jogos De Cordas 010 Light Guitarra Nanoweb Elixir",
+        "price": 304.76,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4967160835-2-jogos-de-cordas-010-light-guitarra-nanoweb-elixir-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"error\":\"Conflict\",\"code\":\"conflict.error\",\"status\":409}"
+      ]
+    }
+  ],
+  "failed": []
+}

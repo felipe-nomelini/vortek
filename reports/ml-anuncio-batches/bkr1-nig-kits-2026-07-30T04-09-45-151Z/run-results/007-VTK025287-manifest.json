@@ -1,0 +1,67 @@
+{
+  "batchNumber": 7,
+  "batchId": "bkr1-live-007-VTK025287",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "cc496b26-0ed6-43e8-8301-92445203793b",
+      "sku": "VTK025287",
+      "nome": "2 Jogos de Corda Violão Aço Fósforo Bronze 010 NPB560 Nig",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 64.04,
+      "estoque": 4,
+      "suggestedPricePreview": 103.75,
+      "description": "2 Jogos de Corda Violão Aço Fósforo Bronze 010 NPB560 Nig\n\nKit com 2 unidades originais NIG.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Violão Aço .010 NPB560 NIG\n\nInformações principais:\n- Marca: NIG\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\nEncordoamento Violão Aço Fósforo Bronze 0.010\" – 0.047\" Nig NPB560\n\n Sonoridade brilhante e equilíbrio perfeito! O encordoamento Nig NPB560 para violão é produzido com aço e fósforo bronze, proporcionando timbre claro, com ótimos médios e agudos, ideal para músicos que buscam qualidade e resistência.\n\n Detalhes Técnicos\n•    Marca: Nig Strings\n•    Modelo: NPB560\n•    Indicação: Violão acústico\n•    Material: Aço com revestimento em fósforo bronze\nEspessuras (calibres):\n•    E (1ª): 0.010\"\n•    B: 0.014\"\n•    G: 0.023\"\n•    D: 0.030\"\n•    A: 0.039\"\n•    E (6ª): 0.047\"\nTimbre: Brilhante, com sustain equilibrado\nResistência: Alta durabilidade contra corrosão\nOrigem: Nacional\nEstilos indicados: MPB, Folk, Pop, Country, Rock acústico\n\n O Encordoamento Nig NPB560 é perfeito para violonistas que buscam clareza sonora e longa vida útil nas cordas. Produzido com materiais de qualidade, oferece conforto e definição para seus acordes e dedilhados. Garanta já o seu e leve seu som para o próximo nível!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "NIG"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "NPB560"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".010 - .047"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Aço com fósforo bronze"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Nig.xls",
+        "sourceSku": "1418K2",
+        "componentSku": "VTK000126",
+        "componentGtin": "7897813405602",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4882855383 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "002-bkr1-kit-nig-002.json"
+    }
+  ]
+}

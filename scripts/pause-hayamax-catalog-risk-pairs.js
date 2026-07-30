@@ -181,15 +181,34 @@ async function main() {
   }
 
   async function mlRequest(pathname, options = {}, attempt = 1) {
-    const response = await fetch(`https://api.mercadolibre.com${pathname}`, {
-      method: options.method || 'GET',
-      headers: {
-        Authorization: `Bearer ${await token(attempt > 1)}`,
-        ...(options.body ? { 'Content-Type': 'application/json' } : {}),
-      },
-      body: options.body ? JSON.stringify(options.body) : undefined,
-      signal: AbortSignal.timeout(20000),
-    });
+    let response;
+    try {
+      response = await fetch(`https://api.mercadolibre.com${pathname}`, {
+        method: options.method || 'GET',
+        headers: {
+          Authorization: `Bearer ${await token(attempt > 1)}`,
+          ...(options.body ? { 'Content-Type': 'application/json' } : {}),
+        },
+        body: options.body ? JSON.stringify(options.body) : undefined,
+        signal: AbortSignal.timeout(20000),
+      });
+    } catch (error) {
+      if (
+        ['AbortError', 'TimeoutError', 'TypeError'].includes(
+          String(error?.name || ''),
+        ) &&
+        attempt < 3
+      ) {
+        await new Promise((resolve) => setTimeout(resolve, 750 * attempt));
+        return mlRequest(pathname, options, attempt + 1);
+      }
+      return {
+        ok: false,
+        status: 0,
+        data: null,
+        text: error?.message || 'Falha de rede ao acessar Mercado Livre',
+      };
+    }
     const text = await response.text();
     let data = null;
     try {

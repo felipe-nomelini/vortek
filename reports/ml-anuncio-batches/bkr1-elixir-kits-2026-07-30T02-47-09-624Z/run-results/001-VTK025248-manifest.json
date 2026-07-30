@@ -1,0 +1,67 @@
+{
+  "batchNumber": 1,
+  "batchId": "bkr1-live-001-VTK025248",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "20070eb4-bc64-45aa-8ac6-157a41ada896",
+      "sku": "VTK025248",
+      "nome": "2 Jogos de Cordas 009 Custom Light Guitarra Nanoweb Elixir",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 215.56,
+      "estoque": 7,
+      "suggestedPricePreview": 306.04,
+      "description": "2 Jogos de Cordas 009 Custom Light Guitarra Nanoweb Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Guitarra .009 Nanoweb 12027 Custom Light Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 009 Custom Light Guitarra Nanoweb Elixir\n\n A corda Elixir .009 Custom Light combina leveza nos agudos com firmeza nos graves, oferecendo equilíbrio perfeito entre conforto e pegada. Ideal para guitarristas que desejam versatilidade, tocabilidade suave e timbre brilhante com longa durabilidade.\n\n Com o revestimento Nanoweb, essa corda mantém o som novo por muito mais tempo, protegendo contra oxidação e acúmulo de sujeira sem comprometer a sensação natural ao tocar.\n\n Principais características:\n•    Calibre: Custom Light (.009 - .046)\n•    Revestimento: Nanoweb (sensação de corda tradicional com proteção avançada)\n•    Aplicação: Guitarras elétricas de qualquer marca ou estilo\n•    Timbre: Brilhante, definido e encorpado\n•    Toque: Leve nos solos e firme nas bases\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n A linha Elixir é referência mundial em qualidade e confiabilidade, sendo a escolha de músicos que exigem o melhor desempenho em estúdio, palco ou prática diária.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Elixir"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "12027"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".009 - .046"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Custom Light"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elixir.xls",
+        "sourceSku": "1425K2",
+        "componentSku": "VTK001572",
+        "componentGtin": "733132120277",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111656280 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "001-bkr1-kit-elixir-001.json"
+    }
+  ]
+}

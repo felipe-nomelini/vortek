@@ -1,0 +1,67 @@
+{
+  "batchNumber": 8,
+  "batchId": "bkr1-live-008-VTK025256",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "e00481fb-898b-44ca-9638-ac16147955fd",
+      "sku": "VTK025256",
+      "nome": "2 Jogos de Cordas 011 Medium Guitarra Nanoweb Elixir",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 216.54,
+      "estoque": 7,
+      "suggestedPricePreview": 307.43,
+      "description": "2 Jogos de Cordas 011 Medium Guitarra Nanoweb Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Guitarra .011 Medium Nanoweb 12102 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 011 Medium Guitarra Nanoweb Elixir\n\n A corda Elixir .011 Medium oferece pegada firme, som encorpado e alta durabilidade, sendo ideal para guitarristas que preferem tensão média e timbre mais robusto. Com revestimento Nanoweb, proporciona proteção contra oxidação e sujeira, mantendo o som novo por muito mais tempo.\n\n Seu calibre médio (.011 - .049) é excelente para estilos que exigem mais presença sonora, estabilidade na afinação e controle em afinações mais graves.\n\n Principais características:\n•    Calibre: Medium (.011 - .049)\n•    Revestimento: Nanoweb (toque natural com proteção prolongada)\n•    Aplicação: Guitarras elétricas em qualquer estilo musical\n•    Timbre: Encorpado, brilhante e com excelente sustain\n•    Toque: Mais firme, ideal para riffs pesados e acordes definidos\n•    Durabilidade: Até 3 vezes maior que cordas convencionais\n\n A Elixir é referência global em cordas de alto desempenho, escolhida por músicos profissionais que exigem confiabilidade em todos os momentos.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Elixir"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "12102"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".011 - .049"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Medium"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elixir.xls",
+        "sourceSku": "1427K2",
+        "componentSku": "VTK001528",
+        "componentGtin": "733132121021",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4612539573 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "002-bkr1-kit-elixir-002.json"
+    }
+  ]
+}

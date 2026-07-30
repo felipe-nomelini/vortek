@@ -1,0 +1,67 @@
+{
+  "batchNumber": 6,
+  "batchId": "bkr1-live-006-VTK025254",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "37ce954f-cd87-48ed-960f-932ddeedc952",
+      "sku": "VTK025254",
+      "nome": "2 Jogos de Cordas 010 Light Guitarra Optiweb Elixir",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 239.62,
+      "estoque": 7,
+      "suggestedPricePreview": 340.2,
+      "description": "2 Jogos de Cordas 010 Light Guitarra Optiweb Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Guitarra .010 Light Optiweb 19052 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 010 Light Guitarra Optiweb Elixir\n\n A corda Elixir .010 Light com revestimento Optiweb foi desenvolvida para guitarristas que buscam o timbre de cordas sem revestimento, com a durabilidade que só a Elixir oferece. O calibre (.010 - .046) proporciona equilíbrio perfeito entre conforto nos solos e firmeza nas bases.\n\n Com a tecnologia Optiweb, a corda preserva o brilho e a pegada natural por muito mais tempo, mantendo a tocabilidade tradicional e protegendo contra oxidação e desgaste.\n\n Principais características:\n•    Calibre: Light (.010 - .046)\n•    Revestimento: Optiweb (sensação de corda não revestida com proteção avançada)\n•    Aplicação: Guitarras elétricas de qualquer marca ou estilo\n•    Timbre: Brilhante, limpo e com resposta precisa\n•    Toque: Natural e responsivo, ideal para técnicas variadas\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n Perfeita para quem exige som consistente, pegada confortável e menos trocas de cordas. Elixir é a marca preferida de músicos em todo o mundo.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Elixir"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "19052"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".010 - .046"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Light"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elixir.xls",
+        "sourceSku": "1430K2",
+        "componentSku": "VTK001171",
+        "componentGtin": "733132190522",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7095339842 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "002-bkr1-kit-elixir-002.json"
+    }
+  ]
+}

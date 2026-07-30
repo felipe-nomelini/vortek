@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-nig-kits-2026-07-30T04-09-45-151Z/run-results/016-VTK025297-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-016-VTK025297",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "92a3c864-d9de-4e95-8716-13163da0a17f",
+      "sku": "VTK025297",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4967549805",
+        "title": "4 Jogos De Cordas Guitarra 010 1ª Mi Extra + Palheta N64 Nig",
+        "price": 157.3,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4967549805-4-jogos-de-cordas-guitarra-010-1-mi-extra-palheta-n64-nig-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB4967549805: NSOPublicAPI error",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    }
+  ],
+  "failed": []
+}

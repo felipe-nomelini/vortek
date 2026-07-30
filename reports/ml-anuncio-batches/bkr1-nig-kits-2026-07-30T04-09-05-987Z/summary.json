@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-07-30T04:09:31.343Z",
+  "sourceFile": "/tmp/vortek-kits-analysis/Nig.xls",
+  "account": {
+    "userId": "3294514937",
+    "nickname": "VORTEKTECNOLOGIA"
+  },
+  "mode": "audit_only",
+  "sheetCount": 63,
+  "readyCount": 0,
+  "blockedCount": 63,
+  "batchCount": 0,
+  "reportDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-nig-kits-2026-07-30T04-09-05-987Z"
+}

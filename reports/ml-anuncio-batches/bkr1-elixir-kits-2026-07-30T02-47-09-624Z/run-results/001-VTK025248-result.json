@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elixir-kits-2026-07-30T02-47-09-624Z/run-results/001-VTK025248-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-001-VTK025248",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "20070eb4-bc64-45aa-8ac6-157a41ada896",
+      "sku": "VTK025248",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7287239546",
+        "title": "2 Jogos De Cordas 009 Custom Light Guitarra Nanoweb Elixir",
+        "price": 329.87,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7287239546-2-jogos-de-cordas-009-custom-light-guitarra-nanoweb-elixir-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 304.16 → R$ 329.87."
+      ]
+    }
+  ],
+  "failed": []
+}

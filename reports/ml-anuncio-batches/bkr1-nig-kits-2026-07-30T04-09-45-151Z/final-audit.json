@@ -1,0 +1,419 @@
+{
+  "generatedAt": "2026-07-30T06:23:45.066Z",
+  "checked": 45,
+  "ok": 45,
+  "failed": 0,
+  "rows": [
+    {
+      "sku": "VTK025276",
+      "itemId": "MLB7287858486",
+      "status": "active",
+      "stock": 6,
+      "price": 352.64,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025277",
+      "itemId": "MLB7287821724",
+      "status": "active",
+      "stock": 4,
+      "price": 391.29,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025278",
+      "itemId": "MLB7287796908",
+      "status": "active",
+      "stock": 10,
+      "price": 409.36,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025282",
+      "itemId": "MLB7287860626",
+      "status": "active",
+      "stock": 8,
+      "price": 404.56,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025283",
+      "itemId": "MLB7287861368",
+      "status": "active",
+      "stock": 23,
+      "price": 105.52,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025284",
+      "itemId": "MLB7287798908",
+      "status": "active",
+      "stock": 50,
+      "price": 108.74,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025285",
+      "itemId": "MLB7287799488",
+      "status": "active",
+      "stock": 32,
+      "price": 98.98,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025287",
+      "itemId": "MLB7287799962",
+      "status": "active",
+      "stock": 4,
+      "price": 125.14,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025288",
+      "itemId": "MLB7287863776",
+      "status": "active",
+      "stock": 1,
+      "price": 129.45,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025289",
+      "itemId": "MLB7287826656",
+      "status": "active",
+      "stock": 42,
+      "price": 109.02,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025290",
+      "itemId": "MLB7287801574",
+      "status": "active",
+      "stock": 15,
+      "price": 143.09,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025291",
+      "itemId": "MLB7287865406",
+      "status": "active",
+      "stock": 33,
+      "price": 149.43,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025292",
+      "itemId": "MLB7287865850",
+      "status": "active",
+      "stock": 21,
+      "price": 130.64,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025294",
+      "itemId": "MLB7287866394",
+      "status": "active",
+      "stock": 2,
+      "price": 168.19,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025295",
+      "itemId": "MLB4967485725",
+      "status": "active",
+      "stock": 1,
+      "price": 171.21,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025296",
+      "itemId": "MLB7287867298",
+      "status": "active",
+      "stock": 28,
+      "price": 148.15,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025297",
+      "itemId": "MLB4967549805",
+      "status": "active",
+      "stock": 25,
+      "price": 157.3,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025298",
+      "itemId": "MLB4967487089",
+      "status": "active",
+      "stock": 16,
+      "price": 163.94,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025299",
+      "itemId": "MLB4967550511",
+      "status": "active",
+      "stock": 11,
+      "price": 175.37,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025301",
+      "itemId": "MLB4967487745",
+      "status": "active",
+      "stock": 2,
+      "price": 207.64,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025303",
+      "itemId": "MLB4967488273",
+      "status": "active",
+      "stock": 21,
+      "price": 179.99,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025304",
+      "itemId": "MLB4967488551",
+      "status": "active",
+      "stock": 20,
+      "price": 215.2,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025305",
+      "itemId": "MLB4967488809",
+      "status": "active",
+      "stock": 12,
+      "price": 191.04,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025306",
+      "itemId": "MLB4967489147",
+      "status": "active",
+      "stock": 9,
+      "price": 205.28,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025308",
+      "itemId": "MLB4967552445",
+      "status": "active",
+      "stock": 1,
+      "price": 253.58,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025310",
+      "itemId": "MLB4967489729",
+      "status": "active",
+      "stock": 16,
+      "price": 211.08,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025311",
+      "itemId": "MLB4967553101",
+      "status": "active",
+      "stock": 16,
+      "price": 254.72,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025312",
+      "itemId": "MLB4967502955",
+      "status": "active",
+      "stock": 10,
+      "price": 218.8,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025313",
+      "itemId": "MLB4967490873",
+      "status": "active",
+      "stock": 7,
+      "price": 243.88,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025315",
+      "itemId": "MLB4967503971",
+      "status": "active",
+      "stock": 1,
+      "price": 301.33,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025317",
+      "itemId": "MLB4967504623",
+      "status": "active",
+      "stock": 14,
+      "price": 251.84,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025318",
+      "itemId": "MLB4967505465",
+      "status": "active",
+      "stock": 9,
+      "price": 254.56,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025319",
+      "itemId": "MLB4967556439",
+      "status": "active",
+      "stock": 6,
+      "price": 282.21,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025320",
+      "itemId": "MLB4967556843",
+      "status": "active",
+      "stock": 14,
+      "price": 294.85,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025322",
+      "itemId": "MLB4967557183",
+      "status": "active",
+      "stock": 1,
+      "price": 343.94,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025324",
+      "itemId": "MLB4967507709",
+      "status": "active",
+      "stock": 12,
+      "price": 291.49,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025325",
+      "itemId": "MLB4967495817",
+      "status": "active",
+      "stock": 8,
+      "price": 287.26,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025326",
+      "itemId": "MLB4967496375",
+      "status": "active",
+      "stock": 1,
+      "price": 391.7,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025327",
+      "itemId": "MLB4967559427",
+      "status": "active",
+      "stock": 5,
+      "price": 318.57,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025328",
+      "itemId": "MLB4967509591",
+      "status": "active",
+      "stock": 12,
+      "price": 331.06,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025331",
+      "itemId": "MLB4967509981",
+      "status": "active",
+      "stock": 10,
+      "price": 333.72,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025332",
+      "itemId": "MLB4967510399",
+      "status": "active",
+      "stock": 7,
+      "price": 319.95,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025333",
+      "itemId": "MLB7288803756",
+      "status": "active",
+      "stock": 5,
+      "price": 352.97,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025334",
+      "itemId": "MLB7288765746",
+      "status": "active",
+      "stock": 11,
+      "price": 371.19,
+      "pictures": 5,
+      "problems": []
+    },
+    {
+      "sku": "VTK025338",
+      "itemId": "MLB4967561865",
+      "status": "active",
+      "stock": 9,
+      "price": 364.91,
+      "pictures": 5,
+      "problems": []
+    }
+  ],
+  "blockedOutOfStock": {
+    "expected": 18,
+    "checked": 18,
+    "stillUnlisted": 18,
+    "violations": []
+  }
+}

@@ -69,6 +69,7 @@ import {
   loadDslitePlaceholderLabel,
 } from "@/lib/dslite/placeholder-label";
 import { isDsliteCarrierAlreadyConfigured } from "@/lib/dslite/api-contract";
+import { canFallbackToSupplierlessCreate } from "@/lib/dslite/create-order-verification";
 import { storeShippingLabelForPedido } from "@/lib/shipping-label-storage";
 import { resolveSimpleKitOrderPlan } from "@/lib/produto-kits";
 import { parseMlOrderShippingMode } from "@/lib/ml/order-shipping-mode";
@@ -326,6 +327,10 @@ function buildDsliteCreateOrderErrorMessage(input: {
 
   if (input.failureType === "invalid_response") {
     return `DSLite retornou resposta inválida ao criar o pedido${excerpt ? ` - ${excerpt}` : ""}`;
+  }
+
+  if (input.failureType === "verification_failed") {
+    return input.message;
   }
 
   return `DSLite falhou ao criar o pedido: ${input.message}`;
@@ -4095,7 +4100,7 @@ async function runDsliteCreateJob(
           release_at: releaseAt.toISOString(),
           fornecedor_id: fornecedorId || null,
           fornecedor_nome: fornecedorNomeResolved || null,
-          allowed_fornecedores: ['2', '108', '133'],
+          allowed_fornecedores: ['2', '97', '108', '133'],
           label_source: DSLITE_PLACEHOLDER_LABEL_SOURCE,
         },
         statusResultante: "blocked",
@@ -4134,11 +4139,18 @@ async function runDsliteCreateJob(
         response_excerpt: createWithSupplierResult.success
           ? null
           : summarizeDsliteResponseText(createWithSupplierResult.responseText),
+        unverified_dsid: createWithSupplierResult.success
+          ? null
+          : createWithSupplierResult.unverifiedDsid || null,
       });
     }
 
     let pedidoResult = createWithSupplierResult as any;
-    if (pedidoResult && !pedidoResult.success) {
+    if (
+      pedidoResult
+      && !pedidoResult.success
+      && canFallbackToSupplierlessCreate(pedidoResult)
+    ) {
       const produtoInfo = produtoContext();
       await registrarEventoNfAuditoria({
         pedidoId,
@@ -4176,6 +4188,9 @@ async function runDsliteCreateJob(
         response_excerpt: fallbackResult.success
           ? null
           : summarizeDsliteResponseText(fallbackResult.responseText),
+        unverified_dsid: fallbackResult.success
+          ? null
+          : fallbackResult.unverifiedDsid || null,
       });
       pedidoResult = fallbackResult;
 
@@ -4274,6 +4289,7 @@ async function runDsliteCreateJob(
           ),
           dslite_response_body: pedidoResult.parsedBody ?? null,
           dslite_error_message: pedidoResult.message,
+          dslite_unverified_dsid: pedidoResult.unverifiedDsid || null,
           create_attempts: createAttempts,
           endpoint_path: pedidoResult.endpointPath,
         },
@@ -4299,6 +4315,7 @@ async function runDsliteCreateJob(
           pedidoResult.responseText,
         ),
         dslite_response_body: pedidoResult.parsedBody ?? null,
+        dslite_unverified_dsid: pedidoResult.unverifiedDsid || null,
         create_attempts: createAttempts,
         endpoint_path: pedidoResult.endpointPath,
       };

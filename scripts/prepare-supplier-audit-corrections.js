@@ -37,6 +37,17 @@ function cleanText(value) {
     .replace(/&trade;/gi, '™')
     .replace(/≤/g, '<=')
     .replace(/≥/g, '>=')
+    .replace(/[→↔]/g, ' para ')
+    .replace(/×/g, 'x')
+    .replace(/[₀₁₂₃₄₅₆₇₈₉]/g, (digit) =>
+      String('₀₁₂₃₄₅₆₇₈₉'.indexOf(digit)),
+    )
+    .replace(/½/g, '1/2')
+    .replace(/⅓/g, '1/3')
+    .replace(/⅔/g, '2/3')
+    .replace(/¼/g, '1/4')
+    .replace(/¾/g, '3/4')
+    .replace(/⅛/g, '1/8')
     .replace(/&ndash;|&#8211;/gi, '-')
     .replace(/&mdash;|&#8212;/gi, '-')
     .replace(/&nbsp;|&#160;/gi, ' ')
@@ -46,9 +57,76 @@ function cleanText(value) {
     .replace(/&[a-z][a-z0-9]+;/gi, ' ')
     .replace(/<[^>]+>/g, ' ')
     .replace(/\*+\s*imagens?\s+meramente\s+ilustrativas?\.?/gi, '')
+    .replace(/\bPesquisa\s*:[^\n]*/gi, '')
     .replace(/[ \t]+/g, ' ')
     .replace(/\s+\n/g, '\n')
     .trim();
+}
+
+function sourceSections(value) {
+  const text = cleanText(value)
+    .replace(
+      /\s*\b(Especificações Técnicas|Características(?: do Produto)?|Conteúdo da Embalagem|Aplicação e Uso|Identificação do Produto)\s*:\s*/gi,
+      '\n$1:\n',
+    )
+    .replace(
+      /\s+(?=(?:Marca|Modelo|Código|Referência|Aplicação|Instrumento|Tensão|Voltagem|Material|Revestimento|Acabamento|Cor|Tipo|Diâmetro|Potência|Capacidade|Comprimento|Quantidade|Hélice|Velocidades?|Oscilação)\s*:)/gi,
+      '\n',
+    );
+  const lines = text
+    .split(/\r?\n/)
+    .map((line) => cleanText(line))
+    .filter(Boolean);
+  const intro = [];
+  const facts = [];
+  const packageItems = [];
+  let section = 'intro';
+
+  for (const line of lines) {
+    if (/^(?:Especificações Técnicas|Características(?: do Produto)?):?$/i.test(line)) {
+      section = 'facts';
+      continue;
+    }
+    if (/^Conteúdo da Embalagem:?$/i.test(line)) {
+      section = 'package';
+      continue;
+    }
+    if (/^(?:Aplicação e Uso|Identificação do Produto):?$/i.test(line)) {
+      section = 'facts';
+      continue;
+    }
+    const parts = line
+      .split(/\s*[•]\s*|\s+-\s+(?=[A-ZÁÉÍÓÚÀÂÊÔÃÕÇ0-9])/)
+      .map(cleanText)
+      .filter(Boolean);
+    for (const part of parts) {
+      if (section === 'package') {
+        packageItems.push(part);
+      } else if (
+        section === 'facts' ||
+        /^[A-ZÁÉÍÓÚÀÂÊÔÃÕÇ][^:]{1,45}:\s*\S/i.test(part)
+      ) {
+        facts.push(part);
+      } else {
+        intro.push(part);
+      }
+    }
+  }
+
+  return {
+    intro: intro.join(' ').replace(/\s+/g, ' ').trim(),
+    facts,
+    packageItems,
+  };
+}
+
+function packageQuantity(productName) {
+  const name = String(productName || '');
+  const match =
+    name.match(/\(\s*c\/\s*(\d+)\s*(?:pilhas?|unidades?)?\s*\)/i) ||
+    name.match(/\b(?:car|pct|dez|tub|bli)\s*\/\s*(\d+)\b/i) ||
+    name.match(/\b(\d+)\s*(?:un|unid|unidades)\b/i);
+  return match ? Number(match[1]) : 1;
 }
 
 function normalizeExistingDescription(description) {
@@ -93,15 +171,21 @@ function buildDescription(row) {
 
   const product = row.product || {};
   const offer = row.preferred_offer || {};
-  const source = cleanText(product.descricao || offer.descricao || '');
-  const bulletParts = source
-    .split(/\s*[•]\s*|\s+-\s+(?=[A-ZÁÉÍÓÚÀÂÊÔÃÕÇ0-9])/)
-    .map(cleanText)
-    .filter((part) => part.length >= 3);
-  const intro = (bulletParts.shift() || source || product.nome || offer.nome)
+  const productSource = cleanText(product.descricao || '');
+  const offerSource = cleanText(offer.descricao || '');
+  const source = productSource || offerSource;
+  const sections = sourceSections(source);
+  const fallbackIntro = `Produto ${cleanText(
+    product.nome || offer.nome,
+  )}, com informações técnicas confirmadas abaixo para facilitar a conferência antes da compra.`;
+  const intro = (
+    sections.intro.length >= 80
+      ? sections.intro
+      : fallbackIntro
+  )
     .slice(0, 1800)
     .trim();
-  const extracted = bulletParts
+  const extracted = sections.facts
     .map((part) => part.replace(/\s+/g, ' ').slice(0, 260).trim())
     .filter(Boolean)
     .slice(0, 10);
@@ -122,18 +206,35 @@ function buildDescription(row) {
   while (facts.length < 3) {
     facts.push(`Identificação do produto: ${cleanText(product.sku)}`);
   }
+  const quantity = packageQuantity(product.nome || offer.nome);
+  const packageItems = sections.packageItems.length
+    ? sections.packageItems
+        .flatMap((item) =>
+          item
+            .split(/\s+(?=0?1\s+[A-ZÁÉÍÓÚÀÂÊÔÃÕÇ])/)
+            .map((part) => part.replace(/^0?1\s*/i, '').trim()),
+        )
+        .filter(Boolean)
+        .slice(0, 8)
+    : [
+        `${quantity} ${
+          quantity === 1 ? 'unidade' : 'unidades'
+        } do produto descrito no título`,
+      ];
 
   return [
     cleanText(product.nome || offer.nome).toUpperCase(),
     '',
+    'VISÃO GERAL',
     intro,
     '',
-    'INFORMAÇÕES CONFIRMADAS',
+    'CARACTERÍSTICAS CONFIRMADAS',
     ...facts.map((fact) => `- ${fact}`),
     '',
     'CONTEÚDO DA EMBALAGEM',
-    '- Produto correspondente ao título e à quantidade anunciada',
+    ...packageItems.map((item) => `- ${item}`),
     '',
+    'IDENTIFICAÇÃO DO PRODUTO',
     `SKU: ${cleanText(product.sku)}`,
   ]
     .join('\n')

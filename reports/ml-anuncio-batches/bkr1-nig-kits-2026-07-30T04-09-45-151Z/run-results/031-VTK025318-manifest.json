@@ -1,0 +1,67 @@
+{
+  "batchNumber": 31,
+  "batchId": "bkr1-live-031-VTK025318",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "029f5656-aa96-412a-b453-f26928a8a4ef",
+      "sku": "VTK025318",
+      "nome": "7  Jogos de Cordas Violão Aço 010 1ª Corda Mí Extra N500 Nig",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 162.19,
+      "estoque": 9,
+      "suggestedPricePreview": 230.27,
+      "description": "7  Jogos de Cordas Violão Aço 010 1ª Corda Mí Extra N500 Nig\n\nKit com 7 unidades originais NIG.\n\nConteúdo da embalagem:\n- 7x Encordoamento Para Violão Aço .010 N500 Bronze NIG\n\nInformações principais:\n- Marca: NIG\n- Quantidade: 7 unidades\n- Embalagem: Pacote / Caixa\n\nEncordoamento Violão Aço-Bronze 85/15 0.010\" – 0.050\" Nig N500 com 1ª Corda Mi Extra\n\n Timbre cristalino, ótima projeção e mais durabilidade! O encordoamento Nig N500 é fabricado com liga 85/15 (aço-bonze), oferecendo um som brilhante e definido para violões de aço. Acompanha 1ª corda Mi extra para mais praticidade no dia a dia.\n\n Detalhes Técnicos\n•    Marca: Nig Strings\n•    Modelo: N500\n•    Indicação: Violão acústico (cordas de aço)\n•    Material: Aço com revestimento bronze 85/15\n•    Revestimento: Sem revestimento especial\nEspessuras (calibres):\n•    E (1ª): 0.010\"\n•    B: 0.014\"\n•    G: 0.022\"\n•    D: 0.030\"\n•    A: 0.040\"\n•    E (6ª): 0.050\"\nExtras inclusos:\n1 corda Mi (1ª) extra 0.010\"\nTimbre: Brilhante, com bom equilíbrio entre médios e graves\nOrigem: Nacional\nEstilos indicados: MPB, Sertanejo, Pop, Folk, Gospel, entre outros\n\n O Encordoamento Nig N500 oferece uma sonoridade clara, com excelente definição e conforto ao tocar. Ideal para violonistas que buscam brilho e consistência sonora. Com a 1ª corda extra, você garante mais economia e praticidade. Adquira já e valorize cada nota com a qualidade Nig!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "NIG"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "N500"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "7"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".010 - .050"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Aço com bronze 85/15"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Nig.xls",
+        "sourceSku": "1404K7",
+        "componentSku": "VTK001501",
+        "componentGtin": "7897813405008",
+        "componentQuantity": 7,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4857623033 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "007-bkr1-kit-nig-007.json"
+    }
+  ]
+}

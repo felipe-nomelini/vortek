@@ -1,0 +1,71 @@
+{
+  "batchNumber": 28,
+  "batchId": "bkr1-live-028-VTK025313",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "f1aa0395-e70e-4ae2-aecb-0395db3b71b3",
+      "sku": "VTK025313",
+      "nome": "6 Jogos de Cordas Guitarra 009 1ª Mi Extra + Palheta N63 Nig",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 154.62,
+      "estoque": 7,
+      "suggestedPricePreview": 219.52,
+      "description": "6 Jogos de Cordas Guitarra 009 1ª Mi Extra + Palheta N63 Nig\n\nKit com 6 unidades originais NIG.\n\nConteúdo da embalagem:\n- 6x Encordoamento Para Guitarra .009 N63 NIG\n\nInformações principais:\n- Marca: NIG\n- Quantidade: 6 unidades\n- Embalagem: Pacote / Caixa\n\nEncordoamento Guitarra 0.009 – 0.042 Nig N63 Tradicional com 1ª Mi Extra + Palheta\n\n Toque com conforto, timbre limpo e mais durabilidade! O encordoamento Nig N63 oferece tensão leve, ideal para bends suaves e solos rápidos. Acompanha 1ª corda Mi extra e palheta — mais custo-benefício para seu som.\n\n Detalhes Técnicos\n•    Marca: Nig Strings\n•    Modelo: N63\n•    Indicação: Guitarra de 6 cordas\n•    Tipo: Tradicional (níquel)\n•    Material: Aço niquelado\n•    Revestimento: Sem revestimento\n•    Espessuras (calibres):\n•    E (1ª): 0.009\n•    B: 0.011\n•    G: 0.016\n•    D: 0.024\n•    A: 0.032\n•    E (6ª): 0.042\nExtras inclusos:\n•    1 corda extra Mi (1ª) 0.009\n•    1 palheta Nig\nTimbre: Brilhante com boa definição\nTensão: Leve\nOrigem: Nacional\nEstilos indicados: Rock, Pop, Blues, Worship, MPB, Sertanejo\n\n O Encordoamento Nig N63 é a escolha certa para quem busca leveza, qualidade e praticidade. Ideal para solos expressivos e riffs precisos, vem com 1ª corda extra e palheta para te acompanhar nos treinos, ensaios e shows. Garanta o seu e sinta o diferencial Nig nas suas mãos!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "NIG"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "N63"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "6"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".009 - .042"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Aço niquelado"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Leve"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Nig.xls",
+        "sourceSku": "1406K6",
+        "componentSku": "VTK000097",
+        "componentGtin": "7897813400638",
+        "componentQuantity": 6,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149372674 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "006-bkr1-kit-nig-006.json"
+    }
+  ]
+}

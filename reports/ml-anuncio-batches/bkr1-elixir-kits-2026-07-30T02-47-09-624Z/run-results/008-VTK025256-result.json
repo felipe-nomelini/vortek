@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elixir-kits-2026-07-30T02-47-09-624Z/run-results/008-VTK025256-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-008-VTK025256",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "e00481fb-898b-44ca-9638-ac16147955fd",
+      "sku": "VTK025256",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4967162183",
+        "title": "2 Jogos De Cordas 011 Medium Guitarra Nanoweb Elixir",
+        "price": 331.25,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4967162183-2-jogos-de-cordas-011-medium-guitarra-nanoweb-elixir-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 305.55 → R$ 331.25."
+      ]
+    }
+  ],
+  "failed": []
+}

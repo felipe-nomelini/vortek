@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elixir-kits-2026-07-30T02-47-09-624Z/run-results/011-VTK025260-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-011-VTK025260",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "e0c0d735-32f3-47ad-b871-73645ac85e16",
+      "sku": "VTK025260",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4967187517",
+        "title": "2 Jogos De Cordas 11 Custom Light Phosphor Violão Aço Elixir",
+        "price": 502.43,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4967187517-2-jogos-de-cordas-11-custom-light-phosphor-violo-aco-elixir-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 474.76 → R$ 502.43."
+      ]
+    }
+  ],
+  "failed": []
+}

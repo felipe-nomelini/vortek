@@ -1,0 +1,1506 @@
+[
+  {
+    "produtoId": "20070eb4-bc64-45aa-8ac6-157a41ada896",
+    "sku": "VTK025248",
+    "nome": "2 Jogos de Cordas 009 Custom Light Guitarra Nanoweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 215.56,
+    "estoque": 7,
+    "suggestedPricePreview": 306.04,
+    "description": "2 Jogos de Cordas 009 Custom Light Guitarra Nanoweb Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Guitarra .009 Nanoweb 12027 Custom Light Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 009 Custom Light Guitarra Nanoweb Elixir\n\n A corda Elixir .009 Custom Light combina leveza nos agudos com firmeza nos graves, oferecendo equilíbrio perfeito entre conforto e pegada. Ideal para guitarristas que desejam versatilidade, tocabilidade suave e timbre brilhante com longa durabilidade.\n\n Com o revestimento Nanoweb, essa corda mantém o som novo por muito mais tempo, protegendo contra oxidação e acúmulo de sujeira sem comprometer a sensação natural ao tocar.\n\n Principais características:\n•    Calibre: Custom Light (.009 - .046)\n•    Revestimento: Nanoweb (sensação de corda tradicional com proteção avançada)\n•    Aplicação: Guitarras elétricas de qualquer marca ou estilo\n•    Timbre: Brilhante, definido e encorpado\n•    Toque: Leve nos solos e firme nas bases\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n A linha Elixir é referência mundial em qualidade e confiabilidade, sendo a escolha de músicos que exigem o melhor desempenho em estúdio, palco ou prática diária.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Guitarra elétrica"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "2"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".009 - .046"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Custom Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1425K2",
+      "componentSku": "VTK001572",
+      "componentGtin": "733132120277",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB7111656280 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "91814ab8-b773-42fd-8340-b2d1d3f54c05",
+    "sku": "VTK025249",
+    "nome": "2 Jogos de Cordas 009 Super Light Guitarra Nanoweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 226.62,
+    "estoque": 7,
+    "suggestedPricePreview": 321.74,
+    "description": "2 Jogos de Cordas 009 Super Light Guitarra Nanoweb Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Guitarra .009 Super Light Nanoweb 12002 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 009 Super Light Guitarra Nanoweb Elixir\n\n A corda Elixir .009 Super Light é perfeita para guitarristas que buscam leveza no toque, excelente tocabilidade e som brilhante. Com revestimento Nanoweb, oferece timbre consistente e durabilidade muito superior às cordas tradicionais.\n\n Seu calibre leve (.009 - .042) proporciona maciez nos bends, agilidade nos solos e conforto nas bases, sendo ideal tanto para iniciantes quanto para músicos experientes.\n\n Principais características:\n•    Calibre: Super Light (.009 - .042)\n•    Revestimento: Nanoweb (protege sem comprometer o timbre natural)\n•    Aplicação: Guitarras elétricas de qualquer marca\n•    Timbre: Brilhante, definido e com sustain prolongado\n•    Toque: Macio e responsivo, ideal para técnica e expressividade\n•    Durabilidade: Até 3 vezes maior que cordas convencionais\n\n A tecnologia Elixir mantém o som novo por muito mais tempo, reduzindo trocas frequentes e garantindo confiabilidade em ensaios, gravações e apresentações ao vivo.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Guitarra elétrica"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "2"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".009 - .042"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Super Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1424K2",
+      "componentSku": "VTK000029",
+      "componentGtin": "733132120024",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB7086772614 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "c0e73cd4-07d3-4919-83b3-f55c4a2c2d9c",
+    "sku": "VTK025250",
+    "nome": "2 Jogos de Cordas 009 Super Light Guitarra Optiweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 260.6,
+    "estoque": 7,
+    "suggestedPricePreview": 369.99,
+    "description": "2 Jogos de Cordas 009 Super Light Guitarra Optiweb Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Guitarra .009 Super Light Optiweb 19002 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 009 Super Light Guitarra Optiweb Elixir\n\n O encordoamento Elixir .009 Super Light com revestimento Optiweb é a escolha ideal para guitarristas que buscam leveza, resposta rápida e timbre brilhante com sensação natural. A tecnologia Optiweb proporciona o toque de cordas não revestidas, mas com a durabilidade que só a Elixir oferece.\n\n Com calibre leve (.009 - .042), é perfeito para solos rápidos, bends suaves e ótima pegada nas bases, sem perder clareza sonora.\n\n Principais características:\n•    Calibre: .009 – .042 (Super Light)\n•    Revestimento: Optiweb (sensação de corda tradicional com proteção avançada)\n•    Timbre: Brilhante, definido e com excelente sustain\n•    Toque: Macio e natural, ideal para velocidade e expressividade\n•    Aplicação: Guitarras elétricas de qualquer marca ou modelo\n•    Modelo: Elixir 19002\n•    Durabilidade: Até 3 vezes maior que cordas convencionais\n\n Perfeito para músicos que valorizam som limpo, conforto ao tocar e menos trocas de encordoamento.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Guitarra elétrica"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "2"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".009 - .042"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Super Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "2496K2",
+      "componentSku": "VTK003672",
+      "componentGtin": "733132190027",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB4846402331 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "6a349936-dd80-4b11-bc2a-8d6dadbea47c",
+    "sku": "VTK025251",
+    "nome": "2 Jogos de Cordas 010 Extra Light 80/20 Violão Aço Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 279.66,
+    "estoque": 7,
+    "suggestedPricePreview": 397.05,
+    "description": "2 Jogos de Cordas 010 Extra Light 80/20 Violão Aço Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Violão .010 Extra Light Bronze Nanoweb 11002 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 010 Extra Light 80/20 Violão Aço Elixir\n\n A corda Elixir .010 Extra Light é a escolha ideal para quem busca um som brilhante, maciez ao tocar e alta durabilidade. Fabricada com liga Bronze 80/20 e com o exclusivo revestimento Nanoweb, oferece desempenho superior em violões de aço.\n\n Com calibre leve (.010 - .047), é perfeita para dedilhados suaves e solos precisos, entregando um timbre claro e encorpado desde o primeiro acorde. O revestimento Nanoweb protege contra oxidação e sujeira, mantendo o som limpo por muito mais tempo.\n\n Principais características:\n•    Calibre: Extra Light (.010 - .047)\n•    Material: Bronze 80/20 (80% cobre, 20% zinco)\n•    Revestimento: Nanoweb (sensação de corda tradicional com maior durabilidade)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Brilhante, definido e com excelente projeção sonora\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n Recomendada por músicos que valorizam qualidade, conforto e som consistente. Compatível com qualquer violão de aço.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Violão acústico"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "2"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".010 - .047"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Extra Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1421K2",
+      "componentSku": "VTK003694",
+      "componentGtin": "733132110025",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB4582573509 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "79e7cfa9-8614-4038-96d8-098334c6eb58",
+    "sku": "VTK025252",
+    "nome": "2 Jogos de Cordas 010 Extra Light Phosphor Violão Aço Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 354.72,
+    "estoque": 7,
+    "suggestedPricePreview": 503.61,
+    "description": "2 Jogos de Cordas 010 Extra Light Phosphor Violão Aço Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Violão .010 Extra Light Phosphor Bronze Nanoweb 16002 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 010 Extra Light Phosphor Violão Aço Elixir\n\n A corda Elixir .010 Extra Light Phosphor Bronze é perfeita para violonistas que buscam um som equilibrado, com brilho suave e excelente definição. Com revestimento Nanoweb, oferece toque confortável e durabilidade muito superior às cordas convencionais.\n\n Fabricada com liga de fósforo bronze, essa corda entrega timbre quente, encorpado e com excelente projeção. O calibre extra leve (.010 - .047) facilita a execução de solos e dedilhados, ideal para quem valoriza leveza e sensibilidade ao tocar.\n\n Principais características:\n•    Calibre: Extra Light (.010 - .047)\n•    Material: Phosphor Bronze (bronze com fósforo)\n•    Revestimento: Nanoweb (sensação natural com proteção duradoura)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Quente, suave e com brilho equilibrado\n•    Toque: Macio e responsivo\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n A linha Elixir é reconhecida mundialmente por sua qualidade, sendo a escolha de músicos exigentes que desejam manter o som limpo e consistente por muito mais tempo.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Violão acústico"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "2"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".010 - .047"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Extra Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1428K2",
+      "componentSku": "VTK001978",
+      "componentGtin": "733132160020",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB7087407818 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "660c76e3-1c3f-4ded-ac62-c6397d32f32e",
+    "sku": "VTK025253",
+    "nome": "2 Jogos de Cordas 010 Light Guitarra Nanoweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 215.98,
+    "estoque": 7,
+    "suggestedPricePreview": 306.64,
+    "description": "2 Jogos de Cordas 010 Light Guitarra Nanoweb Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Guitarra .010 Light Nanoweb 12052 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 010 Light Guitarra Nanoweb Elixir\n\n A corda Elixir .010 Light é ideal para guitarristas que buscam equilíbrio entre conforto, pegada firme e timbre encorpado. Fabricada com o exclusivo revestimento Nanoweb, entrega som brilhante e durabilidade estendida sem perder a sensação natural ao tocar.\n\n Com calibre Light (.010 - .046), é versátil para diferentes estilos musicais, oferecendo ótima resposta tanto em solos quanto em bases rítmicas.\n\n Principais características:\n•    Calibre: Light (.010 - .046)\n•    Revestimento: Nanoweb (proteção contra oxidação e sujeira)\n•    Aplicação: Guitarras elétricas de qualquer modelo ou marca\n•    Timbre: Brilhante, definido e com sustain prolongado\n•    Toque: Equilibrado entre conforto e pressão\n•    Durabilidade: Até 3 vezes mais longa que cordas tradicionais\n\n Perfeita para músicos que valorizam desempenho constante, menos trocas e máxima qualidade sonora em palco, estúdio ou ensaios.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Guitarra elétrica"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "2"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".010 - .046"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1426K2",
+      "componentSku": "VTK001920",
+      "componentGtin": "733132120529",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB7095390254 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "37ce954f-cd87-48ed-960f-932ddeedc952",
+    "sku": "VTK025254",
+    "nome": "2 Jogos de Cordas 010 Light Guitarra Optiweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 239.62,
+    "estoque": 7,
+    "suggestedPricePreview": 340.2,
+    "description": "2 Jogos de Cordas 010 Light Guitarra Optiweb Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Guitarra .010 Light Optiweb 19052 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 010 Light Guitarra Optiweb Elixir\n\n A corda Elixir .010 Light com revestimento Optiweb foi desenvolvida para guitarristas que buscam o timbre de cordas sem revestimento, com a durabilidade que só a Elixir oferece. O calibre (.010 - .046) proporciona equilíbrio perfeito entre conforto nos solos e firmeza nas bases.\n\n Com a tecnologia Optiweb, a corda preserva o brilho e a pegada natural por muito mais tempo, mantendo a tocabilidade tradicional e protegendo contra oxidação e desgaste.\n\n Principais características:\n•    Calibre: Light (.010 - .046)\n•    Revestimento: Optiweb (sensação de corda não revestida com proteção avançada)\n•    Aplicação: Guitarras elétricas de qualquer marca ou estilo\n•    Timbre: Brilhante, limpo e com resposta precisa\n•    Toque: Natural e responsivo, ideal para técnicas variadas\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n Perfeita para quem exige som consistente, pegada confortável e menos trocas de cordas. Elixir é a marca preferida de músicos em todo o mundo.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Guitarra elétrica"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "2"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".010 - .046"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1430K2",
+      "componentSku": "VTK001171",
+      "componentGtin": "733132190522",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB7095339842 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "5cfec365-2dac-4547-8bcb-8d003de852ab",
+    "sku": "VTK025255",
+    "nome": "2 Jogos de Cordas 011 Custom Light 80/20 Violão Aço Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 288.24,
+    "estoque": 7,
+    "suggestedPricePreview": 409.23,
+    "description": "2 Jogos de Cordas 011 Custom Light 80/20 Violão Aço Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Violão .011 Custom Light Bronze Nanoweb 11027 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 011 Custom Light 80/20 Violão Aço Elixir\n\n A corda Elixir .011 Custom Light oferece o equilíbrio perfeito entre conforto ao tocar e projeção sonora. Com construção em Bronze 80/20 e revestimento Nanoweb, entrega timbre brilhante e durabilidade incomparável para violões de aço.\n\n Seu calibre Custom Light (.011 - .052) proporciona mais presença nos graves com leveza nos agudos, ideal para músicos que buscam versatilidade tanto em dedilhados quanto em batidas.\n\n Principais características:\n•    Calibre: Custom Light (.011 - .052)\n•    Material: Bronze 80/20 (80% cobre, 20% zinco)\n•    Revestimento: Nanoweb (proteção avançada com toque natural)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Brilhante, encorpado e com excelente definição\n•    Durabilidade: Até 3 vezes mais longa que cordas convencionais\n\n Projetada para manter o som novo por muito mais tempo, a linha Elixir é a preferida de músicos exigentes em todo o mundo. Compatível com qualquer violão de aço.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Violão acústico"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "2"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".011 - .052"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Custom Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1422K2",
+      "componentSku": "VTK003620",
+      "componentGtin": "733132110278",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB7087422150 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "e00481fb-898b-44ca-9638-ac16147955fd",
+    "sku": "VTK025256",
+    "nome": "2 Jogos de Cordas 011 Medium Guitarra Nanoweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 216.54,
+    "estoque": 7,
+    "suggestedPricePreview": 307.43,
+    "description": "2 Jogos de Cordas 011 Medium Guitarra Nanoweb Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Guitarra .011 Medium Nanoweb 12102 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 011 Medium Guitarra Nanoweb Elixir\n\n A corda Elixir .011 Medium oferece pegada firme, som encorpado e alta durabilidade, sendo ideal para guitarristas que preferem tensão média e timbre mais robusto. Com revestimento Nanoweb, proporciona proteção contra oxidação e sujeira, mantendo o som novo por muito mais tempo.\n\n Seu calibre médio (.011 - .049) é excelente para estilos que exigem mais presença sonora, estabilidade na afinação e controle em afinações mais graves.\n\n Principais características:\n•    Calibre: Medium (.011 - .049)\n•    Revestimento: Nanoweb (toque natural com proteção prolongada)\n•    Aplicação: Guitarras elétricas em qualquer estilo musical\n•    Timbre: Encorpado, brilhante e com excelente sustain\n•    Toque: Mais firme, ideal para riffs pesados e acordes definidos\n•    Durabilidade: Até 3 vezes maior que cordas convencionais\n\n A Elixir é referência global em cordas de alto desempenho, escolhida por músicos profissionais que exigem confiabilidade em todos os momentos.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Guitarra elétrica"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "2"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".011 - .049"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Medium"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1427K2",
+      "componentSku": "VTK001528",
+      "componentGtin": "733132121021",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB4612539573 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "b8fea603-9ba4-4629-8b01-1cea5a4e300a",
+    "sku": "VTK025258",
+    "nome": "2 Jogos de Cordas 012 Light Violão Aço Nanoweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 295.84,
+    "estoque": 7,
+    "suggestedPricePreview": 420.02,
+    "description": "2 Jogos de Cordas 012 Light Violão Aço Nanoweb Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Violão .012 Light Nanoweb Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 012 Light Violão Aço Nanoweb Elixir\n\n A corda Elixir .012 Light é ideal para quem busca um som potente, brilhante e com resposta consistente. Produzida com o exclusivo revestimento Nanoweb, oferece durabilidade superior sem comprometer a sensação de corda tradicional.\n\n Com calibre Light (.012 - .053), é perfeita para músicos que desejam mais corpo e projeção sonora, mantendo o conforto necessário para tocar por longos períodos.\n\n Principais características:\n•    Calibre: Light (.012 - .053)\n•    Revestimento: Nanoweb (protege contra oxidação e sujeira)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Brilhante, cheio e com excelente definição\n•    Toque: Tradicional, com leveza e controle\n•    Durabilidade: Até 3 vezes maior que cordas convencionais\n\n A linha Elixir é reconhecida mundialmente por manter o som novo por muito mais tempo, sendo a escolha certa para músicos profissionais e amadores exigentes.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Violão acústico"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "2"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".012 - .053"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1423K2",
+      "componentSku": "VTK000053",
+      "componentGtin": "733132110520",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB4880583557 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "9122a76b-fd59-41d8-b98b-9d4a30da75ed",
+    "sku": "VTK025259",
+    "nome": "2 Jogos de Cordas 013 Medium 80/20 Violão Nanoweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 351.56,
+    "estoque": 7,
+    "suggestedPricePreview": 499.13,
+    "description": "2 Jogos de Cordas 013 Medium 80/20 Violão Nanoweb Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Cordas 013 Medium 80/20 Violão Aço Nanoweb Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 013 Medium 80/20 Violão Nanoweb Elixir\n\n A corda Elixir .013 Medium Bronze 80/20 oferece sonoridade potente, graves encorpados e brilho definido, ideal para violonistas que buscam intensidade sonora e resposta firme ao toque. Com revestimento Nanoweb, proporciona durabilidade prolongada e sensação natural.\n\n Seu calibre médio (.013 - .056) entrega excelente projeção, sendo indicado para afinações padrão ou mais graves, com ótima estabilidade e controle.\n\n Principais características:\n•    Calibre: Medium (.013 - .056)\n•    Material: Bronze 80/20 (80% cobre, 20% zinco)\n•    Revestimento: Nanoweb (proteção contra oxidação e acúmulo de sujeira)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Brilhante, cheio e com grande projeção\n•    Toque: Firme, com resposta forte e definida\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n A Elixir é referência em cordas de alta performance, sendo a escolha de músicos exigentes que precisam de confiança e qualidade em qualquer situação.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Violão acústico"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "2"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".013 - .056"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Medium"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "2042K2",
+      "componentSku": "VTK012404",
+      "componentGtin": "7897626866607",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB7111656214 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "e0c0d735-32f3-47ad-b871-73645ac85e16",
+    "sku": "VTK025260",
+    "nome": "2 Jogos de Cordas 11 Custom Light Phosphor Violão Aço Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 336.46,
+    "estoque": 7,
+    "suggestedPricePreview": 477.69,
+    "description": "2 Jogos de Cordas 11 Custom Light Phosphor Violão Aço Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Violão .011 Custom Light Phosphor Nanoweb Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 011 Custom Light Phosphor Violão Aço Elixir\n\n A corda Elixir .011 Custom Light Phosphor Bronze é a escolha ideal para violonistas que procuram equilíbrio entre leveza no toque e sonoridade encorpada. Produzida com liga de fósforo bronze e revestimento Nanoweb, oferece timbre quente, detalhado e com excelente durabilidade.\n\n Seu calibre (.011 - .052) proporciona resposta dinâmica, com agudos suaves e graves presentes, sendo perfeita para diferentes estilos musicais e técnicas de execução.\n\n Principais características:\n•    Calibre: Custom Light (.011 - .052)\n•    Material: Phosphor Bronze (bronze com fósforo)\n•    Revestimento: Nanoweb (proteção contra oxidação sem perder a sensação natural)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Quente, equilibrado e com ótimo sustain\n•    Toque: Leve nos agudos e firme nos graves\n•    Durabilidade: Até 3 vezes maior que cordas tradicionais\n\n As cordas Elixir são reconhecidas por manterem o som novo por muito mais tempo, garantindo confiabilidade e desempenho consistente em qualquer situação.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Violão acústico"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "2"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".011 - .052"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Custom Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1429K2",
+      "componentSku": "VTK000169",
+      "componentGtin": "733132160273",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB4841871323 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "ffb26214-19cc-4987-882c-1ef6934f597d",
+    "sku": "VTK025261",
+    "nome": "2 Jogos de Cordas 12 Phosphor Violão Aço Nanoweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 395.78,
+    "estoque": 3,
+    "suggestedPricePreview": 561.91,
+    "description": "2 Jogos de Cordas 12 Phosphor Violão Aço Nanoweb Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Cordas 012 Light Phosphor Violão Aço Nanoweb Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 012 Light Phosphor Violão Aço Nanoweb Elixir\n\n A corda Elixir .012 Light Phosphor Bronze é ideal para quem busca um timbre equilibrado, com brilho suave, graves definidos e toque confortável. Produzida com liga de fósforo bronze e o exclusivo revestimento Nanoweb, oferece sonoridade rica e durabilidade muito superior às cordas convencionais.\n\n Com calibre Light (.012 - .053), entrega projeção sonora excelente e sensação firme ao tocar, sem abrir mão da suavidade nos dedilhados e acordes.\n\n Principais características:\n•    Calibre: Light (.012 - .053)\n•    Material: Phosphor Bronze (bronze com fósforo)\n•    Revestimento: Nanoweb (proteção contra oxidação com toque natural)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Quente, definido e com brilho suave\n•    Toque: Leve, porém com presença\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n A Elixir é a marca preferida de músicos que valorizam qualidade, estabilidade e desempenho sonoro duradouro em qualquer ambiente.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Violão acústico"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "2"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".012 - .053"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "2043K2",
+      "componentSku": "VTK012539",
+      "componentGtin": "733132160525",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB4880587351 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "3f941a86-44e3-45cf-ba6c-b67d365d4a6f",
+    "sku": "VTK025262",
+    "nome": "3 Jogos de Cordas 009 Custom Light Guitarra Nanoweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 323.34,
+    "estoque": 5,
+    "suggestedPricePreview": 459.06,
+    "description": "3 Jogos de Cordas 009 Custom Light Guitarra Nanoweb Elixir\n\nKit com 3 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 3x Encordoamento Para Guitarra .009 Nanoweb 12027 Custom Light Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 3 unidades\n- Embalagem: Pacote / Caixa\n\n3 Jogos de Cordas 009 Custom Light Guitarra Nanoweb Elixir\n\n A corda Elixir .009 Custom Light combina leveza nos agudos com firmeza nos graves, oferecendo equilíbrio perfeito entre conforto e pegada. Ideal para guitarristas que desejam versatilidade, tocabilidade suave e timbre brilhante com longa durabilidade.\n\n Com o revestimento Nanoweb, essa corda mantém o som novo por muito mais tempo, protegendo contra oxidação e acúmulo de sujeira sem comprometer a sensação natural ao tocar.\n\n Principais características:\n•    Calibre: Custom Light (.009 - .046)\n•    Revestimento: Nanoweb (sensação de corda tradicional com proteção avançada)\n•    Aplicação: Guitarras elétricas de qualquer marca ou estilo\n•    Timbre: Brilhante, definido e encorpado\n•    Toque: Leve nos solos e firme nas bases\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n A linha Elixir é referência mundial em qualidade e confiabilidade, sendo a escolha de músicos que exigem o melhor desempenho em estúdio, palco ou prática diária.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Guitarra elétrica"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "3"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".009 - .046"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Custom Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1425K3",
+      "componentSku": "VTK001572",
+      "componentGtin": "733132120277",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB7111656280 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "bbc65f77-625a-4bf8-8735-eb065d5018bd",
+    "sku": "VTK025263",
+    "nome": "3 Jogos de Cordas 009 Super Light Guitarra Nanoweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 339.93,
+    "estoque": 5,
+    "suggestedPricePreview": 482.62,
+    "description": "3 Jogos de Cordas 009 Super Light Guitarra Nanoweb Elixir\n\nKit com 3 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 3x Encordoamento Para Guitarra .009 Super Light Nanoweb 12002 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 3 unidades\n- Embalagem: Pacote / Caixa\n\n3 Jogos de Cordas 009 Super Light Guitarra Nanoweb Elixir\n\n A corda Elixir .009 Super Light é perfeita para guitarristas que buscam leveza no toque, excelente tocabilidade e som brilhante. Com revestimento Nanoweb, oferece timbre consistente e durabilidade muito superior às cordas tradicionais.\n\n Seu calibre leve (.009 - .042) proporciona maciez nos bends, agilidade nos solos e conforto nas bases, sendo ideal tanto para iniciantes quanto para músicos experientes.\n\n Principais características:\n•    Calibre: Super Light (.009 - .042)\n•    Revestimento: Nanoweb (protege sem comprometer o timbre natural)\n•    Aplicação: Guitarras elétricas de qualquer marca\n•    Timbre: Brilhante, definido e com sustain prolongado\n•    Toque: Macio e responsivo, ideal para técnica e expressividade\n•    Durabilidade: Até 3 vezes maior que cordas convencionais\n\n A tecnologia Elixir mantém o som novo por muito mais tempo, reduzindo trocas frequentes e garantindo confiabilidade em ensaios, gravações e apresentações ao vivo.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Guitarra elétrica"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "3"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".009 - .042"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Super Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1424K3",
+      "componentSku": "VTK000029",
+      "componentGtin": "733132120024",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB7086772614 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "f8dfb1c4-2aa6-4cef-b720-c87527c49ab4",
+    "sku": "VTK025264",
+    "nome": "3 Jogos de Cordas 009 Super Light Guitarra Optiweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 390.9,
+    "estoque": 4,
+    "suggestedPricePreview": 554.98,
+    "description": "3 Jogos de Cordas 009 Super Light Guitarra Optiweb Elixir\n\nKit com 3 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 3x Encordoamento Para Guitarra .009 Super Light Optiweb 19002 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 3 unidades\n- Embalagem: Pacote / Caixa\n\n3 Jogos de Cordas 009 Super Light Guitarra Optiweb Elixir\n\n O encordoamento Elixir .009 Super Light com revestimento Optiweb é a escolha ideal para guitarristas que buscam leveza, resposta rápida e timbre brilhante com sensação natural. A tecnologia Optiweb proporciona o toque de cordas não revestidas, mas com a durabilidade que só a Elixir oferece.\n\n Com calibre leve (.009 - .042), é perfeito para solos rápidos, bends suaves e ótima pegada nas bases, sem perder clareza sonora.\n\n Principais características:\n•    Calibre: .009 – .042 (Super Light)\n•    Revestimento: Optiweb (sensação de corda tradicional com proteção avançada)\n•    Timbre: Brilhante, definido e com excelente sustain\n•    Toque: Macio e natural, ideal para velocidade e expressividade\n•    Aplicação: Guitarras elétricas de qualquer marca ou modelo\n•    Modelo: Elixir 19002\n•    Durabilidade: Até 3 vezes maior que cordas convencionais\n\n Perfeito para músicos que valorizam som limpo, conforto ao tocar e menos trocas de encordoamento.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Guitarra elétrica"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "3"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".009 - .042"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Super Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "2496K3",
+      "componentSku": "VTK003672",
+      "componentGtin": "733132190027",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB4846402331 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "0817d59b-d595-4d08-b208-2602e709d36b",
+    "sku": "VTK025265",
+    "nome": "3 Jogos de Cordas 010 Extra Light 80/20 Violão Aço Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 419.49,
+    "estoque": 5,
+    "suggestedPricePreview": 621.47,
+    "description": "3 Jogos de Cordas 010 Extra Light 80/20 Violão Aço Elixir\n\nKit com 3 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 3x Encordoamento Para Violão .010 Extra Light Bronze Nanoweb 11002 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 3 unidades\n- Embalagem: Pacote / Caixa\n\n3 Jogos de Cordas 010 Extra Light 80/20 Violão Aço Elixir\n\n A corda Elixir .010 Extra Light é a escolha ideal para quem busca um som brilhante, maciez ao tocar e alta durabilidade. Fabricada com liga Bronze 80/20 e com o exclusivo revestimento Nanoweb, oferece desempenho superior em violões de aço.\n\n Com calibre leve (.010 - .047), é perfeita para dedilhados suaves e solos precisos, entregando um timbre claro e encorpado desde o primeiro acorde. O revestimento Nanoweb protege contra oxidação e sujeira, mantendo o som limpo por muito mais tempo.\n\n Principais características:\n•    Calibre: Extra Light (.010 - .047)\n•    Material: Bronze 80/20 (80% cobre, 20% zinco)\n•    Revestimento: Nanoweb (sensação de corda tradicional com maior durabilidade)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Brilhante, definido e com excelente projeção sonora\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n Recomendada por músicos que valorizam qualidade, conforto e som consistente. Compatível com qualquer violão de aço.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Violão acústico"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "3"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".010 - .047"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Extra Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1421K3",
+      "componentSku": "VTK003694",
+      "componentGtin": "733132110025",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB4582573509 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "f01bcca5-9c19-4284-9e09-be2925ab6bef",
+    "sku": "VTK025266",
+    "nome": "3 Jogos de Cordas 010 Extra Light Phosphor Violão Aço Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 532.08,
+    "estoque": 5,
+    "suggestedPricePreview": 788.27,
+    "description": "3 Jogos de Cordas 010 Extra Light Phosphor Violão Aço Elixir\n\nKit com 3 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 3x Encordoamento Para Violão .010 Extra Light Phosphor Bronze Nanoweb 16002 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 3 unidades\n- Embalagem: Pacote / Caixa\n\n3 Jogos de Cordas 010 Extra Light Phosphor Violão Aço Elixir\n\n A corda Elixir .010 Extra Light Phosphor Bronze é perfeita para violonistas que buscam um som equilibrado, com brilho suave e excelente definição. Com revestimento Nanoweb, oferece toque confortável e durabilidade muito superior às cordas convencionais.\n\n Fabricada com liga de fósforo bronze, essa corda entrega timbre quente, encorpado e com excelente projeção. O calibre extra leve (.010 - .047) facilita a execução de solos e dedilhados, ideal para quem valoriza leveza e sensibilidade ao tocar.\n\n Principais características:\n•    Calibre: Extra Light (.010 - .047)\n•    Material: Phosphor Bronze (bronze com fósforo)\n•    Revestimento: Nanoweb (sensação natural com proteção duradoura)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Quente, suave e com brilho equilibrado\n•    Toque: Macio e responsivo\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n A linha Elixir é reconhecida mundialmente por sua qualidade, sendo a escolha de músicos exigentes que desejam manter o som limpo e consistente por muito mais tempo.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Violão acústico"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "3"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".010 - .047"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Extra Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1428K3",
+      "componentSku": "VTK001978",
+      "componentGtin": "733132160020",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB7087407818 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "6196e695-34fa-49b6-8e73-66915bca3727",
+    "sku": "VTK025267",
+    "nome": "3 Jogos de Cordas 010 Light Guitarra Nanoweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 323.97,
+    "estoque": 5,
+    "suggestedPricePreview": 459.96,
+    "description": "3 Jogos de Cordas 010 Light Guitarra Nanoweb Elixir\n\nKit com 3 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 3x Encordoamento Para Guitarra .010 Light Nanoweb 12052 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 3 unidades\n- Embalagem: Pacote / Caixa\n\n3 Jogos de Cordas 010 Light Guitarra Nanoweb Elixir\n\n A corda Elixir .010 Light é ideal para guitarristas que buscam equilíbrio entre conforto, pegada firme e timbre encorpado. Fabricada com o exclusivo revestimento Nanoweb, entrega som brilhante e durabilidade estendida sem perder a sensação natural ao tocar.\n\n Com calibre Light (.010 - .046), é versátil para diferentes estilos musicais, oferecendo ótima resposta tanto em solos quanto em bases rítmicas.\n\n Principais características:\n•    Calibre: Light (.010 - .046)\n•    Revestimento: Nanoweb (proteção contra oxidação e sujeira)\n•    Aplicação: Guitarras elétricas de qualquer modelo ou marca\n•    Timbre: Brilhante, definido e com sustain prolongado\n•    Toque: Equilibrado entre conforto e pressão\n•    Durabilidade: Até 3 vezes mais longa que cordas tradicionais\n\n Perfeita para músicos que valorizam desempenho constante, menos trocas e máxima qualidade sonora em palco, estúdio ou ensaios.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Guitarra elétrica"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "3"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".010 - .046"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1426K3",
+      "componentSku": "VTK001920",
+      "componentGtin": "733132120529",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB7095390254 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "05bab235-81b9-4d6d-98a7-ef8cfb783045",
+    "sku": "VTK025268",
+    "nome": "3 Jogos de Cordas 010 Light Guitarra Optiweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 359.43,
+    "estoque": 5,
+    "suggestedPricePreview": 510.3,
+    "description": "3 Jogos de Cordas 010 Light Guitarra Optiweb Elixir\n\nKit com 3 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 3x Encordoamento Para Guitarra .010 Light Optiweb 19052 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 3 unidades\n- Embalagem: Pacote / Caixa\n\n3 Jogos de Cordas 010 Light Guitarra Optiweb Elixir\n\n A corda Elixir .010 Light com revestimento Optiweb foi desenvolvida para guitarristas que buscam o timbre de cordas sem revestimento, com a durabilidade que só a Elixir oferece. O calibre (.010 - .046) proporciona equilíbrio perfeito entre conforto nos solos e firmeza nas bases.\n\n Com a tecnologia Optiweb, a corda preserva o brilho e a pegada natural por muito mais tempo, mantendo a tocabilidade tradicional e protegendo contra oxidação e desgaste.\n\n Principais características:\n•    Calibre: Light (.010 - .046)\n•    Revestimento: Optiweb (sensação de corda não revestida com proteção avançada)\n•    Aplicação: Guitarras elétricas de qualquer marca ou estilo\n•    Timbre: Brilhante, limpo e com resposta precisa\n•    Toque: Natural e responsivo, ideal para técnicas variadas\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n Perfeita para quem exige som consistente, pegada confortável e menos trocas de cordas. Elixir é a marca preferida de músicos em todo o mundo.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Guitarra elétrica"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "3"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".010 - .046"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1430K3",
+      "componentSku": "VTK001171",
+      "componentGtin": "733132190522",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB7095339842 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "4fe03d30-a57b-4f92-b3b7-9c20bc277d07",
+    "sku": "VTK025269",
+    "nome": "3 Jogos de Cordas 011 Custom Light 80/20 Violão Aço Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 432.36,
+    "estoque": 5,
+    "suggestedPricePreview": 640.53,
+    "description": "3 Jogos de Cordas 011 Custom Light 80/20 Violão Aço Elixir\n\nKit com 3 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 3x Encordoamento Para Violão .011 Custom Light Bronze Nanoweb 11027 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 3 unidades\n- Embalagem: Pacote / Caixa\n\n3 Jogos de Cordas 011 Custom Light 80/20 Violão Aço Elixir\n\n A corda Elixir .011 Custom Light oferece o equilíbrio perfeito entre conforto ao tocar e projeção sonora. Com construção em Bronze 80/20 e revestimento Nanoweb, entrega timbre brilhante e durabilidade incomparável para violões de aço.\n\n Seu calibre Custom Light (.011 - .052) proporciona mais presença nos graves com leveza nos agudos, ideal para músicos que buscam versatilidade tanto em dedilhados quanto em batidas.\n\n Principais características:\n•    Calibre: Custom Light (.011 - .052)\n•    Material: Bronze 80/20 (80% cobre, 20% zinco)\n•    Revestimento: Nanoweb (proteção avançada com toque natural)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Brilhante, encorpado e com excelente definição\n•    Durabilidade: Até 3 vezes mais longa que cordas convencionais\n\n Projetada para manter o som novo por muito mais tempo, a linha Elixir é a preferida de músicos exigentes em todo o mundo. Compatível com qualquer violão de aço.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Violão acústico"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "3"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".011 - .052"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Custom Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1422K3",
+      "componentSku": "VTK003620",
+      "componentGtin": "733132110278",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB7087422150 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "25f2572f-75a8-4758-9510-ef0a4e92f679",
+    "sku": "VTK025270",
+    "nome": "3 Jogos de Cordas 011 Medium Guitarra Nanoweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 324.81,
+    "estoque": 5,
+    "suggestedPricePreview": 461.15,
+    "description": "3 Jogos de Cordas 011 Medium Guitarra Nanoweb Elixir\n\nKit com 3 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 3x Encordoamento Para Guitarra .011 Medium Nanoweb 12102 Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 3 unidades\n- Embalagem: Pacote / Caixa\n\n3 Jogos de Cordas 011 Medium Guitarra Nanoweb Elixir\n\n A corda Elixir .011 Medium oferece pegada firme, som encorpado e alta durabilidade, sendo ideal para guitarristas que preferem tensão média e timbre mais robusto. Com revestimento Nanoweb, proporciona proteção contra oxidação e sujeira, mantendo o som novo por muito mais tempo.\n\n Seu calibre médio (.011 - .049) é excelente para estilos que exigem mais presença sonora, estabilidade na afinação e controle em afinações mais graves.\n\n Principais características:\n•    Calibre: Medium (.011 - .049)\n•    Revestimento: Nanoweb (toque natural com proteção prolongada)\n•    Aplicação: Guitarras elétricas em qualquer estilo musical\n•    Timbre: Encorpado, brilhante e com excelente sustain\n•    Toque: Mais firme, ideal para riffs pesados e acordes definidos\n•    Durabilidade: Até 3 vezes maior que cordas convencionais\n\n A Elixir é referência global em cordas de alto desempenho, escolhida por músicos profissionais que exigem confiabilidade em todos os momentos.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Guitarra elétrica"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "3"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".011 - .049"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Medium"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1427K3",
+      "componentSku": "VTK001528",
+      "componentGtin": "733132121021",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB4612539573 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "7dfa02d9-e6e3-4dc9-97e4-c9b0552bf2db",
+    "sku": "VTK025272",
+    "nome": "3 Jogos de Cordas 012 Light Phosphor Violão Aço Nanoweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 593.67,
+    "estoque": 2,
+    "suggestedPricePreview": 879.51,
+    "description": "3 Jogos de Cordas 012 Light Phosphor Violão Aço Nanoweb Elixir\n\nKit com 3 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 3x Cordas 012 Light Phosphor Violão Aço Nanoweb Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 3 unidades\n- Embalagem: Pacote / Caixa\n\n3 Jogos de Cordas 012 Light Phosphor Violão Aço Nanoweb Elixir\n\n A corda Elixir .012 Light Phosphor Bronze é ideal para quem busca um timbre equilibrado, com brilho suave, graves definidos e toque confortável. Produzida com liga de fósforo bronze e o exclusivo revestimento Nanoweb, oferece sonoridade rica e durabilidade muito superior às cordas convencionais.\n\n Com calibre Light (.012 - .053), entrega projeção sonora excelente e sensação firme ao tocar, sem abrir mão da suavidade nos dedilhados e acordes.\n\n Principais características:\n•    Calibre: Light (.012 - .053)\n•    Material: Phosphor Bronze (bronze com fósforo)\n•    Revestimento: Nanoweb (proteção contra oxidação com toque natural)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Quente, definido e com brilho suave\n•    Toque: Leve, porém com presença\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n A Elixir é a marca preferida de músicos que valorizam qualidade, estabilidade e desempenho sonoro duradouro em qualquer ambiente.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Violão acústico"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "3"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".012 - .053"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "2043K3",
+      "componentSku": "VTK012539",
+      "componentGtin": "733132160525",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB4880587351 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "cb3493f3-500f-4f0f-81b1-15ebc47df890",
+    "sku": "VTK025273",
+    "nome": "3 Jogos de Cordas 012 Light Violão Aço Nanoweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 443.76,
+    "estoque": 5,
+    "suggestedPricePreview": 657.42,
+    "description": "3 Jogos de Cordas 012 Light Violão Aço Nanoweb Elixir\n\nKit com 3 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 3x Encordoamento Para Violão .012 Light Nanoweb Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 3 unidades\n- Embalagem: Pacote / Caixa\n\n3 Jogos de Cordas 012 Light Violão Aço Nanoweb Elixir\n\n A corda Elixir .012 Light é ideal para quem busca um som potente, brilhante e com resposta consistente. Produzida com o exclusivo revestimento Nanoweb, oferece durabilidade superior sem comprometer a sensação de corda tradicional.\n\n Com calibre Light (.012 - .053), é perfeita para músicos que desejam mais corpo e projeção sonora, mantendo o conforto necessário para tocar por longos períodos.\n\n Principais características:\n•    Calibre: Light (.012 - .053)\n•    Revestimento: Nanoweb (protege contra oxidação e sujeira)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Brilhante, cheio e com excelente definição\n•    Toque: Tradicional, com leveza e controle\n•    Durabilidade: Até 3 vezes maior que cordas convencionais\n\n A linha Elixir é reconhecida mundialmente por manter o som novo por muito mais tempo, sendo a escolha certa para músicos profissionais e amadores exigentes.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Violão acústico"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "3"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".012 - .053"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1423K3",
+      "componentSku": "VTK000053",
+      "componentGtin": "733132110520",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB4880583557 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "cea7507b-0464-451f-aba2-d21b9433071c",
+    "sku": "VTK025274",
+    "nome": "3 Jogos de Cordas 013 Medium 80/20 Violão Nanoweb Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 527.34,
+    "estoque": 4,
+    "suggestedPricePreview": 781.24,
+    "description": "3 Jogos de Cordas 013 Medium 80/20 Violão Nanoweb Elixir\n\nKit com 3 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 3x Cordas 013 Medium 80/20 Violão Aço Nanoweb Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 3 unidades\n- Embalagem: Pacote / Caixa\n\n3 Jogos de Cordas 013 Medium 80/20 Violão Nanoweb Elixir\n\n A corda Elixir .013 Medium Bronze 80/20 oferece sonoridade potente, graves encorpados e brilho definido, ideal para violonistas que buscam intensidade sonora e resposta firme ao toque. Com revestimento Nanoweb, proporciona durabilidade prolongada e sensação natural.\n\n Seu calibre médio (.013 - .056) entrega excelente projeção, sendo indicado para afinações padrão ou mais graves, com ótima estabilidade e controle.\n\n Principais características:\n•    Calibre: Medium (.013 - .056)\n•    Material: Bronze 80/20 (80% cobre, 20% zinco)\n•    Revestimento: Nanoweb (proteção contra oxidação e acúmulo de sujeira)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Brilhante, cheio e com grande projeção\n•    Toque: Firme, com resposta forte e definida\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n A Elixir é referência em cordas de alta performance, sendo a escolha de músicos exigentes que precisam de confiança e qualidade em qualquer situação.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Violão acústico"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "3"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".013 - .056"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Medium"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "2042K3",
+      "componentSku": "VTK012404",
+      "componentGtin": "7897626866607",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB7111656214 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "2c67ecf2-ba89-4679-96fa-f66a0133f5fb",
+    "sku": "VTK025275",
+    "nome": "3 Jogos de Cordas 11 Custom Light Phosphor Violão Aço Elixir",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB278076",
+    "custo": 504.69,
+    "estoque": 5,
+    "suggestedPricePreview": 747.69,
+    "description": "3 Jogos de Cordas 11 Custom Light Phosphor Violão Aço Elixir\n\nKit com 3 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 3x Encordoamento Para Violão .011 Custom Light Phosphor Nanoweb Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 3 unidades\n- Embalagem: Pacote / Caixa\n\n3 Jogos de Cordas 011 Custom Light Phosphor Violão Aço Elixir\n\n A corda Elixir .011 Custom Light Phosphor Bronze é a escolha ideal para violonistas que procuram equilíbrio entre leveza no toque e sonoridade encorpada. Produzida com liga de fósforo bronze e revestimento Nanoweb, oferece timbre quente, detalhado e com excelente durabilidade.\n\n Seu calibre (.011 - .052) proporciona resposta dinâmica, com agudos suaves e graves presentes, sendo perfeita para diferentes estilos musicais e técnicas de execução.\n\n Principais características:\n•    Calibre: Custom Light (.011 - .052)\n•    Material: Phosphor Bronze (bronze com fósforo)\n•    Revestimento: Nanoweb (proteção contra oxidação sem perder a sensação natural)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Quente, equilibrado e com ótimo sustain\n•    Toque: Leve nos agudos e firme nos graves\n•    Durabilidade: Até 3 vezes maior que cordas tradicionais\n\n As cordas Elixir são reconhecidas por manterem o som novo por muito mais tempo, garantindo confiabilidade e desempenho consistente em qualquer situação.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_name": "Elixir"
+      },
+      {
+        "id": "MODEL"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_name": "Violão acústico"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "3"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_name": ".011 - .052"
+      },
+      {
+        "id": "TENSION",
+        "value_name": "Custom Light"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elixir.xls",
+      "sourceSku": "1429K3",
+      "componentSku": "VTK000169",
+      "componentGtin": "733132160273",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB4841871323 em MLB278076",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-nig-kits-2026-07-30T04-09-45-151Z/run-results/009-VTK025289-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-009-VTK025289",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "f39325be-899e-41d4-a68f-4523e706d157",
+      "sku": "VTK025289",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7287826656",
+        "title": "2 Jogos De Corda Violão Nylon-cristal/prateada Média Nig",
+        "price": 109.02,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7287826656-2-jogos-de-corda-violo-nylon-cristalprateada-media-nig-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 92.35 → R$ 109.02."
+      ]
+    }
+  ],
+  "failed": []
+}

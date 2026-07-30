@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-nig-kits-2026-07-30T04-09-45-151Z/run-results/026-VTK025311-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-026-VTK025311",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "266a1616-6be0-4d6e-ad73-f4339cfae623",
+      "sku": "VTK025311",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4967553101",
+        "title": "6 Jogos De Cordas Guitarra 010 1ª Mi Extra + Palheta N64 Nig",
+        "price": 254.72,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4967553101-6-jogos-de-cordas-guitarra-010-1-mi-extra-palheta-n64-nig-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 229.01 → R$ 254.72."
+      ]
+    }
+  ],
+  "failed": []
+}

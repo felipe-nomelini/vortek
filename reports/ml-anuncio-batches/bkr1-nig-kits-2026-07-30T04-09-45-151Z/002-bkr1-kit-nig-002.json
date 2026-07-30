@@ -1,0 +1,310 @@
+{
+  "batchNumber": 2,
+  "batchId": "bkr1-kit-nig-002",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "84831734-8a36-4a10-a511-6d73466cf9f8",
+      "sku": "VTK025284",
+      "nome": "2 Jogos de Corda Guitarra 010 1ª Mi Extra + Palheta N64 Nig",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 54.1,
+      "estoque": 50,
+      "suggestedPricePreview": 91.48,
+      "description": "2 Jogos de Corda Guitarra 010 1ª Mi Extra + Palheta N64 Nig\n\nKit com 2 unidades originais NIG.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Guitarra .010 N64 NIG\n\nInformações principais:\n- Marca: NIG\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\nEncordoamento Guitarra 0.010 – 0.046 Nig N64 Tradicional com 1ª Mi Extra + Palheta\n\n Timbre encorpado e pegada firme para quem busca equilíbrio entre ataque e controle. O encordoamento Nig N64 oferece tensão média, ideal para bases pesadas e solos com precisão. Acompanha corda Mi extra e palheta — mais durabilidade e economia para seu set.\n\n Detalhes Técnicos\n•    Marca: Nig Strings\n•    Modelo: N64\n•    Indicação: Guitarra de 6 cordas\n•    Tipo: Tradicional (níquel)\n•    Material: Aço niquelado\n•    Revestimento: Sem revestimento\n•    Espessuras (calibres):\n•    E (1ª): 0.010\n•    B: 0.013\n•    G: 0.017\n•    D: 0.026\n•    A: 0.036\n•    E (6ª): 0.046\nExtras inclusos:\n•    1 corda extra Mi (1ª) 0.010\n•    1 palheta Nig\nTimbre: Encorpado com boa projeção\nTensão: Média\nOrigem: Nacional\nEstilos indicados: Rock, Blues, Sertanejo, Gospel, MPB, entre outros\n\n O Nig N64 é o encordoamento ideal para quem busca equilíbrio entre conforto e potência sonora. Com tensão média, garante firmeza nas bases e definição nos solos. Leve com você mais confiança e durabilidade com a corda extra e a palheta Nig. Adicione ao carrinho e turbine seu som agora mesmo!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "NIG"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "N64"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".010 - .046"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Aço niquelado"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Média"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Nig.xls",
+        "sourceSku": "1407K2",
+        "componentSku": "VTK001452",
+        "componentGtin": "7897813400645",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4880581535 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "2b4d66d6-486c-4737-a512-ec59cb77cd70",
+      "sku": "VTK025285",
+      "nome": "2 Jogos de Corda Violão Aço 010 1ª Corda (Mí) Extra N500 Nig",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 46.34,
+      "estoque": 32,
+      "suggestedPricePreview": 81.9,
+      "description": "2 Jogos de Corda Violão Aço 010 1ª Corda (Mí) Extra N500 Nig\n\nKit com 2 unidades originais NIG.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Violão Aço .010 N500 Bronze NIG\n\nInformações principais:\n- Marca: NIG\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\nEncordoamento Violão Aço-Bronze 85/15 0.010\" – 0.050\" Nig N500 com 1ª Corda Mi Extra\n\n Timbre cristalino, ótima projeção e mais durabilidade! O encordoamento Nig N500 é fabricado com liga 85/15 (aço-bonze), oferecendo um som brilhante e definido para violões de aço. Acompanha 1ª corda Mi extra para mais praticidade no dia a dia.\n\n Detalhes Técnicos\n•    Marca: Nig Strings\n•    Modelo: N500\n•    Indicação: Violão acústico (cordas de aço)\n•    Material: Aço com revestimento bronze 85/15\n•    Revestimento: Sem revestimento especial\nEspessuras (calibres):\n•    E (1ª): 0.010\"\n•    B: 0.014\"\n•    G: 0.022\"\n•    D: 0.030\"\n•    A: 0.040\"\n•    E (6ª): 0.050\"\nExtras inclusos:\n1 corda Mi (1ª) extra 0.010\"\nTimbre: Brilhante, com bom equilíbrio entre médios e graves\nOrigem: Nacional\nEstilos indicados: MPB, Sertanejo, Pop, Folk, Gospel, entre outros\n\n O Encordoamento Nig N500 oferece uma sonoridade clara, com excelente definição e conforto ao tocar. Ideal para violonistas que buscam brilho e consistência sonora. Com a 1ª corda extra, você garante mais economia e praticidade. Adquira já e valorize cada nota com a qualidade Nig!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "NIG"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "N500"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".010 - .050"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Aço com bronze 85/15"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Nig.xls",
+        "sourceSku": "1404K2",
+        "componentSku": "VTK001501",
+        "componentGtin": "7897813405008",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4857623033 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "cc496b26-0ed6-43e8-8301-92445203793b",
+      "sku": "VTK025287",
+      "nome": "2 Jogos de Corda Violão Aço Fósforo Bronze 010 NPB560 Nig",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 64.04,
+      "estoque": 4,
+      "suggestedPricePreview": 103.75,
+      "description": "2 Jogos de Corda Violão Aço Fósforo Bronze 010 NPB560 Nig\n\nKit com 2 unidades originais NIG.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Violão Aço .010 NPB560 NIG\n\nInformações principais:\n- Marca: NIG\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\nEncordoamento Violão Aço Fósforo Bronze 0.010\" – 0.047\" Nig NPB560\n\n Sonoridade brilhante e equilíbrio perfeito! O encordoamento Nig NPB560 para violão é produzido com aço e fósforo bronze, proporcionando timbre claro, com ótimos médios e agudos, ideal para músicos que buscam qualidade e resistência.\n\n Detalhes Técnicos\n•    Marca: Nig Strings\n•    Modelo: NPB560\n•    Indicação: Violão acústico\n•    Material: Aço com revestimento em fósforo bronze\nEspessuras (calibres):\n•    E (1ª): 0.010\"\n•    B: 0.014\"\n•    G: 0.023\"\n•    D: 0.030\"\n•    A: 0.039\"\n•    E (6ª): 0.047\"\nTimbre: Brilhante, com sustain equilibrado\nResistência: Alta durabilidade contra corrosão\nOrigem: Nacional\nEstilos indicados: MPB, Folk, Pop, Country, Rock acústico\n\n O Encordoamento Nig NPB560 é perfeito para violonistas que buscam clareza sonora e longa vida útil nas cordas. Produzido com materiais de qualidade, oferece conforto e definição para seus acordes e dedilhados. Garanta já o seu e leve seu som para o próximo nível!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "NIG"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "NPB560"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".010 - .047"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Aço com fósforo bronze"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Nig.xls",
+        "sourceSku": "1418K2",
+        "componentSku": "VTK000126",
+        "componentGtin": "7897813405602",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4882855383 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "dd7efa65-0efd-4c13-848d-7ba70ef3f2c6",
+      "sku": "VTK025288",
+      "nome": "2 Jogos de Corda Violão Aço Fósforo Bronze 011 NPB520 Nig",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 66.46,
+      "estoque": 1,
+      "suggestedPricePreview": 106.74,
+      "description": "2 Jogos de Corda Violão Aço Fósforo Bronze 011 NPB520 Nig\n\nKit com 2 unidades originais NIG.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Violão Aço .011 NPB520 NIG\n\nInformações principais:\n- Marca: NIG\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\nEncordoamento Violão Aço Fósforo Bronze 0.011\" – 0.050\" Nig NPB520\n\n Timbre quente, projeção forte e resistência incomparável! O encordoamento Nig NPB520 com tensão média é ideal para violonistas que buscam mais corpo e definição no som, sem abrir mão da durabilidade.\n\n Detalhes Técnicos\n•    Marca: Nig Strings\n•    Modelo: NPB520\n•    Indicação: Violão acústico\n•    Material: Aço com revestimento em fósforo bronze\nEspessuras (calibres):\n•    E (1ª): 0.011\"\n•    B: 0.015\"\n•    G: 0.024\"\n•    D: 0.032\"\n•    A: 0.041\"\n•    E (6ª): 0.050\"\nTimbre: Encorpado, com médios presentes e brilho equilibrado\nTensão: Média\nDurabilidade: Alta resistência à oxidação\nOrigem: Nacional\nEstilos indicados: MPB, Sertanejo, Folk, Gospel, Rock acústico\n\n O Encordoamento Nig NPB520 é a escolha ideal para quem procura definição sonora e maior projeção no violão. Com tensão média e construção em fósforo bronze, ele garante durabilidade e timbre profissional em qualquer apresentação. Leve agora e sinta o som de verdade com a Nig!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "NIG"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "NPB520"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".011 - .050"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Aço com fósforo bronze"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Média"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Nig.xls",
+        "sourceSku": "1417K2",
+        "componentSku": "VTK001765",
+        "componentGtin": "7897813405206",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149326718 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "f39325be-899e-41d4-a68f-4523e706d157",
+      "sku": "VTK025289",
+      "nome": "2 Jogos de Corda Violão Nylon-Cristal/Prateada Média Nig",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 53.42,
+      "estoque": 42,
+      "suggestedPricePreview": 90.64,
+      "description": "2 Jogos de Corda Violão Nylon-Cristal/Prateada Média Nig\n\nKit com 2 unidades originais NIG.\n\nConteúdo da embalagem:\n- 2x Encordoamento Para Violão Nylon .028 N475 NIG\n\nInformações principais:\n- Marca: NIG\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\nEncordoamento Violão Nylon Cristal/Prateada Nig N475 Tensão Média com 4ª Corda (Ré) Extra\n\n Toque clássico com clareza, conforto e equilíbrio! O encordoamento Nig N475 oferece tensão média e combina agudos de nylon cristal com bordões prateados, entregando timbre encorpado e projeção suave. Acompanha corda Ré (4ª) extra para maior durabilidade.\n\n Detalhes Técnicos\n•    Marca: Nig Strings\n•    Modelo: N475\n•    Indicação: Violão clássico (cordas de nylon)\n•    Material:\n•    Agudos: Nylon cristal\n•    Bordões (4ª, 5ª e 6ª): Aço revestido com cobre prateado\n•    Tensão: Média\nExtras inclusos:\n•    1 corda Ré (4ª) extra\n\n Timbre: Encorpado nos graves e suave nos agudos\nConforto: Excelente tocabilidade, ideal para estudo e apresentações\nOrigem: Nacional\nEstilos indicados: Música clássica, MPB, Bossa Nova, Sertanejo raiz, Gospel, entre outros\n\n O Encordoamento Nig N475 é a escolha certa para quem busca sonoridade refinada, equilíbrio tonal e conforto ao tocar. Com tensão média e 4ª corda extra, é ideal para violonistas que querem confiança e durabilidade no dia a dia. Leve o seu agora e sinta o som limpo e definido da Nig!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "NIG"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "N475"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Nylon cristal e bordões de aço revestido com cobre prateado"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Média"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Nig.xls",
+        "sourceSku": "1403K2",
+        "componentSku": "VTK001718",
+        "componentGtin": "7897813404759",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111652440 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

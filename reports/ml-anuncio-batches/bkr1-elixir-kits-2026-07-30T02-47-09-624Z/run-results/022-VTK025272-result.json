@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elixir-kits-2026-07-30T02-47-09-624Z/run-results/022-VTK025272-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-022-VTK025272",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "7dfa02d9-e6e3-4dc9-97e4-c9b0552bf2db",
+      "sku": "VTK025272",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4967194049",
+        "title": "3 Jogos De Cordas 012 Light Phosphor Violão Aço Nanoweb",
+        "price": 922.46,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4967194049-3-jogos-de-cordas-012-light-phosphor-violo-aco-nanoweb-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 896.11 → R$ 922.46."
+      ]
+    }
+  ],
+  "failed": []
+}

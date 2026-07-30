@@ -1,0 +1,67 @@
+{
+  "batchNumber": 10,
+  "batchId": "bkr1-live-010-VTK025259",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "9122a76b-fd59-41d8-b98b-9d4a30da75ed",
+      "sku": "VTK025259",
+      "nome": "2 Jogos de Cordas 013 Medium 80/20 Violão Nanoweb Elixir",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 351.56,
+      "estoque": 7,
+      "suggestedPricePreview": 499.13,
+      "description": "2 Jogos de Cordas 013 Medium 80/20 Violão Nanoweb Elixir\n\nKit com 2 unidades originais Elixir.\n\nConteúdo da embalagem:\n- 2x Cordas 013 Medium 80/20 Violão Aço Nanoweb Elixir\n\nInformações principais:\n- Marca: Elixir\n- Quantidade: 2 unidades\n- Embalagem: Pacote / Caixa\n\n2 Jogos de Cordas 013 Medium 80/20 Violão Nanoweb Elixir\n\n A corda Elixir .013 Medium Bronze 80/20 oferece sonoridade potente, graves encorpados e brilho definido, ideal para violonistas que buscam intensidade sonora e resposta firme ao toque. Com revestimento Nanoweb, proporciona durabilidade prolongada e sensação natural.\n\n Seu calibre médio (.013 - .056) entrega excelente projeção, sendo indicado para afinações padrão ou mais graves, com ótima estabilidade e controle.\n\n Principais características:\n•    Calibre: Medium (.013 - .056)\n•    Material: Bronze 80/20 (80% cobre, 20% zinco)\n•    Revestimento: Nanoweb (proteção contra oxidação e acúmulo de sujeira)\n•    Aplicação: Violão de aço (acústico ou eletroacústico)\n•    Timbre: Brilhante, cheio e com grande projeção\n•    Toque: Firme, com resposta forte e definida\n•    Durabilidade: Até 3 vezes maior que cordas comuns\n\n A Elixir é referência em cordas de alta performance, sendo a escolha de músicos exigentes que precisam de confiança e qualidade em qualquer situação.\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Elixir"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "Cordas 013 Medium 80/20 Nanoweb"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".013 - .056"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Medium"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elixir.xls",
+        "sourceSku": "2042K2",
+        "componentSku": "VTK012404",
+        "componentGtin": "7897626866607",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111656214 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "003-bkr1-kit-elixir-003.json"
+    }
+  ]
+}

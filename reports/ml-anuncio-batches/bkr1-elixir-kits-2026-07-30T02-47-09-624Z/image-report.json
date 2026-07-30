@@ -1,0 +1,514 @@
+[
+  {
+    "produtoId": "20070eb4-bc64-45aa-8ac6-157a41ada896",
+    "sku": "VTK025248",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025248/01-8b84aec62a76c8fb1063.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025248/02-1cdd6e74484e3223f733.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025248/03-1b49f583c4e450970e2d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025248/04-afc99ff7971cff13c44c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025248/05-ef4c75802a3030b7002b.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025248/01-8b84aec62a76c8fb1063.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025248/02-1cdd6e74484e3223f733.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025248/03-1b49f583c4e450970e2d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025248/04-afc99ff7971cff13c44c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025248/05-ef4c75802a3030b7002b.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "6a349936-dd80-4b11-bc2a-8d6dadbea47c",
+    "sku": "VTK025251",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025251/01-543ddda5463ff22c2adb.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025251/02-9f9e279c62388e926f14.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025251/03-e6ad38a5087759e1c7f8.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025251/04-54c11641834c2894c6fe.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025251/05-003214ddf7fd6b6eec40.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025251/01-543ddda5463ff22c2adb.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025251/02-9f9e279c62388e926f14.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025251/03-e6ad38a5087759e1c7f8.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025251/04-54c11641834c2894c6fe.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025251/05-003214ddf7fd6b6eec40.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "37ce954f-cd87-48ed-960f-932ddeedc952",
+    "sku": "VTK025254",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025254/01-710593cafe20d12e0cca.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025254/02-799bc76498c579a182b2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025254/03-5c0bab6b83305d51019e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025254/04-e2a7863971c692096ce0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025254/05-d31d1706bb2cbabea9ff.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025254/01-710593cafe20d12e0cca.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025254/02-799bc76498c579a182b2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025254/03-5c0bab6b83305d51019e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025254/04-e2a7863971c692096ce0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025254/05-d31d1706bb2cbabea9ff.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "e0c0d735-32f3-47ad-b871-73645ac85e16",
+    "sku": "VTK025260",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025260/01-6f26bb558d387499cb34.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025260/02-ac4fadbaa3f51b33be14.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025260/03-c7005f967e1aab106ce3.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025260/04-5c7768eacbbcfa248ccf.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025260/05-72fc719b5fa4d2abceb2.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025260/01-6f26bb558d387499cb34.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025260/02-ac4fadbaa3f51b33be14.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025260/03-c7005f967e1aab106ce3.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025260/04-5c7768eacbbcfa248ccf.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025260/05-72fc719b5fa4d2abceb2.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "bbc65f77-625a-4bf8-8735-eb065d5018bd",
+    "sku": "VTK025263",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025263/01-3a13d9bd334d02fd25a5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025263/02-797efc7acfcb21206e37.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025263/03-9ab9fafa54cc6ea6c434.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025263/04-b784a359822fa888005c.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025263/01-3a13d9bd334d02fd25a5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025263/02-797efc7acfcb21206e37.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025263/03-9ab9fafa54cc6ea6c434.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025263/04-b784a359822fa888005c.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "f01bcca5-9c19-4284-9e09-be2925ab6bef",
+    "sku": "VTK025266",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025266/01-af1a282c747c2eb5c287.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025266/02-73dce1ec61f799be7025.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025266/03-653b7f98040f005ab2b9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025266/04-e9af5d8badd4b6b08214.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025266/05-f36775aa440b1497664b.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025266/01-af1a282c747c2eb5c287.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025266/02-73dce1ec61f799be7025.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025266/03-653b7f98040f005ab2b9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025266/04-e9af5d8badd4b6b08214.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025266/05-f36775aa440b1497664b.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "4fe03d30-a57b-4f92-b3b7-9c20bc277d07",
+    "sku": "VTK025269",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025269/01-53927b1f64a543ccf5b3.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025269/02-97c97d80e570701cb490.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025269/03-2230005e8b2003c425e0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025269/04-08b281b63e39b893455e.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025269/01-53927b1f64a543ccf5b3.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025269/02-97c97d80e570701cb490.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025269/03-2230005e8b2003c425e0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025269/04-08b281b63e39b893455e.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "7dfa02d9-e6e3-4dc9-97e4-c9b0552bf2db",
+    "sku": "VTK025272",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025272/01-d285dc69c09724b2cb50.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025272/02-87a520e1f44794d7bd52.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025272/03-53a1bc3f1f44367f64c9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025272/04-460ad513fadf914b55d9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025272/05-f0ad5b8e365d5fb1fc63.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025272/06-f66175bff575d5bc6ff0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025272/07-864c75206551459f3ffb.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025272/01-d285dc69c09724b2cb50.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025272/02-87a520e1f44794d7bd52.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025272/03-53a1bc3f1f44367f64c9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025272/04-460ad513fadf914b55d9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025272/05-f0ad5b8e365d5fb1fc63.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025272/06-f66175bff575d5bc6ff0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025272/07-864c75206551459f3ffb.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "2c67ecf2-ba89-4679-96fa-f66a0133f5fb",
+    "sku": "VTK025275",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025275/01-2bcfe7e81bada7f4bcae.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025275/02-033b41304a77eb17e899.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025275/03-54e769089a6fced6ff79.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025275/04-9a5cf7325d251d13b874.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025275/05-72fc719b5fa4d2abceb2.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025275/01-2bcfe7e81bada7f4bcae.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025275/02-033b41304a77eb17e899.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025275/03-54e769089a6fced6ff79.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025275/04-9a5cf7325d251d13b874.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025275/05-72fc719b5fa4d2abceb2.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "91814ab8-b773-42fd-8340-b2d1d3f54c05",
+    "sku": "VTK025249",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025249/01-cfd817c182c4cd50e5f8.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025249/02-750ba7fee0b58decfb96.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025249/03-dec616251c596bfa0e69.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025249/04-b784a359822fa888005c.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025249/01-cfd817c182c4cd50e5f8.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025249/02-750ba7fee0b58decfb96.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025249/03-dec616251c596bfa0e69.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025249/04-b784a359822fa888005c.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "79e7cfa9-8614-4038-96d8-098334c6eb58",
+    "sku": "VTK025252",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025252/01-b3a5c473f5329c73d4f6.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025252/02-cf1fe20320cd7d28f026.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025252/03-dd352f3bd633b3b085f9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025252/04-d758b2ca956770c806f0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025252/05-f36775aa440b1497664b.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025252/01-b3a5c473f5329c73d4f6.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025252/02-cf1fe20320cd7d28f026.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025252/03-dd352f3bd633b3b085f9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025252/04-d758b2ca956770c806f0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025252/05-f36775aa440b1497664b.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "5cfec365-2dac-4547-8bcb-8d003de852ab",
+    "sku": "VTK025255",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025255/01-d27003a41c8dca415236.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025255/02-663f329e93fb01e83c8c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025255/03-1066a349604c00b33745.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025255/04-08b281b63e39b893455e.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025255/01-d27003a41c8dca415236.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025255/02-663f329e93fb01e83c8c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025255/03-1066a349604c00b33745.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025255/04-08b281b63e39b893455e.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "b8fea603-9ba4-4629-8b01-1cea5a4e300a",
+    "sku": "VTK025258",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025258/01-bdb517cc44073e3db852.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025258/02-9aea9be7e60c763f6792.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025258/03-c0faab3ddc325465202c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025258/04-65c434af6dc1fc46859c.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025258/01-bdb517cc44073e3db852.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025258/02-9aea9be7e60c763f6792.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025258/03-c0faab3ddc325465202c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025258/04-65c434af6dc1fc46859c.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "ffb26214-19cc-4987-882c-1ef6934f597d",
+    "sku": "VTK025261",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025261/01-f1e6da5b366b9351f430.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025261/02-7e5e84891117b5936e73.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025261/03-60015762ed1063582aea.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025261/04-699a73acb26d910dd436.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025261/05-f0ad5b8e365d5fb1fc63.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025261/06-f66175bff575d5bc6ff0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025261/07-864c75206551459f3ffb.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025261/01-f1e6da5b366b9351f430.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025261/02-7e5e84891117b5936e73.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025261/03-60015762ed1063582aea.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025261/04-699a73acb26d910dd436.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025261/05-f0ad5b8e365d5fb1fc63.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025261/06-f66175bff575d5bc6ff0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025261/07-864c75206551459f3ffb.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "f8dfb1c4-2aa6-4cef-b720-c87527c49ab4",
+    "sku": "VTK025264",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025264/01-c173aed832fe6030b43e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025264/02-d5d6fa9a27f155d9a040.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025264/03-e731ef2e063dfdd4905c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025264/04-6f7994e5e1bae481cf6c.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025264/01-c173aed832fe6030b43e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025264/02-d5d6fa9a27f155d9a040.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025264/03-e731ef2e063dfdd4905c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025264/04-6f7994e5e1bae481cf6c.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "6196e695-34fa-49b6-8e73-66915bca3727",
+    "sku": "VTK025267",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025267/01-e4c21b9e3f125c3e5b8a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025267/02-ccc6801e21146bb8f2f8.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025267/03-7ff5cbad314ae6bc0d86.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025267/04-fa97874e7573498defab.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025267/01-e4c21b9e3f125c3e5b8a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025267/02-ccc6801e21146bb8f2f8.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025267/03-7ff5cbad314ae6bc0d86.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025267/04-fa97874e7573498defab.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "25f2572f-75a8-4758-9510-ef0a4e92f679",
+    "sku": "VTK025270",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025270/01-e3d5dd7ffdf8e6bdaa31.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025270/02-257a7dfb7adcbec3fb39.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025270/03-36ba2e758f08ebceee46.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025270/04-64756e18027dbfcbd1fb.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025270/01-e3d5dd7ffdf8e6bdaa31.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025270/02-257a7dfb7adcbec3fb39.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025270/03-36ba2e758f08ebceee46.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025270/04-64756e18027dbfcbd1fb.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "cb3493f3-500f-4f0f-81b1-15ebc47df890",
+    "sku": "VTK025273",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025273/01-b8c5bd82d75c81a51e12.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025273/02-4bfac60e1dd08e124c35.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025273/03-f0d4f4c9fbe73459d933.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025273/04-65c434af6dc1fc46859c.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025273/01-b8c5bd82d75c81a51e12.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025273/02-4bfac60e1dd08e124c35.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025273/03-f0d4f4c9fbe73459d933.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025273/04-65c434af6dc1fc46859c.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "c0e73cd4-07d3-4919-83b3-f55c4a2c2d9c",
+    "sku": "VTK025250",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025250/01-03bd82b1824770918834.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025250/02-8cc5d5d26ab209be6ede.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025250/03-7ace247ed6b3b00d880b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025250/04-6f7994e5e1bae481cf6c.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025250/01-03bd82b1824770918834.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025250/02-8cc5d5d26ab209be6ede.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025250/03-7ace247ed6b3b00d880b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025250/04-6f7994e5e1bae481cf6c.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "660c76e3-1c3f-4ded-ac62-c6397d32f32e",
+    "sku": "VTK025253",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025253/01-cc9022bf603546e41419.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025253/02-0b4cfb3d895036b8815b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025253/03-7ebcd5acbae232d12d20.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025253/04-fa97874e7573498defab.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025253/01-cc9022bf603546e41419.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025253/02-0b4cfb3d895036b8815b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025253/03-7ebcd5acbae232d12d20.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025253/04-fa97874e7573498defab.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "e00481fb-898b-44ca-9638-ac16147955fd",
+    "sku": "VTK025256",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025256/01-f8dd2dfb7d0d8be5adaa.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025256/02-c9e7164b22bf29d22634.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025256/03-90ad931c546ef141cd37.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025256/04-64756e18027dbfcbd1fb.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025256/01-f8dd2dfb7d0d8be5adaa.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025256/02-c9e7164b22bf29d22634.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025256/03-90ad931c546ef141cd37.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025256/04-64756e18027dbfcbd1fb.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "9122a76b-fd59-41d8-b98b-9d4a30da75ed",
+    "sku": "VTK025259",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025259/01-17eaf42fec5ef5c544db.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025259/02-db35760870341fba0b30.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025259/03-4331865393e7ef329d29.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025259/04-cc23e3d1e9b9ac58a8f0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025259/05-de678e2e00caf216fa5a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025259/06-f6405eb6c27be46cc6ac.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025259/07-eb3f7f1bb70b51dd53d9.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025259/01-17eaf42fec5ef5c544db.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025259/02-db35760870341fba0b30.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025259/03-4331865393e7ef329d29.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025259/04-cc23e3d1e9b9ac58a8f0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025259/05-de678e2e00caf216fa5a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025259/06-f6405eb6c27be46cc6ac.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025259/07-eb3f7f1bb70b51dd53d9.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "3f941a86-44e3-45cf-ba6c-b67d365d4a6f",
+    "sku": "VTK025262",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025262/01-7e792a0b2a0191f406c0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025262/02-1df2d11afd75c022751e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025262/03-274281b3beb716078e8e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025262/04-fd73e715390b2cd50561.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025262/05-ef4c75802a3030b7002b.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025262/01-7e792a0b2a0191f406c0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025262/02-1df2d11afd75c022751e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025262/03-274281b3beb716078e8e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025262/04-fd73e715390b2cd50561.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025262/05-ef4c75802a3030b7002b.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "0817d59b-d595-4d08-b208-2602e709d36b",
+    "sku": "VTK025265",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025265/01-29bfe65aa61517ba0ec5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025265/02-eecc5bc543d943746cbe.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025265/03-f850f83fb1f7163b881b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025265/04-e35aadaa21d5be6bc30e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025265/05-003214ddf7fd6b6eec40.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025265/01-29bfe65aa61517ba0ec5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025265/02-eecc5bc543d943746cbe.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025265/03-f850f83fb1f7163b881b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025265/04-e35aadaa21d5be6bc30e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025265/05-003214ddf7fd6b6eec40.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "05bab235-81b9-4d6d-98a7-ef8cfb783045",
+    "sku": "VTK025268",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025268/01-32bd29c3b3db23a33d86.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025268/02-5537576970845281eb13.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025268/03-a3c98d48489821b2884e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025268/04-3e9ec63566ccca460df9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025268/05-d31d1706bb2cbabea9ff.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025268/01-32bd29c3b3db23a33d86.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025268/02-5537576970845281eb13.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025268/03-a3c98d48489821b2884e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025268/04-3e9ec63566ccca460df9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025268/05-d31d1706bb2cbabea9ff.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "cea7507b-0464-451f-aba2-d21b9433071c",
+    "sku": "VTK025274",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025274/01-34903cb148f74f462824.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025274/02-735736d8cf0c7a8887d6.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025274/03-1a773da43bef7f316b1d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025274/04-f61c1dc55c405eb5f3df.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025274/05-de678e2e00caf216fa5a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025274/06-f6405eb6c27be46cc6ac.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025274/07-eb3f7f1bb70b51dd53d9.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025274/01-34903cb148f74f462824.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025274/02-735736d8cf0c7a8887d6.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025274/03-1a773da43bef7f316b1d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025274/04-f61c1dc55c405eb5f3df.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025274/05-de678e2e00caf216fa5a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025274/06-f6405eb6c27be46cc6ac.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elixir/VTK025274/07-eb3f7f1bb70b51dd53d9.jpg"
+    ],
+    "failures": []
+  }
+]

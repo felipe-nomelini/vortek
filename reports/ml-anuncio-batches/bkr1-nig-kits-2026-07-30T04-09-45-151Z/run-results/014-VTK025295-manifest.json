@@ -1,0 +1,71 @@
+{
+  "batchNumber": 14,
+  "batchId": "bkr1-live-014-VTK025295",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "961f85a9-28b1-4b94-8cf6-8e41ea5ba835",
+      "sku": "VTK025295",
+      "nome": "3 Jogos de Cordas Violão Aço Fósforo Bronze 011 NPB520 Nig",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 99.69,
+      "estoque": 1,
+      "suggestedPricePreview": 147.77,
+      "description": "3 Jogos de Cordas Violão Aço Fósforo Bronze 011 NPB520 Nig\n\nKit com 3 unidades originais NIG.\n\nConteúdo da embalagem:\n- 3x Encordoamento Para Violão Aço .011 NPB520 NIG\n\nInformações principais:\n- Marca: NIG\n- Quantidade: 3 unidades\n- Embalagem: Pacote / Caixa\n\nEncordoamento Violão Aço Fósforo Bronze 0.011\" – 0.050\" Nig NPB520\n\n Timbre quente, projeção forte e resistência incomparável! O encordoamento Nig NPB520 com tensão média é ideal para violonistas que buscam mais corpo e definição no som, sem abrir mão da durabilidade.\n\n Detalhes Técnicos\n•    Marca: Nig Strings\n•    Modelo: NPB520\n•    Indicação: Violão acústico\n•    Material: Aço com revestimento em fósforo bronze\nEspessuras (calibres):\n•    E (1ª): 0.011\"\n•    B: 0.015\"\n•    G: 0.024\"\n•    D: 0.032\"\n•    A: 0.041\"\n•    E (6ª): 0.050\"\nTimbre: Encorpado, com médios presentes e brilho equilibrado\nTensão: Média\nDurabilidade: Alta resistência à oxidação\nOrigem: Nacional\nEstilos indicados: MPB, Sertanejo, Folk, Gospel, Rock acústico\n\n O Encordoamento Nig NPB520 é a escolha ideal para quem procura definição sonora e maior projeção no violão. Com tensão média e construção em fósforo bronze, ele garante durabilidade e timbre profissional em qualquer apresentação. Leve agora e sinta o som de verdade com a Nig!\n\nConfira o modelo e a quantidade antes de concluir a compra. Itens não descritos não acompanham o produto.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "NIG"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "NPB520"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "3"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_name": ".011 - .050"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Aço com fósforo bronze"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Média"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Nig.xls",
+        "sourceSku": "1417K3",
+        "componentSku": "VTK001765",
+        "componentGtin": "7897813405206",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149326718 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "003-bkr1-kit-nig-003.json"
+    }
+  ]
+}

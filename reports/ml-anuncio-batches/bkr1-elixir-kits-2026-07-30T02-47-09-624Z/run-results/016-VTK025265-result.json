@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elixir-kits-2026-07-30T02-47-09-624Z/run-results/016-VTK025265-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-016-VTK025265",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "0817d59b-d595-4d08-b208-2602e709d36b",
+      "sku": "VTK025265",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4967165587",
+        "title": "3 Jogos De Cordas 010 Extra Light 80/20 Violão Aço Elixir",
+        "price": 643.36,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4967165587-3-jogos-de-cordas-010-extra-light-8020-violo-aco-elixir-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 617.65 → R$ 643.36."
+      ]
+    }
+  ],
+  "failed": []
+}

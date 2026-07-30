@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-07-30T02:45:40.821Z",
+  "sourceFile": "/tmp/vortek-kits-analysis/Elixir.xls",
+  "account": {
+    "userId": "3294514937",
+    "nickname": "VORTEKTECNOLOGIA"
+  },
+  "mode": "audit_only",
+  "sheetCount": 28,
+  "readyCount": 0,
+  "blockedCount": 28,
+  "batchCount": 0,
+  "reportDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elixir-kits-2026-07-30T02-45-27-009Z"
+}

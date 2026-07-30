@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elixir-kits-2026-07-30T02-47-09-624Z/run-results/019-VTK025268-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-019-VTK025268",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "05bab235-81b9-4d6d-98a7-ef8cfb783045",
+      "sku": "VTK025268",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4967167529",
+        "title": "3 Jogos De Cordas 010 Light Guitarra Optiweb Elixir",
+        "price": 532.88,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4967167529-3-jogos-de-cordas-010-light-guitarra-optiweb-elixir-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 507.17 → R$ 532.88."
+      ]
+    }
+  ],
+  "failed": []
+}

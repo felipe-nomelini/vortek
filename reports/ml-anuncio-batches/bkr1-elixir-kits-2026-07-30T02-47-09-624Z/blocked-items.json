@@ -1,0 +1,16 @@
+[
+  {
+    "produtoId": "d74f06de-0d0c-4a14-929f-ad9def3d30b6",
+    "sku": "VTK025257",
+    "sourceSku": "2497K2",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "ddf3ee6f-abb4-4ad2-9fa6-0a55156826f3",
+    "sku": "VTK025271",
+    "sourceSku": "2497K3",
+    "reason": "out_of_stock",
+    "details": null
+  }
+]
