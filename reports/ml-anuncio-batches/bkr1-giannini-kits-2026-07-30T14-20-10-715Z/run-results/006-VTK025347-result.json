@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-20-10-715Z/run-results/006-VTK025347-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-006-VTK025347",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "af9cb97e-0342-4311-9db2-5b667eef6fa7",
+      "sku": "VTK025347",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4970326945",
+        "title": "2 Jogos De Corda P/viola Cobre Prateado Media Gesvm Giannini",
+        "price": 107.21,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4970326945-2-jogos-de-corda-pviola-cobre-prateado-media-gesvm-giannini-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 91.67 → R$ 107.21."
+      ]
+    }
+  ],
+  "failed": []
+}

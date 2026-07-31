@@ -2,6 +2,9 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 
 const {
+  allocateMlShipmentCost,
+  filterPackOrdersBySeller,
+  parseMlPackOrderGroup,
   parseMlVirtualKitOrderGroup,
 } = require('../src/lib/ml/virtual-kit-orders.ts');
 
@@ -53,4 +56,59 @@ test('bloqueia grupo inconsistente com mais de um anúncio pai', () => {
       ],
     }],
   }, '1'), null);
+});
+
+test('extrai carrinho comum com duas orders', () => {
+  assert.deepEqual(parseMlPackOrderGroup({
+    id: 2000014280061837,
+    shipment: { id: 47647004665 },
+    orders: [
+      { id: 2000017675239822 },
+      { id: 2000017675244840 },
+    ],
+  }, '2000017675239822'), {
+    orderIds: ['2000017675239822', '2000017675244840'],
+    packId: '2000014280061837',
+    shipmentId: '47647004665',
+  });
+});
+
+test('ignora pack unitário', () => {
+  assert.equal(parseMlPackOrderGroup({
+    id: 123,
+    orders: [{ id: 1 }],
+  }, '1'), null);
+});
+
+test('mantém apenas orders do mesmo seller', () => {
+  assert.deepEqual(filterPackOrdersBySeller({
+    currentOrderId: '1',
+    currentSellerId: 10,
+    orderDetails: [
+      { id: 1, seller: { id: 10 }, total_amount: 92 },
+      { id: 2, seller: { id: 10 }, total_amount: 78.9 },
+      { id: 3, seller: { id: 11 }, total_amount: 40 },
+    ],
+  }).map((order) => String(order.id)), ['1', '2']);
+});
+
+test('rateia custo único do shipment sem duplicar centavos', () => {
+  const orders = [
+    { id: '2000017675239822', total_amount: 92 },
+    { id: '2000017675244840', total_amount: 78.9 },
+  ];
+  const first = allocateMlShipmentCost({
+    sellerShippingCost: 20.1,
+    currentOrderId: '2000017675239822',
+    orders,
+  });
+  const second = allocateMlShipmentCost({
+    sellerShippingCost: 20.1,
+    currentOrderId: '2000017675244840',
+    orders,
+  });
+
+  assert.equal(first, 10.82);
+  assert.equal(second, 9.28);
+  assert.equal(Number((first + second).toFixed(2)), 20.1);
 });

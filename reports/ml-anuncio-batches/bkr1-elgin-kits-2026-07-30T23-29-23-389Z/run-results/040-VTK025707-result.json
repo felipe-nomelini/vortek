@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-29-23-389Z/run-results/040-VTK025707-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-040-VTK025707",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "2610f275-f343-4aa8-8304-d8121abb6982",
+      "sku": "VTK025707",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7297385056",
+        "title": "20 Baterias Alcalinas Lr41 Elgin (2 Cart)",
+        "price": 58.06,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7297385056-20-baterias-alcalinas-lr41-elgin-2-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 42.03 → R$ 58.06."
+      ]
+    }
+  ],
+  "failed": []
+}

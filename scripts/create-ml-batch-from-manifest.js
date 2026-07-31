@@ -334,6 +334,24 @@ function applyAttributeOverrides(attrs, overrides) {
   });
 }
 
+function applyKitIdentifierPolicy(attrs, item) {
+  if (item.preflight?.omitComponentGtin !== true) return attrs;
+  return [
+    ...(attrs || []).filter(
+      (attribute) =>
+        !['GTIN', 'EMPTY_GTIN_REASON'].includes(
+          String(attribute?.id || '').toUpperCase(),
+        ),
+    ),
+    {
+      id: 'EMPTY_GTIN_REASON',
+      name: 'Motivo de GTIN vazio',
+      value_id: '17055159',
+      value_name: 'O produto é um kit ou pack',
+    },
+  ];
+}
+
 function fillKnownBatteryAttributes(attrs, productName) {
   const text = normalizePredictionText(productName)
     .toLowerCase()
@@ -457,12 +475,13 @@ function buildRichBatchDescription(item, prepared) {
     ) {
       continue;
     }
-    const displayValue =
+    const displayValue = String(
       value ||
       (attribute?.values || []).find(
         (candidate) => String(candidate?.id || '') === valueId,
       )?.name ||
-      '';
+      '',
+    ).replace(/Ω/g, 'ohms');
     if (!displayValue) continue;
     const key = `${name.toLowerCase()}:${String(displayValue).toLowerCase()}`;
     if (seen.has(key)) continue;
@@ -597,10 +616,24 @@ async function createOne(item) {
   // For a simple kit, prefer its component listing category over text prediction.
   const componentCategoryId = await getSimpleKitComponentCategory(item.produtoId);
   if (componentCategoryId) {
-    categories = [
-      { id: componentCategoryId, nome: componentCategoryId, dominio: '' },
-      ...categories.filter((category) => String(category.id) !== componentCategoryId),
-    ];
+    const componentCategory = {
+      id: componentCategoryId,
+      nome: componentCategoryId,
+      dominio: '',
+    };
+    categories = item.categoryId
+      ? [
+          ...categories,
+          ...(
+            categories.some((category) => String(category.id) === componentCategoryId)
+              ? []
+              : [componentCategory]
+          ),
+        ]
+      : [
+          componentCategory,
+          ...categories.filter((category) => String(category.id) !== componentCategoryId),
+        ];
   }
 
   if (categories.length === 0) throw new Error('Sem categoria ML prevista');
@@ -616,6 +649,12 @@ async function createOne(item) {
       // Keep optional values sourced from the local/DSLite product preparation.
       if (item.preflight?.trustedOptionalAttributeOverrides === true) {
         current.optional = applyAttributeOverrides(current.optional, item.attributeOverrides);
+      }
+      if (item.preflight?.omitComponentGtin === true) {
+        current.required = (current.required || []).filter(
+          (attribute) => String(attribute?.id || '').toUpperCase() !== 'GTIN',
+        );
+        current.optional = applyKitIdentifierPolicy(current.optional, item);
       }
       current.missing = missingRequired(current.required, {
         allowEmptyGtinForKit: ALLOW_EMPTY_GTIN_FOR_KITS,

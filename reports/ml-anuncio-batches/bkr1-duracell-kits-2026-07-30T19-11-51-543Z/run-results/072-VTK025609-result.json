@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-duracell-kits-2026-07-30T19-11-51-543Z/run-results/072-VTK025609-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-072-VTK025609",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "e9dca30c-791c-4d8a-88e3-30c0dbfc3731",
+      "sku": "VTK025609",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4971788485",
+        "title": "72 Pilhas Alcalinas Aa Duracell (9 Cart. C/ 8 Un. Cada)",
+        "price": 477.89,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4971788485-72-pilhas-alcalinas-aa-duracell-9-cart-c-8-un-cada-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"status\":409,\"code\":\"conflict.error\",\"error\":\"Conflict\"}"
+      ]
+    }
+  ],
+  "failed": []
+}

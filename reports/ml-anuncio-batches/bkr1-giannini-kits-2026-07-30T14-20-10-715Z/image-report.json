@@ -1,0 +1,728 @@
+[
+  {
+    "produtoId": "1dc59d80-c877-44b7-b0fd-a35dc193a19f",
+    "sku": "VTK025346",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025346/01-95b7d529fb79885253e9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025346/02-9970551d764d1257d931.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025346/03-293f3ba2fc9187826758.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025346/04-742e45582b0f78ffc4e5.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025346/01-95b7d529fb79885253e9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025346/02-9970551d764d1257d931.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025346/03-293f3ba2fc9187826758.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025346/04-742e45582b0f78ffc4e5.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "ad7456e7-e1c2-4b26-836d-31fe69bc5ad2",
+    "sku": "VTK025349",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025349/01-a7d7168aefb18db2cf93.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025349/02-e345caa4c7646d68767b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025349/03-d3ac3366e8a21b6d9f53.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025349/04-35778b3a5634fa519514.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025349/01-a7d7168aefb18db2cf93.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025349/02-e345caa4c7646d68767b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025349/03-d3ac3366e8a21b6d9f53.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025349/04-35778b3a5634fa519514.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "f73c582e-8e33-4dd7-9375-f9c08064cacb",
+    "sku": "VTK025356",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025356/01-f3b81680d3ead48031ad.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025356/02-2840616736a04481fbad.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025356/03-d273d449f1a778663eb3.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025356/04-6e57712d5fdeca824f56.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025356/01-f3b81680d3ead48031ad.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025356/02-2840616736a04481fbad.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025356/03-d273d449f1a778663eb3.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025356/04-6e57712d5fdeca824f56.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "af9c1331-403e-44e4-bfd9-310c9abf3d6d",
+    "sku": "VTK025359",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025359/01-c45cfed4aceb9a814a90.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025359/02-aebf3a97fe25b198ec0b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025359/03-3abb078e8ef898b8ce3d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025359/04-c65be09579c55365fd00.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025359/01-c45cfed4aceb9a814a90.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025359/02-aebf3a97fe25b198ec0b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025359/03-3abb078e8ef898b8ce3d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025359/04-c65be09579c55365fd00.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "7701b649-b6d0-4062-9b66-f88c75888dcf",
+    "sku": "VTK025366",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025366/01-32aff4d987e536a2e8e1.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025366/02-f2799301cd8784c80102.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025366/03-927ea53274a09ec216f1.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025366/04-071bb73606fefadb5d4c.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025366/01-32aff4d987e536a2e8e1.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025366/02-f2799301cd8784c80102.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025366/03-927ea53274a09ec216f1.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025366/04-071bb73606fefadb5d4c.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "9acc7d79-d9db-4242-9852-b7f414f112d7",
+    "sku": "VTK025374",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025374/01-492accf6cf9eb3baa384.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025374/02-7d6d5a1c217a7ce23217.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025374/03-a7fb7964db34e93daef0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025374/04-5746d6bf6af748537e24.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025374/01-492accf6cf9eb3baa384.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025374/02-7d6d5a1c217a7ce23217.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025374/03-a7fb7964db34e93daef0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025374/04-5746d6bf6af748537e24.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "33acc2b6-e5ea-4bcb-bad0-32c14fd5b38d",
+    "sku": "VTK025377",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025377/01-fd3d94b3aaaa5aae3da8.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025377/02-7b44333a54e197a04a00.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025377/03-7b8ffdb972dc886c1a6c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025377/04-a55f0c032782c2f2cd70.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025377/01-fd3d94b3aaaa5aae3da8.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025377/02-7b44333a54e197a04a00.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025377/03-7b8ffdb972dc886c1a6c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025377/04-a55f0c032782c2f2cd70.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "0b0c372d-d83c-4450-8366-2f255f90f298",
+    "sku": "VTK025384",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025384/01-f60277264f1c90174e0e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025384/02-2fec1d40071904c5d5aa.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025384/03-3828927cec2e98fb65df.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025384/04-c65be09579c55365fd00.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025384/01-f60277264f1c90174e0e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025384/02-2fec1d40071904c5d5aa.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025384/03-3828927cec2e98fb65df.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025384/04-c65be09579c55365fd00.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "5f51371c-a4af-4076-95e7-f2a9cebaf8db",
+    "sku": "VTK025387",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025387/01-3b7f9558ac742f7a010e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025387/02-8bf33bbaf4192290a2a5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025387/03-bb12f3076582327a7de4.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025387/04-0bb0b1a78212a71eb549.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025387/01-3b7f9558ac742f7a010e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025387/02-8bf33bbaf4192290a2a5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025387/03-bb12f3076582327a7de4.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025387/04-0bb0b1a78212a71eb549.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "9edb078c-4c26-4995-866b-fca7cba7bfc1",
+    "sku": "VTK025340",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025340/01-2a3254e6a24d57fb3455.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025340/02-0bd2732f8fa61ac095c1.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025340/03-e4297601a404c03abf01.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025340/04-071bb73606fefadb5d4c.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025340/01-2a3254e6a24d57fb3455.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025340/02-0bd2732f8fa61ac095c1.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025340/03-e4297601a404c03abf01.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025340/04-071bb73606fefadb5d4c.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "af9cb97e-0342-4311-9db2-5b667eef6fa7",
+    "sku": "VTK025347",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025347/01-17c682bff59a7f0c43f6.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025347/02-c30c33ef556ee7e3a9eb.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025347/03-fde5146f5333fd4a570e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025347/04-5f101abda7d005025461.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025347/01-17c682bff59a7f0c43f6.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025347/02-c30c33ef556ee7e3a9eb.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025347/03-fde5146f5333fd4a570e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025347/04-5f101abda7d005025461.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "91ee531a-109f-45cd-ba1c-f53ac6cc4868",
+    "sku": "VTK025350",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025350/01-1a022aa79a638f036c87.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025350/02-f5aeef0e969033899777.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025350/03-b41e53f2b592e8be8d4d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025350/04-e09f8ee4d26238236bc4.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025350/01-1a022aa79a638f036c87.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025350/02-f5aeef0e969033899777.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025350/03-b41e53f2b592e8be8d4d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025350/04-e09f8ee4d26238236bc4.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "85446eb1-3e03-46d6-aeed-2a3038cb7c6f",
+    "sku": "VTK025357",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025357/01-985ce512196912d02a79.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025357/02-26f0888341800c9cba7c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025357/03-d3bb567022ef20d9c05d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025357/04-4904ba04f892b0606c57.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025357/01-985ce512196912d02a79.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025357/02-26f0888341800c9cba7c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025357/03-d3bb567022ef20d9c05d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025357/04-4904ba04f892b0606c57.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "7fdaf097-a844-400c-ad30-92076e5f1755",
+    "sku": "VTK025360",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025360/01-3d8d5aadf55a9cb3288d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025360/02-f121c726263f91ae039c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025360/03-510353dced9d45ed74f0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025360/04-6359857fbd1fa0ddc87a.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025360/01-3d8d5aadf55a9cb3288d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025360/02-f121c726263f91ae039c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025360/03-510353dced9d45ed74f0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025360/04-6359857fbd1fa0ddc87a.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "2a8353e0-c165-457d-b4fe-f3ea15ab8290",
+    "sku": "VTK025372",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025372/01-6591c8183599ece013d2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025372/03-3a4f3bf8a535b8e141f6.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025372/04-742e45582b0f78ffc4e5.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025372/01-6591c8183599ece013d2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025372/03-3a4f3bf8a535b8e141f6.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025372/04-742e45582b0f78ffc4e5.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "4a5ffebf-3c29-4806-8ba1-d205e846ee4c",
+    "sku": "VTK025375",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025375/01-63ea324938527b5a9b9d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025375/03-db8a2481b4ac8b9b91ec.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025375/04-35778b3a5634fa519514.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025375/01-63ea324938527b5a9b9d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025375/03-db8a2481b4ac8b9b91ec.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025375/04-35778b3a5634fa519514.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "de5c479e-034c-4c64-a332-9cc6a5774047",
+    "sku": "VTK025382",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025382/01-33a5507b9d97f1e6606d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025382/03-5912e319500c8f6b6f71.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025382/04-4904ba04f892b0606c57.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025382/01-33a5507b9d97f1e6606d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025382/03-5912e319500c8f6b6f71.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025382/04-4904ba04f892b0606c57.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "3dde7d2a-351a-42ea-ba57-d02e02aa7b2b",
+    "sku": "VTK025385",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025385/01-8706d0df27ad61c37c24.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025385/03-e2fdf74ad205e02e8c02.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025385/04-d089af1118720bd2015c.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025385/01-8706d0df27ad61c37c24.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025385/03-e2fdf74ad205e02e8c02.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025385/04-d089af1118720bd2015c.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "c457701c-3b15-4296-be57-007fbd96cd10",
+    "sku": "VTK025341",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025341/01-ad33a23cec3982dbaa60.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025341/03-889fb6d2c40e4b59e6d4.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025341/04-1608c263764197612fab.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025341/01-ad33a23cec3982dbaa60.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025341/03-889fb6d2c40e4b59e6d4.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025341/04-1608c263764197612fab.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "a9dddc9c-565d-4a54-a534-fe021804f5f6",
+    "sku": "VTK025348",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025348/01-1c3d33dbe721753e8205.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025348/03-4d60a91a74f98e7ebb52.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025348/04-5746d6bf6af748537e24.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025348/01-1c3d33dbe721753e8205.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025348/03-4d60a91a74f98e7ebb52.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025348/04-5746d6bf6af748537e24.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "543e56fd-b989-4292-af85-77b90cb08639",
+    "sku": "VTK025351",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025351/01-ff6623a7d2057cb1336f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025351/02-6cc48b5c679df7438b37.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025351/04-a55f0c032782c2f2cd70.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025351/01-ff6623a7d2057cb1336f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025351/02-6cc48b5c679df7438b37.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025351/04-a55f0c032782c2f2cd70.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "89c7e40d-dea6-4fc9-a76a-f4d33c4b111f",
+    "sku": "VTK025358",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025358/01-b3c1d6cb7dc57026c30c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025358/03-76760c6121c3dfe4cd9e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025358/04-d089af1118720bd2015c.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025358/01-b3c1d6cb7dc57026c30c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025358/03-76760c6121c3dfe4cd9e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025358/04-d089af1118720bd2015c.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "4c213390-80f6-47f9-9cec-78c10c220769",
+    "sku": "VTK025361",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025361/01-09ba40afd1f5112af22f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025361/02-0c5361ddd59509c1ae2c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025361/03-d8172faf12c963eae863.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025361/04-0bb0b1a78212a71eb549.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025361/01-09ba40afd1f5112af22f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025361/02-0c5361ddd59509c1ae2c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025361/03-d8172faf12c963eae863.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025361/04-0bb0b1a78212a71eb549.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "b79e6965-469d-4dcd-93d0-fd21ec158a06",
+    "sku": "VTK025373",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025373/01-c3d1fb7157db86ce3d0d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025373/02-5b17d99fc5538274c550.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025373/03-d9286249b1bb4927f900.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025373/04-5f101abda7d005025461.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025373/01-c3d1fb7157db86ce3d0d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025373/02-5b17d99fc5538274c550.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025373/03-d9286249b1bb4927f900.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025373/04-5f101abda7d005025461.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "a1d52ed2-056a-4744-8119-af5a7465c593",
+    "sku": "VTK025376",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025376/01-729b4919fffad25ca308.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025376/02-6684ecb90f578761e9dc.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025376/03-14d8b697a1a4b9465585.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025376/04-e09f8ee4d26238236bc4.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025376/01-729b4919fffad25ca308.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025376/02-6684ecb90f578761e9dc.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025376/03-14d8b697a1a4b9465585.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025376/04-e09f8ee4d26238236bc4.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "068fab06-866b-4b43-863a-f2873577b750",
+    "sku": "VTK025383",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025383/01-d26f30a041f9810dd228.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025383/02-769fce9e6c0e8a4d4d7a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025383/03-4c38083c3dd42ecfe960.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025383/04-6e57712d5fdeca824f56.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025383/01-d26f30a041f9810dd228.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025383/02-769fce9e6c0e8a4d4d7a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025383/03-4c38083c3dd42ecfe960.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025383/04-6e57712d5fdeca824f56.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "10048d14-aea8-431c-9d1e-cb0d3facbb8a",
+    "sku": "VTK025386",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025386/01-0553d0902c99608b3297.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025386/02-ec6a8d9a9ff097f006c5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025386/03-c9b604e3a13c34233e5f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025386/04-6359857fbd1fa0ddc87a.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025386/01-0553d0902c99608b3297.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025386/02-ec6a8d9a9ff097f006c5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025386/03-c9b604e3a13c34233e5f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025386/04-6359857fbd1fa0ddc87a.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "61843f8e-21e3-44a8-87e0-eb5ca8460692",
+    "sku": "VTK025352",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025352/01-8e18dafe74d464dc84ec.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025352/02-635f219e0f7dc0ec8695.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025352/03-631a07ff5e725b72d5f9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025352/04-d93b5d700e463cc78fcd.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025352/01-8e18dafe74d464dc84ec.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025352/02-635f219e0f7dc0ec8695.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025352/03-631a07ff5e725b72d5f9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025352/04-d93b5d700e463cc78fcd.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "bb15eed7-8939-4718-ab62-088875733c80",
+    "sku": "VTK025371",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025371/01-b0c7c82c0248b27762f0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025371/02-ea93b5284e127df49d0a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025371/03-e79ed0a7c97f14296225.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025371/04-0113ef60dae9dd7eefce.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025371/01-b0c7c82c0248b27762f0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025371/02-ea93b5284e127df49d0a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025371/03-e79ed0a7c97f14296225.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025371/04-0113ef60dae9dd7eefce.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "b067a659-6b40-494d-b8a0-d820751e8319",
+    "sku": "VTK025343",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025343/01-67c136eef88122649937.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025343/02-9db376c8426daa2ab6f5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025343/03-97c18bb2890bcaa87d5f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK012908/01-06ad626cf62be332f4c0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK012908/02-135f9f8d600a6441eab7.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025343/01-67c136eef88122649937.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025343/02-9db376c8426daa2ab6f5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025343/03-97c18bb2890bcaa87d5f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK012908/01-06ad626cf62be332f4c0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK012908/02-135f9f8d600a6441eab7.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "48c21c31-bebd-4f41-a185-bed1fe1f61ee",
+    "sku": "VTK025353",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025353/01-2fb493af216fcb02e55f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025353/02-aa787c899721a15b8cce.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025353/03-eb3fcc0456f52f4aec19.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025353/04-793c72ffa0061f7e9222.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025353/01-2fb493af216fcb02e55f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025353/02-aa787c899721a15b8cce.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025353/03-eb3fcc0456f52f4aec19.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025353/04-793c72ffa0061f7e9222.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "b8591d72-37c4-4039-9f42-b4ac9820902e",
+    "sku": "VTK025363",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025363/01-d5f7919106a232482e78.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025363/02-ae6e9357ac36f532125a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025363/03-ed6d0cffcc963e92df1c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025363/04-32ca7040247a84306f86.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025363/01-d5f7919106a232482e78.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025363/02-ae6e9357ac36f532125a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025363/03-ed6d0cffcc963e92df1c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025363/04-32ca7040247a84306f86.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "d48350c6-47a8-41a7-9d0a-87c8f11b01e8",
+    "sku": "VTK025378",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025378/01-f98f9be6aa111045a155.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025378/02-ed4c363357f4ad84779d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025378/03-5f257f7147594d1037ed.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025378/04-d93b5d700e463cc78fcd.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025378/01-f98f9be6aa111045a155.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025378/02-ed4c363357f4ad84779d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025378/03-5f257f7147594d1037ed.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025378/04-d93b5d700e463cc78fcd.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "90540dbd-20de-4630-8858-2798331ca8c2",
+    "sku": "VTK025354",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025354/01-fc6a672682717dab40bc.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025354/02-9783635f3c4a790e1ff9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025354/03-934b728d4da79a06ed34.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025354/04-f180e780940f8e6c626e.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025354/01-fc6a672682717dab40bc.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025354/02-9783635f3c4a790e1ff9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025354/03-934b728d4da79a06ed34.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025354/04-f180e780940f8e6c626e.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "2cb000e7-a947-4433-b1a8-092d550169b9",
+    "sku": "VTK025364",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025364/01-2f75ae423832984758c5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025364/02-e016f45beea39a157b6c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025364/03-f24430ca29e57b819aff.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025364/04-87b70e1536dc74c1bfcc.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025364/01-2f75ae423832984758c5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025364/02-e016f45beea39a157b6c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025364/03-f24430ca29e57b819aff.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025364/04-87b70e1536dc74c1bfcc.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "9cf5f7a9-85ec-456e-b39f-8cc190a63f94",
+    "sku": "VTK025369",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025369/01-43627f3bb314cd8944cb.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025369/02-d7c132b421fd6cc6eb96.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025369/03-2660ff0d1897b4abac56.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK012908/01-06ad626cf62be332f4c0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK012908/02-135f9f8d600a6441eab7.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025369/01-43627f3bb314cd8944cb.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025369/02-d7c132b421fd6cc6eb96.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025369/03-2660ff0d1897b4abac56.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK012908/01-06ad626cf62be332f4c0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/evolusom/VTK012908/02-135f9f8d600a6441eab7.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "d18d9bfb-f127-4577-9e5e-66c9dd0e32b6",
+    "sku": "VTK025379",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025379/01-eca9b73d0e9dab4b9958.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025379/02-af3036fb67ef3241be98.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025379/03-025fa03eb0ddecd41f2b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025379/04-793c72ffa0061f7e9222.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025379/01-eca9b73d0e9dab4b9958.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025379/02-af3036fb67ef3241be98.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025379/03-025fa03eb0ddecd41f2b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025379/04-793c72ffa0061f7e9222.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "83482498-1d77-4f99-a5d7-54773bb23150",
+    "sku": "VTK025389",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025389/01-37e25ebc88d05aedb048.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025389/02-d797fbca5ca32633b964.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025389/03-3cad3b3159e3c35ae7a2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025389/04-32ca7040247a84306f86.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025389/01-37e25ebc88d05aedb048.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025389/02-d797fbca5ca32633b964.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025389/03-3cad3b3159e3c35ae7a2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025389/04-32ca7040247a84306f86.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "be359f24-7d7c-49b7-a12a-416f25514054",
+    "sku": "VTK025345",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025345/01-7b1db2690233925e0cb3.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025345/02-f0270f1a0073cf408d37.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025345/03-1e59b7f6538c51c3ef73.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025345/04-0113ef60dae9dd7eefce.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025345/01-7b1db2690233925e0cb3.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025345/02-f0270f1a0073cf408d37.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025345/03-1e59b7f6538c51c3ef73.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025345/04-0113ef60dae9dd7eefce.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "883f61cb-9440-462b-be77-66b7cc5e2bc8",
+    "sku": "VTK025380",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025380/01-2070c4bfe1816b3844dc.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025380/02-b4bb7121cb822f2cfcdf.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025380/03-64b8f4241952fa525213.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025380/04-f180e780940f8e6c626e.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025380/01-2070c4bfe1816b3844dc.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025380/02-b4bb7121cb822f2cfcdf.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025380/03-64b8f4241952fa525213.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025380/04-f180e780940f8e6c626e.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "e9cfa99d-cf2b-48d5-8ece-503006b41f4b",
+    "sku": "VTK025390",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025390/01-cbcdc0f2cfb5c35c8270.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025390/02-1d76528ea208db5088eb.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025390/03-0270dc9a5d3dc90d5a94.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025390/04-87b70e1536dc74c1bfcc.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025390/01-cbcdc0f2cfb5c35c8270.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025390/02-1d76528ea208db5088eb.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025390/03-0270dc9a5d3dc90d5a94.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/giannini/VTK025390/04-87b70e1536dc74c1bfcc.jpg"
+    ],
+    "failures": []
+  }
+]

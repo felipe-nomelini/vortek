@@ -1,0 +1,372 @@
+{
+  "batchNumber": 14,
+  "batchId": "bkr1-kit-elgin-014",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "40607671-ead5-45d8-9549-62962063ea13",
+      "sku": "VTK025713",
+      "nome": "20 Baterias Litio Cr2016 Elgin (4 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 37.6,
+      "estoque": 19,
+      "suggestedPricePreview": 71.11,
+      "description": "20 Baterias Litio Cr2016 Elgin (4 Cart)\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 5 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2016\n\n- Tamanho: CR2016\n\n- Formato: Botão\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "CR2016"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "CR2016"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "20"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "3 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Lítio"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2391K4",
+        "componentSku": "VTK012146",
+        "componentGtin": "7897013538094",
+        "componentQuantity": 4,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "CR2016",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "20",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714408 está classificado incorretamente em MLB431681",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "c4358548-f1af-4ec2-bd6b-2e94976c5c63",
+      "sku": "VTK025714",
+      "nome": "20 Baterias Litio Cr2025 Elgin (4 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 22.88,
+      "estoque": 21,
+      "suggestedPricePreview": 52.94,
+      "description": "20 Baterias Litio Cr2025 Elgin (4 Cart)\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 5 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2025\n\n- Tamanho: CR2025\n\n- Formato: Botão\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "CR2025"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "CR2025"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "20"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "3 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Lítio"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2392K4",
+        "componentSku": "VTK012145",
+        "componentGtin": "7897013538100",
+        "componentQuantity": 4,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "CR2025",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "20",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714726 está classificado incorretamente em MLB431681",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "22c4be87-727e-4aad-95b5-c767068a9034",
+      "sku": "VTK025715",
+      "nome": "20 Baterias Litio Cr2032 Elgin (4 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 27.2,
+      "estoque": 25,
+      "suggestedPricePreview": 58.27,
+      "description": "20 Baterias Litio Cr2032 Elgin (4 Cart)\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 5 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2032\n\n- Tamanho: CR2032\n\n- Formato: Botão\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "20"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "3 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Lítio"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2393K4",
+        "componentSku": "VTK012047",
+        "componentGtin": "7897013538117",
+        "componentQuantity": 4,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "CR2032",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "20",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638211 está classificado incorretamente em MLB431681",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "b6409580-f203-4467-af8e-5699d724a177",
+      "sku": "VTK025718",
+      "nome": "20 Pilhas Alcalinas AA Elgin (10 Cartelas C/2 Un)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 40,
+      "estoque": 8,
+      "suggestedPricePreview": 74.07,
+      "description": "20 Pilhas Alcalinas AA Elgin (10 Cartelas C/2 Un)\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 2 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AA\n\n- Tamanho: AA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "20"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2382CX10",
+        "componentSku": "VTK012114",
+        "componentGtin": "7897013534188",
+        "componentQuantity": 10,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "AA",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "20",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4857626311 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "a69ceed9-4f04-4120-83eb-c1fdf666abb7",
+      "sku": "VTK025719",
+      "nome": "20 Pilhas Alcalinas Aa Sm-2 Elgin (10 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 40,
+      "estoque": 8,
+      "suggestedPricePreview": 74.07,
+      "description": "20 Pilhas Alcalinas Aa Sm-2 Elgin (10 Cart)\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 2 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AA\n\n- Tamanho: AA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "20"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2382K10",
+        "componentSku": "VTK012114",
+        "componentGtin": "7897013534188",
+        "componentQuantity": 10,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "AA",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "20",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4857626311 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

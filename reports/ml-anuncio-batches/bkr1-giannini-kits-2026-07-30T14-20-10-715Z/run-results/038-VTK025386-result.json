@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-20-10-715Z/run-results/038-VTK025386-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-038-VTK025386",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "10048d14-aea8-431c-9d1e-cb0d3facbb8a",
+      "sku": "VTK025386",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4970799933",
+        "title": "3 Jogos De Corda P/violão Nylon Cristal/ouro Giannini",
+        "price": 145.7,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4970799933-3-jogos-de-corda-pviolo-nylon-cristalouro-giannini-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 123.50 → R$ 145.70."
+      ]
+    }
+  ],
+  "failed": []
+}

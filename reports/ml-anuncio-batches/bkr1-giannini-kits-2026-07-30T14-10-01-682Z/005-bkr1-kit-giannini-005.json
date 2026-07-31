@@ -1,0 +1,322 @@
+{
+  "batchNumber": 5,
+  "batchId": "bkr1-kit-giannini-005",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "2cb000e7-a947-4433-b1a8-092d550169b9",
+      "sku": "VTK025364",
+      "nome": "2 Jogos de Corda P/Violino Aluminio Médio GEAVVA Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 62.2,
+      "estoque": 2,
+      "suggestedPricePreview": 101.48,
+      "description": "2 Jogos de Corda P/Violino Aluminio Médio GEAVVA Giannini\n\nKit com 2 jogos de cordas originais Giannini, modelo GEAVVA.\n\nIndicado para Violino. Cada jogo possui 4 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 jogos de cordas Giannini GEAVVA\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GEAVVA\n\n- Instrumento recomendado: Violino\n\n- Quantidade de jogos: 2\n\n- Cordas por jogo: 4\n\n- Linha: Arco\n\n- Material principal: Metal\n\n- Tensão: Média\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GEAVVA"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violino"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "4"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Arco"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Média"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1757K2",
+        "componentSku": "VTK001541",
+        "componentGtin": "7898159187207",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149328918 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "7701b649-b6d0-4062-9b66-f88c75888dcf",
+      "sku": "VTK025366",
+      "nome": "3 Jogos de Corda P/Cavaquinho  Cobra Niquel GESCP Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 46.14,
+      "estoque": 3,
+      "suggestedPricePreview": 81.65,
+      "description": "3 Jogos de Corda P/Cavaquinho  Cobra Niquel GESCP Giannini\n\nKit com 3 jogos de cordas originais Giannini, modelo GESCP.\n\nIndicado para Cavaquinho. Cada jogo possui 4 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 jogos de cordas Giannini GESCP\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GESCP\n\n- Instrumento recomendado: Cavaquinho\n\n- Quantidade de jogos: 3\n\n- Cordas por jogo: 4\n\n- Linha: Cobra\n\n- Material principal: Metal\n\n- Tensão: Alta\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GESCP"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Cavaquinho"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "3"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "4"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Cobra"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Alta"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1751K3",
+        "componentSku": "VTK001488",
+        "componentGtin": "7898159186996",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7160228674 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "9cf5f7a9-85ec-456e-b39f-8cc190a63f94",
+      "sku": "VTK025369",
+      "nome": "3 Jogos de Corda P/Guitarra Niquel 011 GEEGST.11 Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 75.6,
+      "estoque": 8,
+      "suggestedPricePreview": 118.02,
+      "description": "3 Jogos de Corda P/Guitarra Niquel 011 GEEGST.11 Giannini\n\nKit com 3 jogos de cordas originais Giannini, modelo GEEGST.11.\n\nIndicado para Guitarra elétrica. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 jogos de cordas Giannini GEEGST.11\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GEEGST.11\n\n- Instrumento recomendado: Guitarra elétrica\n\n- Quantidade de jogos: 3\n\n- Cordas por jogo: 6\n\n- Linha: Electric\n\n- Material principal: Metal\n\n- Tensão: Média\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GEEGST.11"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "3"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Electric"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Média"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1826K3",
+        "componentSku": "VTK012908",
+        "componentGtin": "7898159187115",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7239018872 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "bb15eed7-8939-4718-ab62-088875733c80",
+      "sku": "VTK025371",
+      "nome": "3 Jogos de Corda P/Guitarra Niquel 09 GEEGST.9 Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 86.1,
+      "estoque": 3,
+      "suggestedPricePreview": 130.99,
+      "description": "3 Jogos de Corda P/Guitarra Niquel 09 GEEGST.9 Giannini\n\nKit com 3 jogos de cordas originais Giannini, modelo GEEGST.9.\n\nIndicado para Guitarra elétrica. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 jogos de cordas Giannini GEEGST.9\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GEEGST.9\n\n- Instrumento recomendado: Guitarra elétrica\n\n- Quantidade de jogos: 3\n\n- Cordas por jogo: 6\n\n- Linha: Electric\n\n- Material principal: Metal\n\n- Tensão: Leve\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GEEGST.9"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "3"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Electric"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Leve"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1831K3",
+        "componentSku": "VTK001637",
+        "componentGtin": "7898159187153",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149328572 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "2a8353e0-c165-457d-b4fe-f3ea15ab8290",
+      "sku": "VTK025372",
+      "nome": "3 Jogos de Corda P/Viola Cobre Prateado Leve GESVL Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 80.16,
+      "estoque": 26,
+      "suggestedPricePreview": 123.65,
+      "description": "3 Jogos de Corda P/Viola Cobre Prateado Leve GESVL Giannini\n\nKit com 3 jogos de cordas originais Giannini, modelo GESVL.\n\nIndicado para Viola Caipira. Cada jogo possui 10 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 jogos de cordas Giannini GESVL\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GESVL\n\n- Instrumento recomendado: Viola Caipira\n\n- Quantidade de jogos: 3\n\n- Cordas por jogo: 10\n\n- Linha: Cobra\n\n- Material principal: Metal\n\n- Tensão: Leve\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GESVL"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Viola Caipira"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "3"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "10"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Cobra"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Leve"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1748K3",
+        "componentSku": "VTK000019",
+        "componentGtin": "7898159186927",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4880581499 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

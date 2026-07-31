@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-29-23-389Z/run-results/109-VTK025850-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-109-VTK025850",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "2cd40d29-832b-4ec7-be6c-ff8d74a09522",
+      "sku": "VTK025850",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7297393538",
+        "title": "8 Pilhas Recarregável Aa 2500 Mah Elgin (4 Cart)",
+        "price": 166.56,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7297393538-8-pilhas-recarregavel-aa-2500-mah-elgin-4-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 145.19 → R$ 166.56."
+      ]
+    }
+  ],
+  "failed": []
+}

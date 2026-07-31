@@ -1,0 +1,340 @@
+{
+  "batchNumber": 10,
+  "batchId": "bkr1-kit-duracell-010",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "bfc623ce-a8b3-4a32-ba71-6a7567b955e4",
+      "sku": "VTK025497",
+      "nome": "18 Baterias Auditiva 312 Duracell (3 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 75,
+      "estoque": 33,
+      "suggestedPricePreview": 117.28,
+      "description": "18 Baterias Auditiva 312 Duracell (3 Cart)\n\nKit original Duracell com 18 pilhas ou baterias, distribuídas em 3 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 embalagens com 6 unidade(s) cada\n\n- Total: 18 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: 312\n\n- Tamanho: 312\n\n- Formato: Botão\n\n- Quantidade total: 18 unidades\n\n- Recarregável: Não\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "312"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "312"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "18"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3870K3",
+        "componentSku": "VTK003105",
+        "componentGtin": "041333030203",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "312",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "18",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149405082 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "5fcc0144-894b-49c2-af54-49fcba8b23f3",
+      "sku": "VTK025498",
+      "nome": "18 Baterias Auditivas 10 Duracell (3 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 75,
+      "estoque": 28,
+      "suggestedPricePreview": 117.28,
+      "description": "18 Baterias Auditivas 10 Duracell (3 Cart. c/ 6 Un. Cada)\n\nKit original Duracell com 18 pilhas ou baterias, distribuídas em 3 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 embalagens com 6 unidade(s) cada\n\n- Total: 18 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: 10\n\n- Tamanho: 10\n\n- Formato: Botão\n\n- Quantidade total: 18 unidades\n\n- Recarregável: Não\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "10"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "10"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "18"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3865K3",
+        "componentSku": "VTK000314",
+        "componentGtin": "041333030180",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "10",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "18",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4857622855 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "fdd05020-df62-4887-93cc-cce65e6e4182",
+      "sku": "VTK025499",
+      "nome": "18 Baterias Auditivas 13 Duracell (3 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 75,
+      "estoque": 33,
+      "suggestedPricePreview": 117.28,
+      "description": "18 Baterias Auditivas 13 Duracell (3 Cart. c/ 6 Un. Cada)\n\nKit original Duracell com 18 pilhas ou baterias, distribuídas em 3 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 embalagens com 6 unidade(s) cada\n\n- Total: 18 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: 13\n\n- Tamanho: 13\n\n- Formato: Botão\n\n- Quantidade total: 18 unidades\n\n- Recarregável: Não\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "13"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "13"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "18"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3866K3",
+        "componentSku": "VTK003174",
+        "componentGtin": "041333030197",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "13",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "18",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111711676 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "5f7b3831-b8ba-4fe8-801b-61590c5e2d88",
+      "sku": "VTK025500",
+      "nome": "18 Baterias Auditivas 675 Duracell (3 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 75,
+      "estoque": 33,
+      "suggestedPricePreview": 117.28,
+      "description": "18 Baterias Auditivas 675 Duracell (3 Cart. c/ 6 Un. Cada)\n\nKit original Duracell com 18 pilhas ou baterias, distribuídas em 3 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 embalagens com 6 unidade(s) cada\n\n- Total: 18 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: 675\n\n- Tamanho: 675\n\n- Formato: Botão\n\n- Quantidade total: 18 unidades\n\n- Recarregável: Não\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "675"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "675"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "18"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3871K3",
+        "componentSku": "VTK003152",
+        "componentGtin": "041333030210",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "675",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "18",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4857635119 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "b133e56c-56f6-45bb-99a7-67e0e0116dcf",
+      "sku": "VTK025501",
+      "nome": "18 Pilhas Alcalinas Aa Duracell (9 Cart. c/ 2 Un. Cada)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 98.1,
+      "estoque": 11,
+      "suggestedPricePreview": 145.8,
+      "description": "18 Pilhas Alcalinas Aa Duracell (9 Cart. c/ 2 Un. Cada)\n\nKit original Duracell com 18 pilhas ou baterias, distribuídas em 9 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 9 embalagens com 2 unidade(s) cada\n\n- Total: 18 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: MN1500\n\n- Tamanho: AA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 18 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "MN1500"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "18"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3855K9",
+        "componentSku": "VTK003798",
+        "componentGtin": "041333001005",
+        "componentQuantity": 9,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "MN1500",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "18",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4857637395 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

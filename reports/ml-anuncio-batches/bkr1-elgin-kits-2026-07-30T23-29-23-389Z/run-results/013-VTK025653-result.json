@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-29-23-389Z/run-results/013-VTK025653-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-013-VTK025653",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "9573a6e9-cc97-460c-9a6a-9da368675f09",
+      "sku": "VTK025653",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4972421181",
+        "title": "100 Baterias Alcalinas Lr621 Ag1 Elgin (10 Cart)",
+        "price": 100.19,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4972421181-100-baterias-alcalinas-lr621-ag1-elgin-10-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 81.82 → R$ 100.19."
+      ]
+    }
+  ],
+  "failed": []
+}

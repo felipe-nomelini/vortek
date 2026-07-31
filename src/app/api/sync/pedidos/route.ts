@@ -16,7 +16,12 @@ import {
   parseMlOrderShippingMode,
   resolveMlOrderSituation,
 } from '@/lib/ml/order-shipping-mode';
-import { parseMlVirtualKitOrderGroup } from '@/lib/ml/virtual-kit-orders';
+import {
+  allocateMlShipmentCost,
+  filterPackOrdersBySeller,
+  parseMlPackOrderGroup,
+  parseMlVirtualKitOrderGroup,
+} from '@/lib/ml/virtual-kit-orders';
 import { getSkuLookupVariants } from '@/lib/sku';
 import { alertClaimOpened, alertMlLabelReleased, alertNewSale } from '@/services/whatsapp-alerts';
 import {
@@ -1117,30 +1122,65 @@ async function processOrder(params: {
           .find(Boolean) || '',
       ).trim() || null
     : null;
-  let virtualKitOrderIds: string[] = [];
-  let virtualKitPrimaryOrderId: string | null = null;
+  let operationalOrderIds: string[] = [];
+  let operationalOrderDetails: any[] = [];
+  let detectedBundleType: 'virtual_kit' | 'cart' | null = null;
 
   if (isVirtualKit) {
     const bundlePayload = await fetchML<unknown>(
       `/orders/${encodeURIComponent(String(o.id))}/bundle`,
     ).catch(() => null);
     const virtualKitGroup = parseMlVirtualKitOrderGroup(bundlePayload, String(o.id));
-    virtualKitOrderIds = virtualKitGroup?.orderIds || [];
-    virtualKitPrimaryOrderId = virtualKitOrderIds.length > 0
-      ? [...virtualKitOrderIds].sort((a, b) => a.localeCompare(b))[0]
-      : null;
+    operationalOrderIds = virtualKitGroup?.orderIds || [];
+    if (operationalOrderIds.length > 1) {
+      detectedBundleType = 'virtual_kit';
+      operationalOrderDetails = (
+        await Promise.all(operationalOrderIds.map(async (orderId) => (
+          orderId === String(o.id)
+            ? sourceOrder
+            : fetchML<any>(`/orders/${encodeURIComponent(orderId)}`).catch(() => null)
+        )))
+      ).filter(Boolean);
+    }
+  } else if (tags.includes('pack_order') && mlPackId) {
+    const packPayload = await fetchML<unknown>(
+      `/packs/${encodeURIComponent(mlPackId)}`,
+    ).catch(() => null);
+    const packGroup = parseMlPackOrderGroup(packPayload, String(o.id));
+    if (packGroup) {
+      const packOrderDetails = await Promise.all(packGroup.orderIds.map(async (orderId) => (
+        orderId === String(o.id)
+          ? sourceOrder
+          : fetchML<any>(`/orders/${encodeURIComponent(orderId)}`).catch(() => null)
+      )));
+      operationalOrderDetails = filterPackOrdersBySeller({
+        currentOrderId: String(o.id),
+        currentSellerId: sourceOrder?.seller?.id || o?.seller?.id,
+        orderDetails: packOrderDetails,
+      });
+      operationalOrderIds = operationalOrderDetails
+        .map((order) => String(order.id || '').trim())
+        .filter(Boolean);
+      if (operationalOrderIds.length > 1) {
+        detectedBundleType = 'cart';
+      }
+    }
   }
 
-  const bundleType = isVirtualKit
-    ? 'virtual_kit'
+  const existingBundleType = (
+    (existingPedido as any)?.ml_bundle_type === 'virtual_kit'
+    || (existingPedido as any)?.ml_bundle_type === 'cart'
+  )
+    ? (existingPedido as any).ml_bundle_type as 'virtual_kit' | 'cart'
     : null;
-  const bundleParentItemId = isVirtualKit
+  const bundleType = detectedBundleType || existingBundleType;
+  const bundleParentItemId = bundleType === 'virtual_kit'
     ? parentItemId || String((existingPedido as any)?.ml_bundle_parent_item_id || '').trim() || null
     : null;
-  const bundlePrimary = isVirtualKit
-    ? virtualKitPrimaryOrderId
-      ? virtualKitPrimaryOrderId === String(o.id)
-      : (existingPedido as any)?.ml_bundle_primary ?? null
+  // O registro atual permanece visível até todas as orders do pack serem salvas.
+  // Após o upsert, o menor order_id já persistido vira o registro operacional.
+  const bundlePrimary = bundleType
+    ? (existingPedido as any)?.ml_bundle_primary ?? true
     : null;
   await registrarEventoNfAuditoria({
     pedidoId: existingPedidoId,
@@ -1240,6 +1280,16 @@ async function processOrder(params: {
         costsFetch.result.data,
         sourceOrder?.seller?.id || o?.seller?.id,
       );
+      if (
+        sellerShippingCost !== null
+        && operationalOrderDetails.length > 1
+      ) {
+        sellerShippingCost = allocateMlShipmentCost({
+          sellerShippingCost,
+          currentOrderId: String(o.id),
+          orders: operationalOrderDetails,
+        });
+      }
     } else if (costsFetch.result.error?.category === 'auth_fatal') {
       authFailures++;
       authFatal = true;
@@ -1443,31 +1493,60 @@ async function processOrder(params: {
 
   if (
     !error
-    && virtualKitOrderIds.length > 1
-    && virtualKitPrimaryOrderId
+    && bundleType
+    && operationalOrderIds.length > 1
   ) {
+    const { data: persistedGroupRows } = await serviceClient
+      .from('pedidos')
+      .select('ml_order_id')
+      .in('ml_order_id', operationalOrderIds);
+    const persistedOrderIds = (persistedGroupRows || [])
+      .map((row: any) => String(row.ml_order_id || '').trim())
+      .filter(Boolean)
+      .sort((a, b) => a.localeCompare(b));
+    const persistedPrimaryOrderId = persistedOrderIds[0] || String(o.id);
+
     await serviceClient
       .from('pedidos')
       .update({
-        ml_bundle_type: 'virtual_kit',
+        ml_bundle_type: bundleType,
         ml_bundle_parent_item_id: bundleParentItemId,
         ml_bundle_primary: false,
       } as any)
-      .in('ml_order_id', virtualKitOrderIds);
+      .in('ml_order_id', persistedOrderIds);
     await serviceClient
       .from('pedidos')
       .update({ ml_bundle_primary: true } as any)
-      .eq('ml_order_id', virtualKitPrimaryOrderId);
+      .eq('ml_order_id', persistedPrimaryOrderId);
   }
 
-  if (!error && upsertedPedido?.id && !existingPedidoId) {
+  const expectedOperationalPrimaryOrderId = operationalOrderIds.length > 1
+    ? [...operationalOrderIds].sort((a, b) => a.localeCompare(b))[0]
+    : null;
+  if (
+    !error
+    && upsertedPedido?.id
+    && !existingPedidoId
+    && (
+      !expectedOperationalPrimaryOrderId
+      || expectedOperationalPrimaryOrderId === String(o.id)
+    )
+  ) {
+    const operationalTotal = operationalOrderDetails.length > 1
+      ? operationalOrderDetails.reduce(
+          (sum, order) => sum + Number(order?.total_amount || 0),
+          0,
+        )
+      : Number(sourceOrder?.total_amount || o.total_amount || 0);
     void alertNewSale({
       id: String(upsertedPedido.id),
-      numero: sourceOrder?.id || o.id,
+      numero: mlPackId && operationalOrderIds.length > 1
+        ? Number(mlPackId)
+        : sourceOrder?.id || o.id,
       ml_order_id: String(o.id),
       ml_pack_id: mlPackId,
       contato_nome: contatoNome,
-      total: Number(sourceOrder?.total_amount || o.total_amount || 0),
+      total: Number(operationalTotal.toFixed(2)),
     });
   }
 

@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-20-10-715Z/run-results/003-VTK025343-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-003-VTK025343",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "b067a659-6b40-494d-b8a0-d820751e8319",
+      "sku": "VTK025343",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4970305855",
+        "title": "2 Jogos De Corda P/guitarra Niquel 011 Geegst.11 Giannini",
+        "price": 105.22,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4970305855-2-jogos-de-corda-pguitarra-niquel-011-geegst11-giannini-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 88.55 → R$ 105.22."
+      ]
+    }
+  ],
+  "failed": []
+}

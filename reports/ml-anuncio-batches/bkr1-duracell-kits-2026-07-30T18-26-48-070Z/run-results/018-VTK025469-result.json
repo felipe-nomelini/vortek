@@ -1,0 +1,37 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-duracell-kits-2026-07-30T18-26-48-070Z/run-results/018-VTK025469-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-018-VTK025469",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "dd10ef04-7b57-4df1-a641-68753cd0af9f",
+      "sku": "VTK025469",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7296000354",
+        "title": "12 Baterias Cr2032 Duracell (6 Cart. C/ 2 Un. Cada)",
+        "price": 203.02,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7296000354-12-baterias-cr2032-duracell-6-cart-c-2-un-cada-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "GTIN unitário do componente usado para este kit de itens idênticos.",
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 180.25 → R$ 203.02."
+      ]
+    }
+  ],
+  "failed": []
+}

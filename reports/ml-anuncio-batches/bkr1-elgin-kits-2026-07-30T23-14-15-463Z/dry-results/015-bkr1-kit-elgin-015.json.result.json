@@ -1,0 +1,475 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-14-15-463Z/015-bkr1-kit-elgin-015.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "bkr1-kit-elgin-015",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "c7a519fd-41c9-41a1-938b-2fcc3e52b6bd",
+      "sku": "VTK025720",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 72.73,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "AA"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "20"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897013534195"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "name": "Forma",
+          "value_id": "",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "name": "Voltagem nominal",
+          "value_id": "",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "name": "Composição",
+          "value_id": "",
+          "value_name": "Alcalina"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "20 Pilhas Alcalinas Aa Sm-4 Elgin (5 Cart)\n\nVISÃO GERAL\n20 Pilhas Alcalinas Aa Sm-4 Elgin (5 Cart)\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 5 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 5 embalagens com 4 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AA\n\n- Tamanho: AA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: AA\n• Unidades por kit: 20\n• É recarregável: Não\n• Tamanho da pilha: AA\n• Forma: Cilíndrica\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Voltagem nominal: 1,5 V\n• Composição: Alcalina\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.19\n• SKU: VTK025720\n\nEMBALAGEM\n• Dimensões informadas: 4 × 9 × 13 cm\n• Peso bruto informado: 0,5 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ca2179ee-3d00-4ca2-a838-125cb04748d0",
+      "sku": "VTK025721",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 80.52,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "AAA"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "20"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897013534201"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "",
+          "value_name": "AAA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "name": "Forma",
+          "value_id": "",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "name": "Voltagem nominal",
+          "value_id": "",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "name": "Composição",
+          "value_id": "",
+          "value_name": "Alcalina"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "20 Pilhas Alcalinas AAA Elgin (10 Cartelas C/2 Un)\n\nVISÃO GERAL\n20 Pilhas Alcalinas AAA Elgin (10 Cartelas C/2 Un)\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 2 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AAA\n\n- Tamanho: AAA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: AAA\n• Unidades por kit: 20\n• É recarregável: Não\n• Tamanho da pilha: AAA\n• Forma: Cilíndrica\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Voltagem nominal: 1,5 V\n• Composição: Alcalina\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.19\n• SKU: VTK025721\n\nEMBALAGEM\n• Dimensões informadas: 7 × 9 × 14 cm\n• Peso bruto informado: 0,32 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f43edc59-34c6-43c0-b489-49021f4487e0",
+      "sku": "VTK025722",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 80.52,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "AAA"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "20"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897013534201"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "",
+          "value_name": "AAA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "name": "Forma",
+          "value_id": "",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "name": "Voltagem nominal",
+          "value_id": "",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "name": "Composição",
+          "value_id": "",
+          "value_name": "Alcalina"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "20 Pilhas Alcalinas Aaa Sm-2 Elgin (10 Cart)\n\nVISÃO GERAL\n20 Pilhas Alcalinas Aaa Sm-2 Elgin (10 Cart)\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 2 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AAA\n\n- Tamanho: AAA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: AAA\n• Unidades por kit: 20\n• É recarregável: Não\n• Tamanho da pilha: AAA\n• Forma: Cilíndrica\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Voltagem nominal: 1,5 V\n• Composição: Alcalina\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.19\n• SKU: VTK025722\n\nEMBALAGEM\n• Dimensões informadas: 7 × 9 × 14 cm\n• Peso bruto informado: 0,5 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "5aaac372-3cb4-4864-861b-f86b6f4fe4fa",
+      "sku": "VTK025725",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 179.01,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "AAA 900mAh"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "20"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897013536045"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "",
+          "value_name": "AAA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "name": "Forma",
+          "value_id": "",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "name": "Voltagem nominal",
+          "value_id": "",
+          "value_name": "1,2 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "name": "Composição",
+          "value_id": "",
+          "value_name": "Ni-MH"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "20 Pilhas Recarregável AAA 900mah Elgin 2 Unidades (10 Cart)\n\nVISÃO GERAL\n20 Pilhas Recarregável AAA 900mah Elgin 2 Unidades (10 Cart)\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 2 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AAA 900mAh\n\n- Tamanho: AAA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Sim\n\n- Voltagem nominal: 1,2 V\n\n- Composição: Ni-MH\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: AAA 900mAh\n• Unidades por kit: 20\n• É recarregável: Sim\n• Tamanho da pilha: AAA\n• Forma: Cilíndrica\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Voltagem nominal: 1,2 V\n• Composição: Ni-MH\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8507.50.20\n• SKU: VTK025725\n\nEMBALAGEM\n• Dimensões informadas: 12 × 0.9 × 2 cm\n• Peso bruto informado: 0,03 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b71bd41e-b6a8-464c-a3b1-b8ea3285d3b3",
+      "sku": "VTK025726",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 386.17,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "200"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "name": "Forma",
+          "value_id": "",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "name": "Voltagem nominal",
+          "value_id": "",
+          "value_name": "3 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "name": "Composição",
+          "value_id": "",
+          "value_name": "Lítio"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "200 Baterias Litio Cr2032 Elgin (40 Cart)\n\nVISÃO GERAL\n200 Baterias Litio Cr2032 Elgin (40 Cart)\n\nKit original Elgin com 200 pilhas ou baterias, distribuídas em 40 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 40 embalagens com 5 unidade(s) cada\n\n- Total: 200 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2032\n\n- Tamanho: CR2032\n\n- Formato: Botão\n\n- Quantidade total: 200 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2032\n• Unidades por kit: 200\n• É recarregável: Não\n• Tamanho da pilha: CR2032\n• Forma: Botão\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Voltagem nominal: 3 V\n• Composição: Lítio\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025726\n\nEMBALAGEM\n• Dimensões informadas: 19 × 6 × 12 cm\n• Peso bruto informado: 0,83 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

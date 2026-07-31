@@ -1,0 +1,322 @@
+{
+  "batchNumber": 7,
+  "batchId": "bkr1-kit-giannini-007",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "d48350c6-47a8-41a7-9d0a-87c8f11b01e8",
+      "sku": "VTK025378",
+      "nome": "3 Jogos de Corda P/Violão Bronze 85/15 011 GEEFLK Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 71.1,
+      "estoque": 10,
+      "suggestedPricePreview": 112.47,
+      "description": "3 Jogos de Corda P/Violão Bronze 85/15 011 GEEFLK Giannini\n\nKit com 3 jogos de cordas originais Giannini, modelo GEEFLK.\n\nIndicado para Violão acústico. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 jogos de cordas Giannini GEEFLK\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GEEFLK\n\n- Instrumento recomendado: Violão acústico\n\n- Quantidade de jogos: 3\n\n- Cordas por jogo: 6\n\n- Linha: Cobra\n\n- Material principal: Metal\n\n- Tensão: Média\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GEEFLK"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "3"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Cobra"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Média"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1830K3",
+        "componentSku": "VTK001438",
+        "componentGtin": "7890443002395",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4882855471 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "d18d9bfb-f127-4577-9e5e-66c9dd0e32b6",
+      "sku": "VTK025379",
+      "nome": "3 Jogos de Corda P/Violão Bronze 85/15 09 GEEWAK Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 71.1,
+      "estoque": 16,
+      "suggestedPricePreview": 112.47,
+      "description": "3 Jogos de Corda P/Violão Bronze 85/15 09 GEEWAK Giannini\n\nKit com 3 jogos de cordas originais Giannini, modelo GEEWAK.\n\nIndicado para Violão acústico. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 jogos de cordas Giannini GEEWAK\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GEEWAK\n\n- Instrumento recomendado: Violão acústico\n\n- Quantidade de jogos: 3\n\n- Cordas por jogo: 6\n\n- Linha: Cobra\n\n- Material principal: Metal\n\n- Tensão: Leve\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GEEWAK"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "3"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Cobra"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Leve"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1752K3",
+        "componentSku": "VTK001491",
+        "componentGtin": "7898159187023",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Família Giannini validada em MLB278076; componente sem anúncio unitário",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "883f61cb-9440-462b-be77-66b7cc5e2bc8",
+      "sku": "VTK025380",
+      "nome": "3 Jogos de Corda P/Violão Canário Aço C/Bolinha  Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 47.97,
+      "estoque": 22,
+      "suggestedPricePreview": 83.91,
+      "description": "3 Jogos de Corda P/Violão Canário Aço C/Bolinha  Giannini\n\nKit com 3 jogos de cordas originais Giannini, modelo GESWB.\n\nIndicado para Violão acústico. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 jogos de cordas Giannini GESWB\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GESWB\n\n- Instrumento recomendado: Violão acústico\n\n- Quantidade de jogos: 3\n\n- Cordas por jogo: 6\n\n- Linha: Canário\n\n- Material principal: Metal\n\n- Tensão: Média\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GESWB"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "3"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Canário"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Média"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1822K3",
+        "componentSku": "VTK001497",
+        "componentGtin": "7898159186965",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149372204 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "de5c479e-034c-4c64-a332-9cc6a5774047",
+      "sku": "VTK025382",
+      "nome": "3 Jogos de Corda P/Violão Nylon 65/35 Prateado Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 78.66,
+      "estoque": 4,
+      "suggestedPricePreview": 121.8,
+      "description": "3 Jogos de Corda P/Violão Nylon 65/35 Prateado Giannini\n\nKit com 3 jogos de cordas originais Giannini, modelo GENWPL.\n\nIndicado para Violão acústico. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 jogos de cordas Giannini GENWPL\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GENWPL\n\n- Instrumento recomendado: Violão acústico\n\n- Quantidade de jogos: 3\n\n- Cordas por jogo: 6\n\n- Linha: Clássico\n\n- Material principal: Náilon\n\n- Tensão: Leve\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GENWPL"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "3"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Clássico"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Náilon"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Leve"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1746K3",
+        "componentSku": "VTK001644",
+        "componentGtin": "7898159186880",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4880581467 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "068fab06-866b-4b43-863a-f2873577b750",
+      "sku": "VTK025383",
+      "nome": "3 Jogos de Corda P/Violão Nylon 65/35 Prateado Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 98.31,
+      "estoque": 3,
+      "suggestedPricePreview": 146.06,
+      "description": "3 Jogos de Corda P/Violão Nylon 65/35 Prateado Giannini\n\nKit com 3 jogos de cordas originais Giannini, modelo GENWPM.\n\nIndicado para Violão acústico. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 jogos de cordas Giannini GENWPM\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GENWPM\n\n- Instrumento recomendado: Violão acústico\n\n- Quantidade de jogos: 3\n\n- Cordas por jogo: 6\n\n- Linha: Clássico\n\n- Material principal: Náilon\n\n- Tensão: Média\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GENWPM"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "3"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Clássico"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Náilon"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Média"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1833K3",
+        "componentSku": "VTK001642",
+        "componentGtin": "7898159186897",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111664322 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

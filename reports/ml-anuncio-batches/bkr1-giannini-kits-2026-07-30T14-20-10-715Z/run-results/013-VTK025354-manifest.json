@@ -1,0 +1,72 @@
+{
+  "batchNumber": 13,
+  "batchId": "bkr1-live-013-VTK025354",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "90540dbd-20de-4630-8858-2798331ca8c2",
+      "sku": "VTK025354",
+      "nome": "2 Jogos de Corda P/Violão Canário Aço C/Bolinha Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 31.98,
+      "estoque": 33,
+      "suggestedPricePreview": 64.17,
+      "description": "2 Jogos de Corda P/Violão Canário Aço C/Bolinha Giannini\n\nKit com 2 jogos de cordas originais Giannini, modelo GESWB.\n\nIndicado para Violão acústico. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 jogos de cordas Giannini GESWB\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GESWB\n\n- Instrumento recomendado: Violão acústico\n\n- Quantidade de jogos: 2\n\n- Cordas por jogo: 6\n\n- Linha: Canário\n\n- Material principal: Metal\n\n- Tensão: Média\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GESWB"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Canário"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Média"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1822K2",
+        "componentSku": "VTK001497",
+        "componentGtin": "7898159186965",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149372204 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "003-bkr1-kit-giannini-003.json",
+      "sourceSequence": 13
+    }
+  ]
+}

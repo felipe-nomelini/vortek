@@ -1,0 +1,475 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-14-15-463Z/013-bkr1-kit-elgin-013.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "bkr1-kit-elgin-013",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "626fe008-d980-4c6e-baca-f9c075ab4c7f",
+      "sku": "VTK025708",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 37.14,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "LR621/AG1"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "20"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897013574009"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "",
+          "value_name": "LR621/AG1"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "name": "Forma",
+          "value_id": "",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "name": "Voltagem nominal",
+          "value_id": "",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "name": "Composição",
+          "value_id": "",
+          "value_name": "Alcalina"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "20 Baterias Alcalinas Lr621 Ag1 Elgin (2  Cart)\n\nVISÃO GERAL\n20 Baterias Alcalinas Lr621 Ag1 Elgin (2 Cart)\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 2 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 embalagens com 10 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: LR621/AG1\n\n- Tamanho: LR621/AG1\n\n- Formato: Botão\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: LR621/AG1\n• Unidades por kit: 20\n• É recarregável: Não\n• Tamanho da pilha: LR621/AG1\n• Forma: Botão\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Voltagem nominal: 1,5 V\n• Composição: Alcalina\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.39\n• SKU: VTK025708\n\nEMBALAGEM\n• Dimensões informadas: 18 × 5 × 2 cm\n• Peso bruto informado: 0,02 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f4223bc6-fb6a-4d60-a15f-69509efbafcb",
+      "sku": "VTK025709",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 37.92,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "LR626/AG4"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "20"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897013574016"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "",
+          "value_name": "LR626/AG4"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "name": "Forma",
+          "value_id": "",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "name": "Voltagem nominal",
+          "value_id": "",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "name": "Composição",
+          "value_id": "",
+          "value_name": "Alcalina"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "20 Baterias Alcalinas Lr626 Ag4 Elgin (2  Cart)\n\nVISÃO GERAL\n20 Baterias Alcalinas Lr626 Ag4 Elgin (2 Cart)\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 2 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 embalagens com 10 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: LR626/AG4\n\n- Tamanho: LR626/AG4\n\n- Formato: Botão\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: LR626/AG4\n• Unidades por kit: 20\n• É recarregável: Não\n• Tamanho da pilha: LR626/AG4\n• Forma: Botão\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Voltagem nominal: 1,5 V\n• Composição: Alcalina\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.39\n• SKU: VTK025709\n\nEMBALAGEM\n• Dimensões informadas: 18 × 5 × 2 cm\n• Peso bruto informado: 0,02 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "7e298dad-2d5b-45d7-bd83-bd85e3fc6d2f",
+      "sku": "VTK025710",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 64.94,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR1620"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "20"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "",
+          "value_name": "CR1620"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "name": "Forma",
+          "value_id": "",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "name": "Voltagem nominal",
+          "value_id": "",
+          "value_name": "3 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "name": "Composição",
+          "value_id": "",
+          "value_name": "Lítio"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "20 Baterias CR 1620 Elgin (4  Cart)\n\nVISÃO GERAL\n20 Baterias CR 1620 Elgin (4 Cart)\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 5 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR1620\n\n- Tamanho: CR1620\n\n- Formato: Botão\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR1620\n• Unidades por kit: 20\n• É recarregável: Não\n• Tamanho da pilha: CR1620\n• Forma: Botão\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Voltagem nominal: 3 V\n• Composição: Lítio\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025710\n\nEMBALAGEM\n• Dimensões informadas: 19 × 6 × 4 cm\n• Peso bruto informado: 0,04 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "238ea83d-2998-4380-9c4e-a6db59ed9e1b",
+      "sku": "VTK025711",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 82.6,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2430"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "20"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "",
+          "value_name": "CR2430"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "name": "Forma",
+          "value_id": "",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "name": "Voltagem nominal",
+          "value_id": "",
+          "value_name": "3 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "name": "Composição",
+          "value_id": "",
+          "value_name": "Lítio"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "20 Baterias CR2430 Elgin (4  Cart)\n\nVISÃO GERAL\n20 Baterias CR2430 Elgin (4 Cart)\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 5 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2430\n\n- Tamanho: CR2430\n\n- Formato: Botão\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2430\n• Unidades por kit: 20\n• É recarregável: Não\n• Tamanho da pilha: CR2430\n• Forma: Botão\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Voltagem nominal: 3 V\n• Composição: Lítio\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025711\n\nEMBALAGEM\n• Dimensões informadas: 18 × 5 × 4 cm\n• Peso bruto informado: 0,08 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "87846548-ef80-42dd-b0da-342ef2f6370e",
+      "sku": "VTK025712",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 105.45,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CR2450"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "20"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897013573989"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "",
+          "value_name": "CR2450"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "name": "Forma",
+          "value_id": "",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "name": "Voltagem nominal",
+          "value_id": "",
+          "value_name": "3 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "name": "Composição",
+          "value_id": "",
+          "value_name": "Lítio"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "20 Baterias CR2450 Elgin (4  Cart)\n\nVISÃO GERAL\n20 Baterias CR2450 Elgin (4 Cart)\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 5 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2450\n\n- Tamanho: CR2450\n\n- Formato: Botão\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: CR2450\n• Unidades por kit: 20\n• É recarregável: Não\n• Tamanho da pilha: CR2450\n• Forma: Botão\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Voltagem nominal: 3 V\n• Composição: Lítio\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.50.10\n• SKU: VTK025712\n\nEMBALAGEM\n• Dimensões informadas: 18 × 6 × 4 cm\n• Peso bruto informado: 0,16 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

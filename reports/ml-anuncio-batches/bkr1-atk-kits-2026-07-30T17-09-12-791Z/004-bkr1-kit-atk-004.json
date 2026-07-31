@@ -1,0 +1,449 @@
+{
+  "batchNumber": 4,
+  "batchId": "bkr1-kit-atk-004",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "f3ce88a3-1141-45e6-a0ad-c4df3ae05086",
+      "sku": "VTK025429",
+      "nome": "Kit 4 Alto-Falantes  150w 8 Pol 8 Ohms 8WF310B8 ATK",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB3905",
+      "custo": 616,
+      "estoque": 2,
+      "suggestedPricePreview": 912.59,
+      "description": "Kit 4 Alto-Falantes  150w 8 Pol 8 Ohms 8WF310B8 ATK\n\nKit com 4 alto-falantes originais ATK Eletroacústica, modelo 8WF310B8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 unidades ATK 8WF310B8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: 8WF310B8\n\n- Quantidade: 4 unidades\n\n- Potência nominal por unidade: 150 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro nominal: 8 polegadas\n\n- Resposta de frequência: 50 a 3000 Hz\n\n- Sensibilidade: 95 dB SPL\n\nConfira o modelo, a impedância e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "8WF310B8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "IS_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_name": "8 in"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_name": "8 in"
+        },
+        {
+          "id": "COLOR",
+          "value_name": "Preto"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_name": "4"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "7509874",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_name": "150 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_name": "50 a 3000 Hz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_name": "95 dB"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Atk.xls",
+        "sourceSku": "1552K4",
+        "componentSku": "VTK012279",
+        "componentGtin": "7898640362113",
+        "componentQuantity": 4,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "8WF310B8",
+          "IS_KIT": "Sim",
+          "SPEAKERS_NUMBER": "4"
+        },
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149374856 em MLB3905",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "bc6e43e1-3016-4b08-a322-f50b83f64279",
+      "sku": "VTK025430",
+      "nome": "Kit 4 Alto-Falantes  250w 10 Pol 8 Ohms 10WF510B8 ATK",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB3905",
+      "custo": 740,
+      "estoque": 2,
+      "suggestedPricePreview": 1096.3,
+      "description": "Kit 4 Alto-Falantes  250w 10 Pol 8 Ohms 10WF510B8 ATK\n\nKit com 4 alto-falantes originais ATK Eletroacústica, modelo 10WF510B8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 unidades ATK 10WF510B8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: 10WF510B8\n\n- Quantidade: 4 unidades\n\n- Potência nominal por unidade: 250 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro nominal: 10 polegadas\n\nConfira o modelo, a impedância e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "10WF510B8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "IS_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_name": "10 in"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_name": "10 in"
+        },
+        {
+          "id": "COLOR",
+          "value_name": "Preto"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_name": "4"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "7509874",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_name": "250 W"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Atk.xls",
+        "sourceSku": "1554K4",
+        "componentSku": "VTK012490",
+        "componentGtin": "7898640362137",
+        "componentQuantity": 4,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "10WF510B8",
+          "IS_KIT": "Sim",
+          "SPEAKERS_NUMBER": "4"
+        },
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149368460 em MLB3905",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "925490bb-bf03-4b7d-bfb0-80092e1404f4",
+      "sku": "VTK025431",
+      "nome": "Kit 4 Alto-Falantes  250w 12 Pol 4 Ohms WF300500B4 ATK",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB3905",
+      "custo": 756,
+      "estoque": 20,
+      "suggestedPricePreview": 1120,
+      "description": "Kit 4 Alto-Falantes  250w 12 Pol 4 Ohms WF300500B4 ATK\n\nKit com 4 alto-falantes originais ATK Eletroacústica, modelo WF300500B4.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 unidades ATK WF300500B4\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: WF300500B4\n\n- Quantidade: 4 unidades\n\n- Potência nominal por unidade: 250 W RMS\n\n- Impedância por unidade: 4 ohms\n\n- Diâmetro nominal: 12 polegadas\n\n- Resposta de frequência: 50 a 2000 Hz\n\n- Sensibilidade: 95 dB SPL\n\nConfira o modelo, a impedância e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "WF300500B4"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "IS_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_name": "12 in"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_name": "12 in"
+        },
+        {
+          "id": "COLOR",
+          "value_name": "Preto"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_name": "4 Ω"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_name": "4"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "7509874",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_name": "250 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_name": "50 a 2000 Hz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_name": "95 dB"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Atk.xls",
+        "sourceSku": "1567K4",
+        "componentSku": "VTK012122",
+        "componentGtin": "7898640360737",
+        "componentQuantity": 4,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "WF300500B4",
+          "IS_KIT": "Sim",
+          "SPEAKERS_NUMBER": "4"
+        },
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4880565683 em MLB3905",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "75650e3c-d5e1-4e9f-bb51-c72c18bd542f",
+      "sku": "VTK025432",
+      "nome": "Kit 4 Alto-Falantes  600w 12 Pol 4 Ohms WF3001200B4 ATK",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB3905",
+      "custo": 1696,
+      "estoque": 1,
+      "suggestedPricePreview": 2617.28,
+      "description": "Kit 4 Alto-Falantes  600w 12 Pol 4 Ohms WF3001200B4 ATK\n\nKit com 4 alto-falantes originais ATK Eletroacústica, modelo WF3001200B4.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 unidades ATK WF3001200B4\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: WF3001200B4\n\n- Quantidade: 4 unidades\n\n- Potência nominal por unidade: 600 W RMS\n\n- Impedância por unidade: 4 ohms\n\n- Diâmetro nominal: 12 polegadas\n\n- Resposta de frequência: 60 a 3000 Hz\n\n- Sensibilidade: 95 dB SPL\n\nConfira o modelo, a impedância e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "WF3001200B4"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "IS_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_name": "12 in"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_name": "12 in"
+        },
+        {
+          "id": "COLOR",
+          "value_name": "Preto"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_name": "4 Ω"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_name": "4"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "7509874",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_name": "600 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_name": "60 a 3000 Hz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_name": "95 dB"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Atk.xls",
+        "sourceSku": "1565K4",
+        "componentSku": "VTK012634",
+        "componentGtin": "7898640360829",
+        "componentQuantity": 4,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "WF3001200B4",
+          "IS_KIT": "Sim",
+          "SPEAKERS_NUMBER": "4"
+        },
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149366208 em MLB3905",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "d2775c14-5ed3-4195-a45e-a99547d4832b",
+      "sku": "VTK025447",
+      "nome": "Kit 4 Alto-Falantes 250w 12 Pol 8 Ohms WF300500B8 ATK",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB3905",
+      "custo": 756,
+      "estoque": 14,
+      "suggestedPricePreview": 1120,
+      "description": "Kit 4 Alto-Falantes 250w 12 Pol 8 Ohms WF300500B8 ATK\n\nKit com 4 alto-falantes originais ATK Eletroacústica, modelo WF300500B8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 unidades ATK WF300500B8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: WF300500B8\n\n- Quantidade: 4 unidades\n\n- Potência nominal por unidade: 250 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro nominal: 12 polegadas\n\n- Resposta de frequência: 40 a 2500 Hz\n\n- Sensibilidade: 96 dB SPL\n\nConfira o modelo, a impedância e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "WF300500B8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "IS_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_name": "12 in"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_name": "12 in"
+        },
+        {
+          "id": "COLOR",
+          "value_name": "Preto"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_name": "4"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "7509874",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_name": "250 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_name": "40 a 2500 Hz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_name": "96 dB"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Atk.xls",
+        "sourceSku": "1568K4",
+        "componentSku": "VTK012138",
+        "componentGtin": "7898640360744",
+        "componentQuantity": 4,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "WF300500B8",
+          "IS_KIT": "Sim",
+          "SPEAKERS_NUMBER": "4"
+        },
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4880565711 em MLB3905",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-duracell-kits-2026-07-30T18-26-48-070Z/run-results/024-VTK025475-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-024-VTK025475",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "38be4267-a0c4-45c3-b685-d2b0962f2481",
+      "sku": "VTK025475",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7296014560",
+        "title": "12 Pilhas Alcalinas C Duracell (6 Cart. C/ 2 Un. Cada)",
+        "price": 285.41,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7296014560-12-pilhas-alcalinas-c-duracell-6-cart-c-2-un-cada-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "GTIN unitário do componente usado para este kit de itens idênticos.",
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 253.00 → R$ 285.41."
+      ]
+    }
+  ],
+  "failed": []
+}

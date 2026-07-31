@@ -1,0 +1,82 @@
+{
+  "batchNumber": 43,
+  "batchId": "bkr1-live-043-VTK025494",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "5d72140b-283e-45db-966a-71320427289e",
+      "sku": "VTK025494",
+      "nome": "16 Pilhas Alcalinas D Duracell (8 Cart. c/ 2 Un. Cada)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 316,
+      "estoque": 12,
+      "suggestedPricePreview": 448.64,
+      "description": "16 Pilhas Alcalinas D Duracell (8 Cart. c/ 2 Un. Cada)\n\nKit original Duracell com 16 pilhas ou baterias, distribuídas em 8 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 8 embalagens com 2 unidade(s) cada\n\n- Total: 16 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: MN1300\n\n- Tamanho: D\n\n- Formato: Cilíndrica\n\n- Quantidade total: 16 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "MN1300"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "D"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "16"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3864K8",
+        "componentSku": "VTK003739",
+        "componentGtin": "041333000985",
+        "componentQuantity": 8,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "MN1300",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "16",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111662476 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "009-bkr1-kit-duracell-009.json",
+      "sourceSequence": 43
+    }
+  ]
+}

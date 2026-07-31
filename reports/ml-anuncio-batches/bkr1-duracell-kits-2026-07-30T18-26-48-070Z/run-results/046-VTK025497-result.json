@@ -1,0 +1,48 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-duracell-kits-2026-07-30T18-26-48-070Z/run-results/046-VTK025497-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-046-VTK025497",
+  "selected": 1,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "bfc623ce-a8b3-4a32-ba71-6a7567b955e4",
+      "sku": "VTK025497",
+      "nome": "18 Baterias Auditiva 312 Duracell (3 Cart)",
+      "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB7060]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB7060]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "GTIN ausente. Motivo enviado ao ML: O produto é um kit ou pack.",
+          "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB7060]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+      }
+    }
+  ]
+}

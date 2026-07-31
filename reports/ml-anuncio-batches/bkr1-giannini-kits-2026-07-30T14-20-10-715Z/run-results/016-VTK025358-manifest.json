@@ -1,0 +1,72 @@
+{
+  "batchNumber": 16,
+  "batchId": "bkr1-live-016-VTK025358",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "89c7e40d-dea6-4fc9-a76a-f4d33c4b111f",
+      "sku": "VTK025358",
+      "nome": "2 Jogos de Corda P/Violão Nylon Canário GENW Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 29.8,
+      "estoque": 25,
+      "suggestedPricePreview": 61.48,
+      "description": "2 Jogos de Corda P/Violão Nylon Canário GENW Giannini\n\nKit com 2 jogos de cordas originais Giannini, modelo GENW.\n\nIndicado para Violão acústico. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 jogos de cordas Giannini GENW\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GENW\n\n- Instrumento recomendado: Violão acústico\n\n- Quantidade de jogos: 2\n\n- Cordas por jogo: 6\n\n- Linha: Canário\n\n- Material principal: Náilon\n\n- Tensão: Média\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GENW"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Canário"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Náilon"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Média"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1823K2",
+        "componentSku": "VTK001628",
+        "componentGtin": "7898159186569",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Família Giannini validada em MLB278076; componente sem anúncio unitário",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "004-bkr1-kit-giannini-004.json",
+      "sourceSequence": 16
+    }
+  ]
+}

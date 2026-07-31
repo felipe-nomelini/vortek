@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-12-26-897Z/run-results/004-VTK025395-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-004-VTK025395",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "8ca91afc-8e7c-4d9a-8ff6-bd0c07c18019",
+      "sku": "VTK025395",
+      "category": {
+        "id": "MLB46559",
+        "nome": "MLB46559",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4971192099",
+        "title": "Kit 02 Drivers 50 Watts 8 Ohms 45mh2510b-8 Atk",
+        "price": 645.74,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4971192099-kit-02-drivers-50-watts-8-ohms-45mh2510b-8-atk-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "GTIN unitário do componente usado para este kit de itens idênticos.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 613.33 → R$ 645.74."
+      ]
+    }
+  ],
+  "failed": []
+}

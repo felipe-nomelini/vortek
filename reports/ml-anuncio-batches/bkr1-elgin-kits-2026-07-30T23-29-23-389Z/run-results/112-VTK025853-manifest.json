@@ -1,0 +1,82 @@
+{
+  "batchNumber": 112,
+  "batchId": "bkr1-live-112-VTK025853",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "890e285e-f8cb-4680-8692-adc4a4db3577",
+      "sku": "VTK025853",
+      "nome": "8 Pilhas Recarregável AAA 900mah Elgin 2 Unidades (4 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 50,
+      "estoque": 6,
+      "suggestedPricePreview": 86.42,
+      "description": "8 Pilhas Recarregável AAA 900mah Elgin 2 Unidades (4 Cart)\n\nKit original Elgin com 8 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 2 unidade(s) cada\n\n- Total: 8 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AAA 900mAh\n\n- Tamanho: AAA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 8 unidades\n\n- Recarregável: Sim\n\n- Voltagem nominal: 1,2 V\n\n- Composição: Ni-MH\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "AAA 900mAh"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AAA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "8"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,2 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Ni-MH"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "3122K4",
+        "componentSku": "VTK012295",
+        "componentGtin": "7897013536045",
+        "componentQuantity": 4,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "AAA 900mAh",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "8",
+          "IS_RECHARGEABLE": "Sim"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4857624927 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "023-bkr1-kit-elgin-023.json",
+      "sourceSequence": 112
+    }
+  ]
+}

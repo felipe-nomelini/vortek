@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-40-32-271Z/run-results/006-VTK025429-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-006-VTK025429",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "f3ce88a3-1141-45e6-a0ad-c4df3ae05086",
+      "sku": "VTK025429",
+      "category": {
+        "id": "MLB3905",
+        "nome": "MLB3905",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4971289667",
+        "title": "Kit 4 Alto-falantes 150w 8 Pol 8 Ohms 8wf310b8 Atk Preto",
+        "price": 945,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4971289667-kit-4-alto-falantes-150w-8-pol-8-ohms-8wf310b8-atk-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 912.59 → R$ 945.00."
+      ]
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,789 @@
+[
+  {
+    "produtoId": "",
+    "sku": "",
+    "sourceSku": "3861K2",
+    "reason": "kit_not_registered",
+    "details": null
+  },
+  {
+    "produtoId": "",
+    "sku": "",
+    "sourceSku": "3861K3",
+    "reason": "kit_not_registered",
+    "details": null
+  },
+  {
+    "produtoId": "",
+    "sku": "",
+    "sourceSku": "3861K4",
+    "reason": "kit_not_registered",
+    "details": null
+  },
+  {
+    "produtoId": "",
+    "sku": "",
+    "sourceSku": "3861CX48",
+    "reason": "kit_not_registered",
+    "details": null
+  },
+  {
+    "produtoId": "",
+    "sku": "",
+    "sourceSku": "3861K5",
+    "reason": "kit_not_registered",
+    "details": null
+  },
+  {
+    "produtoId": "",
+    "sku": "",
+    "sourceSku": "3861K6",
+    "reason": "kit_not_registered",
+    "details": null
+  },
+  {
+    "produtoId": "",
+    "sku": "",
+    "sourceSku": "3861K7",
+    "reason": "kit_not_registered",
+    "details": null
+  },
+  {
+    "produtoId": "",
+    "sku": "",
+    "sourceSku": "3861K8",
+    "reason": "kit_not_registered",
+    "details": null
+  },
+  {
+    "produtoId": "",
+    "sku": "",
+    "sourceSku": "3861K9",
+    "reason": "kit_not_registered",
+    "details": null
+  },
+  {
+    "produtoId": "",
+    "sku": "",
+    "sourceSku": "3861K10",
+    "reason": "kit_not_registered",
+    "details": null
+  },
+  {
+    "produtoId": "",
+    "sku": "",
+    "sourceSku": "3861CX12",
+    "reason": "kit_not_registered",
+    "details": null
+  },
+  {
+    "produtoId": "933709ae-6b2d-4872-84ca-980e8478c5b3",
+    "sku": "VTK025452",
+    "sourceSku": "3852K10",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "e99bd202-6480-4397-bbe1-ee3775c95066",
+    "sku": "VTK025459",
+    "sourceSku": "3862K5",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "50e85a6e-fb50-48ad-b3b8-1a1901c60553",
+    "sku": "VTK025462",
+    "sourceSku": "3867K20",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "f5ab7527-73b8-447b-b336-203db478a31d",
+    "sku": "VTK025472",
+    "sourceSku": "3855K6",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "38be4267-a0c4-45c3-b685-d2b0962f2481",
+    "sku": "VTK025475",
+    "sourceSku": "3862K6",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "81278be4-e99d-4c88-8e05-eb6b127269f7",
+    "sku": "VTK025480",
+    "sourceSku": "3859K7",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "165aeb2b-a0f6-4a3d-9f7c-a920c51ad167",
+    "sku": "VTK025483",
+    "sourceSku": "3863CX72",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "3a30e230-fbc5-4119-a4a2-585eded93781",
+    "sku": "VTK025486",
+    "sourceSku": "3867K30",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "734e4726-8dab-4296-b52a-d928858bcaa1",
+    "sku": "VTK025489",
+    "sourceSku": "3856K4",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "b3453ba3-80c8-4279-aec4-e6c436bc0162",
+    "sku": "VTK025492",
+    "sourceSku": "3859K8",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "fdd05020-df62-4887-93cc-cce65e6e4182",
+    "sku": "VTK025499",
+    "sourceSku": "3866K3",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "1db57184-fb72-47d1-a5bd-4c412f944022",
+    "sku": "VTK025502",
+    "sourceSku": "3859K9",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "32aa9633-4c10-4a9f-ae52-907be69a744d",
+    "sku": "VTK025506",
+    "sourceSku": "3860CX48",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "aa90c8fa-bdaa-4975-b261-a7ba9d4c6473",
+    "sku": "VTK025522",
+    "sourceSku": "3866K4",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "f375ba17-8da9-4335-ba43-de31cf2a441d",
+    "sku": "VTK025536",
+    "sourceSku": "3870K5",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "aa96c969-947a-4f49-b8fc-161fe5ad03f6",
+    "sku": "VTK025538",
+    "sourceSku": "3866K5",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "d4d63d7b-e9a4-4dd7-83ef-1417845b3f54",
+    "sku": "VTK025548",
+    "sourceSku": "3865K6",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "bec92d5a-a722-44a2-b3c1-0fbbabf728a5",
+    "sku": "VTK025568",
+    "sourceSku": "3870K7",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "07311428-25f4-48a5-806c-7b1046412370",
+    "sku": "VTK025574",
+    "sourceSku": "3870K8",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "7e3cd383-ebd6-451a-bcd2-3d4b3abe32d0",
+    "sku": "VTK025590",
+    "sourceSku": "3871K9",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "886045b6-ea4a-48ab-840a-050f7a522abe",
+    "sku": "VTK025600",
+    "sourceSku": "3870CX10",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "5672f2f1-878f-4098-bb4e-e015608f2a69",
+    "sku": "VTK025601",
+    "sourceSku": "3865CX10",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "76c98716-f8c6-427b-9471-2d4ab663baac",
+    "sku": "VTK025453",
+    "sourceSku": "3853K5",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "e5b8d2c7-c1de-4b06-9038-f40b21882215",
+    "sku": "VTK025456",
+    "sourceSku": "3869K5",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "e3ecfbd1-6c6e-489a-ab4a-2958df39b236",
+    "sku": "VTK025460",
+    "sourceSku": "3864K5",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "9030b9d5-a42c-4cb7-ad09-db5bb43374f2",
+    "sku": "VTK025463",
+    "sourceSku": "3852CX12",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "29dc3b24-279a-4c6e-bd7f-c530c526c47a",
+    "sku": "VTK025465",
+    "sourceSku": "3870K2",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "3ae93167-5acd-4846-aab4-fa1a98341dd9",
+    "sku": "VTK025471",
+    "sourceSku": "3856K3",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "54269abf-6790-4a8c-8e9f-3753a735ffc3",
+    "sku": "VTK025473",
+    "sourceSku": "3860K3",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "ce511ef0-1fae-42f8-b39d-c6edff73183c",
+    "sku": "VTK025474",
+    "sourceSku": "3859K6",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "a4738ea6-bdd4-445a-8efa-43e15403f124",
+    "sku": "VTK025476",
+    "sourceSku": "3864CX6",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "672525b8-5c21-40da-8a93-4689eb2f3684",
+    "sku": "VTK025477",
+    "sourceSku": "3868K3",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "22cbefe4-ec71-4a8a-9195-0a952bda460f",
+    "sku": "VTK025481",
+    "sourceSku": "3862K7",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "e513e069-2b7d-4b53-85d5-08481ec2a874",
+    "sku": "VTK025484",
+    "sourceSku": "3868CX36",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "42db094b-a503-4ba2-8750-84c5caea8615",
+    "sku": "VTK025487",
+    "sourceSku": "3853K8",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "5442ae5b-706c-4007-8a18-7e418f938f1e",
+    "sku": "VTK025454",
+    "sourceSku": "3867K2",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "430dd911-9e35-4680-9bb6-8888edd14230",
+    "sku": "VTK025461",
+    "sourceSku": "3852K100",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "e8d64865-ea6e-45dc-9b7f-c45578a3340f",
+    "sku": "VTK025464",
+    "sourceSku": "3853K6",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "79a52b31-b941-43f2-a96a-854c651dd039",
+    "sku": "VTK025467",
+    "sourceSku": "3866K2",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "e4276167-807d-4ced-90c5-48eef98606b5",
+    "sku": "VTK025470",
+    "sourceSku": "3869CX6",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "5fcc0144-894b-49c2-af54-49fcba8b23f3",
+    "sku": "VTK025498",
+    "sourceSku": "3865K3",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "b133e56c-56f6-45bb-99a7-67e0e0116dcf",
+    "sku": "VTK025501",
+    "sourceSku": "3855K9",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "31455a0d-a0ff-449d-93ab-ccff19c0d1b7",
+    "sku": "VTK025504",
+    "sourceSku": "3864K9",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "5aa9d2fd-a9cd-4e8b-9db3-2525ec22ff63",
+    "sku": "VTK025521",
+    "sourceSku": "3865K4",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "1aae6c25-b0b7-4986-af02-6ea9288018c4",
+    "sku": "VTK025537",
+    "sourceSku": "3865K5",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "f0a4e378-7462-4642-9d6e-8de79f71c495",
+    "sku": "VTK025547",
+    "sourceSku": "3870K6",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "066aa4ea-ded4-44b4-a8fb-5eefe12795a9",
+    "sku": "VTK025570",
+    "sourceSku": "3866K7",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "98250d20-12a4-433c-9fbb-6be3a583d8c4",
+    "sku": "VTK025576",
+    "sourceSku": "3866K8",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "2f42cd0b-afcc-4ccd-8997-78a141b88325",
+    "sku": "VTK025520",
+    "sourceSku": "3870K4",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "95008f78-6aaa-46b6-9d89-c6dd96e07d0b",
+    "sku": "VTK025571",
+    "sourceSku": "3871K7",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "85dec5dd-a6ef-41cd-8795-77e7bef6cacc",
+    "sku": "VTK025577",
+    "sourceSku": "3871K8",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "47818129-2eb0-4e4b-b23b-d0fff2342ee8",
+    "sku": "VTK025587",
+    "sourceSku": "3870K9",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "bdb6fffa-e372-4671-8493-40104fdc2e3d",
+    "sku": "VTK025455",
+    "sourceSku": "3863K5",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "203511b3-2a71-4b27-b922-712cd8a83bf4",
+    "sku": "VTK025468",
+    "sourceSku": "3871K2",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "65125150-4109-45b5-a997-f00b02391803",
+    "sku": "VTK025479",
+    "sourceSku": "3855K7",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "2d4a2b87-a215-45ed-a65d-ccde8058a7a0",
+    "sku": "VTK025482",
+    "sourceSku": "3864K7",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "5e38d783-2da7-44f5-8344-feb71b9b8dc1",
+    "sku": "VTK025485",
+    "sourceSku": "3867K3",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "c1b84ea4-9b3b-4874-b997-5756903c121a",
+    "sku": "VTK025488",
+    "sourceSku": "3857K2",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "24c61d5c-eb0c-4467-9557-60a731c20ba8",
+    "sku": "VTK025491",
+    "sourceSku": "3860K4",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "5d72140b-283e-45db-966a-71320427289e",
+    "sku": "VTK025494",
+    "sourceSku": "3864K8",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "bfc623ce-a8b3-4a32-ba71-6a7567b955e4",
+    "sku": "VTK025497",
+    "sourceSku": "3870K3",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "1de40871-22c8-4b74-905a-ad703e1e2c4b",
+    "sku": "VTK025507",
+    "sourceSku": "3852K2",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "dea3e168-4690-42d9-97e9-68e740a95ac8",
+    "sku": "VTK025588",
+    "sourceSku": "3865K9",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "b2057708-789c-4999-a782-fbfc769f5be9",
+    "sku": "VTK025589",
+    "sourceSku": "3866K9",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "8887c67e-a4b5-40d8-a89a-e2d38af89b8d",
+    "sku": "VTK025602",
+    "sourceSku": "3866CX10",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "30176037-783b-4777-a367-99c94cd07e05",
+    "sku": "VTK025457",
+    "sourceSku": "3855K5",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "7dd62f3a-389c-4542-85b8-bc70147bf330",
+    "sku": "VTK025466",
+    "sourceSku": "3865K2",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "dd10ef04-7b57-4df1-a641-68753cd0af9f",
+    "sku": "VTK025469",
+    "sourceSku": "3863CX6",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "d9563fb3-3393-4e30-9adc-414a5638410f",
+    "sku": "VTK025490",
+    "sourceSku": "3855K8",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "e4e47aff-56de-45df-a8be-fbf8f8c812d8",
+    "sku": "VTK025493",
+    "sourceSku": "3862CX8",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "5f7b3831-b8ba-4fe8-801b-61590c5e2d88",
+    "sku": "VTK025500",
+    "sourceSku": "3871K3",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "dd627bac-0978-4a86-a388-a755fdfec05a",
+    "sku": "VTK025503",
+    "sourceSku": "3862K9",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "9fec9d66-9a62-4e99-b8ff-636652f991b3",
+    "sku": "VTK025508",
+    "sourceSku": "3853K10",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "6b195c17-b55a-4904-9e66-e064c46fc1e4",
+    "sku": "VTK025539",
+    "sourceSku": "3871K5",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "3739630d-1cbe-4198-9fca-924f265c5c4b",
+    "sku": "VTK025549",
+    "sourceSku": "3866K6",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "3f53d0fa-3051-482c-9fa8-e66eb0fe558b",
+    "sku": "VTK025550",
+    "sourceSku": "3871K6",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "f2a44ac6-751f-40cf-ac5e-efe29b493dd5",
+    "sku": "VTK025569",
+    "sourceSku": "3865K7",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "3fce93e4-27b1-4794-9885-315235c7dbfc",
+    "sku": "VTK025575",
+    "sourceSku": "3865K8",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "801ac357-d55e-4872-828c-6cf2bbee0d16",
+    "sku": "VTK025603",
+    "sourceSku": "3871CX10",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  },
+  {
+    "produtoId": "2f2cb55d-ec9b-4155-b502-6c554954225b",
+    "sku": "VTK025458",
+    "sourceSku": "3859K5",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "855fda8e-bacc-431b-90b6-4cfa639a1498",
+    "sku": "VTK025478",
+    "sourceSku": "3853K7",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "aba1e9a3-78aa-42df-b13f-2f8b8853ab37",
+    "sku": "VTK025495",
+    "sourceSku": "3868K4",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "6536f784-601c-4f85-8943-bc4e4d9b03a3",
+    "sku": "VTK025496",
+    "sourceSku": "3853K9",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "7608671d-980c-4bbd-921d-b6e6b8cf8ac2",
+    "sku": "VTK025505",
+    "sourceSku": "3856CX48",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "2783bafc-1cb5-40e1-ba5c-ffa6ab0e10a0",
+    "sku": "VTK025509",
+    "sourceSku": "3852K20",
+    "reason": "already_has_listing",
+    "details": null
+  },
+  {
+    "produtoId": "b4cbb485-1f92-4828-a37f-0f7bfb4a3047",
+    "sku": "VTK025523",
+    "sourceSku": "3871K4",
+    "reason": "ml_auto_recategorizes_to_incorrect_hearing_aids_category",
+    "details": {
+      "requestedCategory": "MLB7060",
+      "automaticCategory": "MLB270521"
+    }
+  }
+]

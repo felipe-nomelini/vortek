@@ -1,0 +1,517 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-40-32-271Z/001-bkr1-kit-atk-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "bkr1-kit-atk-001",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "d85d1594-e84d-409f-8339-2a10ca280946",
+      "sku": "VTK025410",
+      "category": {
+        "id": "MLB3905",
+        "nome": "MLB3905",
+        "dominio": ""
+      },
+      "basePrice": 3687.96,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "WF3004600B2"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "name": "Largura do alto-falante",
+          "value_id": "",
+          "value_name": "12 in"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "name": "Quantidade de caixas de som",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "name": "Quantidade de bobinas",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "name": "Potência RMS",
+          "value_id": "",
+          "value_name": "1300 W"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "name": "Diâmetro do alto-falante",
+          "value_id": "",
+          "value_name": "12 in"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "",
+          "value_name": "Preto"
+        },
+        {
+          "id": "IMPEDANCE",
+          "name": "Impedância",
+          "value_id": "",
+          "value_name": "2 Ω"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "name": "Tipo de alto-falante",
+          "value_id": "7509874",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "name": "Faixa de frequência",
+          "value_id": "",
+          "value_name": "60 a 2500 Hz"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055159",
+          "value_name": "O produto é um kit ou pack"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit 2 Alto-Falantes 1300w 12 Pol 2 Ohms WF3004600B2 ATK\n\nVISÃO GERAL\nKit 2 Alto-Falantes 1300w 12 Pol 2 Ohms WF3004600B2 ATK\n\nKit com 2 alto-falantes originais ATK Eletroacústica, modelo WF3004600B2.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 unidades ATK WF3004600B2\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: WF3004600B2\n\n- Quantidade: 2 unidades\n\n- Potência nominal por unidade: 1300 W RMS\n\n- Impedância por unidade: 2 ohms\n\n- Diâmetro nominal: 12 polegadas\n\n- Resposta de frequência: 60 a 2500 Hz\n\n- Sensibilidade: 95 dB SPL\n\nConfira o modelo, a impedância e a quantidade antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Atk Eletroacústica\n• Modelo: WF3004600B2\n• Largura do alto-falante: 12 in\n• Quantidade de caixas de som: 2\n• Tipo de veículo: Carro/Caminhonete\n• Quantidade de bobinas: 1\n• Potência RMS: 1300 W\n• Diâmetro do alto-falante: 12 in\n• Cor: Preto\n• Impedância: 2 ohms\n• Tipo de alto-falante: Woofer\n• Faixa de frequência: 60 a 2500 Hz\n• Motivo de GTIN vazio: O produto é um kit ou pack\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ATK\n• NCM: 8518.29.90\n• SKU: VTK025410\n\nEMBALAGEM\n• Dimensões informadas: 54 × 76 × 76 cm\n• Peso bruto informado: 41,96 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "7341b497-2f72-4bd9-a429-9d600a621645",
+      "sku": "VTK025421",
+      "category": {
+        "id": "MLB3905",
+        "nome": "MLB3905",
+        "dominio": ""
+      },
+      "basePrice": 523.73,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "WF300500B8"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "name": "Largura do alto-falante",
+          "value_id": "",
+          "value_name": "12 in"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "name": "Quantidade de caixas de som",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "name": "Quantidade de bobinas",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "name": "Potência RMS",
+          "value_id": "",
+          "value_name": "250 W"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "name": "Diâmetro do alto-falante",
+          "value_id": "",
+          "value_name": "12 in"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "",
+          "value_name": "Preto"
+        },
+        {
+          "id": "IMPEDANCE",
+          "name": "Impedância",
+          "value_id": "",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "name": "Tipo de alto-falante",
+          "value_id": "7509874",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "name": "Faixa de frequência",
+          "value_id": "",
+          "value_name": "40 a 2500 Hz"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898640360744"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit 2 Alto-Falantes 250w 12 Pol 8 Ohms WF300500B8 ATK\n\nVISÃO GERAL\nKit 2 Alto-Falantes 250w 12 Pol 8 Ohms WF300500B8 ATK\n\nKit com 2 alto-falantes originais ATK Eletroacústica, modelo WF300500B8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 unidades ATK WF300500B8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: WF300500B8\n\n- Quantidade: 2 unidades\n\n- Potência nominal por unidade: 250 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro nominal: 12 polegadas\n\n- Resposta de frequência: 40 a 2500 Hz\n\n- Sensibilidade: 96 dB SPL\n\nConfira o modelo, a impedância e a quantidade antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Atk Eletroacústica\n• Modelo: WF300500B8\n• Largura do alto-falante: 12 in\n• Quantidade de caixas de som: 2\n• Tipo de veículo: Carro/Caminhonete\n• Quantidade de bobinas: 1\n• Potência RMS: 250 W\n• Diâmetro do alto-falante: 12 in\n• Cor: Preto\n• Impedância: 8 ohms\n• Tipo de alto-falante: Woofer\n• Faixa de frequência: 40 a 2500 Hz\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ATK\n• NCM: 8518.29.90\n• SKU: VTK025421\n\nEMBALAGEM\n• Dimensões informadas: 36 × 66 × 66 cm\n• Peso bruto informado: 8,28 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9fb90462-3712-42f8-b471-5cb5e07effbb",
+      "sku": "VTK025423",
+      "category": {
+        "id": "MLB3905",
+        "nome": "MLB3905",
+        "dominio": ""
+      },
+      "basePrice": 604.34,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "WF380500B8"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "name": "Largura do alto-falante",
+          "value_id": "",
+          "value_name": "15 in"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "name": "Quantidade de caixas de som",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "name": "Quantidade de bobinas",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "name": "Potência RMS",
+          "value_id": "",
+          "value_name": "250 W"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "name": "Diâmetro do alto-falante",
+          "value_id": "",
+          "value_name": "15 in"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "",
+          "value_name": "Preto"
+        },
+        {
+          "id": "IMPEDANCE",
+          "name": "Impedância",
+          "value_id": "",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "name": "Tipo de alto-falante",
+          "value_id": "7509874",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "name": "Faixa de frequência",
+          "value_id": "",
+          "value_name": "30 a 5000 Hz"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898640360768"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit 2 Alto-Falantes 250w 15 Pol 8 Ohms WF380500B8 ATK\n\nVISÃO GERAL\nKit 2 Alto-Falantes 250w 15 Pol 8 Ohms WF380500B8 ATK\n\nKit com 2 alto-falantes originais ATK Eletroacústica, modelo WF380500B8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 unidades ATK WF380500B8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: WF380500B8\n\n- Quantidade: 2 unidades\n\n- Potência nominal por unidade: 250 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro nominal: 15 polegadas\n\n- Resposta de frequência: 30 a 5000 Hz\n\n- Sensibilidade: 96 dB SPL\n\nConfira o modelo, a impedância e a quantidade antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Atk Eletroacústica\n• Modelo: WF380500B8\n• Largura do alto-falante: 15 in\n• Quantidade de caixas de som: 2\n• Tipo de veículo: Carro/Caminhonete\n• Quantidade de bobinas: 1\n• Potência RMS: 250 W\n• Diâmetro do alto-falante: 15 in\n• Cor: Preto\n• Impedância: 8 ohms\n• Tipo de alto-falante: Woofer\n• Faixa de frequência: 30 a 5000 Hz\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ATK\n• NCM: 8518.29.90\n• SKU: VTK025423\n\nEMBALAGEM\n• Dimensões informadas: 38 × 82 × 82 cm\n• Peso bruto informado: 9,96 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8950d8ae-04c6-4c64-ad08-78839f911092",
+      "sku": "VTK025424",
+      "category": {
+        "id": "MLB3905",
+        "nome": "MLB3905",
+        "dominio": ""
+      },
+      "basePrice": 1241.48,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "WF200800B8"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "name": "Largura do alto-falante",
+          "value_id": "",
+          "value_name": "8 in"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "name": "Quantidade de caixas de som",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "name": "Quantidade de bobinas",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "name": "Potência RMS",
+          "value_id": "",
+          "value_name": "400 W"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "name": "Diâmetro do alto-falante",
+          "value_id": "",
+          "value_name": "8 in"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "",
+          "value_name": "Preto"
+        },
+        {
+          "id": "IMPEDANCE",
+          "name": "Impedância",
+          "value_id": "",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "name": "Tipo de alto-falante",
+          "value_id": "7509874",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "name": "Faixa de frequência",
+          "value_id": "",
+          "value_name": "50 a 4000 Hz"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898640360713"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit 2 Alto-Falantes 400w 8 Pol 8 Ohms WF200800B8 ATK\n\nVISÃO GERAL\nKit 2 Alto-Falantes 400w 8 Pol 8 Ohms WF200800B8 ATK\n\nKit com 2 alto-falantes originais ATK Eletroacústica, modelo WF200800B8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 unidades ATK WF200800B8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: WF200800B8\n\n- Quantidade: 2 unidades\n\n- Potência nominal por unidade: 400 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro nominal: 8 polegadas\n\n- Resposta de frequência: 50 a 4000 Hz\n\n- Sensibilidade: 93 dB SPL\n\nConfira o modelo, a impedância e a quantidade antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Atk Eletroacústica\n• Modelo: WF200800B8\n• Largura do alto-falante: 8 in\n• Quantidade de caixas de som: 2\n• Tipo de veículo: Carro/Caminhonete\n• Quantidade de bobinas: 1\n• Potência RMS: 400 W\n• Diâmetro do alto-falante: 8 in\n• Cor: Preto\n• Impedância: 8 ohms\n• Tipo de alto-falante: Woofer\n• Faixa de frequência: 50 a 4000 Hz\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ATK\n• NCM: 8518.29.90\n• SKU: VTK025424\n\nEMBALAGEM\n• Dimensões informadas: 26 × 46 × 46 cm\n• Peso bruto informado: 10,96 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0967cda7-4438-4d74-8602-074bab892baa",
+      "sku": "VTK025426",
+      "category": {
+        "id": "MLB418066",
+        "nome": "MLB418066",
+        "dominio": ""
+      },
+      "basePrice": 2243.67,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "75MH5016B-8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "75MH5016B-8"
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "",
+          "value_name": "Titânio"
+        },
+        {
+          "id": "IMPEDANCE",
+          "name": "Impedância",
+          "value_id": "",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "name": "Frequência mínima",
+          "value_id": "",
+          "value_name": "600 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "name": "Frequência máxima",
+          "value_id": "",
+          "value_name": "18000 Hz"
+        },
+        {
+          "id": "DIAMETER",
+          "name": "Diâmetro",
+          "value_id": "",
+          "value_name": "50 mm"
+        },
+        {
+          "id": "HORN_DIAMETER",
+          "name": "Diâmetro da corneta",
+          "value_id": "",
+          "value_name": "2 in"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit 2 Drivers Titanium 3 Pol 80 Watts 8 Ohms 75mh5016b-8 Atk\n\nVISÃO GERAL\nKit 2 Drivers Titanium 3 Pol 80 Watts 8 Ohms 75mh5016b-8 Atk\n\nKit com 2 drivers de compressão originais ATK Eletroacústica, modelo 75MH5016B-8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 unidades ATK 75MH5016B-8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: 75MH5016B-8\n\n- Quantidade: 2 unidades\n\n- Potência nominal por unidade: 80 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro da garganta: 50 mm\n\n- Material do diafragma: Titânio\n\n- Resposta de frequência: 600 a 18000 Hz\n\nConfira o modelo, a impedância e a quantidade antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Atk Eletroacústica\n• Número de peça: 75MH5016B-8\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: 75MH5016B-8\n• Material: Titânio\n• Impedância: 8 ohms\n• Frequência mínima: 600 Hz\n• Frequência máxima: 18000 Hz\n• Diâmetro: 50 mm\n• Diâmetro da corneta: 2 in\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ATK\n• NCM: 8518.29.90\n• SKU: VTK025426\n\nEMBALAGEM\n• Dimensões informadas: 7.8 × 19.3 × 42 cm\n• Peso bruto informado: 10,02 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

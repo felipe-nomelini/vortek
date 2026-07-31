@@ -1,0 +1,45 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-12-26-897Z/run-results/011-VTK025410-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-011-VTK025410",
+  "selected": 1,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "d85d1594-e84d-409f-8339-2a10ca280946",
+      "sku": "VTK025410",
+      "nome": "Kit 2 Alto-Falantes 1300w 12 Pol 2 Ohms WF3004600B2 ATK",
+      "error": "Validation error | item.attribute.invalid_product_identifier: Insira um código universal que você não tenha usado no anúncio de outra categoria. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.invalid_product_identifier: Insira um código universal que você não tenha usado no anúncio de outra categoria. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.invalid_product_identifier: Insira um código universal que você não tenha usado no anúncio de outra categoria. | code=validation_error | http=400"
+      }
+    }
+  ]
+}

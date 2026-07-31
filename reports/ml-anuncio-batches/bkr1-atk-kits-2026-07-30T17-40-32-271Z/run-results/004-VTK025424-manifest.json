@@ -1,0 +1,100 @@
+{
+  "batchNumber": 4,
+  "batchId": "bkr1-live-004-VTK025424",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "8950d8ae-04c6-4c64-ad08-78839f911092",
+      "sku": "VTK025424",
+      "nome": "Kit 2 Alto-Falantes 400w 8 Pol 8 Ohms WF200800B8 ATK",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB3905",
+      "custo": 838,
+      "estoque": 1,
+      "suggestedPricePreview": 1241.48,
+      "description": "Kit 2 Alto-Falantes 400w 8 Pol 8 Ohms WF200800B8 ATK\n\nKit com 2 alto-falantes originais ATK Eletroacústica, modelo WF200800B8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 unidades ATK WF200800B8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: WF200800B8\n\n- Quantidade: 2 unidades\n\n- Potência nominal por unidade: 400 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro nominal: 8 polegadas\n\n- Resposta de frequência: 50 a 4000 Hz\n\n- Sensibilidade: 93 dB SPL\n\nConfira o modelo, a impedância e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "WF200800B8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "IS_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_name": "8 in"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_name": "8 in"
+        },
+        {
+          "id": "COLOR",
+          "value_name": "Preto"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_name": "2"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "7509874",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_name": "400 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_name": "50 a 4000 Hz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_name": "93 dB"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Atk.xls",
+        "sourceSku": "1562K2",
+        "componentSku": "VTK012768",
+        "componentGtin": "7898640360713",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "WF200800B8",
+          "SPEAKERS_NUMBER": "2"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4880632867 em MLB3905",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "001-bkr1-kit-atk-001.json",
+      "sourceSequence": 4
+    }
+  ]
+}

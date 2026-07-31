@@ -1,0 +1,105 @@
+{
+  "startedAt": "2026-07-30T15:55:35.220Z",
+  "account": {
+    "userId": "3294514937",
+    "nickname": "VORTEKTECNOLOGIA"
+  },
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-20-10-715Z",
+  "selected": 4,
+  "totals": {
+    "created": 4,
+    "verified": 4,
+    "failed": 0
+  },
+  "rows": [
+    {
+      "sequence": 38,
+      "sku": "VTK025386",
+      "itemId": "MLB4970799933",
+      "status": "verified",
+      "verification": {
+        "attempt": 28,
+        "itemId": "MLB4970799933",
+        "sku": "VTK025386",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 9,
+        "quantityOk": true,
+        "price": 145.7,
+        "priceAboveCost": true
+      }
+    },
+    {
+      "sequence": 39,
+      "sku": "VTK025387",
+      "itemId": "MLB4970789649",
+      "status": "verified",
+      "verification": {
+        "attempt": 27,
+        "itemId": "MLB4970789649",
+        "sku": "VTK025387",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 6,
+        "quantityOk": true,
+        "price": 126.98,
+        "priceAboveCost": true
+      }
+    },
+    {
+      "sequence": 40,
+      "sku": "VTK025389",
+      "itemId": "MLB4970816113",
+      "status": "verified",
+      "verification": {
+        "attempt": 20,
+        "itemId": "MLB4970816113",
+        "sku": "VTK025389",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 8,
+        "quantityOk": true,
+        "price": 127.61,
+        "priceAboveCost": true
+      }
+    },
+    {
+      "sequence": 41,
+      "sku": "VTK025390",
+      "itemId": "MLB4970805149",
+      "status": "verified",
+      "verification": {
+        "attempt": 28,
+        "itemId": "MLB4970805149",
+        "sku": "VTK025390",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 1,
+        "quantityOk": true,
+        "price": 164.72,
+        "priceAboveCost": true
+      }
+    }
+  ],
+  "finishedAt": "2026-07-30T16:05:06.809Z"
+}

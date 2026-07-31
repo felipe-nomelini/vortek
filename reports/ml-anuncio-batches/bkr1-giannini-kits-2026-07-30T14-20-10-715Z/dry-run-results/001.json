@@ -1,0 +1,445 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-20-10-715Z/001-bkr1-kit-giannini-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "bkr1-kit-giannini-001",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "9edb078c-4c26-4995-866b-fca7cba7bfc1",
+      "sku": "VTK025340",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "basePrice": 63.85,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "GESCP"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "",
+          "value_name": "Cavaquinho"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898159186996"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "",
+          "value_name": "Cobra"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "",
+          "value_name": "4"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "name": "Tensão",
+          "value_id": "",
+          "value_name": "Alta"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "2 Jogos de Corda P/Cavaquinho  Cobra Niquel GESCP Giannini\n\nVISÃO GERAL\n2 Jogos de Corda P/Cavaquinho Cobra Niquel GESCP Giannini\n\nKit com 2 jogos de cordas originais Giannini, modelo GESCP.\n\nIndicado para Cavaquinho. Cada jogo possui 4 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 jogos de cordas Giannini GESCP\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GESCP\n\n- Instrumento recomendado: Cavaquinho\n\n- Quantidade de jogos: 2\n\n- Cordas por jogo: 4\n\n- Linha: Cobra\n\n- Material principal: Metal\n\n- Tensão: Alta\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Giannini\n• Modelo: GESCP\n• Instrumento recomendado: Cavaquinho\n• Unidades por kit: 2\n• Linha: Cobra\n• Formato de venda: Kit\n• Quantidade de cordas: 4\n• Materiais: Metal\n• Tensão: Alta\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Giannini\n• NCM: 9209.30.00\n• SKU: VTK025340\n\nEMBALAGEM\n• Dimensões informadas: 1 × 11 × 11 cm\n• Peso bruto informado: 0,1 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "c457701c-3b15-4296-be57-007fbd96cd10",
+      "sku": "VTK025341",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "basePrice": 70.57,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "GESGT9"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7890443000063"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "",
+          "value_name": "Canário"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "",
+          "value_name": "6"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "name": "Tensão",
+          "value_id": "",
+          "value_name": "Leve"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "2 Jogos de Corda P/Guitarra Canário Aço 09 GESGT9 Giannini\n\nVISÃO GERAL\n2 Jogos de Corda P/Guitarra Canário Aço 09 GESGT9 Giannini\n\nKit com 2 jogos de cordas originais Giannini, modelo GESGT9.\n\nIndicado para Guitarra elétrica. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 jogos de cordas Giannini GESGT9\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GESGT9\n\n- Instrumento recomendado: Guitarra elétrica\n\n- Quantidade de jogos: 2\n\n- Cordas por jogo: 6\n\n- Linha: Canário\n\n- Material principal: Metal\n\n- Tensão: Leve\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Giannini\n• Modelo: GESGT9\n• Instrumento recomendado: Guitarra elétrica\n• Unidades por kit: 2\n• Linha: Canário\n• Formato de venda: Kit\n• Quantidade de cordas: 6\n• Materiais: Metal\n• Tensão: Leve\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Giannini\n• NCM: 9209.30.00\n• SKU: VTK025341\n\nEMBALAGEM\n• Dimensões informadas: 2 × 11 × 16 cm\n• Peso bruto informado: 0,05 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b067a659-6b40-494d-b8a0-d820751e8319",
+      "sku": "VTK025343",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "basePrice": 88.55,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "GEEGST.11"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898159187115"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "",
+          "value_name": "Electric"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "",
+          "value_name": "6"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "name": "Tensão",
+          "value_id": "",
+          "value_name": "Média"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "2 Jogos de Corda P/Guitarra Niquel 011 GEEGST.11 Giannini\n\nVISÃO GERAL\n2 Jogos de Corda P/Guitarra Niquel 011 GEEGST.11 Giannini\n\nKit com 2 jogos de cordas originais Giannini, modelo GEEGST.11.\n\nIndicado para Guitarra elétrica. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 jogos de cordas Giannini GEEGST.11\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GEEGST.11\n\n- Instrumento recomendado: Guitarra elétrica\n\n- Quantidade de jogos: 2\n\n- Cordas por jogo: 6\n\n- Linha: Electric\n\n- Material principal: Metal\n\n- Tensão: Média\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Giannini\n• Modelo: GEEGST.11\n• Instrumento recomendado: Guitarra elétrica\n• Unidades por kit: 2\n• Linha: Electric\n• Formato de venda: Kit\n• Quantidade de cordas: 6\n• Materiais: Metal\n• Tensão: Média\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Giannini\n• NCM: 9209.30.00\n• SKU: VTK025343\n\nEMBALAGEM\n• Dimensões informadas: 2 × 11 × 16 cm\n• Peso bruto informado: 0,05 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "be359f24-7d7c-49b7-a12a-416f25514054",
+      "sku": "VTK025345",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "basePrice": 97.36,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "GEEGST.9"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898159187153"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "",
+          "value_name": "Electric"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "",
+          "value_name": "6"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "name": "Tensão",
+          "value_id": "",
+          "value_name": "Leve"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "2 Jogos de Corda P/Guitarra Niquel 09 GEEGST.9 Giannini\n\nVISÃO GERAL\n2 Jogos de Corda P/Guitarra Niquel 09 GEEGST.9 Giannini\n\nKit com 2 jogos de cordas originais Giannini, modelo GEEGST.9.\n\nIndicado para Guitarra elétrica. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 jogos de cordas Giannini GEEGST.9\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GEEGST.9\n\n- Instrumento recomendado: Guitarra elétrica\n\n- Quantidade de jogos: 2\n\n- Cordas por jogo: 6\n\n- Linha: Electric\n\n- Material principal: Metal\n\n- Tensão: Leve\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Giannini\n• Modelo: GEEGST.9\n• Instrumento recomendado: Guitarra elétrica\n• Unidades por kit: 2\n• Linha: Electric\n• Formato de venda: Kit\n• Quantidade de cordas: 6\n• Materiais: Metal\n• Tensão: Leve\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Giannini\n• NCM: 9209.30.00\n• SKU: VTK025345\n\nEMBALAGEM\n• Dimensões informadas: 2 × 11 × 16 cm\n• Peso bruto informado: 0,05 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1dc59d80-c877-44b7-b0fd-a35dc193a19f",
+      "sku": "VTK025346",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "basePrice": 92.38,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "GESVL"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "",
+          "value_name": "Viola Caipira"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898159186927"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "",
+          "value_name": "Cobra"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "",
+          "value_name": "10"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "name": "Tensão",
+          "value_id": "",
+          "value_name": "Leve"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "2 Jogos de Corda P/Viola  Cobre Prateado Leve GESVL Giannini\n\nVISÃO GERAL\n2 Jogos de Corda P/Viola Cobre Prateado Leve GESVL Giannini\n\nKit com 2 jogos de cordas originais Giannini, modelo GESVL.\n\nIndicado para Viola Caipira. Cada jogo possui 10 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 jogos de cordas Giannini GESVL\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GESVL\n\n- Instrumento recomendado: Viola Caipira\n\n- Quantidade de jogos: 2\n\n- Cordas por jogo: 10\n\n- Linha: Cobra\n\n- Material principal: Metal\n\n- Tensão: Leve\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Giannini\n• Modelo: GESVL\n• Instrumento recomendado: Viola Caipira\n• Unidades por kit: 2\n• Linha: Cobra\n• Formato de venda: Kit\n• Quantidade de cordas: 10\n• Materiais: Metal\n• Tensão: Leve\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Giannini\n• NCM: 9209.30.00\n• SKU: VTK025346\n\nEMBALAGEM\n• Dimensões informadas: 2 × 11 × 16 cm\n• Peso bruto informado: 0,1 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

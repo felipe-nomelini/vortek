@@ -1,0 +1,72 @@
+{
+  "batchNumber": 31,
+  "batchId": "bkr1-live-031-VTK025378",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "d48350c6-47a8-41a7-9d0a-87c8f11b01e8",
+      "sku": "VTK025378",
+      "nome": "3 Jogos de Corda P/Violão Bronze 85/15 011 GEEFLK Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 71.1,
+      "estoque": 10,
+      "suggestedPricePreview": 112.47,
+      "description": "3 Jogos de Corda P/Violão Bronze 85/15 011 GEEFLK Giannini\n\nKit com 3 jogos de cordas originais Giannini, modelo GEEFLK.\n\nIndicado para Violão acústico. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 jogos de cordas Giannini GEEFLK\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GEEFLK\n\n- Instrumento recomendado: Violão acústico\n\n- Quantidade de jogos: 3\n\n- Cordas por jogo: 6\n\n- Linha: Cobra\n\n- Material principal: Metal\n\n- Tensão: Média\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GEEFLK"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "3"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Cobra"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Média"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1830K3",
+        "componentSku": "VTK001438",
+        "componentGtin": "7890443002395",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4882855471 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "007-bkr1-kit-giannini-007.json",
+      "sourceSequence": 31
+    }
+  ]
+}

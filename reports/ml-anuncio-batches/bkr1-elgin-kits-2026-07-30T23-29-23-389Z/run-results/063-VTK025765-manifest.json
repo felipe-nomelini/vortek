@@ -1,0 +1,82 @@
+{
+  "batchNumber": 63,
+  "batchId": "bkr1-live-063-VTK025765",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "9b8f38b9-97e9-4933-a376-40995cd414c2",
+      "sku": "VTK025765",
+      "nome": "4 Baterias Alcalina A23 Elgin",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 20,
+      "estoque": 8,
+      "suggestedPricePreview": 49.38,
+      "description": "4 Baterias Alcalina A23 Elgin\n\nKit original Elgin com 4 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 1 unidade(s) cada\n\n- Total: 4 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: A23\n\n- Tamanho: A23\n\n- Formato: Cilíndrica\n\n- Quantidade total: 4 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 12 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "A23"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "A23"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "4"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "12 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2398K4",
+        "componentSku": "VTK012241",
+        "componentGtin": "7897013582561",
+        "componentQuantity": 4,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "A23",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "4",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111714846 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "013-bkr1-kit-elgin-013.json",
+      "sourceSequence": 63
+    }
+  ]
+}

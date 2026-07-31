@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-20-10-715Z/run-results/030-VTK025377-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-030-VTK025377",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "33acc2b6-e5ea-4bcb-bad0-32c14fd5b38d",
+      "sku": "VTK025377",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4970613593",
+        "title": "3 Jogos De Corda P/violão Bronze 85/15 010 Geefle Giannini",
+        "price": 135.28,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4970613593-3-jogos-de-corda-pviolo-bronze-8515-010-geefle-giannini-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 114.59 → R$ 135.28."
+      ]
+    }
+  ],
+  "failed": []
+}

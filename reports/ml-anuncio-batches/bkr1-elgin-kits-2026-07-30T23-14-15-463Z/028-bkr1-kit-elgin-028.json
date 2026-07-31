@@ -1,0 +1,372 @@
+{
+  "batchNumber": 28,
+  "batchId": "bkr1-kit-elgin-028",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "4106112d-966d-436c-9a6c-b8837572ccee",
+      "sku": "VTK025815",
+      "nome": "50 Baterias Litio Cr2025 Elgin (10 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 57.2,
+      "estoque": 8,
+      "suggestedPricePreview": 95.31,
+      "description": "50 Baterias Litio Cr2025 Elgin (10 Cart)\n\nKit original Elgin com 50 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 5 unidade(s) cada\n\n- Total: 50 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2025\n\n- Tamanho: CR2025\n\n- Formato: Botão\n\n- Quantidade total: 50 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "CR2025"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "CR2025"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "50"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "3 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Lítio"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2392K10",
+        "componentSku": "VTK012145",
+        "componentGtin": "7897013538100",
+        "componentQuantity": 10,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "CR2025",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "50",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714726 está classificado incorretamente em MLB431681",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "d8fc0528-277f-4ea4-8b4b-0212276baff0",
+      "sku": "VTK025816",
+      "nome": "50 Baterias Litio Cr2032 Elgin (10 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 68,
+      "estoque": 10,
+      "suggestedPricePreview": 108.64,
+      "description": "50 Baterias Litio Cr2032 Elgin (10 Cart)\n\nKit original Elgin com 50 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 5 unidade(s) cada\n\n- Total: 50 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2032\n\n- Tamanho: CR2032\n\n- Formato: Botão\n\n- Quantidade total: 50 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "50"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "3 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Lítio"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2393K10",
+        "componentSku": "VTK012047",
+        "componentGtin": "7897013538117",
+        "componentQuantity": 10,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "CR2032",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "50",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638211 está classificado incorretamente em MLB431681",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "3e57f24b-da28-4022-a41a-b33e62b24ae1",
+      "sku": "VTK025821",
+      "nome": "6 Baterias Alcalina A23 Elgin",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 30,
+      "estoque": 5,
+      "suggestedPricePreview": 61.73,
+      "description": "6 Baterias Alcalina A23 Elgin\n\nKit original Elgin com 6 pilhas ou baterias, distribuídas em 6 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 6 embalagens com 1 unidade(s) cada\n\n- Total: 6 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: A23\n\n- Tamanho: A23\n\n- Formato: Cilíndrica\n\n- Quantidade total: 6 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 12 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "A23"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "A23"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "6"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "12 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2398K6",
+        "componentSku": "VTK012241",
+        "componentGtin": "7897013582561",
+        "componentQuantity": 6,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "A23",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "6",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111714846 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "3553d5d9-5982-46bb-9a09-b54286ae5168",
+      "sku": "VTK025822",
+      "nome": "6 Baterias Cr2032 Elgin",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 17.82,
+      "estoque": 6,
+      "suggestedPricePreview": 46.69,
+      "description": "6 Baterias Cr2032 Elgin\n\nKit original Elgin com 6 pilhas ou baterias, distribuídas em 6 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 6 embalagens com 1 unidade(s) cada\n\n- Total: 6 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2032\n\n- Tamanho: CR2032\n\n- Formato: Botão\n\n- Quantidade total: 6 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "CR2032"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "6"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "3 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Lítio"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2408K6",
+        "componentSku": "VTK012173",
+        "componentGtin": "7908412508943",
+        "componentQuantity": 6,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "CR2032",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "6",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149371272 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "0f97fbb7-67af-437b-ae11-a332b1d9bbe7",
+      "sku": "VTK025823",
+      "nome": "6 Baterias Recarregaveis 9v Elgin",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 289.98,
+      "estoque": 3,
+      "suggestedPricePreview": 411.7,
+      "description": "6 Baterias Recarregaveis 9v Elgin\n\nKit original Elgin com 6 pilhas ou baterias, distribuídas em 6 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 6 embalagens com 1 unidade(s) cada\n\n- Total: 6 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: 9V 250mAh\n\n- Tamanho: 9V\n\n- Formato: Retangular\n\n- Quantidade total: 6 unidades\n\n- Recarregável: Sim\n\n- Voltagem nominal: 9 V\n\n- Composição: Ni-MH\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "9V 250mAh"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "9V"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Retangular"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "6"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "9 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Ni-MH"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2396K6",
+        "componentSku": "VTK012309",
+        "componentGtin": "7897013540011",
+        "componentQuantity": 6,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "9V 250mAh",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "6",
+          "IS_RECHARGEABLE": "Sim"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149333170 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

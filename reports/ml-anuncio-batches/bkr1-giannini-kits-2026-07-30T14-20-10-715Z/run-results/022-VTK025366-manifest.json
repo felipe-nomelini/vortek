@@ -1,0 +1,72 @@
+{
+  "batchNumber": 22,
+  "batchId": "bkr1-live-022-VTK025366",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "7701b649-b6d0-4062-9b66-f88c75888dcf",
+      "sku": "VTK025366",
+      "nome": "3 Jogos de Corda P/Cavaquinho  Cobra Niquel GESCP Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 46.14,
+      "estoque": 3,
+      "suggestedPricePreview": 81.65,
+      "description": "3 Jogos de Corda P/Cavaquinho  Cobra Niquel GESCP Giannini\n\nKit com 3 jogos de cordas originais Giannini, modelo GESCP.\n\nIndicado para Cavaquinho. Cada jogo possui 4 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 jogos de cordas Giannini GESCP\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GESCP\n\n- Instrumento recomendado: Cavaquinho\n\n- Quantidade de jogos: 3\n\n- Cordas por jogo: 4\n\n- Linha: Cobra\n\n- Material principal: Metal\n\n- Tensão: Alta\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GESCP"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Cavaquinho"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "3"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "4"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Cobra"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Alta"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1751K3",
+        "componentSku": "VTK001488",
+        "componentGtin": "7898159186996",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7160228674 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "005-bkr1-kit-giannini-005.json",
+      "sourceSequence": 22
+    }
+  ]
+}

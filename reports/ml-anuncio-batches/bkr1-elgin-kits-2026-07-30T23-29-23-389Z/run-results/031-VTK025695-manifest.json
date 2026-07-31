@@ -1,0 +1,82 @@
+{
+  "batchNumber": 31,
+  "batchId": "bkr1-live-031-VTK025695",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "39bdb9b8-200a-4aaf-86c3-187acd349321",
+      "sku": "VTK025695",
+      "nome": "18 Pilhas Alcalinas Aa Sm-2 Elgin (9 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 36,
+      "estoque": 9,
+      "suggestedPricePreview": 69.14,
+      "description": "18 Pilhas Alcalinas Aa Sm-2 Elgin (9 Cart)\n\nKit original Elgin com 18 pilhas ou baterias, distribuídas em 9 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 9 embalagens com 2 unidade(s) cada\n\n- Total: 18 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AA\n\n- Tamanho: AA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 18 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "18"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2382K9",
+        "componentSku": "VTK012114",
+        "componentGtin": "7897013534188",
+        "componentQuantity": 9,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "AA",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "18",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4857626311 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "007-bkr1-kit-elgin-007.json",
+      "sourceSequence": 31
+    }
+  ]
+}

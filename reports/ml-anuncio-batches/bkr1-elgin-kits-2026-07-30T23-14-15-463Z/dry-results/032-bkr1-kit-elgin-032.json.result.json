@@ -1,0 +1,475 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-14-15-463Z/032-bkr1-kit-elgin-032.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "bkr1-kit-elgin-032",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "882547b8-4c1e-4840-b30a-31aae1cee9c4",
+      "sku": "VTK025848",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 47.79,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "AAA"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "8"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897013534201"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "",
+          "value_name": "AAA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "name": "Forma",
+          "value_id": "",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "name": "Voltagem nominal",
+          "value_id": "",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "name": "Composição",
+          "value_id": "",
+          "value_name": "Alcalina"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "8 Pilhas Alcalinas Aaa Sm-2 Elgin (4 Cart)\n\nVISÃO GERAL\n8 Pilhas Alcalinas Aaa Sm-2 Elgin (4 Cart)\n\nKit original Elgin com 8 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 2 unidade(s) cada\n\n- Total: 8 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AAA\n\n- Tamanho: AAA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 8 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: AAA\n• Unidades por kit: 8\n• É recarregável: Não\n• Tamanho da pilha: AAA\n• Forma: Cilíndrica\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Voltagem nominal: 1,5 V\n• Composição: Alcalina\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8506.10.19\n• SKU: VTK025848\n\nEMBALAGEM\n• Dimensões informadas: 4 × 9 × 13 cm\n• Peso bruto informado: 0,2 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2cd40d29-832b-4ec7-be6c-ff8d74a09522",
+      "sku": "VTK025850",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 145.19,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "AA 2500mAh"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "8"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897013536083"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "name": "Forma",
+          "value_id": "",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "name": "Voltagem nominal",
+          "value_id": "",
+          "value_name": "1,2 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "name": "Composição",
+          "value_id": "",
+          "value_name": "Ni-MH"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "8 Pilhas recarregável AA 2500 Mah Elgin (4 Cart)\n\nVISÃO GERAL\n8 Pilhas recarregável AA 2500 Mah Elgin (4 Cart)\n\nKit original Elgin com 8 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 2 unidade(s) cada\n\n- Total: 8 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AA 2500mAh\n\n- Tamanho: AA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 8 unidades\n\n- Recarregável: Sim\n\n- Voltagem nominal: 1,2 V\n\n- Composição: Ni-MH\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: AA 2500mAh\n• Unidades por kit: 8\n• É recarregável: Sim\n• Tamanho da pilha: AA\n• Forma: Cilíndrica\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Voltagem nominal: 1,2 V\n• Composição: Ni-MH\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8507.50.10\n• SKU: VTK025850\n\nEMBALAGEM\n• Dimensões informadas: 9 × 12 × 2 cm\n• Peso bruto informado: 70 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "45d5ecef-beaa-4dd8-912a-0e91c443efd2",
+      "sku": "VTK025851",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 145.19,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "AA 2500mAh"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "8"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897013536090"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "name": "Forma",
+          "value_id": "",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "name": "Voltagem nominal",
+          "value_id": "",
+          "value_name": "1,2 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "name": "Composição",
+          "value_id": "",
+          "value_name": "Ni-MH"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "8 Pilhas Recarregável Aa-2500mah Elgin (2 Cart)\n\nVISÃO GERAL\n8 Pilhas Recarregável Aa-2500mah Elgin (2 Cart)\n\nKit original Elgin com 8 pilhas ou baterias, distribuídas em 2 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 embalagens com 4 unidade(s) cada\n\n- Total: 8 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AA 2500mAh\n\n- Tamanho: AA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 8 unidades\n\n- Recarregável: Sim\n\n- Voltagem nominal: 1,2 V\n\n- Composição: Ni-MH\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: AA 2500mAh\n• Unidades por kit: 8\n• É recarregável: Sim\n• Tamanho da pilha: AA\n• Forma: Cilíndrica\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Voltagem nominal: 1,2 V\n• Composição: Ni-MH\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8507.50.10\n• SKU: VTK025851\n\nEMBALAGEM\n• Dimensões informadas: 11 × 0.8 × 3 cm\n• Peso bruto informado: 0,12 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "fdc67b53-0baf-4274-9085-ccfaf339c089",
+      "sku": "VTK025852",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 88.05,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "AAA 900mAh"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "8"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897013536052"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "",
+          "value_name": "AAA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "name": "Forma",
+          "value_id": "",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "name": "Voltagem nominal",
+          "value_id": "",
+          "value_name": "1,2 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "name": "Composição",
+          "value_id": "",
+          "value_name": "Ni-MH"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "8 Pilhas Recarregavel Aaa 900mah Elgin (2 Cart)\n\nVISÃO GERAL\n8 Pilhas Recarregavel Aaa 900mah Elgin (2 Cart)\n\nKit original Elgin com 8 pilhas ou baterias, distribuídas em 2 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 embalagens com 4 unidade(s) cada\n\n- Total: 8 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AAA 900mAh\n\n- Tamanho: AAA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 8 unidades\n\n- Recarregável: Sim\n\n- Voltagem nominal: 1,2 V\n\n- Composição: Ni-MH\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: AAA 900mAh\n• Unidades por kit: 8\n• É recarregável: Sim\n• Tamanho da pilha: AAA\n• Forma: Cilíndrica\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Voltagem nominal: 1,2 V\n• Composição: Ni-MH\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8507.50.20\n• SKU: VTK025852\n\nEMBALAGEM\n• Dimensões informadas: 11 × 0.8 × 2 cm\n• Peso bruto informado: 0,04 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "890e285e-f8cb-4680-8692-adc4a4db3577",
+      "sku": "VTK025853",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "basePrice": 90.91,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "AAA 900mAh"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "8"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "name": "É recarregável",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897013536045"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "name": "Tamanho da pilha",
+          "value_id": "",
+          "value_name": "AAA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "name": "Forma",
+          "value_id": "",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "PACKS_NUMBER",
+          "name": "Quantidade de kits",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "name": "Voltagem nominal",
+          "value_id": "",
+          "value_name": "1,2 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "name": "Composição",
+          "value_id": "",
+          "value_name": "Ni-MH"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "8 Pilhas Recarregável AAA 900mah Elgin 2 Unidades (4 Cart)\n\nVISÃO GERAL\n8 Pilhas Recarregável AAA 900mah Elgin 2 Unidades (4 Cart)\n\nKit original Elgin com 8 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 2 unidade(s) cada\n\n- Total: 8 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AAA 900mAh\n\n- Tamanho: AAA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 8 unidades\n\n- Recarregável: Sim\n\n- Voltagem nominal: 1,2 V\n\n- Composição: Ni-MH\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Elgin\n• Modelo: AAA 900mAh\n• Unidades por kit: 8\n• É recarregável: Sim\n• Tamanho da pilha: AAA\n• Forma: Cilíndrica\n• Formato de venda: Kit\n• Quantidade de kits: 1\n• Voltagem nominal: 1,2 V\n• Composição: Ni-MH\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Elgin\n• NCM: 8507.50.20\n• SKU: VTK025853\n\nEMBALAGEM\n• Dimensões informadas: 12 × 0.9 × 2 cm\n• Peso bruto informado: 0,03 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-29-23-389Z/run-results/061-VTK025756-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-061-VTK025756",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "f4f939dd-c4e8-4261-b3c8-063b91c3d896",
+      "sku": "VTK025756",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7297375900",
+        "title": "32 Pilhas Alcalinas Aa Sm-4 Elgin (8 Cart)",
+        "price": 120.84,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7297375900-32-pilhas-alcalinas-aa-sm-4-elgin-8-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 100.78 → R$ 120.84."
+      ]
+    }
+  ],
+  "failed": []
+}

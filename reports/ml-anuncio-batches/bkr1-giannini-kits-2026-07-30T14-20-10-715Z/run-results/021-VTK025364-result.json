@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-20-10-715Z/run-results/021-VTK025364-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-021-VTK025364",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "2cb000e7-a947-4433-b1a8-092d550169b9",
+      "sku": "VTK025364",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7294124560",
+        "title": "2 Jogos De Corda P/violino Aluminio Médio Geavva Giannini",
+        "price": 122.83,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7294124560-2-jogos-de-corda-pviolino-aluminio-medio-geavva-giannini-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 103.40 → R$ 122.83."
+      ]
+    }
+  ],
+  "failed": []
+}

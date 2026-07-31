@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-20-10-715Z/run-results/022-VTK025366-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-022-VTK025366",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "7701b649-b6d0-4062-9b66-f88c75888dcf",
+      "sku": "VTK025366",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7294101138",
+        "title": "3 Jogos De Corda P/cavaquinho Cobra Niquel Gescp Giannini",
+        "price": 101.37,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7294101138-3-jogos-de-corda-pcavaquinho-cobra-niquel-gescp-giannini-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 83.19 → R$ 101.37."
+      ]
+    }
+  ],
+  "failed": []
+}

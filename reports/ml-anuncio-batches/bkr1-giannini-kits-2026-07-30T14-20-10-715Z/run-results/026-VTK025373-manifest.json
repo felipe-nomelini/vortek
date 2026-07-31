@@ -1,0 +1,72 @@
+{
+  "batchNumber": 26,
+  "batchId": "bkr1-live-026-VTK025373",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "b79e6965-469d-4dcd-93d0-fd21ec158a06",
+      "sku": "VTK025373",
+      "nome": "3 Jogos de Corda P/Viola Cobre Prateado Media GESVM Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 79.32,
+      "estoque": 27,
+      "suggestedPricePreview": 122.62,
+      "description": "3 Jogos de Corda P/Viola Cobre Prateado Media GESVM Giannini\n\nKit com 3 jogos de cordas originais Giannini, modelo GESVM.\n\nIndicado para Viola Caipira. Cada jogo possui 10 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 jogos de cordas Giannini GESVM\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GESVM\n\n- Instrumento recomendado: Viola Caipira\n\n- Quantidade de jogos: 3\n\n- Cordas por jogo: 10\n\n- Linha: Cobra\n\n- Material principal: Metal\n\n- Tensão: Média\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GESVM"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Viola Caipira"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "3"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "10"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Cobra"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Média"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1749K3",
+        "componentSku": "VTK001454",
+        "componentGtin": "7898159186941",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7145203560 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "006-bkr1-kit-giannini-006.json",
+      "sourceSequence": 26
+    }
+  ]
+}

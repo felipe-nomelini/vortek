@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-29-23-389Z/run-results/064-VTK025766-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-064-VTK025766",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "d8b0d3fe-ed5a-412a-a577-72b11c8e976e",
+      "sku": "VTK025766",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7297401940",
+        "title": "4 Baterias Cr2032 Elgin",
+        "price": 59.39,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7297401940-4-baterias-cr2032-elgin-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 41.40 → R$ 59.39."
+      ]
+    }
+  ],
+  "failed": []
+}

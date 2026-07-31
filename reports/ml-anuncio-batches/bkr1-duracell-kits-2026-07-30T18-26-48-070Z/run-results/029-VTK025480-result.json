@@ -1,0 +1,37 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-duracell-kits-2026-07-30T18-26-48-070Z/run-results/029-VTK025480-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-029-VTK025480",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "81278be4-e99d-4c88-8e05-eb6b127269f7",
+      "sku": "VTK025480",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7296002782",
+        "title": "14 Pilhas Alcalinas Aaa Palito Duracell (7 Cart. C/ 2 Un.)",
+        "price": 146.43,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7296002782-14-pilhas-alcalinas-aaa-palito-duracell-7-cart-c-2-un-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "GTIN unitário do componente usado para este kit de itens idênticos.",
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 125.06 → R$ 146.43."
+      ]
+    }
+  ],
+  "failed": []
+}

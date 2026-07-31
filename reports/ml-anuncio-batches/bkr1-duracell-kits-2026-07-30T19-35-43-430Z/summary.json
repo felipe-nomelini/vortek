@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-07-30T19:35:43.431Z",
+  "sourceFile": "/tmp/vortek-kits-analysis/Duracell.xls",
+  "account": {
+    "userId": "3294514937",
+    "nickname": "VORTEKTECNOLOGIA"
+  },
+  "mode": "audit_only",
+  "sheetCount": 192,
+  "readyCount": 0,
+  "blockedCount": 192,
+  "batchCount": 0,
+  "reportDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-duracell-kits-2026-07-30T19-35-43-430Z"
+}

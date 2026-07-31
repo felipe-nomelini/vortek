@@ -1,0 +1,314 @@
+{
+  "batchNumber": 2,
+  "batchId": "bkr1-kit-giannini-002",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "af9cb97e-0342-4311-9db2-5b667eef6fa7",
+      "sku": "VTK025347",
+      "nome": "2 Jogos de Corda P/Viola Cobre Prateado Media GESVM Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 52.88,
+      "estoque": 41,
+      "suggestedPricePreview": 89.98,
+      "description": "2 Jogos de Corda P/Viola Cobre Prateado Media GESVM Giannini\n\nKit com 2 jogos de cordas originais Giannini, modelo GESVM.\n\nIndicado para Viola Caipira. Cada jogo possui 10 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 jogos de cordas Giannini GESVM\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GESVM\n\n- Instrumento recomendado: Viola Caipira\n\n- Quantidade de jogos: 2\n\n- Cordas por jogo: 10\n\n- Linha: Cobra\n\n- Material principal: Metal\n\n- Tensão: Média\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GESVM"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Viola Caipira"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "10"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Cobra"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Média"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1749K2",
+        "componentSku": "VTK001454",
+        "componentGtin": "7898159186941",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7145203560 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "a9dddc9c-565d-4a54-a534-fe021804f5f6",
+      "sku": "VTK025348",
+      "nome": "2 Jogos de Corda P/Violão Aço Bronze 65/35 0.009 Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 38.6,
+      "estoque": 25,
+      "suggestedPricePreview": 72.35,
+      "description": "2 Jogos de Corda P/Violão Aço Bronze 65/35 0.009 Giannini\n\nKit com 2 jogos de cordas originais Giannini, modelo GESWAL.\n\nIndicado para Violão acústico. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 jogos de cordas Giannini GESWAL\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GESWAL\n\n- Instrumento recomendado: Violão acústico\n\n- Quantidade de jogos: 2\n\n- Cordas por jogo: 6\n\n- Linha: Acústico\n\n- Material principal: Metal\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GESWAL"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Acústico"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1824K2",
+        "componentSku": "VTK001437",
+        "componentGtin": "7898159186774",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149338414 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "ad7456e7-e1c2-4b26-836d-31fe69bc5ad2",
+      "sku": "VTK025349",
+      "nome": "2 Jogos de Corda P/Violão Aço Bronze 65/35 0.010 Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 41.4,
+      "estoque": 25,
+      "suggestedPricePreview": 75.8,
+      "description": "2 Jogos de Corda P/Violão Aço Bronze 65/35 0.010 Giannini\n\nKit com 2 jogos de cordas originais Giannini, modelo GESWAM.\n\nIndicado para Violão acústico. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 jogos de cordas Giannini GESWAM\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GESWAM\n\n- Instrumento recomendado: Violão acústico\n\n- Quantidade de jogos: 2\n\n- Cordas por jogo: 6\n\n- Linha: Acústico\n\n- Material principal: Metal\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GESWAM"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Acústico"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1835K2",
+        "componentSku": "VTK001490",
+        "componentGtin": "7898159186781",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149372564 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "91ee531a-109f-45cd-ba1c-f53ac6cc4868",
+      "sku": "VTK025350",
+      "nome": "2 Jogos de Corda P/Violão Aço Bronze 65/35 0.011 Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 41.4,
+      "estoque": 25,
+      "suggestedPricePreview": 75.8,
+      "description": "2 Jogos de Corda P/Violão Aço Bronze 65/35 0.011 Giannini\n\nKit com 2 jogos de cordas originais Giannini, modelo GESPW.\n\nIndicado para Violão acústico. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 jogos de cordas Giannini GESPW\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GESPW\n\n- Instrumento recomendado: Violão acústico\n\n- Quantidade de jogos: 2\n\n- Cordas por jogo: 6\n\n- Linha: Acústico\n\n- Material principal: Metal\n\n- Tensão: Alta\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GESPW"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Acústico"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Alta"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1741K2",
+        "componentSku": "VTK001616",
+        "componentGtin": "7898159186798",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4857635479 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "543e56fd-b989-4292-af85-77b90cb08639",
+      "sku": "VTK025351",
+      "nome": "2 Jogos de Corda P/Violão Bronze 85/15 010 GEEFLE Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 47.4,
+      "estoque": 25,
+      "suggestedPricePreview": 83.21,
+      "description": "2 Jogos de Corda P/Violão Bronze 85/15 010 GEEFLE Giannini\n\nKit com 2 jogos de cordas originais Giannini, modelo GEEFLE.\n\nIndicado para Violão acústico. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 jogos de cordas Giannini GEEFLE\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GEEFLE\n\n- Instrumento recomendado: Violão acústico\n\n- Quantidade de jogos: 2\n\n- Cordas por jogo: 6\n\n- Linha: Cobra\n\n- Material principal: Metal\n\n- Tensão: Leve\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GEEFLE"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Cobra"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Leve"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1825K2",
+        "componentSku": "VTK001408",
+        "componentGtin": "7898159187030",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4857635189 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

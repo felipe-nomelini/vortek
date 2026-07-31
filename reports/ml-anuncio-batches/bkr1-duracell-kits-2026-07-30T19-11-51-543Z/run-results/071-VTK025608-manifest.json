@@ -1,0 +1,82 @@
+{
+  "batchNumber": 71,
+  "batchId": "bkr1-live-071-VTK025608",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "82b23352-18d0-4c89-8e5d-e72e3d2c756a",
+      "sku": "VTK025608",
+      "nome": "72 Pilhas Alcalinas A23 Mn21 12v Duracell (36 Cart c/ 2 Un.)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 1188,
+      "estoque": 2,
+      "suggestedPricePreview": 1833.33,
+      "description": "72 Pilhas Alcalinas A23 Mn21 12v Duracell (36 Cart c/ 2 Un.)\n\nKit original Duracell com 72 pilhas ou baterias, distribuídas em 36 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 36 embalagens com 2 unidade(s) cada\n\n- Total: 72 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: MN21/A23\n\n- Tamanho: MN21/A23\n\n- Formato: Cilíndrica\n\n- Quantidade total: 72 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 12 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "MN21/A23"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "MN21/A23"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "72"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "12 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3869CX36",
+        "componentSku": "VTK000464",
+        "componentGtin": "041333038896",
+        "componentQuantity": 36,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "MN21/A23",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "72",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Família Duracell validada em MLB7060; componente sem anúncio unitário",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "015-bkr1-kit-duracell-015.json",
+      "sourceSequence": 71
+    }
+  ]
+}

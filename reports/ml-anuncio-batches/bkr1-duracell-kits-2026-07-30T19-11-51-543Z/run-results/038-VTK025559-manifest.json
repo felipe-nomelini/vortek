@@ -1,0 +1,82 @@
+{
+  "batchNumber": 38,
+  "batchId": "bkr1-live-038-VTK025559",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "81467117-b9da-4794-af94-670feb77034b",
+      "sku": "VTK025559",
+      "nome": "4 Pilhas Alcalinas Aaa Palito Duracell (2 Cart. c/ 2 Un.)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 21.8,
+      "estoque": 50,
+      "suggestedPricePreview": 51.6,
+      "description": "4 Pilhas Alcalinas Aaa Palito Duracell (2 Cart. c/ 2 Un.)\n\nKit original Duracell com 4 pilhas ou baterias, distribuídas em 2 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 embalagens com 2 unidade(s) cada\n\n- Total: 4 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: MN2400\n\n- Tamanho: AAA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 4 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "MN2400"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AAA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "4"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3859K2",
+        "componentSku": "VTK003749",
+        "componentGtin": "041333001074",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "MN2400",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "4",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111713842 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "008-bkr1-kit-duracell-008.json",
+      "sourceSequence": 38
+    }
+  ]
+}

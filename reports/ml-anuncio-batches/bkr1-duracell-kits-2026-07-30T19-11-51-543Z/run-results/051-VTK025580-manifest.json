@@ -1,0 +1,82 @@
+{
+  "batchNumber": 51,
+  "batchId": "bkr1-live-051-VTK025580",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "e9a49b42-01c9-45c7-af91-25253279c874",
+      "sku": "VTK025580",
+      "nome": "48 Pilhas Alcalinas Aa Duracell (6 Cart. c/ 8 Un. Cada)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 224.4,
+      "estoque": 16,
+      "suggestedPricePreview": 318.59,
+      "description": "48 Pilhas Alcalinas Aa Duracell (6 Cart. c/ 8 Un. Cada)\n\nKit original Duracell com 48 pilhas ou baterias, distribuídas em 6 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 6 embalagens com 8 unidade(s) cada\n\n- Total: 48 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: MN1500\n\n- Tamanho: AA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 48 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "MN1500"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "48"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3857K6",
+        "componentSku": "VTK003684",
+        "componentGtin": "041333001036",
+        "componentQuantity": 6,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "MN1500",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "48",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149327868 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "011-bkr1-kit-duracell-011.json",
+      "sourceSequence": 51
+    }
+  ]
+}

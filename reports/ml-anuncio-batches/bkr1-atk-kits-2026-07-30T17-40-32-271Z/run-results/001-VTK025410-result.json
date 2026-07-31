@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-40-32-271Z/run-results/001-VTK025410-manifest.json",
+  "baseUrl": "http://127.0.0.1:3010",
+  "dryRun": false,
+  "batchId": "bkr1-live-001-VTK025410",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "d85d1594-e84d-409f-8339-2a10ca280946",
+      "sku": "VTK025410",
+      "category": {
+        "id": "MLB3905",
+        "nome": "MLB3905",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4971399249",
+        "title": "Kit 2 Alto-falantes 1300w 12 Pol 2 Ohms Wf3004600b2 Atk Preto",
+        "price": 3720.37,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4971399249-kit-2-alto-falantes-1300w-12-pol-2-ohms-wf3004600b2-atk-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "GTIN ausente. Motivo enviado ao ML: O produto é um kit ou pack.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 3687.96 → R$ 3720.37."
+      ]
+    }
+  ],
+  "failed": []
+}

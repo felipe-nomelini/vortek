@@ -1,0 +1,90 @@
+{
+  "batchNumber": 8,
+  "batchId": "bkr1-live-008-VTK025401",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "4a562ea3-cb6e-401c-92c3-ad51397f757c",
+      "sku": "VTK025401",
+      "nome": "Kit 2 Alto-Falantes  250w 10 Pol 8 Ohms 10WF510B8 ATK",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB3905",
+      "custo": 370,
+      "estoque": 4,
+      "suggestedPricePreview": 525.31,
+      "description": "Kit 2 Alto-Falantes  250w 10 Pol 8 Ohms 10WF510B8 ATK\n\nKit com 2 alto-falantes originais ATK Eletroacústica, modelo 10WF510B8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 unidades ATK 10WF510B8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: 10WF510B8\n\n- Quantidade: 2 unidades\n\n- Potência nominal por unidade: 250 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro nominal: 10 polegadas\n\nConfira o modelo, a impedância e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "10WF510B8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "IS_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_name": "10 in"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_name": "10 in"
+        },
+        {
+          "id": "COLOR",
+          "value_name": "Preto"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_name": "2"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "7509874",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_name": "250 W"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Atk.xls",
+        "sourceSku": "1554K2",
+        "componentSku": "VTK012490",
+        "componentGtin": "7898640362137",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "10WF510B8",
+          "SPEAKERS_NUMBER": "2"
+        },
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149368460 em MLB3905",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "002-bkr1-kit-atk-002.json",
+      "sourceSequence": 8
+    }
+  ]
+}

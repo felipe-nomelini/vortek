@@ -1,0 +1,372 @@
+{
+  "batchNumber": 19,
+  "batchId": "bkr1-kit-duracell-019",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "58bbe146-8a55-4dc1-b257-6834b5509f76",
+      "sku": "VTK025628",
+      "nome": "96 Pilhas Alcalinas Aa Duracell (6 Cart. c/ 16 Un. Cada)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 446.1,
+      "estoque": 13,
+      "suggestedPricePreview": 660.89,
+      "description": "96 Pilhas Alcalinas Aa Duracell (6 Cart. c/ 16 Un. Cada)\n\nKit original Duracell com 96 pilhas ou baterias, distribuídas em 6 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 6 embalagens com 16 unidade(s) cada\n\n- Total: 96 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: MN1500\n\n- Tamanho: AA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 96 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "MN1500"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "96"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3854CX6",
+        "componentSku": "VTK012134",
+        "componentGtin": "041333666815",
+        "componentQuantity": 6,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "MN1500",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "96",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7173661978 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "d83a56ed-bb0b-4ad2-8fdc-c773cba29509",
+      "sku": "VTK025629",
+      "nome": "96 Pilhas Alcalinas Aaa Palito Duracell (48 Cart. c/ 2 Un.)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 523.2,
+      "estoque": 2,
+      "suggestedPricePreview": 775.11,
+      "description": "96 Pilhas Alcalinas Aaa Palito Duracell (48 Cart. c/ 2 Un.)\n\nKit original Duracell com 96 pilhas ou baterias, distribuídas em 48 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 48 embalagens com 2 unidade(s) cada\n\n- Total: 96 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: MN2400\n\n- Tamanho: AAA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 96 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "MN2400"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AAA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "96"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3859CX48",
+        "componentSku": "VTK003749",
+        "componentGtin": "041333001074",
+        "componentQuantity": 48,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "MN2400",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "96",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111713842 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "a1930a95-6cee-496f-856d-16338d84245f",
+      "sku": "VTK025630",
+      "nome": "96 Pilhas Alcalinas Aaa Palito Duracell (6 Cart. c/ 16 Un.)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 446.4,
+      "estoque": 4,
+      "suggestedPricePreview": 661.33,
+      "description": "96 Pilhas Alcalinas Aaa Palito Duracell (6 Cart. c/ 16 Un.)\n\nKit original Duracell com 96 pilhas ou baterias, distribuídas em 6 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 6 embalagens com 16 unidade(s) cada\n\n- Total: 96 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: MN2400\n\n- Tamanho: AAA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 96 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "MN2400"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AAA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "96"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3858CX6",
+        "componentSku": "VTK012247",
+        "componentGtin": "041333666952",
+        "componentQuantity": 6,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "MN2400",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "96",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111657378 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "3973ef37-9298-4fcd-bf00-6eebe422c46b",
+      "sku": "VTK025631",
+      "nome": "96 Pilhas Alcalinas C Duracell (48 Cart. c/ 2 Un. Cada)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 1425.6,
+      "estoque": 2,
+      "suggestedPricePreview": 2200,
+      "description": "96 Pilhas Alcalinas C Duracell (48 Cart. c/ 2 Un. Cada)\n\nKit original Duracell com 96 pilhas ou baterias, distribuídas em 48 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 48 embalagens com 2 unidade(s) cada\n\n- Total: 96 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: MN1400\n\n- Tamanho: C\n\n- Formato: Cilíndrica\n\n- Quantidade total: 96 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "MN1400"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "C"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "96"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3862CX48",
+        "componentSku": "VTK003764",
+        "componentGtin": "041333000992",
+        "componentQuantity": 48,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "MN1400",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "96",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4880581637 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "5c555d4f-fa69-4d1d-b1c6-7fa94a38394d",
+      "sku": "VTK025632",
+      "nome": "96 Pilhas Alcalinas D Duracell (48 Cart. c/ 2 Un. Cada)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 1896,
+      "estoque": 2,
+      "suggestedPricePreview": 2925.93,
+      "description": "96 Pilhas Alcalinas D Duracell (48 Cart. c/ 2 Un. Cada)\n\nKit original Duracell com 96 pilhas ou baterias, distribuídas em 48 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 48 embalagens com 2 unidade(s) cada\n\n- Total: 96 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: MN1300\n\n- Tamanho: D\n\n- Formato: Cilíndrica\n\n- Quantidade total: 96 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "MN1300"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "D"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "96"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3864CX48",
+        "componentSku": "VTK003739",
+        "componentGtin": "041333000985",
+        "componentQuantity": 48,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "MN1300",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "96",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111662476 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

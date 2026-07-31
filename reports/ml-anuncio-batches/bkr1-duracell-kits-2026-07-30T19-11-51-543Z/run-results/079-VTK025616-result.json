@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-duracell-kits-2026-07-30T19-11-51-543Z/run-results/079-VTK025616-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-079-VTK025616",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "9ec5a53d-c810-4e81-8daa-d6bfffdd0c09",
+      "sku": "VTK025616",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4971764579",
+        "title": "8 Pilhas Alcalinas Aaa Palito Duracell (2 Cart. C/ 4 Un.)",
+        "price": 75.32,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4971764579-8-pilhas-alcalinas-aaa-palito-duracell-2-cart-c-4-un-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"status\":409,\"error\":\"Conflict\",\"code\":\"conflict.error\"}"
+      ]
+    }
+  ],
+  "failed": []
+}

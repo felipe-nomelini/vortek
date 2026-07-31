@@ -1,0 +1,72 @@
+{
+  "batchNumber": 34,
+  "batchId": "bkr1-live-034-VTK025382",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "de5c479e-034c-4c64-a332-9cc6a5774047",
+      "sku": "VTK025382",
+      "nome": "3 Jogos de Corda P/Violão Nylon 65/35 Prateado Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 78.66,
+      "estoque": 4,
+      "suggestedPricePreview": 121.8,
+      "description": "3 Jogos de Corda P/Violão Nylon 65/35 Prateado Giannini\n\nKit com 3 jogos de cordas originais Giannini, modelo GENWPL.\n\nIndicado para Violão acústico. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 jogos de cordas Giannini GENWPL\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GENWPL\n\n- Instrumento recomendado: Violão acústico\n\n- Quantidade de jogos: 3\n\n- Cordas por jogo: 6\n\n- Linha: Clássico\n\n- Material principal: Náilon\n\n- Tensão: Leve\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GENWPL"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "3"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Clássico"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Náilon"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Leve"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1746K3",
+        "componentSku": "VTK001644",
+        "componentGtin": "7898159186880",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4880581467 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "007-bkr1-kit-giannini-007.json",
+      "sourceSequence": 34
+    }
+  ]
+}

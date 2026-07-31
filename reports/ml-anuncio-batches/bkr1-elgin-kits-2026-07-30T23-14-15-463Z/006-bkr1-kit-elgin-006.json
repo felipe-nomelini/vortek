@@ -1,0 +1,372 @@
+{
+  "batchNumber": 6,
+  "batchId": "bkr1-kit-elgin-006",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "12febead-73fb-40d5-bf3a-af853117550a",
+      "sku": "VTK025665",
+      "nome": "12 Pilhas Alcalinas Aa Sm-4 Elgin (3 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 21.6,
+      "estoque": 33,
+      "suggestedPricePreview": 51.36,
+      "description": "12 Pilhas Alcalinas Aa Sm-4 Elgin (3 Cart)\n\nKit original Elgin com 12 pilhas ou baterias, distribuídas em 3 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 embalagens com 4 unidade(s) cada\n\n- Total: 12 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AA\n\n- Tamanho: AA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 12 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "12"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2383K3",
+        "componentSku": "VTK012042",
+        "componentGtin": "7897013534195",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "AA",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "12",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7168452518 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "ce2634fa-35d0-45c9-afa6-d7e1f3e1c098",
+      "sku": "VTK025666",
+      "nome": "12 Pilhas Alcalinas Aaa Sm-2 Elgin (6 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 25.2,
+      "estoque": 13,
+      "suggestedPricePreview": 55.8,
+      "description": "12 Pilhas Alcalinas Aaa Sm-2 Elgin (6 Cart)\n\nKit original Elgin com 12 pilhas ou baterias, distribuídas em 6 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 6 embalagens com 2 unidade(s) cada\n\n- Total: 12 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AAA\n\n- Tamanho: AAA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 12 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "AAA"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AAA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "12"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2384K6",
+        "componentSku": "VTK012144",
+        "componentGtin": "7897013534201",
+        "componentQuantity": 6,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "AAA",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "12",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111714950 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "294b6763-2728-4de5-9733-67ab077b5b1a",
+      "sku": "VTK025668",
+      "nome": "12 Pilhas Recarregável Aa-2500mah Elgin (3 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 137.7,
+      "estoque": 16,
+      "suggestedPricePreview": 195.5,
+      "description": "12 Pilhas Recarregável Aa-2500mah Elgin (3 Cart)\n\nKit original Elgin com 12 pilhas ou baterias, distribuídas em 3 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 embalagens com 4 unidade(s) cada\n\n- Total: 12 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AA 2500mAh\n\n- Tamanho: AA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 12 unidades\n\n- Recarregável: Sim\n\n- Voltagem nominal: 1,2 V\n\n- Composição: Ni-MH\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "AA 2500mAh"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "12"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,2 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Ni-MH"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "3125K3",
+        "componentSku": "VTK012200",
+        "componentGtin": "7897013536090",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "AA 2500mAh",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "12",
+          "IS_RECHARGEABLE": "Sim"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111661730 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "290e90ad-2598-4f23-8f22-d4c9d315c22b",
+      "sku": "VTK025669",
+      "nome": "12 Pilhas Recarregavel Aaa 900mah Elgin (3 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 71.7,
+      "estoque": 10,
+      "suggestedPricePreview": 113.21,
+      "description": "12 Pilhas Recarregavel Aaa 900mah Elgin (3 Cart)\n\nKit original Elgin com 12 pilhas ou baterias, distribuídas em 3 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 embalagens com 4 unidade(s) cada\n\n- Total: 12 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AAA 900mAh\n\n- Tamanho: AAA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 12 unidades\n\n- Recarregável: Sim\n\n- Voltagem nominal: 1,2 V\n\n- Composição: Ni-MH\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "AAA 900mAh"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AAA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "12"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,2 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Ni-MH"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "3123K3",
+        "componentSku": "VTK012256",
+        "componentGtin": "7897013536052",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "AAA 900mAh",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "12",
+          "IS_RECHARGEABLE": "Sim"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111711736 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "429f11fd-0a72-4643-9f24-5cf874a90505",
+      "sku": "VTK025670",
+      "nome": "14 Pilhas Alcalinas Aa Sm-2 Elgin (7 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 28,
+      "estoque": 12,
+      "suggestedPricePreview": 59.26,
+      "description": "14 Pilhas Alcalinas Aa Sm-2 Elgin (7 Cart)\n\nKit original Elgin com 14 pilhas ou baterias, distribuídas em 7 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 7 embalagens com 2 unidade(s) cada\n\n- Total: 14 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AA\n\n- Tamanho: AA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 14 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "14"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2382K7",
+        "componentSku": "VTK012114",
+        "componentGtin": "7897013534188",
+        "componentQuantity": 7,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "AA",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "14",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4857626311 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

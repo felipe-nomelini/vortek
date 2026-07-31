@@ -1,0 +1,72 @@
+{
+  "batchNumber": 19,
+  "batchId": "bkr1-live-019-VTK025361",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "4c213390-80f6-47f9-9cec-78c10c220769",
+      "sku": "VTK025361",
+      "nome": "2 Jogos de Corda P/Violão Nylon Cristal/Prata GENWS Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 43,
+      "estoque": 9,
+      "suggestedPricePreview": 77.78,
+      "description": "2 Jogos de Corda P/Violão Nylon Cristal/Prata GENWS Giannini\n\nKit com 2 jogos de cordas originais Giannini, modelo GENWS.\n\nIndicado para Violão acústico. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 jogos de cordas Giannini GENWS\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GENWS\n\n- Instrumento recomendado: Violão acústico\n\n- Quantidade de jogos: 2\n\n- Cordas por jogo: 6\n\n- Linha: MPB\n\n- Material principal: Náilon\n\n- Tensão: Média\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GENWS"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "MPB"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Náilon"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Média"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1745K2",
+        "componentSku": "VTK001435",
+        "componentGtin": "7898159186873",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4882821667 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "004-bkr1-kit-giannini-004.json",
+      "sourceSequence": 19
+    }
+  ]
+}

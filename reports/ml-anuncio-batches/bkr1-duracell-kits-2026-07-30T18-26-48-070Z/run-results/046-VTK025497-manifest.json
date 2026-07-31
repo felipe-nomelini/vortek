@@ -1,0 +1,74 @@
+{
+  "batchNumber": 46,
+  "batchId": "bkr1-live-046-VTK025497",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "bfc623ce-a8b3-4a32-ba71-6a7567b955e4",
+      "sku": "VTK025497",
+      "nome": "18 Baterias Auditiva 312 Duracell (3 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 75,
+      "estoque": 33,
+      "suggestedPricePreview": 117.28,
+      "description": "18 Baterias Auditiva 312 Duracell (3 Cart)\n\nKit original Duracell com 18 pilhas ou baterias, distribuídas em 3 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 embalagens com 6 unidade(s) cada\n\n- Total: 18 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: 312\n\n- Tamanho: 312\n\n- Formato: Botão\n\n- Quantidade total: 18 unidades\n\n- Recarregável: Não\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "312"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "312"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "18"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3870K3",
+        "componentSku": "VTK003105",
+        "componentGtin": "041333030203",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "312",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "18",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149405082 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "010-bkr1-kit-duracell-010.json",
+      "sourceSequence": 46
+    }
+  ]
+}

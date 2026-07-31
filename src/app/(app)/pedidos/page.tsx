@@ -325,8 +325,14 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     nfe_danfe_url: item.nfe_danfe_url,
     rastreio: item.rastreio,
     lucro: item.lucro ?? null,
-    profit_pending: Array.isArray(item.snapshot_pendencias)
-      && item.snapshot_pendencias.some((value) => String(value) === 'lucro_pendente_frete'),
+    profit_pending: Boolean((item as any).operational_profit_pending)
+      || (
+        Array.isArray(item.snapshot_pendencias)
+        && item.snapshot_pendencias.some((value) => (
+          String(value) === 'lucro_pendente_frete'
+          || String(value) === 'lucro_pendente_produto'
+        ))
+      ),
     dslite_id: isValidDsliteId(item.dslite_id),
     dslite_status: item.dslite_status,
     dslite_etiqueta_enviada: item.dslite_etiqueta_enviada || false,
@@ -352,7 +358,15 @@ function mapDBtoOrder(item: Database['public']['Tables']['pedidos']['Row']): Ord
     ml_order_id: item.ml_order_id,
     ml_pack_id: item.ml_pack_id,
     is_virtual_kit: Boolean((item as any).is_virtual_kit),
+    is_cart: Boolean((item as any).is_cart),
     kit_order_ids: Array.isArray((item as any).kit_order_ids) ? (item as any).kit_order_ids : [],
+    operational_dslite_ids: Array.isArray((item as any).operational_dslite_ids)
+      ? (item as any).operational_dslite_ids
+      : [],
+    operational_invoice_numbers: Array.isArray((item as any).operational_invoice_numbers)
+      ? (item as any).operational_invoice_numbers
+      : [],
+    has_split_fulfillment: Boolean((item as any).has_split_fulfillment),
     billing_nome: item.billing_nome,
     billing_endereco: item.billing_endereco as Record<string, unknown> | null,
     ml_fiscal_release_at: item.ml_fiscal_release_at,
@@ -1411,6 +1425,7 @@ export default function PedidosPage() {
   const renderOrderDetails = (order: Order) => {
     const postDispatch = isPostDispatchOrder(order);
     const isInternalShipping = Boolean(order.envio_interno_at);
+    const hasSplitFulfillment = Boolean(order.has_split_fulfillment);
     const address = (order.billing_endereco || {}) as {
       street_name?: string;
       street_number?: string;
@@ -1428,24 +1443,28 @@ export default function PedidosPage() {
       address.zip_code ? `CEP ${address.zip_code}` : '',
     ].filter(Boolean);
     const canCreateDslite = !isValidDsliteId(order.dslite_id)
+      && !hasSplitFulfillment
       && !order.internal_stock_available
       && !isInternalShipping
       && !postDispatch
       && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(order.situacao.valor);
     const canCompleteLabel = Boolean(
       !isInternalShipping
+      && !hasSplitFulfillment
       && !postDispatch
       && isValidDsliteId(order.dslite_id)
       && order.dslite_next_action === 'complete_dslite_label',
     );
     const canConfirmPayment = Boolean(
       !isInternalShipping
+      && !hasSplitFulfillment
       && !postDispatch
       && isValidDsliteId(order.dslite_id)
       && ['confirm_supplier_payment', 'send_supplier_receipt', 'resume_dslite_flow'].includes(order.dslite_next_action || ''),
     );
     const canProcessDirectShipping = Boolean(
       !isInternalShipping
+      && !hasSplitFulfillment
       && !postDispatch
       && !isValidDsliteId(order.dslite_id)
       && order.internal_stock_available
@@ -1506,9 +1525,17 @@ export default function PedidosPage() {
               </Descriptions>
             ) : (
               <Descriptions size="small" column={1} style={{ marginTop: 8 }}>
-                <Descriptions.Item label="Pedido DSLite">
-                  {order.dslite_id ? <Link href={`/compras?search=${encodeURIComponent(order.dslite_id)}`}>{order.dslite_id}</Link> : 'Não criado'}
-                </Descriptions.Item>
+              <Descriptions.Item label="Pedido DSLite">
+                {(order.operational_dslite_ids || []).length > 0 ? (
+                  <Space size={4} wrap>
+                    {(order.operational_dslite_ids || []).map((dsliteId) => (
+                      <Link key={dsliteId} href={`/compras?search=${encodeURIComponent(dsliteId)}`}>{dsliteId}</Link>
+                    ))}
+                  </Space>
+                ) : order.dslite_id ? (
+                  <Link href={`/compras?search=${encodeURIComponent(order.dslite_id)}`}>{order.dslite_id}</Link>
+                ) : 'Não criado'}
+              </Descriptions.Item>
                 <Descriptions.Item label={order.compra_id ? 'Fornecedor' : 'Fornecedor previsto'}>{order.fornecedor_nome || '—'}</Descriptions.Item>
                 <Descriptions.Item label="Pagamento">
                   {order.supplier_payment_amount !== null && order.supplier_payment_amount !== undefined
@@ -1534,18 +1561,22 @@ export default function PedidosPage() {
               </Descriptions.Item>
               <Descriptions.Item label="Envio ML">{order.ml_shipment_id || '—'}</Descriptions.Item>
               <Descriptions.Item label="Pedido ML">
-                {order.ml_order_id ? (
-                  <a
-                    href={`https://www.mercadolivre.com.br/vendas/${order.ml_pack_id || order.ml_order_id}/detalhe`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {order.ml_order_id}
-                  </a>
-                ) : '—'}
+                {(order.kit_order_ids || []).length > 1
+                  ? (order.kit_order_ids || []).join(', ')
+                  : order.ml_order_id ? (
+                    <a
+                      href={`https://www.mercadolivre.com.br/vendas/${order.ml_pack_id || order.ml_order_id}/detalhe`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {order.ml_order_id}
+                    </a>
+                  ) : '—'}
               </Descriptions.Item>
               <Descriptions.Item label="NF">
-                {order.notaFiscal?.numero ? (
+                {(order.operational_invoice_numbers || []).length > 1 ? (
+                  (order.operational_invoice_numbers || []).join(', ')
+                ) : order.notaFiscal?.numero ? (
                   <Space size={4}>
                     <span>{order.notaFiscal.numero}</span>
                     <Button size="small" onClick={() => handleOpenNotaFiscalPdf(order)}>DANFE</Button>
@@ -1556,6 +1587,11 @@ export default function PedidosPage() {
             </Descriptions>
           </Col>
         </Row>
+        {hasSplitFulfillment && (
+          <Tag color="red" style={{ marginTop: 10 }}>
+            Fluxo legado dividido: múltiplos pedidos DSLite/NFs preservados
+          </Tag>
+        )}
         <Divider style={{ borderColor: '#303030', margin: '14px 0 10px' }} />
         <Space wrap>
           <Button size="small" href={`https://www.mercadolivre.com.br/vendas/${order.ml_pack_id || order.numero}/detalhe`} target="_blank">
@@ -1589,7 +1625,8 @@ export default function PedidosPage() {
       sorter: true,
       sortOrder: getRemoteSortOrder('numero', sort),
       render: (num: number, record: Order) => {
-        const displayNumber = record.is_virtual_kit && record.ml_pack_id
+        const isGroupedSale = Boolean(record.is_virtual_kit || record.is_cart);
+        const displayNumber = isGroupedSale && record.ml_pack_id
           ? record.ml_pack_id
           : String(num);
         const orderIds = record.kit_order_ids || [];
@@ -1606,9 +1643,10 @@ export default function PedidosPage() {
                 #{displayNumber}
               </a>
               {record.is_virtual_kit && <Tag color="purple" style={{ marginInlineEnd: 0 }}>KIT</Tag>}
+              {record.is_cart && <Tag color="blue" style={{ marginInlineEnd: 0 }}>CARRINHO</Tag>}
             </Space>
             <div style={{ color: '#888', fontSize: 11, fontFamily: 'monospace' }}>
-              {record.is_virtual_kit
+              {isGroupedSale
                 ? `${orderIds.length} ORDERS ML`
                 : `PACK ID ${record.ml_pack_id || '—'}`}
             </div>
@@ -1714,6 +1752,20 @@ export default function PedidosPage() {
       sorter: true,
       sortOrder: getRemoteSortOrder('nota_fiscal_numero', sort),
       render: (nf: { numero: string; emitida: boolean } | null, record: Order) => {
+        const invoiceNumbers = Array.from(new Set(
+          (record.operational_invoice_numbers || []).map(String).filter(Boolean),
+        ));
+        if (invoiceNumbers.length > 1) {
+          return (
+            <Tooltip title="Carrinho legado processado separadamente antes da correção. Notas preservadas.">
+              <Space size={2} wrap>
+                {invoiceNumbers.map((numero) => (
+                  <Tag key={numero} color="orange">NF {numero}</Tag>
+                ))}
+              </Space>
+            </Tooltip>
+          );
+        }
         if (record.ml_fiscal_release_at && record.situacao.valor !== 'etiqueta_impressa') {
           const releaseAt = getMlReleaseComparableDate(record.ml_fiscal_release_at);
           if (releaseAt && releaseAt.getTime() > Date.now()) {
@@ -1771,8 +1823,13 @@ export default function PedidosPage() {
         const isInternalShipping = Boolean(record.envio_interno_at);
         const postDispatch = isPostDispatchOrder(record);
         const purchaseOrderId = isValidDsliteId(record.dslite_id);
+        const purchaseOrderIds = Array.from(new Set(
+          (record.operational_dslite_ids || []).map(String).filter(Boolean),
+        ));
         const purchaseRejected = isDsliteRejected(record.dslite_status);
-        const actionTag = postDispatch
+        const actionTag = record.has_split_fulfillment
+          ? { color: 'red', label: 'Revisar fluxo dividido' }
+          : postDispatch
           ? { color: 'green', label: 'Somente acompanhar' }
           : record.dslite_label_operational_status === 'sent_unverified'
           && record.dslite_next_action === 'done'
@@ -1840,7 +1897,15 @@ export default function PedidosPage() {
             <FlowStatusLine
               label="Compra"
               color={purchaseRejected ? '#ff4d4f' : purchaseOrderId ? '#52c41a' : '#faad14'}
-              value={purchaseRejected ? 'Rejeitada' : purchaseOrderId ? (
+              value={purchaseRejected ? 'Rejeitada' : purchaseOrderIds.length > 1 ? (
+                <Space size={2} wrap>
+                  {purchaseOrderIds.map((dsliteId) => (
+                    <Link key={dsliteId} href={`/compras?search=${encodeURIComponent(dsliteId)}`}>
+                      #{dsliteId}
+                    </Link>
+                  ))}
+                </Space>
+              ) : purchaseOrderId ? (
                 <Link href={`/compras?search=${encodeURIComponent(purchaseOrderId)}`}>
                   #{purchaseOrderId}
                 </Link>
@@ -1907,6 +1972,7 @@ export default function PedidosPage() {
         const hasDsliteId = !!isValidDsliteId(record.dslite_id);
         const isInternalShipping = Boolean(record.envio_interno_at);
         const postDispatch = isPostDispatchOrder(record);
+        const hasSplitFulfillment = Boolean(record.has_split_fulfillment);
         const nextAction = record.dslite_next_action;
         const releaseAt = record.ml_fiscal_release_at ? getMlReleaseComparableDate(record.ml_fiscal_release_at) : null;
         const mlLabelStillBlocked = Boolean(
@@ -1914,14 +1980,14 @@ export default function PedidosPage() {
           && releaseAt
           && releaseAt.getTime() > Date.now(),
         );
-        if (!isInternalShipping && !postDispatch && (!hasDsliteId || nextAction === 'create_dslite_order') && !record.internal_stock_available && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
+        if (!hasSplitFulfillment && !isInternalShipping && !postDispatch && (!hasDsliteId || nextAction === 'create_dslite_order') && !record.internal_stock_available && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
           items.push({
             key: 'dslite',
             label: 'Criar Pedido DSLite (Brasil NFe)',
             icon: <CarOutlined />,
           });
         }
-        if (!isInternalShipping && !postDispatch && !hasDsliteId && record.internal_stock_available && record.ml_shipment_id && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
+        if (!hasSplitFulfillment && !isInternalShipping && !postDispatch && !hasDsliteId && record.internal_stock_available && record.ml_shipment_id && !['cancelado', 'entregue', 'devolvido', 'recusado'].includes(record.situacao.valor)) {
           items.push({ key: 'direct_shipping', label: 'Processar envio interno', icon: <UploadOutlined /> });
         }
         if (record.ml_label_storage_path && record.dslite_next_action === 'internal_shipping') {
@@ -1932,14 +1998,14 @@ export default function PedidosPage() {
         if (record.ml_thermal_label_storage_path) {
           items.push({ key: 'download_thermal_label', label: 'Baixar etiqueta ZPL', icon: <UploadOutlined /> });
         }
-        if (!isInternalShipping && !postDispatch && hasDsliteId && nextAction === 'complete_dslite_label') {
+        if (!hasSplitFulfillment && !isInternalShipping && !postDispatch && hasDsliteId && nextAction === 'complete_dslite_label') {
           items.push({
             key: 'etiqueta',
             label: 'Completar etiqueta DSLite',
             icon: <UploadOutlined />,
           });
         }
-        if (!isInternalShipping && !postDispatch && hasDsliteId && (nextAction === 'confirm_supplier_payment' || nextAction === 'send_supplier_receipt' || nextAction === 'resume_dslite_flow')) {
+        if (!hasSplitFulfillment && !isInternalShipping && !postDispatch && hasDsliteId && (nextAction === 'confirm_supplier_payment' || nextAction === 'send_supplier_receipt' || nextAction === 'resume_dslite_flow')) {
           items.push({
             key: 'confirm_supplier_payment',
             label: nextAction === 'resume_dslite_flow'

@@ -1,0 +1,445 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-09-12-791Z/001-bkr1-kit-atk-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "bkr1-kit-atk-001",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "e1b0dd7a-687e-449b-a203-fb770a7f9e16",
+      "sku": "VTK025392",
+      "category": {
+        "id": "MLB418066",
+        "nome": "MLB418066",
+        "dominio": ""
+      },
+      "basePrice": 275.43,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "35MH2560B-8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "35MH2560B-8"
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "",
+          "value_name": "Titânio"
+        },
+        {
+          "id": "IMPEDANCE",
+          "name": "Impedância",
+          "value_id": "",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "name": "Frequência mínima",
+          "value_id": "",
+          "value_name": "1500 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "name": "Frequência máxima",
+          "value_id": "",
+          "value_name": "18000 Hz"
+        },
+        {
+          "id": "DIAMETER",
+          "name": "Diâmetro",
+          "value_id": "",
+          "value_name": "25 mm"
+        },
+        {
+          "id": "HORN_DIAMETER",
+          "name": "Diâmetro da corneta",
+          "value_id": "",
+          "value_name": "1 in"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit 02 Drivers 25mm 30w Rms 8 Ohms 35mh2560b-8 ATK\n\nVISÃO GERAL\nKit 02 Drivers 25mm 30w Rms 8 Ohms 35mh2560b-8 ATK\n\nKit com 2 drivers de compressão originais ATK Eletroacústica, modelo 35MH2560B-8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 unidades ATK 35MH2560B-8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: 35MH2560B-8\n\n- Quantidade: 2 unidades\n\n- Potência nominal por unidade: 30 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro da garganta: 25 mm\n\n- Material do diafragma: Titânio\n\n- Resposta de frequência: 1500 a 18000 Hz\n\nConfira o modelo, a impedância e a quantidade antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Atk Eletroacústica\n• Número de peça: 35MH2560B-8\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: 35MH2560B-8\n• Material: Titânio\n• Impedância: 8  \n• Frequência mínima: 1500 Hz\n• Frequência máxima: 18000 Hz\n• Diâmetro: 25 mm\n• Diâmetro da corneta: 1 in\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ATK\n• NCM: 8518.29.90\n• SKU: VTK025392\n\nEMBALAGEM\n• Dimensões informadas: 8 × 12 × 20 cm\n• Peso bruto informado: 1,96 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "92314b0d-b60a-4ac1-a804-9cef232f9bd2",
+      "sku": "VTK025393",
+      "category": {
+        "id": "MLB418066",
+        "nome": "MLB418066",
+        "dominio": ""
+      },
+      "basePrice": 550.86,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "35MH2560B-8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "35MH2560B-8"
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "",
+          "value_name": "Titânio"
+        },
+        {
+          "id": "IMPEDANCE",
+          "name": "Impedância",
+          "value_id": "",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "name": "Frequência mínima",
+          "value_id": "",
+          "value_name": "1500 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "name": "Frequência máxima",
+          "value_id": "",
+          "value_name": "18000 Hz"
+        },
+        {
+          "id": "DIAMETER",
+          "name": "Diâmetro",
+          "value_id": "",
+          "value_name": "25 mm"
+        },
+        {
+          "id": "HORN_DIAMETER",
+          "name": "Diâmetro da corneta",
+          "value_id": "",
+          "value_name": "1 in"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit 04 Drivers 25mm 30w RMS 8 Ohms 35MH2560B-8 ATK\n\nVISÃO GERAL\nKit 04 Drivers 25mm 30w RMS 8 Ohms 35MH2560B-8 ATK\n\nKit com 4 drivers de compressão originais ATK Eletroacústica, modelo 35MH2560B-8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 unidades ATK 35MH2560B-8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: 35MH2560B-8\n\n- Quantidade: 4 unidades\n\n- Potência nominal por unidade: 30 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro da garganta: 25 mm\n\n- Material do diafragma: Titânio\n\n- Resposta de frequência: 1500 a 18000 Hz\n\nConfira o modelo, a impedância e a quantidade antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Atk Eletroacústica\n• Número de peça: 35MH2560B-8\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: 35MH2560B-8\n• Material: Titânio\n• Impedância: 8  \n• Frequência mínima: 1500 Hz\n• Frequência máxima: 18000 Hz\n• Diâmetro: 25 mm\n• Diâmetro da corneta: 1 in\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ATK\n• NCM: 8518.29.90\n• SKU: VTK025393\n\nEMBALAGEM\n• Dimensões informadas: 16 × 12 × 20 cm\n• Peso bruto informado: 3,92 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d025eaab-22a7-4a33-ad57-d520f1020698",
+      "sku": "VTK025394",
+      "category": {
+        "id": "MLB46559",
+        "nome": "MLB46559",
+        "dominio": ""
+      },
+      "basePrice": 337.9,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "45MH2580B-8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "45MH2580B-8"
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "",
+          "value_name": "Titânio"
+        },
+        {
+          "id": "IMPEDANCE",
+          "name": "Impedância",
+          "value_id": "",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "name": "Frequência mínima",
+          "value_id": "",
+          "value_name": "1500 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "name": "Frequência máxima",
+          "value_id": "",
+          "value_name": "18000 Hz"
+        },
+        {
+          "id": "DIAMETER",
+          "name": "Diâmetro",
+          "value_id": "",
+          "value_name": "25 mm"
+        },
+        {
+          "id": "HORN_DIAMETER",
+          "name": "Diâmetro da corneta",
+          "value_id": "",
+          "value_name": "1 in"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit 02 Drivers 25mm 40w Rms 8 Ohms 45mh2580b-8 ATK\n\nVISÃO GERAL\nKit 02 Drivers 25mm 40w Rms 8 Ohms 45mh2580b-8 ATK\n\nKit com 2 drivers de compressão originais ATK Eletroacústica, modelo 45MH2580B-8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 unidades ATK 45MH2580B-8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: 45MH2580B-8\n\n- Quantidade: 2 unidades\n\n- Potência nominal por unidade: 40 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro da garganta: 25 mm\n\n- Material do diafragma: Titânio\n\n- Resposta de frequência: 1500 a 18000 Hz\n\nConfira o modelo, a impedância e a quantidade antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Atk Eletroacústica\n• Número de peça: 45MH2580B-8\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: 45MH2580B-8\n• Material: Titânio\n• Impedância: 8  \n• Frequência mínima: 1500 Hz\n• Frequência máxima: 18000 Hz\n• Diâmetro: 25 mm\n• Diâmetro da corneta: 1 in\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ATK\n• NCM: 8518.29.90\n• SKU: VTK025394\n\nEMBALAGEM\n• Dimensões informadas: 8 × 15 × 26 cm\n• Peso bruto informado: 3,16 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8ca91afc-8e7c-4d9a-8ff6-bd0c07c18019",
+      "sku": "VTK025395",
+      "category": {
+        "id": "MLB46559",
+        "nome": "MLB46559",
+        "dominio": ""
+      },
+      "basePrice": 613.33,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "45MH2510B-8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "45MH2510B-8"
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "",
+          "value_name": "Poliéster"
+        },
+        {
+          "id": "IMPEDANCE",
+          "name": "Impedância",
+          "value_id": "",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "name": "Frequência mínima",
+          "value_id": "",
+          "value_name": "1500 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "name": "Frequência máxima",
+          "value_id": "",
+          "value_name": "18000 Hz"
+        },
+        {
+          "id": "DIAMETER",
+          "name": "Diâmetro",
+          "value_id": "",
+          "value_name": "25 mm"
+        },
+        {
+          "id": "HORN_DIAMETER",
+          "name": "Diâmetro da corneta",
+          "value_id": "",
+          "value_name": "1 in"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit 02 Drivers 50 Watts 8 Ohms 45mh2510b-8 Atk\n\nVISÃO GERAL\nKit 02 Drivers 50 Watts 8 Ohms 45mh2510b-8 Atk\n\nKit com 2 drivers de compressão originais ATK Eletroacústica, modelo 45MH2510B-8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 unidades ATK 45MH2510B-8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: 45MH2510B-8\n\n- Quantidade: 2 unidades\n\n- Potência nominal por unidade: 50 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro da garganta: 25 mm\n\n- Material do diafragma: Poliéster\n\n- Resposta de frequência: 1500 a 18000 Hz\n\nConfira o modelo, a impedância e a quantidade antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Atk Eletroacústica\n• Número de peça: 45MH2510B-8\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: 45MH2510B-8\n• Material: Poliéster\n• Impedância: 8  \n• Frequência mínima: 1500 Hz\n• Frequência máxima: 18000 Hz\n• Diâmetro: 25 mm\n• Diâmetro da corneta: 1 in\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ATK\n• NCM: 8518.29.90\n• SKU: VTK025395\n\nEMBALAGEM\n• Dimensões informadas: 7.8 × 14 × 32 cm\n• Peso bruto informado: 4,2 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d5e22cc7-2d05-4386-8ede-830edf613d62",
+      "sku": "VTK025396",
+      "category": {
+        "id": "MLB46559",
+        "nome": "MLB46559",
+        "dominio": ""
+      },
+      "basePrice": 723.04,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "45MH2580B-8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "45MH2580B-8"
+        },
+        {
+          "id": "MATERIAL",
+          "name": "Material",
+          "value_id": "",
+          "value_name": "Titânio"
+        },
+        {
+          "id": "IMPEDANCE",
+          "name": "Impedância",
+          "value_id": "",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "name": "Frequência mínima",
+          "value_id": "",
+          "value_name": "1500 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "name": "Frequência máxima",
+          "value_id": "",
+          "value_name": "18000 Hz"
+        },
+        {
+          "id": "DIAMETER",
+          "name": "Diâmetro",
+          "value_id": "",
+          "value_name": "25 mm"
+        },
+        {
+          "id": "HORN_DIAMETER",
+          "name": "Diâmetro da corneta",
+          "value_id": "",
+          "value_name": "1 in"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit 04 Drivers 25mm 40w Rms 8 Ohms 45mh2580b-8 ATK\n\nVISÃO GERAL\nKit 04 Drivers 25mm 40w Rms 8 Ohms 45mh2580b-8 ATK\n\nKit com 4 drivers de compressão originais ATK Eletroacústica, modelo 45MH2580B-8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 unidades ATK 45MH2580B-8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: 45MH2580B-8\n\n- Quantidade: 4 unidades\n\n- Potência nominal por unidade: 40 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro da garganta: 25 mm\n\n- Material do diafragma: Titânio\n\n- Resposta de frequência: 1500 a 18000 Hz\n\nConfira o modelo, a impedância e a quantidade antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Atk Eletroacústica\n• Número de peça: 45MH2580B-8\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: 45MH2580B-8\n• Material: Titânio\n• Impedância: 8  \n• Frequência mínima: 1500 Hz\n• Frequência máxima: 18000 Hz\n• Diâmetro: 25 mm\n• Diâmetro da corneta: 1 in\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ATK\n• NCM: 8518.29.90\n• SKU: VTK025396\n\nEMBALAGEM\n• Dimensões informadas: 16 × 15 × 26 cm\n• Peso bruto informado: 6,32 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

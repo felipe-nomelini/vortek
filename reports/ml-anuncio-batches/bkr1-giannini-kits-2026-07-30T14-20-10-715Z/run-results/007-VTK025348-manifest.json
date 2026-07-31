@@ -1,0 +1,68 @@
+{
+  "batchNumber": 7,
+  "batchId": "bkr1-live-007-VTK025348",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "a9dddc9c-565d-4a54-a534-fe021804f5f6",
+      "sku": "VTK025348",
+      "nome": "2 Jogos de Corda P/Violão Aço Bronze 65/35 0.009 Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 38.6,
+      "estoque": 25,
+      "suggestedPricePreview": 72.35,
+      "description": "2 Jogos de Corda P/Violão Aço Bronze 65/35 0.009 Giannini\n\nKit com 2 jogos de cordas originais Giannini, modelo GESWAL.\n\nIndicado para Violão acústico. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 jogos de cordas Giannini GESWAL\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GESWAL\n\n- Instrumento recomendado: Violão acústico\n\n- Quantidade de jogos: 2\n\n- Cordas por jogo: 6\n\n- Linha: Acústico\n\n- Material principal: Metal\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GESWAL"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Acústico"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1824K2",
+        "componentSku": "VTK001437",
+        "componentGtin": "7898159186774",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149338414 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "002-bkr1-kit-giannini-002.json",
+      "sourceSequence": 7
+    }
+  ]
+}

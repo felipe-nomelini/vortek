@@ -1,0 +1,85 @@
+{
+  "batchNumber": 2,
+  "batchId": "bkr1-live-002-VTK025393",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "92314b0d-b60a-4ac1-a804-9cef232f9bd2",
+      "sku": "VTK025393",
+      "nome": "Kit 04 Drivers 25mm 30w RMS 8 Ohms 35MH2560B-8 ATK",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB418066",
+      "custo": 388,
+      "estoque": 13,
+      "suggestedPricePreview": 550.86,
+      "description": "Kit 04 Drivers 25mm 30w RMS 8 Ohms 35MH2560B-8 ATK\n\nKit com 4 drivers de compressão originais ATK Eletroacústica, modelo 35MH2560B-8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 unidades ATK 35MH2560B-8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: 35MH2560B-8\n\n- Quantidade: 4 unidades\n\n- Potência nominal por unidade: 30 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro da garganta: 25 mm\n\n- Material do diafragma: Titânio\n\n- Resposta de frequência: 1500 a 18000 Hz\n\nConfira o modelo, a impedância e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "35MH2560B-8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "IS_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "PART_NUMBER",
+          "value_name": "35MH2560B-8"
+        },
+        {
+          "id": "MATERIAL",
+          "value_name": "Titânio"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "value_name": "1500 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_name": "18000 Hz"
+        },
+        {
+          "id": "DIAMETER",
+          "value_name": "25 mm"
+        },
+        {
+          "id": "HORN_DIAMETER",
+          "value_name": "1 in"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Atk.xls",
+        "sourceSku": "1539K4",
+        "componentSku": "VTK012178",
+        "componentGtin": "7898640360775",
+        "componentQuantity": 4,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "35MH2560B-8",
+          "PART_NUMBER": "35MH2560B-8"
+        },
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111644574 em MLB418066",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "001-bkr1-kit-atk-001.json",
+      "sourceSequence": 2
+    }
+  ]
+}

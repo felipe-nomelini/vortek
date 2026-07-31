@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-20-10-715Z/run-results/026-VTK025373-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-026-VTK025373",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "b79e6965-469d-4dcd-93d0-fd21ec158a06",
+      "sku": "VTK025373",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4970606941",
+        "title": "3 Jogos De Corda P/viola Cobre Prateado Media Gesvm Giannini",
+        "price": 124.93,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4970606941-3-jogos-de-corda-pviola-cobre-prateado-media-gesvm-giannini-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"status\":409,\"code\":\"conflict.error\",\"error\":\"Conflict\"}"
+      ]
+    }
+  ],
+  "failed": []
+}

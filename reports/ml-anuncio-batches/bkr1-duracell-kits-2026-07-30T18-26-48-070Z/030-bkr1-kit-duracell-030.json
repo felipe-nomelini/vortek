@@ -1,0 +1,356 @@
+{
+  "batchNumber": 30,
+  "batchId": "bkr1-kit-duracell-030",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "026cabca-64d0-4654-9198-59f0f83743d8",
+      "sku": "VTK025597",
+      "nome": "6 Pilhas Alcalinas Aaa Palito Duracell (3 Cart. c/ 2 Un.)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 32.7,
+      "estoque": 33,
+      "suggestedPricePreview": 65.06,
+      "description": "6 Pilhas Alcalinas Aaa Palito Duracell (3 Cart. c/ 2 Un.)\n\nKit original Duracell com 6 pilhas ou baterias, distribuídas em 3 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 embalagens com 2 unidade(s) cada\n\n- Total: 6 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: MN2400\n\n- Tamanho: AAA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 6 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "MN2400"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AAA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "6"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3859K3",
+        "componentSku": "VTK003749",
+        "componentGtin": "041333001074",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "MN2400",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "6",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111713842 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "6e1d4900-b0ed-40ef-a74a-3b159235130f",
+      "sku": "VTK025598",
+      "nome": "6 Pilhas Alcalinas C Duracell (3 Cart. c/ 2 Un. Cada)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 89.1,
+      "estoque": 33,
+      "suggestedPricePreview": 134.69,
+      "description": "6 Pilhas Alcalinas C Duracell (3 Cart. c/ 2 Un. Cada)\n\nKit original Duracell com 6 pilhas ou baterias, distribuídas em 3 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 embalagens com 2 unidade(s) cada\n\n- Total: 6 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: MN1400\n\n- Tamanho: C\n\n- Formato: Cilíndrica\n\n- Quantidade total: 6 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "MN1400"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "C"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "6"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3862K3",
+        "componentSku": "VTK003764",
+        "componentGtin": "041333000992",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "MN1400",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "6",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4880581637 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "2b48df6a-d126-4129-8f67-b6f4180bba7d",
+      "sku": "VTK025599",
+      "nome": "6 Pilhas Alcalinas D Duracell (3 Cart. c/ 2 Un. Cada)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 118.5,
+      "estoque": 33,
+      "suggestedPricePreview": 170.99,
+      "description": "6 Pilhas Alcalinas D Duracell (3 Cart. c/ 2 Un. Cada)\n\nKit original Duracell com 6 pilhas ou baterias, distribuídas em 3 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 embalagens com 2 unidade(s) cada\n\n- Total: 6 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: MN1300\n\n- Tamanho: D\n\n- Formato: Cilíndrica\n\n- Quantidade total: 6 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,5 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "MN1300"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "D"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "6"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,5 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3864K3",
+        "componentSku": "VTK003739",
+        "componentGtin": "041333000985",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "MN1300",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "6",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111662476 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "886045b6-ea4a-48ab-840a-050f7a522abe",
+      "sku": "VTK025600",
+      "nome": "60 Baterias Auditiva 312 Duracell (10 Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 250,
+      "estoque": 10,
+      "suggestedPricePreview": 354.94,
+      "description": "60 Baterias Auditiva 312 Duracell (10 Cart)\n\nKit original Duracell com 60 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 6 unidade(s) cada\n\n- Total: 60 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: 312\n\n- Tamanho: 312\n\n- Formato: Botão\n\n- Quantidade total: 60 unidades\n\n- Recarregável: Não\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "312"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "312"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "60"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3870CX10",
+        "componentSku": "VTK003105",
+        "componentGtin": "041333030203",
+        "componentQuantity": 10,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "312",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "60",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149405082 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "5672f2f1-878f-4098-bb4e-e015608f2a69",
+      "sku": "VTK025601",
+      "nome": "60 Baterias Auditivas 10 Duracell (10 Cart. c/ 6 Un. Cada)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 250,
+      "estoque": 8,
+      "suggestedPricePreview": 354.94,
+      "description": "60 Baterias Auditivas 10 Duracell (10 Cart. c/ 6 Un. Cada)\n\nKit original Duracell com 60 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 6 unidade(s) cada\n\n- Total: 60 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: 10\n\n- Tamanho: 10\n\n- Formato: Botão\n\n- Quantidade total: 60 unidades\n\n- Recarregável: Não\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "10"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "10"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "60"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3865CX10",
+        "componentSku": "VTK000314",
+        "componentGtin": "041333030180",
+        "componentQuantity": 10,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "10",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "60",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4857622855 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

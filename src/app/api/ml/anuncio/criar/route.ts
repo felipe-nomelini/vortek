@@ -835,7 +835,14 @@ export async function POST(req: Request) {
         if (attr?.id) attributesMap.set(String(attr.id), normalizeAttr(attr));
       }
     }
-    if (gtinForMl && !hasValue(attributesMap.get("GTIN") || { id: "GTIN" })) {
+    const hasExplicitEmptyGtinReason = hasValue(
+      attributesMap.get("EMPTY_GTIN_REASON") || { id: "EMPTY_GTIN_REASON" },
+    );
+    if (
+      gtinForMl &&
+      !hasExplicitEmptyGtinReason &&
+      !hasValue(attributesMap.get("GTIN") || { id: "GTIN" })
+    ) {
       attributesMap.set("GTIN", { id: "GTIN", value_name: gtinForMl });
       if (!String(produto.gtin || "").trim()) {
         warnings.push("GTIN unitário do componente usado para este kit de itens idênticos.");
@@ -1103,7 +1110,9 @@ export async function POST(req: Request) {
     }
 
     const ncmFinal = fiscal?.ncm ?? produto.ncm;
-    const gtinFinal = fiscal?.gtin ?? gtinForMl;
+    const gtinFinal = hasExplicitEmptyGtinReason
+      ? null
+      : fiscal?.gtin ?? gtinForMl;
     const cestFinal = fiscal?.cest ?? produto.cest;
     const csosnFinal = fiscal?.csosn ?? produto.csosn;
     const origemFinal = fiscal?.origem_fiscal ?? produto.origem_fiscal;
@@ -1346,7 +1355,9 @@ export async function POST(req: Request) {
       saleTerms,
       sellerCustomField: produto.sku,
       fiscalData: {
-        gtin: fiscal?.gtin || gtinForMl || undefined,
+        gtin: hasExplicitEmptyGtinReason
+          ? undefined
+          : fiscal?.gtin || gtinForMl || undefined,
       },
     };
 

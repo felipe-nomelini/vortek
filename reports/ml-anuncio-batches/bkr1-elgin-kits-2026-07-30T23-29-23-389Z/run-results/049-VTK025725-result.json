@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-29-23-389Z/run-results/049-VTK025725-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-049-VTK025725",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "5aaac372-3cb4-4864-861b-f86b6f4fe4fa",
+      "sku": "VTK025725",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7297386892",
+        "title": "20 Pilhas Recarregável Aaa 900mah Elgin 2 Unidades (10 Cart)",
+        "price": 201.79,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7297386892-20-pilhas-recarregavel-aaa-900mah-elgin-2-unidades-10-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 179.01 → R$ 201.79."
+      ]
+    }
+  ],
+  "failed": []
+}

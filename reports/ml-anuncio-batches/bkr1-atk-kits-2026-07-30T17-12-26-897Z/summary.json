@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-07-30T17:12:38.829Z",
+  "sourceFile": "/tmp/vortek-kits-analysis/Atk.xls",
+  "account": {
+    "userId": "3294514937",
+    "nickname": "VORTEKTECNOLOGIA"
+  },
+  "mode": "mirror_images_and_prepare",
+  "sheetCount": 64,
+  "readyCount": 21,
+  "blockedCount": 43,
+  "batchCount": 5,
+  "reportDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-12-26-897Z"
+}

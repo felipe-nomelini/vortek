@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-29-23-389Z/run-results/104-VTK025844-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-104-VTK025844",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "e0b9a319-f985-424c-b7a6-35770e436646",
+      "sku": "VTK025844",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7297405884",
+        "title": "8 Baterias Recarregaveis 9v Elgin",
+        "price": 579.37,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7297405884-8-baterias-recarregaveis-9v-elgin-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 548.93 → R$ 579.37."
+      ]
+    }
+  ],
+  "failed": []
+}

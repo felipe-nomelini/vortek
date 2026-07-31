@@ -1,0 +1,93 @@
+[
+  {
+    "produtoId": "",
+    "sku": "",
+    "sourceSku": "1753K2",
+    "reason": "kit_not_registered",
+    "details": null
+  },
+  {
+    "produtoId": "",
+    "sku": "",
+    "sourceSku": "1753K3",
+    "reason": "kit_not_registered",
+    "details": null
+  },
+  {
+    "produtoId": "939e89d2-a6fc-426a-9772-e27cf9f35943",
+    "sku": "VTK025339",
+    "sourceSku": "1750K2",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "0efe9ce3-b3ea-4ff5-8e39-cb82c92e6c5b",
+    "sku": "VTK025367",
+    "sourceSku": "1827K3",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "d19f5325-3fb4-4e6c-87a2-7b0ac2bfbadc",
+    "sku": "VTK025342",
+    "sourceSku": "1834K2",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "615c4f6c-351d-4f4d-9f95-deb0d494431e",
+    "sku": "VTK025362",
+    "sourceSku": "1742K2",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "c8b61b95-ecfe-432b-b2a6-289b5b2c16cf",
+    "sku": "VTK025381",
+    "sourceSku": "1747K3",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "7c6a5332-0446-4a7c-8817-6d76f0708d5e",
+    "sku": "VTK025368",
+    "sourceSku": "1834K3",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "631efd81-fad8-4f5a-b949-69cef17a24a2",
+    "sku": "VTK025388",
+    "sourceSku": "1742K3",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "69650a58-ae3c-4ef2-ac06-a752a5f16b1d",
+    "sku": "VTK025344",
+    "sourceSku": "1754K2",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "e591b50a-c173-43fb-9079-5ae79a1bc8cc",
+    "sku": "VTK025355",
+    "sourceSku": "1747K2",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "f5c8584c-9802-409d-9a4d-51f894cc05d1",
+    "sku": "VTK025365",
+    "sourceSku": "1750K3",
+    "reason": "out_of_stock",
+    "details": null
+  },
+  {
+    "produtoId": "09c1be4f-447e-4953-9993-33cb8becd52e",
+    "sku": "VTK025370",
+    "sourceSku": "1754K3",
+    "reason": "out_of_stock",
+    "details": null
+  }
+]

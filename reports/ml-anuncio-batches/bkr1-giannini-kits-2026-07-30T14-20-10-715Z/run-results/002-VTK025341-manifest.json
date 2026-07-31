@@ -1,0 +1,71 @@
+{
+  "batchNumber": 2,
+  "batchId": "bkr1-live-002-VTK025341",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "c457701c-3b15-4296-be57-007fbd96cd10",
+      "sku": "VTK025341",
+      "nome": "2 Jogos de Corda P/Guitarra Canário Aço 09 GESGT9 Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 36.1,
+      "estoque": 1,
+      "suggestedPricePreview": 69.26,
+      "description": "2 Jogos de Corda P/Guitarra Canário Aço 09 GESGT9 Giannini\n\nKit com 2 jogos de cordas originais Giannini, modelo GESGT9.\n\nIndicado para Guitarra elétrica. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 jogos de cordas Giannini GESGT9\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GESGT9\n\n- Instrumento recomendado: Guitarra elétrica\n\n- Quantidade de jogos: 2\n\n- Cordas por jogo: 6\n\n- Linha: Canário\n\n- Material principal: Metal\n\n- Tensão: Leve\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GESGT9"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "2"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Canário"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Leve"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1827K2",
+        "componentSku": "VTK000098",
+        "componentGtin": "7890443000063",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111712996 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "001-bkr1-kit-giannini-001.json"
+    }
+  ]
+}

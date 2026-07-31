@@ -1,0 +1,387 @@
+{
+  "batchNumber": 1,
+  "batchId": "bkr1-kit-atk-001",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "e1b0dd7a-687e-449b-a203-fb770a7f9e16",
+      "sku": "VTK025392",
+      "nome": "Kit 02 Drivers 25mm 30w Rms 8 Ohms 35mh2560b-8 ATK",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB418066",
+      "custo": 194,
+      "estoque": 26,
+      "suggestedPricePreview": 275.43,
+      "description": "Kit 02 Drivers 25mm 30w Rms 8 Ohms 35mh2560b-8 ATK\n\nKit com 2 drivers de compressão originais ATK Eletroacústica, modelo 35MH2560B-8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 unidades ATK 35MH2560B-8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: 35MH2560B-8\n\n- Quantidade: 2 unidades\n\n- Potência nominal por unidade: 30 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro da garganta: 25 mm\n\n- Material do diafragma: Titânio\n\n- Resposta de frequência: 1500 a 18000 Hz\n\nConfira o modelo, a impedância e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "35MH2560B-8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "IS_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "PART_NUMBER",
+          "value_name": "35MH2560B-8"
+        },
+        {
+          "id": "MATERIAL",
+          "value_name": "Titânio"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "value_name": "1500 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_name": "18000 Hz"
+        },
+        {
+          "id": "DIAMETER",
+          "value_name": "25 mm"
+        },
+        {
+          "id": "HORN_DIAMETER",
+          "value_name": "1 in"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Atk.xls",
+        "sourceSku": "1539K2",
+        "componentSku": "VTK012178",
+        "componentGtin": "7898640360775",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "35MH2560B-8",
+          "PART_NUMBER": "35MH2560B-8"
+        },
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111644574 em MLB418066",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "92314b0d-b60a-4ac1-a804-9cef232f9bd2",
+      "sku": "VTK025393",
+      "nome": "Kit 04 Drivers 25mm 30w RMS 8 Ohms 35MH2560B-8 ATK",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB418066",
+      "custo": 388,
+      "estoque": 13,
+      "suggestedPricePreview": 550.86,
+      "description": "Kit 04 Drivers 25mm 30w RMS 8 Ohms 35MH2560B-8 ATK\n\nKit com 4 drivers de compressão originais ATK Eletroacústica, modelo 35MH2560B-8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 unidades ATK 35MH2560B-8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: 35MH2560B-8\n\n- Quantidade: 4 unidades\n\n- Potência nominal por unidade: 30 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro da garganta: 25 mm\n\n- Material do diafragma: Titânio\n\n- Resposta de frequência: 1500 a 18000 Hz\n\nConfira o modelo, a impedância e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "35MH2560B-8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "IS_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "PART_NUMBER",
+          "value_name": "35MH2560B-8"
+        },
+        {
+          "id": "MATERIAL",
+          "value_name": "Titânio"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "value_name": "1500 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_name": "18000 Hz"
+        },
+        {
+          "id": "DIAMETER",
+          "value_name": "25 mm"
+        },
+        {
+          "id": "HORN_DIAMETER",
+          "value_name": "1 in"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Atk.xls",
+        "sourceSku": "1539K4",
+        "componentSku": "VTK012178",
+        "componentGtin": "7898640360775",
+        "componentQuantity": 4,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "35MH2560B-8",
+          "PART_NUMBER": "35MH2560B-8"
+        },
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111644574 em MLB418066",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "d025eaab-22a7-4a33-ad57-d520f1020698",
+      "sku": "VTK025394",
+      "nome": "Kit 02 Drivers 25mm 40w Rms 8 Ohms 45mh2580b-8 ATK",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB46559",
+      "custo": 238,
+      "estoque": 20,
+      "suggestedPricePreview": 337.9,
+      "description": "Kit 02 Drivers 25mm 40w Rms 8 Ohms 45mh2580b-8 ATK\n\nKit com 2 drivers de compressão originais ATK Eletroacústica, modelo 45MH2580B-8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 unidades ATK 45MH2580B-8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: 45MH2580B-8\n\n- Quantidade: 2 unidades\n\n- Potência nominal por unidade: 40 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro da garganta: 25 mm\n\n- Material do diafragma: Titânio\n\n- Resposta de frequência: 1500 a 18000 Hz\n\nConfira o modelo, a impedância e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "45MH2580B-8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "IS_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "PART_NUMBER",
+          "value_name": "45MH2580B-8"
+        },
+        {
+          "id": "MATERIAL",
+          "value_name": "Titânio"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "value_name": "1500 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_name": "18000 Hz"
+        },
+        {
+          "id": "DIAMETER",
+          "value_name": "25 mm"
+        },
+        {
+          "id": "HORN_DIAMETER",
+          "value_name": "1 in"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Atk.xls",
+        "sourceSku": "1540K2",
+        "componentSku": "VTK012199",
+        "componentGtin": "7898640360782",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "45MH2580B-8",
+          "PART_NUMBER": "45MH2580B-8"
+        },
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111644350 em MLB46559",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "8ca91afc-8e7c-4d9a-8ff6-bd0c07c18019",
+      "sku": "VTK025395",
+      "nome": "Kit 02 Drivers 50 Watts 8 Ohms 45mh2510b-8 Atk",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB46559",
+      "custo": 414,
+      "estoque": 1,
+      "suggestedPricePreview": 613.33,
+      "description": "Kit 02 Drivers 50 Watts 8 Ohms 45mh2510b-8 Atk\n\nKit com 2 drivers de compressão originais ATK Eletroacústica, modelo 45MH2510B-8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 unidades ATK 45MH2510B-8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: 45MH2510B-8\n\n- Quantidade: 2 unidades\n\n- Potência nominal por unidade: 50 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro da garganta: 25 mm\n\n- Material do diafragma: Poliéster\n\n- Resposta de frequência: 1500 a 18000 Hz\n\nConfira o modelo, a impedância e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "45MH2510B-8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "IS_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "PART_NUMBER",
+          "value_name": "45MH2510B-8"
+        },
+        {
+          "id": "MATERIAL",
+          "value_name": "Poliéster"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "value_name": "1500 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_name": "18000 Hz"
+        },
+        {
+          "id": "DIAMETER",
+          "value_name": "25 mm"
+        },
+        {
+          "id": "HORN_DIAMETER",
+          "value_name": "1 in"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Atk.xls",
+        "sourceSku": "1541K2",
+        "componentSku": "VTK012587",
+        "componentGtin": "7898640360799",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "45MH2510B-8",
+          "PART_NUMBER": "45MH2510B-8"
+        },
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111643534 em MLB46559",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "d5e22cc7-2d05-4386-8ede-830edf613d62",
+      "sku": "VTK025396",
+      "nome": "Kit 04 Drivers 25mm 40w Rms 8 Ohms 45mh2580b-8 ATK",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB46559",
+      "custo": 476,
+      "estoque": 10,
+      "suggestedPricePreview": 705.19,
+      "description": "Kit 04 Drivers 25mm 40w Rms 8 Ohms 45mh2580b-8 ATK\n\nKit com 4 drivers de compressão originais ATK Eletroacústica, modelo 45MH2580B-8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 unidades ATK 45MH2580B-8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: 45MH2580B-8\n\n- Quantidade: 4 unidades\n\n- Potência nominal por unidade: 40 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro da garganta: 25 mm\n\n- Material do diafragma: Titânio\n\n- Resposta de frequência: 1500 a 18000 Hz\n\nConfira o modelo, a impedância e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "45MH2580B-8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "IS_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "PART_NUMBER",
+          "value_name": "45MH2580B-8"
+        },
+        {
+          "id": "MATERIAL",
+          "value_name": "Titânio"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "value_name": "1500 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_name": "18000 Hz"
+        },
+        {
+          "id": "DIAMETER",
+          "value_name": "25 mm"
+        },
+        {
+          "id": "HORN_DIAMETER",
+          "value_name": "1 in"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Atk.xls",
+        "sourceSku": "1540K4",
+        "componentSku": "VTK012199",
+        "componentGtin": "7898640360782",
+        "componentQuantity": 4,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "45MH2580B-8",
+          "PART_NUMBER": "45MH2580B-8"
+        },
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111644350 em MLB46559",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

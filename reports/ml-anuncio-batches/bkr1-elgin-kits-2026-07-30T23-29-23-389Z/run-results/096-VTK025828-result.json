@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-29-23-389Z/run-results/096-VTK025828-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-096-VTK025828",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "8052c3c8-378c-4f91-b066-f1d0731d95de",
+      "sku": "VTK025828",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7297379402",
+        "title": "6 Pilhas Recarregável Aa 2500 Mah Elgin (3 Cart)",
+        "price": 134.03,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7297379402-6-pilhas-recarregavel-aa-2500-mah-elgin-3-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 115.39 → R$ 134.03."
+      ]
+    }
+  ],
+  "failed": []
+}

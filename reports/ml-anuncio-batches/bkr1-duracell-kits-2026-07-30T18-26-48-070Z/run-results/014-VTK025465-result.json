@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-duracell-kits-2026-07-30T18-26-48-070Z/run-results/014-VTK025465-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-014-VTK025465",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "29dc3b24-279a-4c6e-bd7f-c530c526c47a",
+      "sku": "VTK025465",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7296012182",
+        "title": "12 Baterias Auditiva 312 Duracell (2 Cart)",
+        "price": 106.95,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7296012182-12-baterias-auditiva-312-duracell-2-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "GTIN unitário do componente usado para este kit de itens idênticos.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 90.91 → R$ 106.95."
+      ]
+    }
+  ],
+  "failed": []
+}

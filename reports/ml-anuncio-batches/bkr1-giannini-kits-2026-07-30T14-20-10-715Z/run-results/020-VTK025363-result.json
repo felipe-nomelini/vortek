@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-20-10-715Z/run-results/020-VTK025363-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-020-VTK025363",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "b8591d72-37c4-4039-9f42-b4ac9820902e",
+      "sku": "VTK025363",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7294084616",
+        "title": "2 Jogos De Corda P/violão Nylon Preto/prata Genwbs Giannini",
+        "price": 80.5,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7294084616-2-jogos-de-corda-pviolo-nylon-pretoprata-genwbs-giannini-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"status\":409,\"code\":\"conflict.error\",\"error\":\"Conflict\"}"
+      ]
+    }
+  ],
+  "failed": []
+}

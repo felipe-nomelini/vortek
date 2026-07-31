@@ -1,0 +1,82 @@
+{
+  "batchNumber": 78,
+  "batchId": "bkr1-live-078-VTK025786",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "2feb0975-5685-42cb-b0d0-01275445c399",
+      "sku": "VTK025786",
+      "nome": "40 Pilhas Recarregaveis AAA 1000 Mah Elgin (10 Cartelas C/4 Un)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 225,
+      "estoque": 10,
+      "suggestedPricePreview": 319.44,
+      "description": "40 Pilhas Recarregaveis AAA 1000 Mah Elgin (10 Cartelas C/4 Un)\n\nKit original Elgin com 40 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 4 unidade(s) cada\n\n- Total: 40 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AAA 1000mAh\n\n- Tamanho: AAA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 40 unidades\n\n- Recarregável: Sim\n\n- Voltagem nominal: 1,2 V\n\n- Composição: Ni-MH\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "AAA 1000mAh"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AAA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "40"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,2 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Ni-MH"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2462CX10",
+        "componentSku": "VTK012054",
+        "componentGtin": "7897013536076",
+        "componentQuantity": 10,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "AAA 1000mAh",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "40",
+          "IS_RECHARGEABLE": "Sim"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111711872 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "016-bkr1-kit-elgin-016.json",
+      "sourceSequence": 78
+    }
+  ]
+}

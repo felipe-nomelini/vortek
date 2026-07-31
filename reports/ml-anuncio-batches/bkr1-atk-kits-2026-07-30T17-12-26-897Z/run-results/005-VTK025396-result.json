@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-12-26-897Z/run-results/005-VTK025396-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-005-VTK025396",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "d5e22cc7-2d05-4386-8ede-830edf613d62",
+      "sku": "VTK025396",
+      "category": {
+        "id": "MLB46559",
+        "nome": "MLB46559",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4971194093",
+        "title": "Kit 04 Drivers 25mm 40w Rms 8 Ohms 45mh2580b-8 Atk",
+        "price": 758.92,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4971194093-kit-04-drivers-25mm-40w-rms-8-ohms-45mh2580b-8-atk-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "GTIN unitário do componente usado para este kit de itens idênticos.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 723.04 → R$ 758.92."
+      ]
+    }
+  ],
+  "failed": []
+}

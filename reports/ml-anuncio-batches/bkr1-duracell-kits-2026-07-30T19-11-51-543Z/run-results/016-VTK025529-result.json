@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-duracell-kits-2026-07-30T19-11-51-543Z/run-results/016-VTK025529-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-016-VTK025529",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "efe43c24-eff9-4aa4-b63f-7814ba12bc24",
+      "sku": "VTK025529",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7296139916",
+        "title": "24 Pilhas Alcalinas Lr44 A76 Duracell (6 Cart. C/ 4 Un Cada)",
+        "price": 168.12,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7296139916-24-pilhas-alcalinas-lr44-a76-duracell-6-cart-c-4-un-cada-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 146.75 → R$ 168.12."
+      ]
+    }
+  ],
+  "failed": []
+}

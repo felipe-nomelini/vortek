@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-duracell-kits-2026-07-30T18-26-48-070Z/run-results/017-VTK025468-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-017-VTK025468",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "203511b3-2a71-4b27-b922-712cd8a83bf4",
+      "sku": "VTK025468",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7296000142",
+        "title": "12 Baterias Auditivas 675 Duracell (2 Cart. C/ 6 Un. Cada)",
+        "price": 109.29,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7296000142-12-baterias-auditivas-675-duracell-2-cart-c-6-un-cada-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "GTIN unitário do componente usado para este kit de itens idênticos.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 90.91 → R$ 109.29."
+      ]
+    }
+  ],
+  "failed": []
+}

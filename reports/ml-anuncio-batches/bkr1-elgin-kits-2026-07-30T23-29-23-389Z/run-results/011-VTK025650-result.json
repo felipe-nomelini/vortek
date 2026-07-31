@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-29-23-389Z/run-results/011-VTK025650-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-011-VTK025650",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "cc4b69b3-a84d-4f9b-b438-1665f5c08468",
+      "sku": "VTK025650",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4972433803",
+        "title": "10 Pilhas Alcalinas Aaa Sm-2 Elgin (5 Cart)",
+        "price": 69.29,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4972433803-10-pilhas-alcalinas-aaa-sm-2-elgin-5-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 53.25 → R$ 69.29."
+      ]
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-29-23-389Z/run-results/039-VTK025706-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-039-VTK025706",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "2c9cac41-cde0-42bf-be79-625a974b376b",
+      "sku": "VTK025706",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7297397864",
+        "title": "20 Baterias Alcalinas A27 Elgin (4 Cart)",
+        "price": 98.9,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7297397864-20-baterias-alcalinas-a27-elgin-4-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 82.86 → R$ 98.90."
+      ]
+    }
+  ],
+  "failed": []
+}

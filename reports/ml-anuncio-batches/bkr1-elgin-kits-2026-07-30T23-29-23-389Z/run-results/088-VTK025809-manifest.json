@@ -1,0 +1,82 @@
+{
+  "batchNumber": 88,
+  "batchId": "bkr1-live-088-VTK025809",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "fc4a17c0-d23e-4a6b-90ed-6fda861b1380",
+      "sku": "VTK025809",
+      "nome": "50 Baterias Alcalinas A27 Elgin (10  Cart)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 109.5,
+      "estoque": 5,
+      "suggestedPricePreview": 159.88,
+      "description": "50 Baterias Alcalinas A27 Elgin (10  Cart)\n\nKit original Elgin com 50 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 5 unidade(s) cada\n\n- Total: 50 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: A27\n\n- Tamanho: A27\n\n- Formato: Cilíndrica\n\n- Quantidade total: 50 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 12 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "A27"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "A27"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "50"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "12 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2787K10",
+        "componentSku": "VTK012184",
+        "componentGtin": "7897013538148",
+        "componentQuantity": 10,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "A27",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "50",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111713598 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "018-bkr1-kit-elgin-018.json",
+      "sourceSequence": 88
+    }
+  ]
+}

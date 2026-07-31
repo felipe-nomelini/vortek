@@ -1,0 +1,39 @@
+{
+  "startedAt": "2026-07-30T18:10:35.895Z",
+  "account": {
+    "userId": "3294514937",
+    "nickname": "VORTEKTECNOLOGIA"
+  },
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-40-32-271Z",
+  "selected": 1,
+  "totals": {
+    "created": 1,
+    "verified": 1,
+    "failed": 0
+  },
+  "rows": [
+    {
+      "sequence": 1,
+      "sku": "VTK025410",
+      "itemId": "MLB4971399249",
+      "status": "verified",
+      "verification": {
+        "attempt": 28,
+        "itemId": "MLB4971399249",
+        "sku": "VTK025410",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 3,
+        "quantityOk": true,
+        "price": 3720.37,
+        "priceAboveCost": true
+      }
+    }
+  ],
+  "finishedAt": "2026-07-30T18:13:09.445Z"
+}

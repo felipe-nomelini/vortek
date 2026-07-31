@@ -2,12 +2,15 @@
  * Uso:
  *   node -r dotenv/config scripts/import-bkr1-client-kit-sheet.js --file "/caminho/Elixir.xls" dotenv_config_path=.env.local
  *   node -r dotenv/config scripts/import-bkr1-client-kit-sheet.js --file "/caminho/Elixir.xls" --apply dotenv_config_path=.env.local
+ *   Adicione --allow-packaging-gtin quando a planilha informar o GTIN da caixa logística.
  */
 const path = require('path');
 const XLSX = require('xlsx');
 const { createClient } = require('@supabase/supabase-js');
 
 const APPLY = process.argv.includes('--apply');
+const SKIP_INVALID = process.argv.includes('--skip-invalid');
+const ALLOW_PACKAGING_GTIN = process.argv.includes('--allow-packaging-gtin');
 const fileIndex = process.argv.indexOf('--file');
 const FILE = fileIndex >= 0 ? path.resolve(process.argv[fileIndex + 1] || '') : '';
 const SUPPLIER_ID = '108';
@@ -144,39 +147,62 @@ async function main() {
   }
 
   const missing = baseIds.filter((id) => !offersByDsliteId.has(id));
-  if (missing.length) throw new Error(`Componentes BKR1 ausentes: ${missing.join(', ')}`);
 
   const inactive = baseIds.filter((id) => {
     const offer = offersByDsliteId.get(id);
+    if (!offer) return false;
     return offer.ativo === false || offer.produto?.ativo === false;
   });
-  if (inactive.length) throw new Error(`Componentes BKR1 inativos: ${inactive.join(', ')}`);
 
   const gtinMismatch = kits.filter((kit) => {
     const sheetGtin = text(kit.row['GTIN/EAN']).replace(/\D/g, '');
     const productGtin = text(offersByDsliteId.get(kit.component.dsliteId)?.produto?.gtin).replace(/\D/g, '');
     return sheetGtin && productGtin && sheetGtin !== productGtin;
   });
-  if (gtinMismatch.length) throw new Error(`GTIN divergente: ${gtinMismatch.map((kit) => kit.sku).join(', ')}`);
+  if (!SKIP_INVALID) {
+    if (missing.length) throw new Error(`Componentes BKR1 ausentes: ${missing.join(', ')}`);
+    if (inactive.length) throw new Error(`Componentes BKR1 inativos: ${inactive.join(', ')}`);
+    if (!ALLOW_PACKAGING_GTIN && gtinMismatch.length) {
+      throw new Error(`GTIN divergente: ${gtinMismatch.map((kit) => kit.sku).join(', ')}`);
+    }
+  }
+
+  const missingSet = new Set(missing);
+  const inactiveSet = new Set(inactive);
+  const gtinMismatchSet = new Set(gtinMismatch.map((kit) => kit.sku));
+  const blocked = kits
+    .map((kit) => {
+      const reasons = [];
+      if (missingSet.has(kit.component.dsliteId)) reasons.push('component_missing');
+      if (inactiveSet.has(kit.component.dsliteId)) reasons.push('component_inactive');
+      if (!ALLOW_PACKAGING_GTIN && gtinMismatchSet.has(kit.sku)) reasons.push('gtin_mismatch');
+      return reasons.length ? { sku: kit.sku, reasons } : null;
+    })
+    .filter(Boolean);
+  const blockedSkus = new Set(blocked.map((kit) => kit.sku));
+  const importableKits = kits.filter((kit) => !blockedSkus.has(kit.sku));
 
   const { data: existingKits, error: existingError } = await client
     .from('produto_kits')
     .select('produto_id,sku_origem')
     .eq('fornecedor_dslite_id', SUPPLIER_ID)
-    .in('sku_origem', kits.map((kit) => kit.sku));
+    .in('sku_origem', importableKits.map((kit) => kit.sku));
   if (existingError) throw existingError;
   const existingBySku = new Map((existingKits || []).map((kit) => [text(kit.sku_origem), text(kit.produto_id)]));
 
-  const newKits = kits.filter((kit) => !existingBySku.has(kit.sku));
+  const newKits = importableKits.filter((kit) => !existingBySku.has(kit.sku));
   console.log(JSON.stringify({
     mode: APPLY ? 'apply' : 'dry-run',
     file: FILE,
     brand,
     kits: kits.length,
-    existing: kits.length - newKits.length,
+    eligible: importableKits.length,
+    blocked,
+    packagingGtinDifferencesAccepted: ALLOW_PACKAGING_GTIN ? gtinMismatch.map((kit) => kit.sku) : [],
+    existing: importableKits.length - newKits.length,
     toCreate: newKits.length,
     components: baseIds.length,
-    zeroStock: kits
+    zeroStock: importableKits
       .filter((kit) => Number(offersByDsliteId.get(kit.component.dsliteId)?.produto?.estoque || 0) < kit.component.quantity)
       .map((kit) => kit.sku),
   }, null, 2));

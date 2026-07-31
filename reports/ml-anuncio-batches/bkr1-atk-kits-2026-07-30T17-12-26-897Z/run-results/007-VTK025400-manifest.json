@@ -1,0 +1,98 @@
+{
+  "batchNumber": 7,
+  "batchId": "bkr1-live-007-VTK025400",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "48840e1b-fc9b-481d-8646-5a86c3c6131c",
+      "sku": "VTK025400",
+      "nome": "Kit 2 Alto-Falantes  150w 8 Pol 8 Ohms 8WF310B8 ATK",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB3905",
+      "custo": 308,
+      "estoque": 5,
+      "suggestedPricePreview": 437.28,
+      "description": "Kit 2 Alto-Falantes  150w 8 Pol 8 Ohms 8WF310B8 ATK\n\nKit com 2 alto-falantes originais ATK Eletroacústica, modelo 8WF310B8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 unidades ATK 8WF310B8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: 8WF310B8\n\n- Quantidade: 2 unidades\n\n- Potência nominal por unidade: 150 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro nominal: 8 polegadas\n\n- Resposta de frequência: 50 a 3000 Hz\n\n- Sensibilidade: 95 dB SPL\n\nConfira o modelo, a impedância e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "8WF310B8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "IS_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_name": "8 in"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_name": "8 in"
+        },
+        {
+          "id": "COLOR",
+          "value_name": "Preto"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_name": "2"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "7509874",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_name": "150 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_name": "50 a 3000 Hz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_name": "95 dB"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Atk.xls",
+        "sourceSku": "1552K2",
+        "componentSku": "VTK012279",
+        "componentGtin": "7898640362113",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "8WF310B8",
+          "SPEAKERS_NUMBER": "2"
+        },
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149374856 em MLB3905",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "002-bkr1-kit-atk-002.json",
+      "sourceSequence": 7
+    }
+  ]
+}

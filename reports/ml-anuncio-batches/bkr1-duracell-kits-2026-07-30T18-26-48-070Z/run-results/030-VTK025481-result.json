@@ -1,0 +1,38 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-duracell-kits-2026-07-30T18-26-48-070Z/run-results/030-VTK025481-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-030-VTK025481",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "22cbefe4-ec71-4a8a-9195-0a952bda460f",
+      "sku": "VTK025481",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7296015856",
+        "title": "14 Pilhas Alcalinas C Duracell (7 Cart. C/ 2 Un. Cada)",
+        "price": 295.17,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7296015856-14-pilhas-alcalinas-c-duracell-7-cart-c-2-un-cada-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "GTIN unitário do componente usado para este kit de itens idênticos.",
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB7296015856: NSOPublicAPI error",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    }
+  ],
+  "failed": []
+}

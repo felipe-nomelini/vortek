@@ -19,7 +19,7 @@ const FILE_INDEX = process.argv.indexOf('--file');
 const SOURCE_FILE = FILE_INDEX >= 0 ? path.resolve(process.argv[FILE_INDEX + 1] || '') : '';
 const MIRROR_IMAGES = process.argv.includes('--mirror-images');
 const SUPPLIER_ID = '108';
-const CATEGORY_ID = 'MLB278076';
+const DEFAULT_CATEGORY_ID = 'MLB278076';
 const BATCH_SIZE = Math.max(1, Number(process.env.ML_BATCH_SIZE || '5'));
 const BUCKET = 'product-images';
 const STORAGE_PREFIX =
@@ -27,8 +27,184 @@ const STORAGE_PREFIX =
 const REPORT_ROOT = path.join(process.cwd(), 'reports', 'ml-anuncio-batches');
 
 const SHEET_CONFIGS = {
+  atk: {
+    brand: 'Atk Eletroacústica',
+    allowedComponentCategoryMismatches: [1556],
+    categories: {
+      1539: 'MLB418066',
+      1540: 'MLB46559',
+      1541: 'MLB46559',
+      1542: 'MLB418066',
+      1552: 'MLB3905',
+      1553: 'MLB3905',
+      1554: 'MLB3905',
+      1556: 'MLB3905',
+      1562: 'MLB3905',
+      1565: 'MLB3905',
+      1567: 'MLB3905',
+      1568: 'MLB3905',
+      1570: 'MLB3905',
+    },
+    models: {
+      1539: '35MH2560B-8',
+      1540: '45MH2580B-8',
+      1541: '45MH2510B-8',
+      1542: '75MH5016B-8',
+      1552: '8WF310B8',
+      1553: '10WF310B8',
+      1554: '10WF510B8',
+      1556: 'WF3004600B2',
+      1562: 'WF200800B8',
+      1565: 'WF3001200B4',
+      1567: 'WF300500B4',
+      1568: 'WF300500B8',
+      1570: 'WF380500B8',
+    },
+    attributes: {
+      1539: { kind: 'driver', material: 'Titânio', power: 30, impedance: 8, diameter: '25 mm', hornDiameter: '1 in', minFrequency: 1500, maxFrequency: 18000 },
+      1540: { kind: 'driver', material: 'Titânio', power: 40, impedance: 8, diameter: '25 mm', hornDiameter: '1 in', minFrequency: 1500, maxFrequency: 18000 },
+      1541: { kind: 'driver', material: 'Poliéster', power: 50, impedance: 8, diameter: '25 mm', hornDiameter: '1 in', minFrequency: 1500, maxFrequency: 18000 },
+      1542: { kind: 'driver', material: 'Titânio', power: 80, impedance: 8, diameter: '50 mm', hornDiameter: '2 in', minFrequency: 600, maxFrequency: 18000 },
+      1552: { kind: 'speaker', power: 150, impedance: 8, diameter: 8, frequencyRange: '50 a 3000 Hz', sensitivity: 95 },
+      1553: { kind: 'speaker', power: 150, impedance: 8, diameter: 10, frequencyRange: '50 a 3000 Hz', sensitivity: 94 },
+      1554: { kind: 'speaker', power: 250, impedance: 8, diameter: 10 },
+      1556: { kind: 'speaker', power: 1300, impedance: 2, diameter: 12, frequencyRange: '60 a 2500 Hz', sensitivity: 95 },
+      1562: { kind: 'speaker', power: 400, impedance: 8, diameter: 8, frequencyRange: '50 a 4000 Hz', sensitivity: 93 },
+      1565: { kind: 'speaker', power: 600, impedance: 4, diameter: 12, frequencyRange: '60 a 3000 Hz', sensitivity: 95 },
+      1567: { kind: 'speaker', power: 250, impedance: 4, diameter: 12, frequencyRange: '50 a 2000 Hz', sensitivity: 95 },
+      1568: { kind: 'speaker', power: 250, impedance: 8, diameter: 12, frequencyRange: '40 a 2500 Hz', sensitivity: 96 },
+      1570: { kind: 'speaker', power: 250, impedance: 8, diameter: 15, frequencyRange: '30 a 5000 Hz', sensitivity: 96 },
+    },
+  },
+  duracell: {
+    brand: 'Duracell',
+    categoryId: 'MLB7060',
+    allowVerifiedCategoryFallback: true,
+    blockedComponentIds: [3865, 3866, 3870, 3871],
+    models: {
+      3852: 'MN1604',
+      3853: 'MN1604',
+      3854: 'MN1500',
+      3855: 'MN1500',
+      3856: 'MN1500',
+      3857: 'MN1500',
+      3858: 'MN2400',
+      3859: 'MN2400',
+      3860: 'MN2400',
+      3862: 'MN1400',
+      3863: 'CR2032',
+      3864: 'MN1300',
+      3865: '10',
+      3866: '13',
+      3867: 'CR2032',
+      3868: 'LR44/A76',
+      3869: 'MN21/A23',
+      3870: '312',
+      3871: '675',
+    },
+    attributes: {
+      3852: { unitsEach: 1, size: '9V', shape: 'Retangular', voltage: '9 V', composition: 'Alcalina' },
+      3853: { unitsEach: 2, size: '9V', shape: 'Retangular', voltage: '9 V', composition: 'Alcalina' },
+      3854: { unitsEach: 16, size: 'AA', shape: 'Cilíndrica', voltage: '1,5 V', composition: 'Alcalina' },
+      3855: { unitsEach: 2, size: 'AA', shape: 'Cilíndrica', voltage: '1,5 V', composition: 'Alcalina' },
+      3856: { unitsEach: 4, size: 'AA', shape: 'Cilíndrica', voltage: '1,5 V', composition: 'Alcalina' },
+      3857: { unitsEach: 8, size: 'AA', shape: 'Cilíndrica', voltage: '1,5 V', composition: 'Alcalina' },
+      3858: { unitsEach: 16, size: 'AAA', shape: 'Cilíndrica', voltage: '1,5 V', composition: 'Alcalina' },
+      3859: { unitsEach: 2, size: 'AAA', shape: 'Cilíndrica', voltage: '1,5 V', composition: 'Alcalina' },
+      3860: { unitsEach: 4, size: 'AAA', shape: 'Cilíndrica', voltage: '1,5 V', composition: 'Alcalina' },
+      3862: { unitsEach: 2, size: 'C', shape: 'Cilíndrica', voltage: '1,5 V', composition: 'Alcalina' },
+      3863: { unitsEach: 2, size: 'CR2032', shape: 'Botão', voltage: '3 V', composition: 'Lítio' },
+      3864: { unitsEach: 2, size: 'D', shape: 'Cilíndrica', voltage: '1,5 V', composition: 'Alcalina' },
+      3865: { unitsEach: 6, size: '10', shape: 'Botão' },
+      3866: { unitsEach: 6, size: '13', shape: 'Botão' },
+      3867: { unitsEach: 5, size: 'CR2032', shape: 'Botão', voltage: '3 V', composition: 'Lítio' },
+      3868: { unitsEach: 4, size: 'LR44/A76', shape: 'Botão', voltage: '1,5 V', composition: 'Alcalina' },
+      3869: { unitsEach: 2, size: 'MN21/A23', shape: 'Cilíndrica', voltage: '12 V', composition: 'Alcalina' },
+      3870: { unitsEach: 6, size: '312', shape: 'Botão' },
+      3871: { unitsEach: 6, size: '675', shape: 'Botão' },
+    },
+  },
+  elgin: {
+    brand: 'Elgin',
+    categoryId: 'MLB7060',
+    allowVerifiedCategoryFallback: true,
+    blockedComponentIds: [2399, 2400, 2401, 2409],
+    models: {
+      2382: 'AA',
+      2383: 'AA',
+      2384: 'AAA',
+      2386: 'C',
+      2391: 'CR2016',
+      2392: 'CR2025',
+      2393: 'CR2032',
+      2395: 'A23',
+      2396: '9V 250mAh',
+      2397: '6F22 9V',
+      2398: 'A23',
+      2399: '13 PR48',
+      2400: '10/230 PR70',
+      2401: '675 PR44',
+      2408: 'CR2032',
+      2409: '312 PR41',
+      2462: 'AAA 1000mAh',
+      2463: 'AA 2700mAh',
+      2608: 'CR1220',
+      2609: 'CR1620',
+      2610: 'CR2450',
+      2611: 'CR1616',
+      2787: 'A27',
+      2789: 'LR41',
+      2790: 'CR2430',
+      2791: 'LR621/AG1',
+      2792: 'LR626/AG4',
+      2864: 'AA',
+      3122: 'AAA 900mAh',
+      3123: 'AAA 900mAh',
+      3124: 'AA 2500mAh',
+      3125: 'AA 2500mAh',
+      3666: 'LR1120/AG8',
+      3667: 'LR43/AG12',
+    },
+    attributes: {
+      2382: { unitsEach: 2, size: 'AA', shape: 'Cilíndrica', voltage: '1,5 V', composition: 'Alcalina', rechargeable: false },
+      2383: { unitsEach: 4, size: 'AA', shape: 'Cilíndrica', voltage: '1,5 V', composition: 'Alcalina', rechargeable: false },
+      2384: { unitsEach: 2, size: 'AAA', shape: 'Cilíndrica', voltage: '1,5 V', composition: 'Alcalina', rechargeable: false },
+      2386: { unitsEach: 2, size: 'C', shape: 'Cilíndrica', voltage: '1,5 V', composition: 'Alcalina', rechargeable: false },
+      2391: { unitsEach: 5, size: 'CR2016', shape: 'Botão', voltage: '3 V', composition: 'Lítio', rechargeable: false },
+      2392: { unitsEach: 5, size: 'CR2025', shape: 'Botão', voltage: '3 V', composition: 'Lítio', rechargeable: false },
+      2393: { unitsEach: 5, size: 'CR2032', shape: 'Botão', voltage: '3 V', composition: 'Lítio', rechargeable: false },
+      2395: { unitsEach: 5, size: 'A23', shape: 'Cilíndrica', voltage: '12 V', composition: 'Alcalina', rechargeable: false },
+      2396: { unitsEach: 1, size: '9V', shape: 'Retangular', voltage: '9 V', composition: 'Ni-MH', rechargeable: true },
+      2397: { unitsEach: 1, size: '9V', shape: 'Retangular', voltage: '9 V', composition: 'Zinco-carvão', rechargeable: false },
+      2398: { unitsEach: 1, size: 'A23', shape: 'Cilíndrica', voltage: '12 V', composition: 'Alcalina', rechargeable: false },
+      2399: { unitsEach: 6, size: '13', shape: 'Botão', voltage: '1,4 V', composition: 'Zinco-ar', rechargeable: false },
+      2400: { unitsEach: 6, size: '10/PR70', shape: 'Botão', voltage: '1,4 V', composition: 'Zinco-ar', rechargeable: false },
+      2401: { unitsEach: 6, size: '675/PR44', shape: 'Botão', voltage: '1,4 V', composition: 'Zinco-ar', rechargeable: false },
+      2408: { unitsEach: 1, size: 'CR2032', shape: 'Botão', voltage: '3 V', composition: 'Lítio', rechargeable: false },
+      2409: { unitsEach: 6, size: '312/PR41', shape: 'Botão', voltage: '1,4 V', composition: 'Zinco-ar', rechargeable: false },
+      2462: { unitsEach: 4, size: 'AAA', shape: 'Cilíndrica', voltage: '1,2 V', composition: 'Ni-MH', rechargeable: true },
+      2463: { unitsEach: 4, size: 'AA', shape: 'Cilíndrica', voltage: '1,2 V', composition: 'Ni-MH', rechargeable: true },
+      2608: { unitsEach: 5, size: 'CR1220', shape: 'Botão', voltage: '3 V', composition: 'Lítio', rechargeable: false },
+      2609: { unitsEach: 5, size: 'CR1620', shape: 'Botão', voltage: '3 V', composition: 'Lítio', rechargeable: false },
+      2610: { unitsEach: 5, size: 'CR2450', shape: 'Botão', voltage: '3 V', composition: 'Lítio', rechargeable: false },
+      2611: { unitsEach: 5, size: 'CR1616', shape: 'Botão', voltage: '3 V', composition: 'Lítio', rechargeable: false },
+      2787: { unitsEach: 5, size: 'A27', shape: 'Cilíndrica', voltage: '12 V', composition: 'Alcalina', rechargeable: false },
+      2789: { unitsEach: 10, size: 'LR41', shape: 'Botão', voltage: '1,5 V', composition: 'Alcalina', rechargeable: false },
+      2790: { unitsEach: 5, size: 'CR2430', shape: 'Botão', voltage: '3 V', composition: 'Lítio', rechargeable: false },
+      2791: { unitsEach: 10, size: 'LR621/AG1', shape: 'Botão', voltage: '1,5 V', composition: 'Alcalina', rechargeable: false },
+      2792: { unitsEach: 10, size: 'LR626/AG4', shape: 'Botão', voltage: '1,5 V', composition: 'Alcalina', rechargeable: false },
+      2864: { unitsEach: 8, size: 'AA', shape: 'Cilíndrica', voltage: '1,5 V', composition: 'Alcalina', rechargeable: false },
+      3122: { unitsEach: 2, size: 'AAA', shape: 'Cilíndrica', voltage: '1,2 V', composition: 'Ni-MH', rechargeable: true },
+      3123: { unitsEach: 4, size: 'AAA', shape: 'Cilíndrica', voltage: '1,2 V', composition: 'Ni-MH', rechargeable: true },
+      3124: { unitsEach: 2, size: 'AA', shape: 'Cilíndrica', voltage: '1,2 V', composition: 'Ni-MH', rechargeable: true },
+      3125: { unitsEach: 4, size: 'AA', shape: 'Cilíndrica', voltage: '1,2 V', composition: 'Ni-MH', rechargeable: true },
+      3666: { unitsEach: 10, size: 'LR1120/AG8', shape: 'Botão', voltage: '1,5 V', composition: 'Alcalina', rechargeable: false },
+      3667: { unitsEach: 10, size: 'LR43/AG12', shape: 'Botão', voltage: '1,5 V', composition: 'Alcalina', rechargeable: false },
+    },
+  },
   elixir: {
     brand: 'Elixir',
+    categoryId: DEFAULT_CATEGORY_ID,
     models: {
       1421: '11002',
       1422: '11027',
@@ -49,6 +225,7 @@ const SHEET_CONFIGS = {
   },
   nig: {
     brand: 'NIG',
+    categoryId: DEFAULT_CATEGORY_ID,
     models: {
       1403: 'N475',
       1404: 'N500',
@@ -100,6 +277,69 @@ const SHEET_CONFIGS = {
       },
     },
   },
+  giannini: {
+    brand: 'Giannini',
+    categoryId: DEFAULT_CATEGORY_ID,
+    allowVerifiedCategoryFallback: true,
+    models: {
+      1741: 'GESPW',
+      1742: 'GENWBG',
+      1743: 'GENWBS',
+      1744: 'GENWG',
+      1745: 'GENWS',
+      1746: 'GENWPL',
+      1747: 'GENWPA',
+      1748: 'GESVL',
+      1749: 'GESVM',
+      1750: 'GESCL',
+      1751: 'GESCP',
+      1752: 'GEEWAK',
+      1753: 'GEEWAK',
+      1754: 'GEEGST.8',
+      1757: 'GEAVVA',
+      1822: 'GESWB',
+      1823: 'GENW',
+      1824: 'GESWAL',
+      1825: 'GEEFLE',
+      1826: 'GEEGST.11',
+      1827: 'GESGT9',
+      1829: 'GENWB',
+      1830: 'GEEFLK',
+      1831: 'GEEGST.9',
+      1833: 'GENWPM',
+      1834: 'GEEGST.10',
+      1835: 'GESWAM',
+    },
+    attributes: {
+      1741: { instrument: 'Violão acústico', materials: 'Metal', tension: 'Alta', stringsNumber: 6, line: 'Acústico' },
+      1742: { instrument: 'Violão acústico', materials: 'Náilon', tension: 'Média', stringsNumber: 6, line: 'MPB' },
+      1743: { instrument: 'Violão acústico', materials: 'Náilon', tension: 'Média', stringsNumber: 6, line: 'MPB' },
+      1744: { instrument: 'Violão acústico', materials: 'Náilon', tension: 'Média', stringsNumber: 6, line: 'MPB' },
+      1745: { instrument: 'Violão acústico', materials: 'Náilon', tension: 'Média', stringsNumber: 6, line: 'MPB' },
+      1746: { instrument: 'Violão acústico', materials: 'Náilon', tension: 'Leve', stringsNumber: 6, line: 'Clássico' },
+      1747: { instrument: 'Violão acústico', materials: 'Náilon', tension: 'Alta', stringsNumber: 6, line: 'Clássico' },
+      1748: { instrument: 'Viola Caipira', materials: 'Metal', tension: 'Leve', stringsNumber: 10, line: 'Cobra' },
+      1749: { instrument: 'Viola Caipira', materials: 'Metal', tension: 'Média', stringsNumber: 10, line: 'Cobra' },
+      1750: { instrument: 'Cavaquinho', materials: 'Metal', tension: 'Leve', stringsNumber: 4, line: 'Cobra' },
+      1751: { instrument: 'Cavaquinho', materials: 'Metal', tension: 'Alta', stringsNumber: 4, line: 'Cobra' },
+      1752: { instrument: 'Violão acústico', materials: 'Metal', tension: 'Leve', stringsNumber: 6, line: 'Cobra' },
+      1753: { instrument: 'Violão acústico', materials: 'Metal', tension: 'Leve', stringsNumber: 6, line: 'Cobra' },
+      1754: { instrument: 'Guitarra elétrica', materials: 'Metal', tension: 'Leve', stringsNumber: 6, line: 'Electric' },
+      1757: { instrument: 'Violino', materials: 'Metal', tension: 'Média', stringsNumber: 4, line: 'Arco' },
+      1822: { instrument: 'Violão acústico', materials: 'Metal', tension: 'Média', stringsNumber: 6, line: 'Canário' },
+      1823: { instrument: 'Violão acústico', materials: 'Náilon', tension: 'Média', stringsNumber: 6, line: 'Canário' },
+      1824: { instrument: 'Violão acústico', materials: 'Metal', stringsNumber: 6, line: 'Acústico' },
+      1825: { instrument: 'Violão acústico', materials: 'Metal', tension: 'Leve', stringsNumber: 6, line: 'Cobra' },
+      1826: { instrument: 'Guitarra elétrica', materials: 'Metal', tension: 'Média', stringsNumber: 6, line: 'Electric' },
+      1827: { instrument: 'Guitarra elétrica', materials: 'Metal', tension: 'Leve', stringsNumber: 6, line: 'Canário' },
+      1829: { instrument: 'Violão acústico', materials: 'Náilon', tension: 'Média', stringsNumber: 6, line: 'Canário' },
+      1830: { instrument: 'Violão acústico', materials: 'Metal', tension: 'Média', stringsNumber: 6, line: 'Cobra' },
+      1831: { instrument: 'Guitarra elétrica', materials: 'Metal', tension: 'Leve', stringsNumber: 6, line: 'Electric' },
+      1833: { instrument: 'Violão acústico', materials: 'Náilon', tension: 'Média', stringsNumber: 6, line: 'Clássico' },
+      1834: { instrument: 'Guitarra elétrica', materials: 'Metal', tension: 'Leve', stringsNumber: 6, line: 'Electric' },
+      1835: { instrument: 'Violão acústico', materials: 'Metal', stringsNumber: 6, line: 'Acústico' },
+    },
+  },
 };
 const SHEET_SLUG = path
   .basename(SOURCE_FILE, path.extname(SOURCE_FILE))
@@ -141,7 +381,12 @@ function sourceId(sourceSku) {
 }
 
 function sourceQuantity(sourceSku) {
-  return Number(text(sourceSku).match(/K(\d+)$/i)?.[1] || 0);
+  return Number(text(sourceSku).match(/(?:CX|K)(\d+)$/i)?.[1] || 0);
+}
+
+function categoryForSource(sourceSku) {
+  const source = sourceId(sourceSku);
+  return text(SHEET_CONFIG.categories?.[source] || SHEET_CONFIG.categoryId);
 }
 
 function instrument(name) {
@@ -173,6 +418,22 @@ function imageList(value) {
 
 function round2(value) {
   return Math.round(Number(value || 0) * 100) / 100;
+}
+
+function duracellTotalUnits(sourceSku, productName, componentQuantity) {
+  const source = sourceId(sourceSku);
+  const unitsEach = Number(SHEET_CONFIG.attributes?.[source]?.unitsEach || 0);
+  const calculated = unitsEach * Number(componentQuantity || 0);
+  const declared = Number(text(productName).match(/^(\d+)\s+/)?.[1] || 0);
+  return declared > 0 && declared === calculated ? declared : 0;
+}
+
+function elginTotalUnits(sourceSku, productName, componentQuantity) {
+  const source = sourceId(sourceSku);
+  const unitsEach = Number(SHEET_CONFIG.attributes?.[source]?.unitsEach || 0);
+  const calculated = unitsEach * Number(componentQuantity || 0);
+  const declared = Number(text(productName).match(/^(\d+)\s+/)?.[1] || 0);
+  return declared > 0 && declared === calculated ? declared : 0;
 }
 
 function pricePreview(product) {
@@ -230,15 +491,19 @@ async function fetchMl(account, apiPath) {
 }
 
 async function searchLiveSku(account, sku) {
-  for (const field of ['sku', 'seller_sku']) {
-    const result = await fetchMl(
+  const results = await Promise.all(
+    ['sku', 'seller_sku'].map((field) =>
+      fetchMl(
       account,
       `/users/${account.userId}/items/search?${field}=${encodeURIComponent(sku)}&limit=100`,
-    );
-    const ids = Array.isArray(result?.results) ? result.results.map(String) : [];
-    if (ids.length) return ids;
-  }
-  return [];
+      ),
+    ),
+  );
+  return unique(
+    results.flatMap((result) =>
+      Array.isArray(result?.results) ? result.results.map(String) : [],
+    ),
+  );
 }
 
 async function normalizeImage(sourceUrl) {
@@ -324,15 +589,19 @@ async function mirrorImage(product, sourceUrl, position) {
 
 async function prepareImages(product) {
   const sources = imageList(product.imagens);
-  const prepared = [];
-  const failures = [];
-  for (let index = 0; index < sources.length; index += 1) {
-    try {
-      prepared.push(await mirrorImage(product, sources[index], index));
-    } catch (error) {
-      failures.push({ url: sources[index], error: error.message });
-    }
-  }
+  const attempts = await Promise.all(
+    sources.map(async (source, index) => {
+      try {
+        return { ok: true, url: await mirrorImage(product, source, index) };
+      } catch (error) {
+        return { ok: false, url: source, error: error.message };
+      }
+    }),
+  );
+  const prepared = attempts.filter((attempt) => attempt.ok).map((attempt) => attempt.url);
+  const failures = attempts
+    .filter((attempt) => !attempt.ok)
+    .map((attempt) => ({ url: attempt.url, error: attempt.error }));
   if (!prepared.length) {
     return { ok: false, reason: failures[0]?.error || 'sem imagem válida', failures };
   }
@@ -351,6 +620,79 @@ async function prepareImages(product) {
 function attributesFor(row, product, quantity) {
   const source = sourceId(row.sku_origem);
   const verified = SHEET_CONFIG.attributes[source] || {};
+  if (SHEET_SLUG === 'atk') {
+    const common = [
+      { id: 'BRAND', value_name: SHEET_CONFIG.brand },
+      { id: 'MODEL', value_name: SHEET_CONFIG.models[source] },
+      { id: 'VEHICLE_TYPE', value_id: '11377043', value_name: 'Carro/Caminhonete' },
+      { id: 'IS_KIT', value_id: '242085', value_name: 'Sim' },
+    ];
+    if (verified.kind === 'driver') {
+      return [
+        ...common,
+        { id: 'PART_NUMBER', value_name: SHEET_CONFIG.models[source] },
+        { id: 'MATERIAL', value_name: verified.material },
+        { id: 'IMPEDANCE', value_name: `${verified.impedance} Ω` },
+        { id: 'MIN_FREQUENCY', value_name: `${verified.minFrequency} Hz` },
+        { id: 'MAX_FREQUENCY', value_name: `${verified.maxFrequency} Hz` },
+        { id: 'DIAMETER', value_name: verified.diameter },
+        { id: 'HORN_DIAMETER', value_name: verified.hornDiameter },
+      ];
+    }
+    return [
+      ...common,
+      { id: 'VEHICLE_SPEAKER_WIDTH', value_name: `${verified.diameter} in` },
+      { id: 'VEHICLE_SPEAKER_DIAMETER', value_name: `${verified.diameter} in` },
+      { id: 'COLOR', value_name: 'Preto' },
+      { id: 'IMPEDANCE', value_name: `${verified.impedance} Ω` },
+      { id: 'SPEAKERS_NUMBER', value_name: String(quantity) },
+      { id: 'VEHICLE_SPEAKER_TYPE', value_id: '7509874', value_name: 'Woofer' },
+      { id: 'COILS_NUMBER', value_name: '1' },
+      { id: 'RMS_POWER', value_name: `${verified.power} W` },
+      ...(verified.frequencyRange
+        ? [{ id: 'FREQUENCY_RANGE', value_name: verified.frequencyRange }]
+        : []),
+      ...(verified.sensitivity
+        ? [{ id: 'SENSITIVITY', value_name: `${verified.sensitivity} dB` }]
+        : []),
+    ];
+  }
+  if (SHEET_SLUG === 'duracell') {
+    const totalUnits = duracellTotalUnits(row.sku_origem, product.nome, quantity);
+    return [
+      { id: 'BRAND', value_id: '106681', value_name: 'Duracell' },
+      { id: 'MODEL', value_name: SHEET_CONFIG.models[source] },
+      { id: 'CELL_BATTERY_SIZE', value_name: verified.size },
+      { id: 'CELL_BATTERY_SHAPE', value_name: verified.shape },
+      { id: 'SALE_FORMAT', value_id: '1359392', value_name: 'Kit' },
+      { id: 'UNITS_PER_PACK', value_name: String(totalUnits) },
+      { id: 'IS_RECHARGEABLE', value_id: '242084', value_name: 'Não' },
+      ...(verified.voltage
+        ? [{ id: 'NOMINAL_VOLTAGE', value_name: verified.voltage }]
+        : []),
+      ...(verified.composition
+        ? [{ id: 'CELL_BATTERY_COMPOSITION', value_name: verified.composition }]
+        : []),
+    ];
+  }
+  if (SHEET_SLUG === 'elgin') {
+    const totalUnits = elginTotalUnits(row.sku_origem, product.nome, quantity);
+    return [
+      { id: 'BRAND', value_id: '102992', value_name: 'Elgin' },
+      { id: 'MODEL', value_name: SHEET_CONFIG.models[source] },
+      { id: 'CELL_BATTERY_SIZE', value_name: verified.size },
+      { id: 'CELL_BATTERY_SHAPE', value_name: verified.shape },
+      { id: 'SALE_FORMAT', value_id: '1359392', value_name: 'Kit' },
+      { id: 'UNITS_PER_PACK', value_name: String(totalUnits) },
+      {
+        id: 'IS_RECHARGEABLE',
+        value_id: verified.rechargeable ? '242085' : '242084',
+        value_name: verified.rechargeable ? 'Sim' : 'Não',
+      },
+      { id: 'NOMINAL_VOLTAGE', value_name: verified.voltage },
+      { id: 'CELL_BATTERY_COMPOSITION', value_name: verified.composition },
+    ];
+  }
   const verifiedInstrument = verified.instrument || instrument(product.nome);
   const verifiedGauges = verified.gauges || gauges(product.descricao);
   const verifiedTension = verified.tension || tension(product.nome);
@@ -360,7 +702,10 @@ function attributesFor(row, product, quantity) {
     { id: 'RECOMMENDED_INSTRUMENT', value_name: verifiedInstrument },
     { id: 'SALE_FORMAT', value_id: '1359392', value_name: 'Kit' },
     { id: 'UNITS_PER_PACK', value_name: String(quantity) },
-    { id: 'STRINGS_NUMBER', value_name: '6' },
+    { id: 'STRINGS_NUMBER', value_name: String(verified.stringsNumber || 6) },
+    ...(verified.line
+      ? [{ id: 'LINE', value_name: verified.line }]
+      : []),
     ...(verifiedGauges
       ? [{ id: 'GAUGES', value_name: verifiedGauges }]
       : []),
@@ -371,6 +716,112 @@ function attributesFor(row, product, quantity) {
       ? [{ id: 'TENSION', value_name: verifiedTension }]
       : []),
   ];
+}
+
+function verifiedDescription(row, product, quantity) {
+  if (SHEET_SLUG === 'atk') {
+    const source = sourceId(row.sku_origem);
+    const verified = SHEET_CONFIG.attributes[source] || {};
+    const model = SHEET_CONFIG.models[source];
+    const itemName = verified.kind === 'driver' ? 'drivers de compressão' : 'alto-falantes';
+    return [
+      text(product.nome),
+      `Kit com ${quantity} ${itemName} originais ATK Eletroacústica, modelo ${model}.`,
+      'CONTEÚDO DA EMBALAGEM',
+      `- ${quantity} unidades ATK ${model}`,
+      'CARACTERÍSTICAS',
+      '- Marca: ATK Eletroacústica',
+      `- Modelo: ${model}`,
+      `- Quantidade: ${quantity} unidades`,
+      `- Potência nominal por unidade: ${verified.power} W RMS`,
+      `- Impedância por unidade: ${verified.impedance} ohms`,
+      verified.kind === 'driver'
+        ? `- Diâmetro da garganta: ${verified.diameter}`
+        : `- Diâmetro nominal: ${verified.diameter} polegadas`,
+      verified.material ? `- Material do diafragma: ${verified.material}` : '',
+      verified.frequencyRange ? `- Resposta de frequência: ${verified.frequencyRange}` : '',
+      verified.minFrequency && verified.maxFrequency
+        ? `- Resposta de frequência: ${verified.minFrequency} a ${verified.maxFrequency} Hz`
+        : '',
+      verified.sensitivity ? `- Sensibilidade: ${verified.sensitivity} dB SPL` : '',
+      'Confira o modelo, a impedância e a quantidade antes da compra.',
+    ]
+      .filter(Boolean)
+      .join('\n\n');
+  }
+  if (SHEET_SLUG === 'duracell') {
+    const source = sourceId(row.sku_origem);
+    const verified = SHEET_CONFIG.attributes[source] || {};
+    const model = SHEET_CONFIG.models[source];
+    const totalUnits = duracellTotalUnits(row.sku_origem, product.nome, quantity);
+    return [
+      text(product.nome),
+      `Kit original Duracell com ${totalUnits} pilhas ou baterias, distribuídas em ${quantity} embalagens do fabricante.`,
+      'CONTEÚDO DA EMBALAGEM',
+      `- ${quantity} embalagens com ${verified.unitsEach} unidade(s) cada`,
+      `- Total: ${totalUnits} pilhas ou baterias`,
+      'CARACTERÍSTICAS',
+      '- Marca: Duracell',
+      `- Modelo: ${model}`,
+      `- Tamanho: ${verified.size}`,
+      `- Formato: ${verified.shape}`,
+      `- Quantidade total: ${totalUnits} unidades`,
+      '- Recarregável: Não',
+      verified.voltage ? `- Voltagem nominal: ${verified.voltage}` : '',
+      verified.composition ? `- Composição: ${verified.composition}` : '',
+      'Confira o modelo, o tamanho e a quantidade total antes da compra.',
+    ]
+      .filter(Boolean)
+      .join('\n\n');
+  }
+  if (SHEET_SLUG === 'elgin') {
+    const source = sourceId(row.sku_origem);
+    const verified = SHEET_CONFIG.attributes[source] || {};
+    const model = SHEET_CONFIG.models[source];
+    const totalUnits = elginTotalUnits(row.sku_origem, product.nome, quantity);
+    return [
+      text(product.nome),
+      `Kit original Elgin com ${totalUnits} pilhas ou baterias, distribuídas em ${quantity} embalagens do fabricante.`,
+      'CONTEÚDO DA EMBALAGEM',
+      `- ${quantity} embalagens com ${verified.unitsEach} unidade(s) cada`,
+      `- Total: ${totalUnits} pilhas ou baterias`,
+      'CARACTERÍSTICAS',
+      '- Marca: Elgin',
+      `- Modelo: ${model}`,
+      `- Tamanho: ${verified.size}`,
+      `- Formato: ${verified.shape}`,
+      `- Quantidade total: ${totalUnits} unidades`,
+      `- Recarregável: ${verified.rechargeable ? 'Sim' : 'Não'}`,
+      `- Voltagem nominal: ${verified.voltage}`,
+      `- Composição: ${verified.composition}`,
+      'Confira o modelo, o tamanho e a quantidade total antes da compra.',
+    ]
+      .filter(Boolean)
+      .join('\n\n');
+  }
+  if (SHEET_SLUG !== 'giannini') return text(product.descricao);
+  const source = sourceId(row.sku_origem);
+  const verified = SHEET_CONFIG.attributes[source] || {};
+  const model = SHEET_CONFIG.models[source];
+  return [
+    text(product.nome),
+    `Kit com ${quantity} jogos de cordas originais Giannini, modelo ${model}.`,
+    `Indicado para ${verified.instrument}. Cada jogo possui ${verified.stringsNumber} cordas.`,
+    'CONTEÚDO DA EMBALAGEM',
+    `- ${quantity} jogos de cordas Giannini ${model}`,
+    'CARACTERÍSTICAS',
+    `- Marca: Giannini`,
+    `- Modelo: ${model}`,
+    `- Instrumento recomendado: ${verified.instrument}`,
+    `- Quantidade de jogos: ${quantity}`,
+    `- Cordas por jogo: ${verified.stringsNumber}`,
+    verified.line ? `- Linha: ${verified.line}` : '',
+    verified.materials ? `- Material principal: ${verified.materials}` : '',
+    verified.tension ? `- Tensão: ${verified.tension}` : '',
+    'Confira o modelo, o instrumento indicado e a quantidade antes da compra.',
+  ]
+    .filter(Boolean)
+    .join('\n\n');
 }
 
 async function main() {
@@ -398,24 +849,28 @@ async function main() {
     .eq('fornecedor_dslite_id', SUPPLIER_ID)
     .in('sku_origem', sourceSkus);
   if (error) throw error;
-  if ((kits || []).length !== sourceSkus.length) {
-    const found = new Set((kits || []).map((row) => text(row.sku_origem)));
-    throw new Error(
-      `Kits não cadastrados: ${sourceSkus.filter((sku) => !found.has(sku)).join(', ')}`,
-    );
-  }
+  const foundSourceSkus = new Set((kits || []).map((row) => text(row.sku_origem)));
+  const unregisteredSourceSkus = sourceSkus.filter((sku) => !foundSourceSkus.has(sku));
 
   const stamp = new Date().toISOString().replace(/[:.]/g, '-');
   const reportDir = path.join(REPORT_ROOT, `bkr1-${SHEET_SLUG}-kits-${stamp}`);
   fs.mkdirSync(reportDir, { recursive: true });
   const ready = [];
-  const blocked = [];
+  const blocked = unregisteredSourceSkus.map((sourceSku) => ({
+    produtoId: '',
+    sku: '',
+    sourceSku,
+    reason: 'kit_not_registered',
+    details: null,
+  }));
   const imageReport = [];
 
   for (const row of kits || []) {
     const product = row.produto;
     const componentRow = Array.isArray(row.componentes) ? row.componentes[0] : null;
     const quantity = Number(componentRow?.quantidade || 0);
+    const source = sourceId(row.sku_origem);
+    const expectedCategoryId = categoryForSource(row.sku_origem);
     const block = (reason, details = null) => {
       blocked.push({
         produtoId: text(product?.id),
@@ -442,15 +897,47 @@ async function main() {
       continue;
     }
     if (
+      SHEET_SLUG === 'duracell' &&
+      !duracellTotalUnits(row.sku_origem, product.nome, quantity)
+    ) {
+      block('battery_total_units_mismatch', {
+        productName: product.nome,
+        componentQuantity: quantity,
+        unitsEach: SHEET_CONFIG.attributes[source]?.unitsEach || null,
+      });
+      continue;
+    }
+    if (
+      SHEET_SLUG === 'elgin' &&
+      !elginTotalUnits(row.sku_origem, product.nome, quantity)
+    ) {
+      block('battery_total_units_mismatch', {
+        productName: product.nome,
+        componentQuantity: quantity,
+        unitsEach: SHEET_CONFIG.attributes[source]?.unitsEach || null,
+      });
+      continue;
+    }
+    if (SHEET_CONFIG.blockedComponentIds?.includes(source)) {
+      block('ml_auto_recategorizes_to_incorrect_hearing_aids_category', {
+        requestedCategory: expectedCategoryId,
+        automaticCategory: 'MLB270521',
+      });
+      continue;
+    }
+    if (
       !componentRow.componente?.ativo ||
-      !componentRow.componente?.ml_item_id ||
       !(Number(componentRow.componente?.estoque) >= quantity)
     ) {
-      block('component_unavailable_or_unlisted');
+      block('component_unavailable');
       continue;
     }
     if (text(product.ml_item_id) || text(product.ml_status) !== 'sem_anuncio') {
       block('already_has_listing');
+      continue;
+    }
+    if (!expectedCategoryId) {
+      block('missing_verified_category');
       continue;
     }
     const { data: localListings, error: localError } = await supabase
@@ -467,15 +954,24 @@ async function main() {
       block('live_ml_sku_exists', liveItems);
       continue;
     }
-    const componentItem = await fetchMl(
-      account,
-      `/items/${encodeURIComponent(componentRow.componente.ml_item_id)}?attributes=category_id,status`,
-    );
-    if (text(componentItem.category_id) !== CATEGORY_ID) {
-      block('component_category_mismatch', {
-        expected: CATEGORY_ID,
-        actual: componentItem.category_id,
-      });
+    let componentItem = null;
+    if (componentRow.componente.ml_item_id) {
+      componentItem = await fetchMl(
+        account,
+        `/items/${encodeURIComponent(componentRow.componente.ml_item_id)}?attributes=category_id,status`,
+      );
+      if (
+        text(componentItem.category_id) !== expectedCategoryId &&
+        !SHEET_CONFIG.allowedComponentCategoryMismatches?.includes(source)
+      ) {
+        block('component_category_mismatch', {
+          expected: expectedCategoryId,
+          actual: componentItem.category_id,
+        });
+        continue;
+      }
+    } else if (!SHEET_CONFIG.allowVerifiedCategoryFallback) {
+      block('component_unlisted');
       continue;
     }
     if (!SHEET_CONFIG.models[sourceId(row.sku_origem)]) {
@@ -499,11 +995,11 @@ async function main() {
       nome: text(product.nome),
       fornecedor: 'BKR1',
       dsliteFornecedorId: SUPPLIER_ID,
-      categoryId: CATEGORY_ID,
+      categoryId: expectedCategoryId,
       custo: round2(product.custo),
       estoque: Number(product.estoque),
       suggestedPricePreview: pricePreview(product),
-      description: text(product.descricao),
+      description: verifiedDescription(row, product, quantity),
       attributeOverrides: attributesFor(row, product, quantity),
       preflight: {
         strictEvidence: true,
@@ -513,10 +1009,50 @@ async function main() {
         componentGtin: digits(componentRow.componente.gtin),
         componentQuantity: quantity,
         trustedOptionalAttributeOverrides: true,
+        expectedAttributeValues:
+          SHEET_SLUG === 'atk'
+            ? {
+                MODEL: SHEET_CONFIG.models[source],
+                ...(SHEET_CONFIG.attributes[source]?.kind === 'speaker'
+                  ? { SPEAKERS_NUMBER: String(quantity) }
+                  : { PART_NUMBER: SHEET_CONFIG.models[source] }),
+              }
+            : SHEET_SLUG === 'duracell'
+              ? {
+                  MODEL: SHEET_CONFIG.models[source],
+                  SALE_FORMAT: 'Kit',
+                  UNITS_PER_PACK: String(
+                    duracellTotalUnits(row.sku_origem, product.nome, quantity),
+                  ),
+                  IS_RECHARGEABLE: 'Não',
+                }
+              : SHEET_SLUG === 'elgin'
+                ? {
+                    MODEL: SHEET_CONFIG.models[source],
+                    SALE_FORMAT: 'Kit',
+                    UNITS_PER_PACK: String(
+                      elginTotalUnits(row.sku_origem, product.nome, quantity),
+                    ),
+                    IS_RECHARGEABLE:
+                      SHEET_CONFIG.attributes[source]?.rechargeable ? 'Sim' : 'Não',
+                  }
+                : null,
+        allowMissingIdentifier:
+          SHEET_SLUG === 'atk' &&
+          SHEET_CONFIG.attributes[source]?.kind === 'driver',
+        omitComponentGtin:
+          (
+            Boolean(componentItem?.category_id) &&
+            text(componentItem.category_id) !== expectedCategoryId
+          ),
         imagesOnVortekStorage: imageResult.images.every((url) =>
           url.startsWith(STORAGE_PREFIX),
         ),
-        categoryEvidence: `Componente ${componentRow.componente.ml_item_id} em ${CATEGORY_ID}`,
+        categoryEvidence: componentRow.componente.ml_item_id
+          ? text(componentItem?.category_id) === expectedCategoryId
+            ? `Componente ${componentRow.componente.ml_item_id} em ${expectedCategoryId}`
+            : `Categoria ${expectedCategoryId} validada pelo preditor oficial; componente ${componentRow.componente.ml_item_id} está classificado incorretamente em ${componentItem?.category_id}`
+          : `Família ${SHEET_CONFIG.brand} validada em ${expectedCategoryId}; componente sem anúncio unitário`,
         descriptionFormat: 'paragraphs_and_bullet_points',
       },
     });

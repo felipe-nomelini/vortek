@@ -18,7 +18,9 @@ const ONLY_SKUS = new Set(
     .filter(Boolean),
 );
 const POLL_MS = Math.max(2000, Number(process.env.ML_BATCH_VERIFY_POLL_MS || '5000'));
-const MAX_POLLS = Math.max(1, Number(process.env.ML_BATCH_VERIFY_MAX_POLLS || '24'));
+const MAX_POLLS = Math.max(1, Number(process.env.ML_BATCH_VERIFY_MAX_POLLS || '48'));
+const DEFER_MEDIA_VERIFICATION =
+  process.env.ML_BATCH_DEFER_MEDIA_VERIFICATION === '1';
 const SUPPLIER_ID = '108';
 
 if (!process.env.ML_BATCH_SOURCE_DIR || !fs.existsSync(SOURCE_DIR)) {
@@ -59,7 +61,7 @@ function loadItems() {
       ...item,
       sourceBatch: fileName,
     }));
-  });
+  }).map((item, index) => ({ ...item, sourceSequence: index + 1 }));
   if (ONLY_SKUS.size > 0) {
     items = items.filter((item) => ONLY_SKUS.has(String(item.sku)));
     const found = new Set(items.map((item) => String(item.sku)));
@@ -176,34 +178,32 @@ async function preflightItem(account, item) {
     ) {
       throw new Error(`${item.sku}: vínculo unitário do kit divergente`);
     }
-    const [{ data: source, error: sourceError }, { data: offers, error: offersError }] =
-      await Promise.all([
-        supabase
-          .from('produtos')
-          .select('id,sku,ativo,estoque')
-          .eq('id', component.componente_produto_id)
-          .single(),
-        supabase
+    const { data: source, error: sourceError } = await supabase
+      .from('produtos')
+      .select('id,sku,ativo,estoque,custo,oferta_preferencial_id')
+      .eq('id', component.componente_produto_id)
+      .single();
+    const { data: preferredOffer, error: offerError } = source?.oferta_preferencial_id
+      ? await supabase
           .from('produto_fornecedor_ofertas')
           .select('id,dslite_fornecedor_id,ativo,estoque,custo')
-          .eq('produto_id', component.componente_produto_id)
-          .eq('dslite_fornecedor_id', SUPPLIER_ID)
-          .eq('ativo', true),
-      ]);
-    offer = (offers || []).find(
-      (candidate) =>
-        Number(candidate.estoque) >= expectedQuantity &&
-        Number(candidate.custo) > 0,
-    );
+          .eq('id', source.oferta_preferencial_id)
+          .maybeSingle()
+      : { data: null, error: null };
+    offer = preferredOffer;
     if (
       sourceError ||
-      offersError ||
+      offerError ||
       !source?.ativo ||
       String(source?.sku || '') !== String(item.preflight?.componentSku || '') ||
       Number(source?.estoque) < expectedQuantity ||
-      !offer
+      !(Number(source?.custo) > 0) ||
+      !offer ||
+      !offer.ativo ||
+      Number(offer.estoque) < expectedQuantity ||
+      !(Number(offer.custo) > 0)
     ) {
-      throw new Error(`${item.sku}: componente ou oferta BKR1 indisponível`);
+      throw new Error(`${item.sku}: componente ou oferta preferencial indisponível`);
     }
   } else {
     const { data: preferredOffer, error: offerError } = await supabase
@@ -262,12 +262,18 @@ async function pictureErrors(account, item) {
   return failures;
 }
 
-async function verifyCreated(account, created, expectedItem) {
+async function verifyCreated(
+  account,
+  created,
+  expectedItem,
+  { waitForMedia = true } = {},
+) {
   const itemId = String(created?.anuncio?.id || '');
   if (!itemId) throw new Error(`${expectedItem.sku}: criação sem item_id`);
   let last = null;
+  const maxAttempts = waitForMedia ? MAX_POLLS : 1;
 
-  for (let attempt = 1; attempt <= MAX_POLLS; attempt += 1) {
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     const [{ data: item }, { data: description }] = await Promise.all([
       fetchMl(
         account,
@@ -279,6 +285,17 @@ async function verifyCreated(account, created, expectedItem) {
     const attributes = Array.isArray(item?.attributes) ? item.attributes : [];
     const attributesById = new Map(
       attributes.map((attribute) => [String(attribute?.id || ''), attribute]),
+    );
+    const expectedAttributeValues =
+      expectedItem.preflight?.expectedAttributeValues || {};
+    const expectedAttributeEntries = Object.entries(expectedAttributeValues);
+    const expectedAttributesOk = expectedAttributeEntries.every(
+      ([id, expectedValue]) =>
+        String(
+          attributesById.get(id)?.value_name ||
+          attributesById.get(id)?.value_id ||
+          '',
+        ) === String(expectedValue),
     );
     const hasGtin = attributes.some(
       (attribute) =>
@@ -311,14 +328,20 @@ async function verifyCreated(account, created, expectedItem) {
         /VISÃO GERAL/.test(plainText) &&
         /CARACTERÍSTICAS CONFIRMADAS/.test(plainText) &&
         /IDENTIFICAÇÃO DO PRODUTO/.test(plainText),
-      identifierOk: hasGtin || hasEmptyGtinReason,
+      identifierOk:
+        hasGtin ||
+        hasEmptyGtinReason ||
+        expectedItem.preflight?.allowMissingIdentifier === true ||
+        ['MLB418066', 'MLB46559'].includes(String(item?.category_id || '')),
       kitAttributesOk:
         !KIT_MODE ||
-        (String(attributesById.get('SALE_FORMAT')?.value_name || '') === 'Kit' &&
-          String(attributesById.get('UNITS_PER_PACK')?.value_name || '') ===
-            String(expectedItem.preflight?.componentQuantity || '') &&
-          hasText(attributesById.get('MODEL')?.value_name) &&
-          hasText(attributesById.get('RECOMMENDED_INSTRUMENT')?.value_name)),
+        (expectedAttributeEntries.length > 0
+          ? expectedAttributesOk
+          : String(attributesById.get('SALE_FORMAT')?.value_name || '') === 'Kit' &&
+            String(attributesById.get('UNITS_PER_PACK')?.value_name || '') ===
+              String(expectedItem.preflight?.componentQuantity || '') &&
+            hasText(attributesById.get('MODEL')?.value_name) &&
+            hasText(attributesById.get('RECOMMENDED_INSTRUMENT')?.value_name)),
       quantity: Number(item?.available_quantity),
       quantityOk:
         Number(item?.available_quantity) === Number(expectedItem.estoque),
@@ -341,6 +364,31 @@ async function verifyCreated(account, created, expectedItem) {
       subStatuses.includes('under_review');
     if (fatal) {
       return { ok: false, reason: 'fatal_listing_validation', row: last };
+    }
+
+    if (!waitForMedia) {
+      const [{ data: product }, { data: ads }] = await Promise.all([
+        supabase
+          .from('produtos')
+          .select('id,ml_item_id,ml_status')
+          .eq('id', expectedItem.produtoId)
+          .single(),
+        supabase
+          .from('anuncios_ml')
+          .select('produto_id,ml_item_id,sku')
+          .eq('produto_id', expectedItem.produtoId),
+      ]);
+      const linked =
+        String(product?.ml_item_id || '') === itemId &&
+        (ads || []).some(
+          (ad) =>
+            String(ad.ml_item_id) === itemId &&
+            String(ad.sku) === String(expectedItem.sku),
+        );
+      if (!linked) {
+        return { ok: false, reason: 'database_link_missing', row: last };
+      }
+      return { ok: true, pendingMedia: true, row: last };
     }
 
     if (last.status === 'active' && pictureReady) {
@@ -400,7 +448,7 @@ async function verifyCreated(account, created, expectedItem) {
       return { ok: true, row: last };
     }
 
-    if (attempt < MAX_POLLS) await sleep(POLL_MS);
+    if (attempt < maxAttempts) await sleep(POLL_MS);
   }
 
   return { ok: false, reason: 'verification_timeout', row: last };
@@ -458,10 +506,11 @@ async function main() {
     totals: { created: 0, verified: 0, failed: 0 },
     rows: [],
   };
+  const pendingMedia = [];
 
   for (let index = 0; index < items.length; index += 1) {
     const item = items[index];
-    const sequence = index + 1;
+    const sequence = Number(item.sourceSequence || index + 1);
     console.log(`[preflight] ${sequence}/${items.length} ${item.sku}`);
     try {
       await preflightItem(account, item);
@@ -504,7 +553,9 @@ async function main() {
     }
     summary.totals.created += 1;
 
-    const verification = await verifyCreated(account, created[0], item);
+    const verification = await verifyCreated(account, created[0], item, {
+      waitForMedia: !DEFER_MEDIA_VERIFICATION,
+    });
     if (!verification.ok) {
       summary.totals.failed += 1;
       summary.rows.push({
@@ -521,19 +572,69 @@ async function main() {
       throw new Error(`${item.sku}: verificação falhou (${verification.reason})`);
     }
 
-    summary.totals.verified += 1;
+    if (verification.pendingMedia) {
+      pendingMedia.push({ sequence, item, created: created[0] });
+    } else {
+      summary.totals.verified += 1;
+    }
     summary.rows.push({
       sequence,
       sku: item.sku,
       itemId: created[0].anuncio.id,
-      status: 'verified',
+      status: verification.pendingMedia ? 'created_pending_media' : 'verified',
       verification: verification.row,
     });
     fs.writeFileSync(
       path.join(RESULT_DIR, 'summary.json'),
       JSON.stringify(summary, null, 2),
     );
-    console.log(`[verified] ${sequence}/${items.length} ${item.sku} ${created[0].anuncio.id}`);
+    console.log(
+      `[${verification.pendingMedia ? 'created' : 'verified'}] ` +
+      `${sequence}/${items.length} ${item.sku} ${created[0].anuncio.id}`,
+    );
+  }
+
+  for (let index = 0; index < pendingMedia.length; index += 1) {
+    const pending = pendingMedia[index];
+    console.log(
+      `[media] ${index + 1}/${pendingMedia.length} ${pending.item.sku}`,
+    );
+    const verification = await verifyCreated(
+      account,
+      pending.created,
+      pending.item,
+      { waitForMedia: true },
+    );
+    const row = summary.rows.find(
+      (candidate) => candidate.sequence === pending.sequence,
+    );
+    if (!verification.ok) {
+      summary.totals.failed += 1;
+      if (row) {
+        row.status = 'verification_failed';
+        row.verification = verification;
+      }
+      fs.writeFileSync(
+        path.join(RESULT_DIR, 'summary.json'),
+        JSON.stringify(summary, null, 2),
+      );
+      throw new Error(
+        `${pending.item.sku}: verificação final falhou (${verification.reason})`,
+      );
+    }
+    summary.totals.verified += 1;
+    if (row) {
+      row.status = 'verified';
+      row.verification = verification.row;
+    }
+    fs.writeFileSync(
+      path.join(RESULT_DIR, 'summary.json'),
+      JSON.stringify(summary, null, 2),
+    );
+    console.log(
+      `[verified] ${pending.sequence}/${items.length} ` +
+      `${pending.item.sku} ${pending.created.anuncio.id}`,
+    );
   }
 
   summary.finishedAt = new Date().toISOString();

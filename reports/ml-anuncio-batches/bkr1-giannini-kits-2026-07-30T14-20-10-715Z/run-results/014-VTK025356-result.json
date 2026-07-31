@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-20-10-715Z/run-results/014-VTK025356-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-014-VTK025356",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "f73c582e-8e33-4dd7-9375-f9c08064cacb",
+      "sku": "VTK025356",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4970463661",
+        "title": "2 Jogos De Corda P/violão Nylon 65/35 Prateado Giannini",
+        "price": 125.65,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4970463661-2-jogos-de-corda-pviolo-nylon-6535-prateado-giannini-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 107.60 → R$ 125.65."
+      ]
+    }
+  ],
+  "failed": []
+}

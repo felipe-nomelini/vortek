@@ -1,0 +1,37 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-duracell-kits-2026-07-30T18-26-48-070Z/run-results/038-VTK025489-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-038-VTK025489",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "734e4726-8dab-4296-b52a-d928858bcaa1",
+      "sku": "VTK025489",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7296017638",
+        "title": "16 Pilhas Alcalinas Aa Duracell (4 Cart. C/ 4 Un. Cada)",
+        "price": 146.04,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7296017638-16-pilhas-alcalinas-aa-duracell-4-cart-c-4-un-cada-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "GTIN unitário do componente usado para este kit de itens idênticos.",
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 124.68 → R$ 146.04."
+      ]
+    }
+  ],
+  "failed": []
+}

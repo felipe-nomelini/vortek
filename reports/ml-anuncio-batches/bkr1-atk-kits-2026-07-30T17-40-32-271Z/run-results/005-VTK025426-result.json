@@ -1,0 +1,37 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-40-32-271Z/run-results/005-VTK025426-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-005-VTK025426",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "0967cda7-4438-4d74-8602-074bab892baa",
+      "sku": "VTK025426",
+      "category": {
+        "id": "MLB418066",
+        "nome": "MLB418066",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4971274469",
+        "title": "Kit 2 Drivers Titanium 3 Pol 80 Watts 8 Ohms 75mh5016b-8 Atk",
+        "price": 2243.67,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4971274469-kit-2-drivers-titanium-3-pol-80-watts-8-ohms-75mh5016b-8-atk-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "GTIN unitário do componente usado para este kit de itens idênticos.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB4971274469: NSOPublicAPI error",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    }
+  ],
+  "failed": []
+}

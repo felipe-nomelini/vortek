@@ -263,8 +263,35 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
     ...row,
     total: Number(row?.operational_total ?? row?.total ?? 0),
     lucro: row?.operational_lucro ?? row?.lucro ?? null,
+    operational_profit_pending: Boolean(row?.operational_profit_pending),
     is_virtual_kit: row?.ml_bundle_type === 'virtual_kit',
+    is_cart: row?.ml_bundle_type === 'cart',
     kit_order_ids: Array.isArray(row?.operational_order_ids) ? row.operational_order_ids : [],
+    operational_dslite_ids: Array.isArray(row?.operational_dslite_ids)
+      ? row.operational_dslite_ids.map(String).filter(Boolean)
+      : String(row?.dslite_id || '').trim()
+        ? [String(row.dslite_id)]
+        : [],
+    operational_invoice_numbers: Array.isArray(row?.operational_invoice_numbers)
+      ? row.operational_invoice_numbers.map(String).filter(Boolean)
+      : String(row?.nota_fiscal_numero || '').trim()
+        ? [String(row.nota_fiscal_numero)]
+        : [],
+    has_split_fulfillment:
+      new Set(
+        (Array.isArray(row?.operational_dslite_ids)
+          ? row.operational_dslite_ids
+          : [row?.dslite_id])
+          .map((value: unknown) => String(value || '').trim())
+          .filter(Boolean),
+      ).size > 1
+      || new Set(
+        (Array.isArray(row?.operational_invoice_numbers)
+          ? row.operational_invoice_numbers
+          : [row?.nota_fiscal_numero])
+          .map((value: unknown) => String(value || '').trim())
+          .filter(Boolean),
+      ).size > 1,
   }));
   const pedidoIds = Array.from(new Set(
     rows
@@ -332,7 +359,12 @@ async function enrichPedidosWithCompras(rows: any[], serviceClient: ReturnType<t
 
   const dsids = Array.from(new Set(
     rows
-      .map((row) => String(row?.dslite_id || '').trim())
+      .flatMap((row) => (
+        Array.isArray(row?.operational_dslite_ids)
+          ? row.operational_dslite_ids
+          : [row?.dslite_id]
+      ))
+      .map((dsliteId) => String(dsliteId || '').trim())
       .filter(Boolean),
   ));
   if (!dsids.length) {

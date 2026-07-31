@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-29-23-389Z/run-results/081-VTK025793-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-081-VTK025793",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "f13a03ef-0790-492b-8597-6bc220bf6dbc",
+      "sku": "VTK025793",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7297377962",
+        "title": "45 Baterias Alcalinas A23 (9 Cart)",
+        "price": 208.58,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7297377962-45-baterias-alcalinas-a23-9-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 185.80 → R$ 208.58."
+      ]
+    }
+  ],
+  "failed": []
+}

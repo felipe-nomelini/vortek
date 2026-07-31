@@ -1,0 +1,72 @@
+{
+  "batchNumber": 24,
+  "batchId": "bkr1-live-024-VTK025371",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "bb15eed7-8939-4718-ab62-088875733c80",
+      "sku": "VTK025371",
+      "nome": "3 Jogos de Corda P/Guitarra Niquel 09 GEEGST.9 Giannini",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB278076",
+      "custo": 86.1,
+      "estoque": 3,
+      "suggestedPricePreview": 130.99,
+      "description": "3 Jogos de Corda P/Guitarra Niquel 09 GEEGST.9 Giannini\n\nKit com 3 jogos de cordas originais Giannini, modelo GEEGST.9.\n\nIndicado para Guitarra elétrica. Cada jogo possui 6 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 jogos de cordas Giannini GEEGST.9\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GEEGST.9\n\n- Instrumento recomendado: Guitarra elétrica\n\n- Quantidade de jogos: 3\n\n- Cordas por jogo: 6\n\n- Linha: Electric\n\n- Material principal: Metal\n\n- Tensão: Leve\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "GEEGST.9"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_name": "Guitarra elétrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "3"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_name": "6"
+        },
+        {
+          "id": "LINE",
+          "value_name": "Electric"
+        },
+        {
+          "id": "MATERIALS",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "value_name": "Leve"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Giannini.xls",
+        "sourceSku": "1831K3",
+        "componentSku": "VTK001637",
+        "componentGtin": "7898159187153",
+        "componentQuantity": 3,
+        "trustedOptionalAttributeOverrides": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149328572 em MLB278076",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "005-bkr1-kit-giannini-005.json",
+      "sourceSequence": 24
+    }
+  ]
+}

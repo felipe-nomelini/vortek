@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-40-32-271Z/run-results/004-VTK025424-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-004-VTK025424",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "8950d8ae-04c6-4c64-ad08-78839f911092",
+      "sku": "VTK025424",
+      "category": {
+        "id": "MLB3905",
+        "nome": "MLB3905",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4971297395",
+        "title": "Kit 2 Alto-falantes 400w 8 Pol 8 Ohms Wf200800b8 Atk Preto",
+        "price": 1276.48,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4971297395-kit-2-alto-falantes-400w-8-pol-8-ohms-wf200800b8-atk-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 1241.48 → R$ 1276.48."
+      ]
+    }
+  ],
+  "failed": []
+}

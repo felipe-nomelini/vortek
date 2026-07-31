@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-29-23-389Z/run-results/008-VTK025647-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-008-VTK025647",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "6b5e0851-3d43-411c-8fbe-c0b2077cd7f0",
+      "sku": "VTK025647",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4972433077",
+        "title": "10 Baterias Zinco 9v Elgin",
+        "price": 107.73,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4972433077-10-baterias-zinco-9v-elgin-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 90.52 → R$ 107.73."
+      ]
+    }
+  ],
+  "failed": []
+}

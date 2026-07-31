@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-20-10-715Z/run-results/017-VTK025359-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-017-VTK025359",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "af9c1331-403e-44e4-bfd9-310c9abf3d6d",
+      "sku": "VTK025359",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4970446455",
+        "title": "2 Jogos De Corda P/violão Nylon Canário Giannini",
+        "price": 84.47,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4970446455-2-jogos-de-corda-pviolo-nylon-canario-giannini-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 67.80 → R$ 84.47."
+      ]
+    }
+  ],
+  "failed": []
+}

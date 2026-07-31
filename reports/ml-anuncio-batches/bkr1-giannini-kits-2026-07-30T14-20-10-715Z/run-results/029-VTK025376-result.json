@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-20-10-715Z/run-results/029-VTK025376-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-029-VTK025376",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "a1d52ed2-056a-4744-8119-af5a7465c593",
+      "sku": "VTK025376",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4970649165",
+        "title": "3 Jogos De Corda P/violão Aço Bronze 65/35 11 Gespw Giannini",
+        "price": 122.7,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4970649165-3-jogos-de-corda-pviolo-aco-bronze-6535-11-gespw-giannini-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 103.27 → R$ 122.70."
+      ]
+    }
+  ],
+  "failed": []
+}

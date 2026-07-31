@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-07-30T14:09:41.498Z",
+  "sourceFile": "/tmp/vortek-kits-analysis/Giannini.xls",
+  "account": {
+    "userId": "3294514937",
+    "nickname": "VORTEKTECNOLOGIA"
+  },
+  "mode": "audit_only",
+  "sheetCount": 54,
+  "readyCount": 2,
+  "blockedCount": 52,
+  "batchCount": 1,
+  "reportDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-09-19-622Z"
+}

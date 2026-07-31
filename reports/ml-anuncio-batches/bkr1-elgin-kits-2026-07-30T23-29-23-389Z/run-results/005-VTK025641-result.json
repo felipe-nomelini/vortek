@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-29-23-389Z/run-results/005-VTK025641-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-005-VTK025641",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "246d713a-fd4b-44c7-8dc8-6eebeffe1fa6",
+      "sku": "VTK025641",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4972445433",
+        "title": "10 Baterias Cr2450 Elgin (2 Cart)",
+        "price": 81.75,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4972445433-10-baterias-cr2450-elgin-2-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 65.71 → R$ 81.75."
+      ]
+    }
+  ],
+  "failed": []
+}

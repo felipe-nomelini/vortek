@@ -1,0 +1,85 @@
+{
+  "batchNumber": 3,
+  "batchId": "bkr1-live-003-VTK025394",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "d025eaab-22a7-4a33-ad57-d520f1020698",
+      "sku": "VTK025394",
+      "nome": "Kit 02 Drivers 25mm 40w Rms 8 Ohms 45mh2580b-8 ATK",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB46559",
+      "custo": 238,
+      "estoque": 20,
+      "suggestedPricePreview": 337.9,
+      "description": "Kit 02 Drivers 25mm 40w Rms 8 Ohms 45mh2580b-8 ATK\n\nKit com 2 drivers de compressão originais ATK Eletroacústica, modelo 45MH2580B-8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 unidades ATK 45MH2580B-8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: 45MH2580B-8\n\n- Quantidade: 2 unidades\n\n- Potência nominal por unidade: 40 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro da garganta: 25 mm\n\n- Material do diafragma: Titânio\n\n- Resposta de frequência: 1500 a 18000 Hz\n\nConfira o modelo, a impedância e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "45MH2580B-8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "IS_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "PART_NUMBER",
+          "value_name": "45MH2580B-8"
+        },
+        {
+          "id": "MATERIAL",
+          "value_name": "Titânio"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "value_name": "1500 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_name": "18000 Hz"
+        },
+        {
+          "id": "DIAMETER",
+          "value_name": "25 mm"
+        },
+        {
+          "id": "HORN_DIAMETER",
+          "value_name": "1 in"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Atk.xls",
+        "sourceSku": "1540K2",
+        "componentSku": "VTK012199",
+        "componentGtin": "7898640360782",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "45MH2580B-8",
+          "PART_NUMBER": "45MH2580B-8"
+        },
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111644350 em MLB46559",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "001-bkr1-kit-atk-001.json",
+      "sourceSequence": 3
+    }
+  ]
+}

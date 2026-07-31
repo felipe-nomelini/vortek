@@ -1,0 +1,82 @@
+{
+  "batchNumber": 12,
+  "batchId": "bkr1-live-012-VTK025463",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "9030b9d5-a42c-4cb7-ad09-db5bb43374f2",
+      "sku": "VTK025463",
+      "nome": "12 Baterias Alcalinas 9v Duracell (12 Cart. c/ 1 Un. Cada)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 310.8,
+      "estoque": 8,
+      "suggestedPricePreview": 441.26,
+      "description": "12 Baterias Alcalinas 9v Duracell (12 Cart. c/ 1 Un. Cada)\n\nKit original Duracell com 12 pilhas ou baterias, distribuídas em 12 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 12 embalagens com 1 unidade(s) cada\n\n- Total: 12 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Duracell\n\n- Modelo: MN1604\n\n- Tamanho: 9V\n\n- Formato: Retangular\n\n- Quantidade total: 12 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 9 V\n\n- Composição: Alcalina\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "106681",
+          "value_name": "Duracell"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "MN1604"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "9V"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Retangular"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "12"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "9 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Alcalina"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Duracell.xls",
+        "sourceSku": "3852CX12",
+        "componentSku": "VTK000282",
+        "componentGtin": "041333001043",
+        "componentQuantity": 12,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "MN1604",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "12",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": true,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149405086 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "003-bkr1-kit-duracell-003.json",
+      "sourceSequence": 12
+    }
+  ]
+}

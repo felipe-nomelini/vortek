@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-12-26-897Z/run-results/010-VTK025404-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-010-VTK025404",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "5141ba76-abe5-458d-9b8d-a3cd30697d9e",
+      "sku": "VTK025404",
+      "category": {
+        "id": "MLB3905",
+        "nome": "MLB3905",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7295515888",
+        "title": "Kit 2 Alto-falantes 600w 12 Pol 4 Ohms Wf3001200b4 Atk Preto",
+        "price": 1256.3,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7295515888-kit-2-alto-falantes-600w-12-pol-4-ohms-wf3001200b4-atk-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"status\":409,\"code\":\"conflict.error\",\"error\":\"Conflict\"}"
+      ]
+    }
+  ],
+  "failed": []
+}

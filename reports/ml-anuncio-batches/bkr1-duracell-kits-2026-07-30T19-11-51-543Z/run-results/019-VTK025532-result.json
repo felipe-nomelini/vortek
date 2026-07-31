@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-duracell-kits-2026-07-30T19-11-51-543Z/run-results/019-VTK025532-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-019-VTK025532",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "1b5d3242-73ac-4689-a699-a3395a3166a9",
+      "sku": "VTK025532",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7296140376",
+        "title": "28 Pilhas Alcalinas Aa Duracell (7 Cart. C/ 4 Un. Cada)",
+        "price": 211.67,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7296140376-28-pilhas-alcalinas-aa-duracell-7-cart-c-4-un-cada-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 188.89 → R$ 211.67."
+      ]
+    }
+  ],
+  "failed": []
+}

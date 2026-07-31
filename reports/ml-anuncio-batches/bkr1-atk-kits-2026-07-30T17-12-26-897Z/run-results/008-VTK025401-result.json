@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-12-26-897Z/run-results/008-VTK025401-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-008-VTK025401",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "4a562ea3-cb6e-401c-92c3-ad51397f757c",
+      "sku": "VTK025401",
+      "category": {
+        "id": "MLB3905",
+        "nome": "MLB3905",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4971188971",
+        "title": "Kit 2 Alto-falantes 250w 10 Pol 8 Ohms 10wf510b8 Atk Preto",
+        "price": 542.35,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4971188971-kit-2-alto-falantes-250w-10-pol-8-ohms-10wf510b8-atk-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 512.65 → R$ 542.35."
+      ]
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,244 @@
+[
+  {
+    "produtoId": "d2775c14-5ed3-4195-a45e-a99547d4832b",
+    "sku": "VTK025447",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025447/01-6c47539d363d546fddf7.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025447/02-e99f5cfb1509a4af9a8a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025447/03-159bfcc3a12b4daa6b67.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025447/04-d83fb20040730c185d71.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025447/05-126b338ddfe3e7f0ce18.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025447/06-7c2eaf6950028990f8f9.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025447/01-6c47539d363d546fddf7.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025447/02-e99f5cfb1509a4af9a8a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025447/03-159bfcc3a12b4daa6b67.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025447/04-d83fb20040730c185d71.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025447/05-126b338ddfe3e7f0ce18.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025447/06-7c2eaf6950028990f8f9.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "75650e3c-d5e1-4e9f-bb51-c72c18bd542f",
+    "sku": "VTK025432",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025432/01-f5935c33050a58682f10.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025432/02-1f9d2289927d6cde0748.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025432/03-083d21e7dfd308870a58.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025432/04-bc7e537a50cba3a04991.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025432/05-627c51c575c073fc8ae6.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025432/06-9ee31c2994c153cdc824.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025432/01-f5935c33050a58682f10.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025432/02-1f9d2289927d6cde0748.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025432/03-083d21e7dfd308870a58.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025432/04-bc7e537a50cba3a04991.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025432/05-627c51c575c073fc8ae6.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025432/06-9ee31c2994c153cdc824.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "d85d1594-e84d-409f-8339-2a10ca280946",
+    "sku": "VTK025410",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025410/01-37529c5746abed681cca.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025410/02-7f1212c7b28473790a53.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025410/03-cf3ccc7f788099ad9570.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025410/04-7d31d6c3f43d78acaca5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025410/05-7f7ea7fa65b921ce37f8.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025410/06-25567f01a7c040b80712.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025410/01-37529c5746abed681cca.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025410/02-7f1212c7b28473790a53.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025410/03-cf3ccc7f788099ad9570.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025410/04-7d31d6c3f43d78acaca5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025410/05-7f7ea7fa65b921ce37f8.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025410/06-25567f01a7c040b80712.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "6441651d-32a4-46d6-a3d3-d7568ac939ea",
+    "sku": "VTK025449",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025449/01-e5c00c107fe413e86c53.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025449/02-40ed62ca310a3da37bb8.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025449/03-af333737163ab0c7815f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025449/04-9b0a7b49b4782f3ca6ed.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025449/05-f9022e3001f6915192d2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025449/06-83acb7e2787310fc570c.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025449/01-e5c00c107fe413e86c53.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025449/02-40ed62ca310a3da37bb8.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025449/03-af333737163ab0c7815f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025449/04-9b0a7b49b4782f3ca6ed.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025449/05-f9022e3001f6915192d2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025449/06-83acb7e2787310fc570c.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "8950d8ae-04c6-4c64-ad08-78839f911092",
+    "sku": "VTK025424",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025424/01-6ad18095d217e2e5510c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025424/02-0e172ca8e458eff63cb4.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025424/03-7217eaaaa16993fa9b9c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025424/04-5db7ceeae201f078ad4c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025424/05-27e74ec38e485669469f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025424/06-05a8a836e2c51fcec7e3.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025424/01-6ad18095d217e2e5510c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025424/02-0e172ca8e458eff63cb4.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025424/03-7217eaaaa16993fa9b9c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025424/04-5db7ceeae201f078ad4c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025424/05-27e74ec38e485669469f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025424/06-05a8a836e2c51fcec7e3.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "0967cda7-4438-4d74-8602-074bab892baa",
+    "sku": "VTK025426",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025426/01-ed9716b22096ca1911f0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025426/02-eb8b9954dabe2e0fbbf4.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025426/03-b6e1ce0ecb370f31d64e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025426/04-d94cab19a355f99ec159.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025426/05-c00e78f66e5e2400cca9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025426/06-abfd06337fc4a395ed7c.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025426/01-ed9716b22096ca1911f0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025426/02-eb8b9954dabe2e0fbbf4.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025426/03-b6e1ce0ecb370f31d64e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025426/04-d94cab19a355f99ec159.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025426/05-c00e78f66e5e2400cca9.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025426/06-abfd06337fc4a395ed7c.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "bc6e43e1-3016-4b08-a322-f50b83f64279",
+    "sku": "VTK025430",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025430/01-36ad5f13b244cb4d442d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025430/02-1620164fbd4f8e37984b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025430/03-997ff499f6e27774cf6a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025430/04-297a96bbb7999dd0fd9f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025430/05-343361f4e9e2d3f51b9c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025430/06-b891f6d3b03bb1f2c2e8.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025430/01-36ad5f13b244cb4d442d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025430/02-1620164fbd4f8e37984b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025430/03-997ff499f6e27774cf6a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025430/04-297a96bbb7999dd0fd9f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025430/05-343361f4e9e2d3f51b9c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025430/06-b891f6d3b03bb1f2c2e8.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "7341b497-2f72-4bd9-a429-9d600a621645",
+    "sku": "VTK025421",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025421/01-984300247d1695c25d98.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025421/02-9e14ff93e29c31eaf862.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025421/03-0f4be7e3141c574497f7.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025421/04-72af74dc9d53aa016392.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025421/05-37a6c472dc0f0075ce37.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025421/06-a62cd8b4ae8f2746bb41.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025421/01-984300247d1695c25d98.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025421/02-9e14ff93e29c31eaf862.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025421/03-0f4be7e3141c574497f7.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025421/04-72af74dc9d53aa016392.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025421/05-37a6c472dc0f0075ce37.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025421/06-a62cd8b4ae8f2746bb41.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "9fb90462-3712-42f8-b471-5cb5e07effbb",
+    "sku": "VTK025423",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025423/01-ac474e5806a1aa82a75d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025423/02-6d031002ad3ae8fa16be.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025423/03-e3c5ff248d1ffb773f94.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025423/04-ddcaad3746448392f51f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025423/05-8e9eb9d68fbd1b478ebc.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025423/06-c9ad67ec791ec6aedbe7.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025423/01-ac474e5806a1aa82a75d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025423/02-6d031002ad3ae8fa16be.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025423/03-e3c5ff248d1ffb773f94.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025423/04-ddcaad3746448392f51f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025423/05-8e9eb9d68fbd1b478ebc.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025423/06-c9ad67ec791ec6aedbe7.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "f3ce88a3-1141-45e6-a0ad-c4df3ae05086",
+    "sku": "VTK025429",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025429/01-ed84bd2c9902c8440309.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025429/02-2f4dc72cc83a8c76a49e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025429/03-e7c2af13882f63091435.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025429/04-b17d6a7fda9d71ac28fe.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025429/05-c4ed9e678809e82f087f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025429/06-81c1b2a711ef7f7e08bf.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025429/01-ed84bd2c9902c8440309.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025429/02-2f4dc72cc83a8c76a49e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025429/03-e7c2af13882f63091435.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025429/04-b17d6a7fda9d71ac28fe.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025429/05-c4ed9e678809e82f087f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025429/06-81c1b2a711ef7f7e08bf.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "925490bb-bf03-4b7d-bfb0-80092e1404f4",
+    "sku": "VTK025431",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025431/01-9112c687bf393092c987.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025431/02-27cac6c36dbf7630f801.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025431/03-fe9c129746e9a1a78b67.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025431/04-aa414fc072cd63ca665a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025431/05-9b2fbaef06b2ab6ac536.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025431/06-778d45ff277d60ded63d.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025431/01-9112c687bf393092c987.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025431/02-27cac6c36dbf7630f801.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025431/03-fe9c129746e9a1a78b67.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025431/04-aa414fc072cd63ca665a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025431/05-9b2fbaef06b2ab6ac536.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/atk/VTK025431/06-778d45ff277d60ded63d.jpg"
+    ],
+    "failures": []
+  }
+]

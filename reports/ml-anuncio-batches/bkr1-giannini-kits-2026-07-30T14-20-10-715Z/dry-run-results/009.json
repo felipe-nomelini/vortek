@@ -1,0 +1,97 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-20-10-715Z/009-bkr1-kit-giannini-009.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "bkr1-kit-giannini-009",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "e9cfa99d-cf2b-48d5-8ece-503006b41f4b",
+      "sku": "VTK025390",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "basePrice": 142.52,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "GEAVVA"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "",
+          "value_name": "Violino"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "name": "Unidades por kit",
+          "value_id": "",
+          "value_name": "3"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898159187207"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "",
+          "value_name": "Arco"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "name": "Formato de venda",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "",
+          "value_name": "4"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "",
+          "value_name": "Metal"
+        },
+        {
+          "id": "TENSION",
+          "name": "Tensão",
+          "value_id": "",
+          "value_name": "Média"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "3 Jogos de Corda P/Violino Aluminio Médio GEAVVA Giannini\n\nVISÃO GERAL\n3 Jogos de Corda P/Violino Aluminio Médio GEAVVA Giannini\n\nKit com 3 jogos de cordas originais Giannini, modelo GEAVVA.\n\nIndicado para Violino. Cada jogo possui 4 cordas.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 jogos de cordas Giannini GEAVVA\n\nCARACTERÍSTICAS\n\n- Marca: Giannini\n\n- Modelo: GEAVVA\n\n- Instrumento recomendado: Violino\n\n- Quantidade de jogos: 3\n\n- Cordas por jogo: 4\n\n- Linha: Arco\n\n- Material principal: Metal\n\n- Tensão: Média\n\nConfira o modelo, o instrumento indicado e a quantidade antes da compra.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Giannini\n• Modelo: GEAVVA\n• Instrumento recomendado: Violino\n• Unidades por kit: 3\n• Linha: Arco\n• Formato de venda: Kit\n• Quantidade de cordas: 4\n• Materiais: Metal\n• Tensão: Média\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Giannini\n• NCM: 9209.30.00\n• SKU: VTK025390\n\nEMBALAGEM\n• Dimensões informadas: 2 × 11 × 16 cm\n• Peso bruto informado: 0,05 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-20-10-715Z/run-results/024-VTK025371-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-024-VTK025371",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "bb15eed7-8939-4718-ab62-088875733c80",
+      "sku": "VTK025371",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7294131088",
+        "title": "3 Jogos De Corda P/guitarra Niquel 09 Geegst.9 Giannini",
+        "price": 155.66,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7294131088-3-jogos-de-corda-pguitarra-niquel-09-geegst9-giannini-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 133.46 → R$ 155.66."
+      ]
+    }
+  ],
+  "failed": []
+}

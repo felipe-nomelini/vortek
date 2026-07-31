@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-40-32-271Z/run-results/010-VTK025447-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-010-VTK025447",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "d2775c14-5ed3-4195-a45e-a99547d4832b",
+      "sku": "VTK025447",
+      "category": {
+        "id": "MLB3905",
+        "nome": "MLB3905",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7295701238",
+        "title": "Kit 4 Alto-falantes 250w 12 Pol 8 Ohms Wf300500b8 Atk Preto",
+        "price": 1155,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7295701238-kit-4-alto-falantes-250w-12-pol-8-ohms-wf300500b8-atk-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 1120.00 → R$ 1155.00."
+      ]
+    }
+  ],
+  "failed": []
+}

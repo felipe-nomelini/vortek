@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-40-32-271Z/run-results/009-VTK025432-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-009-VTK025432",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "75650e3c-d5e1-4e9f-bb51-c72c18bd542f",
+      "sku": "VTK025432",
+      "category": {
+        "id": "MLB3905",
+        "nome": "MLB3905",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7295672568",
+        "title": "Kit 4 Alto-falantes 600w 12 Pol 4 Ohms Wf3001200b4 Atk Preto",
+        "price": 2649.69,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7295672568-kit-4-alto-falantes-600w-12-pol-4-ohms-wf3001200b4-atk-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 2617.28 → R$ 2649.69."
+      ]
+    }
+  ],
+  "failed": []
+}

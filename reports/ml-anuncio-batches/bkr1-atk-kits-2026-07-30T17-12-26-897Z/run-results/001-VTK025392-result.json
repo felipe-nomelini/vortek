@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-12-26-897Z/run-results/001-VTK025392-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-001-VTK025392",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "e1b0dd7a-687e-449b-a203-fb770a7f9e16",
+      "sku": "VTK025392",
+      "category": {
+        "id": "MLB418066",
+        "nome": "MLB418066",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7295377986",
+        "title": "Kit 02 Drivers 25mm 30w Rms 8 Ohms 35mh2560b-8 Atk",
+        "price": 310.43,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7295377986-kit-02-drivers-25mm-30w-rms-8-ohms-35mh2560b-8-atk-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "GTIN unitário do componente usado para este kit de itens idênticos.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 275.43 → R$ 310.43."
+      ]
+    }
+  ],
+  "failed": []
+}

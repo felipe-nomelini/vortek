@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-12-26-897Z/run-results/009-VTK025402-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-009-VTK025402",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "3f79fe83-32a8-4ef1-ba61-ce7b1ac44d48",
+      "sku": "VTK025402",
+      "category": {
+        "id": "MLB3905",
+        "nome": "MLB3905",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7295500118",
+        "title": "Kit 2 Alto-falantes 250w 12 Pol 4 Ohms Wf300500b4 Atk Preto",
+        "price": 557.89,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7295500118-kit-2-alto-falantes-250w-12-pol-4-ohms-wf300500b4-atk-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 523.73 → R$ 557.89."
+      ]
+    }
+  ],
+  "failed": []
+}

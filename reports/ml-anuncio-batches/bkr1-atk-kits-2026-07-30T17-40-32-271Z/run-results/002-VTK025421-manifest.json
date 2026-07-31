@@ -1,0 +1,100 @@
+{
+  "batchNumber": 2,
+  "batchId": "bkr1-live-002-VTK025421",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "7341b497-2f72-4bd9-a429-9d600a621645",
+      "sku": "VTK025421",
+      "nome": "Kit 2 Alto-Falantes 250w 12 Pol 8 Ohms WF300500B8 ATK",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB3905",
+      "custo": 378,
+      "estoque": 29,
+      "suggestedPricePreview": 536.67,
+      "description": "Kit 2 Alto-Falantes 250w 12 Pol 8 Ohms WF300500B8 ATK\n\nKit com 2 alto-falantes originais ATK Eletroacústica, modelo WF300500B8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 unidades ATK WF300500B8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: WF300500B8\n\n- Quantidade: 2 unidades\n\n- Potência nominal por unidade: 250 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro nominal: 12 polegadas\n\n- Resposta de frequência: 40 a 2500 Hz\n\n- Sensibilidade: 96 dB SPL\n\nConfira o modelo, a impedância e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "WF300500B8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "IS_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_name": "12 in"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_name": "12 in"
+        },
+        {
+          "id": "COLOR",
+          "value_name": "Preto"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_name": "2"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "7509874",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_name": "250 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_name": "40 a 2500 Hz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_name": "96 dB"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Atk.xls",
+        "sourceSku": "1568K2",
+        "componentSku": "VTK012138",
+        "componentGtin": "7898640360744",
+        "componentQuantity": 2,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "WF300500B8",
+          "SPEAKERS_NUMBER": "2"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4880565711 em MLB3905",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "001-bkr1-kit-atk-001.json",
+      "sourceSequence": 2
+    }
+  ]
+}

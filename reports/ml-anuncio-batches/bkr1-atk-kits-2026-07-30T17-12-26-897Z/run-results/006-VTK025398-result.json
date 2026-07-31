@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-12-26-897Z/run-results/006-VTK025398-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-006-VTK025398",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "95b8b0ad-5194-44ed-80af-ba91fa956ca0",
+      "sku": "VTK025398",
+      "category": {
+        "id": "MLB3905",
+        "nome": "MLB3905",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4971196329",
+        "title": "Kit 2 Alto-falantes 150w 10 Pol 8 Ohms 10wf310b8 Atk Preto",
+        "price": 514.64,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4971196329-kit-2-alto-falantes-150w-10-pol-8-ohms-10wf310b8-atk-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 484.94 → R$ 514.64."
+      ]
+    }
+  ],
+  "failed": []
+}

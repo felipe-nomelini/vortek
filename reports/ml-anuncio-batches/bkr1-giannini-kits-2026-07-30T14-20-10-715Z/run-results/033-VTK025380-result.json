@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-20-10-715Z/run-results/033-VTK025380-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-033-VTK025380",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "883f61cb-9440-462b-be77-66b7cc5e2bc8",
+      "sku": "VTK025380",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7294448136",
+        "title": "3 Jogos De Corda P/violão Canário Aço C/bolinha Giannini",
+        "price": 101.03,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7294448136-3-jogos-de-corda-pviolo-canario-aco-cbolinha-giannini-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 85.50 → R$ 101.03."
+      ]
+    }
+  ],
+  "failed": []
+}

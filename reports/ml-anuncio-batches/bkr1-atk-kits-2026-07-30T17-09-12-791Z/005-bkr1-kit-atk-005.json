@@ -1,0 +1,97 @@
+{
+  "batchNumber": 5,
+  "batchId": "bkr1-kit-atk-005",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "6441651d-32a4-46d6-a3d3-d7568ac939ea",
+      "sku": "VTK025449",
+      "nome": "Kit 4 Alto-Falantes 250w 15 Pol 8 Ohms WF380500B8 ATK",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB3905",
+      "custo": 836,
+      "estoque": 8,
+      "suggestedPricePreview": 1238.52,
+      "description": "Kit 4 Alto-Falantes 250w 15 Pol 8 Ohms WF380500B8 ATK\n\nKit com 4 alto-falantes originais ATK Eletroacústica, modelo WF380500B8.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 unidades ATK WF380500B8\n\nCARACTERÍSTICAS\n\n- Marca: ATK Eletroacústica\n\n- Modelo: WF380500B8\n\n- Quantidade: 4 unidades\n\n- Potência nominal por unidade: 250 W RMS\n\n- Impedância por unidade: 8 ohms\n\n- Diâmetro nominal: 15 polegadas\n\n- Resposta de frequência: 30 a 5000 Hz\n\n- Sensibilidade: 96 dB SPL\n\nConfira o modelo, a impedância e a quantidade antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Atk Eletroacústica"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "WF380500B8"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "IS_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_WIDTH",
+          "value_name": "15 in"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_DIAMETER",
+          "value_name": "15 in"
+        },
+        {
+          "id": "COLOR",
+          "value_name": "Preto"
+        },
+        {
+          "id": "IMPEDANCE",
+          "value_name": "8 Ω"
+        },
+        {
+          "id": "SPEAKERS_NUMBER",
+          "value_name": "4"
+        },
+        {
+          "id": "VEHICLE_SPEAKER_TYPE",
+          "value_id": "7509874",
+          "value_name": "Woofer"
+        },
+        {
+          "id": "COILS_NUMBER",
+          "value_name": "1"
+        },
+        {
+          "id": "RMS_POWER",
+          "value_name": "250 W"
+        },
+        {
+          "id": "FREQUENCY_RANGE",
+          "value_name": "30 a 5000 Hz"
+        },
+        {
+          "id": "SENSITIVITY",
+          "value_name": "96 dB"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Atk.xls",
+        "sourceSku": "1570K4",
+        "componentSku": "VTK012230",
+        "componentGtin": "7898640360768",
+        "componentQuantity": 4,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "WF380500B8",
+          "IS_KIT": "Sim",
+          "SPEAKERS_NUMBER": "4"
+        },
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149405422 em MLB3905",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

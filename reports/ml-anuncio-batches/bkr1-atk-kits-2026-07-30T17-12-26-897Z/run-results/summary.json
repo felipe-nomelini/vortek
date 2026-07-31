@@ -1,0 +1,199 @@
+{
+  "startedAt": "2026-07-30T17:19:10.356Z",
+  "account": {
+    "userId": "3294514937",
+    "nickname": "VORTEKTECNOLOGIA"
+  },
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-atk-kits-2026-07-30T17-12-26-897Z",
+  "selected": 19,
+  "totals": {
+    "created": 8,
+    "verified": 8,
+    "failed": 1
+  },
+  "rows": [
+    {
+      "sequence": 3,
+      "sku": "VTK025394",
+      "itemId": "MLB4971164275",
+      "status": "verified",
+      "verification": {
+        "attempt": 28,
+        "itemId": "MLB4971164275",
+        "sku": "VTK025394",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 20,
+        "quantityOk": true,
+        "price": 370.31,
+        "priceAboveCost": true
+      }
+    },
+    {
+      "sequence": 4,
+      "sku": "VTK025395",
+      "itemId": "MLB4971192099",
+      "status": "verified",
+      "verification": {
+        "attempt": 28,
+        "itemId": "MLB4971192099",
+        "sku": "VTK025395",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 1,
+        "quantityOk": true,
+        "price": 645.74,
+        "priceAboveCost": true
+      }
+    },
+    {
+      "sequence": 5,
+      "sku": "VTK025396",
+      "itemId": "MLB4971194093",
+      "status": "verified",
+      "verification": {
+        "attempt": 28,
+        "itemId": "MLB4971194093",
+        "sku": "VTK025396",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 10,
+        "quantityOk": true,
+        "price": 758.92,
+        "priceAboveCost": true
+      }
+    },
+    {
+      "sequence": 6,
+      "sku": "VTK025398",
+      "itemId": "MLB4971196329",
+      "status": "verified",
+      "verification": {
+        "attempt": 29,
+        "itemId": "MLB4971196329",
+        "sku": "VTK025398",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 1,
+        "quantityOk": true,
+        "price": 514.64,
+        "priceAboveCost": true
+      }
+    },
+    {
+      "sequence": 7,
+      "sku": "VTK025400",
+      "itemId": "MLB4971199005",
+      "status": "verified",
+      "verification": {
+        "attempt": 27,
+        "itemId": "MLB4971199005",
+        "sku": "VTK025400",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 5,
+        "quantityOk": true,
+        "price": 456.45,
+        "priceAboveCost": true
+      }
+    },
+    {
+      "sequence": 8,
+      "sku": "VTK025401",
+      "itemId": "MLB4971188971",
+      "status": "verified",
+      "verification": {
+        "attempt": 26,
+        "itemId": "MLB4971188971",
+        "sku": "VTK025401",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 4,
+        "quantityOk": true,
+        "price": 542.35,
+        "priceAboveCost": true
+      }
+    },
+    {
+      "sequence": 9,
+      "sku": "VTK025402",
+      "itemId": "MLB7295500118",
+      "status": "verified",
+      "verification": {
+        "attempt": 27,
+        "itemId": "MLB7295500118",
+        "sku": "VTK025402",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 41,
+        "quantityOk": true,
+        "price": 557.89,
+        "priceAboveCost": true
+      }
+    },
+    {
+      "sequence": 10,
+      "sku": "VTK025404",
+      "itemId": "MLB7295515888",
+      "status": "verified",
+      "verification": {
+        "attempt": 26,
+        "itemId": "MLB7295515888",
+        "sku": "VTK025404",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 2,
+        "quantityOk": true,
+        "price": 1288.7,
+        "priceAboveCost": true
+      }
+    },
+    {
+      "sequence": 11,
+      "sku": "VTK025410",
+      "status": "creation_failed",
+      "exitCode": 0,
+      "error": "Validation error | item.attribute.invalid_product_identifier: Insira um código universal que você não tenha usado no anúncio de outra categoria. | code=validation_error | http=400"
+    }
+  ]
+}

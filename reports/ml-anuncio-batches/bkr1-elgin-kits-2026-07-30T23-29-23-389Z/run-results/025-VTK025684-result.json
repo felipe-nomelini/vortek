@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-29-23-389Z/run-results/025-VTK025684-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-025-VTK025684",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "d8024d0d-d887-4e52-b4cd-78b2a4599219",
+      "sku": "VTK025684",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4972449565",
+        "title": "16 Pilhas Alcalina Aa Elgin Cartela Com 8 Unidades (2 Cart)",
+        "price": 70.32,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4972449565-16-pilhas-alcalina-aa-elgin-cartela-com-8-unidades-2-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 53.12 → R$ 70.32."
+      ]
+    }
+  ],
+  "failed": []
+}

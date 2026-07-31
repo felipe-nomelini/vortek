@@ -1,0 +1,82 @@
+{
+  "batchNumber": 77,
+  "batchId": "bkr1-live-077-VTK025785",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "47dc068a-af40-4f8b-9bda-3660ac41878e",
+      "sku": "VTK025785",
+      "nome": "40 Pilhas Recarregaveis AA 2700 Mah Elgin (10 Cartelas C/4 Un)",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 499,
+      "estoque": 1,
+      "suggestedPricePreview": 739.26,
+      "description": "40 Pilhas Recarregaveis AA 2700 Mah Elgin (10 Cartelas C/4 Un)\n\nKit original Elgin com 40 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 4 unidade(s) cada\n\n- Total: 40 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AA 2700mAh\n\n- Tamanho: AA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 40 unidades\n\n- Recarregável: Sim\n\n- Voltagem nominal: 1,2 V\n\n- Composição: Ni-MH\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "AA 2700mAh"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "AA"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Cilíndrica"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "40"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,2 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Ni-MH"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2463CX10",
+        "componentSku": "VTK012429",
+        "componentGtin": "7897013536113",
+        "componentQuantity": 10,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "AA 2700mAh",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "40",
+          "IS_RECHARGEABLE": "Sim"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111649042 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "016-bkr1-kit-elgin-016.json",
+      "sourceSequence": 77
+    }
+  ]
+}

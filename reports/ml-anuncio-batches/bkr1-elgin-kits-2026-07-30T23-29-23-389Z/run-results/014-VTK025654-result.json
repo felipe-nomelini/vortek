@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-07-30T23-29-23-389Z/run-results/014-VTK025654-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-014-VTK025654",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "368c8616-5e8e-44a1-a21f-3a1e33cdcefa",
+      "sku": "VTK025654",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4972434315",
+        "title": "100 Baterias Alcalinas Lr626 Ag4 Elgin (10 Cart)",
+        "price": 101.75,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4972434315-100-baterias-alcalinas-lr626-ag4-elgin-10-cart-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 85.71 → R$ 101.75."
+      ]
+    }
+  ],
+  "failed": []
+}

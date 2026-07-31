@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-duracell-kits-2026-07-30T19-11-51-543Z/run-results/055-VTK025584-manifest.json",
+  "baseUrl": "http://localhost:3000",
+  "dryRun": false,
+  "batchId": "bkr1-live-055-VTK025584",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "f2d531a1-6f25-460e-acc7-c5b5c1c19131",
+      "sku": "VTK025584",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7296160218",
+        "title": "50 Baterias Alcalinas 9v Duracell (50 Cart. C/ 1 Un. Cada)",
+        "price": 2129.48,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7296160218-50-baterias-alcalinas-9v-duracell-50-cart-c-1-un-cada-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 2102.27 → R$ 2129.48."
+      ]
+    }
+  ],
+  "failed": []
+}

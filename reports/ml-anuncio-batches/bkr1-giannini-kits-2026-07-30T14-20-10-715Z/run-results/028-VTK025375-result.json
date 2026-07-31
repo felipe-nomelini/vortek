@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-giannini-kits-2026-07-30T14-20-10-715Z/run-results/028-VTK025375-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-028-VTK025375",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "4a5ffebf-3c29-4806-8ba1-d205e846ee4c",
+      "sku": "VTK025375",
+      "category": {
+        "id": "MLB278076",
+        "nome": "MLB278076",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4970610271",
+        "title": "3 Jogos De Corda P/violão Aço Bronze 65/35 0.010 Giannini",
+        "price": 122.7,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4970610271-3-jogos-de-corda-pviolo-aco-bronze-6535-0010-giannini-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 103.27 → R$ 122.70."
+      ]
+    }
+  ],
+  "failed": []
+}

@@ -74,8 +74,10 @@ import { storeShippingLabelForPedido } from "@/lib/shipping-label-storage";
 import { resolveSimpleKitOrderPlan } from "@/lib/produto-kits";
 import { parseMlOrderShippingMode } from "@/lib/ml/order-shipping-mode";
 import {
+  filterPackOrdersBySeller,
+  parseMlPackOrderGroup,
   parseMlVirtualKitOrderGroup,
-  type MlVirtualKitOrderGroup,
+  type MlOperationalOrderGroup,
 } from "@/lib/ml/virtual-kit-orders";
 import { calculateOrderProfit } from "@/services/orders";
 import { canReuseExistingOrderSnapshot } from "@/lib/order-sync-lock-fallback";
@@ -1665,7 +1667,7 @@ async function runDsliteCreateJob(
   let invoiceId: string | number | null = null;
   let danfeUrlAtual: string | null = null;
   let isMlNoShipping = false;
-  let virtualKitGroup: MlVirtualKitOrderGroup | null = null;
+  let operationalOrderGroup: MlOperationalOrderGroup | null = null;
   let operationalPedidoIds = [pedidoId];
   let operationalOrderTotal: number | null = null;
   const externalWarnings: string[] = [];
@@ -2037,15 +2039,67 @@ async function runDsliteCreateJob(
         : `Pedido sincronizado com sucesso (${itensCountPosSync} itens)`,
     );
 
-    const bundlePayload = await fetchML<unknown>(
-      `/orders/${encodeURIComponent(syncMlOrderId)}/bundle`,
+    const mlOrderForShipping = await fetchML<any>(
+      `/orders/${encodeURIComponent(syncMlOrderId)}`,
     ).catch(() => null);
-    virtualKitGroup = parseMlVirtualKitOrderGroup(
-      bundlePayload,
-      syncMlOrderId,
-    );
-    if (virtualKitGroup) {
-      const relatedOrderIds = virtualKitGroup.orderIds.filter(
+    const currentOrderTags = Array.isArray(mlOrderForShipping?.tags)
+      ? mlOrderForShipping.tags.map(String)
+      : [];
+    const isVirtualKitOrder = currentOrderTags.includes("kit")
+      || currentOrderTags.includes("kit_component");
+
+    if (isVirtualKitOrder) {
+      const bundlePayload = await fetchML<unknown>(
+        `/orders/${encodeURIComponent(syncMlOrderId)}/bundle`,
+      ).catch(() => null);
+      const virtualKitGroup = parseMlVirtualKitOrderGroup(
+        bundlePayload,
+        syncMlOrderId,
+      );
+      if (virtualKitGroup) {
+        operationalOrderGroup = {
+          type: "virtual_kit",
+          ...virtualKitGroup,
+        };
+      }
+    } else if (
+      currentOrderTags.includes("pack_order")
+      && mlOrderForShipping?.pack_id
+    ) {
+      const packPayload = await fetchML<unknown>(
+        `/packs/${encodeURIComponent(String(mlOrderForShipping.pack_id))}`,
+      ).catch(() => null);
+      const packGroup = parseMlPackOrderGroup(packPayload, syncMlOrderId);
+      if (packGroup) {
+        const packOrderDetails = await Promise.all(
+          packGroup.orderIds.map(async (orderId) => (
+            orderId === syncMlOrderId
+              ? mlOrderForShipping
+              : fetchML<any>(`/orders/${encodeURIComponent(orderId)}`).catch(() => null)
+          )),
+        );
+        const sameSellerOrders = filterPackOrdersBySeller({
+          currentOrderId: syncMlOrderId,
+          currentSellerId: mlOrderForShipping?.seller?.id,
+          orderDetails: packOrderDetails,
+        });
+        const sameSellerOrderIds = sameSellerOrders
+          .map((order) => String(order.id || "").trim())
+          .filter(Boolean);
+        if (sameSellerOrderIds.length > 1) {
+          operationalOrderGroup = {
+            type: "cart",
+            orderIds: sameSellerOrderIds,
+            parentItemId: null,
+            packId: packGroup.packId,
+            shipmentId: packGroup.shipmentId,
+          };
+        }
+      }
+    }
+
+    if (operationalOrderGroup) {
+      const relatedOrderIds = operationalOrderGroup.orderIds.filter(
         (orderId) => orderId !== syncMlOrderId,
       );
       for (const relatedOrderId of relatedOrderIds) {
@@ -2058,11 +2112,14 @@ async function runDsliteCreateJob(
           }),
         );
         if (!relatedSync.ok && relatedSync.status !== 409) {
-          const msg = `Falha ao sincronizar componente ${relatedOrderId} do kit virtual.`;
+          const groupLabel = operationalOrderGroup.type === "virtual_kit"
+            ? "kit virtual"
+            : "carrinho";
+          const msg = `Falha ao sincronizar order ${relatedOrderId} do ${groupLabel}.`;
           await setStep("sync_order_snapshot", "error", undefined, msg);
           state = "error";
           result = {
-            stage: "sync_virtual_kit_orders",
+            stage: "sync_operational_order_group",
             message: msg,
             ml_order_id: relatedOrderId,
             sync_http_status: relatedSync.status,
@@ -2075,7 +2132,7 @@ async function runDsliteCreateJob(
       const { data: relatedPedidos, error: relatedPedidosError } = await client
         .from("pedidos")
         .select("id,ml_order_id,total,snapshot_incompleto,ml_pack_id,ml_shipment_id")
-        .in("ml_order_id", virtualKitGroup.orderIds);
+        .in("ml_order_id", operationalOrderGroup.orderIds);
       if (relatedPedidosError) throw relatedPedidosError;
 
       const relatedByOrder = new Map(
@@ -2084,18 +2141,21 @@ async function runDsliteCreateJob(
           row,
         ]),
       );
-      const missingOrders = virtualKitGroup.orderIds.filter(
+      const missingOrders = operationalOrderGroup.orderIds.filter(
         (orderId) => !relatedByOrder.has(orderId),
       );
       const incompleteOrders = (relatedPedidos || [])
         .filter((row: any) => row.snapshot_incompleto)
         .map((row: any) => String(row.ml_order_id || ""));
       if (missingOrders.length > 0 || incompleteOrders.length > 0) {
-        const msg = "Kit virtual ainda possui componentes sem snapshot fiscal completo.";
+        const groupLabel = operationalOrderGroup.type === "virtual_kit"
+          ? "Kit virtual"
+          : "Carrinho";
+        const msg = `${groupLabel} ainda possui orders sem snapshot fiscal completo.`;
         await setStep("sync_order_snapshot", "error", undefined, msg);
         state = "error";
         result = {
-          stage: "sync_virtual_kit_orders",
+          stage: "sync_operational_order_group",
           message: msg,
           missing_orders: missingOrders,
           incomplete_orders: incompleteOrders,
@@ -2115,27 +2175,27 @@ async function runDsliteCreateJob(
       await registrarEventoNfAuditoria({
         pedidoId,
         mlOrderId: syncMlOrderId,
-        mlPackId: virtualKitGroup.packId,
+        mlPackId: operationalOrderGroup.packId,
         evento: "sync_snapshot_success",
         respostaMl: {
-          source: "ml_virtual_kit_bundle",
-          parent_item_id: virtualKitGroup.parentItemId,
-          order_ids: virtualKitGroup.orderIds,
+          source: operationalOrderGroup.type === "virtual_kit"
+            ? "ml_virtual_kit_bundle"
+            : "ml_cart_pack",
+          group_type: operationalOrderGroup.type,
+          parent_item_id: operationalOrderGroup.parentItemId,
+          order_ids: operationalOrderGroup.orderIds,
           pedido_ids: operationalPedidoIds,
           total: operationalOrderTotal,
         },
-        statusResultante: "kit_group_ready",
+        statusResultante: "order_group_ready",
       });
       await setStep(
         "sync_order_snapshot",
         "success",
-        `Kit sincronizado com ${virtualKitGroup.orderIds.length} componentes`,
+        `${operationalOrderGroup.type === "virtual_kit" ? "Kit" : "Carrinho"} sincronizado com ${operationalOrderGroup.orderIds.length} orders`,
       );
     }
 
-    const mlOrderForShipping = await fetchML<unknown>(
-      `/orders/${encodeURIComponent(syncMlOrderId)}`,
-    ).catch(() => null);
     const mlShippingMode = parseMlOrderShippingMode(mlOrderForShipping);
     isMlNoShipping = mlShippingMode.isNoShipping;
     if (mlShippingMode.isNoShippingFulfilled) {
@@ -2233,23 +2293,47 @@ async function runDsliteCreateJob(
       await syncJob();
       return;
     }
-    if (
-      virtualKitGroup &&
-      operationalPedidoIds.length > 1 &&
-      !String((pedidoRow as any)?.dslite_id || "").trim()
-    ) {
-      const { data: kitPedidos } = await client
+    if (operationalOrderGroup && operationalPedidoIds.length > 1) {
+      const { data: groupedPedidos } = await client
         .from("pedidos")
         .select(
           "id,dslite_id,dslite_status,dslite_etiqueta_enviada,dslite_label_source,nfe_xml,nfe_status,nfe_chave,nfe_provider,nfe_external_id,nfe_protocolo,nota_fiscal_numero,nota_fiscal_emitida,nfe_danfe_url,nfe_cfop",
         )
         .in("id", operationalPedidoIds);
-      const completedSibling = (kitPedidos || []).find(
+      const distinctDsliteIds = Array.from(new Set(
+        (groupedPedidos || [])
+          .map((row: any) => String(row.dslite_id || "").trim())
+          .filter(Boolean),
+      ));
+      const distinctNfeKeys = Array.from(new Set(
+        (groupedPedidos || [])
+          .map((row: any) => String(row.nfe_chave || "").trim())
+          .filter(Boolean),
+      ));
+      if (distinctDsliteIds.length > 1 || distinctNfeKeys.length > 1) {
+        const msg = "Carrinho legado já possui múltiplos pedidos DSLite ou notas fiscais. Referências foram preservadas; fluxo automático unificado foi bloqueado para evitar sobrescrita.";
+        await setStep("validate_fiscal_prechecks", "error", undefined, msg);
+        state = "error";
+        result = {
+          stage: "legacy_split_order_group",
+          message: msg,
+          dslite_ids: distinctDsliteIds,
+          nfe_count: distinctNfeKeys.length,
+          order_ids: operationalOrderGroup.orderIds,
+        };
+        await syncJob();
+        return;
+      }
+
+      const completedSibling = (groupedPedidos || []).find(
         (row: any) =>
           String(row.id) !== pedidoId &&
           String(row.dslite_id || "").trim(),
       ) as any;
-      if (completedSibling) {
+      if (
+        completedSibling
+        && !String((pedidoRow as any)?.dslite_id || "").trim()
+      ) {
         const sharedState = {
           dslite_id: completedSibling.dslite_id,
           dslite_status: completedSibling.dslite_status,
@@ -2274,23 +2358,25 @@ async function runDsliteCreateJob(
         await registrarEventoNfAuditoria({
           pedidoId,
           mlOrderId: syncMlOrderId,
-          mlPackId: virtualKitGroup.packId,
+          mlPackId: operationalOrderGroup.packId,
           evento: "dslite_purchase_created_with_brasilnfe_xml",
           respostaMl: {
-            source: "ml_virtual_kit_existing_sibling",
+            source: operationalOrderGroup.type === "virtual_kit"
+              ? "ml_virtual_kit_existing_sibling"
+              : "ml_cart_existing_sibling",
             reused_from_pedido_id: completedSibling.id,
             dsid: completedSibling.dslite_id,
-            order_ids: virtualKitGroup.orderIds,
+            order_ids: operationalOrderGroup.orderIds,
           },
           statusResultante: "reused",
         });
         state = "success";
         result = {
-          stage: "virtual_kit_order_already_created",
+          stage: "order_group_already_created",
           skipped: true,
           dsid: completedSibling.dslite_id,
           message:
-            "Pedido DSLite do kit já criado por outra order componente; vínculo local reaproveitado.",
+            "Pedido DSLite do grupo já criado por outra order; vínculo local reaproveitado.",
         };
         await syncJob();
         return;
@@ -2686,8 +2772,8 @@ async function runDsliteCreateJob(
           client,
           pedidoId,
           pedidoIds: operationalPedidoIds,
-          identificadorInterno: virtualKitGroup?.packId
-            ? `VORTEK-KIT-${virtualKitGroup.packId}`
+          identificadorInterno: operationalOrderGroup?.packId
+            ? `${operationalOrderGroup.type === "virtual_kit" ? "VORTEK-KIT" : "VORTEK-PACK"}-${operationalOrderGroup.packId}`
             : null,
           totalOverride: operationalOrderTotal,
         });
