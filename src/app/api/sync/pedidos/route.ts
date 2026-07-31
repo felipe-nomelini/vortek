@@ -33,6 +33,7 @@ import {
   resolveMlSellerShippingCost,
   type MlShipmentCosts,
 } from '@/lib/ml/order-profit';
+import { isMlOrderPaid } from '@/lib/ml/order-sale-alert';
 
 export const maxDuration = 300;
 
@@ -901,7 +902,7 @@ async function processOrder(params: {
 
   const { data: existingPedido } = await serviceClient
     .from('pedidos')
-    .select('id, ml_pack_id, ml_bundle_type, ml_bundle_parent_item_id, ml_bundle_primary, billing_ie, billing_endereco, ml_fiscal_release_at, ml_claim_id, frete, lucro, dslite_label_source, snapshot_incompleto')
+    .select('id, ml_pack_id, ml_bundle_type, ml_bundle_parent_item_id, ml_bundle_primary, billing_ie, billing_endereco, ml_fiscal_release_at, ml_claim_id, frete, lucro, dslite_label_source, snapshot_incompleto, snapshot_source')
     .eq('ml_order_id', String(o.id))
     .maybeSingle();
   existingPackId = existingPedido?.ml_pack_id ? String(existingPedido.ml_pack_id) : null;
@@ -1523,10 +1524,13 @@ async function processOrder(params: {
   const expectedOperationalPrimaryOrderId = operationalOrderIds.length > 1
     ? [...operationalOrderIds].sort((a, b) => a.localeCompare(b))[0]
     : null;
+  const wasPendingWebhookStub =
+    String((existingPedido as any)?.snapshot_source || '') === 'webhook_orders_v2_pending';
   if (
     !error
     && upsertedPedido?.id
-    && !existingPedidoId
+    && isMlOrderPaid(sourceOrder)
+    && (!existingPedidoId || wasPendingWebhookStub)
     && (
       !expectedOperationalPrimaryOrderId
       || expectedOperationalPrimaryOrderId === String(o.id)
@@ -1547,6 +1551,7 @@ async function processOrder(params: {
       ml_pack_id: mlPackId,
       contato_nome: contatoNome,
       total: Number(operationalTotal.toFixed(2)),
+      status: sourceOrder?.status || null,
     });
   }
 

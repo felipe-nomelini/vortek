@@ -20,6 +20,7 @@ import {
   createOrUpdateOpsIssue,
   resolveOpenIntegrationOpsIssues,
 } from "@/services/github-ops";
+import { isMlOrderPaid } from "@/lib/ml/order-sale-alert";
 
 type AlertType =
   | "new_sale"
@@ -410,7 +411,11 @@ export async function alertNewSale(order: {
   ml_pack_id?: string | null;
   contato_nome?: string | null;
   total?: number | null;
+  status?: string | null;
 }) {
+  if (!isMlOrderPaid(order)) {
+    return { sent: 0, skipped: true, errors: 0 };
+  }
   const number = order.ml_order_id || order.numero || order.id || "sem_numero";
   return sendWhatsappAlert({
     type: "new_sale",

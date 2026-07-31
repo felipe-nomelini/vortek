@@ -16,6 +16,7 @@ import {
   registrarDevolucaoInterna,
 } from '@/lib/estoque-interno';
 import { detachDeletedMlListing, isMlListingDeleted } from '@/lib/ml/listing-deletion';
+import { isMlOrderPaid } from '@/lib/ml/order-sale-alert';
 
 const WEBHOOK_STUB_PENDING_TAGS = ['pedido_sem_itens', 'webhook_hydration_pending', 'snapshot_origem_webhook_stub'];
 
@@ -387,7 +388,7 @@ export async function POST(request: Request) {
             });
           }
         }
-        if (stubResult?.action === 'inserted') {
+        if (isMlOrderPaid(order)) {
           void alertNewSale({
             id: pedidoId,
             numero: order.id,
@@ -395,13 +396,16 @@ export async function POST(request: Request) {
             ml_pack_id: order.pack_id ? String(order.pack_id) : null,
             contato_nome: order.buyer?.nickname || 'Desconhecido',
             total: Number(order.total_amount || 0),
+            status: order.status || null,
           });
-          void pushEvents().newSale({
-            id: pedidoId,
-            ml_order_id: String(order.id || ''),
-            contato_nome: order.buyer?.nickname || 'Desconhecido',
-            total: Number(order.total_amount || 0),
-          }).catch(() => null);
+          if (stubResult?.action === 'inserted') {
+            void pushEvents().newSale({
+              id: pedidoId,
+              ml_order_id: String(order.id || ''),
+              contato_nome: order.buyer?.nickname || 'Desconhecido',
+              total: Number(order.total_amount || 0),
+            }).catch(() => null);
+          }
         }
       } else if (mlOrderId) {
         const stubResult = await persistWebhookOrderPendingStub({
@@ -410,21 +414,6 @@ export async function POST(request: Request) {
           existing: existingPedido,
         });
         pedidoId = stubResult?.pedidoId || null;
-        if (stubResult?.action === 'inserted') {
-          void alertNewSale({
-            id: pedidoId,
-            numero: mlOrderId,
-            ml_order_id: mlOrderId,
-            contato_nome: existingPedido?.contato_nome || 'Desconhecido',
-            total: Number(existingPedido?.total || 0),
-          });
-          void pushEvents().newSale({
-            id: pedidoId,
-            ml_order_id: mlOrderId,
-            contato_nome: existingPedido?.contato_nome || 'Desconhecido',
-            total: Number(existingPedido?.total || 0),
-          }).catch(() => null);
-        }
         // O ML pode notificar antes de liberar /orders/{id}; evita jobs imediatos que falham e deixa o cron hidratar.
         shouldHydrate = false;
       }
