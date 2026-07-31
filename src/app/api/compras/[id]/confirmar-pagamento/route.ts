@@ -265,8 +265,9 @@ export async function POST(
 
   const { data: pedido, error: pedidoError } = await service
     .from('pedidos')
-    .select('id,ml_order_id,numero,ml_fiscal_release_at,dslite_label_source')
+    .select('id,ml_order_id,numero,ml_fiscal_release_at,dslite_label_source,ml_bundle_primary')
     .eq('dslite_id', String(compra.dsid))
+    .or('ml_bundle_primary.eq.true,ml_bundle_primary.is.null')
     .maybeSingle();
 
   if (pedidoError) {

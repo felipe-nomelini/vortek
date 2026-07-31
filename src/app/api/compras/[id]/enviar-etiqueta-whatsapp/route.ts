@@ -147,8 +147,9 @@ export async function POST(request: Request, { params }: { params: { id: string 
     const dsid = String((compra as any).dsid || '').trim();
     const { data: pedido, error: pedidoError } = await client
       .from('pedidos')
-      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id')
+      .select('id,numero,ml_order_id,ml_shipment_id,nfe_xml,nfe_chave,nota_fiscal_numero,total,nfe_cfop,dslite_id,ml_bundle_primary')
       .eq('dslite_id', dsid)
+      .or('ml_bundle_primary.eq.true,ml_bundle_primary.is.null')
       .maybeSingle();
     if (pedidoError) return NextResponse.json({ error: pedidoError.message }, { status: 500 });
     if (!pedido) return NextResponse.json({ error: 'Pedido de venda vinculado à compra não encontrado' }, { status: 404 });

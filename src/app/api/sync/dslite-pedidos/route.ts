@@ -204,6 +204,13 @@ export async function POST(request: Request) {
               quantity: item?.quantidade || 1,
             })
             : { amount: null, offerId: null, reason: 'not_supplier_payment_required' as const };
+          const existingSupplierPaymentAmount = Number(
+            (existente as any)?.supplier_payment_amount || 0,
+          );
+          const preservedSupplierPaymentAmount =
+            Number.isFinite(existingSupplierPaymentAmount) && existingSupplierPaymentAmount > 0
+              ? existingSupplierPaymentAmount
+              : null;
 
           const payload = {
             dsid: String(pedido.dsid),
@@ -225,7 +232,10 @@ export async function POST(request: Request) {
             quantidade: item?.quantidade || 1,
             supplier_payment_mode: supplierPaymentMode,
             supplier_payment_status: supplierPaymentMode === 'prepaid_pix' ? 'pending' : null,
-            supplier_payment_amount: resolvedSupplierPaymentAmount.amount ?? (existente as any)?.supplier_payment_amount ?? null,
+            supplier_payment_amount:
+              preservedSupplierPaymentAmount
+              ?? resolvedSupplierPaymentAmount.amount
+              ?? null,
           };
 
           if (existente?.id) {
