@@ -6,6 +6,11 @@ import { reconcileAnuncioMlFromItem } from '@/lib/ml/reconcile-anuncio';
 import { fetchMLResult } from '@/services/integration';
 import { setItemQuantityPricing } from '@/services/mercadolibre';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
+import {
+  isWinningBuyBoxStatus,
+  normalizeBuyBoxStatus,
+  normalizePriceToWin,
+} from '@/lib/catalogo/no-catalogo';
 
 function isRetryableMlStatus(status: number | null): boolean {
   return [408, 409, 424, 429, 500, 502, 503, 504].includes(Number(status));
@@ -15,6 +20,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json().catch(() => ({}));
     const produtoId = body?.produtoId as string | undefined;
+    const requestedMlItemId = String(body?.mlItemId || '').trim().toUpperCase();
     const source = (body?.source as 'catalog_price_to_win' | 'default' | undefined) || 'default';
     const targetPriceRaw = body?.targetPrice;
 
@@ -46,7 +52,28 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Produto sem anúncio no Mercado Livre' }, { status: 422 });
     }
 
-    if (!['ativo', 'pausado'].includes(String(produto.ml_status || ''))) {
+    let targetMlItemId = requestedMlItemId || String(produto.ml_item_id);
+    let targetLocalStatus = String(produto.ml_status || '');
+    let targetIsCatalog = false;
+    if (requestedMlItemId) {
+      const { data: anuncio, error: anuncioError } = await supabase
+        .from('anuncios_ml')
+        .select('ml_item_id,produto_id,status,catalogo')
+        .eq('ml_item_id', requestedMlItemId)
+        .eq('produto_id', produto.id)
+        .maybeSingle();
+      if (anuncioError) {
+        return NextResponse.json({ error: `Falha ao validar anúncio: ${anuncioError.message}` }, { status: 500 });
+      }
+      if (!anuncio) {
+        return NextResponse.json({ error: 'O anúncio informado não pertence a este produto' }, { status: 422 });
+      }
+      targetMlItemId = String(anuncio.ml_item_id);
+      targetLocalStatus = String(anuncio.status || '');
+      targetIsCatalog = Boolean(anuncio.catalogo);
+    }
+
+    if (!['ativo', 'pausado'].includes(targetLocalStatus)) {
       return NextResponse.json({ error: 'A atualização de preço só é permitida para anúncio ativo ou pausado' }, { status: 422 });
     }
 
@@ -84,11 +111,11 @@ export async function POST(req: Request) {
         last_error: 'Cancelado: preço manual mais recente publicado direto no Mercado Livre',
         updated_at: new Date().toISOString(),
       } as any)
-      .eq('ml_item_id', String(produto.ml_item_id))
+      .eq('ml_item_id', targetMlItemId)
       .eq('source', 'ml_anuncio_atualizar_preco')
       .in('status', ['pending', 'retry']) as any);
 
-    const priceResult = await fetchMLResult<any>(`/items/${produto.ml_item_id}`, {
+    const priceResult = await fetchMLResult<any>(`/items/${targetMlItemId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ price: basePrice }),
@@ -102,7 +129,7 @@ export async function POST(req: Request) {
         return NextResponse.json({
           success: false,
           produtoId: produto.id,
-          mlItemId: produto.ml_item_id,
+          mlItemId: targetMlItemId,
           basePrice,
           source,
           target_price_received: targetPrice,
@@ -122,8 +149,8 @@ export async function POST(req: Request) {
 
       const outbox = await enqueueMlPublishOutbox(supabase, {
         produtoId: String(produto.id),
-        mlItemId: String(produto.ml_item_id),
-        desiredStatus: (produto.ml_status || null) as any,
+        mlItemId: targetMlItemId,
+        desiredStatus: (targetLocalStatus || null) as any,
         desiredPrice: basePrice,
         desiredQuantity: typeof produto.estoque === 'number' ? produto.estoque : null,
         source: 'ml_anuncio_atualizar_preco',
@@ -147,7 +174,7 @@ export async function POST(req: Request) {
         event: 'ml_anuncio_atualizar_preco',
         timestamp_utc: new Date().toISOString(),
         produto_id: produto.id,
-        ml_item_id: produto.ml_item_id,
+        ml_item_id: targetMlItemId,
         source,
         target_price_received: targetPrice,
         base_price: basePrice,
@@ -161,7 +188,7 @@ export async function POST(req: Request) {
       return NextResponse.json({
         success: outbox.ok,
         produtoId: produto.id,
-        mlItemId: produto.ml_item_id,
+        mlItemId: targetMlItemId,
         basePrice,
         source,
         target_price_received: targetPrice,
@@ -183,7 +210,7 @@ export async function POST(req: Request) {
       });
     }
 
-    const itemState = await fetchMLResult<any>(`/items/${produto.ml_item_id}`, { method: 'GET' });
+    const itemState = await fetchMLResult<any>(`/items/${targetMlItemId}`, { method: 'GET' });
     if (itemState.ok && itemState.data) {
       const resolvedLocalStatus = mapMlStatusToLocalStatus(itemState.data?.status);
       const produtoUpdate = await supabase
@@ -206,7 +233,7 @@ export async function POST(req: Request) {
       warnings.push(itemState.error?.message || 'Preço atualizado, mas não foi possível conferir estado final do anúncio.');
     }
 
-    const quantityPricingResult = await setItemQuantityPricing(String(produto.ml_item_id), basePrice);
+    const quantityPricingResult = await setItemQuantityPricing(targetMlItemId, basePrice);
     let quantityPricingQueued = false;
     let quantityPricingOutboxId: string | null = null;
     if (!quantityPricingResult.ok) {
@@ -214,7 +241,7 @@ export async function POST(req: Request) {
       if (isRetryableMlStatus(quantityPricingResult.httpStatus || null)) {
         const quantityOutbox = await enqueueMlPublishOutbox(supabase, {
           produtoId: String(produto.id),
-          mlItemId: String(produto.ml_item_id),
+          mlItemId: targetMlItemId,
           desiredStatus: null,
           desiredPrice: null,
           desiredQuantity: null,
@@ -238,11 +265,42 @@ export async function POST(req: Request) {
       }
     }
 
+    if (targetIsCatalog || Boolean(itemState.data?.catalog_listing)) {
+      const competitionResult = await fetchMLResult<any>(
+        `/items/${encodeURIComponent(targetMlItemId)}/price_to_win?version=v2`,
+      );
+      if (competitionResult.ok && competitionResult.data) {
+        const rawStatus = normalizeBuyBoxStatus(competitionResult.data);
+        const rawPriceToWin = normalizePriceToWin(competitionResult.data);
+        const priceToWin = Number.isFinite(Number(rawPriceToWin)) && Number(rawPriceToWin) > 0
+          ? Math.round(Number(rawPriceToWin) * 100) / 100
+          : null;
+        const snapshotUpdate = await supabase
+          .from('catalogo_ml_snapshot')
+          .update({
+            buy_box_status: rawStatus,
+            buy_box_winning: isWinningBuyBoxStatus(rawStatus),
+            price_to_win: priceToWin,
+            price: basePrice,
+            synced_at: new Date().toISOString(),
+          } as any)
+          .eq('ml_item_id', targetMlItemId);
+        if (snapshotUpdate.error) {
+          warnings.push(`Preço atualizado, mas falhou ao atualizar disputa do catálogo: ${snapshotUpdate.error.message}`);
+        }
+      } else {
+        warnings.push(
+          competitionResult.error?.message
+          || 'Preço atualizado, mas não foi possível atualizar a disputa do catálogo.',
+        );
+      }
+    }
+
     console.log(JSON.stringify({
       event: 'ml_anuncio_atualizar_preco',
       timestamp_utc: new Date().toISOString(),
       produto_id: produto.id,
-      ml_item_id: produto.ml_item_id,
+      ml_item_id: targetMlItemId,
       source,
       target_price_received: targetPrice,
       base_price: basePrice,
@@ -257,7 +315,7 @@ export async function POST(req: Request) {
     return NextResponse.json({
       success: true,
       produtoId: produto.id,
-      mlItemId: produto.ml_item_id,
+      mlItemId: targetMlItemId,
       basePrice,
       source,
       target_price_received: targetPrice,

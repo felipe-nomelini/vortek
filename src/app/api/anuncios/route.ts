@@ -1,5 +1,9 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
+import {
+  resolveCatalogCompetitionStatus,
+  type CatalogCompetitionStatus,
+} from '@/lib/catalogo/no-catalogo';
 
 type AnuncioSortKey =
   | 'sku'
@@ -38,6 +42,47 @@ function compareNullableNumber(a: number | null, b: number | null) {
   if (a === null) return 1;
   if (b === null) return -1;
   return a - b;
+}
+
+const CATALOG_STATUS_ORDER: Record<CatalogCompetitionStatus, number> = {
+  sem_catalogo: 0,
+  perdendo: 1,
+  competindo: 2,
+  ganhando: 3,
+};
+
+async function enrichCatalogStatuses(serviceClient: ReturnType<typeof createServiceClient>, rows: any[]) {
+  const catalogItemIds = [...new Set(
+    rows
+      .filter((row) => Boolean(row?.catalogo))
+      .map((row) => String(row?.ml_item_id || '').trim())
+      .filter(Boolean),
+  )];
+  const snapshotByItemId = new Map<string, any>();
+
+  for (let index = 0; index < catalogItemIds.length; index += 200) {
+    const itemIds = catalogItemIds.slice(index, index + 200);
+    const { data, error } = await serviceClient
+      .from('catalogo_ml_snapshot')
+      .select('ml_item_id,buy_box_status,buy_box_winning,catalog_listing')
+      .in('ml_item_id', itemIds);
+    if (error) throw error;
+    for (const snapshot of data || []) {
+      snapshotByItemId.set(String(snapshot.ml_item_id), snapshot);
+    }
+  }
+
+  return rows.map((row) => {
+    const snapshot = snapshotByItemId.get(String(row?.ml_item_id || ''));
+    return {
+      ...row,
+      catalog_status: resolveCatalogCompetitionStatus({
+        catalogListing: Boolean(row?.catalogo),
+        buyBoxStatus: snapshot?.buy_box_status,
+        buyBoxWinning: snapshot?.buy_box_winning,
+      }),
+    };
+  });
 }
 
 function parseSort(searchParams: URLSearchParams): { sortBy: AnuncioSortKey; sortOrder: 'asc' | 'desc' } {
@@ -93,7 +138,8 @@ function sortListings(rows: any[], sortBy: AnuncioSortKey, sortOrder: 'asc' | 'd
         comparison = String(left?.status || '').localeCompare(String(right?.status || ''), 'pt-BR');
         break;
       case 'catalogo':
-        comparison = Number(Boolean(left?.catalogo)) - Number(Boolean(right?.catalogo));
+        comparison = CATALOG_STATUS_ORDER[left?.catalog_status as CatalogCompetitionStatus]
+          - CATALOG_STATUS_ORDER[right?.catalog_status as CatalogCompetitionStatus];
         break;
       default:
         comparison = String(left?.titulo || '').localeCompare(String(right?.titulo || ''), 'pt-BR');
@@ -175,10 +221,25 @@ export async function GET(request: Request) {
     offset += chunkSize;
   }
 
-  sortListings(rows, sortBy, sortOrder);
+  let resultRows = rows;
+  if (sortBy === 'catalogo') {
+    try {
+      resultRows = await enrichCatalogStatuses(serviceClient, rows);
+    } catch (error: any) {
+      return NextResponse.json({ erro: `Falha ao buscar status dos catálogos: ${error.message}` }, { status: 500 });
+    }
+    sortListings(resultRows, sortBy, sortOrder);
+  } else {
+    sortListings(resultRows, sortBy, sortOrder);
+    try {
+      resultRows = await enrichCatalogStatuses(serviceClient, resultRows.slice(from, to));
+    } catch (error: any) {
+      return NextResponse.json({ erro: `Falha ao buscar status dos catálogos: ${error.message}` }, { status: 500 });
+    }
+  }
 
   return NextResponse.json({
-    data: rows.slice(from, to),
+    data: sortBy === 'catalogo' ? resultRows.slice(from, to) : resultRows,
     total: rows.length,
     page,
     pageSize,

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
-import { Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, Spin, Statistic, Modal, message } from 'antd';
+import { Alert, Input, Select, InputNumber, Button, Dropdown, Tag, Typography, Row, Col, Space, Spin, Statistic, Modal, message } from 'antd';
 import ResizableTable from '@/components/ResizableTable';
 import QualidadeModal from '@/components/QualidadeModal';
 import type { MenuProps, TableProps } from 'antd';
@@ -13,6 +13,8 @@ import { appendRemoteSortParams, getRemoteSortOrder, type RemoteSortState, resol
 const { Title } = Typography;
 
 type ListingStatus = 'ativo' | 'pausado';
+type CatalogStatus = 'ganhando' | 'competindo' | 'perdendo' | 'sem_catalogo';
+type PriceModalMode = 'default' | 'catalog';
 
 interface Anuncio {
   id: string;
@@ -28,6 +30,7 @@ interface Anuncio {
   qualidadeObj?: { total: number; itens: { nome: string; ok: boolean; pontos: number; max: number }[]; dica: string };
   status: ListingStatus;
   catalogo: boolean;
+  catalogStatus: CatalogStatus;
 }
 
 type QuantityPricingTier = {
@@ -42,6 +45,22 @@ type PricingDetails = {
   quantityPricing: QuantityPricingTier[];
   quantityPricingWarning: string | null;
   calculator: { cost: number; shipping: number; mlFee: number };
+  catalog: {
+    status: CatalogStatus;
+    rawStatus: string | null;
+    priceToWin: number | null;
+    catalogProductId: string | null;
+    currentPrice: number;
+    currencyId: string;
+    consistent: boolean | null;
+    visitShare: string | null;
+    competitorsSharingFirstPlace: number | null;
+    winner: { itemId: string | null; price: number | null; currencyId: string } | null;
+    boosts: { id: string; status: string; description: string }[];
+    reasons: string[];
+    warning: string | null;
+    syncedAt: string | null;
+  } | null;
 };
 
 const statusOptions = [
@@ -78,6 +97,7 @@ function mapDBtoAnuncio(item: any): Anuncio {
     qualidadeObj: item.qualidade_info || undefined,
     status: item.status || 'ativo',
     catalogo: item.catalogo || false,
+    catalogStatus: item.catalog_status || (item.catalogo ? 'perdendo' : 'sem_catalogo'),
   };
 }
 
@@ -99,7 +119,12 @@ export default function AnunciosPage() {
   const [exportingPdf, setExportingPdf] = useState(false);
   const statusPollingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [modalQualidade, setModalQualidade] = useState<{ open: boolean; score: number; itens: any[]; dica: string; titulo: string }>({ open: false, score: 0, itens: [], dica: '', titulo: '' });
-  const [priceModal, setPriceModal] = useState<{ open: boolean; record: Anuncio | null; details: PricingDetails | null }>({ open: false, record: null, details: null });
+  const [priceModal, setPriceModal] = useState<{
+    open: boolean;
+    record: Anuncio | null;
+    details: PricingDetails | null;
+    mode: PriceModalMode;
+  }>({ open: false, record: null, details: null, mode: 'default' });
   const [priceModalLoading, setPriceModalLoading] = useState(false);
   const [priceModalSaving, setPriceModalSaving] = useState(false);
   const [newPrice, setNewPrice] = useState<number | null>(null);
@@ -247,26 +272,30 @@ export default function AnunciosPage() {
     window.open(record.permalink, '_blank', 'noopener,noreferrer');
   }, []);
 
-  const handleOpenPriceModal = useCallback(async (record: Anuncio) => {
+  const handleOpenPriceModal = useCallback(async (record: Anuncio, mode: PriceModalMode = 'default') => {
     if (!record.produtoId) {
       message.warning('Este anúncio não possui vínculo local com produto para alterar o preço.');
       return;
     }
 
-    setPriceModal({ open: true, record, details: null });
+    setPriceModal({ open: true, record, details: null, mode });
     setPriceModalLoading(true);
     setNewPrice(null);
     try {
-      const response = await fetch(`/api/ml/anuncio/preco-detalhe?produtoId=${encodeURIComponent(record.produtoId)}`, { cache: 'no-store' });
+      const params = new URLSearchParams({
+        produtoId: record.produtoId,
+        mlItemId: record.id,
+      });
+      const response = await fetch(`/api/ml/anuncio/preco-detalhe?${params.toString()}`, { cache: 'no-store' });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload?.success) {
         throw new Error(payload?.error || 'Falha ao carregar dados de preço do anúncio.');
       }
       const details = payload as PricingDetails;
-      setPriceModal({ open: true, record, details });
+      setPriceModal({ open: true, record, details, mode });
       setNewPrice(Number(details.currentPrice));
     } catch (error: any) {
-      setPriceModal({ open: false, record: null, details: null });
+      setPriceModal({ open: false, record: null, details: null, mode: 'default' });
       message.error(error?.message || 'Falha ao carregar dados de preço do anúncio.');
     } finally {
       setPriceModalLoading(false);
@@ -289,7 +318,12 @@ export default function AnunciosPage() {
       const response = await fetch('/api/ml/anuncio/atualizar-preco', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ produtoId: record.produtoId, targetPrice }),
+        body: JSON.stringify({
+          produtoId: record.produtoId,
+          mlItemId: record.id,
+          targetPrice,
+          source: priceModal.mode === 'catalog' ? 'catalog_price_to_win' : 'default',
+        }),
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload?.success) {
@@ -297,7 +331,7 @@ export default function AnunciosPage() {
       }
 
       message.success(payload?.message || 'Preço atualizado no Mercado Livre.');
-      setPriceModal({ open: false, record: null, details: null });
+      setPriceModal({ open: false, record: null, details: null, mode: 'default' });
       const outboxId = String(payload?.outboxId || '').trim();
       if (payload?.queued_publish && outboxId) {
         scheduleStatusPolling([outboxId]);
@@ -310,7 +344,7 @@ export default function AnunciosPage() {
       setPriceModalSaving(false);
       setUpdatingActionItemId(null);
     }
-  }, [fetchData, newPrice, priceModal.details, priceModal.record, scheduleStatusPolling]);
+  }, [fetchData, newPrice, priceModal.details, priceModal.mode, priceModal.record, scheduleStatusPolling]);
 
   const selectedRecords = useMemo(() => {
     const selectedIds = new Set(selectedRowKeys.map((key) => String(key)));
@@ -554,12 +588,19 @@ export default function AnunciosPage() {
       ),
     },
     {
-      title: 'Catálogo', dataIndex: 'catalogo', key: 'catalogo', width: 90,
+      title: 'Catálogo', dataIndex: 'catalogStatus', key: 'catalogo', width: 120,
       sorter: true,
       sortOrder: getRemoteSortOrder('catalogo', sort),
-      render: (v: boolean) => v
-        ? <Tag color="green">SIM</Tag>
-        : <Tag color="default">NÃO</Tag>,
+      render: (catalogStatus: CatalogStatus) => {
+        const statusMap: Record<CatalogStatus, { color: string; label: string }> = {
+          ganhando: { color: 'green', label: 'Ganhando' },
+          competindo: { color: 'blue', label: 'Competindo' },
+          perdendo: { color: 'red', label: 'Perdendo' },
+          sem_catalogo: { color: 'default', label: 'Sem Catálogo' },
+        };
+        const display = statusMap[catalogStatus] || statusMap.sem_catalogo;
+        return <Tag color={display.color}>{display.label}</Tag>;
+      },
     },
     {
       title: 'Ações', key: 'actions', width: 60, fixed: 'right',
@@ -576,6 +617,14 @@ export default function AnunciosPage() {
             label: 'Alterar preço',
             disabled: !record.produtoId || isUpdatingCurrent,
           },
+          record.status === 'ativo'
+          && (record.catalogStatus === 'competindo' || record.catalogStatus === 'perdendo')
+            ? {
+                key: 'catalogPrice',
+                label: 'Ver preço para ganhar',
+                disabled: !record.produtoId || isUpdatingCurrent,
+              }
+            : null,
           record.status === 'ativo'
             ? {
                 key: 'pause',
@@ -596,6 +645,7 @@ export default function AnunciosPage() {
               onClick: ({ key }) => {
                 if (key === 'view') handleViewOnMl(record);
                 if (key === 'editPrice') void handleOpenPriceModal(record);
+                if (key === 'catalogPrice') void handleOpenPriceModal(record, 'catalog');
                 if (key === 'pause' || key === 'activate') void handleToggleStatus(record);
               },
             }}
@@ -759,8 +809,9 @@ export default function AnunciosPage() {
       />
       <Modal
         open={priceModal.open}
-        title={`Alterar preço — ${priceModal.record?.sku || priceModal.record?.id || ''}`}
-        onCancel={() => !priceModalSaving && setPriceModal({ open: false, record: null, details: null })}
+        title={`${priceModal.mode === 'catalog' ? 'Preço para ganhar' : 'Alterar preço'} — ${priceModal.record?.sku || priceModal.record?.id || ''}`}
+        width={priceModal.mode === 'catalog' ? 720 : 520}
+        onCancel={() => !priceModalSaving && setPriceModal({ open: false, record: null, details: null, mode: 'default' })}
         confirmLoading={priceModalSaving}
         okText="Salvar preço"
         cancelText="Cancelar"
@@ -771,6 +822,93 @@ export default function AnunciosPage() {
         <Spin spinning={priceModalLoading}>
           {priceModal.details && (
             <Space direction="vertical" size={16} style={{ width: '100%' }}>
+              {priceModal.mode === 'catalog' && priceModal.details.catalog && (
+                <div style={{ background: '#0f0f0f', border: '1px solid #303030', borderRadius: 8, padding: 14 }}>
+                  <Row gutter={[16, 12]}>
+                    <Col xs={24} sm={8}>
+                      <div style={{ color: '#a0a0a0', fontSize: 12 }}>Situação no catálogo</div>
+                      <Tag color={priceModal.details.catalog.status === 'competindo' ? 'blue' : 'red'}>
+                        {priceModal.details.catalog.status === 'competindo' ? 'Competindo' : 'Perdendo'}
+                      </Tag>
+                    </Col>
+                    <Col xs={24} sm={8}>
+                      <div style={{ color: '#a0a0a0', fontSize: 12 }}>Preço para ganhar</div>
+                      <strong style={{ color: '#52c41a', fontSize: 18 }}>
+                        {priceModal.details.catalog.priceToWin === null
+                          ? 'Não informado pelo ML'
+                          : formatCurrency(priceModal.details.catalog.priceToWin)}
+                      </strong>
+                    </Col>
+                    <Col xs={24} sm={8}>
+                      <div style={{ color: '#a0a0a0', fontSize: 12 }}>Preço do vencedor</div>
+                      <strong>
+                        {priceModal.details.catalog.winner?.price === null || priceModal.details.catalog.winner?.price === undefined
+                          ? 'Não informado'
+                          : formatCurrency(priceModal.details.catalog.winner.price)}
+                      </strong>
+                    </Col>
+                    <Col xs={24} sm={12}>
+                      <div style={{ color: '#a0a0a0', fontSize: 12 }}>Produto de catálogo</div>
+                      <span>{priceModal.details.catalog.catalogProductId || 'Não informado'}</span>
+                    </Col>
+                    <Col xs={24} sm={12}>
+                      <div style={{ color: '#a0a0a0', fontSize: 12 }}>Anúncio vencedor</div>
+                      <span>{priceModal.details.catalog.winner?.itemId || 'Não informado'}</span>
+                    </Col>
+                    <Col xs={24} sm={8}>
+                      <div style={{ color: '#a0a0a0', fontSize: 12 }}>Participação em visitas</div>
+                      <span>{priceModal.details.catalog.visitShare || 'Não informada'}</span>
+                    </Col>
+                    <Col xs={24} sm={8}>
+                      <div style={{ color: '#a0a0a0', fontSize: 12 }}>Dividindo 1º lugar</div>
+                      <span>{priceModal.details.catalog.competitorsSharingFirstPlace ?? 'Não informado'}</span>
+                    </Col>
+                    <Col xs={24} sm={8}>
+                      <div style={{ color: '#a0a0a0', fontSize: 12 }}>Dados consistentes</div>
+                      <span>
+                        {priceModal.details.catalog.consistent === null
+                          ? 'Não informado'
+                          : priceModal.details.catalog.consistent ? 'Sim' : 'Não'}
+                      </span>
+                    </Col>
+                  </Row>
+
+                  {priceModal.details.catalog.boosts.length > 0 && (
+                    <div style={{ marginTop: 12 }}>
+                      <div style={{ color: '#a0a0a0', fontSize: 12, marginBottom: 4 }}>Critérios da disputa</div>
+                      <Space wrap>
+                        {priceModal.details.catalog.boosts.map((boost) => (
+                          <Tag color={boost.status === 'boosted' ? 'green' : 'gold'} key={`${boost.id}-${boost.status}`}>
+                            {boost.description || boost.id}: {boost.status === 'boosted' ? 'atendido' : 'oportunidade'}
+                          </Tag>
+                        ))}
+                      </Space>
+                    </div>
+                  )}
+
+                  {priceModal.details.catalog.reasons.length > 0 && (
+                    <Alert
+                      style={{ marginTop: 12 }}
+                      type="warning"
+                      showIcon
+                      message={priceModal.details.catalog.reasons.join(' • ')}
+                    />
+                  )}
+                  {priceModal.details.catalog.warning && (
+                    <Alert
+                      style={{ marginTop: 12 }}
+                      type="warning"
+                      showIcon
+                      message={priceModal.details.catalog.warning}
+                    />
+                  )}
+                </div>
+              )}
+
+              {priceModal.mode === 'catalog' && !priceModal.details.catalog && (
+                <Alert type="warning" showIcon message="Este anúncio não está vinculado a um catálogo." />
+              )}
+
               <div>
                 <div style={{ color: '#a0a0a0', marginBottom: 6 }}>Preço e lucro atuais</div>
                 <Row gutter={12}>
@@ -802,7 +940,18 @@ export default function AnunciosPage() {
               </div>
 
               <div>
-                <div style={{ color: '#a0a0a0', marginBottom: 6 }}>Novo preço</div>
+                <div style={{ color: '#a0a0a0', marginBottom: 6 }}>
+                  Novo preço
+                  {priceModal.mode === 'catalog' && priceModal.details.catalog?.priceToWin && (
+                    <Button
+                      type="link"
+                      size="small"
+                      onClick={() => setNewPrice(priceModal.details?.catalog?.priceToWin ?? null)}
+                    >
+                      Usar preço para ganhar
+                    </Button>
+                  )}
+                </div>
                 <InputNumber
                   value={newPrice}
                   onChange={(value) => setNewPrice(value ?? null)}

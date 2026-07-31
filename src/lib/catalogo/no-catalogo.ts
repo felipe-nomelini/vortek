@@ -1,4 +1,5 @@
 export type BuyBoxFilter = 'all' | 'ganhando' | 'perdendo';
+export type CatalogCompetitionStatus = 'ganhando' | 'competindo' | 'perdendo' | 'sem_catalogo';
 
 export interface NoCatalogFilters {
   search: string;
@@ -70,6 +71,20 @@ export function parseNoCatalogFilters(searchParams: URLSearchParams): NoCatalogF
 export function isWinningBuyBoxStatus(status: string | null | undefined): boolean {
   const normalized = String(status || '').trim().toLowerCase();
   return normalized === 'winning' || normalized === 'sharing_first_place';
+}
+
+export function resolveCatalogCompetitionStatus(input: {
+  catalogListing: boolean;
+  buyBoxStatus?: string | null;
+  buyBoxWinning?: boolean | null;
+}): CatalogCompetitionStatus {
+  if (!input.catalogListing) return 'sem_catalogo';
+
+  const status = String(input.buyBoxStatus || '').trim().toLowerCase();
+  if (isWinningBuyBoxStatus(status)) return 'ganhando';
+  if (status === 'competing') return 'competindo';
+  if (!status && input.buyBoxWinning === true) return 'ganhando';
+  return 'perdendo';
 }
 
 export function normalizeBuyBoxStatus(payload: any): string | null {
