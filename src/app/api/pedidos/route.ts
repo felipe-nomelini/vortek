@@ -97,22 +97,40 @@ async function resolveFornecedorPreviewByPedido(
       .flatMap((itens) => itens.flatMap((item) => getSkuLookupVariants(item?.seller_sku)))
       .filter(Boolean),
   ));
+  const mlItemIds = Array.from(new Set(
+    Array.from(itensPorPedido.values())
+      .flatMap((itens) => itens.map((item) => String(item?.ml_item_id || '').trim()))
+      .filter(Boolean),
+  ));
   const previews = new Map<string, any>();
-  if (!skuVariants.length) return previews;
+  if (!skuVariants.length && !mlItemIds.length) return previews;
 
-  const { data: products, error: productError } = await serviceClient
-    .from('produtos')
-    .select('id,sku,nome,fornecedor,dslite_fornecedor_id,oferta_preferencial_id')
-    .in('sku', skuVariants);
+  const productSelect = 'id,ml_item_id,sku,nome,fornecedor,dslite_fornecedor_id,oferta_preferencial_id';
+  const [productsBySkuResult, productsByMlItemResult] = await Promise.all([
+    skuVariants.length
+      ? serviceClient.from('produtos').select(productSelect).in('sku', skuVariants)
+      : Promise.resolve({ data: [], error: null as any }),
+    mlItemIds.length
+      ? serviceClient.from('produtos').select(productSelect).in('ml_item_id', mlItemIds)
+      : Promise.resolve({ data: [], error: null as any }),
+  ]);
+  const productError = productsBySkuResult.error || productsByMlItemResult.error;
   if (productError) {
     logDbError('pedidos_supplier_preview_products_failed', '/api/pedidos', '', productError);
     return previews;
   }
+  const products = Array.from(new Map(
+    [...(productsBySkuResult.data || []), ...(productsByMlItemResult.data || [])]
+      .map((product: any) => [String(product.id), product]),
+  ).values());
 
   const productsBySku = new Map<string, any>();
+  const productsByMlItem = new Map<string, any>();
   const productsById = new Map<string, any>();
   for (const product of products || []) {
     productsBySku.set(String((product as any).sku || '').trim().toUpperCase(), product);
+    const mlItemId = String((product as any).ml_item_id || '').trim();
+    if (mlItemId) productsByMlItem.set(mlItemId, product);
     productsById.set(String((product as any).id || ''), product);
   }
   const productIds = Array.from(productsById.keys()).filter(Boolean);
@@ -177,9 +195,10 @@ async function resolveFornecedorPreviewByPedido(
 
   for (const [pedidoId, itens] of itensPorPedido) {
     const selected = (itens || []).map((item: any) => {
-      const product = getSkuLookupVariants(item?.seller_sku)
-        .map((sku) => productsBySku.get(sku))
-        .find(Boolean);
+      const product = productsByMlItem.get(String(item?.ml_item_id || '').trim())
+        || getSkuLookupVariants(item?.seller_sku)
+          .map((sku) => productsBySku.get(sku))
+          .find(Boolean);
       if (!product) return null;
       const preferredOffer = resolvePreferredOfferForProduct(
         offersByProductId.get(String(product.id)) || [],

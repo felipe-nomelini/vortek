@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-08-01T21-09-14-246Z/run-results/001-VTK025863-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-001-VTK025863",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "e98d28b9-df1e-4b58-8efd-47b95bd4da15",
+      "sku": "VTK025863",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7310435152",
+        "title": "2 Baterias Recarregáveis Elgin 18650 2600mah 3 7v Kit",
+        "price": 129.16,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7310435152-2-baterias-recarregaveis-elgin-18650-2600mah-3-7v-kit-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 109.09 → R$ 129.16."
+      ]
+    }
+  ],
+  "failed": []
+}

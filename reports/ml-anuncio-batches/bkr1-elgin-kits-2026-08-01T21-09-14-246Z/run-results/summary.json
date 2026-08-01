@@ -1,0 +1,149 @@
+{
+  "startedAt": "2026-08-01T21:13:12.491Z",
+  "account": {
+    "userId": "3294514937",
+    "nickname": "VORTEKTECNOLOGIA"
+  },
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-08-01T21-09-14-246Z",
+  "selected": 6,
+  "totals": {
+    "created": 6,
+    "verified": 6,
+    "failed": 0
+  },
+  "rows": [
+    {
+      "sequence": 2,
+      "sku": "VTK025864",
+      "itemId": "MLB4980614601",
+      "status": "verified",
+      "verification": {
+        "attempt": 1,
+        "itemId": "MLB4980614601",
+        "sku": "VTK025864",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 2,
+        "quantityOk": true,
+        "price": 167.72,
+        "priceAboveCost": true
+      }
+    },
+    {
+      "sequence": 3,
+      "sku": "VTK025865",
+      "itemId": "MLB4980602289",
+      "status": "verified",
+      "verification": {
+        "attempt": 1,
+        "itemId": "MLB4980602289",
+        "sku": "VTK025865",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 2,
+        "quantityOk": true,
+        "price": 205.49,
+        "priceAboveCost": true
+      }
+    },
+    {
+      "sequence": 4,
+      "sku": "VTK025866",
+      "itemId": "MLB4980602413",
+      "status": "verified",
+      "verification": {
+        "attempt": 1,
+        "itemId": "MLB4980602413",
+        "sku": "VTK025866",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 1,
+        "quantityOk": true,
+        "price": 256.36,
+        "priceAboveCost": true
+      }
+    },
+    {
+      "sequence": 5,
+      "sku": "VTK025867",
+      "itemId": "MLB4980591199",
+      "status": "verified",
+      "verification": {
+        "attempt": 1,
+        "itemId": "MLB4980591199",
+        "sku": "VTK025867",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 1,
+        "quantityOk": true,
+        "price": 298.46,
+        "priceAboveCost": true
+      }
+    },
+    {
+      "sequence": 6,
+      "sku": "VTK025868",
+      "itemId": "MLB4980591291",
+      "status": "verified",
+      "verification": {
+        "attempt": 1,
+        "itemId": "MLB4980591291",
+        "sku": "VTK025868",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 1,
+        "quantityOk": true,
+        "price": 347.22,
+        "priceAboveCost": true
+      }
+    },
+    {
+      "sequence": 7,
+      "sku": "VTK025869",
+      "itemId": "MLB4980602733",
+      "status": "verified",
+      "verification": {
+        "attempt": 1,
+        "itemId": "MLB4980602733",
+        "sku": "VTK025869",
+        "categoryOk": true,
+        "status": "active",
+        "subStatuses": [],
+        "pictureReady": true,
+        "richDescription": true,
+        "identifierOk": true,
+        "kitAttributesOk": true,
+        "quantity": 1,
+        "quantityOk": true,
+        "price": 392.65,
+        "priceAboveCost": true
+      }
+    }
+  ],
+  "finishedAt": "2026-08-01T21:16:17.302Z"
+}

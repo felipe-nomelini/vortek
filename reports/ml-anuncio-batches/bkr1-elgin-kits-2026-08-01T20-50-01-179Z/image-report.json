@@ -1,0 +1,26 @@
+[
+  {
+    "produtoId": "c731f0c4-1be6-4bbd-92c1-d91c5538ea01",
+    "sku": "VTK025634",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025634/01-d93683173b291988614f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025634/02-2f2d330e6518c7ef08e0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025634/03-ea02a9569f300e2479a7.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025634/04-f0bb2bfbfeeb683b5f5c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025634/05-5113febbc0c1b0d03d1e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025634/06-1508da3f1a8cf440f35b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025634/07-aa98c7a6dc32233e2ec4.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025634/01-d93683173b291988614f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025634/02-2f2d330e6518c7ef08e0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025634/03-ea02a9569f300e2479a7.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025634/04-f0bb2bfbfeeb683b5f5c.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025634/05-5113febbc0c1b0d03d1e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025634/06-1508da3f1a8cf440f35b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025634/07-aa98c7a6dc32233e2ec4.jpg"
+    ],
+    "failures": []
+  }
+]

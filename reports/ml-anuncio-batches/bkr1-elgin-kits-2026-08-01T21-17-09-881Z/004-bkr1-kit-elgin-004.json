@@ -1,0 +1,372 @@
+{
+  "batchNumber": 4,
+  "batchId": "bkr1-kit-elgin-004",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "ec6520a1-6d6b-4d5b-a009-ed2f9709b614",
+      "sku": "VTK025750",
+      "nome": "30 Pilhas Zinco Ar Elgin Tamanho 675 PR44 1,4V Kit",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 59,
+      "estoque": 7,
+      "suggestedPricePreview": 97.53,
+      "description": "30 Pilhas Zinco Ar Elgin Tamanho 675 PR44 1,4V Kit\n\nKit original Elgin com 30 pilhas ou baterias, distribuídas em 5 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 5 embalagens com 6 unidade(s) cada\n\n- Total: 30 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: 675 PR44\n\n- Tamanho: 675/PR44\n\n- Formato: Botão\n\n- Quantidade total: 30 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,4 V\n\n- Composição: Zinco-ar\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "675 PR44"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "675/PR44"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "30"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,4 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Zinco-ar"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2401K5",
+        "componentSku": "VTK012052",
+        "componentGtin": "7897013597930",
+        "componentQuantity": 5,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "675 PR44",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "30",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111713604 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "537ad85d-87da-4a61-b21e-f5f0cb6e01d4",
+      "sku": "VTK025760",
+      "nome": "36 Pilhas Zinco Ar Elgin Tamanho 10 PR70 1,4V Kit",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 77.4,
+      "estoque": 6,
+      "suggestedPricePreview": 120.25,
+      "description": "36 Pilhas Zinco Ar Elgin Tamanho 10 PR70 1,4V Kit\n\nKit original Elgin com 36 pilhas ou baterias, distribuídas em 6 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 6 embalagens com 6 unidade(s) cada\n\n- Total: 36 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: 10/230 PR70\n\n- Tamanho: 10/PR70\n\n- Formato: Botão\n\n- Quantidade total: 36 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,4 V\n\n- Composição: Zinco-ar\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "10/230 PR70"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "10/PR70"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "36"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,4 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Zinco-ar"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2400K6",
+        "componentSku": "VTK012051",
+        "componentGtin": "7897013597923",
+        "componentQuantity": 6,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "10/230 PR70",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "36",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4880590849 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "8cc5e047-d175-41bd-b6ec-9641461357c0",
+      "sku": "VTK025761",
+      "nome": "36 Pilhas Zinco Ar Elgin Tamanho 13 PR48 1,4V Kit",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 73.2,
+      "estoque": 10,
+      "suggestedPricePreview": 115.06,
+      "description": "36 Pilhas Zinco Ar Elgin Tamanho 13 PR48 1,4V Kit\n\nKit original Elgin com 36 pilhas ou baterias, distribuídas em 6 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 6 embalagens com 6 unidade(s) cada\n\n- Total: 36 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: 13 PR48\n\n- Tamanho: 13\n\n- Formato: Botão\n\n- Quantidade total: 36 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,4 V\n\n- Composição: Zinco-ar\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "13 PR48"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "13"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "36"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,4 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Zinco-ar"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2399K6",
+        "componentSku": "VTK012050",
+        "componentGtin": "7897013597909",
+        "componentQuantity": 6,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "13 PR48",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "36",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4908883321 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "75797992-bcf0-4f88-bb5c-f3258412ffea",
+      "sku": "VTK025762",
+      "nome": "36 Pilhas Zinco Ar Elgin Tamanho 312 PR41 1,4V Kit",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 71.7,
+      "estoque": 6,
+      "suggestedPricePreview": 113.21,
+      "description": "36 Pilhas Zinco Ar Elgin Tamanho 312 PR41 1,4V Kit\n\nKit original Elgin com 36 pilhas ou baterias, distribuídas em 6 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 6 embalagens com 6 unidade(s) cada\n\n- Total: 36 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: 312 PR41\n\n- Tamanho: 312/PR41\n\n- Formato: Botão\n\n- Quantidade total: 36 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,4 V\n\n- Composição: Zinco-ar\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "312 PR41"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "312/PR41"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "36"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,4 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Zinco-ar"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2409K6",
+        "componentSku": "VTK012129",
+        "componentGtin": "7897013597916",
+        "componentQuantity": 6,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "312 PR41",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "36",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149372258 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    },
+    {
+      "produtoId": "d1d3df8e-6b5e-4186-b507-8420d0aefcb0",
+      "sku": "VTK025763",
+      "nome": "36 Pilhas Zinco Ar Elgin Tamanho 675 PR44 1,4V Kit",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 70.8,
+      "estoque": 6,
+      "suggestedPricePreview": 112.1,
+      "description": "36 Pilhas Zinco Ar Elgin Tamanho 675 PR44 1,4V Kit\n\nKit original Elgin com 36 pilhas ou baterias, distribuídas em 6 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 6 embalagens com 6 unidade(s) cada\n\n- Total: 36 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: 675 PR44\n\n- Tamanho: 675/PR44\n\n- Formato: Botão\n\n- Quantidade total: 36 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,4 V\n\n- Composição: Zinco-ar\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "675 PR44"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "675/PR44"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "36"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,4 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Zinco-ar"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2401K6",
+        "componentSku": "VTK012052",
+        "componentGtin": "7897013597930",
+        "componentQuantity": 6,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "675 PR44",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "36",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111713604 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      }
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "batchNumber": 31,
+  "batchId": "bkr1-live-031-VTK025819",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "b1c85a2c-1327-42c7-bffb-92f680933b45",
+      "sku": "VTK025819",
+      "nome": "54 Pilhas Zinco Ar Elgin Tamanho 312 PR41 1,4V Kit",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 107.55,
+      "estoque": 4,
+      "suggestedPricePreview": 157.47,
+      "description": "54 Pilhas Zinco Ar Elgin Tamanho 312 PR41 1,4V Kit\n\nKit original Elgin com 54 pilhas ou baterias, distribuídas em 9 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 9 embalagens com 6 unidade(s) cada\n\n- Total: 54 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: 312 PR41\n\n- Tamanho: 312/PR41\n\n- Formato: Botão\n\n- Quantidade total: 54 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,4 V\n\n- Composição: Zinco-ar\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "312 PR41"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "312/PR41"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "54"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,4 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Zinco-ar"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2409K9",
+        "componentSku": "VTK012129",
+        "componentGtin": "7897013597916",
+        "componentQuantity": 9,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "312 PR41",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "54",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7149372258 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "007-bkr1-kit-elgin-007.json",
+      "sourceSequence": 31
+    }
+  ]
+}

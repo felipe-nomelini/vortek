@@ -784,9 +784,12 @@ async function buildOrderItemsSnapshot(params: {
       || (sellerSku && productsBySku.get(sellerSku))
       || skuVariants.map((variant) => productsBySku.get(variant)).find(Boolean)
       || null;
-    const resolvedSellerSku = sellerSku
+    // O ML prioriza SELLER_SKU no pedido, mesmo quando seller_custom_field já foi
+    // corrigido. Quando o anúncio está vinculado localmente, o SKU canônico do
+    // produto precisa prevalecer sobre esse valor externo potencialmente antigo.
+    const resolvedSellerSku = String(produto?.sku || '').trim()
       || (mlItemId ? catalogSkuByMlItem.get(mlItemId) : null)
-      || String(produto?.sku || '').trim()
+      || sellerSku
       || null;
 
     return {

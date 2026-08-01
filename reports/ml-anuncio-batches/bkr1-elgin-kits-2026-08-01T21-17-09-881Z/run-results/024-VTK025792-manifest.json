@@ -1,0 +1,82 @@
+{
+  "batchNumber": 24,
+  "batchId": "bkr1-live-024-VTK025792",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "e2f4eaef-a027-4627-be5b-b8d220d2f731",
+      "sku": "VTK025792",
+      "nome": "42 Pilhas Zinco Ar Elgin Tamanho 675 PR44 1,4V Kit",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 82.6,
+      "estoque": 5,
+      "suggestedPricePreview": 126.67,
+      "description": "42 Pilhas Zinco Ar Elgin Tamanho 675 PR44 1,4V Kit\n\nKit original Elgin com 42 pilhas ou baterias, distribuídas em 7 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 7 embalagens com 6 unidade(s) cada\n\n- Total: 42 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: 675 PR44\n\n- Tamanho: 675/PR44\n\n- Formato: Botão\n\n- Quantidade total: 42 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,4 V\n\n- Composição: Zinco-ar\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "675 PR44"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "675/PR44"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "42"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,4 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Zinco-ar"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2401K7",
+        "componentSku": "VTK012052",
+        "componentGtin": "7897013597930",
+        "componentQuantity": 7,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "675 PR44",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "42",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB7111713604 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "005-bkr1-kit-elgin-005.json",
+      "sourceSequence": 24
+    }
+  ]
+}

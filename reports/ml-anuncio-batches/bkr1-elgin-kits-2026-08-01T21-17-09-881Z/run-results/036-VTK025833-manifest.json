@@ -1,0 +1,82 @@
+{
+  "batchNumber": 36,
+  "batchId": "bkr1-live-036-VTK025833",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "cb164a28-07b8-4fef-9923-6d6997d38c58",
+      "sku": "VTK025833",
+      "nome": "60 Pilhas Zinco Ar Elgin Tamanho 13 PR48 1,4V Kit",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 122,
+      "estoque": 6,
+      "suggestedPricePreview": 175.31,
+      "description": "60 Pilhas Zinco Ar Elgin Tamanho 13 PR48 1,4V Kit\n\nKit original Elgin com 60 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 6 unidade(s) cada\n\n- Total: 60 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: 13 PR48\n\n- Tamanho: 13\n\n- Formato: Botão\n\n- Quantidade total: 60 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,4 V\n\n- Composição: Zinco-ar\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "13 PR48"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "13"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "60"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,4 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Zinco-ar"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2399CX10",
+        "componentSku": "VTK012050",
+        "componentGtin": "7897013597909",
+        "componentQuantity": 10,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "13 PR48",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "60",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4908883321 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "008-bkr1-kit-elgin-008.json",
+      "sourceSequence": 36
+    }
+  ]
+}

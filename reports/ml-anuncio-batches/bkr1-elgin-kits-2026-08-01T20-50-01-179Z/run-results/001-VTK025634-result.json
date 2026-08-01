@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-08-01T20-50-01-179Z/run-results/001-VTK025634-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-001-VTK025634",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "c731f0c4-1be6-4bbd-92c1-d91c5538ea01",
+      "sku": "VTK025634",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7310368088",
+        "title": "10 Pilhas Moeda Lítio Elgin Cr1616 3v Kit",
+        "price": 63.52,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7310368088-10-pilhas-moeda-litio-elgin-cr1616-3v-kit-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 47.48 → R$ 63.52."
+      ]
+    }
+  ],
+  "failed": []
+}

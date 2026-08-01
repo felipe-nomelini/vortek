@@ -1,0 +1,204 @@
+[
+  {
+    "produtoId": "e98d28b9-df1e-4b58-8efd-47b95bd4da15",
+    "sku": "VTK025863",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6d34a5149094bf9b89a92271dc5cb8c2.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/faf5649a70a41802e87863ffa8444039.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/93436d6ff70465ce93177682aba52b83.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d0e671c0eb12bf2823efbe3d6b6ae562.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e5bbd7b896e6bd826781f74e98b3d2aa.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a5c3311e75a18415c657cf274bbec19c.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/462e2d122ca5f3e17c9abbd6a5ea27e4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5d607cb545f417b629d60b1a955b4f94.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b284a835791a3ea8974d5cff8efa295f.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7c3b136af0b8b165f11816aab0318749.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/01-b9a104d102da5b3c3a23.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/02-9f7868753ff18fdb12d5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/03-f69f314fd68e402e1170.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/04-efce7a511b9ab93fd080.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/05-591dc2271c01d751c03d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/06-e4443e825eb342d39e65.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/07-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/08-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/09-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/10-bca540273e6de2c54ecf.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "269fa20d-538d-4609-88af-3eb9bad43855",
+    "sku": "VTK025864",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1899c4d71d0bc273c4e04b7854a22f75.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/74354126a64d5ebc1f5933f68d9f299f.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b641231af417a09ad6923364e1968093.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/38f0928f28f98c01039114f50b4b91e7.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d84a740bc9314ba8ac12dffe03139772.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d49b30ee1ef31511d77be192f6a5463b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/462e2d122ca5f3e17c9abbd6a5ea27e4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5d607cb545f417b629d60b1a955b4f94.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b284a835791a3ea8974d5cff8efa295f.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7c3b136af0b8b165f11816aab0318749.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/01-f566f96cb62866ead33f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/02-5be2581e026ab1b3f2cf.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/03-040883a97b5048379a98.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/04-f0def55adb126bd989ca.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/05-6be68a6617bdb869e7de.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/06-fd9f26c826c6a4fdf8c8.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/07-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/08-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/09-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/10-bca540273e6de2c54ecf.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "0595f0c5-335b-4f7f-9ae2-727d4c4b106c",
+    "sku": "VTK025865",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/59eff3ff7df931dee26227dd166e03c9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6183d4439362ae51243649c22a08de82.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/f2e70ad65f43a3f890b1f047ec087967.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1cb0a6c2c1b3e409de8e20835195f665.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/732d47b737af3afd0a510c66bc1a47ab.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a72d6494f6af0a723ad3371a7f88fa4d.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/462e2d122ca5f3e17c9abbd6a5ea27e4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5d607cb545f417b629d60b1a955b4f94.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b284a835791a3ea8974d5cff8efa295f.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7c3b136af0b8b165f11816aab0318749.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/01-0e50720ecf263919346b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/02-9d429d0db54a21c6f78e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/03-c88aba8c6b16c4f845b7.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/04-28b71bda400a07ce57e5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/05-967954483caf12eb0e49.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/06-1bc24190a0fb28f11fa3.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/07-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/08-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/09-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/10-bca540273e6de2c54ecf.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "d2174e16-89ce-49b9-aae7-17f50cc70be1",
+    "sku": "VTK025866",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/90b7034d6c56a0e396d2e8d9a7d783f0.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ec1afb0d84789cdb984b17b3a8a670f9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/8f486454684306c7d5b2b24ebc0aa706.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/1995494f143d1d5898a7c8af1a616ed2.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c0b8ce4ae6605b3698b1df016be942b4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/462e2d122ca5f3e17c9abbd6a5ea27e4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5d607cb545f417b629d60b1a955b4f94.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b284a835791a3ea8974d5cff8efa295f.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7c3b136af0b8b165f11816aab0318749.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/01-e42dccf75e0fdcfa50b5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/02-346277087e31444dc90a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/03-467651d6a2b69d47b559.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/04-f1f0635c24b025df11d6.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/05-8af2fdc6ee724ef66b33.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/06-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/07-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/08-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/09-bca540273e6de2c54ecf.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "2ffd7ec2-4304-407d-9d1f-2d04a23d7ef1",
+    "sku": "VTK025867",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/20337e6cbc803b3572fe81df3c530489.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/587c28307c59cf6d0db65a793a4561df.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/cbe7c2aca7f5eb695fd80ffc2d3226a8.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d179f4367681626e32cc688647e9eb2c.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/8f9a9a1ffb2dc31b84e7a0c1b7ffb440.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/462e2d122ca5f3e17c9abbd6a5ea27e4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5d607cb545f417b629d60b1a955b4f94.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b284a835791a3ea8974d5cff8efa295f.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7c3b136af0b8b165f11816aab0318749.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/01-1db59aa8a42e789d1025.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/02-6bf01ed9b66870423fa5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/03-97a1f7ccca0ff9833274.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/04-5cff1601c1b98e0e450d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/05-c4ddb2ca79955c49854f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/06-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/07-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/08-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/09-bca540273e6de2c54ecf.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "0d42493f-0a8e-4776-b7bb-1f3eb532ca69",
+    "sku": "VTK025868",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6f8fa78b2e7156eec6e1054699a8abee.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/e66a4e6c163c4339719cda645627faab.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/0dc89cc716b9f37afce007d32880ec38.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d1ca87702457df86cbf2213550e297a9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b0d0308e74b0115b507c81ee0f2a0dbd.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/462e2d122ca5f3e17c9abbd6a5ea27e4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5d607cb545f417b629d60b1a955b4f94.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b284a835791a3ea8974d5cff8efa295f.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7c3b136af0b8b165f11816aab0318749.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/01-d38d48c7527c4b435020.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/02-a83cc163eec36fd0a301.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/03-0d6a9a9ad05666614463.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/04-1a0f8a0273f1aa8445bb.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/05-52796496408a9527b738.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/06-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/07-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/08-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/09-bca540273e6de2c54ecf.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "8c84ccd5-6cb9-438b-908c-c6ee9423574a",
+    "sku": "VTK025869",
+    "oldImages": [
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b0c60a6d667e1684c344f2b00d99b4b6.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/9472eaf8079db05fde9dc6f68042981d.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/60b259dca678c2e41c88cc93feb9fe3f.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/d2bf68e2c47826a47f6fa86177b38f90.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/6b54697346ac5caed2eba2b6a702e74f.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/462e2d122ca5f3e17c9abbd6a5ea27e4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/5d607cb545f417b629d60b1a955b4f94.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b284a835791a3ea8974d5cff8efa295f.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7c3b136af0b8b165f11816aab0318749.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/01-39efd6d8b031afa4a946.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/02-f2df88347dd4e7ee7d21.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/03-01ebd94f57fc0ba825b0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/04-550f288bc23fc1e6aa90.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/05-44ebb0146609d8c51c4e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/06-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/07-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/08-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/09-bca540273e6de2c54ecf.jpg"
+    ],
+    "failures": []
+  }
+]

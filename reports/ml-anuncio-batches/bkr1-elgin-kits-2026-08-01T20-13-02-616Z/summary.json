@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-08-01T20:13:21.990Z",
+  "sourceFile": "/tmp/tmp.5nPfuskbq8/Elgin.xls",
+  "account": {
+    "userId": "3294514937",
+    "nickname": "VORTEKTECNOLOGIA"
+  },
+  "mode": "audit_only",
+  "sheetCount": 315,
+  "readyCount": 7,
+  "blockedCount": 308,
+  "batchCount": 2,
+  "reportDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-08-01T20-13-02-616Z"
+}

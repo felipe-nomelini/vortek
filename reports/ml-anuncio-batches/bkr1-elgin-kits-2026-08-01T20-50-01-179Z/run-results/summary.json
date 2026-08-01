@@ -1,0 +1,44 @@
+{
+  "startedAt": "2026-08-01T20:50:30.606Z",
+  "account": {
+    "userId": "3294514937",
+    "nickname": "VORTEKTECNOLOGIA"
+  },
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-08-01T20-50-01-179Z",
+  "selected": 1,
+  "totals": {
+    "created": 1,
+    "verified": 0,
+    "failed": 1
+  },
+  "rows": [
+    {
+      "sequence": 1,
+      "sku": "VTK025634",
+      "itemId": "MLB7310368088",
+      "status": "verification_failed",
+      "verification": {
+        "ok": false,
+        "reason": "verification_timeout",
+        "row": {
+          "attempt": 48,
+          "itemId": "MLB7310368088",
+          "sku": "VTK025634",
+          "categoryOk": true,
+          "status": "paused",
+          "subStatuses": [
+            "picture_download_pending"
+          ],
+          "pictureReady": false,
+          "richDescription": true,
+          "identifierOk": true,
+          "kitAttributesOk": true,
+          "quantity": 50,
+          "quantityOk": true,
+          "price": 63.52,
+          "priceAboveCost": true
+        }
+      }
+    }
+  ]
+}

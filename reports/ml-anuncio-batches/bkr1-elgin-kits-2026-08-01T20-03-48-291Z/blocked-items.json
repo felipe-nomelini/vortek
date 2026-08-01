@@ -1,0 +1,79 @@
+[
+  {
+    "produtoId": "e98d28b9-df1e-4b58-8efd-47b95bd4da15",
+    "sku": "VTK025863",
+    "sourceSku": "2786K2",
+    "reason": "battery_total_units_mismatch",
+    "details": {
+      "productName": "Kit 2 Baterias Recarregáveis Elgin 18650 2600mAh 3,7V",
+      "componentQuantity": 2,
+      "unitsEach": 1
+    }
+  },
+  {
+    "produtoId": "269fa20d-538d-4609-88af-3eb9bad43855",
+    "sku": "VTK025864",
+    "sourceSku": "2786K3",
+    "reason": "battery_total_units_mismatch",
+    "details": {
+      "productName": "Kit 3 Baterias Recarregáveis Elgin 18650 2600mAh 3,7V",
+      "componentQuantity": 3,
+      "unitsEach": 1
+    }
+  },
+  {
+    "produtoId": "0595f0c5-335b-4f7f-9ae2-727d4c4b106c",
+    "sku": "VTK025865",
+    "sourceSku": "2786K4",
+    "reason": "battery_total_units_mismatch",
+    "details": {
+      "productName": "Kit 4 Baterias Recarregáveis Elgin 18650 2600mAh 3,7V",
+      "componentQuantity": 4,
+      "unitsEach": 1
+    }
+  },
+  {
+    "produtoId": "d2174e16-89ce-49b9-aae7-17f50cc70be1",
+    "sku": "VTK025866",
+    "sourceSku": "2786K5",
+    "reason": "battery_total_units_mismatch",
+    "details": {
+      "productName": "Kit 5 Baterias Recarregáveis Elgin 18650 2600mAh 3,7V",
+      "componentQuantity": 5,
+      "unitsEach": 1
+    }
+  },
+  {
+    "produtoId": "2ffd7ec2-4304-407d-9d1f-2d04a23d7ef1",
+    "sku": "VTK025867",
+    "sourceSku": "2786K6",
+    "reason": "battery_total_units_mismatch",
+    "details": {
+      "productName": "Kit 6 Baterias Recarregáveis Elgin 18650 2600mAh 3,7V",
+      "componentQuantity": 6,
+      "unitsEach": 1
+    }
+  },
+  {
+    "produtoId": "0d42493f-0a8e-4776-b7bb-1f3eb532ca69",
+    "sku": "VTK025868",
+    "sourceSku": "2786K7",
+    "reason": "battery_total_units_mismatch",
+    "details": {
+      "productName": "Kit 7 Baterias Recarregáveis Elgin 18650 2600mAh 3,7V",
+      "componentQuantity": 7,
+      "unitsEach": 1
+    }
+  },
+  {
+    "produtoId": "8c84ccd5-6cb9-438b-908c-c6ee9423574a",
+    "sku": "VTK025869",
+    "sourceSku": "2786K8",
+    "reason": "battery_total_units_mismatch",
+    "details": {
+      "productName": "Kit 8 Baterias Recarregáveis Elgin 18650 2600mAh 3,7V",
+      "componentQuantity": 8,
+      "unitsEach": 1
+    }
+  }
+]

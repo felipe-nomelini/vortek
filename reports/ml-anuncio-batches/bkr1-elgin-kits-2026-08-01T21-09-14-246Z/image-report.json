@@ -1,0 +1,1474 @@
+[
+  {
+    "produtoId": "cb164a28-07b8-4fef-9923-6d6997d38c58",
+    "sku": "VTK025833",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/3f8d7f1cb5e40b4c9a6d53bdd26ab61c.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/4c47070fd1c3f5e85c6db86677b70331.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/3f8d7f1cb5e40b4c9a6d53bdd26ab61c.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/4c47070fd1c3f5e85c6db86677b70331.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "a6329aaf-fa55-4303-ac0a-fa3008f53d67",
+    "sku": "VTK025836",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/a682332ae18bf8d451c4fba24e3271bd.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/a682332ae18bf8d451c4fba24e3271bd.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "6aa263be-e741-43ad-870a-fcf7893a8e09",
+    "sku": "VTK025728",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/6a6d9f92499f23bb1c476be10cb903dd.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/6a6d9f92499f23bb1c476be10cb903dd.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "ec6520a1-6d6b-4d5b-a009-ed2f9709b614",
+    "sku": "VTK025750",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/f2d83bb0ef8c0476c3cda228519ef12e.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/f2d83bb0ef8c0476c3cda228519ef12e.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "b4e1836f-9947-49eb-b50c-958cecfa3912",
+    "sku": "VTK025789",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/183733bbe4174e17fc7cf922a3ea105e.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/183733bbe4174e17fc7cf922a3ea105e.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "d5303655-a694-4c32-ac1c-a1299960fb25",
+    "sku": "VTK025662",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/e104ec0b36e1b3dea080e64888af492a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/e104ec0b36e1b3dea080e64888af492a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "5574b050-4103-4f42-8fbb-60c527e960a8",
+    "sku": "VTK025798",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/f55d49fa38789a296689eb46c2f0c80a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/f55d49fa38789a296689eb46c2f0c80a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "c0fb148c-b6d8-493a-a279-f06707dac791",
+    "sku": "VTK025663",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/bbb52dff2252e85d53baa926467896e0.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/bbb52dff2252e85d53baa926467896e0.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "716911b0-07c1-49f0-89f2-1d849ffa6d9b",
+    "sku": "VTK025692",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/e4131f3435cc046681b7a730e8fc9842.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/e4131f3435cc046681b7a730e8fc9842.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "7e9f32e3-91d1-4833-b56e-afc0cf463acb",
+    "sku": "VTK025694",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/beacf41e271df863d2ff8e240674cd68.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/beacf41e271df863d2ff8e240674cd68.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "8a7ba2bc-e2f0-4634-acce-3aa0ad5f91a4",
+    "sku": "VTK025799",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/cff2587410383e9f3a3024ba0cfe3396.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/cff2587410383e9f3a3024ba0cfe3396.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "b1c85a2c-1327-42c7-bffb-92f680933b45",
+    "sku": "VTK025819",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/0f75465eb4db3c31a195fa635dd6121f.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/0f75465eb4db3c31a195fa635dd6121f.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "ad089593-f466-49b0-9650-76fd51222c8b",
+    "sku": "VTK025832",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/f4b86344b1d78629df34bec9f5b7a3b8.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/f4b86344b1d78629df34bec9f5b7a3b8.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "fe28479d-677c-4b86-9814-1e89382fe1f9",
+    "sku": "VTK025835",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/c4ae97559d96d97d9d27f953935acc4b.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/a8537fb87fb7c4eed52f86e3df248704.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/c4ae97559d96d97d9d27f953935acc4b.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/a8537fb87fb7c4eed52f86e3df248704.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "8cc5e047-d175-41bd-b6ec-9641461357c0",
+    "sku": "VTK025761",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/1117a27d12606aab0ca686bcde5e8394.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/1117a27d12606aab0ca686bcde5e8394.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "e2f4eaef-a027-4627-be5b-b8d220d2f731",
+    "sku": "VTK025792",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9248c97a9535852ba7729648fe01e29d.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9248c97a9535852ba7729648fe01e29d.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "fb81d95d-b34a-4cef-8d56-72d66f6e936e",
+    "sku": "VTK025797",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/3c37e3cacd56d27803e01f4fdd83255c.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/3c37e3cacd56d27803e01f4fdd83255c.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "070d022c-27ee-4f7d-bcb9-594ac0492622",
+    "sku": "VTK025817",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9d4b71100901a1b9c4731c7ee4a67435.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9d4b71100901a1b9c4731c7ee4a67435.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "09347e20-b0cc-4a11-9894-87bcfd54a6ec",
+    "sku": "VTK025660",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/5c2b6a5d03d4f6356fe472e07cc452c0.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/5c2b6a5d03d4f6356fe472e07cc452c0.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "9f029ebe-cb43-4307-86bd-2e8df76a0c7a",
+    "sku": "VTK025691",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/077da948a651228adebee11d38efc7e2.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/077da948a651228adebee11d38efc7e2.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "4a703f0e-56b0-4b7c-9ede-53359be502e2",
+    "sku": "VTK025693",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/d18bf74f216bcf8f57711563cc12e42f.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/d18bf74f216bcf8f57711563cc12e42f.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "dcd145e1-f76c-4499-9a69-d261cb048f34",
+    "sku": "VTK025749",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/e69de1470cc01e7604936850a3d8d067.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/e69de1470cc01e7604936850a3d8d067.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "75797992-bcf0-4f88-bb5c-f3258412ffea",
+    "sku": "VTK025762",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/0c15558982c3c75863e18afb5831f42a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/0c15558982c3c75863e18afb5831f42a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "9acd7e32-1021-4704-93fe-421f99c29454",
+    "sku": "VTK025834",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9057409f792754c3c3e89b0af55e2e73.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/9057409f792754c3c3e89b0af55e2e73.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "a561c1ee-a58b-4038-8f87-933cb47297f4",
+    "sku": "VTK025837",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/db399ffa706bfacc3b88669a79594a93.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/e082237804243ed8e666b635ce57635f.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/db399ffa706bfacc3b88669a79594a93.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/e082237804243ed8e666b635ce57635f.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "0e0a63b3-51a0-4757-9720-55bd25d37659",
+    "sku": "VTK025727",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/769b1b263d685f52f8f26a4a11f97e4e.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/769b1b263d685f52f8f26a4a11f97e4e.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "537ad85d-87da-4a61-b21e-f5f0cb6e01d4",
+    "sku": "VTK025760",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/90c7178c85bf0a4723cb8cc4c5d3395c.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/90c7178c85bf0a4723cb8cc4c5d3395c.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "02f67355-bf48-44ee-9b1a-69a5f6c7634a",
+    "sku": "VTK025791",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/f0370fd000a0a18ed06123e6e5d27fff.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/f0370fd000a0a18ed06123e6e5d27fff.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "07dd54f4-44a7-46eb-9d64-1fd818b19d6e",
+    "sku": "VTK025661",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/bb77ea9f130e1c7e252d37dc326acfac.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/bb77ea9f130e1c7e252d37dc326acfac.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "df4d6686-cc8f-4f9a-9e69-b53be634e431",
+    "sku": "VTK025730",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/ba4938e5ad43918979728d3cedfe7fb8.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/ba4938e5ad43918979728d3cedfe7fb8.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "9ce34f5f-63d5-4546-96ac-291b061d397b",
+    "sku": "VTK025747",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/477ac4e6216c0103a88d5316b55b8b73.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/477ac4e6216c0103a88d5316b55b8b73.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "d1d3df8e-6b5e-4186-b507-8420d0aefcb0",
+    "sku": "VTK025763",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/904f7055ea16b5ed96c882cd99ac9677.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/904f7055ea16b5ed96c882cd99ac9677.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "5c3dbc37-3fdc-49ee-b24c-7fe3c9550049",
+    "sku": "VTK025800",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/5a8391b755cd85ac252ab369e5d91480.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/5a8391b755cd85ac252ab369e5d91480.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "251973fb-08c2-469f-9220-91c0fc8831af",
+    "sku": "VTK025818",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/1ce9d9be446934afd3206e52134275c8.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/1ce9d9be446934afd3206e52134275c8.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "5211ee57-ff4f-43c8-803b-190daf2718a1",
+    "sku": "VTK025831",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/60158d526144282e9e0404da1f3f77af.jpg",
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/f94d3c3b1e426849831b1500f4f1a248.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/60158d526144282e9e0404da1f3f77af.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/f94d3c3b1e426849831b1500f4f1a248.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "34e2fd03-8611-4324-8236-0aec14a67121",
+    "sku": "VTK025729",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/de8d76c6d88c917b85a14ef75a3de569.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/de8d76c6d88c917b85a14ef75a3de569.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/3e9ab321f6c888e1d459b1a3ebfb9cd4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/4f017c103d2183fd7f23078c3ead33c2.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2811daee5c242413649a3beb563de73d.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "bd6ceed2-4f01-4532-8876-ed578618f68f",
+    "sku": "VTK025748",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/8dae527565a5a884b404a95b370e0adb.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/8dae527565a5a884b404a95b370e0adb.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "e5be0f64-b14a-4deb-8ad8-99fa5b0fe436",
+    "sku": "VTK025790",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/fbc73a4398922fe732a0fafdc94baf83.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/fbc73a4398922fe732a0fafdc94baf83.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/c7eec2c9a2235366c24a2b8f453ea8f4.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/b411c36905fa111dcde89edd5ea70d7a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fcd735eb103b125f14491050872e2553.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "734c0354-0f29-4ce1-99d2-e850f9cc2b16",
+    "sku": "VTK025820",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/095d320eeb78d40a9e2a32d8cd0d0f9b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/095d320eeb78d40a9e2a32d8cd0d0f9b.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/77e508d3a23b769f8cf1493b75e04247.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/a937a43a9bbee7497676380efefed74b.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/7e0c0108e8b5faab5f07470ac808d5b9.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/ac401707dea4a9845abd008089921e4c.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "1ef61d14-f772-4f60-b7e6-563e5abbbdf3",
+    "sku": "VTK025830",
+    "oldImages": [
+      "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/a741440a94b8669a52a2b9ba93070472.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+      "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg"
+    ],
+    "ok": false,
+    "reason": "image_mirror_required",
+    "failures": [
+      {
+        "url": "https://anexos.tiny.com.br/erp/NjY5NjY5Mjk3/a741440a94b8669a52a2b9ba93070472.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/52bf0b66fff985f928d27354b4d604de.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/fe978ef593ec3c56000c4c0a25c1116a.jpg",
+        "error": "image_mirror_required"
+      },
+      {
+        "url": "https://s3.amazonaws.com/tiny-anexos-us/erp/NjY5NjY5Mjk3/2f7652029292db81f284054b3325d662.jpg",
+        "error": "image_mirror_required"
+      }
+    ]
+  },
+  {
+    "produtoId": "e98d28b9-df1e-4b58-8efd-47b95bd4da15",
+    "sku": "VTK025863",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/01-b9a104d102da5b3c3a23.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/02-9f7868753ff18fdb12d5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/03-f69f314fd68e402e1170.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/04-efce7a511b9ab93fd080.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/05-591dc2271c01d751c03d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/06-e4443e825eb342d39e65.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/07-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/08-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/09-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/10-bca540273e6de2c54ecf.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/01-b9a104d102da5b3c3a23.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/02-9f7868753ff18fdb12d5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/03-f69f314fd68e402e1170.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/04-efce7a511b9ab93fd080.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/05-591dc2271c01d751c03d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/06-e4443e825eb342d39e65.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/07-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/08-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/09-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025863/10-bca540273e6de2c54ecf.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "269fa20d-538d-4609-88af-3eb9bad43855",
+    "sku": "VTK025864",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/01-f566f96cb62866ead33f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/02-5be2581e026ab1b3f2cf.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/03-040883a97b5048379a98.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/04-f0def55adb126bd989ca.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/05-6be68a6617bdb869e7de.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/06-fd9f26c826c6a4fdf8c8.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/07-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/08-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/09-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/10-bca540273e6de2c54ecf.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/01-f566f96cb62866ead33f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/02-5be2581e026ab1b3f2cf.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/03-040883a97b5048379a98.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/04-f0def55adb126bd989ca.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/05-6be68a6617bdb869e7de.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/06-fd9f26c826c6a4fdf8c8.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/07-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/08-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/09-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025864/10-bca540273e6de2c54ecf.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "0595f0c5-335b-4f7f-9ae2-727d4c4b106c",
+    "sku": "VTK025865",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/01-0e50720ecf263919346b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/02-9d429d0db54a21c6f78e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/03-c88aba8c6b16c4f845b7.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/04-28b71bda400a07ce57e5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/05-967954483caf12eb0e49.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/06-1bc24190a0fb28f11fa3.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/07-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/08-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/09-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/10-bca540273e6de2c54ecf.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/01-0e50720ecf263919346b.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/02-9d429d0db54a21c6f78e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/03-c88aba8c6b16c4f845b7.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/04-28b71bda400a07ce57e5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/05-967954483caf12eb0e49.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/06-1bc24190a0fb28f11fa3.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/07-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/08-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/09-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025865/10-bca540273e6de2c54ecf.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "d2174e16-89ce-49b9-aae7-17f50cc70be1",
+    "sku": "VTK025866",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/01-e42dccf75e0fdcfa50b5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/02-346277087e31444dc90a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/03-467651d6a2b69d47b559.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/04-f1f0635c24b025df11d6.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/05-8af2fdc6ee724ef66b33.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/06-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/07-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/08-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/09-bca540273e6de2c54ecf.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/01-e42dccf75e0fdcfa50b5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/02-346277087e31444dc90a.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/03-467651d6a2b69d47b559.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/04-f1f0635c24b025df11d6.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/05-8af2fdc6ee724ef66b33.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/06-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/07-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/08-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025866/09-bca540273e6de2c54ecf.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "2ffd7ec2-4304-407d-9d1f-2d04a23d7ef1",
+    "sku": "VTK025867",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/01-1db59aa8a42e789d1025.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/02-6bf01ed9b66870423fa5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/03-97a1f7ccca0ff9833274.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/04-5cff1601c1b98e0e450d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/05-c4ddb2ca79955c49854f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/06-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/07-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/08-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/09-bca540273e6de2c54ecf.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/01-1db59aa8a42e789d1025.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/02-6bf01ed9b66870423fa5.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/03-97a1f7ccca0ff9833274.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/04-5cff1601c1b98e0e450d.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/05-c4ddb2ca79955c49854f.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/06-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/07-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/08-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025867/09-bca540273e6de2c54ecf.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "0d42493f-0a8e-4776-b7bb-1f3eb532ca69",
+    "sku": "VTK025868",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/01-d38d48c7527c4b435020.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/02-a83cc163eec36fd0a301.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/03-0d6a9a9ad05666614463.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/04-1a0f8a0273f1aa8445bb.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/05-52796496408a9527b738.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/06-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/07-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/08-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/09-bca540273e6de2c54ecf.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/01-d38d48c7527c4b435020.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/02-a83cc163eec36fd0a301.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/03-0d6a9a9ad05666614463.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/04-1a0f8a0273f1aa8445bb.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/05-52796496408a9527b738.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/06-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/07-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/08-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025868/09-bca540273e6de2c54ecf.jpg"
+    ],
+    "failures": []
+  },
+  {
+    "produtoId": "8c84ccd5-6cb9-438b-908c-c6ee9423574a",
+    "sku": "VTK025869",
+    "oldImages": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/01-39efd6d8b031afa4a946.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/02-f2df88347dd4e7ee7d21.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/03-01ebd94f57fc0ba825b0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/04-550f288bc23fc1e6aa90.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/05-44ebb0146609d8c51c4e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/06-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/07-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/08-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/09-bca540273e6de2c54ecf.jpg"
+    ],
+    "ok": true,
+    "images": [
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/01-39efd6d8b031afa4a946.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/02-f2df88347dd4e7ee7d21.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/03-01ebd94f57fc0ba825b0.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/04-550f288bc23fc1e6aa90.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/05-44ebb0146609d8c51c4e.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/06-d1ac813562a3ffd8afa2.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/07-d405308d4b4fd1ae3eab.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/08-76c22f7b7423f5e334ef.jpg",
+      "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/bkr1-kits/elgin/VTK025869/09-bca540273e6de2c54ecf.jpg"
+    ],
+    "failures": []
+  }
+]

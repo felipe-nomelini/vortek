@@ -262,6 +262,81 @@ async function pictureErrors(account, item) {
   return failures;
 }
 
+async function replacePendingPictures(account, itemId, expectedItem) {
+  const { data: product, error } = await supabase
+    .from('produtos')
+    .select('imagens')
+    .eq('id', expectedItem.produtoId)
+    .single();
+  if (error || !Array.isArray(product?.imagens) || product.imagens.length === 0) {
+    throw new Error(`${expectedItem.sku}: imagens locais indisponíveis para fallback`);
+  }
+
+  const pictureIds = [];
+  for (let index = 0; index < product.imagens.length; index += 1) {
+    const source = await fetch(String(product.imagens[index]), {
+      signal: AbortSignal.timeout(30000),
+    });
+    const contentType = String(source.headers.get('content-type') || '');
+    if (!source.ok || !contentType.startsWith('image/')) {
+      throw new Error(
+        `${expectedItem.sku}: imagem ${index + 1} inválida (HTTP ${source.status})`,
+      );
+    }
+    const form = new FormData();
+    form.append(
+      'file',
+      await source.blob(),
+      `${expectedItem.sku}-${index + 1}.jpg`,
+    );
+    const upload = await fetch(
+      'https://api.mercadolibre.com/pictures/items/upload',
+      {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${account.token}` },
+        body: form,
+        signal: AbortSignal.timeout(30000),
+      },
+    );
+    const uploadText = await upload.text();
+    let uploadData = null;
+    try {
+      uploadData = uploadText ? JSON.parse(uploadText) : null;
+    } catch {
+      uploadData = null;
+    }
+    if (!upload.ok || !uploadData?.id) {
+      throw new Error(
+        `${expectedItem.sku}: upload direto da imagem ${index + 1} falhou ` +
+        `(HTTP ${upload.status})`,
+      );
+    }
+    pictureIds.push(String(uploadData.id));
+  }
+
+  const update = await fetch(
+    `https://api.mercadolibre.com/items/${encodeURIComponent(itemId)}`,
+    {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${account.token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        pictures: pictureIds.map((id) => ({ id })),
+      }),
+      signal: AbortSignal.timeout(30000),
+    },
+  );
+  if (!update.ok) {
+    const updateText = await update.text();
+    throw new Error(
+      `${expectedItem.sku}: atualização das imagens falhou ` +
+      `(HTTP ${update.status}: ${updateText.slice(0, 200)})`,
+    );
+  }
+}
+
 async function verifyCreated(
   account,
   created,
@@ -553,9 +628,39 @@ async function main() {
     }
     summary.totals.created += 1;
 
-    const verification = await verifyCreated(account, created[0], item, {
+    let verification = await verifyCreated(account, created[0], item, {
       waitForMedia: !DEFER_MEDIA_VERIFICATION,
     });
+    if (
+      !verification.ok &&
+      verification.row?.subStatuses?.includes('picture_download_pending')
+    ) {
+      console.log(`[media-fallback] ${sequence}/${items.length} ${item.sku}`);
+      try {
+        await replacePendingPictures(
+          account,
+          String(created[0]?.anuncio?.id || ''),
+          item,
+        );
+        verification = await verifyCreated(account, created[0], item, {
+          waitForMedia: true,
+        });
+      } catch (error) {
+        summary.totals.failed += 1;
+        summary.rows.push({
+          sequence,
+          sku: item.sku,
+          itemId: created[0]?.anuncio?.id || null,
+          status: 'media_fallback_failed',
+          error: error.message,
+        });
+        fs.writeFileSync(
+          path.join(RESULT_DIR, 'summary.json'),
+          JSON.stringify(summary, null, 2),
+        );
+        throw error;
+      }
+    }
     if (!verification.ok) {
       summary.totals.failed += 1;
       summary.rows.push({

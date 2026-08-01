@@ -128,7 +128,7 @@ const SHEET_CONFIGS = {
     brand: 'Elgin',
     categoryId: 'MLB7060',
     allowVerifiedCategoryFallback: true,
-    blockedComponentIds: [2399, 2400, 2401, 2409],
+    allowedComponentCategoryMismatches: [2391, 2392, 2393, 2608, 2609, 2611, 2790],
     models: {
       2382: 'AA',
       2383: 'AA',
@@ -152,6 +152,7 @@ const SHEET_CONFIGS = {
       2609: 'CR1620',
       2610: 'CR2450',
       2611: 'CR1616',
+      2786: '18650 2600mAh',
       2787: 'A27',
       2789: 'LR41',
       2790: 'CR2430',
@@ -188,6 +189,7 @@ const SHEET_CONFIGS = {
       2609: { unitsEach: 5, size: 'CR1620', shape: 'Botão', voltage: '3 V', composition: 'Lítio', rechargeable: false },
       2610: { unitsEach: 5, size: 'CR2450', shape: 'Botão', voltage: '3 V', composition: 'Lítio', rechargeable: false },
       2611: { unitsEach: 5, size: 'CR1616', shape: 'Botão', voltage: '3 V', composition: 'Lítio', rechargeable: false },
+      2786: { unitsEach: 1, size: '18650', shape: 'Cilíndrica', voltage: '3,7 V', composition: 'Lítio', rechargeable: true, itemLabel: 'baterias' },
       2787: { unitsEach: 5, size: 'A27', shape: 'Cilíndrica', voltage: '12 V', composition: 'Alcalina', rechargeable: false },
       2789: { unitsEach: 10, size: 'LR41', shape: 'Botão', voltage: '1,5 V', composition: 'Alcalina', rechargeable: false },
       2790: { unitsEach: 5, size: 'CR2430', shape: 'Botão', voltage: '3 V', composition: 'Lítio', rechargeable: false },
@@ -196,7 +198,7 @@ const SHEET_CONFIGS = {
       2864: { unitsEach: 8, size: 'AA', shape: 'Cilíndrica', voltage: '1,5 V', composition: 'Alcalina', rechargeable: false },
       3122: { unitsEach: 2, size: 'AAA', shape: 'Cilíndrica', voltage: '1,2 V', composition: 'Ni-MH', rechargeable: true },
       3123: { unitsEach: 4, size: 'AAA', shape: 'Cilíndrica', voltage: '1,2 V', composition: 'Ni-MH', rechargeable: true },
-      3124: { unitsEach: 2, size: 'AA', shape: 'Cilíndrica', voltage: '1,2 V', composition: 'Ni-MH', rechargeable: true },
+      3124: { unitsEach: 2, size: 'AA', shape: 'Cilíndrica', voltage: '1,2 V', composition: 'Ni-MH', rechargeable: true, itemLabel: 'pilhas' },
       3125: { unitsEach: 4, size: 'AA', shape: 'Cilíndrica', voltage: '1,2 V', composition: 'Ni-MH', rechargeable: true },
       3666: { unitsEach: 10, size: 'LR1120/AG8', shape: 'Botão', voltage: '1,5 V', composition: 'Alcalina', rechargeable: false },
       3667: { unitsEach: 10, size: 'LR43/AG12', shape: 'Botão', voltage: '1,5 V', composition: 'Alcalina', rechargeable: false },
@@ -779,12 +781,13 @@ function verifiedDescription(row, product, quantity) {
     const verified = SHEET_CONFIG.attributes[source] || {};
     const model = SHEET_CONFIG.models[source];
     const totalUnits = elginTotalUnits(row.sku_origem, product.nome, quantity);
+    const itemLabel = verified.itemLabel || 'pilhas ou baterias';
     return [
       text(product.nome),
-      `Kit original Elgin com ${totalUnits} pilhas ou baterias, distribuídas em ${quantity} embalagens do fabricante.`,
+      `Kit original Elgin com ${totalUnits} ${itemLabel}, distribuídas em ${quantity} embalagens do fabricante.`,
       'CONTEÚDO DA EMBALAGEM',
       `- ${quantity} embalagens com ${verified.unitsEach} unidade(s) cada`,
-      `- Total: ${totalUnits} pilhas ou baterias`,
+      `- Total: ${totalUnits} ${itemLabel}`,
       'CARACTERÍSTICAS',
       '- Marca: Elgin',
       `- Modelo: ${model}`,
@@ -896,6 +899,21 @@ async function main() {
       block('invalid_simple_kit_link');
       continue;
     }
+    const canonicalSourceSku = text(row.sku_origem).replace(
+      /^(\d+)CX(\d+)$/i,
+      '$1K$2',
+    );
+    if (
+      canonicalSourceSku !== text(row.sku_origem) &&
+      foundSourceSkus.has(canonicalSourceSku)
+    ) {
+      block('duplicate_simple_kit_configuration', {
+        canonicalSourceSku,
+        componentSku: componentRow.componente?.sku || null,
+        quantity,
+      });
+      continue;
+    }
     if (
       SHEET_SLUG === 'duracell' &&
       !duracellTotalUnits(row.sku_origem, product.nome, quantity)
@@ -974,6 +992,23 @@ async function main() {
       block('component_unlisted');
       continue;
     }
+    const componentGtin = digits(componentRow.componente.gtin);
+    if (!digits(product.gtin) && !componentGtin) {
+      block('missing_component_gtin');
+      continue;
+    }
+    if (
+      componentGtin &&
+      componentItem?.category_id &&
+      text(componentItem.category_id) !== expectedCategoryId
+    ) {
+      block('component_gtin_category_conflict', {
+        expected: expectedCategoryId,
+        actual: componentItem.category_id,
+        componentItemId: componentRow.componente.ml_item_id,
+      });
+      continue;
+    }
     if (!SHEET_CONFIG.models[sourceId(row.sku_origem)]) {
       block('missing_verified_model');
       continue;
@@ -1040,11 +1075,11 @@ async function main() {
         allowMissingIdentifier:
           SHEET_SLUG === 'atk' &&
           SHEET_CONFIG.attributes[source]?.kind === 'driver',
+        // Packs simples usam o GTIN da cartela e multiplicam o componente no
+        // pedido/nota. Só omitir quando o GTIN estiver preso a outra categoria.
         omitComponentGtin:
-          (
-            Boolean(componentItem?.category_id) &&
-            text(componentItem.category_id) !== expectedCategoryId
-          ),
+          Boolean(componentItem?.category_id) &&
+          text(componentItem.category_id) !== expectedCategoryId,
         imagesOnVortekStorage: imageResult.images.every((url) =>
           url.startsWith(STORAGE_PREFIX),
         ),

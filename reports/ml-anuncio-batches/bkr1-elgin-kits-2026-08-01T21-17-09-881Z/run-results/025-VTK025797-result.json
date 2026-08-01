@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-08-01T21-17-09-881Z/run-results/025-VTK025797-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-025-VTK025797",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "fb81d95d-b34a-4cef-8d56-72d66f6e936e",
+      "sku": "VTK025797",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4980595457",
+        "title": "48 Pilhas Zinco Ar Elgin Tamanho 10 Pr70 1 4v Kit",
+        "price": 178.21,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4980595457-48-pilhas-zinco-ar-elgin-tamanho-10-pr70-1-4v-kit-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 152.10 → R$ 178.21."
+      ]
+    }
+  ],
+  "failed": []
+}

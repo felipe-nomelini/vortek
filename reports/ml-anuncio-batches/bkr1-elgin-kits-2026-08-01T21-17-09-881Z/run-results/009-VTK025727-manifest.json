@@ -1,0 +1,82 @@
+{
+  "batchNumber": 9,
+  "batchId": "bkr1-live-009-VTK025727",
+  "strategy": "one_item_then_verify",
+  "items": [
+    {
+      "produtoId": "0e0a63b3-51a0-4757-9720-55bd25d37659",
+      "sku": "VTK025727",
+      "nome": "24 Pilhas Zinco Ar Elgin Tamanho 10 PR70 1,4V Kit",
+      "fornecedor": "BKR1",
+      "dsliteFornecedorId": "108",
+      "categoryId": "MLB7060",
+      "custo": 51.6,
+      "estoque": 10,
+      "suggestedPricePreview": 88.4,
+      "description": "24 Pilhas Zinco Ar Elgin Tamanho 10 PR70 1,4V Kit\n\nKit original Elgin com 24 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 6 unidade(s) cada\n\n- Total: 24 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: 10/230 PR70\n\n- Tamanho: 10/PR70\n\n- Formato: Botão\n\n- Quantidade total: 24 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 1,4 V\n\n- Composição: Zinco-ar\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "102992",
+          "value_name": "Elgin"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "10/230 PR70"
+        },
+        {
+          "id": "CELL_BATTERY_SIZE",
+          "value_name": "10/PR70"
+        },
+        {
+          "id": "CELL_BATTERY_SHAPE",
+          "value_name": "Botão"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_name": "24"
+        },
+        {
+          "id": "IS_RECHARGEABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "NOMINAL_VOLTAGE",
+          "value_name": "1,4 V"
+        },
+        {
+          "id": "CELL_BATTERY_COMPOSITION",
+          "value_name": "Zinco-ar"
+        }
+      ],
+      "preflight": {
+        "strictEvidence": true,
+        "sourceSheet": "Elgin.xls",
+        "sourceSku": "2400K4",
+        "componentSku": "VTK012051",
+        "componentGtin": "7897013597923",
+        "componentQuantity": 4,
+        "trustedOptionalAttributeOverrides": true,
+        "expectedAttributeValues": {
+          "MODEL": "10/230 PR70",
+          "SALE_FORMAT": "Kit",
+          "UNITS_PER_PACK": "24",
+          "IS_RECHARGEABLE": "Não"
+        },
+        "allowMissingIdentifier": false,
+        "omitComponentGtin": false,
+        "imagesOnVortekStorage": true,
+        "categoryEvidence": "Componente MLB4880590849 em MLB7060",
+        "descriptionFormat": "paragraphs_and_bullet_points"
+      },
+      "sourceBatch": "002-bkr1-kit-elgin-002.json",
+      "sourceSequence": 9
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-08-01T21-17-09-881Z/run-results/019-VTK025762-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-019-VTK025762",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "75797992-bcf0-4f88-bb5c-f3258412ffea",
+      "sku": "VTK025762",
+      "category": {
+        "id": "MLB7060",
+        "nome": "MLB7060",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4980605821",
+        "title": "36 Pilhas Zinco Ar Elgin Tamanho 312 Pr41 1 4v Kit",
+        "price": 139.16,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4980605821-36-pilhas-zinco-ar-elgin-tamanho-312-pr41-1-4v-kit-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 119.09 → R$ 139.16."
+      ]
+    }
+  ],
+  "failed": []
+}

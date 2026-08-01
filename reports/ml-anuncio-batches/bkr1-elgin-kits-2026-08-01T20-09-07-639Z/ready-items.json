@@ -1,0 +1,75 @@
+[
+  {
+    "produtoId": "3d62c2ca-f623-476d-8067-19ac50b01d94",
+    "sku": "VTK025870",
+    "nome": "20 Pilhas Recarregáveis AA Elgin 2500mAh Kit 10 Blisters",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 229.5,
+    "estoque": 2,
+    "suggestedPricePreview": 325.83,
+    "description": "20 Pilhas Recarregáveis AA Elgin 2500mAh Kit 10 Blisters\n\nKit original Elgin com 20 pilhas, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 2 unidade(s) cada\n\n- Total: 20 pilhas\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: AA 2500mAh\n\n- Tamanho: AA\n\n- Formato: Cilíndrica\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Sim\n\n- Voltagem nominal: 1,2 V\n\n- Composição: Ni-MH\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "AA 2500mAh"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "AA"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Cilíndrica"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "20"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "1,2 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Ni-MH"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "3124K10",
+      "componentSku": "VTK012098",
+      "componentGtin": "7897013536083",
+      "componentQuantity": 10,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "AA 2500mAh",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "20",
+        "IS_RECHARGEABLE": "Sim"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": false,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Componente MLB7111710226 em MLB7060",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  }
+]
