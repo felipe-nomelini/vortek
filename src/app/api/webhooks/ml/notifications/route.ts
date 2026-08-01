@@ -17,6 +17,10 @@ import {
 } from '@/lib/estoque-interno';
 import { detachDeletedMlListing, isMlListingDeleted } from '@/lib/ml/listing-deletion';
 import { isMlOrderPaid } from '@/lib/ml/order-sale-alert';
+import {
+  ML_ORDER_HYDRATION_JOB_TYPE,
+  normalizeMlOrderHydrationKey,
+} from '@/lib/sync/ml-order-hydration';
 
 const WEBHOOK_STUB_PENDING_TAGS = ['pedido_sem_itens', 'webhook_hydration_pending', 'snapshot_origem_webhook_stub'];
 
@@ -168,6 +172,27 @@ async function queueOrderHydrationJob(params: {
   pedidoId?: string | null;
 }) {
   const { serviceClient, mlOrderId, resourcePath, receivedAt, pedidoId } = params;
+  const dedupeKey = normalizeMlOrderHydrationKey(mlOrderId);
+  if (!dedupeKey) {
+    throw new Error('ID do pedido ML inválido para fila de hidratação');
+  }
+
+  const { data: existingJob, error: existingJobError } = await serviceClient
+    .from('jobs')
+    .select('id,status')
+    .eq('tipo', ML_ORDER_HYDRATION_JOB_TYPE)
+    .eq('dedupe_key', dedupeKey)
+    .in('status', ['pendente', 'rodando', 'on_hold'])
+    .order('created_at', { ascending: true })
+    .limit(1)
+    .maybeSingle();
+
+  if (existingJobError) {
+    throw new Error(`Falha ao consultar fila de hidratação: ${existingJobError.message}`);
+  }
+  if (existingJob?.id) {
+    return { id: String(existingJob.id), created: false, status: String(existingJob.status || '') };
+  }
 
   const initialLog = [
     {
@@ -186,7 +211,8 @@ async function queueOrderHydrationJob(params: {
   const { data: insertedJob, error } = await serviceClient
     .from('jobs')
     .insert({
-      tipo: 'ml_orders_v2_hydration',
+      tipo: ML_ORDER_HYDRATION_JOB_TYPE,
+      dedupe_key: dedupeKey,
       status: 'pendente',
       progresso: 0,
       total: 1,
@@ -198,6 +224,19 @@ async function queueOrderHydrationJob(params: {
     .select('id, status')
     .single();
 
+  if (error?.code === '23505') {
+    const { data: concurrentJob } = await serviceClient
+      .from('jobs')
+      .select('id,status')
+      .eq('tipo', ML_ORDER_HYDRATION_JOB_TYPE)
+      .eq('dedupe_key', dedupeKey)
+      .in('status', ['pendente', 'rodando', 'on_hold'])
+      .limit(1)
+      .maybeSingle();
+    if (concurrentJob?.id) {
+      return { id: String(concurrentJob.id), created: false, status: String(concurrentJob.status || '') };
+    }
+  }
   if (error || !insertedJob?.id) {
     throw new Error(error?.message || 'Falha ao enfileirar job de hidratacao do webhook');
   }
@@ -225,7 +264,7 @@ async function queueOrderHydrationJob(params: {
       try {
         const result = await runMlSingleStageJob({
           jobId: insertedJob.id,
-          tipo: 'ml_orders_v2_hydration',
+          tipo: ML_ORDER_HYDRATION_JOB_TYPE,
           path: '/api/sync/pedidos',
           label: 'ML Orders V2 Hydration',
           query: { mlOrderId },
@@ -234,13 +273,20 @@ async function queueOrderHydrationJob(params: {
             triggerSource: 'webhook_async',
             source: 'webhook_orders_v2',
           },
+          retryOnFailure: true,
         });
+
+        const deferred = result.status === 'on_hold';
 
         await registrarEventoNfAuditoria({
           pedidoId: pedidoId || null,
           mlOrderId,
           mlPackId: null,
-          evento: result.status === 'completo' ? 'webhook_deferred_processing_success' : 'webhook_deferred_processing_failed',
+          evento: result.status === 'completo'
+            ? 'webhook_deferred_processing_success'
+            : deferred
+              ? 'webhook_deferred_processing_deferred'
+              : 'webhook_deferred_processing_failed',
           respostaMl: {
             source: 'webhook_orders_v2',
             resource_path: resourcePath,
@@ -275,7 +321,7 @@ async function queueOrderHydrationJob(params: {
     })();
   }, 0);
 
-  return insertedJob.id;
+  return { id: String(insertedJob.id), created: true, status: String(insertedJob.status || 'pendente') };
 }
 
 async function resolveFiscalReleaseWindow(shipment: any | null): Promise<{

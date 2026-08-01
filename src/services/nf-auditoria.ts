@@ -5,6 +5,7 @@ type AuditEvent =
   | 'webhook_acked'
   | 'webhook_deferred_processing_started'
   | 'webhook_deferred_processing_success'
+  | 'webhook_deferred_processing_deferred'
   | 'webhook_deferred_processing_failed'
   | 'pre_validacao'
   | 'envio'

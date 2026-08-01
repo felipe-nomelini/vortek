@@ -26,6 +26,85 @@ export function isJobStale(
   return isJobStaleByActivity(job, thresholdMinutes);
 }
 
+async function releaseLockOwnedByJob(
+  serviceClient: ReturnType<typeof createServiceClient>,
+  jobId: string,
+): Promise<{ released: boolean; reason: string | null }> {
+  const { data: ownedLock, error } = await (serviceClient as any)
+    .from('sync_domain_locks')
+    .select('domain,owner_token')
+    .eq('owner_job_id', jobId)
+    .limit(1)
+    .maybeSingle();
+
+  if (error) {
+    throw new Error(`Falha ao consultar lock do job ${jobId}: ${error.message}`);
+  }
+  if (!ownedLock?.domain || !ownedLock?.owner_token) {
+    return { released: false, reason: 'owned_lock_not_found' };
+  }
+
+  const released = await releaseDomainLock({
+    domain: String(ownedLock.domain),
+    ownerToken: String(ownedLock.owner_token),
+  });
+  return { released, reason: released ? null : 'owned_lock_release_failed' };
+}
+
+export async function requeueStaleJob(
+  job: Pick<JobRow, 'id' | 'tipo' | 'status' | 'created_at' | 'finished_at' | 'log'>,
+  thresholdMinutes: number,
+) {
+  const serviceClient = createServiceClient();
+  const log = parseJobLog(job.log);
+  const requeuedAt = nowIso();
+
+  log.push({
+    event_type: 'job_requeued_stale',
+    type: 'warning',
+    message: 'Job interrompido recuperado e devolvido para fila',
+    timestamp: requeuedAt,
+    stale_threshold_minutes: thresholdMinutes,
+    previous_status: job.status,
+  });
+
+  const { data: requeued, error } = await serviceClient
+    .from('jobs')
+    .update({
+      status: 'on_hold',
+      finished_at: null,
+      progresso: 0,
+      processados: 0,
+      log,
+    } as any)
+    .eq('id', job.id)
+    .eq('status', 'rodando')
+    .select('id')
+    .maybeSingle();
+
+  if (error) {
+    throw new Error(`Falha ao devolver job stale para fila (${job.id}): ${error.message}`);
+  }
+  if (!requeued?.id) {
+    return {
+      id: job.id,
+      tipo: job.tipo,
+      requeued_at: null,
+      domain_lock_released: false,
+      domain_lock_release_skipped: 'job_no_longer_running',
+    };
+  }
+
+  const lock = await releaseLockOwnedByJob(serviceClient, job.id);
+  return {
+    id: job.id,
+    tipo: job.tipo,
+    requeued_at: requeuedAt,
+    domain_lock_released: lock.released,
+    domain_lock_release_skipped: lock.reason,
+  };
+}
+
 export async function markJobAsStale(job: Pick<JobRow, 'id' | 'tipo' | 'status' | 'created_at' | 'finished_at' | 'log'>) {
   const serviceClient = createServiceClient();
   const log = parseJobLog(job.log);
@@ -63,8 +142,12 @@ export async function markJobAsStale(job: Pick<JobRow, 'id' | 'tipo' | 'status' 
     throw new Error(`Falha ao marcar job stale (${job.id}): ${error.message}`);
   }
 
+  const ownedLock = await releaseLockOwnedByJob(serviceClient, job.id);
+  domainLockReleased = ownedLock.released;
+  domainLockReleaseSkipped = ownedLock.reason;
+
   const task = SYNC_TASKS.find((entry) => entry.jobTipo === job.tipo);
-  if (task?.domain) {
+  if (!domainLockReleased && task?.domain) {
     const createdAt = job.created_at ? new Date(job.created_at).getTime() : 0;
     const { data: lock } = await (serviceClient as any)
       .from('sync_domain_locks')
@@ -87,7 +170,7 @@ export async function markJobAsStale(job: Pick<JobRow, 'id' | 'tipo' | 'status' 
       });
     } else if (lock) {
       domainLockReleaseSkipped = 'lock_not_owned_by_stale_job';
-    } else {
+    } else if (domainLockReleaseSkipped === 'owned_lock_not_found') {
       domainLockReleaseSkipped = 'lock_not_found';
     }
   }

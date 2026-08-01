@@ -1746,13 +1746,25 @@ export async function POST(request: Request) {
   const domain = 'pedidos:ml_ingest';
   let lockOwnerToken = '';
   let lockAcquired = false;
+  let body: any = null;
+  try {
+    body = await request.json();
+  } catch {
+    body = null;
+  }
+  const syncJobIdRaw = String(body?.syncJobId || '').trim();
+  const syncJobId = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(syncJobIdRaw)
+    ? syncJobIdRaw
+    : null;
+  const syncJobType = String(body?.syncJobType || '').trim() || 'sync_ml_orders_ingest';
 
   try {
     const lock = await acquireDomainLock({
       domain,
-      ownerTask: 'sync_ml_orders_ingest',
+      ownerTask: syncJobType,
+      ownerJobId: syncJobId,
       ttlSeconds: 20 * 60,
-      metadata: { source: 'api/sync/pedidos' },
+      metadata: { source: 'api/sync/pedidos', sync_job_id: syncJobId, sync_job_type: syncJobType },
     });
     lockOwnerToken = lock.ownerToken;
     lockAcquired = lock.acquired;
@@ -1773,13 +1785,6 @@ export async function POST(request: Request) {
         duration: { ms: Date.now() - startedAt },
       }, { status: 409 });
     }
-
-  let body: any = null;
-  try {
-    body = await request.json();
-  } catch {
-    body = null;
-  }
 
   const { searchParams } = new URL(request.url);
   const offset = parseInt(searchParams.get('offset') || '0', 10);

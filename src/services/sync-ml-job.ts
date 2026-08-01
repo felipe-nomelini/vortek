@@ -1,4 +1,5 @@
 import { createServiceClient } from '@/lib/supabase';
+import { resolveMlJobOutcome, type MlJobOutcome } from '@/lib/sync/job-outcome';
 import type { Database } from '@/types/database';
 
 interface MlJobConfig {
@@ -9,6 +10,7 @@ interface MlJobConfig {
   query?: Record<string, string | number | boolean | null | undefined>;
   body?: Record<string, any>;
   requestTimeoutMs?: number;
+  retryOnFailure?: boolean;
 }
 
 type JobsUpdate = Database['public']['Tables']['jobs']['Update'];
@@ -33,7 +35,7 @@ function parseJobLog(log: any): any[] {
 }
 
 function eventLog(
-  eventType: 'job_started' | 'job_stage_done' | 'job_finished' | 'job_start_failed',
+  eventType: 'job_started' | 'job_stage_done' | 'job_finished' | 'job_start_failed' | 'job_deferred',
   message: string,
   extra?: Record<string, any>,
 ) {
@@ -62,7 +64,7 @@ async function updateJob(jobId: string, data: JobsUpdate) {
 
 export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
   success: boolean;
-  status: 'completo' | 'erro' | 'failed_auth';
+  status: MlJobOutcome;
   processados: number;
   total: number;
 }> {
@@ -88,23 +90,46 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
     };
   }
 
-  const baseUrl = process.env.INTERNAL_APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-  const apiKey = process.env.API_SECRET_KEY || '';
-  const requestTimeoutMs = Number(config.requestTimeoutMs || process.env.INTERNAL_SYNC_TIMEOUT_MS || 120000);
   const logs = parseJobLog(job.log);
+  logs.push(eventLog('job_started', `Processamento iniciado para ${label}`, { job_id: jobId, tipo }));
 
-  try {
-    logs.push(eventLog('job_started', `Processamento iniciado para ${label}`, { job_id: jobId, tipo }));
-
-    await updateJob(jobId, {
+  const { data: claimedJob, error: claimError } = await serviceClient
+    .from('jobs')
+    .update({
       status: 'rodando',
       progresso: 0,
       processados: 0,
       total: 1,
       log: logs,
       finished_at: null,
-    });
+    })
+    .eq('id', jobId)
+    .in('status', ['pendente', 'on_hold'])
+    .select('id')
+    .maybeSingle();
 
+  if (claimError) {
+    throw new Error(`Falha ao assumir job: ${claimError.message}`);
+  }
+  if (!claimedJob?.id) {
+    return {
+      success: false,
+      status: 'on_hold',
+      processados: 0,
+      total: 1,
+    };
+  }
+
+  const baseUrl = process.env.INTERNAL_APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+  const apiKey = process.env.API_SECRET_KEY || '';
+  const requestTimeoutMs = Number(config.requestTimeoutMs || process.env.INTERNAL_SYNC_TIMEOUT_MS || 120000);
+  const requestBody = {
+    ...(body || {}),
+    syncJobId: jobId,
+    syncJobType: tipo,
+  };
+
+  try {
     const url = new URL(`${baseUrl}${path}`);
     for (const [key, value] of Object.entries(query || {})) {
       if (value !== undefined && value !== null) {
@@ -132,7 +157,7 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
           'Content-Type': 'application/json',
           'x-api-key': apiKey,
         },
-        body: JSON.stringify(body || {}),
+        body: JSON.stringify(requestBody),
         signal: controller.signal,
       });
     } finally {
@@ -173,7 +198,7 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
             'Content-Type': 'application/json',
             'x-api-key': apiKey,
           },
-          body: JSON.stringify(body || {}),
+          body: JSON.stringify(requestBody),
           signal: retryController.signal,
         });
       } finally {
@@ -186,12 +211,16 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
       isDomainLockConflict = res.status === 409 && errorCode === 'domain_lock_conflict';
     }
 
-    // Lock contention means another equivalent job owns this domain. It is not
-    // a failed synchronization and must not create critical-error alerts.
     const skippedDueToDomainLock = isDomainLockConflict;
-    const ok = skippedDueToDomainLock || (res.ok && raw?.success !== false && raw?.ok !== false);
+    const requestSucceeded = res.ok && raw?.success !== false && raw?.ok !== false;
     const authFailure = res.status === 401 && (raw?.failure_reason === 'auth_fatal' || raw?.auth_state === 'reauth_required');
-    const statusFinal: 'completo' | 'erro' | 'failed_auth' = ok ? 'completo' : (authFailure ? 'failed_auth' : 'erro');
+    const statusFinal = resolveMlJobOutcome({
+      domainLockConflict: isDomainLockConflict,
+      requestSucceeded,
+      authFailure,
+      retryOnFailure: Boolean(config.retryOnFailure),
+    });
+    const ok = statusFinal === 'completo';
     const errorCategory = raw?.category || primaryError?.category || null;
     const upstreamStatus = raw?.upstream_status ?? primaryError?.upstream_status ?? null;
     const previousCursor = isValidFornecedorCursor(body)
@@ -225,11 +254,13 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
 
     finalLogs.push({
       event_type: 'job_stage_done',
-      type: ok ? 'success' : 'error',
+      type: statusFinal === 'on_hold' ? 'warning' : (ok ? 'success' : 'error'),
       stage: tipo,
       http_status: res.status,
       message: isDomainLockConflict
-        ? 'Etapa ignorada: domínio já está em execução por outro job'
+        ? (statusFinal === 'on_hold'
+          ? 'Etapa adiada: domínio ocupado; job mantido para nova tentativa'
+          : 'Etapa ignorada: domínio já está em execução por outro job')
         : (raw?.message || raw?.erro || raw?.error || (ok ? 'Etapa concluída' : 'Etapa falhou')),
       timestamp: nowIso(),
       duration_ms: Date.now() - startedAtMs,
@@ -246,25 +277,27 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
       ...raw,
     });
 
-    finalLogs.push(eventLog('job_finished', `Processamento finalizado com status ${statusFinal}`, {
-      job_id: jobId,
-      tipo,
-      http_status: res.status,
-    }));
+    finalLogs.push(eventLog(
+      statusFinal === 'on_hold' ? 'job_deferred' : 'job_finished',
+      statusFinal === 'on_hold'
+        ? 'Job mantido em espera para nova tentativa'
+        : `Processamento finalizado com status ${statusFinal}`,
+      { job_id: jobId, tipo, http_status: res.status },
+    ));
 
     await updateJob(jobId, {
       status: statusFinal,
-      processados: Math.max(1, Number(latestJob?.processados || 0)),
+      processados: statusFinal === 'on_hold' ? 0 : Math.max(1, Number(latestJob?.processados || 0)),
       total: Math.max(1, Number(latestJob?.total || 0)),
-      progresso: 100,
+      progresso: statusFinal === 'on_hold' ? 0 : 100,
       log: finalLogs,
-      finished_at: nowIso(),
+      finished_at: statusFinal === 'on_hold' ? null : nowIso(),
     });
 
     return {
-      success: true,
+      success: ok,
       status: statusFinal,
-      processados: 1,
+      processados: statusFinal === 'on_hold' ? 0 : 1,
       total: 1,
     };
   } catch (err: any) {
@@ -281,15 +314,31 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
       abort: err?.name === 'AbortError',
     }));
 
+    const retryOnFailure = Boolean(config.retryOnFailure);
+    if (retryOnFailure) {
+      failedLogs.push(eventLog('job_deferred', 'Job mantido em espera após falha transitória', {
+        job_id: jobId,
+        tipo,
+      }));
+    }
+
     await updateJob(jobId, {
-      status: 'erro',
+      status: retryOnFailure ? 'on_hold' : 'erro',
       log: failedLogs,
-      finished_at: nowIso(),
-      processados: 1,
+      finished_at: retryOnFailure ? null : nowIso(),
+      processados: retryOnFailure ? 0 : 1,
       total: 1,
-      progresso: 100,
+      progresso: retryOnFailure ? 0 : 100,
     });
 
+    if (retryOnFailure) {
+      return {
+        success: false,
+        status: 'on_hold',
+        processados: 0,
+        total: 1,
+      };
+    }
     throw err;
   }
 }

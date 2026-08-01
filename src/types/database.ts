@@ -455,6 +455,7 @@ export type Database = {
           cancelado: boolean
           created_at: string
           created_by: string | null
+          dedupe_key: string | null
           finished_at: string | null
           id: string
           log: Json
@@ -468,6 +469,7 @@ export type Database = {
           cancelado?: boolean
           created_at?: string
           created_by?: string | null
+          dedupe_key?: string | null
           finished_at?: string | null
           id?: string
           log?: Json
@@ -481,6 +483,7 @@ export type Database = {
           cancelado?: boolean
           created_at?: string
           created_by?: string | null
+          dedupe_key?: string | null
           finished_at?: string | null
           id?: string
           log?: Json

@@ -3,7 +3,17 @@ import { createServiceClient } from '@/lib/supabase';
 import { runMlSingleStageJob } from '@/services/sync-ml-job';
 import { getMLAuthDiagnostics } from '@/services/integration';
 import { SYNC_TASKS, getIntervalMsForTask, getIntervalMinutesForTask, getSaoPauloHour } from '@/lib/sync/registry';
-import { DEFAULT_STALE_JOB_THRESHOLD_MINUTES, isJobStale, markJobAsStale } from '@/lib/sync/stale-jobs';
+import {
+  DEFAULT_STALE_JOB_THRESHOLD_MINUTES,
+  isJobStale,
+  markJobAsStale,
+  requeueStaleJob,
+} from '@/lib/sync/stale-jobs';
+import {
+  getMlOrderIdFromHydrationJob,
+  ML_ORDER_HYDRATION_JOB_TYPE,
+  ML_ORDER_HYDRATION_STALE_MINUTES,
+} from '@/lib/sync/ml-order-hydration';
 import {
   alertCriticalJobs,
   alertIntegrationStatus,
@@ -88,6 +98,66 @@ async function processWhatsappLabelQueue(serviceClient: ReturnType<typeof create
     fulfilled: settled.filter((item) => item.status === 'fulfilled').length,
     rejected: settled.filter((item) => item.status === 'rejected').length,
   };
+}
+
+async function processMlOrderHydrationQueue(serviceClient: ReturnType<typeof createServiceClient>) {
+  const { data: queuedJobs, error } = await serviceClient
+    .from('jobs')
+    .select('id,status,dedupe_key,log,created_at')
+    .eq('tipo', ML_ORDER_HYDRATION_JOB_TYPE)
+    .in('status', ['pendente', 'on_hold'])
+    .order('created_at', { ascending: true })
+    .limit(5);
+
+  if (error) {
+    console.error('[cron-dispatch] falha ao listar fila de hidratação ML', error.message);
+    return { processed: 0, completed: 0, deferred: 0, error: error.message };
+  }
+
+  let processed = 0;
+  let completed = 0;
+  let deferred = 0;
+  for (const job of queuedJobs || []) {
+    const mlOrderId = getMlOrderIdFromHydrationJob(job as any);
+    if (!mlOrderId) {
+      const log = parseLog(job.log);
+      log.push({
+        event_type: 'job_invalid_payload',
+        type: 'error',
+        message: 'Job sem ID válido de pedido ML',
+        timestamp: nowIso(),
+      });
+      await serviceClient
+        .from('jobs')
+        .update({ status: 'erro', finished_at: nowIso(), progresso: 100, log })
+        .eq('id', job.id)
+        .in('status', ['pendente', 'on_hold']);
+      continue;
+    }
+
+    const result = await runMlSingleStageJob({
+      jobId: job.id,
+      tipo: ML_ORDER_HYDRATION_JOB_TYPE,
+      path: '/api/sync/pedidos',
+      label: 'ML Orders V2 Hydration',
+      query: { mlOrderId },
+      body: {
+        mlOrderId,
+        triggerSource: 'cron_queue',
+        source: 'webhook_orders_v2_retry',
+      },
+      retryOnFailure: true,
+    });
+
+    processed += 1;
+    if (result.status === 'completo') completed += 1;
+    if (result.status === 'on_hold') {
+      deferred += 1;
+      break;
+    }
+  }
+
+  return { processed, completed, deferred, error: null };
 }
 
 function getSaoPauloDateParts() {
@@ -263,6 +333,18 @@ export async function POST(request: Request) {
     console.error('[cron-dispatch] falha ao listar jobs para recuperação stale', runningJobsError.message);
   } else {
     for (const job of runningJobs || []) {
+      if (job.tipo === ML_ORDER_HYDRATION_JOB_TYPE) {
+        if (job.status !== 'rodando' || !isJobStale(job as any, ML_ORDER_HYDRATION_STALE_MINUTES)) continue;
+        const recovery = await requeueStaleJob(job as any, ML_ORDER_HYDRATION_STALE_MINUTES);
+        results.push({
+          task: job.tipo,
+          action: 'stale_job_queued_for_retry',
+          jobId: job.id,
+          stale_threshold_minutes: ML_ORDER_HYDRATION_STALE_MINUTES,
+          ...recovery,
+        });
+        continue;
+      }
       if (!isJobStale(job as any, DEFAULT_STALE_JOB_THRESHOLD_MINUTES)) continue;
       if (job.tipo === 'whatsapp_label_send') {
         const log = parseWhatsappLabelJobLog(job.log);
@@ -298,6 +380,18 @@ export async function POST(request: Request) {
 
   const whatsappQueueResult = await processWhatsappLabelQueue(serviceClient);
   results.push({ task: 'whatsapp_label_send', action: 'queue_processed', ...whatsappQueueResult });
+
+  if (mlAuth.state === 'reauth_required' || Boolean(mlAuth.blocked_until)) {
+    results.push({
+      task: ML_ORDER_HYDRATION_JOB_TYPE,
+      action: 'queue_skipped_auth_block',
+      auth_state: mlAuth.state,
+      auth_blocked_until: mlAuth.blocked_until,
+    });
+  } else {
+    const hydrationQueueResult = await processMlOrderHydrationQueue(serviceClient);
+    results.push({ task: ML_ORDER_HYDRATION_JOB_TYPE, action: 'queue_processed', ...hydrationQueueResult });
+  }
 
   await Promise.allSettled([
     alertIntegrationStatus().then((result) => alertResults.push({ alert: 'integration_status', ...result })),
