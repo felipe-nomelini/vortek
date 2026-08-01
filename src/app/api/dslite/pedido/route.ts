@@ -377,7 +377,7 @@ async function resolvePedidoSupplierOffer(params: {
   let { data: productRow } = await client
     .from("produtos")
     .select(
-      "id,sku,ativo,oferta_preferencial_id,dslite_fornecedor_id,dslite_produto_id",
+      "id,sku,ativo,oferta_preferencial_id,fornecedor_preferencial_manual,dslite_fornecedor_id,dslite_produto_id",
     )
     .in("sku", skuVariants.length > 0 ? skuVariants : [sku])
     .limit(1)
@@ -408,7 +408,7 @@ async function resolvePedidoSupplierOffer(params: {
       const { data: productByOffer } = await client
         .from("produtos")
         .select(
-          "id,sku,ativo,oferta_preferencial_id,dslite_fornecedor_id,dslite_produto_id",
+          "id,sku,ativo,oferta_preferencial_id,fornecedor_preferencial_manual,dslite_fornecedor_id,dslite_produto_id",
         )
         .eq("id", offerProductId)
         .maybeSingle();
@@ -439,6 +439,7 @@ async function resolvePedidoSupplierOffer(params: {
   const preferred = resolvePreferredOfferForProduct(
     (offers || []) as any[],
     (productRow as any)?.oferta_preferencial_id,
+    (productRow as any)?.fornecedor_preferencial_manual === true,
   );
   if (preferred) {
     return {
@@ -841,7 +842,7 @@ async function resolveDsliteProductCodeForNfe(
 
   let { data: productRow } = await client
     .from("produtos")
-    .select("id,oferta_preferencial_id,dslite_produto_id")
+    .select("id,oferta_preferencial_id,fornecedor_preferencial_manual,dslite_produto_id")
     .in("sku", lookupSkus)
     .limit(1)
     .maybeSingle();
@@ -869,7 +870,7 @@ async function resolveDsliteProductCodeForNfe(
     if (productId) {
       const { data } = await client
         .from("produtos")
-        .select("id,oferta_preferencial_id,dslite_produto_id")
+        .select("id,oferta_preferencial_id,fornecedor_preferencial_manual,dslite_produto_id")
         .eq("id", productId)
         .maybeSingle();
       productRow = data as any;
@@ -885,6 +886,7 @@ async function resolveDsliteProductCodeForNfe(
   const preferred = resolvePreferredOfferForProduct(
     (offers || []) as any[],
     (productRow as any)?.oferta_preferencial_id,
+    (productRow as any)?.fornecedor_preferencial_manual === true,
   );
   const code = String(
     preferred?.dslite_produto_id ||

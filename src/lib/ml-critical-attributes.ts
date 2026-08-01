@@ -60,6 +60,7 @@ export function resolveMlCriticalFacts(produto: any, offers: any[] = []) {
   const preferredOffer = resolvePreferredOfferForProduct(
     safeOffers,
     produto?.oferta_preferencial_id || null,
+    produto?.fornecedor_preferencial_manual === true,
   );
   const preferredText = [preferredOffer?.nome, preferredOffer?.descricao]
     .filter(Boolean)

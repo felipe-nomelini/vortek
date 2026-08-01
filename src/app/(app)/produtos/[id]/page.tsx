@@ -35,6 +35,7 @@ const sectionTitle = {
 type ProdutoRow = Database['public']['Tables']['produtos']['Row'];
 type ProductSupplierOffer = Database['public']['Tables']['produto_fornecedor_ofertas']['Row'] & {
   preferred?: boolean;
+  preferred_manual?: boolean;
   is_internal_stock?: boolean;
 };
 
@@ -86,6 +87,8 @@ export default function ProductDetailPage() {
   const [supplierOffers, setSupplierOffers] = useState<ProductSupplierOffer[]>([]);
   const [supplierOffersLoading, setSupplierOffersLoading] = useState(false);
   const [savingOfferId, setSavingOfferId] = useState<string | null>(null);
+  const [supplierSelectionMode, setSupplierSelectionMode] = useState<'automatic' | 'manual'>('automatic');
+  const [preferredSupplierOfferId, setPreferredSupplierOfferId] = useState<string | null>(null);
 
   const fetchProduct = useCallback(async () => {
     setLoading(true);
@@ -118,6 +121,8 @@ export default function ProductDetailPage() {
       }
       const json = await res.json();
       setSupplierOffers(Array.isArray(json.data) ? json.data : []);
+      setSupplierSelectionMode(json.selection_mode === 'manual' ? 'manual' : 'automatic');
+      setPreferredSupplierOfferId(json.preferred_offer_id ? String(json.preferred_offer_id) : null);
     } catch (err: any) {
       message.error(err.message || 'Erro ao carregar fornecedores do produto');
     } finally {
@@ -219,10 +224,42 @@ export default function ProductDetailPage() {
         throw new Error(json.error || 'Erro ao salvar oferta do fornecedor');
       }
       setSupplierOffers(Array.isArray(json.data) ? json.data : []);
+      setSupplierSelectionMode(json.selection_mode === 'manual' ? 'manual' : 'automatic');
+      setPreferredSupplierOfferId(json.preferred_offer_id ? String(json.preferred_offer_id) : null);
       await fetchProduct();
       message.success('Oferta do fornecedor atualizada');
     } catch (err: any) {
       message.error(err.message || 'Erro ao salvar oferta do fornecedor');
+      await fetchSupplierOffers();
+    } finally {
+      setSavingOfferId(null);
+    }
+  };
+
+  const persistPreferredSupplier = async (value: string) => {
+    setSavingOfferId('supplier-selection');
+    try {
+      const automatic = value === 'automatic';
+      const res = await fetch(`/api/produtos/${id}/fornecedores`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(automatic
+          ? { selectionMode: 'automatic' }
+          : { selectionMode: 'manual', offerId: value }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(json.error || 'Erro ao alterar fornecedor preferencial');
+      }
+      setSupplierOffers(Array.isArray(json.data) ? json.data : []);
+      setSupplierSelectionMode(json.selection_mode === 'manual' ? 'manual' : 'automatic');
+      setPreferredSupplierOfferId(json.preferred_offer_id ? String(json.preferred_offer_id) : null);
+      await fetchProduct();
+      message.success(automatic
+        ? 'Seleção automática por menor custo ativada'
+        : 'Fornecedor preferencial definido manualmente');
+    } catch (err: any) {
+      message.error(err.message || 'Erro ao alterar fornecedor preferencial');
       await fetchSupplierOffers();
     } finally {
       setSavingOfferId(null);
@@ -362,12 +399,38 @@ export default function ProductDetailPage() {
               {supplierOffers.length === 0 ? (
                 <div style={{ color: '#666', padding: 16 }}>Nenhuma oferta de fornecedor vinculada a este produto.</div>
               ) : (
-                <Table<ProductSupplierOffer>
-                  size="small"
-                  rowKey="id"
-                  pagination={false}
-                  dataSource={supplierOffers}
-                  columns={[
+                <>
+                  <div style={{ marginBottom: 16 }}>
+                    <div style={labelStyle}>Fornecedor preferencial</div>
+                    <Select
+                      value={supplierSelectionMode === 'manual' && preferredSupplierOfferId
+                        ? preferredSupplierOfferId
+                        : 'automatic'}
+                      onChange={persistPreferredSupplier}
+                      loading={savingOfferId === 'supplier-selection'}
+                      disabled={savingOfferId !== null}
+                      style={{ width: '100%', marginTop: 4 }}
+                      options={[
+                        { value: 'automatic', label: 'Automático · menor custo' },
+                        ...supplierOffers
+                          .filter((offer) => !offer.is_internal_stock)
+                          .map((offer) => ({
+                            value: String(offer.id),
+                            label: `${offer.fornecedor_nome || offer.dslite_fornecedor_id} · ${formatCurrency(Number(offer.custo || 0))}`,
+                            disabled: offer.ativo === false || !(Number(offer.custo) > 0),
+                          })),
+                      ]}
+                    />
+                    <Text type="secondary" style={{ display: 'block', fontSize: 12, marginTop: 6 }}>
+                      No automático, vence o menor custo válido. Na escolha manual, sua seleção prevalece nas sincronizações. Estoque interno continua prioritário quando disponível.
+                    </Text>
+                  </div>
+                  <Table<ProductSupplierOffer>
+                    size="small"
+                    rowKey="id"
+                    pagination={false}
+                    dataSource={supplierOffers}
+                    columns={[
                     {
                       title: 'Fornecedor',
                       key: 'fornecedor',
@@ -402,9 +465,9 @@ export default function ProductDetailPage() {
                       width: 160,
                       render: (_, offer) => {
                         return offer.is_internal_stock ? (
-                          <Tag color="green">Atual</Tag>
+                          <Tag color="green">Atual · estoque interno</Tag>
                         ) : offer.preferred ? (
-                          <Tag color="green">Atual · menor custo</Tag>
+                          <Tag color="green">{offer.preferred_manual ? 'Atual · manual' : 'Atual · menor custo'}</Tag>
                         ) : supplierOffers.some((item) => item.is_internal_stock) ? (
                           <Tag>Estoque interno prioritário</Tag>
                         ) : (
@@ -412,8 +475,9 @@ export default function ProductDetailPage() {
                         );
                       },
                     },
-                  ]}
-                />
+                    ]}
+                  />
+                </>
               )}
             </Spin>
           </Card>

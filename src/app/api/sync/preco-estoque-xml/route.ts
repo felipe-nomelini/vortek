@@ -125,7 +125,7 @@ async function loadSupplierOffers(client: ReturnType<typeof createServiceClient>
   for (let from = 0; ; from += OFFER_PAGE_SIZE) {
     const { data, error } = await client
       .from('produto_fornecedor_ofertas')
-      .select('id,produto_id,dslite_produto_id,sku_oferta,nome,custo,estoque,product:produtos!produto_fornecedor_ofertas_produto_id_fkey(ativo,oferta_preferencial_id,custo,estoque,dslite_fornecedor_id)')
+      .select('id,produto_id,dslite_produto_id,sku_oferta,nome,custo,estoque,product:produtos!produto_fornecedor_ofertas_produto_id_fkey(ativo,oferta_preferencial_id,fornecedor_preferencial_manual,custo,estoque,dslite_fornecedor_id)')
       .eq('dslite_fornecedor_id', supplierId)
       .eq('ativo', true)
       .order('id', { ascending: true })
@@ -220,6 +220,7 @@ export async function POST(request: Request) {
           const productId = String(offer.produto_id || '').trim();
           if (productId && shouldReconcilePreferredOfferCandidate({
             oferta_preferencial_id: offer?.product?.oferta_preferencial_id,
+            fornecedor_preferencial_manual: offer?.product?.fornecedor_preferencial_manual,
             custo: offer?.product?.custo,
             estoque: offer?.product?.estoque,
             fornecedor_atual_ativo: activeSupplierIdSet.has(

@@ -62,6 +62,7 @@ export async function syncPreferredProductSnapshot(
     ml_item_id: string | null;
     ml_status: string | null;
     oferta_preferencial_id: string | null;
+    fornecedor_preferencial_manual: boolean;
     custo: number;
     estoque: number;
     fornecedor: string | null;
@@ -71,6 +72,7 @@ export async function syncPreferredProductSnapshot(
   };
   next: {
     oferta_preferencial_id: string | null;
+    fornecedor_preferencial_manual: boolean;
     custo: number;
     estoque: number;
     fornecedor: string | null;
@@ -86,7 +88,7 @@ export async function syncPreferredProductSnapshot(
   const [{ data: products, error: productError }, { data: offers, error: offerError }] = await Promise.all([
     client
       .from('produtos')
-      .select('id,sku,ml_item_id,ml_status,oferta_preferencial_id,custo,estoque,fornecedor,dslite_fornecedor_id,dslite_produto_id,dslite_ultima_sync')
+      .select('id,sku,ml_item_id,ml_status,oferta_preferencial_id,fornecedor_preferencial_manual,custo,estoque,fornecedor,dslite_fornecedor_id,dslite_produto_id,dslite_ultima_sync')
       .in('id', ids),
     client
       .from('produto_fornecedor_ofertas')
@@ -118,6 +120,7 @@ export async function syncPreferredProductSnapshot(
       ml_item_id: string | null;
       ml_status: string | null;
       oferta_preferencial_id: string | null;
+      fornecedor_preferencial_manual: boolean;
       custo: number;
       estoque: number;
       fornecedor: string | null;
@@ -127,6 +130,7 @@ export async function syncPreferredProductSnapshot(
     };
     next: {
       oferta_preferencial_id: string | null;
+      fornecedor_preferencial_manual: boolean;
       custo: number;
       estoque: number;
       fornecedor: string | null;
@@ -140,9 +144,12 @@ export async function syncPreferredProductSnapshot(
   for (const product of products || []) {
     const productId = String((product as any).id || '').trim();
     if (!productId) continue;
+    const requestedPreferredOfferId = String((product as any).oferta_preferencial_id || '').trim();
+    const manualPreferenceRequested = (product as any).fornecedor_preferencial_manual === true;
     const preferred = resolvePreferredOfferForProduct(
       offersByProductId.get(productId) || [],
-      (product as any).oferta_preferencial_id,
+      requestedPreferredOfferId,
+      manualPreferenceRequested,
     );
     if (!preferred) continue;
 
@@ -152,6 +159,7 @@ export async function syncPreferredProductSnapshot(
       ml_item_id: (product as any).ml_item_id ? String((product as any).ml_item_id) : null,
       ml_status: (product as any).ml_status ? String((product as any).ml_status) : null,
       oferta_preferencial_id: (product as any).oferta_preferencial_id ? String((product as any).oferta_preferencial_id) : null,
+      fornecedor_preferencial_manual: (product as any).fornecedor_preferencial_manual === true,
       custo: Number((product as any).custo || 0),
       estoque: Number((product as any).estoque || 0),
       fornecedor: (product as any).fornecedor ? String((product as any).fornecedor) : null,
@@ -162,6 +170,8 @@ export async function syncPreferredProductSnapshot(
 
     const next = {
       oferta_preferencial_id: String((preferred as any).id || '').trim() || null,
+      fornecedor_preferencial_manual: manualPreferenceRequested
+        && String((preferred as any).id || '').trim() === requestedPreferredOfferId,
       custo: Number(preferred.custo || 0),
       estoque: Number(preferred.estoque || 0),
       fornecedor: preferred.fornecedor_nome ? String(preferred.fornecedor_nome) : previous.fornecedor,
@@ -172,6 +182,7 @@ export async function syncPreferredProductSnapshot(
 
     const changed =
       (previous.oferta_preferencial_id || '') !== (next.oferta_preferencial_id || '') ||
+      previous.fornecedor_preferencial_manual !== next.fornecedor_preferencial_manual ||
       previous.custo !== next.custo ||
       previous.estoque !== next.estoque ||
       (previous.fornecedor || '') !== (next.fornecedor || '') ||

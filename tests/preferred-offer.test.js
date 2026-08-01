@@ -16,6 +16,33 @@ test('troca fornecedor atual por alternativa ativa mais barata com estoque', () 
   assert.equal(resolvePreferredOfferForProduct(offers, 'hayamax')?.id, 'evolusom');
 });
 
+test('mantém fornecedor manual mesmo quando alternativa possui menor custo', () => {
+  const offers = [
+    { id: 'manual', ativo: true, estoque: 4, custo: 90 },
+    { id: 'barata', ativo: true, estoque: 8, custo: 70 },
+  ];
+
+  assert.equal(resolvePreferredOfferForProduct(offers, 'manual', true)?.id, 'manual');
+});
+
+test('mantém fornecedor manual sem estoque para refletir indisponibilidade escolhida', () => {
+  const offers = [
+    { id: 'manual', ativo: true, estoque: 0, custo: 90 },
+    { id: 'disponivel', ativo: true, estoque: 8, custo: 70 },
+  ];
+
+  assert.equal(resolvePreferredOfferForProduct(offers, 'manual', true)?.id, 'manual');
+});
+
+test('volta ao automático quando fornecedor manual fica inativo', () => {
+  const offers = [
+    { id: 'manual', ativo: false, estoque: 4, custo: 60 },
+    { id: 'valida', ativo: true, estoque: 8, custo: 70 },
+  ];
+
+  assert.equal(resolvePreferredOfferForProduct(offers, 'manual', true)?.id, 'valida');
+});
+
 test('não escolhe oferta sem estoque quando existe alternativa com estoque', () => {
   const offers = [
     { id: 'sem-estoque', ativo: true, estoque: 0, custo: 50, prioridade: 100 },
@@ -129,4 +156,33 @@ test('ignora alternativa inativa ou sem estoque quando atual está disponível',
     }),
     false,
   );
+});
+
+test('preferência manual ignora reconciliação de alternativa mais barata', () => {
+  const product = {
+    oferta_preferencial_id: 'manual',
+    fornecedor_preferencial_manual: true,
+    custo: 90,
+    estoque: 4,
+    fornecedor_atual_ativo: true,
+  };
+
+  assert.equal(shouldReconcilePreferredOfferCandidate(product, {
+    id: 'barata',
+    ativo: true,
+    custo: 70,
+    estoque: 8,
+  }), false);
+  assert.equal(shouldReconcilePreferredOfferCandidate(product, {
+    id: 'manual',
+    ativo: true,
+    custo: 95,
+    estoque: 3,
+  }), true);
+  assert.equal(shouldReconcilePreferredOfferCandidate(product, {
+    id: 'manual',
+    ativo: false,
+    custo: 95,
+    estoque: 0,
+  }), true);
 });

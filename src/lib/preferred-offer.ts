@@ -8,6 +8,7 @@ export type PreferredOfferCandidate = {
 
 export type PreferredProductSnapshotCandidate = {
   oferta_preferencial_id?: string | null;
+  fornecedor_preferencial_manual?: boolean | null;
   custo?: number | null;
   estoque?: number | null;
   fornecedor_atual_ativo?: boolean | null;
@@ -51,13 +52,22 @@ export function choosePreferredOffer<T extends PreferredOfferCandidate>(offers: 
 }
 
 /**
- * `preferredOfferId` permanece no contrato para compatibilidade. Preferência
- * atual não bloqueia mais troca automática para oferta elegível mais barata.
+ * Escolha manual válida prevalece inclusive quando está sem estoque. Isso
+ * mantém a decisão do usuário e faz o estoque do produto refletir essa fonte.
+ * Oferta manual inativa ou sem custo válido volta ao cálculo automático.
  */
 export function resolvePreferredOfferForProduct<T extends PreferredOfferCandidate>(
   offers: T[],
-  _preferredOfferId?: string | null,
+  preferredOfferId?: string | null,
+  manual = false,
 ): T | null {
+  if (manual) {
+    const preferredId = String(preferredOfferId || '').trim();
+    const preferred = offers.find((offer) => String(offer.id || '').trim() === preferredId);
+    if (preferred && preferred.ativo !== false && Number(preferred.custo || 0) > 0) {
+      return preferred;
+    }
+  }
   return choosePreferredOffer(offers);
 }
 
@@ -70,16 +80,26 @@ export function shouldReconcilePreferredOfferCandidate(
   product: PreferredProductSnapshotCandidate,
   candidate: PreferredOfferCandidate,
 ): boolean {
-  if (candidate.ativo === false) return false;
-
   const candidateId = String(candidate.id || '').trim();
   const candidateCost = Number(candidate.custo || 0);
   const candidateStock = Number(candidate.estoque || 0);
-  if (!candidateId || candidateCost <= 0) return false;
+  if (!candidateId) return false;
 
   const currentId = String(product.oferta_preferencial_id || '').trim();
   const currentCost = Number(product.custo || 0);
   const currentStock = Number(product.estoque || 0);
+
+  if (product.fornecedor_preferencial_manual === true) {
+    if (candidateId !== currentId) return false;
+    if (candidate.ativo === false || candidateCost <= 0) return true;
+    return (
+      Math.abs(candidateCost - currentCost) >= 0.0001 ||
+      candidateStock !== currentStock
+    );
+  }
+
+  if (candidateCost <= 0) return false;
+  if (candidate.ativo === false) return false;
 
   if (candidateId === currentId) {
     return (

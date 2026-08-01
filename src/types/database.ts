@@ -1138,6 +1138,7 @@ export type Database = {
           dslite_ultima_sync: string | null
           estoque: number
           fornecedor: string | null
+          fornecedor_preferencial_manual: boolean
           gtin: string
           id: string
           imagens: string[]
@@ -1174,6 +1175,7 @@ export type Database = {
           dslite_ultima_sync?: string | null
           estoque?: number
           fornecedor?: string | null
+          fornecedor_preferencial_manual?: boolean
           gtin?: string
           id?: string
           imagens?: string[]
@@ -1210,6 +1212,7 @@ export type Database = {
           dslite_ultima_sync?: string | null
           estoque?: number
           fornecedor?: string | null
+          fornecedor_preferencial_manual?: boolean
           gtin?: string
           id?: string
           imagens?: string[]

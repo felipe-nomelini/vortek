@@ -105,7 +105,7 @@ async function resolveFornecedorPreviewByPedido(
   const previews = new Map<string, any>();
   if (!skuVariants.length && !mlItemIds.length) return previews;
 
-  const productSelect = 'id,ml_item_id,sku,nome,fornecedor,dslite_fornecedor_id,oferta_preferencial_id';
+  const productSelect = 'id,ml_item_id,sku,nome,fornecedor,dslite_fornecedor_id,oferta_preferencial_id,fornecedor_preferencial_manual';
   const [productsBySkuResult, productsByMlItemResult] = await Promise.all([
     skuVariants.length
       ? serviceClient.from('produtos').select(productSelect).in('sku', skuVariants)
@@ -203,6 +203,7 @@ async function resolveFornecedorPreviewByPedido(
       const preferredOffer = resolvePreferredOfferForProduct(
         offersByProductId.get(String(product.id)) || [],
         product.oferta_preferencial_id,
+        product.fornecedor_preferencial_manual === true,
       );
       const fornecedorId = String(preferredOffer?.dslite_fornecedor_id || product.dslite_fornecedor_id || '').trim();
       const fornecedorNome = String(preferredOffer?.fornecedor_nome || product.fornecedor || '').trim();
