@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
+import { calcularEntradasVisiveisEstoqueInterno } from '@/lib/estoque-interno-saldo';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -9,12 +10,12 @@ export async function GET() {
   const [entradasResult, saidasResult] = await Promise.all([
     (db as any)
       .from('estoque_interno_movimentacoes')
-      .select('id,produto_id,pedido_id,quantidade,motivo,status_devolucao,situacao_estoque,created_at,produtos(sku,nome)')
+      .select('id,produto_id,pedido_id,quantidade,motivo,status_devolucao,situacao_estoque,created_at,produtos(sku,nome),pedidos(ml_order_id,ml_pack_id)')
       .eq('tipo', 'entrada_devolucao')
       .order('created_at', { ascending: false }),
     (db as any)
       .from('estoque_interno_movimentacoes')
-      .select('id,produto_id,pedido_id,quantidade,motivo,created_at,produtos(sku,nome),pedidos(ml_order_id,envio_interno_at)')
+      .select('id,produto_id,pedido_id,quantidade,motivo,created_at,produtos(sku,nome),pedidos(ml_order_id,ml_pack_id,envio_interno_at)')
       .eq('tipo', 'saida_envio_interno')
       .is('estornada_em', null)
       .order('created_at', { ascending: false }),
@@ -22,7 +23,7 @@ export async function GET() {
   if (entradasResult.error) return NextResponse.json({ error: entradasResult.error.message }, { status: 500 });
   if (saidasResult.error) return NextResponse.json({ error: saidasResult.error.message }, { status: 500 });
 
-  const rows = (entradasResult.data || []).map((item: any) => ({
+  const entradas = (entradasResult.data || []).map((item: any) => ({
     id: item.id,
     produto_id: item.produto_id,
     pedido_id: item.pedido_id,
@@ -32,7 +33,18 @@ export async function GET() {
     motivo: item.motivo || 'Motivo não informado pelo Mercado Livre',
     status_devolucao: item.status_devolucao || 'aguardando_confirmacao',
     situacao_estoque: item.situacao_estoque || 'revisao',
+    created_at: item.created_at,
+    pedido_ml: item.pedidos?.ml_order_id || '-',
+    pedido_ml_link_id: item.pedidos?.ml_pack_id || item.pedidos?.ml_order_id || null,
   }));
+
+  const rows = calcularEntradasVisiveisEstoqueInterno(
+    entradas,
+    (saidasResult.data || []).map((item: any) => ({
+      produto_id: String(item.produto_id),
+      quantidade: Number(item.quantidade || 0),
+    })),
+  );
 
   const resumo = rows.reduce((total: Record<string, number>, item: any) => {
     total[item.situacao_estoque] = (total[item.situacao_estoque] || 0) + item.quantidade;
@@ -45,6 +57,7 @@ export async function GET() {
     nome: item.produtos?.nome || 'Produto não encontrado',
     quantidade: Number(item.quantidade || 0),
     pedido_ml: item.pedidos?.ml_order_id || '-',
+    pedido_ml_link_id: item.pedidos?.ml_pack_id || item.pedidos?.ml_order_id || null,
     vendido_em: item.pedidos?.envio_interno_at || item.created_at,
   }));
 

@@ -7,8 +7,9 @@ type SituacaoEstoque = 'revisao' | 'liberado' | 'nao_aproveitavel';
 type ItemEstoque = {
   id: string; produto_id: string; pedido_id: string; sku: string; nome: string; quantidade: number;
   motivo: string; status_devolucao: string; situacao_estoque: SituacaoEstoque;
+  pedido_ml: string; pedido_ml_link_id: string | null;
 };
-type ItemVendido = { id: string; sku: string; nome: string; quantidade: number; pedido_ml: string; vendido_em: string };
+type ItemVendido = { id: string; sku: string; nome: string; quantidade: number; pedido_ml: string; pedido_ml_link_id: string | null; vendido_em: string };
 type EstoqueResponse = { data: ItemEstoque[]; revisao: number; liberado: number; nao_aproveitavel: number; vendidos: ItemVendido[]; vendidosQuantidade: number };
 const initialData: EstoqueResponse = { data: [], revisao: 0, liberado: 0, nao_aproveitavel: 0, vendidos: [], vendidosQuantidade: 0 };
 
@@ -126,7 +127,9 @@ export default function EstoquePage() {
   };
 
   const columns = [
-    { title: 'SKU', dataIndex: 'sku' }, { title: 'Produto', dataIndex: 'nome' }, { title: 'Quantidade', dataIndex: 'quantidade' },
+    { title: 'SKU', dataIndex: 'sku' },
+    { title: 'Venda de origem', render: (_: unknown, item: ItemEstoque) => item.pedido_ml_link_id ? <Typography.Link href={`https://www.mercadolivre.com.br/vendas/${item.pedido_ml_link_id}/detalhe`} target="_blank" rel="noopener noreferrer">#{item.pedido_ml}</Typography.Link> : <Typography.Text type="secondary">—</Typography.Text> },
+    { title: 'Produto', dataIndex: 'nome' }, { title: 'Quantidade', dataIndex: 'quantidade' },
     { title: 'Motivo', dataIndex: 'motivo' },
     { title: 'Status', render: (_: unknown, item: ItemEstoque) => {
       if (item.status_devolucao === 'manual') return <Typography.Text type="secondary">—</Typography.Text>;
@@ -156,9 +159,9 @@ export default function EstoquePage() {
   const tabela = (situacao: SituacaoEstoque) => <Table<ItemEstoque> rowKey="id" loading={loading} dataSource={data.data.filter((item) => item.situacao_estoque === situacao)} columns={columns} pagination={{ pageSize: 50 }} />;
   const tabelaVendidos = <Table<ItemVendido> rowKey="id" loading={loading} dataSource={data.vendidos} pagination={{ pageSize: 50 }} columns={[
     { title: 'SKU', dataIndex: 'sku' },
+    { title: 'Venda com estoque interno', render: (_: unknown, item: ItemVendido) => item.pedido_ml_link_id ? <Typography.Link href={`https://www.mercadolivre.com.br/vendas/${item.pedido_ml_link_id}/detalhe`} target="_blank" rel="noopener noreferrer">#{item.pedido_ml}</Typography.Link> : <Typography.Text type="secondary">—</Typography.Text> },
     { title: 'Produto', dataIndex: 'nome' },
     { title: 'Quantidade', dataIndex: 'quantidade' },
-    { title: 'Pedido ML', dataIndex: 'pedido_ml' },
     { title: 'Data do envio', render: (_: unknown, item: ItemVendido) => new Date(item.vendido_em).toLocaleString('pt-BR') },
   ]} />;
 
