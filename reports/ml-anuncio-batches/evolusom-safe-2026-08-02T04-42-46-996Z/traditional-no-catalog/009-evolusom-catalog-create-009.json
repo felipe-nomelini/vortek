@@ -1,0 +1,353 @@
+{
+  "batchNumber": 9,
+  "batchId": "evolusom-traditional-009",
+  "strategy": "traditional_no_catalog_predictor_consensus",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "d3fcd8c7-7e42-4e39-a426-d95c0ed0896b",
+      "sku": "VTK018188",
+      "nome": "Calota Grid Aro 14p 117ca-pta Volkswaggen Modelo Gol/ Voyage G5/ G6 2014 Cubo Alto - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277985129"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277985129",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "550d26b3-0bde-4e1c-929c-07cd1e4bb9eb",
+      "sku": "VTK018234",
+      "nome": "Calota Grid Aro 14p 241ca-pta Volkswaggen Modelo Gol / Voyage G6 2015 Cubo Alto - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892500049"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892500049",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "25022deb-1633-405b-a57b-abda1abf9bd6",
+      "sku": "VTK018235",
+      "nome": "Calota Grid Aro 14p 112ca-pta Volkswaggen Modelo Gol/ Voyage G5/ G6 2013 Cubo Alto - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277984481"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277984481",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "85eb2f12-906a-4476-b259-a5b030f645ae",
+      "sku": "VTK018237",
+      "nome": "Calota Grid 602ar-pta Aro 15 Ar Universal Gss - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 66.6,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 106.91,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892510697"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892510697",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "c40adbdb-8165-4b3b-92f0-354ef1665fa9",
+      "sku": "VTK018242",
+      "nome": "Calota Aro 15p 193cp-pta Mod Hb20 2020 - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 63.2,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 102.72,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892512196"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892512196",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "fda6c327-084a-41a6-949d-96dbdf76ee5c",
+      "sku": "VTK018291",
+      "nome": "Módulo Para Rebatimento De Espelho Retrovisor Fks Mce300 Re",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 53.9,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 91.23,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB3385",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_AMPLIFIERS",
+        "categoryId": "MLB3385",
+        "categoryName": "Módulos Amplificadores",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Módulos Amplificadores",
+        "validatedGtin": "7899906802848"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899906802848",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "6888f8e5-27b0-4ec5-891f-2e151cf53614",
+      "sku": "VTK018299",
+      "nome": "Calota Aro 14p 344cb-pta Mod Ka+ 2019 Cb - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892511205"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892511205",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "224a8e84-1f7c-4167-9bc0-7a48b468338e",
+      "sku": "VTK018304",
+      "nome": "Chicote Permak Para Cd Honda Civic 2007 A 2011 - 35/d2",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 27.9,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 59.14,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB430193",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WIRE_HARNESSES",
+        "categoryId": "MLB430193",
+        "categoryName": "Chicotes do Radio",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Reprodutores > Acessórios > Chicotes do Radio",
+        "validatedGtin": "7898253495154"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253495154",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "984c0e20-dfe6-489f-9d83-087dbe30d3f0",
+      "sku": "VTK018362",
+      "nome": "Calota Grid Aro 13p 013cb-pta Ford Modelo Ka 2008/ 12 Cubo Baixo - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.4,
+      "estoque": 9,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277981527"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277981527",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "86bd6e2f-f918-40c2-9ccd-f8d8b98ea671",
+      "sku": "VTK018363",
+      "nome": "Calota Grid Aro 14a 100ar-pta Modelo Orbital Aro De Pressão - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 9,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277983958"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277983958",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

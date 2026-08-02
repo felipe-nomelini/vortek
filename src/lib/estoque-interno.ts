@@ -2,6 +2,8 @@ import { createServiceClient } from '@/lib/supabase';
 import { getSkuLookupVariants } from '@/lib/sku';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
+import { fetchMLResult } from '@/services/integration';
+import { z } from 'zod';
 
 type ItemEstoquePedido = {
   produtoId: string;
@@ -11,6 +13,25 @@ type ItemEstoquePedido = {
 
 const ESTOQUE_INTERNO_RETURN_ADDRESS_ID = '1634853936';
 const ESTOQUE_INTERNO_RETURN_ZIP_CODE = '21011550';
+const ML_RETURN_ADDRESS_CACHE_MS = 5 * 60 * 1000;
+
+const mlUserIdSchema = z.object({
+  id: z.union([z.string(), z.number()]),
+}).passthrough();
+
+const mlUserAddressSchema = z.object({
+  id: z.union([z.string(), z.number()]),
+  zip_code: z.string().nullable().optional(),
+  types: z.array(z.string()).optional().catch([]),
+}).passthrough();
+
+const mlUserAddressesSchema = z.array(mlUserAddressSchema);
+type MlUserAddress = z.infer<typeof mlUserAddressSchema>;
+
+let mlReturnAddressCache: {
+  expiresAt: number;
+  address: MlUserAddress | null;
+} | null = null;
 
 function somenteDigitos(value: unknown): string {
   return String(value || '').replace(/\D/g, '');
@@ -21,10 +42,57 @@ function somenteDigitos(value: unknown): string {
  * `seller_address` sozinho não basta: fornecedores também usam esse tipo no ML.
  */
 export function isEnderecoEstoqueInternoMl(address: any): boolean {
-  const addressId = String(address?.address_id || '').trim();
+  const addressId = String(address?.address_id || address?.id || '').trim();
   const zipCode = somenteDigitos(address?.zip_code);
   return addressId === ESTOQUE_INTERNO_RETURN_ADDRESS_ID
     || zipCode === ESTOQUE_INTERNO_RETURN_ZIP_CODE;
+}
+
+/**
+ * Obtém o endereço de devolução configurado na conta do Mercado Livre.
+ * Em envios sem claim, `shipment.origin` é a origem da ida e não pode ser
+ * usado como destino da logística reversa.
+ */
+export async function obterEnderecoRetornoPadraoMl(): Promise<MlUserAddress | null> {
+  if (mlReturnAddressCache && mlReturnAddressCache.expiresAt > Date.now()) {
+    return mlReturnAddressCache.address;
+  }
+
+  const meResult = await fetchMLResult<unknown>('/users/me?attributes=id');
+  const meParsed = meResult.ok ? mlUserIdSchema.safeParse(meResult.data) : null;
+  if (!meParsed?.success) {
+    console.error('[internal_stock_return_address_lookup_failed]', {
+      step: 'users_me',
+      status: meResult.status,
+      code: meResult.error?.code || 'invalid_response',
+    });
+    return null;
+  }
+
+  const addressesResult = await fetchMLResult<unknown>(
+    `/users/${encodeURIComponent(String(meParsed.data.id))}/addresses`,
+  );
+  const addressesParsed = addressesResult.ok
+    ? mlUserAddressesSchema.safeParse(addressesResult.data)
+    : null;
+  if (!addressesParsed?.success) {
+    console.error('[internal_stock_return_address_lookup_failed]', {
+      step: 'user_addresses',
+      status: addressesResult.status,
+      code: addressesResult.error?.code || 'invalid_response',
+    });
+    return null;
+  }
+
+  const address = addressesParsed.data.find((candidate) => (
+    (candidate.types || []).includes('default_return_address')
+  )) || null;
+
+  mlReturnAddressCache = {
+    address,
+    expiresAt: Date.now() + ML_RETURN_ADDRESS_CACHE_MS,
+  };
+  return address;
 }
 
 async function carregarItensEstoquePedido(pedidoId: string): Promise<ItemEstoquePedido[]> {

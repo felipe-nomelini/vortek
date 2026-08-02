@@ -1,0 +1,135 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/safe-final-validated/remaining/001-evolusom-remaining-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-001",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "8a8a4390-0070-46df-a3a0-eb0ef957c9a1",
+      "sku": "VTK000240",
+      "category": {
+        "id": "MLB278064",
+        "nome": "Suportes",
+        "dominio": "MLB-STRING_INSTRUMENT_STANDS_AND_WALL_HANGERS"
+      },
+      "anuncio": {
+        "id": "MLB4981359099",
+        "title": "Expositor Para Instrumentos De Corda Asl Ask Preto",
+        "price": 67.86,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981359099-expositor-para-instrumentos-de-corda-asl-ask-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 49.69 → R$ 67.86."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9b0406aa-0e5a-4d61-b8b8-59a436652109",
+      "sku": "VTK000462",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4981359145",
+        "title": "Cabo De Áudio Y 1 Fêmea X 2 Machos 20cm Azul Storm",
+        "price": 46.79,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981359145-cabo-de-audio-y-1-fmea-x-2-machos-20cm-azul-storm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"code\":\"conflict.error\",\"status\":409,\"error\":\"Conflict\"}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "e1e9ae8b-d2bb-4815-a235-22d81d162d48",
+      "sku": "VTK001491",
+      "category": {
+        "id": "MLB278076",
+        "nome": "Cordas para Instrumentos",
+        "dominio": "MLB-STRING_INSTRUMENT_STRINGS"
+      },
+      "anuncio": {
+        "id": "MLB4981311011",
+        "title": "Encordoamento Para Violão Aço Bronze 85/15 Série Cobra",
+        "price": 54.97,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981311011-encordoamento-para-violo-aco-bronze-8515-serie-cobra-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"status\":409,\"error\":\"Conflict\",\"code\":\"conflict.error\"}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "4f770396-e999-4662-a519-4aed2cc0170c",
+      "sku": "VTK001628",
+      "category": {
+        "id": "MLB278076",
+        "nome": "Cordas para Instrumentos",
+        "dominio": "MLB-STRING_INSTRUMENT_STRINGS"
+      },
+      "anuncio": {
+        "id": "MLB4981289011",
+        "title": "Encordoamento Para Violão Nylon Médio Série Canário",
+        "price": 59.43,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981289011-encordoamento-para-violo-nylon-medio-serie-canario-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 43.90 → R$ 59.43."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "6b931c2e-c7cf-40cc-8864-3d5a9de25b4b",
+      "sku": "VTK003138",
+      "category": {
+        "id": "MLB72745",
+        "nome": "Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4981289061",
+        "title": "Cabo Speakon Macho Para Speakon Macho 10m Cbsp0002 Storm",
+        "price": 80.19,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981289061-cabo-speakon-macho-para-speakon-macho-10m-cbsp0002-storm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 64.36 → R$ 80.19."
+      ]
+    }
+  ],
+  "failed": []
+}

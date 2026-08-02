@@ -1,0 +1,475 @@
+[
+  {
+    "ok": false,
+    "sku": "VTK017847",
+    "nome": "Conversor Mxt De áudio ótico Para áudio Analógico Estéreo",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK018106",
+    "nome": "Módulo Viaweb Gprs Ip 2.3",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK002697",
+    "nome": "Cabo Adaptador USB Tipo C Macho Para 3 X USB 3.0 Femea e 1 X RJ45 Femea ADAP 0055 Branca STORM",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Cabo Adaptador USB Tipo C Macho Para 3 X USB 3.0 Femea e 1 X RJ45 Femea ADAP 0055 Branca STORM",
+        "prediction": {
+          "domain_id": "MLB-DATA_CABLES_AND_ADAPTERS",
+          "domain_name": "Cabos e adaptadores de dados",
+          "category_id": "MLB7466",
+          "category_name": "USB",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Cabo Adaptador USB Tipo C Macho Para 3 X USB 3.0 Femea e 1 X RJ45 Femea ADAP 0055 Branca STORM STORM",
+        "prediction": {
+          "domain_id": "MLB-DATA_CABLES_AND_ADAPTERS",
+          "domain_name": "Cabos e adaptadores de dados",
+          "category_id": "MLB57851",
+          "category_name": "Cabos e Adaptadores",
+          "attributes": []
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK017625",
+    "nome": "Receptor Sulton Srx 302 3 Rele",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Receptor Sulton Srx 302 3 Rele",
+        "prediction": {
+          "domain_id": "MLB-TV_RECEIVERS_AND_DECODERS",
+          "domain_name": "Decodificadores e receptores de TV",
+          "category_id": "MLB439368",
+          "category_name": "Receptores de Satélites",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Receptor Sulton Srx 302 3 Rele SULTON",
+        "prediction": {
+          "domain_id": "MLB-HOME_ALARMS_AND_SENSORS",
+          "domain_name": "Alarmes e sensores para casa",
+          "category_id": "MLB7070",
+          "category_name": "Alarmes e Sensores",
+          "attributes": [
+            {
+              "id": "BRAND",
+              "name": "Marca",
+              "value_id": "3736389",
+              "value_name": "Sulton"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK017899",
+    "nome": "Conector Para Cd Nissan Kicks",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Conector Para Cd Nissan Kicks",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_WIRE_HARNESSES",
+          "domain_name": "Chicotes elétricos para veículos",
+          "category_id": "MLB430193",
+          "category_name": "Chicotes do Radio",
+          "attributes": [
+            {
+              "id": "BRAND",
+              "name": "Marca",
+              "value_id": "60505",
+              "value_name": "Nissan"
+            },
+            {
+              "id": "MODEL",
+              "name": "Modelo",
+              "value_id": "1007118",
+              "value_name": "Kicks"
+            }
+          ]
+        }
+      },
+      {
+        "query": "Conector Para Cd Nissan Kicks PERMAK",
+        "prediction": {
+          "domain_id": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+          "domain_name": "Conectores de áudio e vídeo",
+          "category_id": "MLB38172",
+          "category_name": "Conectores",
+          "attributes": []
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK017980",
+    "nome": "Controle Remoto Fks Cr961 02 Botões Fiat",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Controle Remoto Fks Cr961 02 Botões Fiat",
+        "prediction": {
+          "domain_id": "MLB-INDUSTRIAL_MACHINE_REMOTE_CONTROLS",
+          "domain_name": "Controles remotos para máquinas industriais",
+          "category_id": "MLB277529",
+          "category_name": "Controles Remotos",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Controle Remoto Fks Cr961 02 Botões Fiat FKS",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_SECURITY",
+          "domain_name": "Segurança veicular",
+          "category_id": "MLB7868",
+          "category_name": "Outros",
+          "attributes": []
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK017944",
+    "nome": "Antena Aquário Px Viuva Negra Base Prolongada Com Bobina Central",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Antena Aquário Px Viuva Negra Base Prolongada Com Bobina Central",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_ANTENNAS",
+          "domain_name": "Antenas para veículos",
+          "category_id": "MLB271439",
+          "category_name": "Antenas",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Antena Aquário Px Viuva Negra Base Prolongada Com Bobina Central AQUARIO",
+        "prediction": {
+          "domain_id": "MLB-TELEPHONY_AND_RADIO_COMMUNICATION_PRODUCTS",
+          "domain_name": "Produtos de telefonia e radiocomunicação",
+          "category_id": "MLB439221",
+          "category_name": "Antenas para Radio-Bases",
+          "attributes": []
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK005078",
+    "nome": "Cabo Blindado 2RCA X 2RCA 3m Vermelho Storm",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Cabo Blindado 2RCA X 2RCA 3m Vermelho Storm",
+        "prediction": {
+          "domain_id": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+          "domain_name": "Cabos e adaptadores de áudio e vídeo",
+          "category_id": "MLB38279",
+          "category_name": "Outros Cabos",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Cabo Blindado 2RCA X 2RCA 3m Vermelho Storm STORM",
+        "prediction": {
+          "domain_id": "MLB-DATA_CABLES_AND_ADAPTERS",
+          "domain_name": "Cabos e adaptadores de dados",
+          "category_id": "MLB455641",
+          "category_name": "Cabos e Adaptadores",
+          "attributes": []
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK018074",
+    "nome": "Haste Permak Peugeot/ Renault/ Dianteira 70cm",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK018920",
+    "nome": "Power Coaxial Onix Hd 3000 16ch Com Fonte",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK018216",
+    "nome": "Calota Aro Grid 381ca-pbp-u 14p Onix 20/24 - PC / 4",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Calota Aro Grid 381ca-pbp-u 14p Onix 20/24 - PC / 4",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_WHEEL_COVERS",
+          "domain_name": "Calotas de rodas para veículos",
+          "category_id": "MLB413414",
+          "category_name": "Calotas",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Calota Aro Grid 381ca-pbp-u 14p Onix 20/24 - PC / 4 GRID CALOTAS",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_WHEEL_COVERS",
+          "domain_name": "Calotas de rodas para veículos",
+          "category_id": "MLB22664",
+          "category_name": "Calotas",
+          "attributes": []
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK018113",
+    "nome": "Antena Aquário Px Viúva Negra 11 Metros Com Base Pu E Bobina Central",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Antena Aquário Px Viúva Negra 11 Metros Com Base Pu E Bobina Central",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_ANTENNAS",
+          "domain_name": "Antenas para veículos",
+          "category_id": "MLB271439",
+          "category_name": "Antenas",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Antena Aquário Px Viúva Negra 11 Metros Com Base Pu E Bobina Central AQUARIO",
+        "prediction": {
+          "domain_id": "MLB-TELEPHONY_AND_RADIO_COMMUNICATION_PRODUCTS",
+          "domain_name": "Produtos de telefonia e radiocomunicação",
+          "category_id": "MLB439221",
+          "category_name": "Antenas para Radio-Bases",
+          "attributes": []
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK018414",
+    "nome": "Calota Aro Grid 382cb-pta-u 14p Onix 2013/19 - PC / 4",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Calota Aro Grid 382cb-pta-u 14p Onix 2013/19 - PC / 4",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_WHEEL_COVERS",
+          "domain_name": "Calotas de rodas para veículos",
+          "category_id": "MLB413414",
+          "category_name": "Calotas",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Calota Aro Grid 382cb-pta-u 14p Onix 2013/19 - PC / 4 GRID CALOTAS",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_WHEEL_COVERS",
+          "domain_name": "Calotas de rodas para veículos",
+          "category_id": "MLB22664",
+          "category_name": "Calotas",
+          "attributes": []
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK018378",
+    "nome": "Caixa Rlp Vazia Para Moto Emborrachada 2 10\" + 2tw + 2driver",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Caixa Rlp Vazia Para Moto Emborrachada 2 10\" + 2tw + 2driver",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_ENGINE_INTAKE_MANIFOLDS",
+          "domain_name": "Coletores de admissão para veículos",
+          "category_id": "MLB457970",
+          "category_name": "Coletores de Admissão",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Caixa Rlp Vazia Para Moto Emborrachada 2 10\" + 2tw + 2driver CAIXARIAS",
+        "prediction": {
+          "domain_id": "MLB-AUTOMOTIVE_SPEAKER_BOXES",
+          "domain_name": "Caixas acústicas para automotores",
+          "category_id": "MLB3904",
+          "category_name": "Caixas Seladas",
+          "attributes": []
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK018480",
+    "nome": "Haste Olimpus Curta New Flex M5/m6",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK018566",
+    "nome": "Controle Remoto Original Para Smart Box Stv-3000 Ace-stv30-cnt",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Controle Remoto Original Para Smart Box Stv-3000 Ace-stv30-cnt",
+        "prediction": {
+          "domain_id": "MLB-STREAMING_MEDIA_PLAYER_REMOTE_CONTROLS",
+          "domain_name": "Controles remotos para streaming media players",
+          "category_id": "MLB433284",
+          "category_name": "Para Media Streaming Players",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Controle Remoto Original Para Smart Box Stv-3000 Ace-stv30-cnt AQUARIO",
+        "prediction": {
+          "domain_id": "MLB-TV_REMOTE_CONTROLS",
+          "domain_name": "Controles remotos para TV",
+          "category_id": "MLB38205",
+          "category_name": "Para TV",
+          "attributes": []
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK018909",
+    "nome": "Sub Conjunto Almapy Novo Palio 12+ Dnt Sensorizado",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK018923",
+    "nome": "Haste New Shark Olimpus Teto Traseira Prata",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK018764",
+    "nome": "Calota Aro 14p 877cp-pta Mod Kwid 2018/ 19 Cp - PC / 4",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Calota Aro 14p 877cp-pta Mod Kwid 2018/ 19 Cp - PC / 4",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_WHEEL_COVERS",
+          "domain_name": "Calotas de rodas para veículos",
+          "category_id": "MLB413414",
+          "category_name": "Calotas",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Calota Aro 14p 877cp-pta Mod Kwid 2018/ 19 Cp - PC / 4 GRID CALOTAS",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_WHEEL_COVERS",
+          "domain_name": "Calotas de rodas para veículos",
+          "category_id": "MLB22664",
+          "category_name": "Calotas",
+          "attributes": []
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK019019",
+    "nome": "Corzus Ftd 80 Hi-tech Conversor Ac/dc 80a 13,8v Fonte Digital",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK018952",
+    "nome": "Calota Aro 15p 193cp-pof Mod Hb20 2020",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Calota Aro 15p 193cp-pof Mod Hb20 2020",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_WHEEL_COVERS",
+          "domain_name": "Calotas de rodas para veículos",
+          "category_id": "MLB413414",
+          "category_name": "Calotas",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Calota Aro 15p 193cp-pof Mod Hb20 2020 GRID CALOTAS",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_WHEEL_COVERS",
+          "domain_name": "Calotas de rodas para veículos",
+          "category_id": "MLB22664",
+          "category_name": "Calotas",
+          "attributes": []
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK018965",
+    "nome": "Haste Permak Fiat Toro Argus Cronos Jeep Compas",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK019181",
+    "nome": "Cabo Automotivo Pompeia 2.50mm Reduzido - Preto",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Cabo Automotivo Pompeia 2.50mm Reduzido - Preto",
+        "prediction": {
+          "domain_id": "MLB-DATA_CABLES_AND_ADAPTERS",
+          "domain_name": "Cabos e adaptadores de dados",
+          "category_id": "MLB120497",
+          "category_name": "Cabos",
+          "attributes": [
+            {
+              "id": "COLOR",
+              "name": "Cor",
+              "value_id": "52049",
+              "value_name": "Preto"
+            }
+          ]
+        }
+      },
+      {
+        "query": "Cabo Automotivo Pompeia 2.50mm Reduzido - Preto POMPEIA",
+        "prediction": {
+          "domain_id": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+          "domain_name": "Cabos e adaptadores de áudio e vídeo",
+          "category_id": "MLB38279",
+          "category_name": "Outros Cabos",
+          "attributes": []
+        }
+      }
+    ]
+  }
+]

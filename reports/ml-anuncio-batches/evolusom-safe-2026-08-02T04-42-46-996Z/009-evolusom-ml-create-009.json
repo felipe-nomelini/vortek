@@ -1,0 +1,267 @@
+{
+  "batchNumber": 9,
+  "batchId": "evolusom-ml-create-009",
+  "strategy": "strict_evidence_small_batch",
+  "executionHints": {
+    "delayMs": 2000,
+    "listingType": "gold_pro",
+    "strictEvidence": true,
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "stopAfterConsecutiveFailures": 3,
+    "requireVortekStorageImages": true,
+    "verifyListingAfterEachCreate": true
+  },
+  "items": [
+    {
+      "produtoId": "8ffcc863-e077-4522-9122-aad5a141dd4f",
+      "sku": "VTK018386",
+      "nome": "Calota Aro 14p 133cb-pof Mod Onix / Prisma 2014/ 16 Cb - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 9,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892510703",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "33fa36fb-592a-41d6-86e0-91779c9d7a19",
+      "sku": "VTK018551",
+      "nome": "Calota Aro 14p 373cb-gft Mod Onix / Prisma 2017/ 18 Cb - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892511458",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "43119194-4bc8-44fd-a470-6485b9015b8a",
+      "sku": "VTK018586",
+      "nome": "Calota Aro Grid 150cp-pbp-u 15p Sport T-cross 25 - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892574439",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "eb1dc2f3-745a-475c-a7aa-6b7c421bf968",
+      "sku": "VTK018647",
+      "nome": "Calota Aro 14p 009ca-gft Mod Gol G5/ Voyage/saveiro 2009/ 11 Ca - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892511496",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "0f642e19-edf7-4149-98e6-4c2081dd78df",
+      "sku": "VTK018648",
+      "nome": "Calota Aro 14p 026cb-gft Mod Fiesta Hatch / Sedan 2011/ 13 Cb - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892511397",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "b442b345-b4ea-4bdb-bc32-462d06d305a4",
+      "sku": "VTK018933",
+      "nome": "Calota Aro 14p 877cp-gft Mod Kwid 2018/ 19 Cp - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892511489",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "bbabf116-70b9-4dbf-bd2c-803a8d4f51bb",
+      "sku": "VTK019004",
+      "nome": "Calota Aro Grid 246cp-pbp-u Idea 15p Gol G7 17/18 - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892574231",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "f6f65b43-d002-43f9-9f4f-868b8821c3fc",
+      "sku": "VTK019122",
+      "nome": "Calota Aro 14p 344cb-gft Mod Ka+ 2019 Cb - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892511410",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "568c02db-0587-43aa-9519-8be93805d1f7",
+      "sku": "VTK017686",
+      "nome": "Calota Grid Aro 13p 015cb-pta Fiat Modelo Mercurio/ Linea Cubo Baixo - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.4,
+      "estoque": 32,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277982432",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "5a73c510-32f0-476c-bfeb-4c8aab0ad8e8",
+      "sku": "VTK017701",
+      "nome": "Calota Grid Aro 13p 158cb-pta Fiat Modelo Palio Fire 2014 Cubo Baixo - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.4,
+      "estoque": 32,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277985693",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

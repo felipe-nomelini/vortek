@@ -1,0 +1,183 @@
+{
+  "batchNumber": 3,
+  "batchId": "evolusom-traditional-safe-003",
+  "strategy": "traditional_no_catalog_predictor_consensus_schema_and_semantic_review",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "44b3d34d-83bb-4fea-bc12-bbaa2d4b8912",
+      "sku": "VTK017969",
+      "nome": "Corneta Profissional Jbl Hl11-25 Trio Branca",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 88.5,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 133.95,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46560",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-HORN_DRIVERS",
+        "categoryId": "MLB46560",
+        "categoryName": "Cornetas",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Cornetas",
+        "validatedGtin": "7896359553815"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359553815",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "7c2e6935-5434-49e1-aa54-97e66714c919",
+      "sku": "VTK017986",
+      "nome": "Driver Fenólico Jbl D450 Trio 300w 8r Rms",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 698.9,
+      "estoque": 17,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1035.41,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "categoryId": "MLB46559",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+        "categoryId": "MLB46559",
+        "categoryName": "Drivers",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Drivers",
+        "validatedGtin": "7896359540945"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359540945",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "dc303f1e-c351-47b5-b84f-fd288ba331e4",
+      "sku": "VTK017995",
+      "nome": "Conversor De Audio/video Evus C-085 Hdmi Para 3 Rca",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 52.9,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 90,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB421298",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONVERTERS",
+        "categoryId": "MLB421298",
+        "categoryName": "Conversores de Aúdio e Vídeo",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Acessórios para Áudio e Vídeo > Conversores de Aúdio e Vídeo",
+        "validatedGtin": "7898597132289"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597132289",
+        "validatedNcm": "85437039",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "b02d0763-0ef6-473a-ac17-5c63cd3a6dfc",
+      "sku": "VTK018013",
+      "nome": "Trava Elétrica Soft Aa420011 Novo Uno / Celta / Eco / Fiest / Palio 99 4portas",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 117.9,
+      "estoque": 13,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 170.25,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22369",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_ELECTRIC_DOOR_LOCKS",
+        "categoryId": "MLB22369",
+        "categoryName": "Travas Elétricas",
+        "categoryPath": "Acessórios para Veículos > Segurança Veicular > Travas Elétricas",
+        "validatedGtin": "7898441355116"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898441355116",
+        "validatedNcm": "87082999",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "f0e66d56-21a1-4492-a513-cd64fbb9d708",
+      "sku": "VTK018107",
+      "nome": "Arandela Frahm Sem Borda 6\" 100w Quadrada",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 231.9,
+      "estoque": 14,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 329.24,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB11507",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-SPEAKERS",
+        "categoryId": "MLB11507",
+        "categoryName": "Caixas Acústicas ",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Áudio > Caixas Acústicas ",
+        "validatedGtin": "7896673807472"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896673807472",
+        "validatedNcm": "85182100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

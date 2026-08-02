@@ -3,6 +3,7 @@
  *   node -r dotenv/config scripts/import-bkr1-client-kit-sheet.js --file "/caminho/Elixir.xls" dotenv_config_path=.env.local
  *   node -r dotenv/config scripts/import-bkr1-client-kit-sheet.js --file "/caminho/Elixir.xls" --apply dotenv_config_path=.env.local
  *   Adicione --allow-packaging-gtin quando a planilha informar o GTIN da caixa logística.
+ *   Adicione --allow-inactive-components para cadastrar kits sem estoque ligados a componentes inativos.
  */
 const path = require('path');
 const XLSX = require('xlsx');
@@ -11,6 +12,7 @@ const { createClient } = require('@supabase/supabase-js');
 const APPLY = process.argv.includes('--apply');
 const SKIP_INVALID = process.argv.includes('--skip-invalid');
 const ALLOW_PACKAGING_GTIN = process.argv.includes('--allow-packaging-gtin');
+const ALLOW_INACTIVE_COMPONENTS = process.argv.includes('--allow-inactive-components');
 const fileIndex = process.argv.indexOf('--file');
 const FILE = fileIndex >= 0 ? path.resolve(process.argv[fileIndex + 1] || '') : '';
 const SUPPLIER_ID = '108';
@@ -174,7 +176,9 @@ async function main() {
     .map((kit) => {
       const reasons = [];
       if (missingSet.has(kit.component.dsliteId)) reasons.push('component_missing');
-      if (inactiveSet.has(kit.component.dsliteId)) reasons.push('component_inactive');
+      if (!ALLOW_INACTIVE_COMPONENTS && inactiveSet.has(kit.component.dsliteId)) {
+        reasons.push('component_inactive');
+      }
       if (!ALLOW_PACKAGING_GTIN && gtinMismatchSet.has(kit.sku)) reasons.push('gtin_mismatch');
       return reasons.length ? { sku: kit.sku, reasons } : null;
     })

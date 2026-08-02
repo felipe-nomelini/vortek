@@ -1,0 +1,401 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-domain-mismatch-validated/dry-run-results/002-evolusom-catalog-create-002-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-002",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "3e20ce56-00dd-491e-a9d0-0a26e0431bfb",
+      "sku": "VTK017238",
+      "category": {
+        "id": "MLB278141",
+        "nome": "Detectores de Metais",
+        "dominio": ""
+      },
+      "basePrice": 72.03,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SEGURIMAX"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "99MM"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898597854341"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Detector De Temperatura 12/ 24v Segurimax Contato Seco\n\nVISÃO GERAL\nInformações do Produto Detector de temperatura 12/24V O detector de temperatura Segurimax monitora a temperatura do ar, emitindo um sinal para a central de incêndio e ligando um LED vermelho no corpo do dispositivo, caso a temperatura ultrapasse o limite. Sua operação em 12 ou 24 V possibilita seu uso com diversos modelos de centrais convencionais, tornando-o um dispositivo versátil para diversas aplicações. Indicado para: O detector de temperatura foi desenvolvido para detecção rápida de incêndios nos mais diversos ambientes, como escolas, escritórios, lojas, hotéis, shoppings, restaurantes, etc.\n\n- Funcionamento em 12 e 24V; - Operação por ganho de corrente e por contato seco; - Proteção contra inversão de polaridade da alimentação; - Baixo consumo de corrente; - Versátil para aplicação em diversos ambientes. Informações Técnicas Tensão de operação 12/24V DC Topologia Convencional Corrente em repouso 20 uA Corrente em alarme 25 mA @12V 50 mA @24V Indicação de alarme LED vermelho ligado Indicação de supervisão LED vermelho pisca a cada 12 segundos Saída de alarme Relé NA e ganho de corrente Sensibilidade 57+/-3 ºC - Classe A1S Norma aplicada NBR ISSO 7240-5 Condições de trabalho Temperatura: -10~+50 °C Umidade: 95%RH Material de fabricação ABS Dimensões Ø99mm x 44mm Peso 170g Garantia 1 ano\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SEGURIMAX\n• Modelo: 99MM\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SEGURIMAX\n• GTIN: 7898597854341\n• NCM: 85319000\n• SKU: VTK017238\n\nEMBALAGEM\n• Dimensões informadas: 5 × 11 × 11 cm\n• Peso bruto informado: 0,154 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "29dc5fa4-1b4d-4261-b981-ac9de650b853",
+      "sku": "VTK017246",
+      "category": {
+        "id": "MLB277529",
+        "nome": "Controles Remotos",
+        "dominio": ""
+      },
+      "basePrice": 54.3,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "HOMBRUS"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "HT6P20B"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "7462936",
+          "value_name": "Bateria/Pilha"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7891097542084"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Controle Remoto Copiar Hombrus 433mhz Code Learn 3 Botões\n\nVISÃO GERAL\nInformações do Produto Controle Copiador 3 Botões - Botões emborrachados - Permite gravar e apagar cada botão independente - Executa cópia fiel dos códigos e da taxa de bits - Permite gravar protocolos diferentes em cada botão - Acompanha bateria 12V A23 Informações Técnicas Compatível com os protocolos: Code learn (HT6P20B, HT6P20D) Jumper 9 bits (HT6026, MC145026) Jumper 12 bits (HT12E, M1EN, MM53200) Disponível nas frequências: 433,92 Mhz fixo 280 Mhz ~ 320Mhz Ajustável Frequências pré ajustadas: 292Mhz 299Mhz 315Mhz Dimensão (CxLxA) 49mm x 31mm x 12mm\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: HOMBRUS\n• Modelo: HT6P20B\n• Tipo de alimentação: Bateria/Pilha\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: HOMBRUS\n• GTIN: 7891097542084\n• NCM: 85269200\n• SKU: VTK017246\n\nEMBALAGEM\n• Dimensões informadas: 2 × 3.5 × 7.5 cm\n• Peso bruto informado: 0,024 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "fc4aa25f-81b8-40c9-8e1a-d2cac8343222",
+      "sku": "VTK017317",
+      "category": {
+        "id": "MLB1716",
+        "nome": "Mouse Pads",
+        "dominio": ""
+      },
+      "basePrice": 56.27,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "EVUS"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MP-500B"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898597133354"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Mouse Pad Evus Mp-500b Pan\n\nVISÃO GERAL\nO Mouse Pad Evus Pan possui tecnologia de bordas seladas que permite fácil limpeza e conta com um excelente acabamento. A superfície em Poliéster aliada à sua espessura de 3mm proporciona maior conforto para o apoio dos punhos e mãos, aliando velocidade e precisão. Sua base de borracha natural antiderrapante proporciona maior aderência na superfície, impedindo movimentações involuntárias durante as suas partidas.\n\n*Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: EVUS\n• Modelo: MP-500B\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: EVUS\n• GTIN: 7898597133354\n• NCM: 40169990\n• SKU: VTK017317\n\nEMBALAGEM\n• Dimensões informadas: 6.5 × 6.5 × 44 cm\n• Peso bruto informado: 0,404 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "054e7b91-653d-4f52-b332-1ca9da3994af",
+      "sku": "VTK017397",
+      "category": {
+        "id": "MLB22369",
+        "nome": "Travas Elétricas",
+        "dominio": ""
+      },
+      "basePrice": 40.38,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "ROADSTAR BRASIL"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "385152"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Trava Elétrica Roadstar 2 Fios Individual - Rs101br\n\nVISÃO GERAL\nResistente Com o sistema de motor de torque elevado, a trava elétrica RS-01BR pode ser utilizada até em modelos de carros mais antigos, onde se requer mais esforço para abrir ou fechar as travas das portas. Cabeça 360º Projetada para todos os modelos de carros, as travas universais Roadstar são facilmente instaladas tendo a cabeça giratória em 360º para se adequar a todos os sistemas de portas. *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: ROADSTAR BRASIL\n• Número de peça: 385152\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ROADSTAR BRASIL\n• GTIN: 7890000078399\n• NCM: 83012000\n• SKU: VTK017397\n\nEMBALAGEM\n• Dimensões informadas: 3 × 7.5 × 21.5 cm\n• Peso bruto informado: 0,134 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f4830746-74a9-401b-a711-2ccee41787d1",
+      "sku": "VTK017534",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": ""
+      },
+      "basePrice": 89.75,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "JBL"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "74789"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "RPD250-X"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Reparo Jbl Selenium Rpd250-x Para Driver D250-x\n\nVISÃO GERAL\nPara Driver D250X\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: JBL\n• Número de peça: 74789\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: RPD250-X\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: JBL\n• GTIN: 7896359508631\n• NCM: 85189010\n• SKU: VTK017534\n\nEMBALAGEM\n• Dimensões informadas: 4.5 × 10.5 × 11 cm\n• Peso bruto informado: 0,056 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6529db06-96ae-4f36-873c-e673c801cdaa",
+      "sku": "VTK017783",
+      "category": {
+        "id": "MLB430253",
+        "nome": "Lâmpadas para Cultivo",
+        "dominio": ""
+      },
+      "basePrice": 188.04,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "QUANTUM"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "PLUS4004"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898382148075"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Quantum Qps Plus4004 Sensor De Estacion. C/ 4 Sensores Sonoros\n\nVISÃO GERAL\n4 Sensores Indicação Sonora Indicação visual por display Barcode Meia lua\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: QUANTUM\n• Modelo: PLUS4004\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: QUANTUM\n• GTIN: 7898382148075\n• NCM: 87089990\n• SKU: VTK017783\n\nEMBALAGEM\n• Peso bruto informado: 1 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "bdd22a64-bf53-4d11-865c-97dd9a6eb776",
+      "sku": "VTK017821",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": ""
+      },
+      "basePrice": 85.44,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "JBL"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "229111"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "RPST302-X"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Reparo Jbl Selenium Rpst302-x Para Super Tweeter St302-x\n\nVISÃO GERAL\nQuando o super tweeter queimar ou apresentar problemas, saiba que não é o fim da linha. Para ter de volta toda a eficiência de seu alto falante automotivo, tenha o Reparo Original JBL Selenium. Compatível com super tweeter ST302X da JBL com 125W RMS de potência, o kit reparo original tem instalação sob medida, trocando a peça com danos, para que você possa continuar usando seu sistema de som automotivo com toda a qualidade.\n\n*Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: JBL\n• Número de peça: 229111\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: RPST302-X\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: JBL\n• GTIN: 7896359530991\n• NCM: 85189010\n• SKU: VTK017821\n\nEMBALAGEM\n• Dimensões informadas: 4.5 × 10.5 × 11.5 cm\n• Peso bruto informado: 0,054 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "0c91a533-35c0-433b-9037-fb32747eeaf8",
+      "sku": "VTK017391",
+      "nome": "Grampo Vonder 16mm Para Pinador Elétrico Com 1000 Grampos",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB430493",
+            "nome": "Grampeadores e Pinadores"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "ad9bb504-524a-48d3-a56c-146c4f1781ab",
+      "sku": "VTK017577",
+      "nome": "Fone De Ouvido Para Radio Comunicador Intelbras Hc20pt 4161020",
+      "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB418302",
+            "nome": "Fones"
+          },
+          "missing": [
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "018f9e02-57ce-4766-a127-8cbee6d3cabc",
+      "sku": "VTK017630",
+      "nome": "Sensor Externo Sulton Spw 700 Pet 30 Kg",
+      "error": "Atributos obrigatórios pendentes: Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

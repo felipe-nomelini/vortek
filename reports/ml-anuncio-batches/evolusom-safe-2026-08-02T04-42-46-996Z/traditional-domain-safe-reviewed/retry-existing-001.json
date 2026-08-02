@@ -1,0 +1,65 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-domain-safe-reviewed/001-evolusom-domain-safe-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-safe-001",
+  "selected": 5,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "865b05da-58b8-4c3b-9fc4-9c7b58cc19bd",
+      "sku": "VTK017185",
+      "nome": "Plug Santo Angelo P10 Ninja Estéreo Com Mola Níquel",
+      "error": "Produto já possui anúncio vinculado no Mercado Livre.",
+      "status": 409,
+      "attempts": null,
+      "data": {
+        "error": "Produto já possui anúncio vinculado no Mercado Livre."
+      }
+    },
+    {
+      "produtoId": "fc4aa25f-81b8-40c9-8e1a-d2cac8343222",
+      "sku": "VTK017317",
+      "nome": "Mouse Pad Evus Mp-500b Pan",
+      "error": "Produto já possui anúncio vinculado no Mercado Livre.",
+      "status": 409,
+      "attempts": null,
+      "data": {
+        "error": "Produto já possui anúncio vinculado no Mercado Livre."
+      }
+    },
+    {
+      "produtoId": "054e7b91-653d-4f52-b332-1ca9da3994af",
+      "sku": "VTK017397",
+      "nome": "Trava Elétrica Roadstar 2 Fios Individual - Rs101br",
+      "error": "Produto já possui anúncio vinculado no Mercado Livre.",
+      "status": 409,
+      "attempts": null,
+      "data": {
+        "error": "Produto já possui anúncio vinculado no Mercado Livre."
+      }
+    },
+    {
+      "produtoId": "0c58abd1-d64a-4139-9563-b4c28dde8baf",
+      "sku": "VTK017885",
+      "nome": "Termopar Tipo K Minipa Mtk-01 Com Blister",
+      "error": "Produto já possui anúncio vinculado no Mercado Livre.",
+      "status": 409,
+      "attempts": null,
+      "data": {
+        "error": "Produto já possui anúncio vinculado no Mercado Livre."
+      }
+    },
+    {
+      "produtoId": "04b72773-20e9-4de9-be70-92efa36f8a69",
+      "sku": "VTK018089",
+      "nome": "Trava Elétrica Soft Aa420012 Novo Uno / Palio / Strada / Celta 2 Portas",
+      "error": "Produto já possui anúncio vinculado no Mercado Livre.",
+      "status": 409,
+      "attempts": null,
+      "data": {
+        "error": "Produto já possui anúncio vinculado no Mercado Livre."
+      }
+    }
+  ]
+}

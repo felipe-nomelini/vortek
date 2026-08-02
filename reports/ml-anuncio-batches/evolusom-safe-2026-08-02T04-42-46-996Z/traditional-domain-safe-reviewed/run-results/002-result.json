@@ -1,0 +1,135 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-domain-safe-reviewed/002-evolusom-domain-safe-002.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-safe-002",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "7dca48d5-d209-4431-81cc-33bbae63bcda",
+      "sku": "VTK018224",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981496529",
+        "title": "Módulo De Vidro Elétrico Soft Infinity 2.0 - Aa.56.0001",
+        "price": 132.09,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981496529-modulo-de-vidro-eletrico-soft-infinity-20-aa560001-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 112.53 → R$ 132.09."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "f713b5db-60e1-4bbd-93f1-bd3ebaa839fd",
+      "sku": "VTK018294",
+      "category": {
+        "id": "MLB33412",
+        "nome": "Controles Remotos para Alarmes",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981505305",
+        "title": "Controle Remoto Intelbras Ir3 433 92 Mhz Para Câmera Ic7s",
+        "price": 145.72,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981505305-controle-remoto-intelbras-ir3-433-92-mhz-para-cmera-ic7s-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 123.52 → R$ 145.72."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9c3663e8-0acd-468c-8bc8-1a946e462418",
+      "sku": "VTK018345",
+      "category": {
+        "id": "MLB46560",
+        "nome": "Cornetas",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981505455",
+        "title": "Corneta Jbl Hl14-50 Trio Alumínio",
+        "price": 146.71,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981505455-corneta-jbl-hl14-50-trio-aluminio-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"status\":409,\"code\":\"conflict.error\",\"error\":\"Conflict\"}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "4745913c-5b34-40ab-b200-2dd027053231",
+      "sku": "VTK018549",
+      "category": {
+        "id": "MLB421298",
+        "nome": "Conversores de Aúdio e Vídeo",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981505549",
+        "title": "Modulador Ágil De Áudio E Vídeo Aquário Mod-002 Para Tv",
+        "price": 276.39,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981505549-modulador-agil-de-audio-e-video-aquario-mod-002-para-tv-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 225.43 → R$ 276.39."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "91f4e341-291c-42c2-b832-dfb9349e0d52",
+      "sku": "VTK018867",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981505671",
+        "title": "Módulo De Vidro Elétrico Quantum Lv8fc20 Kia Picanto 2011+",
+        "price": 161.96,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981505671-modulo-de-vidro-eletrico-quantum-lv8fc20-kia-picanto-2011-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 135.32 → R$ 161.96."
+      ]
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,183 @@
+{
+  "batchNumber": 2,
+  "batchId": "evolusom-domain-safe-002",
+  "strategy": "traditional_without_catalog_domain_mismatch_manual_semantic_review",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "7dca48d5-d209-4431-81cc-33bbae63bcda",
+      "sku": "VTK018224",
+      "nome": "Módulo De Vidro Elétrico Soft Infinity 2.0 - Aa.56.0001",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 68.9,
+      "estoque": 14,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 109.75,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB191714",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+        "categoryId": "MLB191714",
+        "categoryName": "Elétrico",
+        "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+        "validatedGtin": "7898441352016"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898441352016",
+        "validatedNcm": "85432000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "f713b5db-60e1-4bbd-93f1-bd3ebaa839fd",
+      "sku": "VTK018294",
+      "nome": "Controle Remoto Intelbras Rf Ir3",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 78.2,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 121.23,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB33412",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-ALARM_REMOTE_CONTROLS",
+        "categoryId": "MLB33412",
+        "categoryName": "Controles Remotos para Alarmes",
+        "categoryPath": "Casa, Móveis e Decoração > Segurança para Casa > Sistemas de Monitoramento > Controles Remotos para Alarmes",
+        "validatedGtin": "7896637680356"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637680356",
+        "validatedNcm": "85269200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "9c3663e8-0acd-468c-8bc8-1a946e462418",
+      "sku": "VTK018345",
+      "nome": "Corneta Jbl Hl14-50 Trio Alumínio",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 95.9,
+      "estoque": 9,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 143.09,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46560",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-HORN_DRIVERS",
+        "categoryId": "MLB46560",
+        "categoryName": "Cornetas",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Cornetas",
+        "validatedGtin": "7896359515387"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359515387",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "4745913c-5b34-40ab-b200-2dd027053231",
+      "sku": "VTK018549",
+      "nome": "Modulador ágil De áudio E Vídeo Aquário Mod-002 Para Tv/ Catv",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 152.9,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 217.08,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB421298",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONVERTERS",
+        "categoryId": "MLB421298",
+        "categoryName": "Conversores de Aúdio e Vídeo",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Acessórios para Áudio e Vídeo > Conversores de Aúdio e Vídeo",
+        "validatedGtin": "7898127604293"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898127604293",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "91f4e341-291c-42c2-b832-dfb9349e0d52",
+      "sku": "VTK018867",
+      "nome": "Lv8fc20 Mod Vidro Eletrico Kia",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 86.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 131.98,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB191714",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+        "categoryId": "MLB191714",
+        "categoryName": "Elétrico",
+        "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+        "validatedGtin": "7898382140185"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898382140185",
+        "validatedNcm": "85395100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

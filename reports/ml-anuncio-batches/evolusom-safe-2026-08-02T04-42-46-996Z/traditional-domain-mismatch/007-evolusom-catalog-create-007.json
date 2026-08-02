@@ -1,0 +1,353 @@
+{
+  "batchNumber": 7,
+  "batchId": "evolusom-traditional-007",
+  "strategy": "traditional_no_catalog_predictor_consensus",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "1395fed2-dc1c-43ed-9dd5-6ce0c42743b7",
+      "sku": "VTK018868",
+      "nome": "Contra Frente Plástica Permak Toyota Etios 2 Din Preta",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 64.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 104.81,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46593",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-MOTORCYCLE_FAIRINGS",
+        "categoryId": "MLB46593",
+        "categoryName": "Carenagem",
+        "categoryPath": "Acessórios para Veículos > Peças de Motos e Quadriciclos > Chassis > Plásticos de Motos > Carenagem",
+        "validatedGtin": "7898253499558"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253499558",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "f890678d-4601-445e-ae96-e7580dabdd80",
+      "sku": "VTK018869",
+      "nome": "Contra Frente Plástica Permak Honda New Civic 2012 2 Din",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 85.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 130.74,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46593",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-MOTORCYCLE_FAIRINGS",
+        "categoryId": "MLB46593",
+        "categoryName": "Carenagem",
+        "categoryPath": "Acessórios para Veículos > Peças de Motos e Quadriciclos > Chassis > Plásticos de Motos > Carenagem",
+        "validatedGtin": "7898253495581"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253495581",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "14432b65-d259-4231-be60-04113a28dc7a",
+      "sku": "VTK018874",
+      "nome": "Reparo Jbl Rpd450 Trio Para Driver D450 Trio",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 231.5,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 328.67,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46559",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+        "categoryId": "MLB46559",
+        "categoryName": "Drivers",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Drivers",
+        "validatedGtin": "7896359541027"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359541027",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "9bb36bae-d17e-41e2-983e-df7fff19e78a",
+      "sku": "VTK018934",
+      "nome": "Suporte Para Caixa Acústica Ask Ou Cubo Com Regulagem Inclinação",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 93.6,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 140.25,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB10233",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-SPEAKERS_STANDS",
+        "categoryId": "MLB10233",
+        "categoryName": "Suportes para Caixas de Som",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Áudio > Suportes para Caixas de Som",
+        "validatedGtin": "7898939971378"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898939971378",
+        "validatedNcm": "92099900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "09d0f758-10d5-47a9-bb3d-d5cc6408937f",
+      "sku": "VTK018940",
+      "nome": "Cabo Coaxial Rf0,4/2,5+2x26awg Mono 100m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 89.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 135.68,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB431815",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-NETWORK_CABLES",
+        "categoryId": "MLB431815",
+        "categoryName": "Cabos de Rede",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Cabos > Cabos de Rede",
+        "validatedGtin": "7899938515952"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899938515952",
+        "validatedNcm": "85442000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "1be0b415-c95b-460a-bab8-2525814bcfbd",
+      "sku": "VTK018943",
+      "nome": "Controlador Acesso Ip Wide Cx-7006",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 515.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 764.3,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "categoryId": "MLB276631",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-PROXIMITY_READERS",
+        "categoryId": "MLB276631",
+        "categoryName": "Leitores de Proximidade",
+        "categoryPath": "Indústria e Comércio > Equipamento para Escritórios > Controle de Acesso e Chegada > Artigos de Proximidade > Leitores de Proximidade",
+        "validatedGtin": "7898954353630"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898954353630",
+        "validatedNcm": "84714100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "c67795dd-f96b-478b-9af7-f7265d3f6071",
+      "sku": "VTK018944",
+      "nome": "Central Laço Indutivo Citrox 2 Pontos Cx-7602",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 684.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1014.67,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "categoryId": "MLB7070",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "categoryPath": "Casa, Móveis e Decoração > Segurança para Casa > Sistemas de Monitoramento > Alarmes e Sensores",
+        "validatedGtin": "7898954353074"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898954353074",
+        "validatedNcm": "85439090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "8fb3551e-691c-46ca-b878-137a487091dc",
+      "sku": "VTK019006",
+      "nome": "Testador Smd Com Pinça Hikari Hm-10",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 165.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 235.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB271716",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-NETWORK_CABLE_TESTERS",
+        "categoryId": "MLB271716",
+        "categoryName": "Testadores de Cabos",
+        "categoryPath": "Informática > Conectividade e Redes > Ferramentas > Testadores de Cabos",
+        "validatedGtin": "7899810417084"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810417084",
+        "validatedNcm": "90308990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "24a37bf9-448f-4d52-8ef3-2ed05512ba8e",
+      "sku": "VTK019030",
+      "nome": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din Cinza 89/m3",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 21.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 51.73,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46593",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-MOTORCYCLE_FAIRINGS",
+        "categoryId": "MLB46593",
+        "categoryName": "Carenagem",
+        "categoryPath": "Acessórios para Veículos > Peças de Motos e Quadriciclos > Chassis > Plásticos de Motos > Carenagem",
+        "validatedGtin": "7898253497998"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253497998",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "88c2c031-ae59-4897-be9f-b0aeab88adc8",
+      "sku": "VTK019103",
+      "nome": "Frente Falsa Max Eletron 1ux19",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 10.95,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 38.21,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB271688",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-TOOLS",
+        "categoryId": "MLB271688",
+        "categoryName": "Outras Ferramentas",
+        "categoryPath": "Informática > Conectividade e Redes > Ferramentas > Outras Ferramentas",
+        "validatedGtin": "7908060203122"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908060203122",
+        "validatedNcm": "94032090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

@@ -128,7 +128,10 @@ const SHEET_CONFIGS = {
     brand: 'Elgin',
     categoryId: 'MLB7060',
     allowVerifiedCategoryFallback: true,
-    allowedComponentCategoryMismatches: [2391, 2392, 2393, 2608, 2609, 2611, 2790],
+    // Estes GTINs identificam corretamente cartelas Elgin de pilhas-moeda,
+    // embora os anúncios unitários estejam na categoria legada MLB431681.
+    // Para os kits, publicamos em MLB7060 sem reutilizar o GTIN da cartela.
+    allowedComponentCategoryMismatches: [2391, 2392, 2393, 2608, 2611, 2790],
     models: {
       2382: 'AA',
       2383: 'AA',
@@ -1000,7 +1003,8 @@ async function main() {
     if (
       componentGtin &&
       componentItem?.category_id &&
-      text(componentItem.category_id) !== expectedCategoryId
+      text(componentItem.category_id) !== expectedCategoryId &&
+      !SHEET_CONFIG.allowedComponentCategoryMismatches?.includes(source)
     ) {
       block('component_gtin_category_conflict', {
         expected: expectedCategoryId,

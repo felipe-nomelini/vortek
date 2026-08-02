@@ -1,0 +1,49 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-08-02T03-07-03-749Z/run-results/001-VTK025633-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "bkr1-live-001-VTK025633",
+  "selected": 1,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "cb733cdf-c600-4201-851e-1d74b0b2a57d",
+      "sku": "VTK025633",
+      "nome": "10 Pilhas Moeda Lítio Elgin CR1220 3V Kit",
+      "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB7060]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB7060]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Voltagem nominal: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+          "GTIN ausente. Motivo enviado ao ML: O produto é um kit ou pack.",
+          "GTIN ausente; categoria aceita motivo de GTIN vazio e payload foi ajustado quando disponível."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB7060]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+      }
+    }
+  ]
+}

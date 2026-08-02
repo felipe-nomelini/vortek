@@ -1,0 +1,267 @@
+{
+  "batchNumber": 1,
+  "batchId": "evolusom-ml-create-001",
+  "strategy": "strict_evidence_small_batch",
+  "executionHints": {
+    "delayMs": 2000,
+    "listingType": "gold_pro",
+    "strictEvidence": true,
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "stopAfterConsecutiveFailures": 3,
+    "requireVortekStorageImages": true,
+    "verifyListingAfterEachCreate": true
+  },
+  "items": [
+    {
+      "produtoId": "c2bc53ad-df5d-4a5b-a3ec-f98ab519a418",
+      "sku": "VTK017708",
+      "nome": "Acessório Cabo De Antena Ford Fusion / Gm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 13.53,
+      "estoque": 31,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 41.4,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253504481",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "6b567a46-935d-4828-9e0c-3fe87355a5f1",
+      "sku": "VTK017236",
+      "nome": "Alto Falante 5\" Pioneer Ts-1360br 100rms/ Par",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 113.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 165.31,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "4988028352812",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "f85d881e-1485-487f-aaad-19c03f40c054",
+      "sku": "VTK018292",
+      "nome": "Alto Falante Subwoofer Pioneer 12\" Ts-w3090br 600w Rms 2x4 Ohms Bobina Dupla",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 430.99,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 638.5,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "4988028352720",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "8f8b8004-2749-4790-b626-6bdc31c30dfd",
+      "sku": "VTK018702",
+      "nome": "Alto Falante Hinor Hpl 18\" 1000w Rms 8r Subwoofer",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 581.99,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 862.21,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896673801128",
+        "validatedNcm": "85182100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "5b434d9c-8393-4dfa-8948-6f4888be8dc2",
+      "sku": "VTK019018",
+      "nome": "Alto Falante Eros Neo E-515-neo-4 15\" 4r 500w Rms",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 623.99,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 924.43,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899021996743",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "92fa2aa7-5d9c-4765-ace4-e5114af5848d",
+      "sku": "VTK018857",
+      "nome": "Alto Falante Selenium Jbl Original Pro 2206-h 12\" 8r 600w Rms Woofer",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 719.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1066.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359523368",
+        "validatedNcm": "85182100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "7c433078-cf08-4965-8cba-fe1e9c822b33",
+      "sku": "VTK005357",
+      "nome": "Alto-Falante 5\" JBL Multisystem 5TRMS80 (PAR)",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 209.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 298.01,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359568963",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "b220ccb7-0ec1-4976-8cb9-b631697a5aba",
+      "sku": "VTK017944",
+      "nome": "Antena Aquário Px Viuva Negra Base Prolongada Com Bobina Central",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 164.9,
+      "estoque": 17,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 234.12,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898127608314",
+        "validatedNcm": "85291090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "c3465729-640a-485e-9ea0-9030b622b642",
+      "sku": "VTK018113",
+      "nome": "Antena Aquário Px Viúva Negra 11 Metros Com Base Pu E Bobina Central",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 164.9,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 234.12,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898127608291",
+        "validatedNcm": "85291090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "a153f631-21b1-4b34-8cd6-97c861505e72",
+      "sku": "VTK018866",
+      "nome": "Antena Móvel Aquário M-400c 5/8 De Onda Para Rádio Vhf",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 123.9,
+      "estoque": 14,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 177.65,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898127600356",
+        "validatedNcm": "85291090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

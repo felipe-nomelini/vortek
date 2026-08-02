@@ -1,0 +1,886 @@
+[
+  {
+    "produtoId": "94af03bd-25f4-44ad-9d6e-86f57700f57d",
+    "sku": "VTK017267",
+    "nome": "Controle Remoto Ar Condicionado Elgin Ecoplus Mxt",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 15.5,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 43.83,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB196072",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS",
+      "categoryId": "MLB196072",
+      "categoryName": "Controles Remotos",
+      "categoryPath": "Eletrodomésticos > Ar e Ventilação > Peças e Acessórios > Para Ar Condicionado > Controles Remotos",
+      "validatedGtin": "7899903188426"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899903188426",
+      "validatedNcm": "85437099",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "748ef8dc-e186-42ef-b716-45e8c3440915",
+    "sku": "VTK017347",
+    "nome": "Cabo Optico Splitter Evus Opf-plc1x16-nc250 Plc 1x16 Nc 1,5m G657a1",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 23.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 54.2,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB272149",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-FIBER_OPTIC_SPLITTERS",
+      "categoryId": "MLB272149",
+      "categoryName": "Splitters de Fibra Óptica",
+      "categoryPath": "Informática > Conectividade e Redes > Ferramentas > Montagem de Fibra Óptica > Splitters de Fibra Óptica",
+      "validatedGtin": "7890003597781"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7890003597781",
+      "validatedNcm": "85176259",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "c7461bea-93fe-4456-be60-f12ea4708e58",
+    "sku": "VTK017608",
+    "nome": "Lâmpada Super Branca Techone H9 55w 6000k Com Inmetro",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 14.99,
+    "estoque": 40,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 43.2,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB191727",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_LIGHT_BULBS",
+      "categoryId": "MLB191727",
+      "categoryName": "Lâmpadas",
+      "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Iluminação > Lâmpadas e LEDs > Lâmpadas",
+      "validatedGtin": "7898613228712"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898613228712",
+      "validatedNcm": "85392110",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "0c3eb874-24a5-4ec7-91d1-67f6a64c4e62",
+    "sku": "VTK017645",
+    "nome": "Calota Aro 14p 879cp-gft Mod Kwid Zen 2020",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 18.6,
+    "estoque": 36,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 47.65,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB22664",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+      "categoryId": "MLB22664",
+      "categoryName": "Calotas",
+      "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+      "validatedGtin": "7899892512356"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899892512356",
+      "validatedNcm": "87087090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "591902e9-de99-4206-963e-e3cfa1dd1f48",
+    "sku": "VTK017751",
+    "nome": "Fonte Chaveada 6v 1a Plug P4 C+ 2.1 X 5.5 Mm",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 13.2,
+    "estoque": 20,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 40.99,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB420411",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES",
+      "categoryId": "MLB420411",
+      "categoryName": "Fontes Chaveadas",
+      "categoryPath": "Eletrônicos, Áudio e Vídeo > Componentes Eletrônicos > Fontes Chaveadas",
+      "validatedGtin": "7899471855072"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899471855072",
+      "validatedNcm": "85044029",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "7394323c-cc8f-4ac4-b3a7-cd19d8bb4fcf",
+    "sku": "VTK017812",
+    "nome": "Calota Aro 14p 879cp-pta Mod Kwid Zen 2020",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 11.95,
+    "estoque": 24,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 39.44,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB22664",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+      "categoryId": "MLB22664",
+      "categoryName": "Calotas",
+      "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+      "validatedGtin": "7899892512233"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899892512233",
+      "validatedNcm": "87087090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "1a4468b9-0d4e-4635-ba58-17fcd661e9e1",
+    "sku": "VTK017819",
+    "nome": "Sirene De Ré Fks 12/24v",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 19.9,
+    "estoque": 24,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 49.26,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB115699",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_SECURITY",
+      "categoryId": "MLB115699",
+      "categoryName": "Sirenes",
+      "categoryPath": "Acessórios para Veículos > Segurança Veicular > Sirenes",
+      "validatedGtin": "7899906804910"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899906804910",
+      "validatedNcm": "85123000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "e1e008c0-ad82-46a3-942e-00613cab6d2e",
+    "sku": "VTK017842",
+    "nome": "Módulo Tury Para Vidro Elétrico Ae Pro2.10cr",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 164.9,
+    "estoque": 22,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 234.12,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB191714",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+      "categoryId": "MLB191714",
+      "categoryName": "Elétrico",
+      "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+      "validatedGtin": "7898096337758"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898096337758",
+      "validatedNcm": "85437099",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "ccfba758-dc8b-4a27-a854-fa33c05bdfd7",
+    "sku": "VTK017888",
+    "nome": "Módulo Tury Para Vidro Elétrico Ae Pro2.8cw",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 164.9,
+    "estoque": 20,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 234.12,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB191714",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+      "categoryId": "MLB191714",
+      "categoryName": "Elétrico",
+      "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+      "validatedGtin": "7898096337710"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898096337710",
+      "validatedNcm": "85437099",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "a633a5df-049b-4273-bcac-810a3287c1e0",
+    "sku": "VTK017968",
+    "nome": "Cabo óptico Splitter Intelbras Xfs 1321 Plc 1x32 Sc/upc 4830044",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 121.3,
+    "estoque": 18,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 174.44,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB272149",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-FIBER_OPTIC_SPLITTERS",
+      "categoryId": "MLB272149",
+      "categoryName": "Splitters de Fibra Óptica",
+      "categoryPath": "Informática > Conectividade e Redes > Ferramentas > Montagem de Fibra Óptica > Splitters de Fibra Óptica",
+      "validatedGtin": "7896637676892"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896637676892",
+      "validatedNcm": "85447090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "44b3d34d-83bb-4fea-bc12-bbaa2d4b8912",
+    "sku": "VTK017969",
+    "nome": "Corneta Profissional Jbl Hl11-25 Trio Branca",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 88.5,
+    "estoque": 18,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 133.95,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB46560",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-HORN_DRIVERS",
+      "categoryId": "MLB46560",
+      "categoryName": "Cornetas",
+      "categoryPath": "Acessórios para Veículos > Som Automotivo > Cornetas",
+      "validatedGtin": "7896359553815"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896359553815",
+      "validatedNcm": "85189010",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "7c2e6935-5434-49e1-aa54-97e66714c919",
+    "sku": "VTK017986",
+    "nome": "Driver Fenólico Jbl D450 Trio 300w 8r Rms",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 698.9,
+    "estoque": 17,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 1035.41,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.2,
+      "minProfit": 60
+    },
+    "categoryId": "MLB46559",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+      "categoryId": "MLB46559",
+      "categoryName": "Drivers",
+      "categoryPath": "Acessórios para Veículos > Som Automotivo > Drivers",
+      "validatedGtin": "7896359540945"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896359540945",
+      "validatedNcm": "85182990",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "dc303f1e-c351-47b5-b84f-fd288ba331e4",
+    "sku": "VTK017995",
+    "nome": "Conversor De Audio/video Evus C-085 Hdmi Para 3 Rca",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 52.9,
+    "estoque": 15,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 90,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB421298",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONVERTERS",
+      "categoryId": "MLB421298",
+      "categoryName": "Conversores de Aúdio e Vídeo",
+      "categoryPath": "Eletrônicos, Áudio e Vídeo > Acessórios para Áudio e Vídeo > Conversores de Aúdio e Vídeo",
+      "validatedGtin": "7898597132289"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898597132289",
+      "validatedNcm": "85437039",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "b02d0763-0ef6-473a-ac17-5c63cd3a6dfc",
+    "sku": "VTK018013",
+    "nome": "Trava Elétrica Soft Aa420011 Novo Uno / Celta / Eco / Fiest / Palio 99 4portas",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 117.9,
+    "estoque": 13,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 170.25,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB22369",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_ELECTRIC_DOOR_LOCKS",
+      "categoryId": "MLB22369",
+      "categoryName": "Travas Elétricas",
+      "categoryPath": "Acessórios para Veículos > Segurança Veicular > Travas Elétricas",
+      "validatedGtin": "7898441355116"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898441355116",
+      "validatedNcm": "87082999",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "f0e66d56-21a1-4492-a513-cd64fbb9d708",
+    "sku": "VTK018107",
+    "nome": "Arandela Frahm Sem Borda 6\" 100w Quadrada",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 231.9,
+    "estoque": 14,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 329.24,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB11507",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-SPEAKERS",
+      "categoryId": "MLB11507",
+      "categoryName": "Caixas Acústicas ",
+      "categoryPath": "Eletrônicos, Áudio e Vídeo > Áudio > Caixas Acústicas ",
+      "validatedGtin": "7896673807472"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896673807472",
+      "validatedNcm": "85182100",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "22f24876-10e5-49e7-82a3-af3218d1e5c9",
+    "sku": "VTK018130",
+    "nome": "Sirene Bitonal Fks 12v Preta",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 13.9,
+    "estoque": 10,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 41.85,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB115699",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_SECURITY",
+      "categoryId": "MLB115699",
+      "categoryName": "Sirenes",
+      "categoryPath": "Acessórios para Veículos > Segurança Veicular > Sirenes",
+      "validatedGtin": "7899906801490"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899906801490",
+      "validatedNcm": "85123000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "9f0d2f23-998b-498b-83d7-47de78190c32",
+    "sku": "VTK018518",
+    "nome": "Módulo De Vidro Elétrico Quantum Lv8fc50 Para Ranger 2013 2 Portas",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 85.9,
+    "estoque": 7,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 130.74,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB191714",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+      "categoryId": "MLB191714",
+      "categoryName": "Elétrico",
+      "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+      "validatedGtin": "7898382149614"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898382149614",
+      "validatedNcm": "85395100",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "b9a8de34-93e1-4414-bf4e-b1478e028334",
+    "sku": "VTK018613",
+    "nome": "Modulo De Vidro Fks Mlv408 Co Para Hyundai Ix35 Top Com Conector Original",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 90.9,
+    "estoque": 6,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 136.91,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB191714",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+      "categoryId": "MLB191714",
+      "categoryName": "Elétrico",
+      "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+      "validatedGtin": "7899906801216"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899906801216",
+      "validatedNcm": "85437099",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "b5780ff4-6de2-445c-b982-5fdc52d192aa",
+    "sku": "VTK018706",
+    "nome": "Protetor De Carter Dhf-240 Stilo 2003",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 72.85,
+    "estoque": 5,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 114.63,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB194788",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_SUMP_GUARDS",
+      "categoryId": "MLB194788",
+      "categoryName": "Protetor de Cárter",
+      "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Motor > Componentes de Motor > Cárters de Motores > Protetor de Cárter",
+      "validatedGtin": "7898154402404"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898154402404",
+      "validatedNcm": "87082999",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "281246e0-659e-486d-91cc-32e3ec745aef",
+    "sku": "VTK018941",
+    "nome": "Cabo Lan Megacabos Cat5e 8 Vias Interno 1km",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 1649.9,
+    "estoque": 4,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 2546.14,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.25,
+      "minProfit": 150
+    },
+    "categoryId": "MLB270088",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-NETWORK_CABLES",
+      "categoryId": "MLB270088",
+      "categoryName": "Cabos de Rede",
+      "categoryPath": "Informática > Conectividade e Redes > Cabos de Rede e Acessórios > Cabos de Rede",
+      "validatedGtin": "7899278923165"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899278923165",
+      "validatedNcm": "85444900",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "c3f99da0-1421-4dad-baab-9f99faf9c173",
+    "sku": "VTK019039",
+    "nome": "Módulo De Vidro Elétrico Quantum Lv8fc54 Hyundai Novo I30 2014",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 80.9,
+    "estoque": 3,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 124.57,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB191714",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+      "categoryId": "MLB191714",
+      "categoryName": "Elétrico",
+      "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+      "validatedGtin": "7898382149669"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898382149669",
+      "validatedNcm": "85395100",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "72c29fc9-3c8b-4a5b-9e0f-613b676a3c50",
+    "sku": "VTK019052",
+    "nome": "Módulo Trava Elétrica Speed-lock Tury Lock2.0",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 98.9,
+    "estoque": 3,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 146.79,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB22369",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_ELECTRIC_DOOR_LOCKS",
+      "categoryId": "MLB22369",
+      "categoryName": "Travas Elétricas",
+      "categoryPath": "Acessórios para Veículos > Segurança Veicular > Travas Elétricas",
+      "validatedGtin": "7899927001206"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899927001206",
+      "validatedNcm": "85432000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "37b54719-9216-4a9d-aee6-7f2e8cf0f67f",
+    "sku": "VTK019114",
+    "nome": "Aw32 Soft Cn Orig 4v Toyota Etios 4v 14+",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 151.9,
+    "estoque": 3,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 215.66,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB191714",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+      "categoryId": "MLB191714",
+      "categoryName": "Elétrico",
+      "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+      "validatedGtin": "7898441351293"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898441351293",
+      "validatedNcm": "85437099",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "d3fe4596-8ab2-422c-a164-fa78e0d6bc11",
+    "sku": "VTK019118",
+    "nome": "Módulo De Vidro Elétrico Tury Ae Pro 4.78br",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 309.9,
+    "estoque": 3,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 439.98,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB191714",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+      "categoryId": "MLB191714",
+      "categoryName": "Elétrico",
+      "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+      "validatedGtin": "7899987002687"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899987002687",
+      "validatedNcm": "85432000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "8b1706cd-6206-4ba6-9071-ddf2e39378f9",
+    "sku": "VTK019168",
+    "nome": "Módulo De Vidro Tury Ae Pro3.4b",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 265.9,
+    "estoque": 3,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 377.51,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB191714",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+      "categoryId": "MLB191714",
+      "categoryName": "Elétrico",
+      "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+      "validatedGtin": "7899987007293"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899987007293",
+      "validatedNcm": "85432000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "4ea07bb8-abd6-4952-97c9-27e508def1db",
+    "sku": "VTK019659",
+    "nome": "Palheta Automotiva Isoflex Flexível Silicone 26\"",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 11,
+    "estoque": 3,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 38.27,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB63484",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_WINDSHIELD_WIPERS",
+      "categoryId": "MLB63484",
+      "categoryName": "Palhetas",
+      "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Peças de Exterior > Limpadores e Lavadores > Escovas e Recambios > Palhetas",
+      "validatedGtin": "7898564960129"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898564960129",
+      "validatedNcm": "85124010",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  }
+]

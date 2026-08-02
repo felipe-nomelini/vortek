@@ -1,0 +1,388 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-domain-mismatch-validated/dry-run-results/007-evolusom-catalog-create-007-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-007",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "1395fed2-dc1c-43ed-9dd5-6ce0c42743b7",
+      "sku": "VTK018868",
+      "category": {
+        "id": "MLB46593",
+        "nome": "Carenagem",
+        "dominio": ""
+      },
+      "basePrice": 107.47,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "245576"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898253499558"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Contra Frente Plástica Permak Toyota Etios 2 Din Preta\n\nVISÃO GERAL\npreto\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Número de peça: 245576\n• Cor: Preto\n• Cor principal: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7898253499558\n• NCM: 85299090\n• SKU: VTK018868\n\nEMBALAGEM\n• Dimensões informadas: 24.5 × 8 × 14 cm\n• Peso bruto informado: 0,28 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f890678d-4601-445e-ae96-e7580dabdd80",
+      "sku": "VTK018869",
+      "category": {
+        "id": "MLB46593",
+        "nome": "Carenagem",
+        "dominio": ""
+      },
+      "basePrice": 134.05,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "245596"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898253495581"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Contra Frente Plástica Permak Honda New Civic 2012 2 Din\n\nVISÃO GERAL\npreto\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Número de peça: 245596\n• Cor: Preto\n• Cor principal: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7898253495581\n• NCM: 85299090\n• SKU: VTK018869\n\nEMBALAGEM\n• Dimensões informadas: 20 × 5 × 29 cm\n• Peso bruto informado: 0,26 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "14432b65-d259-4231-be60-04113a28dc7a",
+      "sku": "VTK018874",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": ""
+      },
+      "basePrice": 328.67,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "JBL"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "263834"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "RPD450"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Reparo Jbl Rpd450 Trio Para Driver D450 Trio\n\nVISÃO GERAL\nReparo TRIO Original JBL Selenium\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: JBL\n• Número de peça: 263834\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: RPD450\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: JBL\n• GTIN: 7896359541027\n• NCM: 85189010\n• SKU: VTK018874\n\nEMBALAGEM\n• Dimensões informadas: 6 × 17 × 18 cm\n• Peso bruto informado: 0,17 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8fb3551e-691c-46ca-b878-137a487091dc",
+      "sku": "VTK019006",
+      "category": {
+        "id": "MLB271716",
+        "nome": "Testadores de Cabos",
+        "dominio": ""
+      },
+      "basePrice": 244.6,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "HIKARI"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "HM-10"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899810417084"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Testador Smd Com Pinça Hikari Hm-10\n\nVISÃO GERAL\nO Testador SMD Com Pinça HM-10 é a ferramenta perfeita para técnicos e engenheiros de eletrônica que trabalham com placas de circuito e componentes miniaturizados. Com ele, você tem rapidez, precisão e praticidade em formato de pinça, substituindo medições demoradas por um processo simples, direto e eficiente. Por que escolher o HM-10 SMD?\n\nAgilidade e precisão permite testar diretamente componentes SMD - resistores, capacitores e diodos sem precisar retirá-los da placa. Compacto e leve (apenas 52g) ideal para uso em bancada ou em campo. Facilidade de uso seleção automática de faixas, função Hold e desligamento automático.\n\nPrecisão garantida até 40M ohms em resistência e 100mF em capacitância. Praticidade funciona com uma única bateria tipo moeda (CR2032), de fácil reposição. Segurança categoria CAT III 300V, atende às normas de proteção para eletrônica.\n\nHM-10: praticidade e precisão em formato de pinça, ideal para manutenção de eletrônicos e testes rápidos em SMD, o par perfeito para quem trabalha com eletrônica. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: HIKARI\n• Modelo: HM-10\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: HIKARI\n• GTIN: 7899810417084\n• NCM: 90308990\n• SKU: VTK019006\n\nEMBALAGEM\n• Dimensões informadas: 3 × 9.5 × 24 cm\n• Peso bruto informado: 0,092 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "24a37bf9-448f-4d52-8ef3-2ed05512ba8e",
+      "sku": "VTK019030",
+      "category": {
+        "id": "MLB46593",
+        "nome": "Carenagem",
+        "dominio": ""
+      },
+      "basePrice": 53.04,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "210591"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898253497998"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din Cinza 89/m3\n\nVISÃO GERAL\nContra Frente Plástica Corsa / Montana / Meriva 2 Din Cinza Permak 89/M3\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Número de peça: 210591\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7898253497998\n• NCM: 85299090\n• SKU: VTK019030\n\nEMBALAGEM\n• Dimensões informadas: 2.5 × 16 × 25 cm\n• Peso bruto informado: 0,126 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "88c2c031-ae59-4897-be9f-b0aeab88adc8",
+      "sku": "VTK019103",
+      "category": {
+        "id": "MLB271688",
+        "nome": "Outras Ferramentas",
+        "dominio": ""
+      },
+      "basePrice": 39.18,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "MAX ELETRON"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "1UX19"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7908060203122"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Frente Falsa Max Eletron 1ux19\n\nVISÃO GERAL\nInformações do Produto Frente Falsa 1Us Padrão 19\" Fabricada com material de ótima qualidade e durabilidade, confeccionada em aço estampado, tratado por fosfatização e pintada com tinta hibrida epóxi-pó na cor preta com secagem em forno de alta temperatura, o que garante excelente acabamento e resistência. As Frentes Falsas são utilizadas para preencher espaços vazios e dar acabamento em Equipamentos e Racks padrão 19 polegadas, além de permitir melhor direcionamento no fluxo de ar.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MAX ELETRON\n• Modelo: 1UX19\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MAX ELETRON\n• GTIN: 7908060203122\n• NCM: 94032090\n• SKU: VTK019103\n\nEMBALAGEM\n• Dimensões informadas: 0.1 × 0.1 × 0.6 cm\n• Peso bruto informado: 0,178 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "9bb36bae-d17e-41e2-983e-df7fff19e78a",
+      "sku": "VTK018934",
+      "nome": "Suporte Para Caixa Acústica Ask Ou Cubo Com Regulagem Inclinação",
+      "error": "Atributos obrigatórios pendentes: Lugar de colocação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB10233",
+            "nome": "Suportes para Caixas de Som"
+          },
+          "missing": [
+            "Lugar de colocação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "09d0f758-10d5-47a9-bb3d-d5cc6408937f",
+      "sku": "VTK018940",
+      "nome": "Cabo Coaxial Rf0,4/2,5+2x26awg Mono 100m",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo de rede",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431815",
+            "nome": "Cabos de Rede"
+          },
+          "missing": [
+            "Tipo de cabo de rede"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1be0b415-c95b-460a-bab8-2525814bcfbd",
+      "sku": "VTK018943",
+      "nome": "Controlador Acesso Ip Wide Cx-7006",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB276631",
+            "nome": "Leitores de Proximidade"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c67795dd-f96b-478b-9af7-f7265d3f6071",
+      "sku": "VTK018944",
+      "nome": "Central Laço Indutivo Citrox 2 Pontos Cx-7602",
+      "error": "Atributos obrigatórios pendentes: Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

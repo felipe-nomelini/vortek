@@ -1,0 +1,431 @@
+{
+  "batchNumber": 6,
+  "batchId": "evolusom-pdf-safe-006",
+  "strategy": "exact_gtin_semantic_review_strict_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "203acc55-b562-43c6-b837-06e93101fac7",
+      "sku": "VTK018502",
+      "nome": "Conector Derivação Permak Taplink 1,50 A 2,50mm - Azul",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 14.99,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.2,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898710414346",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB38172",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "72907811",
+          "value_name": "138/G"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52028",
+          "value_name": "Azul"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359392",
+          "value_name": "Kit"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "131783",
+          "value_name": "100"
+        },
+        {
+          "id": "COATING_MATERIAL",
+          "value_id": "16622757",
+          "value_name": "Polipropileno"
+        },
+        {
+          "id": "MPN",
+          "value_id": "72907813",
+          "value_name": "138/G"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_without_current_winner",
+        "catalogProductId": "MLB64965281",
+        "catalogProductName": "Conector Derivação Taplink 1,50 A 2,50mm | Azul",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+        "categoryId": "MLB38172",
+        "categoryName": "Conectores",
+        "validatedGtin": "7898710414346"
+      }
+    },
+    {
+      "produtoId": "5b9c27d8-c667-43dc-89c7-9322067883df",
+      "sku": "VTK018524",
+      "nome": "Roteador Wi-fi Max Aquário Apr-2410 N 150 Mbps",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 85.1,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 129.75,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898127600929",
+        "validatedNcm": "85176241",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB5867",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "45099",
+          "value_name": "Aquário"
+        },
+        {
+          "id": "LINE",
+          "value_id": "18167",
+          "value_name": "MAX"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "59672",
+          "value_name": "APR-2410"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "7386989",
+          "value_name": "1"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "FUNCTIONS",
+          "value_id": "279956",
+          "value_name": "Roteador"
+        },
+        {
+          "id": "INTERNAL_ANTENNAS_NUMBER",
+          "value_id": "8637169",
+          "value_name": "1"
+        },
+        {
+          "id": "EXTERNAL_ANTENNAS_NUMBER",
+          "value_id": "8758647",
+          "value_name": "1"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "41553638",
+          "value_name": "15231302250"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "36998743",
+          "value_name": "7898127600929"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB36904293",
+        "catalogProductName": "Roteador Wireless N150 Max Aquário APR-2410 Preto",
+        "catalogDomainId": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS",
+        "predictedDomainId": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS",
+        "categoryId": "MLB5867",
+        "categoryName": "Roteadores",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898127600929"
+      }
+    },
+    {
+      "produtoId": "22d9976e-39c2-4948-9d0b-b5f4d0bbc6ce",
+      "sku": "VTK018526",
+      "nome": "Cabo Para Microfone Santo Angelo Ninja Hg P10 X Xlrf 03ft 091 Cm 8827 Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 35.5,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 68.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899028808827",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB72745",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2200699",
+          "value_name": "Santo Angelo"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "18373885",
+          "value_name": "NINJAHG B"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788227",
+          "value_name": "XLR"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "1214615",
+          "value_name": "91 cm"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "16625013",
+          "value_name": "0.2 mm"
+        },
+        {
+          "id": "AWG_SIZE",
+          "value_id": "16088654",
+          "value_name": "24"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "15991808",
+          "value_name": "P10"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "2305169",
+          "value_name": "XLR"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116087",
+          "value_name": "Fêmea"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "15292962",
+          "value_name": "Níquel"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18373899",
+          "value_name": "7899028808827"
+        },
+        {
+          "id": "VERSION_TYPE",
+          "value_id": "63532253",
+          "value_name": "3 Pinos"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB22707216",
+        "catalogProductName": "Cabo Microfone Santo Angelo Ninja Hg P10 X Xlrf B 03ft 0,9m",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB72745",
+        "categoryName": "Cabos",
+        "linkedListingsInCategory": 14,
+        "validatedGtin": "7899028808827"
+      }
+    },
+    {
+      "produtoId": "2d23d922-5228-4a5a-97f0-35903478d514",
+      "sku": "VTK018723",
+      "nome": "Contra Frente Plástica Permak Fiat Bravo 2 Din Preta",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 54.58,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 92.07,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253498131",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB45320",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "48890584",
+          "value_name": "Fiat Bravo 2 Din"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2511571",
+          "value_name": "ABS"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "2399979",
+          "value_name": "7 \""
+        },
+        {
+          "id": "GTIN",
+          "value_id": "25230469",
+          "value_name": "7898253498131"
+        },
+        {
+          "id": "MPN",
+          "value_id": "54481712",
+          "value_name": "89/E3"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB50745398",
+        "catalogProductName": "Contra Frente Plastica Permak Fiat Bravo 2 Din Preta",
+        "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+        "categoryId": "MLB45320",
+        "categoryName": "Molduras para Estéreos",
+        "linkedListingsInCategory": 6,
+        "validatedGtin": "7898253498131"
+      }
+    },
+    {
+      "produtoId": "ecbe9735-b7c3-4b49-a088-50eed520c458",
+      "sku": "VTK018922",
+      "nome": "Placa Viaweb Central Vw16z Ip Star",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 334.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 475.48,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898936319081",
+        "validatedNcm": "85319000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB72514",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "15169328",
+          "value_name": "GNA"
+        },
+        {
+          "id": "PART_NUMBER",
+          "value_id": "34896649",
+          "value_name": "1"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_without_current_winner",
+        "catalogProductId": "MLB36842846",
+        "catalogProductName": "Placa Viaweb Central Vw16z Ip Star",
+        "catalogDomainId": "MLB-TELEPHONY_CARDS",
+        "predictedDomainId": "MLB-TELEPHONY_CARDS",
+        "categoryId": "MLB72514",
+        "categoryName": "Placas",
+        "validatedGtin": "7898936319081"
+      }
+    }
+  ]
+}

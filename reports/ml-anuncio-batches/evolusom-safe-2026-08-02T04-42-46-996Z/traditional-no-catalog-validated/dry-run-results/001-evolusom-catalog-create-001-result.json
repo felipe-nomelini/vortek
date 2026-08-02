@@ -1,0 +1,311 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-no-catalog-validated/dry-run-results/001-evolusom-catalog-create-001-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-001",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "05d26ff9-dde6-4df0-a2d0-325817eeb4e7",
+      "sku": "VTK017189",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": ""
+      },
+      "basePrice": 44.18,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SHOCK REPAROS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "269441"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "D-250"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Reparo Para Driver Shock D-250 Selenium\n\nVISÃO GERAL\nInformações do Produto Reparo de fácil troca Informações Técnica Impedância: 8 ohms\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SHOCK REPAROS\n• Número de peça: 269441\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: D-250\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SHOCK REPAROS\n• GTIN: 7892046020042\n• NCM: 85189010\n• SKU: VTK017189\n\nEMBALAGEM\n• Dimensões informadas: 3 × 8.5 × 9.5 cm\n• Peso bruto informado: 0,02 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "94af03bd-25f4-44ad-9d6e-86f57700f57d",
+      "sku": "VTK017267",
+      "category": {
+        "id": "MLB196072",
+        "nome": "Controles Remotos",
+        "dominio": ""
+      },
+      "basePrice": 44.38,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "HPQE09A2NA"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899903188426"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Controle Remoto Ar Condicionado Elgin Ecoplus Mxt\n\nVISÃO GERAL\nInformações do Produto Características Aplica-se nos Aparelhos Ar condicionado Elgin Split Hi Wall 9000 BTUS á 12000 BTUS HPQE09A2NA/HPFE09A2NA/HPFI09A2NA/ HPFE12A2NA/HPFI122NA/HEFI12B2IA 45HVFE12B2IA Atenção: Produto novo Similar com nota fiscal Verifique a compatibilidade do seu aparelho,não nos responsabilizamos por incompatibilidades.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MXT\n• Modelo: HPQE09A2NA\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MXT\n• GTIN: 7899903188426\n• NCM: 85437099\n• SKU: VTK017267\n\nEMBALAGEM\n• Dimensões informadas: 1.5 × 5.5 × 13.5 cm\n• Peso bruto informado: 0,058 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "74e36afb-8ff2-4b14-97b5-b3ee6c588aad",
+      "sku": "VTK017331",
+      "category": {
+        "id": "MLB421298",
+        "nome": "Conversores de Aúdio e Vídeo",
+        "dominio": ""
+      },
+      "basePrice": 103.72,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "EVUS"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "HD15"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898597131664"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Vga Evus C-044 Hd15 Macho X Hd15 Macho Com Filtro 20,0m\n\nVISÃO GERAL\nO Cabo EVUS VGA proporciona maior facilidade em conectar aprelhos para uso em longas distâncias, possuí 20 metros de comprimento e diâmetro de 8 milímetros. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: EVUS\n• Modelo: HD15\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: EVUS\n• GTIN: 7898597131664\n• NCM: 85444200\n• SKU: VTK017331\n\nEMBALAGEM\n• Dimensões informadas: 7 × 22 × 31 cm\n• Peso bruto informado: 0,9 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "748ef8dc-e186-42ef-b716-45e8c3440915",
+      "sku": "VTK017347",
+      "category": {
+        "id": "MLB272149",
+        "nome": "Splitters de Fibra Óptica",
+        "dominio": ""
+      },
+      "basePrice": 55.57,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "EVUS"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "PLC1X16-NC250"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7890003597781"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Optico Splitter Evus Opf-plc1x16-nc250 Plc 1x16 Nc 1,5m G657a1\n\nVISÃO GERAL\nO Cabo Optico Splitter Evus OPF-PLC1X16-NC250 PLC (Planar Lightwave Circuit) ou divisor de fibra óptica, baseia-se num substrato de quartzo que serve como guia de ondas, atuando como um dispositivo de distribuição de energia. Seu funcionamento é similar aos divisores utilizados em sistemas de transmissão de cabo coaxial. É especialmente adequado para a instalação de pequenos espaços e pode ser facilmente utilizado na construção de rede FTTx, construção de redes ópticas, redes CATV e etc.\n\nCaracterísticas: • Baixa perda de inserção e baixa PDL • Ampla faixa de comprimento de onda • Design compacto • Grande faixa de operação e temperatura • Embalagem e configuração customizada Aplicações: • FTTX (FTTP, FTTH, FTTN, FTTC) • Redes óticas passivas analógicas/digitais (PON) • Redes de área local (LAN) • Equipamentos de teste • CATV Splitter Óptico PLC 1x16 ANATEL 01532-19-10548 *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: EVUS\n• Modelo: PLC1X16-NC250\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: EVUS\n• GTIN: 7890003597781\n• NCM: 85176259\n• SKU: VTK017347\n\nEMBALAGEM\n• Dimensões informadas: 1 × 10 × 21 cm\n• Peso bruto informado: 0,026 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "dc408ec6-8e7c-420d-951c-00c68ca7256d",
+      "sku": "VTK005491",
+      "nome": "Cabo Display Port 1.2v Para DVI Fêmea Storm",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431813",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "ce5d444a-08a2-43c0-80c1-044a25d139f8",
+      "sku": "VTK005775",
+      "nome": "Cabo Display Port 1.2v Para USB- C Macho Storm",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431830",
+            "nome": "Cabos de Áudio e Vídeo"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e854a49a-deb0-4714-8aed-425c4fdbe378",
+      "sku": "VTK017215",
+      "nome": "Arandela Fiamon Sem Falante Redonda Branca 6\"",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB443814",
+            "nome": "Kits de Estéreo e Alto-Falante"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "72ead0c9-8e4f-483a-9444-e586d8989844",
+      "sku": "VTK017244",
+      "nome": "Video Balun Evus C-067 1 Canal Mini Cctv Bnc Para Hdcvi Cftv",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB195961",
+            "nome": "Adaptadores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "fbb175b5-eb44-44bb-9633-567f8d679cb7",
+      "sku": "VTK017336",
+      "nome": "Cabo De Microfone P10 Macho X Cannon Femea",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8e8e0eb5-3444-46b0-a0ef-5a5710893440",
+      "sku": "VTK017384",
+      "nome": "Cabo De Força Tripolar Megacabos 1,2m Tipo Mickey - Preto - PC / 5",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB9600",
+            "nome": "Cabos de Energia"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

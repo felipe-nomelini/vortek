@@ -1,0 +1,11 @@
+{
+  "generatedAt": "2026-08-02T05:17:50.194Z",
+  "selected": 196,
+  "approvedForDryRun": 173,
+  "rejected": 23,
+  "reasonCounts": {
+    "insufficient_predictor_evidence": 9,
+    "predictor_no_consensus": 14
+  },
+  "batchCount": 18
+}

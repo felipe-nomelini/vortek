@@ -1,0 +1,135 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/safe-final-validated/remaining/004-evolusom-remaining-004.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-004",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "e9aacf0a-d1b5-4600-a97e-b7668ebf6635",
+      "sku": "VTK018044",
+      "category": {
+        "id": "MLB1714",
+        "nome": "Mouses",
+        "dominio": "MLB-COMPUTER_MICE"
+      },
+      "anuncio": {
+        "id": "MLB4981360395",
+        "title": "Mouse Sem Fio Logitech M170 Cinza",
+        "price": 120.96,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981360395-mouse-sem-fio-logitech-m170-cinza-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 101.15 → R$ 120.96."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "7ac8b06a-fc58-40bb-aae1-27ef84af5ac2",
+      "sku": "VTK018218",
+      "category": {
+        "id": "MLB1676",
+        "nome": "Impressoras",
+        "dominio": "MLB-PRINTERS"
+      },
+      "anuncio": {
+        "id": "MLB4981360445",
+        "title": "Impressora Térmica Epson Tm-t20x-ii Serial",
+        "price": 959.85,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981360445-impressora-termica-epson-tm-t20x-ii-serial-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"status\":409,\"code\":\"conflict.error\",\"error\":\"Conflict\"}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ef5659a4-a991-457d-b5da-c0ffaa4d2b41",
+      "sku": "VTK018261",
+      "category": {
+        "id": "MLB38279",
+        "nome": "Outros Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4981290257",
+        "title": "Espaguete Liso Permak 6mm 100m",
+        "price": 126.99,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981290257-espaguete-liso-permak-6mm-100m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 106.28 → R$ 126.99."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9552e566-6f75-4b16-af3f-3e6a4ad589ed",
+      "sku": "VTK018344",
+      "category": {
+        "id": "MLB4469",
+        "nome": "Microfones",
+        "dominio": "MLB-MICROPHONES"
+      },
+      "anuncio": {
+        "id": "MLB4981290297",
+        "title": "Microfone Csr Ht-58-a Profissional Sem Chave Anti Queda",
+        "price": 175.87,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981290297-microfone-csr-ht-58-a-profissional-sem-chave-anti-queda-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 153.78 → R$ 175.87."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "bdc1df2c-e4c2-448c-973f-59fdc44a7186",
+      "sku": "VTK018408",
+      "category": {
+        "id": "MLB72503",
+        "nome": "Climatizador Portátil",
+        "dominio": "MLB-PORTABLE_EVAPORATIVE_AIR_COOLERS"
+      },
+      "anuncio": {
+        "id": "MLB4981360527",
+        "title": "Climatizador Evaporativo Symphony Hicool I 31l 127v 60hz 127v",
+        "price": 1349.85,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981360527-climatizador-evaporativo-symphony-hicool-i-31l-127v-60hz-127v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"status\":409,\"code\":\"conflict.error\",\"error\":\"Conflict\"}"
+      ]
+    }
+  ],
+  "failed": []
+}

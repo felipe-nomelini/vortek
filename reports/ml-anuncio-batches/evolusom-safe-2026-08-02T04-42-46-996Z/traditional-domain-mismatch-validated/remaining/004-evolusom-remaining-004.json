@@ -1,0 +1,353 @@
+{
+  "batchNumber": 4,
+  "batchId": "evolusom-domain-approved-004",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "f890678d-4601-445e-ae96-e7580dabdd80",
+      "sku": "VTK018869",
+      "nome": "Contra Frente Plástica Permak Honda New Civic 2012 2 Din",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 85.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 130.74,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46593",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-MOTORCYCLE_FAIRINGS",
+        "categoryId": "MLB46593",
+        "categoryName": "Carenagem",
+        "categoryPath": "Acessórios para Veículos > Peças de Motos e Quadriciclos > Chassis > Plásticos de Motos > Carenagem",
+        "validatedGtin": "7898253495581"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253495581",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "14432b65-d259-4231-be60-04113a28dc7a",
+      "sku": "VTK018874",
+      "nome": "Reparo Jbl Rpd450 Trio Para Driver D450 Trio",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 231.5,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 328.67,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46559",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+        "categoryId": "MLB46559",
+        "categoryName": "Drivers",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Drivers",
+        "validatedGtin": "7896359541027"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359541027",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "8fb3551e-691c-46ca-b878-137a487091dc",
+      "sku": "VTK019006",
+      "nome": "Testador Smd Com Pinça Hikari Hm-10",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 165.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 235.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB271716",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-NETWORK_CABLE_TESTERS",
+        "categoryId": "MLB271716",
+        "categoryName": "Testadores de Cabos",
+        "categoryPath": "Informática > Conectividade e Redes > Ferramentas > Testadores de Cabos",
+        "validatedGtin": "7899810417084"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899810417084",
+        "validatedNcm": "90308990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "24a37bf9-448f-4d52-8ef3-2ed05512ba8e",
+      "sku": "VTK019030",
+      "nome": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din Cinza 89/m3",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 21.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 51.73,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46593",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-MOTORCYCLE_FAIRINGS",
+        "categoryId": "MLB46593",
+        "categoryName": "Carenagem",
+        "categoryPath": "Acessórios para Veículos > Peças de Motos e Quadriciclos > Chassis > Plásticos de Motos > Carenagem",
+        "validatedGtin": "7898253497998"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253497998",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "88c2c031-ae59-4897-be9f-b0aeab88adc8",
+      "sku": "VTK019103",
+      "nome": "Frente Falsa Max Eletron 1ux19",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 10.95,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 38.21,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB271688",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-TOOLS",
+        "categoryId": "MLB271688",
+        "categoryName": "Outras Ferramentas",
+        "categoryPath": "Informática > Conectividade e Redes > Ferramentas > Outras Ferramentas",
+        "validatedGtin": "7908060203122"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908060203122",
+        "validatedNcm": "94032090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "b86652d3-9c98-4c60-9dc2-1771c2855f3e",
+      "sku": "VTK019158",
+      "nome": "Conversor De Audio Rca Bee Link 4 Ch + Superbass",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 101.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 150.49,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB421298",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONVERTERS",
+        "categoryId": "MLB421298",
+        "categoryName": "Conversores de Aúdio e Vídeo",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Acessórios para Áudio e Vídeo > Conversores de Aúdio e Vídeo",
+        "validatedGtin": "7898441352139"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898441352139",
+        "validatedNcm": "85044029",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "88b69e08-8f01-4735-a01b-f48c99ddae31",
+      "sku": "VTK023618",
+      "nome": "Espaguete Corrugado Permak 4,5mm 3/16 20m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 17.5,
+      "estoque": 33,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 46.3,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB411424",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-CORRUGATED_PIPES",
+        "categoryId": "MLB411424",
+        "categoryName": "Tubos Corrugados",
+        "categoryPath": "Construção > Energia > Tubos Corrugados",
+        "validatedGtin": "7899079101205"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899079101205",
+        "validatedNcm": "39173900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "6adc4bfa-de2c-4f5f-9c9f-b26dc4df07e2",
+      "sku": "VTK023619",
+      "nome": "Espaguete Corrugado Permak 7,5mm 1/4 20m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 23.1,
+      "estoque": 39,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 53.21,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB411424",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-CORRUGATED_PIPES",
+        "categoryId": "MLB411424",
+        "categoryName": "Tubos Corrugados",
+        "categoryPath": "Construção > Energia > Tubos Corrugados",
+        "validatedGtin": "7899079101212"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899079101212",
+        "validatedNcm": "39173900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "9a85a55b-bbc9-47a0-b4de-ff561b1b5fac",
+      "sku": "VTK023620",
+      "nome": "Espaguete Corrugado Permak 10mm 3/8 20m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 28.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 60.37,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB411424",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-CORRUGATED_PIPES",
+        "categoryId": "MLB411424",
+        "categoryName": "Tubos Corrugados",
+        "categoryPath": "Construção > Energia > Tubos Corrugados",
+        "validatedGtin": "7899079101229"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899079101229",
+        "validatedNcm": "39173900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "dfeca35e-dda6-4ba1-bdb8-93a8d42c11c1",
+      "sku": "VTK023621",
+      "nome": "Espaguete Corrugado Permak 13mm 1/2 20m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 48.9,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 85.06,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB411424",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-CORRUGATED_PIPES",
+        "categoryId": "MLB411424",
+        "categoryName": "Tubos Corrugados",
+        "categoryPath": "Construção > Energia > Tubos Corrugados",
+        "validatedGtin": "7899079101236"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899079101236",
+        "validatedNcm": "39173900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

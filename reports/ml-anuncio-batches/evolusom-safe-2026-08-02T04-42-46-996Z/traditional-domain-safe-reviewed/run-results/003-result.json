@@ -1,0 +1,137 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-domain-safe-reviewed/003-evolusom-domain-safe-003.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-safe-003",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "b86652d3-9c98-4c60-9dc2-1771c2855f3e",
+      "sku": "VTK019158",
+      "category": {
+        "id": "MLB421298",
+        "nome": "Conversores de Aúdio e Vídeo",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7311698800",
+        "title": "Conversor De Audio Rca Bee Link 4 Ch + Superbass",
+        "price": 156.28,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7311698800-conversor-de-audio-rca-bee-link-4-ch-superbass-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB7311698800: NSOPublicAPI error",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "88b69e08-8f01-4735-a01b-f48c99ddae31",
+      "sku": "VTK023618",
+      "category": {
+        "id": "MLB411424",
+        "nome": "Tubos Corrugados",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981506047",
+        "title": "Espaguete Corrugado Permak 4 5mm 3/16 20m",
+        "price": 58.85,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981506047-espaguete-corrugado-permak-4-5mm-316-20m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 47.47 → R$ 58.85."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "6adc4bfa-de2c-4f5f-9c9f-b26dc4df07e2",
+      "sku": "VTK023619",
+      "category": {
+        "id": "MLB411424",
+        "nome": "Tubos Corrugados",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981506115",
+        "title": "Espaguete Corrugado Permak 7 5mm 1/4 20m",
+        "price": 54.56,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981506115-espaguete-corrugado-permak-7-5mm-14-20m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"status\":409,\"error\":\"Conflict\",\"code\":\"conflict.error\"}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9a85a55b-bbc9-47a0-b4de-ff561b1b5fac",
+      "sku": "VTK023620",
+      "category": {
+        "id": "MLB411424",
+        "nome": "Tubos Corrugados",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981506269",
+        "title": "Espaguete Corrugado Permak 10mm 3/8 20m",
+        "price": 77.08,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981506269-espaguete-corrugado-permak-10mm-38-20m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 61.90 → R$ 77.08.",
+        "Não foi possível configurar os preços de atacado neste momento. Motivo: Mercado Livre retornou HTTP 500"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "dfeca35e-dda6-4ba1-bdb8-93a8d42c11c1",
+      "sku": "VTK023621",
+      "category": {
+        "id": "MLB411424",
+        "nome": "Tubos Corrugados",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981506373",
+        "title": "Espaguete Corrugado Permak 13mm 1/2 20m",
+        "price": 108.8,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981506373-espaguete-corrugado-permak-13mm-12-20m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 87.22 → R$ 108.80."
+      ]
+    }
+  ],
+  "failed": []
+}

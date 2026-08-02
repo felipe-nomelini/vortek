@@ -1,0 +1,446 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-no-catalog-validated/dry-run-results/013-evolusom-catalog-create-013-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-013",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "b5780ff4-6de2-445c-b982-5fdc52d192aa",
+      "sku": "VTK018706",
+      "category": {
+        "id": "MLB194788",
+        "nome": "Protetor de Cárter",
+        "dominio": ""
+      },
+      "basePrice": 117.53,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "DHF"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "121038"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Protetor De Carter Dhf-240 Stilo 2003\n\nVISÃO GERAL\nStilo 2003... (Todos) 740 x 400mm - Tradicional *Imagens meramente ilustrativas\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: DHF\n• Número de peça: 121038\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: DHF\n• GTIN: 7898154402404\n• NCM: 87082999\n• SKU: VTK018706\n\nEMBALAGEM\n• Dimensões informadas: 1.5 × 74 × 109 cm\n• Peso bruto informado: 5 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ec92357c-bf98-4e74-9876-6f6d42556024",
+      "sku": "VTK018710",
+      "category": {
+        "id": "MLB277391",
+        "nome": "Condicionadores de Agua",
+        "dominio": ""
+      },
+      "basePrice": 44.52,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "AQUARIO"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CF-265"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898127605429"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit Adaptador Aquário Cf-265 Para Nokia 8265\n\nVISÃO GERAL\nKit Adaptador CF-265 Cabo: RF 174 Datalink Comprimento: 1 m Conector 01: TNC Femea Conector 02: Adaptador Celular\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: AQUARIO\n• Modelo: CF-265\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: AQUARIO\n• GTIN: 7898127605429\n• NCM: 85444200\n• SKU: VTK018710\n\nEMBALAGEM\n• Dimensões informadas: 2 × 7.5 × 18.5 cm\n• Peso bruto informado: 0,03 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "694415e3-f592-4241-a9e2-f69065c99469",
+      "sku": "VTK018735",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 109.62,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "291721"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277985419"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 15a 130ar-pta Citroen Modelo C3 2014/ 15 - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Citroen C3 2014/2015 Aro 15 Fixação Pressão *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 291721\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277985419\n• NCM: 87087090\n• SKU: VTK018735\n\nEMBALAGEM\n• Dimensões informadas: 4 × 42 × 42 cm\n• Peso bruto informado: 0,422 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "cb9aa568-0eb9-4f56-88dc-ca44f1bbb210",
+      "sku": "VTK018738",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292437"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277981435"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14a 065ar-pta Modelo Renault Clio / Logan 2007/ 08 Aro De Pressão - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Renault Clio/Logan 2007/2008 Aro 15 Fixação Pressão *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292437\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277981435\n• NCM: 87087090\n• SKU: VTK018738\n\nEMBALAGEM\n• Dimensões informadas: 5 × 39.5 × 39.5 cm\n• Peso bruto informado: 0,33 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "76b393ca-42e3-41c6-bc37-f3fc7de7e52d",
+      "sku": "VTK018739",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292731"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277984016"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p 108ca-pta Volkswaggen Modelo Saveiro 2013 Cubo Alto - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Saveiro 2013 Aro 14 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292731\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277984016\n• NCM: 87087090\n• SKU: VTK018739\n\nEMBALAGEM\n• Dimensões informadas: 4 × 39 × 39 cm\n• Peso bruto informado: 0,404 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0e5e463b-c8e8-46bd-a1e8-6696e56cfdc7",
+      "sku": "VTK018740",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292741"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277989752"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p 190ca-pta Volkswaggen Modelo Saveiro 2014/ 15 Cubo Alto - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Saveiro 2014/2015 Aro 14 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292741\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277989752\n• NCM: 87087090\n• SKU: VTK018740\n\nEMBALAGEM\n• Dimensões informadas: 4 × 39.5 × 39.5 cm\n• Peso bruto informado: 0,261 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "65ecfa9c-ca72-42a4-87f9-6c361ea3b99f",
+      "sku": "VTK018741",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 109.62,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292761"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892500018"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 15p 242cp-pta Gol/ Voyage 15 Cubo Pequeno - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Gol/ Voyage/ 2015 Aro 15 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292761\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892500018\n• NCM: 87087090\n• SKU: VTK018741\n\nEMBALAGEM\n• Dimensões informadas: 4 × 42 × 42 cm\n• Peso bruto informado: 0,352 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "045481f2-3f3c-49a1-bdbc-69291edce62c",
+      "sku": "VTK018755",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 109.62,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "328831"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892511038"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid 375cb-pta Aro 15 P Mod Onix/prisma 17/18 - PC / 4\n\nVISÃO GERAL\nInformações do Produto Modelo Onix / Prisma 2017/18 Aro 15 Fixação Parafusos *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 328831\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892511038\n• NCM: 87087090\n• SKU: VTK018755\n\nEMBALAGEM\n• Dimensões informadas: 4 × 42 × 42 cm\n• Peso bruto informado: 0,364 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "c95e7e90-3c29-4006-96c2-24f3d61e2b16",
+      "sku": "VTK018748",
+      "nome": "Capota Marítima Flash Cover Ff154 Volkswagen Saveiro Ce Sem Gancho 2010/2020 Force",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "97dd3f7b-07a8-4252-9a66-c2616ad2f1f0",
+      "sku": "VTK018768",
+      "nome": "Conversor Balun Max Eletron Câmera Rack Power Rj 45 Bnc + P4 C/2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB421298",
+            "nome": "Conversores de Aúdio e Vídeo"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

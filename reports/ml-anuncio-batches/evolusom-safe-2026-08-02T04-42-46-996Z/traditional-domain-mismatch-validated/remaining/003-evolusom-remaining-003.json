@@ -1,0 +1,353 @@
+{
+  "batchNumber": 3,
+  "batchId": "evolusom-domain-approved-003",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "7dca48d5-d209-4431-81cc-33bbae63bcda",
+      "sku": "VTK018224",
+      "nome": "Módulo De Vidro Elétrico Soft Infinity 2.0 - Aa.56.0001",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 68.9,
+      "estoque": 14,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 109.75,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB191714",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+        "categoryId": "MLB191714",
+        "categoryName": "Elétrico",
+        "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+        "validatedGtin": "7898441352016"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898441352016",
+        "validatedNcm": "85432000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "612c7e99-5d81-4b62-922b-4e0c36836499",
+      "sku": "VTK018286",
+      "nome": "Calota Grid Aro 14p 016ca-pta Volkswaggen Modelo Gol/ Voyage/ Saveiro 2009/ 12 Cubo Alto - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277982494"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277982494",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "f713b5db-60e1-4bbd-93f1-bd3ebaa839fd",
+      "sku": "VTK018294",
+      "nome": "Controle Remoto Intelbras Rf Ir3",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 78.2,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 121.23,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB33412",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-ALARM_REMOTE_CONTROLS",
+        "categoryId": "MLB33412",
+        "categoryName": "Controles Remotos para Alarmes",
+        "categoryPath": "Casa, Móveis e Decoração > Segurança para Casa > Sistemas de Monitoramento > Controles Remotos para Alarmes",
+        "validatedGtin": "7896637680356"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637680356",
+        "validatedNcm": "85269200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "9c3663e8-0acd-468c-8bc8-1a946e462418",
+      "sku": "VTK018345",
+      "nome": "Corneta Jbl Hl14-50 Trio Alumínio",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 95.9,
+      "estoque": 9,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 143.09,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46560",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-HORN_DRIVERS",
+        "categoryId": "MLB46560",
+        "categoryName": "Cornetas",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Cornetas",
+        "validatedGtin": "7896359515387"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359515387",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "33cc5faf-5178-4aea-827e-0d86c55784b7",
+      "sku": "VTK018381",
+      "nome": "Detector Pyronix Fp02302 Octopus Dq 360 Graus 12 Metros",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 133.5,
+      "estoque": 9,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 189.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB277840",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-GAS_DETECTORS",
+        "categoryId": "MLB277840",
+        "categoryName": "Detectores de Gases",
+        "categoryPath": "Indústria e Comércio > Segurança Laboral > Detectores de Gases",
+        "validatedGtin": "5056105612667"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "5056105612667",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "78771007-6730-4434-ae9f-f8094ad3ac11",
+      "sku": "VTK018517",
+      "nome": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din Prata 89/m2",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 24.9,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 55.43,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46593",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-MOTORCYCLE_FAIRINGS",
+        "categoryId": "MLB46593",
+        "categoryName": "Carenagem",
+        "categoryPath": "Acessórios para Veículos > Peças de Motos e Quadriciclos > Chassis > Plásticos de Motos > Carenagem",
+        "validatedGtin": "7898253497974"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253497974",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "4745913c-5b34-40ab-b200-2dd027053231",
+      "sku": "VTK018549",
+      "nome": "Modulador ágil De áudio E Vídeo Aquário Mod-002 Para Tv/ Catv",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 152.9,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 217.08,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB421298",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONVERTERS",
+        "categoryId": "MLB421298",
+        "categoryName": "Conversores de Aúdio e Vídeo",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Acessórios para Áudio e Vídeo > Conversores de Aúdio e Vídeo",
+        "validatedGtin": "7898127604293"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898127604293",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "47638703-a897-463e-ae17-0d9ad238732d",
+      "sku": "VTK018616",
+      "nome": "Contra Frente Plástica Permak Ka Focus Escot Ranger 2 Din 89/c2",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 12.49,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 40.11,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46593",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-MOTORCYCLE_FAIRINGS",
+        "categoryId": "MLB46593",
+        "categoryName": "Carenagem",
+        "categoryPath": "Acessórios para Veículos > Peças de Motos e Quadriciclos > Chassis > Plásticos de Motos > Carenagem",
+        "validatedGtin": "7898253498094"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253498094",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "91f4e341-291c-42c2-b832-dfb9349e0d52",
+      "sku": "VTK018867",
+      "nome": "Lv8fc20 Mod Vidro Eletrico Kia",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 86.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 131.98,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB191714",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+        "categoryId": "MLB191714",
+        "categoryName": "Elétrico",
+        "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+        "validatedGtin": "7898382140185"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898382140185",
+        "validatedNcm": "85395100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "1395fed2-dc1c-43ed-9dd5-6ce0c42743b7",
+      "sku": "VTK018868",
+      "nome": "Contra Frente Plástica Permak Toyota Etios 2 Din Preta",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 64.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 104.81,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46593",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-MOTORCYCLE_FAIRINGS",
+        "categoryId": "MLB46593",
+        "categoryName": "Carenagem",
+        "categoryPath": "Acessórios para Veículos > Peças de Motos e Quadriciclos > Chassis > Plásticos de Motos > Carenagem",
+        "validatedGtin": "7898253499558"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253499558",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

@@ -1,0 +1,3628 @@
+[
+  {
+    "produtoId": "8a8a4390-0070-46df-a3a0-eb0ef957c9a1",
+    "sku": "VTK000240",
+    "nome": "Expositor Para Instrumentos de Corda ASL Preto ASK",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 19.5,
+    "estoque": 30,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 48.77,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898939971309",
+      "validatedNcm": "92099900",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB278064",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "4238929",
+        "value_name": "ASK"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "27724327",
+        "value_name": "ASL"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "26322417",
+        "value_name": "De parede"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENTS",
+        "value_id": "182362",
+        "value_name": "Baixo, Cavaquinho"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "4837600",
+        "value_name": "Aço"
+      },
+      {
+        "id": "INSTRUMENT_CAPACITY",
+        "value_id": "24276403",
+        "value_name": "1"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "1016242",
+        "value_name": "10 cm"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "570743",
+        "value_name": "27 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "3259574",
+        "value_name": "8 cm"
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "value_id": "1125599",
+        "value_name": "5 kg"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "27724332",
+        "value_name": "7898939971309"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB29157075",
+      "catalogProductName": "Suporte Ask Slat Wall Asl Emborrachado Cordas Cor Preto",
+      "catalogDomainId": "MLB-STRING_INSTRUMENT_STANDS_AND_WALL_HANGERS",
+      "predictedDomainId": "MLB-STRING_INSTRUMENT_STANDS_AND_WALL_HANGERS",
+      "categoryId": "MLB278064",
+      "categoryName": "Suportes",
+      "linkedListingsInCategory": 2,
+      "validatedGtin": "7898939971309"
+    }
+  },
+  {
+    "produtoId": "9b0406aa-0e5a-4d61-b8b8-59a436652109",
+    "sku": "VTK000462",
+    "nome": "Cabo de Áudio Y 1 Fêmea X 2 Machos 20cm Azul Storm",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 16.5,
+    "estoque": 30,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 45.06,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898566208014",
+      "validatedNcm": "85444200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB431813",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "2223295",
+        "value_name": "Prime"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "16201343",
+        "value_name": "Y RCA"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "value_id": "13788220",
+        "value_name": "RCA"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52028",
+        "value_name": "Azul"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "1061412",
+        "value_name": "26 cm"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "13827367",
+        "value_name": "Fio"
+      },
+      {
+        "id": "CABLE_DIAMETER",
+        "value_id": "16088626",
+        "value_name": "5 mm"
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "value_id": "15267153",
+        "value_name": "1"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "value_id": "15290095",
+        "value_name": "2"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "value_id": "16201374",
+        "value_name": "Conectores Fêmea"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "value_id": "16201375",
+        "value_name": "Conector macho"
+      },
+      {
+        "id": "INPUT_CONNECTOR_GENDER",
+        "value_id": "6116080",
+        "value_name": "Fêmea"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR_GENDER",
+        "value_id": "6116086",
+        "value_name": "Macho"
+      },
+      {
+        "id": "CONNECTOR_COATING_MATERIAL",
+        "value_id": "15991816",
+        "value_name": "Emborrachado"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_catalog_without_current_winner",
+      "catalogProductId": "MLB26631784",
+      "catalogProductName": "Cabo Rca Y 2 Machos 1 Femea 5mm 26 Cm Azul Para Ts400",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "categoryId": "MLB431813",
+      "categoryName": "Cabos de Áudio e Vídeo",
+      "validatedGtin": "7898566208014"
+    }
+  },
+  {
+    "produtoId": "e1e9ae8b-d2bb-4815-a235-22d81d162d48",
+    "sku": "VTK001491",
+    "nome": "Encordoamento Para Violão Aço Bronze 85/15 Série Cobra Giannini GEEWA",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 23.7,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 53.95,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898159187023",
+      "validatedNcm": "92093000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "validated_before_execution"
+    },
+    "categoryId": "MLB278076",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "45321",
+        "value_name": "Giannini"
+      },
+      {
+        "id": "LINE",
+        "value_id": "364045",
+        "value_name": "Cobra"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "19138738",
+        "value_name": "GEEWAK"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_id": "17598422",
+        "value_name": "Guitarra"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_id": "15146",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_id": "22024572",
+        "value_name": "0.009"
+      },
+      {
+        "id": "MATERIALS",
+        "value_id": "4180051",
+        "value_name": "Bronze"
+      },
+      {
+        "id": "TENSION",
+        "value_id": "5344248",
+        "value_name": "Média"
+      },
+      {
+        "id": "SCALE",
+        "value_id": "15312683",
+        "value_name": "4:4"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "19138742",
+        "value_name": "7898159187023, 843104101033"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_catalog_image_mirrored",
+      "catalogProductId": "MLB23275555",
+      "catalogProductName": "Encordoamento Violão Aço Giannini Cobra Bronze 85/15 009-045 6",
+      "catalogDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+      "predictedDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+      "categoryId": "MLB278076",
+      "categoryName": "Cordas para Instrumentos",
+      "validatedGtin": "7898159187023"
+    }
+  },
+  {
+    "produtoId": "4f770396-e999-4662-a519-4aed2cc0170c",
+    "sku": "VTK001628",
+    "nome": "Encordoamento Para Violão Nylon Médio Série Canário Giannini GENW",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 14.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 43.09,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898159186569",
+      "validatedNcm": "92093000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "validated_before_execution"
+    },
+    "categoryId": "MLB278076",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "45321",
+        "value_name": "Giannini"
+      },
+      {
+        "id": "LINE",
+        "value_id": "16505957",
+        "value_name": "Giannini Canario Violão Nylon"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "16505958",
+        "value_name": "Canário Genw"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENT",
+        "value_id": "15312679",
+        "value_name": "Violão acústico"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "STRINGS_NUMBER",
+        "value_id": "15146",
+        "value_name": "6"
+      },
+      {
+        "id": "GAUGES",
+        "value_id": "16505984",
+        "value_name": "0.028\t0.032\t0.040\t0.030\t0.035\t0.043"
+      },
+      {
+        "id": "MATERIALS",
+        "value_id": "7980354",
+        "value_name": "Náilon"
+      },
+      {
+        "id": "TENSION",
+        "value_id": "5344248",
+        "value_name": "Média"
+      },
+      {
+        "id": "NOTES",
+        "value_id": "15662353",
+        "value_name": "La, Mi, Mi agudo, Re, Si, Sol"
+      },
+      {
+        "id": "SCALE",
+        "value_id": "15312683",
+        "value_name": "4:4"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "16505985",
+        "value_name": "7898159186569, 7898159181076, 7898159184701"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_catalog_image_mirrored",
+      "catalogProductId": "MLB21618565",
+      "catalogProductName": "Jogo De Corda Violão - Giannini Canário - Náilon Sem Bolinha",
+      "catalogDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+      "predictedDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+      "categoryId": "MLB278076",
+      "categoryName": "Cordas para Instrumentos",
+      "validatedGtin": "7898159186569"
+    }
+  },
+  {
+    "produtoId": "6b931c2e-c7cf-40cc-8864-3d5a9de25b4b",
+    "sku": "VTK003138",
+    "nome": "Cabo Speakon Macho Para Speakon Macho 10m CBSP0002 Storm",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 30.2,
+    "estoque": 34,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 61.98,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898566206775",
+      "validatedNcm": "85444200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB72745",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "16890593",
+        "value_name": "Stormtech"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "97375",
+        "value_name": "Cabo"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "value_id": "13788227",
+        "value_name": "XLR"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "129133",
+        "value_name": "10 m"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "13827368",
+        "value_name": "Cabo adaptador"
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "value_id": "15267153",
+        "value_name": "1"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "value_id": "15267154",
+        "value_name": "1"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "value_id": "16302675",
+        "value_name": "Speakon"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "value_id": "8041570",
+        "value_name": "Speakon"
+      },
+      {
+        "id": "INPUT_CONNECTOR_GENDER",
+        "value_id": "6116079",
+        "value_name": "Macho"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR_GENDER",
+        "value_id": "6116087",
+        "value_name": "Fêmea"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_catalog_without_current_winner",
+      "catalogProductId": "MLB45746417",
+      "catalogProductName": "Cabo Speak-on 10m Para Caixa De Som Ativa Passiva 10 Metros",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "categoryId": "MLB72745",
+      "categoryName": "Cabos",
+      "validatedGtin": "7898566206775"
+    }
+  },
+  {
+    "produtoId": "6d6275a2-3d71-493f-a20e-3cce674f7918",
+    "sku": "VTK017181",
+    "nome": "Mouse Logitech M90 Usb Preto",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 34.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 67.78,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "097855205681",
+      "validatedNcm": "84716053",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "validated_before_execution"
+    },
+    "categoryId": "MLB1714",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "15788",
+        "value_name": "Logitech"
+      },
+      {
+        "id": "LINE",
+        "value_id": "519",
+        "value_name": "M"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "20473",
+        "value_name": "M90"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "value_id": "84939242",
+        "value_name": "910-004053"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": "20099525",
+        "value_name": "910-004053"
+      },
+      {
+        "id": "COMPUTER_MOUSE_TYPE",
+        "value_id": "192740",
+        "value_name": "Convencional"
+      },
+      {
+        "id": "SENSOR_TYPE",
+        "value_id": "109003",
+        "value_name": "Óptico"
+      },
+      {
+        "id": "SENSOR_TECHNOLOGY",
+        "value_id": "7793919",
+        "value_name": "Run on Shine"
+      },
+      {
+        "id": "HAND_ORIENTATION",
+        "value_id": "2862903",
+        "value_name": "Ambidestro"
+      },
+      {
+        "id": "COMPATIBLE_OPERATING_SYSTEMS",
+        "value_id": "3211255",
+        "value_name": "Windows 7, Windows 8, Windows 10 ou superior, macOS 10.5 ou superior, Linux kernel 2.6+"
+      },
+      {
+        "id": "IS_GAMER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_WIRE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "SENSOR_RESOLUTION",
+        "value_id": "249299",
+        "value_name": "1000 dpi"
+      },
+      {
+        "id": "MAX_SPEED",
+        "value_id": "11028427",
+        "value_name": "200 ips"
+      },
+      {
+        "id": "BUTTONS_NUMBER",
+        "value_id": "1021242",
+        "value_name": "3"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "9142674",
+        "value_name": "5053313884855, 97855102355, 5099206021877, 5099206021860, 797201738893, 649910584677, 7434016775073, 07892382579037, 97855205681, 00702735761910"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "9870713",
+        "value_name": "11.3 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "8841503",
+        "value_name": "3.8 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "8832884",
+        "value_name": "6.2 cm"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "15788",
+        "value_name": "Logitech"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "7699638",
+        "value_name": "90 g"
+      },
+      {
+        "id": "WITH_LIGHTS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "MPN",
+        "value_id": "8209849",
+        "value_name": "910-004053, 910-001794"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_catalog_image_mirrored",
+      "catalogProductId": "MLB6162297",
+      "catalogProductName": "Mouse c/ fio Logitech M90 Preto",
+      "catalogDomainId": "MLB-COMPUTER_MICE",
+      "predictedDomainId": "MLB-COMPUTER_MICE",
+      "categoryId": "MLB1714",
+      "categoryName": "Mouses",
+      "validatedGtin": "097855205681"
+    }
+  },
+  {
+    "produtoId": "511c8cb3-fab6-4b79-81c0-e44c37eef5cd",
+    "sku": "VTK017219",
+    "nome": "Guia Organizador Cabos 2u X 19 Alta Densidade",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 39.95,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 74.01,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7908060206017",
+      "validatedNcm": "94032090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB271708",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "15425638",
+        "value_name": "Max Eletron"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "26316727",
+        "value_name": "MAX ELETRON"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "UNITS_PER_PACKAGE",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "CABLE_ORGANIZER_FORMAT",
+        "value_id": "5959787",
+        "value_name": "Rack"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_catalog_without_current_winner",
+      "catalogProductId": "MLB46421583",
+      "catalogProductName": "Guia Organizador Cabos 2u X 19 Alta",
+      "catalogDomainId": "MLB-CABLE_ORGANIZERS",
+      "predictedDomainId": "MLB-CABLE_ORGANIZERS",
+      "categoryId": "MLB271708",
+      "categoryName": "Organizadores de Cabos",
+      "validatedGtin": "7908060206017"
+    }
+  },
+  {
+    "produtoId": "10b4f8c6-17e8-4975-aa31-e59dc829f935",
+    "sku": "VTK017352",
+    "nome": "Base Para Notebook Evus Bpn-03 Twins",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 34.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 67.78,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898597133491",
+      "validatedNcm": "84145990",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB54182",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "216711",
+        "value_name": "Evus"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "49835912",
+        "value_name": "Evus BPN-03 Twins"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52051",
+        "value_name": "Cinza-escuro"
+      },
+      {
+        "id": "USB_PORTS_NUMBER",
+        "value_id": "517204",
+        "value_name": "1"
+      },
+      {
+        "id": "FANS_NUMBER",
+        "value_id": "3664910",
+        "value_name": "1"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_catalog_without_current_winner",
+      "catalogProductId": "MLB27661698",
+      "catalogProductName": "Base Cooler Notebook Evus BPN-03 Twins 2 Fans LED Azul USB",
+      "catalogDomainId": "MLB-EXTERNAL_LAPTOP_COOLERS_AND_FANS",
+      "predictedDomainId": "MLB-EXTERNAL_LAPTOP_COOLERS_AND_FANS",
+      "categoryId": "MLB54182",
+      "categoryName": "Coolers Externos",
+      "validatedGtin": "7898597133491"
+    }
+  },
+  {
+    "produtoId": "b66ea9c7-d92a-4cd6-b22d-b193173904d6",
+    "sku": "VTK017360",
+    "nome": "Fonte Chaveada Evus Pdc-5a 12v 5a 60w Bivolt",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 53.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 91.23,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898597132074",
+      "validatedNcm": "85044029",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB420411",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "216711",
+        "value_name": "Evus"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "24132791",
+        "value_name": "EVUS"
+      },
+      {
+        "id": "POWER",
+        "value_id": "112954",
+        "value_name": "60 W"
+      },
+      {
+        "id": "POWER_OUTPUT",
+        "value_id": "8122229",
+        "value_name": "60 W"
+      },
+      {
+        "id": "MIN_OUTPUT_VOLTAGE",
+        "value_id": "18114370",
+        "value_name": "12V"
+      },
+      {
+        "id": "MAX_OUTPUT_VOLTAGE",
+        "value_id": "909022",
+        "value_name": "12V"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "7887789",
+        "value_name": "180 cm"
+      },
+      {
+        "id": "MIN_OPERATING_TEMPERATURE",
+        "value_id": "20198272",
+        "value_name": "0 °C"
+      },
+      {
+        "id": "MAX_OPERATING_TEMPERATURE",
+        "value_id": "8566979",
+        "value_name": "40 °C"
+      },
+      {
+        "id": "WITH_SHORT_CIRCUIT_PROTECTION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "26670541",
+        "value_name": "7898597132074"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB28483887",
+      "catalogProductName": "Fonte Chaveada Evus 12V 5A 60W Bivolt Proteção Sobrecarga Curto",
+      "catalogDomainId": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES",
+      "predictedDomainId": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES",
+      "categoryId": "MLB420411",
+      "categoryName": "Fontes Chaveadas",
+      "linkedListingsInCategory": 1,
+      "validatedGtin": "7898597132074"
+    }
+  },
+  {
+    "produtoId": "bb4de30e-91de-4753-9d50-38cf1bdc7a5c",
+    "sku": "VTK017389",
+    "nome": "Cabo Hdmi Proeletronic Cahd-2010 4k Macho X Macho 2.0 10m",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 39.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 73.95,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898419493963",
+      "validatedNcm": "85444200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB431813",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "1175465",
+        "value_name": "Proeletronic"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "37511891",
+        "value_name": "CAHD-2010"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "value_id": "16696220",
+        "value_name": "HDMI"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "9784335",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "129133",
+        "value_name": "10 m"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "13827367",
+        "value_name": "Fio"
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "value_id": "15267153",
+        "value_name": "1"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "value_id": "15267154",
+        "value_name": "1"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "value_id": "17345502",
+        "value_name": "HDMI 19 PINOS"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "value_id": "37511894",
+        "value_name": "HDMI: 19 Pinos"
+      },
+      {
+        "id": "INPUT_CONNECTOR_GENDER",
+        "value_id": "6116079",
+        "value_name": "Macho"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR_GENDER",
+        "value_id": "6116086",
+        "value_name": "Macho"
+      },
+      {
+        "id": "CONNECTOR_COATING_MATERIAL",
+        "value_id": "37511892",
+        "value_name": "Polietileno de baixa densidade"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "37511893",
+        "value_name": "7893271420256, 7898419493963"
+      },
+      {
+        "id": "MAX_RESOLUTION_SUPPORTED",
+        "value_id": "128798",
+        "value_name": "4K"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_ambiguous_semantically_selected",
+      "catalogProductId": "MLB36745737",
+      "catalogProductName": "Proeletronic Cabo Hdmi 4k 3d 10 Metros Cahd-2010",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "categoryId": "MLB431813",
+      "categoryName": "Cabos de Áudio e Vídeo",
+      "validatedGtin": "7898419493963"
+    }
+  },
+  {
+    "produtoId": "c2bc53ad-df5d-4a5b-a3ec-f98ab519a418",
+    "sku": "VTK017708",
+    "nome": "Acessório Cabo De Antena Ford Fusion / Gm",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 13.53,
+    "estoque": 31,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 41.4,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898253504481",
+      "validatedNcm": "85444200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB120498",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "3289477",
+        "value_name": "Permak"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "25917169",
+        "value_name": "PERMAK"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "32007941",
+        "value_name": "7898253504481"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB32224655",
+      "catalogProductName": "Acessório Cabo De Antena Ford Fusion / Gm",
+      "catalogDomainId": "MLB-GPS_ANTENNAS",
+      "predictedDomainId": "MLB-GPS_ANTENNAS",
+      "categoryId": "MLB120498",
+      "categoryName": "Antenas",
+      "linkedListingsInCategory": 1,
+      "validatedGtin": "7898253504481"
+    }
+  },
+  {
+    "produtoId": "8cd9f449-5a4a-4e4b-9751-74f753be32a5",
+    "sku": "VTK017791",
+    "nome": "Kit Fibra óptica Universal Evus Ev-1 Com Power Meter",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 239.9,
+    "estoque": 5,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 340.6,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898597132616",
+      "validatedNcm": "90314990",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB271690",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "3692380",
+        "value_name": "EVO"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "36995251",
+        "value_name": "EVUS EV-1"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "PACKAGING_TYPE",
+        "value_id": "371015",
+        "value_name": "Saco"
+      },
+      {
+        "id": "PIECES_NUMBER",
+        "value_id": "2904268",
+        "value_name": "10"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "7818798",
+        "value_name": "28 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "5795665",
+        "value_name": "16 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "7978730",
+        "value_name": "18 cm"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "11943551",
+        "value_name": "1.2 kg"
+      },
+      {
+        "id": "IS_FACTORY_KIT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "value_id": "75303554",
+        "value_name": "1 Clivador de precisão - EVUS EV-100B, 1 Medidor de potência óptica - Evus EV-60, 1 Alicate decapador de 3 níveis - EVUS EV-3, 1 Alicate decapador para cabo drop flat – EVUS EV-13, 1 Caneta óptica 1MW 5KM – EVUS EV-209, 1 Gabarito de precisão com decapado"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_catalog_without_current_winner",
+      "catalogProductId": "MLB36262776",
+      "catalogProductName": "Kit Ferramentas Fibra Óptica FTTH 10 Peças EVO EVUS EV-1 com Bolsa",
+      "catalogDomainId": "MLB-COMBINED_TOOL_KITS",
+      "predictedDomainId": "MLB-COMBINED_TOOL_KITS",
+      "categoryId": "MLB271690",
+      "categoryName": "Kits de Ferramentas",
+      "validatedGtin": "7898597132616"
+    }
+  },
+  {
+    "produtoId": "ed62b1b8-d140-4d21-aebd-5c42f87c8e27",
+    "sku": "VTK017824",
+    "nome": "Lâminas Para Ratinho Nwt Insf0013 Para Aplicação De Insulfilm 100 Unidades",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 65.92,
+    "estoque": 21,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 106.07,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898566207772",
+      "validatedNcm": "73261900",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB268504",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "43475668",
+        "value_name": "Stom"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "52112270",
+        "value_name": "Raspador Ratinho 4 cm"
+      },
+      {
+        "id": "PART_NUMBER",
+        "value_id": "43475672",
+        "value_name": "100 Lâminas para Raspador Ratinho"
+      },
+      {
+        "id": "VEHICLE_TYPE",
+        "value_id": "11377043",
+        "value_name": "Carro/Caminhonete"
+      },
+      {
+        "id": "WITH_ANTIVANDALIC_SHEET",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "43475669",
+        "value_name": "7898566207772"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB41798993",
+      "catalogProductName": "Kit 100 Lâminas Poker Tool Aço Carbono 4 cm Para Raspador Ratinho Vidros",
+      "catalogDomainId": "MLB-VEHICLE_TINTED_GLASSES",
+      "predictedDomainId": "MLB-VEHICLE_TINTED_GLASSES",
+      "categoryId": "MLB268504",
+      "categoryName": "Insulfilms",
+      "linkedListingsInCategory": 7,
+      "validatedGtin": "7898566207772"
+    }
+  },
+  {
+    "produtoId": "1f6d9bb7-1e90-44db-a3e2-8202ba78fdf9",
+    "sku": "VTK017884",
+    "nome": "Cabo St- Dvi-dvi 2m Cabo Dvi Com Filtro",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 15.6,
+    "estoque": 18,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 43.95,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898566201114",
+      "validatedNcm": "85444200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB38186",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "2785980",
+        "value_name": "Storm"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "39567862",
+        "value_name": "Cbdv0001"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "value_id": "13788225",
+        "value_name": "DVI"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "9784335",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "124822",
+        "value_name": "2 m"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "13827367",
+        "value_name": "Fio"
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "value_id": "15267153",
+        "value_name": "1"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "value_id": "15267154",
+        "value_name": "1"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "value_id": "15246544",
+        "value_name": "DVI"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "value_id": "13822953",
+        "value_name": "DVI"
+      },
+      {
+        "id": "INPUT_CONNECTOR_GENDER",
+        "value_id": "6116079",
+        "value_name": "Macho"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR_GENDER",
+        "value_id": "6116086",
+        "value_name": "Macho"
+      },
+      {
+        "id": "CONNECTOR_COATING_MATERIAL",
+        "value_id": "13788230",
+        "value_name": "Ouro"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "39567864",
+        "value_name": "7898566201114"
+      },
+      {
+        "id": "MAX_RESOLUTION_SUPPORTED",
+        "value_id": "128796",
+        "value_name": "Full HD"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB38401446",
+      "catalogProductName": "Cabo Dvi X Dvi 18+1 2m Cbdv0001 Storm",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "categoryId": "MLB38186",
+      "categoryName": "Áudio e Vídeo",
+      "linkedListingsInCategory": 1,
+      "validatedGtin": "7898566201114"
+    }
+  },
+  {
+    "produtoId": "04602138-b77d-480a-a48e-010ba2404e1f",
+    "sku": "VTK017907",
+    "nome": "Capa Marítima Protetora Roadstar Rs4201m Para Rádio De Lancha / Barco",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 69.9,
+    "estoque": 20,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 110.99,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898587425513",
+      "validatedNcm": "85182990",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB271538",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "34585",
+        "value_name": "Roadstar"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "67021746",
+        "value_name": "RS-4201MBR"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52055",
+        "value_name": "Branco"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2748302",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "1018574",
+        "value_name": "21 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "3002",
+        "value_name": "5 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "45551",
+        "value_name": "11 cm"
+      },
+      {
+        "id": "WITH_STRAP",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_POCKETS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "67021747",
+        "value_name": "7898587425513"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB62242572",
+      "catalogProductName": "Capa De Radio Universal Maritimo A Prova De Agua Roadstar Branco",
+      "catalogDomainId": "MLB-WALKIE_TALKIE_COVERS",
+      "predictedDomainId": "MLB-WALKIE_TALKIE_COVERS",
+      "categoryId": "MLB271538",
+      "categoryName": "Capas",
+      "linkedListingsInCategory": 1,
+      "validatedGtin": "7898587425513"
+    }
+  },
+  {
+    "produtoId": "e9aacf0a-d1b5-4600-a97e-b7668ebf6635",
+    "sku": "VTK018044",
+    "nome": "Mouse Sem Fio Logitech M170 Cinza",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 58.9,
+    "estoque": 36,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 97.41,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "097855205674",
+      "validatedNcm": "84716053",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "validated_before_execution"
+    },
+    "categoryId": "MLB1714",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "15788",
+        "value_name": "Logitech"
+      },
+      {
+        "id": "LINE",
+        "value_id": "19940806",
+        "value_name": "Mouse Inalambrico"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "255260",
+        "value_name": "M170"
+      },
+      {
+        "id": "ALPHANUMERIC_MODEL",
+        "value_id": "84614662",
+        "value_name": "910-006863"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "81760",
+        "value_name": "Cinza/Preto"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450294",
+        "value_name": "Cinza"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": "17157867",
+        "value_name": "M170"
+      },
+      {
+        "id": "COMPUTER_MOUSE_TYPE",
+        "value_id": "192740",
+        "value_name": "Convencional"
+      },
+      {
+        "id": "SENSOR_TYPE",
+        "value_id": "109003",
+        "value_name": "Óptico"
+      },
+      {
+        "id": "SENSOR_TECHNOLOGY",
+        "value_id": "17529765",
+        "value_name": "Óptico"
+      },
+      {
+        "id": "COMPATIBLE_OPERATING_SYSTEMS",
+        "value_id": "3211255",
+        "value_name": "Windows 7, Windows 8, Windows 10, Linux, macOS 10.5, Chrome OS"
+      },
+      {
+        "id": "IS_GAMER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_WIRE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "SENSOR_RESOLUTION",
+        "value_id": "249299",
+        "value_name": "1000 dpi"
+      },
+      {
+        "id": "MAX_SPEED",
+        "value_id": "10969048",
+        "value_name": "100 ips"
+      },
+      {
+        "id": "BUTTONS_NUMBER",
+        "value_id": "1021242",
+        "value_name": "3"
+      },
+      {
+        "id": "HAND_ORIENTATION",
+        "value_id": "2862903",
+        "value_name": "Ambidestro"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "8453256",
+        "value_name": "98378574339, 97855119193, 5099206062887, 653341008695, 782500626705, 10097855124187, 97855205674"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "22235393",
+        "value_name": "9.77 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "22235394",
+        "value_name": "6.15 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "19554121",
+        "value_name": "3.52 cm"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "15788",
+        "value_name": "Logitech"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "45583975",
+        "value_name": "69.3 g"
+      },
+      {
+        "id": "WITH_LIGHTS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "MAX_BATTERY_LIFE",
+        "value_id": "8814779",
+        "value_name": "12 m"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "value_id": "3560861",
+        "value_name": "Pilhas"
+      },
+      {
+        "id": "MPN",
+        "value_id": "8183294",
+        "value_name": "910-004425"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_catalog_image_mirrored",
+      "catalogProductId": "MLB6204829",
+      "catalogProductName": "Mouse Logitech M170 910-006862",
+      "catalogDomainId": "MLB-COMPUTER_MICE",
+      "predictedDomainId": "MLB-COMPUTER_MICE",
+      "categoryId": "MLB1714",
+      "categoryName": "Mouses",
+      "validatedGtin": "097855205674"
+    }
+  },
+  {
+    "produtoId": "7ac8b06a-fc58-40bb-aae1-27ef84af5ac2",
+    "sku": "VTK018218",
+    "nome": "Impressora Térmica Epson Tm-t20x-ii Serial",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 639.9,
+    "estoque": 11,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 948,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.2,
+      "minProfit": 60
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "010343989115",
+      "validatedNcm": "84433239",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "validated_before_execution"
+    },
+    "categoryId": "MLB1676",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "1823",
+        "value_name": "Epson"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "46447194",
+        "value_name": "Tm-T20X-II"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "PRINTER_TYPE",
+        "value_id": "300770",
+        "value_name": "Função única"
+      },
+      {
+        "id": "PRINTING_TECHNOLOGY",
+        "value_id": "300773",
+        "value_name": "Matriz de ponto"
+      },
+      {
+        "id": "PRINTING_TYPE",
+        "value_id": "300792",
+        "value_name": "Monocromática"
+      },
+      {
+        "id": "PRINTER_FUNCTIONS",
+        "value_id": "8746038",
+        "value_name": "Impressão"
+      },
+      {
+        "id": "WITH_WI_FI",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_USB_PORT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_CAMERA_ACCESORY",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "36746284",
+        "value_name": "Seiko Epson"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "46447195",
+        "value_name": "10343989115"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "5082093",
+        "value_name": "23.3 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "517391",
+        "value_name": "19 cm"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "7928725",
+        "value_name": "1.97 kg"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_catalog_image_mirrored",
+      "catalogProductId": "MLB45350688",
+      "catalogProductName": "Impressora Cupom Epson Usb Serial Tm-t20x Ii 250 Mm (eps01)",
+      "catalogDomainId": "MLB-PRINTERS",
+      "predictedDomainId": "MLB-PRINTERS",
+      "categoryId": "MLB1676",
+      "categoryName": "Impressoras",
+      "validatedGtin": "010343989115"
+    }
+  },
+  {
+    "produtoId": "ef5659a4-a991-457d-b5da-c0ffaa4d2b41",
+    "sku": "VTK018261",
+    "nome": "Espaguete Liso Permak 6mm 100m",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 62.9,
+    "estoque": 11,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 102.35,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899079103018",
+      "validatedNcm": "39173900",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB38279",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "16958501",
+        "value_name": "Leiplast"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "19487248",
+        "value_name": "Espaguete e Corrugados"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "value_id": "19487247",
+        "value_name": "N\\A"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "2693635",
+        "value_name": "100 m"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "13827367",
+        "value_name": "Fio"
+      },
+      {
+        "id": "CABLE_DIAMETER",
+        "value_id": "16088632",
+        "value_name": "6 mm"
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "value_id": "15991896",
+        "value_name": "0"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "value_id": "15991897",
+        "value_name": "0"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "value_id": "25842106",
+        "value_name": "N\\A"
+      },
+      {
+        "id": "INPUT_CONNECTOR_GENDER",
+        "value_id": "25842104",
+        "value_name": "N\\A"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR_GENDER",
+        "value_id": "25842107",
+        "value_name": "N\\A"
+      },
+      {
+        "id": "CONNECTOR_COATING_MATERIAL",
+        "value_id": "25842103",
+        "value_name": "N\\A"
+      },
+      {
+        "id": "SUPPORTED_AUDIO_CODECS",
+        "value_id": "25842108",
+        "value_name": "N\\A"
+      },
+      {
+        "id": "COMPATIBLE_DEVICES",
+        "value_id": "25842102",
+        "value_name": "N\\A"
+      },
+      {
+        "id": "MAX_RESOLUTION_SUPPORTED",
+        "value_id": "25842105",
+        "value_name": "N\\A"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_catalog_without_current_winner",
+      "catalogProductId": "MLB32085423",
+      "catalogProductName": "Espaguete Liso 6mm / 100m Preto - Cód.309",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "categoryId": "MLB38279",
+      "categoryName": "Outros Cabos",
+      "validatedGtin": "7899079103018"
+    }
+  },
+  {
+    "produtoId": "9552e566-6f75-4b16-af3f-3e6a4ad589ed",
+    "sku": "VTK018344",
+    "nome": "Microfone Csr Ht-58-a Profissional Sem Chave Anti Queda",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 99.95,
+    "estoque": 9,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 148.09,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7897366205537",
+      "validatedNcm": "85181090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB4469",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "118055",
+        "value_name": "CSR"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "2473429",
+        "value_name": "HT58A"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MICROPHONE_FORMATS",
+        "value_id": "182426",
+        "value_name": "De mão"
+      },
+      {
+        "id": "MICROPHONE_TYPES",
+        "value_id": "103745",
+        "value_name": "Dinâmico"
+      },
+      {
+        "id": "POLAR_PATTERNS",
+        "value_id": "2253807",
+        "value_name": "Cardioide"
+      },
+      {
+        "id": "MICROPHONES_NUMBER",
+        "value_id": "934836",
+        "value_name": "1"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "129121",
+        "value_name": "5 m"
+      },
+      {
+        "id": "CONNECTION_TYPES",
+        "value_id": "1210905",
+        "value_name": "Com fio"
+      },
+      {
+        "id": "IS_GAMER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "MIN_FREQUENCY",
+        "value_id": "8746852",
+        "value_name": "15 Hz"
+      },
+      {
+        "id": "MAX_FREQUENCY",
+        "value_id": "2261478",
+        "value_name": "12 kHz"
+      },
+      {
+        "id": "MICROPHONE_RECOMMENDED_USES",
+        "value_id": "17477924",
+        "value_name": "Bares, Igrejas, Palestra"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_id": "18143283",
+        "value_name": "Não necessita"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_BUILT_IN_SPEAKERS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "118055",
+        "value_name": "CSR"
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "value_id": "68007386",
+        "value_name": "HT-58A"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": "20634421",
+        "value_name": "HT-58A"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS",
+        "value_id": "7226718",
+        "value_name": "Jack 6.3 mm"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "18985578",
+        "value_name": "7897366205537"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "value_id": "2307514",
+        "value_name": "Capa"
+      },
+      {
+        "id": "INPUT_CONNECTORS",
+        "value_id": "2305169",
+        "value_name": "XLR"
+      },
+      {
+        "id": "MATERIALS",
+        "value_id": "2748302",
+        "value_name": "Plástico, Aço inoxidável"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "7685441",
+        "value_name": "740 g"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_ambiguous_semantically_selected",
+      "catalogProductId": "MLB23156712",
+      "catalogProductName": "Microfone Csr Ht58a Dinâmico Vocal Profissional Estojo Cabo Cor Preto",
+      "catalogDomainId": "MLB-MICROPHONES",
+      "predictedDomainId": "MLB-MICROPHONES",
+      "categoryId": "MLB4469",
+      "categoryName": "Microfones",
+      "validatedGtin": "7897366205537"
+    }
+  },
+  {
+    "produtoId": "bdc1df2c-e4c2-448c-973f-59fdc44a7186",
+    "sku": "VTK018408",
+    "nome": "Climatizador Evaporativo Symphony Hicool I 31l 127v 60hz",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 899.9,
+    "estoque": 9,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 1333.19,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.2,
+      "minProfit": 60
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "8901791100493",
+      "validatedNcm": "84796000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB72503",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "2942489",
+        "value_name": "Symphony"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "14747363",
+        "value_name": "HI COOL I"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52055",
+        "value_name": "Branco"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "39205162",
+        "value_name": "127V"
+      },
+      {
+        "id": "AIR_CONDITIONING_TYPE",
+        "value_id": "83444",
+        "value_name": "Frio"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "7812028",
+        "value_name": "8.3 kg"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "11501154",
+        "value_name": "91.5 cm"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "7990712",
+        "value_name": "38 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "5662053",
+        "value_name": "50 cm"
+      },
+      {
+        "id": "IS_HUMIDIFIER",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_AIR_PURIFIER",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_VENTILATION_FUNCTION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WATER_CAPACITY",
+        "value_id": "3890784",
+        "value_name": "31 L"
+      },
+      {
+        "id": "POWER",
+        "value_id": "3034199",
+        "value_name": "210 W"
+      },
+      {
+        "id": "SPEEDS_NUMBER",
+        "value_id": "1000288",
+        "value_name": "3"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "14747369",
+        "value_name": "8901791100493"
+      },
+      {
+        "id": "ENERGY_EFFICIENCY",
+        "value_id": "98473",
+        "value_name": "A"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450308",
+        "value_name": "Branco"
+      },
+      {
+        "id": "WITH_TIMER",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "INCLUDES_REMOTE_CONTROL",
+        "value_id": "242085",
+        "value_name": "Sim"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_ambiguous_semantically_selected",
+      "catalogProductId": "MLB60738717",
+      "catalogProductName": "Hi-cool I Climatizador Portátil 31l Com Controle Remoto - Br Cor Branco",
+      "catalogDomainId": "MLB-PORTABLE_EVAPORATIVE_AIR_COOLERS",
+      "predictedDomainId": "MLB-PORTABLE_EVAPORATIVE_AIR_COOLERS",
+      "categoryId": "MLB72503",
+      "categoryName": "Climatizador Portátil",
+      "validatedGtin": "8901791100493"
+    }
+  },
+  {
+    "produtoId": "203acc55-b562-43c6-b837-06e93101fac7",
+    "sku": "VTK018502",
+    "nome": "Conector Derivação Permak Taplink 1,50 A 2,50mm - Azul",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 14.99,
+    "estoque": 8,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 43.2,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898710414346",
+      "validatedNcm": "85444200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB38172",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "3289477",
+        "value_name": "Permak"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "72907811",
+        "value_name": "138/G"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52028",
+        "value_name": "Azul"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "131783",
+        "value_name": "100"
+      },
+      {
+        "id": "COATING_MATERIAL",
+        "value_id": "16622757",
+        "value_name": "Polipropileno"
+      },
+      {
+        "id": "MPN",
+        "value_id": "72907813",
+        "value_name": "138/G"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_catalog_without_current_winner",
+      "catalogProductId": "MLB64965281",
+      "catalogProductName": "Conector Derivação Taplink 1,50 A 2,50mm | Azul",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+      "categoryId": "MLB38172",
+      "categoryName": "Conectores",
+      "validatedGtin": "7898710414346"
+    }
+  },
+  {
+    "produtoId": "5b9c27d8-c667-43dc-89c7-9322067883df",
+    "sku": "VTK018524",
+    "nome": "Roteador Wi-fi Max Aquário Apr-2410 N 150 Mbps",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 85.1,
+    "estoque": 5,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 129.75,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898127600929",
+      "validatedNcm": "85176241",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB5867",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "45099",
+        "value_name": "Aquário"
+      },
+      {
+        "id": "LINE",
+        "value_id": "18167",
+        "value_name": "MAX"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "59672",
+        "value_name": "APR-2410"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "7386989",
+        "value_name": "1"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "39205163",
+        "value_name": "127/220V"
+      },
+      {
+        "id": "FUNCTIONS",
+        "value_id": "279956",
+        "value_name": "Roteador"
+      },
+      {
+        "id": "INTERNAL_ANTENNAS_NUMBER",
+        "value_id": "8637169",
+        "value_name": "1"
+      },
+      {
+        "id": "EXTERNAL_ANTENNAS_NUMBER",
+        "value_id": "8758647",
+        "value_name": "1"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_id": "41553638",
+        "value_name": "15231302250"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "36998743",
+        "value_name": "7898127600929"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB36904293",
+      "catalogProductName": "Roteador Wireless N150 Max Aquário APR-2410 Preto",
+      "catalogDomainId": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS",
+      "predictedDomainId": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS",
+      "categoryId": "MLB5867",
+      "categoryName": "Roteadores",
+      "linkedListingsInCategory": 1,
+      "validatedGtin": "7898127600929"
+    }
+  },
+  {
+    "produtoId": "22d9976e-39c2-4948-9d0b-b5f4d0bbc6ce",
+    "sku": "VTK018526",
+    "nome": "Cabo Para Microfone Santo Angelo Ninja Hg P10 X Xlrf 03ft 091 Cm 8827 Preto",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 35.5,
+    "estoque": 7,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 68.52,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899028808827",
+      "validatedNcm": "85444200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB72745",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "2200699",
+        "value_name": "Santo Angelo"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "18373885",
+        "value_name": "NINJAHG B"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "value_id": "13788227",
+        "value_name": "XLR"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "1214615",
+        "value_name": "91 cm"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "13827367",
+        "value_name": "Fio"
+      },
+      {
+        "id": "CABLE_DIAMETER",
+        "value_id": "16625013",
+        "value_name": "0.2 mm"
+      },
+      {
+        "id": "AWG_SIZE",
+        "value_id": "16088654",
+        "value_name": "24"
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "value_id": "15267153",
+        "value_name": "1"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "value_id": "15267154",
+        "value_name": "1"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "value_id": "15991808",
+        "value_name": "P10"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "value_id": "2305169",
+        "value_name": "XLR"
+      },
+      {
+        "id": "INPUT_CONNECTOR_GENDER",
+        "value_id": "6116079",
+        "value_name": "Macho"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR_GENDER",
+        "value_id": "6116087",
+        "value_name": "Fêmea"
+      },
+      {
+        "id": "CONNECTOR_COATING_MATERIAL",
+        "value_id": "15292962",
+        "value_name": "Níquel"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "18373899",
+        "value_name": "7899028808827"
+      },
+      {
+        "id": "VERSION_TYPE",
+        "value_id": "63532253",
+        "value_name": "3 Pinos"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB22707216",
+      "catalogProductName": "Cabo Microfone Santo Angelo Ninja Hg P10 X Xlrf B 03ft 0,9m",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "categoryId": "MLB72745",
+      "categoryName": "Cabos",
+      "linkedListingsInCategory": 14,
+      "validatedGtin": "7899028808827"
+    }
+  },
+  {
+    "produtoId": "2d23d922-5228-4a5a-97f0-35903478d514",
+    "sku": "VTK018723",
+    "nome": "Contra Frente Plástica Permak Fiat Bravo 2 Din Preta",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 54.58,
+    "estoque": 5,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 92.07,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898253498131",
+      "validatedNcm": "85299090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB45320",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "3289477",
+        "value_name": "Permak"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "48890584",
+        "value_name": "Fiat Bravo 2 Din"
+      },
+      {
+        "id": "STEREO_STANDARD_DIMENSIONS",
+        "value_id": "38480992",
+        "value_name": "2 DIN"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2511571",
+        "value_name": "ABS"
+      },
+      {
+        "id": "DISPLAY_SIZE",
+        "value_id": "2399979",
+        "value_name": "7 \""
+      },
+      {
+        "id": "GTIN",
+        "value_id": "25230469",
+        "value_name": "7898253498131"
+      },
+      {
+        "id": "MPN",
+        "value_id": "54481712",
+        "value_name": "89/E3"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB50745398",
+      "catalogProductName": "Contra Frente Plastica Permak Fiat Bravo 2 Din Preta",
+      "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "categoryId": "MLB45320",
+      "categoryName": "Molduras para Estéreos",
+      "linkedListingsInCategory": 6,
+      "validatedGtin": "7898253498131"
+    }
+  },
+  {
+    "produtoId": "ecbe9735-b7c3-4b49-a088-50eed520c458",
+    "sku": "VTK018922",
+    "nome": "Placa Viaweb Central Vw16z Ip Star",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 334.9,
+    "estoque": 4,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 475.48,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898936319081",
+      "validatedNcm": "85319000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB72514",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "15169328",
+        "value_name": "GNA"
+      },
+      {
+        "id": "PART_NUMBER",
+        "value_id": "34896649",
+        "value_name": "1"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_catalog_without_current_winner",
+      "catalogProductId": "MLB36842846",
+      "catalogProductName": "Placa Viaweb Central Vw16z Ip Star",
+      "catalogDomainId": "MLB-TELEPHONY_CARDS",
+      "predictedDomainId": "MLB-TELEPHONY_CARDS",
+      "categoryId": "MLB72514",
+      "categoryName": "Placas",
+      "validatedGtin": "7898936319081"
+    }
+  },
+  {
+    "produtoId": "8ee7da40-3033-49ac-bf6e-7092339e734d",
+    "sku": "VTK018930",
+    "nome": "Telefone Sem Fio Intelbras Ts 2512 Id Preto 4122512",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 234.9,
+    "estoque": 3,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 333.5,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896637678506",
+      "validatedNcm": "85171100",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB1053",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "7129714",
+        "value_name": "TS 2512"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "39205163",
+        "value_name": "127/220V"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": "38104386",
+        "value_name": "TS 2512"
+      },
+      {
+        "id": "MOBILE_NETWORK",
+        "value_id": "44550333",
+        "value_name": "Quadband"
+      },
+      {
+        "id": "DISPLAY_TYPE",
+        "value_id": "102258",
+        "value_name": "Digital"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPES",
+        "value_id": "4491927",
+        "value_name": "Bateria"
+      },
+      {
+        "id": "STANDBY_MODE_BATTERY_DURATION",
+        "value_id": "30390044",
+        "value_name": "200 h"
+      },
+      {
+        "id": "TALK_TIME",
+        "value_id": "2087877",
+        "value_name": "20 h"
+      },
+      {
+        "id": "FREQUENCY",
+        "value_id": "8744458",
+        "value_name": "1.9 GHz"
+      },
+      {
+        "id": "HEADPHONES_OUTPUTS_NUMBER",
+        "value_id": "16012652",
+        "value_name": "0"
+      },
+      {
+        "id": "HEADPHONES_NUMBER_INCLUDED",
+        "value_id": "7514070",
+        "value_name": "2"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_CALLER_IDENTIFICATION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_ANSWERING_MACHINE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_WALL_MOUNTABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_DUAL_SIM",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_RURAL_TELEPHONE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_id": "39657153",
+        "value_name": "35661800160"
+      },
+      {
+        "id": "BATTERY_CAPACITY",
+        "value_id": "149366",
+        "value_name": "600 mAh"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "20855004",
+        "value_name": "7896637678506"
+      },
+      {
+        "id": "MANUFACTURER",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "value_id": "40742698",
+        "value_name": "TS 3112"
+      },
+      {
+        "id": "DISPLAY_SIZE",
+        "value_id": "48517424",
+        "value_name": "1.772 \""
+      },
+      {
+        "id": "WITH_BATTERY_CHARGE_INDICATOR",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "PHONEBOOK_ENTRIES_CAPACITY",
+        "value_id": "8801844",
+        "value_name": "70"
+      },
+      {
+        "id": "RINGTONES_NUMBER",
+        "value_id": "8761289",
+        "value_name": "10"
+      },
+      {
+        "id": "WITH_HANDS_FREE_MODE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_CALL_BLOCKING",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_ALARM_CLOCK_FUNCTION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_ECO_MODE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_BACKLIT_KEYPAD",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_DATE_AND_TIME_INDICATOR",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_FLASH_BUTTON",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_REDIAL_FUNCTION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_HANDSET_VOLUME_CONTROL",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_SILENCE_MODE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "MPN",
+        "value_id": "20855005",
+        "value_name": "4122512"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_ambiguous_semantically_selected",
+      "catalogProductId": "MLB14660756",
+      "catalogProductName": "Telefone sem fio Ts 2512 digital com ramal adicional Preto Intelbras",
+      "catalogDomainId": "MLB-TELEPHONES",
+      "predictedDomainId": "MLB-TELEPHONES",
+      "categoryId": "MLB1053",
+      "categoryName": "Telefones",
+      "validatedGtin": "7896637678506"
+    }
+  },
+  {
+    "produtoId": "692b237a-3f67-40e9-9ef8-967908073216",
+    "sku": "VTK019046",
+    "nome": "Módulo De Vidro Elétrico Tury Ae Tw14/pro4.16bm Peugeot Active/griffe/allur",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 368.9,
+    "estoque": 3,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 523.75,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898096332876",
+      "validatedNcm": "85432000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB191714",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "3636286",
+        "value_name": "Tury"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "44397801",
+        "value_name": "PRO4.16BM"
+      },
+      {
+        "id": "PART_NUMBER",
+        "value_id": "44397802",
+        "value_name": "127830.0"
+      },
+      {
+        "id": "NUMBER_OF_OPERABLE_WINDOWS",
+        "value_id": "38253336",
+        "value_name": "4"
+      },
+      {
+        "id": "ORIGIN",
+        "value_id": "97214",
+        "value_name": "Brasil"
+      },
+      {
+        "id": "VEHICLE_TYPE",
+        "value_id": "11377043",
+        "value_name": "Carro/Caminhonete"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_catalog_without_current_winner",
+      "catalogProductId": "MLB43110776",
+      "catalogProductName": "Módulo Subida Vidro Elétrico Peugeot 2008 2015 2016 17 18 19",
+      "catalogDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+      "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+      "categoryId": "MLB191714",
+      "categoryName": "Elétrico",
+      "validatedGtin": "7898096332876"
+    }
+  },
+  {
+    "produtoId": "2359f7d7-9a83-420e-bfc1-9de10ab7ff14",
+    "sku": "VTK019485",
+    "nome": "Cabo Blindado Para áudio Estéreo Tiaflex 2x0,30 Mm Preto 603010",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 579.9,
+    "estoque": 5,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 859.11,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.2,
+      "minProfit": 60
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898429981627",
+      "validatedNcm": "85444900",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB431813",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "12235577",
+        "value_name": "Tiaflex"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "17077861",
+        "value_name": "TIAFLEX"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "value_id": "32791690",
+        "value_name": "Polarizado Externo P/Áudio"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "2693635",
+        "value_name": "100 m"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "13827367",
+        "value_name": "Fio"
+      },
+      {
+        "id": "CABLE_DIAMETER",
+        "value_id": "17286591",
+        "value_name": "0.3 mm"
+      },
+      {
+        "id": "AWG_SIZE",
+        "value_id": "16240127",
+        "value_name": "22"
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "value_id": "15289674",
+        "value_name": "2"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "value_id": "15290095",
+        "value_name": "2"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "value_id": "32791695",
+        "value_name": "Polarizado"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "value_id": "32791696",
+        "value_name": "Polarizado"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_catalog_without_current_winner",
+      "catalogProductId": "MLB32837378",
+      "catalogProductName": "Rolo De Fio 100m Para Microfone Audio E 2x0,30mm 22 Tiaflex",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "categoryId": "MLB431813",
+      "categoryName": "Cabos de Áudio e Vídeo",
+      "validatedGtin": "7898429981627"
+    }
+  },
+  {
+    "produtoId": "bb565648-f8de-4e3b-83cf-2e3bbea9318d",
+    "sku": "VTK019623",
+    "nome": "Cabo Para Microfone Balanceado Tiaflex Af(t)2x0,20 Mm 24awg Preto 100 Metros",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 669.9,
+    "estoque": 5,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 992.44,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.2,
+      "minProfit": 60
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898429983874",
+      "validatedNcm": "85444900",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB72745",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "12235577",
+        "value_name": "Tiaflex"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "value_id": "16088604",
+        "value_name": "Cabo"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "2693635",
+        "value_name": "100 m"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "13827367",
+        "value_name": "Fio"
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "value_id": "15267153",
+        "value_name": "1"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "value_id": "15267154",
+        "value_name": "1"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "value_id": "6778114",
+        "value_name": "XLR"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "value_id": "2305169",
+        "value_name": "XLR"
+      },
+      {
+        "id": "INPUT_CONNECTOR_GENDER",
+        "value_id": "6116080",
+        "value_name": "Fêmea"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR_GENDER",
+        "value_id": "6116087",
+        "value_name": "Fêmea"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_catalog_without_current_winner",
+      "catalogProductId": "MLB36104685",
+      "catalogProductName": "Cabo De Microfone Emborrachado 6mm (stéreo) 100m Tiaflex",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "categoryId": "MLB72745",
+      "categoryName": "Cabos",
+      "validatedGtin": "7898429983874"
+    }
+  },
+  {
+    "produtoId": "7094a8c1-ddd3-4036-9bb7-0c1d3e8cf883",
+    "sku": "VTK020597",
+    "nome": "Cabo Para Microfone Mono Tiaflex Espiralado 100 Metros 1x0,50 Mm 505010",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 459.9,
+    "estoque": 5,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 681.33,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.2,
+      "minProfit": 60
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898429981474",
+      "validatedNcm": "85444900",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB72745",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "12235577",
+        "value_name": "Tiaflex"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "value_id": "16088604",
+        "value_name": "Cabo"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "13827367",
+        "value_name": "Fio"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_catalog_without_current_winner",
+      "catalogProductId": "MLB36145188",
+      "catalogProductName": "Fio Microfone Mono 1x0,50mm 20 Tiaflex - Rl / 100",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "categoryId": "MLB72745",
+      "categoryName": "Cabos",
+      "validatedGtin": "7898429981474"
+    }
+  },
+  {
+    "produtoId": "928958aa-5d36-44cf-98ea-52a9cb8d4f71",
+    "sku": "VTK022016",
+    "nome": "Cabo Hdmi Evus C-002 3d Macho X Macho Com Filtro V1.4 3,0m",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 12.99,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 40.73,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898597130346",
+      "validatedNcm": "85444200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB38186",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "216711",
+        "value_name": "Evus"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "value_id": "16696220",
+        "value_name": "HDMI"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "9784335",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "129130",
+        "value_name": "3 m"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "13827367",
+        "value_name": "Fio"
+      },
+      {
+        "id": "CABLE_DIAMETER",
+        "value_id": "16201380",
+        "value_name": "6.5 mm"
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "value_id": "15267153",
+        "value_name": "1"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "value_id": "15267154",
+        "value_name": "1"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "value_id": "6739225",
+        "value_name": "HDMI"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "value_id": "6739227",
+        "value_name": "HDMI"
+      },
+      {
+        "id": "INPUT_CONNECTOR_GENDER",
+        "value_id": "6116079",
+        "value_name": "Macho"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR_GENDER",
+        "value_id": "6116086",
+        "value_name": "Macho"
+      },
+      {
+        "id": "CONNECTOR_COATING_MATERIAL",
+        "value_id": "64611450",
+        "value_name": "Ouro de 24K"
+      },
+      {
+        "id": "SUPPORTED_AUDIO_CODECS",
+        "value_id": "60066755",
+        "value_name": "PCM, dvd-audio, Super Audio CD, Dolby TrueHD, DTS-HD Master Audio"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "39457896",
+        "value_name": "7898597130346"
+      },
+      {
+        "id": "COMPATIBLE_DEVICES",
+        "value_id": "68008582",
+        "value_name": "TVs LED, LCD, Plasma, Monitores Digitais, Projetores, consoles de videogame, Blu-Ray"
+      },
+      {
+        "id": "MAX_RESOLUTION_SUPPORTED",
+        "value_id": "73926722",
+        "value_name": "4K 2160p"
+      },
+      {
+        "id": "VERSION_TYPE",
+        "value_id": "63532248",
+        "value_name": "1.4"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB38302545",
+      "catalogProductName": "Cabo HDMI de 3m para TVs 4K e Consoles Ultra HD",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "categoryId": "MLB38186",
+      "categoryName": "Áudio e Vídeo",
+      "linkedListingsInCategory": 1,
+      "validatedGtin": "7898597130346"
+    }
+  },
+  {
+    "produtoId": "0136a5ae-54d6-4606-b235-c862c1e34817",
+    "sku": "VTK022968",
+    "nome": "Liquidificador Oster Oliq610 1400w 220v",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 197.9,
+    "estoque": 15,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 280.97,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898615988546",
+      "validatedNcm": "85094010",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB73055",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "467",
+        "value_name": "Oster"
+      },
+      {
+        "id": "LINE",
+        "value_id": "10450086",
+        "value_name": "1400 Full"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "9590607",
+        "value_name": "OLIQ610"
+      },
+      {
+        "id": "VOLUME_CAPACITY",
+        "value_id": "2115875",
+        "value_name": "3.2 L"
+      },
+      {
+        "id": "TOTAL_CAPACITY",
+        "value_id": "2115875",
+        "value_name": "3.2 L"
+      },
+      {
+        "id": "POWER_SUPPLY_TYPE",
+        "value_id": "49713698",
+        "value_name": "Corrente doméstica"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "198813",
+        "value_name": "220V"
+      },
+      {
+        "id": "BLENDER_JAR_MATERIAL",
+        "value_id": "2364248",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "DETAILED_MODEL",
+        "value_id": "9590611",
+        "value_name": "OLIQ610-220"
+      },
+      {
+        "id": "POWER",
+        "value_id": "104589",
+        "value_name": "1400 W"
+      },
+      {
+        "id": "RECOMMENDED_USES",
+        "value_id": "19409519",
+        "value_name": "Perfeito para o preparo de diversas receitas para toda a família"
+      },
+      {
+        "id": "SPEEDS_NUMBER",
+        "value_id": "4392562",
+        "value_name": "15"
+      },
+      {
+        "id": "IS_INDUSTRIAL",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "USEFUL_CAPACITY",
+        "value_id": "16718413",
+        "value_name": "2 L"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "9837518",
+        "value_name": "7898615988546, 17898615988543"
+      },
+      {
+        "id": "INCLUDES_ACCESSORIES",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "ACCESSORIES_INCLUDED",
+        "value_id": "19731354",
+        "value_name": "Tampa dosadora c/ 100ml, Manual de instruções"
+      },
+      {
+        "id": "IS_DISHWASHER_SAFE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "DISHWASHER_UNSUITABLE_PARTS",
+        "value_id": "23928800",
+        "value_name": "Todas"
+      },
+      {
+        "id": "IS_PORTABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_ON_OFF_POWER_BUTTON",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_USB_CHARGE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_BPA_FREE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "IS_SUITABLE_FOR_ICE_CRUSHING",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "PROGRAMS_NUMBER",
+        "value_id": "8678667",
+        "value_name": "2"
+      },
+      {
+        "id": "BLENDER_PROGRAMS",
+        "value_id": "10890361",
+        "value_name": "Pulso, Triturar"
+      },
+      {
+        "id": "BLENDER_BLADES_NUMBER",
+        "value_id": "11473574",
+        "value_name": "4"
+      },
+      {
+        "id": "WITH_REMOVABLE_BLADE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_STAINLESS_STEEL_BLADE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_TURBO_FUNCTION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_PULSE_FUNCTION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_ANTI_SLIP_BASE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_DOSING_LID",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_POURING_SPOUT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_SECURITY_SEAL",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_DIGITAL_DISPLAY",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_HEAT_RESISTANT_JAR",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_SOUND_ENCLOSURE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_DUAL_DIRECTION_TECHNOLOGY",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_OVERLOAD_PROTECTION",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_TIMER",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_CORD_STORAGE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "DEPTH",
+        "value_id": "8155381",
+        "value_name": "22 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "13774048",
+        "value_name": "42.2 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "7916192",
+        "value_name": "20.5 cm"
+      },
+      {
+        "id": "WEIGHT",
+        "value_id": "7660690",
+        "value_name": "2.3 kg"
+      },
+      {
+        "id": "MPN",
+        "value_id": "10224566",
+        "value_name": "4874"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "exact_gtin_ambiguous_semantically_selected",
+      "catalogProductId": "MLB16602519",
+      "catalogProductName": "Liquidificador Full Oster 15 Velocidades 1400W Preto 220V OLIQ610",
+      "catalogDomainId": "MLB-BLENDERS",
+      "predictedDomainId": "MLB-BLENDERS",
+      "categoryId": "MLB73055",
+      "categoryName": "Liquidificadores",
+      "validatedGtin": "7898615988546"
+    }
+  }
+]

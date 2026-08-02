@@ -1,0 +1,353 @@
+{
+  "batchNumber": 1,
+  "batchId": "evolusom-traditional-001",
+  "strategy": "traditional_no_catalog_predictor_consensus",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "9604ecb9-3f7c-4191-ac91-4e954384c7f5",
+      "sku": "VTK002550",
+      "nome": "Pedestal Com Bandeja Multiuso BMU Preto ASK",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 135.9,
+      "estoque": 21,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 192.94,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB10233",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-SPEAKERS_STANDS",
+        "categoryId": "MLB10233",
+        "categoryName": "Suportes para Caixas de Som",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Áudio > Suportes para Caixas de Som",
+        "validatedGtin": "7898939971552"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898939971552",
+        "validatedNcm": "92099900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "e1010b67-3341-4029-af06-99c399d85197",
+      "sku": "VTK002792",
+      "nome": "Detector Óptico de Fumaça 12V/24V SEGURIMAX",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.89,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB277840",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-GAS_DETECTORS",
+        "categoryId": "MLB277840",
+        "categoryName": "Detectores de Gases",
+        "categoryPath": "Indústria e Comércio > Segurança Laboral > Detectores de Gases",
+        "validatedGtin": "7898597854044"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597854044",
+        "validatedNcm": "85311090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "bc040ab0-3aa3-4126-b12a-d24c2897bac0",
+      "sku": "VTK003270",
+      "nome": "Interruptor Inteligente 1 Tecla Wi-Fi SE235 Branco MULTILASER",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 61.9,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 101.11,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB269928",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-DIMMERS",
+        "categoryId": "MLB269928",
+        "categoryName": "Dimmers",
+        "categoryPath": "Construção > Energia > Tomadas e Interruptores > Interruptores > Dimmers",
+        "validatedGtin": "7899838881218"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899838881218",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "2c2705af-8d9d-4155-a010-0213811f3a67",
+      "sku": "VTK004115",
+      "nome": "Suporte Magnético Para Antena Móvel PX M-700K Preto AQUÁRIO",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 105.9,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 155.43,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB58500",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_CELLPHONE_AND_GPS_MOUNTS",
+        "categoryId": "MLB58500",
+        "categoryName": "Suportes Veiculares",
+        "categoryPath": "Celulares e Telefones > Acessórios para Celulares > Colgantes e Suportes > Suportes Veiculares",
+        "validatedGtin": "7898127600530"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898127600530",
+        "validatedNcm": "85177190",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "7c433078-cf08-4965-8cba-fe1e9c822b33",
+      "sku": "VTK005357",
+      "nome": "Alto-Falante 5\" JBL Multisystem 5TRMS80 (PAR)",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 209.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 298.01,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB443814",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_STEREOS_AND_SPEAKERS_KITS",
+        "categoryId": "MLB443814",
+        "categoryName": "Kits de Estéreo e Alto-Falante",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Reprodutores > Kits de Estéreo e Alto-Falante",
+        "validatedGtin": "7896359568963"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359568963",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "fb10f581-ba0e-4f24-94a8-c66f60a04a5e",
+      "sku": "VTK017159",
+      "nome": "Bucha Para Alto Falante Original Permak Palio 237/c",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 14.29,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 42.33,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB443814",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_STEREOS_AND_SPEAKERS_KITS",
+        "categoryId": "MLB443814",
+        "categoryName": "Kits de Estéreo e Alto-Falante",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Reprodutores > Kits de Estéreo e Alto-Falante",
+        "validatedGtin": "7898253490951"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253490951",
+        "validatedNcm": "87082999",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "865b05da-58b8-4c3b-9fc4-9c7b58cc19bd",
+      "sku": "VTK017185",
+      "nome": "Plug Santo Angelo P10 Ninja Estéreo Com Mola Níquel",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 11.2,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 38.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB420707",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+        "categoryId": "MLB420707",
+        "categoryName": "Conectores",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Áudio > Equipamento para DJs > Acessórios > Conectores",
+        "validatedGtin": "7899028809268"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899028809268",
+        "validatedNcm": "85369090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "59eda7a6-d2a4-4553-9d25-6383cfa1c027",
+      "sku": "VTK017211",
+      "nome": "Suporte Para Microfone De Bateria/precussão Ask B10",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 67.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 108.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB439386",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-MICROPHONE_STANDS",
+        "categoryId": "MLB439386",
+        "categoryName": "Pés de Microfone",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Áudio > Microfones e Pré Amps. > Pés de Microfone",
+        "validatedGtin": "7898939972504"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898939972504",
+        "validatedNcm": "92099900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "8398a3fb-8b3b-47e4-8530-c5cc54ec40fe",
+      "sku": "VTK017212",
+      "nome": "Cabo óptico Intelbras Plc 1x2 Nc Xfs 120 Com Divisor 4830013",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 19.3,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 48.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB431815",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-NETWORK_CABLES",
+        "categoryId": "MLB431815",
+        "categoryName": "Cabos de Rede",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Cabos > Cabos de Rede",
+        "validatedGtin": "7896637676717"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637676717",
+        "validatedNcm": "85447090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "6b567a46-935d-4828-9e0c-3fe87355a5f1",
+      "sku": "VTK017236",
+      "nome": "Alto Falante 5\" Pioneer Ts-1360br 100rms/ Par",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 113.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 165.31,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB3905",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Alto-Falantes",
+        "validatedGtin": "4988028352812"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "4988028352812",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

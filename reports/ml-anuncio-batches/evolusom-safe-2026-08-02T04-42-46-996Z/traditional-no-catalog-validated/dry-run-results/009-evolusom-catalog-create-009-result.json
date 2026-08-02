@@ -1,0 +1,489 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-no-catalog-validated/dry-run-results/009-evolusom-catalog-create-009-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-009",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "d3fcd8c7-7e42-4e39-a426-d95c0ed0896b",
+      "sku": "VTK018188",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292693"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277985129"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p 117ca-pta Volkswaggen Modelo Gol/ Voyage G5/ G6 2014 Cubo Alto - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Gol/ Voyage G5/G6 2014 Aro 14 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292693\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277985129\n• NCM: 87087090\n• SKU: VTK018188\n\nEMBALAGEM\n• Dimensões informadas: 5 × 39 × 39 cm\n• Peso bruto informado: 0,26 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "550d26b3-0bde-4e1c-929c-07cd1e4bb9eb",
+      "sku": "VTK018234",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292613"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892500049"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p 241ca-pta Volkswaggen Modelo Gol / Voyage G6 2015 Cubo Alto - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Gol/ Voyage G6 2015 Aro 14 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292613\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892500049\n• NCM: 87087090\n• SKU: VTK018234\n\nEMBALAGEM\n• Dimensões informadas: 4 × 39.5 × 39.5 cm\n• Peso bruto informado: 0,258 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "25022deb-1633-405b-a57b-abda1abf9bd6",
+      "sku": "VTK018235",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292673"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277984481"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p 112ca-pta Volkswaggen Modelo Gol/ Voyage G5/ G6 2013 Cubo Alto - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Gol/ Voyage G5/G6 2013 Aro 14 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292673\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277984481\n• NCM: 87087090\n• SKU: VTK018235\n\nEMBALAGEM\n• Dimensões informadas: 39 × 3 × 39 cm\n• Peso bruto informado: 0,286 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "85eb2f12-906a-4476-b259-a5b030f645ae",
+      "sku": "VTK018237",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 109.62,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "328871"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892510697"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid 602ar-pta Aro 15 Ar Universal Gss - PC / 4\n\nVISÃO GERAL\nInformações do Produto Modelo GSS Aro 15 Fixação Por Aro de Pressão\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 328871\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892510697\n• NCM: 87087090\n• SKU: VTK018237\n\nEMBALAGEM\n• Dimensões informadas: 6 × 42 × 42 cm\n• Peso bruto informado: 0,498 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "c40adbdb-8165-4b3b-92f0-354ef1665fa9",
+      "sku": "VTK018242",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 105.32,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "375487"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892512196"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Aro 15p 193cp-pta Mod Hb20 2020 - PC / 4\n\nVISÃO GERAL\nInformações do Produto Calota 193CP-PTA 15 Polegadas Aplicação HB20 2020 Cubo Padrão Cor Prata\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 375487\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892512196\n• NCM: 87087090\n• SKU: VTK018242\n\nEMBALAGEM\n• Dimensões informadas: 1 × 42 × 42 cm\n• Peso bruto informado: 0,364 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "fda6c327-084a-41a6-949d-96dbdf76ee5c",
+      "sku": "VTK018291",
+      "category": {
+        "id": "MLB3385",
+        "nome": "Módulos Amplificadores",
+        "dominio": ""
+      },
+      "basePrice": 91.23,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "FKS"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MCE300"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899906802848"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Módulo Para Rebatimento De Espelho Retrovisor Fks Mce300 Re\n\nVISÃO GERAL\nMódulo universal para rebatimento de espelhos retrovisores. O MCE300 RE foi desenvolvido para controle de espelhos retrovisores (laterais). - Acionado pela chave original do veículo.\n\n- Dois (2) modos de abertura de retrovisores. Para mais informações, por favor acesse o manual do produto. MCE 300 RE (cod.\n\n30801530) *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: FKS\n• Modelo: MCE300\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FKS\n• GTIN: 7899906802848\n• NCM: 85437099\n• SKU: VTK018291\n\nEMBALAGEM\n• Dimensões informadas: 3.5 × 8 × 9 cm\n• Peso bruto informado: 0,056 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6888f8e5-27b0-4ec5-891f-2e151cf53614",
+      "sku": "VTK018299",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "354571"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892511205"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Aro 14p 344cb-pta Mod Ka+ 2019 Cb - PC / 4\n\nVISÃO GERAL\nInformações do Produto Calota 344CB-PTA-U Aplicação Ford Ka Sedan 2019 14 Polegadas Cubo Baixo Cor Prata *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 354571\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892511205\n• NCM: 87087090\n• SKU: VTK018299\n\nEMBALAGEM\n• Dimensões informadas: 3 × 39 × 39 cm\n• Peso bruto informado: 0,354 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "984c0e20-dfe6-489f-9d83-087dbe30d3f0",
+      "sku": "VTK018362",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 80.25,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292064"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277981527"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 13p 013cb-pta Ford Modelo Ka 2008/ 12 Cubo Baixo - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Ka 2008/2012 Aro 13 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292064\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277981527\n• NCM: 87087090\n• SKU: VTK018362\n\nEMBALAGEM\n• Dimensões informadas: 2.5 × 37 × 37 cm\n• Peso bruto informado: 0,226 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "86bd6e2f-f918-40c2-9ccd-f8d8b98ea671",
+      "sku": "VTK018363",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292575"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277983958"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14a 100ar-pta Modelo Orbital Aro De Pressão - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Orbital Aro 14 Fixação Pressão\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292575\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277983958\n• NCM: 87087090\n• SKU: VTK018363\n\nEMBALAGEM\n• Dimensões informadas: 4.5 × 39.5 × 39.5 cm\n• Peso bruto informado: 0,438 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "224a8e84-1f7c-4167-9bc0-7a48b468338e",
+      "sku": "VTK018304",
+      "nome": "Chicote Permak Para Cd Honda Civic 2007 A 2011 - 35/d2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB430193",
+            "nome": "Chicotes do Radio"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

@@ -1,0 +1,353 @@
+{
+  "batchNumber": 7,
+  "batchId": "evolusom-traditional-007",
+  "strategy": "traditional_no_catalog_predictor_consensus",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "4961a105-0e29-459b-a28a-089f6bf6c3ee",
+      "sku": "VTK018020",
+      "nome": "Calota Grid Aro 13p 004cb-pta Gm Modelo Corsa Wind 2000 Cubo Baixo - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.4,
+      "estoque": 14,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277980254"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277980254",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "74a87a28-0f9d-4d63-b436-f4f71c06f455",
+      "sku": "VTK018053",
+      "nome": "Calota Grid Aro 14a 136ar-pta Citroen Modelo C3/ C4 2014/ 15 - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277981466"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277981466",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "517c586e-5d47-4acb-9b88-bf704dbf2b2f",
+      "sku": "VTK018054",
+      "nome": "Calota Grid Aro 13p 074cb-pta Fiat Modelo Siena/ Palio 2009/ 10 Cubo Baixo - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.4,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277982524"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277982524",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "68afbc5a-0d55-4e6e-b84c-adaf15e8a4ae",
+      "sku": "VTK018058",
+      "nome": "Calota Grid Aro 14p 185cb-pta Modelo Hb20/ Hb20s 2014/ 15 - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277986010"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277986010",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "e7aff2ca-5c05-49d8-9421-94f098725214",
+      "sku": "VTK018059",
+      "nome": "Calota Grid Aro 14p 067ca-pta Volkswaggen Modelo Gol Trend G5 2007/ 08 Cubo Alto - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277980100"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277980100",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "cae67c09-608d-4237-a4ee-6044081f0fad",
+      "sku": "VTK018079",
+      "nome": "Microventilador Nwt 172x150x5mm Tensão 110v/220vac",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 122.9,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 176.42,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB2676",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-DESKTOP_COMPUTER_COOLERS_AND_FANS",
+        "categoryId": "MLB2676",
+        "categoryName": "Coolers e Ventoinhas",
+        "categoryPath": "Informática > Componentes para PC > Refrigeração > Coolers e Ventoinhas",
+        "validatedGtin": "7898566200605"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566200605",
+        "validatedNcm": "84145990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "81cf05d0-b56d-430e-866c-d8ab737c0399",
+      "sku": "VTK018098",
+      "nome": "Calota Grid Aro 13p 230cb-pta Fiat Modelo Palio Fire 20015/ 16 - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.4,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892500360"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892500360",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "94cff049-0b44-4e29-93f3-addbf4c528c9",
+      "sku": "VTK018099",
+      "nome": "Calota Grid Aro 14p 166ca-pta Fiat Modelo Strada Trekking 2014 Cubo Alto - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277985792"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277985792",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "7e8a1843-15aa-40df-980e-251c81e205bf",
+      "sku": "VTK018100",
+      "nome": "Calota Grid Aro 14p 025cb-pta Ford Modelo Fiesta Hatch 2011/ 12 Cubo Baixo - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277982890"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277982890",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "5d58c687-7dc3-4c97-94f6-3ea1b180b095",
+      "sku": "VTK018101",
+      "nome": "Calota Grid Aro 15p 078cp-pta Volkswaggen Modelo Fox/ Space 2012/ 13 Cubo Padrão - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 66.6,
+      "estoque": 13,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 106.91,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277983712"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277983712",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

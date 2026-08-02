@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-08-02T05:41:47.000Z",
+  "scope": "299 produtos Evolusom inicialmente bloqueados por evidência de catálogo",
+  "created": 26,
+  "active": 26,
+  "failed": 0,
+  "priceCorrectionsRetriedByOutbox": 2,
+  "priceCorrectionsCompleted": 2,
+  "databaseLinksVerified": 26,
+  "descriptionsVerified": 26,
+  "categoriesVerified": 26,
+  "remaining": 273,
+  "remainingBreakdown": {
+    "predictorWithoutSufficientConsensus": 23,
+    "schemaOrRequiredAttributeBlockers": 56,
+    "supplierMinimumMultipleOrSemanticCategoryBlockers": 91,
+    "originalDomainMismatchOrSpecialCases": 103
+  },
+  "supplierMinimumMultipleCandidatesIdentified": 83,
+  "notes": [
+    "Produtos PC / N não foram publicados como unidade; precisam ser cadastrados como kits reais com multiplicação no pedido DSLite.",
+    "Produtos com divergência semântica de categoria ficaram bloqueados.",
+    "Nenhum dos 100 casos de domínio divergente foi publicado nesta etapa."
+  ]
+}

@@ -1,0 +1,317 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-domain-mismatch-validated/dry-run-results/008-evolusom-catalog-create-008-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-008",
+  "selected": 8,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "b86652d3-9c98-4c60-9dc2-1771c2855f3e",
+      "sku": "VTK019158",
+      "category": {
+        "id": "MLB421298",
+        "nome": "Conversores de Aúdio e Vídeo",
+        "dominio": ""
+      },
+      "basePrice": 156.28,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SOFT"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "4CH"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898441352139"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Conversor De Audio Rca Bee Link 4 Ch + Superbass\n\nVISÃO GERAL\nCONVERSOR AUDIO RCA 4CH SUPERBASS Conversor de áudio RCA 4 Canais Potenciômetro para controle de ganho, ideal para controle de grave Filtro anti ruído Jumper de configuração para aterramento Saída remote para amplificador Conecte o amplificador ou módulo de som na central multimidia ou rádio que não possuam saída RCA *imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SOFT\n• Modelo: 4CH\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SOFT\n• GTIN: 7898441352139\n• NCM: 85044029\n• SKU: VTK019158\n\nEMBALAGEM\n• Dimensões informadas: 7 × 8 × 12 cm\n• Peso bruto informado: 0,226 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "88b69e08-8f01-4735-a01b-f48c99ddae31",
+      "sku": "VTK023618",
+      "category": {
+        "id": "MLB411424",
+        "nome": "Tubos Corrugados",
+        "dominio": ""
+      },
+      "basePrice": 47.47,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "5MM"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899079101205"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Espaguete Corrugado Permak 4,5mm 3/16 20m\n\nVISÃO GERAL\nEspaguete Corrugado Permak 4,5mm ou 3/16 | Preto SKU: 192-A O espaguete conta com uma textura corrugada, possui um comprimento de 20 m e apresenta 0,47 cm de diâmetro de passagem do condutor. Sua composição é em polipropileno, garantindo boa estabilidade térmica e resistência a impactos. Esse espaguete está disponível na cor preta.\n\nOs espaguetes têm a função de proteger e organizar fios e cabos. O espaguete corrugado 3/16 foi desenvolvido para utilização em todos os tipos de fios e cabos. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Modelo: 5MM\n• Cor: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7899079101205\n• NCM: 39173900\n• SKU: VTK023618\n\nEMBALAGEM\n• Dimensões informadas: 7 × 20 × 20 cm\n• Peso bruto informado: 0,114 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6adc4bfa-de2c-4f5f-9c9f-b26dc4df07e2",
+      "sku": "VTK023619",
+      "category": {
+        "id": "MLB411424",
+        "nome": "Tubos Corrugados",
+        "dominio": ""
+      },
+      "basePrice": 54.56,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "5MM"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899079101212"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Espaguete Corrugado Permak 7,5mm 1/4 20m\n\nVISÃO GERAL\nEspaguete Corrugado Permak 7,5mm ou 1/4 | Preto SKU: 195-A O espaguete conta com uma textura corrugada, possui um comprimento de 20 m e apresenta 0,63 cm de diâmetro de passagem do condutor. Sua composição é em polipropileno, garantindo boa estabilidade térmica e resistência a impactos. Esse espaguete está disponível na cor preta.\n\nOs espaguetes têm a função de proteger e organizar fios e cabos. O espaguete corrugado 1/4 foi desenvolvido para utilização em todos os tipos de fios e cabos. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Modelo: 5MM\n• Cor: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7899079101212\n• NCM: 39173900\n• SKU: VTK023619\n\nEMBALAGEM\n• Dimensões informadas: 10 × 28 × 28 cm\n• Peso bruto informado: 0,2 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9a85a55b-bbc9-47a0-b4de-ff561b1b5fac",
+      "sku": "VTK023620",
+      "category": {
+        "id": "MLB411424",
+        "nome": "Tubos Corrugados",
+        "dominio": ""
+      },
+      "basePrice": 61.9,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "10MM"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899079101229"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Espaguete Corrugado Permak 10mm 3/8 20m\n\nVISÃO GERAL\nEspaguete Corrugado Permak 10 mm ou 3/8 | Preto SKU: 197-A O espaguete corrugado conta com textura segmentada , possui um comprimento de 20 m e apresenta 0,95 cm de diâmetro de passagem do condutor. Sua composição é em polipropileno, garantindo boa estabilidade térmica e resistência a impactos. Esse espaguete está disponível na cor preta.\n\nOs espaguetes têm a função de proteger e organizar fios e cabos. O espaguete corrugado 1/2 foi desenvolvido para utilização em todos os tipos de fios e cabos. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Modelo: 10MM\n• Cor: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7899079101229\n• NCM: 39173900\n• SKU: VTK023620\n\nEMBALAGEM\n• Dimensões informadas: 9 × 26 × 26 cm\n• Peso bruto informado: 0,266 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "dfeca35e-dda6-4ba1-bdb8-93a8d42c11c1",
+      "sku": "VTK023621",
+      "category": {
+        "id": "MLB411424",
+        "nome": "Tubos Corrugados",
+        "dominio": ""
+      },
+      "basePrice": 87.22,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "13MM"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899079101236"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Espaguete Corrugado Permak 13mm 1/2 20m\n\nVISÃO GERAL\nEspaguete Corrugado Permak 13mm ou 1/2 | Preto SKU: 197-B O Espaguete Corrugado 1/2 é ideal para organizar e proteger fios e cabos em instalações automotivas, elétricas e eletrônicas. Com 20 metros de comprimento e 1,27 cm de diâmetro interno, permite a passagem segura de diversos tipos de condutores, mantendo a fiação bem acomodada. Fabricado em polipropileno , o e spaguete corrugado oferece boa resistência a impactos, estabilidade térmica e proteção contra desgaste causado pelo atrito e pelo ambiente.\n\nSua textura segmentada facilita a instalação e garante maior flexibilidade no uso. Disponível na cor preta , o espaguete corrugado 1/2 é uma solução prática para quem busca proteção, organização e acabamento profissional em qualquer tipo de fiação. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Modelo: 13MM\n• Cor: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7899079101236\n• NCM: 39173900\n• SKU: VTK023621\n\nEMBALAGEM\n• Dimensões informadas: 10 × 35 × 35 cm\n• Peso bruto informado: 0,412 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "e72bc21d-d22d-4bd3-a0eb-b4c6fda4e144",
+      "sku": "VTK019126",
+      "nome": "Fechadura Solenoide De Embutir Intelbras Fs 1010",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB194301",
+            "nome": "Elétricas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "bdb61763-ddc9-479f-ac49-4e0838a61a11",
+      "sku": "VTK019466",
+      "nome": "Cabo De Descida Proeletronic Para Celular Fixo Rgc58 10 Metros Caco-0190",
+      "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB70452",
+            "nome": "Cabos e Conectores"
+          },
+          "missing": [
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "978e980c-d329-416e-8bfd-b1c303f0a5a8",
+      "sku": "VTK021108",
+      "nome": "Telefone Headset Intelbras Hsb-50 Para Telemarketing Com Fio 4013330",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3828",
+            "nome": "Telefones Headset"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

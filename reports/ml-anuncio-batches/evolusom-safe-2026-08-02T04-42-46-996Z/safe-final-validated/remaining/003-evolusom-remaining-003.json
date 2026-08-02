@@ -1,0 +1,442 @@
+{
+  "batchNumber": 3,
+  "batchId": "evolusom-domain-approved-003",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "c2bc53ad-df5d-4a5b-a3ec-f98ab519a418",
+      "sku": "VTK017708",
+      "nome": "Acessório Cabo De Antena Ford Fusion / Gm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 13.53,
+      "estoque": 31,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 41.4,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253504481",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB120498",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "25917169",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "32007941",
+          "value_name": "7898253504481"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB32224655",
+        "catalogProductName": "Acessório Cabo De Antena Ford Fusion / Gm",
+        "catalogDomainId": "MLB-GPS_ANTENNAS",
+        "predictedDomainId": "MLB-GPS_ANTENNAS",
+        "categoryId": "MLB120498",
+        "categoryName": "Antenas",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898253504481"
+      }
+    },
+    {
+      "produtoId": "8cd9f449-5a4a-4e4b-9751-74f753be32a5",
+      "sku": "VTK017791",
+      "nome": "Kit Fibra óptica Universal Evus Ev-1 Com Power Meter",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 239.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 340.6,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597132616",
+        "validatedNcm": "90314990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB271690",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3692380",
+          "value_name": "EVO"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "36995251",
+          "value_name": "EVUS EV-1"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "PACKAGING_TYPE",
+          "value_id": "371015",
+          "value_name": "Saco"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "value_id": "2904268",
+          "value_name": "10"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7818798",
+          "value_name": "28 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "5795665",
+          "value_name": "16 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7978730",
+          "value_name": "18 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "11943551",
+          "value_name": "1.2 kg"
+        },
+        {
+          "id": "IS_FACTORY_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "75303554",
+          "value_name": "1 Clivador de precisão - EVUS EV-100B, 1 Medidor de potência óptica - Evus EV-60, 1 Alicate decapador de 3 níveis - EVUS EV-3, 1 Alicate decapador para cabo drop flat – EVUS EV-13, 1 Caneta óptica 1MW 5KM – EVUS EV-209, 1 Gabarito de precisão com decapado"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_without_current_winner",
+        "catalogProductId": "MLB36262776",
+        "catalogProductName": "Kit Ferramentas Fibra Óptica FTTH 10 Peças EVO EVUS EV-1 com Bolsa",
+        "catalogDomainId": "MLB-COMBINED_TOOL_KITS",
+        "predictedDomainId": "MLB-COMBINED_TOOL_KITS",
+        "categoryId": "MLB271690",
+        "categoryName": "Kits de Ferramentas",
+        "validatedGtin": "7898597132616"
+      }
+    },
+    {
+      "produtoId": "ed62b1b8-d140-4d21-aebd-5c42f87c8e27",
+      "sku": "VTK017824",
+      "nome": "Lâminas Para Ratinho Nwt Insf0013 Para Aplicação De Insulfilm 100 Unidades",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 65.92,
+      "estoque": 21,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 106.07,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566207772",
+        "validatedNcm": "73261900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB268504",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "43475668",
+          "value_name": "Stom"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "52112270",
+          "value_name": "Raspador Ratinho 4 cm"
+        },
+        {
+          "id": "PART_NUMBER",
+          "value_id": "43475672",
+          "value_name": "100 Lâminas para Raspador Ratinho"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "WITH_ANTIVANDALIC_SHEET",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "43475669",
+          "value_name": "7898566207772"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB41798993",
+        "catalogProductName": "Kit 100 Lâminas Poker Tool Aço Carbono 4 cm Para Raspador Ratinho Vidros",
+        "catalogDomainId": "MLB-VEHICLE_TINTED_GLASSES",
+        "predictedDomainId": "MLB-VEHICLE_TINTED_GLASSES",
+        "categoryId": "MLB268504",
+        "categoryName": "Insulfilms",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7898566207772"
+      }
+    },
+    {
+      "produtoId": "1f6d9bb7-1e90-44db-a3e2-8202ba78fdf9",
+      "sku": "VTK017884",
+      "nome": "Cabo St- Dvi-dvi 2m Cabo Dvi Com Filtro",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 15.6,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.95,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566201114",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB38186",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2785980",
+          "value_name": "Storm"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "39567862",
+          "value_name": "Cbdv0001"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788225",
+          "value_name": "DVI"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "9784335",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "124822",
+          "value_name": "2 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "15246544",
+          "value_name": "DVI"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "13822953",
+          "value_name": "DVI"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "13788230",
+          "value_name": "Ouro"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "39567864",
+          "value_name": "7898566201114"
+        },
+        {
+          "id": "MAX_RESOLUTION_SUPPORTED",
+          "value_id": "128796",
+          "value_name": "Full HD"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB38401446",
+        "catalogProductName": "Cabo Dvi X Dvi 18+1 2m Cbdv0001 Storm",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB38186",
+        "categoryName": "Áudio e Vídeo",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898566201114"
+      }
+    },
+    {
+      "produtoId": "04602138-b77d-480a-a48e-010ba2404e1f",
+      "sku": "VTK017907",
+      "nome": "Capa Marítima Protetora Roadstar Rs4201m Para Rádio De Lancha / Barco",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 69.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 110.99,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898587425513",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB271538",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "67021746",
+          "value_name": "RS-4201MBR"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "1018574",
+          "value_name": "21 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "3002",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "45551",
+          "value_name": "11 cm"
+        },
+        {
+          "id": "WITH_STRAP",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_POCKETS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "67021747",
+          "value_name": "7898587425513"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB62242572",
+        "catalogProductName": "Capa De Radio Universal Maritimo A Prova De Agua Roadstar Branco",
+        "catalogDomainId": "MLB-WALKIE_TALKIE_COVERS",
+        "predictedDomainId": "MLB-WALKIE_TALKIE_COVERS",
+        "categoryId": "MLB271538",
+        "categoryName": "Capas",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898587425513"
+      }
+    }
+  ]
+}

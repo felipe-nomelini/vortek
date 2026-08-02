@@ -1,0 +1,135 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-safe-reviewed/004-evolusom-traditional-safe-004.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-traditional-safe-004",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "22f24876-10e5-49e7-82a3-af3218d1e5c9",
+      "sku": "VTK018130",
+      "category": {
+        "id": "MLB115699",
+        "nome": "Sirenes",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7311575302",
+        "title": "Sirene Bitonal Fks 12v Preta",
+        "price": 59.35,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7311575302-sirene-bitonal-fks-12v-preta-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 42.91 → R$ 59.35."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9f0d2f23-998b-498b-83d7-47de78190c32",
+      "sku": "VTK018518",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981485621",
+        "title": "Módulo De Vidro Elétrico Quantum Lv8fc50 Para Ranger 2013 2",
+        "price": 160.7,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981485621-modulo-de-vidro-eletrico-quantum-lv8fc50-para-ranger-2013-2-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 134.05 → R$ 160.70."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b9a8de34-93e1-4414-bf4e-b1478e028334",
+      "sku": "VTK018613",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981463283",
+        "title": "Modulo De Vidro Fks Mlv408 Co Para Hyundai Ix35 Top",
+        "price": 164.75,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981463283-modulo-de-vidro-fks-mlv408-co-para-hyundai-ix35-top-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 140.38 → R$ 164.75."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b5780ff4-6de2-445c-b982-5fdc52d192aa",
+      "sku": "VTK018706",
+      "category": {
+        "id": "MLB194788",
+        "nome": "Protetor de Cárter",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7311575674",
+        "title": "Protetor De Carter Dhf-240 Stilo 2003",
+        "price": 142.66,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7311575674-protetor-de-carter-dhf-240-stilo-2003-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 117.53 → R$ 142.66."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "281246e0-659e-486d-91cc-32e3ec745aef",
+      "sku": "VTK018941",
+      "category": {
+        "id": "MLB270088",
+        "nome": "Cabos de Rede",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7311575792",
+        "title": "Cabo Lan Megacabos Cat5e 8 Vias Interno 1km",
+        "price": 2675.67,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7311575792-cabo-lan-megacabos-cat5e-8-vias-interno-1km-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 2644.07 → R$ 2675.67."
+      ]
+    }
+  ],
+  "failed": []
+}

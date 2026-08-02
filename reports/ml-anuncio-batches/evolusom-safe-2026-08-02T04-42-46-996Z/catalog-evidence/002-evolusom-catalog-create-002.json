@@ -1,0 +1,498 @@
+{
+  "batchNumber": 2,
+  "batchId": "evolusom-catalog-create-002",
+  "strategy": "exact_gtin_catalog_evidence",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "ed62b1b8-d140-4d21-aebd-5c42f87c8e27",
+      "sku": "VTK017824",
+      "nome": "Lâminas Para Ratinho Nwt Insf0013 Para Aplicação De Insulfilm 100 Unidades",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 65.92,
+      "estoque": 21,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 106.07,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566207772",
+        "validatedNcm": "73261900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB268504",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "43475668",
+          "value_name": "Stom"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "52112270",
+          "value_name": "Raspador Ratinho 4 cm"
+        },
+        {
+          "id": "PART_NUMBER",
+          "value_id": "43475672",
+          "value_name": "100 Lâminas para Raspador Ratinho"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "WITH_ANTIVANDALIC_SHEET",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "43475669",
+          "value_name": "7898566207772"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB41798993",
+        "catalogProductName": "Kit 100 Lâminas Poker Tool Aço Carbono 4 cm Para Raspador Ratinho Vidros",
+        "catalogDomainId": "MLB-VEHICLE_TINTED_GLASSES",
+        "predictedDomainId": "MLB-VEHICLE_TINTED_GLASSES",
+        "categoryId": "MLB268504",
+        "categoryName": "Insulfilms",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7898566207772"
+      }
+    },
+    {
+      "produtoId": "5b9c27d8-c667-43dc-89c7-9322067883df",
+      "sku": "VTK018524",
+      "nome": "Roteador Wi-fi Max Aquário Apr-2410 N 150 Mbps",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 85.1,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 129.75,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898127600929",
+        "validatedNcm": "85176241",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB5867",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "45099",
+          "value_name": "Aquário"
+        },
+        {
+          "id": "LINE",
+          "value_id": "18167",
+          "value_name": "MAX"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "59672",
+          "value_name": "APR-2410"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "7386989",
+          "value_name": "1"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "FUNCTIONS",
+          "value_id": "279956",
+          "value_name": "Roteador"
+        },
+        {
+          "id": "INTERNAL_ANTENNAS_NUMBER",
+          "value_id": "8637169",
+          "value_name": "1"
+        },
+        {
+          "id": "EXTERNAL_ANTENNAS_NUMBER",
+          "value_id": "8758647",
+          "value_name": "1"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "41553638",
+          "value_name": "15231302250"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "36998743",
+          "value_name": "7898127600929"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB36904293",
+        "catalogProductName": "Roteador Wireless N150 Max Aquário APR-2410 Preto",
+        "catalogDomainId": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS",
+        "predictedDomainId": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS",
+        "categoryId": "MLB5867",
+        "categoryName": "Roteadores",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898127600929"
+      }
+    },
+    {
+      "produtoId": "85bd6a53-e81c-426c-9450-ae424299e482",
+      "sku": "VTK018024",
+      "nome": "Teclado Viaweb 16s",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 99.9,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 148.02,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898936319227",
+        "validatedNcm": "85319000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7070",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16717793",
+          "value_name": "Viaweb"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16718079",
+          "value_name": "TECLADO VIAWEB 16S"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "value_id": "395193",
+          "value_name": "Alarme"
+        },
+        {
+          "id": "SENSOR_TYPES",
+          "value_id": "16716889",
+          "value_name": "Alarme, Teclado, via web"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "WITH_BACKUP_BATTERY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "COVERAGE_DISTANCE",
+          "value_id": "7555954",
+          "value_name": "100 m"
+        },
+        {
+          "id": "WITH_WIFI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_AUTOMATIC_DIALLING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SOUND_ALARM",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DISCREET_ALARM",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MAX_SENSORS_NUMBER",
+          "value_id": "7626115",
+          "value_name": "16"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16718078",
+          "value_name": "7898936319227"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21742933",
+        "catalogProductName": "Teclado Viaweb 16s",
+        "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7898936319227"
+      }
+    },
+    {
+      "produtoId": "17218e85-3802-4e3d-950e-fb5ff8eff639",
+      "sku": "VTK018924",
+      "nome": "Telefone Celular Fixo Intelbras Gsm Cfa 4211 4114211",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 362.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 515.23,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637677004",
+        "validatedNcm": "85171439",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1053",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "20785763",
+          "value_name": "cFA 4211"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "13062692",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "102258",
+          "value_name": "Digital"
+        },
+        {
+          "id": "HEADPHONES_NUMBER_INCLUDED",
+          "value_id": "7512605",
+          "value_name": "1"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CALLER_IDENTIFICATION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ANSWERING_MACHINE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WALL_MOUNTABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "value_id": "160433",
+          "value_name": "800 mAh"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "20785764",
+          "value_name": "7896637677004"
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB24453976",
+        "catalogProductName": "Telefone Celular Fixo Gsm Cfa 4211 - Intelbras Cor Preto",
+        "catalogDomainId": "MLB-TELEPHONES",
+        "predictedDomainId": "MLB-TELEPHONES",
+        "categoryId": "MLB1053",
+        "categoryName": "Telefones",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7896637677004"
+      }
+    },
+    {
+      "produtoId": "6aadcd86-f85e-4608-9de5-1cb16f6bfacc",
+      "sku": "VTK019952",
+      "nome": "Telefone Sem Fio Intelbras Ts5121 Ramal Digital",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 137.9,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 195.78,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637647571",
+        "validatedNcm": "85171100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1053",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "45951841",
+          "value_name": "TS 5121 Ramal"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "81834",
+          "value_name": "LCD"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_CALLER_IDENTIFICATION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ANSWERING_MACHINE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WALL_MOUNTABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "40364536",
+          "value_name": "5501500160"
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "value_id": "149366",
+          "value_name": "600 mAh"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "13229149",
+          "value_name": "7896637647571"
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_DATE_AND_TIME_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REDIAL_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB44779696",
+        "catalogProductName": "Telefone Sem Fio Intelbras TS 5121 Ramal, Base TS 5120, Preto Com Dois Ramais",
+        "catalogDomainId": "MLB-TELEPHONES",
+        "predictedDomainId": "MLB-TELEPHONES",
+        "categoryId": "MLB1053",
+        "categoryName": "Telefones",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7896637647571"
+      }
+    }
+  ]
+}

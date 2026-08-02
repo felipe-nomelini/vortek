@@ -1,0 +1,508 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-no-catalog-validated/dry-run-results/003-evolusom-catalog-create-003-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-003",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "7a542791-beba-4f20-876d-488896970d59",
+      "sku": "VTK017644",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "328732"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892510567"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid 245ca-pta Aro 14 P Mod Gol G7 2017 Ca - PC / 4\n\nVISÃO GERAL\nInformações do Produto Modelo Gol G7 2017/18 Aro 14 Fixação Parafusos *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 328732\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892510567\n• NCM: 87087090\n• SKU: VTK017644\n\nEMBALAGEM\n• Dimensões informadas: 40 × 4 × 40 cm\n• Peso bruto informado: 0,312 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0c3eb874-24a5-4ec7-91d1-67f6a64c4e62",
+      "sku": "VTK017645",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 48.86,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "375643"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892512356"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Aro 14p 879cp-gft Mod Kwid Zen 2020\n\nVISÃO GERAL\nInformações do Produto Calota 879CP-GFT 14 Polegadas Aplicação Kwid Zen 2020 Cubo Padrão Cor Grafite *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 375643\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892512356\n• NCM: 87087090\n• SKU: VTK017645\n\nEMBALAGEM\n• Dimensões informadas: 2 × 39 × 39 cm\n• Peso bruto informado: 0,356 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "568c02db-0587-43aa-9519-8be93805d1f7",
+      "sku": "VTK017686",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 80.25,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "291741"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277982432"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 13p 015cb-pta Fiat Modelo Mercurio/ Linea Cubo Baixo - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Mercurio / Linea Aro 13 Fixação Pressão *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 291741\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277982432\n• NCM: 87087090\n• SKU: VTK017686\n\nEMBALAGEM\n• Dimensões informadas: 2.5 × 36 × 36 cm\n• Peso bruto informado: 0,296 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a8213fcb-acf1-45b1-8b12-5f5d8b193420",
+      "sku": "VTK017687",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292261"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277985549"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p 133cb-pta Gm Modelo Onix/ Prisma 2014/ 15 Cubo Baixo - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Onix/ Prisma 2014/ 15 Aro 14 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292261\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277985549\n• NCM: 87087090\n• SKU: VTK017687\n\nEMBALAGEM\n• Dimensões informadas: 3 × 40 × 40 cm\n• Peso bruto informado: 0,296 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "5a73c510-32f0-476c-bfeb-4c8aab0ad8e8",
+      "sku": "VTK017701",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 80.25,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "291801"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277985693"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 13p 158cb-pta Fiat Modelo Palio Fire 2014 Cubo Baixo - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Palio Fire 2014 Aro 13 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 291801\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277985693\n• NCM: 87087090\n• SKU: VTK017701\n\nEMBALAGEM\n• Dimensões informadas: 3 × 36 × 36 cm\n• Peso bruto informado: 0,222 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "06c5baf0-7d98-4d8e-8d8a-e450233fd2e0",
+      "sku": "VTK017707",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292102"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277983040"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p 026cb-pta Ford Modelo Fiesta Sedan 2011/ 13 Cubo Baixo - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Fiesta Sedan 2011/2013 Aro 14 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292102\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277983040\n• NCM: 87087090\n• SKU: VTK017707\n\nEMBALAGEM\n• Dimensões informadas: 39 × 2.5 × 39 cm\n• Peso bruto informado: 0,302 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "27091cef-3f06-4657-b1e1-46c9a625ced1",
+      "sku": "VTK017721",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 109.62,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "382954"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892513421"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 15p 296cp Prata Argo/cronos 2022 - PC / 4\n\nVISÃO GERAL\nCalota Aro 15P para os modelos Argo e Cronos 2022 *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 382954\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892513421\n• NCM: 87087090\n• SKU: VTK017721\n\nEMBALAGEM\n• Dimensões informadas: 43.5 × 17 × 43.5 cm\n• Peso bruto informado: 1,93 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "68f6d99c-4fb0-45c0-be30-7359b34e7ddc",
+      "sku": "VTK017735",
+      "category": {
+        "id": "MLB277391",
+        "nome": "Condicionadores de Agua",
+        "dominio": ""
+      },
+      "basePrice": 50.83,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "AQUARIO"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CF-375"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898127600226"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit Adaptador Aquário Cf-375 Para Motorola\n\nVISÃO GERAL\nCabo: Rg 174 KMP Comprimento: 1m Conector: TNC Fêmea Conector: Adaptador Celular\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: AQUARIO\n• Modelo: CF-375\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: AQUARIO\n• GTIN: 7898127600226\n• NCM: 85444200\n• SKU: VTK017735\n\nEMBALAGEM\n• Dimensões informadas: 2 × 7.5 × 18.5 cm\n• Peso bruto informado: 0,03 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "5abcf2f7-bbd1-4357-95fd-1f174b3ba313",
+      "sku": "VTK017742",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 109.62,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "382151"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892512585"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 15\" Modelo Nova Strada 2021 - PC / 4\n\nVISÃO GERAL\nCalota Grid Aro 15\" para a Nova Strada 2021. *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 382151\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892512585\n• NCM: 87087090\n• SKU: VTK017742\n\nEMBALAGEM\n• Dimensões informadas: 42 × 4 × 42 cm\n• Peso bruto informado: 0,38 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "591902e9-de99-4206-963e-e3cfa1dd1f48",
+      "sku": "VTK017751",
+      "category": {
+        "id": "MLB420411",
+        "nome": "Fontes Chaveadas",
+        "dominio": ""
+      },
+      "basePrice": 42.56,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "MXT"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MX-6V"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899471855072"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Fonte Chaveada 6v 1a Plug P4 C+ 2.1 X 5.5 Mm\n\nVISÃO GERAL\nAdaptador Universal MXT AC/DC Modelo: MX-6V 1.0A FX Tensão de entrada: 110~240V Tensão de Saída: 6V / 1A Max Polaridade: (+)/(-) Plug P4 2.1 x 5.5MM\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MXT\n• Modelo: MX-6V\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MXT\n• GTIN: 7899471855072\n• NCM: 85044029\n• SKU: VTK017751\n\nEMBALAGEM\n• Dimensões informadas: 10.5 × 8 × 3 cm\n• Peso bruto informado: 0,084 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

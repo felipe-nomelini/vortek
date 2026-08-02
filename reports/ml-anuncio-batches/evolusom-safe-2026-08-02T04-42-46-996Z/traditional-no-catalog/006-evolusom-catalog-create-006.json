@@ -1,0 +1,353 @@
+{
+  "batchNumber": 6,
+  "batchId": "evolusom-traditional-006",
+  "strategy": "traditional_no_catalog_predictor_consensus",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "c46c966a-2ae0-411d-acb7-f60af73095f4",
+      "sku": "VTK017929",
+      "nome": "Calota Grid Aro 13a 101ar-pta Modelo Orbital Aro Pressão - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.4,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277983989"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277983989",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "6ec281b5-3857-4cf0-9370-8f62d1af46a2",
+      "sku": "VTK017930",
+      "nome": "Chave Canivete B&s Gm Cruze/ Cobalt/ Agile 3 Botoes Sem Circuito",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 22.5,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 52.47,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB63526",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_IGNITION_SWITCHES",
+        "categoryId": "MLB63526",
+        "categoryName": "Interruptores de Energia",
+        "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Fechaduras e Chaves > Interruptores de Energia",
+        "validatedGtin": "7895899891081"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7895899891081",
+        "validatedNcm": "83017000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "e0babeaa-0840-4e16-bb83-6dbcc2860632",
+      "sku": "VTK017964",
+      "nome": "Calota Grid Aro 13p 054cb-pta Fiat Modelo Uno Fire 2004/ 05 Cubo Baixo - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.4,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277980797"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277980797",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "a633a5df-049b-4273-bcac-810a3287c1e0",
+      "sku": "VTK017968",
+      "nome": "Cabo óptico Splitter Intelbras Xfs 1321 Plc 1x32 Sc/upc 4830044",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 121.3,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 174.44,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB272149",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-FIBER_OPTIC_SPLITTERS",
+        "categoryId": "MLB272149",
+        "categoryName": "Splitters de Fibra Óptica",
+        "categoryPath": "Informática > Conectividade e Redes > Ferramentas > Montagem de Fibra Óptica > Splitters de Fibra Óptica",
+        "validatedGtin": "7896637676892"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637676892",
+        "validatedNcm": "85447090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "44b3d34d-83bb-4fea-bc12-bbaa2d4b8912",
+      "sku": "VTK017969",
+      "nome": "Corneta Profissional Jbl Hl11-25 Trio Branca",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 88.5,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 133.95,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46560",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-HORN_DRIVERS",
+        "categoryId": "MLB46560",
+        "categoryName": "Cornetas",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Cornetas",
+        "validatedGtin": "7896359553815"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359553815",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "4672dd90-0d90-417e-93e7-5e238c2c863d",
+      "sku": "VTK017972",
+      "nome": "Calota Aro 15a 878ar-pta Mod Logan / Sandero 2020 - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 66.6,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 106.91,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892512226"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892512226",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "7c2e6935-5434-49e1-aa54-97e66714c919",
+      "sku": "VTK017986",
+      "nome": "Driver Fenólico Jbl D450 Trio 300w 8r Rms",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 698.9,
+      "estoque": 17,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1035.41,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "categoryId": "MLB46559",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+        "categoryId": "MLB46559",
+        "categoryName": "Drivers",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Drivers",
+        "validatedGtin": "7896359540945"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359540945",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "6122b056-07e8-467e-abde-16f0f444f400",
+      "sku": "VTK017990",
+      "nome": "Calota Grid 244ca-pta Aro 13 P Mod Gol G7 2017 - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.4,
+      "estoque": 17,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892510550"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892510550",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "dc303f1e-c351-47b5-b84f-fd288ba331e4",
+      "sku": "VTK017995",
+      "nome": "Conversor De Audio/video Evus C-085 Hdmi Para 3 Rca",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 52.9,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 90,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB421298",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONVERTERS",
+        "categoryId": "MLB421298",
+        "categoryName": "Conversores de Aúdio e Vídeo",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Acessórios para Áudio e Vídeo > Conversores de Aúdio e Vídeo",
+        "validatedGtin": "7898597132289"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597132289",
+        "validatedNcm": "85437039",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "b02d0763-0ef6-473a-ac17-5c63cd3a6dfc",
+      "sku": "VTK018013",
+      "nome": "Trava Elétrica Soft Aa420011 Novo Uno / Celta / Eco / Fiest / Palio 99 4portas",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 117.9,
+      "estoque": 13,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 170.25,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22369",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_ELECTRIC_DOOR_LOCKS",
+        "categoryId": "MLB22369",
+        "categoryName": "Travas Elétricas",
+        "categoryPath": "Acessórios para Veículos > Segurança Veicular > Travas Elétricas",
+        "validatedGtin": "7898441355116"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898441355116",
+        "validatedNcm": "87082999",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

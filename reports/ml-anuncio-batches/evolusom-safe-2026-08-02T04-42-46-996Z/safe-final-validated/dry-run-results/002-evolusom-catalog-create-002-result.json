@@ -1,0 +1,283 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/safe-final-validated/dry-run-results/002-evolusom-catalog-create-002-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-pdf-safe-002",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "6d6275a2-3d71-493f-a20e-3cce674f7918",
+      "sku": "VTK017181",
+      "category": {
+        "id": "MLB1714",
+        "nome": "Mouses",
+        "dominio": "MLB-COMPUTER_MICE"
+      },
+      "basePrice": 70.38,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "15788",
+          "value_name": "Logitech"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "20473",
+          "value_name": "M90"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "9142674",
+          "value_name": "5053313884855, 97855102355, 5099206021877, 5099206021860, 797201738893, 649910584677, 7434016775073, 07892382579037, 97855205681, 00702735761910"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Mouse Logitech M90 Usb Preto\n\nVISÃO GERAL\nPLUG-AND-PLAY FÁCIL É agradável e simples. Simplesmente conecte o cabo na porta USB e o M90 estará pronto para usar. Sem downloads, sem configuração, sem complicação.\n\nCONFORTO PARA AMBAS AS MÃOS Canhoto ou destro, você terá conforto eterno com este design ambidestro em tamanho real. DURÁVEL E CONFIÁVEL O M90 é construído com os mesmos padrões de alta qualidade e confiabilidade que fizeram da Logitech a líder global em mouses e teclados. AMPLA COMPATIBILIDADE M90 funciona com Windows, macOS e Linux.\n\nPara que você possa relaxar e ter certeza de que ele funcionará com sua configuração. NAVEGAÇÃO SUAVE A rolagem precisa linha a linha torna as tarefas diárias fáceis e uniformes. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Logitech\n• Modelo: M90\n• Cor: Preto\n• Cor principal: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: LOGITECH\n• GTIN: 097855205681\n• NCM: 84716053\n• SKU: VTK017181\n\nEMBALAGEM\n• Dimensões informadas: 4 × 9 × 13 cm\n• Peso bruto informado: 0,11 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "511c8cb3-fab6-4b79-81c0-e44c37eef5cd",
+      "sku": "VTK017219",
+      "category": {
+        "id": "MLB271708",
+        "nome": "Organizadores de Cabos",
+        "dominio": "MLB-CABLE_ORGANIZERS"
+      },
+      "basePrice": 76.86,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "15425638",
+          "value_name": "Max Eletron"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "26316727",
+          "value_name": "MAX ELETRON"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7908060206017"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Guia Organizador Cabos 2u X 19 Alta Densidade\n\nVISÃO GERAL\nInformações do Produto Guia de Cabos 2Us Padrão 19\" Alta Densidade Material de ótima qualidade e durabilidade, confeccionado em aço estampado, fosfatizado e pintado com tinta hibrida epóxi-pó na cor preto texturizado com secagem em forno de alta temperatura, o que garante excelente acabamento e resistência. Para uso em racks e equipamentos padrão 19\", o acessório é utilizado para organizar seus Patch Cords no interior do Rack. Possui tampa removível e furação na parte traseira.\n\nProduto com ótimo custo benefício e garantia de 1 ano contra defeitos de fabricação. Profundidade: 50 mm - ocupa o espaço de 2Us (88 mm. )\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Max Eletron\n• Modelo: MAX ELETRON\n• Cor: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MAX ELETRON\n• GTIN: 7908060206017\n• NCM: 94032090\n• SKU: VTK017219\n\nEMBALAGEM\n• Dimensões informadas: 9 × 8.5 × 49 cm\n• Peso bruto informado: 0,71 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "10b4f8c6-17e8-4975-aa31-e59dc829f935",
+      "sku": "VTK017352",
+      "category": {
+        "id": "MLB54182",
+        "nome": "Coolers Externos",
+        "dominio": "MLB-EXTERNAL_LAPTOP_COOLERS_AND_FANS"
+      },
+      "basePrice": 70.38,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "49835912",
+          "value_name": "Evus BPN-03 Twins"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "",
+          "value_name": "Light"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "",
+          "value_name": "Aço niquelado"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898597133491"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Base Para Notebook Evus Bpn-03 Twins\n\nVISÃO GERAL\nProjetado para conferir um excelente desempenho em dissipação de calor, a Base Para Notebook Evus BPN-03 Twins possui 02 ventiladores (fans) de 120mm de diâmetro cada, com baixo nível de ruídos e iluminação em LED na cor azul. Seu design é clean e a estrutura é leve, fina e fácil de transportar. Possui pés com borrachas antiderrapantes para aumentar estabilidade, contando também com haste de inclinação em 3 níveis diferentes, gerando maior ergonomia e conforto no uso contínuo e é compatível com notebooks de até 15 polegadas.\n\nA superfície em malha de metal favorece a saída do fluxo de ar, evitando que seu notebook trabalhe com temperaturas muito elevadas durante o uso. Pode ser utilizado em superfícies planas e até mesmo no colo ou em cima da cama com segurança, pois possui travas de apoio emborrachadas e ajustáveis para acomodar o seu notebook. A Base Para Notebook Evus BPN-03 Twins utiliza uma conexão USB como alimentação, e para não desperdiçar uma das portas USB de seu notebook, a Base Twins disponibiliza um cabo USB x USB e 1 porta USB extra, além de um botão para ligar/desligar a ventilação na face traseira da base.\n\n* Imagens meramente ilustrativas. Notebook não incluso.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Evus\n• Modelo: Evus BPN-03 Twins\n• Linha: Light\n• Materiais: Aço niquelado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: EVUS\n• GTIN: 7898597133491\n• NCM: 84145990\n• SKU: VTK017352\n\nEMBALAGEM\n• Dimensões informadas: 5.5 × 27 × 38 cm\n• Peso bruto informado: 0,934 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b66ea9c7-d92a-4cd6-b22d-b193173904d6",
+      "sku": "VTK017360",
+      "category": {
+        "id": "MLB420411",
+        "nome": "Fontes Chaveadas",
+        "dominio": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES"
+      },
+      "basePrice": 94.74,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "24132791",
+          "value_name": "EVUS"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898597132074"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Fonte Chaveada Evus Pdc-5a 12v 5a 60w Bivolt\n\nVISÃO GERAL\nInformações do Produto Características Fonte Universal Chaveada AC/DC Bivolt ideal para produtos eletrônicos como tablets, câmeras CFTV, fitas de led, caixas de som, switches, entre outros. ESPECIFICAÇÕES TÉCNICAS | DIMENSÕES Bivolt automático LED indicador de funcionamento Alta eficiência Proteção contra sobrecargas e curto circuito Proteção contra sobretensão Temperatura ideal de funcionamento: 0º C a 40º C Temperatura ideal de armazenamento: 10º C a 85º C Tamanho do cabo: 1,8m Saída: DC Voltagem: 12V Corrente: 5A Potência: 60W Ondulação e Ruído (máximo): Entrada: AC Voltagem: 110-220V AC Frequência: 50-60Hz Eficiência: 75% Amplitude de tensão: +/- 5% *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Evus\n• Modelo: EVUS\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: EVUS\n• GTIN: 7898597132074\n• NCM: 85044029\n• SKU: VTK017360\n\nEMBALAGEM\n• Dimensões informadas: 4 × 10 × 16 cm\n• Peso bruto informado: 0,322 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "bb4de30e-91de-4753-9d50-38cf1bdc7a5c",
+      "sku": "VTK017389",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 76.79,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "1175465",
+          "value_name": "Proeletronic"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "name": "Tipo de cabo e adaptador",
+          "value_id": "16696220",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "37511893",
+          "value_name": "7893271420256, 7898419493963"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CAHD-2010"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "",
+          "value_name": "10 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Hdmi Proeletronic Cahd-2010 4k Macho X Macho 2.0 10m\n\nVISÃO GERAL\nA nova linha de cabos HDMI Proeletronic CAHD-2010 conta com vários tamanhos e a qualidade PRO que você já conhece. Cabos de 10m de comprimento, compatível com função 3D e uma incrível resolução de imagem. Ideal para você assistir seus filmes e series em 4k e tornar seus jogos ainda mais realistas.\n\nPensou em produtos para TV, a resposta é sempre Proeletronic. Aplicação: Instalações residenciais e comerciais tais como chácaras, sítios, fazendas, casas de veraneio, garagens, lojas, etc; *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Proeletronic\n• Tipo de cabo e adaptador: HDMI\n• Modelo: CAHD-2010\n• Comprimento do cabo: 10 m\n• Tipo de produto: Fio\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PROELETRONIC\n• GTIN: 7898419493963\n• NCM: 85444200\n• SKU: VTK017389\n\nEMBALAGEM\n• Dimensões informadas: 6.5 × 26 × 19.5 cm\n• Peso bruto informado: 0,582 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

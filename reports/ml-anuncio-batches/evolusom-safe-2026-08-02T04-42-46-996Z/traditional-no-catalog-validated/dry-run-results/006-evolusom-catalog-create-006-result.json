@@ -1,0 +1,478 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-no-catalog-validated/dry-run-results/006-evolusom-catalog-create-006-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-006",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "c46c966a-2ae0-411d-acb7-f60af73095f4",
+      "sku": "VTK017929",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 80.25,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292497"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277983989"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 13a 101ar-pta Modelo Orbital Aro Pressão - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Orbital Aro 13 Fixação Pressão\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292497\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277983989\n• NCM: 87087090\n• SKU: VTK017929\n\nEMBALAGEM\n• Dimensões informadas: 38 × 4 × 38 cm\n• Peso bruto informado: 0,3 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6ec281b5-3857-4cf0-9370-8f62d1af46a2",
+      "sku": "VTK017930",
+      "category": {
+        "id": "MLB63526",
+        "nome": "Interruptores de Energia",
+        "dominio": ""
+      },
+      "basePrice": 53.8,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "B&S AUTOMOTIVA"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "293122"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Chave Canivete B&s Gm Cruze/ Cobalt/ Agile 3 Botoes Sem Circuito\n\nVISÃO GERAL\nInformações do Produto Chave Canivete B&S GM Cruze/ Cobalt/ Agile 3 botoes sem Circuito\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: B&S AUTOMOTIVA\n• Número de peça: 293122\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: B&S AUTOMOTIVA\n• GTIN: 7895899891081\n• NCM: 83017000\n• SKU: VTK017930\n\nEMBALAGEM\n• Dimensões informadas: 2 × 3.5 × 6.5 cm\n• Peso bruto informado: 0,038 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e0babeaa-0840-4e16-bb83-6dbcc2860632",
+      "sku": "VTK017964",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 80.25,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "291821"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277980797"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 13p 054cb-pta Fiat Modelo Uno Fire 2004/ 05 Cubo Baixo - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Uno Fire 2004/2005 Aro 13 Fixação Parafuso\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 291821\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277980797\n• NCM: 87087090\n• SKU: VTK017964\n\nEMBALAGEM\n• Dimensões informadas: 3 × 36 × 36 cm\n• Peso bruto informado: 0,23 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a633a5df-049b-4273-bcac-810a3287c1e0",
+      "sku": "VTK017968",
+      "category": {
+        "id": "MLB272149",
+        "nome": "Splitters de Fibra Óptica",
+        "dominio": ""
+      },
+      "basePrice": 172.32,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "INTELBRAS"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7896637676892"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo óptico Splitter Intelbras Xfs 1321 Plc 1x32 Sc/upc 4830044\n\nVISÃO GERAL\nInformações do Produto Splitter óptico conectorizado O splitter óptico PLC - Planar Lightwave Circuit - é um componente passivo utilizado para realizar a divisão do sinal óptico em uma rede de distribuição PON. A tecnologia PLC permite a divisão da potência de entrada igualmente entre todas as saídas. Com baixa perda de inserção e alta confiabilidade é ideal para atuar nos comprimentos de onda de 1.\n\n260 a 1. 650 nm. Conta com fibras de baixa sensibilidade a curvatura (G.\n\n657A) e é ideal para sistemas FTTx, redes HFC e comunicação de dados. - Ambiente de instalação interno; - Baixa perda de inserção; - Boa uniformidade canal a canal; - Alta confiabilidade e estabilidade; - Tamanho compacto. Informações Técnicas Modelo 1 × 32 Perda de inserção* 17,1 dB Uniformidade* 1,5 dB PDL* 0,4 dB * Não consideradas as perdas dos conectores Observações sobre o uso: Remova a tampa de proteção apenas no momento do uso.\n\nNão toque no ferrolho do conector. Observe o raio mínimo de curvatura do cabo do splitter. Nunca direcione a extremidade da fibra óptica ou dos conectores ópticos para os olhos.\n\nA radiação óptica pode ser prejudicial. *Imagens meramente ilustrativas\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: INTELBRAS\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INTELBRAS\n• GTIN: 7896637676892\n• NCM: 85447090\n• SKU: VTK017968\n\nEMBALAGEM\n• Dimensões informadas: 23 × 2 × 20 cm\n• Peso bruto informado: 0,23 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "44b3d34d-83bb-4fea-bc12-bbaa2d4b8912",
+      "sku": "VTK017969",
+      "category": {
+        "id": "MLB46560",
+        "nome": "Cornetas",
+        "dominio": ""
+      },
+      "basePrice": 137.34,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "JBL"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "HL11-25"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7896359553815"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Corneta Profissional Jbl Hl11-25 Trio Branca\n\nVISÃO GERAL\nInformações do Produto Corneta HL 11-25 Trio Branca - Linha Profissional A corneta JBL HL 11-25 TRIO foi projetado para reproduzir alta pressão sonora com extrema clareza de som. Usado em conjunto com os drivers profissionais JBL, é capaz de reproduzir médios e agudos potentes e de qualidade impecável, com cobertura angular de 45º tanto no eixo vertical quanto no horizontal. Otimizado para aumentar a diretividade, aprimorando a carga acústica do driver, o que amplia sua eficiência elevando SPL máximo.\n\nApresentam facilidade na combinação com drivers JBL para produzir sons de alta clareza, podendo ser utilizadas em locais externos e internos. - Aplicações em caixas monitoras, side-fill e P. A.\n\n; - Tamanho compacto, frente plana; - Corneta de alumínio, exponencial. Informações Técnicas Especificações de Áudio respostadefrequênciadosistema 620 a 20 kHz Atributos Dispersão de som HxV: 45º x 45º Diâmetro da garganta: 25 mm Volume ocupado pela corneta 0,4 L Dimensões (a x l x c) 15 x 14 x 15 cm Peso 0. 56 Kg Sensibilidade 108 dB Conteúdo da Embalagem - 1x HL11-25 TRIO; - 1x Folheto técnico; - 1x Folheto garantia.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: JBL\n• Modelo: HL11-25\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: JBL\n• GTIN: 7896359553815\n• NCM: 85189010\n• SKU: VTK017969\n\nEMBALAGEM\n• Dimensões informadas: 18 × 17 × 17 cm\n• Peso bruto informado: 0,556 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4672dd90-0d90-417e-93e7-5e238c2c863d",
+      "sku": "VTK017972",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 109.62,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "375633"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892512226"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Aro 15a 878ar-pta Mod Logan / Sandero 2020 - PC / 4\n\nVISÃO GERAL\nInformações do Produto Calota 878AR-PTA 15 Polegadas Aplicação Logan / Sandero 2020 Cubo Universal Cor Prata *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 375633\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892512226\n• NCM: 87087090\n• SKU: VTK017972\n\nEMBALAGEM\n• Dimensões informadas: 41 × 5 × 41 cm\n• Peso bruto informado: 0,388 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "7c2e6935-5434-49e1-aa54-97e66714c919",
+      "sku": "VTK017986",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": ""
+      },
+      "basePrice": 1061.62,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "JBL"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "263491"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Driver Fenólico Jbl D450 Trio 300w 8r Rms\n\nVISÃO GERAL\nImpedância: 8 Ohms Diafragma Fenólico Sensibilidade (em corneta): 110 dB Sensibilidade (em tubo): 116 dB Resposta de Frequência (@ -10 dB): 300 a 7000 Hz Diâmetro da Bobina: 100 mm Fio da Bobina: Cobre Fôrma da Bobina: Poliimida (Kapton ) Re (resistência da bobina): 6,0 W Densidade de Fluxo no Gap: 1,60 T Frequência de Corte Mínima (12 dB / oit): 500 Hz Material do ímã: Ferrite de bário Material da tampa: Alumínio\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: JBL\n• Número de peça: 263491\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: JBL\n• GTIN: 7896359540945\n• NCM: 85182990\n• SKU: VTK017986\n\nEMBALAGEM\n• Dimensões informadas: 14 × 23 × 25 cm\n• Peso bruto informado: 7,8 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6122b056-07e8-467e-abde-16f0f444f400",
+      "sku": "VTK017990",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 80.25,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "328722"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892510550"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid 244ca-pta Aro 13 P Mod Gol G7 2017 - PC / 4\n\nVISÃO GERAL\nInformações do Produto Modelo Gol G7 2017/18 Aro 13 Fixação Parafusos *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 328722\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892510550\n• NCM: 87087090\n• SKU: VTK017990\n\nEMBALAGEM\n• Dimensões informadas: 37 × 3 × 37 cm\n• Peso bruto informado: 0,28 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "dc303f1e-c351-47b5-b84f-fd288ba331e4",
+      "sku": "VTK017995",
+      "category": {
+        "id": "MLB421298",
+        "nome": "Conversores de Aúdio e Vídeo",
+        "dominio": ""
+      },
+      "basePrice": 93.46,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "EVUS"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "60HZ"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898597132289"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Conversor De Audio/video Evus C-085 Hdmi Para 3 Rca\n\nVISÃO GERAL\nInformações do Produto Características Conecte equipamentos antigos em seu aparelho com o conversor HDMI x RCA EVUS O conversor tem a função de converter o sinal para possibilitar a ligação de aparelhos com conexões diferentes, não faz melhora da qualidade de imagem recebida pela conexão de áudio e vídeo Rca, apenas aumenta o tamanho da imagem para até 1080p. O conversor possui uma entrada mini usb para alimentação de energia e é acompanhado de um cabo usb. Este cabo usb pode ser conectado em qualquer conexão usb, podendo ser em uma das conexões da Tv ou fonte de tomada com esta saída, porque a conexão usb sempre fornece 5 volts de energia.\n\nESPECIFICAÇÕES TÉCNICAS | DIMENSÕES Plug and Play (não é necessário instalar drivers) Não precisa carregar Entrada de áudio sincronizada com vídeo Capacidade de Suporte 1920 x 1080 @ 60Hz *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: EVUS\n• Modelo: 60HZ\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: EVUS\n• GTIN: 7898597132289\n• NCM: 85437039\n• SKU: VTK017995\n\nEMBALAGEM\n• Peso bruto informado: 0,066 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b02d0763-0ef6-473a-ac17-5c63cd3a6dfc",
+      "sku": "VTK018013",
+      "category": {
+        "id": "MLB22369",
+        "nome": "Travas Elétricas",
+        "dominio": ""
+      },
+      "basePrice": 174.56,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SOFT"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "101761"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Trava Elétrica Soft Aa420011 Novo Uno / Celta / Eco / Fiest / Palio 99 4portas\n\nVISÃO GERAL\nAcionamento através de alarme Não alteram as características originais do veículo Peças de fixação de fácil montagem e encaixe Destravamento manual e suave Padrão utilizado nas montadoras Celta 2006 - 2011 4 Portas Palio 1999 - 2011 4 Portas Ecosport até 2011 4 Portas Fiesta 2002-2011 4 Portas Novo Uno - Todos\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SOFT\n• Número de peça: 101761\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SOFT\n• GTIN: 7898441355116\n• NCM: 87082999\n• SKU: VTK018013\n\nEMBALAGEM\n• Dimensões informadas: 11 × 10 × 23 cm\n• Peso bruto informado: 0,718 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

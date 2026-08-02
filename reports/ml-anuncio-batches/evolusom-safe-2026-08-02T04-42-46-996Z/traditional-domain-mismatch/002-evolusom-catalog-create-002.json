@@ -1,0 +1,353 @@
+{
+  "batchNumber": 2,
+  "batchId": "evolusom-traditional-002",
+  "strategy": "traditional_no_catalog_predictor_consensus",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "3e20ce56-00dd-491e-a9d0-0a26e0431bfb",
+      "sku": "VTK017238",
+      "nome": "Detector De Temperatura 12/ 24v Segurimax Contato Seco",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 36.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 70.25,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB278141",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-METAL_DETECTORS",
+        "categoryId": "MLB278141",
+        "categoryName": "Detectores de Metais",
+        "categoryPath": "Ferramentas > Ferramentas Elétricas > Detectores de Metais",
+        "validatedGtin": "7898597854341"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597854341",
+        "validatedNcm": "85319000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "29dc5fa4-1b4d-4261-b981-ac9de650b853",
+      "sku": "VTK017246",
+      "nome": "Controle Remoto Copiar Hombrus 433mhz Code Learn 3 Botões",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 22.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 52.96,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB277529",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-INDUSTRIAL_MACHINE_REMOTE_CONTROLS",
+        "categoryId": "MLB277529",
+        "categoryName": "Controles Remotos",
+        "categoryPath": "Ferramentas > Ferramentas Industriais > Peças de Reposição > Controles Remotos",
+        "validatedGtin": "7891097542084"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7891097542084",
+        "validatedNcm": "85269200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "fc4aa25f-81b8-40c9-8e1a-d2cac8343222",
+      "sku": "VTK017317",
+      "nome": "Mouse Pad Evus Mp-500b Pan",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 23.89,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 54.19,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB1716",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-MOUSE_PADS",
+        "categoryId": "MLB1716",
+        "categoryName": "Mouse Pads",
+        "categoryPath": "Informática > Periféricos para PC > Mouses e Teclados > Mouse Pads",
+        "validatedGtin": "7898597133354"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597133354",
+        "validatedNcm": "40169990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "0c91a533-35c0-433b-9037-fb32747eeaf8",
+      "sku": "VTK017391",
+      "nome": "Grampo Vonder 16mm Para Pinador Elétrico Com 1000 Grampos",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 15.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 44.32,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB430493",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-ELECTRIC_STAPLERS_AND_BRAD_NAILERS",
+        "categoryId": "MLB430493",
+        "categoryName": "Grampeadores e Pinadores",
+        "categoryPath": "Ferramentas > Ferramentas Elétricas > Perfuração > Grampeadores e Pinadores",
+        "validatedGtin": "7893946536527"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893946536527",
+        "validatedNcm": "83052000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "054e7b91-653d-4f52-b332-1ca9da3994af",
+      "sku": "VTK017397",
+      "nome": "Trava Elétrica Roadstar 2 Fios Individual - Rs101br",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 11.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 39.38,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22369",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_ELECTRIC_DOOR_LOCKS",
+        "categoryId": "MLB22369",
+        "categoryName": "Travas Elétricas",
+        "categoryPath": "Acessórios para Veículos > Segurança Veicular > Travas Elétricas",
+        "validatedGtin": "7890000078399"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7890000078399",
+        "validatedNcm": "83012000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "f4830746-74a9-401b-a711-2ccee41787d1",
+      "sku": "VTK017534",
+      "nome": "Reparo Jbl Selenium Rpd250-x Para Driver D250-x",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 50.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 87.53,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46559",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+        "categoryId": "MLB46559",
+        "categoryName": "Drivers",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Drivers",
+        "validatedGtin": "7896359508631"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359508631",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "ad9bb504-524a-48d3-a56c-146c4f1781ab",
+      "sku": "VTK017577",
+      "nome": "Fone De Ouvido Para Radio Comunicador Intelbras Hc20pt 4161020",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 57.6,
+      "estoque": 44,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 95.8,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB418302",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-TELEPHONY_AND_RADIO_COMMUNICATION_PRODUCTS",
+        "categoryId": "MLB418302",
+        "categoryName": "Fones",
+        "categoryPath": "Celulares e Telefones > Rádio Comunicadores > Acessórios > Fones",
+        "validatedGtin": "7899298633693"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899298633693",
+        "validatedNcm": "85183000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "018f9e02-57ce-4766-a127-8cbee6d3cabc",
+      "sku": "VTK017630",
+      "nome": "Sensor Externo Sulton Spw 700 Pet 30 Kg",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 161.9,
+      "estoque": 38,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 229.86,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB7070",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "categoryPath": "Casa, Móveis e Decoração > Segurança para Casa > Sistemas de Monitoramento > Alarmes e Sensores",
+        "validatedGtin": "7898911419904"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898911419904",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "6529db06-96ae-4f36-873c-e673c801cdaa",
+      "sku": "VTK017783",
+      "nome": "Quantum Qps Plus4004 Sensor De Estacion. C/ 4 Sensores Sonoros",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 134.9,
+      "estoque": 25,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 191.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB430253",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-INDOOR_GROWING_LIGHTS",
+        "categoryId": "MLB430253",
+        "categoryName": "Lâmpadas para Cultivo",
+        "categoryPath": "Casa, Móveis e Decoração > Jardim e Ar Livre > Jardinagem e Accesórios > Accessórios para Cultivo > Lâmpadas para Cultivo",
+        "validatedGtin": "7898382148075"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898382148075",
+        "validatedNcm": "87089990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "bdd22a64-bf53-4d11-865c-97dd9a6eb776",
+      "sku": "VTK017821",
+      "nome": "Reparo Jbl Selenium Rpst302-x Para Super Tweeter St302-x",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.5,
+      "estoque": 23,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.33,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46559",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+        "categoryId": "MLB46559",
+        "categoryName": "Drivers",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Drivers",
+        "validatedGtin": "7896359530991"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359530991",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

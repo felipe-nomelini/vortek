@@ -1,0 +1,127 @@
+[
+  {
+    "sku": "VTK003270",
+    "nome": "Interruptor Inteligente 1 Tecla Wi-Fi SE235 Branco MULTILASER",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK005357",
+    "nome": "Alto-Falante 5\" JBL Multisystem 5TRMS80 (PAR)",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK017212",
+    "nome": "Cabo óptico Intelbras Plc 1x2 Nc Xfs 120 Com Divisor 4830013",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK017238",
+    "nome": "Detector De Temperatura 12/ 24v Segurimax Contato Seco",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK017246",
+    "nome": "Controle Remoto Copiar Hombrus 433mhz Code Learn 3 Botões",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK017534",
+    "nome": "Reparo Jbl Selenium Rpd250-x Para Driver D250-x",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK017783",
+    "nome": "Quantum Qps Plus4004 Sensor De Estacion. C/ 4 Sensores Sonoros",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK017821",
+    "nome": "Reparo Jbl Selenium Rpst302-x Para Super Tweeter St302-x",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK017823",
+    "nome": "Calota Grid Aro 13p 050cb-pta Fiat Modelo Palio Fire 2004 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017872",
+    "nome": "Reparo Jbl Rpst330 Para Super Tweeter St330 Poly T",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK017895",
+    "nome": "Calota Grid Aro 15p 195cp-pta Modelo Onix / Prisma Lt 2014/ 16 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017924",
+    "nome": "Chaveiro Positron Novo Px-32 Cyber 4 Botões Preto",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK017966",
+    "nome": "Calota Grid Aro 14p 014cb-pta Ford Modelo Fiesta 2008/ 10 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018027",
+    "nome": "Arandela Sem Borda Frahm 6\" 40w Full Ranger Quadrada",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK018141",
+    "nome": "Calota Grid Aro 14p 192 Cp-pta Hyundai Hb20/ Hb20s 2016 Cubo Padrão - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018286",
+    "nome": "Calota Grid Aro 14p 016ca-pta Volkswaggen Modelo Gol/ Voyage/ Saveiro 2009/ 12 Cubo Alto - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018381",
+    "nome": "Detector Pyronix Fp02302 Octopus Dq 360 Graus 12 Metros",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK018517",
+    "nome": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din Prata 89/m2",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK018616",
+    "nome": "Contra Frente Plástica Permak Ka Focus Escot Ranger 2 Din 89/c2",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK018868",
+    "nome": "Contra Frente Plástica Permak Toyota Etios 2 Din Preta",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK018869",
+    "nome": "Contra Frente Plástica Permak Honda New Civic 2012 2 Din",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK018874",
+    "nome": "Reparo Jbl Rpd450 Trio Para Driver D450 Trio",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK019006",
+    "nome": "Testador Smd Com Pinça Hikari Hm-10",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK019030",
+    "nome": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din Cinza 89/m3",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  },
+  {
+    "sku": "VTK019103",
+    "nome": "Frente Falsa Max Eletron 1ux19",
+    "reason": "semantic_category_mismatch_or_insufficient_product_evidence"
+  }
+]

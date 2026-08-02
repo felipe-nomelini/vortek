@@ -1,0 +1,380 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-domain-mismatch-validated/dry-run-results/004-evolusom-catalog-create-004-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-004",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "71df1618-1fef-4c80-888d-4b54b63e6271",
+      "sku": "VTK018027",
+      "category": {
+        "id": "MLB443814",
+        "nome": "Kits de Estéreo e Alto-Falante",
+        "dominio": ""
+      },
+      "basePrice": 152.32,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "FRAHM"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "1MM"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7896673814074"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Arandela Sem Borda Frahm 6\" 40w Full Ranger Quadrada\n\nVISÃO GERAL\nInformações do Produto Caixa de Som Arandela Frahm - Quadrada 6 FR 40W - 31832 Nova linha de arandelas FRAHM : Potência e Eficiência para ambientes sofisticados Uma linha completa projetada para atender a necessidade de sonorização dos mais variados ambientes. Na residência ou em ambientes comerciais, as novas arandelas Frahm permitem a perfeita integração entre o produto e o ambiente em que são instaladas. As bordas ultra finas garantem a presença discreta do produto e componentes de alta fidelidade produzem um som envolvente.\n\nCaracterísticas: - As molduras foram projetadas com sistema de ampliação do ângulo de dispersão; - Possuem pontos exclusivos para a fixação dos mais variados tipos de trafos, não permitindo que sejam colocados em pontos que causam danos a estrutura; - No modelo quadrado cada uma das torres é responsável pelo travamento de uma das laterais da arandela o que proporciona fixação de 100% de sua base no teto; - O projeto permite flexibilidade na furação do local de instalação (se a a furação não ficar perfeita conforme o gabarito, ainda assim a arandela irá se encaixar sem que o trabalho precise ser refeito); - Permite o travamento desde a menor até a maior estrutura de teto (de 1mm a 30mm); - Terminais de engate rápido; - Conjunto móvel otimizado para a reprodução de baixas frequências. Informações Técnicas Tipo Full Range Impedância 8 Ohms Potência Máxima 80 W Potência RMS 40 W Woofer 6\" Cone e borda de celulose, bobina móvel em alumínio Resposta de frequência 100 - 18KHz SPL (dB/W/m) 93 Dimensão em mm (AxLxC) 222 x 222 mm Dimensões do furo para instalação 196 x 196 mm Altura da arandela 65 mm\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: FRAHM\n• Modelo: 1MM\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FRAHM\n• GTIN: 7896673814074\n• NCM: 85182100\n• SKU: VTK018027\n\nEMBALAGEM\n• Dimensões informadas: 9 × 25 × 25 cm\n• Peso bruto informado: 0,92 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "04b72773-20e9-4de9-be70-92efa36f8a69",
+      "sku": "VTK018089",
+      "category": {
+        "id": "MLB22369",
+        "nome": "Travas Elétricas",
+        "dominio": ""
+      },
+      "basePrice": 131.52,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SOFT"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "101741"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Trava Elétrica Soft Aa420012 Novo Uno / Palio / Strada / Celta 2 Portas\n\nVISÃO GERAL\nFácil instalação e menos ruído de acordo com o padrão das montadoras não altera as características originais do veículo motores com certificação automotiva acionamento através de alarme Destravamento manual suave. Acionamento através de alarme Não alteram as características originais do veículo Peças de fixação de fácil montagem e encaixe Destravamento manual e suave Padrão utilizado nas montadoras. Celta - 2005/2015 Fiesta - 2002/2015 Uno - 2010/2014 Strada - 2001/2015 Palio - 2001/2012 *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SOFT\n• Número de peça: 101741\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SOFT\n• GTIN: 7898441355123\n• NCM: 87082999\n• SKU: VTK018089\n\nEMBALAGEM\n• Dimensões informadas: 11 × 10 × 24 cm\n• Peso bruto informado: 0,422 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "fcaf1426-0108-4adf-831c-21a28a836637",
+      "sku": "VTK018141",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 109.62,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292369"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892500384"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p 192 Cp-pta Hyundai Hb20/ Hb20s 2016 Cubo Padrão - PC / 4\n\nVISÃO GERAL\nModelo: HB20 / HB20S 2016 Aro: 14\" Fixação: Parafuso *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292369\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892500384\n• NCM: 87087090\n• SKU: VTK018141\n\nEMBALAGEM\n• Dimensões informadas: 3 × 42 × 42 cm\n• Peso bruto informado: 0,302 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "7dca48d5-d209-4431-81cc-33bbae63bcda",
+      "sku": "VTK018224",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": ""
+      },
+      "basePrice": 112.53,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SOFT"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "201921"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Módulo De Vidro Elétrico Soft Infinity 2.0 - Aa.56.0001\n\nVISÃO GERAL\nFechamento de vidros elétricos inteligentes de fábrica Fechamento de teto solar: 1 Estágio, 2 Estágios e com ou sem cortina Possui entradas e saídas configuráveis Faz subida ou a descida dos vidros *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SOFT\n• Número de peça: 201921\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SOFT\n• GTIN: 7898441352016\n• NCM: 85432000\n• SKU: VTK018224\n\nEMBALAGEM\n• Dimensões informadas: 4.5 × 5 × 8 cm\n• Peso bruto informado: 0,052 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "612c7e99-5d81-4b62-922b-4e0c36836499",
+      "sku": "VTK018286",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292721"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277982494"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p 016ca-pta Volkswaggen Modelo Gol/ Voyage/ Saveiro 2009/ 12 Cubo Alto - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Gol/ Voyage/ Saveiro 2009/2012 Aro 14 Fixação Parafuso\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292721\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277982494\n• NCM: 87087090\n• SKU: VTK018286\n\nEMBALAGEM\n• Dimensões informadas: 39 × 3 × 39 cm\n• Peso bruto informado: 0,332 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f713b5db-60e1-4bbd-93f1-bd3ebaa839fd",
+      "sku": "VTK018294",
+      "category": {
+        "id": "MLB33412",
+        "nome": "Controles Remotos para Alarmes",
+        "dominio": ""
+      },
+      "basePrice": 123.52,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "INTELBRAS"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "IR3"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7896637680356"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "7462936",
+          "value_name": "Bateria/Pilha"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Controle Remoto Intelbras Rf Ir3\n\nVISÃO GERAL\nInformações do Produto Controle remoto iR Para utilização com iC7s. Informações Técnicas Frequência de operação 433,92 MHz Alcance RF 80 metros sem barreiras Acionamento 5 Botões independentes Alimentação 3 Vdc, bateria de lítio CR2032 inclusa Corrente de operação Repouso: 3 A Máximo: 40 mA Peso 44 g com bateria Dimensões (L × A × P) 42 × 63 × 13,3 mm Temperatura de operação -10 °C ~ 50 °C Umidade 10% ~ 90% Anti-jamming Imunidade contra interferências de sinais mal intencionados Alarme de bateria baixa 2,4 V 0,1 *Imagens meramente ilustrativas\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: INTELBRAS\n• Modelo: IR3\n• Tipo de alimentação: Bateria/Pilha\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INTELBRAS\n• GTIN: 7896637680356\n• NCM: 85269200\n• SKU: VTK018294\n\nEMBALAGEM\n• Dimensões informadas: 3 × 7 × 9 cm\n• Peso bruto informado: 0,041 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "e7e76e6e-649f-4e31-9369-6875f254f206",
+      "sku": "VTK018077",
+      "nome": "Par De Lâmpadas Super Led Cob Multilaser H8 20w 6200k Lumens Au836",
+      "error": "Atributos obrigatórios pendentes: Tipo de conector",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB5759",
+            "nome": "Lâmpadas de Led"
+          },
+          "missing": [
+            "Tipo de conector"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f6fc077a-bac5-41d3-b5e0-d84f076d32ab",
+      "sku": "VTK018129",
+      "nome": "Teclado Para Central Monitorada Intelbras Xat 1018 Mt",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72514",
+            "nome": "Placas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "09fca44b-d25b-47a5-87f2-703b2bf431a5",
+      "sku": "VTK018133",
+      "nome": "Fonte Adaptadora Carregador Universal Alltech 12v Dc 2a Automotiva",
+      "error": "Atributos obrigatórios pendentes: Conector de entrada, Conector de saída",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB271558",
+            "nome": "Carregadores"
+          },
+          "missing": [
+            "Conector de entrada",
+            "Conector de saída"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f85d881e-1485-487f-aaad-19c03f40c054",
+      "sku": "VTK018292",
+      "nome": "Alto Falante Subwoofer Pioneer 12\" Ts-w3090br 600w Rms 2x4 Ohms Bobina Dupla",
+      "error": "Atributos obrigatórios pendentes: Modelo, Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Modelo",
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

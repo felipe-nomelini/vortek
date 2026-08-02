@@ -1,0 +1,353 @@
+{
+  "batchNumber": 1,
+  "batchId": "evolusom-domain-approved-001",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "bc040ab0-3aa3-4126-b12a-d24c2897bac0",
+      "sku": "VTK003270",
+      "nome": "Interruptor Inteligente 1 Tecla Wi-Fi SE235 Branco MULTILASER",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 61.9,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 101.11,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB269928",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-DIMMERS",
+        "categoryId": "MLB269928",
+        "categoryName": "Dimmers",
+        "categoryPath": "Construção > Energia > Tomadas e Interruptores > Interruptores > Dimmers",
+        "validatedGtin": "7899838881218"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899838881218",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "7c433078-cf08-4965-8cba-fe1e9c822b33",
+      "sku": "VTK005357",
+      "nome": "Alto-Falante 5\" JBL Multisystem 5TRMS80 (PAR)",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 209.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 298.01,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB443814",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_STEREOS_AND_SPEAKERS_KITS",
+        "categoryId": "MLB443814",
+        "categoryName": "Kits de Estéreo e Alto-Falante",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Reprodutores > Kits de Estéreo e Alto-Falante",
+        "validatedGtin": "7896359568963"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359568963",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "865b05da-58b8-4c3b-9fc4-9c7b58cc19bd",
+      "sku": "VTK017185",
+      "nome": "Plug Santo Angelo P10 Ninja Estéreo Com Mola Níquel",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 11.2,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 38.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB420707",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+        "categoryId": "MLB420707",
+        "categoryName": "Conectores",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Áudio > Equipamento para DJs > Acessórios > Conectores",
+        "validatedGtin": "7899028809268"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899028809268",
+        "validatedNcm": "85369090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "8398a3fb-8b3b-47e4-8530-c5cc54ec40fe",
+      "sku": "VTK017212",
+      "nome": "Cabo óptico Intelbras Plc 1x2 Nc Xfs 120 Com Divisor 4830013",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 19.3,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 48.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB431815",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-NETWORK_CABLES",
+        "categoryId": "MLB431815",
+        "categoryName": "Cabos de Rede",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Cabos > Cabos de Rede",
+        "validatedGtin": "7896637676717"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637676717",
+        "validatedNcm": "85447090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "3e20ce56-00dd-491e-a9d0-0a26e0431bfb",
+      "sku": "VTK017238",
+      "nome": "Detector De Temperatura 12/ 24v Segurimax Contato Seco",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 36.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 70.25,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB278141",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-METAL_DETECTORS",
+        "categoryId": "MLB278141",
+        "categoryName": "Detectores de Metais",
+        "categoryPath": "Ferramentas > Ferramentas Elétricas > Detectores de Metais",
+        "validatedGtin": "7898597854341"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597854341",
+        "validatedNcm": "85319000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "29dc5fa4-1b4d-4261-b981-ac9de650b853",
+      "sku": "VTK017246",
+      "nome": "Controle Remoto Copiar Hombrus 433mhz Code Learn 3 Botões",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 22.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 52.96,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB277529",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-INDUSTRIAL_MACHINE_REMOTE_CONTROLS",
+        "categoryId": "MLB277529",
+        "categoryName": "Controles Remotos",
+        "categoryPath": "Ferramentas > Ferramentas Industriais > Peças de Reposição > Controles Remotos",
+        "validatedGtin": "7891097542084"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7891097542084",
+        "validatedNcm": "85269200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "fc4aa25f-81b8-40c9-8e1a-d2cac8343222",
+      "sku": "VTK017317",
+      "nome": "Mouse Pad Evus Mp-500b Pan",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 23.89,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 54.19,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB1716",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-MOUSE_PADS",
+        "categoryId": "MLB1716",
+        "categoryName": "Mouse Pads",
+        "categoryPath": "Informática > Periféricos para PC > Mouses e Teclados > Mouse Pads",
+        "validatedGtin": "7898597133354"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597133354",
+        "validatedNcm": "40169990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "054e7b91-653d-4f52-b332-1ca9da3994af",
+      "sku": "VTK017397",
+      "nome": "Trava Elétrica Roadstar 2 Fios Individual - Rs101br",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 11.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 39.38,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22369",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_ELECTRIC_DOOR_LOCKS",
+        "categoryId": "MLB22369",
+        "categoryName": "Travas Elétricas",
+        "categoryPath": "Acessórios para Veículos > Segurança Veicular > Travas Elétricas",
+        "validatedGtin": "7890000078399"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7890000078399",
+        "validatedNcm": "83012000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "f4830746-74a9-401b-a711-2ccee41787d1",
+      "sku": "VTK017534",
+      "nome": "Reparo Jbl Selenium Rpd250-x Para Driver D250-x",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 50.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 87.53,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46559",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+        "categoryId": "MLB46559",
+        "categoryName": "Drivers",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Drivers",
+        "validatedGtin": "7896359508631"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359508631",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "6529db06-96ae-4f36-873c-e673c801cdaa",
+      "sku": "VTK017783",
+      "nome": "Quantum Qps Plus4004 Sensor De Estacion. C/ 4 Sensores Sonoros",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 134.9,
+      "estoque": 25,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 191.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB430253",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-INDOOR_GROWING_LIGHTS",
+        "categoryId": "MLB430253",
+        "categoryName": "Lâmpadas para Cultivo",
+        "categoryPath": "Casa, Móveis e Decoração > Jardim e Ar Livre > Jardinagem e Accesórios > Accessórios para Cultivo > Lâmpadas para Cultivo",
+        "validatedGtin": "7898382148075"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898382148075",
+        "validatedNcm": "87089990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

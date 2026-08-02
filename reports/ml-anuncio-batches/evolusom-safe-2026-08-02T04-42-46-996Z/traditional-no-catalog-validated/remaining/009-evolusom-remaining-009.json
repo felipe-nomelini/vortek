@@ -1,0 +1,353 @@
+{
+  "batchNumber": 9,
+  "batchId": "evolusom-domain-approved-009",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "43119194-4bc8-44fd-a470-6485b9015b8a",
+      "sku": "VTK018586",
+      "nome": "Calota Aro Grid 150cp-pbp-u 15p Sport T-cross 25 - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892574439"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892574439",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "b9a8de34-93e1-4414-bf4e-b1478e028334",
+      "sku": "VTK018613",
+      "nome": "Modulo De Vidro Fks Mlv408 Co Para Hyundai Ix35 Top Com Conector Original",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 90.9,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 136.91,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB191714",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+        "categoryId": "MLB191714",
+        "categoryName": "Elétrico",
+        "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+        "validatedGtin": "7899906801216"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899906801216",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "13a203d1-dce9-4049-86de-0ae60f4d0cb1",
+      "sku": "VTK018619",
+      "nome": "Calota Grid Aro 14p 191cb-pta Modelo Hb20/ Hb20s 2016 Cubo Baixo - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892500377"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892500377",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "f77ee66f-5cd4-4dab-9b60-8ad9a590e092",
+      "sku": "VTK018621",
+      "nome": "Calota Grid Aro 13p 047ca-pta Modelo Volkswaggen Gol G5 1.6 2012/ 13 Cubo Alto - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.4,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277983620"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277983620",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "54d72c15-06e1-470f-9b49-e8f1d8aaa519",
+      "sku": "VTK018622",
+      "nome": "Calota Grid Aro 13p 082ca-pta Modelo Gol G5/ Voyage/ Saveiro 2009/ 11 Cubo Alto - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.4,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277983415"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277983415",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "eb1dc2f3-745a-475c-a7aa-6b7c421bf968",
+      "sku": "VTK018647",
+      "nome": "Calota Aro 14p 009ca-gft Mod Gol G5/ Voyage/saveiro 2009/ 11 Ca - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892511496"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892511496",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "0f642e19-edf7-4149-98e6-4c2081dd78df",
+      "sku": "VTK018648",
+      "nome": "Calota Aro 14p 026cb-gft Mod Fiesta Hatch / Sedan 2011/ 13 Cb - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892511397"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892511397",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "08df3be3-519f-45c5-bab3-1dfd20a27fc9",
+      "sku": "VTK018649",
+      "nome": "Calota Grid Aro 14a 461ar-grafite Modelo Etios 2014/2015 Ar - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892511465"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892511465",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "b5780ff4-6de2-445c-b982-5fdc52d192aa",
+      "sku": "VTK018706",
+      "nome": "Protetor De Carter Dhf-240 Stilo 2003",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 72.85,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 114.63,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB194788",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_SUMP_GUARDS",
+        "categoryId": "MLB194788",
+        "categoryName": "Protetor de Cárter",
+        "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Motor > Componentes de Motor > Cárters de Motores > Protetor de Cárter",
+        "validatedGtin": "7898154402404"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898154402404",
+        "validatedNcm": "87082999",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "ec92357c-bf98-4e74-9876-6f6d42556024",
+      "sku": "VTK018710",
+      "nome": "Kit Adaptador Aquário Cf-265 Para Nokia 8265",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 14.95,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.15,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB277391",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AQUARIUM_WATER_CONDITIONERS",
+        "categoryId": "MLB277391",
+        "categoryName": "Condicionadores de Agua",
+        "categoryPath": "Pet Shop > Peixes > Acessórios para Aquários > Manutenção de Aquários > Condicionadores de Agua",
+        "validatedGtin": "7898127605429"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898127605429",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

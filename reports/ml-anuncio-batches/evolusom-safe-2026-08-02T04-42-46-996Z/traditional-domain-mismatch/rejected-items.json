@@ -1,0 +1,515 @@
+[
+  {
+    "ok": false,
+    "sku": "VTK018729",
+    "nome": "Kit Conforto Linha Fiat Tury Lvx5 Tw2pt",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Kit Conforto Linha Fiat Tury Lvx5 Tw2pt",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_MAINTENANCE_KITS",
+          "domain_name": "Kits de revisão para veículos",
+          "category_id": "MLB440354",
+          "category_name": "Kits de Motor",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Kit Conforto Linha Fiat Tury Lvx5 Tw2pt TURY",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_CAPS",
+          "domain_name": "Capotas altas para veículos",
+          "category_id": "MLB419761",
+          "category_name": "Cabinas",
+          "attributes": []
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK018325",
+    "nome": "Controlador De Volume Frahm Cv-10 10w Mono",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK017539",
+    "nome": "Sensor Magnético Smart Sulton V3 Smw250",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Sensor Magnético Smart Sulton V3 Smw250",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_ENGINE_CAMSHAFT_SENSORS",
+          "domain_name": "Sensores do ervore de comando de válvulas para veiculos",
+          "category_id": "MLB192363",
+          "category_name": "Sensor de Posição",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Sensor Magnético Smart Sulton V3 Smw250 VIAWEB",
+        "prediction": {
+          "domain_id": "MLB-ELECTRONIC_ACCESSORIES_AND_REPLACEMENTS",
+          "domain_name": "Acessórios e peças eletrônicas",
+          "category_id": "MLB11603",
+          "category_name": "Outros",
+          "attributes": []
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK018078",
+    "nome": "Cabo Auto Permak 0.75mm Branco 100m",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Cabo Auto Permak 0.75mm Branco 100m",
+        "prediction": {
+          "domain_id": "MLB-DATA_CABLES_AND_ADAPTERS",
+          "domain_name": "Cabos e adaptadores de dados",
+          "category_id": "MLB120497",
+          "category_name": "Cabos",
+          "attributes": [
+            {
+              "id": "COLOR",
+              "name": "Cor",
+              "value_id": "52055",
+              "value_name": "Branco"
+            }
+          ]
+        }
+      },
+      {
+        "query": "Cabo Auto Permak 0.75mm Branco 100m PERMAK",
+        "prediction": {
+          "domain_id": "MLB-DATA_CABLES_AND_ADAPTERS",
+          "domain_name": "Cabos e adaptadores de dados",
+          "category_id": "MLB5080",
+          "category_name": "Cabos",
+          "attributes": [
+            {
+              "id": "COLOR",
+              "name": "Cor",
+              "value_id": "52055",
+              "value_name": "Branco"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK002772",
+    "nome": "Extensão Tripla 3,0 X 0,75 X 5,0M Preta Megatron",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Extensão Tripla 3,0 X 0,75 X 5,0M Preta Megatron",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_TIRE_VALVES",
+          "domain_name": "Válvulas de pneus para veículos",
+          "category_id": "MLB456735",
+          "category_name": "Válvulas de Pneus",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Extensão Tripla 3,0 X 0,75 X 5,0M Preta Megatron MEGATRON",
+        "prediction": {
+          "domain_id": "MLB-POWER_STRIPS",
+          "domain_name": "Extensões, filtros de linhas e protetores eletrônicos",
+          "category_id": "MLB63114",
+          "category_name": "Filtros de Linha",
+          "attributes": [
+            {
+              "id": "PRODUCT_TYPE",
+              "name": "Tipo de produto",
+              "value_id": "18033133",
+              "value_name": "Extensão"
+            },
+            {
+              "id": "OUTLETS_NUMBER",
+              "name": "Quantidade de tomadas",
+              "value_id": "5755463",
+              "value_name": "3"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK017868",
+    "nome": "Extensão Sort Pl 2x0.75mm² 3 Metros Cores Sortidas Ref.1513",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK018199",
+    "nome": "Sensor Ultrasom Locktronic",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Sensor Ultrasom Locktronic",
+        "prediction": {
+          "domain_id": "MLB-MEDICAL_ULTRASOUND_SCANNERS",
+          "domain_name": "Aparelhos de ultrassom médicos",
+          "category_id": "MLB432550",
+          "category_name": "Ultrassons",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Sensor Ultrasom Locktronic LOCKTRONIC BY SOFT",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_TPS_SENSORS",
+          "domain_name": "Sensores TPS para veículos",
+          "category_id": "MLB456741",
+          "category_name": "Sensores TPS",
+          "attributes": []
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK018546",
+    "nome": "Módulo Viaweb Gprs 2.4",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK018663",
+    "nome": "Haste Permak Fiat Toro/ Jeep Renegade/ Compass Ov",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK018746",
+    "nome": "Sub Conjunto Almapy Up 13+ Traseiro Sensorizado",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK018753",
+    "nome": "Conector Permak Cd Do Nissan March Livina Versa 35-d7",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK018714",
+    "nome": "Contra Frente Plástica Permak Toyota Hilux Sw4 2 Din 89/z3",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK018752",
+    "nome": "Cabo Prolongador Aquário Ac-13 Marinox 60cm",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Cabo Prolongador Aquário Ac-13 Marinox 60cm",
+        "prediction": {
+          "domain_id": "MLB-NAUTICAL_ROPES",
+          "domain_name": "Cabos náuticos",
+          "category_id": "MLB46512",
+          "category_name": "Cabos",
+          "attributes": [
+            {
+              "id": "SALES_UNIT",
+              "name": "Unidade de venda",
+              "value_id": "5203053",
+              "value_name": "m"
+            }
+          ]
+        }
+      },
+      {
+        "query": "Cabo Prolongador Aquário Ac-13 Marinox 60cm AQUARIO",
+        "prediction": {
+          "domain_id": "MLB-CELLPHONE_SIGNAL_BOOSTERS_KITS",
+          "domain_name": "Kits de repetidores de sinal celular",
+          "category_id": "MLB271064",
+          "category_name": "Amplificadores de Sinal",
+          "attributes": []
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK018751",
+    "nome": "Chaveiro Presença Positron Dpn62 Para Duoblock Fx G6/ Cg150/ 125",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Chaveiro Presença Positron Dpn62 Para Duoblock Fx G6/ Cg150/ 125",
+        "prediction": {
+          "domain_id": "MLB-KEYCHAINS",
+          "domain_name": "Chaveiros",
+          "category_id": "MLB22642",
+          "category_name": "Chaveiros",
+          "attributes": [
+            {
+              "id": "UNITS_PER_PACK",
+              "name": "Unidades por kit",
+              "value_id": "2726554",
+              "value_name": "1"
+            }
+          ]
+        }
+      },
+      {
+        "query": "Chaveiro Presença Positron Dpn62 Para Duoblock Fx G6/ Cg150/ 125 POSITRON",
+        "prediction": {
+          "domain_id": "MLB-KEYCHAINS",
+          "domain_name": "Chaveiros",
+          "category_id": "MLB412060",
+          "category_name": "Chaveiros",
+          "attributes": [
+            {
+              "id": "UNITS_PER_PACK",
+              "name": "Unidades por kit",
+              "value_id": "2726554",
+              "value_name": "1"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK017376",
+    "nome": "Mastro Proeletronic Ktaa-2000 De Alumínio Para Fixação De Antena",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK003511",
+    "nome": "Extensão Tripla 2 X 0,75 x 3,0M Preta Megatron",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Extensão Tripla 2 X 0,75 x 3,0M Preta Megatron",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_TIRE_VALVES",
+          "domain_name": "Válvulas de pneus para veículos",
+          "category_id": "MLB456735",
+          "category_name": "Válvulas de Pneus",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Extensão Tripla 2 X 0,75 x 3,0M Preta Megatron MEGATRON",
+        "prediction": {
+          "domain_id": "MLB-POWER_STRIPS",
+          "domain_name": "Extensões, filtros de linhas e protetores eletrônicos",
+          "category_id": "MLB63114",
+          "category_name": "Filtros de Linha",
+          "attributes": [
+            {
+              "id": "PRODUCT_TYPE",
+              "name": "Tipo de produto",
+              "value_id": "18033133",
+              "value_name": "Extensão"
+            },
+            {
+              "id": "OUTLETS_NUMBER",
+              "name": "Quantidade de tomadas",
+              "value_id": "5755463",
+              "value_name": "3"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK004724",
+    "nome": "Cabo Adaptador USB-C Para Mini DisplayPort Flex",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Cabo Adaptador USB-C Para Mini DisplayPort Flex",
+        "prediction": {
+          "domain_id": "MLB-AUTOMOTIVE_OBD_CABLE_ADAPTERS",
+          "domain_name": "Cabos adaptadores OBD para automotores",
+          "category_id": "MLB116342",
+          "category_name": "Adaptadores de Scanners",
+          "attributes": [
+            {
+              "id": "UNITS_PER_PACKAGE",
+              "name": "Unidades por embalagem",
+              "value_id": "2726554",
+              "value_name": "1"
+            }
+          ]
+        }
+      },
+      {
+        "query": "Cabo Adaptador USB-C Para Mini DisplayPort Flex FLEX",
+        "prediction": {
+          "domain_id": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+          "domain_name": "Cabos e adaptadores de áudio e vídeo",
+          "category_id": "MLB431813",
+          "category_name": "Cabos de Áudio e Vídeo",
+          "attributes": []
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK002762",
+    "nome": "Extensão Tripla 3 X 0,75 X 3,0M Preta Megatron",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Extensão Tripla 3 X 0,75 X 3,0M Preta Megatron",
+        "prediction": {
+          "domain_id": "MLB-VEHICLE_TIRE_VALVES",
+          "domain_name": "Válvulas de pneus para veículos",
+          "category_id": "MLB456735",
+          "category_name": "Válvulas de Pneus",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Extensão Tripla 3 X 0,75 X 3,0M Preta Megatron MEGATRON",
+        "prediction": {
+          "domain_id": "MLB-POWER_STRIPS",
+          "domain_name": "Extensões, filtros de linhas e protetores eletrônicos",
+          "category_id": "MLB63114",
+          "category_name": "Filtros de Linha",
+          "attributes": [
+            {
+              "id": "PRODUCT_TYPE",
+              "name": "Tipo de produto",
+              "value_id": "18033133",
+              "value_name": "Extensão"
+            },
+            {
+              "id": "OUTLETS_NUMBER",
+              "name": "Quantidade de tomadas",
+              "value_id": "5755463",
+              "value_name": "3"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK017636",
+    "nome": "Divisor Proeletronic Pqdv-2024 1:4 Satélite 5 2400mhz",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Divisor Proeletronic Pqdv-2024 1:4 Satélite 5 2400mhz",
+        "prediction": {
+          "domain_id": "MLB-MANUAL_DOUGH_DIVIDERS",
+          "domain_name": "Divisoras manuais de massa",
+          "category_id": "MLB277352",
+          "category_name": "Divisoras de Massas",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Divisor Proeletronic Pqdv-2024 1:4 Satélite 5 2400mhz PROELETRONIC",
+        "prediction": {
+          "domain_id": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+          "domain_name": "Conectores de áudio e vídeo",
+          "category_id": "MLB38172",
+          "category_name": "Conectores",
+          "attributes": [
+            {
+              "id": "UNITS_PER_PACK",
+              "name": "Unidades por kit",
+              "value_id": "2726554",
+              "value_name": "1"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK018870",
+    "nome": "Contra Frente Plástica Permak Fiat Stilo 2 Din Preta",
+    "reason": "insufficient_predictor_evidence"
+  },
+  {
+    "ok": false,
+    "sku": "VTK019003",
+    "nome": "Caixa Amplificada Multiuso Frahm Pw 600 App",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Caixa Amplificada Multiuso Frahm Pw 600 App",
+        "prediction": {
+          "domain_id": "MLB-AUTOMOTIVE_SPEAKER_BOXES",
+          "domain_name": "Caixas acústicas para automotores",
+          "category_id": "MLB3904",
+          "category_name": "Caixas Seladas",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Caixa Amplificada Multiuso Frahm Pw 600 App FRAHM",
+        "prediction": {
+          "domain_id": "MLB-SPEAKERS",
+          "domain_name": "Caixas de som",
+          "category_id": "MLB3843",
+          "category_name": "Caixas Bluetooth",
+          "attributes": [
+            {
+              "id": "BRAND",
+              "name": "Marca",
+              "value_id": "116881",
+              "value_name": "Frahm"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "ok": false,
+    "sku": "VTK019104",
+    "nome": "Extensor De Controle Remoto Proeletronic Pqec-8020 G2",
+    "reason": "predictor_no_consensus",
+    "predictions": [
+      {
+        "query": "Extensor De Controle Remoto Proeletronic Pqec-8020 G2",
+        "prediction": {
+          "domain_id": "MLB-COMPUTER_REMOTE_CONTROLS",
+          "domain_name": "Controles remotos para computadores",
+          "category_id": "MLB99949",
+          "category_name": "Controles Remotos",
+          "attributes": []
+        }
+      },
+      {
+        "query": "Extensor De Controle Remoto Proeletronic Pqec-8020 G2 PROELETRONIC",
+        "prediction": {
+          "domain_id": "MLB-DOOR_AND_GATE_REMOTE_CONTROLS",
+          "domain_name": "Controles remotos para portas e portões",
+          "category_id": "MLB270238",
+          "category_name": "Controles Remotos para Portão",
+          "attributes": []
+        }
+      }
+    ]
+  }
+]

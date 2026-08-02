@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-08-02T06:01:09.000Z",
+  "originalScope": 299,
+  "created": 41,
+  "active": 41,
+  "failedFinalValidation": 0,
+  "remaining": 258,
+  "createdPhases": {
+    "exactGtinNotFoundTraditionalSafe": 26,
+    "catalogDomainMismatchTraditionalSafe": 15
+  },
+  "remainingBreakdown": {
+    "exactGtinNotFoundPredictorWithoutConsensus": 23,
+    "exactGtinNotFoundSchemaOrAttributeBlockers": 56,
+    "exactGtinNotFoundKitOrSemanticBlockers": 91,
+    "domainMismatchPredictorWithoutConsensus": 22,
+    "domainMismatchSchemaOrAttributeBlockers": 38,
+    "domainMismatchSemanticOrKitBlockers": 25,
+    "specialCatalogCases": 3
+  },
+  "supplierMinimumMultipleCandidatesIdentified": 83,
+  "operationalCorrections": {
+    "productTitlesOrDescriptionsCorrected": [
+      "VTK019114",
+      "VTK018294",
+      "VTK018867",
+      "VTK023618",
+      "VTK023619",
+      "VTK023620",
+      "VTK023621"
+    ],
+    "temporaryPriceConflictsResolved": 5,
+    "lateShippingPricesRecalculated": 2,
+    "wholesalePricingRetriesCompleted": 1
+  },
+  "validation": {
+    "mercadoLivreActive": 41,
+    "categoryValid": 41,
+    "richDescriptionValid": 41,
+    "databaseProductLinkValid": 41,
+    "databaseListingLinkValid": 41
+  },
+  "notes": [
+    "Nenhum produto PC / N foi publicado como unidade.",
+    "Os 83 candidatos PC / N precisam virar kits reais vinculados à unidade do fornecedor antes da publicação.",
+    "Os demais casos permaneceram bloqueados quando a categoria, os atributos ou a evidência do produto não eram seguros."
+  ]
+}

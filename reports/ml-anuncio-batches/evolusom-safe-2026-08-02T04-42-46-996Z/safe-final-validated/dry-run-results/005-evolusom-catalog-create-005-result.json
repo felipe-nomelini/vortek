@@ -1,0 +1,252 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/safe-final-validated/dry-run-results/005-evolusom-catalog-create-005-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-pdf-safe-005",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "7ac8b06a-fc58-40bb-aae1-27ef84af5ac2",
+      "sku": "VTK018218",
+      "category": {
+        "id": "MLB1676",
+        "nome": "Impressoras",
+        "dominio": "MLB-PRINTERS"
+      },
+      "basePrice": 959.85,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "1823",
+          "value_name": "Epson"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "46447194",
+          "value_name": "Tm-T20X-II"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "46447195",
+          "value_name": "10343989115"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Impressora Térmica Epson Tm-t20x-ii Serial\n\nVISÃO GERAL\nImpressora Térmica Epson TM-T20X-II Serial Maximize suas vendas no segmento de Automação Comercial com a Impressora de Recibos Epson TM-T20X II (C31CL45011) . Desenvolvida para o varejo de alto giro, esta impressora térmica é a definição de robustez, agilidade e economia, sendo o argumento de venda perfeito para estabelecimentos que exigem zero interrupção. Vantagens Competitivas de Alto Impacto para o Lojista: Líder em Confiabilidade e Garantia: Venda a impressora com a maior segurança do mercado: Garantia Epson de 3 anos balcão .\n\nEste fator, aliado ao cortador automático com vida útil de 1,5 milhão de cortes e MTBF de 360. 000 horas , reduz drasticamente o pós-venda para sua loja. Velocidade que Impulsiona o Atendimento: Com capacidade de impressão de até 250 mm/s , ela garante a máxima agilidade no checkout, otimizando o tempo de espera do cliente, essencial em farmácias, mercados e restaurantes.\n\nConectividade Dupla (USB e Serial): Ofereça uma solução extremamente versátil com as duas portas de comunicação (USB + Serial RS-232) , assegurando fácil integração com qualquer sistema de Ponto de Venda (PDV), tanto legado quanto moderno. Pronta para mPOS/Tablets: Suporta a tecnologia Epson ePOS SDK , facilitando a impressão direta de dispositivos móveis (iOS e Android) no modelo Ethernet (consulte a versão Ethernet). Economia e Facilidade de Uso: Possui baixo consumo de energia , guilhotina inclusa e sistema de carga rápida de papel (drop-in) , minimizando o tempo de manutenção e os custos operacionais do seu cliente.\n\n*Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Epson\n• Modelo: Tm-T20X-II\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: EPSON\n• GTIN: 010343989115\n• NCM: 84433239\n• SKU: VTK018218\n\nEMBALAGEM\n• Dimensões informadas: 23 × 19 × 23.5 cm\n• Peso bruto informado: 2,032 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ef5659a4-a991-457d-b5da-c0ffaa4d2b41",
+      "sku": "VTK018261",
+      "category": {
+        "id": "MLB38279",
+        "nome": "Outros Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 106.28,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "16958501",
+          "value_name": "Leiplast"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "name": "Tipo de cabo e adaptador",
+          "value_id": "19487247",
+          "value_name": "N\\A"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899079103018"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "6MM"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "",
+          "value_name": "Preto"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "",
+          "value_name": "100 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Espaguete Liso Permak 6mm 100m\n\nVISÃO GERAL\nEspaguete Liso Permak 6 mm | Preto SKU: 194 O espaguete 6 mm conta com uma textura lisa, possui um comprimento de 100 m e apresenta 0,6 cm de diâmetro de passagem do condutor. Sua composição é em polipropileno, garantindo boa estabilidade térmica e resistência a impactos. Está disponível na cor preta.\n\nOs espaguetes têm a função de proteger e organizar fios e cabos. O espaguete 6 mm oi desenvolvido para utilização em todos os tipos de fios e cabos. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Leiplast\n• Tipo de cabo e adaptador: N\\A\n• Modelo: 6MM\n• Cor: Preto\n• Comprimento do cabo: 100 m\n• Tipo de produto: Fio\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7899079103018\n• NCM: 39173900\n• SKU: VTK018261\n\nEMBALAGEM\n• Dimensões informadas: 10 × 35 × 35 cm\n• Peso bruto informado: 0,962 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9552e566-6f75-4b16-af3f-3e6a4ad589ed",
+      "sku": "VTK018344",
+      "category": {
+        "id": "MLB4469",
+        "nome": "Microfones",
+        "dominio": "MLB-MICROPHONES"
+      },
+      "basePrice": 153.78,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "118055",
+          "value_name": "CSR"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "2473429",
+          "value_name": "HT58A"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS",
+          "name": "Conectores de saída",
+          "value_id": "7226718",
+          "value_name": "Jack 6.3 mm"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "18985578",
+          "value_name": "7897366205537"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "",
+          "value_name": "4.3 m"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Microfone Csr Ht-58-a Profissional Sem Chave Anti Queda\n\nVISÃO GERAL\nFrequência de Resposta: 15Hz - 12.5KHz Impedância: 600 ohm Sensibilidade: -74dB +-3dB Housing: ABS com Injeção de cor original Cabo: 4.3M com conector de 1/4\"\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: CSR\n• Modelo: HT58A\n• Conectores de saída: Jack 6.3 mm\n• Comprimento do cabo: 4.3 m\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: CSR\n• GTIN: 7897366205537\n• NCM: 85181090\n• SKU: VTK018344\n\nEMBALAGEM\n• Dimensões informadas: 16 × 7 × 25 cm\n• Peso bruto informado: 0,744 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "bdc1df2c-e4c2-448c-973f-59fdc44a7186",
+      "sku": "VTK018408",
+      "category": {
+        "id": "MLB72503",
+        "nome": "Climatizador Portátil",
+        "dominio": "MLB-PORTABLE_EVAPORATIVE_AIR_COOLERS"
+      },
+      "basePrice": 1349.85,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2942489",
+          "value_name": "Symphony"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "14747363",
+          "value_name": "HI COOL I"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "14747369",
+          "value_name": "8901791100493"
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "39205162",
+          "value_name": "127V"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Climatizador Evaporativo Symphony Hicool I 31l 127v 60hz\n\nVISÃO GERAL\nHi-Cool i Tecnologia i-Pure para proteger sua saúde Nossa tecnologia i-Pure integrou um método de filtragem multinível que atua como uma barreira contra poluentes, germes, poeira, alergênicos, odores desagradáveis, etc. Este projeto revolucionário proporciona um fornecimento ininterrupto de ar frio, higiênico e fresco. Controle remoto multifuncional Esteja no controle, não importa onde você esteja sentado.\n\nO controle remoto vem com muitas funções para que você não tenha que se levantar todas sempre. Basta pressionar o botão, e seu refrigerador responderá instantaneamente. Almofadas de refrigeração de Nova Geração O design alveolar combinado com uma estrutura de fibra reestruturada, proporciona o efeito final de resfriamento por muitos anos.\n\nEsta arquitetura única também acrescenta resistência extra e durabilidade à estrutura geral. Painel de controle por toque Funções de exibição à prova d'água e sensível ao toque para uma execução rápida e fácil. Características - Este Climatizador Symphony portátil de alto desempenho ventila, resfria, umidifica e filtra o AR - Equipado com Bomba D'Agua Tecnologia DuraPump para uma vida longa - Painéis Evaporativos tipo Colmeia produzido em Celulose de alta capacidade na retenção de água e um Dispensador de Fluxo - Frio para distribuir a água uniformemente em todos os lados, tornando seu verão refrescante.\n\n- Indicador de nível de água externo para que você saiba quando reabastecer - Soprador potente: O soprador de alta velocidade fornece ar fresco instantaneamente para seu conforto - O consumo de energia é extremamente baixo, então relaxe sem se preocupar com contas de energia. - Além de ser potente e elegante, seu design compacto oferece fácil operação em espaços pequenos - Painel de Controle tipo Membrana proporciona elegância e fácil operação, possibilitando alternar entre Ventilar/Resfriar, - - - --- acionamento do Timer e 3 velocidades - Tecnologia i-Pure com filtro multe estágio, combate a poluição do ar, microrganismos causadores de odor/alergias e ainda - - lhe proporciona ar fresco - Equipado com Tecnologia SMPS (Switched Mode Power Supply - Fonte de Alimentação Comutada) proporciona eficácia - -- ---- - energética superior (entre 60 e 70%) e ampla faixa de rendimento - Para maior conforto e praticidade na sua operação, acompanha um Controle Remoto sem Fio que pode ser acomodado - ------ - numa cavidade exclusiva na parte superior do Climatizador mantendo sempre à vista - O Timer é configurável para desligar automaticamente - A Função Restauração do Sistema do equipamento memoriza a ultima configuração antes de desligar - Aletas Verticais Oscilantes tipo Swing automáticas que distribuem o ar uniformemente por todo o ambiente - Rodas multidirecionais permitem que você o mova facilmente de um lugar para outro - Um Alarme Sonoro e Luminoso alerta quando o reservatório esvaziar. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Symphony\n• Modelo: HI COOL I\n• Voltagem: 127V\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SYMPHONY\n• GTIN: 8901791100493\n• NCM: 84796000\n• SKU: VTK018408\n\nEMBALAGEM\n• Dimensões informadas: 89 × 43 × 55 cm\n• Peso bruto informado: 10,95 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "fd649d0c-7e6b-413f-bf09-c85949c0d588",
+      "sku": "VTK018435",
+      "nome": "Golden Waffle 2 Britânia 220v",
+      "error": "Atributos obrigatórios pendentes: Tipo de alimentação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB120243",
+            "nome": "Máquinas de Waffles"
+          },
+          "missing": [
+            "Tipo de alimentação"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-safe-reviewed/005-evolusom-traditional-safe-005.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-traditional-safe-005",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "c3f99da0-1421-4dad-baab-9f99faf9c173",
+      "sku": "VTK019039",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981463707",
+        "title": "Módulo De Vidro Elétrico Quantum Lv8fc54 Hyundai Novo I30",
+        "price": 127.72,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981463707-modulo-de-vidro-eletrico-quantum-lv8fc54-hyundai-novo-i30-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"status\":409,\"code\":\"conflict.error\",\"error\":\"Conflict\"}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "72c29fc9-3c8b-4a5b-9e0f-613b676a3c50",
+      "sku": "VTK019052",
+      "category": {
+        "id": "MLB22369",
+        "nome": "Travas Elétricas",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7311576166",
+        "title": "Módulo Trava Elétrica Speed-lock Tury Lock2.0",
+        "price": 173.86,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7311576166-modulo-trava-eletrica-speed-lock-tury-lock20-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 150.51 → R$ 173.86."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "37b54719-9216-4a9d-aee6-7f2e8cf0f67f",
+      "sku": "VTK019114",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981486471",
+        "title": "Módulo De Vidro Elétrico Soft Aw32 Toyota Etios 4 Portas",
+        "price": 254.35,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981486471-modulo-de-vidro-eletrico-soft-aw32-toyota-etios-4-portas-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 221.12 → R$ 254.35."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "d3fe4596-8ab2-422c-a164-fa78e0d6bc11",
+      "sku": "VTK019118",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7311576392",
+        "title": "Módulo De Vidro Elétrico Tury Ae Pro 4.78br",
+        "price": 477.64,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7311576392-modulo-de-vidro-eletrico-tury-ae-pro-478br-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 451.12 → R$ 477.64."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "8b1706cd-6206-4ba6-9071-ddf2e39378f9",
+      "sku": "VTK019168",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981464231",
+        "title": "Módulo De Vidro Tury Ae Pro3.4b",
+        "price": 413.59,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981464231-modulo-de-vidro-tury-ae-pro34b-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 387.07 → R$ 413.59."
+      ]
+    }
+  ],
+  "failed": []
+}

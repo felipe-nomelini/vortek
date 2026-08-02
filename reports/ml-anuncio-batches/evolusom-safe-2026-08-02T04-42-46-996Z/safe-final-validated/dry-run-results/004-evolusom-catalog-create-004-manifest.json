@@ -1,0 +1,561 @@
+{
+  "batchNumber": 4,
+  "batchId": "evolusom-pdf-safe-004",
+  "strategy": "exact_gtin_semantic_review_strict_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "1f6d9bb7-1e90-44db-a3e2-8202ba78fdf9",
+      "sku": "VTK017884",
+      "nome": "Cabo St- Dvi-dvi 2m Cabo Dvi Com Filtro",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 15.6,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.95,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566201114",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB38186",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2785980",
+          "value_name": "Storm"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "39567862",
+          "value_name": "Cbdv0001"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788225",
+          "value_name": "DVI"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "9784335",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "124822",
+          "value_name": "2 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "15246544",
+          "value_name": "DVI"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "13822953",
+          "value_name": "DVI"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "13788230",
+          "value_name": "Ouro"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "39567864",
+          "value_name": "7898566201114"
+        },
+        {
+          "id": "MAX_RESOLUTION_SUPPORTED",
+          "value_id": "128796",
+          "value_name": "Full HD"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB38401446",
+        "catalogProductName": "Cabo Dvi X Dvi 18+1 2m Cbdv0001 Storm",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB38186",
+        "categoryName": "Áudio e Vídeo",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898566201114"
+      }
+    },
+    {
+      "produtoId": "04602138-b77d-480a-a48e-010ba2404e1f",
+      "sku": "VTK017907",
+      "nome": "Capa Marítima Protetora Roadstar Rs4201m Para Rádio De Lancha / Barco",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 69.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 110.99,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898587425513",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB271538",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "67021746",
+          "value_name": "RS-4201MBR"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "1018574",
+          "value_name": "21 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "3002",
+          "value_name": "5 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "45551",
+          "value_name": "11 cm"
+        },
+        {
+          "id": "WITH_STRAP",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_POCKETS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "67021747",
+          "value_name": "7898587425513"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB62242572",
+        "catalogProductName": "Capa De Radio Universal Maritimo A Prova De Agua Roadstar Branco",
+        "catalogDomainId": "MLB-WALKIE_TALKIE_COVERS",
+        "predictedDomainId": "MLB-WALKIE_TALKIE_COVERS",
+        "categoryId": "MLB271538",
+        "categoryName": "Capas",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898587425513"
+      }
+    },
+    {
+      "produtoId": "cc84bed0-6160-4af3-b00e-148814686007",
+      "sku": "VTK017982",
+      "nome": "Calculadora Pessoal Procalc Pc986-p 8 Dígitos Pink",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 15.5,
+      "estoque": 17,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.83,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "4891450986039",
+        "validatedNcm": "84701000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB99957",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2431515",
+          "value_name": "Procalc"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "33221994",
+          "value_name": "PC986-P"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_without_current_winner",
+        "catalogProductId": "MLB33224813",
+        "catalogProductName": "Calculadora Procalc PC986-P Pessoal c/ 8 Dígitos e Funções Extras Pink",
+        "catalogDomainId": "MLB-CALCULATORS",
+        "predictedDomainId": "MLB-CALCULATORS",
+        "categoryId": "MLB99957",
+        "categoryName": "Calculadoras",
+        "validatedGtin": "4891450986039"
+      }
+    },
+    {
+      "produtoId": "85bd6a53-e81c-426c-9450-ae424299e482",
+      "sku": "VTK018024",
+      "nome": "Teclado Viaweb 16s",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 99.9,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 148.02,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898936319227",
+        "validatedNcm": "85319000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7070",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16717793",
+          "value_name": "Viaweb"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16718079",
+          "value_name": "TECLADO VIAWEB 16S"
+        },
+        {
+          "id": "DEVICE_TYPE",
+          "value_id": "395193",
+          "value_name": "Alarme"
+        },
+        {
+          "id": "SENSOR_TYPES",
+          "value_id": "16716889",
+          "value_name": "Alarme, Teclado, via web"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "2748302",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "WITH_BACKUP_BATTERY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "COVERAGE_DISTANCE",
+          "value_id": "7555954",
+          "value_name": "100 m"
+        },
+        {
+          "id": "WITH_WIFI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_AUTOMATIC_DIALLING",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SOUND_ALARM",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DISCREET_ALARM",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "MAX_SENSORS_NUMBER",
+          "value_id": "7626115",
+          "value_name": "16"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16718078",
+          "value_name": "7898936319227"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB21742933",
+        "catalogProductName": "Teclado Viaweb 16s",
+        "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "linkedListingsInCategory": 3,
+        "validatedGtin": "7898936319227"
+      }
+    },
+    {
+      "produtoId": "e9aacf0a-d1b5-4600-a97e-b7668ebf6635",
+      "sku": "VTK018044",
+      "nome": "Mouse Sem Fio Logitech M170 Cinza",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 58.9,
+      "estoque": 36,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 97.41,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "097855205674",
+        "validatedNcm": "84716053",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "validated_before_execution"
+      },
+      "categoryId": "MLB1714",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "15788",
+          "value_name": "Logitech"
+        },
+        {
+          "id": "LINE",
+          "value_id": "19940806",
+          "value_name": "Mouse Inalambrico"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "255260",
+          "value_name": "M170"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "value_id": "84614662",
+          "value_name": "910-006863"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "81760",
+          "value_name": "Cinza/Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450294",
+          "value_name": "Cinza"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "17157867",
+          "value_name": "M170"
+        },
+        {
+          "id": "COMPUTER_MOUSE_TYPE",
+          "value_id": "192740",
+          "value_name": "Convencional"
+        },
+        {
+          "id": "SENSOR_TYPE",
+          "value_id": "109003",
+          "value_name": "Óptico"
+        },
+        {
+          "id": "SENSOR_TECHNOLOGY",
+          "value_id": "17529765",
+          "value_name": "Óptico"
+        },
+        {
+          "id": "COMPATIBLE_OPERATING_SYSTEMS",
+          "value_id": "3211255",
+          "value_name": "Windows 7, Windows 8, Windows 10, Linux, macOS 10.5, Chrome OS"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIRE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "SENSOR_RESOLUTION",
+          "value_id": "249299",
+          "value_name": "1000 dpi"
+        },
+        {
+          "id": "MAX_SPEED",
+          "value_id": "10969048",
+          "value_name": "100 ips"
+        },
+        {
+          "id": "BUTTONS_NUMBER",
+          "value_id": "1021242",
+          "value_name": "3"
+        },
+        {
+          "id": "HAND_ORIENTATION",
+          "value_id": "2862903",
+          "value_name": "Ambidestro"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "8453256",
+          "value_name": "98378574339, 97855119193, 5099206062887, 653341008695, 782500626705, 10097855124187, 97855205674"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "22235393",
+          "value_name": "9.77 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "22235394",
+          "value_name": "6.15 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "19554121",
+          "value_name": "3.52 cm"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "15788",
+          "value_name": "Logitech"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "45583975",
+          "value_name": "69.3 g"
+        },
+        {
+          "id": "WITH_LIGHTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MAX_BATTERY_LIFE",
+          "value_id": "8814779",
+          "value_name": "12 m"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "3560861",
+          "value_name": "Pilhas"
+        },
+        {
+          "id": "MPN",
+          "value_id": "8183294",
+          "value_name": "910-004425"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_image_mirrored",
+        "catalogProductId": "MLB6204829",
+        "catalogProductName": "Mouse Logitech M170 910-006862",
+        "catalogDomainId": "MLB-COMPUTER_MICE",
+        "predictedDomainId": "MLB-COMPUTER_MICE",
+        "categoryId": "MLB1714",
+        "categoryName": "Mouses",
+        "validatedGtin": "097855205674"
+      }
+    }
+  ]
+}

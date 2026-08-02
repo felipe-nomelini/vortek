@@ -1,0 +1,47 @@
+{
+  "batchNumber": 6,
+  "batchId": "evolusom-traditional-safe-006",
+  "strategy": "traditional_no_catalog_predictor_consensus_schema_and_semantic_review",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "4ea07bb8-abd6-4952-97c9-27e508def1db",
+      "sku": "VTK019659",
+      "nome": "Palheta Automotiva Isoflex Flexível Silicone 26\"",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 11,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 38.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB63484",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WINDSHIELD_WIPERS",
+        "categoryId": "MLB63484",
+        "categoryName": "Palhetas",
+        "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Peças de Exterior > Limpadores e Lavadores > Escovas e Recambios > Palhetas",
+        "validatedGtin": "7898564960129"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898564960129",
+        "validatedNcm": "85124010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

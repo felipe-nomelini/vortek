@@ -1,0 +1,63 @@
+[
+  {
+    "sku": "VTK018089",
+    "mlItemId": "MLB4981496363",
+    "shipping": 19.25,
+    "fee": 0.17,
+    "price": 155.89,
+    "tiers": [
+      {
+        "min": 3,
+        "amount": 151.21
+      },
+      {
+        "min": 5,
+        "amount": 149.65
+      },
+      {
+        "min": 10,
+        "amount": 148.1
+      }
+    ]
+  },
+  {
+    "sku": "VTK019158",
+    "mlItemId": "MLB7311698800",
+    "shipping": 18.45,
+    "fee": 0.18,
+    "price": 179.94,
+    "tiers": [
+      {
+        "min": 3,
+        "amount": 174.54
+      },
+      {
+        "min": 5,
+        "amount": 172.74
+      },
+      {
+        "min": 10,
+        "amount": 170.94
+      }
+    ]
+  },
+  {
+    "sku": "VTK023620",
+    "mlItemId": "MLB4981506269",
+    "price": 77.08,
+    "tiers": [
+      {
+        "min": 3,
+        "amount": 74.77
+      },
+      {
+        "min": 5,
+        "amount": 74
+      },
+      {
+        "min": 10,
+        "amount": 73.23
+      }
+    ]
+  }
+]

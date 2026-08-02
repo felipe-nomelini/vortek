@@ -1,0 +1,683 @@
+{
+  "batchNumber": 5,
+  "batchId": "evolusom-pdf-safe-005",
+  "strategy": "exact_gtin_semantic_review_strict_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "7ac8b06a-fc58-40bb-aae1-27ef84af5ac2",
+      "sku": "VTK018218",
+      "nome": "Impressora Térmica Epson Tm-t20x-ii Serial",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 639.9,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 948,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "010343989115",
+        "validatedNcm": "84433239",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "validated_before_execution"
+      },
+      "categoryId": "MLB1676",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "1823",
+          "value_name": "Epson"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "46447194",
+          "value_name": "Tm-T20X-II"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "PRINTER_TYPE",
+          "value_id": "300770",
+          "value_name": "Função única"
+        },
+        {
+          "id": "PRINTING_TECHNOLOGY",
+          "value_id": "300773",
+          "value_name": "Matriz de ponto"
+        },
+        {
+          "id": "PRINTING_TYPE",
+          "value_id": "300792",
+          "value_name": "Monocromática"
+        },
+        {
+          "id": "PRINTER_FUNCTIONS",
+          "value_id": "8746038",
+          "value_name": "Impressão"
+        },
+        {
+          "id": "WITH_WI_FI",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_USB_PORT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_CAMERA_ACCESORY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "36746284",
+          "value_name": "Seiko Epson"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "46447195",
+          "value_name": "10343989115"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "5082093",
+          "value_name": "23.3 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "517391",
+          "value_name": "19 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "7928725",
+          "value_name": "1.97 kg"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_image_mirrored",
+        "catalogProductId": "MLB45350688",
+        "catalogProductName": "Impressora Cupom Epson Usb Serial Tm-t20x Ii 250 Mm (eps01)",
+        "catalogDomainId": "MLB-PRINTERS",
+        "predictedDomainId": "MLB-PRINTERS",
+        "categoryId": "MLB1676",
+        "categoryName": "Impressoras",
+        "validatedGtin": "010343989115"
+      }
+    },
+    {
+      "produtoId": "ef5659a4-a991-457d-b5da-c0ffaa4d2b41",
+      "sku": "VTK018261",
+      "nome": "Espaguete Liso Permak 6mm 100m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 62.9,
+      "estoque": 11,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 102.35,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899079103018",
+        "validatedNcm": "39173900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB38279",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16958501",
+          "value_name": "Leiplast"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "19487248",
+          "value_name": "Espaguete e Corrugados"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "19487247",
+          "value_name": "N\\A"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "2693635",
+          "value_name": "100 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "16088632",
+          "value_name": "6 mm"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15991896",
+          "value_name": "0"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15991897",
+          "value_name": "0"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "25842106",
+          "value_name": "N\\A"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "25842104",
+          "value_name": "N\\A"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "25842107",
+          "value_name": "N\\A"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "25842103",
+          "value_name": "N\\A"
+        },
+        {
+          "id": "SUPPORTED_AUDIO_CODECS",
+          "value_id": "25842108",
+          "value_name": "N\\A"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "25842102",
+          "value_name": "N\\A"
+        },
+        {
+          "id": "MAX_RESOLUTION_SUPPORTED",
+          "value_id": "25842105",
+          "value_name": "N\\A"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_without_current_winner",
+        "catalogProductId": "MLB32085423",
+        "catalogProductName": "Espaguete Liso 6mm / 100m Preto - Cód.309",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB38279",
+        "categoryName": "Outros Cabos",
+        "validatedGtin": "7899079103018"
+      }
+    },
+    {
+      "produtoId": "9552e566-6f75-4b16-af3f-3e6a4ad589ed",
+      "sku": "VTK018344",
+      "nome": "Microfone Csr Ht-58-a Profissional Sem Chave Anti Queda",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 99.95,
+      "estoque": 9,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 148.09,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897366205537",
+        "validatedNcm": "85181090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB4469",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "118055",
+          "value_name": "CSR"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "2473429",
+          "value_name": "HT58A"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MICROPHONE_FORMATS",
+          "value_id": "182426",
+          "value_name": "De mão"
+        },
+        {
+          "id": "MICROPHONE_TYPES",
+          "value_id": "103745",
+          "value_name": "Dinâmico"
+        },
+        {
+          "id": "POLAR_PATTERNS",
+          "value_id": "2253807",
+          "value_name": "Cardioide"
+        },
+        {
+          "id": "MICROPHONES_NUMBER",
+          "value_id": "934836",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129121",
+          "value_name": "5 m"
+        },
+        {
+          "id": "CONNECTION_TYPES",
+          "value_id": "1210905",
+          "value_name": "Com fio"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MIN_FREQUENCY",
+          "value_id": "8746852",
+          "value_name": "15 Hz"
+        },
+        {
+          "id": "MAX_FREQUENCY",
+          "value_id": "2261478",
+          "value_name": "12 kHz"
+        },
+        {
+          "id": "MICROPHONE_RECOMMENDED_USES",
+          "value_id": "17477924",
+          "value_name": "Bares, Igrejas, Palestra"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "18143283",
+          "value_name": "Não necessita"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BUILT_IN_SPEAKERS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "118055",
+          "value_name": "CSR"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "68007386",
+          "value_name": "HT-58A"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "20634421",
+          "value_name": "HT-58A"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS",
+          "value_id": "7226718",
+          "value_name": "Jack 6.3 mm"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18985578",
+          "value_name": "7897366205537"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "2307514",
+          "value_name": "Capa"
+        },
+        {
+          "id": "INPUT_CONNECTORS",
+          "value_id": "2305169",
+          "value_name": "XLR"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "2748302",
+          "value_name": "Plástico, Aço inoxidável"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "7685441",
+          "value_name": "740 g"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_ambiguous_semantically_selected",
+        "catalogProductId": "MLB23156712",
+        "catalogProductName": "Microfone Csr Ht58a Dinâmico Vocal Profissional Estojo Cabo Cor Preto",
+        "catalogDomainId": "MLB-MICROPHONES",
+        "predictedDomainId": "MLB-MICROPHONES",
+        "categoryId": "MLB4469",
+        "categoryName": "Microfones",
+        "validatedGtin": "7897366205537"
+      }
+    },
+    {
+      "produtoId": "bdc1df2c-e4c2-448c-973f-59fdc44a7186",
+      "sku": "VTK018408",
+      "nome": "Climatizador Evaporativo Symphony Hicool I 31l 127v 60hz",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 899.9,
+      "estoque": 9,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1333.19,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "8901791100493",
+        "validatedNcm": "84796000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB72503",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2942489",
+          "value_name": "Symphony"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "14747363",
+          "value_name": "HI COOL I"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205162",
+          "value_name": "127V"
+        },
+        {
+          "id": "AIR_CONDITIONING_TYPE",
+          "value_id": "83444",
+          "value_name": "Frio"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "7812028",
+          "value_name": "8.3 kg"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "11501154",
+          "value_name": "91.5 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7990712",
+          "value_name": "38 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "5662053",
+          "value_name": "50 cm"
+        },
+        {
+          "id": "IS_HUMIDIFIER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_AIR_PURIFIER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_VENTILATION_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WATER_CAPACITY",
+          "value_id": "3890784",
+          "value_name": "31 L"
+        },
+        {
+          "id": "POWER",
+          "value_id": "3034199",
+          "value_name": "210 W"
+        },
+        {
+          "id": "SPEEDS_NUMBER",
+          "value_id": "1000288",
+          "value_name": "3"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "14747369",
+          "value_name": "8901791100493"
+        },
+        {
+          "id": "ENERGY_EFFICIENCY",
+          "value_id": "98473",
+          "value_name": "A"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        },
+        {
+          "id": "WITH_TIMER",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "INCLUDES_REMOTE_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_ambiguous_semantically_selected",
+        "catalogProductId": "MLB60738717",
+        "catalogProductName": "Hi-cool I Climatizador Portátil 31l Com Controle Remoto - Br Cor Branco",
+        "catalogDomainId": "MLB-PORTABLE_EVAPORATIVE_AIR_COOLERS",
+        "predictedDomainId": "MLB-PORTABLE_EVAPORATIVE_AIR_COOLERS",
+        "categoryId": "MLB72503",
+        "categoryName": "Climatizador Portátil",
+        "validatedGtin": "8901791100493"
+      }
+    },
+    {
+      "produtoId": "fd649d0c-7e6b-413f-bf09-c85949c0d588",
+      "sku": "VTK018435",
+      "nome": "Golden Waffle 2 Britânia 220v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 134.9,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 191.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7891356035111",
+        "validatedNcm": "85166000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB120243",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "471",
+          "value_name": "Britânia"
+        },
+        {
+          "id": "LINE",
+          "value_id": "2137829",
+          "value_name": "Golden"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "4311624",
+          "value_name": "Golden Waffle"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "198813",
+          "value_name": "220V"
+        },
+        {
+          "id": "WAFFLES_NUMBER",
+          "value_id": "10361550",
+          "value_name": "4"
+        },
+        {
+          "id": "SERVINGS_NUMBER",
+          "value_id": "11738432",
+          "value_name": "4"
+        },
+        {
+          "id": "BAKING_PLATES_MATERIAL",
+          "value_id": "2516458",
+          "value_name": "Teflon"
+        },
+        {
+          "id": "WAFFLE_DESIGN",
+          "value_id": "2516460",
+          "value_name": "Clássico"
+        },
+        {
+          "id": "WITH_NON_STICK_SURFACE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_INDUSTRIAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_REMOVABLES_PLATES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_INTERCHANGEABLE_PLATES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ROTARY_FEATURE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "18012072",
+          "value_name": "7891356035111"
+        },
+        {
+          "id": "POWER",
+          "value_id": "109595",
+          "value_name": "850 W"
+        },
+        {
+          "id": "WITH_READY_TEMPERATURE_LIGHT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_POWER_LIGHT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_ambiguous_semantically_selected",
+        "catalogProductId": "MLB22485657",
+        "catalogProductName": "Máquina Golden Waffle 850w Cinza Britânia Cinza",
+        "catalogDomainId": "MLB-ELECTRIC_WAFFLE_MAKERS",
+        "predictedDomainId": "MLB-ELECTRIC_WAFFLE_MAKERS",
+        "categoryId": "MLB120243",
+        "categoryName": "Máquinas de Waffles",
+        "validatedGtin": "7891356035111"
+      }
+    }
+  ]
+}

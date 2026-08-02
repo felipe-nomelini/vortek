@@ -1,0 +1,457 @@
+[
+  {
+    "sku": "VTK017189",
+    "nome": "Reparo Para Driver Shock D-250 Selenium",
+    "reason": "semantic_category_mismatch"
+  },
+  {
+    "sku": "VTK017331",
+    "nome": "Cabo Vga Evus C-044 Hd15 Macho X Hd15 Macho Com Filtro 20,0m",
+    "reason": "semantic_category_mismatch"
+  },
+  {
+    "sku": "VTK017545",
+    "nome": "Reparo Para Driver Shock D-250 Trio Selenium",
+    "reason": "semantic_category_mismatch"
+  },
+  {
+    "sku": "VTK017644",
+    "nome": "Calota Grid 245ca-pta Aro 14 P Mod Gol G7 2017 Ca - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017686",
+    "nome": "Calota Grid Aro 13p 015cb-pta Fiat Modelo Mercurio/ Linea Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017687",
+    "nome": "Calota Grid Aro 14p 133cb-pta Gm Modelo Onix/ Prisma 2014/ 15 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017701",
+    "nome": "Calota Grid Aro 13p 158cb-pta Fiat Modelo Palio Fire 2014 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017707",
+    "nome": "Calota Grid Aro 14p 026cb-pta Ford Modelo Fiesta Sedan 2011/ 13 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017721",
+    "nome": "Calota Grid Aro 15p 296cp Prata Argo/cronos 2022 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017735",
+    "nome": "Kit Adaptador Aquário Cf-375 Para Motorola",
+    "reason": "semantic_category_mismatch"
+  },
+  {
+    "sku": "VTK017742",
+    "nome": "Calota Grid Aro 15\" Modelo Nova Strada 2021 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017754",
+    "nome": "Calota Grid Aro 14p 053cb-pta Gm Modelo Corsa Hatch 2004 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017786",
+    "nome": "Calota Grid Aro 14p 094cb-pta Fiat Modelo Palio Attractive 2012/ 13 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017815",
+    "nome": "Calota Grid Aro 14p 295cb Prata Argo/cronos 2022 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017831",
+    "nome": "Calota Grid Aro 14p 293cb Prata Mobi 2021 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017844",
+    "nome": "Calota Grid Aro 13p 069cb-pta Gm Modelo Corsa Classic 2012/ 15 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017845",
+    "nome": "Calota Grid Aro 15a 869ar-pta Modelo Renault Sandero 2014/ 16 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017846",
+    "nome": "Calota Grid Aro 14p 048ca-pta Volkswaggen Modelo Gol/ Saveiro G5 1.6 2012/ 13 Cubo Alto - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017862",
+    "nome": "Calota Grid Aro 14p 079cb-pta Fiat Modelo Uno Way 2011/ 12 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017864",
+    "nome": "Calota Grid Aro 14a 870ar-pta Modelo Renault Logan 2014/ 16 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017893",
+    "nome": "Calota Grid Aro 13p 227cb-pta Fiat Modelo Uno Mille Way Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017894",
+    "nome": "Calota Grid Aro 14p 340cb-pta Ford Modelo Novo Ka / K+ 2015 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017927",
+    "nome": "Calota Grid Aro 13p 080cb-pta Modulo Palio Fire 2011/ 13 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017928",
+    "nome": "Calota Grid Aro 14p 109cb-pta Gm Modelo Agile 2012/ 13 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017929",
+    "nome": "Calota Grid Aro 13a 101ar-pta Modelo Orbital Aro Pressão - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017930",
+    "nome": "Chave Canivete B&s Gm Cruze/ Cobalt/ Agile 3 Botoes Sem Circuito",
+    "reason": "semantic_category_mismatch"
+  },
+  {
+    "sku": "VTK017964",
+    "nome": "Calota Grid Aro 13p 054cb-pta Fiat Modelo Uno Fire 2004/ 05 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017972",
+    "nome": "Calota Aro 15a 878ar-pta Mod Logan / Sandero 2020 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK017990",
+    "nome": "Calota Grid 244ca-pta Aro 13 P Mod Gol G7 2017 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018020",
+    "nome": "Calota Grid Aro 13p 004cb-pta Gm Modelo Corsa Wind 2000 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018053",
+    "nome": "Calota Grid Aro 14a 136ar-pta Citroen Modelo C3/ C4 2014/ 15 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018054",
+    "nome": "Calota Grid Aro 13p 074cb-pta Fiat Modelo Siena/ Palio 2009/ 10 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018058",
+    "nome": "Calota Grid Aro 14p 185cb-pta Modelo Hb20/ Hb20s 2014/ 15 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018059",
+    "nome": "Calota Grid Aro 14p 067ca-pta Volkswaggen Modelo Gol Trend G5 2007/ 08 Cubo Alto - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018098",
+    "nome": "Calota Grid Aro 13p 230cb-pta Fiat Modelo Palio Fire 20015/ 16 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018099",
+    "nome": "Calota Grid Aro 14p 166ca-pta Fiat Modelo Strada Trekking 2014 Cubo Alto - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018100",
+    "nome": "Calota Grid Aro 14p 025cb-pta Ford Modelo Fiesta Hatch 2011/ 12 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018101",
+    "nome": "Calota Grid Aro 15p 078cp-pta Volkswaggen Modelo Fox/ Space 2012/ 13 Cubo Padrão - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018140",
+    "nome": "Calota Grid Aro 14p 073cb-pta Fiat Modelo Siena/ Palio 2009/ 10 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018142",
+    "nome": "Calota Grid Aro 15p 119cp-pta Volkswaggen Modelo Fox/ Space/ Polo 2014 Cubo Padrao - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018149",
+    "nome": "Sinalizador Veicular Gcp Ss 1000",
+    "reason": "semantic_category_mismatch"
+  },
+  {
+    "sku": "VTK018182",
+    "nome": "Calota Grid Aro 13p 092cb-pta Fiat Modelo Grand Siena 2012/ 13 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018183",
+    "nome": "Calota Grid Aro 13p 220cb-pta Fiat Modelo Palio Essence 2014/ 15 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018184",
+    "nome": "Calota Grid Aro 14p 370cb-pta Gm Modelo Montana 2013/ 15 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018185",
+    "nome": "Calota Grid Aro 15p 030cp-pta Modelo Agile 2010/2013 Cubo Padrão - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018188",
+    "nome": "Calota Grid Aro 14p 117ca-pta Volkswaggen Modelo Gol/ Voyage G5/ G6 2014 Cubo Alto - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018234",
+    "nome": "Calota Grid Aro 14p 241ca-pta Volkswaggen Modelo Gol / Voyage G6 2015 Cubo Alto - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018235",
+    "nome": "Calota Grid Aro 14p 112ca-pta Volkswaggen Modelo Gol/ Voyage G5/ G6 2013 Cubo Alto - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018237",
+    "nome": "Calota Grid 602ar-pta Aro 15 Ar Universal Gss - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018242",
+    "nome": "Calota Aro 15p 193cp-pta Mod Hb20 2020 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018291",
+    "nome": "Módulo Para Rebatimento De Espelho Retrovisor Fks Mce300 Re",
+    "reason": "semantic_category_mismatch"
+  },
+  {
+    "sku": "VTK018299",
+    "nome": "Calota Aro 14p 344cb-pta Mod Ka+ 2019 Cb - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018362",
+    "nome": "Calota Grid Aro 13p 013cb-pta Ford Modelo Ka 2008/ 12 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018363",
+    "nome": "Calota Grid Aro 14a 100ar-pta Modelo Orbital Aro De Pressão - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018364",
+    "nome": "Calota Grid Aro 14p 049cb-pta Modelo Volkswaggen Fox Até 2012/ 13 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018379",
+    "nome": "Calota Grid 291cb-pta Aro 14 P Mod Mobi 2017 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018380",
+    "nome": "Calota Grid 373cb-pta Aro 14 P Mod Onix 2017 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018385",
+    "nome": "Reparo Para Driver Shock Completo Kd-305 Keybass",
+    "reason": "semantic_category_mismatch"
+  },
+  {
+    "sku": "VTK018386",
+    "nome": "Calota Aro 14p 133cb-pof Mod Onix / Prisma 2014/ 16 Cb - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018438",
+    "nome": "Calota Grid Aro 15a 120ar-pta Modelo Honda Fit / City 2015/ 16 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018533",
+    "nome": "Calota Grid Aro 13p 060ca-pta Modelo Volkswaggen Gol G4 2006 Cubo Alto - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018535",
+    "nome": "Calota Grid Aro 14p 121cp-pta Modelo Volkswaggen Fox/ Polo 2014 Cubo Padrão - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018551",
+    "nome": "Calota Aro 14p 373cb-gft Mod Onix / Prisma 2017/ 18 Cb - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018586",
+    "nome": "Calota Aro Grid 150cp-pbp-u 15p Sport T-cross 25 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018619",
+    "nome": "Calota Grid Aro 14p 191cb-pta Modelo Hb20/ Hb20s 2016 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018621",
+    "nome": "Calota Grid Aro 13p 047ca-pta Modelo Volkswaggen Gol G5 1.6 2012/ 13 Cubo Alto - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018622",
+    "nome": "Calota Grid Aro 13p 082ca-pta Modelo Gol G5/ Voyage/ Saveiro 2009/ 11 Cubo Alto - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018647",
+    "nome": "Calota Aro 14p 009ca-gft Mod Gol G5/ Voyage/saveiro 2009/ 11 Ca - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018648",
+    "nome": "Calota Aro 14p 026cb-gft Mod Fiesta Hatch / Sedan 2011/ 13 Cb - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018649",
+    "nome": "Calota Grid Aro 14a 461ar-grafite Modelo Etios 2014/2015 Ar - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018710",
+    "nome": "Kit Adaptador Aquário Cf-265 Para Nokia 8265",
+    "reason": "semantic_category_mismatch"
+  },
+  {
+    "sku": "VTK018735",
+    "nome": "Calota Grid Aro 15a 130ar-pta Citroen Modelo C3 2014/ 15 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018738",
+    "nome": "Calota Grid Aro 14a 065ar-pta Modelo Renault Clio / Logan 2007/ 08 Aro De Pressão - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018739",
+    "nome": "Calota Grid Aro 14p 108ca-pta Volkswaggen Modelo Saveiro 2013 Cubo Alto - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018740",
+    "nome": "Calota Grid Aro 14p 190ca-pta Volkswaggen Modelo Saveiro 2014/ 15 Cubo Alto - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018741",
+    "nome": "Calota Grid Aro 15p 242cp-pta Gol/ Voyage 15 Cubo Pequeno - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018755",
+    "nome": "Calota Grid 375cb-pta Aro 15 P Mod Onix/prisma 17/18 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018795",
+    "nome": "Calota Grid Aro 14p 378cb Prata Onix/prisma 2021 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018796",
+    "nome": "Calota Grid Aro 15p 379cp Prata Onix/prisma 2021 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018886",
+    "nome": "Calota Grid Aro 14p 093cb-pta Fiat Modelo Grand Siena 2012/ 13 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018890",
+    "nome": "Calota Grid Aro 15a 085ar-pta Modelo Renault Sandero/ Logan/ Scenic 2008/ 11 Aro De Pressão - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018892",
+    "nome": "Calota Grid Aro 14p 061ca-pta Volkswaggen Modelo Gol G4 / Parati 2006 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018915",
+    "nome": "Calota Grid 292cb-pta Aro 14 P Mod Argo 2017 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018931",
+    "nome": "Calota Grid Aro 14p 292cb-pof Mod Argo 2017/18 Cb - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK018933",
+    "nome": "Calota Aro 14p 877cp-gft Mod Kwid 2018/ 19 Cp - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK019004",
+    "nome": "Calota Aro Grid 246cp-pbp-u Idea 15p Gol G7 17/18 - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK019068",
+    "nome": "Calota Grid Aro 13p 124cb-pta Ford Ka 2014 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK019070",
+    "nome": "Calota Grid Aro 14a 086ar-pta Modelo Renault Sandero/ Logan 2009/ 13 Aro De Pressão - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK019071",
+    "nome": "Calota Grid Aro 14p Volkswaggen Modelo Gol/ Voyage G5/ G6 2013 Cubo Baixo - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  },
+  {
+    "sku": "VTK019098",
+    "nome": "Módulo Speed-lock Tury Trava Eletrica Ac03b Toyota Etios A Partir De 2017",
+    "reason": "semantic_category_mismatch"
+  },
+  {
+    "sku": "VTK019122",
+    "nome": "Calota Aro 14p 344cb-gft Mod Ka+ 2019 Cb - PC / 4",
+    "reason": "supplier_minimum_multiple_requires_kit"
+  }
+]

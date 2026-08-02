@@ -1,0 +1,397 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-no-catalog-validated/dry-run-results/014-evolusom-catalog-create-014-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-014",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "dcc53781-faa4-4b59-9095-2d08fe8d42a1",
+      "sku": "VTK018795",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "382957"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892512592"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p 378cb Prata Onix/prisma 2021 - PC / 4\n\nVISÃO GERAL\nCalota Aro 14P para os modelos Onyx e Prisma 2021. *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 382957\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892512592\n• NCM: 87087090\n• SKU: VTK018795\n\nEMBALAGEM\n• Dimensões informadas: 40 × 3 × 40 cm\n• Peso bruto informado: 0,284 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ce690196-141a-4bec-ae0a-8566f738fe50",
+      "sku": "VTK018796",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 109.62,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "382958"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892512677"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 15p 379cp Prata Onix/prisma 2021 - PC / 4\n\nVISÃO GERAL\nCalota Aro 15P para os modelos Onix e Prima 2021. *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 382958\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892512677\n• NCM: 87087090\n• SKU: VTK018796\n\nEMBALAGEM\n• Peso bruto informado: 0,294 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "74fc5054-2e2f-4297-942d-b10c77a6879e",
+      "sku": "VTK018886",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "291871"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277983774"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p 093cb-pta Fiat Modelo Grand Siena 2012/ 13 Cubo Baixo - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Grand Siena 2012/2013 Aro 14 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 291871\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277983774\n• NCM: 87087090\n• SKU: VTK018886\n\nEMBALAGEM\n• Dimensões informadas: 4 × 39.5 × 39.5 cm\n• Peso bruto informado: 0,401 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "828e41d5-6add-4e5e-8307-abdf57aa57fc",
+      "sku": "VTK018890",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 109.62,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292477"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277983163"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 15a 085ar-pta Modelo Renault Sandero/ Logan/ Scenic 2008/ 11 Aro De Pressão - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Sandero/ Logan/ Scenic 2008/2011 Aro 15 Fixação Pressão *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292477\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277983163\n• NCM: 87087090\n• SKU: VTK018890\n\nEMBALAGEM\n• Dimensões informadas: 5 × 41.5 × 41.5 cm\n• Peso bruto informado: 0,472 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0ec807e8-4f8e-4586-94bd-a682d2f91486",
+      "sku": "VTK018892",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292633"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277981404"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p 061ca-pta Volkswaggen Modelo Gol G4 / Parati 2006 - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Gol G4/ Parati 2006 Aro 14 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292633\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277981404\n• NCM: 87087090\n• SKU: VTK018892\n\nEMBALAGEM\n• Dimensões informadas: 39 × 3 × 39 cm\n• Peso bruto informado: 0,286 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "845cfcfb-dae2-4def-ae77-38ddb8539ddb",
+      "sku": "VTK018915",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "328792"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892510628"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid 292cb-pta Aro 14 P Mod Argo 2017 - PC / 4\n\nVISÃO GERAL\nInformações do Produto Modelo Argo 2017/18 Aro 14 Fixação Parafusos *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 328792\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892510628\n• NCM: 87087090\n• SKU: VTK018915\n\nEMBALAGEM\n• Dimensões informadas: 5 × 40 × 40 cm\n• Peso bruto informado: 0,318 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "32ae1d48-0811-42ef-8520-77c616419c26",
+      "sku": "VTK018830",
+      "nome": "Cabo De Bateria Technoise 70,00mm² Vermelho - Rolo Com 10m",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "92fa2aa7-5d9c-4765-ace4-e5114af5848d",
+      "sku": "VTK018857",
+      "nome": "Alto Falante Selenium Jbl Original Pro 2206-h 12\" 8r 600w Rms Woofer",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e92d8175-c067-44e4-ac0a-6c104db748f2",
+      "sku": "VTK018911",
+      "nome": "Capota Marítima Flash Cover Ff123 Nissan Frontier Sel D40 Cabine Dupla 2009/2015 Force",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7dde8a4f-c47f-4ff5-9863-f3280d96d753",
+      "sku": "VTK018912",
+      "nome": "Haste Curta Olimpus Da Antena Para Onix",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45256",
+            "nome": "Antenas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

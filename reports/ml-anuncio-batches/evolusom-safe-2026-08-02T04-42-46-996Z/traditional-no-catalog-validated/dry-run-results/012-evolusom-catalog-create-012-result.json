@@ -1,0 +1,367 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-no-catalog-validated/dry-run-results/012-evolusom-catalog-create-012-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-012",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "f77ee66f-5cd4-4dab-9b60-8ad9a590e092",
+      "sku": "VTK018621",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 80.25,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292535"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277983620"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 13p 047ca-pta Modelo Volkswaggen Gol G5 1.6 2012/ 13 Cubo Alto - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Gol G5 1.6 2012/2013 Aro 13 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292535\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277983620\n• NCM: 87087090\n• SKU: VTK018621\n\nEMBALAGEM\n• Dimensões informadas: 3.5 × 37.5 × 37.5 cm\n• Peso bruto informado: 0,324 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "54d72c15-06e1-470f-9b49-e8f1d8aaa519",
+      "sku": "VTK018622",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 80.25,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292545"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277983415"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 13p 082ca-pta Modelo Gol G5/ Voyage/ Saveiro 2009/ 11 Cubo Alto - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Gol / Voyage/ Saveiro G5 2009/2011 Aro 15 Fixação Parafuso\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292545\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277983415\n• NCM: 87087090\n• SKU: VTK018622\n\nEMBALAGEM\n• Dimensões informadas: 5 × 38 × 38 cm\n• Peso bruto informado: 0,302 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "eb1dc2f3-745a-475c-a7aa-6b7c421bf968",
+      "sku": "VTK018647",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 119.49,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "354758"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892511496"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Aro 14p 009ca-gft Mod Gol G5/ Voyage/saveiro 2009/ 11 Ca - PC / 4\n\nVISÃO GERAL\nInformações do Produto Calota 009CA-GFT 14 Polegadas Aplicação Gol G5/Voyage/Saveiro 2009/11 Cubo Alto Cor Grafite *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 354758\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892511496\n• NCM: 87087090\n• SKU: VTK018647\n\nEMBALAGEM\n• Dimensões informadas: 3 × 39.5 × 39.5 cm\n• Peso bruto informado: 0,293 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0f642e19-edf7-4149-98e6-4c2081dd78df",
+      "sku": "VTK018648",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 119.49,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "354768"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892511397"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Aro 14p 026cb-gft Mod Fiesta Hatch / Sedan 2011/ 13 Cb - PC / 4\n\nVISÃO GERAL\nInformações do Produto Calota 026CB-GFT 14 Polegadas Aplicação Fiesta Hatch/Sedan 2011/13 Cubo Baixo Cor Grafite *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 354768\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892511397\n• NCM: 87087090\n• SKU: VTK018648\n\nEMBALAGEM\n• Dimensões informadas: 3 × 39.5 × 39.5 cm\n• Peso bruto informado: 0,325 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "08df3be3-519f-45c5-bab3-1dfd20a27fc9",
+      "sku": "VTK018649",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 119.49,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "354886"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892511465"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14a 461ar-grafite Modelo Etios 2014/2015 Ar - PC / 4\n\nVISÃO GERAL\nFabricada com matéria prima de alta qualidade e um sistema de fixação seguro. Esta calota deixa o seu veículo com um visual moderno e exclusivo. *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 354886\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892511465\n• NCM: 87087090\n• SKU: VTK018649\n\nEMBALAGEM\n• Dimensões informadas: 5 × 38.5 × 38.5 cm\n• Peso bruto informado: 0,335 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "4266bea0-14ff-4ee1-9fc4-524d61b64221",
+      "sku": "VTK018635",
+      "nome": "Capota Marítima Concórdia Flash Cover Ba155l Volkwagen Saveiro Cabine Simples Com Gancho 2010+ Baguete",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "9c02c8db-a5e2-45ae-8c77-e25a00e9a0a0",
+      "sku": "VTK018639",
+      "nome": "Kit Ventilador Universal Para Rack Piso Max Eletron Com 4 Coolers",
+      "error": "Atributos obrigatórios pendentes: Modelo, Tipo de ventilador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB1645",
+            "nome": "Ventiladores"
+          },
+          "missing": [
+            "Modelo",
+            "Tipo de ventilador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "5a3285c8-cf05-41c4-ba80-dde3d8e8839f",
+      "sku": "VTK018664",
+      "nome": "Antena Permak Am/fm 2 Estágio Preta",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45256",
+            "nome": "Antenas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "acb93d87-11f9-4c26-8c81-b56ef6738607",
+      "sku": "VTK018669",
+      "nome": "Central Soft Unique Aw52 2v Kwid 2017+",
+      "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7503",
+            "nome": "Centrais"
+          },
+          "missing": [
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8f8b8004-2749-4790-b626-6bdc31c30dfd",
+      "sku": "VTK018702",
+      "nome": "Alto Falante Hinor Hpl 18\" 1000w Rms 8r Subwoofer",
+      "error": "Atributos obrigatórios pendentes: Modelo, Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Modelo",
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

@@ -1,0 +1,313 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/safe-final-validated/dry-run-results/006-evolusom-catalog-create-006-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-pdf-safe-006",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "203acc55-b562-43c6-b837-06e93101fac7",
+      "sku": "VTK018502",
+      "category": {
+        "id": "MLB38172",
+        "nome": "Conectores",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CONNECTORS"
+      },
+      "basePrice": 44.86,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "72907811",
+          "value_name": "138/G"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898710414346"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Conector Derivação Permak Taplink 1,50 A 2,50mm - Azul\n\nVISÃO GERAL\nConector Derivação Taplink 1,50 a 2,50mm | Azul SKU: 138-G O conector de derivação Taplink foi desenvolvido para facilitar a emenda entre dois cabos, garantindo uma conexão eficiente e segura. Composto por polipropileno, o material oferece resistência térmica, durabilidade e resistência a impactos. Indicado para fios com bitola entre 1,50 e 2,50 mm, é uma solução prática e confiável para instalações elétricas.\n\nDisponível na cor azul, apresenta dimensões compactas, ideais para aplicações com espaço reduzido. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Permak\n• Modelo: 138/G\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7898710414346\n• NCM: 85444200\n• SKU: VTK018502\n\nEMBALAGEM\n• Dimensões informadas: 3 × 11.5 × 14 cm\n• Peso bruto informado: 0,038 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "5b9c27d8-c667-43dc-89c7-9322067883df",
+      "sku": "VTK018524",
+      "category": {
+        "id": "MLB5867",
+        "nome": "Roteadores",
+        "dominio": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS"
+      },
+      "basePrice": 134.74,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "45099",
+          "value_name": "Aquário"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "59672",
+          "value_name": "APR-2410"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898127600929"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Roteador Wi-fi Max Aquário Apr-2410 N 150 Mbps\n\nVISÃO GERAL\nFREQUÊNCIA 2.4 GHz GANHO DA ANTENA 5dBi POTÊNCIA 20dBm=100mW ALIMENTAÇÃO Bivolt Entrada (100-240 VAC) Saída (9 VDCx500mA) PORTAS 5 portas (1 WAN e 4 LAN) PADRÃO 802.11 b/g/n FLASH/SDRAM 4MB/32MB CHIPSET Railink RT 5350F VELOCIDADE 150 Mbps INSTALAÇÃO Interna\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Aquário\n• Modelo: APR-2410\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: AQUARIO\n• GTIN: 7898127600929\n• NCM: 85176241\n• SKU: VTK018524\n\nEMBALAGEM\n• Dimensões informadas: 6.5 × 10 × 19.5 cm\n• Peso bruto informado: 0,25 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "22d9976e-39c2-4948-9d0b-b5f4d0bbc6ce",
+      "sku": "VTK018526",
+      "category": {
+        "id": "MLB72745",
+        "nome": "Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 71.15,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2200699",
+          "value_name": "Santo Angelo"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "name": "Tipo de cabo e adaptador",
+          "value_id": "13788227",
+          "value_name": "XLR"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "18373899",
+          "value_name": "7899028808827"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "Ninja P"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "",
+          "value_name": "Preto"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "",
+          "value_name": "091 cm"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "name": "Quantidade de conectores de entrada",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "name": "Quantidade de conectores de saída",
+          "value_id": "",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "name": "Conector de entrada",
+          "value_id": "6759270",
+          "value_name": "Jack"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "name": "Conector de saída",
+          "value_id": "6759271",
+          "value_name": "Jack"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "name": "Gênero do conector de entrada",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "name": "Gênero do conector de saída",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Para Microfone Santo Angelo Ninja Hg P10 X Xlrf 03ft 091 Cm 8827 Preto\n\nVISÃO GERAL\nInformações do Produto - Comprimento: 0.91 metros - Plug P10 Ninja Niquelado e blindado com thermocontratil - Plug XLR Ninja Fêmea com banho Epóxi preto - Cabo de microfone SC20 - Bitola 2x 0.20mm / 24 AWG - Blindagem trançada - Cor: Preto Conteúdo da Embalagem - 01 Cabo\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Santo Angelo\n• Tipo de cabo e adaptador: XLR\n• Modelo: Ninja P\n• Cor: Preto\n• Comprimento do cabo: 091 cm\n• Tipo de produto: Fio\n• Quantidade de conectores de entrada: 1\n• Quantidade de conectores de saída: 1\n• Conector de entrada: Jack\n• Conector de saída: Jack\n• Gênero do conector de entrada: Macho\n• Gênero do conector de saída: Macho\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SANTO ANGELO\n• GTIN: 7899028808827\n• NCM: 85444200\n• SKU: VTK018526\n\nEMBALAGEM\n• Dimensões informadas: 5 × 20 × 20 cm\n• Peso bruto informado: 0,401 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2d23d922-5228-4a5a-97f0-35903478d514",
+      "sku": "VTK018723",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "basePrice": 92.07,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "48890584",
+          "value_name": "Fiat Bravo 2 Din"
+        },
+        {
+          "id": "STEREO_STANDARD_DIMENSIONS",
+          "name": "Dimensão estándar do estéreo",
+          "value_id": "38480992",
+          "value_name": "2 DIN"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898253498131"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Contra Frente Plástica Permak Fiat Bravo 2 Din Preta\n\nVISÃO GERAL\npreto\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Permak\n• Modelo: Fiat Bravo 2 Din\n• Dimensão estándar do estéreo: 2 DIN\n• Cor: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7898253498131\n• NCM: 85299090\n• SKU: VTK018723\n\nEMBALAGEM\n• Dimensões informadas: 2.5 × 15 × 24 cm\n• Peso bruto informado: 0,13 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ecbe9735-b7c3-4b49-a088-50eed520c458",
+      "sku": "VTK018922",
+      "category": {
+        "id": "MLB72514",
+        "nome": "Placas",
+        "dominio": "MLB-TELEPHONY_CARDS"
+      },
+      "basePrice": 481.42,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "15169328",
+          "value_name": "GNA"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "VW16Z"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "336656"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898936319081"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Placa Viaweb Central Vw16z Ip Star\n\nVISÃO GERAL\nInformações do Produto VW16Z IP Star (Placa de circuito) - Senhas com dias da semana e horários restritos; - Calendário de feriados; - Ajuste automático para horário de verão; - Atualização de firmware com o painel em operação; - Configuração de horário com o relógio da operadora celular, ou servidor NTP; - Personalização de usuário, partição e zonas para envio de SMS e email; - Opera com sensores NA ou NF simultaneamente / configuração individual por zona. Informações Técnicas Processador ARM 32 bits Zonas na placa 16 Expansão Até 128 zonas Partições 8 Usuários Até 900 Buffer 2048 eventos Periféricos no barramento 8 PGMs 2 (até 100mA por PGM) Comunicação Linha telefônica, IP Criptografia AES 128 bits e autenticação para evitar clonagem Sensor de linha telefônica Atualização de software por IP, linha telefônica e cabo serial Sirenes 2 sirenes particionadas Fonte Full range 110V-220Vca Saída de sirene 2,5A Saída auxiliar 1,2A Envio de email Até 3 destinatários por IP\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GNA\n• Modelo: VW16Z\n• Número de peça: 336656\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: VIAWEB\n• GTIN: 7898936319081\n• NCM: 85319000\n• SKU: VTK018922\n\nEMBALAGEM\n• Dimensões informadas: 6 × 12 × 21 cm\n• Peso bruto informado: 0,246 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

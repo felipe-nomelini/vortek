@@ -1,0 +1,1437 @@
+[
+  {
+    "produtoId": "c2bc53ad-df5d-4a5b-a3ec-f98ab519a418",
+    "sku": "VTK017708",
+    "nome": "Acessório Cabo De Antena Ford Fusion / Gm",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 13.53,
+    "estoque": 31,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 41.4,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898253504481",
+      "validatedNcm": "85444200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB120498",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "3289477",
+        "value_name": "Permak"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "25917169",
+        "value_name": "PERMAK"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "32007941",
+        "value_name": "7898253504481"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB32224655",
+      "catalogProductName": "Acessório Cabo De Antena Ford Fusion / Gm",
+      "catalogDomainId": "MLB-GPS_ANTENNAS",
+      "predictedDomainId": "MLB-GPS_ANTENNAS",
+      "categoryId": "MLB120498",
+      "categoryName": "Antenas",
+      "linkedListingsInCategory": 1,
+      "validatedGtin": "7898253504481"
+    }
+  },
+  {
+    "produtoId": "928958aa-5d36-44cf-98ea-52a9cb8d4f71",
+    "sku": "VTK022016",
+    "nome": "Cabo Hdmi Evus C-002 3d Macho X Macho Com Filtro V1.4 3,0m",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 12.99,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 40.73,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898597130346",
+      "validatedNcm": "85444200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB38186",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "216711",
+        "value_name": "Evus"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "value_id": "16696220",
+        "value_name": "HDMI"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "9784335",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "129130",
+        "value_name": "3 m"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "13827367",
+        "value_name": "Fio"
+      },
+      {
+        "id": "CABLE_DIAMETER",
+        "value_id": "16201380",
+        "value_name": "6.5 mm"
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "value_id": "15267153",
+        "value_name": "1"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "value_id": "15267154",
+        "value_name": "1"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "value_id": "6739225",
+        "value_name": "HDMI"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "value_id": "6739227",
+        "value_name": "HDMI"
+      },
+      {
+        "id": "INPUT_CONNECTOR_GENDER",
+        "value_id": "6116079",
+        "value_name": "Macho"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR_GENDER",
+        "value_id": "6116086",
+        "value_name": "Macho"
+      },
+      {
+        "id": "CONNECTOR_COATING_MATERIAL",
+        "value_id": "64611450",
+        "value_name": "Ouro de 24K"
+      },
+      {
+        "id": "SUPPORTED_AUDIO_CODECS",
+        "value_id": "60066755",
+        "value_name": "PCM, dvd-audio, Super Audio CD, Dolby TrueHD, DTS-HD Master Audio"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "39457896",
+        "value_name": "7898597130346"
+      },
+      {
+        "id": "COMPATIBLE_DEVICES",
+        "value_id": "68008582",
+        "value_name": "TVs LED, LCD, Plasma, Monitores Digitais, Projetores, consoles de videogame, Blu-Ray"
+      },
+      {
+        "id": "MAX_RESOLUTION_SUPPORTED",
+        "value_id": "73926722",
+        "value_name": "4K 2160p"
+      },
+      {
+        "id": "VERSION_TYPE",
+        "value_id": "63532248",
+        "value_name": "1.4"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB38302545",
+      "catalogProductName": "Cabo HDMI de 3m para TVs 4K e Consoles Ultra HD",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "categoryId": "MLB38186",
+      "categoryName": "Áudio e Vídeo",
+      "linkedListingsInCategory": 1,
+      "validatedGtin": "7898597130346"
+    }
+  },
+  {
+    "produtoId": "22d9976e-39c2-4948-9d0b-b5f4d0bbc6ce",
+    "sku": "VTK018526",
+    "nome": "Cabo Para Microfone Santo Angelo Ninja Hg P10 X Xlrf 03ft 091 Cm 8827 Preto",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 35.5,
+    "estoque": 7,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 68.52,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899028808827",
+      "validatedNcm": "85444200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB72745",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "2200699",
+        "value_name": "Santo Angelo"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "18373885",
+        "value_name": "NINJAHG B"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "value_id": "13788227",
+        "value_name": "XLR"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "1214615",
+        "value_name": "91 cm"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "13827367",
+        "value_name": "Fio"
+      },
+      {
+        "id": "CABLE_DIAMETER",
+        "value_id": "16625013",
+        "value_name": "0.2 mm"
+      },
+      {
+        "id": "AWG_SIZE",
+        "value_id": "16088654",
+        "value_name": "24"
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "value_id": "15267153",
+        "value_name": "1"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "value_id": "15267154",
+        "value_name": "1"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "value_id": "15991808",
+        "value_name": "P10"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "value_id": "2305169",
+        "value_name": "XLR"
+      },
+      {
+        "id": "INPUT_CONNECTOR_GENDER",
+        "value_id": "6116079",
+        "value_name": "Macho"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR_GENDER",
+        "value_id": "6116087",
+        "value_name": "Fêmea"
+      },
+      {
+        "id": "CONNECTOR_COATING_MATERIAL",
+        "value_id": "15292962",
+        "value_name": "Níquel"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "18373899",
+        "value_name": "7899028808827"
+      },
+      {
+        "id": "VERSION_TYPE",
+        "value_id": "63532253",
+        "value_name": "3 Pinos"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB22707216",
+      "catalogProductName": "Cabo Microfone Santo Angelo Ninja Hg P10 X Xlrf B 03ft 0,9m",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "categoryId": "MLB72745",
+      "categoryName": "Cabos",
+      "linkedListingsInCategory": 14,
+      "validatedGtin": "7899028808827"
+    }
+  },
+  {
+    "produtoId": "1f6d9bb7-1e90-44db-a3e2-8202ba78fdf9",
+    "sku": "VTK017884",
+    "nome": "Cabo St- Dvi-dvi 2m Cabo Dvi Com Filtro",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 15.6,
+    "estoque": 18,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 43.95,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898566201114",
+      "validatedNcm": "85444200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB38186",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "2785980",
+        "value_name": "Storm"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "39567862",
+        "value_name": "Cbdv0001"
+      },
+      {
+        "id": "CABLE_AND_ADAPTER_TYPE",
+        "value_id": "13788225",
+        "value_name": "DVI"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "9784335",
+        "value_name": "Preto"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359391",
+        "value_name": "Unidade"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "2726554",
+        "value_name": "1"
+      },
+      {
+        "id": "CABLE_LENGTH",
+        "value_id": "124822",
+        "value_name": "2 m"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "13827367",
+        "value_name": "Fio"
+      },
+      {
+        "id": "INPUT_CONNECTORS_NUMBER",
+        "value_id": "15267153",
+        "value_name": "1"
+      },
+      {
+        "id": "OUTPUT_CONNECTORS_NUMBER",
+        "value_id": "15267154",
+        "value_name": "1"
+      },
+      {
+        "id": "INPUT_CONNECTOR",
+        "value_id": "15246544",
+        "value_name": "DVI"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR",
+        "value_id": "13822953",
+        "value_name": "DVI"
+      },
+      {
+        "id": "INPUT_CONNECTOR_GENDER",
+        "value_id": "6116079",
+        "value_name": "Macho"
+      },
+      {
+        "id": "OUTPUT_CONNECTOR_GENDER",
+        "value_id": "6116086",
+        "value_name": "Macho"
+      },
+      {
+        "id": "CONNECTOR_COATING_MATERIAL",
+        "value_id": "13788230",
+        "value_name": "Ouro"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "39567864",
+        "value_name": "7898566201114"
+      },
+      {
+        "id": "MAX_RESOLUTION_SUPPORTED",
+        "value_id": "128796",
+        "value_name": "Full HD"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB38401446",
+      "catalogProductName": "Cabo Dvi X Dvi 18+1 2m Cbdv0001 Storm",
+      "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+      "categoryId": "MLB38186",
+      "categoryName": "Áudio e Vídeo",
+      "linkedListingsInCategory": 1,
+      "validatedGtin": "7898566201114"
+    }
+  },
+  {
+    "produtoId": "04602138-b77d-480a-a48e-010ba2404e1f",
+    "sku": "VTK017907",
+    "nome": "Capa Marítima Protetora Roadstar Rs4201m Para Rádio De Lancha / Barco",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 69.9,
+    "estoque": 20,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 110.99,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898587425513",
+      "validatedNcm": "85182990",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB271538",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "34585",
+        "value_name": "Roadstar"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "67021746",
+        "value_name": "RS-4201MBR"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52055",
+        "value_name": "Branco"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2748302",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "1018574",
+        "value_name": "21 cm"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "3002",
+        "value_name": "5 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "45551",
+        "value_name": "11 cm"
+      },
+      {
+        "id": "WITH_STRAP",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_POCKETS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "67021747",
+        "value_name": "7898587425513"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB62242572",
+      "catalogProductName": "Capa De Radio Universal Maritimo A Prova De Agua Roadstar Branco",
+      "catalogDomainId": "MLB-WALKIE_TALKIE_COVERS",
+      "predictedDomainId": "MLB-WALKIE_TALKIE_COVERS",
+      "categoryId": "MLB271538",
+      "categoryName": "Capas",
+      "linkedListingsInCategory": 1,
+      "validatedGtin": "7898587425513"
+    }
+  },
+  {
+    "produtoId": "2d23d922-5228-4a5a-97f0-35903478d514",
+    "sku": "VTK018723",
+    "nome": "Contra Frente Plástica Permak Fiat Bravo 2 Din Preta",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 54.58,
+    "estoque": 5,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 92.07,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898253498131",
+      "validatedNcm": "85299090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB45320",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "3289477",
+        "value_name": "Permak"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "48890584",
+        "value_name": "Fiat Bravo 2 Din"
+      },
+      {
+        "id": "STEREO_STANDARD_DIMENSIONS",
+        "value_id": "38480992",
+        "value_name": "2 DIN"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2511571",
+        "value_name": "ABS"
+      },
+      {
+        "id": "DISPLAY_SIZE",
+        "value_id": "2399979",
+        "value_name": "7 \""
+      },
+      {
+        "id": "GTIN",
+        "value_id": "25230469",
+        "value_name": "7898253498131"
+      },
+      {
+        "id": "MPN",
+        "value_id": "54481712",
+        "value_name": "89/E3"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB50745398",
+      "catalogProductName": "Contra Frente Plastica Permak Fiat Bravo 2 Din Preta",
+      "catalogDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "predictedDomainId": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS",
+      "categoryId": "MLB45320",
+      "categoryName": "Molduras para Estéreos",
+      "linkedListingsInCategory": 6,
+      "validatedGtin": "7898253498131"
+    }
+  },
+  {
+    "produtoId": "f456cea2-8ff3-4e77-974c-9a1d52b090ee",
+    "sku": "VTK018029",
+    "nome": "Conversor De Audio Rca Bee Link 4ch",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 67.9,
+    "estoque": 16,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 108.52,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898441352122",
+      "validatedNcm": "85044029",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB60182",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "5999177",
+        "value_name": "Soft"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "28258757",
+        "value_name": "4 CANAIS - FIO - RCA -"
+      },
+      {
+        "id": "BATTERY_VOLTAGE",
+        "value_id": "909022",
+        "value_name": "12V"
+      },
+      {
+        "id": "WITH_AUXILIARY_INPUT",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_BLUETOOTH",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "INCLUDES_REMOTE_CONTROL",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_CABLE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "28258756",
+        "value_name": "7898441352122"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB29492270",
+      "catalogProductName": "Conversor Fio Para Rca Bee Link 4 Canais Soft",
+      "catalogDomainId": "MLB-VEHICLE_WIRELESS_FM_TRANSMITTERS",
+      "predictedDomainId": "MLB-VEHICLE_WIRELESS_FM_TRANSMITTERS",
+      "categoryId": "MLB60182",
+      "categoryName": "Transmissores FM",
+      "linkedListingsInCategory": 2,
+      "validatedGtin": "7898441352122"
+    }
+  },
+  {
+    "produtoId": "8a8a4390-0070-46df-a3a0-eb0ef957c9a1",
+    "sku": "VTK000240",
+    "nome": "Expositor Para Instrumentos de Corda ASL Preto ASK",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 19.5,
+    "estoque": 30,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 48.77,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898939971309",
+      "validatedNcm": "92099900",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB278064",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "4238929",
+        "value_name": "ASK"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "27724327",
+        "value_name": "ASL"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "PRODUCT_TYPE",
+        "value_id": "26322417",
+        "value_name": "De parede"
+      },
+      {
+        "id": "RECOMMENDED_INSTRUMENTS",
+        "value_id": "182362",
+        "value_name": "Baixo, Cavaquinho"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "4837600",
+        "value_name": "Aço"
+      },
+      {
+        "id": "INSTRUMENT_CAPACITY",
+        "value_id": "24276403",
+        "value_name": "1"
+      },
+      {
+        "id": "HEIGHT",
+        "value_id": "1016242",
+        "value_name": "10 cm"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "570743",
+        "value_name": "27 cm"
+      },
+      {
+        "id": "WIDTH",
+        "value_id": "3259574",
+        "value_name": "8 cm"
+      },
+      {
+        "id": "MAX_WEIGHT_SUPPORTED",
+        "value_id": "1125599",
+        "value_name": "5 kg"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "27724332",
+        "value_name": "7898939971309"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB29157075",
+      "catalogProductName": "Suporte Ask Slat Wall Asl Emborrachado Cordas Cor Preto",
+      "catalogDomainId": "MLB-STRING_INSTRUMENT_STANDS_AND_WALL_HANGERS",
+      "predictedDomainId": "MLB-STRING_INSTRUMENT_STANDS_AND_WALL_HANGERS",
+      "categoryId": "MLB278064",
+      "categoryName": "Suportes",
+      "linkedListingsInCategory": 2,
+      "validatedGtin": "7898939971309"
+    }
+  },
+  {
+    "produtoId": "b66ea9c7-d92a-4cd6-b22d-b193173904d6",
+    "sku": "VTK017360",
+    "nome": "Fonte Chaveada Evus Pdc-5a 12v 5a 60w Bivolt",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 53.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 91.23,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898597132074",
+      "validatedNcm": "85044029",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB420411",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "216711",
+        "value_name": "Evus"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "24132791",
+        "value_name": "EVUS"
+      },
+      {
+        "id": "POWER",
+        "value_id": "112954",
+        "value_name": "60 W"
+      },
+      {
+        "id": "POWER_OUTPUT",
+        "value_id": "8122229",
+        "value_name": "60 W"
+      },
+      {
+        "id": "MIN_OUTPUT_VOLTAGE",
+        "value_id": "18114370",
+        "value_name": "12V"
+      },
+      {
+        "id": "MAX_OUTPUT_VOLTAGE",
+        "value_id": "909022",
+        "value_name": "12V"
+      },
+      {
+        "id": "LENGTH",
+        "value_id": "7887789",
+        "value_name": "180 cm"
+      },
+      {
+        "id": "MIN_OPERATING_TEMPERATURE",
+        "value_id": "20198272",
+        "value_name": "0 °C"
+      },
+      {
+        "id": "MAX_OPERATING_TEMPERATURE",
+        "value_id": "8566979",
+        "value_name": "40 °C"
+      },
+      {
+        "id": "WITH_SHORT_CIRCUIT_PROTECTION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "26670541",
+        "value_name": "7898597132074"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB28483887",
+      "catalogProductName": "Fonte Chaveada Evus 12V 5A 60W Bivolt Proteção Sobrecarga Curto",
+      "catalogDomainId": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES",
+      "predictedDomainId": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES",
+      "categoryId": "MLB420411",
+      "categoryName": "Fontes Chaveadas",
+      "linkedListingsInCategory": 1,
+      "validatedGtin": "7898597132074"
+    }
+  },
+  {
+    "produtoId": "0cd3928f-2185-4a0d-bac0-05862a066d7d",
+    "sku": "VTK019131",
+    "nome": "Laço Indutivo Citrox 1,90x0,80 Cx-4001",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 102.95,
+    "estoque": 3,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 151.79,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898954353265",
+      "validatedNcm": "85439090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB7070",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "3249259",
+        "value_name": "Citrox"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "26546102",
+        "value_name": "CX-4001"
+      },
+      {
+        "id": "PIECES_NUMBER",
+        "value_id": "297910",
+        "value_name": "2"
+      },
+      {
+        "id": "DEVICE_TYPE",
+        "value_id": "395193",
+        "value_name": "Alarme"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "26546101",
+        "value_name": "7898954353265"
+      },
+      {
+        "id": "ALPHANUMERIC_MODELS",
+        "value_id": "70156307",
+        "value_name": "CX-4001"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB28393443",
+      "catalogProductName": "2 Laço Indutivo E Detector De Massa Metálica Citrox Cx-4001",
+      "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "categoryId": "MLB7070",
+      "categoryName": "Alarmes e Sensores",
+      "linkedListingsInCategory": 3,
+      "validatedGtin": "7898954353265"
+    }
+  },
+  {
+    "produtoId": "ed62b1b8-d140-4d21-aebd-5c42f87c8e27",
+    "sku": "VTK017824",
+    "nome": "Lâminas Para Ratinho Nwt Insf0013 Para Aplicação De Insulfilm 100 Unidades",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 65.92,
+    "estoque": 21,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 106.07,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898566207772",
+      "validatedNcm": "73261900",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB268504",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "43475668",
+        "value_name": "Stom"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "52112270",
+        "value_name": "Raspador Ratinho 4 cm"
+      },
+      {
+        "id": "PART_NUMBER",
+        "value_id": "43475672",
+        "value_name": "100 Lâminas para Raspador Ratinho"
+      },
+      {
+        "id": "VEHICLE_TYPE",
+        "value_id": "11377043",
+        "value_name": "Carro/Caminhonete"
+      },
+      {
+        "id": "WITH_ANTIVANDALIC_SHEET",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "43475669",
+        "value_name": "7898566207772"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB41798993",
+      "catalogProductName": "Kit 100 Lâminas Poker Tool Aço Carbono 4 cm Para Raspador Ratinho Vidros",
+      "catalogDomainId": "MLB-VEHICLE_TINTED_GLASSES",
+      "predictedDomainId": "MLB-VEHICLE_TINTED_GLASSES",
+      "categoryId": "MLB268504",
+      "categoryName": "Insulfilms",
+      "linkedListingsInCategory": 7,
+      "validatedGtin": "7898566207772"
+    }
+  },
+  {
+    "produtoId": "5b9c27d8-c667-43dc-89c7-9322067883df",
+    "sku": "VTK018524",
+    "nome": "Roteador Wi-fi Max Aquário Apr-2410 N 150 Mbps",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 85.1,
+    "estoque": 5,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 129.75,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898127600929",
+      "validatedNcm": "85176241",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB5867",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "45099",
+        "value_name": "Aquário"
+      },
+      {
+        "id": "LINE",
+        "value_id": "18167",
+        "value_name": "MAX"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "59672",
+        "value_name": "APR-2410"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_id": "7386989",
+        "value_name": "1"
+      },
+      {
+        "id": "VOLTAGE",
+        "value_id": "39205163",
+        "value_name": "127/220V"
+      },
+      {
+        "id": "FUNCTIONS",
+        "value_id": "279956",
+        "value_name": "Roteador"
+      },
+      {
+        "id": "INTERNAL_ANTENNAS_NUMBER",
+        "value_id": "8637169",
+        "value_name": "1"
+      },
+      {
+        "id": "EXTERNAL_ANTENNAS_NUMBER",
+        "value_id": "8758647",
+        "value_name": "1"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_id": "41553638",
+        "value_name": "15231302250"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "36998743",
+        "value_name": "7898127600929"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB36904293",
+      "catalogProductName": "Roteador Wireless N150 Max Aquário APR-2410 Preto",
+      "catalogDomainId": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS",
+      "predictedDomainId": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS",
+      "categoryId": "MLB5867",
+      "categoryName": "Roteadores",
+      "linkedListingsInCategory": 1,
+      "validatedGtin": "7898127600929"
+    }
+  },
+  {
+    "produtoId": "85bd6a53-e81c-426c-9450-ae424299e482",
+    "sku": "VTK018024",
+    "nome": "Teclado Viaweb 16s",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 99.9,
+    "estoque": 16,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 148.02,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898936319227",
+      "validatedNcm": "85319000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB7070",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "16717793",
+        "value_name": "Viaweb"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "16718079",
+        "value_name": "TECLADO VIAWEB 16S"
+      },
+      {
+        "id": "DEVICE_TYPE",
+        "value_id": "395193",
+        "value_name": "Alarme"
+      },
+      {
+        "id": "SENSOR_TYPES",
+        "value_id": "16716889",
+        "value_name": "Alarme, Teclado, via web"
+      },
+      {
+        "id": "MATERIAL",
+        "value_id": "2748302",
+        "value_name": "Plástico"
+      },
+      {
+        "id": "WITH_BACKUP_BATTERY",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "COVERAGE_DISTANCE",
+        "value_id": "7555954",
+        "value_name": "100 m"
+      },
+      {
+        "id": "WITH_WIFI",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_AUTOMATIC_DIALLING",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_SOUND_ALARM",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_DISCREET_ALARM",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "MAX_SENSORS_NUMBER",
+        "value_id": "7626115",
+        "value_name": "16"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "16718078",
+        "value_name": "7898936319227"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB21742933",
+      "catalogProductName": "Teclado Viaweb 16s",
+      "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "categoryId": "MLB7070",
+      "categoryName": "Alarmes e Sensores",
+      "linkedListingsInCategory": 3,
+      "validatedGtin": "7898936319227"
+    }
+  },
+  {
+    "produtoId": "17218e85-3802-4e3d-950e-fb5ff8eff639",
+    "sku": "VTK018924",
+    "nome": "Telefone Celular Fixo Intelbras Gsm Cfa 4211 4114211",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 362.9,
+    "estoque": 4,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 515.23,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896637677004",
+      "validatedNcm": "85171439",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB1053",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "20785763",
+        "value_name": "cFA 4211"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "13062692",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "DISPLAY_TYPE",
+        "value_id": "102258",
+        "value_name": "Digital"
+      },
+      {
+        "id": "HEADPHONES_NUMBER_INCLUDED",
+        "value_id": "7512605",
+        "value_name": "1"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "WITH_CALLER_IDENTIFICATION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_ANSWERING_MACHINE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_WALL_MOUNTABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "BATTERY_CAPACITY",
+        "value_id": "160433",
+        "value_name": "800 mAh"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "20785764",
+        "value_name": "7896637677004"
+      },
+      {
+        "id": "WITH_HANDS_FREE_MODE",
+        "value_id": "242084",
+        "value_name": "Não"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB24453976",
+      "catalogProductName": "Telefone Celular Fixo Gsm Cfa 4211 - Intelbras Cor Preto",
+      "catalogDomainId": "MLB-TELEPHONES",
+      "predictedDomainId": "MLB-TELEPHONES",
+      "categoryId": "MLB1053",
+      "categoryName": "Telefones",
+      "linkedListingsInCategory": 1,
+      "validatedGtin": "7896637677004"
+    }
+  },
+  {
+    "produtoId": "6aadcd86-f85e-4608-9de5-1cb16f6bfacc",
+    "sku": "VTK019952",
+    "nome": "Telefone Sem Fio Intelbras Ts5121 Ramal Digital",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 137.9,
+    "estoque": 16,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 195.78,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896637647571",
+      "validatedNcm": "85171100",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    },
+    "categoryId": "MLB1053",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "10366",
+        "value_name": "Intelbras"
+      },
+      {
+        "id": "MODEL",
+        "value_id": "45951841",
+        "value_name": "TS 5121 Ramal"
+      },
+      {
+        "id": "COLOR",
+        "value_id": "52049",
+        "value_name": "Preto"
+      },
+      {
+        "id": "MAIN_COLOR",
+        "value_id": "2450295",
+        "value_name": "Preto"
+      },
+      {
+        "id": "DISPLAY_TYPE",
+        "value_id": "81834",
+        "value_name": "LCD"
+      },
+      {
+        "id": "IS_WIRELESS",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_CALLER_IDENTIFICATION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_ANSWERING_MACHINE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "IS_WALL_MOUNTABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "ANATEL_HOMOLOGATION_NUMBER",
+        "value_id": "40364536",
+        "value_name": "5501500160"
+      },
+      {
+        "id": "BATTERY_CAPACITY",
+        "value_id": "149366",
+        "value_name": "600 mAh"
+      },
+      {
+        "id": "GTIN",
+        "value_id": "13229149",
+        "value_name": "7896637647571"
+      },
+      {
+        "id": "WITH_HANDS_FREE_MODE",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_DATE_AND_TIME_INDICATOR",
+        "value_id": "242085",
+        "value_name": "Sim"
+      },
+      {
+        "id": "WITH_REDIAL_FUNCTION",
+        "value_id": "242085",
+        "value_name": "Sim"
+      }
+    ],
+    "catalogEvidence": {
+      "source": "mercado_livre_products_search_exact_gtin",
+      "catalogProductId": "MLB44779696",
+      "catalogProductName": "Telefone Sem Fio Intelbras TS 5121 Ramal, Base TS 5120, Preto Com Dois Ramais",
+      "catalogDomainId": "MLB-TELEPHONES",
+      "predictedDomainId": "MLB-TELEPHONES",
+      "categoryId": "MLB1053",
+      "categoryName": "Telefones",
+      "linkedListingsInCategory": 2,
+      "validatedGtin": "7896637647571"
+    }
+  }
+]

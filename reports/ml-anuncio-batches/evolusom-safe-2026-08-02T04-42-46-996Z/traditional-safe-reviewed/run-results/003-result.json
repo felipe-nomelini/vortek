@@ -1,0 +1,135 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-safe-reviewed/003-evolusom-traditional-safe-003.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-traditional-safe-003",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "44b3d34d-83bb-4fea-bc12-bbaa2d4b8912",
+      "sku": "VTK017969",
+      "category": {
+        "id": "MLB46560",
+        "nome": "Cornetas",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7311539882",
+        "title": "Corneta Profissional Jbl Hl11-25 Trio Branca",
+        "price": 160.7,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7311539882-corneta-profissional-jbl-hl11-25-trio-branca-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 137.34 → R$ 160.70."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "7c2e6935-5434-49e1-aa54-97e66714c919",
+      "sku": "VTK017986",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7311574752",
+        "title": "Driver Fenólico Jbl D450 Trio 300w 8r Rms",
+        "price": 1122.44,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7311574752-driver-fenolico-jbl-d450-trio-300w-8r-rms-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 1061.62 → R$ 1122.44."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "dc303f1e-c351-47b5-b84f-fd288ba331e4",
+      "sku": "VTK017995",
+      "category": {
+        "id": "MLB421298",
+        "nome": "Conversores de Aúdio e Vídeo",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981462505",
+        "title": "Conversor De Audio/video Evus C-085 Hdmi Para 3 Rca",
+        "price": 109.29,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981462505-conversor-de-audiovideo-evus-c-085-hdmi-para-3-rca-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 93.46 → R$ 109.29."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b02d0763-0ef6-473a-ac17-5c63cd3a6dfc",
+      "sku": "VTK018013",
+      "category": {
+        "id": "MLB22369",
+        "nome": "Travas Elétricas",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7311574984",
+        "title": "Trava Elétrica Soft Aa420011 Novo Uno / Celta / Eco / Fiest",
+        "price": 197.91,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7311574984-trava-eletrica-soft-aa420011-novo-uno-celta-eco-fiest-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 174.56 → R$ 197.91."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "f0e66d56-21a1-4492-a513-cd64fbb9d708",
+      "sku": "VTK018107",
+      "category": {
+        "id": "MLB11507",
+        "nome": "Caixas Acústicas ",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7311540276",
+        "title": "Arandela Frahm Sem Borda 6  100w Quadrada",
+        "price": 375.56,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7311540276-arandela-frahm-sem-borda-6-100w-quadrada-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 341.90 → R$ 375.56."
+      ]
+    }
+  ],
+  "failed": []
+}

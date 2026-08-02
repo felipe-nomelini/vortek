@@ -1,0 +1,392 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-domain-mismatch-validated/dry-run-results/003-evolusom-catalog-create-003-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-003",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "7c8971e2-d889-4815-9dc5-1ffb7a9cdbdb",
+      "sku": "VTK017823",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 80.25,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "291781"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277980766"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 13p 050cb-pta Fiat Modelo Palio Fire 2004 Cubo Baixo - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Palio Fire 2004 Aro 13 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 291781\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277980766\n• NCM: 87087090\n• SKU: VTK017823\n\nEMBALAGEM\n• Dimensões informadas: 38 × 4 × 38 cm\n• Peso bruto informado: 0,216 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "65cf91e9-4975-4825-8c8b-6236c64fa2aa",
+      "sku": "VTK017872",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": ""
+      },
+      "basePrice": 88.59,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "JBL"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "347461"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "RPST330"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Reparo Jbl Rpst330 Para Super Tweeter St330 Poly T\n\nVISÃO GERAL\nInformações do Produto Reparo JBL RPST330 Polyt Para Super Tweeter ST330 Polyt\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: JBL\n• Número de peça: 347461\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: RPST330\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: JBL\n• GTIN: 7896359538010\n• NCM: 85189010\n• SKU: VTK017872\n\nEMBALAGEM\n• Dimensões informadas: 4.2 × 10.5 × 11.5 cm\n• Peso bruto informado: 0,062 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0c58abd1-d64a-4139-9563-b4c28dde8baf",
+      "sku": "VTK017885",
+      "category": {
+        "id": "MLB33383",
+        "nome": "Outros",
+        "dominio": ""
+      },
+      "basePrice": 46.2,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "MINIPA"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MTK-01"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898112607308"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Termopar Tipo K Minipa Mtk-01 Com Blister\n\nVISÃO GERAL\nTermopar Tipo K Minipa MTK-01 O termopar MTK-01 é um instrumento de medição com faixa de medição de -40 a 204ºC e precisão de ±0,75% Leit. ou ±2,2ºC. Com tipo K e conexão por soquete, é indicado para aplicações universais.\n\nSeu comprimento de 970mm oferece versatilidade na instalação. Ideal para monitoramento preciso e confiável de temperaturas em diversos processos industriais e laboratoriais. O MTK-01 destaca-se pela sua confiabilidade e desempenho em ambientes exigentes.\n\n*Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MINIPA\n• Modelo: MTK-01\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MINIPA\n• GTIN: 7898112607308\n• NCM: 90259010\n• SKU: VTK017885\n\nEMBALAGEM\n• Dimensões informadas: 2 × 8.5 × 19 cm\n• Peso bruto informado: 0,03 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6c3584cf-235b-4f73-9ed9-11da5c32d26b",
+      "sku": "VTK017895",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 109.62,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292309"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277981503"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 15p 195cp-pta Modelo Onix / Prisma Lt 2014/ 16 - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Onix Prisma LT 2014/2016 Aro 15 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292309\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277981503\n• NCM: 87087090\n• SKU: VTK017895\n\nEMBALAGEM\n• Dimensões informadas: 42 × 4 × 42 cm\n• Peso bruto informado: 0,272 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2f410b69-9b05-49fd-95ab-487e32bfb552",
+      "sku": "VTK017924",
+      "category": {
+        "id": "MLB417161",
+        "nome": "Interruptores Elétricos",
+        "dominio": ""
+      },
+      "basePrice": 78.35,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "POSITRON"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "PX-32"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7897789624526"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Chaveiro Positron Novo Px-32 Cyber 4 Botões Preto\n\nVISÃO GERAL\nInformações do Produto Novo controle PX32 com função de acionamento manual Produto original de fábrica Simples recodificação Compatibilidade: Alarme Cyber 293, FX e PX.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: POSITRON\n• Modelo: PX-32\n• Cor: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: POSITRON\n• GTIN: 7897789624526\n• NCM: 85437099\n• SKU: VTK017924\n\nEMBALAGEM\n• Dimensões informadas: 1.5 × 6.5 × 9 cm\n• Peso bruto informado: 0,014 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "dadf008c-d494-4df6-ba1e-417a9427b73f",
+      "sku": "VTK017966",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292084"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277981541"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p 014cb-pta Ford Modelo Fiesta 2008/ 10 Cubo Baixo - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Fiesta 2008/ 10 Aro 13 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292084\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277981541\n• NCM: 87087090\n• SKU: VTK017966\n\nEMBALAGEM\n• Dimensões informadas: 39 × 39 × 4 cm\n• Peso bruto informado: 0,304 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "e666735c-5699-4787-9273-2e2be34c872a",
+      "sku": "VTK017848",
+      "nome": "Cabo Alarme Telecam 100 Metros 50 X 10 Vias Cca Liga Cobre",
+      "error": "Atributos obrigatórios pendentes: Modelo, Conector de saída, Conector de entrada",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB48605",
+            "nome": "Cabos Telefônicos"
+          },
+          "missing": [
+            "Modelo",
+            "Conector de saída",
+            "Conector de entrada"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "78d60d02-7936-4e09-9279-ad8ec2833a35",
+      "sku": "VTK017898",
+      "nome": "Fone Headset Intelbras Ths 55 Conector Usb 4010055",
+      "error": "Atributos obrigatórios pendentes: Modelo, Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3828",
+            "nome": "Telefones Headset"
+          },
+          "missing": [
+            "Modelo",
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6aad7bc9-9c00-4597-86de-37c6ddde778e",
+      "sku": "VTK017933",
+      "nome": "Botão De Pânico Ipec Nf",
+      "error": "Atributos obrigatórios pendentes: Modelo, Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Modelo",
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "9c77b5a6-03a8-43a1-bb04-7c2e30e2c9c1",
+      "sku": "VTK017970",
+      "nome": "Reparo Tweeter Shock Completo St-400 Selenium",
+      "error": "Atributos obrigatórios pendentes: Tipo de amortecedor",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB122134",
+            "nome": "Amortecedores"
+          },
+          "missing": [
+            "Tipo de amortecedor"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

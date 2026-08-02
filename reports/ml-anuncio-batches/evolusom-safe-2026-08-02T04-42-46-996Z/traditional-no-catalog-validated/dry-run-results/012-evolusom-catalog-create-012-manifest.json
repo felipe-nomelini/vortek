@@ -1,0 +1,353 @@
+{
+  "batchNumber": 12,
+  "batchId": "evolusom-traditional-012",
+  "strategy": "traditional_no_catalog_predictor_consensus",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "f77ee66f-5cd4-4dab-9b60-8ad9a590e092",
+      "sku": "VTK018621",
+      "nome": "Calota Grid Aro 13p 047ca-pta Modelo Volkswaggen Gol G5 1.6 2012/ 13 Cubo Alto - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.4,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277983620"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277983620",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "54d72c15-06e1-470f-9b49-e8f1d8aaa519",
+      "sku": "VTK018622",
+      "nome": "Calota Grid Aro 13p 082ca-pta Modelo Gol G5/ Voyage/ Saveiro 2009/ 11 Cubo Alto - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.4,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277983415"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277983415",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "4266bea0-14ff-4ee1-9fc4-524d61b64221",
+      "sku": "VTK018635",
+      "nome": "Capota Marítima Concórdia Flash Cover Ba155l Volkwagen Saveiro Cabine Simples Com Gancho 2010+ Baguete",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 469.9,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 696.15,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "categoryId": "MLB46680",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_BED_COVERS",
+        "categoryId": "MLB46680",
+        "categoryName": "Capotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Acessórios de Caçamba > Capotas",
+        "validatedGtin": "7899630182629"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899630182629",
+        "validatedNcm": "87082999",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "9c02c8db-a5e2-45ae-8c77-e25a00e9a0a0",
+      "sku": "VTK018639",
+      "nome": "Kit Ventilador Universal Para Rack Piso Max Eletron Com 4 Coolers",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 299.9,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 425.78,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB1645",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-FANS",
+        "categoryId": "MLB1645",
+        "categoryName": "Ventiladores",
+        "categoryPath": "Eletrodomésticos > Ar e Ventilação > Ventiladores",
+        "validatedGtin": "7908060206284"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908060206284",
+        "validatedNcm": "85354090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "eb1dc2f3-745a-475c-a7aa-6b7c421bf968",
+      "sku": "VTK018647",
+      "nome": "Calota Aro 14p 009ca-gft Mod Gol G5/ Voyage/saveiro 2009/ 11 Ca - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892511496"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892511496",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "0f642e19-edf7-4149-98e6-4c2081dd78df",
+      "sku": "VTK018648",
+      "nome": "Calota Aro 14p 026cb-gft Mod Fiesta Hatch / Sedan 2011/ 13 Cb - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892511397"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892511397",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "08df3be3-519f-45c5-bab3-1dfd20a27fc9",
+      "sku": "VTK018649",
+      "nome": "Calota Grid Aro 14a 461ar-grafite Modelo Etios 2014/2015 Ar - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892511465"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892511465",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "5a3285c8-cf05-41c4-ba80-dde3d8e8839f",
+      "sku": "VTK018664",
+      "nome": "Antena Permak Am/fm 2 Estágio Preta",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 24.5,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 54.94,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB45256",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_ANTENNAS",
+        "categoryId": "MLB45256",
+        "categoryName": "Antenas",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Antenas",
+        "validatedGtin": "7898253494645"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253494645",
+        "validatedNcm": "85291090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "acb93d87-11f9-4c26-8c81-b56ef6738607",
+      "sku": "VTK018669",
+      "nome": "Central Soft Unique Aw52 2v Kwid 2017+",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 153.9,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 218.5,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB7503",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-BUSINESS_TELEPHONE_SYSTEMS",
+        "categoryId": "MLB7503",
+        "categoryName": "Centrais",
+        "categoryPath": "Celulares e Telefones > Telefonia Fixa e Sem Fio > Centrais Telefônicas > Centrais",
+        "validatedGtin": "7898441352306"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898441352306",
+        "validatedNcm": "85432000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "8f8b8004-2749-4790-b626-6bdc31c30dfd",
+      "sku": "VTK018702",
+      "nome": "Alto Falante Hinor Hpl 18\" 1000w Rms 8r Subwoofer",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 581.99,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 862.21,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "categoryId": "MLB3905",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Alto-Falantes",
+        "validatedGtin": "7896673801128"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896673801128",
+        "validatedNcm": "85182100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

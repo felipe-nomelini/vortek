@@ -1,0 +1,54 @@
+{
+  "generatedAt": "2026-08-02T04:49:37.525Z",
+  "approvedForDryRun": 38,
+  "mirroredImages": [
+    "VTK001491",
+    "VTK001628",
+    "VTK017181",
+    "VTK018044",
+    "VTK018218"
+  ],
+  "rejected": [
+    {
+      "sku": "VTK018029",
+      "reason": "semantic_catalog_mismatch"
+    },
+    {
+      "sku": "VTK019131",
+      "reason": "semantic_catalog_mismatch"
+    },
+    {
+      "sku": "VTK019952",
+      "reason": "semantic_catalog_mismatch"
+    },
+    {
+      "sku": "VTK019484",
+      "reason": "semantic_catalog_mismatch"
+    },
+    {
+      "sku": "VTK018908",
+      "reason": "semantic_catalog_mismatch"
+    },
+    {
+      "sku": "VTK019100",
+      "reason": "semantic_catalog_mismatch"
+    },
+    {
+      "sku": "VTK017904",
+      "reason": "semantic_catalog_mismatch"
+    },
+    {
+      "sku": "VTK018828",
+      "reason": "semantic_catalog_mismatch"
+    },
+    {
+      "sku": "VTK017801",
+      "reason": "semantic_catalog_mismatch"
+    },
+    {
+      "sku": "VTK020645",
+      "reason": "mirror_candidate_catalog_count_0"
+    }
+  ],
+  "batchCount": 8
+}

@@ -1,0 +1,267 @@
+{
+  "batchNumber": 32,
+  "batchId": "evolusom-ml-create-032",
+  "strategy": "strict_evidence_small_batch",
+  "executionHints": {
+    "delayMs": 2000,
+    "listingType": "gold_pro",
+    "strictEvidence": true,
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "stopAfterConsecutiveFailures": 3,
+    "requireVortekStorageImages": true,
+    "verifyListingAfterEachCreate": true
+  },
+  "items": [
+    {
+      "produtoId": "9c77b5a6-03a8-43a1-bb04-7c2e30e2c9c1",
+      "sku": "VTK017970",
+      "nome": "Reparo Tweeter Shock Completo St-400 Selenium",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 24.9,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 55.43,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7892046021094",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "b1f9c24c-9a5b-4e26-b1c7-ee0a8bda5172",
+      "sku": "VTK018455",
+      "nome": "Reparo Tweeter Shock Completo St-450 Trio",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 25.9,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 56.67,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7892046021254",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "5385c6d7-c16c-4bce-9394-adf20c11f3fa",
+      "sku": "VTK017801",
+      "nome": "Resistência Hikari Hplus Sc-40 W 220v Com 2 Peças",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 29.8,
+      "estoque": 24,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 61.48,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7893007713034",
+        "validatedNcm": "85159000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "5b9c27d8-c667-43dc-89c7-9322067883df",
+      "sku": "VTK018524",
+      "nome": "Roteador Wi-fi Max Aquário Apr-2410 N 150 Mbps",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 85.1,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 129.75,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898127600929",
+        "validatedNcm": "85176241",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "018f9e02-57ce-4766-a127-8cbee6d3cabc",
+      "sku": "VTK017630",
+      "nome": "Sensor Externo Sulton Spw 700 Pet 30 Kg",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 161.9,
+      "estoque": 38,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 229.86,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898911419904",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "b9da6dfa-378f-4668-b43c-3ffeffe92b49",
+      "sku": "VTK017539",
+      "nome": "Sensor Magnético Smart Sulton V3 Smw250",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 45.9,
+      "estoque": 49,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 81.36,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898691800718",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "4e6f2b8c-85c5-4392-bbe5-7c9ca2482a60",
+      "sku": "VTK018199",
+      "nome": "Sensor Ultrasom Locktronic",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 57.9,
+      "estoque": 12,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 96.17,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898441353204",
+        "validatedNcm": "85311090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "e80419ea-3228-4e4d-93df-a8931fea6bba",
+      "sku": "VTK018149",
+      "nome": "Sinalizador Veicular Gcp Ss 1000",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 59.9,
+      "estoque": 13,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 98.64,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898642390510",
+        "validatedNcm": "85311090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "22f24876-10e5-49e7-82a3-af3218d1e5c9",
+      "sku": "VTK018130",
+      "nome": "Sirene Bitonal Fks 12v Preta",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 13.9,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 41.85,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899906801490",
+        "validatedNcm": "85123000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "1a4468b9-0d4e-4635-ba58-17fcd661e9e1",
+      "sku": "VTK017819",
+      "nome": "Sirene De Ré Fks 12/24v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 19.9,
+      "estoque": 24,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 49.26,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899906804910",
+        "validatedNcm": "85123000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

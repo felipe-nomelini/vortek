@@ -1,0 +1,44 @@
+[
+  {
+    "produtoId": "063dbebd-b445-4a04-af92-4036ba27b15d",
+    "sku": "VTK017637",
+    "nome": "Central De Alarme Sulton Cls 1400 Não Monitorada 10 Zonas",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Voltagem, Tipo de dispositivo"
+  },
+  {
+    "produtoId": "965a501e-b56c-4afd-a0c2-5c4e0ebecab0",
+    "sku": "VTK017666",
+    "nome": "Multitoc Telefone Gondola C/ Fio Grafite",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº"
+  },
+  {
+    "produtoId": "cc84bed0-6160-4af3-b00e-148814686007",
+    "sku": "VTK017982",
+    "nome": "Calculadora Pessoal Procalc Pc986-p 8 Dígitos Pink",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de calculadora"
+  },
+  {
+    "produtoId": "85bd6a53-e81c-426c-9450-ae424299e482",
+    "sku": "VTK018024",
+    "nome": "Teclado Viaweb 16s",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Voltagem"
+  },
+  {
+    "produtoId": "fd649d0c-7e6b-413f-bf09-c85949c0d588",
+    "sku": "VTK018435",
+    "nome": "Golden Waffle 2 Britânia 220v",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de alimentação"
+  },
+  {
+    "produtoId": "17218e85-3802-4e3d-950e-fb5ff8eff639",
+    "sku": "VTK018924",
+    "nome": "Telefone Celular Fixo Intelbras Gsm Cfa 4211 4114211",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº"
+  }
+]

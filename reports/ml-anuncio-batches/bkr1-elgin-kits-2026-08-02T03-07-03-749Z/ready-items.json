@@ -1,0 +1,3214 @@
+[
+  {
+    "produtoId": "cb733cdf-c600-4201-851e-1d74b0b2a57d",
+    "sku": "VTK025633",
+    "nome": "10 Pilhas Moeda Lítio Elgin CR1220 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 17,
+    "estoque": 50,
+    "suggestedPricePreview": 45.68,
+    "description": "10 Pilhas Moeda Lítio Elgin CR1220 3V Kit\n\nKit original Elgin com 10 pilhas ou baterias, distribuídas em 2 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 embalagens com 5 unidade(s) cada\n\n- Total: 10 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR1220\n\n- Tamanho: CR1220\n\n- Formato: Botão\n\n- Quantidade total: 10 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR1220"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR1220"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "10"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2608K2",
+      "componentSku": "VTK012060",
+      "componentGtin": "7897013573958",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR1220",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "10",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857625799 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "ace7354e-71b5-440b-b076-8b6ea2e495a9",
+    "sku": "VTK025640",
+    "nome": "10 Pilhas Moeda Lítio Elgin CR2430 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 21.8,
+    "estoque": 5,
+    "suggestedPricePreview": 51.6,
+    "description": "10 Pilhas Moeda Lítio Elgin CR2430 3V Kit\n\nKit original Elgin com 10 pilhas ou baterias, distribuídas em 2 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 embalagens com 5 unidade(s) cada\n\n- Total: 10 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2430\n\n- Tamanho: CR2430\n\n- Formato: Botão\n\n- Quantidade total: 10 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2430"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2430"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "10"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2790K2",
+      "componentSku": "VTK012068",
+      "componentGtin": "7897013573972",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2430",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "10",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857637203 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "58098654-e497-46f4-9d5a-78ecba881826",
+    "sku": "VTK025642",
+    "nome": "10 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 18.8,
+    "estoque": 35,
+    "suggestedPricePreview": 47.9,
+    "description": "10 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nKit original Elgin com 10 pilhas ou baterias, distribuídas em 2 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 embalagens com 5 unidade(s) cada\n\n- Total: 10 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2016\n\n- Tamanho: CR2016\n\n- Formato: Botão\n\n- Quantidade total: 10 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "10"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2391K2",
+      "componentSku": "VTK012146",
+      "componentGtin": "7897013538094",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2016",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "10",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714408 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "23e88c00-8ccb-4851-8dee-dd3c39f38903",
+    "sku": "VTK025643",
+    "nome": "10 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 11.44,
+    "estoque": 39,
+    "suggestedPricePreview": 38.81,
+    "description": "10 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nKit original Elgin com 10 pilhas ou baterias, distribuídas em 2 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 embalagens com 5 unidade(s) cada\n\n- Total: 10 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2025\n\n- Tamanho: CR2025\n\n- Formato: Botão\n\n- Quantidade total: 10 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "10"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2392K2",
+      "componentSku": "VTK012145",
+      "componentGtin": "7897013538100",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2025",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "10",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714726 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "cf0f9b00-8da7-4d5b-bd0b-be6392474156",
+    "sku": "VTK025644",
+    "nome": "10 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 13.6,
+    "estoque": 50,
+    "suggestedPricePreview": 41.48,
+    "description": "10 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nKit original Elgin com 10 pilhas ou baterias, distribuídas em 2 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 2 embalagens com 5 unidade(s) cada\n\n- Total: 10 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2032\n\n- Tamanho: CR2032\n\n- Formato: Botão\n\n- Quantidade total: 10 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "10"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2393K2",
+      "componentSku": "VTK012047",
+      "componentGtin": "7897013538117",
+      "componentQuantity": 2,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2032",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "10",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638211 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "ffbc8e0c-baf8-487a-a517-1f2534124b96",
+    "sku": "VTK025655",
+    "nome": "100 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 188,
+    "estoque": 3,
+    "suggestedPricePreview": 266.91,
+    "description": "100 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nKit original Elgin com 100 pilhas ou baterias, distribuídas em 20 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 20 embalagens com 5 unidade(s) cada\n\n- Total: 100 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2016\n\n- Tamanho: CR2016\n\n- Formato: Botão\n\n- Quantidade total: 100 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "100"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2391CX20",
+      "componentSku": "VTK012146",
+      "componentGtin": "7897013538094",
+      "componentQuantity": 20,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2016",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "100",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714408 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "b11d6713-770d-4470-8e70-0b8a58e06436",
+    "sku": "VTK025656",
+    "nome": "100 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 114.4,
+    "estoque": 3,
+    "suggestedPricePreview": 165.93,
+    "description": "100 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nKit original Elgin com 100 pilhas ou baterias, distribuídas em 20 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 20 embalagens com 5 unidade(s) cada\n\n- Total: 100 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2025\n\n- Tamanho: CR2025\n\n- Formato: Botão\n\n- Quantidade total: 100 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "100"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2392CX20",
+      "componentSku": "VTK012145",
+      "componentGtin": "7897013538100",
+      "componentQuantity": 20,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2025",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "100",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714726 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "d5053271-c0f7-4a41-8554-f103d4e4ae72",
+    "sku": "VTK025657",
+    "nome": "100 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 136,
+    "estoque": 5,
+    "suggestedPricePreview": 193.09,
+    "description": "100 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nKit original Elgin com 100 pilhas ou baterias, distribuídas em 20 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 20 embalagens com 5 unidade(s) cada\n\n- Total: 100 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2032\n\n- Tamanho: CR2032\n\n- Formato: Botão\n\n- Quantidade total: 100 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "100"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2393CX20",
+      "componentSku": "VTK012047",
+      "componentGtin": "7897013538117",
+      "componentQuantity": 20,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2032",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "100",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638211 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "6f27af50-a600-4f38-bbbb-9f5c94969ea5",
+    "sku": "VTK025673",
+    "nome": "15 Pilhas Moeda Lítio Elgin CR1220 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 25.5,
+    "estoque": 33,
+    "suggestedPricePreview": 56.17,
+    "description": "15 Pilhas Moeda Lítio Elgin CR1220 3V Kit\n\nKit original Elgin com 15 pilhas ou baterias, distribuídas em 3 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 embalagens com 5 unidade(s) cada\n\n- Total: 15 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR1220\n\n- Tamanho: CR1220\n\n- Formato: Botão\n\n- Quantidade total: 15 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR1220"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR1220"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "15"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2608K3",
+      "componentSku": "VTK012060",
+      "componentGtin": "7897013573958",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR1220",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "15",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857625799 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "01befa13-59be-4517-abfa-acee3be87297",
+    "sku": "VTK025674",
+    "nome": "15 Pilhas Moeda Lítio Elgin CR1616 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 24.84,
+    "estoque": 33,
+    "suggestedPricePreview": 55.36,
+    "description": "15 Pilhas Moeda Lítio Elgin CR1616 3V Kit\n\nKit original Elgin com 15 pilhas ou baterias, distribuídas em 3 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 embalagens com 5 unidade(s) cada\n\n- Total: 15 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR1616\n\n- Tamanho: CR1616\n\n- Formato: Botão\n\n- Quantidade total: 15 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR1616"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR1616"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "15"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2611K3",
+      "componentSku": "VTK012062",
+      "componentGtin": "7897013514760",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR1616",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "15",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638105 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "06841718-d167-4558-8300-a91b91749347",
+    "sku": "VTK025678",
+    "nome": "15 Pilhas Moeda Lítio Elgin CR2430 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 32.7,
+    "estoque": 3,
+    "suggestedPricePreview": 65.06,
+    "description": "15 Pilhas Moeda Lítio Elgin CR2430 3V Kit\n\nKit original Elgin com 15 pilhas ou baterias, distribuídas em 3 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 embalagens com 5 unidade(s) cada\n\n- Total: 15 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2430\n\n- Tamanho: CR2430\n\n- Formato: Botão\n\n- Quantidade total: 15 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2430"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2430"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "15"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2790K3",
+      "componentSku": "VTK012068",
+      "componentGtin": "7897013573972",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2430",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "15",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857637203 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "abc4ad8a-6539-4037-a21d-f233882fc2b6",
+    "sku": "VTK025680",
+    "nome": "15 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 28.2,
+    "estoque": 23,
+    "suggestedPricePreview": 59.51,
+    "description": "15 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nKit original Elgin com 15 pilhas ou baterias, distribuídas em 3 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 embalagens com 5 unidade(s) cada\n\n- Total: 15 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2016\n\n- Tamanho: CR2016\n\n- Formato: Botão\n\n- Quantidade total: 15 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "15"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2391K3",
+      "componentSku": "VTK012146",
+      "componentGtin": "7897013538094",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2016",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "15",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714408 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "35c9adb4-f6e5-4c26-8e2f-d23f8d3a5499",
+    "sku": "VTK025681",
+    "nome": "15 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 17.16,
+    "estoque": 26,
+    "suggestedPricePreview": 45.88,
+    "description": "15 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nKit original Elgin com 15 pilhas ou baterias, distribuídas em 3 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 embalagens com 5 unidade(s) cada\n\n- Total: 15 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2025\n\n- Tamanho: CR2025\n\n- Formato: Botão\n\n- Quantidade total: 15 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "15"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2392K3",
+      "componentSku": "VTK012145",
+      "componentGtin": "7897013538100",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2025",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "15",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714726 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "d0176b13-b6b7-44ce-91b4-b3578713e214",
+    "sku": "VTK025682",
+    "nome": "15 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 20.4,
+    "estoque": 33,
+    "suggestedPricePreview": 49.88,
+    "description": "15 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nKit original Elgin com 15 pilhas ou baterias, distribuídas em 3 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 3 embalagens com 5 unidade(s) cada\n\n- Total: 15 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2032\n\n- Tamanho: CR2032\n\n- Formato: Botão\n\n- Quantidade total: 15 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "15"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2393K3",
+      "componentSku": "VTK012047",
+      "componentGtin": "7897013538117",
+      "componentQuantity": 3,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2032",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "15",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638211 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "26224d62-006e-4db1-b89a-acce2097c03e",
+    "sku": "VTK025683",
+    "nome": "150 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 204,
+    "estoque": 3,
+    "suggestedPricePreview": 289.63,
+    "description": "150 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nKit original Elgin com 150 pilhas ou baterias, distribuídas em 30 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 30 embalagens com 5 unidade(s) cada\n\n- Total: 150 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2032\n\n- Tamanho: CR2032\n\n- Formato: Botão\n\n- Quantidade total: 150 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "150"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2393K30",
+      "componentSku": "VTK012047",
+      "componentGtin": "7897013538117",
+      "componentQuantity": 30,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2032",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "150",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638211 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "2765ff71-67f9-4f9b-9bbc-9ce94d0005e5",
+    "sku": "VTK025702",
+    "nome": "20 Pilhas Moeda Lítio Elgin CR1220 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 34,
+    "estoque": 25,
+    "suggestedPricePreview": 66.67,
+    "description": "20 Pilhas Moeda Lítio Elgin CR1220 3V Kit\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 5 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR1220\n\n- Tamanho: CR1220\n\n- Formato: Botão\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR1220"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR1220"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "20"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2608K4",
+      "componentSku": "VTK012060",
+      "componentGtin": "7897013573958",
+      "componentQuantity": 4,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR1220",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "20",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857625799 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "311b25f4-be9d-44e7-9a3d-4c509e796654",
+    "sku": "VTK025703",
+    "nome": "20 Pilhas Moeda Lítio Elgin CR1616 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 33.12,
+    "estoque": 25,
+    "suggestedPricePreview": 65.58,
+    "description": "20 Pilhas Moeda Lítio Elgin CR1616 3V Kit\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 5 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR1616\n\n- Tamanho: CR1616\n\n- Formato: Botão\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR1616"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR1616"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "20"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2611K4",
+      "componentSku": "VTK012062",
+      "componentGtin": "7897013514760",
+      "componentQuantity": 4,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR1616",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "20",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638105 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "238ea83d-2998-4380-9c4e-a6db59ed9e1b",
+    "sku": "VTK025711",
+    "nome": "20 Pilhas Moeda Lítio Elgin CR2430 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 43.6,
+    "estoque": 2,
+    "suggestedPricePreview": 78.52,
+    "description": "20 Pilhas Moeda Lítio Elgin CR2430 3V Kit\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 5 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2430\n\n- Tamanho: CR2430\n\n- Formato: Botão\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2430"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2430"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "20"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2790K4",
+      "componentSku": "VTK012068",
+      "componentGtin": "7897013573972",
+      "componentQuantity": 4,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2430",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "20",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857637203 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "40607671-ead5-45d8-9549-62962063ea13",
+    "sku": "VTK025713",
+    "nome": "20 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 37.6,
+    "estoque": 17,
+    "suggestedPricePreview": 71.11,
+    "description": "20 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 5 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2016\n\n- Tamanho: CR2016\n\n- Formato: Botão\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "20"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2391K4",
+      "componentSku": "VTK012146",
+      "componentGtin": "7897013538094",
+      "componentQuantity": 4,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2016",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "20",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714408 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "c4358548-f1af-4ec2-bd6b-2e94976c5c63",
+    "sku": "VTK025714",
+    "nome": "20 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 22.88,
+    "estoque": 19,
+    "suggestedPricePreview": 52.94,
+    "description": "20 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 5 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2025\n\n- Tamanho: CR2025\n\n- Formato: Botão\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "20"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2392K4",
+      "componentSku": "VTK012145",
+      "componentGtin": "7897013538100",
+      "componentQuantity": 4,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2025",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "20",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714726 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "22c4be87-727e-4aad-95b5-c767068a9034",
+    "sku": "VTK025715",
+    "nome": "20 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 27.2,
+    "estoque": 25,
+    "suggestedPricePreview": 58.27,
+    "description": "20 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nKit original Elgin com 20 pilhas ou baterias, distribuídas em 4 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 4 embalagens com 5 unidade(s) cada\n\n- Total: 20 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2032\n\n- Tamanho: CR2032\n\n- Formato: Botão\n\n- Quantidade total: 20 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "20"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2393K4",
+      "componentSku": "VTK012047",
+      "componentGtin": "7897013538117",
+      "componentQuantity": 4,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2032",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "20",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638211 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "b71bd41e-b6a8-464c-a3b1-b8ea3285d3b3",
+    "sku": "VTK025726",
+    "nome": "200 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 272,
+    "estoque": 2,
+    "suggestedPricePreview": 386.17,
+    "description": "200 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nKit original Elgin com 200 pilhas ou baterias, distribuídas em 40 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 40 embalagens com 5 unidade(s) cada\n\n- Total: 200 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2032\n\n- Tamanho: CR2032\n\n- Formato: Botão\n\n- Quantidade total: 200 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "200"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2393K40",
+      "componentSku": "VTK012047",
+      "componentGtin": "7897013538117",
+      "componentQuantity": 40,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2032",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "200",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638211 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "35b3e9d1-afe4-4c83-8f80-f25297f8c4d1",
+    "sku": "VTK025733",
+    "nome": "25 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 47,
+    "estoque": 14,
+    "suggestedPricePreview": 82.72,
+    "description": "25 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nKit original Elgin com 25 pilhas ou baterias, distribuídas em 5 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 5 embalagens com 5 unidade(s) cada\n\n- Total: 25 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2016\n\n- Tamanho: CR2016\n\n- Formato: Botão\n\n- Quantidade total: 25 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "25"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2391K5",
+      "componentSku": "VTK012146",
+      "componentGtin": "7897013538094",
+      "componentQuantity": 5,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2016",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "25",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714408 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "3a1d9c06-ddcb-47f0-9f05-3e0f6d5420c9",
+    "sku": "VTK025734",
+    "nome": "25 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 28.6,
+    "estoque": 15,
+    "suggestedPricePreview": 60,
+    "description": "25 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nKit original Elgin com 25 pilhas ou baterias, distribuídas em 5 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 5 embalagens com 5 unidade(s) cada\n\n- Total: 25 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2025\n\n- Tamanho: CR2025\n\n- Formato: Botão\n\n- Quantidade total: 25 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "25"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2392K5",
+      "componentSku": "VTK012145",
+      "componentGtin": "7897013538100",
+      "componentQuantity": 5,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2025",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "25",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714726 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "624c5748-911d-4280-b203-adbb59f00e9e",
+    "sku": "VTK025735",
+    "nome": "25 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 34,
+    "estoque": 20,
+    "suggestedPricePreview": 66.67,
+    "description": "25 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nKit original Elgin com 25 pilhas ou baterias, distribuídas em 5 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 5 embalagens com 5 unidade(s) cada\n\n- Total: 25 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2032\n\n- Tamanho: CR2032\n\n- Formato: Botão\n\n- Quantidade total: 25 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "25"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2393K5",
+      "componentSku": "VTK012047",
+      "componentGtin": "7897013538117",
+      "componentQuantity": 5,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2032",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "25",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638211 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "f1958384-054c-4d39-9d09-62a2b13537ff",
+    "sku": "VTK025736",
+    "nome": "250 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 340,
+    "estoque": 2,
+    "suggestedPricePreview": 482.72,
+    "description": "250 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nKit original Elgin com 250 pilhas ou baterias, distribuídas em 50 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 50 embalagens com 5 unidade(s) cada\n\n- Total: 250 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2032\n\n- Tamanho: CR2032\n\n- Formato: Botão\n\n- Quantidade total: 250 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "250"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2393K50",
+      "componentSku": "VTK012047",
+      "componentGtin": "7897013538117",
+      "componentQuantity": 50,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2032",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "250",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638211 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "3290be1a-25c6-4f5b-b6ba-096efa31c642",
+    "sku": "VTK025751",
+    "nome": "30 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 56.4,
+    "estoque": 11,
+    "suggestedPricePreview": 94.32,
+    "description": "30 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nKit original Elgin com 30 pilhas ou baterias, distribuídas em 6 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 6 embalagens com 5 unidade(s) cada\n\n- Total: 30 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2016\n\n- Tamanho: CR2016\n\n- Formato: Botão\n\n- Quantidade total: 30 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "30"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2391K6",
+      "componentSku": "VTK012146",
+      "componentGtin": "7897013538094",
+      "componentQuantity": 6,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2016",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "30",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714408 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "a53607a5-1161-4421-8f8a-ff6e49b126a6",
+    "sku": "VTK025752",
+    "nome": "30 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 34.32,
+    "estoque": 13,
+    "suggestedPricePreview": 67.06,
+    "description": "30 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nKit original Elgin com 30 pilhas ou baterias, distribuídas em 6 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 6 embalagens com 5 unidade(s) cada\n\n- Total: 30 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2025\n\n- Tamanho: CR2025\n\n- Formato: Botão\n\n- Quantidade total: 30 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "30"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2392K6",
+      "componentSku": "VTK012145",
+      "componentGtin": "7897013538100",
+      "componentQuantity": 6,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2025",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "30",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714726 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "e33cf05a-7f06-4601-90c0-69f060f745a1",
+    "sku": "VTK025753",
+    "nome": "30 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 40.8,
+    "estoque": 16,
+    "suggestedPricePreview": 75.06,
+    "description": "30 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nKit original Elgin com 30 pilhas ou baterias, distribuídas em 6 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 6 embalagens com 5 unidade(s) cada\n\n- Total: 30 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2032\n\n- Tamanho: CR2032\n\n- Formato: Botão\n\n- Quantidade total: 30 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "30"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2393K6",
+      "componentSku": "VTK012047",
+      "componentGtin": "7897013538117",
+      "componentQuantity": 6,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2032",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "30",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638211 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "73e5c776-02e9-4907-a66f-da3c18c06956",
+    "sku": "VTK025757",
+    "nome": "35 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 65.8,
+    "estoque": 10,
+    "suggestedPricePreview": 105.93,
+    "description": "35 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nKit original Elgin com 35 pilhas ou baterias, distribuídas em 7 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 7 embalagens com 5 unidade(s) cada\n\n- Total: 35 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2016\n\n- Tamanho: CR2016\n\n- Formato: Botão\n\n- Quantidade total: 35 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "35"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2391K7",
+      "componentSku": "VTK012146",
+      "componentGtin": "7897013538094",
+      "componentQuantity": 7,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2016",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "35",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714408 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "a2692d7a-d43c-42d3-b067-c0d44a6465dc",
+    "sku": "VTK025758",
+    "nome": "35 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 40.04,
+    "estoque": 11,
+    "suggestedPricePreview": 74.12,
+    "description": "35 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nKit original Elgin com 35 pilhas ou baterias, distribuídas em 7 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 7 embalagens com 5 unidade(s) cada\n\n- Total: 35 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2025\n\n- Tamanho: CR2025\n\n- Formato: Botão\n\n- Quantidade total: 35 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "35"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2392K7",
+      "componentSku": "VTK012145",
+      "componentGtin": "7897013538100",
+      "componentQuantity": 7,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2025",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "35",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714726 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "779e5581-dab2-42fd-8f5c-5082d6ebc676",
+    "sku": "VTK025759",
+    "nome": "35 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 47.6,
+    "estoque": 14,
+    "suggestedPricePreview": 83.46,
+    "description": "35 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nKit original Elgin com 35 pilhas ou baterias, distribuídas em 7 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 7 embalagens com 5 unidade(s) cada\n\n- Total: 35 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2032\n\n- Tamanho: CR2032\n\n- Formato: Botão\n\n- Quantidade total: 35 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "35"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2393K7",
+      "componentSku": "VTK012047",
+      "componentGtin": "7897013538117",
+      "componentQuantity": 7,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2032",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "35",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638211 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "ff598b6b-4576-438e-be18-f2e816ad5544",
+    "sku": "VTK025778",
+    "nome": "40 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 75.2,
+    "estoque": 8,
+    "suggestedPricePreview": 117.53,
+    "description": "40 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nKit original Elgin com 40 pilhas ou baterias, distribuídas em 8 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 8 embalagens com 5 unidade(s) cada\n\n- Total: 40 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2016\n\n- Tamanho: CR2016\n\n- Formato: Botão\n\n- Quantidade total: 40 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "40"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2391K8",
+      "componentSku": "VTK012146",
+      "componentGtin": "7897013538094",
+      "componentQuantity": 8,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2016",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "40",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714408 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "502bad99-2974-4af4-b71d-c8760d5c1adf",
+    "sku": "VTK025779",
+    "nome": "40 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 45.76,
+    "estoque": 9,
+    "suggestedPricePreview": 81.19,
+    "description": "40 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nKit original Elgin com 40 pilhas ou baterias, distribuídas em 8 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 8 embalagens com 5 unidade(s) cada\n\n- Total: 40 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2025\n\n- Tamanho: CR2025\n\n- Formato: Botão\n\n- Quantidade total: 40 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "40"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2392K8",
+      "componentSku": "VTK012145",
+      "componentGtin": "7897013538100",
+      "componentQuantity": 8,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2025",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "40",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714726 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "e623c24f-a342-40bb-8a90-5e458f774d6f",
+    "sku": "VTK025780",
+    "nome": "40 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 54.4,
+    "estoque": 12,
+    "suggestedPricePreview": 91.85,
+    "description": "40 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nKit original Elgin com 40 pilhas ou baterias, distribuídas em 8 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 8 embalagens com 5 unidade(s) cada\n\n- Total: 40 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2032\n\n- Tamanho: CR2032\n\n- Formato: Botão\n\n- Quantidade total: 40 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "40"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2393K8",
+      "componentSku": "VTK012047",
+      "componentGtin": "7897013538117",
+      "componentQuantity": 8,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2032",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "40",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638211 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "d755ea01-a0b0-442e-9df0-7e793439848e",
+    "sku": "VTK025794",
+    "nome": "45 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 84.6,
+    "estoque": 7,
+    "suggestedPricePreview": 129.14,
+    "description": "45 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nKit original Elgin com 45 pilhas ou baterias, distribuídas em 9 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 9 embalagens com 5 unidade(s) cada\n\n- Total: 45 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2016\n\n- Tamanho: CR2016\n\n- Formato: Botão\n\n- Quantidade total: 45 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "45"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2391K9",
+      "componentSku": "VTK012146",
+      "componentGtin": "7897013538094",
+      "componentQuantity": 9,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2016",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "45",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714408 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "33439bef-d613-4d6e-a1fe-6d6a24c4cbb0",
+    "sku": "VTK025795",
+    "nome": "45 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 51.48,
+    "estoque": 8,
+    "suggestedPricePreview": 88.25,
+    "description": "45 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nKit original Elgin com 45 pilhas ou baterias, distribuídas em 9 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 9 embalagens com 5 unidade(s) cada\n\n- Total: 45 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2025\n\n- Tamanho: CR2025\n\n- Formato: Botão\n\n- Quantidade total: 45 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "45"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2392K9",
+      "componentSku": "VTK012145",
+      "componentGtin": "7897013538100",
+      "componentQuantity": 9,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2025",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "45",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714726 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "4417d8fd-15c0-4650-b373-1dbed596e9ce",
+    "sku": "VTK025796",
+    "nome": "45 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 61.2,
+    "estoque": 11,
+    "suggestedPricePreview": 100.25,
+    "description": "45 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nKit original Elgin com 45 pilhas ou baterias, distribuídas em 9 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 9 embalagens com 5 unidade(s) cada\n\n- Total: 45 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2032\n\n- Tamanho: CR2032\n\n- Formato: Botão\n\n- Quantidade total: 45 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "45"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2393K9",
+      "componentSku": "VTK012047",
+      "componentGtin": "7897013538117",
+      "componentQuantity": 9,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2032",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "45",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638211 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "bcc8b96e-6cb4-497b-8ef2-9ac27dd58e56",
+    "sku": "VTK025805",
+    "nome": "50 Pilhas Moeda Lítio Elgin CR1220 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 85,
+    "estoque": 10,
+    "suggestedPricePreview": 129.63,
+    "description": "50 Pilhas Moeda Lítio Elgin CR1220 3V Kit\n\nKit original Elgin com 50 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 5 unidade(s) cada\n\n- Total: 50 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR1220\n\n- Tamanho: CR1220\n\n- Formato: Botão\n\n- Quantidade total: 50 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR1220"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR1220"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "50"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2608K10",
+      "componentSku": "VTK012060",
+      "componentGtin": "7897013573958",
+      "componentQuantity": 10,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR1220",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "50",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857625799 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "0a723083-4377-455f-9da1-ac65d48131ec",
+    "sku": "VTK025806",
+    "nome": "50 Pilhas Moeda Lítio Elgin CR1616 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 82.8,
+    "estoque": 10,
+    "suggestedPricePreview": 126.91,
+    "description": "50 Pilhas Moeda Lítio Elgin CR1616 3V Kit\n\nKit original Elgin com 50 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 5 unidade(s) cada\n\n- Total: 50 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR1616\n\n- Tamanho: CR1616\n\n- Formato: Botão\n\n- Quantidade total: 50 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR1616"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR1616"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "50"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2611K10",
+      "componentSku": "VTK012062",
+      "componentGtin": "7897013514760",
+      "componentQuantity": 10,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR1616",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "50",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638105 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "2e421ac3-0e80-42b6-bd17-2dfacecdf988",
+    "sku": "VTK025812",
+    "nome": "50 Pilhas Moeda Lítio Elgin CR2430 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 109,
+    "estoque": 1,
+    "suggestedPricePreview": 159.26,
+    "description": "50 Pilhas Moeda Lítio Elgin CR2430 3V Kit\n\nKit original Elgin com 50 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 5 unidade(s) cada\n\n- Total: 50 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2430\n\n- Tamanho: CR2430\n\n- Formato: Botão\n\n- Quantidade total: 50 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2430"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2430"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "50"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2790K10",
+      "componentSku": "VTK012068",
+      "componentGtin": "7897013573972",
+      "componentQuantity": 10,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2430",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "50",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857637203 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "1a60c9a6-4afb-43ae-83d9-af2db6c712d4",
+    "sku": "VTK025814",
+    "nome": "50 Pilhas Moeda Lítio Elgin CR2016 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 94,
+    "estoque": 7,
+    "suggestedPricePreview": 140.74,
+    "description": "50 Pilhas Moeda Lítio Elgin CR2016 3V Kit\n\nKit original Elgin com 50 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 5 unidade(s) cada\n\n- Total: 50 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2016\n\n- Tamanho: CR2016\n\n- Formato: Botão\n\n- Quantidade total: 50 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2016"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "50"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2391K10",
+      "componentSku": "VTK012146",
+      "componentGtin": "7897013538094",
+      "componentQuantity": 10,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2016",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "50",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714408 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "4106112d-966d-436c-9a6c-b8837572ccee",
+    "sku": "VTK025815",
+    "nome": "50 Pilhas Moeda Lítio Elgin CR2025 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 57.2,
+    "estoque": 7,
+    "suggestedPricePreview": 95.31,
+    "description": "50 Pilhas Moeda Lítio Elgin CR2025 3V Kit\n\nKit original Elgin com 50 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 5 unidade(s) cada\n\n- Total: 50 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2025\n\n- Tamanho: CR2025\n\n- Formato: Botão\n\n- Quantidade total: 50 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2025"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "50"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2392K10",
+      "componentSku": "VTK012145",
+      "componentGtin": "7897013538100",
+      "componentQuantity": 10,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2025",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "50",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB7111714726 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  },
+  {
+    "produtoId": "d8fc0528-277f-4ea4-8b4b-0212276baff0",
+    "sku": "VTK025816",
+    "nome": "50 Pilhas Moeda Lítio Elgin CR2032 3V Kit",
+    "fornecedor": "BKR1",
+    "dsliteFornecedorId": "108",
+    "categoryId": "MLB7060",
+    "custo": 68,
+    "estoque": 10,
+    "suggestedPricePreview": 108.64,
+    "description": "50 Pilhas Moeda Lítio Elgin CR2032 3V Kit\n\nKit original Elgin com 50 pilhas ou baterias, distribuídas em 10 embalagens do fabricante.\n\nCONTEÚDO DA EMBALAGEM\n\n- 10 embalagens com 5 unidade(s) cada\n\n- Total: 50 pilhas ou baterias\n\nCARACTERÍSTICAS\n\n- Marca: Elgin\n\n- Modelo: CR2032\n\n- Tamanho: CR2032\n\n- Formato: Botão\n\n- Quantidade total: 50 unidades\n\n- Recarregável: Não\n\n- Voltagem nominal: 3 V\n\n- Composição: Lítio\n\nConfira o modelo, o tamanho e a quantidade total antes da compra.",
+    "attributeOverrides": [
+      {
+        "id": "BRAND",
+        "value_id": "102992",
+        "value_name": "Elgin"
+      },
+      {
+        "id": "MODEL",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SIZE",
+        "value_name": "CR2032"
+      },
+      {
+        "id": "CELL_BATTERY_SHAPE",
+        "value_name": "Botão"
+      },
+      {
+        "id": "SALE_FORMAT",
+        "value_id": "1359392",
+        "value_name": "Kit"
+      },
+      {
+        "id": "UNITS_PER_PACK",
+        "value_name": "50"
+      },
+      {
+        "id": "IS_RECHARGEABLE",
+        "value_id": "242084",
+        "value_name": "Não"
+      },
+      {
+        "id": "NOMINAL_VOLTAGE",
+        "value_name": "3 V"
+      },
+      {
+        "id": "CELL_BATTERY_COMPOSITION",
+        "value_name": "Lítio"
+      }
+    ],
+    "preflight": {
+      "strictEvidence": true,
+      "sourceSheet": "Elgin.xls",
+      "sourceSku": "2393K10",
+      "componentSku": "VTK012047",
+      "componentGtin": "7897013538117",
+      "componentQuantity": 10,
+      "trustedOptionalAttributeOverrides": true,
+      "expectedAttributeValues": {
+        "MODEL": "CR2032",
+        "SALE_FORMAT": "Kit",
+        "UNITS_PER_PACK": "50",
+        "IS_RECHARGEABLE": "Não"
+      },
+      "allowMissingIdentifier": false,
+      "omitComponentGtin": true,
+      "imagesOnVortekStorage": true,
+      "categoryEvidence": "Categoria MLB7060 validada pelo preditor oficial; componente MLB4857638211 está classificado incorretamente em MLB431681",
+      "descriptionFormat": "paragraphs_and_bullet_points"
+    }
+  }
+]

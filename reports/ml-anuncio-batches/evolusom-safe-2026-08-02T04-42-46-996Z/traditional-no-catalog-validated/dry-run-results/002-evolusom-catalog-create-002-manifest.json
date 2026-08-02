@@ -1,0 +1,353 @@
+{
+  "batchNumber": 2,
+  "batchId": "evolusom-traditional-002",
+  "strategy": "traditional_no_catalog_predictor_consensus",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "54bc0755-95dc-4dfc-adb2-a15310c16650",
+      "sku": "VTK017456",
+      "nome": "Cabo Y Rca Blindado Nwt 1mx2f 20cm - Azul",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 18.5,
+      "estoque": 40,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 47.53,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB438559",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB438559",
+        "categoryName": "Cabos e Conectores",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Cabos e Conectores",
+        "validatedGtin": "7898566208007"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566208007",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "c50c8d36-5035-48e2-99e1-86447ebaf2d1",
+      "sku": "VTK017504",
+      "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 300ml Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 14.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.09,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB244658",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-FOOD_STORAGE_CONTAINERS",
+        "categoryId": "MLB244658",
+        "categoryName": "Potes para Alimentos",
+        "categoryPath": "Casa, Móveis e Decoração > Cozinha > Armazenamento e Organização > Potes para Alimentos",
+        "validatedGtin": "7891112359222"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7891112359222",
+        "validatedNcm": "39241000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "cf0793f9-8968-4bd0-82ae-ea1a3d0cf86d",
+      "sku": "VTK017505",
+      "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 300ml Vermelho",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 14.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.09,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB244658",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-FOOD_STORAGE_CONTAINERS",
+        "categoryId": "MLB244658",
+        "categoryName": "Potes para Alimentos",
+        "categoryPath": "Casa, Móveis e Decoração > Cozinha > Armazenamento e Organização > Potes para Alimentos",
+        "validatedGtin": "7891112359246"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7891112359246",
+        "validatedNcm": "39241000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "19b3bc02-9ea5-46be-8974-5f02c52c78bf",
+      "sku": "VTK017506",
+      "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 20.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 50.49,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB244658",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-FOOD_STORAGE_CONTAINERS",
+        "categoryId": "MLB244658",
+        "categoryName": "Potes para Alimentos",
+        "categoryPath": "Casa, Móveis e Decoração > Cozinha > Armazenamento e Organização > Potes para Alimentos",
+        "validatedGtin": "7891112359253"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7891112359253",
+        "validatedNcm": "39241000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "1849bcec-0b10-4888-84c4-4d942dd3c8b0",
+      "sku": "VTK017507",
+      "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Vermelho",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 20.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 50.49,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB244658",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-FOOD_STORAGE_CONTAINERS",
+        "categoryId": "MLB244658",
+        "categoryName": "Potes para Alimentos",
+        "categoryPath": "Casa, Móveis e Decoração > Cozinha > Armazenamento e Organização > Potes para Alimentos",
+        "validatedGtin": "7891112359277"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7891112359277",
+        "validatedNcm": "39241000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "1ea7953e-04c7-4345-a104-4b1bcc01f941",
+      "sku": "VTK017508",
+      "nome": "Jogo De Potes Tramontina Mixcolor 02 Peças 2l Vermelho",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 29.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 61.6,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB244658",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-FOOD_STORAGE_CONTAINERS",
+        "categoryId": "MLB244658",
+        "categoryName": "Potes para Alimentos",
+        "categoryPath": "Casa, Móveis e Decoração > Cozinha > Armazenamento e Organização > Potes para Alimentos",
+        "validatedGtin": "7891112359307"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7891112359307",
+        "validatedNcm": "39241000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "b6daed03-8deb-461c-9472-059f25c252ea",
+      "sku": "VTK017545",
+      "nome": "Reparo Para Driver Shock D-250 Trio Selenium",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 20.9,
+      "estoque": 45,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 50.49,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46559",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+        "categoryId": "MLB46559",
+        "categoryName": "Drivers",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Drivers",
+        "validatedGtin": "7892046020059"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7892046020059",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "8d365f94-35d8-4b2d-a675-1afe14d709c9",
+      "sku": "VTK017562",
+      "nome": "Carregador Veicular Elgin Usb 12v - 2 Saídas",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 20.9,
+      "estoque": 40,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 50.49,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB430121",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-MOBILE_DEVICE_CHARGERS",
+        "categoryId": "MLB430121",
+        "categoryName": "Carregadores",
+        "categoryPath": "Celulares e Telefones > Acessórios para Celulares > Carregadores e Acessórios > Carregadores",
+        "validatedGtin": "7897013561269"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897013561269",
+        "validatedNcm": "85044010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "c7461bea-93fe-4456-be60-f12ea4708e58",
+      "sku": "VTK017608",
+      "nome": "Lâmpada Super Branca Techone H9 55w 6000k Com Inmetro",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 14.99,
+      "estoque": 40,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.2,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB191727",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_LIGHT_BULBS",
+        "categoryId": "MLB191727",
+        "categoryName": "Lâmpadas",
+        "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Iluminação > Lâmpadas e LEDs > Lâmpadas",
+        "validatedGtin": "7898613228712"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898613228712",
+        "validatedNcm": "85392110",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "1dd2a3e6-40d8-4f0b-b302-07e176700573",
+      "sku": "VTK017633",
+      "nome": "Kit Carregadores De Parede + Veicular Elgin Com Cabo Micro Usb 1m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 39.6,
+      "estoque": 35,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 73.58,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB430121",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-MOBILE_DEVICE_CHARGERS",
+        "categoryId": "MLB430121",
+        "categoryName": "Carregadores",
+        "categoryPath": "Celulares e Telefones > Acessórios para Celulares > Carregadores e Acessórios > Carregadores",
+        "validatedGtin": "7897013561276"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897013561276",
+        "validatedNcm": "85044010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "batchNumber": 18,
+  "batchId": "evolusom-traditional-018",
+  "strategy": "traditional_no_catalog_predictor_consensus",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "c56848d6-3f38-496d-aeec-e4e0cc8f22c9",
+      "sku": "VTK020602",
+      "nome": "Cabo Para Microfone Mono Tiaflex Espiralado 100 Metros 1x0,20 Mm 502010",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 237.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 337.76,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB72745",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB72745",
+        "categoryName": "Cabos",
+        "categoryPath": "Instrumentos Musicais > Instrumentos de Corda > Acessórios > Cabos",
+        "validatedGtin": "7898429981450"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898429981450",
+        "validatedNcm": "85444900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "24f67a3a-a737-4058-815e-8dbdf54e5f1a",
+      "sku": "VTK020645",
+      "nome": "Capota Marítima Flash Cover Ff130 Mitsubishi L200 Triton 2009/2017 Force",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 539.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 799.85,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "categoryId": "MLB46680",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_BED_COVERS",
+        "categoryId": "MLB46680",
+        "categoryName": "Capotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Acessórios de Caçamba > Capotas",
+        "validatedGtin": "7899630194318"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899630194318",
+        "validatedNcm": "87082999",
+        "imagesOnVortekStorage": false,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "62f31e56-d0cf-41b4-a36e-f4201c72af16",
+      "sku": "VTK022568",
+      "nome": "Caixa Vazia 2 Alto-falantes 12\" + 4 Cornetas + 2 Tweeter Dutada",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 175,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 248.46,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB127436",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AUTOMOTIVE_SPEAKER_BOXES",
+        "categoryId": "MLB127436",
+        "categoryName": "Corneteiras",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Caixas Acústicas > Corneteiras",
+        "validatedGtin": "7890003855751"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7890003855751",
+        "validatedNcm": "92081000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

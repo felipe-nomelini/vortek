@@ -1,0 +1,136 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/safe-final-validated/remaining/005-evolusom-remaining-005.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-005",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "203acc55-b562-43c6-b837-06e93101fac7",
+      "sku": "VTK018502",
+      "category": {
+        "id": "MLB38172",
+        "nome": "Conectores",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CONNECTORS"
+      },
+      "anuncio": {
+        "id": "MLB4981360557",
+        "title": "Conector Derivação Permak Taplink 1 50 A 2 50mm - Azul",
+        "price": 60.69,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981360557-conector-derivaco-permak-taplink-1-50-a-2-50mm-azul-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 44.86 → R$ 60.69."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "5b9c27d8-c667-43dc-89c7-9322067883df",
+      "sku": "VTK018524",
+      "category": {
+        "id": "MLB5867",
+        "nome": "Roteadores",
+        "dominio": "MLB-ROUTERS_AND_WIRELESS_SYSTEMS"
+      },
+      "anuncio": {
+        "id": "MLB4981312325",
+        "title": "Roteador Wi-fi Max Aquário Apr-2410 N 150 Mbps",
+        "price": 134.74,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981312325-roteador-wi-fi-max-aquario-apr-2410-n-150-mbps-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB4981312325: NSOPublicAPI error",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "22d9976e-39c2-4948-9d0b-b5f4d0bbc6ce",
+      "sku": "VTK018526",
+      "category": {
+        "id": "MLB72745",
+        "nome": "Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4981290407",
+        "title": "Cabo Para Microfone Santo Angelo Ninja Hg P10 X Xlrf 03ft",
+        "price": 86.99,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981290407-cabo-para-microfone-santo-angelo-ninja-hg-p10-x-xlrf-03ft-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 71.15 → R$ 86.99."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "2d23d922-5228-4a5a-97f0-35903478d514",
+      "sku": "VTK018723",
+      "category": {
+        "id": "MLB45320",
+        "nome": "Molduras para Estéreos",
+        "dominio": "MLB-VEHICLE_STEREO_FRAME_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4981290435",
+        "title": "Contra Frente Plástica Permak Fiat Bravo 2 Din Preto",
+        "price": 109.17,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981290435-contra-frente-plastica-permak-fiat-bravo-2-din-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 92.07 → R$ 109.17."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ecbe9735-b7c3-4b49-a088-50eed520c458",
+      "sku": "VTK018922",
+      "category": {
+        "id": "MLB72514",
+        "nome": "Placas",
+        "dominio": "MLB-TELEPHONY_CARDS"
+      },
+      "anuncio": {
+        "id": "MLB4981312437",
+        "title": "Placa Viaweb Central Vw16z Ip Star",
+        "price": 507.61,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981312437-placa-viaweb-central-vw16z-ip-star-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 481.42 → R$ 507.61."
+      ]
+    }
+  ],
+  "failed": []
+}

@@ -1,0 +1,353 @@
+{
+  "batchNumber": 2,
+  "batchId": "evolusom-domain-approved-002",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "bdd22a64-bf53-4d11-865c-97dd9a6eb776",
+      "sku": "VTK017821",
+      "nome": "Reparo Jbl Selenium Rpst302-x Para Super Tweeter St302-x",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.5,
+      "estoque": 23,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.33,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46559",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+        "categoryId": "MLB46559",
+        "categoryName": "Drivers",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Drivers",
+        "validatedGtin": "7896359530991"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359530991",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "7c8971e2-d889-4815-9dc5-1ffb7a9cdbdb",
+      "sku": "VTK017823",
+      "nome": "Calota Grid Aro 13p 050cb-pta Fiat Modelo Palio Fire 2004 Cubo Baixo - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.4,
+      "estoque": 23,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277980766"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277980766",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "65cf91e9-4975-4825-8c8b-6236c64fa2aa",
+      "sku": "VTK017872",
+      "nome": "Reparo Jbl Rpst330 Para Super Tweeter St330 Poly T",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 49.99,
+      "estoque": 21,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 86.41,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46559",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+        "categoryId": "MLB46559",
+        "categoryName": "Drivers",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Drivers",
+        "validatedGtin": "7896359538010"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359538010",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "0c58abd1-d64a-4139-9563-b4c28dde8baf",
+      "sku": "VTK017885",
+      "nome": "Termopar Tipo K Minipa Mtk-01 Com Blister",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 16.5,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 45.06,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB33383",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-TOOL_ACCESSORIES_AND_REPLACEMENTS",
+        "categoryId": "MLB33383",
+        "categoryName": "Outros",
+        "categoryPath": "Ferramentas > Acessórios para Ferramentas > Outros",
+        "validatedGtin": "7898112607308"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898112607308",
+        "validatedNcm": "90259010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "6c3584cf-235b-4f73-9ed9-11da5c32d26b",
+      "sku": "VTK017895",
+      "nome": "Calota Grid Aro 15p 195cp-pta Modelo Onix / Prisma Lt 2014/ 16 - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 66.6,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 106.91,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277981503"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277981503",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "2f410b69-9b05-49fd-95ab-487e32bfb552",
+      "sku": "VTK017924",
+      "nome": "Chaveiro Positron Novo Px-32 Cyber 4 Botões Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 41.9,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 76.42,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB417161",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-ELECTRONIC_SWITCHES",
+        "categoryId": "MLB417161",
+        "categoryName": "Interruptores Elétricos",
+        "categoryPath": "Construção > Energia > Tomadas e Interruptores > Interruptores > Interruptores Elétricos",
+        "validatedGtin": "7897789624526"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897789624526",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "dadf008c-d494-4df6-ba1e-417a9427b73f",
+      "sku": "VTK017966",
+      "nome": "Calota Grid Aro 14p 014cb-pta Ford Modelo Fiesta 2008/ 10 Cubo Baixo - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277981541"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277981541",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "71df1618-1fef-4c80-888d-4b54b63e6271",
+      "sku": "VTK018027",
+      "nome": "Arandela Sem Borda Frahm 6\" 40w Full Ranger Quadrada",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 104.9,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 154.2,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB443814",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_STEREOS_AND_SPEAKERS_KITS",
+        "categoryId": "MLB443814",
+        "categoryName": "Kits de Estéreo e Alto-Falante",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Reprodutores > Kits de Estéreo e Alto-Falante",
+        "validatedGtin": "7896673814074"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896673814074",
+        "validatedNcm": "85182100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "04b72773-20e9-4de9-be70-92efa36f8a69",
+      "sku": "VTK018089",
+      "nome": "Trava Elétrica Soft Aa420012 Novo Uno / Palio / Strada / Celta 2 Portas",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 83.9,
+      "estoque": 14,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 128.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22369",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_ELECTRIC_DOOR_LOCKS",
+        "categoryId": "MLB22369",
+        "categoryName": "Travas Elétricas",
+        "categoryPath": "Acessórios para Veículos > Segurança Veicular > Travas Elétricas",
+        "validatedGtin": "7898441355123"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898441355123",
+        "validatedNcm": "87082999",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "fcaf1426-0108-4adf-831c-21a28a836637",
+      "sku": "VTK018141",
+      "nome": "Calota Grid Aro 14p 192 Cp-pta Hyundai Hb20/ Hb20s 2016 Cubo Padrão - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 66.6,
+      "estoque": 13,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 106.91,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892500384"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892500384",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

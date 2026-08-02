@@ -1,0 +1,285 @@
+{
+  "batchNumber": 8,
+  "batchId": "evolusom-traditional-008",
+  "strategy": "traditional_no_catalog_predictor_consensus",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "e72bc21d-d22d-4bd3-a0eb-b4c6fda4e144",
+      "sku": "VTK019126",
+      "nome": "Fechadura Solenoide De Embutir Intelbras Fs 1010",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 809.08,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 1198.64,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "categoryId": "MLB194301",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-ELECTRIC_LOCKS",
+        "categoryId": "MLB194301",
+        "categoryName": "Elétricas",
+        "categoryPath": "Casa, Móveis e Decoração > Segurança para Casa > Ferragens de Segurança > Fechaduras > Elétricas",
+        "validatedGtin": "7896637671330"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637671330",
+        "validatedNcm": "83014000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "b86652d3-9c98-4c60-9dc2-1771c2855f3e",
+      "sku": "VTK019158",
+      "nome": "Conversor De Audio Rca Bee Link 4 Ch + Superbass",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 101.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 150.49,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB421298",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONVERTERS",
+        "categoryId": "MLB421298",
+        "categoryName": "Conversores de Aúdio e Vídeo",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Acessórios para Áudio e Vídeo > Conversores de Aúdio e Vídeo",
+        "validatedGtin": "7898441352139"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898441352139",
+        "validatedNcm": "85044029",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "bdb61763-ddc9-479f-ac49-4e0838a61a11",
+      "sku": "VTK019466",
+      "nome": "Cabo De Descida Proeletronic Para Celular Fixo Rgc58 10 Metros Caco-0190",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 37.5,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 70.99,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB70452",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-TELEPHONY_AND_RADIO_COMMUNICATION_PRODUCTS",
+        "categoryId": "MLB70452",
+        "categoryName": "Cabos e Conectores",
+        "categoryPath": "Celulares e Telefones > Rádio Comunicadores > Acessórios > Cabos e Conectores",
+        "validatedGtin": "7898419484459"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898419484459",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "978e980c-d329-416e-8bfd-b1c303f0a5a8",
+      "sku": "VTK021108",
+      "nome": "Telefone Headset Intelbras Hsb-50 Para Telemarketing Com Fio 4013330",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 121.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 175.19,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB3828",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-HEADSET_TELEPHONES",
+        "categoryId": "MLB3828",
+        "categoryName": "Telefones Headset",
+        "categoryPath": "Celulares e Telefones > Telefonia Fixa e Sem Fio > Telefones Headset",
+        "validatedGtin": "7896637637961"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637637961",
+        "validatedNcm": "85171830",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "88b69e08-8f01-4735-a01b-f48c99ddae31",
+      "sku": "VTK023618",
+      "nome": "Espaguete Corrugado Permak 4,5mm 3/16 20m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 17.5,
+      "estoque": 33,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 46.3,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB411424",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-CORRUGATED_PIPES",
+        "categoryId": "MLB411424",
+        "categoryName": "Tubos Corrugados",
+        "categoryPath": "Construção > Energia > Tubos Corrugados",
+        "validatedGtin": "7899079101205"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899079101205",
+        "validatedNcm": "39173900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "6adc4bfa-de2c-4f5f-9c9f-b26dc4df07e2",
+      "sku": "VTK023619",
+      "nome": "Espaguete Corrugado Permak 7,5mm 1/4 20m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 23.1,
+      "estoque": 39,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 53.21,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB411424",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-CORRUGATED_PIPES",
+        "categoryId": "MLB411424",
+        "categoryName": "Tubos Corrugados",
+        "categoryPath": "Construção > Energia > Tubos Corrugados",
+        "validatedGtin": "7899079101212"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899079101212",
+        "validatedNcm": "39173900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "9a85a55b-bbc9-47a0-b4de-ff561b1b5fac",
+      "sku": "VTK023620",
+      "nome": "Espaguete Corrugado Permak 10mm 3/8 20m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 28.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 60.37,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB411424",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-CORRUGATED_PIPES",
+        "categoryId": "MLB411424",
+        "categoryName": "Tubos Corrugados",
+        "categoryPath": "Construção > Energia > Tubos Corrugados",
+        "validatedGtin": "7899079101229"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899079101229",
+        "validatedNcm": "39173900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "dfeca35e-dda6-4ba1-bdb8-93a8d42c11c1",
+      "sku": "VTK023621",
+      "nome": "Espaguete Corrugado Permak 13mm 1/2 20m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 48.9,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 85.06,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB411424",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-CORRUGATED_PIPES",
+        "categoryId": "MLB411424",
+        "categoryName": "Tubos Corrugados",
+        "categoryPath": "Construção > Energia > Tubos Corrugados",
+        "validatedGtin": "7899079101236"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899079101236",
+        "validatedNcm": "39173900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

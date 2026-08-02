@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-08-02T04:43:45.053Z",
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z",
+  "selected": 340,
+  "approved": 15,
+  "blocked": 325,
+  "batchSize": 10,
+  "batchCount": 2,
+  "blockedReasonCounts": {
+    "catalog_domain_mismatch": 100,
+    "catalog_exact_gtin_not_found": 195,
+    "catalog_parent_product": 1,
+    "catalog_api_error": 21,
+    "catalog_exact_gtin_ambiguous": 7,
+    "catalog_category_not_found": 1
+  },
+  "safetyRule": "GTIN local exato em produto ativo do catálogo ML, produto filho específico, domínio confirmado também pelo preditor oficial e categoria já usada no mesmo domínio."
+}

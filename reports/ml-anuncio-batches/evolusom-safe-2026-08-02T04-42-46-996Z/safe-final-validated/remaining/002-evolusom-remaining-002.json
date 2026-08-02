@@ -1,0 +1,539 @@
+{
+  "batchNumber": 2,
+  "batchId": "evolusom-domain-approved-002",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "6d6275a2-3d71-493f-a20e-3cce674f7918",
+      "sku": "VTK017181",
+      "nome": "Mouse Logitech M90 Usb Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 34.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 67.78,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "097855205681",
+        "validatedNcm": "84716053",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "validated_before_execution"
+      },
+      "categoryId": "MLB1714",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "15788",
+          "value_name": "Logitech"
+        },
+        {
+          "id": "LINE",
+          "value_id": "519",
+          "value_name": "M"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "20473",
+          "value_name": "M90"
+        },
+        {
+          "id": "ALPHANUMERIC_MODEL",
+          "value_id": "84939242",
+          "value_name": "910-004053"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "20099525",
+          "value_name": "910-004053"
+        },
+        {
+          "id": "COMPUTER_MOUSE_TYPE",
+          "value_id": "192740",
+          "value_name": "Convencional"
+        },
+        {
+          "id": "SENSOR_TYPE",
+          "value_id": "109003",
+          "value_name": "Óptico"
+        },
+        {
+          "id": "SENSOR_TECHNOLOGY",
+          "value_id": "7793919",
+          "value_name": "Run on Shine"
+        },
+        {
+          "id": "HAND_ORIENTATION",
+          "value_id": "2862903",
+          "value_name": "Ambidestro"
+        },
+        {
+          "id": "COMPATIBLE_OPERATING_SYSTEMS",
+          "value_id": "3211255",
+          "value_name": "Windows 7, Windows 8, Windows 10 ou superior, macOS 10.5 ou superior, Linux kernel 2.6+"
+        },
+        {
+          "id": "IS_GAMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_WIRE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "SENSOR_RESOLUTION",
+          "value_id": "249299",
+          "value_name": "1000 dpi"
+        },
+        {
+          "id": "MAX_SPEED",
+          "value_id": "11028427",
+          "value_name": "200 ips"
+        },
+        {
+          "id": "BUTTONS_NUMBER",
+          "value_id": "1021242",
+          "value_name": "3"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "9142674",
+          "value_name": "5053313884855, 97855102355, 5099206021877, 5099206021860, 797201738893, 649910584677, 7434016775073, 07892382579037, 97855205681, 00702735761910"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "9870713",
+          "value_name": "11.3 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "8841503",
+          "value_name": "3.8 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "8832884",
+          "value_name": "6.2 cm"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "15788",
+          "value_name": "Logitech"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "7699638",
+          "value_name": "90 g"
+        },
+        {
+          "id": "WITH_LIGHTS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MPN",
+          "value_id": "8209849",
+          "value_name": "910-004053, 910-001794"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_image_mirrored",
+        "catalogProductId": "MLB6162297",
+        "catalogProductName": "Mouse c/ fio Logitech M90 Preto",
+        "catalogDomainId": "MLB-COMPUTER_MICE",
+        "predictedDomainId": "MLB-COMPUTER_MICE",
+        "categoryId": "MLB1714",
+        "categoryName": "Mouses",
+        "validatedGtin": "097855205681"
+      }
+    },
+    {
+      "produtoId": "511c8cb3-fab6-4b79-81c0-e44c37eef5cd",
+      "sku": "VTK017219",
+      "nome": "Guia Organizador Cabos 2u X 19 Alta Densidade",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 39.95,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 74.01,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908060206017",
+        "validatedNcm": "94032090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB271708",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "15425638",
+          "value_name": "Max Eletron"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "26316727",
+          "value_name": "MAX ELETRON"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "UNITS_PER_PACKAGE",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_ORGANIZER_FORMAT",
+          "value_id": "5959787",
+          "value_name": "Rack"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_without_current_winner",
+        "catalogProductId": "MLB46421583",
+        "catalogProductName": "Guia Organizador Cabos 2u X 19 Alta",
+        "catalogDomainId": "MLB-CABLE_ORGANIZERS",
+        "predictedDomainId": "MLB-CABLE_ORGANIZERS",
+        "categoryId": "MLB271708",
+        "categoryName": "Organizadores de Cabos",
+        "validatedGtin": "7908060206017"
+      }
+    },
+    {
+      "produtoId": "10b4f8c6-17e8-4975-aa31-e59dc829f935",
+      "sku": "VTK017352",
+      "nome": "Base Para Notebook Evus Bpn-03 Twins",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 34.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 67.78,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597133491",
+        "validatedNcm": "84145990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB54182",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "49835912",
+          "value_name": "Evus BPN-03 Twins"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52051",
+          "value_name": "Cinza-escuro"
+        },
+        {
+          "id": "USB_PORTS_NUMBER",
+          "value_id": "517204",
+          "value_name": "1"
+        },
+        {
+          "id": "FANS_NUMBER",
+          "value_id": "3664910",
+          "value_name": "1"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_without_current_winner",
+        "catalogProductId": "MLB27661698",
+        "catalogProductName": "Base Cooler Notebook Evus BPN-03 Twins 2 Fans LED Azul USB",
+        "catalogDomainId": "MLB-EXTERNAL_LAPTOP_COOLERS_AND_FANS",
+        "predictedDomainId": "MLB-EXTERNAL_LAPTOP_COOLERS_AND_FANS",
+        "categoryId": "MLB54182",
+        "categoryName": "Coolers Externos",
+        "validatedGtin": "7898597133491"
+      }
+    },
+    {
+      "produtoId": "b66ea9c7-d92a-4cd6-b22d-b193173904d6",
+      "sku": "VTK017360",
+      "nome": "Fonte Chaveada Evus Pdc-5a 12v 5a 60w Bivolt",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 53.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 91.23,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597132074",
+        "validatedNcm": "85044029",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB420411",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "24132791",
+          "value_name": "EVUS"
+        },
+        {
+          "id": "POWER",
+          "value_id": "112954",
+          "value_name": "60 W"
+        },
+        {
+          "id": "POWER_OUTPUT",
+          "value_id": "8122229",
+          "value_name": "60 W"
+        },
+        {
+          "id": "MIN_OUTPUT_VOLTAGE",
+          "value_id": "18114370",
+          "value_name": "12V"
+        },
+        {
+          "id": "MAX_OUTPUT_VOLTAGE",
+          "value_id": "909022",
+          "value_name": "12V"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7887789",
+          "value_name": "180 cm"
+        },
+        {
+          "id": "MIN_OPERATING_TEMPERATURE",
+          "value_id": "20198272",
+          "value_name": "0 °C"
+        },
+        {
+          "id": "MAX_OPERATING_TEMPERATURE",
+          "value_id": "8566979",
+          "value_name": "40 °C"
+        },
+        {
+          "id": "WITH_SHORT_CIRCUIT_PROTECTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "26670541",
+          "value_name": "7898597132074"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB28483887",
+        "catalogProductName": "Fonte Chaveada Evus 12V 5A 60W Bivolt Proteção Sobrecarga Curto",
+        "catalogDomainId": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES",
+        "predictedDomainId": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES",
+        "categoryId": "MLB420411",
+        "categoryName": "Fontes Chaveadas",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898597132074"
+      }
+    },
+    {
+      "produtoId": "bb4de30e-91de-4753-9d50-38cf1bdc7a5c",
+      "sku": "VTK017389",
+      "nome": "Cabo Hdmi Proeletronic Cahd-2010 4k Macho X Macho 2.0 10m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 39.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 73.95,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898419493963",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB431813",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "1175465",
+          "value_name": "Proeletronic"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "37511891",
+          "value_name": "CAHD-2010"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "16696220",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "9784335",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129133",
+          "value_name": "10 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "17345502",
+          "value_name": "HDMI 19 PINOS"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "37511894",
+          "value_name": "HDMI: 19 Pinos"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "37511892",
+          "value_name": "Polietileno de baixa densidade"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "37511893",
+          "value_name": "7893271420256, 7898419493963"
+        },
+        {
+          "id": "MAX_RESOLUTION_SUPPORTED",
+          "value_id": "128798",
+          "value_name": "4K"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_ambiguous_semantically_selected",
+        "catalogProductId": "MLB36745737",
+        "catalogProductName": "Proeletronic Cabo Hdmi 4k 3d 10 Metros Cahd-2010",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB431813",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "validatedGtin": "7898419493963"
+      }
+    }
+  ]
+}

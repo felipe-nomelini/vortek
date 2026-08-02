@@ -1,0 +1,471 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-no-catalog-validated/dry-run-results/008-evolusom-catalog-create-008-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-008",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "f0e66d56-21a1-4492-a513-cd64fbb9d708",
+      "sku": "VTK018107",
+      "category": {
+        "id": "MLB11507",
+        "nome": "Caixas Acústicas ",
+        "dominio": ""
+      },
+      "basePrice": 341.9,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "FRAHM"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "6CX"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7896673807472"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Arandela Frahm Sem Borda 6\" 100w Quadrada\n\nVISÃO GERAL\nInformações do Produto Caixa de Som Arandela Quadrada 6CX 100W Nova linha de arandelas FRAHM : Potência e Eficiência para ambientes sofisticados. Uma linha completa projetada para atender a necessidade de sonorização dos mais variados ambientes. Na residência ou em ambientes comerciais, as novas arandelas Frahm permitem a perfeita integração entre o produto e o ambiente em que são instaladas.\n\nAs bordas ultra finas garantem a presença discreta do produto e componentes de alta fidelidade produzem um som envolvente. - As molduras foram projetadas com sistema de ampliação do ângulo de dispersão; - Possuem pontos exclusivos para a fixação dos mais variados tipos de trafos, não permitindo que sejam colocados em pontos que causam danos a estrutura; - O projeto permite flexibilidade na furação do local de instalação (se a a furação não ficar perfeita conforme o gabarito, ainda assim a arandela irá se encaixar sem que o trabalho precise ser refeito). - Permite o travamento desde a menor até a maior estrutura de teto (de 1mm a 30mm); - Terminais de engate rápido; - Conjunto móvel otimizado para a reprodução de baixas frequências.\n\nInformações Técnicas Formato Quadrado Tipo Coaxial Impedância 8 Ohms Potência Máxima 200 W Potência RMS 100 W Woofer 6\" Cone de Kevlar, suspensão de borracha nitrílica, bobina móvel em PSC e conjunto magnético de 91mm Tweeter Neodímio e domo de seda com sistema pivotante. Proteção contra sobre carga. Divisor Duas vias Resposta de frequência 50 - 20KHz SPL (dB/W/m) 89 Diâmetro da Arandela 222 mm Diâmetro do furo para fixá-la 196 mm Altura da arandela 80 mm\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: FRAHM\n• Modelo: 6CX\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FRAHM\n• GTIN: 7896673807472\n• NCM: 85182100\n• SKU: VTK018107\n\nEMBALAGEM\n• Dimensões informadas: 9 × 25 × 25 cm\n• Peso bruto informado: 1,512 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "22f24876-10e5-49e7-82a3-af3218d1e5c9",
+      "sku": "VTK018130",
+      "category": {
+        "id": "MLB115699",
+        "nome": "Sirenes",
+        "dominio": ""
+      },
+      "basePrice": 42.91,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "FKS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "198681"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899906801490"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Sirene Bitonal Fks 12v Preta\n\nVISÃO GERAL\nTamanho pequeno. Bitonal. 120 dbs. Nas cores preta e branca\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: FKS\n• Número de peça: 198681\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FKS\n• GTIN: 7899906801490\n• NCM: 85123000\n• SKU: VTK018130\n\nEMBALAGEM\n• Dimensões informadas: 6.5 × 6 × 6.5 cm\n• Peso bruto informado: 0,034 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b5dab376-3ee2-4ab4-9fec-f265e14a9571",
+      "sku": "VTK018140",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "291978"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277982517"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p 073cb-pta Fiat Modelo Siena/ Palio 2009/ 10 Cubo Baixo - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Siena / Palio 2009/2010 Aro 14 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 291978\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277982517\n• NCM: 87087090\n• SKU: VTK018140\n\nEMBALAGEM\n• Dimensões informadas: 3 × 39 × 39 cm\n• Peso bruto informado: 0,322 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9d3efdfd-a524-44d0-b933-7cb0428d7a9e",
+      "sku": "VTK018142",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 109.62,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292801"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277985211"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 15p 119cp-pta Volkswaggen Modelo Fox/ Space/ Polo 2014 Cubo Padrao - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Fox/ Space/ Polo 2014 Aro 15 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292801\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277985211\n• NCM: 87087090\n• SKU: VTK018142\n\nEMBALAGEM\n• Dimensões informadas: 4 × 42 × 42 cm\n• Peso bruto informado: 0,372 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e80419ea-3228-4e4d-93df-a8931fea6bba",
+      "sku": "VTK018149",
+      "category": {
+        "id": "MLB431675",
+        "nome": "Elétricos",
+        "dominio": ""
+      },
+      "basePrice": 101.14,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GCP"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898642390510"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Sinalizador Veicular Gcp Ss 1000\n\nVISÃO GERAL\nO Sinalizador de Entrada e Saída de Veículos tem dispositivo visual e sonoro que alerta os pedestres na presença de carro, evitando possíveis acidentes. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GCP\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GCP\n• GTIN: 7898642390510\n• NCM: 85311090\n• SKU: VTK018149\n\nEMBALAGEM\n• Dimensões informadas: 8 × 9 × 32.5 cm\n• Peso bruto informado: 0,392 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "49393922-ecf3-4d99-a801-07855add94d7",
+      "sku": "VTK018182",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 80.25,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "291731"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277983378"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 13p 092cb-pta Fiat Modelo Grand Siena 2012/ 13 Cubo Baixo - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Grand Siena 2012/2013 Aro 13 Fixação Parafuso\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 291731\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277983378\n• NCM: 87087090\n• SKU: VTK018182\n\nEMBALAGEM\n• Dimensões informadas: 3 × 36.5 × 36.5 cm\n• Peso bruto informado: 0,322 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "835a6274-ce59-4205-a804-af2334fd2527",
+      "sku": "VTK018183",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 80.25,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "291761"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277989806"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 13p 220cb-pta Fiat Modelo Palio Essence 2014/ 15 Cubo Baixo - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Palio Essence 2014/2015 Aro 13 Fixação Parafuso\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 291761\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277989806\n• NCM: 87087090\n• SKU: VTK018183\n\nEMBALAGEM\n• Dimensões informadas: 2.5 × 36 × 36 cm\n• Peso bruto informado: 0,258 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "5269bed4-69b0-40dd-9736-0fd82a6af42d",
+      "sku": "VTK018184",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292251"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892500087"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p 370cb-pta Gm Modelo Montana 2013/ 15 Cubo Baixo - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Montana 2013/ 15 Aro 14 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292251\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892500087\n• NCM: 87087090\n• SKU: VTK018184\n\nEMBALAGEM\n• Dimensões informadas: 3 × 39.5 × 39.5 cm\n• Peso bruto informado: 0,316 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4e1ebdb8-8099-409c-b1e4-555c6ad8402b",
+      "sku": "VTK018185",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 109.62,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292291"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277983316"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 15p 030cp-pta Modelo Agile 2010/2013 Cubo Padrão - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Agile 2010/2013 Aro 15 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292291\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277983316\n• NCM: 87087090\n• SKU: VTK018185\n\nEMBALAGEM\n• Dimensões informadas: 43.5 × 23 × 43.5 cm\n• Peso bruto informado: 1,65 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "35803dad-4127-4945-8abc-f3b26978f7d8",
+      "sku": "VTK018134",
+      "nome": "Cabo Coaxial Cabletech Master 40 40% Rgc 06 Preto 100 Metros",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo de rede",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431815",
+            "nome": "Cabos de Rede"
+          },
+          "missing": [
+            "Tipo de cabo de rede"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

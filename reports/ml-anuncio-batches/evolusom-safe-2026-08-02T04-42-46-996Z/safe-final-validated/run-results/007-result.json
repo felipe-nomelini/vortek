@@ -1,0 +1,60 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/safe-final-validated/remaining/007-evolusom-remaining-007.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-007",
+  "selected": 2,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "928958aa-5d36-44cf-98ea-52a9cb8d4f71",
+      "sku": "VTK022016",
+      "category": {
+        "id": "MLB38186",
+        "nome": "Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4981312713",
+        "title": "Cabo Hdmi Evus C-002 3d Macho X Macho Com Filtro V1.4 3 0m",
+        "price": 59.28,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981312713-cabo-hdmi-evus-c-002-3d-macho-x-macho-com-filtro-v14-3-0m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 42.29 → R$ 59.28."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "0136a5ae-54d6-4606-b235-c862c1e34817",
+      "sku": "VTK022968",
+      "category": {
+        "id": "MLB73055",
+        "nome": "Liquidificadores",
+        "dominio": "MLB-BLENDERS"
+      },
+      "anuncio": {
+        "id": "MLB7311501764",
+        "title": "Liquidificador Oster Oliq610 1400w 220v Preto 220v",
+        "price": 322.92,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7311501764-liquidificador-oster-oliq610-1400w-220v-preto-220v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 284.48 → R$ 322.92."
+      ]
+    }
+  ],
+  "failed": []
+}

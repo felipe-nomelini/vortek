@@ -1,0 +1,135 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-safe-reviewed/002-evolusom-traditional-safe-002.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-traditional-safe-002",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "7394323c-cc8f-4ac4-b3a7-cd19d8bb4fcf",
+      "sku": "VTK017812",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7311574210",
+        "title": "Calota Aro 14p 879cp-pta Mod Kwid Zen 2020",
+        "price": 57.22,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7311574210-calota-aro-14p-879cp-pta-mod-kwid-zen-2020-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 40.44 → R$ 57.22."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "1a4468b9-0d4e-4635-ba58-17fcd661e9e1",
+      "sku": "VTK017819",
+      "category": {
+        "id": "MLB115699",
+        "nome": "Sirenes",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981461981",
+        "title": "Sirene De Ré Fks 12/24v",
+        "price": 50.51,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981461981-sirene-de-re-fks-1224v-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"status\":409,\"code\":\"conflict.error\",\"error\":\"Conflict\"}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "e1e008c0-ad82-46a3-942e-00613cab6d2e",
+      "sku": "VTK017842",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7311574378",
+        "title": "Módulo Tury Para Vidro Elétrico Ae Pro2.10cr",
+        "price": 273.27,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7311574378-modulo-tury-para-vidro-eletrico-ae-pro210cr-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 240.04 → R$ 273.27."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ccfba758-dc8b-4a27-a854-fa33c05bdfd7",
+      "sku": "VTK017888",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981462179",
+        "title": "Módulo Tury Para Vidro Elétrico Ae Pro2.8cw",
+        "price": 273.27,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981462179-modulo-tury-para-vidro-eletrico-ae-pro28cw-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 240.04 → R$ 273.27."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "a633a5df-049b-4273-bcac-810a3287c1e0",
+      "sku": "VTK017968",
+      "category": {
+        "id": "MLB272149",
+        "nome": "Splitters de Fibra Óptica",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981462239",
+        "title": "Cabo Óptico Splitter Intelbras Xfs 1321 Plc 1x32 Sc/upc",
+        "price": 198.72,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981462239-cabo-optico-splitter-intelbras-xfs-1321-plc-1x32-scupc-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 172.32 → R$ 198.72."
+      ]
+    }
+  ],
+  "failed": []
+}

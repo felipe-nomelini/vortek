@@ -1,0 +1,353 @@
+{
+  "batchNumber": 4,
+  "batchId": "evolusom-traditional-004",
+  "strategy": "traditional_no_catalog_predictor_consensus",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "71df1618-1fef-4c80-888d-4b54b63e6271",
+      "sku": "VTK018027",
+      "nome": "Arandela Sem Borda Frahm 6\" 40w Full Ranger Quadrada",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 104.9,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 154.2,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB443814",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_STEREOS_AND_SPEAKERS_KITS",
+        "categoryId": "MLB443814",
+        "categoryName": "Kits de Estéreo e Alto-Falante",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Reprodutores > Kits de Estéreo e Alto-Falante",
+        "validatedGtin": "7896673814074"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896673814074",
+        "validatedNcm": "85182100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "e7e76e6e-649f-4e31-9369-6875f254f206",
+      "sku": "VTK018077",
+      "nome": "Par De Lâmpadas Super Led Cob Multilaser H8 20w 6200k Lumens Au836",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 50.4,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 86.91,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB5759",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_LED_BULBS",
+        "categoryId": "MLB5759",
+        "categoryName": "Lâmpadas de Led",
+        "categoryPath": "Acessórios para Veículos > Tuning > Iluminação > Lâmpadas > Lâmpadas de Led",
+        "validatedGtin": "7899838803159"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899838803159",
+        "validatedNcm": "85395200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "04b72773-20e9-4de9-be70-92efa36f8a69",
+      "sku": "VTK018089",
+      "nome": "Trava Elétrica Soft Aa420012 Novo Uno / Palio / Strada / Celta 2 Portas",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 83.9,
+      "estoque": 14,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 128.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22369",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_ELECTRIC_DOOR_LOCKS",
+        "categoryId": "MLB22369",
+        "categoryName": "Travas Elétricas",
+        "categoryPath": "Acessórios para Veículos > Segurança Veicular > Travas Elétricas",
+        "validatedGtin": "7898441355123"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898441355123",
+        "validatedNcm": "87082999",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "f6fc077a-bac5-41d3-b5e0-d84f076d32ab",
+      "sku": "VTK018129",
+      "nome": "Teclado Para Central Monitorada Intelbras Xat 1018 Mt",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 24.95,
+      "estoque": 13,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 55.49,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB72514",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-TELEPHONY_CARDS",
+        "categoryId": "MLB72514",
+        "categoryName": "Placas",
+        "categoryPath": "Celulares e Telefones > Telefonia Fixa e Sem Fio > Centrais Telefônicas > Placas",
+        "validatedGtin": "7896637611749"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637611749",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "09fca44b-d25b-47a5-87f2-703b2bf431a5",
+      "sku": "VTK018133",
+      "nome": "Fonte Adaptadora Carregador Universal Alltech 12v Dc 2a Automotiva",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 23.95,
+      "estoque": 13,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 54.26,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB271558",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-DATA_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB271558",
+        "categoryName": "Carregadores",
+        "categoryPath": "Acessórios para Veículos > Navegadores GPS para Vehículos > Acessórios > Carregadores",
+        "validatedGtin": "6906179000022"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "6906179000022",
+        "validatedNcm": "85044029",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "fcaf1426-0108-4adf-831c-21a28a836637",
+      "sku": "VTK018141",
+      "nome": "Calota Grid Aro 14p 192 Cp-pta Hyundai Hb20/ Hb20s 2016 Cubo Padrão - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 66.6,
+      "estoque": 13,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 106.91,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892500384"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892500384",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "7dca48d5-d209-4431-81cc-33bbae63bcda",
+      "sku": "VTK018224",
+      "nome": "Módulo De Vidro Elétrico Soft Infinity 2.0 - Aa.56.0001",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 68.9,
+      "estoque": 14,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 109.75,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB191714",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+        "categoryId": "MLB191714",
+        "categoryName": "Elétrico",
+        "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+        "validatedGtin": "7898441352016"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898441352016",
+        "validatedNcm": "85432000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "612c7e99-5d81-4b62-922b-4e0c36836499",
+      "sku": "VTK018286",
+      "nome": "Calota Grid Aro 14p 016ca-pta Volkswaggen Modelo Gol/ Voyage/ Saveiro 2009/ 12 Cubo Alto - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277982494"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277982494",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "f85d881e-1485-487f-aaad-19c03f40c054",
+      "sku": "VTK018292",
+      "nome": "Alto Falante Subwoofer Pioneer 12\" Ts-w3090br 600w Rms 2x4 Ohms Bobina Dupla",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 430.99,
+      "estoque": 8,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 638.5,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "categoryId": "MLB3905",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Alto-Falantes",
+        "validatedGtin": "4988028352720"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "4988028352720",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "f713b5db-60e1-4bbd-93f1-bd3ebaa839fd",
+      "sku": "VTK018294",
+      "nome": "Controle Remoto Intelbras Rf Ir3",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 78.2,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 121.23,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB33412",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-ALARM_REMOTE_CONTROLS",
+        "categoryId": "MLB33412",
+        "categoryName": "Controles Remotos para Alarmes",
+        "categoryPath": "Casa, Móveis e Decoração > Segurança para Casa > Sistemas de Monitoramento > Controles Remotos para Alarmes",
+        "validatedGtin": "7896637680356"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637680356",
+        "validatedNcm": "85269200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

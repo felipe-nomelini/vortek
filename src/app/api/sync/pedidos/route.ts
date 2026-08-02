@@ -27,6 +27,7 @@ import { alertClaimOpened, alertMlLabelReleased, alertNewSale } from '@/services
 import {
   estornarReservaEnvioInternoCancelado,
   isEnderecoEstoqueInternoMl,
+  obterEnderecoRetornoPadraoMl,
   registrarDevolucaoInterna,
 } from '@/lib/estoque-interno';
 import {
@@ -1692,13 +1693,12 @@ async function processOrder(params: {
         shipmentStatus === 'not_delivered' &&
         ['returning_to_sender', 'returned'].includes(shipmentSubstatus)
       ) {
+        const enderecoRetornoPadrao = await obterEnderecoRetornoPadraoMl();
         await registrarDevolucaoInterna(
           pedidoId,
           motivoDevolucao || 'Entrega não realizada',
           shipmentSubstatus,
-          isEnderecoEstoqueInternoMl(
-            shipmentDetail?.origin?.shipping_address || shipmentDetail?.sender_address,
-          ),
+          isEnderecoEstoqueInternoMl(enderecoRetornoPadrao),
         );
       }
     }

@@ -1,0 +1,313 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/safe-final-validated/dry-run-results/001-evolusom-catalog-create-001-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-pdf-safe-001",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "8a8a4390-0070-46df-a3a0-eb0ef957c9a1",
+      "sku": "VTK000240",
+      "category": {
+        "id": "MLB278064",
+        "nome": "Suportes",
+        "dominio": "MLB-STRING_INSTRUMENT_STANDS_AND_WALL_HANGERS"
+      },
+      "basePrice": 49.69,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "4238929",
+          "value_name": "ASK"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "27724327",
+          "value_name": "ASL"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "26322417",
+          "value_name": "De parede"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "27724332",
+          "value_name": "7898939971309"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Expositor Para Instrumentos de Corda ASL Preto ASK\n\nVISÃO GERAL\n- Material especial evitando marcas e manchas no instrumento - Garra com giro que permite a adaptação do headstock - Suporta até 5Kg de carga e possui 190mm de distância da parede\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: ASK\n• Modelo: ASL\n• Tipo de produto: De parede\n• Cor: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ASK\n• GTIN: 7898939971309\n• NCM: 9209.99.00\n• SKU: VTK000240\n\nEMBALAGEM\n• Dimensões informadas: 10 × 8 × 27 cm\n• Peso bruto informado: 0,22 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9b0406aa-0e5a-4d61-b8b8-59a436652109",
+      "sku": "VTK000462",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 46.79,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2223295",
+          "value_name": "Prime"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "name": "Tipo de cabo e adaptador",
+          "value_id": "13788220",
+          "value_name": "RCA"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898566208014"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "20CM"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "",
+          "value_name": "20 cm"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo de Áudio Y 1 Fêmea X 2 Machos 20cm Azul Storm\n\nVISÃO GERAL\nO cabo de áudio Y 1 fêmea X 2 machos de 20cm Azul Storm é um cabo projetado para conectar dispositivos de áudio com um conector fêmea de 3 ,5 mm (P2) a dois dispositivos de saída de áudio com conectores machos de 3,5 mm (P2). Com um comprimento de 20 centímetros, é uma opção compacta e conveniente para dividir o sinal de áudio de um dispositivo, como um smartphone, tablet ou computador, para dois dispositivos de saída, como fones de ouvido, alto-falantes ou sistemas de som.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Prime\n• Tipo de cabo e adaptador: RCA\n• Modelo: 20CM\n• Comprimento do cabo: 20 cm\n• Tipo de produto: Fio\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: STORM\n• GTIN: 7898566208014\n• NCM: 8544.42.00\n• SKU: VTK000462\n\nEMBALAGEM\n• Dimensões informadas: 22 × 2 × 11.5 cm\n• Peso bruto informado: 0,06 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e1e9ae8b-d2bb-4815-a235-22d81d162d48",
+      "sku": "VTK001491",
+      "category": {
+        "id": "MLB278076",
+        "nome": "Cordas para Instrumentos",
+        "dominio": "MLB-STRING_INSTRUMENT_STRINGS"
+      },
+      "basePrice": 54.97,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "45321",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "19138738",
+          "value_name": "GEEWAK"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "17598422",
+          "value_name": "Guitarra"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "19138742",
+          "value_name": "7898159187023, 843104101033"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "",
+          "value_name": "6"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "112648",
+          "value_name": "Metal"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Encordoamento Para Violão Aço Bronze 85/15 Série Cobra Giannini GEEWA\n\nVISÃO GERAL\nA Série Cobra apresenta toda a versatilidade dos encordoamentos Giannini. O encordoamento para violão aço Giannini Cobra GEEWAK é revestido com Bronze 85/15, indicado para músicos que gostam de encordoamento com um som brilhante, encorpado e com ótimo sustain. O bronze 85/15 é formado por Cobre e Zinco, um metal de cor amarelo ouro.\n\nEsta liga contém entre 5 e 15% de Zinco. Nas cordas musicais produzem um som brilhante, encorpado e com uma boa sustentação. Perfeitas para vários estilos musicais.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Giannini\n• Modelo: GEEWAK\n• Instrumento recomendado: Guitarra\n• Quantidade de cordas: 6\n• Materiais: Metal\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GIANNINI\n• GTIN: 7898159187023\n• NCM: 9209.30.00\n• SKU: VTK001491\n\nEMBALAGEM\n• Dimensões informadas: 11 × 15 × 22 cm\n• Peso bruto informado: 0,025 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4f770396-e999-4662-a519-4aed2cc0170c",
+      "sku": "VTK001628",
+      "category": {
+        "id": "MLB278076",
+        "nome": "Cordas para Instrumentos",
+        "dominio": "MLB-STRING_INSTRUMENT_STRINGS"
+      },
+      "basePrice": 43.9,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "45321",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "16505958",
+          "value_name": "Canário Genw"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "name": "Instrumento recomendado",
+          "value_id": "15312679",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "16505985",
+          "value_name": "7898159186569, 7898159181076, 7898159184701"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "name": "Quantidade de cordas",
+          "value_id": "",
+          "value_name": "6"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Encordoamento Para Violão Nylon Médio Série Canário Giannini GENW\n\nVISÃO GERAL\nO encordoamento para violão nylon 06 cordas Giannini Canário GENW possui um núcleo de náilon revestido de cobre prateado, e é o melhor custo-benefício que você encontrará num encordoamento, sem perder a qualidade ou o timbre do seu som. A série Canário é uma das mais tradicionais da Giannini, assim como uma das mais vendidas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Giannini\n• Modelo: Canário Genw\n• Instrumento recomendado: Violão acústico\n• Quantidade de cordas: 6\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GIANNINI\n• GTIN: 7898159186569\n• NCM: 9209.30.00\n• SKU: VTK001628\n\nEMBALAGEM\n• Dimensões informadas: 11.5 × 1 × 11.5 cm\n• Peso bruto informado: 0,02 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "6b931c2e-c7cf-40cc-8864-3d5a9de25b4b",
+      "sku": "VTK003138",
+      "category": {
+        "id": "MLB72745",
+        "nome": "Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 64.36,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "16890593",
+          "value_name": "Stormtech"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "name": "Tipo de cabo e adaptador",
+          "value_id": "13788227",
+          "value_name": "XLR"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898566206775"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CBSP0002"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "",
+          "value_name": "10 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Speakon Macho Para Speakon Macho 10m CBSP0002 Storm\n\nVISÃO GERAL\nO Cabo Speakon ferece conexão confiável e segura, contando com sistema de travamento. Este modelo é ideal para conexão de alto-falantes e amplificadores.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Stormtech\n• Tipo de cabo e adaptador: XLR\n• Modelo: CBSP0002\n• Comprimento do cabo: 10 m\n• Tipo de produto: Fio\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: STORM\n• GTIN: 7898566206775\n• NCM: 8544.42.00\n• SKU: VTK003138\n\nEMBALAGEM\n• Dimensões informadas: 20 × 5 × 19 cm\n• Peso bruto informado: 0,564 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

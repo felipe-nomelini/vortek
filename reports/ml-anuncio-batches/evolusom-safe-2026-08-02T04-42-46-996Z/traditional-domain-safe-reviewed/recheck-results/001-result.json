@@ -1,0 +1,241 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-domain-safe-reviewed/001-evolusom-domain-safe-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-domain-safe-001",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "865b05da-58b8-4c3b-9fc4-9c7b58cc19bd",
+      "sku": "VTK017185",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": ""
+      },
+      "basePrice": 40,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SANTO ANGELO"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "Ninja P"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899028809268"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "name": "Modelo alfanumérico",
+          "value_id": "",
+          "value_name": "Ninja P"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Plug Santo Angelo P10 Ninja Estéreo Com Mola Níquel\n\nVISÃO GERAL\nPlug P10 Ninja estéreo em latão niquelado e jateado com mola.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SANTO ANGELO\n• Modelo: Ninja P\n• Modelo alfanumérico: Ninja P\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SANTO ANGELO\n• GTIN: 7899028809268\n• NCM: 85369090\n• SKU: VTK017185\n\nEMBALAGEM\n• Dimensões informadas: 1.2 × 1.2 × 9 cm\n• Peso bruto informado: 0,016 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "fc4aa25f-81b8-40c9-8e1a-d2cac8343222",
+      "sku": "VTK017317",
+      "category": {
+        "id": "MLB1716",
+        "nome": "Mouse Pads",
+        "dominio": ""
+      },
+      "basePrice": 56.27,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "EVUS"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MP-500B"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898597133354"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Mouse Pad Evus Mp-500b Pan\n\nVISÃO GERAL\nO Mouse Pad Evus Pan possui tecnologia de bordas seladas que permite fácil limpeza e conta com um excelente acabamento. A superfície em Poliéster aliada à sua espessura de 3mm proporciona maior conforto para o apoio dos punhos e mãos, aliando velocidade e precisão. Sua base de borracha natural antiderrapante proporciona maior aderência na superfície, impedindo movimentações involuntárias durante as suas partidas.\n\n*Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: EVUS\n• Modelo: MP-500B\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: EVUS\n• GTIN: 7898597133354\n• NCM: 40169990\n• SKU: VTK017317\n\nEMBALAGEM\n• Dimensões informadas: 6.5 × 6.5 × 44 cm\n• Peso bruto informado: 0,404 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "054e7b91-653d-4f52-b332-1ca9da3994af",
+      "sku": "VTK017397",
+      "category": {
+        "id": "MLB22369",
+        "nome": "Travas Elétricas",
+        "dominio": ""
+      },
+      "basePrice": 40.38,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "ROADSTAR BRASIL"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "385152"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Trava Elétrica Roadstar 2 Fios Individual - Rs101br\n\nVISÃO GERAL\nResistente Com o sistema de motor de torque elevado, a trava elétrica RS-01BR pode ser utilizada até em modelos de carros mais antigos, onde se requer mais esforço para abrir ou fechar as travas das portas. Cabeça 360º Projetada para todos os modelos de carros, as travas universais Roadstar são facilmente instaladas tendo a cabeça giratória em 360º para se adequar a todos os sistemas de portas. *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: ROADSTAR BRASIL\n• Número de peça: 385152\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ROADSTAR BRASIL\n• GTIN: 7890000078399\n• NCM: 83012000\n• SKU: VTK017397\n\nEMBALAGEM\n• Dimensões informadas: 3 × 7.5 × 21.5 cm\n• Peso bruto informado: 0,134 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0c58abd1-d64a-4139-9563-b4c28dde8baf",
+      "sku": "VTK017885",
+      "category": {
+        "id": "MLB33383",
+        "nome": "Outros",
+        "dominio": ""
+      },
+      "basePrice": 46.2,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "MINIPA"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MTK-01"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898112607308"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Termopar Tipo K Minipa Mtk-01 Com Blister\n\nVISÃO GERAL\nTermopar Tipo K Minipa MTK-01 O termopar MTK-01 é um instrumento de medição com faixa de medição de -40 a 204ºC e precisão de ±0,75% Leit. ou ±2,2ºC. Com tipo K e conexão por soquete, é indicado para aplicações universais.\n\nSeu comprimento de 970mm oferece versatilidade na instalação. Ideal para monitoramento preciso e confiável de temperaturas em diversos processos industriais e laboratoriais. O MTK-01 destaca-se pela sua confiabilidade e desempenho em ambientes exigentes.\n\n*Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MINIPA\n• Modelo: MTK-01\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MINIPA\n• GTIN: 7898112607308\n• NCM: 90259010\n• SKU: VTK017885\n\nEMBALAGEM\n• Dimensões informadas: 2 × 8.5 × 19 cm\n• Peso bruto informado: 0,03 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "04b72773-20e9-4de9-be70-92efa36f8a69",
+      "sku": "VTK018089",
+      "category": {
+        "id": "MLB22369",
+        "nome": "Travas Elétricas",
+        "dominio": ""
+      },
+      "basePrice": 131.52,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SOFT"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "101741"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Trava Elétrica Soft Aa420012 Novo Uno / Palio / Strada / Celta 2 Portas\n\nVISÃO GERAL\nFácil instalação e menos ruído de acordo com o padrão das montadoras não altera as características originais do veículo motores com certificação automotiva acionamento através de alarme Destravamento manual suave. Acionamento através de alarme Não alteram as características originais do veículo Peças de fixação de fácil montagem e encaixe Destravamento manual e suave Padrão utilizado nas montadoras. Celta - 2005/2015 Fiesta - 2002/2015 Uno - 2010/2014 Strada - 2001/2015 Palio - 2001/2012 *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SOFT\n• Número de peça: 101741\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SOFT\n• GTIN: 7898441355123\n• NCM: 87082999\n• SKU: VTK018089\n\nEMBALAGEM\n• Dimensões informadas: 11 × 10 × 24 cm\n• Peso bruto informado: 0,422 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

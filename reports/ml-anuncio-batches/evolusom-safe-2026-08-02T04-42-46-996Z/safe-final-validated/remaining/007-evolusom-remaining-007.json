@@ -1,0 +1,435 @@
+{
+  "batchNumber": 7,
+  "batchId": "evolusom-domain-approved-007",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "928958aa-5d36-44cf-98ea-52a9cb8d4f71",
+      "sku": "VTK022016",
+      "nome": "Cabo Hdmi Evus C-002 3d Macho X Macho Com Filtro V1.4 3,0m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 12.99,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 40.73,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597130346",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB38186",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "16696220",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "9784335",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129130",
+          "value_name": "3 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "16201380",
+          "value_name": "6.5 mm"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6739225",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "6739227",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "64611450",
+          "value_name": "Ouro de 24K"
+        },
+        {
+          "id": "SUPPORTED_AUDIO_CODECS",
+          "value_id": "60066755",
+          "value_name": "PCM, dvd-audio, Super Audio CD, Dolby TrueHD, DTS-HD Master Audio"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "39457896",
+          "value_name": "7898597130346"
+        },
+        {
+          "id": "COMPATIBLE_DEVICES",
+          "value_id": "68008582",
+          "value_name": "TVs LED, LCD, Plasma, Monitores Digitais, Projetores, consoles de videogame, Blu-Ray"
+        },
+        {
+          "id": "MAX_RESOLUTION_SUPPORTED",
+          "value_id": "73926722",
+          "value_name": "4K 2160p"
+        },
+        {
+          "id": "VERSION_TYPE",
+          "value_id": "63532248",
+          "value_name": "1.4"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB38302545",
+        "catalogProductName": "Cabo HDMI de 3m para TVs 4K e Consoles Ultra HD",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB38186",
+        "categoryName": "Áudio e Vídeo",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898597130346"
+      }
+    },
+    {
+      "produtoId": "0136a5ae-54d6-4606-b235-c862c1e34817",
+      "sku": "VTK022968",
+      "nome": "Liquidificador Oster Oliq610 1400w 220v",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 197.9,
+      "estoque": 15,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 280.97,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898615988546",
+        "validatedNcm": "85094010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB73055",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "467",
+          "value_name": "Oster"
+        },
+        {
+          "id": "LINE",
+          "value_id": "10450086",
+          "value_name": "1400 Full"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "9590607",
+          "value_name": "OLIQ610"
+        },
+        {
+          "id": "VOLUME_CAPACITY",
+          "value_id": "2115875",
+          "value_name": "3.2 L"
+        },
+        {
+          "id": "TOTAL_CAPACITY",
+          "value_id": "2115875",
+          "value_name": "3.2 L"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "value_id": "49713698",
+          "value_name": "Corrente doméstica"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "198813",
+          "value_name": "220V"
+        },
+        {
+          "id": "BLENDER_JAR_MATERIAL",
+          "value_id": "2364248",
+          "value_name": "Plástico"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "9590611",
+          "value_name": "OLIQ610-220"
+        },
+        {
+          "id": "POWER",
+          "value_id": "104589",
+          "value_name": "1400 W"
+        },
+        {
+          "id": "RECOMMENDED_USES",
+          "value_id": "19409519",
+          "value_name": "Perfeito para o preparo de diversas receitas para toda a família"
+        },
+        {
+          "id": "SPEEDS_NUMBER",
+          "value_id": "4392562",
+          "value_name": "15"
+        },
+        {
+          "id": "IS_INDUSTRIAL",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "USEFUL_CAPACITY",
+          "value_id": "16718413",
+          "value_name": "2 L"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "9837518",
+          "value_name": "7898615988546, 17898615988543"
+        },
+        {
+          "id": "INCLUDES_ACCESSORIES",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "19731354",
+          "value_name": "Tampa dosadora c/ 100ml, Manual de instruções"
+        },
+        {
+          "id": "IS_DISHWASHER_SAFE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "DISHWASHER_UNSUITABLE_PARTS",
+          "value_id": "23928800",
+          "value_name": "Todas"
+        },
+        {
+          "id": "IS_PORTABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ON_OFF_POWER_BUTTON",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_USB_CHARGE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_BPA_FREE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "IS_SUITABLE_FOR_ICE_CRUSHING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "PROGRAMS_NUMBER",
+          "value_id": "8678667",
+          "value_name": "2"
+        },
+        {
+          "id": "BLENDER_PROGRAMS",
+          "value_id": "10890361",
+          "value_name": "Pulso, Triturar"
+        },
+        {
+          "id": "BLENDER_BLADES_NUMBER",
+          "value_id": "11473574",
+          "value_name": "4"
+        },
+        {
+          "id": "WITH_REMOVABLE_BLADE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_STAINLESS_STEEL_BLADE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_TURBO_FUNCTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_PULSE_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ANTI_SLIP_BASE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_DOSING_LID",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_POURING_SPOUT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SECURITY_SEAL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_DIGITAL_DISPLAY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_HEAT_RESISTANT_JAR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_SOUND_ENCLOSURE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DUAL_DIRECTION_TECHNOLOGY",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_OVERLOAD_PROTECTION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_TIMER",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CORD_STORAGE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "DEPTH",
+          "value_id": "8155381",
+          "value_name": "22 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "13774048",
+          "value_name": "42.2 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "7916192",
+          "value_name": "20.5 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "7660690",
+          "value_name": "2.3 kg"
+        },
+        {
+          "id": "MPN",
+          "value_id": "10224566",
+          "value_name": "4874"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_ambiguous_semantically_selected",
+        "catalogProductId": "MLB16602519",
+        "catalogProductName": "Liquidificador Full Oster 15 Velocidades 1400W Preto 220V OLIQ610",
+        "catalogDomainId": "MLB-BLENDERS",
+        "predictedDomainId": "MLB-BLENDERS",
+        "categoryId": "MLB73055",
+        "categoryName": "Liquidificadores",
+        "validatedGtin": "7898615988546"
+      }
+    }
+  ]
+}

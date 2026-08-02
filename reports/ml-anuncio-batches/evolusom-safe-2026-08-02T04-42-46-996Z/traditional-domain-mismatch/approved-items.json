@@ -1,0 +1,2654 @@
+[
+  {
+    "produtoId": "9604ecb9-3f7c-4191-ac91-4e954384c7f5",
+    "sku": "VTK002550",
+    "nome": "Pedestal Com Bandeja Multiuso BMU Preto ASK",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 135.9,
+    "estoque": 21,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 192.94,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB10233",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-SPEAKERS_STANDS",
+      "categoryId": "MLB10233",
+      "categoryName": "Suportes para Caixas de Som",
+      "categoryPath": "Eletrônicos, Áudio e Vídeo > Áudio > Suportes para Caixas de Som",
+      "validatedGtin": "7898939971552"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898939971552",
+      "validatedNcm": "92099900",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "e1010b67-3341-4029-af06-99c399d85197",
+    "sku": "VTK002792",
+    "nome": "Detector Óptico de Fumaça 12V/24V SEGURIMAX",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 43.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 78.89,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB277840",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-GAS_DETECTORS",
+      "categoryId": "MLB277840",
+      "categoryName": "Detectores de Gases",
+      "categoryPath": "Indústria e Comércio > Segurança Laboral > Detectores de Gases",
+      "validatedGtin": "7898597854044"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898597854044",
+      "validatedNcm": "85311090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "bc040ab0-3aa3-4126-b12a-d24c2897bac0",
+    "sku": "VTK003270",
+    "nome": "Interruptor Inteligente 1 Tecla Wi-Fi SE235 Branco MULTILASER",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 61.9,
+    "estoque": 15,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 101.11,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB269928",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-DIMMERS",
+      "categoryId": "MLB269928",
+      "categoryName": "Dimmers",
+      "categoryPath": "Construção > Energia > Tomadas e Interruptores > Interruptores > Dimmers",
+      "validatedGtin": "7899838881218"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899838881218",
+      "validatedNcm": "85437099",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "2c2705af-8d9d-4155-a010-0213811f3a67",
+    "sku": "VTK004115",
+    "nome": "Suporte Magnético Para Antena Móvel PX M-700K Preto AQUÁRIO",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 105.9,
+    "estoque": 10,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 155.43,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB58500",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_CELLPHONE_AND_GPS_MOUNTS",
+      "categoryId": "MLB58500",
+      "categoryName": "Suportes Veiculares",
+      "categoryPath": "Celulares e Telefones > Acessórios para Celulares > Colgantes e Suportes > Suportes Veiculares",
+      "validatedGtin": "7898127600530"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898127600530",
+      "validatedNcm": "85177190",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "7c433078-cf08-4965-8cba-fe1e9c822b33",
+    "sku": "VTK005357",
+    "nome": "Alto-Falante 5\" JBL Multisystem 5TRMS80 (PAR)",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 209.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 298.01,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB443814",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_STEREOS_AND_SPEAKERS_KITS",
+      "categoryId": "MLB443814",
+      "categoryName": "Kits de Estéreo e Alto-Falante",
+      "categoryPath": "Acessórios para Veículos > Som Automotivo > Reprodutores > Kits de Estéreo e Alto-Falante",
+      "validatedGtin": "7896359568963"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896359568963",
+      "validatedNcm": "85182990",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "fb10f581-ba0e-4f24-94a8-c66f60a04a5e",
+    "sku": "VTK017159",
+    "nome": "Bucha Para Alto Falante Original Permak Palio 237/c",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 14.29,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 42.33,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB443814",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_STEREOS_AND_SPEAKERS_KITS",
+      "categoryId": "MLB443814",
+      "categoryName": "Kits de Estéreo e Alto-Falante",
+      "categoryPath": "Acessórios para Veículos > Som Automotivo > Reprodutores > Kits de Estéreo e Alto-Falante",
+      "validatedGtin": "7898253490951"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898253490951",
+      "validatedNcm": "87082999",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "865b05da-58b8-4c3b-9fc4-9c7b58cc19bd",
+    "sku": "VTK017185",
+    "nome": "Plug Santo Angelo P10 Ninja Estéreo Com Mola Níquel",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 11.2,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 38.52,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB420707",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+      "categoryId": "MLB420707",
+      "categoryName": "Conectores",
+      "categoryPath": "Eletrônicos, Áudio e Vídeo > Áudio > Equipamento para DJs > Acessórios > Conectores",
+      "validatedGtin": "7899028809268"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899028809268",
+      "validatedNcm": "85369090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "59eda7a6-d2a4-4553-9d25-6383cfa1c027",
+    "sku": "VTK017211",
+    "nome": "Suporte Para Microfone De Bateria/precussão Ask B10",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 67.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 108.52,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB439386",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-MICROPHONE_STANDS",
+      "categoryId": "MLB439386",
+      "categoryName": "Pés de Microfone",
+      "categoryPath": "Eletrônicos, Áudio e Vídeo > Áudio > Microfones e Pré Amps. > Pés de Microfone",
+      "validatedGtin": "7898939972504"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898939972504",
+      "validatedNcm": "92099900",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "8398a3fb-8b3b-47e4-8530-c5cc54ec40fe",
+    "sku": "VTK017212",
+    "nome": "Cabo óptico Intelbras Plc 1x2 Nc Xfs 120 Com Divisor 4830013",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 19.3,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 48.52,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB431815",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-NETWORK_CABLES",
+      "categoryId": "MLB431815",
+      "categoryName": "Cabos de Rede",
+      "categoryPath": "Eletrônicos, Áudio e Vídeo > Cabos > Cabos de Rede",
+      "validatedGtin": "7896637676717"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896637676717",
+      "validatedNcm": "85447090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "6b567a46-935d-4828-9e0c-3fe87355a5f1",
+    "sku": "VTK017236",
+    "nome": "Alto Falante 5\" Pioneer Ts-1360br 100rms/ Par",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 113.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 165.31,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB3905",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_SPEAKERS",
+      "categoryId": "MLB3905",
+      "categoryName": "Alto-Falantes",
+      "categoryPath": "Acessórios para Veículos > Som Automotivo > Alto-Falantes",
+      "validatedGtin": "4988028352812"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "4988028352812",
+      "validatedNcm": "85182990",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "3e20ce56-00dd-491e-a9d0-0a26e0431bfb",
+    "sku": "VTK017238",
+    "nome": "Detector De Temperatura 12/ 24v Segurimax Contato Seco",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 36.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 70.25,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB278141",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-METAL_DETECTORS",
+      "categoryId": "MLB278141",
+      "categoryName": "Detectores de Metais",
+      "categoryPath": "Ferramentas > Ferramentas Elétricas > Detectores de Metais",
+      "validatedGtin": "7898597854341"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898597854341",
+      "validatedNcm": "85319000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "29dc5fa4-1b4d-4261-b981-ac9de650b853",
+    "sku": "VTK017246",
+    "nome": "Controle Remoto Copiar Hombrus 433mhz Code Learn 3 Botões",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 22.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 52.96,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB277529",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-INDUSTRIAL_MACHINE_REMOTE_CONTROLS",
+      "categoryId": "MLB277529",
+      "categoryName": "Controles Remotos",
+      "categoryPath": "Ferramentas > Ferramentas Industriais > Peças de Reposição > Controles Remotos",
+      "validatedGtin": "7891097542084"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7891097542084",
+      "validatedNcm": "85269200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "fc4aa25f-81b8-40c9-8e1a-d2cac8343222",
+    "sku": "VTK017317",
+    "nome": "Mouse Pad Evus Mp-500b Pan",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 23.89,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 54.19,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB1716",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-MOUSE_PADS",
+      "categoryId": "MLB1716",
+      "categoryName": "Mouse Pads",
+      "categoryPath": "Informática > Periféricos para PC > Mouses e Teclados > Mouse Pads",
+      "validatedGtin": "7898597133354"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898597133354",
+      "validatedNcm": "40169990",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "0c91a533-35c0-433b-9037-fb32747eeaf8",
+    "sku": "VTK017391",
+    "nome": "Grampo Vonder 16mm Para Pinador Elétrico Com 1000 Grampos",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 15.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 44.32,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB430493",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-ELECTRIC_STAPLERS_AND_BRAD_NAILERS",
+      "categoryId": "MLB430493",
+      "categoryName": "Grampeadores e Pinadores",
+      "categoryPath": "Ferramentas > Ferramentas Elétricas > Perfuração > Grampeadores e Pinadores",
+      "validatedGtin": "7893946536527"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7893946536527",
+      "validatedNcm": "83052000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "054e7b91-653d-4f52-b332-1ca9da3994af",
+    "sku": "VTK017397",
+    "nome": "Trava Elétrica Roadstar 2 Fios Individual - Rs101br",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 11.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 39.38,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB22369",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_ELECTRIC_DOOR_LOCKS",
+      "categoryId": "MLB22369",
+      "categoryName": "Travas Elétricas",
+      "categoryPath": "Acessórios para Veículos > Segurança Veicular > Travas Elétricas",
+      "validatedGtin": "7890000078399"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7890000078399",
+      "validatedNcm": "83012000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "f4830746-74a9-401b-a711-2ccee41787d1",
+    "sku": "VTK017534",
+    "nome": "Reparo Jbl Selenium Rpd250-x Para Driver D250-x",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 50.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 87.53,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB46559",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+      "categoryId": "MLB46559",
+      "categoryName": "Drivers",
+      "categoryPath": "Acessórios para Veículos > Som Automotivo > Drivers",
+      "validatedGtin": "7896359508631"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896359508631",
+      "validatedNcm": "85189010",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "ad9bb504-524a-48d3-a56c-146c4f1781ab",
+    "sku": "VTK017577",
+    "nome": "Fone De Ouvido Para Radio Comunicador Intelbras Hc20pt 4161020",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 57.6,
+    "estoque": 44,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 95.8,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB418302",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-TELEPHONY_AND_RADIO_COMMUNICATION_PRODUCTS",
+      "categoryId": "MLB418302",
+      "categoryName": "Fones",
+      "categoryPath": "Celulares e Telefones > Rádio Comunicadores > Acessórios > Fones",
+      "validatedGtin": "7899298633693"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899298633693",
+      "validatedNcm": "85183000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "018f9e02-57ce-4766-a127-8cbee6d3cabc",
+    "sku": "VTK017630",
+    "nome": "Sensor Externo Sulton Spw 700 Pet 30 Kg",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 161.9,
+    "estoque": 38,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 229.86,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB7070",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "categoryId": "MLB7070",
+      "categoryName": "Alarmes e Sensores",
+      "categoryPath": "Casa, Móveis e Decoração > Segurança para Casa > Sistemas de Monitoramento > Alarmes e Sensores",
+      "validatedGtin": "7898911419904"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898911419904",
+      "validatedNcm": "85437099",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "6529db06-96ae-4f36-873c-e673c801cdaa",
+    "sku": "VTK017783",
+    "nome": "Quantum Qps Plus4004 Sensor De Estacion. C/ 4 Sensores Sonoros",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 134.9,
+    "estoque": 25,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 191.52,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB430253",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-INDOOR_GROWING_LIGHTS",
+      "categoryId": "MLB430253",
+      "categoryName": "Lâmpadas para Cultivo",
+      "categoryPath": "Casa, Móveis e Decoração > Jardim e Ar Livre > Jardinagem e Accesórios > Accessórios para Cultivo > Lâmpadas para Cultivo",
+      "validatedGtin": "7898382148075"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898382148075",
+      "validatedNcm": "87089990",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "bdd22a64-bf53-4d11-865c-97dd9a6eb776",
+    "sku": "VTK017821",
+    "nome": "Reparo Jbl Selenium Rpst302-x Para Super Tweeter St302-x",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 47.5,
+    "estoque": 23,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 83.33,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB46559",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+      "categoryId": "MLB46559",
+      "categoryName": "Drivers",
+      "categoryPath": "Acessórios para Veículos > Som Automotivo > Drivers",
+      "validatedGtin": "7896359530991"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896359530991",
+      "validatedNcm": "85189010",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "7c8971e2-d889-4815-9dc5-1ffb7a9cdbdb",
+    "sku": "VTK017823",
+    "nome": "Calota Grid Aro 13p 050cb-pta Fiat Modelo Palio Fire 2004 Cubo Baixo - PC / 4",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 43.4,
+    "estoque": 23,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 78.27,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB22664",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+      "categoryId": "MLB22664",
+      "categoryName": "Calotas",
+      "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+      "validatedGtin": "7898277980766"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898277980766",
+      "validatedNcm": "87087090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "e666735c-5699-4787-9273-2e2be34c872a",
+    "sku": "VTK017848",
+    "nome": "Cabo Alarme Telecam 100 Metros 50 X 10 Vias Cca Liga Cobre",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 79.9,
+    "estoque": 20,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 123.33,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB48605",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-TELEPHONE_CABLES",
+      "categoryId": "MLB48605",
+      "categoryName": "Cabos Telefônicos",
+      "categoryPath": "Celulares e Telefones > Telefonia Fixa e Sem Fio > Acessórios > Cabos Telefônicos",
+      "validatedGtin": "7898619565781"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898619565781",
+      "validatedNcm": "85441100",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "65cf91e9-4975-4825-8c8b-6236c64fa2aa",
+    "sku": "VTK017872",
+    "nome": "Reparo Jbl Rpst330 Para Super Tweeter St330 Poly T",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 49.99,
+    "estoque": 21,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 86.41,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB46559",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+      "categoryId": "MLB46559",
+      "categoryName": "Drivers",
+      "categoryPath": "Acessórios para Veículos > Som Automotivo > Drivers",
+      "validatedGtin": "7896359538010"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896359538010",
+      "validatedNcm": "85189010",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "0c58abd1-d64a-4139-9563-b4c28dde8baf",
+    "sku": "VTK017885",
+    "nome": "Termopar Tipo K Minipa Mtk-01 Com Blister",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 16.5,
+    "estoque": 20,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 45.06,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB33383",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-TOOL_ACCESSORIES_AND_REPLACEMENTS",
+      "categoryId": "MLB33383",
+      "categoryName": "Outros",
+      "categoryPath": "Ferramentas > Acessórios para Ferramentas > Outros",
+      "validatedGtin": "7898112607308"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898112607308",
+      "validatedNcm": "90259010",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "6c3584cf-235b-4f73-9ed9-11da5c32d26b",
+    "sku": "VTK017895",
+    "nome": "Calota Grid Aro 15p 195cp-pta Modelo Onix / Prisma Lt 2014/ 16 - PC / 4",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 66.6,
+    "estoque": 20,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 106.91,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB22664",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+      "categoryId": "MLB22664",
+      "categoryName": "Calotas",
+      "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+      "validatedGtin": "7898277981503"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898277981503",
+      "validatedNcm": "87087090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "78d60d02-7936-4e09-9279-ad8ec2833a35",
+    "sku": "VTK017898",
+    "nome": "Fone Headset Intelbras Ths 55 Conector Usb 4010055",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 239.9,
+    "estoque": 20,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 340.6,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB3828",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-HEADSET_TELEPHONES",
+      "categoryId": "MLB3828",
+      "categoryName": "Telefones Headset",
+      "categoryPath": "Celulares e Telefones > Telefonia Fixa e Sem Fio > Telefones Headset",
+      "validatedGtin": "7896637677035"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896637677035",
+      "validatedNcm": "85183000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "2f410b69-9b05-49fd-95ab-487e32bfb552",
+    "sku": "VTK017924",
+    "nome": "Chaveiro Positron Novo Px-32 Cyber 4 Botões Preto",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 41.9,
+    "estoque": 16,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 76.42,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB417161",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-ELECTRONIC_SWITCHES",
+      "categoryId": "MLB417161",
+      "categoryName": "Interruptores Elétricos",
+      "categoryPath": "Construção > Energia > Tomadas e Interruptores > Interruptores > Interruptores Elétricos",
+      "validatedGtin": "7897789624526"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7897789624526",
+      "validatedNcm": "85437099",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "6aad7bc9-9c00-4597-86de-37c6ddde778e",
+    "sku": "VTK017933",
+    "nome": "Botão De Pânico Ipec Nf",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 21.9,
+    "estoque": 19,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 51.73,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB7070",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "categoryId": "MLB7070",
+      "categoryName": "Alarmes e Sensores",
+      "categoryPath": "Casa, Móveis e Decoração > Segurança para Casa > Sistemas de Monitoramento > Alarmes e Sensores",
+      "validatedGtin": "7898663560183"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898663560183",
+      "validatedNcm": "85269200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "dadf008c-d494-4df6-ba1e-417a9427b73f",
+    "sku": "VTK017966",
+    "nome": "Calota Grid Aro 14p 014cb-pta Ford Modelo Fiesta 2008/ 10 Cubo Baixo - PC / 4",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 47.8,
+    "estoque": 18,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 83.7,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB22664",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+      "categoryId": "MLB22664",
+      "categoryName": "Calotas",
+      "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+      "validatedGtin": "7898277981541"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898277981541",
+      "validatedNcm": "87087090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "9c77b5a6-03a8-43a1-bb04-7c2e30e2c9c1",
+    "sku": "VTK017970",
+    "nome": "Reparo Tweeter Shock Completo St-400 Selenium",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 24.9,
+    "estoque": 18,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 55.43,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB122134",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-BICYCLE_SHOCK_ABSORBERS",
+      "categoryId": "MLB122134",
+      "categoryName": "Amortecedores",
+      "categoryPath": "Esportes e Fitness > Ciclismo > Peças  > Amortecedores",
+      "validatedGtin": "7892046021094"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7892046021094",
+      "validatedNcm": "85189010",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "71df1618-1fef-4c80-888d-4b54b63e6271",
+    "sku": "VTK018027",
+    "nome": "Arandela Sem Borda Frahm 6\" 40w Full Ranger Quadrada",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 104.9,
+    "estoque": 16,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 154.2,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB443814",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_STEREOS_AND_SPEAKERS_KITS",
+      "categoryId": "MLB443814",
+      "categoryName": "Kits de Estéreo e Alto-Falante",
+      "categoryPath": "Acessórios para Veículos > Som Automotivo > Reprodutores > Kits de Estéreo e Alto-Falante",
+      "validatedGtin": "7896673814074"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896673814074",
+      "validatedNcm": "85182100",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "e7e76e6e-649f-4e31-9369-6875f254f206",
+    "sku": "VTK018077",
+    "nome": "Par De Lâmpadas Super Led Cob Multilaser H8 20w 6200k Lumens Au836",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 50.4,
+    "estoque": 15,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 86.91,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB5759",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_LED_BULBS",
+      "categoryId": "MLB5759",
+      "categoryName": "Lâmpadas de Led",
+      "categoryPath": "Acessórios para Veículos > Tuning > Iluminação > Lâmpadas > Lâmpadas de Led",
+      "validatedGtin": "7899838803159"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899838803159",
+      "validatedNcm": "85395200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "04b72773-20e9-4de9-be70-92efa36f8a69",
+    "sku": "VTK018089",
+    "nome": "Trava Elétrica Soft Aa420012 Novo Uno / Palio / Strada / Celta 2 Portas",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 83.9,
+    "estoque": 14,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 128.27,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB22369",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_ELECTRIC_DOOR_LOCKS",
+      "categoryId": "MLB22369",
+      "categoryName": "Travas Elétricas",
+      "categoryPath": "Acessórios para Veículos > Segurança Veicular > Travas Elétricas",
+      "validatedGtin": "7898441355123"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898441355123",
+      "validatedNcm": "87082999",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "f6fc077a-bac5-41d3-b5e0-d84f076d32ab",
+    "sku": "VTK018129",
+    "nome": "Teclado Para Central Monitorada Intelbras Xat 1018 Mt",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 24.95,
+    "estoque": 13,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 55.49,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB72514",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-TELEPHONY_CARDS",
+      "categoryId": "MLB72514",
+      "categoryName": "Placas",
+      "categoryPath": "Celulares e Telefones > Telefonia Fixa e Sem Fio > Centrais Telefônicas > Placas",
+      "validatedGtin": "7896637611749"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896637611749",
+      "validatedNcm": "85437099",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "09fca44b-d25b-47a5-87f2-703b2bf431a5",
+    "sku": "VTK018133",
+    "nome": "Fonte Adaptadora Carregador Universal Alltech 12v Dc 2a Automotiva",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 23.95,
+    "estoque": 13,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 54.26,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB271558",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-DATA_CABLES_AND_ADAPTERS",
+      "categoryId": "MLB271558",
+      "categoryName": "Carregadores",
+      "categoryPath": "Acessórios para Veículos > Navegadores GPS para Vehículos > Acessórios > Carregadores",
+      "validatedGtin": "6906179000022"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "6906179000022",
+      "validatedNcm": "85044029",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "fcaf1426-0108-4adf-831c-21a28a836637",
+    "sku": "VTK018141",
+    "nome": "Calota Grid Aro 14p 192 Cp-pta Hyundai Hb20/ Hb20s 2016 Cubo Padrão - PC / 4",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 66.6,
+    "estoque": 13,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 106.91,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB22664",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+      "categoryId": "MLB22664",
+      "categoryName": "Calotas",
+      "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+      "validatedGtin": "7899892500384"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899892500384",
+      "validatedNcm": "87087090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "7dca48d5-d209-4431-81cc-33bbae63bcda",
+    "sku": "VTK018224",
+    "nome": "Módulo De Vidro Elétrico Soft Infinity 2.0 - Aa.56.0001",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 68.9,
+    "estoque": 14,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 109.75,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB191714",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+      "categoryId": "MLB191714",
+      "categoryName": "Elétrico",
+      "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+      "validatedGtin": "7898441352016"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898441352016",
+      "validatedNcm": "85432000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "612c7e99-5d81-4b62-922b-4e0c36836499",
+    "sku": "VTK018286",
+    "nome": "Calota Grid Aro 14p 016ca-pta Volkswaggen Modelo Gol/ Voyage/ Saveiro 2009/ 12 Cubo Alto - PC / 4",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 47.8,
+    "estoque": 10,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 83.7,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB22664",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+      "categoryId": "MLB22664",
+      "categoryName": "Calotas",
+      "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+      "validatedGtin": "7898277982494"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898277982494",
+      "validatedNcm": "87087090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "f85d881e-1485-487f-aaad-19c03f40c054",
+    "sku": "VTK018292",
+    "nome": "Alto Falante Subwoofer Pioneer 12\" Ts-w3090br 600w Rms 2x4 Ohms Bobina Dupla",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 430.99,
+    "estoque": 8,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 638.5,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.2,
+      "minProfit": 60
+    },
+    "categoryId": "MLB3905",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_SPEAKERS",
+      "categoryId": "MLB3905",
+      "categoryName": "Alto-Falantes",
+      "categoryPath": "Acessórios para Veículos > Som Automotivo > Alto-Falantes",
+      "validatedGtin": "4988028352720"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "4988028352720",
+      "validatedNcm": "85182990",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "f713b5db-60e1-4bbd-93f1-bd3ebaa839fd",
+    "sku": "VTK018294",
+    "nome": "Controle Remoto Intelbras Rf Ir3",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 78.2,
+    "estoque": 10,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 121.23,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB33412",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-ALARM_REMOTE_CONTROLS",
+      "categoryId": "MLB33412",
+      "categoryName": "Controles Remotos para Alarmes",
+      "categoryPath": "Casa, Móveis e Decoração > Segurança para Casa > Sistemas de Monitoramento > Controles Remotos para Alarmes",
+      "validatedGtin": "7896637680356"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896637680356",
+      "validatedNcm": "85269200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "83b3b0f6-a434-4493-a180-1444c69381db",
+    "sku": "VTK018297",
+    "nome": "Cabo Alarme Telecam 50 X 10 Vias Cobre 100 Metros",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 103.9,
+    "estoque": 10,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 152.96,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB48605",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-TELEPHONE_CABLES",
+      "categoryId": "MLB48605",
+      "categoryName": "Cabos Telefônicos",
+      "categoryPath": "Celulares e Telefones > Telefonia Fixa e Sem Fio > Acessórios > Cabos Telefônicos",
+      "validatedGtin": "7898917230725"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898917230725",
+      "validatedNcm": "85441100",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "9c3663e8-0acd-468c-8bc8-1a946e462418",
+    "sku": "VTK018345",
+    "nome": "Corneta Jbl Hl14-50 Trio Alumínio",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 95.9,
+    "estoque": 9,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 143.09,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB46560",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-HORN_DRIVERS",
+      "categoryId": "MLB46560",
+      "categoryName": "Cornetas",
+      "categoryPath": "Acessórios para Veículos > Som Automotivo > Cornetas",
+      "validatedGtin": "7896359515387"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896359515387",
+      "validatedNcm": "85189010",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "33cc5faf-5178-4aea-827e-0d86c55784b7",
+    "sku": "VTK018381",
+    "nome": "Detector Pyronix Fp02302 Octopus Dq 360 Graus 12 Metros",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 133.5,
+    "estoque": 9,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 189.54,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB277840",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-GAS_DETECTORS",
+      "categoryId": "MLB277840",
+      "categoryName": "Detectores de Gases",
+      "categoryPath": "Indústria e Comércio > Segurança Laboral > Detectores de Gases",
+      "validatedGtin": "5056105612667"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "5056105612667",
+      "validatedNcm": "85437099",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "188de9f1-b776-4c71-ac01-956b8cdbf07c",
+    "sku": "VTK018388",
+    "nome": "Botoeira Citrox Inox Cube Na/ Nf Cx-4508",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 88.9,
+    "estoque": 9,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 134.44,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB11522",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-HOME_SUPPLIES",
+      "categoryId": "MLB11522",
+      "categoryName": "Outros",
+      "categoryPath": "Casa, Móveis e Decoração > Segurança para Casa > Outros",
+      "validatedGtin": "7898954353746"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898954353746",
+      "validatedNcm": "85365090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "cdb8d53f-f752-4163-9b44-8aa7e50ff71c",
+    "sku": "VTK018422",
+    "nome": "Haste Permak Para Antena De Teto Gti 095",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 15.4,
+    "estoque": 8,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 43.7,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB45256",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_ANTENNAS",
+      "categoryId": "MLB45256",
+      "categoryName": "Antenas",
+      "categoryPath": "Acessórios para Veículos > Som Automotivo > Antenas",
+      "validatedGtin": "7898253494676"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898253494676",
+      "validatedNcm": "85291090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "d582fb22-bb15-4de1-a0b3-1b3ac4d07de0",
+    "sku": "VTK018424",
+    "nome": "ANTENA Móvel Aquário B-2070 COM BOBINA NA BASE PARA Rádio PX POSSUI HASTE Dobrável",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 114.9,
+    "estoque": 7,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 166.54,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB432450",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-TELEPHONY_AND_RADIO_COMMUNICATION_PRODUCTS",
+      "categoryId": "MLB432450",
+      "categoryName": "Outros",
+      "categoryPath": "Celulares e Telefones > Rádio Comunicadores > Acessórios > Antenas > Outros",
+      "validatedGtin": "7898127600295"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898127600295",
+      "validatedNcm": "85291090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "e759a24c-52f8-4d87-98d5-4166efd87c42",
+    "sku": "VTK018446",
+    "nome": "Multiplicador Usb Daneva Carregador 2 Usb Saída 5v 1,5a + 2 Tomadas",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 65.9,
+    "estoque": 8,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 106.05,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB11187",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-USB_HUBS",
+      "categoryId": "MLB11187",
+      "categoryName": "Hubs USB",
+      "categoryPath": "Informática > Cabos e Hubs USB > Hubs USB",
+      "validatedGtin": "7896586816486"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896586816486",
+      "validatedNcm": "85044010",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "df5f076d-34e3-4055-8bb1-4a5c31aade74",
+    "sku": "VTK018454",
+    "nome": "Conector Para Cd Vw Jetta/passat",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 24.99,
+    "estoque": 6,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 55.54,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB38172",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONNECTORS",
+      "categoryId": "MLB38172",
+      "categoryName": "Conectores",
+      "categoryPath": "Eletrônicos, Áudio e Vídeo > Componentes Eletrônicos > Conectores",
+      "validatedGtin": "7898253504511"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898253504511",
+      "validatedNcm": "85444200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "b1f9c24c-9a5b-4e26-b1c7-ee0a8bda5172",
+    "sku": "VTK018455",
+    "nome": "Reparo Tweeter Shock Completo St-450 Trio",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 25.9,
+    "estoque": 8,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 56.67,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB122134",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-BICYCLE_SHOCK_ABSORBERS",
+      "categoryId": "MLB122134",
+      "categoryName": "Amortecedores",
+      "categoryPath": "Esportes e Fitness > Ciclismo > Peças  > Amortecedores",
+      "validatedGtin": "7892046021254"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7892046021254",
+      "validatedNcm": "85189010",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "78771007-6730-4434-ae9f-f8094ad3ac11",
+    "sku": "VTK018517",
+    "nome": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din Prata 89/m2",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 24.9,
+    "estoque": 7,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 55.43,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB46593",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-MOTORCYCLE_FAIRINGS",
+      "categoryId": "MLB46593",
+      "categoryName": "Carenagem",
+      "categoryPath": "Acessórios para Veículos > Peças de Motos e Quadriciclos > Chassis > Plásticos de Motos > Carenagem",
+      "validatedGtin": "7898253497974"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898253497974",
+      "validatedNcm": "85299090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "dc1632af-808a-4acd-bfb2-ac85add0ea3a",
+    "sku": "VTK018522",
+    "nome": "Minipa Ez Test Ii Testador De Tensao",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 40.2,
+    "estoque": 7,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 74.32,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB260688",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VOLTAGE_DETECTORS",
+      "categoryId": "MLB260688",
+      "categoryName": "Busca-Pólos",
+      "categoryPath": "Ferramentas > Medições e Instrumentação > Medidores de Eletricidade > Busca-Pólos",
+      "validatedGtin": "7898112605946"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898112605946",
+      "validatedNcm": "90303319",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "4745913c-5b34-40ab-b200-2dd027053231",
+    "sku": "VTK018549",
+    "nome": "Modulador ágil De áudio E Vídeo Aquário Mod-002 Para Tv/ Catv",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 152.9,
+    "estoque": 7,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 217.08,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB421298",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONVERTERS",
+      "categoryId": "MLB421298",
+      "categoryName": "Conversores de Aúdio e Vídeo",
+      "categoryPath": "Eletrônicos, Áudio e Vídeo > Acessórios para Áudio e Vídeo > Conversores de Aúdio e Vídeo",
+      "validatedGtin": "7898127604293"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898127604293",
+      "validatedNcm": "85437099",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "83b8f2ec-1894-4f3e-a1f1-01b0a8c62309",
+    "sku": "VTK018562",
+    "nome": "Antena Permak Para Palio/ Mobi Com Cabo 3 Metros - Ref. 100/g",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 32.9,
+    "estoque": 4,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 65.31,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB45256",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_ANTENNAS",
+      "categoryId": "MLB45256",
+      "categoryName": "Antenas",
+      "categoryPath": "Acessórios para Veículos > Som Automotivo > Antenas",
+      "validatedGtin": "7898253502104"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898253502104",
+      "validatedNcm": "85291090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "47638703-a897-463e-ae17-0d9ad238732d",
+    "sku": "VTK018616",
+    "nome": "Contra Frente Plástica Permak Ka Focus Escot Ranger 2 Din 89/c2",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 12.49,
+    "estoque": 6,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 40.11,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB46593",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-MOTORCYCLE_FAIRINGS",
+      "categoryId": "MLB46593",
+      "categoryName": "Carenagem",
+      "categoryPath": "Acessórios para Veículos > Peças de Motos e Quadriciclos > Chassis > Plásticos de Motos > Carenagem",
+      "validatedGtin": "7898253498094"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898253498094",
+      "validatedNcm": "85299090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "065903be-45b2-48b6-9023-7735925177ef",
+    "sku": "VTK018636",
+    "nome": "Camera Bullet Sohoplus Ip 2 Mp Poe Ip66 Ipc002",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 365.9,
+    "estoque": 6,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 519.49,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB7073",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-SURVEILLANCE_CAMERAS",
+      "categoryId": "MLB7073",
+      "categoryName": "Câmeras de Segurança",
+      "categoryPath": "Casa, Móveis e Decoração > Segurança para Casa > Sistemas de Monitoramento > Câmeras de Segurança",
+      "validatedGtin": "7893137226954"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7893137226954",
+      "validatedNcm": "85258300",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "381240fd-88a1-4b16-8802-7b4ee043dc97",
+    "sku": "VTK018712",
+    "nome": "Cabo De Descida Proeletronic Para Celular Fixo Rgc213 20 Metros Caco0192",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 169.9,
+    "estoque": 5,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 241.22,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB70452",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-TELEPHONY_AND_RADIO_COMMUNICATION_PRODUCTS",
+      "categoryId": "MLB70452",
+      "categoryName": "Cabos e Conectores",
+      "categoryPath": "Celulares e Telefones > Rádio Comunicadores > Acessórios > Cabos e Conectores",
+      "validatedGtin": "7898419485029"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898419485029",
+      "validatedNcm": "85444200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "a6ddb6c2-67fc-4358-9cb9-61976352eff0",
+    "sku": "VTK018749",
+    "nome": "Ultraled Headlight Shocklight H3 (par) 12v 50w 6000k 4000lm",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 128.25,
+    "estoque": 5,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 183.02,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB5759",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_LED_BULBS",
+      "categoryId": "MLB5759",
+      "categoryName": "Lâmpadas de Led",
+      "categoryPath": "Acessórios para Veículos > Tuning > Iluminação > Lâmpadas > Lâmpadas de Led",
+      "validatedGtin": "6949999896024"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "6949999896024",
+      "validatedNcm": "85122019",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "68a538a3-9321-4795-9d79-516d4db17feb",
+    "sku": "VTK018865",
+    "nome": "Antena Móvel Aquário B-2003p Marinox 1/4 De Onda Para Rádio Px Com Base De Poliuretano",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 124.9,
+    "estoque": 4,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 178.89,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB439221",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-TELEPHONY_AND_RADIO_COMMUNICATION_PRODUCTS",
+      "categoryId": "MLB439221",
+      "categoryName": "Antenas para Radio-Bases",
+      "categoryPath": "Celulares e Telefones > Rádio Comunicadores > Acessórios > Antenas > Antenas para Radio-Bases",
+      "validatedGtin": "7898127602312"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898127602312",
+      "validatedNcm": "85291090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "a153f631-21b1-4b34-8cd6-97c861505e72",
+    "sku": "VTK018866",
+    "nome": "Antena Móvel Aquário M-400c 5/8 De Onda Para Rádio Vhf",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 123.9,
+    "estoque": 14,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 177.65,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB439221",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-TELEPHONY_AND_RADIO_COMMUNICATION_PRODUCTS",
+      "categoryId": "MLB439221",
+      "categoryName": "Antenas para Radio-Bases",
+      "categoryPath": "Celulares e Telefones > Rádio Comunicadores > Acessórios > Antenas > Antenas para Radio-Bases",
+      "validatedGtin": "7898127600356"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898127600356",
+      "validatedNcm": "85291090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "91f4e341-291c-42c2-b832-dfb9349e0d52",
+    "sku": "VTK018867",
+    "nome": "Lv8fc20 Mod Vidro Eletrico Kia",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 86.9,
+    "estoque": 4,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 131.98,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB191714",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+      "categoryId": "MLB191714",
+      "categoryName": "Elétrico",
+      "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+      "validatedGtin": "7898382140185"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898382140185",
+      "validatedNcm": "85395100",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "1395fed2-dc1c-43ed-9dd5-6ce0c42743b7",
+    "sku": "VTK018868",
+    "nome": "Contra Frente Plástica Permak Toyota Etios 2 Din Preta",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 64.9,
+    "estoque": 4,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 104.81,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB46593",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-MOTORCYCLE_FAIRINGS",
+      "categoryId": "MLB46593",
+      "categoryName": "Carenagem",
+      "categoryPath": "Acessórios para Veículos > Peças de Motos e Quadriciclos > Chassis > Plásticos de Motos > Carenagem",
+      "validatedGtin": "7898253499558"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898253499558",
+      "validatedNcm": "85299090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "f890678d-4601-445e-ae96-e7580dabdd80",
+    "sku": "VTK018869",
+    "nome": "Contra Frente Plástica Permak Honda New Civic 2012 2 Din",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 85.9,
+    "estoque": 4,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 130.74,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB46593",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-MOTORCYCLE_FAIRINGS",
+      "categoryId": "MLB46593",
+      "categoryName": "Carenagem",
+      "categoryPath": "Acessórios para Veículos > Peças de Motos e Quadriciclos > Chassis > Plásticos de Motos > Carenagem",
+      "validatedGtin": "7898253495581"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898253495581",
+      "validatedNcm": "85299090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "14432b65-d259-4231-be60-04113a28dc7a",
+    "sku": "VTK018874",
+    "nome": "Reparo Jbl Rpd450 Trio Para Driver D450 Trio",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 231.5,
+    "estoque": 4,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 328.67,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB46559",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+      "categoryId": "MLB46559",
+      "categoryName": "Drivers",
+      "categoryPath": "Acessórios para Veículos > Som Automotivo > Drivers",
+      "validatedGtin": "7896359541027"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896359541027",
+      "validatedNcm": "85189010",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "9bb36bae-d17e-41e2-983e-df7fff19e78a",
+    "sku": "VTK018934",
+    "nome": "Suporte Para Caixa Acústica Ask Ou Cubo Com Regulagem Inclinação",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 93.6,
+    "estoque": 4,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 140.25,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB10233",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-SPEAKERS_STANDS",
+      "categoryId": "MLB10233",
+      "categoryName": "Suportes para Caixas de Som",
+      "categoryPath": "Eletrônicos, Áudio e Vídeo > Áudio > Suportes para Caixas de Som",
+      "validatedGtin": "7898939971378"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898939971378",
+      "validatedNcm": "92099900",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "09d0f758-10d5-47a9-bb3d-d5cc6408937f",
+    "sku": "VTK018940",
+    "nome": "Cabo Coaxial Rf0,4/2,5+2x26awg Mono 100m",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 89.9,
+    "estoque": 4,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 135.68,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB431815",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-NETWORK_CABLES",
+      "categoryId": "MLB431815",
+      "categoryName": "Cabos de Rede",
+      "categoryPath": "Eletrônicos, Áudio e Vídeo > Cabos > Cabos de Rede",
+      "validatedGtin": "7899938515952"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899938515952",
+      "validatedNcm": "85442000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "1be0b415-c95b-460a-bab8-2525814bcfbd",
+    "sku": "VTK018943",
+    "nome": "Controlador Acesso Ip Wide Cx-7006",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 515.9,
+    "estoque": 4,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 764.3,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.2,
+      "minProfit": 60
+    },
+    "categoryId": "MLB276631",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-PROXIMITY_READERS",
+      "categoryId": "MLB276631",
+      "categoryName": "Leitores de Proximidade",
+      "categoryPath": "Indústria e Comércio > Equipamento para Escritórios > Controle de Acesso e Chegada > Artigos de Proximidade > Leitores de Proximidade",
+      "validatedGtin": "7898954353630"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898954353630",
+      "validatedNcm": "84714100",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "c67795dd-f96b-478b-9af7-f7265d3f6071",
+    "sku": "VTK018944",
+    "nome": "Central Laço Indutivo Citrox 2 Pontos Cx-7602",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 684.9,
+    "estoque": 4,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 1014.67,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.2,
+      "minProfit": 60
+    },
+    "categoryId": "MLB7070",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+      "categoryId": "MLB7070",
+      "categoryName": "Alarmes e Sensores",
+      "categoryPath": "Casa, Móveis e Decoração > Segurança para Casa > Sistemas de Monitoramento > Alarmes e Sensores",
+      "validatedGtin": "7898954353074"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898954353074",
+      "validatedNcm": "85439090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "8fb3551e-691c-46ca-b878-137a487091dc",
+    "sku": "VTK019006",
+    "nome": "Testador Smd Com Pinça Hikari Hm-10",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 165.9,
+    "estoque": 3,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 235.54,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB271716",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-NETWORK_CABLE_TESTERS",
+      "categoryId": "MLB271716",
+      "categoryName": "Testadores de Cabos",
+      "categoryPath": "Informática > Conectividade e Redes > Ferramentas > Testadores de Cabos",
+      "validatedGtin": "7899810417084"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899810417084",
+      "validatedNcm": "90308990",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "24a37bf9-448f-4d52-8ef3-2ed05512ba8e",
+    "sku": "VTK019030",
+    "nome": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din Cinza 89/m3",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 21.9,
+    "estoque": 3,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 51.73,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB46593",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-MOTORCYCLE_FAIRINGS",
+      "categoryId": "MLB46593",
+      "categoryName": "Carenagem",
+      "categoryPath": "Acessórios para Veículos > Peças de Motos e Quadriciclos > Chassis > Plásticos de Motos > Carenagem",
+      "validatedGtin": "7898253497998"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898253497998",
+      "validatedNcm": "85299090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "88c2c031-ae59-4897-be9f-b0aeab88adc8",
+    "sku": "VTK019103",
+    "nome": "Frente Falsa Max Eletron 1ux19",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 10.95,
+    "estoque": 3,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 38.21,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB271688",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-TOOLS",
+      "categoryId": "MLB271688",
+      "categoryName": "Outras Ferramentas",
+      "categoryPath": "Informática > Conectividade e Redes > Ferramentas > Outras Ferramentas",
+      "validatedGtin": "7908060203122"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7908060203122",
+      "validatedNcm": "94032090",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "e72bc21d-d22d-4bd3-a0eb-b4c6fda4e144",
+    "sku": "VTK019126",
+    "nome": "Fechadura Solenoide De Embutir Intelbras Fs 1010",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 809.08,
+    "estoque": 3,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 1198.64,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.2,
+      "minProfit": 60
+    },
+    "categoryId": "MLB194301",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-ELECTRIC_LOCKS",
+      "categoryId": "MLB194301",
+      "categoryName": "Elétricas",
+      "categoryPath": "Casa, Móveis e Decoração > Segurança para Casa > Ferragens de Segurança > Fechaduras > Elétricas",
+      "validatedGtin": "7896637671330"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896637671330",
+      "validatedNcm": "83014000",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "b86652d3-9c98-4c60-9dc2-1771c2855f3e",
+    "sku": "VTK019158",
+    "nome": "Conversor De Audio Rca Bee Link 4 Ch + Superbass",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 101.9,
+    "estoque": 3,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 150.49,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB421298",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONVERTERS",
+      "categoryId": "MLB421298",
+      "categoryName": "Conversores de Aúdio e Vídeo",
+      "categoryPath": "Eletrônicos, Áudio e Vídeo > Acessórios para Áudio e Vídeo > Conversores de Aúdio e Vídeo",
+      "validatedGtin": "7898441352139"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898441352139",
+      "validatedNcm": "85044029",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "bdb61763-ddc9-479f-ac49-4e0838a61a11",
+    "sku": "VTK019466",
+    "nome": "Cabo De Descida Proeletronic Para Celular Fixo Rgc58 10 Metros Caco-0190",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 37.5,
+    "estoque": 7,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 70.99,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB70452",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-TELEPHONY_AND_RADIO_COMMUNICATION_PRODUCTS",
+      "categoryId": "MLB70452",
+      "categoryName": "Cabos e Conectores",
+      "categoryPath": "Celulares e Telefones > Rádio Comunicadores > Acessórios > Cabos e Conectores",
+      "validatedGtin": "7898419484459"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7898419484459",
+      "validatedNcm": "85444200",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "978e980c-d329-416e-8bfd-b1c303f0a5a8",
+    "sku": "VTK021108",
+    "nome": "Telefone Headset Intelbras Hsb-50 Para Telemarketing Com Fio 4013330",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 121.9,
+    "estoque": 20,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 175.19,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB3828",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-HEADSET_TELEPHONES",
+      "categoryId": "MLB3828",
+      "categoryName": "Telefones Headset",
+      "categoryPath": "Celulares e Telefones > Telefonia Fixa e Sem Fio > Telefones Headset",
+      "validatedGtin": "7896637637961"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7896637637961",
+      "validatedNcm": "85171830",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "88b69e08-8f01-4735-a01b-f48c99ddae31",
+    "sku": "VTK023618",
+    "nome": "Espaguete Corrugado Permak 4,5mm 3/16 20m",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 17.5,
+    "estoque": 33,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 46.3,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB411424",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-CORRUGATED_PIPES",
+      "categoryId": "MLB411424",
+      "categoryName": "Tubos Corrugados",
+      "categoryPath": "Construção > Energia > Tubos Corrugados",
+      "validatedGtin": "7899079101205"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899079101205",
+      "validatedNcm": "39173900",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "6adc4bfa-de2c-4f5f-9c9f-b26dc4df07e2",
+    "sku": "VTK023619",
+    "nome": "Espaguete Corrugado Permak 7,5mm 1/4 20m",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 23.1,
+    "estoque": 39,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 53.21,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB411424",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-CORRUGATED_PIPES",
+      "categoryId": "MLB411424",
+      "categoryName": "Tubos Corrugados",
+      "categoryPath": "Construção > Energia > Tubos Corrugados",
+      "validatedGtin": "7899079101212"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899079101212",
+      "validatedNcm": "39173900",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "9a85a55b-bbc9-47a0-b4de-ff561b1b5fac",
+    "sku": "VTK023620",
+    "nome": "Espaguete Corrugado Permak 10mm 3/8 20m",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 28.9,
+    "estoque": 50,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 60.37,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB411424",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-CORRUGATED_PIPES",
+      "categoryId": "MLB411424",
+      "categoryName": "Tubos Corrugados",
+      "categoryPath": "Construção > Energia > Tubos Corrugados",
+      "validatedGtin": "7899079101229"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899079101229",
+      "validatedNcm": "39173900",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  },
+  {
+    "produtoId": "dfeca35e-dda6-4ba1-bdb8-93a8d42c11c1",
+    "sku": "VTK023621",
+    "nome": "Espaguete Corrugado Permak 13mm 1/2 20m",
+    "fornecedor": "EVOLUSOM-PR",
+    "dsliteFornecedorId": "133",
+    "custo": 48.9,
+    "estoque": 18,
+    "mlFee": 0.15,
+    "mlShipping": 0,
+    "customPrice": null,
+    "suggestedPricePreview": 85.06,
+    "priceSource": "pricing_strategy_preview",
+    "pricingStrategy": {
+      "margin": 0.15,
+      "minProfit": 20
+    },
+    "categoryId": "MLB411424",
+    "catalogEvidence": {
+      "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+      "predictedDomainId": "MLB-CORRUGATED_PIPES",
+      "categoryId": "MLB411424",
+      "categoryName": "Tubos Corrugados",
+      "categoryPath": "Construção > Energia > Tubos Corrugados",
+      "validatedGtin": "7899079101236"
+    },
+    "preflight": {
+      "strictEvidence": true,
+      "validatedGtin": "7899079101236",
+      "validatedNcm": "39173900",
+      "imagesOnVortekStorage": true,
+      "categoryAndConditionalAttributes": "required_at_execution"
+    }
+  }
+]

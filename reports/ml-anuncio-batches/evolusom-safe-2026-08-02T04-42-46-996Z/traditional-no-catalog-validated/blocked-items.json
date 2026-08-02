@@ -1,0 +1,394 @@
+[
+  {
+    "produtoId": "dc408ec6-8e7c-420d-951c-00c68ca7256d",
+    "sku": "VTK005491",
+    "nome": "Cabo Display Port 1.2v Para DVI Fêmea Storm",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador"
+  },
+  {
+    "produtoId": "ce5d444a-08a2-43c0-80c1-044a25d139f8",
+    "sku": "VTK005775",
+    "nome": "Cabo Display Port 1.2v Para USB- C Macho Storm",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador"
+  },
+  {
+    "produtoId": "e854a49a-deb0-4714-8aed-425c4fdbe378",
+    "sku": "VTK017215",
+    "nome": "Arandela Fiamon Sem Falante Redonda Branca 6\"",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "72ead0c9-8e4f-483a-9444-e586d8989844",
+    "sku": "VTK017244",
+    "nome": "Video Balun Evus C-067 1 Canal Mini Cctv Bnc Para Hdcvi Cftv",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador"
+  },
+  {
+    "produtoId": "fbb175b5-eb44-44bb-9633-567f8d679cb7",
+    "sku": "VTK017336",
+    "nome": "Cabo De Microfone P10 Macho X Cannon Femea",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador"
+  },
+  {
+    "produtoId": "8e8e0eb5-3444-46b0-a0ef-5a5710893440",
+    "sku": "VTK017384",
+    "nome": "Cabo De Força Tripolar Megacabos 1,2m Tipo Mickey - Preto - PC / 5",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "54bc0755-95dc-4dfc-adb2-a15310c16650",
+    "sku": "VTK017456",
+    "nome": "Cabo Y Rca Blindado Nwt 1mx2f 20cm - Azul",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador"
+  },
+  {
+    "produtoId": "c50c8d36-5035-48e2-99e1-86447ebaf2d1",
+    "sku": "VTK017504",
+    "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 300ml Preto",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Capacidade em volume"
+  },
+  {
+    "produtoId": "cf0793f9-8968-4bd0-82ae-ea1a3d0cf86d",
+    "sku": "VTK017505",
+    "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 300ml Vermelho",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Capacidade em volume"
+  },
+  {
+    "produtoId": "19b3bc02-9ea5-46be-8974-5f02c52c78bf",
+    "sku": "VTK017506",
+    "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Preto",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Capacidade em volume"
+  },
+  {
+    "produtoId": "1849bcec-0b10-4888-84c4-4d942dd3c8b0",
+    "sku": "VTK017507",
+    "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Vermelho",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Capacidade em volume"
+  },
+  {
+    "produtoId": "1ea7953e-04c7-4345-a104-4b1bcc01f941",
+    "sku": "VTK017508",
+    "nome": "Jogo De Potes Tramontina Mixcolor 02 Peças 2l Vermelho",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Capacidade em volume"
+  },
+  {
+    "produtoId": "8d365f94-35d8-4b2d-a675-1afe14d709c9",
+    "sku": "VTK017562",
+    "nome": "Carregador Veicular Elgin Usb 12v - 2 Saídas",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo do carregador, Tipos de conectores do cabo"
+  },
+  {
+    "produtoId": "1dd2a3e6-40d8-4f0b-b302-07e176700573",
+    "sku": "VTK017633",
+    "nome": "Kit Carregadores De Parede + Veicular Elgin Com Cabo Micro Usb 1m",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo do carregador, Tipos de conectores do cabo"
+  },
+  {
+    "produtoId": "f5cfb659-11f6-4bf2-8d4f-4cff5a3e9880",
+    "sku": "VTK017781",
+    "nome": "Cabo Y Rca Blindado Nwt 1mx2f 20cm - Vermelho",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador"
+  },
+  {
+    "produtoId": "a8d1a439-22ab-4e2b-8e23-e49e1a686d12",
+    "sku": "VTK017789",
+    "nome": "Haste Permak Ray Flex Vw Gol Rosca M5/m6",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Posição"
+  },
+  {
+    "produtoId": "43ca7193-7d61-4189-b4cf-029de62be4f5",
+    "sku": "VTK017926",
+    "nome": "Lampada Multilaser Super Led H3 6200k Par",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de conector"
+  },
+  {
+    "produtoId": "cae67c09-608d-4237-a4ee-6044081f0fad",
+    "sku": "VTK018079",
+    "nome": "Microventilador Nwt 172x150x5mm Tensão 110v/220vac",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de produto"
+  },
+  {
+    "produtoId": "35803dad-4127-4945-8abc-f3b26978f7d8",
+    "sku": "VTK018134",
+    "nome": "Cabo Coaxial Cabletech Master 40 40% Rgc 06 Preto 100 Metros",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de cabo de rede"
+  },
+  {
+    "produtoId": "224a8e84-1f7c-4167-9bc0-7a48b468338e",
+    "sku": "VTK018304",
+    "nome": "Chicote Permak Para Cd Honda Civic 2007 A 2011 - 35/d2",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "dcb99854-65d0-487e-bde0-29e63e2bc630",
+    "sku": "VTK018428",
+    "nome": "Cabo Coaxial Cabletech Std-40+tp3 Branco 100 Metros 801214000p01cb12",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de cabo de rede"
+  },
+  {
+    "produtoId": "b0e6b26e-fd4a-4e69-98b4-b257063c109f",
+    "sku": "VTK018434",
+    "nome": "Tela Para Alto Falante Permak 114/o 12\" Plástica - PC / 2",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "71e8cbf9-9eba-45b9-8902-5f177dc768bc",
+    "sku": "VTK018448",
+    "nome": "Bandeja Móvel Max Eletron 19 1u X 600mm Ventilada 4 Pontos",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Material"
+  },
+  {
+    "produtoId": "f45d249a-4ad2-43de-894c-dc80c6fe361f",
+    "sku": "VTK018550",
+    "nome": "Interface De Desbloqueio De Central Multimídia Original Bee Link Fiat Argo/cronos 2019",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "9d6b0a25-8deb-4a95-9124-3661034f8503",
+    "sku": "VTK018585",
+    "nome": "Kit De Lâmpada Tarponn Tp-6108 Ultraled Hb4 12v 40w",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de conector"
+  },
+  {
+    "produtoId": "a2a8c7b8-aae0-4782-8b91-d74299209621",
+    "sku": "VTK018598",
+    "nome": "Arandela Frahm 6\" Coaxial 30w Rms 8r Redonda 30158",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "b24b2c62-e1e9-4db8-a1e7-e091641fc30d",
+    "sku": "VTK018608",
+    "nome": "Chicote Dedicado Positron Pronnect Hyundai Veloster 2013",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "4266bea0-14ff-4ee1-9fc4-524d61b64221",
+    "sku": "VTK018635",
+    "nome": "Capota Marítima Concórdia Flash Cover Ba155l Volkwagen Saveiro Cabine Simples Com Gancho 2010+ Baguete",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima"
+  },
+  {
+    "produtoId": "9c02c8db-a5e2-45ae-8c77-e25a00e9a0a0",
+    "sku": "VTK018639",
+    "nome": "Kit Ventilador Universal Para Rack Piso Max Eletron Com 4 Coolers",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo, Tipo de ventilador"
+  },
+  {
+    "produtoId": "5a3285c8-cf05-41c4-ba80-dde3d8e8839f",
+    "sku": "VTK018664",
+    "nome": "Antena Permak Am/fm 2 Estágio Preta",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "acb93d87-11f9-4c26-8c81-b56ef6738607",
+    "sku": "VTK018669",
+    "nome": "Central Soft Unique Aw52 2v Kwid 2017+",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº"
+  },
+  {
+    "produtoId": "8f8b8004-2749-4790-b626-6bdc31c30dfd",
+    "sku": "VTK018702",
+    "nome": "Alto Falante Hinor Hpl 18\" 1000w Rms 8r Subwoofer",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo, Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS"
+  },
+  {
+    "produtoId": "c95e7e90-3c29-4006-96c2-24f3d61e2b16",
+    "sku": "VTK018748",
+    "nome": "Capota Marítima Flash Cover Ff154 Volkswagen Saveiro Ce Sem Gancho 2010/2020 Force",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima"
+  },
+  {
+    "produtoId": "97dd3f7b-07a8-4252-9a66-c2616ad2f1f0",
+    "sku": "VTK018768",
+    "nome": "Conversor Balun Max Eletron Câmera Rack Power Rj 45 Bnc + P4 C/2",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "32ae1d48-0811-42ef-8520-77c616419c26",
+    "sku": "VTK018830",
+    "nome": "Cabo De Bateria Technoise 70,00mm² Vermelho - Rolo Com 10m",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador"
+  },
+  {
+    "produtoId": "92fa2aa7-5d9c-4765-ace4-e5114af5848d",
+    "sku": "VTK018857",
+    "nome": "Alto Falante Selenium Jbl Original Pro 2206-h 12\" 8r 600w Rms Woofer",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS"
+  },
+  {
+    "produtoId": "e92d8175-c067-44e4-ac0a-6c104db748f2",
+    "sku": "VTK018911",
+    "nome": "Capota Marítima Flash Cover Ff123 Nissan Frontier Sel D40 Cabine Dupla 2009/2015 Force",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima"
+  },
+  {
+    "produtoId": "7dde8a4f-c47f-4ff5-9863-f3280d96d753",
+    "sku": "VTK018912",
+    "nome": "Haste Curta Olimpus Da Antena Para Onix",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "5f074728-4dc5-48f5-b9f7-bc62d43f9955",
+    "sku": "VTK018935",
+    "nome": "Antena Permak Shark Preta 100/m",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "4e093141-393f-4066-a00b-6db56844533a",
+    "sku": "VTK018936",
+    "nome": "Antena Permak Shark Prata 100/m2",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "e7f7754e-1462-4dda-858a-893478dae2de",
+    "sku": "VTK018968",
+    "nome": "Antena Olimpus New Flex Fiat Traseira 12+",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "3976c413-68d3-4285-af05-5343e8998473",
+    "sku": "VTK019016",
+    "nome": "Cabo Coaxial Cabletech Rge-58 75% Preto 100 Metros",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de cabo de rede"
+  },
+  {
+    "produtoId": "5b434d9c-8393-4dfa-8948-6f4888be8dc2",
+    "sku": "VTK019018",
+    "nome": "Alto Falante Eros Neo E-515-neo-4 15\" 4r 500w Rms",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS"
+  },
+  {
+    "produtoId": "fc83972a-ead2-4687-b53a-07c3fd56c4a3",
+    "sku": "VTK019044",
+    "nome": "Cabo Flexível Remoto Technoise 100% Cobre Azul 1.50 Mm Rolo 100 Metros",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de cabo, Tamanho da seção, Comprimento do cabo, Quantidade de pinos"
+  },
+  {
+    "produtoId": "93869b7d-12a3-4370-95ba-92ec02b61cfc",
+    "sku": "VTK019089",
+    "nome": "Capota Marítima Concórdia Flash Cover Ba130l Mitsubishi L200 Triton 2009/2017 Baguete",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima"
+  },
+  {
+    "produtoId": "7d3cadf6-0d21-4fb1-8167-9f11804ce7d6",
+    "sku": "VTK019090",
+    "nome": "Capota Marítima Concórdia Flash Cover Ba093l Volkswagen Saveiro Sem Grade 1982/1997 Baguete",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima"
+  },
+  {
+    "produtoId": "1241c218-6126-42f2-9cc9-46cb16e9a1fd",
+    "sku": "VTK019092",
+    "nome": "Capota Marítima Flash Cover Ff166 Chevrolet Montana 2011/2021 Force",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima"
+  },
+  {
+    "produtoId": "4fff33d4-ab0a-43e5-bb40-0aa655154278",
+    "sku": "VTK019094",
+    "nome": "Capota Marítima Flash Cover Ff194 Toyota Hilux Cabine Dupla 2016+ Force",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima"
+  },
+  {
+    "produtoId": "7144b025-bbee-4764-b1c7-7bf5380b2ca6",
+    "sku": "VTK019095",
+    "nome": "Capota Marítima Flash Cover Ff126 Fiat Strada Cabine Estendida Com Gancho Com Step 1998/2013 Force",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima"
+  },
+  {
+    "produtoId": "6fd8c5c2-1073-4dc9-9566-97933b90f4ee",
+    "sku": "VTK019096",
+    "nome": "Ultra Led Shocklight (par) H27 12v 50w 6000k 4000lm",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de conector"
+  },
+  {
+    "produtoId": "2feb7e97-6953-4508-8055-755956acb219",
+    "sku": "VTK019099",
+    "nome": "Capota Marítima Flash Cover Ff147 Fiat Strada Cabine Dupla Sem Gancho Com Step 2010/2013 Force",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima"
+  },
+  {
+    "produtoId": "f1c7ae2c-2877-4518-987c-94920709e072",
+    "sku": "VTK019108",
+    "nome": "Capota Marítima Flash Cover Ff173 Volkswagen Amarok Cabine Simples 2010+ Force",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima"
+  },
+  {
+    "produtoId": "8d7fbad6-a59b-4aaa-a799-abfc41331b28",
+    "sku": "VTK019117",
+    "nome": "Expansor Corneta Fiamon 1450 Red. Curta Bicolor Amarelo Fluorescente",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "c56848d6-3f38-496d-aeec-e4e0cc8f22c9",
+    "sku": "VTK020602",
+    "nome": "Cabo Para Microfone Mono Tiaflex Espiralado 100 Metros 1x0,20 Mm 502010",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador"
+  },
+  {
+    "produtoId": "24f67a3a-a737-4058-815e-8dbdf54e5f1a",
+    "sku": "VTK020645",
+    "nome": "Capota Marítima Flash Cover Ff130 Mitsubishi L200 Triton 2009/2017 Force",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima"
+  },
+  {
+    "produtoId": "62f31e56-d0cf-41b4-a36e-f4201c72af16",
+    "sku": "VTK022568",
+    "nome": "Caixa Vazia 2 Alto-falantes 12\" + 4 Cornetas + 2 Tweeter Dutada",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  }
+]

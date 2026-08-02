@@ -1,0 +1,211 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/safe-final-validated/dry-run-results/008-evolusom-catalog-create-008-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-pdf-safe-008",
+  "selected": 3,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "7094a8c1-ddd3-4036-9bb7-0c1d3e8cf883",
+      "sku": "VTK020597",
+      "category": {
+        "id": "MLB72745",
+        "nome": "Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 707.54,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "12235577",
+          "value_name": "Tiaflex"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "name": "Tipo de cabo e adaptador",
+          "value_id": "16088604",
+          "value_name": "Cabo"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898429981474"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "50MM"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "",
+          "value_name": "Preto"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Para Microfone Mono Tiaflex Espiralado 100 Metros 1x0,50 Mm 505010\n\nVISÃO GERAL\nCabo Microfone Mono AF(E) Secção: 0,50mm² Diâmetro: 4,50mm Cor: Preto Rolo com 100 metros\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Tiaflex\n• Tipo de cabo e adaptador: Cabo\n• Modelo: 50MM\n• Cor: Preto\n• Tipo de produto: Fio\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: TIAFLEX\n• GTIN: 7898429981474\n• NCM: 85444900\n• SKU: VTK020597\n\nEMBALAGEM\n• Dimensões informadas: 6.5 × 27 × 27 cm\n• Peso bruto informado: 2,732 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "928958aa-5d36-44cf-98ea-52a9cb8d4f71",
+      "sku": "VTK022016",
+      "category": {
+        "id": "MLB38186",
+        "nome": "Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 42.29,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "216711",
+          "value_name": "Evus"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "name": "Tipo de cabo e adaptador",
+          "value_id": "16696220",
+          "value_name": "HDMI"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "39457896",
+          "value_name": "7898597130346"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "C-002"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "",
+          "value_name": "3.0 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Hdmi Evus C-002 3d Macho X Macho Com Filtro V1.4 3,0m\n\nVISÃO GERAL\nInformações Técnicas Versão 1.4 3D Resolução Full HD Comprimento 3 Metros Plug 19 pinos Conector Dourado Embalagem Blister\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Evus\n• Tipo de cabo e adaptador: HDMI\n• Modelo: C-002\n• Comprimento do cabo: 3.0 m\n• Tipo de produto: Fio\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: EVUS\n• GTIN: 7898597130346\n• NCM: 85444200\n• SKU: VTK022016\n\nEMBALAGEM\n• Dimensões informadas: 4 × 8 × 21 cm\n• Peso bruto informado: 0,174 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "0136a5ae-54d6-4606-b235-c862c1e34817",
+      "sku": "VTK022968",
+      "category": {
+        "id": "MLB73055",
+        "nome": "Liquidificadores",
+        "dominio": "MLB-BLENDERS"
+      },
+      "basePrice": 284.48,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "467",
+          "value_name": "Oster"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "9590607",
+          "value_name": "OLIQ610"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "49713698",
+          "value_name": "Corrente doméstica"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "9837518",
+          "value_name": "7898615988546, 17898615988543"
+        },
+        {
+          "id": "LINE",
+          "name": "Linha",
+          "value_id": "",
+          "value_name": "Light"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "198813",
+          "value_name": "220V"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Liquidificador Oster Oliq610 1400w 220v\n\nVISÃO GERAL\nLiquidificador 1400 Full Oster Preto 3,2L - 220V O Liquidificador Oster 1100 Full possui 3,2 litros de capacidade e tampa medidora. É muito mais praticidade e potência na hora de preparar receitas para toda a família. CAPACIDADE DE 3,2 LITROS* Muita capacidade para os preparos em família!\n\nA jarra de 3,2 litros* é perfeita para todas as suas receitas. *Capacidade útil de 2 litros. 1400W POTÊNCIA DE Muito mais potência nos preparos para você e toda sua família.\n\nTAMPA MEDIDORA A tampa medidora de 100ml ajuda a medir o equivalente a até ½ xícara, facilitando muito na hora de preparar as receitas com a medida certa. 15 VELOCIDADES + PULSAR O Liquidificador 1400 Full possibilita que seja aplicada a velocidade correta para cada receita. São 15 opções mais a função Pulsar.\n\nRESISTÊNCIA E LEVEZA Com a jarra em plástico, ele se torna um forte aliado na rotina da sua família. Mais resistente, leve, eficiente e, claro, com a qualidade que só a Oster leva até a sua casa. *imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Oster\n• Modelo: OLIQ610\n• Tipo de alimentação: Corrente doméstica\n• Linha: Light\n• Cor: Preto\n• Voltagem: 220V\n• Cor principal: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: OSTER\n• GTIN: 7898615988546\n• NCM: 85094010\n• SKU: VTK022968\n\nEMBALAGEM\n• Dimensões informadas: 18 × 24 × 36 cm\n• Peso bruto informado: 1,8 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

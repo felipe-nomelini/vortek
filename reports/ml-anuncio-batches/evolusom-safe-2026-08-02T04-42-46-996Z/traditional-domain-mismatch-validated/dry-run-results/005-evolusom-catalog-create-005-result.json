@@ -1,0 +1,281 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-domain-mismatch-validated/dry-run-results/005-evolusom-catalog-create-005-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-005",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "9c3663e8-0acd-468c-8bc8-1a946e462418",
+      "sku": "VTK018345",
+      "category": {
+        "id": "MLB46560",
+        "nome": "Cornetas",
+        "dominio": ""
+      },
+      "basePrice": 146.71,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "JBL"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "HL14-50"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7896359515387"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Corneta Jbl Hl14-50 Trio Alumínio\n\nVISÃO GERAL\nGarganta 2 Material alumínio Dispersão sonora:HxV 45 x45 Fixação Flange\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: JBL\n• Modelo: HL14-50\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: JBL\n• GTIN: 7896359515387\n• NCM: 85189010\n• SKU: VTK018345\n\nEMBALAGEM\n• Dimensões informadas: 16.5 × 19.5 × 19.5 cm\n• Peso bruto informado: 0,89 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "33cc5faf-5178-4aea-827e-0d86c55784b7",
+      "sku": "VTK018381",
+      "category": {
+        "id": "MLB277840",
+        "nome": "Detectores de Gases",
+        "dominio": ""
+      },
+      "basePrice": 194.34,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PYRONIX"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "FP02302"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "5056105612667"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Detector Pyronix Fp02302 Octopus Dq 360 Graus 12 Metros\n\nVISÃO GERAL\nInformações do Produto Cobertura de 360 graus Elementos em plástico totalmente novos Proteção contra violação frontal e traseira PIR digital de quatro zonas Tecnologia Blue Wave Tecnologia para montagem no teto Instalação otimizada Simples de atualizar Informações Técnicas Cobertura volumétrica: 360°, 156 zonas e 3 planos: Sim PIR adequado para montagem no teto: Sim Sensor piroelétrico com quatro elementos de interbloqueio: Sim Tecnologia de limites variáveis independentes (IFT): Sim Sensibilidade ajustável: Sim Compensação automática de temperatura: Sim Alcance máximo: 12m Resposta de alarme: 2,5 segundos Velocidade de detecção: 0,3 - 3 m/s Configuração geométrica da lente: 3D Altura ideal da instalação: 2,4 - 4 m Fonte de alimentação: 9-16 CC (12 CC nominal) Tipo de relé: Estado sólido Saídas de relé: 60 CC, 50 mA máx. Imunidade a PFI de onda contínua (CW), onda modulada (AM) e de pulsos (PM) 80-2. 700 MHz: 10 V/m Conformidade com normas de eletricidade: CE Classe ambiental: II Garantia: 5 anos Nível de segurança: Nível 2\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PYRONIX\n• Modelo: FP02302\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PYRONIX\n• GTIN: 5056105612667\n• NCM: 85437099\n• SKU: VTK018381\n\nEMBALAGEM\n• Dimensões informadas: 5 × 10 × 10 cm\n• Peso bruto informado: 0,108 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "78771007-6730-4434-ae9f-f8094ad3ac11",
+      "sku": "VTK018517",
+      "category": {
+        "id": "MLB46593",
+        "nome": "Carenagem",
+        "dominio": ""
+      },
+      "basePrice": 56.84,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "210581"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898253497974"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Contra Frente Plástica Permak Corsa Montana Meriva 2 Din Prata 89/m2\n\nVISÃO GERAL\nContra Frente Plástica Corsa / Montana / Meriva 2 Din Permak 89/M2 Prata\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: PERMAK\n• Número de peça: 210581\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7898253497974\n• NCM: 85299090\n• SKU: VTK018517\n\nEMBALAGEM\n• Dimensões informadas: 2.5 × 16 × 25 cm\n• Peso bruto informado: 0,13 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "83b3b0f6-a434-4493-a180-1444c69381db",
+      "sku": "VTK018297",
+      "nome": "Cabo Alarme Telecam 50 X 10 Vias Cobre 100 Metros",
+      "error": "Atributos obrigatórios pendentes: Conector de saída, Conector de entrada",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB48605",
+            "nome": "Cabos Telefônicos"
+          },
+          "missing": [
+            "Conector de saída",
+            "Conector de entrada"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "188de9f1-b776-4c71-ac01-956b8cdbf07c",
+      "sku": "VTK018388",
+      "nome": "Botoeira Citrox Inox Cube Na/ Nf Cx-4508",
+      "error": "Atributos obrigatórios pendentes: Fabricante, Inclui manual de montagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB11522",
+            "nome": "Outros"
+          },
+          "missing": [
+            "Fabricante",
+            "Inclui manual de montagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "cdb8d53f-f752-4163-9b44-8aa7e50ff71c",
+      "sku": "VTK018422",
+      "nome": "Haste Permak Para Antena De Teto Gti 095",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45256",
+            "nome": "Antenas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "d582fb22-bb15-4de1-a0b3-1b3ac4d07de0",
+      "sku": "VTK018424",
+      "nome": "ANTENA Móvel Aquário B-2070 COM BOBINA NA BASE PARA Rádio PX POSSUI HASTE Dobrável",
+      "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB432450",
+            "nome": "Outros"
+          },
+          "missing": [
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e759a24c-52f8-4d87-98d5-4166efd87c42",
+      "sku": "VTK018446",
+      "nome": "Multiplicador Usb Daneva Carregador 2 Usb Saída 5v 1,5a + 2 Tomadas",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB11187",
+            "nome": "Hubs USB"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "df5f076d-34e3-4055-8bb1-4a5c31aade74",
+      "sku": "VTK018454",
+      "nome": "Conector Para Cd Vw Jetta/passat",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB38172",
+            "nome": "Conectores"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b1f9c24c-9a5b-4e26-b1c7-ee0a8bda5172",
+      "sku": "VTK018455",
+      "nome": "Reparo Tweeter Shock Completo St-450 Trio",
+      "error": "Atributos obrigatórios pendentes: Tipo de amortecedor",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB122134",
+            "nome": "Amortecedores"
+          },
+          "missing": [
+            "Tipo de amortecedor"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

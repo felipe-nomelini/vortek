@@ -1,0 +1,261 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-no-catalog-validated/dry-run-results/002-evolusom-catalog-create-002-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-002",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "b6daed03-8deb-461c-9472-059f25c252ea",
+      "sku": "VTK017545",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": ""
+      },
+      "basePrice": 51.77,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SHOCK REPAROS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "269461"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "D-250"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Reparo Para Driver Shock D-250 Trio Selenium\n\nVISÃO GERAL\nInformações do Produto Reparo de fácil troca Informações Técnica Impedância: 8 ohms\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SHOCK REPAROS\n• Número de peça: 269461\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: D-250\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SHOCK REPAROS\n• GTIN: 7892046020059\n• NCM: 85189010\n• SKU: VTK017545\n\nEMBALAGEM\n• Dimensões informadas: 3.5 × 8.5 × 10 cm\n• Peso bruto informado: 0,028 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "c7461bea-93fe-4456-be60-f12ea4708e58",
+      "sku": "VTK017608",
+      "category": {
+        "id": "MLB191727",
+        "nome": "Lâmpadas",
+        "dominio": ""
+      },
+      "basePrice": 44.29,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "TECH ONE"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "344706"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Lâmpada Super Branca Techone H9 55w 6000k Com Inmetro\n\nVISÃO GERAL\nInformações do Produto Lâmpada Super Branca Excelente para garantir uma tonalidade super branca que melhora a visibilidade nas vias e das placas de sinalização, graças a nitidez provida pela tonalidade que se aproxima do efeito xênon. Com componentes modernos, este kit consome pouca bateria e alcança o dobro da distância das lâmpadas convencionais. - A mais branca do mercado.\n\n- Única lâmpada do mercado com Bulbo totalmente coberto em azul, gerando uma luminosidade muito mais intensa 24V DC, Encaixe: H9\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: TECH ONE\n• Número de peça: 344706\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: TECH ONE\n• GTIN: 7898613228712\n• NCM: 85392110\n• SKU: VTK017608\n\nEMBALAGEM\n• Dimensões informadas: 6 × 10 × 11 cm\n• Peso bruto informado: 0,098 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "54bc0755-95dc-4dfc-adb2-a15310c16650",
+      "sku": "VTK017456",
+      "nome": "Cabo Y Rca Blindado Nwt 1mx2f 20cm - Azul",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB438559",
+            "nome": "Cabos e Conectores"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "c50c8d36-5035-48e2-99e1-86447ebaf2d1",
+      "sku": "VTK017504",
+      "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 300ml Preto",
+      "error": "Atributos obrigatórios pendentes: Capacidade em volume",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB244658",
+            "nome": "Potes para Alimentos"
+          },
+          "missing": [
+            "Capacidade em volume"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "cf0793f9-8968-4bd0-82ae-ea1a3d0cf86d",
+      "sku": "VTK017505",
+      "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 300ml Vermelho",
+      "error": "Atributos obrigatórios pendentes: Capacidade em volume",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB244658",
+            "nome": "Potes para Alimentos"
+          },
+          "missing": [
+            "Capacidade em volume"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "19b3bc02-9ea5-46be-8974-5f02c52c78bf",
+      "sku": "VTK017506",
+      "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Preto",
+      "error": "Atributos obrigatórios pendentes: Capacidade em volume",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB244658",
+            "nome": "Potes para Alimentos"
+          },
+          "missing": [
+            "Capacidade em volume"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1849bcec-0b10-4888-84c4-4d942dd3c8b0",
+      "sku": "VTK017507",
+      "nome": "Jogo De Potes Tramontina Mixcolor 03 Peças 600ml Vermelho",
+      "error": "Atributos obrigatórios pendentes: Capacidade em volume",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB244658",
+            "nome": "Potes para Alimentos"
+          },
+          "missing": [
+            "Capacidade em volume"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1ea7953e-04c7-4345-a104-4b1bcc01f941",
+      "sku": "VTK017508",
+      "nome": "Jogo De Potes Tramontina Mixcolor 02 Peças 2l Vermelho",
+      "error": "Atributos obrigatórios pendentes: Capacidade em volume",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB244658",
+            "nome": "Potes para Alimentos"
+          },
+          "missing": [
+            "Capacidade em volume"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8d365f94-35d8-4b2d-a675-1afe14d709c9",
+      "sku": "VTK017562",
+      "nome": "Carregador Veicular Elgin Usb 12v - 2 Saídas",
+      "error": "Atributos obrigatórios pendentes: Modelo do carregador, Tipos de conectores do cabo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB430121",
+            "nome": "Carregadores"
+          },
+          "missing": [
+            "Modelo do carregador",
+            "Tipos de conectores do cabo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1dd2a3e6-40d8-4f0b-b302-07e176700573",
+      "sku": "VTK017633",
+      "nome": "Kit Carregadores De Parede + Veicular Elgin Com Cabo Micro Usb 1m",
+      "error": "Atributos obrigatórios pendentes: Modelo do carregador, Tipos de conectores do cabo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB430121",
+            "nome": "Carregadores"
+          },
+          "missing": [
+            "Modelo do carregador",
+            "Tipos de conectores do cabo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

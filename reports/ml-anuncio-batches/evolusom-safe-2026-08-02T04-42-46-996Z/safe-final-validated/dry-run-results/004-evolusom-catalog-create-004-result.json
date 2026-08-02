@@ -1,0 +1,196 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/safe-final-validated/dry-run-results/004-evolusom-catalog-create-004-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-pdf-safe-004",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "1f6d9bb7-1e90-44db-a3e2-8202ba78fdf9",
+      "sku": "VTK017884",
+      "category": {
+        "id": "MLB38186",
+        "nome": "Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "basePrice": 45.64,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "2785980",
+          "value_name": "Storm"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "name": "Tipo de cabo e adaptador",
+          "value_id": "13788225",
+          "value_name": "DVI"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "",
+          "value_name": "2 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "name": "Tipo de produto",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898566201114"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo St- Dvi-dvi 2m Cabo Dvi Com Filtro\n\nVISÃO GERAL\nCabo DVI com Filtro\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Storm\n• Tipo de cabo e adaptador: DVI\n• Comprimento do cabo: 2 m\n• Tipo de produto: Fio\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: NWT\n• GTIN: 7898566201114\n• NCM: 85444200\n• SKU: VTK017884\n\nEMBALAGEM\n• Dimensões informadas: 3 × 13 × 15 cm\n• Peso bruto informado: 0,172 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "04602138-b77d-480a-a48e-010ba2404e1f",
+      "sku": "VTK017907",
+      "category": {
+        "id": "MLB271538",
+        "nome": "Capas",
+        "dominio": "MLB-WALKIE_TALKIE_COVERS"
+      },
+      "basePrice": 115.26,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "34585",
+          "value_name": "Roadstar"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "67021746",
+          "value_name": "RS-4201MBR"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898587425513"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Capa Marítima Protetora Roadstar Rs4201m Para Rádio De Lancha / Barco\n\nVISÃO GERAL\nCapa Protetora Marítima para Rádio 1 DIN Roadstar RS4201M À Prova de Umidade e Respingo A Capa Marítima RS4201M da Roadstar foi desenvolvida para proteger rádios automotivos instalados em ambientes náuticos, como lanchas e barcos, garantindo maior durabilidade e segurança contra umidade, maresia e respingos de água. Seu design com tampa Flip permite fácil acesso ao aparelho, mantendo a vedação quando fechado. Compatível com qualquer rádio padrão 1 DIN , é construída em plástico resistente com tratamento contra raios UV , além de contar com componentes de montagem resistentes à ferrugem , ideais para uso contínuo em áreas externas.\n\nProteção contra umidade, respingos e maresia Estrutura durável com plástico resistente a raios UV Sistema de abertura Flip para fácil acesso ao rádio Compatível com todos os modelos de rádio 1 DIN Componentes anticorrosivos , ideais para ambientes náuticos *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Roadstar\n• Modelo: RS-4201MBR\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ROADSTAR BRASIL\n• GTIN: 7898587425513\n• NCM: 85182990\n• SKU: VTK017907\n\nEMBALAGEM\n• Dimensões informadas: 5.5 × 11 × 24 cm\n• Peso bruto informado: 0,28 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "e9aacf0a-d1b5-4600-a97e-b7668ebf6635",
+      "sku": "VTK018044",
+      "category": {
+        "id": "MLB1714",
+        "nome": "Mouses",
+        "dominio": "MLB-COMPUTER_MICE"
+      },
+      "basePrice": 101.15,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "15788",
+          "value_name": "Logitech"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "255260",
+          "value_name": "M170"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "8453256",
+          "value_name": "98378574339, 97855119193, 5099206062887, 653341008695, 782500626705, 10097855124187, 97855205674"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Mouse Sem Fio Logitech M170 Cinza\n\nVISÃO GERAL\nQUALQUER MÃO, EM QUALQUER LUGAR O M170 compacto e sem fio tem um design totalmente ambidestro que se adapta facilmente na bolsa de seu laptop, de modo que você possa trabalhar em qualquer lugar - não importando se é canhoto ou destro. PLUG & PLAY SEM FIO Até 10 metros de liberdade sem fio com um receptor USB forte e confiável. Isso significa que não há atrasos ou interrupções.\n\nM170 é compatível com Windows, macOS, Chrome OS e Linux e funciona instantaneamente quando você conecta o receptor USB em seu computador ou laptop. Navegação fácil, controle suave Fácil navegação graças a uma rolagem linha a linha controlada e rastreamento óptico. O sensor óptico oferece controle preciso do cursor em praticamente qualquer superfície.\n\nIsso oferece movimentos precisos do mouse, sem mais cliques irritantes em falso. QUALIDADE EM QUE VOCÊ PODE CONFIAR O mouse é construído com os mesmos padrões de alta qualidade e confiabilidade que fizeram da Logitech a líder global em mouses e teclados. Durável e confiável, o M170 também funciona por até 12 meses sem trocar as baterias graças ao botão liga / desliga e ao modo de economia de energia de hibernação automática.\n\nMELHOR DO QUE UM TOUCHPAD Usar um mouse é mais ergonômico do que um touchpad. O formato compacto e a capacidade sem fio lhe permite trabalhar confortavelmente - em casa, no escritório ou em qualquer outro lugar. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Logitech\n• Modelo: M170\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: LOGITECH\n• GTIN: 097855205674\n• NCM: 84716053\n• SKU: VTK018044\n\nEMBALAGEM\n• Dimensões informadas: 5 × 6 × 15 cm\n• Peso bruto informado: 0,14 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "cc84bed0-6160-4af3-b00e-148814686007",
+      "sku": "VTK017982",
+      "nome": "Calculadora Pessoal Procalc Pc986-p 8 Dígitos Pink",
+      "error": "Atributos obrigatórios pendentes: Tipo de calculadora",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB99957",
+            "nome": "Calculadoras"
+          },
+          "missing": [
+            "Tipo de calculadora"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "85bd6a53-e81c-426c-9450-ae424299e482",
+      "sku": "VTK018024",
+      "nome": "Teclado Viaweb 16s",
+      "error": "Atributos obrigatórios pendentes: Voltagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

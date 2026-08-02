@@ -1,0 +1,534 @@
+{
+  "batchNumber": 1,
+  "batchId": "evolusom-domain-approved-001",
+  "strategy": "exact_gtin_catalog_and_domain_discovery_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "8a8a4390-0070-46df-a3a0-eb0ef957c9a1",
+      "sku": "VTK000240",
+      "nome": "Expositor Para Instrumentos de Corda ASL Preto ASK",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 19.5,
+      "estoque": 30,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 48.77,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898939971309",
+        "validatedNcm": "92099900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB278064",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "4238929",
+          "value_name": "ASK"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "27724327",
+          "value_name": "ASL"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "26322417",
+          "value_name": "De parede"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENTS",
+          "value_id": "182362",
+          "value_name": "Baixo, Cavaquinho"
+        },
+        {
+          "id": "MATERIAL",
+          "value_id": "4837600",
+          "value_name": "Aço"
+        },
+        {
+          "id": "INSTRUMENT_CAPACITY",
+          "value_id": "24276403",
+          "value_name": "1"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "1016242",
+          "value_name": "10 cm"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "570743",
+          "value_name": "27 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "3259574",
+          "value_name": "8 cm"
+        },
+        {
+          "id": "MAX_WEIGHT_SUPPORTED",
+          "value_id": "1125599",
+          "value_name": "5 kg"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "27724332",
+          "value_name": "7898939971309"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB29157075",
+        "catalogProductName": "Suporte Ask Slat Wall Asl Emborrachado Cordas Cor Preto",
+        "catalogDomainId": "MLB-STRING_INSTRUMENT_STANDS_AND_WALL_HANGERS",
+        "predictedDomainId": "MLB-STRING_INSTRUMENT_STANDS_AND_WALL_HANGERS",
+        "categoryId": "MLB278064",
+        "categoryName": "Suportes",
+        "linkedListingsInCategory": 2,
+        "validatedGtin": "7898939971309"
+      }
+    },
+    {
+      "produtoId": "9b0406aa-0e5a-4d61-b8b8-59a436652109",
+      "sku": "VTK000462",
+      "nome": "Cabo de Áudio Y 1 Fêmea X 2 Machos 20cm Azul Storm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 16.5,
+      "estoque": 30,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 45.06,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566208014",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB431813",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "2223295",
+          "value_name": "Prime"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16201343",
+          "value_name": "Y RCA"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788220",
+          "value_name": "RCA"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52028",
+          "value_name": "Azul"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "1061412",
+          "value_name": "26 cm"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "16088626",
+          "value_name": "5 mm"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15290095",
+          "value_name": "2"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "16201374",
+          "value_name": "Conectores Fêmea"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "16201375",
+          "value_name": "Conector macho"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116080",
+          "value_name": "Fêmea"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116086",
+          "value_name": "Macho"
+        },
+        {
+          "id": "CONNECTOR_COATING_MATERIAL",
+          "value_id": "15991816",
+          "value_name": "Emborrachado"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_without_current_winner",
+        "catalogProductId": "MLB26631784",
+        "catalogProductName": "Cabo Rca Y 2 Machos 1 Femea 5mm 26 Cm Azul Para Ts400",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB431813",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "validatedGtin": "7898566208014"
+      }
+    },
+    {
+      "produtoId": "e1e9ae8b-d2bb-4815-a235-22d81d162d48",
+      "sku": "VTK001491",
+      "nome": "Encordoamento Para Violão Aço Bronze 85/15 Série Cobra Giannini GEEWA",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 23.7,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 53.95,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898159187023",
+        "validatedNcm": "92093000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "validated_before_execution"
+      },
+      "categoryId": "MLB278076",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "45321",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "LINE",
+          "value_id": "364045",
+          "value_name": "Cobra"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "19138738",
+          "value_name": "GEEWAK"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_id": "17598422",
+          "value_name": "Guitarra"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_id": "15146",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_id": "22024572",
+          "value_name": "0.009"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "4180051",
+          "value_name": "Bronze"
+        },
+        {
+          "id": "TENSION",
+          "value_id": "5344248",
+          "value_name": "Média"
+        },
+        {
+          "id": "SCALE",
+          "value_id": "15312683",
+          "value_name": "4:4"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "19138742",
+          "value_name": "7898159187023, 843104101033"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_image_mirrored",
+        "catalogProductId": "MLB23275555",
+        "catalogProductName": "Encordoamento Violão Aço Giannini Cobra Bronze 85/15 009-045 6",
+        "catalogDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+        "predictedDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+        "categoryId": "MLB278076",
+        "categoryName": "Cordas para Instrumentos",
+        "validatedGtin": "7898159187023"
+      }
+    },
+    {
+      "produtoId": "4f770396-e999-4662-a519-4aed2cc0170c",
+      "sku": "VTK001628",
+      "nome": "Encordoamento Para Violão Nylon Médio Série Canário Giannini GENW",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 14.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.09,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898159186569",
+        "validatedNcm": "92093000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "validated_before_execution"
+      },
+      "categoryId": "MLB278076",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "45321",
+          "value_name": "Giannini"
+        },
+        {
+          "id": "LINE",
+          "value_id": "16505957",
+          "value_name": "Giannini Canario Violão Nylon"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16505958",
+          "value_name": "Canário Genw"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENT",
+          "value_id": "15312679",
+          "value_name": "Violão acústico"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "STRINGS_NUMBER",
+          "value_id": "15146",
+          "value_name": "6"
+        },
+        {
+          "id": "GAUGES",
+          "value_id": "16505984",
+          "value_name": "0.028\t0.032\t0.040\t0.030\t0.035\t0.043"
+        },
+        {
+          "id": "MATERIALS",
+          "value_id": "7980354",
+          "value_name": "Náilon"
+        },
+        {
+          "id": "TENSION",
+          "value_id": "5344248",
+          "value_name": "Média"
+        },
+        {
+          "id": "NOTES",
+          "value_id": "15662353",
+          "value_name": "La, Mi, Mi agudo, Re, Si, Sol"
+        },
+        {
+          "id": "SCALE",
+          "value_id": "15312683",
+          "value_name": "4:4"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "16505985",
+          "value_name": "7898159186569, 7898159181076, 7898159184701"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_image_mirrored",
+        "catalogProductId": "MLB21618565",
+        "catalogProductName": "Jogo De Corda Violão - Giannini Canário - Náilon Sem Bolinha",
+        "catalogDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+        "predictedDomainId": "MLB-STRING_INSTRUMENT_STRINGS",
+        "categoryId": "MLB278076",
+        "categoryName": "Cordas para Instrumentos",
+        "validatedGtin": "7898159186569"
+      }
+    },
+    {
+      "produtoId": "6b931c2e-c7cf-40cc-8864-3d5a9de25b4b",
+      "sku": "VTK003138",
+      "nome": "Cabo Speakon Macho Para Speakon Macho 10m CBSP0002 Storm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 30.2,
+      "estoque": 34,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 61.98,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566206775",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB72745",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "16890593",
+          "value_name": "Stormtech"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "97375",
+          "value_name": "Cabo"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "13788227",
+          "value_name": "XLR"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "129133",
+          "value_name": "10 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827368",
+          "value_name": "Cabo adaptador"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "16302675",
+          "value_name": "Speakon"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "8041570",
+          "value_name": "Speakon"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116079",
+          "value_name": "Macho"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116087",
+          "value_name": "Fêmea"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_without_current_winner",
+        "catalogProductId": "MLB45746417",
+        "catalogProductName": "Cabo Speak-on 10m Para Caixa De Som Ativa Passiva 10 Metros",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB72745",
+        "categoryName": "Cabos",
+        "validatedGtin": "7898566206775"
+      }
+    }
+  ]
+}

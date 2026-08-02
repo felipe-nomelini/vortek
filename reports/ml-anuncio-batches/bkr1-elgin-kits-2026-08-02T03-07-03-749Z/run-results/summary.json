@@ -1,0 +1,23 @@
+{
+  "startedAt": "2026-08-02T03:15:24.508Z",
+  "account": {
+    "userId": "3294514937",
+    "nickname": "VORTEKTECNOLOGIA"
+  },
+  "sourceDir": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/bkr1-elgin-kits-2026-08-02T03-07-03-749Z",
+  "selected": 44,
+  "totals": {
+    "created": 0,
+    "verified": 0,
+    "failed": 1
+  },
+  "rows": [
+    {
+      "sequence": 1,
+      "sku": "VTK025633",
+      "status": "creation_failed",
+      "exitCode": 0,
+      "error": "Validation error | item.attribute.missing_conditional_required: The attributes [GTIN] are required for category [MLB7060]. Check the attribute is present in the attributes list or in all variation's attributes_combination or attributes. | code=validation_error | http=400"
+    }
+  ]
+}

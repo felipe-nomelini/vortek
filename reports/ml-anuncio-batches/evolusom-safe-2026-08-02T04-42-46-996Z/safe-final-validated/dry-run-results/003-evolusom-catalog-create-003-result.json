@@ -1,0 +1,203 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/safe-final-validated/dry-run-results/003-evolusom-catalog-create-003-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-pdf-safe-003",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "c2bc53ad-df5d-4a5b-a3ec-f98ab519a418",
+      "sku": "VTK017708",
+      "category": {
+        "id": "MLB120498",
+        "nome": "Antenas",
+        "dominio": "MLB-GPS_ANTENNAS"
+      },
+      "basePrice": 41.4,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "25917169",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898253504481"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Acessório Cabo De Antena Ford Fusion / Gm\n\nVISÃO GERAL\nInformações do Produto Acessório Cabo de Antena Ford Fusion / GM\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Permak\n• Modelo: PERMAK\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PERMAK\n• GTIN: 7898253504481\n• NCM: 85444200\n• SKU: VTK017708\n\nEMBALAGEM\n• Dimensões informadas: 1.5 × 9.5 × 14 cm\n• Peso bruto informado: 0,018 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8cd9f449-5a4a-4e4b-9751-74f753be32a5",
+      "sku": "VTK017791",
+      "category": {
+        "id": "MLB271690",
+        "nome": "Kits de Ferramentas",
+        "dominio": "MLB-COMBINED_TOOL_KITS"
+      },
+      "basePrice": 336.45,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "3692380",
+          "value_name": "EVO"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "36995251",
+          "value_name": "EVUS EV-1"
+        },
+        {
+          "id": "IS_FACTORY_KIT",
+          "name": "É kit de fábrica",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898597132616"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Kit Fibra óptica Universal Evus Ev-1 Com Power Meter\n\nVISÃO GERAL\nO kit Óptico Universal EVUS EV-1 traz as principais ferramentas necessárias para realizar as instalações do cliente final em redes FTTH, kit conta com 10 itens entre ferramentas e acessórios. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: EVO\n• Modelo: EVUS EV-1\n• É kit de fábrica: Sim\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: EVUS\n• GTIN: 7898597132616\n• NCM: 90314990\n• SKU: VTK017791\n\nEMBALAGEM\n• Dimensões informadas: 18 × 16 × 28 cm\n• Peso bruto informado: 1,19 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ed62b1b8-d140-4d21-aebd-5c42f87c8e27",
+      "sku": "VTK017824",
+      "category": {
+        "id": "MLB268504",
+        "nome": "Insulfilms",
+        "dominio": "MLB-VEHICLE_TINTED_GLASSES"
+      },
+      "basePrice": 108.76,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "43475668",
+          "value_name": "Stom"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "43475672",
+          "value_name": "100 Lâminas para Raspador Ratinho"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "INSF0013"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898566207772"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Lâminas Para Ratinho Nwt Insf0013 Para Aplicação De Insulfilm 100 Unidades\n\nVISÃO GERAL\nExcelente para raspar e limpar vidros e alguns tipos de porcelanatos, azulejos, cortes precisos na aplicação de películas, PPF, papel de parede, artesanato. *Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Stom\n• Número de peça: 100 Lâminas para Raspador Ratinho\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: INSF0013\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: NWT\n• GTIN: 7898566207772\n• NCM: 73261900\n• SKU: VTK017824\n\nEMBALAGEM\n• Dimensões informadas: 2 × 4 × 14 cm\n• Peso bruto informado: 0,208 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "063dbebd-b445-4a04-af92-4036ba27b15d",
+      "sku": "VTK017637",
+      "nome": "Central De Alarme Sulton Cls 1400 Não Monitorada 10 Zonas",
+      "error": "Atributos obrigatórios pendentes: Voltagem, Tipo de dispositivo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB7070",
+            "nome": "Alarmes e Sensores"
+          },
+          "missing": [
+            "Voltagem",
+            "Tipo de dispositivo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "965a501e-b56c-4afd-a0c2-5c4e0ebecab0",
+      "sku": "VTK017666",
+      "nome": "Multitoc Telefone Gondola C/ Fio Grafite",
+      "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB1053",
+            "nome": "Telefones"
+          },
+          "missing": [
+            "Homologação Anatel Nº"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

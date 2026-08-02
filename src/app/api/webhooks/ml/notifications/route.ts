@@ -13,6 +13,7 @@ import {
   enfileirarSyncMlEstoqueInterno,
   estornarReservaEnvioInternoCancelado,
   isEnderecoEstoqueInternoMl,
+  obterEnderecoRetornoPadraoMl,
   registrarDevolucaoInterna,
 } from '@/lib/estoque-interno';
 import { detachDeletedMlListing, isMlListingDeleted } from '@/lib/ml/listing-deletion';
@@ -695,13 +696,12 @@ export async function POST(request: Request) {
               shipmentStatus === 'not_delivered' &&
               ['returning_to_sender', 'returned'].includes(shipmentSubstatus);
             if (isReturningToSender) {
+              const enderecoRetornoPadrao = await obterEnderecoRetornoPadraoMl();
               await registrarDevolucaoInterna(
                 String(pedido.id),
                 pedido.situacao === 'dest_ausente' ? 'Destinatário ausente' : 'Entrega não realizada',
                 shipmentSubstatus,
-                isEnderecoEstoqueInternoMl(
-                  shipment?.origin?.shipping_address || shipment?.sender_address,
-                ),
+                isEnderecoEstoqueInternoMl(enderecoRetornoPadrao),
               );
             }
 

@@ -1,0 +1,35 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-safe-reviewed/006-evolusom-traditional-safe-006.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-traditional-safe-006",
+  "selected": 1,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "4ea07bb8-abd6-4952-97c9-27e508def1db",
+      "sku": "VTK019659",
+      "category": {
+        "id": "MLB63484",
+        "nome": "Palhetas",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981464537",
+        "title": "Palheta Automotiva Isoflex Flexível Silicone 26 ",
+        "price": 56.01,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981464537-palheta-automotiva-isoflex-flexivel-silicone-26-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 39.24 → R$ 56.01."
+      ]
+    }
+  ],
+  "failed": []
+}

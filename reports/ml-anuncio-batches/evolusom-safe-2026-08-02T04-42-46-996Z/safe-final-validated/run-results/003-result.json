@@ -1,0 +1,135 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/safe-final-validated/remaining/003-evolusom-remaining-003.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-003",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "c2bc53ad-df5d-4a5b-a3ec-f98ab519a418",
+      "sku": "VTK017708",
+      "category": {
+        "id": "MLB120498",
+        "nome": "Antenas",
+        "dominio": "MLB-GPS_ANTENNAS"
+      },
+      "anuncio": {
+        "id": "MLB4981311917",
+        "title": "Acessório Cabo De Antena Ford Fusion / Gm",
+        "price": 41.4,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981311917-acessorio-cabo-de-antena-ford-fusion-gm-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"status\":409,\"code\":\"conflict.error\",\"error\":\"Conflict\"}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "8cd9f449-5a4a-4e4b-9751-74f753be32a5",
+      "sku": "VTK017791",
+      "category": {
+        "id": "MLB271690",
+        "nome": "Kits de Ferramentas",
+        "dominio": "MLB-COMBINED_TOOL_KITS"
+      },
+      "anuncio": {
+        "id": "MLB4981311959",
+        "title": "Kit Fibra Óptica Universal Evus Ev-1 Com Power Meter",
+        "price": 363.95,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981311959-kit-fibra-optica-universal-evus-ev-1-com-power-meter-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 336.45 → R$ 363.95."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ed62b1b8-d140-4d21-aebd-5c42f87c8e27",
+      "sku": "VTK017824",
+      "category": {
+        "id": "MLB268504",
+        "nome": "Insulfilms",
+        "dominio": "MLB-VEHICLE_TINTED_GLASSES"
+      },
+      "anuncio": {
+        "id": "MLB4981312003",
+        "title": "Lâminas Para Ratinho Nwt Insf0013 Para Aplicação",
+        "price": 108.76,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981312003-lminas-para-ratinho-nwt-insf0013-para-aplicaco-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"status\":409,\"code\":\"conflict.error\",\"error\":\"Conflict\"}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "1f6d9bb7-1e90-44db-a3e2-8202ba78fdf9",
+      "sku": "VTK017884",
+      "category": {
+        "id": "MLB38186",
+        "nome": "Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4981290101",
+        "title": "Cabo St- Dvi-dvi 2m Cabo Dvi Com Filtro",
+        "price": 61.47,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981290101-cabo-st-dvi-dvi-2m-cabo-dvi-com-filtro-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 45.64 → R$ 61.47."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "04602138-b77d-480a-a48e-010ba2404e1f",
+      "sku": "VTK017907",
+      "category": {
+        "id": "MLB271538",
+        "nome": "Capas",
+        "dominio": "MLB-WALKIE_TALKIE_COVERS"
+      },
+      "anuncio": {
+        "id": "MLB4981360347",
+        "title": "Capa Marítima Protetora Roadstar Rs4201m Para Rádio",
+        "price": 133.65,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981360347-capa-maritima-protetora-roadstar-rs4201m-para-radio-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 115.26 → R$ 133.65."
+      ]
+    }
+  ],
+  "failed": []
+}

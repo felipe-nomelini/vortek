@@ -1,0 +1,42 @@
+[
+  {
+    "sku": "VTK018029",
+    "reason": "semantic_catalog_mismatch"
+  },
+  {
+    "sku": "VTK019131",
+    "reason": "semantic_catalog_mismatch"
+  },
+  {
+    "sku": "VTK019952",
+    "reason": "semantic_catalog_mismatch"
+  },
+  {
+    "sku": "VTK019484",
+    "reason": "semantic_catalog_mismatch"
+  },
+  {
+    "sku": "VTK018908",
+    "reason": "semantic_catalog_mismatch"
+  },
+  {
+    "sku": "VTK019100",
+    "reason": "semantic_catalog_mismatch"
+  },
+  {
+    "sku": "VTK017904",
+    "reason": "semantic_catalog_mismatch"
+  },
+  {
+    "sku": "VTK018828",
+    "reason": "semantic_catalog_mismatch"
+  },
+  {
+    "sku": "VTK017801",
+    "reason": "semantic_catalog_mismatch"
+  },
+  {
+    "sku": "VTK020645",
+    "reason": "mirror_candidate_catalog_count_0"
+  }
+]

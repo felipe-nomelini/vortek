@@ -1,0 +1,395 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-no-catalog-validated/dry-run-results/017-evolusom-catalog-create-017-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-017",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "aba1d12d-dcd0-4808-8cf4-100a871aaf08",
+      "sku": "VTK019098",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": ""
+      },
+      "basePrice": 136.58,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "TURY"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "319003"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "AC03B"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Módulo Speed-lock Tury Trava Eletrica Ac03b Toyota Etios A Partir De 2017\n\nVISÃO GERAL\nMódulo que realiza o travamento automático das 4 portas do veículo assim que estiver em velocidade (movimento com aceleração). Possui conectores originais para facilitar a instalação. Também realiza o destravamento das portas quando o carro é desligado e retrava as portas caso estas sejam abertas com o mesmo em movimento.\n\nImagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: TURY\n• Número de peça: 319003\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: AC03B\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: TURY\n• GTIN: 7898096339967\n• NCM: 85437099\n• SKU: VTK019098\n\nEMBALAGEM\n• Dimensões informadas: 6 × 7 × 9.5 cm\n• Peso bruto informado: 0,066 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "37b54719-9216-4a9d-aee6-7f2e8cf0f67f",
+      "sku": "VTK019114",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": ""
+      },
+      "basePrice": 221.12,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SOFT"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "340824"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "AW32"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Aw32 Soft Cn Orig 4v Toyota Etios 4v 14+\n\nVISÃO GERAL\nInformações do Produto AW 32 CN ORIG 4V - TOYOTA ETIOS 4V (2014) - AA. 29. 0024 Com descida inteligente na porta do motorista.\n\nFunção Antiesmagamento. - Exclusiva função 100Force - Configurável via bluetooth* - Alivio de pressão - Subida e descida automática - Bloqueio dos vidros traseiros integrados - Menor consumo em stand by Garantia 2 Anos\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SOFT\n• Número de peça: 340824\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: AW32\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SOFT\n• GTIN: 7898441351293\n• NCM: 85437099\n• SKU: VTK019114\n\nEMBALAGEM\n• Dimensões informadas: 8 × 9 × 13 cm\n• Peso bruto informado: 0,251 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "d3fe4596-8ab2-422c-a164-fa78e0d6bc11",
+      "sku": "VTK019118",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": ""
+      },
+      "basePrice": 451.12,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "TURY"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "346688"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "78BR"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Módulo De Vidro Elétrico Tury Ae Pro 4.78br\n\nVISÃO GERAL\nMódulo para automação completa dos 4 vidros elétricos do seu veículo. Possui conectores originais para facilitar a instalação e preservar a originalidade do veículo. Possui as seguintes funções: 1) Fechamento e abertura dos 4 vidros elétricos simultaneamente através do controle remoto original do seu veículo.\n\n2) Torna todos os botões de vidros no padrão one-touch para comandos de abertura e fechamento. 3) Garante funcionamento temporizado dos botões da porta do motorista por 1 minuto após desligar o automóvel. Garante a proteção contra esmagamentos exigida pela Resolução CONTRAN 468/13 e pelo Código de Transito Brasileiro.\n\n*Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: TURY\n• Número de peça: 346688\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: 78BR\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: TURY\n• GTIN: 7899987002687\n• NCM: 85432000\n• SKU: VTK019118\n\nEMBALAGEM\n• Dimensões informadas: 9 × 13 × 10 cm\n• Peso bruto informado: 0,362 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f6f65b43-d002-43f9-9f4f-868b8821c3fc",
+      "sku": "VTK019122",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 119.49,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "354866"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892511410"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Aro 14p 344cb-gft Mod Ka+ 2019 Cb - PC / 4\n\nVISÃO GERAL\nInformações do Produto Calota Aro 14P 344CB-GFT 14 Polegadas Cubo Baixo Aplicação Ka+ 2019 Cor Grafite *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 354866\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892511410\n• NCM: 87087090\n• SKU: VTK019122\n\nEMBALAGEM\n• Dimensões informadas: 3 × 39 × 39 cm\n• Peso bruto informado: 0,354 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8b1706cd-6206-4ba6-9071-ddf2e39378f9",
+      "sku": "VTK019168",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": ""
+      },
+      "basePrice": 387.07,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "TURY"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "382196"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "PRO3.4B"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Módulo De Vidro Tury Ae Pro3.4b\n\nVISÃO GERAL\nMódulo de vidro elétricos/ Retrovisores elétricos PRO 3. 4 B para Honda City a partir de 2021. A TURY se caracteriza por ser uma empresa de alta capacidade de desenvolvimento de novos e complexos produtos com referencia de qualidade em todo o mercado.\n\nSendo sinônimo de qualidade através de sua marca e produtos. Funções: Módulo que realiza o fechamento e a abertura dos vidros e dos retrovisores elétricos (rebatimento) de forma automática através do controle remoto original do seu veiculo. Possui conectores originais para facilitar a instalação e preservar a originalidade do veículo.\n\nGarante a proteção contra esmagamentos exigida pela Resolução CONTRAN 468/13 e pelo Código de Transito Brasileiro. *Imagens meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: TURY\n• Número de peça: 382196\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: PRO3.4B\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: TURY\n• GTIN: 7899987007293\n• NCM: 85432000\n• SKU: VTK019168\n\nEMBALAGEM\n• Dimensões informadas: 5 × 8 × 9 cm\n• Peso bruto informado: 0,122 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4ea07bb8-abd6-4952-97c9-27e508def1db",
+      "sku": "VTK019659",
+      "category": {
+        "id": "MLB63484",
+        "nome": "Palhetas",
+        "dominio": ""
+      },
+      "basePrice": 39.24,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "ISOFLEX"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "218041"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898564960129"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Palheta Automotiva Isoflex Flexível Silicone 26\"\n\nVISÃO GERAL\nPalheta Automotiva Isoflex Limpador de para-brisa Flexível Silicone Tamanho: 26\" Melhor limpeza em seu para-brisa e não causa barulhos Não enferruja, não resseca b Borracha de silicone Maior durabilidade e visibilidade Flexível adapta a qualquer para - brisa Universal: Consulte o seu tamanho ideal\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: ISOFLEX\n• Número de peça: 218041\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: ISOFLEX\n• GTIN: 7898564960129\n• NCM: 85124010\n• SKU: VTK019659\n\nEMBALAGEM\n• Dimensões informadas: 3 × 7 × 74 cm\n• Peso bruto informado: 0,19 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "6fd8c5c2-1073-4dc9-9566-97933b90f4ee",
+      "sku": "VTK019096",
+      "nome": "Ultra Led Shocklight (par) H27 12v 50w 6000k 4000lm",
+      "error": "Atributos obrigatórios pendentes: Tipo de conector",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB5759",
+            "nome": "Lâmpadas de Led"
+          },
+          "missing": [
+            "Tipo de conector"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2feb7e97-6953-4508-8055-755956acb219",
+      "sku": "VTK019099",
+      "nome": "Capota Marítima Flash Cover Ff147 Fiat Strada Cabine Dupla Sem Gancho Com Step 2010/2013 Force",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "f1c7ae2c-2877-4518-987c-94920709e072",
+      "sku": "VTK019108",
+      "nome": "Capota Marítima Flash Cover Ff173 Volkswagen Amarok Cabine Simples 2010+ Force",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "8d7fbad6-a59b-4aaa-a799-abfc41331b28",
+      "sku": "VTK019117",
+      "nome": "Expansor Corneta Fiamon 1450 Red. Curta Bicolor Amarelo Fluorescente",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46560",
+            "nome": "Cornetas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

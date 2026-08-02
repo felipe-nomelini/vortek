@@ -1,0 +1,353 @@
+{
+  "batchNumber": 1,
+  "batchId": "evolusom-traditional-001",
+  "strategy": "traditional_no_catalog_predictor_consensus",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "dc408ec6-8e7c-420d-951c-00c68ca7256d",
+      "sku": "VTK005491",
+      "nome": "Cabo Display Port 1.2v Para DVI Fêmea Storm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 27.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 59.14,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB431813",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB431813",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Cabos > Cabos de Áudio e Vídeo",
+        "validatedGtin": "7908638400236"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908638400236",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "ce5d444a-08a2-43c0-80c1-044a25d139f8",
+      "sku": "VTK005775",
+      "nome": "Cabo Display Port 1.2v Para USB- C Macho Storm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 54.9,
+      "estoque": 19,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 92.47,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB431830",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB431830",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "categoryPath": "Informática > Cabos e Hubs USB > Cabos > Cabos de Áudio e Vídeo",
+        "validatedGtin": "7908638400212"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7908638400212",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "05d26ff9-dde6-4df0-a2d0-325817eeb4e7",
+      "sku": "VTK017189",
+      "nome": "Reparo Para Driver Shock D-250 Selenium",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 14.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.09,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46559",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+        "categoryId": "MLB46559",
+        "categoryName": "Drivers",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Drivers",
+        "validatedGtin": "7892046020042"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7892046020042",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "e854a49a-deb0-4714-8aed-425c4fdbe378",
+      "sku": "VTK017215",
+      "nome": "Arandela Fiamon Sem Falante Redonda Branca 6\"",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 27.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 59.14,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB443814",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_STEREOS_AND_SPEAKERS_KITS",
+        "categoryId": "MLB443814",
+        "categoryName": "Kits de Estéreo e Alto-Falante",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Reprodutores > Kits de Estéreo e Alto-Falante",
+        "validatedGtin": "7898478322921"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898478322921",
+        "validatedNcm": "39269090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "72ead0c9-8e4f-483a-9444-e586d8989844",
+      "sku": "VTK017244",
+      "nome": "Video Balun Evus C-067 1 Canal Mini Cctv Bnc Para Hdcvi Cftv",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 10.91,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 38.16,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB195961",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB195961",
+        "categoryName": "Adaptadores",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Acessórios para Áudio e Vídeo > Adaptadores",
+        "validatedGtin": "7898597131886"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597131886",
+        "validatedNcm": "85299090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "94af03bd-25f4-44ad-9d6e-86f57700f57d",
+      "sku": "VTK017267",
+      "nome": "Controle Remoto Ar Condicionado Elgin Ecoplus Mxt",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 15.5,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 43.83,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB196072",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AIR_CONDITIONER_REMOTE_CONTROLS",
+        "categoryId": "MLB196072",
+        "categoryName": "Controles Remotos",
+        "categoryPath": "Eletrodomésticos > Ar e Ventilação > Peças e Acessórios > Para Ar Condicionado > Controles Remotos",
+        "validatedGtin": "7899903188426"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899903188426",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "74e36afb-8ff2-4b14-97b5-b3ee6c588aad",
+      "sku": "VTK017331",
+      "nome": "Cabo Vga Evus C-044 Hd15 Macho X Hd15 Macho Com Filtro 20,0m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 60.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 99.88,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB421298",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CONVERTERS",
+        "categoryId": "MLB421298",
+        "categoryName": "Conversores de Aúdio e Vídeo",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Acessórios para Áudio e Vídeo > Conversores de Aúdio e Vídeo",
+        "validatedGtin": "7898597131664"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597131664",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "fbb175b5-eb44-44bb-9633-567f8d679cb7",
+      "sku": "VTK017336",
+      "nome": "Cabo De Microfone P10 Macho X Cannon Femea",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 10.5,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 37.65,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB72745",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB72745",
+        "categoryName": "Cabos",
+        "categoryPath": "Instrumentos Musicais > Instrumentos de Corda > Acessórios > Cabos",
+        "validatedGtin": "7898597131879"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597131879",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "748ef8dc-e186-42ef-b716-45e8c3440915",
+      "sku": "VTK017347",
+      "nome": "Cabo Optico Splitter Evus Opf-plc1x16-nc250 Plc 1x16 Nc 1,5m G657a1",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 23.9,
+      "estoque": 50,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 54.2,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB272149",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-FIBER_OPTIC_SPLITTERS",
+        "categoryId": "MLB272149",
+        "categoryName": "Splitters de Fibra Óptica",
+        "categoryPath": "Informática > Conectividade e Redes > Ferramentas > Montagem de Fibra Óptica > Splitters de Fibra Óptica",
+        "validatedGtin": "7890003597781"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7890003597781",
+        "validatedNcm": "85176259",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "8e8e0eb5-3444-46b0-a0ef-5a5710893440",
+      "sku": "VTK017384",
+      "nome": "Cabo De Força Tripolar Megacabos 1,2m Tipo Mickey - Preto - PC / 5",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 59.5,
+      "estoque": 43,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 98.15,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB9600",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-POWER_CORDS",
+        "categoryId": "MLB9600",
+        "categoryName": "Cabos de Energia",
+        "categoryPath": "Informática > Cabos e Hubs USB > Cabos > Cabos de Energia",
+        "validatedGtin": "7899938509777"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899938509777",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

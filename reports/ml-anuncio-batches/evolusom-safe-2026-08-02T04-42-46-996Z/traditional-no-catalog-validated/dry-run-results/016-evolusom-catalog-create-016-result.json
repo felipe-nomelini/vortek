@@ -1,0 +1,331 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-no-catalog-validated/dry-run-results/016-evolusom-catalog-create-016-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-016",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "72c29fc9-3c8b-4a5b-9e0f-613b676a3c50",
+      "sku": "VTK019052",
+      "category": {
+        "id": "MLB22369",
+        "nome": "Travas Elétricas",
+        "dominio": ""
+      },
+      "basePrice": 150.51,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "TURY"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "265383"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Módulo Trava Elétrica Speed-lock Tury Lock2.0\n\nVISÃO GERAL\nAC03 - Módulo que realiza o travamento automático das 4 portas do veículo assim que esteja em velocidade (movimento com aceleração). Rearme automático. Imagem meramente ilustrativa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: TURY\n• Número de peça: 265383\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: TURY\n• GTIN: 7899927001206\n• NCM: 85432000\n• SKU: VTK019052\n\nEMBALAGEM\n• Dimensões informadas: 7 × 8.5 × 13 cm\n• Peso bruto informado: 0,076 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "734887c9-acb9-4bfe-8e3c-43904756b143",
+      "sku": "VTK019068",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 80.25,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292074"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277985389"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 13p 124cb-pta Ford Ka 2014 Cubo Baixo - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Ka 2014 Aro 13 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292074\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277985389\n• NCM: 87087090\n• SKU: VTK019068\n\nEMBALAGEM\n• Dimensões informadas: 3 × 36.5 × 36.5 cm\n• Peso bruto informado: 0,234 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "fac8ca75-73f8-47a0-a2f0-c977f1e2330c",
+      "sku": "VTK019070",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292457"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277983194"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14a 086ar-pta Modelo Renault Sandero/ Logan 2009/ 13 Aro De Pressão - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Renault Sandero/Logan 2009 Aro 13 Fixação Pressão\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292457\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277983194\n• NCM: 87087090\n• SKU: VTK019070\n\nEMBALAGEM\n• Dimensões informadas: 5 × 39 × 39 cm\n• Peso bruto informado: 0,398 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ac9bdcdd-d878-422b-ab40-a38fe6f20669",
+      "sku": "VTK019071",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292683"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277984467"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p Volkswaggen Modelo Gol/ Voyage G5/ G6 2013 Cubo Baixo - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Gol/ Voyage G5/G6 2013 Aro 14 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292683\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277984467\n• NCM: 87087090\n• SKU: VTK019071\n\nEMBALAGEM\n• Dimensões informadas: 3.5 × 39.5 × 39.5 cm\n• Peso bruto informado: 0,301 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "fc83972a-ead2-4687-b53a-07c3fd56c4a3",
+      "sku": "VTK019044",
+      "nome": "Cabo Flexível Remoto Technoise 100% Cobre Azul 1.50 Mm Rolo 100 Metros",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo, Tamanho da seção, Comprimento do cabo, Quantidade de pinos",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB455454",
+            "nome": "Cabos Elétricos"
+          },
+          "missing": [
+            "Tipo de cabo",
+            "Tamanho da seção",
+            "Comprimento do cabo",
+            "Quantidade de pinos"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "93869b7d-12a3-4370-95ba-92ec02b61cfc",
+      "sku": "VTK019089",
+      "nome": "Capota Marítima Concórdia Flash Cover Ba130l Mitsubishi L200 Triton 2009/2017 Baguete",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7d3cadf6-0d21-4fb1-8167-9f11804ce7d6",
+      "sku": "VTK019090",
+      "nome": "Capota Marítima Concórdia Flash Cover Ba093l Volkswagen Saveiro Sem Grade 1982/1997 Baguete",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "1241c218-6126-42f2-9cc9-46cb16e9a1fd",
+      "sku": "VTK019092",
+      "nome": "Capota Marítima Flash Cover Ff166 Chevrolet Montana 2011/2021 Force",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4fff33d4-ab0a-43e5-bb40-0aa655154278",
+      "sku": "VTK019094",
+      "nome": "Capota Marítima Flash Cover Ff194 Toyota Hilux Cabine Dupla 2016+ Force",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "7144b025-bbee-4764-b1c7-7bf5380b2ca6",
+      "sku": "VTK019095",
+      "nome": "Capota Marítima Flash Cover Ff126 Fiat Strada Cabine Estendida Com Gancho Com Step 1998/2013 Force",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

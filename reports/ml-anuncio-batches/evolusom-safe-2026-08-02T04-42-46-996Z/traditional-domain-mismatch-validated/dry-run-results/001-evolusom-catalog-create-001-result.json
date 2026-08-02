@@ -1,0 +1,321 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-domain-mismatch-validated/dry-run-results/001-evolusom-catalog-create-001-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-001",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "bc040ab0-3aa3-4126-b12a-d24c2897bac0",
+      "sku": "VTK003270",
+      "category": {
+        "id": "MLB269928",
+        "nome": "Dimmers",
+        "dominio": ""
+      },
+      "basePrice": 103.02,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "MULTILASER"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "SE235"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899838881218"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Interruptor Inteligente 1 Tecla Wi-Fi SE235 Branco MULTILASER\n\nVISÃO GERAL\nO Interruptor inteligente 1 Tecla Wi-Fi da série Multilaser Liv é o ideal se você deseja transformar sua iluminação convencional em inteligente e conectada. De instalação simples em caixas de luz convencionais 4x2, esse equipamento oferece às suas lâmpadas convencionais a possibilidade de controle remoto e agendamentos via aplicativo gratuito Multilaser Liv, além de botão manual de liga/desliga, transformando qualquer ambiente em um local mais moderno e conectado.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MULTILASER\n• Modelo: SE235\n• Cor: Branco\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MULTILASER\n• GTIN: 7899838881218\n• NCM: 8543.70.99\n• SKU: VTK003270\n\nEMBALAGEM\n• Dimensões informadas: 5 × 9 × 13.5 cm\n• Peso bruto informado: 0,162 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "7c433078-cf08-4965-8cba-fe1e9c822b33",
+      "sku": "VTK005357",
+      "category": {
+        "id": "MLB443814",
+        "nome": "Kits de Estéreo e Alto-Falante",
+        "dominio": ""
+      },
+      "basePrice": 294.37,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "JBL CAR AUDIO"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "5TRMS80"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7896359568963"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Alto-Falante 5\" JBL Multisystem 5TRMS80 (PAR)\n\nVISÃO GERAL\nO Alto-Falante 5\" JBL Multisystem 5TRMS80 faz parte da linha Multisystem conhecida por sua capacidade excepcional de produzir áudio interno de alta qualidade. Especificamente projetado para destacar as frequências graves e subgraves, o Alto-Falante 5\" JBL Multisystem 5TRMS80 é composto por um par de alto-falantes que se integra perfeitamente a sistemas de som internos, trabalhando em conjunto com alto-falantes multi-vias para proporcionar uma experiência sonora envolvente e com grande impacto. Além de seu impressionante desempenho sonoro, o alto-falante se destaca por sua estética arrojada e acabamento de alta qualidade.\n\nSua construção robusta garante durabilidade excepcional ao longo do tempo, enquanto a fidelidade sonora impecável oferece uma experiência auditiva autêntica e imersiva. O Alto-Falante JBL Multisystem 5TRMS80 é uma escolha de custo-benefício incomparável, trazendo aos consumidores o melhor equilíbrio entre preço acessível e qualidade de som excepcional disponível no mercado. Fundada em 1946 por James Bullough Lansing (JBL), a JBL está entre as marcas mais respeitadas no mercado de eletrônicos.\n\nA companhia norte-americana virou referência em produtos de áudio pela sua qualidade, os produtos da empresa começaram a fazer sucesso junto a bandas e produtores musicais. A empresa encontrou espaço e se consolidou em um mercado que até então era dominado por produtos importados da China, sem personificação ou marcas conhecidas. Hoje, os produtos da JBL dispensam apresentação, pois os usuários sabem que eles representam qualidade absoluta em áudio.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: JBL CAR AUDIO\n• Modelo: 5TRMS80\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: JBL CAR AUDIO\n• GTIN: 7896359568963\n• NCM: 8518.29.90\n• SKU: VTK005357\n\nEMBALAGEM\n• Dimensões informadas: 6.8 × 13.2 × 13.2 cm\n• Peso bruto informado: 1,78 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "865b05da-58b8-4c3b-9fc4-9c7b58cc19bd",
+      "sku": "VTK017185",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": ""
+      },
+      "basePrice": 40,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SANTO ANGELO"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "Ninja P"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899028809268"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "name": "Modelo alfanumérico",
+          "value_id": "",
+          "value_name": "Ninja P"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Plug Santo Angelo P10 Ninja Estéreo Com Mola Níquel\n\nVISÃO GERAL\nPlug P10 Ninja estéreo em latão niquelado e jateado com mola.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SANTO ANGELO\n• Modelo: Ninja P\n• Modelo alfanumérico: Ninja P\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SANTO ANGELO\n• GTIN: 7899028809268\n• NCM: 85369090\n• SKU: VTK017185\n\nEMBALAGEM\n• Dimensões informadas: 1.2 × 1.2 × 9 cm\n• Peso bruto informado: 0,016 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8398a3fb-8b3b-47e4-8530-c5cc54ec40fe",
+      "sku": "VTK017212",
+      "category": {
+        "id": "MLB431815",
+        "nome": "Cabos de Rede",
+        "dominio": ""
+      },
+      "basePrice": 50.38,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "INTELBRAS"
+        },
+        {
+          "id": "NETWORK_CABLE_TYPE",
+          "name": "Tipo de cabo de rede",
+          "value_id": "2623686",
+          "value_name": "Par trançado UTP"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7896637676717"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo óptico Intelbras Plc 1x2 Nc Xfs 120 Com Divisor 4830013\n\nVISÃO GERAL\nInformações do Produto O splitter óptico PLC - Planar Lightwave Circuit - é um componente passivo utilizado para realizar a divisão do sinal óptico em uma rede de distribuição PON. A tecnologia PLC permite a divisão da potência de entrada igualmente entre todas as saídas. Possui dimensões reduzidas, baixa perda de inserção e alta confiabilidade.\n\nPerfeito para atuar nos comprimentos de onda de 1. 260 a 1. 650 nm, conta com uma fibra óptica de baixa sensibilidade à curvatura (G.\n\n657A). É ideal para sistemas FTTx, redes HFC e comunicação de dados. - Ambiente de instalação interno; - Baixa perda de inserção; - Boa uniformidade canal a canal; - Alta confiabilidade e estabilidade; - Tamanho compacto.\n\nInformações Técnicas Modelo 1 × 2 Perda de inserção 3,7 dB Uniformidade 0,5 dB PDL 0,2 dB Observações sobre o uso: Observe o raio mínimo de curvatura do cabo do splitter. Nunca direcione a extremidade da fibra óptica ou dos conectores ópticos para os olhos. A radiação óptica pode ser prejudicial.\n\n*Imagens meramente ilustrativas\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: INTELBRAS\n• Tipo de cabo de rede: Par trançado UTP\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: INTELBRAS\n• GTIN: 7896637676717\n• NCM: 85447090\n• SKU: VTK017212\n\nEMBALAGEM\n• Dimensões informadas: 2 × 9 × 16 cm\n• Peso bruto informado: 0,026 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "9604ecb9-3f7c-4191-ac91-4e954384c7f5",
+      "sku": "VTK002550",
+      "nome": "Pedestal Com Bandeja Multiuso BMU Preto ASK",
+      "error": "Atributos obrigatórios pendentes: Modelo, Lugar de colocação",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB10233",
+            "nome": "Suportes para Caixas de Som"
+          },
+          "missing": [
+            "Modelo",
+            "Lugar de colocação"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e1010b67-3341-4029-af06-99c399d85197",
+      "sku": "VTK002792",
+      "nome": "Detector Óptico de Fumaça 12V/24V SEGURIMAX",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB277840",
+            "nome": "Detectores de Gases"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "2c2705af-8d9d-4155-a010-0213811f3a67",
+      "sku": "VTK004115",
+      "nome": "Suporte Magnético Para Antena Móvel PX M-700K Preto AQUÁRIO",
+      "error": "Atributos obrigatórios pendentes: Tipo de montagem",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB58500",
+            "nome": "Suportes Veiculares"
+          },
+          "missing": [
+            "Tipo de montagem"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "fb10f581-ba0e-4f24-94a8-c66f60a04a5e",
+      "sku": "VTK017159",
+      "nome": "Bucha Para Alto Falante Original Permak Palio 237/c",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB443814",
+            "nome": "Kits de Estéreo e Alto-Falante"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "59eda7a6-d2a4-4553-9d25-6383cfa1c027",
+      "sku": "VTK017211",
+      "nome": "Suporte Para Microfone De Bateria/precussão Ask B10",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB439386",
+            "nome": "Pés de Microfone"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "6b567a46-935d-4828-9e0c-3fe87355a5f1",
+      "sku": "VTK017236",
+      "nome": "Alto Falante 5\" Pioneer Ts-1360br 100rms/ Par",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

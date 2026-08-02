@@ -1,0 +1,639 @@
+{
+  "batchNumber": 7,
+  "batchId": "evolusom-pdf-safe-007",
+  "strategy": "exact_gtin_semantic_review_strict_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "17218e85-3802-4e3d-950e-fb5ff8eff639",
+      "sku": "VTK018924",
+      "nome": "Telefone Celular Fixo Intelbras Gsm Cfa 4211 4114211",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 362.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 515.23,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637677004",
+        "validatedNcm": "85171439",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1053",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "20785763",
+          "value_name": "cFA 4211"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "13062692",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "102258",
+          "value_name": "Digital"
+        },
+        {
+          "id": "HEADPHONES_NUMBER_INCLUDED",
+          "value_id": "7512605",
+          "value_name": "1"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CALLER_IDENTIFICATION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ANSWERING_MACHINE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WALL_MOUNTABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "value_id": "160433",
+          "value_name": "800 mAh"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "20785764",
+          "value_name": "7896637677004"
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242084",
+          "value_name": "Não"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB24453976",
+        "catalogProductName": "Telefone Celular Fixo Gsm Cfa 4211 - Intelbras Cor Preto",
+        "catalogDomainId": "MLB-TELEPHONES",
+        "predictedDomainId": "MLB-TELEPHONES",
+        "categoryId": "MLB1053",
+        "categoryName": "Telefones",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7896637677004"
+      }
+    },
+    {
+      "produtoId": "8ee7da40-3033-49ac-bf6e-7092339e734d",
+      "sku": "VTK018930",
+      "nome": "Telefone Sem Fio Intelbras Ts 2512 Id Preto 4122512",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 234.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 333.5,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637678506",
+        "validatedNcm": "85171100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1053",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "7129714",
+          "value_name": "TS 2512"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DETAILED_MODEL",
+          "value_id": "38104386",
+          "value_name": "TS 2512"
+        },
+        {
+          "id": "MOBILE_NETWORK",
+          "value_id": "44550333",
+          "value_name": "Quadband"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "102258",
+          "value_name": "Digital"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "value_id": "4491927",
+          "value_name": "Bateria"
+        },
+        {
+          "id": "STANDBY_MODE_BATTERY_DURATION",
+          "value_id": "30390044",
+          "value_name": "200 h"
+        },
+        {
+          "id": "TALK_TIME",
+          "value_id": "2087877",
+          "value_name": "20 h"
+        },
+        {
+          "id": "FREQUENCY",
+          "value_id": "8744458",
+          "value_name": "1.9 GHz"
+        },
+        {
+          "id": "HEADPHONES_OUTPUTS_NUMBER",
+          "value_id": "16012652",
+          "value_name": "0"
+        },
+        {
+          "id": "HEADPHONES_NUMBER_INCLUDED",
+          "value_id": "7514070",
+          "value_name": "2"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_CALLER_IDENTIFICATION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ANSWERING_MACHINE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WALL_MOUNTABLE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_DUAL_SIM",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_RURAL_TELEPHONE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "ANATEL_HOMOLOGATION_NUMBER",
+          "value_id": "39657153",
+          "value_name": "35661800160"
+        },
+        {
+          "id": "BATTERY_CAPACITY",
+          "value_id": "149366",
+          "value_name": "600 mAh"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "20855004",
+          "value_name": "7896637678506"
+        },
+        {
+          "id": "MANUFACTURER",
+          "value_id": "10366",
+          "value_name": "Intelbras"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "40742698",
+          "value_name": "TS 3112"
+        },
+        {
+          "id": "DISPLAY_SIZE",
+          "value_id": "48517424",
+          "value_name": "1.772 \""
+        },
+        {
+          "id": "WITH_BATTERY_CHARGE_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "PHONEBOOK_ENTRIES_CAPACITY",
+          "value_id": "8801844",
+          "value_name": "70"
+        },
+        {
+          "id": "RINGTONES_NUMBER",
+          "value_id": "8761289",
+          "value_name": "10"
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CALL_BLOCKING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ALARM_CLOCK_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ECO_MODE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BACKLIT_KEYPAD",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DATE_AND_TIME_INDICATOR",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_FLASH_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REDIAL_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_HANDSET_VOLUME_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_SILENCE_MODE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BLUETOOTH",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "MPN",
+          "value_id": "20855005",
+          "value_name": "4122512"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_ambiguous_semantically_selected",
+        "catalogProductId": "MLB14660756",
+        "catalogProductName": "Telefone sem fio Ts 2512 digital com ramal adicional Preto Intelbras",
+        "catalogDomainId": "MLB-TELEPHONES",
+        "predictedDomainId": "MLB-TELEPHONES",
+        "categoryId": "MLB1053",
+        "categoryName": "Telefones",
+        "validatedGtin": "7896637678506"
+      }
+    },
+    {
+      "produtoId": "692b237a-3f67-40e9-9ef8-967908073216",
+      "sku": "VTK019046",
+      "nome": "Módulo De Vidro Elétrico Tury Ae Tw14/pro4.16bm Peugeot Active/griffe/allur",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 368.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 523.75,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898096332876",
+        "validatedNcm": "85432000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB191714",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3636286",
+          "value_name": "Tury"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "44397801",
+          "value_name": "PRO4.16BM"
+        },
+        {
+          "id": "PART_NUMBER",
+          "value_id": "44397802",
+          "value_name": "127830.0"
+        },
+        {
+          "id": "NUMBER_OF_OPERABLE_WINDOWS",
+          "value_id": "38253336",
+          "value_name": "4"
+        },
+        {
+          "id": "ORIGIN",
+          "value_id": "97214",
+          "value_name": "Brasil"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_without_current_winner",
+        "catalogProductId": "MLB43110776",
+        "catalogProductName": "Módulo Subida Vidro Elétrico Peugeot 2008 2015 2016 17 18 19",
+        "catalogDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+        "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+        "categoryId": "MLB191714",
+        "categoryName": "Elétrico",
+        "validatedGtin": "7898096332876"
+      }
+    },
+    {
+      "produtoId": "2359f7d7-9a83-420e-bfc1-9de10ab7ff14",
+      "sku": "VTK019485",
+      "nome": "Cabo Blindado Para áudio Estéreo Tiaflex 2x0,30 Mm Preto 603010",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 579.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 859.11,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898429981627",
+        "validatedNcm": "85444900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB431813",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "12235577",
+          "value_name": "Tiaflex"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "17077861",
+          "value_name": "TIAFLEX"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "32791690",
+          "value_name": "Polarizado Externo P/Áudio"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "2693635",
+          "value_name": "100 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "CABLE_DIAMETER",
+          "value_id": "17286591",
+          "value_name": "0.3 mm"
+        },
+        {
+          "id": "AWG_SIZE",
+          "value_id": "16240127",
+          "value_name": "22"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15289674",
+          "value_name": "2"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15290095",
+          "value_name": "2"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "32791695",
+          "value_name": "Polarizado"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "32791696",
+          "value_name": "Polarizado"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_without_current_winner",
+        "catalogProductId": "MLB32837378",
+        "catalogProductName": "Rolo De Fio 100m Para Microfone Audio E 2x0,30mm 22 Tiaflex",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB431813",
+        "categoryName": "Cabos de Áudio e Vídeo",
+        "validatedGtin": "7898429981627"
+      }
+    },
+    {
+      "produtoId": "bb565648-f8de-4e3b-83cf-2e3bbea9318d",
+      "sku": "VTK019623",
+      "nome": "Cabo Para Microfone Balanceado Tiaflex Af(t)2x0,20 Mm 24awg Preto 100 Metros",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 669.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 992.44,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898429983874",
+        "validatedNcm": "85444900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB72745",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "12235577",
+          "value_name": "Tiaflex"
+        },
+        {
+          "id": "CABLE_AND_ADAPTER_TYPE",
+          "value_id": "16088604",
+          "value_name": "Cabo"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "SALE_FORMAT",
+          "value_id": "1359391",
+          "value_name": "Unidade"
+        },
+        {
+          "id": "UNITS_PER_PACK",
+          "value_id": "2726554",
+          "value_name": "1"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "value_id": "2693635",
+          "value_name": "100 m"
+        },
+        {
+          "id": "PRODUCT_TYPE",
+          "value_id": "13827367",
+          "value_name": "Fio"
+        },
+        {
+          "id": "INPUT_CONNECTORS_NUMBER",
+          "value_id": "15267153",
+          "value_name": "1"
+        },
+        {
+          "id": "OUTPUT_CONNECTORS_NUMBER",
+          "value_id": "15267154",
+          "value_name": "1"
+        },
+        {
+          "id": "INPUT_CONNECTOR",
+          "value_id": "6778114",
+          "value_name": "XLR"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR",
+          "value_id": "2305169",
+          "value_name": "XLR"
+        },
+        {
+          "id": "INPUT_CONNECTOR_GENDER",
+          "value_id": "6116080",
+          "value_name": "Fêmea"
+        },
+        {
+          "id": "OUTPUT_CONNECTOR_GENDER",
+          "value_id": "6116087",
+          "value_name": "Fêmea"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_without_current_winner",
+        "catalogProductId": "MLB36104685",
+        "catalogProductName": "Cabo De Microfone Emborrachado 6mm (stéreo) 100m Tiaflex",
+        "catalogDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "predictedDomainId": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS",
+        "categoryId": "MLB72745",
+        "categoryName": "Cabos",
+        "validatedGtin": "7898429983874"
+      }
+    }
+  ]
+}

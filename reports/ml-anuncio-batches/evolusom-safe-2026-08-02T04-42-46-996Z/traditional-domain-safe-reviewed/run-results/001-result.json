@@ -1,0 +1,136 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-domain-safe-reviewed/001-evolusom-domain-safe-001.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-safe-001",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "865b05da-58b8-4c3b-9fc4-9c7b58cc19bd",
+      "sku": "VTK017185",
+      "category": {
+        "id": "MLB420707",
+        "nome": "Conectores",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981504493",
+        "title": "Plug Santo Angelo P10 Ninja Estéreo Com Mola Níquel",
+        "price": 56.99,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981504493-plug-santo-angelo-p10-ninja-estereo-com-mola-niquel-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 40.00 → R$ 56.99."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "fc4aa25f-81b8-40c9-8e1a-d2cac8343222",
+      "sku": "VTK017317",
+      "category": {
+        "id": "MLB1716",
+        "nome": "Mouse Pads",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981496075",
+        "title": "Mouse Pad Evus Mp-500b Pan",
+        "price": 73.26,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981496075-mouse-pad-evus-mp-500b-pan-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 56.27 → R$ 73.26."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "054e7b91-653d-4f52-b332-1ca9da3994af",
+      "sku": "VTK017397",
+      "category": {
+        "id": "MLB22369",
+        "nome": "Travas Elétricas",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981504717",
+        "title": "Trava Elétrica Roadstar 2 Fios Individual - Rs101br",
+        "price": 58.67,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981504717-trava-eletrica-roadstar-2-fios-individual-rs101br-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 40.38 → R$ 58.67."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "0c58abd1-d64a-4139-9563-b4c28dde8baf",
+      "sku": "VTK017885",
+      "category": {
+        "id": "MLB33383",
+        "nome": "Outros",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981504807",
+        "title": "Termopar Tipo K Minipa Mtk-01 Com Blister",
+        "price": 46.2,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981504807-termopar-tipo-k-minipa-mtk-01-com-blister-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"error\":\"Conflict\",\"code\":\"conflict.error\",\"status\":409}"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "04b72773-20e9-4de9-be70-92efa36f8a69",
+      "sku": "VTK018089",
+      "category": {
+        "id": "MLB22369",
+        "nome": "Travas Elétricas",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4981496363",
+        "title": "Trava Elétrica Soft Aa420012 Novo Uno / Palio / Strada",
+        "price": 131.52,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981496363-trava-eletrica-soft-aa420012-novo-uno-palio-strada-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB4981496363: NSOPublicAPI error",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    }
+  ],
+  "failed": []
+}

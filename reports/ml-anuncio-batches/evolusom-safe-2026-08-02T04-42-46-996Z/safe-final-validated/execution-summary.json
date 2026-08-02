@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-08-02T02:05:17-03:00",
+  "selected": 32,
+  "created": 32,
+  "failed": 0,
+  "mercadoLivreActive": 32,
+  "productsLinkedInVortek": 32,
+  "listingRowsLinkedInVortek": 32,
+  "mirroredImageSkus": [
+    "VTK001491",
+    "VTK001628",
+    "VTK017181",
+    "VTK018044",
+    "VTK018218"
+  ],
+  "heldForMissingRequiredAttributes": [
+    "VTK017637",
+    "VTK017666",
+    "VTK017982",
+    "VTK018024",
+    "VTK018435",
+    "VTK018924"
+  ]
+}

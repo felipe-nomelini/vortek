@@ -1,0 +1,68 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-no-catalog-validated/dry-run-results/018-evolusom-catalog-create-018-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-018",
+  "selected": 3,
+  "created": [],
+  "failed": [
+    {
+      "produtoId": "c56848d6-3f38-496d-aeec-e4e0cc8f22c9",
+      "sku": "VTK020602",
+      "nome": "Cabo Para Microfone Mono Tiaflex Espiralado 100 Metros 1x0,20 Mm 502010",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo e adaptador",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB72745",
+            "nome": "Cabos"
+          },
+          "missing": [
+            "Tipo de cabo e adaptador"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "24f67a3a-a737-4058-815e-8dbdf54e5f1a",
+      "sku": "VTK020645",
+      "nome": "Capota Marítima Flash Cover Ff130 Mitsubishi L200 Triton 2009/2017 Force",
+      "error": "Atributos obrigatórios pendentes: Material, Estilo de capota marítima",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB46680",
+            "nome": "Capotas"
+          },
+          "missing": [
+            "Material",
+            "Estilo de capota marítima"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "62f31e56-d0cf-41b4-a36e-f4201c72af16",
+      "sku": "VTK022568",
+      "nome": "Caixa Vazia 2 Alto-falantes 12\" + 4 Cornetas + 2 Tweeter Dutada",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB127436",
+            "nome": "Corneteiras"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

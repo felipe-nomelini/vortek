@@ -1,0 +1,135 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/safe-final-validated/remaining/006-evolusom-remaining-006.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-006",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "8ee7da40-3033-49ac-bf6e-7092339e734d",
+      "sku": "VTK018930",
+      "category": {
+        "id": "MLB1053",
+        "nome": "Telefones",
+        "dominio": "MLB-TELEPHONES"
+      },
+      "anuncio": {
+        "id": "MLB7311501514",
+        "title": "Telefone Sem Fio Intelbras Ts 2512 Id 4122512 Preto",
+        "price": 370.48,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7311501514-telefone-sem-fio-intelbras-ts-2512-id-4122512-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 337.67 → R$ 370.48."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "692b237a-3f67-40e9-9ef8-967908073216",
+      "sku": "VTK019046",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": "MLB-VEHICLE_POWER_WINDOW_REGULATORS"
+      },
+      "anuncio": {
+        "id": "MLB4981312507",
+        "title": "Módulo De Vidro Elétrico Tury Ae Tw14/pro4.16bm Peugeot",
+        "price": 563.53,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981312507-modulo-de-vidro-eletrico-tury-ae-tw14pro416bm-peugeot-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 537.01 → R$ 563.53."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "2359f7d7-9a83-420e-bfc1-9de10ab7ff14",
+      "sku": "VTK019485",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4981360801",
+        "title": "Cabo Blindado Para Áudio Estéreo Tiaflex 2x0 30 Mm 603010",
+        "price": 921.06,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981360801-cabo-blindado-para-audio-estereo-tiaflex-2x0-30-mm-603010-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 892.15 → R$ 921.06."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "bb565648-f8de-4e3b-83cf-2e3bbea9318d",
+      "sku": "VTK019623",
+      "category": {
+        "id": "MLB72745",
+        "nome": "Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4981360853",
+        "title": "Cabo Para Microfone Balanceado Tiaflex Af(t)2x0 20 Mm 24awg",
+        "price": 1059.53,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981360853-cabo-para-microfone-balanceado-tiaflex-aft2x0-20-mm-24awg-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 1030.62 → R$ 1059.53."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "7094a8c1-ddd3-4036-9bb7-0c1d3e8cf883",
+      "sku": "VTK020597",
+      "category": {
+        "id": "MLB72745",
+        "nome": "Cabos",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4981312627",
+        "title": "Cabo Para Microfone Mono Tiaflex Espiralado 100 Metros 1x0",
+        "price": 707.54,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981312627-cabo-para-microfone-mono-tiaflex-espiralado-100-metros-1x0-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"code\":\"conflict.error\",\"status\":409,\"error\":\"Conflict\"}"
+      ]
+    }
+  ],
+  "failed": []
+}

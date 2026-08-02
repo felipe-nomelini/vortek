@@ -1,0 +1,268 @@
+[
+  {
+    "produtoId": "9604ecb9-3f7c-4191-ac91-4e954384c7f5",
+    "sku": "VTK002550",
+    "nome": "Pedestal Com Bandeja Multiuso BMU Preto ASK",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo, Lugar de colocação"
+  },
+  {
+    "produtoId": "e1010b67-3341-4029-af06-99c399d85197",
+    "sku": "VTK002792",
+    "nome": "Detector Óptico de Fumaça 12V/24V SEGURIMAX",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "2c2705af-8d9d-4155-a010-0213811f3a67",
+    "sku": "VTK004115",
+    "nome": "Suporte Magnético Para Antena Móvel PX M-700K Preto AQUÁRIO",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de montagem"
+  },
+  {
+    "produtoId": "fb10f581-ba0e-4f24-94a8-c66f60a04a5e",
+    "sku": "VTK017159",
+    "nome": "Bucha Para Alto Falante Original Permak Palio 237/c",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "59eda7a6-d2a4-4553-9d25-6383cfa1c027",
+    "sku": "VTK017211",
+    "nome": "Suporte Para Microfone De Bateria/precussão Ask B10",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "6b567a46-935d-4828-9e0c-3fe87355a5f1",
+    "sku": "VTK017236",
+    "nome": "Alto Falante 5\" Pioneer Ts-1360br 100rms/ Par",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS"
+  },
+  {
+    "produtoId": "0c91a533-35c0-433b-9037-fb32747eeaf8",
+    "sku": "VTK017391",
+    "nome": "Grampo Vonder 16mm Para Pinador Elétrico Com 1000 Grampos",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de alimentação"
+  },
+  {
+    "produtoId": "ad9bb504-524a-48d3-a56c-146c4f1781ab",
+    "sku": "VTK017577",
+    "nome": "Fone De Ouvido Para Radio Comunicador Intelbras Hc20pt 4161020",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº"
+  },
+  {
+    "produtoId": "018f9e02-57ce-4766-a127-8cbee6d3cabc",
+    "sku": "VTK017630",
+    "nome": "Sensor Externo Sulton Spw 700 Pet 30 Kg",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de dispositivo"
+  },
+  {
+    "produtoId": "e666735c-5699-4787-9273-2e2be34c872a",
+    "sku": "VTK017848",
+    "nome": "Cabo Alarme Telecam 100 Metros 50 X 10 Vias Cca Liga Cobre",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo, Conector de saída, Conector de entrada"
+  },
+  {
+    "produtoId": "78d60d02-7936-4e09-9279-ad8ec2833a35",
+    "sku": "VTK017898",
+    "nome": "Fone Headset Intelbras Ths 55 Conector Usb 4010055",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo, Voltagem"
+  },
+  {
+    "produtoId": "6aad7bc9-9c00-4597-86de-37c6ddde778e",
+    "sku": "VTK017933",
+    "nome": "Botão De Pânico Ipec Nf",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo, Voltagem, Tipo de dispositivo"
+  },
+  {
+    "produtoId": "9c77b5a6-03a8-43a1-bb04-7c2e30e2c9c1",
+    "sku": "VTK017970",
+    "nome": "Reparo Tweeter Shock Completo St-400 Selenium",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de amortecedor"
+  },
+  {
+    "produtoId": "e7e76e6e-649f-4e31-9369-6875f254f206",
+    "sku": "VTK018077",
+    "nome": "Par De Lâmpadas Super Led Cob Multilaser H8 20w 6200k Lumens Au836",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de conector"
+  },
+  {
+    "produtoId": "f6fc077a-bac5-41d3-b5e0-d84f076d32ab",
+    "sku": "VTK018129",
+    "nome": "Teclado Para Central Monitorada Intelbras Xat 1018 Mt",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "09fca44b-d25b-47a5-87f2-703b2bf431a5",
+    "sku": "VTK018133",
+    "nome": "Fonte Adaptadora Carregador Universal Alltech 12v Dc 2a Automotiva",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Conector de entrada, Conector de saída"
+  },
+  {
+    "produtoId": "f85d881e-1485-487f-aaad-19c03f40c054",
+    "sku": "VTK018292",
+    "nome": "Alto Falante Subwoofer Pioneer 12\" Ts-w3090br 600w Rms 2x4 Ohms Bobina Dupla",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo, Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS"
+  },
+  {
+    "produtoId": "83b3b0f6-a434-4493-a180-1444c69381db",
+    "sku": "VTK018297",
+    "nome": "Cabo Alarme Telecam 50 X 10 Vias Cobre 100 Metros",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Conector de saída, Conector de entrada"
+  },
+  {
+    "produtoId": "188de9f1-b776-4c71-ac01-956b8cdbf07c",
+    "sku": "VTK018388",
+    "nome": "Botoeira Citrox Inox Cube Na/ Nf Cx-4508",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Fabricante, Inclui manual de montagem"
+  },
+  {
+    "produtoId": "cdb8d53f-f752-4163-9b44-8aa7e50ff71c",
+    "sku": "VTK018422",
+    "nome": "Haste Permak Para Antena De Teto Gti 095",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "d582fb22-bb15-4de1-a0b3-1b3ac4d07de0",
+    "sku": "VTK018424",
+    "nome": "ANTENA Móvel Aquário B-2070 COM BOBINA NA BASE PARA Rádio PX POSSUI HASTE Dobrável",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº"
+  },
+  {
+    "produtoId": "e759a24c-52f8-4d87-98d5-4166efd87c42",
+    "sku": "VTK018446",
+    "nome": "Multiplicador Usb Daneva Carregador 2 Usb Saída 5v 1,5a + 2 Tomadas",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "df5f076d-34e3-4055-8bb1-4a5c31aade74",
+    "sku": "VTK018454",
+    "nome": "Conector Para Cd Vw Jetta/passat",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "b1f9c24c-9a5b-4e26-b1c7-ee0a8bda5172",
+    "sku": "VTK018455",
+    "nome": "Reparo Tweeter Shock Completo St-450 Trio",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de amortecedor"
+  },
+  {
+    "produtoId": "dc1632af-808a-4acd-bfb2-ac85add0ea3a",
+    "sku": "VTK018522",
+    "nome": "Minipa Ez Test Ii Testador De Tensao",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "83b8f2ec-1894-4f3e-a1f1-01b0a8c62309",
+    "sku": "VTK018562",
+    "nome": "Antena Permak Para Palio/ Mobi Com Cabo 3 Metros - Ref. 100/g",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "065903be-45b2-48b6-9023-7735925177ef",
+    "sku": "VTK018636",
+    "nome": "Camera Bullet Sohoplus Ip 2 Mp Poe Ip66 Ipc002",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de câmera de vigilância, Localizações da câmera"
+  },
+  {
+    "produtoId": "381240fd-88a1-4b16-8802-7b4ee043dc97",
+    "sku": "VTK018712",
+    "nome": "Cabo De Descida Proeletronic Para Celular Fixo Rgc213 20 Metros Caco0192",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº"
+  },
+  {
+    "produtoId": "a6ddb6c2-67fc-4358-9cb9-61976352eff0",
+    "sku": "VTK018749",
+    "nome": "Ultraled Headlight Shocklight H3 (par) 12v 50w 6000k 4000lm",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de conector"
+  },
+  {
+    "produtoId": "68a538a3-9321-4795-9d79-516d4db17feb",
+    "sku": "VTK018865",
+    "nome": "Antena Móvel Aquário B-2003p Marinox 1/4 De Onda Para Rádio Px Com Base De Poliuretano",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº"
+  },
+  {
+    "produtoId": "a153f631-21b1-4b34-8cd6-97c861505e72",
+    "sku": "VTK018866",
+    "nome": "Antena Móvel Aquário M-400c 5/8 De Onda Para Rádio Vhf",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº"
+  },
+  {
+    "produtoId": "9bb36bae-d17e-41e2-983e-df7fff19e78a",
+    "sku": "VTK018934",
+    "nome": "Suporte Para Caixa Acústica Ask Ou Cubo Com Regulagem Inclinação",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Lugar de colocação"
+  },
+  {
+    "produtoId": "09d0f758-10d5-47a9-bb3d-d5cc6408937f",
+    "sku": "VTK018940",
+    "nome": "Cabo Coaxial Rf0,4/2,5+2x26awg Mono 100m",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de cabo de rede"
+  },
+  {
+    "produtoId": "1be0b415-c95b-460a-bab8-2525814bcfbd",
+    "sku": "VTK018943",
+    "nome": "Controlador Acesso Ip Wide Cx-7006",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Tipo de alimentação"
+  },
+  {
+    "produtoId": "c67795dd-f96b-478b-9af7-f7265d3f6071",
+    "sku": "VTK018944",
+    "nome": "Central Laço Indutivo Citrox 2 Pontos Cx-7602",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Voltagem, Tipo de dispositivo"
+  },
+  {
+    "produtoId": "e72bc21d-d22d-4bd3-a0eb-b4c6fda4e144",
+    "sku": "VTK019126",
+    "nome": "Fechadura Solenoide De Embutir Intelbras Fs 1010",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Modelo"
+  },
+  {
+    "produtoId": "bdb61763-ddc9-479f-ac49-4e0838a61a11",
+    "sku": "VTK019466",
+    "nome": "Cabo De Descida Proeletronic Para Celular Fixo Rgc58 10 Metros Caco-0190",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Homologação Anatel Nº"
+  },
+  {
+    "produtoId": "978e980c-d329-416e-8bfd-b1c303f0a5a8",
+    "sku": "VTK021108",
+    "nome": "Telefone Headset Intelbras Hsb-50 Para Telemarketing Com Fio 4013330",
+    "reason": "dry_run_failed",
+    "error": "Atributos obrigatórios pendentes: Voltagem"
+  }
+]

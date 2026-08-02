@@ -1,0 +1,135 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/safe-final-validated/remaining/002-evolusom-remaining-002.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "evolusom-domain-approved-002",
+  "selected": 5,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "6d6275a2-3d71-493f-a20e-3cce674f7918",
+      "sku": "VTK017181",
+      "category": {
+        "id": "MLB1714",
+        "nome": "Mouses",
+        "dominio": "MLB-COMPUTER_MICE"
+      },
+      "anuncio": {
+        "id": "MLB4981311607",
+        "title": "Mouse Logitech M90 Usb Preto",
+        "price": 88.14,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981311607-mouse-logitech-m90-usb-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 70.38 → R$ 88.14."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "511c8cb3-fab6-4b79-81c0-e44c37eef5cd",
+      "sku": "VTK017219",
+      "category": {
+        "id": "MLB271708",
+        "nome": "Organizadores de Cabos",
+        "dominio": "MLB-CABLE_ORGANIZERS"
+      },
+      "anuncio": {
+        "id": "MLB4981311655",
+        "title": "Guia Organizador Cabos 2u X 19 Alta Densidade Preto",
+        "price": 90.95,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981311655-guia-organizador-cabos-2u-x-19-alta-densidade-preto-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 76.86 → R$ 90.95."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "10b4f8c6-17e8-4975-aa31-e59dc829f935",
+      "sku": "VTK017352",
+      "category": {
+        "id": "MLB54182",
+        "nome": "Coolers Externos",
+        "dominio": "MLB-EXTERNAL_LAPTOP_COOLERS_AND_FANS"
+      },
+      "anuncio": {
+        "id": "MLB4981311687",
+        "title": "Base Para Notebook Evus Bpn-03 Twins",
+        "price": 88.14,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981311687-base-para-notebook-evus-bpn-03-twins-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 70.38 → R$ 88.14."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "b66ea9c7-d92a-4cd6-b22d-b193173904d6",
+      "sku": "VTK017360",
+      "category": {
+        "id": "MLB420411",
+        "nome": "Fontes Chaveadas",
+        "dominio": "MLB-EMBEDDED_SWITCH_MODE_POWER_SUPPLIES"
+      },
+      "anuncio": {
+        "id": "MLB4981311787",
+        "title": "Fonte Chaveada Evus Pdc-5a 12v 5a 60w Bivolt",
+        "price": 111.73,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981311787-fonte-chaveada-evus-pdc-5a-12v-5a-60w-bivolt-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 94.74 → R$ 111.73."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "bb4de30e-91de-4753-9d50-38cf1bdc7a5c",
+      "sku": "VTK017389",
+      "category": {
+        "id": "MLB431813",
+        "nome": "Cabos de Áudio e Vídeo",
+        "dominio": "MLB-AUDIO_AND_VIDEO_CABLES_AND_ADAPTERS"
+      },
+      "anuncio": {
+        "id": "MLB4981360153",
+        "title": "Cabo Hdmi Proeletronic Cahd-2010 4k Macho X Macho 2.0 10m",
+        "price": 93.78,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4981360153-cabo-hdmi-proeletronic-cahd-2010-4k-macho-x-macho-20-10m-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 76.79 → R$ 93.78."
+      ]
+    }
+  ],
+  "failed": []
+}

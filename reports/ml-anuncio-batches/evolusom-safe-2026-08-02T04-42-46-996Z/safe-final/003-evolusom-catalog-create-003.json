@@ -1,0 +1,425 @@
+{
+  "batchNumber": 3,
+  "batchId": "evolusom-pdf-safe-003",
+  "strategy": "exact_gtin_semantic_review_strict_dry_run",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 3
+  },
+  "items": [
+    {
+      "produtoId": "063dbebd-b445-4a04-af92-4036ba27b15d",
+      "sku": "VTK017637",
+      "nome": "Central De Alarme Sulton Cls 1400 Não Monitorada 10 Zonas",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 122.9,
+      "estoque": 37,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 176.42,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898911419775",
+        "validatedNcm": "85311090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB7070",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3736389",
+          "value_name": "Sulton"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "16811831",
+          "value_name": "CLS 1400"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_without_current_winner",
+        "catalogProductId": "MLB21757400",
+        "catalogProductName": "Central De Alarme 10 Setores Cls 1400 Com Discadora",
+        "catalogDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "validatedGtin": "7898911419775"
+      }
+    },
+    {
+      "produtoId": "965a501e-b56c-4afd-a0c2-5c4e0ebecab0",
+      "sku": "VTK017666",
+      "nome": "Multitoc Telefone Gondola C/ Fio Grafite",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 49.9,
+      "estoque": 32,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 86.3,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898179310913",
+        "validatedNcm": "85171830",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB1053",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "79916",
+          "value_name": "Multitoc"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "2448403",
+          "value_name": "Gôndola"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "2324",
+          "value_name": "Grafite"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_id": "39205163",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "DISPLAY_TYPE",
+          "value_id": "36718182",
+          "value_name": "Digital"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPES",
+          "value_id": "49713698",
+          "value_name": "Corrente doméstica"
+        },
+        {
+          "id": "HEADPHONES_NUMBER_INCLUDED",
+          "value_id": "7512605",
+          "value_name": "1"
+        },
+        {
+          "id": "IS_WIRELESS",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CALLER_IDENTIFICATION",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_ANSWERING_MACHINE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "IS_WALL_MOUNTABLE",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ALPHANUMERIC_MODELS",
+          "value_id": "59382570",
+          "value_name": "0489"
+        },
+        {
+          "id": "WITH_BATTERY_CHARGE_INDICATOR",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_HANDS_FREE_MODE",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_CALL_BLOCKING",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_ALARM_CLOCK_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_BACKLIT_KEYPAD",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_FLASH_BUTTON",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_REDIAL_FUNCTION",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_HANDSET_VOLUME_CONTROL",
+          "value_id": "242085",
+          "value_name": "Sim"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_without_current_winner",
+        "catalogProductId": "MLB9004870",
+        "catalogProductName": "Telefone Multitoc Gôndola fixo cor grafite",
+        "catalogDomainId": "MLB-TELEPHONES",
+        "predictedDomainId": "MLB-TELEPHONES",
+        "categoryId": "MLB1053",
+        "categoryName": "Telefones",
+        "validatedGtin": "7898179310913"
+      }
+    },
+    {
+      "produtoId": "c2bc53ad-df5d-4a5b-a3ec-f98ab519a418",
+      "sku": "VTK017708",
+      "nome": "Acessório Cabo De Antena Ford Fusion / Gm",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 13.53,
+      "estoque": 31,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 41.4,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253504481",
+        "validatedNcm": "85444200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB120498",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3289477",
+          "value_name": "Permak"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "25917169",
+          "value_name": "PERMAK"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "32007941",
+          "value_name": "7898253504481"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB32224655",
+        "catalogProductName": "Acessório Cabo De Antena Ford Fusion / Gm",
+        "catalogDomainId": "MLB-GPS_ANTENNAS",
+        "predictedDomainId": "MLB-GPS_ANTENNAS",
+        "categoryId": "MLB120498",
+        "categoryName": "Antenas",
+        "linkedListingsInCategory": 1,
+        "validatedGtin": "7898253504481"
+      }
+    },
+    {
+      "produtoId": "8cd9f449-5a4a-4e4b-9751-74f753be32a5",
+      "sku": "VTK017791",
+      "nome": "Kit Fibra óptica Universal Evus Ev-1 Com Power Meter",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 239.9,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 340.6,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898597132616",
+        "validatedNcm": "90314990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB271690",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "3692380",
+          "value_name": "EVO"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "36995251",
+          "value_name": "EVUS EV-1"
+        },
+        {
+          "id": "COLOR",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "PACKAGING_TYPE",
+          "value_id": "371015",
+          "value_name": "Saco"
+        },
+        {
+          "id": "PIECES_NUMBER",
+          "value_id": "2904268",
+          "value_name": "10"
+        },
+        {
+          "id": "LENGTH",
+          "value_id": "7818798",
+          "value_name": "28 cm"
+        },
+        {
+          "id": "WIDTH",
+          "value_id": "5795665",
+          "value_name": "16 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_id": "7978730",
+          "value_name": "18 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_id": "11943551",
+          "value_name": "1.2 kg"
+        },
+        {
+          "id": "IS_FACTORY_KIT",
+          "value_id": "242085",
+          "value_name": "Sim"
+        },
+        {
+          "id": "ACCESSORIES_INCLUDED",
+          "value_id": "75303554",
+          "value_name": "1 Clivador de precisão - EVUS EV-100B, 1 Medidor de potência óptica - Evus EV-60, 1 Alicate decapador de 3 níveis - EVUS EV-3, 1 Alicate decapador para cabo drop flat – EVUS EV-13, 1 Caneta óptica 1MW 5KM – EVUS EV-209, 1 Gabarito de precisão com decapado"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "exact_gtin_catalog_without_current_winner",
+        "catalogProductId": "MLB36262776",
+        "catalogProductName": "Kit Ferramentas Fibra Óptica FTTH 10 Peças EVO EVUS EV-1 com Bolsa",
+        "catalogDomainId": "MLB-COMBINED_TOOL_KITS",
+        "predictedDomainId": "MLB-COMBINED_TOOL_KITS",
+        "categoryId": "MLB271690",
+        "categoryName": "Kits de Ferramentas",
+        "validatedGtin": "7898597132616"
+      }
+    },
+    {
+      "produtoId": "ed62b1b8-d140-4d21-aebd-5c42f87c8e27",
+      "sku": "VTK017824",
+      "nome": "Lâminas Para Ratinho Nwt Insf0013 Para Aplicação De Insulfilm 100 Unidades",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 65.92,
+      "estoque": 21,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 106.07,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898566207772",
+        "validatedNcm": "73261900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      },
+      "categoryId": "MLB268504",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_id": "43475668",
+          "value_name": "Stom"
+        },
+        {
+          "id": "MODEL",
+          "value_id": "52112270",
+          "value_name": "Raspador Ratinho 4 cm"
+        },
+        {
+          "id": "PART_NUMBER",
+          "value_id": "43475672",
+          "value_name": "100 Lâminas para Raspador Ratinho"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "WITH_ANTIVANDALIC_SHEET",
+          "value_id": "242084",
+          "value_name": "Não"
+        },
+        {
+          "id": "GTIN",
+          "value_id": "43475669",
+          "value_name": "7898566207772"
+        }
+      ],
+      "catalogEvidence": {
+        "source": "mercado_livre_products_search_exact_gtin",
+        "catalogProductId": "MLB41798993",
+        "catalogProductName": "Kit 100 Lâminas Poker Tool Aço Carbono 4 cm Para Raspador Ratinho Vidros",
+        "catalogDomainId": "MLB-VEHICLE_TINTED_GLASSES",
+        "predictedDomainId": "MLB-VEHICLE_TINTED_GLASSES",
+        "categoryId": "MLB268504",
+        "categoryName": "Insulfilms",
+        "linkedListingsInCategory": 7,
+        "validatedGtin": "7898566207772"
+      }
+    }
+  ]
+}

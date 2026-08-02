@@ -1,0 +1,437 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-no-catalog-validated/dry-run-results/010-evolusom-catalog-create-010-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-010",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "ffab32eb-a442-4037-8195-3f8d816205f0",
+      "sku": "VTK018364",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292585"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898277983651"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p 049cb-pta Modelo Volkswaggen Fox Até 2012/ 13 Cubo Baixo - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Fox até 2012/13 Aro 14 Fixação Parafuso *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292585\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7898277983651\n• NCM: 87087090\n• SKU: VTK018364\n\nEMBALAGEM\n• Dimensões informadas: 39 × 3 × 39 cm\n• Peso bruto informado: 0,316 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "02ff96cf-f107-4ba3-8c5c-5a3dc73cb51b",
+      "sku": "VTK018379",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "328782"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892510611"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid 291cb-pta Aro 14 P Mod Mobi 2017 - PC / 4\n\nVISÃO GERAL\nInformações do Produto Modelo Mobi 2017/18 Aro 14 Fixação Parafusos\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 328782\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892510611\n• NCM: 87087090\n• SKU: VTK018379\n\nEMBALAGEM\n• Dimensões informadas: 40 × 4 × 40 cm\n• Peso bruto informado: 0,29 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f1986b63-bdaf-4a6c-8fa7-2feebcbb4577",
+      "sku": "VTK018380",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 85.82,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "328811"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892510642"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid 373cb-pta Aro 14 P Mod Onix 2017 - PC / 4\n\nVISÃO GERAL\nInformações do Produto Modelo Onix / Prisma 2017/18 Aro 14 Fixação Parafusos *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 328811\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892510642\n• NCM: 87087090\n• SKU: VTK018380\n\nEMBALAGEM\n• Dimensões informadas: 39 × 3 × 39 cm\n• Peso bruto informado: 0,282 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "f81b4271-4fe9-46a1-a208-9c85e4167364",
+      "sku": "VTK018385",
+      "category": {
+        "id": "MLB46559",
+        "nome": "Drivers",
+        "dominio": ""
+      },
+      "basePrice": 51.77,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "SHOCK REPAROS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "351453"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "KD-305"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Reparo Para Driver Shock Completo Kd-305 Keybass\n\nVISÃO GERAL\nInformações do Produto Reparo Driver Completo KD-305 - 2019 - Reparo Fenólico - Peça para Reposição de Aparelhos Danificados - Modelo Paralelo Informações Técnicas Compatível com Drivers Keybass KD305 Potência RMS 100W Impedância 8 Ohms Resposta de Frequência 2000~2000Hz Sensibilidade 2,83v@1m 108dB\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: SHOCK REPAROS\n• Número de peça: 351453\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: KD-305\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: SHOCK REPAROS\n• GTIN: 7892046020196\n• NCM: 85189010\n• SKU: VTK018385\n\nEMBALAGEM\n• Dimensões informadas: 3.5 × 8.5 × 10 cm\n• Peso bruto informado: 0,02 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "8ffcc863-e077-4522-9122-aad5a141dd4f",
+      "sku": "VTK018386",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 119.49,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "354651"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892510703"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Aro 14p 133cb-pof Mod Onix / Prisma 2014/ 16 Cb - PC / 4\n\nVISÃO GERAL\nInformações do Produto Calota 133CB-POF 14 Polegadas Aplicação Onix / Prisma 2014/ 16 Cubo Baixo Cor Preto Fosco *Imagem meramente ilustrativa\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 354651\n• Tipo de veículo: Carro/Caminhonete\n• Cor: Preto\n• Cor principal: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892510703\n• NCM: 87087090\n• SKU: VTK018386\n\nEMBALAGEM\n• Dimensões informadas: 5 × 40 × 40 cm\n• Peso bruto informado: 0,3 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "4b7a51f1-b417-4989-b3ae-0658389adde2",
+      "sku": "VTK018438",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 109.62,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "292329"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892500346"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 15a 120ar-pta Modelo Honda Fit / City 2015/ 16 - PC / 4\n\nVISÃO GERAL\nInformações Técnicas Modelo Honda Fit /City 2015/2016 Aro 15 Fixação Pressão\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 292329\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892500346\n• NCM: 87087090\n• SKU: VTK018438\n\nEMBALAGEM\n• Dimensões informadas: 4 × 42 × 42 cm\n• Peso bruto informado: 0,408 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9f0d2f23-998b-498b-83d7-47de78190c32",
+      "sku": "VTK018518",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": ""
+      },
+      "basePrice": 134.05,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "QUANTUM"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "215314"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "LV8FC50"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Módulo De Vidro Elétrico Quantum Lv8fc50 Para Ranger 2013 2 Portas\n\nVISÃO GERAL\nMódulo De Vidro Elétrico Quantum LV8FC50 Para Ranger 2013 2 Portas Módulos automatizadores de vidros compatíveis com conectores originais Subida de vidros pelo comando original do veículo Sistema plug e play, tornando a instalação rápida e simples, é só plugar os conectores no local original do veículo específico para essa função\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: QUANTUM\n• Número de peça: 215314\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: LV8FC50\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: QUANTUM\n• GTIN: 7898382149614\n• NCM: 85395100\n• SKU: VTK018518\n\nEMBALAGEM\n• Dimensões informadas: 7.5 × 8.5 × 13.5 cm\n• Peso bruto informado: 0,2 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "dcb99854-65d0-487e-bde0-29e63e2bc630",
+      "sku": "VTK018428",
+      "nome": "Cabo Coaxial Cabletech Std-40+tp3 Branco 100 Metros 801214000p01cb12",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo de rede",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431815",
+            "nome": "Cabos de Rede"
+          },
+          "missing": [
+            "Tipo de cabo de rede"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "b0e6b26e-fd4a-4e69-98b4-b257063c109f",
+      "sku": "VTK018434",
+      "nome": "Tela Para Alto Falante Permak 114/o 12\" Plástica - PC / 2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB6535",
+            "nome": "Grades para Caixas de Som"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "71e8cbf9-9eba-45b9-8902-5f177dc768bc",
+      "sku": "VTK018448",
+      "nome": "Bandeja Móvel Max Eletron 19 1u X 600mm Ventilada 4 Pontos",
+      "error": "Atributos obrigatórios pendentes: Material",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB193616",
+            "nome": "Bandejas"
+          },
+          "missing": [
+            "Material"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

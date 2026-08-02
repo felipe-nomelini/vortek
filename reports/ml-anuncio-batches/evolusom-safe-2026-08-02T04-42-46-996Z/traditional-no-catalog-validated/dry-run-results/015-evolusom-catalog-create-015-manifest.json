@@ -1,0 +1,353 @@
+{
+  "batchNumber": 15,
+  "batchId": "evolusom-traditional-015",
+  "strategy": "traditional_no_catalog_predictor_consensus",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "943bcbd7-cb62-4761-adaf-085d4551822f",
+      "sku": "VTK018931",
+      "nome": "Calota Grid Aro 14p 292cb-pof Mod Argo 2017/18 Cb - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892511250"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892511250",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "b442b345-b4ea-4bdb-bc32-462d06d305a4",
+      "sku": "VTK018933",
+      "nome": "Calota Aro 14p 877cp-gft Mod Kwid 2018/ 19 Cp - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892511489"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892511489",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "5f074728-4dc5-48f5-b9f7-bc62d43f9955",
+      "sku": "VTK018935",
+      "nome": "Antena Permak Shark Preta 100/m",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 35.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 69.01,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB45256",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_ANTENNAS",
+        "categoryId": "MLB45256",
+        "categoryName": "Antenas",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Antenas",
+        "validatedGtin": "7898253505662"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253505662",
+        "validatedNcm": "85291090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "4e093141-393f-4066-a00b-6db56844533a",
+      "sku": "VTK018936",
+      "nome": "Antena Permak Shark Prata 100/m2",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 39.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 73.95,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB45256",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_ANTENNAS",
+        "categoryId": "MLB45256",
+        "categoryName": "Antenas",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Antenas",
+        "validatedGtin": "7898253505686"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898253505686",
+        "validatedNcm": "85291090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "281246e0-659e-486d-91cc-32e3ec745aef",
+      "sku": "VTK018941",
+      "nome": "Cabo Lan Megacabos Cat5e 8 Vias Interno 1km",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 1649.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 2546.14,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "categoryId": "MLB270088",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-NETWORK_CABLES",
+        "categoryId": "MLB270088",
+        "categoryName": "Cabos de Rede",
+        "categoryPath": "Informática > Conectividade e Redes > Cabos de Rede e Acessórios > Cabos de Rede",
+        "validatedGtin": "7899278923165"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899278923165",
+        "validatedNcm": "85444900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "e7f7754e-1462-4dda-858a-893478dae2de",
+      "sku": "VTK018968",
+      "nome": "Antena Olimpus New Flex Fiat Traseira 12+",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 122.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 176.42,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB45256",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_ANTENNAS",
+        "categoryId": "MLB45256",
+        "categoryName": "Antenas",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Antenas",
+        "validatedGtin": "7898382149959"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898382149959",
+        "validatedNcm": "85291090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "bbabf116-70b9-4dbf-bd2c-803a8d4f51bb",
+      "sku": "VTK019004",
+      "nome": "Calota Aro Grid 246cp-pbp-u Idea 15p Gol G7 17/18 - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892574231"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892574231",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "3976c413-68d3-4285-af05-5343e8998473",
+      "sku": "VTK019016",
+      "nome": "Cabo Coaxial Cabletech Rge-58 75% Preto 100 Metros",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 347.5,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 493.36,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB431815",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-NETWORK_CABLES",
+        "categoryId": "MLB431815",
+        "categoryName": "Cabos de Rede",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Cabos > Cabos de Rede",
+        "validatedGtin": "7898414700073"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898414700073",
+        "validatedNcm": "85442000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "5b434d9c-8393-4dfa-8948-6f4888be8dc2",
+      "sku": "VTK019018",
+      "nome": "Alto Falante Eros Neo E-515-neo-4 15\" 4r 500w Rms",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 623.99,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 924.43,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "categoryId": "MLB3905",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_SPEAKERS",
+        "categoryId": "MLB3905",
+        "categoryName": "Alto-Falantes",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Alto-Falantes",
+        "validatedGtin": "7899021996743"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899021996743",
+        "validatedNcm": "85182990",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "c3f99da0-1421-4dad-baab-9f99faf9c173",
+      "sku": "VTK019039",
+      "nome": "Módulo De Vidro Elétrico Quantum Lv8fc54 Hyundai Novo I30 2014",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 80.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 124.57,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB191714",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+        "categoryId": "MLB191714",
+        "categoryName": "Elétrico",
+        "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+        "validatedGtin": "7898382149669"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898382149669",
+        "validatedNcm": "85395100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

@@ -1,0 +1,353 @@
+{
+  "batchNumber": 3,
+  "batchId": "evolusom-traditional-003",
+  "strategy": "traditional_no_catalog_predictor_consensus",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "7c8971e2-d889-4815-9dc5-1ffb7a9cdbdb",
+      "sku": "VTK017823",
+      "nome": "Calota Grid Aro 13p 050cb-pta Fiat Modelo Palio Fire 2004 Cubo Baixo - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.4,
+      "estoque": 23,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277980766"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277980766",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "e666735c-5699-4787-9273-2e2be34c872a",
+      "sku": "VTK017848",
+      "nome": "Cabo Alarme Telecam 100 Metros 50 X 10 Vias Cca Liga Cobre",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 79.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 123.33,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB48605",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-TELEPHONE_CABLES",
+        "categoryId": "MLB48605",
+        "categoryName": "Cabos Telefônicos",
+        "categoryPath": "Celulares e Telefones > Telefonia Fixa e Sem Fio > Acessórios > Cabos Telefônicos",
+        "validatedGtin": "7898619565781"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898619565781",
+        "validatedNcm": "85441100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "65cf91e9-4975-4825-8c8b-6236c64fa2aa",
+      "sku": "VTK017872",
+      "nome": "Reparo Jbl Rpst330 Para Super Tweeter St330 Poly T",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 49.99,
+      "estoque": 21,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 86.41,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46559",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_COMPRESSION_DRIVERS",
+        "categoryId": "MLB46559",
+        "categoryName": "Drivers",
+        "categoryPath": "Acessórios para Veículos > Som Automotivo > Drivers",
+        "validatedGtin": "7896359538010"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896359538010",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "0c58abd1-d64a-4139-9563-b4c28dde8baf",
+      "sku": "VTK017885",
+      "nome": "Termopar Tipo K Minipa Mtk-01 Com Blister",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 16.5,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 45.06,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB33383",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-TOOL_ACCESSORIES_AND_REPLACEMENTS",
+        "categoryId": "MLB33383",
+        "categoryName": "Outros",
+        "categoryPath": "Ferramentas > Acessórios para Ferramentas > Outros",
+        "validatedGtin": "7898112607308"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898112607308",
+        "validatedNcm": "90259010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "6c3584cf-235b-4f73-9ed9-11da5c32d26b",
+      "sku": "VTK017895",
+      "nome": "Calota Grid Aro 15p 195cp-pta Modelo Onix / Prisma Lt 2014/ 16 - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 66.6,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 106.91,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277981503"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277981503",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "78d60d02-7936-4e09-9279-ad8ec2833a35",
+      "sku": "VTK017898",
+      "nome": "Fone Headset Intelbras Ths 55 Conector Usb 4010055",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 239.9,
+      "estoque": 20,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 340.6,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB3828",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-HEADSET_TELEPHONES",
+        "categoryId": "MLB3828",
+        "categoryName": "Telefones Headset",
+        "categoryPath": "Celulares e Telefones > Telefonia Fixa e Sem Fio > Telefones Headset",
+        "validatedGtin": "7896637677035"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896637677035",
+        "validatedNcm": "85183000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "2f410b69-9b05-49fd-95ab-487e32bfb552",
+      "sku": "VTK017924",
+      "nome": "Chaveiro Positron Novo Px-32 Cyber 4 Botões Preto",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 41.9,
+      "estoque": 16,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 76.42,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB417161",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-ELECTRONIC_SWITCHES",
+        "categoryId": "MLB417161",
+        "categoryName": "Interruptores Elétricos",
+        "categoryPath": "Construção > Energia > Tomadas e Interruptores > Interruptores > Interruptores Elétricos",
+        "validatedGtin": "7897789624526"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897789624526",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "6aad7bc9-9c00-4597-86de-37c6ddde778e",
+      "sku": "VTK017933",
+      "nome": "Botão De Pânico Ipec Nf",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 21.9,
+      "estoque": 19,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 51.73,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB7070",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-HOME_ALARMS_AND_SENSORS",
+        "categoryId": "MLB7070",
+        "categoryName": "Alarmes e Sensores",
+        "categoryPath": "Casa, Móveis e Decoração > Segurança para Casa > Sistemas de Monitoramento > Alarmes e Sensores",
+        "validatedGtin": "7898663560183"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898663560183",
+        "validatedNcm": "85269200",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "dadf008c-d494-4df6-ba1e-417a9427b73f",
+      "sku": "VTK017966",
+      "nome": "Calota Grid Aro 14p 014cb-pta Ford Modelo Fiesta 2008/ 10 Cubo Baixo - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277981541"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277981541",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "9c77b5a6-03a8-43a1-bb04-7c2e30e2c9c1",
+      "sku": "VTK017970",
+      "nome": "Reparo Tweeter Shock Completo St-400 Selenium",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 24.9,
+      "estoque": 18,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 55.43,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB122134",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-BICYCLE_SHOCK_ABSORBERS",
+        "categoryId": "MLB122134",
+        "categoryName": "Amortecedores",
+        "categoryPath": "Esportes e Fitness > Ciclismo > Peças  > Amortecedores",
+        "validatedGtin": "7892046021094"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7892046021094",
+        "validatedNcm": "85189010",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

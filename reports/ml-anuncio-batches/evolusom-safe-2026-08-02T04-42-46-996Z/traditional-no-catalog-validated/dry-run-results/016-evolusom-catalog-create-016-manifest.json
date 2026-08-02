@@ -1,0 +1,353 @@
+{
+  "batchNumber": 16,
+  "batchId": "evolusom-traditional-016",
+  "strategy": "traditional_no_catalog_predictor_consensus",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "fc83972a-ead2-4687-b53a-07c3fd56c4a3",
+      "sku": "VTK019044",
+      "nome": "Cabo Flexível Remoto Technoise 100% Cobre Azul 1.50 Mm Rolo 100 Metros",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 161.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 229.86,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB455454",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-ELECTRICAL_CABLES",
+        "categoryId": "MLB455454",
+        "categoryName": "Cabos Elétricos",
+        "categoryPath": "Construção > Energia > Cabos e Acessórios > Cabos Elétricos",
+        "validatedGtin": "7898530518873"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898530518873",
+        "validatedNcm": "85444900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "72c29fc9-3c8b-4a5b-9e0f-613b676a3c50",
+      "sku": "VTK019052",
+      "nome": "Módulo Trava Elétrica Speed-lock Tury Lock2.0",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 98.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 146.79,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22369",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_ELECTRIC_DOOR_LOCKS",
+        "categoryId": "MLB22369",
+        "categoryName": "Travas Elétricas",
+        "categoryPath": "Acessórios para Veículos > Segurança Veicular > Travas Elétricas",
+        "validatedGtin": "7899927001206"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899927001206",
+        "validatedNcm": "85432000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "734887c9-acb9-4bfe-8e3c-43904756b143",
+      "sku": "VTK019068",
+      "nome": "Calota Grid Aro 13p 124cb-pta Ford Ka 2014 Cubo Baixo - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.4,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277985389"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277985389",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "fac8ca75-73f8-47a0-a2f0-c977f1e2330c",
+      "sku": "VTK019070",
+      "nome": "Calota Grid Aro 14a 086ar-pta Modelo Renault Sandero/ Logan 2009/ 13 Aro De Pressão - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277983194"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277983194",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "ac9bdcdd-d878-422b-ab40-a38fe6f20669",
+      "sku": "VTK019071",
+      "nome": "Calota Grid Aro 14p Volkswaggen Modelo Gol/ Voyage G5/ G6 2013 Cubo Baixo - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277984467"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277984467",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "93869b7d-12a3-4370-95ba-92ec02b61cfc",
+      "sku": "VTK019089",
+      "nome": "Capota Marítima Concórdia Flash Cover Ba130l Mitsubishi L200 Triton 2009/2017 Baguete",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 364.5,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 517.5,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46680",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_BED_COVERS",
+        "categoryId": "MLB46680",
+        "categoryName": "Capotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Acessórios de Caçamba > Capotas",
+        "validatedGtin": "7899630182377"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899630182377",
+        "validatedNcm": "87082999",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "7d3cadf6-0d21-4fb1-8167-9f11804ce7d6",
+      "sku": "VTK019090",
+      "nome": "Capota Marítima Concórdia Flash Cover Ba093l Volkswagen Saveiro Sem Grade 1982/1997 Baguete",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 347.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 493.93,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB46680",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_BED_COVERS",
+        "categoryId": "MLB46680",
+        "categoryName": "Capotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Acessórios de Caçamba > Capotas",
+        "validatedGtin": "7899630182087"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899630182087",
+        "validatedNcm": "87082999",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "1241c218-6126-42f2-9cc9-46cb16e9a1fd",
+      "sku": "VTK019092",
+      "nome": "Capota Marítima Flash Cover Ff166 Chevrolet Montana 2011/2021 Force",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 559.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 829.48,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "categoryId": "MLB46680",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_BED_COVERS",
+        "categoryId": "MLB46680",
+        "categoryName": "Capotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Acessórios de Caçamba > Capotas",
+        "validatedGtin": "7899630194660"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899630194660",
+        "validatedNcm": "87082999",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "4fff33d4-ab0a-43e5-bb40-0aa655154278",
+      "sku": "VTK019094",
+      "nome": "Capota Marítima Flash Cover Ff194 Toyota Hilux Cabine Dupla 2016+ Force",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 549.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 814.67,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "categoryId": "MLB46680",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_BED_COVERS",
+        "categoryId": "MLB46680",
+        "categoryName": "Capotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Acessórios de Caçamba > Capotas",
+        "validatedGtin": "7899630194882"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899630194882",
+        "validatedNcm": "87082999",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "7144b025-bbee-4764-b1c7-7bf5380b2ca6",
+      "sku": "VTK019095",
+      "nome": "Capota Marítima Flash Cover Ff126 Fiat Strada Cabine Estendida Com Gancho Com Step 1998/2013 Force",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 449.9,
+      "estoque": 3,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 666.52,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.2,
+        "minProfit": 60
+      },
+      "categoryId": "MLB46680",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_BED_COVERS",
+        "categoryId": "MLB46680",
+        "categoryName": "Capotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Acessórios de Caçamba > Capotas",
+        "validatedGtin": "7899630194271"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899630194271",
+        "validatedNcm": "87082999",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

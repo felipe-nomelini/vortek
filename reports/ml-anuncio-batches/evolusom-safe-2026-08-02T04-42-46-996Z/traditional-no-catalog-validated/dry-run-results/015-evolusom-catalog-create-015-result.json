@@ -1,0 +1,376 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-anuncio-batches/evolusom-safe-2026-08-02T04-42-46-996Z/traditional-no-catalog-validated/dry-run-results/015-evolusom-catalog-create-015-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "evolusom-traditional-015",
+  "selected": 10,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "943bcbd7-cb62-4761-adaf-085d4551822f",
+      "sku": "VTK018931",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 119.49,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "354681"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892511250"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Grid Aro 14p 292cb-pof Mod Argo 2017/18 Cb - PC / 4\n\nVISÃO GERAL\nArgo 2017/20 292 CB-POF-U 14 P *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 354681\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892511250\n• NCM: 87087090\n• SKU: VTK018931\n\nEMBALAGEM\n• Dimensões informadas: 3 × 39.5 × 39.5 cm\n• Peso bruto informado: 0,32 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "b442b345-b4ea-4bdb-bc32-462d06d305a4",
+      "sku": "VTK018933",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 119.49,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "354904"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892511489"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Aro 14p 877cp-gft Mod Kwid 2018/ 19 Cp - PC / 4\n\nVISÃO GERAL\nInformações do Produto Calota Aro 14P 877CP-GFT 14 Polegadas Cubo Padrão Aplicação Kwid 2018/ 19 Cor Grafite\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 354904\n• Tipo de veículo: Carro/Caminhonete\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892511489\n• NCM: 87087090\n• SKU: VTK018933\n\nEMBALAGEM\n• Dimensões informadas: 5 × 40 × 40 cm\n• Peso bruto informado: 0,43 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "281246e0-659e-486d-91cc-32e3ec745aef",
+      "sku": "VTK018941",
+      "category": {
+        "id": "MLB270088",
+        "nome": "Cabos de Rede",
+        "dominio": ""
+      },
+      "basePrice": 2644.07,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "MEGATRON"
+        },
+        {
+          "id": "NETWORK_CABLE_TYPE",
+          "name": "Tipo de cabo de rede",
+          "value_id": "2623686",
+          "value_name": "Par trançado UTP"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899278923165"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CAT5E"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo Lan Megacabos Cat5e 8 Vias Interno 1km\n\nVISÃO GERAL\nO cabo CAT5e é indicado para sistemas de cabeamento estruturado para tráfego de voz, dados e imagens, segundo requisitos da norma ANSI/TIA/EIA568B2, incluindo o adendo 5 (Categoria 5e), para cabeamento horizontal ou secundário entre os painéis de distribuição (Patch Panels) e os conectores nas áreas de trabalho. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: MEGATRON\n• Tipo de cabo de rede: Par trançado UTP\n• Modelo: CAT5E\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: MEGATRON\n• GTIN: 7899278923165\n• NCM: 85444900\n• SKU: VTK018941\n\nEMBALAGEM\n• Dimensões informadas: 39 × 40 × 40 cm\n• Peso bruto informado: 32,4 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "bbabf116-70b9-4dbf-bd2c-803a8d4f51bb",
+      "sku": "VTK019004",
+      "category": {
+        "id": "MLB22664",
+        "nome": "Calotas",
+        "dominio": ""
+      },
+      "basePrice": 119.49,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "GRID CALOTAS"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "390334"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52049",
+          "value_name": "Preto"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450295",
+          "value_name": "Preto"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899892574231"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Calota Aro Grid 246cp-pbp-u Idea 15p Gol G7 17/18 - PC / 4\n\nVISÃO GERAL\nCALOTA ARO 15P PRETO/PRATA MOD GOL G7 2017/18 Cód. 246CP-PBP-U Calota automotiva com design moderno nas cores preto e prata, ideal para quem busca renovar o visual do veículo com praticidade. Modelo desenvolvido para aro 15\", com fixação por parafuso e cubo padrão, garantindo melhor encaixe e segurança.\n\nCompatível com modelos Gol e Voyage das gerações G5, G6 e G7. *Imagens meramente ilustrativas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: GRID CALOTAS\n• Número de peça: 390334\n• Tipo de veículo: Carro/Caminhonete\n• Cor: Preto\n• Cor principal: Preto\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: GRID CALOTAS\n• GTIN: 7899892574231\n• NCM: 87087090\n• SKU: VTK019004\n\nEMBALAGEM\n• Dimensões informadas: 42 × 3 × 42 cm\n• Peso bruto informado: 0,37 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "c3f99da0-1421-4dad-baab-9f99faf9c173",
+      "sku": "VTK019039",
+      "category": {
+        "id": "MLB191714",
+        "nome": "Elétrico",
+        "dominio": ""
+      },
+      "basePrice": 127.72,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "QUANTUM"
+        },
+        {
+          "id": "PART_NUMBER",
+          "name": "Número de peça",
+          "value_id": "",
+          "value_name": "233318"
+        },
+        {
+          "id": "VEHICLE_TYPE",
+          "name": "Tipo de veículo",
+          "value_id": "11377043",
+          "value_name": "Carro/Caminhonete"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "LV8FC54"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Módulo De Vidro Elétrico Quantum Lv8fc54 Hyundai Novo I30 2014\n\nVISÃO GERAL\nMódulo De Vidro Elétrico Quantum Modelo: LV8FC54 Hyundai Novo I30 2014 Compatíveis com conectores originais Subida de vidro pelo comando original do veículo Sistema Plug & Play tornando a instalação rápida e simples Atende as principais montadoras\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: QUANTUM\n• Número de peça: 233318\n• Tipo de veículo: Carro/Caminhonete\n• Modelo: LV8FC54\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: QUANTUM\n• GTIN: 7898382149669\n• NCM: 85395100\n• SKU: VTK019039\n\nEMBALAGEM\n• Dimensões informadas: 7.5 × 8.5 × 14 cm\n• Peso bruto informado: 0,24 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "5f074728-4dc5-48f5-b9f7-bc62d43f9955",
+      "sku": "VTK018935",
+      "nome": "Antena Permak Shark Preta 100/m",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45256",
+            "nome": "Antenas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "4e093141-393f-4066-a00b-6db56844533a",
+      "sku": "VTK018936",
+      "nome": "Antena Permak Shark Prata 100/m2",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45256",
+            "nome": "Antenas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "e7f7754e-1462-4dda-858a-893478dae2de",
+      "sku": "VTK018968",
+      "nome": "Antena Olimpus New Flex Fiat Traseira 12+",
+      "error": "Atributos obrigatórios pendentes: Modelo",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB45256",
+            "nome": "Antenas"
+          },
+          "missing": [
+            "Modelo"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "3976c413-68d3-4285-af05-5343e8998473",
+      "sku": "VTK019016",
+      "nome": "Cabo Coaxial Cabletech Rge-58 75% Preto 100 Metros",
+      "error": "Atributos obrigatórios pendentes: Tipo de cabo de rede",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB431815",
+            "nome": "Cabos de Rede"
+          },
+          "missing": [
+            "Tipo de cabo de rede"
+          ]
+        }
+      ],
+      "data": null
+    },
+    {
+      "produtoId": "5b434d9c-8393-4dfa-8948-6f4888be8dc2",
+      "sku": "VTK019018",
+      "nome": "Alto Falante Eros Neo E-515-neo-4 15\" 4r 500w Rms",
+      "error": "Atributos obrigatórios pendentes: Largura do alto-falante, Quantidade de caixas de som, Quantidade de bobinas, Potência RMS",
+      "status": null,
+      "attempts": [
+        {
+          "category": {
+            "id": "MLB3905",
+            "nome": "Alto-Falantes"
+          },
+          "missing": [
+            "Largura do alto-falante",
+            "Quantidade de caixas de som",
+            "Quantidade de bobinas",
+            "Potência RMS"
+          ]
+        }
+      ],
+      "data": null
+    }
+  ]
+}

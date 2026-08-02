@@ -1,0 +1,11 @@
+{
+  "generatedAt": "2026-08-02T05:28:40.990Z",
+  "dryRunApproved": 117,
+  "approvedForCreation": 26,
+  "blockedAfterSemanticReview": 91,
+  "reasonCounts": {
+    "semantic_category_mismatch": 10,
+    "supplier_minimum_multiple_requires_kit": 81
+  },
+  "batchCount": 6
+}

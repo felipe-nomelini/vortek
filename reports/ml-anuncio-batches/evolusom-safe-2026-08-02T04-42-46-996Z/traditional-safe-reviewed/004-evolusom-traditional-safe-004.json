@@ -1,0 +1,183 @@
+{
+  "batchNumber": 4,
+  "batchId": "evolusom-traditional-safe-004",
+  "strategy": "traditional_no_catalog_predictor_consensus_schema_and_semantic_review",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "22f24876-10e5-49e7-82a3-af3218d1e5c9",
+      "sku": "VTK018130",
+      "nome": "Sirene Bitonal Fks 12v Preta",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 13.9,
+      "estoque": 10,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 41.85,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB115699",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_SECURITY",
+        "categoryId": "MLB115699",
+        "categoryName": "Sirenes",
+        "categoryPath": "Acessórios para Veículos > Segurança Veicular > Sirenes",
+        "validatedGtin": "7899906801490"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899906801490",
+        "validatedNcm": "85123000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "9f0d2f23-998b-498b-83d7-47de78190c32",
+      "sku": "VTK018518",
+      "nome": "Módulo De Vidro Elétrico Quantum Lv8fc50 Para Ranger 2013 2 Portas",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 85.9,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 130.74,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB191714",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+        "categoryId": "MLB191714",
+        "categoryName": "Elétrico",
+        "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+        "validatedGtin": "7898382149614"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898382149614",
+        "validatedNcm": "85395100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "b9a8de34-93e1-4414-bf4e-b1478e028334",
+      "sku": "VTK018613",
+      "nome": "Modulo De Vidro Fks Mlv408 Co Para Hyundai Ix35 Top Com Conector Original",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 90.9,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 136.91,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB191714",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+        "categoryId": "MLB191714",
+        "categoryName": "Elétrico",
+        "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+        "validatedGtin": "7899906801216"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899906801216",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "b5780ff4-6de2-445c-b982-5fdc52d192aa",
+      "sku": "VTK018706",
+      "nome": "Protetor De Carter Dhf-240 Stilo 2003",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 72.85,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 114.63,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB194788",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_SUMP_GUARDS",
+        "categoryId": "MLB194788",
+        "categoryName": "Protetor de Cárter",
+        "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Motor > Componentes de Motor > Cárters de Motores > Protetor de Cárter",
+        "validatedGtin": "7898154402404"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898154402404",
+        "validatedNcm": "87082999",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "281246e0-659e-486d-91cc-32e3ec745aef",
+      "sku": "VTK018941",
+      "nome": "Cabo Lan Megacabos Cat5e 8 Vias Interno 1km",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 1649.9,
+      "estoque": 4,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 2546.14,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.25,
+        "minProfit": 150
+      },
+      "categoryId": "MLB270088",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-NETWORK_CABLES",
+        "categoryId": "MLB270088",
+        "categoryName": "Cabos de Rede",
+        "categoryPath": "Informática > Conectividade e Redes > Cabos de Rede e Acessórios > Cabos de Rede",
+        "validatedGtin": "7899278923165"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899278923165",
+        "validatedNcm": "85444900",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}

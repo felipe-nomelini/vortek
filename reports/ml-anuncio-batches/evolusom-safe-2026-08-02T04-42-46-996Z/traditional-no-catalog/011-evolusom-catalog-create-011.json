@@ -1,0 +1,353 @@
+{
+  "batchNumber": 11,
+  "batchId": "evolusom-traditional-011",
+  "strategy": "traditional_no_catalog_predictor_consensus",
+  "executionHints": {
+    "dryRunFirst": true,
+    "createSequentially": true,
+    "strictEvidence": true,
+    "stopAfterConsecutiveFailures": 1
+  },
+  "items": [
+    {
+      "produtoId": "e4735140-1762-4a17-b399-d1b5c63d5b9d",
+      "sku": "VTK018533",
+      "nome": "Calota Grid Aro 13p 060ca-pta Modelo Volkswaggen Gol G4 2006 Cubo Alto - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 43.4,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 78.27,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277981374"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277981374",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "07e0dab8-0657-4cf2-a21c-6c9d1251f80b",
+      "sku": "VTK018535",
+      "nome": "Calota Grid Aro 14p 121cp-pta Modelo Volkswaggen Fox/ Polo 2014 Cubo Padrão - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7898277985266"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898277985266",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "f45d249a-4ad2-43de-894c-dc80c6fe361f",
+      "sku": "VTK018550",
+      "nome": "Interface De Desbloqueio De Central Multimídia Original Bee Link Fiat Argo/cronos 2019",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 123.9,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 177.65,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB416844",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-AUDIO_INTERFACES",
+        "categoryId": "MLB416844",
+        "categoryName": "Interfaces de Áudio",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Áudio > Estúdio de Gravação > Interfaces de Áudio",
+        "validatedGtin": "7898441352696"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7898441352696",
+        "validatedNcm": "85423120",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "33fa36fb-592a-41d6-86e0-91779c9d7a19",
+      "sku": "VTK018551",
+      "nome": "Calota Aro 14p 373cb-gft Mod Onix / Prisma 2017/ 18 Cb - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892511458"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892511458",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "9d6b0a25-8deb-4a95-9124-3661034f8503",
+      "sku": "VTK018585",
+      "nome": "Kit De Lâmpada Tarponn Tp-6108 Ultraled Hb4 12v 40w",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 59.9,
+      "estoque": 7,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 98.64,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB5759",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_LED_BULBS",
+        "categoryId": "MLB5759",
+        "categoryName": "Lâmpadas de Led",
+        "categoryPath": "Acessórios para Veículos > Tuning > Iluminação > Lâmpadas > Lâmpadas de Led",
+        "validatedGtin": "7900469461080"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7900469461080",
+        "validatedNcm": "85122011",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "43119194-4bc8-44fd-a470-6485b9015b8a",
+      "sku": "VTK018586",
+      "nome": "Calota Aro Grid 150cp-pbp-u 15p Sport T-cross 25 - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 74.4,
+      "estoque": 5,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 116.54,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892574439"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892574439",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "a2a8c7b8-aae0-4782-8b91-d74299209621",
+      "sku": "VTK018598",
+      "nome": "Arandela Frahm 6\" Coaxial 30w Rms 8r Redonda 30158",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 139.9,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 198.62,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB11507",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-SPEAKERS",
+        "categoryId": "MLB11507",
+        "categoryName": "Caixas Acústicas ",
+        "categoryPath": "Eletrônicos, Áudio e Vídeo > Áudio > Caixas Acústicas ",
+        "validatedGtin": "7896673801746"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7896673801746",
+        "validatedNcm": "85182100",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "b24b2c62-e1e9-4db8-a1e7-e091641fc30d",
+      "sku": "VTK018608",
+      "nome": "Chicote Dedicado Positron Pronnect Hyundai Veloster 2013",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 21.99,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 51.84,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB431130",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WIRE_HARNESSES",
+        "categoryId": "MLB431130",
+        "categoryName": "Instalações Elétricas",
+        "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Sistema Elétrico > Instalações Elétricas",
+        "validatedGtin": "7897789632309"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7897789632309",
+        "validatedNcm": "85443000",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "b9a8de34-93e1-4414-bf4e-b1478e028334",
+      "sku": "VTK018613",
+      "nome": "Modulo De Vidro Fks Mlv408 Co Para Hyundai Ix35 Top Com Conector Original",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 90.9,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 136.91,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB191714",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_POWER_WINDOW_REGULATORS",
+        "categoryId": "MLB191714",
+        "categoryName": "Elétrico",
+        "categoryPath": "Acessórios para Veículos > Peças de Carros e Caminhonetes > Janelas e Vedações > Sistemas de Elevação > Elétrico",
+        "validatedGtin": "7899906801216"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899906801216",
+        "validatedNcm": "85437099",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    },
+    {
+      "produtoId": "13a203d1-dce9-4049-86de-0ae60f4d0cb1",
+      "sku": "VTK018619",
+      "nome": "Calota Grid Aro 14p 191cb-pta Modelo Hb20/ Hb20s 2016 Cubo Baixo - PC / 4",
+      "fornecedor": "EVOLUSOM-PR",
+      "dsliteFornecedorId": "133",
+      "custo": 47.8,
+      "estoque": 6,
+      "mlFee": 0.15,
+      "mlShipping": 0,
+      "customPrice": null,
+      "suggestedPricePreview": 83.7,
+      "priceSource": "pricing_strategy_preview",
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "categoryId": "MLB22664",
+      "catalogEvidence": {
+        "source": "mercado_livre_domain_predictor_consensus_no_catalog_product",
+        "predictedDomainId": "MLB-VEHICLE_WHEEL_COVERS",
+        "categoryId": "MLB22664",
+        "categoryName": "Calotas",
+        "categoryPath": "Acessórios para Veículos > Aces. de Carros e Caminhonetes > Exterior > Calotas",
+        "validatedGtin": "7899892500377"
+      },
+      "preflight": {
+        "strictEvidence": true,
+        "validatedGtin": "7899892500377",
+        "validatedNcm": "87087090",
+        "imagesOnVortekStorage": true,
+        "categoryAndConditionalAttributes": "required_at_execution"
+      }
+    }
+  ]
+}
