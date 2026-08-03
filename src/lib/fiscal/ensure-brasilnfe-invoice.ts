@@ -19,6 +19,7 @@ import {
 } from "@/services/fiscal-provider";
 import { ensureDanfeStoredForPedido } from "@/lib/fiscal/danfe-storage";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
+import { resolveBrasilNfeInternalIdentifier } from "@/lib/fiscal/brasil-nfe-identifier";
 
 const UF_CODES = new Set([
   "AC",
@@ -1103,7 +1104,7 @@ export async function reconcileBrasilNfeExistingInvoice(input: {
   const { data: pedido } = await client
     .from("pedidos")
     .select(
-      "id,numero,ml_order_id,nota_fiscal_numero,nfe_status,nfe_provider,nfe_chave,nfe_external_id,nfe_danfe_url,nfe_xml,nfe_protocolo,nfe_cfop",
+      "id,numero,ml_order_id,ml_pack_id,ml_bundle_type,nota_fiscal_numero,nfe_status,nfe_provider,nfe_chave,nfe_external_id,nfe_danfe_url,nfe_xml,nfe_protocolo,nfe_cfop",
     )
     .eq("id", input.pedidoId)
     .maybeSingle();
@@ -1115,10 +1116,13 @@ export async function reconcileBrasilNfeExistingInvoice(input: {
     };
 
   const mlOrderId = String((pedido as any).ml_order_id || "");
-  const identificadorInterno = String(
-    input.identifierInternoOverride ||
-      `VORTEK-${String((pedido as any).numero || pedido.id)}`,
-  ).trim();
+  const identificadorInterno = resolveBrasilNfeInternalIdentifier({
+    identifierOverride: input.identifierInternoOverride,
+    pedidoNumero: (pedido as any).numero,
+    pedidoId: String(pedido.id),
+    mlPackId: (pedido as any).ml_pack_id,
+    mlBundleType: (pedido as any).ml_bundle_type,
+  });
 
   await registrarEventoNfAuditoria({
     pedidoId: input.pedidoId,

@@ -45,3 +45,21 @@ export function selectBrasilNfeNoteByInternalIdentifier(
     return bDate - aDate;
   })[0] || null;
 }
+
+export function resolveBrasilNfeInternalIdentifier(input: {
+  identifierOverride?: string | null;
+  pedidoNumero?: string | number | null;
+  pedidoId: string;
+  mlPackId?: string | null;
+  mlBundleType?: string | null;
+}): string {
+  const override = String(input.identifierOverride || '').trim();
+  if (override) return override;
+
+  const packId = String(input.mlPackId || '').trim();
+  const bundleType = String(input.mlBundleType || '').trim().toLowerCase();
+  if (packId && bundleType === 'cart') return `VORTEK-PACK-${packId}`;
+  if (packId && bundleType === 'virtual_kit') return `VORTEK-KIT-${packId}`;
+
+  return `VORTEK-${String(input.pedidoNumero || input.pedidoId)}`;
+}
