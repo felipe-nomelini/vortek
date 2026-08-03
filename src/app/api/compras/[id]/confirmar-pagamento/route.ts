@@ -39,6 +39,8 @@ async function parsePaymentConfirmationRequest(request: Request) {
       supplierPaymentNotes: String(form.get('supplier_payment_notes') || '').trim() || null,
       resumeDsliteFlow: String(form.get('resume_dslite_flow') || '').trim() === 'true',
       resumeOnly: String(form.get('resume_only') || '').trim() === 'true',
+      pedidoId: String(form.get('pedido_id') || '').trim() || null,
+      mlOrderId: String(form.get('ml_order_id') || '').trim() || null,
       receiptFile: receipt instanceof File && receipt.size > 0 ? receipt : null,
     };
   }
@@ -50,6 +52,8 @@ async function parsePaymentConfirmationRequest(request: Request) {
     supplierPaymentNotes: String(body?.supplier_payment_notes || '').trim() || null,
     resumeDsliteFlow: Boolean(body?.resume_dslite_flow),
     resumeOnly: Boolean(body?.resume_only),
+    pedidoId: String(body?.pedido_id || '').trim() || null,
+    mlOrderId: String(body?.ml_order_id || '').trim() || null,
     receiptFile: null as File | null,
   };
 }
@@ -263,18 +267,35 @@ export async function POST(
     return NextResponse.json({ error: 'Esta compra não exige confirmação manual de pagamento' }, { status: 422 });
   }
 
-  const { data: pedido, error: pedidoError } = await service
-    .from('pedidos')
-    .select('id,ml_order_id,numero,ml_fiscal_release_at,dslite_label_source,ml_bundle_primary')
-    .eq('dslite_id', String(compra.dsid))
-    .or('ml_bundle_primary.eq.true,ml_bundle_primary.is.null')
-    .maybeSingle();
+  const pedidoSelect = 'id,ml_order_id,numero,dslite_id,ml_fiscal_release_at,dslite_label_source,ml_bundle_primary';
+  let pedidoQuery = service.from('pedidos').select(pedidoSelect);
+  if (parsed.pedidoId) {
+    pedidoQuery = pedidoQuery.eq('id', parsed.pedidoId);
+  } else if (parsed.mlOrderId) {
+    pedidoQuery = pedidoQuery.eq('ml_order_id', parsed.mlOrderId);
+  } else {
+    pedidoQuery = pedidoQuery
+      .eq('dslite_id', String(compra.dsid))
+      .or('ml_bundle_primary.eq.true,ml_bundle_primary.is.null');
+  }
+  const { data: pedidosVinculados, error: pedidoError } = await pedidoQuery.limit(2);
 
   if (pedidoError) {
     return NextResponse.json({ error: pedidoError.message }, { status: 500 });
   }
+  if ((pedidosVinculados || []).length > 1) {
+    return NextResponse.json({
+      error: 'Mais de uma venda está vinculada a este pedido DSLite. Selecione a venda exata na página de Vendas.',
+    }, { status: 409 });
+  }
+  const pedido = (pedidosVinculados || [])[0] as any;
   if (!pedido?.id || !pedido?.ml_order_id) {
     return NextResponse.json({ error: 'Pedido de venda vinculado não encontrado para retomar o fluxo DSLite' }, { status: 404 });
+  }
+  if (String(pedido.dslite_id || '').trim() !== String(compra.dsid || '').trim()) {
+    return NextResponse.json({
+      error: 'A venda selecionada não pertence a este pedido DSLite. Atualize a página antes de tentar novamente.',
+    }, { status: 409 });
   }
   const releaseAt = pedido.ml_fiscal_release_at ? new Date(pedido.ml_fiscal_release_at) : null;
   const bkr1PixDeferred = Boolean(

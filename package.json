@@ -22,6 +22,8 @@
     "backfill:ml-pack-id": "node scripts/backfill-ml-pack-id.js",
     "backfill:shipping-labels": "node scripts/backfill-shipping-labels.js",
     "reconcile:nf-status": "node scripts/reconcile-nf-status.js",
+    "repair:dslite-links:dry": "node scripts/repair-dslite-fiscal-links.js",
+    "repair:dslite-links:apply": "node scripts/repair-dslite-fiscal-links.js --apply",
     "dedupe:produtos:dry": "node scripts/dedupe-produtos.js",
     "dedupe:produtos:apply": "node scripts/dedupe-produtos.js --apply",
     "dedupe:anuncios-ml:dry": "node -r dotenv/config scripts/dedupe-anuncios-ml.js dotenv_config_path=.env.local",

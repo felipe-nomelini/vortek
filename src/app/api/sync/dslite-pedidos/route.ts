@@ -4,6 +4,7 @@ import { createServiceClient } from '@/lib/supabase';
 import { inferSupplierPaymentMode, resolveCompraStatus } from '@/lib/produto-fornecedor';
 import { recordSupplierPurchaseDebit, resolveSupplierPurchaseDebitAmount } from '@/lib/supplier-balance';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
+import { resolveSafeDslitePedidoLinks } from '@/lib/dslite/purchase-link';
 
 export const maxDuration = 300;
 
@@ -62,10 +63,6 @@ function parseDataCriacao(dataStr: string): string | undefined {
   } catch {
     return undefined;
   }
-}
-
-function normalizeNfeKey(value: unknown): string {
-  return String(value || '').replace(/\D/g, '');
 }
 
 function isDsliteCanceledStatus(value: unknown): boolean {
@@ -156,21 +153,6 @@ export async function POST(request: Request) {
     let withoutNfe = 0;
     let linkNotFound = 0;
     let linkSkippedCanceled = 0;
-
-    const fallbackNfeMap = new Map<string, string[]>();
-    const { data: pedidosComNfe } = await client
-      .from('pedidos')
-      .select('id, nfe_chave, dslite_id')
-      .not('nfe_chave', 'is', null)
-      .or('dslite_id.is.null,dslite_id.eq.');
-
-    for (const row of pedidosComNfe || []) {
-      const normalized = normalizeNfeKey((row as any)?.nfe_chave);
-      if (!normalized) continue;
-      const list = fallbackNfeMap.get(normalized) || [];
-      list.push(String((row as any).id));
-      fallbackNfeMap.set(normalized, list);
-    }
 
     while (true) {
       const data = await fetchDslite<DslitePedidosResponse>(
@@ -315,13 +297,48 @@ export async function POST(request: Request) {
           if (pedido.nf_chave && isDsliteCanceledStatus(pedido.status)) {
             linkSkippedCanceled += 1;
           } else if (pedido.nf_chave) {
+            const { data: candidatos, error: candidatosError } = await client
+              .from('pedidos')
+              .select('id,dslite_id,ml_pack_id,ml_bundle_type,ml_bundle_parent_item_id')
+              .eq('nfe_chave', pedido.nf_chave)
+              .limit(1000);
+
+            if (candidatosError) {
+              errors.push({
+                code: 'dslite_link_candidates_failed',
+                message: candidatosError.message,
+                context: { dsid: pedido.dsid, nf_chave: pedido.nf_chave },
+              });
+              linkNotFound += 1;
+              continue;
+            }
+
+            const resolution = resolveSafeDslitePedidoLinks(
+              candidatos || [],
+              String(pedido.dsid),
+            );
+            if (!resolution.safe) {
+              errors.push({
+                code: 'dslite_link_ambiguous_nfe',
+                message: 'Vínculo por NF-e bloqueado por cardinalidade ou grupo inconsistente',
+                context: {
+                  dsid: pedido.dsid,
+                  nf_chave: pedido.nf_chave,
+                  candidates: (candidatos || []).length,
+                  reason: resolution.reason,
+                },
+              });
+              linkNotFound += 1;
+              continue;
+            }
+
             const { data: vinculados, error: vinculoError } = await client
               .from('pedidos')
               .update({
                 dslite_id: String(pedido.dsid),
                 dslite_status: pedido.status,
               } as any)
-              .eq('nfe_chave', pedido.nf_chave)
+              .in('id', resolution.ids)
               .select('id');
 
             if (vinculoError) {
@@ -333,41 +350,7 @@ export async function POST(request: Request) {
             } else if (Array.isArray(vinculados) && vinculados.length > 0) {
               linkedByNfe += vinculados.length;
             } else {
-              const normalizedNfe = normalizeNfeKey(pedido.nf_chave);
-              const fallbackIds = normalizedNfe ? (fallbackNfeMap.get(normalizedNfe) || []) : [];
-
-              if (fallbackIds.length > 0) {
-                const { data: fallbackUpdated, error: fallbackError } = await client
-                  .from('pedidos')
-                  .update({
-                    dslite_id: String(pedido.dsid),
-                    dslite_status: pedido.status,
-                  } as any)
-                  .in('id', fallbackIds as any)
-                  .is('dslite_id', null)
-                  .select('id');
-
-                if (fallbackError) {
-                  errors.push({
-                    code: 'dslite_link_by_nfe_fallback_failed',
-                    message: fallbackError.message,
-                    context: { dsid: pedido.dsid, nf_chave: pedido.nf_chave, fallback_ids: fallbackIds },
-                  });
-                  linkNotFound += 1;
-                } else if (Array.isArray(fallbackUpdated) && fallbackUpdated.length > 0) {
-                  linkedByNfe += fallbackUpdated.length;
-                  linkedByNfeFallback += fallbackUpdated.length;
-                  const updatedIds = new Set(fallbackUpdated.map((row: any) => String(row.id)));
-                  fallbackNfeMap.set(
-                    normalizedNfe,
-                    fallbackIds.filter((id) => !updatedIds.has(String(id))),
-                  );
-                } else {
-                  linkNotFound += 1;
-                }
-              } else {
-                linkNotFound += 1;
-              }
+              linkNotFound += 1;
             }
           } else {
             withoutNfe += 1;

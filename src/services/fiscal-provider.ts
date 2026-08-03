@@ -1,6 +1,7 @@
 import { BrasilNFe } from "brasilnfe";
 import { createServiceClient } from "@/lib/supabase";
 import { extractCfopsFromXml } from "@/lib/fiscal/cfop";
+import { selectBrasilNfeNoteByInternalIdentifier } from "@/lib/fiscal/brasil-nfe-identifier";
 
 export type NfeProvider = "brasilnfe";
 
@@ -336,53 +337,20 @@ export async function buscarNotaBrasilNfePorIdentificadorInterno(input: {
     };
   }
 
-  const isAuthorizedNota = (nota: any): boolean => {
-    const numericCandidates = [
-      nota?.Status,
-      nota?.CodStatus,
-      nota?.CodStatusRespostaSefaz,
-      nota?.CodStatusSefaz,
-    ];
-    const hasAuthorizedCode = numericCandidates.some((v: any) => {
-      const n = Number(v);
-      return Number.isFinite(n) && [100, 150].includes(n);
-    });
-    if (hasAuthorizedCode) return true;
-
-    const textCandidates = [
-      nota?.DsStatus,
-      nota?.DsSituacao,
-      nota?.Situacao,
-      nota?.StatusDescricao,
-      nota?.DescricaoStatus,
-      nota?.DsStatusRespostaSefaz,
-    ];
-    return textCandidates.some((v: any) =>
-      String(v || "")
-        .toLowerCase()
-        .includes("autoriz"),
-    );
-  };
-
   const preferAuthorized = input.preferAuthorized !== false;
-  const sorted = notas
-    .filter((n: any) => String(n?.Chave || "").trim())
-    .sort((a: any, b: any) => {
-      if (preferAuthorized) {
-        const aAuthorized = isAuthorizedNota(a) ? 1 : 0;
-        const bAuthorized = isAuthorizedNota(b) ? 1 : 0;
-        if (aAuthorized !== bAuthorized) return bAuthorized - aAuthorized;
-      }
-
-      const da = new Date(
-        String(a?.DtEmissao || a?.DtRecebimento || 0),
-      ).getTime();
-      const db = new Date(
-        String(b?.DtEmissao || b?.DtRecebimento || 0),
-      ).getTime();
-      return db - da;
-    });
-  const n = sorted[0] || notas[0];
+  const n = selectBrasilNfeNoteByInternalIdentifier(
+    notas,
+    input.identificadorInterno,
+    preferAuthorized,
+  );
+  if (!n) {
+    return {
+      ok: false,
+      nota: null,
+      error: `Brasil NFe não retornou correspondência exata para o identificador interno ${input.identificadorInterno}`,
+      raw: resp,
+    };
+  }
   return {
     ok: true,
     nota: {
