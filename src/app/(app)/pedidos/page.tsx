@@ -968,7 +968,7 @@ export default function PedidosPage() {
     try {
       const form = new FormData();
       form.append('resume_dslite_flow', dslitePaymentPrompt.resumeAfterConfirm ? 'true' : 'false');
-      form.append('pedido_id', String(dslitePaymentPrompt.order.id));
+      form.append('pedido_id', String(dslitePaymentPrompt.order.dbId));
       form.append('ml_order_id', String(dslitePaymentPrompt.order.ml_order_id));
       if (resumeOnly) {
         form.append('resume_only', 'true');

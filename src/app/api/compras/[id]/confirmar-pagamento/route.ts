@@ -8,9 +8,11 @@ import { createShortLink } from '@/lib/short-links';
 import { normalizeWhatsappChatId, sendWahaFile, sendWahaText } from '@/services/waha';
 import { DSLITE_BKR1_PLACEHOLDER_LABEL_SOURCE } from '@/lib/dslite/placeholder-label';
 import { isBkr1Supplier } from '@/lib/supplier-balance';
+import { z } from 'zod';
 
 const RECEIPTS_BUCKET = 'supplier-payment-receipts';
 const MAX_RECEIPT_SIZE_BYTES = 10 * 1024 * 1024;
+const PEDIDO_ID_SCHEMA = z.string().uuid();
 
 function safeFilename(value: string): string {
   const name = String(value || 'comprovante').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -269,10 +271,15 @@ export async function POST(
 
   const pedidoSelect = 'id,ml_order_id,numero,dslite_id,ml_fiscal_release_at,dslite_label_source,ml_bundle_primary';
   let pedidoQuery = service.from('pedidos').select(pedidoSelect);
-  if (parsed.pedidoId) {
-    pedidoQuery = pedidoQuery.eq('id', parsed.pedidoId);
+  const pedidoId = parsed.pedidoId && PEDIDO_ID_SCHEMA.safeParse(parsed.pedidoId).success
+    ? parsed.pedidoId
+    : null;
+  if (pedidoId) {
+    pedidoQuery = pedidoQuery.eq('id', pedidoId);
   } else if (parsed.mlOrderId) {
     pedidoQuery = pedidoQuery.eq('ml_order_id', parsed.mlOrderId);
+  } else if (parsed.pedidoId) {
+    return NextResponse.json({ error: 'ID interno da venda inválido' }, { status: 422 });
   } else {
     pedidoQuery = pedidoQuery
       .eq('dslite_id', String(compra.dsid))
