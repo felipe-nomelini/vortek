@@ -135,6 +135,7 @@ type AuditEvent =
   | 'whatsapp_alert_failed'
   | 'whatsapp_alert_skipped'
   | 'ml_cancel_auto_detected'
+  | 'ml_cancel_auto_fiscal_link_blocked'
   | 'ml_cancel_auto_nfe_cancel_success'
   | 'ml_cancel_auto_nfe_cancel_failed'
   | 'ml_cancel_auto_nfe_cancel_rejected_deadline'

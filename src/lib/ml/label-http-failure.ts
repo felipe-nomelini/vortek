@@ -21,7 +21,8 @@ function parseFailedShipments(text: string): Array<Record<string, unknown>> {
 
 /**
  * Respeita o contrato de erro por shipment do Mercado Livre.
- * `NOT_PRINTABLE_STATUS` só é temporário quando o payload permite retry.
+ * `invoice_pending` é intermediário mesmo quando `shipment_labels` retorna
+ * `retry: false`; a etiqueta só fica disponível em `ready_to_print`.
  */
 export function classifyMlLabelHttpFailure(
   status: number,
@@ -52,8 +53,7 @@ export function classifyMlLabelHttpFailure(
   const temporaryNotPrintable =
     notPrintableStatus
     && !delivered
-    && !explicitNoRetry
-    && (explicitRetry || invoicePending);
+    && (invoicePending || (!explicitNoRetry && explicitRetry));
 
   return {
     reason: buffered
@@ -64,8 +64,8 @@ export function classifyMlLabelHttpFailure(
     retryable:
       !invalidCaller
       && !delivered
-      && !explicitNoRetry
-      && (buffered || invoicePending || temporaryNotPrintable || retryableStatus),
+      && (invoicePending
+        || (!explicitNoRetry && (buffered || temporaryNotPrintable || retryableStatus))),
     delivered,
     invalidCaller,
   };

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase";
+import { resolveSafeDslitePedidoMutation } from "@/lib/dslite/purchase-link";
 import { acquireDomainLock, releaseDomainLock } from "@/lib/sync/domain-lock";
 import { cancelarNotaBrasilNfePorChave } from "@/services/fiscal-provider";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
@@ -149,6 +150,42 @@ async function processPedido(input: {
       statusResultante: "skipped",
     });
     return { status: "skipped", reason: "purchase_not_found" };
+  }
+
+  const compraNfeChave = String((compra as any).nf_chave || "").trim();
+  const { data: candidatos, error: candidatosError } = await client
+    .from("pedidos")
+    .select(
+      "id,dslite_id,ml_pack_id,ml_bundle_type,ml_bundle_parent_item_id",
+    )
+    .eq("nfe_chave", nfeChave)
+    .limit(1000);
+
+  if (candidatosError) throw candidatosError;
+
+  const fiscalLink = resolveSafeDslitePedidoMutation(
+    candidatos || [],
+    dsid,
+    pedidoId,
+  );
+  if (compraNfeChave !== nfeChave || !fiscalLink.safe) {
+    await registrarEventoNfAuditoria({
+      pedidoId,
+      mlOrderId,
+      evento: "ml_cancel_auto_fiscal_link_blocked",
+      respostaMl: {
+        dsid,
+        pedido_nfe_chave: nfeChave,
+        compra_nfe_chave: compraNfeChave || null,
+        candidates: (candidatos || []).length,
+        reason:
+          compraNfeChave !== nfeChave
+            ? "purchase_nfe_mismatch"
+            : fiscalLink.reason,
+      },
+      statusResultante: "blocked",
+    });
+    return { status: "skipped", reason: "ambiguous_fiscal_link" };
   }
 
   await registrarEventoNfAuditoria({

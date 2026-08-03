@@ -91,6 +91,7 @@ export async function POST(request: Request) {
   let lockAcquired = false;
   const domain = 'compras:dslite';
   const errors: Array<{ code: string; message: string; context?: Record<string, unknown> }> = [];
+  const warnings: Array<{ code: string; message: string; context?: Record<string, unknown> }> = [];
 
   try {
     const lock = await acquireDomainLock({
@@ -318,7 +319,7 @@ export async function POST(request: Request) {
               String(pedido.dsid),
             );
             if (!resolution.safe) {
-              errors.push({
+              warnings.push({
                 code: 'dslite_link_ambiguous_nfe',
                 message: 'Vínculo por NF-e bloqueado por cardinalidade ou grupo inconsistente',
                 context: {
@@ -391,6 +392,7 @@ export async function POST(request: Request) {
         link_skipped_canceled: linkSkippedCanceled,
         failed,
       },
+      warnings,
       errors,
       duration: { ms: Date.now() - startedAt },
       // Compatibilidade

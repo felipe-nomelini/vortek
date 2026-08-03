@@ -9,7 +9,14 @@ export type DslitePedidoLinkCandidate = {
 export type DslitePedidoLinkResolution = {
   safe: boolean;
   ids: string[];
-  reason: 'single_order' | 'cart_group' | 'virtual_kit_group' | 'empty' | 'conflicting_dslite_id' | 'ambiguous_nfe';
+  reason:
+    | 'single_order'
+    | 'cart_group'
+    | 'virtual_kit_group'
+    | 'empty'
+    | 'conflicting_dslite_id'
+    | 'ambiguous_nfe'
+    | 'target_not_in_resolved_group';
 };
 
 function normalized(value: unknown): string {
@@ -62,4 +69,24 @@ export function resolveSafeDslitePedidoLinks(
   }
 
   return { safe: false, ids: [], reason: 'ambiguous_nfe' };
+}
+
+/**
+ * Exige, além da cardinalidade segura, que o pedido alvo pertença ao grupo
+ * fiscal resolvido antes de qualquer mutação externa irreversível.
+ */
+export function resolveSafeDslitePedidoMutation(
+  candidates: DslitePedidoLinkCandidate[],
+  expectedDsliteId: string,
+  targetPedidoId: string,
+): DslitePedidoLinkResolution {
+  const resolution = resolveSafeDslitePedidoLinks(candidates, expectedDsliteId);
+  if (!resolution.safe) return resolution;
+
+  const target = normalized(targetPedidoId);
+  if (!target || !resolution.ids.includes(target)) {
+    return { safe: false, ids: [], reason: 'target_not_in_resolved_group' };
+  }
+
+  return resolution;
 }

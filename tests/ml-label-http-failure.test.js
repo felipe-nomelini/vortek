@@ -36,6 +36,24 @@ test('mantém retry para invoice_pending explicitamente temporário', () => {
   assert.equal(failure.reason, 'not_ready');
 });
 
+test('mantém invoice_pending na fila mesmo quando shipment_labels retorna retry false', () => {
+  const failure = classifyMlLabelHttpFailure(400, JSON.stringify({
+    failed_shipments: [{
+      shipment_id: '47651388575',
+      order_id: 2000017684457676,
+      message: 'Shipment 47651388575 status is invoice_pending',
+      error_code: 'SHPLAB0200',
+      status: 400,
+      retry: false,
+      cause: 'NOT_PRINTABLE_STATUS',
+    }],
+  }));
+
+  assert.equal(failure.delivered, false);
+  assert.equal(failure.retryable, true);
+  assert.equal(failure.reason, 'not_ready');
+});
+
 test('respeita retry false mesmo em status HTTP normalmente temporário', () => {
   const failure = classifyMlLabelHttpFailure(500, JSON.stringify({
     failed_shipments: [{
