@@ -142,7 +142,7 @@ function buildBody(taskKey: SyncTaskKey, taskDefaultBody: Record<string, unknown
   }
 
   if (taskKey === 'sync_ml_listings_publish') {
-    if (requestBody.limit !== undefined) payload.limit = Math.min(50, parsePositiveInt(requestBody.limit, 10));
+    if (requestBody.limit !== undefined) payload.limit = Math.min(20, parsePositiveInt(requestBody.limit, 10));
     if (requestBody.seedFromProducts !== undefined) payload.seedFromProducts = Boolean(requestBody.seedFromProducts);
     if (requestBody.outboxId !== undefined) payload.outboxId = String(requestBody.outboxId || '').trim();
   }
@@ -165,6 +165,8 @@ function dispatchBackground(params: {
   label: string;
   query: Record<string, string | number | boolean>;
   body: Record<string, unknown>;
+  requestTimeoutMs?: number;
+  retryOnFailure?: boolean;
 }) {
   setTimeout(() => {
     void runMlSingleStageJob({
@@ -174,6 +176,8 @@ function dispatchBackground(params: {
       label: params.label,
       query: params.query,
       body: params.body,
+      requestTimeoutMs: params.requestTimeoutMs,
+      retryOnFailure: params.retryOnFailure,
     }).catch((err: any) => {
       console.error('[sync-run] Falha ao iniciar processamento em background:', err?.message || err);
     });
@@ -202,6 +206,44 @@ export async function POST(request: Request) {
       const task = getSyncTaskByKey(taskKey);
       if (!task) continue;
 
+      const query = buildQuery(task.key, safeBody);
+      const payload = buildBody(task.key, task.defaultBody, safeBody);
+
+      const { data: running } = await serviceClient
+        .from('jobs')
+        .select('id, status, created_at')
+        .eq('tipo', task.jobTipo)
+        .in('status', ['pendente', 'rodando', 'on_hold'])
+        .order('created_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (running?.id) {
+        if (running.status === 'on_hold') {
+          dispatchBackground({
+            jobId: running.id,
+            tipo: task.jobTipo,
+            path: task.path,
+            label: task.label,
+            query,
+            body: payload,
+            requestTimeoutMs: task.requestTimeoutMs,
+            retryOnFailure: task.retryOnFailure,
+          });
+        }
+
+        results.push({
+          task: task.key,
+          tipo: task.jobTipo,
+          domain: task.domain,
+          reused: true,
+          resumed: running.status === 'on_hold',
+          jobId: running.id,
+          status: running.status,
+        });
+        continue;
+      }
+
       if (task.key === 'sync_ml_listings_publish') {
         const targetOutboxId = String(safeBody.outboxId || '').trim();
         let pendingQuery = serviceClient
@@ -223,29 +265,6 @@ export async function POST(request: Request) {
         }
       }
 
-      const { data: running } = await serviceClient
-        .from('jobs')
-        .select('id, status, created_at')
-        .eq('tipo', task.jobTipo)
-        .in('status', ['pendente', 'rodando'])
-        .order('created_at', { ascending: false })
-        .limit(1)
-        .maybeSingle();
-
-      if (running?.id) {
-        results.push({
-          task: task.key,
-          tipo: task.jobTipo,
-          domain: task.domain,
-          reused: true,
-          jobId: running.id,
-          status: running.status,
-        });
-        continue;
-      }
-
-      const query = buildQuery(task.key, safeBody);
-      const payload = buildBody(task.key, task.defaultBody, safeBody);
       const initialLog: any[] = [
         {
           event_type: 'manual_dispatch',
@@ -293,6 +312,8 @@ export async function POST(request: Request) {
         label: task.label,
         query,
         body: payload,
+        requestTimeoutMs: task.requestTimeoutMs,
+        retryOnFailure: task.retryOnFailure,
       });
 
       results.push({

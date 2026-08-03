@@ -179,7 +179,8 @@ export async function runMlSingleStageJob(config: MlJobConfig): Promise<{
     let errorCode = raw?.code || raw?.error_code || primaryError?.code || null;
     let isDomainLockConflict = res.status === 409 && errorCode === 'domain_lock_conflict';
 
-    for (let retry = 1; isDomainLockConflict && retry <= DOMAIN_LOCK_RETRY_ATTEMPTS; retry++) {
+    const lockRetryAttempts = config.retryOnFailure ? 0 : DOMAIN_LOCK_RETRY_ATTEMPTS;
+    for (let retry = 1; isDomainLockConflict && retry <= lockRetryAttempts; retry++) {
       logs.push(eventLog('job_stage_done', 'Domínio ocupado; aguardando para repetir a etapa', {
         stage: tipo,
         event_type: 'job_domain_lock_retry',

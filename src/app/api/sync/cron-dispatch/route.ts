@@ -285,6 +285,8 @@ async function runScheduledTask(params: {
   label: string;
   query?: Record<string, string | number | boolean | null | undefined>;
   body?: Record<string, any>;
+  requestTimeoutMs?: number;
+  retryOnFailure?: boolean;
 }) {
   try {
     const result = await runMlSingleStageJob({
@@ -294,6 +296,8 @@ async function runScheduledTask(params: {
       label: params.label,
       query: params.query,
       body: params.body,
+      requestTimeoutMs: params.requestTimeoutMs,
+      retryOnFailure: params.retryOnFailure,
     });
     return { ok: true, result };
   } catch (err: any) {
@@ -430,13 +434,16 @@ export async function POST(request: Request) {
       .from('jobs')
       .select('id, tipo, status, created_at, finished_at, log')
       .eq('tipo', task.jobTipo)
-      .in('status', ['pendente', 'rodando'])
+      .in('status', ['pendente', 'rodando', 'on_hold'])
       .order('created_at', { ascending: false })
       .limit(1)
       .maybeSingle();
 
+    let resumableJobId: string | null = null;
     if (running?.id) {
-      if (isJobStale(running, DEFAULT_STALE_JOB_THRESHOLD_MINUTES)) {
+      if (running.status === 'on_hold') {
+        resumableJobId = running.id;
+      } else if (isJobStale(running, DEFAULT_STALE_JOB_THRESHOLD_MINUTES)) {
         await markJobAsStale(running as any);
         results.push({
           task: task.key,
@@ -472,7 +479,7 @@ export async function POST(request: Request) {
         : 0;
 
     const lastFinished = recent.find((j: any) => Boolean(j.finished_at));
-    if (lastFinished?.finished_at) {
+    if (!resumableJobId && lastFinished?.finished_at) {
       const lastMs = new Date(lastFinished.finished_at).getTime();
       const nextDueMs = lastMs + intervalMs + backoffMinutes * 60 * 1000;
       if (Date.now() < nextDueMs) {
@@ -520,28 +527,32 @@ export async function POST(request: Request) {
       },
     ];
 
-    const { data: insertedJob, error: insertError } = await serviceClient
-      .from('jobs')
-      .insert({
-        tipo: task.jobTipo,
-        status: 'pendente',
-        progresso: 0,
-        total: 1,
-        processados: 0,
-        log: initialLog,
-        cancelado: false,
-        created_by: null,
-      })
-      .select('id')
-      .single();
+    let jobId = resumableJobId;
+    if (!jobId) {
+      const { data: insertedJob, error: insertError } = await serviceClient
+        .from('jobs')
+        .insert({
+          tipo: task.jobTipo,
+          status: 'pendente',
+          progresso: 0,
+          total: 1,
+          processados: 0,
+          log: initialLog,
+          cancelado: false,
+          created_by: null,
+        })
+        .select('id')
+        .single();
 
-    if (insertError || !insertedJob?.id) {
-      results.push({
-        task: task.key,
-        action: 'insert_error',
-        error: insertError?.message || 'Falha ao criar job',
-      });
-      continue;
+      if (insertError || !insertedJob?.id) {
+        results.push({
+          task: task.key,
+          action: 'insert_error',
+          error: insertError?.message || 'Falha ao criar job',
+        });
+        continue;
+      }
+      jobId = insertedJob.id;
     }
 
     const body = {
@@ -554,18 +565,26 @@ export async function POST(request: Request) {
 
     if (task.runMode === 'inline') {
       const runResult = await runScheduledTask({
-        jobId: insertedJob.id,
+        jobId,
         tipo: task.jobTipo,
         path: task.path,
         label: task.label,
         query,
         body,
+        requestTimeoutMs: task.requestTimeoutMs,
+        retryOnFailure: task.retryOnFailure,
       });
+
+      const deferred = runResult.ok && runResult.result?.status === 'on_hold';
 
       results.push({
         task: task.key,
-        action: runResult.ok ? 'completed_inline' : 'failed_inline',
-        jobId: insertedJob.id,
+        action: deferred
+          ? 'deferred_inline'
+          : runResult.ok
+            ? (resumableJobId ? 'resumed_inline' : 'completed_inline')
+            : 'failed_inline',
+        jobId,
         status: runResult.ok ? runResult.result?.status : 'erro',
         error: runResult.ok ? null : runResult.error,
         interval_minutes: intervalMinutes,
@@ -580,19 +599,21 @@ export async function POST(request: Request) {
 
     setTimeout(() => {
       void runScheduledTask({
-        jobId: insertedJob.id,
+        jobId,
         tipo: task.jobTipo,
         path: task.path,
         label: task.label,
         query,
         body,
+        requestTimeoutMs: task.requestTimeoutMs,
+        retryOnFailure: task.retryOnFailure,
       });
     }, 0);
 
     results.push({
       task: task.key,
-      action: 'dispatched_background',
-      jobId: insertedJob.id,
+      action: resumableJobId ? 'resumed_background' : 'dispatched_background',
+      jobId,
       interval_minutes: intervalMinutes,
       backoff_minutes: backoffMinutes,
       offset,

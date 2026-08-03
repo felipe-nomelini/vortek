@@ -190,7 +190,7 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json().catch(() => ({}));
-  const limit = Math.min(50, parsePositiveInt(body?.limit, 5));
+  const limit = Math.min(20, parsePositiveInt(body?.limit, 5));
   const seedFromProducts = Boolean(body?.seedFromProducts);
   const targetOutboxId = String(body?.outboxId || '').trim();
 

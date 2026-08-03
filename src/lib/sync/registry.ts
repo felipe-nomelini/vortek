@@ -34,6 +34,8 @@ export interface SyncTaskDefinition {
   usesCursor?: boolean;
   defaultBody?: Record<string, unknown>;
   runMode?: 'background' | 'inline';
+  requestTimeoutMs?: number;
+  retryOnFailure?: boolean;
 }
 
 export const SYNC_TASKS: SyncTaskDefinition[] = [
@@ -100,6 +102,8 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     schedule: { businessMinutes: 2, offHoursMinutes: 2 },
     defaultBody: { windowDays: 2 },
     runMode: 'inline',
+    requestTimeoutMs: 180_000,
+    retryOnFailure: true,
   },
   {
     key: 'sync_ml_orders_ingest',
@@ -144,8 +148,10 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'anuncios:ml_push',
     lockTtlSeconds: 20 * 60,
     kind: 'ml',
-    defaultBody: { limit: 50 },
+    defaultBody: { limit: 20 },
     runMode: 'inline',
+    requestTimeoutMs: 180_000,
+    retryOnFailure: true,
   },
   {
     key: 'sync_reconcile_fiscal',
