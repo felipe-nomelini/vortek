@@ -18,6 +18,7 @@ import {
 } from '@/lib/estoque-interno';
 import { detachDeletedMlListing, isMlListingDeleted } from '@/lib/ml/listing-deletion';
 import { isMlOrderPaid } from '@/lib/ml/order-sale-alert';
+import { resolveWebhookOrderSituation } from '@/lib/ml/webhook-order-stub';
 import {
   ML_ORDER_HYDRATION_JOB_TYPE,
   normalizeMlOrderHydrationKey,
@@ -55,9 +56,10 @@ function buildWebhookStubPayload(order: any, existing: any) {
     contato_nome: order.buyer?.nickname || existing?.contato_nome || 'Desconhecido',
     contato_documento: String(order.buyer?.identification?.number || existing?.contato_documento || ''),
     total: order.total_amount || existing?.total || 0,
-    situacao: order.status === 'cancelled'
-      ? 'cancelado'
-      : existing?.situacao || (order.status === 'paid' ? 'aberto' : 'atendido') as any,
+    situacao: resolveWebhookOrderSituation({
+      orderStatus: order.status,
+      existingSituation: existing?.situacao,
+    }),
     ml_order_id: String(order.id || ''),
     ml_pack_id: order.pack_id ? String(order.pack_id) : null,
     ...(needsHydration
@@ -381,7 +383,7 @@ export async function POST(request: Request) {
       const { data: existingPedido } = mlOrderId
         ? await serviceClient
             .from('pedidos')
-            .select('id,contato_nome,contato_documento,total,snapshot_incompleto,snapshot_pendencias,sincronizado_em,ml_pack_id')
+            .select('id,contato_nome,contato_documento,total,situacao,snapshot_incompleto,snapshot_pendencias,sincronizado_em,ml_pack_id')
             .eq('ml_order_id', mlOrderId)
             .maybeSingle()
         : { data: null };
