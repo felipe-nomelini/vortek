@@ -21,8 +21,9 @@ function parseFailedShipments(text: string): Array<Record<string, unknown>> {
 
 /**
  * Respeita o contrato de erro por shipment do Mercado Livre.
- * `invoice_pending` é intermediário mesmo quando `shipment_labels` retorna
- * `retry: false`; a etiqueta só fica disponível em `ready_to_print`.
+ * `invoice_pending` e `waiting_for_carrier_authorization` são intermediários
+ * mesmo quando `shipment_labels` retorna `retry: false`; a etiqueta só fica
+ * disponível em `ready_to_print`.
  */
 export function classifyMlLabelHttpFailure(
   status: number,
@@ -44,6 +45,9 @@ export function classifyMlLabelHttpFailure(
     || lowered.includes('not printable by caller');
   const buffered = lowered.includes('buffered');
   const invoicePending = lowered.includes('invoice_pending');
+  const waitingForCarrierAuthorization = lowered.includes(
+    'waiting_for_carrier_authorization',
+  );
   const notPrintableStatus =
     lowered.includes('not_printable_status')
     || lowered.includes('shplab0200');
@@ -53,18 +57,23 @@ export function classifyMlLabelHttpFailure(
   const temporaryNotPrintable =
     notPrintableStatus
     && !delivered
-    && (invoicePending || (!explicitNoRetry && explicitRetry));
+    && (
+      invoicePending
+      || waitingForCarrierAuthorization
+      || (!explicitNoRetry && explicitRetry)
+    );
 
   return {
     reason: buffered
       ? 'buffered'
-      : invoicePending || temporaryNotPrintable
+      : invoicePending || waitingForCarrierAuthorization || temporaryNotPrintable
         ? 'not_ready'
         : 'http_error',
     retryable:
       !invalidCaller
       && !delivered
       && (invoicePending
+        || waitingForCarrierAuthorization
         || (!explicitNoRetry && (buffered || temporaryNotPrintable || retryableStatus))),
     delivered,
     invalidCaller,

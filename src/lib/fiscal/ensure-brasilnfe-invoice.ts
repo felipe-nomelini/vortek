@@ -19,6 +19,7 @@ import {
 } from "@/services/fiscal-provider";
 import { ensureDanfeStoredForPedido } from "@/lib/fiscal/danfe-storage";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
+import { ensureRecipientIeFromSefaz } from "@/services/fiscal-recipient-ie";
 import { resolveBrasilNfeInternalIdentifier } from "@/lib/fiscal/brasil-nfe-identifier";
 
 const UF_CODES = new Set([
@@ -466,7 +467,7 @@ export async function ensureBrasilNfeInvoice(input: {
   const { data: pedido } = await client
     .from("pedidos")
     .select(
-      "id,numero,total,ml_order_id,ml_shipment_id,billing_nome,billing_documento,billing_ie,billing_endereco,snapshot_incompleto,nfe_xml,nfe_status,nfe_provider,nfe_chave,nfe_external_id,nfe_danfe_url,nota_fiscal_numero,nota_fiscal_emitida,nfe_protocolo,nfe_cfop,totais_snapshot,pedido_itens(*)",
+      "id,numero,total,ml_order_id,ml_pack_id,ml_shipment_id,billing_nome,billing_documento,billing_ie,billing_endereco,snapshot_incompleto,snapshot_pendencias,nfe_xml,nfe_status,nfe_provider,nfe_chave,nfe_external_id,nfe_danfe_url,nota_fiscal_numero,nota_fiscal_emitida,nfe_protocolo,nfe_cfop,totais_snapshot,pedido_itens(*)",
     )
     .eq("id", input.pedidoId)
     .maybeSingle();
@@ -779,8 +780,47 @@ export async function ensureBrasilNfeInvoice(input: {
     )
     .eq("pedido_id", input.pedidoId);
 
+  let pedidoForBuild: any = pedido;
+  const documentoDestinatario = normalizeDocument(
+    String((pedido as any).billing_documento || ""),
+  );
+  const enderecoDestinatario = (pedido as any).billing_endereco || {};
+  const ufDestinatario = normalizeUf(enderecoDestinatario.state_id);
+  if (
+    !(pedido as any).snapshot_incompleto &&
+    documentoDestinatario.length === 14 &&
+    !String((pedido as any).billing_ie || "").trim() &&
+    ufDestinatario
+  ) {
+    const ieResolution = await ensureRecipientIeFromSefaz({
+      client,
+      orders: [
+        {
+          id: String((pedido as any).id),
+          billing_endereco: enderecoDestinatario,
+          snapshot_pendencias: (pedido as any).snapshot_pendencias,
+        },
+      ],
+      documento: documentoDestinatario,
+      uf: ufDestinatario,
+      billingIe: (pedido as any).billing_ie,
+      mlOrderId,
+      mlPackId: String((pedido as any).ml_pack_id || "") || null,
+    });
+    if (ieResolution.resolvedFromSefaz) {
+      pedidoForBuild = {
+        ...(pedido as any),
+        billing_ie: ieResolution.billingIe,
+        billing_endereco: {
+          ...enderecoDestinatario,
+          ie_policy_resolved: "contribuinte",
+        },
+      };
+    }
+  }
+
   const built = buildPayloadFromSnapshot(
-    pedido,
+    pedidoForBuild,
     itens || [],
     empresa || null,
     input.identifierInternoOverride || null,

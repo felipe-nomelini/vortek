@@ -22,6 +22,7 @@ import {
 } from "@/services/integration";
 import { createServiceClient } from "@/lib/supabase";
 import { registrarEventoNfAuditoria } from "@/services/nf-auditoria";
+import { ensureRecipientIeFromSefaz } from "@/services/fiscal-recipient-ie";
 import {
   buscarNotaBrasilNfePorIdentificadorInterno,
   getFiscalProvider,
@@ -1327,7 +1328,7 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
       client
         .from("pedidos")
         .select(
-          "id,numero,total,frete,ml_shipment_id,billing_nome,billing_documento,billing_ie,billing_tipo_pessoa,billing_endereco,pagamento_resumo,totais_snapshot,snapshot_incompleto",
+          "id,numero,ml_order_id,ml_pack_id,total,frete,ml_shipment_id,billing_nome,billing_documento,billing_ie,billing_tipo_pessoa,billing_endereco,pagamento_resumo,totais_snapshot,snapshot_incompleto,snapshot_pendencias",
         )
         .in("id", pedidoIds),
       client
@@ -1415,8 +1416,25 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
   const addr = (pedido as any).billing_endereco || {};
   const destCity = String(addr.city_name || "").trim();
   const destZip = String(addr.zip_code || "").replace(/\D/g, "");
-  const billingIe = String((pedido as any).billing_ie || "").trim();
+  const destUf = normalizeUf(addr.state_id);
+  let billingIe = String((pedido as any).billing_ie || "").trim();
   const isCnpjDest = doc.length === 14;
+  if (isCnpjDest && !billingIe && destUf) {
+    const ieResolution = await ensureRecipientIeFromSefaz({
+      client,
+      orders: (pedidos || []).map((row: any) => ({
+        id: String(row.id),
+        billing_endereco: row.billing_endereco || null,
+        snapshot_pendencias: row.snapshot_pendencias,
+      })),
+      documento: doc,
+      uf: destUf,
+      billingIe,
+      mlOrderId: String((pedido as any).ml_order_id || (pedido as any).numero || "") || null,
+      mlPackId: String((pedido as any).ml_pack_id || "") || null,
+    });
+    billingIe = ieResolution.billingIe;
+  }
   const taxpayerTypeMlRaw = extractTaxpayerTypeFromBillingAddress(addr);
   const iePolicy = resolveDestIePolicy({
     documento: doc,
@@ -1438,10 +1456,6 @@ async function buildBrasilNfePayloadFromSnapshot(params: {
   }
   const emitUfDecision = resolveEmitUfFromEmpresa(empresa);
   const emitUf = emitUfDecision.emitUf;
-  const destUf =
-    String(addr.state_id || "")
-      .trim()
-      .toUpperCase() || null;
   const missingFields: string[] = [];
   if (!destUf) missingFields.push("UF");
   if (!destCity) missingFields.push("cidade");

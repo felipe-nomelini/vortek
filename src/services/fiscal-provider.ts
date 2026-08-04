@@ -1,4 +1,5 @@
 import { BrasilNFe } from "brasilnfe";
+import { z } from "zod";
 import { createServiceClient } from "@/lib/supabase";
 import { extractCfopsFromXml } from "@/lib/fiscal/cfop";
 import { selectBrasilNfeNoteByInternalIdentifier } from "@/lib/fiscal/brasil-nfe-identifier";
@@ -59,6 +60,29 @@ export interface BrasilNfeNotaByIdentifier {
   numeroProtocolo: string | null;
 }
 
+export interface BrasilNfeCadastroSefazResult {
+  ok: boolean;
+  active: boolean;
+  ie: string | null;
+  status: number | null;
+  situacao: number | null;
+  fonte: string | null;
+  regimeApuracao: string | null;
+  error?: string;
+}
+
+const brasilNfeCadastroSefazSchema = z
+  .object({
+    status: z.coerce.number().optional(),
+    situacao: z.coerce.number().optional(),
+    ie: z.string().nullish(),
+    ieUnica: z.string().nullish(),
+    ieAtual: z.string().nullish(),
+    fonte: z.string().nullish(),
+    regimeApuracao: z.string().nullish(),
+  })
+  .passthrough();
+
 export interface BrasilNfeDuplicateParseResult {
   isDuplicateIdentifier: boolean;
   identificadorInterno: string | null;
@@ -106,6 +130,80 @@ async function getBrasilNfeClient() {
   }
 
   return new BrasilNFe(token, userToken, baseUrl);
+}
+
+/**
+ * Consulta o Cadastro Centralizado de Contribuintes pela integração Brasil NFe.
+ * Usado para corrigir divergências entre o cadastro fiscal do ML e a SEFAZ.
+ */
+export async function consultarCadastroSefazBrasilNfe(params: {
+  uf: string;
+  documento: string;
+}): Promise<BrasilNfeCadastroSefazResult> {
+  const uf = String(params.uf || "").trim().toUpperCase();
+  const documento = String(params.documento || "").replace(/\D/g, "");
+  if (!/^[A-Z]{2}$/.test(uf) || !(documento.length === 11 || documento.length === 14)) {
+    return {
+      ok: false,
+      active: false,
+      ie: null,
+      status: null,
+      situacao: null,
+      fonte: null,
+      regimeApuracao: null,
+      error: "UF ou documento inválido para consulta cadastral na SEFAZ",
+    };
+  }
+
+  try {
+    const bnfe = await getBrasilNfeClient();
+    const raw = await withBrasilNfeDnsRetry(() =>
+      bnfe.consultas.consultarCadastroSefaz({ uf, cpfCnpjIe: documento }),
+    );
+    const parsed = brasilNfeCadastroSefazSchema.safeParse(raw);
+    if (!parsed.success) {
+      return {
+        ok: false,
+        active: false,
+        ie: null,
+        status: null,
+        situacao: null,
+        fonte: null,
+        regimeApuracao: null,
+        error: "Resposta inválida da consulta cadastral Brasil NFe/SEFAZ",
+      };
+    }
+
+    const data = parsed.data;
+    const ie = String(data.ieAtual || data.ieUnica || data.ie || "")
+      .replace(/\D/g, "") || null;
+    const status = Number.isFinite(Number(data.status)) ? Number(data.status) : null;
+    const situacao = Number.isFinite(Number(data.situacao))
+      ? Number(data.situacao)
+      : null;
+    const active = status === 1 && situacao === 1;
+
+    return {
+      ok: status === 1,
+      active,
+      ie: active ? ie : null,
+      status,
+      situacao,
+      fonte: String(data.fonte || "").trim() || null,
+      regimeApuracao: String(data.regimeApuracao || "").trim() || null,
+    };
+  } catch (err: any) {
+    return {
+      ok: false,
+      active: false,
+      ie: null,
+      status: null,
+      situacao: null,
+      fonte: null,
+      regimeApuracao: null,
+      error: err?.message || "Falha ao consultar cadastro do destinatário na SEFAZ",
+    };
+  }
 }
 
 function sleep(ms: number) {
