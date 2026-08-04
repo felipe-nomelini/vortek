@@ -25,6 +25,7 @@ import {
   TeamOutlined,
   TruckOutlined,
   FundProjectionScreenOutlined,
+  DollarOutlined,
 } from '@ant-design/icons';
 import { usePathname } from 'next/navigation';
 
@@ -41,7 +42,15 @@ const menuItems: MenuProps['items'] = [
   { key: '/produtos', icon: <ShoppingCartOutlined />, label: menuLink('/produtos', 'Produtos') },
   { key: '/estoque', icon: <AppstoreOutlined />, label: menuLink('/estoque', 'Estoque') },
   { key: '/clientes', icon: <TeamOutlined />, label: menuLink('/clientes', 'Clientes') },
-  { key: '/fornecedores', icon: <TruckOutlined />, label: menuLink('/fornecedores', 'Fornecedores') },
+  {
+    key: 'fornecedores-group',
+    icon: <TruckOutlined />,
+    label: 'Fornecedores',
+    children: [
+      { key: '/fornecedores/cadastros', icon: <TeamOutlined />, label: menuLink('/fornecedores/cadastros', 'Cadastros') },
+      { key: '/fornecedores/creditos', icon: <DollarOutlined />, label: menuLink('/fornecedores/creditos', 'Créditos') },
+    ],
+  },
   {
     key: 'pedidos-group',
     icon: <OrderedListOutlined />,
@@ -126,6 +135,7 @@ export default function Sidebar() {
         defaultOpenKeys={[
           ...(pathname.startsWith('/pedidos') || pathname.startsWith('/compras') ? ['pedidos-group'] : []),
           ...(pathname.startsWith('/catalogo') ? ['catalogo-group'] : []),
+          ...(pathname.startsWith('/fornecedores') ? ['fornecedores-group'] : []),
         ]}
         items={menuItems}
         style={{ background: 'transparent', borderRight: 0, marginTop: 8, flex: 1, overflowY: 'auto' }}

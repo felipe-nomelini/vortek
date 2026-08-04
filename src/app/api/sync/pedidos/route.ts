@@ -35,6 +35,7 @@ import {
   type MlShipmentCosts,
 } from '@/lib/ml/order-profit';
 import { isMlOrderPaid } from '@/lib/ml/order-sale-alert';
+import { createSupplierCancellationCreditCandidate } from '@/lib/supplier-credits';
 
 export const maxDuration = 300;
 
@@ -1576,6 +1577,11 @@ async function processOrder(params: {
         },
         statusResultante: 'success',
       });
+    }
+    try {
+      await createSupplierCancellationCreditCandidate(serviceClient, String(upsertedPedido.id), 'ml_sync');
+    } catch (creditError) {
+      console.error('[supplier-credits] Falha ao registrar cancelamento durante sincronização:', creditError);
     }
   }
 

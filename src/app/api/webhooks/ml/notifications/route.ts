@@ -19,6 +19,7 @@ import {
 import { detachDeletedMlListing, isMlListingDeleted } from '@/lib/ml/listing-deletion';
 import { isMlOrderPaid } from '@/lib/ml/order-sale-alert';
 import { resolveWebhookOrderSituation } from '@/lib/ml/webhook-order-stub';
+import { createSupplierCancellationCreditCandidate } from '@/lib/supplier-credits';
 import {
   ML_ORDER_HYDRATION_JOB_TYPE,
   normalizeMlOrderHydrationKey,
@@ -435,6 +436,11 @@ export async function POST(request: Request) {
               },
               statusResultante: 'success',
             });
+          }
+          try {
+            await createSupplierCancellationCreditCandidate(serviceClient, pedidoId, 'ml_webhook');
+          } catch (creditError) {
+            console.error('[supplier-credits] Falha ao registrar cancelamento recebido por webhook:', creditError);
           }
         }
         if (isMlOrderPaid(order)) {

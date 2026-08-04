@@ -1134,7 +1134,14 @@ export type Database = {
           notes: string | null
           created_by: string | null
           movement_key: string | null
+          status: string
+          source: string | null
+          pedido_id: string | null
+          ml_order_id: string | null
+          confirmed_at: string | null
+          confirmed_by: string | null
           created_at: string
+          updated_at: string
         }
         Insert: {
           id?: string
@@ -1147,7 +1154,14 @@ export type Database = {
           notes?: string | null
           created_by?: string | null
           movement_key?: string | null
+          status?: string
+          source?: string | null
+          pedido_id?: string | null
+          ml_order_id?: string | null
+          confirmed_at?: string | null
+          confirmed_by?: string | null
           created_at?: string
+          updated_at?: string
         }
         Update: {
           id?: string
@@ -1160,7 +1174,14 @@ export type Database = {
           notes?: string | null
           created_by?: string | null
           movement_key?: string | null
+          status?: string
+          source?: string | null
+          pedido_id?: string | null
+          ml_order_id?: string | null
+          confirmed_at?: string | null
+          confirmed_by?: string | null
           created_at?: string
+          updated_at?: string
         }
         Relationships: [
           {
@@ -1168,6 +1189,13 @@ export type Database = {
             columns: ["compra_id"]
             isOneToOne: false
             referencedRelation: "compras"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "supplier_balance_movements_pedido_id_fkey"
+            columns: ["pedido_id"]
+            isOneToOne: false
+            referencedRelation: "pedidos"
             referencedColumns: ["id"]
           },
         ]
