@@ -34,6 +34,17 @@ export function calculateBreakEvenPrice(params: {
   return round2((params.cost + params.shipping) / denominator);
 }
 
+export function calculateNetProfitAtPrice(params: {
+  price: number;
+  cost: number;
+  shipping: number;
+  mlFee: number;
+}): number {
+  const tax = params.price * TAX_RATE;
+  const mlFeeAmount = params.price * params.mlFee;
+  return round2(params.price - params.cost - params.shipping - tax - mlFeeAmount);
+}
+
 /**
  * Calcula preço sugerido usando estratégia Vortek atual.
  *

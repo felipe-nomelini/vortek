@@ -8,6 +8,8 @@ export interface Product {
   brand: string;
   fornecedor: string | null;
   stock: number;
+  supplierStock?: number;
+  internalStock?: number;
   cost: number;
   mlFee: number;
   mlShipping: number;

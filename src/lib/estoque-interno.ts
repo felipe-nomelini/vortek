@@ -4,6 +4,7 @@ import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
 import { fetchMLResult } from '@/services/integration';
 import { z } from 'zod';
+import { isModifiableMlListingStatus } from '@/lib/ml/operational-listing';
 
 type ItemEstoquePedido = {
   produtoId: string;
@@ -219,14 +220,41 @@ export async function enfileirarSyncMlEstoqueInterno(
   const estoqueDisponivel = Math.max(Number(produto.estoque || 0), saldoInterno);
   const { data: anuncios, error: anunciosError } = await db
     .from('anuncios_ml')
-    .select('ml_item_id')
+    .select('ml_item_id,status')
     .eq('produto_id', produto.id);
   if (anunciosError) throw new Error(anunciosError.message);
 
-  let mlItemIds = Array.from(new Set([
+  const candidateItemIds = Array.from(new Set([
     String(produto.ml_item_id || '').trim(),
     ...(anuncios || []).map((anuncio: any) => String(anuncio.ml_item_id || '').trim()),
   ].filter(Boolean)));
+  const { data: observedListings, error: observedListingsError } = candidateItemIds.length > 0
+    ? await db
+        .from('catalogo_ml_snapshot')
+        .select('ml_item_id,status')
+        .in('ml_item_id', candidateItemIds)
+    : { data: [], error: null };
+  if (observedListingsError) throw new Error(observedListingsError.message);
+
+  const observedStatusById = new Map<string, string>(
+    (observedListings || []).map((listing: any) => [
+      String(listing.ml_item_id || '').trim(),
+      String(listing.status || '').trim().toLowerCase(),
+    ]),
+  );
+  const localStatusById = new Map<string, string>(
+    (anuncios || []).map((listing: any) => [
+      String(listing.ml_item_id || '').trim(),
+      String(listing.status || '').trim().toLowerCase() === 'ativo' ? 'active' : 'paused',
+    ]),
+  );
+
+  let mlItemIds = candidateItemIds.filter((mlItemId) => {
+    const observedStatus = observedStatusById.get(mlItemId);
+    return observedStatus
+      ? isModifiableMlListingStatus(observedStatus)
+      : isModifiableMlListingStatus(localStatusById.get(mlItemId));
+  });
   if (observed?.mlItemId) {
     const targetItemId = String(observed.mlItemId).trim();
     mlItemIds = mlItemIds.filter((mlItemId) => mlItemId === targetItemId);
@@ -248,18 +276,20 @@ export async function enfileirarSyncMlEstoqueInterno(
   let semAlteracao = 0;
   let emProcessamento = 0;
   const observedStatusNormalized = String(observed?.status || '').trim().toLowerCase();
-  const desiredStatus = estoqueDisponivel <= 0
-    ? 'paused'
-    : observedStatusNormalized === 'paused'
-      ? 'paused'
-      : 'active';
   for (const mlItemId of mlItemIds) {
     if (skuBloqueado || bloqueados.has(mlItemId)) {
       bloqueadosManualmente += 1;
       continue;
     }
     const observedQuantity = Number(observed?.availableQuantity);
-    const observedStatus = observedStatusNormalized;
+    const observedStatus = observed?.mlItemId === mlItemId
+      ? observedStatusNormalized
+      : observedStatusById.get(mlItemId) || localStatusById.get(mlItemId) || '';
+    const desiredStatus = estoqueDisponivel <= 0
+      ? 'paused'
+      : observedStatus === 'paused'
+        ? 'paused'
+        : 'active';
     if (
       observed?.mlItemId === mlItemId
       && observed.availableQuantity !== null

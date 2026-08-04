@@ -8,7 +8,7 @@ type AnuncioRow = Database['public']['Tables']['anuncios_ml']['Row'];
 type AnuncioInsert = Database['public']['Tables']['anuncios_ml']['Insert'];
 type AnuncioUpdate = Database['public']['Tables']['anuncios_ml']['Update'];
 
-type ExistingAnuncioCandidate = Pick<AnuncioRow, 'id' | 'ml_item_id' | 'sku' | 'produto_id' | 'updated_at'>;
+type ExistingAnuncioCandidate = Pick<AnuncioRow, 'id' | 'ml_item_id' | 'sku' | 'produto_id' | 'catalogo' | 'updated_at'>;
 
 function toIsoNow() {
   return new Date().toISOString();
@@ -64,20 +64,23 @@ export async function persistSingleAnuncioBySku(
 
   const { data: bySku, error: bySkuError } = await (client
     .from('anuncios_ml')
-    .select('id, ml_item_id, sku, produto_id, updated_at')
+    .select('id, ml_item_id, sku, produto_id, catalogo, updated_at')
     .eq('sku', sku) as any);
   if (bySkuError) return { ok: false, error: bySkuError.message };
 
   const { data: byItemId, error: byItemIdError } = await (client
     .from('anuncios_ml')
-    .select('id, ml_item_id, sku, produto_id, updated_at')
+    .select('id, ml_item_id, sku, produto_id, catalogo, updated_at')
     .eq('ml_item_id', mlItemId) as any);
   if (byItemIdError) return { ok: false, error: byItemIdError.message };
 
   const candidates = uniqueCandidates([
     ...((byItemId || []) as ExistingAnuncioCandidate[]),
     ...((bySku || []) as ExistingAnuncioCandidate[]),
-  ]);
+  ]).filter((row) => (
+    normalizeText(row.ml_item_id) === mlItemId
+    || Boolean(row.catalogo) === Boolean(normalizedPayload.catalogo)
+  ));
 
   const canonical = candidates.find((row) => normalizeText(row.ml_item_id) === mlItemId)
     || candidates.find((row) => produtoId && normalizeText(row.produto_id) === produtoId)

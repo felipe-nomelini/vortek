@@ -9,7 +9,7 @@ import {
 } from 'antd';
 import { ArrowLeftOutlined, LoadingOutlined, SaveOutlined } from '@ant-design/icons';
 import { formatCurrency, currencyFormatter, currencyParser } from '@/lib/format';
-import { calculateSuggestedPrice } from '@/services/pricing';
+import { calculateNetProfitAtPrice, calculateSuggestedPrice } from '@/services/pricing';
 import type { Product, MLStatus } from '@/types/product';
 import type { Database } from '@/types/database';
 
@@ -39,20 +39,22 @@ type ProductSupplierOffer = Database['public']['Tables']['produto_fornecedor_ofe
   is_internal_stock?: boolean;
 };
 
-function mapDBtoProduct(item: ProdutoRow): Product {
+function mapDBtoProduct(item: ProdutoRow & Record<string, any>): Product {
   return {
     id: item.id,
     active: item.ativo !== false,
     sku: item.sku,
     name: item.nome,
     brand: item.marca || '',
-    fornecedor: item.fornecedor || null,
-    stock: item.estoque || 0,
+    fornecedor: item.fornecedor_operacional || item.fornecedor || null,
+    stock: Number(item.estoque_operacional ?? item.estoque ?? 0),
+    supplierStock: Number(item.estoque_fornecedor ?? item.estoque ?? 0),
+    internalStock: Number(item.estoque_interno ?? 0),
     cost: item.custo || 0,
     mlFee: item.ml_fee || 0.15,
     mlShipping: Number(item.ml_shipping ?? 0),
     customPrice: item.custom_price,
-    mlStatus: item.ml_status || 'sem_anuncio',
+    mlStatus: item.ml_status_operacional || item.ml_status || 'sem_anuncio',
     netWeight: item.peso_liq || 0,
     grossWeight: item.peso_bruto || 0,
     width: item.largura || 0,
@@ -165,7 +167,7 @@ export default function ProductDetailPage() {
           nome: product.name,
           marca: product.brand,
           gtin: product.gtin,
-          estoque: product.stock,
+          estoque: product.supplierStock ?? product.stock,
           custo: product.cost,
           ml_shipping: product.mlShipping,
           ml_fee: product.mlFee,
@@ -186,11 +188,7 @@ export default function ProductDetailPage() {
         throw new Error(json.error || 'Erro ao salvar');
       }
 
-      const json = await res.json();
-      const mapped = mapDBtoProduct(json.data);
-      setProduct(mapped);
-      setOriginal(mapped);
-      setHasChanges(false);
+      await fetchProduct();
       message.success('Produto salvo com sucesso');
     } catch (err: any) {
       message.error(err.message || 'Erro ao salvar produto');
@@ -290,7 +288,12 @@ export default function ProductDetailPage() {
     mlFee: product.mlFee,
   }).suggestedPrice;
 
-  const profit = displayPrice - product.cost - product.mlFee * displayPrice - product.mlShipping;
+  const profit = calculateNetProfitAtPrice({
+    price: displayPrice,
+    cost: product.cost,
+    shipping: product.mlShipping,
+    mlFee: product.mlFee,
+  });
 
   const categoryItems = product.category
     ? product.category.split(' > ').map((name, i, arr) => ({
@@ -492,14 +495,20 @@ export default function ProductDetailPage() {
                 </div>
               </Col>
               <Col span={12}>
-                <div style={labelStyle}>Estoque</div>
+                <div style={labelStyle}>Estoque operacional</div>
                 <InputNumber
                   size="small"
                   value={product.stock}
-                  onChange={v => patch({ stock: v ?? 0 })}
+                  onChange={v => patch({ stock: v ?? 0, supplierStock: v ?? 0 })}
                   style={{ ...inputStyle, width: '100%', marginTop: 4 }}
                   min={0}
+                  disabled={Number(product.internalStock || 0) > 0}
                 />
+                {Number(product.internalStock || 0) > 0 ? (
+                  <Text type="secondary" style={{ display: 'block', fontSize: 12, marginTop: 6 }}>
+                    Interno: {product.internalStock} · Fornecedor: {product.supplierStock || 0}
+                  </Text>
+                ) : null}
               </Col>
             </Row>
           </Card>

@@ -10,6 +10,9 @@ import { detachDeletedMlListing, isMlListingDeleted } from '@/lib/ml/listing-del
 import { getConfiguredMlShippingCost } from '@/lib/ml/shipping-cost';
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
+import { persistSingleAnuncioBySku } from '@/lib/ml/persist-single-anuncio';
+import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
+import { syncProdutoOperationalListing } from '@/lib/ml/operational-listing';
 
 export const maxDuration = 300;
 
@@ -926,9 +929,53 @@ export async function POST(request: Request) {
           message: existingAnunciosError.message,
         });
       } else {
-        const existingByItemId = new Map<string, any>(
+        let existingByItemId = new Map<string, any>(
           (existingAnuncios || []).map((row: any) => [String(row.ml_item_id), row]),
         );
+
+        const missingSnapshots = snapshots.filter((snapshot) => (
+          snapshot.produto_id
+          && snapshot.sku_local
+          && !existingByItemId.has(String(snapshot.ml_item_id))
+        ));
+        await runPool(missingSnapshots, CONCURRENCY, async (snapshot) => {
+          const persistResult = await persistSingleAnuncioBySku(serviceClient, {
+            ml_item_id: String(snapshot.ml_item_id),
+            produto_id: String(snapshot.produto_id),
+            sku: String(snapshot.sku_local),
+            titulo: String(snapshot.title || snapshot.sku_local),
+            preco_ml: Number(snapshot.price || 0),
+            status: mapMlStatusToLocalStatus(snapshot.status),
+            catalogo: snapshot.catalog_listing === true,
+            thumbnail: snapshot.thumbnail || null,
+            permalink: snapshot.permalink || null,
+            updated_at: new Date().toISOString(),
+          });
+          if (!persistResult.ok) {
+            errors.push({
+              code: 'anuncios_ml_missing_persist_failed',
+              message: persistResult.error,
+              context: { mlItemId: snapshot.ml_item_id, produtoId: snapshot.produto_id },
+            });
+          }
+        });
+
+        if (missingSnapshots.length > 0) {
+          const { data: refreshedAnuncios, error: refreshedAnunciosError } = await (serviceClient
+            .from('anuncios_ml')
+            .select('id, produto_id, ml_item_id, preco_ml, status, titulo, permalink, thumbnail, vendidos, visitas, qualidade, qualidade_info')
+            .in('ml_item_id', snapshots.map((snapshot) => String(snapshot.ml_item_id))) as any);
+          if (refreshedAnunciosError) {
+            errors.push({
+              code: 'anuncios_ml_refreshed_query_failed',
+              message: refreshedAnunciosError.message,
+            });
+          } else {
+            existingByItemId = new Map<string, any>(
+              (refreshedAnuncios || []).map((row: any) => [String(row.ml_item_id), row]),
+            );
+          }
+        }
 
         await runPool(snapshots, CONCURRENCY, async (snapshot) => {
           const existing = existingByItemId.get(String(snapshot.ml_item_id));
@@ -1002,6 +1049,23 @@ export async function POST(request: Request) {
               code: 'anuncios_ml_reconcile_failed',
               message: reconcileResult.error,
               context: { mlItemId: snapshot.ml_item_id, source: 'observed_sync' },
+            });
+          }
+        });
+
+        const affectedProductIds = Array.from(new Set<string>(
+          snapshots
+            .map((snapshot) => String(snapshot.produto_id || '').trim())
+            .filter(Boolean),
+        ));
+        await runPool(affectedProductIds, CONCURRENCY, async (produtoId) => {
+          try {
+            await syncProdutoOperationalListing(serviceClient, produtoId);
+          } catch (error: any) {
+            errors.push({
+              code: 'produto_operational_listing_sync_failed',
+              message: error?.message || 'Falha ao selecionar anúncio operacional',
+              context: { produtoId },
             });
           }
         });

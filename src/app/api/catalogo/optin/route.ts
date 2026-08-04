@@ -5,6 +5,7 @@ import { buildCatalogEnrichment, extractCatalogCandidateSku, extractCatalogGtin 
 import { persistSingleAnuncioBySku } from '@/lib/ml/persist-single-anuncio';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 import { catalogCompatibilityMismatches } from '@/lib/ml-catalog-compatibility';
+import { syncProdutoOperationalListing } from '@/lib/ml/operational-listing';
 
 function isEligibilityAllowed(status: string): boolean {
   const normalized = String(status || '').toUpperCase();
@@ -139,17 +140,7 @@ async function syncCatalogOptinLocally(params: {
   });
   if (!anuncioResult.ok) warnings.push(`Falha ao salvar anúncio de catálogo: ${anuncioResult.error}`);
 
-  if (produtoId) {
-    const { error: productError } = await service
-      .from('produtos')
-      .update({
-        ml_item_id: catalogItemId,
-        ml_status: statusLocal,
-        updated_at: new Date().toISOString(),
-      } as any)
-      .eq('id', produtoId);
-    if (productError) warnings.push(`Falha ao atualizar produto principal: ${productError.message}`);
-  } else {
+  if (!produtoId) {
     warnings.push('Produto local não encontrado para vincular o anúncio de catálogo.');
   }
 
@@ -192,6 +183,13 @@ async function syncCatalogOptinLocally(params: {
       synced_at: new Date().toISOString(),
     }, { onConflict: 'ml_item_id' });
   if (snapshotError) warnings.push(`Falha ao salvar snapshot de catálogo: ${snapshotError.message}`);
+  if (produtoId && !snapshotError) {
+    try {
+      await syncProdutoOperationalListing(service, produtoId);
+    } catch (error: any) {
+      warnings.push(`Falha ao atualizar anúncio operacional do produto: ${error?.message || error}`);
+    }
+  }
 
   return { ok: warnings.length === 0, warnings, produtoId, sku };
 }

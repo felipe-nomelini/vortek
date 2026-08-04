@@ -2,6 +2,11 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { assertVortekSku } from '@/lib/product-master-sku';
+import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
+import {
+  operationalMlStatus,
+  selectOperationalMlListing,
+} from '@/lib/ml/operational-listing';
 
 export async function GET(
   _req: Request,
@@ -22,18 +27,33 @@ export async function GET(
       );
     }
 
-    let resolvedData: any = data;
-    const mlItemId = String(data?.ml_item_id || '').trim();
-    if (mlItemId) {
-      const { data: anuncio, error: anuncioError } = await supabase
-        .from('anuncios_ml')
-        .select('status')
-        .eq('ml_item_id', mlItemId)
-        .maybeSingle();
-      if (!anuncioError && anuncio?.status) {
-        resolvedData = { ...data, ml_status: anuncio.status };
-      }
-    }
+    const [movementsResult, listingsResult] = await Promise.all([
+      (supabase as any)
+        .from('estoque_interno_movimentacoes')
+        .select('tipo,quantidade,situacao_estoque,estornada_em')
+        .eq('produto_id', data.id),
+      supabase
+        .from('catalogo_ml_snapshot')
+        .select('ml_item_id,status,catalog_listing')
+        .eq('produto_id', data.id),
+    ]);
+    if (movementsResult.error) throw new Error(movementsResult.error.message);
+    if (listingsResult.error) throw new Error(listingsResult.error.message);
+
+    const internalStock = Math.max(0, calcularSaldoEstoqueInterno(movementsResult.data || []));
+    const supplierStock = Number(data.estoque || 0);
+    const operationalListing = selectOperationalMlListing(listingsResult.data || []);
+    const resolvedData: any = {
+      ...data,
+      estoque_operacional: Math.max(supplierStock, internalStock),
+      estoque_fornecedor: supplierStock,
+      estoque_interno: internalStock,
+      fornecedor_operacional: internalStock > 0 ? 'Estoque Interno' : data.fornecedor,
+      ml_item_id_operacional: operationalListing?.ml_item_id || data.ml_item_id,
+      ml_status_operacional: operationalListing
+        ? operationalMlStatus(operationalListing)
+        : data.ml_status,
+    };
 
     return NextResponse.json({ data: resolvedData });
   } catch (err: any) {

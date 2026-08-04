@@ -6,7 +6,7 @@ import {
 } from 'antd';
 import type { TableProps } from 'antd';
 import { SearchOutlined, LoadingOutlined, EllipsisOutlined, EditOutlined, PlusOutlined, StarOutlined, LinkOutlined, FilePdfOutlined } from '@ant-design/icons';
-import { calculateSuggestedPrice } from '@/services/pricing';
+import { calculateNetProfitAtPrice, calculateSuggestedPrice } from '@/services/pricing';
 import { formatCurrency, formatPercent } from '@/lib/format';
 import { useRouter } from 'next/navigation';
 import type { Product, MLStatus } from '@/types/product';
@@ -270,9 +270,12 @@ function computeDerived(item: Product | ProductMasterListItem): { displayPrice: 
       return { displayPrice, profit: null };
     }
 
-    const tax = displayPrice * 0.04;
-    const mlFeeAmount = displayPrice * product.mlFee;
-    const netProfit = displayPrice - cost - product.mlShipping - tax - mlFeeAmount;
+    const netProfit = calculateNetProfitAtPrice({
+      price: displayPrice,
+      cost,
+      shipping: product.mlShipping,
+      mlFee: product.mlFee,
+    });
 
     return { displayPrice, profit: Math.round(netProfit * 100) / 100 };
   } catch {
