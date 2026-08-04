@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-08-04T03:27:43.664Z",
+  "apply": false,
+  "total": 1,
+  "results": [
+    {
+      "sku": "VTK012425",
+      "itemId": "MLB7322675096",
+      "statusBefore": "active",
+      "soldQuantity": 0,
+      "action": "would_delete"
+    }
+  ]
+}

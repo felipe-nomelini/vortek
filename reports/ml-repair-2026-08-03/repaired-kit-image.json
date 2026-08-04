@@ -1,0 +1,16 @@
+{
+  "apply": true,
+  "sku": "VTK000427",
+  "itemId": "MLB4988488561",
+  "publicUrl": "https://supabase.vortek.shop/storage/v1/object/public/product-images/catalog/hayamax/VTK000427/01-kit-12.png",
+  "statusBefore": "under_review",
+  "statusAfter": "active",
+  "subStatusAfter": [],
+  "pictureIds": [
+    "911253-MLB114211629476_082026"
+  ],
+  "pictureErrors": [],
+  "moderation": {
+    "Status": 404
+  }
+}

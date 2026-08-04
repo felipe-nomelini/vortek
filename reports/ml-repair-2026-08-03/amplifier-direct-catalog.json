@@ -1,0 +1,24 @@
+{
+  "apply": true,
+  "generatedAt": "2026-08-04T03:43:07.974Z",
+  "results": [
+    {
+      "sku": "VTK012415",
+      "oldItemId": "MLB7322678858",
+      "catalogItemId": "MLB4988648611",
+      "catalogProductId": "MLB41026358",
+      "status": "active",
+      "price": 399.33,
+      "stock": 13
+    },
+    {
+      "sku": "VTK012425",
+      "oldItemId": "MLB7322691208",
+      "catalogItemId": "MLB7322840598",
+      "catalogProductId": "MLB27510983",
+      "status": "active",
+      "price": 418.62,
+      "stock": 12
+    }
+  ]
+}

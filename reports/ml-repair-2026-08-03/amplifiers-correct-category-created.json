@@ -1,0 +1,64 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-repair-2026-08-03/replacements-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-replacements-2026-08-03",
+  "selected": 2,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "a25d0276-fca4-4f4e-b49e-3668a69d694f",
+      "sku": "VTK012415",
+      "category": {
+        "id": "MLB7892",
+        "nome": "MLB7892",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7322678858",
+        "title": "Cabeçote Autoamplificado Voxstorm 15 W Rms - Psg 160 Usb 15 W",
+        "price": 399.33,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7322678858-cabecote-autoamplificado-voxstorm-15-w-rms-psg-160-usb-15-w-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço ajustado automaticamente para R$ 400.58 para evitar frete/taxa desatualizados.",
+        "Voltagem: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 400.58 → R$ 399.33."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9ab9b763-9390-4aea-836a-cb716ca31608",
+      "sku": "VTK012425",
+      "category": {
+        "id": "MLB7892",
+        "nome": "MLB7892",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7322691208",
+        "title": "Cabeçote Autoamplificado Voxstorm 40 W Rms - Psg 180 40 W",
+        "price": 414,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7322691208-cabecote-autoamplificado-voxstorm-40-w-rms-psg-180-40-w-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço ajustado automaticamente para R$ 414.00 para evitar frete/taxa desatualizados.",
+        "Voltagem: valor removido porque não há evidência local/DSLite confiável para atributo crítico.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço final calculado, mas atualização ficou pendente: com.mercadolibre.kvsclient.exceptions.KvsException: FURY_MULTI_BATCH_KVSAPI_ERROR::Could not multi batch from KVS API: {\"error\":\"Conflict\",\"code\":\"conflict.error\",\"status\":409}"
+      ]
+    }
+  ],
+  "failed": []
+}

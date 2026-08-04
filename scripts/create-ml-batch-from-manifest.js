@@ -352,6 +352,27 @@ function applyKitIdentifierPolicy(attrs, item) {
   ];
 }
 
+function applyExplicitEmptyIdentifierPolicy(attrs, item) {
+  const reason = item.preflight?.emptyGtinReason;
+  if (item.preflight?.omitGtin !== true || !reason?.value_id || !reason?.value_name) {
+    return attrs;
+  }
+  return [
+    ...(attrs || []).filter(
+      (attribute) =>
+        !['GTIN', 'EMPTY_GTIN_REASON'].includes(
+          String(attribute?.id || '').toUpperCase(),
+        ),
+    ),
+    {
+      id: 'EMPTY_GTIN_REASON',
+      name: 'Motivo de GTIN vazio',
+      value_id: String(reason.value_id),
+      value_name: String(reason.value_name),
+    },
+  ];
+}
+
 function fillKnownBatteryAttributes(attrs, productName) {
   const text = normalizePredictionText(productName)
     .toLowerCase()
@@ -655,6 +676,12 @@ async function createOne(item) {
           (attribute) => String(attribute?.id || '').toUpperCase() !== 'GTIN',
         );
         current.optional = applyKitIdentifierPolicy(current.optional, item);
+      }
+      if (item.preflight?.omitGtin === true) {
+        current.required = (current.required || []).filter(
+          (attribute) => String(attribute?.id || '').toUpperCase() !== 'GTIN',
+        );
+        current.optional = applyExplicitEmptyIdentifierPolicy(current.optional, item);
       }
       current.missing = missingRequired(current.required, {
         allowEmptyGtinForKit: ALLOW_EMPTY_GTIN_FOR_KITS,

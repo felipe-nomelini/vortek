@@ -1,0 +1,95 @@
+{
+  "generated_at": "2026-08-04T03:33:56.401Z",
+  "total": 2,
+  "counts": {
+    "success": 2
+  },
+  "results": [
+    {
+      "ml_item_id": "MLB7322678858",
+      "sku": "VTK012415",
+      "status": "success",
+      "title_before": "Cabeçote Autoamplificado Voxstorm 15 W Rms - Psg 160 Usb 15 W",
+      "title_after": "Cabeçote Amplificador Voxstorm Psg160 Usb Bluetooth 15w 15 W 127/220v",
+      "family_name_before": "Cabeçote Autoamplificado Voxstorm 15 W Rms - Psg 160 Usb",
+      "family_name_after": "Cabeçote Amplificador Voxstorm Psg160 Usb Bluetooth 15w",
+      "sku_after": "VTK012415",
+      "category_after": "MLB7892",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB7322691208",
+      "sku": "VTK012425",
+      "status": "success",
+      "title_before": "Cabeçote Autoamplificado Voxstorm 40 W Rms - Psg 180 40 W",
+      "title_after": "Cabeçote Amplificador Voxstorm Psg180 40w Bivolt 40 W 127/220v",
+      "family_name_before": "Cabeçote Autoamplificado Voxstorm 40 W Rms - Psg 180",
+      "family_name_after": "Cabeçote Amplificador Voxstorm Psg180 40w Bivolt",
+      "sku_after": "VTK012425",
+      "category_after": "MLB7892",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    }
+  ]
+}

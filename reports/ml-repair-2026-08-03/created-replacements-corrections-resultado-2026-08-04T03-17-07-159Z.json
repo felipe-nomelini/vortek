@@ -1,0 +1,666 @@
+{
+  "generated_at": "2026-08-04T03:17:07.160Z",
+  "total": 17,
+  "counts": {
+    "success": 14,
+    "partial_or_error": 1,
+    "blocked_precondition": 2
+  },
+  "results": [
+    {
+      "ml_item_id": "MLB7009939716",
+      "sku": "VTK000021",
+      "status": "success",
+      "title_before": "Bateria Estacionária Selada 12v 12ah Vrla Up12120 Unipower",
+      "title_after": "Bateria Selada Unipower Up12120 12v 12ah Vrla",
+      "family_name_before": "Bateria Estacionária Selada 12v 12ah Vrla Up12120 Unipower",
+      "family_name_after": "Bateria Selada Unipower Up12120 12v 12ah Vrla",
+      "sku_after": "VTK000021",
+      "category_after": "MLB57843",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB4801357893",
+      "sku": "VTK000088",
+      "status": "success",
+      "title_before": "Bateria Estacionária Selada 12v 2,3ah Vrla Up1223 Unipower",
+      "title_after": "Bateria Selada Unipower Up1223 12v 2,3ah Vrla",
+      "family_name_before": "Bateria Estacionária Selada 12v 2,3ah Vrla Up1223 Unipower",
+      "family_name_after": "Bateria Selada Unipower Up1223 12v 2,3ah Vrla",
+      "sku_after": "VTK000088",
+      "category_after": "MLB57843",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB7009318968",
+      "sku": "VTK000244",
+      "status": "partial_or_error",
+      "title_before": "Antena Externa Tv 4 Em 1 Vhf/uhf/fm/hdtv Dtv-3000 Aquário",
+      "title_after": "Antena Externa Tv 4 Em 1 Vhf/uhf/fm/hdtv Dtv-3000 Aquário",
+      "family_name_before": "Antena Externa Tv 4 Em 1 Vhf/uhf/fm/hdtv Dtv-3000 Aquário",
+      "family_name_after": "Antena Externa Tv 4 Em 1 Vhf/uhf/fm/hdtv Dtv-3000 Aquário",
+      "sku_after": "VTK000244",
+      "category_after": "MLB44572",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": false,
+          "status": 400,
+          "field": "family_name",
+          "error": "Validation error"
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB4841999089",
+      "sku": "VTK000402",
+      "status": "success",
+      "title_before": "Air Duster Pró 400ml Implastec - Cx / 12",
+      "title_after": "Kit 12 Air Duster Implastec Pró 400ml",
+      "family_name_before": "Air Duster Pró 400ml Implastec - Cx / 12",
+      "family_name_after": "Kit 12 Air Duster Implastec Pró 400ml",
+      "sku_after": "VTK000402",
+      "category_after": "MLB270488",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB4988488561",
+      "sku": "VTK000427",
+      "status": "blocked_precondition",
+      "live_status": "under_review",
+      "live_sku": "VTK000427",
+      "error": "{\"id\":\"MLB4988488561\",\"site_id\":\"MLB\",\"title\":\"Álcool Isopropílico Aerossol 227ml Implastec - Cx / 12\",\"family_name\":\"Álcool Isopropílico Aerossol 227ml Implastec - Cx / 12\",\"family_id\":882045697430740,\"seller_id\":3294514937,\"category_id\":\"MLB270480\",\"user_product_id\":\"MLBU4579611740\",\"official_store_id\":null,\"price\":198.29,\"base_price\":198.29,\"original_price\":null,\"inventory_id\":null,\"currency_id\":\"BRL\",\"initial_quantity\":15,\"available_quantity\":15,\"sold_quantity\":0,\"sale_terms\":[{\"id\":\"WARRANTY_TYPE\",\"name\":\"Tipo de garantia\",\"value_id\":\"2230279\",\"value_name\":\"Garantia de fábrica\",\"value_struct\":null,\"values\":[{\"id\":\"2230279\",\"name\":\"Garantia de fábrica\",\"struct\":null}],\"value_type\":\"list\"},{\"id\":\"WARRANTY_TIME\",\"name\":\"Tempo de garantia\",\"value_id\":null,\"value_name\":\"12 meses\",\"value_struct\":{\"number\":12,\"unit\":\"meses\"},\"values\":[{\"id\":null,\"name\":\"12 meses\",\"struct\":{\"number\":12,\"unit\":\"meses\"}}],\"value_type\":\"number_unit\"},{\"id\":\"INVOICE\",\"name\":\"Faturamento\",\"value_id\":\"6891885\",\"value_name\":\"Factura A\",\"value_struct\":null,\"values\":[{\"id\":\"6891885\",\"name\":\"Factura A\",\"struct\":null}],\"value_type\":\"list\"}],\"buying_mode\":\"buy_it_now\",\"listing_type_id\":\"gold_pro\",\"start_time\":\"2026-08-04T03:09:28.716Z\",\"stop_time\":\"2046-07-29T04:00:00.000Z\",\"end_time\":\"2046-07-29T04:00:00.000Z\",\"expiration_time\":\"2026-10-23T03:09:28.819Z\",\"condition\":\"new\",\"permalink\":\"https://produto.mercadolivre.com.br/MLB-4988488561-alcool-isopropilico-aerossol-227ml-implastec-cx-12-_JM\",\"thumbnail_id\":\"613300-MLB114211110726_082026\",\"thumbnail\":\"http://http2.mlstatic.com/D_613300-MLB114211110726_082026-I.jpg\",\"pictures\":[{\"id\":\"613300-MLB114211110726_082026\",\"url\":\"http://http2.mlstatic.com/D_613300-MLB114211110726_082026-O.jpg\",\"secure_url\":\"https://http2.mlstatic.com/D_613300-MLB114211110726_082026-O.jpg\",\"size\":\"150x477\",\"max_size\":\"150x477\",\"quality\":\"\"}],\"video_id\":null,\"descriptions\":[],\"accepts_mercadopago\":true,\"non_mercado_pago_payment_methods\":[],\"shipping\":{\"mode\":\"not_specified\",\"methods\":[],\"tags\":[],\"dimensions\":null,\"local_pick_up\":false,\"free_shipping\":false,\"logistic_type\":\"not_specified\",\"store_pick_up\":false},\"international_delivery_mode\":\"none\",\"seller_address\":{\"address_line\":\"Rua João Marques de Nóbrega 300\",\"zip_code\":\"86206240\",\"city\":{\"id\":\"TUxCQ0lCSTQ1Y2Fh\",\"name\":\"Ibiporã\"},\"state\":{\"id\":\"BR-PR\",\"name\":\"Paraná\"},\"country\":{\"id\":\"BR\",\"name\":\"Brasil\"},\"search_location\":{\"city\":{\"id\":\"TUxCQ0lCSTQ1Y2Fh\",\"name\":\"Ibiporã\"},\"state\":{\"id\":\"TUxCUFBBUkExODBlZA\",\"name\":\"Paraná\"}},\"latitude\":-23.284674,\"longitude\":-51.083409,\"id\":1586042717},\"seller_contact\":null,\"location\":{},\"geolocation\":{\"latitude\":-23.284674,\"longitude\":-51.083409},\"coverage_areas\":[],\"attributes\":[{\"id\":\"ITEM_CONDITION\",\"name\":\"Condição do item\",\"value_id\":\"2230284\",\"value_name\":\"Novo\",\"values\":[{\"id\":\"2230284\",\"name\":\"Novo\",\"struct\":null}],\"value_type\":\"list\"},{\"id\":\"BRAND\",\"name\":\"Marca\",\"value_id\":null,\"value_name\":\"Implastec\",\"values\":[{\"id\":null,\"name\":\"Implastec\",\"struct\":null}],\"value_type\":\"string\"},{\"id\":\"GTIN\",\"name\":\"Código universal de produto\",\"value_id\":null,\"value_name\":\"10763800000126\",\"values\":[{\"id\":null,\"name\":\"10763800000126\",\"struct\":null}],\"value_type\":\"string\"},{\"id\":\"MODEL\",\"name\":\"Modelo\",\"value_id\":null,\"value_name\":\"Álcool Isopropílico Aerossol\",\"values\":[{\"id\":null,\"name\":\"Álcool Isopropílico Aerossol\",\"struct\":null}],\"value_type\":\"string\"},{\"id\":\"SELLER_PACKAGE_HEIGHT\",\"name\":\"Altura da embalagem do vendor\",\"value_id\":null,\"value_name\":\"20 cm\",\"values\":[{\"id\":null,\"name\":\"20 cm\",\"struct\":{\"number\":20,\"unit\":\"cm\"}}],\"value_type\":\"number_unit\"},{\"id\":\"SELLER_PACKAGE_LENGTH\",\"name\":\"Comprimento da embalagem do vendor\",\"value_id\":null,\"value_name\":\"23.5 cm\",\"values\":[{\"id\":null,\"name\":\"23.5 cm\",\"struct\":{\"number\":23.5,\"unit\":\"cm\"}}],\"value_type\":\"number_unit\"},{\"id\":\"SELLER_PACKAGE_WEIGHT\",\"name\":\"Peso da embalagem do vendor\",\"value_id\":null,\"value_name\":\"2976 g\",\"values\":[{\"id\":null,\"name\":\"2976 g\",\"struct\":{\"number\":2976,\"unit\":\"g\"}}],\"value_type\":\"number_unit\"},{\"id\":\"SELLER_PACKAGE_WIDTH\",\"name\":\"Largura da embalagem do vendor\",\"value_id\":null,\"value_name\":\"18 cm\",\"values\":[{\"id\":null,\"name\":\"18 cm\",\"struct\":{\"number\":18,\"unit\":\"cm\"}}],\"value_type\":\"number_unit\"},{\"id\":\"SELLER_SKU\",\"name\":\"SKU\",\"value_id\":null,\"value_name\":\"VTK000427\",\"values\":[{\"id\":null,\"name\":\"VTK000427\",\"struct\":null}],\"value_type\":\"string\"}],\"warnings\":[],\"listing_source\":\"\",\"variations\":[],\"status\":\"under_review\",\"sub_status\":[\"waiting_for_patch\",\"picture_download_pending\"],\"tags\":[\"good_quality_thumbnail\",\"standard_price_by_quantity\",\"user_product_listing\",\"immediate_payment\"],\"warranty\":\"Garantia de fábrica: 12 meses\",\"catalog_product_id\":null,\"domain_id\":\"MLB-ISOPROPYL_ALCOHOL\",\"seller_custom_field\":\"VTK000427\",\"parent_item_id\":null,\"differential_pricing\":null,\"deal_ids\":[],\"automatic_relist\":false,\"date_created\":\"2026-08-04T03:09:28.956Z\",\"last_updated\":\"2026-08-04T03:12:02.348Z\",\"health\":null,\"catalog_listing\":false,\"item_relations\":[],\"channels\":[\"marketplace\"]}"
+    },
+    {
+      "ml_item_id": "MLB7322687094",
+      "sku": "VTK000706",
+      "status": "success",
+      "title_before": "Cabo De Rede Cat5e 305m Fortrek Fk 500c Cmx - Cx / 305",
+      "title_after": "Cabo Rede Fortrek Fk500c Cat5e 305m Branco",
+      "family_name_before": "Cabo De Rede Cat5e 305m Fortrek Fk 500c Cmx - Cx / 305",
+      "family_name_after": "Cabo Rede Fortrek Fk500c Cat5e 305m Branco",
+      "sku_after": "VTK000706",
+      "category_after": "MLB270088",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB6573141844",
+      "sku": "VTK000841",
+      "status": "success",
+      "title_before": "Mouse Gamer Fortrek Rogue Tri-mode 16000 Dpi Branco",
+      "title_after": "Mouse Gamer Sem Fio Fortrek Rogue Branco 16000 Dpi Branco",
+      "family_name_before": "Mouse Gamer Fortrek Rogue Tri-mode 16000 Dpi Branco",
+      "family_name_after": "Mouse Gamer Sem Fio Fortrek Rogue Branco 16000 Dpi",
+      "sku_after": "VTK000841",
+      "category_after": "MLB1714",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB7087156688",
+      "sku": "VTK001221",
+      "status": "success",
+      "title_before": "Álcool Para Limpeza De Eletrônicos 1000ml Implastec - Cx",
+      "title_after": "Kit 18 Álcool Isopropílico Implastec 1l 99,8%",
+      "family_name_before": "Álcool Para Limpeza De Eletrônicos 1000ml Implastec - Cx",
+      "family_name_after": "Kit 18 Álcool Isopropílico Implastec 1l 99,8%",
+      "sku_after": "VTK001221",
+      "category_after": "MLB270480",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB7111545350",
+      "sku": "VTK001300",
+      "status": "success",
+      "title_before": "Copo Mixer Walita Ri7630 Ri7632 Ri7636 Transparente",
+      "title_after": "Kit 6 Copos Mixer Philips Walita Ri7630 Ri7632 Ri7636",
+      "family_name_before": "Copo Mixer Walita Ri7630 Ri7632 Ri7636 Transparente",
+      "family_name_after": "Kit 6 Copos Mixer Philips Walita Ri7630 Ri7632 Ri7636",
+      "sku_after": "VTK001300",
+      "category_after": "MLB73056",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB6573116714",
+      "sku": "VTK001318",
+      "status": "success",
+      "title_before": "Inversor Hayonik Msw2115 1500w 24v Para 127v",
+      "title_after": "Inversor Hayonik Msw2115 1500w 24v Para 127v",
+      "family_name_before": "Inversor Hayonik Msw2115 1500w 24v Para 127v",
+      "family_name_after": "Inversor Hayonik Msw2115 1500w 24v Para 127v",
+      "sku_after": "VTK001318",
+      "category_after": "MLB433449",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "skipped": true
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB4988489695",
+      "sku": "VTK001459",
+      "status": "success",
+      "title_before": "Suporte Móvel Para Subwoofer Hh Tna-df1",
+      "title_after": "Suporte Móvel Subwoofer Hh Tna-df1 Aço",
+      "family_name_before": "Suporte Móvel Para Subwoofer Hh Tna-df1",
+      "family_name_after": "Suporte Móvel Subwoofer Hh Tna-df1 Aço",
+      "sku_after": "VTK001459",
+      "category_after": "MLB10233",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB7322687370",
+      "sku": "VTK002659",
+      "status": "success",
+      "title_before": "Venova Yamaha Yvs-100 Branca",
+      "title_after": "Venova Yamaha Yvs-100 Soprano Branco Com Estojo",
+      "family_name_before": "Venova Yamaha Yvs-100 Branca",
+      "family_name_after": "Venova Yamaha Yvs-100 Soprano Branco Com Estojo",
+      "sku_after": "VTK002659",
+      "category_after": "MLB3771",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB4988488947",
+      "sku": "VTK003157",
+      "status": "success",
+      "title_before": "Emenda 1+1 Jack F Fêmea Metal Com Porca Storm - Pct / 100",
+      "title_after": "Kit 100 Emendas Jack F Fêmea Metal Storm",
+      "family_name_before": "Emenda 1+1 Jack F Fêmea Metal Com Porca Storm - Pct / 100",
+      "family_name_after": "Kit 100 Emendas Jack F Fêmea Metal Storm",
+      "sku_after": "VTK003157",
+      "category_after": "MLB420707",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB7111544270",
+      "sku": "VTK006330",
+      "status": "success",
+      "title_before": "Ar-condicionado Agratto Fit Top 12.000 Btus 220v",
+      "title_after": "Ar-condicionado Agratto Fit Top 12000 Btu Split 220v 220v",
+      "family_name_before": "Ar-condicionado Agratto Fit Top 12.000 Btus 220v",
+      "family_name_after": "Ar-condicionado Agratto Fit Top 12000 Btu Split 220v",
+      "sku_after": "VTK006330",
+      "category_after": "MLB1646",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB7322675012",
+      "sku": "VTK009748",
+      "status": "success",
+      "title_before": "Estante Dupla Para Conga New York",
+      "title_after": "Estante Dupla Para Conga New York Cromada",
+      "family_name_before": "Estante Dupla Para Conga New York",
+      "family_name_after": "Estante Dupla Para Conga New York Cromada",
+      "sku_after": "VTK009748",
+      "category_after": "MLB9678",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB4988489067",
+      "sku": "VTK012415",
+      "status": "blocked_precondition",
+      "live_status": "under_review",
+      "live_sku": "VTK012415",
+      "error": "{\"id\":\"MLB4988489067\",\"site_id\":\"MLB\",\"title\":\"Cabeçote Autoamplificado Voxstorm 15 W Rms - Psg 160 Usb\",\"family_name\":\"Cabeçote Autoamplificado Voxstorm 15 W Rms - Psg 160 Usb\",\"family_id\":5091254919479441,\"seller_id\":3294514937,\"category_id\":\"MLB45248\",\"user_product_id\":\"MLBU4553862947\",\"official_store_id\":null,\"price\":393.21,\"base_price\":393.21,\"original_price\":null,\"inventory_id\":null,\"currency_id\":\"BRL\",\"initial_quantity\":13,\"available_quantity\":13,\"sold_quantity\":0,\"sale_terms\":[{\"id\":\"WARRANTY_TYPE\",\"name\":\"Tipo de garantia\",\"value_id\":\"2230279\",\"value_name\":\"Garantia de fábrica\",\"value_struct\":null,\"values\":[{\"id\":\"2230279\",\"name\":\"Garantia de fábrica\",\"struct\":null}],\"value_type\":\"list\"},{\"id\":\"WARRANTY_TIME\",\"name\":\"Tempo de garantia\",\"value_id\":null,\"value_name\":\"12 meses\",\"value_struct\":{\"number\":12,\"unit\":\"meses\"},\"values\":[{\"id\":null,\"name\":\"12 meses\",\"struct\":{\"number\":12,\"unit\":\"meses\"}}],\"value_type\":\"number_unit\"},{\"id\":\"INVOICE\",\"name\":\"Faturamento\",\"value_id\":\"6891885\",\"value_name\":\"Factura A\",\"value_struct\":null,\"values\":[{\"id\":\"6891885\",\"name\":\"Factura A\",\"struct\":null}],\"value_type\":\"list\"}],\"buying_mode\":\"buy_it_now\",\"listing_type_id\":\"gold_pro\",\"start_time\":\"2026-08-04T03:10:51.243Z\",\"stop_time\":\"2046-07-29T04:00:00.000Z\",\"end_time\":\"2046-07-29T04:00:00.000Z\",\"expiration_time\":\"2026-10-23T03:10:53.686Z\",\"condition\":\"new\",\"permalink\":\"https://produto.mercadolivre.com.br/MLB-4988489067-cabecote-autoamplificado-voxstorm-15-w-rms-psg-160-usb-_JM\",\"thumbnail_id\":\"977148-MLB115545103941_082026\",\"thumbnail\":\"http://http2.mlstatic.com/D_977148-MLB115545103941_082026-I.jpg\",\"pictures\":[{\"id\":\"977148-MLB115545103941_082026\",\"url\":\"http://http2.mlstatic.com/D_977148-MLB115545103941_082026-O.jpg\",\"secure_url\":\"https://http2.mlstatic.com/D_977148-MLB115545103941_082026-O.jpg\",\"size\":\"500x112\",\"max_size\":\"1060x238\",\"quality\":\"\"},{\"id\":\"650369-MLB115545103943_082026\",\"url\":\"http://http2.mlstatic.com/D_650369-MLB115545103943_082026-O.jpg\",\"secure_url\":\"https://http2.mlstatic.com/D_650369-MLB115545103943_082026-O.jpg\",\"size\":\"500x111\",\"max_size\":\"1013x226\",\"quality\":\"\"}],\"video_id\":null,\"descriptions\":[],\"accepts_mercadopago\":true,\"non_mercado_pago_payment_methods\":[],\"shipping\":{\"mode\":\"me2\",\"methods\":[],\"tags\":[\"mandatory_free_shipping\"],\"dimensions\":null,\"local_pick_up\":false,\"free_shipping\":true,\"logistic_type\":\"xd_drop_off\",\"store_pick_up\":false},\"international_delivery_mode\":\"none\",\"seller_address\":{\"address_line\":\"Rua João Marques de Nóbrega 300\",\"zip_code\":\"86206240\",\"city\":{\"id\":\"TUxCQ0lCSTQ1Y2Fh\",\"name\":\"Ibiporã\"},\"state\":{\"id\":\"BR-PR\",\"name\":\"Paraná\"},\"country\":{\"id\":\"BR\",\"name\":\"Brasil\"},\"search_location\":{\"city\":{\"id\":\"TUxCQ0lCSTQ1Y2Fh\",\"name\":\"Ibiporã\"},\"state\":{\"id\":\"TUxCUFBBUkExODBlZA\",\"name\":\"Paraná\"}},\"latitude\":-23.284674,\"longitude\":-51.083409,\"id\":1586042717},\"seller_contact\":null,\"location\":{},\"geolocation\":{\"latitude\":-23.284674,\"longitude\":-51.083409},\"coverage_areas\":[],\"attributes\":[{\"id\":\"ITEM_CONDITION\",\"name\":\"Condição do item\",\"value_id\":\"2230284\",\"value_name\":\"Novo\",\"values\":[{\"id\":\"2230284\",\"name\":\"Novo\",\"struct\":null}],\"value_type\":\"list\"},{\"id\":\"BRAND\",\"name\":\"Marca\",\"value_id\":null,\"value_name\":\"Voxstorm\",\"values\":[{\"id\":null,\"name\":\"Voxstorm\",\"struct\":null}],\"value_type\":\"string\"},{\"id\":\"GTIN\",\"name\":\"Código universal de produto\",\"value_id\":null,\"value_name\":\"7898640360546\",\"values\":[{\"id\":null,\"name\":\"7898640360546\",\"struct\":null}],\"value_type\":\"string\"},{\"id\":\"MODEL\",\"name\":\"Modelo\",\"value_id\":null,\"value_name\":\"PSG 160 USB\",\"values\":[{\"id\":null,\"name\":\"PSG 160 USB\",\"struct\":null}],\"value_type\":\"string\"},{\"id\":\"RECOMMENDED_INSTRUMENTS\",\"name\":\"Instrumentos recomendados\",\"value_id\":null,\"value_name\":\"Microfone,guitarra e teclado\",\"values\":[{\"id\":null,\"name\":\"Microfone\",\"struct\":null},{\"id\":null,\"name\":\"guitarra e teclado\",\"struct\":null}],\"value_type\":\"string\"},{\"id\":\"SELLER_PACKAGE_HEIGHT\",\"name\":\"Altura da embalagem do vendor\",\"value_id\":null,\"value_name\":\"8 cm\",\"values\":[{\"id\":null,\"name\":\"8 cm\",\"struct\":{\"number\":8,\"unit\":\"cm\"}}],\"value_type\":\"number_unit\"},{\"id\":\"SELLER_PACKAGE_LENGTH\",\"name\":\"Comprimento da embalagem do vendor\",\"value_id\":null,\"value_name\":\"18 cm\",\"values\":[{\"id\":null,\"name\":\"18 cm\",\"struct\":{\"number\":18,\"unit\":\"cm\"}}],\"value_type\":\"number_unit\"},{\"id\":\"SELLER_PACKAGE_WEIGHT\",\"name\":\"Peso da embalagem do vendor\",\"value_id\":null,\"value_name\":\"1500 g\",\"values\":[{\"id\":null,\"name\":\"1500 g\",\"struct\":{\"number\":1500,\"unit\":\"g\"}}],\"value_type\":\"number_unit\"},{\"id\":\"SELLER_PACKAGE_WIDTH\",\"name\":\"Largura da embalagem do vendor\",\"value_id\":null,\"value_name\":\"40 cm\",\"values\":[{\"id\":null,\"name\":\"40 cm\",\"struct\":{\"number\":40,\"unit\":\"cm\"}}],\"value_type\":\"number_unit\"},{\"id\":\"SELLER_SKU\",\"name\":\"SKU\",\"value_id\":null,\"value_name\":\"VTK012415\",\"values\":[{\"id\":null,\"name\":\"VTK012415\",\"struct\":null}],\"value_type\":\"string\"}],\"warnings\":[],\"listing_source\":\"\",\"variations\":[],\"status\":\"under_review\",\"sub_status\":[\"forbidden\"],\"tags\":[\"good_quality_thumbnail\",\"standard_price_by_quantity\",\"user_product_listing\",\"immediate_payment\",\"cart_eligible\"],\"warranty\":\"Garantia de fábrica: 12 meses\",\"catalog_product_id\":null,\"domain_id\":\"MLB-INSTRUMENT_AMPLIFIERS\",\"seller_custom_field\":\"VTK012415\",\"parent_item_id\":null,\"differential_pricing\":null,\"deal_ids\":[],\"automatic_relist\":false,\"date_created\":\"2026-08-04T03:10:51.503Z\",\"last_updated\":\"2026-08-04T03:16:43.469Z\",\"health\":null,\"catalog_listing\":false,\"item_relations\":[],\"channels\":[\"marketplace\"]}"
+    },
+    {
+      "ml_item_id": "MLB7322675096",
+      "sku": "VTK012425",
+      "status": "success",
+      "title_before": "Cabeçote Autoamplificado Voxstorm 40 W Rms - Psg 180",
+      "title_after": "Cabeçote Amplificador Voxstorm Psg180 40w",
+      "family_name_before": "Cabeçote Autoamplificado Voxstorm 40 W Rms - Psg 180",
+      "family_name_after": "Cabeçote Amplificador Voxstorm Psg180 40w",
+      "sku_after": "VTK012425",
+      "category_after": "MLB45248",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    }
+  ]
+}

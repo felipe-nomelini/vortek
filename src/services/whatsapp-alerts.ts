@@ -21,6 +21,7 @@ import {
   resolveOpenIntegrationOpsIssues,
 } from "@/services/github-ops";
 import { isMlOrderPaid } from "@/lib/ml/order-sale-alert";
+import { decideCriticalJobAlert } from "@/lib/sync/critical-job-alert";
 
 type AlertType =
   | "new_sale"
@@ -684,6 +685,32 @@ export async function alertCriticalJobs() {
     .order("finished_at", { ascending: false })
     .limit(20);
 
+  const failedTypes = Array.from(
+    new Set(
+      (data || [])
+        .map((job) => String(job.tipo || "").trim())
+        .filter(Boolean),
+    ),
+  );
+  const latestRecoveryByType = new Map<string, string>();
+  if (failedTypes.length) {
+    const { data: recoveredJobs } = await client
+      .from("jobs")
+      .select("tipo,finished_at")
+      .eq("status", "completo")
+      .in("tipo", failedTypes)
+      .gte("finished_at", since)
+      .order("finished_at", { ascending: false })
+      .limit(200);
+
+    for (const recoveredJob of recoveredJobs || []) {
+      const type = String(recoveredJob.tipo || "").trim();
+      if (type && recoveredJob.finished_at && !latestRecoveryByType.has(type)) {
+        latestRecoveryByType.set(type, recoveredJob.finished_at);
+      }
+    }
+  }
+
   const grouped = new Map<
     string,
     Array<{
@@ -705,16 +732,31 @@ export async function alertCriticalJobs() {
 
   let alerted = 0;
   let skippedTransient = 0;
+  let skippedRecovered = 0;
+  let deferredTimeout = 0;
   for (const [signature, occurrences] of grouped) {
     const latest = occurrences[0];
-    const repeatedFailure = occurrences.length >= 2;
-    const authFailure = String(latest.job.status || "") === "failed_auth";
-    if (!repeatedFailure && !authFailure) {
+    const rootLog = findRootErrorLog(latest.logSummary);
+    const decision = decideCriticalJobAlert({
+      status: latest.job.status,
+      occurrences: occurrences.length,
+      finishedAt: latest.job.finished_at,
+      recoveredAt: latestRecoveryByType.get(String(latest.job.tipo || "")) || null,
+      rootLog,
+    });
+    if (decision === "skip_transient") {
       skippedTransient += 1;
       continue;
     }
+    if (decision === "skip_recovered") {
+      skippedRecovered += 1;
+      continue;
+    }
+    if (decision === "defer_timeout") {
+      deferredTimeout += 1;
+      continue;
+    }
 
-    const rootLog = findRootErrorLog(latest.logSummary);
     const result = await sendWhatsappAlert({
       type: "critical_error",
       severity: "critical",
@@ -765,6 +807,8 @@ export async function alertCriticalJobs() {
     checked: data?.length || 0,
     grouped: grouped.size,
     skipped_transient: skippedTransient,
+    skipped_recovered: skippedRecovered,
+    deferred_timeout: deferredTimeout,
     alerted,
   };
 }

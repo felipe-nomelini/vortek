@@ -93,6 +93,8 @@ function getAttributeMismatches(item, expectedAttributes = []) {
 
 async function main() {
   const apply = process.argv.includes('--apply');
+  const allowPaused = process.argv.includes('--allow-paused');
+  const allowLegacyHayamaxSku = process.argv.includes('--allow-legacy-hayamax-sku');
   const inputPath = path.resolve(
     argValue(
       '--input',
@@ -324,11 +326,15 @@ async function main() {
     )}?include_internal_attributes=true`;
     const before = await mlRequest(itemPath);
     const liveSku = before.ok ? getSellerSku(before.data) : '';
-    if (
-      !before.ok ||
-      before.data?.status !== 'active' ||
-      liveSku !== correction.sku
-    ) {
+    const allowedLiveStatuses = allowPaused
+      ? new Set(['active', 'paused'])
+      : new Set(['active']);
+    const skuMatches = liveSku === correction.sku || (
+      allowLegacyHayamaxSku &&
+      /^HYX\d+$/i.test(liveSku) &&
+      /^VTK\d+$/i.test(correction.sku)
+    );
+    if (!before.ok || !allowedLiveStatuses.has(before.data?.status) || !skuMatches) {
       results.push({
         ml_item_id: correction.ml_item_id,
         sku: correction.sku,

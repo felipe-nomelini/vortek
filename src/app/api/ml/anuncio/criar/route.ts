@@ -34,6 +34,7 @@ import { persistSingleAnuncioBySku } from "@/lib/ml/persist-single-anuncio";
 import { mapCreatedListingDesiredStatus } from "@/lib/ml/status";
 import { resolveGtinForMlListing } from "@/lib/produto-kits";
 import { buildEvidenceBasedMlDescription } from "@/lib/ml-listing-description";
+import { getConfiguredMlShippingCost } from "@/lib/ml/shipping-cost";
 
 type StepResult = { ok: boolean; error?: string };
 type AttrInput = { id: string; value_name?: string; value_id?: string };
@@ -522,15 +523,23 @@ function getItemShippingMode(item: any) {
 }
 
 function requiresMercadoEnviosPause(item: any) {
+  const shippingMode = getItemShippingMode(item);
   return (
     String(item?.status || "").toLowerCase() === "active" &&
-    getItemShippingMode(item) !== "me2"
+    shippingMode !== "me2" &&
+    shippingMode !== "not_specified"
   );
 }
 
 async function resolveMlShippingCost(
   itemId: string,
+  shippingMode?: unknown,
 ): Promise<MlShippingResolution> {
+  const configuredShipping = getConfiguredMlShippingCost(shippingMode);
+  if (configuredShipping !== null) {
+    return { mlShipping: configuredShipping };
+  }
+
   const meResult = await fetchMLResult<any>("/users/me?attributes=address");
   if (!meResult.ok) {
     return {
@@ -1169,7 +1178,10 @@ export async function POST(req: Request) {
           { status: 409 },
         );
       }
-      const existingShipping = await resolveMlShippingCost(existingItem.id);
+      const existingShipping = await resolveMlShippingCost(
+        existingItem.id,
+        getItemShippingMode(existingItem),
+      );
       if (existingShipping.warning) warnings.push(existingShipping.warning);
       let existingItemForPersist = existingItem;
       if (requiresMercadoEnviosPause(existingItem)) {
@@ -1197,6 +1209,12 @@ export async function POST(req: Request) {
         mlStatus: mapMlItemStatus(existingItemForPersist),
         desiredMlStatus: mapCreatedListingDesiredStatus(existingItemForPersist),
       });
+      await supabase
+        .from("produtos")
+        .update({
+          ml_shipping_warning: existingShipping.warning || null,
+        } as any)
+        .eq("id", produto.id);
       steps.anuncio.ok = true;
       steps.descricao = {
         ok: false,
@@ -1458,17 +1476,22 @@ export async function POST(req: Request) {
         mlFee = listingPrices.sale_fee_details.meli_percentage_fee / 100;
     } catch {}
 
-    const shippingResolution = await resolveMlShippingCost(result.id);
+    const shippingResolution = await resolveMlShippingCost(
+      result.id,
+      getItemShippingMode(latestItem),
+    );
     if (shippingResolution.mlShipping > 0) {
       mlShipping = shippingResolution.mlShipping;
     }
     if (shippingResolution.warning) {
       warnings.push(shippingResolution.warning);
-      await supabase
-        .from("produtos")
-        .update({ ml_shipping_warning: shippingResolution.warning } as any)
-        .eq("id", produto.id);
     }
+    await supabase
+      .from("produtos")
+      .update({
+        ml_shipping_warning: shippingResolution.warning || null,
+      } as any)
+      .eq("id", produto.id);
 
     if (requiresMercadoEnviosPause(latestItem)) {
       const pauseResult = await pauseCreatedListing(result.id);

@@ -1,0 +1,440 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-repair-2026-08-03/replacements-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-replacements-2026-08-03",
+  "selected": 17,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "2d01d838-97d2-4d70-816a-4eafef68c286",
+      "sku": "VTK000021",
+      "category": {
+        "id": "MLB57843",
+        "nome": "MLB57843",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7009939716",
+        "title": "Bateria Estacionária Selada 12v 12ah Vrla Up12120 Unipower",
+        "price": 224.34,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7009939716-bateria-estacionaria-selada-12v-12ah-vrla-up12120-unipower-_JM",
+        "status": "paused"
+      },
+      "linked_existing": true,
+      "warnings": [
+        "Anúncio já existia no Mercado Livre para este SKU e foi vinculado ao produto."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ed549134-81a7-4816-8f56-f4fc2a4c2538",
+      "sku": "VTK000088",
+      "category": {
+        "id": "MLB57843",
+        "nome": "MLB57843",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4801357893",
+        "title": "Bateria Estacionária Selada 12v 2,3ah Vrla Up1223 Unipower",
+        "price": 109.94,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4801357893-bateria-estacionaria-selada-12v-23ah-vrla-up1223-unipower-_JM",
+        "status": "paused"
+      },
+      "linked_existing": true,
+      "warnings": [
+        "Anúncio já existia no Mercado Livre para este SKU e foi vinculado ao produto."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "908597bc-ffb3-4481-a8ac-fe59607034be",
+      "sku": "VTK000244",
+      "category": {
+        "id": "MLB44572",
+        "nome": "MLB44572",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7009318968",
+        "title": "Antena Externa Tv 4 Em 1 Vhf/uhf/fm/hdtv Dtv-3000 Aquário",
+        "price": 184.04,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7009318968-antena-externa-tv-4-em-1-vhfuhffmhdtv-dtv-3000-aquario-_JM",
+        "status": "paused"
+      },
+      "linked_existing": true,
+      "warnings": [
+        "Anúncio já existia no Mercado Livre para este SKU e foi vinculado ao produto."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "00572cc5-da92-4607-b881-17ee2763a5e3",
+      "sku": "VTK000402",
+      "category": {
+        "id": "MLB270488",
+        "nome": "MLB270488",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4841999089",
+        "title": "Air Duster Pró 400ml Implastec - Cx / 12",
+        "price": 270.07,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4841999089-air-duster-pro-400ml-implastec-cx-12-_JM",
+        "status": "paused"
+      },
+      "linked_existing": true,
+      "warnings": [
+        "Anúncio já existia no Mercado Livre para este SKU e foi vinculado ao produto."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "39b24530-7d83-416f-9dc6-ccf1a02c8d40",
+      "sku": "VTK000427",
+      "category": {
+        "id": "MLB270480",
+        "nome": "MLB270480",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4988488561",
+        "title": "Álcool Isopropílico Aerossol 227ml Implastec - Cx / 12",
+        "price": 198.29,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4988488561-alcool-isopropilico-aerossol-227ml-implastec-cx-12-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço ajustado automaticamente para R$ 198.29 para evitar frete/taxa desatualizados.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB4988488561: No coverage options found",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "1750dd3f-8b94-426f-a358-7e6c6788a976",
+      "sku": "VTK000706",
+      "category": {
+        "id": "MLB270088",
+        "nome": "MLB270088",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7322687094",
+        "title": "Cabo De Rede Cat5e 305m Fortrek Fk 500c Cmx - Cx / 305",
+        "price": 1168.81,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7322687094-cabo-de-rede-cat5e-305m-fortrek-fk-500c-cmx-cx-305-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço ajustado automaticamente para R$ 1168.81 para evitar frete/taxa desatualizados.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB7322687094: NSOPublicAPI error"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "7bfec5d7-4b7d-4d68-810a-19ac1f3cb024",
+      "sku": "VTK000841",
+      "category": {
+        "id": "MLB1714",
+        "nome": "MLB1714",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB6573141844",
+        "title": "Mouse Gamer Fortrek Rogue Tri-mode 16000 Dpi Branco",
+        "price": 172.99,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-6573141844-mouse-gamer-fortrek-rogue-tri-mode-16000-dpi-branco-_JM",
+        "status": "active"
+      },
+      "linked_existing": true,
+      "warnings": [
+        "Anúncio já existia no Mercado Livre para este SKU e foi vinculado ao produto."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "2c9d937d-83fc-40fa-945f-07166d03b518",
+      "sku": "VTK001221",
+      "category": {
+        "id": "MLB270480",
+        "nome": "MLB270480",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7087156688",
+        "title": "Álcool Para Limpeza De Eletrônicos 1000ml Implastec - Cx",
+        "price": 315.65,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7087156688-alcool-para-limpeza-de-eletrnicos-1000ml-implastec-cx-_JM",
+        "status": "paused"
+      },
+      "linked_existing": true,
+      "warnings": [
+        "Anúncio já existia no Mercado Livre para este SKU e foi vinculado ao produto."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "ffe327b5-85c3-472b-b25b-2cb928971e2c",
+      "sku": "VTK001300",
+      "category": {
+        "id": "MLB73056",
+        "nome": "MLB73056",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7111545350",
+        "title": "Copo Mixer Walita Ri7630 Ri7632 Ri7636 Transparente",
+        "price": 447.95,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7111545350-copo-mixer-walita-ri7630-ri7632-ri7636-transparente-_JM",
+        "status": "paused"
+      },
+      "linked_existing": true,
+      "warnings": [
+        "Anúncio já existia no Mercado Livre para este SKU e foi vinculado ao produto."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "24b72799-ff7c-4d90-ae5f-3541084a7cc5",
+      "sku": "VTK001318",
+      "category": {
+        "id": "MLB433449",
+        "nome": "MLB433449",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB6573116714",
+        "title": "Inversor Hayonik Msw2115 1500w 24v Para 127v",
+        "price": 1020.94,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-6573116714-inversor-hayonik-msw2115-1500w-24v-para-127v-_JM",
+        "status": "paused"
+      },
+      "linked_existing": true,
+      "warnings": [
+        "Anúncio já existia no Mercado Livre para este SKU e foi vinculado ao produto."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "876fc102-d9ac-44c6-843c-31eaa63761d9",
+      "sku": "VTK002659",
+      "category": {
+        "id": "MLB3771",
+        "nome": "MLB3771",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7322687370",
+        "title": "Venova Yamaha Yvs-100 Branca",
+        "price": 998.25,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7322687370-venova-yamaha-yvs-100-branca-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB7322687370: NSOPublicAPI error",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "90c92209-e85d-41f5-b751-33f2314a26ce",
+      "sku": "VTK003157",
+      "category": {
+        "id": "MLB420707",
+        "nome": "MLB420707",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4988488947",
+        "title": "Emenda 1+1 Jack F Fêmea Metal Com Porca Storm - Pct / 100",
+        "price": 80.42,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4988488947-emenda-11-jack-f-fmea-metal-com-porca-storm-pct-100-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço ajustado automaticamente para R$ 80.42 para evitar frete/taxa desatualizados.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB4988488947: NSOPublicAPI error",
+        "Anúncio criado, mas frete ML real ainda não foi retornado. Preço final ficou pendente."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "78cd49cb-4af2-4b90-a7d8-9babff9f6b27",
+      "sku": "VTK009748",
+      "category": {
+        "id": "MLB9678",
+        "nome": "MLB9678",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7322675012",
+        "title": "Estante Dupla Para Conga New York",
+        "price": 561.67,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7322675012-estante-dupla-para-conga-new-york-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Frete ML não retornado para MLB7322675012: NSOPublicAPI error"
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "a25d0276-fca4-4f4e-b49e-3668a69d694f",
+      "sku": "VTK012415",
+      "category": {
+        "id": "MLB45248",
+        "nome": "MLB45248",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4988489067",
+        "title": "Cabeçote Autoamplificado Voxstorm 15 W Rms - Psg 160 Usb",
+        "price": 393.21,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4988489067-cabecote-autoamplificado-voxstorm-15-w-rms-psg-160-usb-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 379.25 → R$ 393.21."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "9ab9b763-9390-4aea-836a-cb716ca31608",
+      "sku": "VTK012425",
+      "category": {
+        "id": "MLB45248",
+        "nome": "MLB45248",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7322675096",
+        "title": "Cabeçote Autoamplificado Voxstorm 40 W Rms - Psg 180",
+        "price": 406.38,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7322675096-cabecote-autoamplificado-voxstorm-40-w-rms-psg-180-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 397.75 → R$ 406.38."
+      ]
+    }
+  ],
+  "failed": [
+    {
+      "produtoId": "9091f8fb-1f08-4df9-8529-b913966ab3d3",
+      "sku": "VTK001459",
+      "nome": "Suporte Móvel Para Subwoofer HH TNA-DF1",
+      "error": "Validation error | item.attribute.invalid_product_identifier: Insira um código universal que você não tenha usado no anúncio de outra categoria. | code=validation_error | http=400",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": true
+          },
+          "anuncio": {
+            "ok": false,
+            "error": "Validation error | item.attribute.invalid_product_identifier: Insira um código universal que você não tenha usado no anúncio de outra categoria. | code=validation_error | http=400"
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço ajustado automaticamente para R$ 2631.79 para evitar frete/taxa desatualizados."
+        ],
+        "missing_required_attributes": [],
+        "error": "Validation error | item.attribute.invalid_product_identifier: Insira um código universal que você não tenha usado no anúncio de outra categoria. | code=validation_error | http=400"
+      }
+    },
+    {
+      "produtoId": "443a6d87-6eb6-40a9-a7c8-f3b0f75ebc51",
+      "sku": "VTK006330",
+      "nome": "Ar-Condicionado Agratto Fit Top 12.000 BTUs 220v",
+      "error": "Atributos obrigatórios pendentes. Revise antes de criar o anúncio.",
+      "status": 422,
+      "attempts": null,
+      "data": {
+        "success": false,
+        "steps": {
+          "categoria": {
+            "ok": true
+          },
+          "atributos": {
+            "ok": false,
+            "error": "Existem atributos obrigatórios sem preenchimento."
+          },
+          "anuncio": {
+            "ok": false
+          },
+          "descricao": {
+            "ok": false
+          },
+          "atacado": {
+            "ok": false
+          },
+          "fiscal": {
+            "ok": false
+          }
+        },
+        "warnings": [
+          "Preço ajustado automaticamente para R$ 3389.78 para evitar frete/taxa desatualizados.",
+          "Quantidade de caixas de embalagem: valor removido porque não há evidência local/DSLite confiável para atributo crítico."
+        ],
+        "missing_required_attributes": [
+          {
+            "id": "PACKAGING_BOXES_NUMBER",
+            "name": "Quantidade de caixas de embalagem"
+          }
+        ],
+        "error": "Atributos obrigatórios pendentes. Revise antes de criar o anúncio."
+      }
+    }
+  ]
+}

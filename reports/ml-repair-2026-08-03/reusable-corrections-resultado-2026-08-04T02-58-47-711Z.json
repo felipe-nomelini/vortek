@@ -1,0 +1,827 @@
+{
+  "generated_at": "2026-08-04T02:58:47.712Z",
+  "total": 20,
+  "counts": {
+    "success": 19,
+    "blocked_precondition": 1
+  },
+  "results": [
+    {
+      "ml_item_id": "MLB4841922567",
+      "sku": "VTK000059",
+      "status": "success",
+      "title_before": "Lubrificante E Desengripante Aerosol 300ml Spray Wd40 - Cxm",
+      "title_after": "Kit 6 Lubrificantes Wd-40 Multiuso Spray 300ml",
+      "family_name_before": "Lubrificante E Desengripante Aerosol 300ml Spray Wd40 - Cxm",
+      "family_name_after": "Kit 6 Lubrificantes Wd-40 Multiuso Spray 300ml",
+      "sku_after": "VTK000059",
+      "category_after": "MLB421331",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB4841999459",
+      "sku": "VTK000416",
+      "status": "success",
+      "title_before": "Álcool Para Limpeza De Eletrônicos 500ml Implastec - Cx / 10",
+      "title_after": "Kit 10 Álcool Isopropílico Implastec 500ml 99,8%",
+      "family_name_before": "Álcool Para Limpeza De Eletrônicos 500ml Implastec - Cx / 10",
+      "family_name_after": "Kit 10 Álcool Isopropílico Implastec 500ml 99,8%",
+      "sku_after": "VTK000416",
+      "category_after": "MLB270480",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB4801294771",
+      "sku": "VTK000270",
+      "status": "success",
+      "title_before": "Bateria Estacionária Selada 12v 6,4ah Vrla Up1270seg Unipowe",
+      "title_after": "Bateria Selada Unipower Up1270seg 12v 6,4ah Vrla",
+      "family_name_before": "Bateria Estacionária Selada 12v 6,4ah Vrla Up1270seg Unipowe",
+      "family_name_after": "Bateria Selada Unipower Up1270seg 12v 6,4ah Vrla",
+      "sku_after": "VTK000270",
+      "category_after": "MLB57843",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB4841992221",
+      "sku": "VTK000497",
+      "status": "success",
+      "title_before": "Limpador De Contato Contactec 350ml Implastec - Cx / 12",
+      "title_after": "Kit 12 Limpa Contato Implastec Contactec Spray 350ml",
+      "family_name_before": "Limpador De Contato Contactec 350ml Implastec - Cx / 12",
+      "family_name_after": "Kit 12 Limpa Contato Implastec Contactec Spray 350ml",
+      "sku_after": "VTK000497",
+      "category_after": "MLB270536",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB4857482463",
+      "sku": "VTK001256",
+      "status": "success",
+      "title_before": "Kit 6 Copos Philips Walita Ri2110 Leitosos Originais",
+      "title_after": "Kit 6 Copos Philips Walita Ri2110 Leitosos Originais",
+      "family_name_before": "Kit 6 Copos Philips Walita Ri2110 Leitosos Originais",
+      "family_name_after": "Kit 6 Copos Philips Walita Ri2110 Leitosos Originais",
+      "sku_after": "VTK001256",
+      "category_after": "MLB73056",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "skipped": true
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB4857494309",
+      "sku": "VTK000923",
+      "status": "success",
+      "title_before": "Cadeira Thunderx3 Solo360 Loft Grafite 150kg",
+      "title_after": "Cadeira Thunderx3 Solo360 Loft Grafite 150kg",
+      "family_name_before": "Cadeira Thunderx3 Solo360 Loft Grafite 150kg",
+      "family_name_after": "Cadeira Thunderx3 Solo360 Loft Grafite 150kg",
+      "sku_after": "VTK000923",
+      "category_after": "MLB447782",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "skipped": true
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB4857481517",
+      "sku": "VTK000814",
+      "status": "success",
+      "title_before": "Cadeira Thunderx3 Eaze Loft Preta Tecido 150kg",
+      "title_after": "Cadeira Thunderx3 Eaze Loft Preta Tecido 150kg",
+      "family_name_before": "Cadeira Thunderx3 Eaze Loft Preta Tecido 150kg",
+      "family_name_after": "Cadeira Thunderx3 Eaze Loft Preta Tecido 150kg",
+      "sku_after": "VTK000814",
+      "category_after": "MLB447782",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "skipped": true
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB4857481411",
+      "sku": "VTK000870",
+      "status": "success",
+      "title_before": "Cadeira Thunderx3 Core Smart Modern Vermelha 150kg",
+      "title_after": "Cadeira Thunderx3 Core Smart Modern Vermelha 150kg",
+      "family_name_before": "Cadeira Thunderx3 Core Smart Modern Vermelha 150kg",
+      "family_name_after": "Cadeira Thunderx3 Core Smart Modern Vermelha 150kg",
+      "sku_after": "VTK000870",
+      "category_after": "MLB447782",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "skipped": true
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB4842175999",
+      "sku": "VTK001881",
+      "status": "success",
+      "title_before": "Álcool Isopropílico 500ml Isopropanol Implastec - Cmc / 10",
+      "title_after": "Kit 10 Álcool Isopropílico Implastec 500ml 99,8%",
+      "family_name_before": "Álcool Isopropílico 500ml Isopropanol Implastec - Cmc / 10",
+      "family_name_after": "Kit 10 Álcool Isopropílico Implastec 500ml 99,8%",
+      "sku_after": "VTK001881",
+      "category_after": "MLB270480",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB4937474669",
+      "sku": "VTK018587",
+      "status": "success",
+      "title_before": "Auxiliar De Partida / Acumulador De Bateria Thork 6310",
+      "title_after": "Auxiliar Partida Thork 6310 7500mah 12v Com Case",
+      "family_name_before": "Auxiliar De Partida / Acumulador De Bateria Thork 6310",
+      "family_name_after": "Auxiliar Partida Thork 6310 7500mah 12v Com Case",
+      "sku_after": "VTK018587",
+      "category_after": "MLB63455",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB6573107112",
+      "sku": "VTK001030",
+      "status": "blocked_precondition",
+      "live_status": "paused",
+      "live_sku": "HYX84825",
+      "error": "{\"id\":\"MLB6573107112\",\"site_id\":\"MLB\",\"title\":\"Inversor Automotivo Hayonik Msw2103 Onda Modificada 300w 24v\",\"family_name\":\"Inversor Automotivo Hayonik Msw2103 Onda Modificada 300w 24v\",\"family_id\":1455452336345938,\"seller_id\":3294514937,\"category_id\":\"MLB433449\",\"user_product_id\":\"MLBU3888775048\",\"official_store_id\":null,\"price\":341.56,\"base_price\":341.56,\"original_price\":null,\"inventory_id\":null,\"currency_id\":\"BRL\",\"initial_quantity\":7,\"available_quantity\":0,\"sold_quantity\":7,\"sale_terms\":[{\"id\":\"WARRANTY_TYPE\",\"name\":\"Tipo de garantia\",\"value_id\":\"2230279\",\"value_name\":\"Garantia de fábrica\",\"value_struct\":null,\"values\":[{\"id\":\"2230279\",\"name\":\"Garantia de fábrica\",\"struct\":null}],\"value_type\":\"list\"},{\"id\":\"WARRANTY_TIME\",\"name\":\"Tempo de garantia\",\"value_id\":null,\"value_name\":\"12 meses\",\"value_struct\":{\"number\":12,\"unit\":\"meses\"},\"values\":[{\"id\":null,\"name\":\"12 meses\",\"struct\":{\"number\":12,\"unit\":\"meses\"}}],\"value_type\":\"number_unit\"},{\"id\":\"INVOICE\",\"name\":\"Faturamento\",\"value_id\":\"6891885\",\"value_name\":\"Factura A\",\"value_struct\":null,\"values\":[{\"id\":\"6891885\",\"name\":\"Factura A\",\"struct\":null}],\"value_type\":\"list\"}],\"buying_mode\":\"buy_it_now\",\"listing_type_id\":\"gold_special\",\"start_time\":\"2026-04-06T01:46:08.405Z\",\"stop_time\":\"2046-07-10T12:44:27.696Z\",\"end_time\":\"2046-07-10T12:44:27.696Z\",\"expiration_time\":\"2026-10-03T12:44:27.702Z\",\"condition\":\"new\",\"permalink\":\"https://produto.mercadolivre.com.br/MLB-6573107112-inversor-automotivo-hayonik-msw2103-onda-modificada-300w-24v-_JM\",\"thumbnail_id\":\"856523-MLB110063785653_042026\",\"thumbnail\":\"http://http2.mlstatic.com/D_856523-MLB110063785653_042026-I.jpg\",\"pictures\":[{\"id\":\"856523-MLB110063785653_042026\",\"url\":\"http://http2.mlstatic.com/D_856523-MLB110063785653_042026-O.jpg\",\"secure_url\":\"https://http2.mlstatic.com/D_856523-MLB110063785653_042026-O.jpg\",\"size\":\"500x320\",\"max_size\":\"550x353\",\"quality\":\"\"},{\"id\":\"935432-MLB110063785647_042026\",\"url\":\"http://http2.mlstatic.com/D_935432-MLB110063785647_042026-O.jpg\",\"secure_url\":\"https://http2.mlstatic.com/D_935432-MLB110063785647_042026-O.jpg\",\"size\":\"500x426\",\"max_size\":\"550x469\",\"quality\":\"\"},{\"id\":\"625910-MLB110063785645_042026\",\"url\":\"http://http2.mlstatic.com/D_625910-MLB110063785645_042026-O.jpg\",\"secure_url\":\"https://http2.mlstatic.com/D_625910-MLB110063785645_042026-O.jpg\",\"size\":\"500x430\",\"max_size\":\"550x473\",\"quality\":\"\"},{\"id\":\"714358-MLB110063785649_042026\",\"url\":\"http://http2.mlstatic.com/D_714358-MLB110063785649_042026-O.jpg\",\"secure_url\":\"https://http2.mlstatic.com/D_714358-MLB110063785649_042026-O.jpg\",\"size\":\"500x316\",\"max_size\":\"550x348\",\"quality\":\"\"},{\"id\":\"755100-MLB110063785651_042026\",\"url\":\"http://http2.mlstatic.com/D_755100-MLB110063785651_042026-O.jpg\",\"secure_url\":\"https://http2.mlstatic.com/D_755100-MLB110063785651_042026-O.jpg\",\"size\":\"500x315\",\"max_size\":\"550x347\",\"quality\":\"\"}],\"video_id\":null,\"descriptions\":[],\"accepts_mercadopago\":true,\"non_mercado_pago_payment_methods\":[],\"shipping\":{\"mode\":\"me2\",\"methods\":[],\"tags\":[\"mandatory_free_shipping\"],\"dimensions\":null,\"local_pick_up\":false,\"free_shipping\":true,\"logistic_type\":\"xd_drop_off\",\"store_pick_up\":false},\"international_delivery_mode\":\"none\",\"seller_address\":{\"address_line\":\"Rua João Marques de Nóbrega 300\",\"zip_code\":\"86206240\",\"city\":{\"id\":\"TUxCQ0lCSTQ1Y2Fh\",\"name\":\"Ibiporã\"},\"state\":{\"id\":\"BR-PR\",\"name\":\"Paraná\"},\"country\":{\"id\":\"BR\",\"name\":\"Brasil\"},\"search_location\":{\"city\":{\"id\":\"TUxCQ0lCSTQ1Y2Fh\",\"name\":\"Ibiporã\"},\"state\":{\"id\":\"TUxCUFBBUkExODBlZA\",\"name\":\"Paraná\"}},\"latitude\":-23.284674,\"longitude\":-51.083409,\"id\":1586042717},\"seller_contact\":null,\"location\":{},\"geolocation\":{\"latitude\":-23.284674,\"longitude\":-51.083409},\"coverage_areas\":[],\"attributes\":[{\"id\":\"BRAND\",\"name\":\"Marca\",\"value_id\":\"1088020\",\"value_name\":\"Hayonik\",\"values\":[{\"id\":\"1088020\",\"name\":\"Hayonik\",\"struct\":null}],\"value_type\":\"string\"},{\"id\":\"GTIN\",\"name\":\"Código universal de produto\",\"value_id\":null,\"value_name\":\"7899638111119\",\"values\":[{\"id\":null,\"name\":\"7899638111119\",\"struct\":null}],\"value_type\":\"string\"},{\"id\":\"ITEM_CONDITION\",\"name\":\"Condição do item\",\"value_id\":\"2230284\",\"value_name\":\"Novo\",\"values\":[{\"id\":\"2230284\",\"name\":\"Novo\",\"struct\":null}],\"value_type\":\"list\"},{\"id\":\"MAX_INPUT_VOLTAGE\",\"name\":\"Voltagem máxima de entrada\",\"value_id\":null,\"value_name\":\"15.5V\",\"values\":[{\"id\":null,\"name\":\"15.5V\",\"struct\":null}],\"value_type\":\"string\"},{\"id\":\"MAX_OPERATING_POWER\",\"name\":\"Potência máxima de operação\",\"value_id\":\"8128914\",\"value_name\":\"300 W\",\"values\":[{\"id\":\"8128914\",\"name\":\"300 W\",\"struct\":{\"number\":300,\"unit\":\"W\"}}],\"value_type\":\"number_unit\"},{\"id\":\"MAX_OUTPUT_VOLTAGE\",\"name\":\"Voltagem máxima de saída\",\"value_id\":null,\"value_name\":\"231V\",\"values\":[{\"id\":null,\"name\":\"231V\",\"struct\":null}],\"value_type\":\"string\"},{\"id\":\"MODEL\",\"name\":\"Modelo\",\"value_id\":null,\"value_name\":\"MSW2103 Onda Modificada\",\"values\":[{\"id\":null,\"name\":\"MSW2103 Onda Modificada\",\"struct\":null}],\"value_type\":\"string\"},{\"id\":\"SELLER_PACKAGE_HEIGHT\",\"name\":\"Altura da embalagem do vendor\",\"value_id\":null,\"value_name\":\"21 cm\",\"values\":[{\"id\":null,\"name\":\"21 cm\",\"struct\":{\"number\":21,\"unit\":\"cm\"}}],\"value_type\":\"number_unit\"},{\"id\":\"SELLER_PACKAGE_LENGTH\",\"name\":\"Comprimento da embalagem do vendor\",\"value_id\":null,\"value_name\":\"16 cm\",\"values\":[{\"id\":null,\"name\":\"16 cm\",\"struct\":{\"number\":16,\"unit\":\"cm\"}}],\"value_type\":\"number_unit\"},{\"id\":\"SELLER_PACKAGE_WEIGHT\",\"name\":\"Peso da embalagem do vendor\",\"value_id\":null,\"value_name\":\"850 g\",\"values\":[{\"id\":null,\"name\":\"850 g\",\"struct\":{\"number\":850,\"unit\":\"g\"}}],\"value_type\":\"number_unit\"},{\"id\":\"SELLER_PACKAGE_WIDTH\",\"name\":\"Largura da embalagem do vendor\",\"value_id\":null,\"value_name\":\"16 cm\",\"values\":[{\"id\":null,\"name\":\"16 cm\",\"struct\":{\"number\":16,\"unit\":\"cm\"}}],\"value_type\":\"number_unit\"},{\"id\":\"SELLER_SKU\",\"name\":\"SKU\",\"value_id\":null,\"value_name\":\"HYX84825\",\"values\":[{\"id\":null,\"name\":\"HYX84825\",\"struct\":null}],\"value_type\":\"string\"},{\"id\":\"WEIGHT\",\"name\":\"Peso\",\"value_id\":null,\"value_name\":\"800 g\",\"values\":[{\"id\":null,\"name\":\"800 g\",\"struct\":{\"number\":800,\"unit\":\"g\"}}],\"value_type\":\"number_unit\"},{\"id\":\"WITH_USB_OUTPUT\",\"name\":\"Com saída USB\",\"value_id\":\"242085\",\"value_name\":\"Sim\",\"values\":[{\"id\":\"242085\",\"name\":\"Sim\",\"struct\":null}],\"value_type\":\"boolean\"}],\"warnings\":[],\"listing_source\":\"\",\"variations\":[],\"status\":\"paused\",\"sub_status\":[\"out_of_stock\"],\"tags\":[\"good_quality_thumbnail\",\"user_product_listing\",\"standard_price_by_quantity\",\"immediate_payment\",\"cart_eligible\"],\"warranty\":\"Garantia de fábrica: 12 meses\",\"catalog_product_id\":\"MLB2063440723\",\"domain_id\":\"MLB-POWER_INVERTERS\",\"seller_custom_field\":null,\"parent_item_id\":null,\"differential_pricing\":null,\"deal_ids\":[],\"automatic_relist\":false,\"date_created\":\"2026-04-06T01:46:08.566Z\",\"last_updated\":\"2026-07-18T03:35:34.795Z\",\"health\":null,\"catalog_listing\":false,\"item_relations\":[{\"id\":\"MLB4701050595\",\"variation_id\":null,\"stock_relation\":1}],\"channels\":[\"marketplace\"]}"
+    },
+    {
+      "ml_item_id": "MLB7087157484",
+      "sku": "VTK001251",
+      "status": "success",
+      "title_before": "Par Caixas Passivas Frahm Hs5 Outdoor 120w 8 Ohms Brancas Branco",
+      "title_after": "Par Caixas Frahm Hs5 Outdoor 120w 8 Ohms Brancas Branco",
+      "family_name_before": "Par Caixas Passivas Frahm Hs5 Outdoor 120w 8 Ohms Brancas",
+      "family_name_after": "Par Caixas Frahm Hs5 Outdoor 120w 8 Ohms Brancas",
+      "sku_after": "VTK001251",
+      "category_after": "MLB11507",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB7087409374",
+      "sku": "VTK002586",
+      "status": "success",
+      "title_before": "Álcool Isopropilíco 110ml Isopropanol Transparente",
+      "title_after": "Kit 30 Álcool Isopropílico Implastec 110ml 99,8%",
+      "family_name_before": "Álcool Isopropilíco 110ml Isopropanol Transparente",
+      "family_name_after": "Kit 30 Álcool Isopropílico Implastec 110ml 99,8%",
+      "sku_after": "VTK002586",
+      "category_after": "MLB270480",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB7095602252",
+      "sku": "VTK000636",
+      "status": "success",
+      "title_before": "Ar-condicionado Agratto Split Liv Top Inverter 12.000 Btus Branca 220v",
+      "title_after": "Ar-condicionado Agratto Liv Top Inverter 12000 Btu 220v Branca 220v",
+      "family_name_before": "Ar-condicionado Agratto Split Liv Top Inverter 12.000 Btus",
+      "family_name_after": "Ar-condicionado Agratto Liv Top Inverter 12000 Btu 220v",
+      "sku_after": "VTK000636",
+      "category_after": "MLB1646",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB7111548226",
+      "sku": "VTK001235",
+      "status": "success",
+      "title_before": "Kit 6 Assadeiras Rochedo Dura+ 37,3x25,4cm Vermelha Vermelho",
+      "title_after": "Kit 6 Assadeiras Rochedo Dura+ 37,3x25,4cm Vermelhas Vermelho",
+      "family_name_before": "Kit 6 Assadeiras Rochedo Dura+ 37,3x25,4cm Vermelha",
+      "family_name_after": "Kit 6 Assadeiras Rochedo Dura+ 37,3x25,4cm Vermelhas",
+      "sku_after": "VTK001235",
+      "category_after": "MLB33424",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB7238889442",
+      "sku": "VTK000585",
+      "status": "success",
+      "title_before": "Antena Externa Log Para Tv Lu-30 Aquário",
+      "title_after": "Antena Externa Aquário Lu-30 Uhf 14dbi 30 Elementos",
+      "family_name_before": "Antena Externa Log Para Tv Lu-30 Aquário",
+      "family_name_after": "Antena Externa Aquário Lu-30 Uhf 14dbi 30 Elementos",
+      "sku_after": "VTK000585",
+      "category_after": "MLB44572",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB7295999924",
+      "sku": "VTK025467",
+      "status": "success",
+      "title_before": "12 Baterias Auditivas 13 Duracell (2 Cart. C/ 6 Un. Cada) Laranja",
+      "title_after": "Kit 12 Baterias Auditivas Duracell 13 2 Cartelas Laranja",
+      "family_name_before": "12 Baterias Auditivas 13 Duracell (2 Cart. C/ 6 Un. Cada)",
+      "family_name_after": "Kit 12 Baterias Auditivas Duracell 13 2 Cartelas",
+      "sku_after": "VTK025467",
+      "category_after": "MLB270521",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB7296000142",
+      "sku": "VTK025468",
+      "status": "success",
+      "title_before": "12 Baterias Auditivas 675 Duracell (2 Cart. C/ 6 Un. Cada) Azul",
+      "title_after": "Kit 12 Baterias Auditivas Duracell 675 2 Cartelas Azul",
+      "family_name_before": "12 Baterias Auditivas 675 Duracell (2 Cart. C/ 6 Un. Cada)",
+      "family_name_after": "Kit 12 Baterias Auditivas Duracell 675 2 Cartelas",
+      "sku_after": "VTK025468",
+      "category_after": "MLB270521",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB7295986978",
+      "sku": "VTK025466",
+      "status": "success",
+      "title_before": "12 Baterias Auditivas 10 Duracell (2 Cart. C/ 6 Un. Cada)",
+      "title_after": "Kit 12 Baterias Auditivas Duracell 10 2 Cartelas",
+      "family_name_before": "12 Baterias Auditivas 10 Duracell (2 Cart. C/ 6 Un. Cada)",
+      "family_name_after": "Kit 12 Baterias Auditivas Duracell 10 2 Cartelas",
+      "sku_after": "VTK025466",
+      "category_after": "MLB270521",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    },
+    {
+      "ml_item_id": "MLB4903841511",
+      "sku": "VTK016187",
+      "status": "success",
+      "title_before": "54 Pilhas Alcalinas Aa Panasonic (9 Cart)",
+      "title_after": "Kit 54 Pilhas Alcalinas Aa Panasonic 9 Cartelas",
+      "family_name_before": "54 Pilhas Alcalinas Aa Panasonic (9 Cart)",
+      "family_name_after": "Kit 54 Pilhas Alcalinas Aa Panasonic 9 Cartelas",
+      "sku_after": "VTK016187",
+      "category_after": "MLB7060",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": true,
+          "status": 200,
+          "field": "family_name",
+          "error": null
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "database_title": {
+          "ok": true,
+          "error": null
+        }
+      }
+    }
+  ]
+}

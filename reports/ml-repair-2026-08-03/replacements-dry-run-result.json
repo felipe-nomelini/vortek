@@ -1,0 +1,889 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-repair-2026-08-03/replacements-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "ml-replacements-2026-08-03",
+  "selected": 17,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "2d01d838-97d2-4d70-816a-4eafef68c286",
+      "sku": "VTK000021",
+      "category": {
+        "id": "MLB57843",
+        "nome": "MLB57843",
+        "dominio": ""
+      },
+      "basePrice": 224.34,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "UNIPOWER"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "UP12120"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7893007670214"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Bateria Estacionária Selada 12V 12Ah VRLA UP12120 Unipower\n\nVISÃO GERAL\nA Bateria Estacionária Selada 12V 12Ah VRLA UP12120 é o modelo ideal para aplicações em equipamentos médicos e nobreaks. Atualmente a UNIPOWER é líder no Brasil em baterias estacionárias. Fornece soluções completas em armazenamento de energia que incluem um portfólio completo para as mais diversas aplicações como telecom, nobreaks (UPS), sistemas de segurança, sistemas de iluminação de emergência, sinalização, equipamentos médicos e entre outros.\n\nAs baterias seladas VRLA com a tecnologia chumbo-ácido podem ser viradas em qualquer posição que não há vazamento do ácido. Esse tipo de bateria possui válvulas de segurança que aliviam a pressão interna da bateria caso algo esteja errado no produto ou no carregador evita que ela exploda causando ferimentos e fogo.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: UNIPOWER\n• Modelo: UP12120\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: UNIPOWER\n• GTIN: 7893007670214\n• NCM: 8507.20.10\n• SKU: VTK000021\n\nEMBALAGEM\n• Dimensões informadas: 10 × 15.1 × 9.8 cm\n• Peso bruto informado: 3,703 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ed549134-81a7-4816-8f56-f4fc2a4c2538",
+      "sku": "VTK000088",
+      "category": {
+        "id": "MLB57843",
+        "nome": "MLB57843",
+        "dominio": ""
+      },
+      "basePrice": 109.94,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "UNIPOWER"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "UP1223"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7893007670023"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Bateria Estacionária Selada 12V 2,3Ah VRLA UP1223 Unipower\n\nVISÃO GERAL\nA Bateria Estacionária Selada 12V 2,3Ah VRLA UP1223 é o modeloideal para aplicações de iluminação de emergência, relógios de ponto e equipamentos médicos. Atualmente a UNIPOWER é líder no Brasil em baterias estacionárias. Fornece soluções completas em armazenamento de energia que incluem um portfólio completo para as mais diversas aplicações como telecom, nobreaks (UPS), sistemas de segurança, sistemas de iluminação de emergência, sinalização, equipamentos médicos e entre outros.\n\nAs baterias seladas VRLA com a tecnologia chumbo-ácido podem ser viradas em qualquer posição que não há vazamento do ácido. Esse tipo de bateria possui válvulas de segurança que aliviam a pressão interna da bateria caso algo esteja errado no produto ou no carregador evita que ela exploda causando ferimentos e fogo.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: UNIPOWER\n• Modelo: UP1223\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: UNIPOWER\n• GTIN: 7893007670023\n• NCM: 8507.20.10\n• SKU: VTK000088\n\nEMBALAGEM\n• Dimensões informadas: 6.6 × 17.8 × 3.4 cm\n• Peso bruto informado: 0,973 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "908597bc-ffb3-4481-a8ac-fe59607034be",
+      "sku": "VTK000244",
+      "category": {
+        "id": "MLB44572",
+        "nome": "MLB44572",
+        "dominio": ""
+      },
+      "basePrice": 184.04,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Aquário"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "DTV-3000"
+        },
+        {
+          "id": "LOCATION",
+          "name": "Localização",
+          "value_id": "",
+          "value_name": "Externo"
+        },
+        {
+          "id": "IS_DIGITAL_FREEVIEW",
+          "name": "É TV digital terrestre",
+          "value_id": "",
+          "value_name": "Sim"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898127600097"
+        },
+        {
+          "id": "CABLE_LENGTH",
+          "name": "Comprimento do cabo",
+          "value_id": "",
+          "value_name": "16 m"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Antena Externa TV 4 em 1 VHF/UHF/FM/HDTV DTV-3000 Aquário\n\nVISÃO GERAL\nA Antena DTV-3000 Aquário é uma Antena Externa completa 4 em 1 que capta todos os canais VHF, UHF, FM e HDTV, seja digital ou analógico proporcionando assim, muito mais opções de entretenimento e qualidade de imagem em sua TV. Para que sua instalação seja realizada de forma prática e rápida, a antena acompanha: cabo de descida com 16 metros, suporte e mastro. Tudo o que você precisa em um único produto!\n\nVersátil e sofisticada a DTV-3000 apresenta um design arrojado e, é compatível com todos os modelos de TVs e conversores disponíveis no mercado. 4 EM 1! - Canais em VHF/UHF/FM/HDTV.\n\nDesfrute dos novos canais digitais em alta definição Full HD, além de ter a melhor imagem nos canais analógicos. MUITO MAIS QUALIDADE DE IMAGEM! - Tenha a melhor qualidade de som e imagem digital em sua TV com a Antena Aquário, mais opções de entretenimento para você tudo em HDTV digital.\n\nCOMPATIBILIDADE! - O produto certo para todas as situações. Compatível com todos os modelos de TV e conversores digitais do mercado.\n\nFÁCIL INSTALAÇÃO! - Tudo o que você precisa em um único produto, já vem pré-montada e com todos os acessórios necessários para uma instalação fácil e prática. DESIGN MODERNO!\n\n- Pode ser instalada em qualquer lugar, seja em mastros, testeiras, muros ou varandas. Além de integrar perfeitamente com a decoração de sua casa. ITENS INCLUSOS: - 1 Antena Externa, Dipolos, Mastro, Suporte de Parede, Cabo Coaxial de 16m, Parafusos Para Fixação e Manual de Instalação.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Aquário\n• Modelo: DTV-3000\n• Localização: Externo\n• É TV digital terrestre: Sim\n• Comprimento do cabo: 16 m\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: AQUARIO\n• GTIN: 7898127600097\n• NCM: 8529.10.90\n• SKU: VTK000244\n\nEMBALAGEM\n• Dimensões informadas: 9 × 34.5 × 41 cm\n• Peso bruto informado: 1,92 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "00572cc5-da92-4607-b881-17ee2763a5e3",
+      "sku": "VTK000402",
+      "category": {
+        "id": "MLB270488",
+        "nome": "MLB270488",
+        "dominio": ""
+      },
+      "basePrice": 270.07,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Implastec"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "Air Duster Pró"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "10763780000123"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Air Duster Pró 400ml Implastec - CX / 12\n\nVISÃO GERAL\nAtravés do seu forte jato de ar comprimido, o Air Duster Pró Implastec é o seu grande aliado na remoção da poeira e pequenas sujeiras dos mais variados lugares, inclusive aqueles de difícil acesso.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Implastec\n• Modelo: Air Duster Pró\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: IMPLASTEC\n• GTIN: 10763780000123\n• NCM: 2711.19.90\n• SKU: VTK000402\n\nEMBALAGEM\n• Dimensões informadas: 21 × 20 × 27.5 cm\n• Peso bruto informado: 4,104 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "39b24530-7d83-416f-9dc6-ccf1a02c8d40",
+      "sku": "VTK000427",
+      "category": {
+        "id": "MLB270480",
+        "nome": "MLB270480",
+        "dominio": ""
+      },
+      "basePrice": 190.86,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Implastec"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "Álcool Isopropílico Aerossol"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "10763800000126"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Álcool Isopropílico Aerossol 227ML Implastec - CX / 12\n\nVISÃO GERAL\nO Álcool Isopropílico Aerossol é um solvente da família dos álcoois com uma capacidade de solvência muito grande, principalmente de muitas substâncias orgânicas naturais ou sintéticas, tais como: resinas, óleos, gorduras, alcalóides, acetatos de celulose, nitrocelulose e outras resinas utilizadas nas preparações de tintas, vernizes e pasta para solda estanho.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Implastec\n• Modelo: Álcool Isopropílico Aerossol\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: IMPLASTEC\n• GTIN: 10763800000126\n• NCM: 2905.12.20\n• SKU: VTK000427\n\nEMBALAGEM\n• Dimensões informadas: 20 × 18 × 23.5 cm\n• Peso bruto informado: 2,976 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "1750dd3f-8b94-426f-a358-7e6c6788a976",
+      "sku": "VTK000706",
+      "category": {
+        "id": "MLB270088",
+        "nome": "MLB270088",
+        "dominio": ""
+      },
+      "basePrice": 1074,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Fortrek"
+        },
+        {
+          "id": "NETWORK_CABLE_TYPE",
+          "name": "Tipo de cabo de rede",
+          "value_id": "",
+          "value_name": "Cabo de rede U/UTP"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "CAT5E"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898554607874"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabo de Rede CAT5e 305m Fortrek FK 500C CMX Branco - CX / 305\n\nVISÃO GERAL\nO Cabo de Rede CAT5e com 305 metros da Fortrek é a escolha ideal para atender às demandas de redes internas, seja em ambientes domésticos, escritórios, jogos on-line, streaming ou pequenas empresas. Projetado especificamente para aplicações horizontais, este cabo oferece desempenho superior em redes de cabeamento interno. Possuindo certificação ISO 9000 que garante maior qualidade e máxima durabilidade ao longo de todo o uso.\n\nUm dos diferenciais deste modelo são seus condutores 100% COBRE, proporcionando uma transmissão de dados confiável e eficiente. Cada condutor é isolado em polietileno especial e torcido conforme os padrões normativos EIA/TIA 568B. 2, garantindo máxima qualidade na transmissão de dados em redes estruturadas horizontais e verticais.\n\nCompatível com os protocolos Ethernet 100Base-T (100Mbps) e GigabitEthernet 1000Base-T (1Gbps), este cabo oferece a versatilidade necessária para suportar uma variedade de aplicações, desde chamadas on-line até transmissão de dados em alta velocidade. Além disso, a capa resistente em PVC 70°C anti-chama CMX assegura a durabilidade e a segurança do cabo, tornando-o adequado para diversas condições de instalação. Sua aplicabilidade se estende além das redes convencionais, sendo também uma escolha confiável para sistemas de CFTV, tanto analógicos quanto digitais.\n\nO cabo proporciona excelente qualidade de imagem nos sistemas TVI, CVI e AHD, sendo compatível com Vídeo Balum, Power Balum e Câmeras IP. A embalagem contém um rolo de 305 metros, com marcação métrica, facilitando o acompanhamento do consumo do cabo durante a instalação. Essa característica é importante para garantir uma instalação precisa e eficiente, permitindo que você monitore o uso do cabo em tempo real.\n\nAssim, o Cabo de Rede CAT5e com 305 metros da Fortrek se destaca por sua construção premium com condutores 100% COBRE, garantindo confiabilidade, desempenho e versatilidade em diversas aplicações de redes e sistemas de vigilância.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Fortrek\n• Tipo de cabo de rede: Cabo de rede U/UTP\n• Modelo: CAT5E\n• Cor: Branco\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FORTREK\n• GTIN: 7898554607874\n• NCM: 8544.49.00\n• SKU: VTK000706\n\nEMBALAGEM\n• Dimensões informadas: 32 × 22 × 32 cm\n• Peso bruto informado: 9,53 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "7bfec5d7-4b7d-4d68-810a-19ac1f3cb024",
+      "sku": "VTK000841",
+      "category": {
+        "id": "MLB1714",
+        "nome": "MLB1714",
+        "dominio": ""
+      },
+      "basePrice": 172.99,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Fortrek"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "Rogue"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898554609007"
+        },
+        {
+          "id": "COLOR",
+          "name": "Cor",
+          "value_id": "52055",
+          "value_name": "Branco"
+        },
+        {
+          "id": "MAIN_COLOR",
+          "name": "Cor principal",
+          "value_id": "2450308",
+          "value_name": "Branco"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Mouse Gamer Fortrek Rogue Wireless Branco\n\nVISÃO GERAL\nO Fortrek Rogue é um mouse gamer ultraleve desenvolvido para quem exige precisão extrema, resposta rápida e liberdade total de movimentos. Com sensor de até 16. 000 DPI e switch Huano, ele oferece velocidade e durabilidade para elevar seu desempenho no jogo.\n\nSeu sistema de conectividade Tri-Mode (Bluetooth, Dongle 2,4GHz e cabo USB) permite alternar entre diferentes dispositivos com praticidade, além de acompanhar cabo de 1,5m em nylon trançado, que garante resistência e flexibilidade durante o uso com fio. Equipado com bateria recarregável de lítio e operação plug & play, o Fortrek Rogue está sempre pronto para a ação, sem complicações e sem depender de fios.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Fortrek\n• Modelo: Rogue\n• Cor: Branco\n• Cor principal: Branco\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: FORTREK\n• GTIN: 7898554609007\n• NCM: 8471.60.53\n• SKU: VTK000841\n\nEMBALAGEM\n• Dimensões informadas: 18 × 12 × 6 cm\n• Peso bruto informado: 0,15 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "2c9d937d-83fc-40fa-945f-07166d03b518",
+      "sku": "VTK001221",
+      "category": {
+        "id": "MLB270480",
+        "nome": "MLB270480",
+        "dominio": ""
+      },
+      "basePrice": 315.65,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Implastec"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "Álcool para Limpeza de Eletrônicos 99,8%"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "10763750000184"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Álcool Para Limpeza de Eletrônicos 1000ML Implastec - CX / 18\n\nVISÃO GERAL\nDesenvolvido para limpeza de componentes eletrônicos e placas de circuito impresso, sua formulação especial composta por uma mistura de álcoois tem como princípio ativo o álcool isopropílico 99,8%, apresentando alto grau de pureza, grande capacidade de solvência e ação desengordurante, tudo isso sem deixar resíduos. Produto notificado na Anvisa. Produto notificado na Anvisa.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Implastec\n• Modelo: Álcool para Limpeza de Eletrônicos 99,8%\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: IMPLASTEC\n• GTIN: 10763750000184\n• NCM: 2905.12.20\n• SKU: VTK001221\n\nEMBALAGEM\n• Dimensões informadas: 28 × 26 × 50 cm\n• Peso bruto informado: 15,84 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "ffe327b5-85c3-472b-b25b-2cb928971e2c",
+      "sku": "VTK001300",
+      "category": {
+        "id": "MLB73056",
+        "nome": "MLB73056",
+        "dominio": ""
+      },
+      "basePrice": 447.95,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Philips Walita"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "RI7630/RI7632/RI7636"
+        },
+        {
+          "id": "COMPATIBLE_BLENDER_BRAND",
+          "name": "Marca compatível",
+          "value_id": "",
+          "value_name": "Philips Walita"
+        },
+        {
+          "id": "COMPATIBLE_BLENDERS_MODELS",
+          "name": "Modelos de liquidificadores compatíveis",
+          "value_id": "",
+          "value_name": "RI7630, RI7632 e RI7636"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7890000618267"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Copo Para Mixer Com Alça RI7630/RI7632/RI7636 Walita Transparente - CX / 6\n\nVISÃO GERAL\nO Copo Para Mixer Com Alça RI7630/RI7632/RI7636 Walita é um acessório essencial para complementar a sua experiência no preparação de alimentos. Projetado com materiais duráveis e de alta qualidade.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Philips Walita\n• Modelo: RI7630/RI7632/RI7636\n• Marca compatível: Philips Walita\n• Modelos de liquidificadores compatíveis: RI7630, RI7632 e RI7636\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: PHILIPS WALITA\n• GTIN: 7890000618267\n• NCM: 8509.90.00\n• SKU: VTK001300\n\nEMBALAGEM\n• Dimensões informadas: 35 × 38.5 × 46 cm\n• Peso bruto informado: 3,98 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "24b72799-ff7c-4d90-ae5f-3541084a7cc5",
+      "sku": "VTK001318",
+      "category": {
+        "id": "MLB433449",
+        "nome": "MLB433449",
+        "dominio": ""
+      },
+      "basePrice": 1020.94,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Hayonik"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "MSW2115 Onda Modificada"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7899638111089"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Inversor Automotivo HAYONIK MSW2115 Onda Modificada 1500W 24V/127V\n\nVISÃO GERAL\nO Inversor de Onda Modificada MSW2115 da Hayonik é uma solução eficiente e versátil, ideal para quem busca converter energia de maneira prática e confiável. Com uma potência de 1500W, o MSW2115 oferece um desempenho consistente, garantindo uma alimentação estável para seus dispositivos. Fazendo parte da linha MSW, este inversor é projetado para atender a diversas necessidades com aplicações em equipamentos como ferramentas elétricas, o MSW2115 oferece uma conversão de energia estável, suportando uma ampla gama de aparelhos.\n\nSeu design compacto e robusto facilita a instalação, enquanto a construção de alta qualidade garante resistência e durabilidade em ambientes variados. Além disso, o inversor é equipado com recursos de segurança, como proteção contra sobrecarga e superaquecimento, proporcionando um funcionamento seguro e confiável em qualquer situação. *Os Inversores de Onda Modificada Hayonik, não podem ser utilizados em instalações solares de acordo com a norma vigentes do Inmetro.\n\nProduto destinado a uso automotivo e outras demandas.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Hayonik\n• Modelo: MSW2115 Onda Modificada\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: HAYONIK\n• GTIN: 7899638111089\n• NCM: 8504.40.90\n• SKU: VTK001318\n\nEMBALAGEM\n• Dimensões informadas: 10.5 × 16 × 32 cm\n• Peso bruto informado: 1,96 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9091f8fb-1f08-4df9-8529-b913966ab3d3",
+      "sku": "VTK001459",
+      "category": {
+        "id": "MLB10233",
+        "nome": "MLB10233",
+        "dominio": ""
+      },
+      "basePrice": 2297,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "HH"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "TNA-DF1"
+        },
+        {
+          "id": "INSTALLATION_PLACEMENT",
+          "name": "Lugar de colocação",
+          "value_id": "",
+          "value_name": "Piso"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "5060109456943"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Suporte Móvel Para Subwoofer HH TNA-DF1\n\nVISÃO GERAL\nO Suporte Móvel Para Subwoofer HH TNA-DF1 é a solução perfeita para a mobilidade do sistema de som. Construído com uma estrutura de aço sólido, o TNA-DF1 se conecta de forma segura ao subwoofer passivo TNS-1200S, permitindo que você transforme o sistema TNA em uma matriz de linha totalmente portátil. Assim, este modelo se torna ideal para eventos, shows e muito mais.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: HH\n• Modelo: TNA-DF1\n• Lugar de colocação: Piso\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: HH\n• GTIN: 5060109456943\n• NCM: 8302.20.00\n• SKU: VTK001459\n\nEMBALAGEM\n• Dimensões informadas: 16 × 52 × 52 cm\n• Peso bruto informado: 13,1 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "876fc102-d9ac-44c6-843c-31eaa63761d9",
+      "sku": "VTK002659",
+      "category": {
+        "id": "MLB3771",
+        "nome": "MLB3771",
+        "dominio": ""
+      },
+      "basePrice": 998.25,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Yamaha"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "YVS-100"
+        },
+        {
+          "id": "SAXOPHONE_TYPE",
+          "name": "Tipo de saxofone",
+          "value_id": "",
+          "value_name": "Soprano"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "4957812621151"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Venova Yamaha YVS-100 Branca\n\nVISÃO GERAL\nA Venova Yamaha YVS-100 é um novo e inovador instrumento de sopro que oferece toda a expressividade de um instrumento de palheta e que utiliza um sistema de dedilhação tão simples como de uma flauta de bisel. A história da Yamaha começou por volta do ano de 1887 pelo fundador Torakusu Yamaha, iniciando a produção de instrumentos ocidentais no Japão. O primeiro instrumento foi um órgão de bambu do Japão, e consequentemente a inspiração veio de forma natural para a criação de outros instrumentos.\n\nAtualmente, a marca é uma das maiores fabricantes de instrumentos musicais do mundo, buscando entregar qualidade e inspirar cada vez mais as pessoas a se apaixonar pelo mundo da música.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Yamaha\n• Modelo: YVS-100\n• Tipo de saxofone: Soprano\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: YAMAHA\n• GTIN: 4957812621151\n• NCM: 9205.90.00\n• SKU: VTK002659\n\nEMBALAGEM\n• Dimensões informadas: 11.5 × 15 × 53 cm\n• Peso bruto informado: 1,4 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "90c92209-e85d-41f5-b751-33f2314a26ce",
+      "sku": "VTK003157",
+      "category": {
+        "id": "MLB420707",
+        "nome": "MLB420707",
+        "dominio": ""
+      },
+      "basePrice": 79.41,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Storm"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "Emenda Jack F 1+1"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898566200490"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Emenda 1+1 Jack F Fêmea Metal Com Porca Storm - PCT / 100\n\nVISÃO GERAL\nA Emenda 1+1 Jack F Fêmea Metal Com Porca Storm é um dispositivo utilizado para realizar a conexão entre dois cabos coaxiais com conectores tipo \"F\" fêmea. É um adaptador com uma estrutura metálica resistente e uma porca que garante a fixação segura dos cabos. Essa emenda é comumente usada em instalações de antenas de TV, sistemas de televisão por satélite, entre outros dispositivos que utilizam cabos coaxiais.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Storm\n• Modelo: Emenda Jack F 1+1\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: STORM\n• GTIN: 7898566200490\n• NCM: 8536.90.90\n• SKU: VTK003157\n\nEMBALAGEM\n• Dimensões informadas: 14 × 3 × 11 cm\n• Peso bruto informado: 0,4 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "443a6d87-6eb6-40a9-a7c8-f3b0f75ebc51",
+      "sku": "VTK006330",
+      "category": {
+        "id": "MLB1646",
+        "nome": "MLB1646",
+        "dominio": ""
+      },
+      "basePrice": 2990,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Agratto"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "Fit Top"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "",
+          "value_name": "Elétrica"
+        },
+        {
+          "id": "AIR_CONDITIONER_TYPE",
+          "name": "Tipo de ar condicionado",
+          "value_id": "",
+          "value_name": "Split"
+        },
+        {
+          "id": "COOLING_CAPACITY",
+          "name": "Capacidade de refrigeração",
+          "value_id": "",
+          "value_name": "12000 BTU"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898461977763"
+        },
+        {
+          "id": "PACKAGING_BOXES_NUMBER",
+          "name": "Quantidade de caixas de embalagem",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "198813",
+          "value_name": "220V"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Ar-Condicionado Agratto Fit Top 12.000 BTUs 220v\n\nVISÃO GERAL\nO Ar-Condicionado Agratto Fit Top é um modelo que combina economia e desempenho com sua classificação Classe A, garantindo baixo consumo de energia. Seu painel backlight, com iluminação suave que pode ser desativada, não interfere na decoração ou no descanso. Equipado com serpentinas de cobre 100% com ranhuras internas, proporciona melhor eficiência na troca térmica.\n\nUtilizando gás ecológico R410A, contribui para a preservação da camada de ozônio. Seu sistema de filtros oferece 90% de eficiência na purificação do ar, com uma função bactericida que combate a maioria das bactérias, garantindo um ambiente mais saudável.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Agratto\n• Modelo: Fit Top\n• Tipo de alimentação: Elétrica\n• Tipo de ar condicionado: Split\n• Capacidade de refrigeração: 12000 BTU\n• Quantidade de caixas de embalagem: 2\n• Voltagem: 220V\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: AGRATTO\n• GTIN: 7898461977763\n• NCM: 8415.10.11\n• SKU: VTK006330\n\nEMBALAGEM\n• Dimensões informadas: 84 × 41 × 90 cm\n• Peso bruto informado: 28,25 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "78cd49cb-4af2-4b90-a7d8-9babff9f6b27",
+      "sku": "VTK009748",
+      "category": {
+        "id": "MLB9678",
+        "nome": "MLB9678",
+        "dominio": ""
+      },
+      "basePrice": 561.67,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "New York"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "Estante Dupla para Conga"
+        },
+        {
+          "id": "MATERIALS",
+          "name": "Materiais",
+          "value_id": "",
+          "value_name": "Aço niquelado"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898705601881"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Estante Dupla Para Conga New York\n\nVISÃO GERAL\nEstante Dupla para Conga New York, ideal para acomodar duas congas evitando que se movam, possui acabamento cromado com ajustes de altura e pés emborrachados. Especificações - Marca: New York - Acabamento: Cromado - Ferragem: Dupla Reforçada - Pés: Emborrachados - Altura Máxima: 122 cm - Altura Mínima: 71 cm - Peso: 3,8 kg Conteúdo da Embalagem - 01 Suporte Duplo para Conga - Dimensões da Embalagem (AxLxP): 13 x 14 x 69 cm *imagens meramente Ilustrativas\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: New York\n• Modelo: Estante Dupla para Conga\n• Materiais: Aço niquelado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: New York\n• GTIN: 7898705601881\n• NCM: 9206.00.00\n• SKU: VTK009748\n\nEMBALAGEM\n• Dimensões informadas: 13 × 14 × 69 cm\n• Peso bruto informado: 3,8 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "a25d0276-fca4-4f4e-b49e-3668a69d694f",
+      "sku": "VTK012415",
+      "category": {
+        "id": "MLB45248",
+        "nome": "MLB45248",
+        "dominio": ""
+      },
+      "basePrice": 379.25,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Voxstorm"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "PSG 160 USB"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENTS",
+          "name": "Instrumentos recomendados",
+          "value_id": "",
+          "value_name": "Microfone, guitarra e teclado"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898640360546"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabeçote Autoamplificado Voxstorm 15 W Rms - Psg 160 Usb\n\nVISÃO GERAL\nCabeçote Autoamplificado Voxstorm PSG 160 USB Especificações do Fabricante: - 02 Canais de Entrada Canal 1: - 1 Entrada - Auxiliar - RCA - MP3 Player USB/SD/FM/Bluetooth - Controle de Volume Canal 2: - 1 Entrada - Microfone (1/4 TS) - Controle de Volume Equalização: LOW, MID e HIGH Potência: 15 Wrms @ 4 ohms 8 Wrms @ 8 ohms Alimentação: Fonte Chaveada Externa 100~240VAC Dimensões: 65mm x 312mm x 160mm (AxLxP) Peso: Peso do Produto: 1,2 Kg\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Voxstorm\n• Modelo: PSG 160 USB\n• Instrumentos recomendados: Microfone, guitarra e teclado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Voxstorm\n• GTIN: 7898640360546\n• NCM: 8543.70.99\n• SKU: VTK012415\n\nEMBALAGEM\n• Dimensões informadas: 8 × 40 × 18 cm\n• Peso bruto informado: 1,5 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "9ab9b763-9390-4aea-836a-cb716ca31608",
+      "sku": "VTK012425",
+      "category": {
+        "id": "MLB45248",
+        "nome": "MLB45248",
+        "dominio": ""
+      },
+      "basePrice": 397.75,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Voxstorm"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "PSG 180"
+        },
+        {
+          "id": "RECOMMENDED_INSTRUMENTS",
+          "name": "Instrumentos recomendados",
+          "value_id": "",
+          "value_name": "Microfone, guitarra e teclado"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898640360539"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Cabeçote Autoamplificado Voxstorm 40 W Rms - Psg 180\n\nVISÃO GERAL\nCabeçote Autoamplificado Voxstorm PSG 180 Especificações do Fabricante: - 02 Canais de Entrada Canal 1: - 1 Entrada - Microfone (1/4 TS) - 1 Entrada - Microfone/Guitarra (1/4 TS) - Controle de Volume Canal 2: - 1 Entrada - KEYBOARD - L/R (1/4 TRS) - 1 Entrada - Auxiliar - RCA - Controle de Volume Equalização: LOW, MID e HIGH Potência: 40 Wrms @ 4 ohms 25 Wrms @ 8 ohms Alimentação: 127~220VAC Dimensões: 85mm x 310mm x 215mm (AxLxP) Peso: Peso do Produto: 3 Kg\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Voxstorm\n• Modelo: PSG 180\n• Instrumentos recomendados: Microfone, guitarra e teclado\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: Voxstorm\n• GTIN: 7898640360539\n• NCM: 8543.70.99\n• SKU: VTK012425\n\nEMBALAGEM\n• Dimensões informadas: 26 × 36 × 11 cm\n• Peso bruto informado: 3,26 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}

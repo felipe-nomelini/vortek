@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-08-04T03:31:09.974Z",
+  "apply": false,
+  "total": 1,
+  "results": [
+    {
+      "sku": "VTK001318",
+      "itemId": "MLB6573116714",
+      "action": "would_activate",
+      "stock": 5,
+      "catalog": false
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "batchId": "ml-replacements-2026-08-03",
+  "strategy": "safe_one_by_one",
+  "items": [
+    {
+      "produtoId": "a25d0276-fca4-4f4e-b49e-3668a69d694f",
+      "sku": "VTK012415",
+      "nome": "Cabeçote Autoamplificado Voxstorm 15 W Rms - Psg 160 Usb",
+      "fornecedor": "BKR1",
+      "estoque": 13,
+      "custo": 257.23,
+      "categoryId": "MLB7892",
+      "description": "Cabeçote Autoamplificado Voxstorm PSG 160 USB Especificações do Fabricante: - 02 Canais de Entrada Canal 1: - 1 Entrada - Auxiliar - RCA - MP3 Player – USB/SD/FM/Bluetooth - Controle de Volume Canal 2: - 1 Entrada - Microfone (1/4” TS) - Controle de Volume Equalização: LOW, MID e HIGH Potência: 15 Wrms @ 4 ohms 8 Wrms @ 8 ohms Alimentação: Fonte Chaveada Externa 100~240VAC Dimensões: 65mm x 312mm x 160mm (AxLxP) Peso: Peso do Produto: 1,2 Kg",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Voxstorm"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "PSG 160 USB"
+        },
+        {
+          "id": "RMS_POWER_OUTPUT",
+          "value_name": "15 W"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "INPUT_CONNECTORS",
+          "value_name": "RCA"
+        },
+        {
+          "id": "NUMBER_OF_CHANNELS",
+          "value_name": "2"
+        },
+        {
+          "id": "WITH_USB",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_DISPLAY",
+          "value_name": "Não"
+        },
+        {
+          "id": "WIDTH",
+          "value_name": "31.6 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_name": "6.5 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_name": "16 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_name": "1.2 kg"
+        }
+      ],
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "exactCategoryReviewed": true,
+        "exactAttributesReviewed": true,
+        "sources": [
+          "ERP/DSLite",
+          "API oficial do Mercado Livre"
+        ],
+        "trustedOptionalAttributeOverrides": true
+      }
+    },
+    {
+      "produtoId": "9ab9b763-9390-4aea-836a-cb716ca31608",
+      "sku": "VTK012425",
+      "nome": "Cabeçote Autoamplificado Voxstorm 40 W Rms - Psg 180",
+      "fornecedor": "BKR1",
+      "estoque": 12,
+      "custo": 269.78,
+      "categoryId": "MLB7892",
+      "description": "Cabeçote Autoamplificado Voxstorm PSG 180 Especificações do Fabricante: - 02 Canais de Entrada Canal 1: - 1 Entrada - Microfone (1/4” TS) - 1 Entrada - Microfone/Guitarra (1/4” TS) - Controle de Volume Canal 2: - 1 Entrada - KEYBOARD - L/R (1/4” TRS) - 1 Entrada - Auxiliar - RCA - Controle de Volume Equalização: LOW, MID e HIGH Potência: 40 Wrms @ 4 ohms 25 Wrms @ 8 ohms Alimentação: 127~220VAC Dimensões: 85mm x 310mm x 215mm (AxLxP) Peso: Peso do Produto: 3 Kg",
+      "attributeOverrides": [
+        {
+          "id": "BRAND",
+          "value_name": "Voxstorm"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "PSG 180"
+        },
+        {
+          "id": "RMS_POWER_OUTPUT",
+          "value_name": "40 W"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "INPUT_CONNECTORS",
+          "value_name": "RCA"
+        },
+        {
+          "id": "NUMBER_OF_CHANNELS",
+          "value_name": "2"
+        },
+        {
+          "id": "WITH_USB",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DISPLAY",
+          "value_name": "Não"
+        },
+        {
+          "id": "WIDTH",
+          "value_name": "31 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_name": "8.5 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_name": "21.5 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_name": "3 kg"
+        }
+      ],
+      "pricingStrategy": {
+        "margin": 0.15,
+        "minProfit": 20
+      },
+      "preflight": {
+        "exactCategoryReviewed": true,
+        "exactAttributesReviewed": true,
+        "sources": [
+          "ERP/DSLite",
+          "API oficial do Mercado Livre"
+        ],
+        "trustedOptionalAttributeOverrides": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-repair-2026-08-03/replacements-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": false,
+  "batchId": "ml-replacements-2026-08-03",
+  "selected": 2,
+  "created": [
+    {
+      "dryRun": false,
+      "produtoId": "9091f8fb-1f08-4df9-8529-b913966ab3d3",
+      "sku": "VTK001459",
+      "category": {
+        "id": "MLB10233",
+        "nome": "MLB10233",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB4988489695",
+        "title": "Suporte Móvel Para Subwoofer Hh Tna-df1",
+        "price": 2635.13,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-4988489695-suporte-movel-para-subwoofer-hh-tna-df1-_JM",
+        "status": "paused",
+        "sub_status": [
+          "picture_download_pending"
+        ]
+      },
+      "linked_existing": false,
+      "warnings": [
+        "Preço ajustado automaticamente para R$ 2631.79 para evitar frete/taxa desatualizados.",
+        "GTIN ausente. Motivo enviado ao ML: O produto é um kit ou pack.",
+        "ML está processando imagens; isso costuma liberar automaticamente.",
+        "Preço corrigido automaticamente após frete real: R$ 2631.79 → R$ 2635.13."
+      ]
+    },
+    {
+      "dryRun": false,
+      "produtoId": "443a6d87-6eb6-40a9-a7c8-f3b0f75ebc51",
+      "sku": "VTK006330",
+      "category": {
+        "id": "MLB1646",
+        "nome": "MLB1646",
+        "dominio": ""
+      },
+      "anuncio": {
+        "id": "MLB7111544270",
+        "title": "Ar-condicionado Agratto Fit Top 12.000 Btus 220v",
+        "price": 2990,
+        "permalink": "https://produto.mercadolivre.com.br/MLB-7111544270-ar-condicionado-agratto-fit-top-12000-btus-220v-_JM",
+        "status": "paused"
+      },
+      "linked_existing": true,
+      "warnings": [
+        "Anúncio já existia no Mercado Livre para este SKU e foi vinculado ao produto."
+      ]
+    }
+  ],
+  "failed": []
+}

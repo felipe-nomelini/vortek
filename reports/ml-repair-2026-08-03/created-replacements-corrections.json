@@ -1,0 +1,157 @@
+{
+  "generated_at": "2026-08-04T03:33:43.221Z",
+  "corrections": [
+    {
+      "ml_item_id": "MLB7322678858",
+      "sku": "VTK012415",
+      "family_name": "Cabeçote Amplificador Voxstorm PSG160 USB Bluetooth 15W",
+      "description": "Cabeçote Autoamplificado Voxstorm 15 W Rms - Psg 160 Usb\n\nVISÃO GERAL\nCabeçote Autoamplificado Voxstorm PSG 160 USB Especificações do Fabricante: - 02 Canais de Entrada Canal 1: - 1 Entrada - Auxiliar - RCA - MP3 Player USB/SD/FM/Bluetooth - Controle de Volume Canal 2: - 1 Entrada - Microfone (1/4 TS) - Controle de Volume Equalização: LOW, MID e HIGH Potência: 15 Wrms @ 4 ohms 8 Wrms @ 8 ohms Alimentação: Fonte Chaveada Externa 100~240VAC Dimensões: 65mm x 312mm x 160mm (AxLxP) Peso: Peso do Produto: 1,2 Kg\n\nCARACTERÍSTICAS CONFIRMADAS\n- Marca: Voxstorm\n- Modelo: PSG 160 USB\n- Potência de saída RMS: 15 W\n- Voltagem: 127/220V\n- Conectores de entrada: RCA\n- Quantidade de canais: 2\n- Largura: 31.6 cm\n- Altura: 6.5 cm\n- Profundidade: 16 cm\n- Peso: 1.2 kg\n- Com USB: Sim\n- Com tela: Não\n\nIDENTIFICAÇÃO DO PRODUTO\n- Marca: Voxstorm\n- GTIN: 7898640360546\n- NCM: 8543.70.99\n- SKU: VTK012415\n\nEMBALAGEM\n- Dimensões informadas: 8 × 40 × 18 cm\n- Peso bruto informado: 1,5 kg\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre.",
+      "attributes": [
+        {
+          "id": "BRAND",
+          "value_name": "Voxstorm"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "PSG 160 USB"
+        },
+        {
+          "id": "RMS_POWER_OUTPUT",
+          "value_name": "15 W"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "INPUT_CONNECTORS",
+          "value_name": "RCA"
+        },
+        {
+          "id": "NUMBER_OF_CHANNELS",
+          "value_name": "2"
+        },
+        {
+          "id": "WIDTH",
+          "value_name": "31.6 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_name": "6.5 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_name": "16 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_name": "1.2 kg"
+        },
+        {
+          "id": "WITH_USB",
+          "value_name": "Sim"
+        },
+        {
+          "id": "WITH_DISPLAY",
+          "value_name": "Não"
+        },
+        {
+          "id": "SELLER_SKU",
+          "value_name": "VTK012415"
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "value_name": "8 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "value_name": "40 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "value_name": "18 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "value_name": "1500 g"
+        }
+      ]
+    },
+    {
+      "ml_item_id": "MLB7322691208",
+      "sku": "VTK012425",
+      "family_name": "Cabeçote Amplificador Voxstorm PSG180 40W Bivolt",
+      "description": "Cabeçote Autoamplificado Voxstorm 40 W Rms - Psg 180\n\nVISÃO GERAL\nCabeçote Autoamplificado Voxstorm PSG 180 Especificações do Fabricante: - 02 Canais de Entrada Canal 1: - 1 Entrada - Microfone (1/4 TS) - 1 Entrada - Microfone/Guitarra (1/4 TS) - Controle de Volume Canal 2: - 1 Entrada - KEYBOARD - L/R (1/4 TRS) - 1 Entrada - Auxiliar - RCA - Controle de Volume Equalização: LOW, MID e HIGH Potência: 40 Wrms @ 4 ohms 25 Wrms @ 8 ohms Alimentação: 127~220VAC Dimensões: 85mm x 310mm x 215mm (AxLxP) Peso: Peso do Produto: 3 Kg\n\nCARACTERÍSTICAS CONFIRMADAS\n- Marca: Voxstorm\n- Modelo: PSG 180\n- Potência de saída RMS: 40 W\n- Voltagem: 127/220V\n- Conectores de entrada: RCA\n- Quantidade de canais: 2\n- Largura: 31 cm\n- Altura: 8.5 cm\n- Profundidade: 21.5 cm\n- Peso: 3 kg\n- Com USB: Não\n- Com tela: Não\n\nIDENTIFICAÇÃO DO PRODUTO\n- Marca: Voxstorm\n- GTIN: 7898640360539\n- NCM: 8543.70.99\n- SKU: VTK012425\n\nEMBALAGEM\n- Dimensões informadas: 26 × 36 × 11 cm\n- Peso bruto informado: 3,26 kg\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre.",
+      "attributes": [
+        {
+          "id": "BRAND",
+          "value_name": "Voxstorm"
+        },
+        {
+          "id": "MODEL",
+          "value_name": "PSG 180"
+        },
+        {
+          "id": "RMS_POWER_OUTPUT",
+          "value_name": "40 W"
+        },
+        {
+          "id": "VOLTAGE",
+          "value_name": "127/220V"
+        },
+        {
+          "id": "INPUT_CONNECTORS",
+          "value_name": "RCA"
+        },
+        {
+          "id": "NUMBER_OF_CHANNELS",
+          "value_name": "2"
+        },
+        {
+          "id": "WIDTH",
+          "value_name": "31 cm"
+        },
+        {
+          "id": "HEIGHT",
+          "value_name": "8.5 cm"
+        },
+        {
+          "id": "DEPTH",
+          "value_name": "21.5 cm"
+        },
+        {
+          "id": "WEIGHT",
+          "value_name": "3 kg"
+        },
+        {
+          "id": "WITH_USB",
+          "value_name": "Não"
+        },
+        {
+          "id": "WITH_DISPLAY",
+          "value_name": "Não"
+        },
+        {
+          "id": "SELLER_SKU",
+          "value_name": "VTK012425"
+        },
+        {
+          "id": "SELLER_PACKAGE_HEIGHT",
+          "value_name": "26 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_WIDTH",
+          "value_name": "36 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_LENGTH",
+          "value_name": "11 cm"
+        },
+        {
+          "id": "SELLER_PACKAGE_WEIGHT",
+          "value_name": "3260 g"
+        }
+      ]
+    }
+  ]
+}

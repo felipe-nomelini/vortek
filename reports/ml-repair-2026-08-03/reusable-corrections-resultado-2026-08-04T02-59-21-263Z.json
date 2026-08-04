@@ -1,0 +1,48 @@
+{
+  "generated_at": "2026-08-04T02:59:21.263Z",
+  "total": 1,
+  "counts": {
+    "partial_or_error": 1
+  },
+  "results": [
+    {
+      "ml_item_id": "MLB6573107112",
+      "sku": "VTK001030",
+      "status": "partial_or_error",
+      "title_before": "Inversor Automotivo Hayonik Msw2103 Onda Modificada 300w 24v",
+      "title_after": "Inversor Automotivo Hayonik Msw2103 Onda Modificada 300w 24v",
+      "family_name_before": "Inversor Automotivo Hayonik Msw2103 Onda Modificada 300w 24v",
+      "family_name_after": "Inversor Automotivo Hayonik Msw2103 Onda Modificada 300w 24v",
+      "sku_after": "VTK001030",
+      "category_after": "MLB433449",
+      "category_verified": true,
+      "description_verified": true,
+      "attributes_verified": true,
+      "attribute_mismatches": [],
+      "steps": {
+        "category": {
+          "ok": true,
+          "skipped": true
+        },
+        "title": {
+          "ok": false,
+          "status": 400,
+          "field": "family_name",
+          "error": "Validation error"
+        },
+        "attributes": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        },
+        "description": {
+          "ok": true,
+          "status": 200,
+          "error": null,
+          "error_details": null
+        }
+      }
+    }
+  ]
+}

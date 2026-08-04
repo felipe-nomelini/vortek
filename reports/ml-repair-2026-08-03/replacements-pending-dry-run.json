@@ -1,0 +1,136 @@
+{
+  "manifest": "/home/felipe/Documentos/Projetos/vortek/reports/ml-repair-2026-08-03/replacements-manifest.json",
+  "baseUrl": "https://app.vortek.shop",
+  "dryRun": true,
+  "batchId": "ml-replacements-2026-08-03",
+  "selected": 2,
+  "created": [
+    {
+      "dryRun": true,
+      "produtoId": "9091f8fb-1f08-4df9-8529-b913966ab3d3",
+      "sku": "VTK001459",
+      "category": {
+        "id": "MLB10233",
+        "nome": "MLB10233",
+        "dominio": ""
+      },
+      "basePrice": 2297,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "HH"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "TNA-DF1"
+        },
+        {
+          "id": "INSTALLATION_PLACEMENT",
+          "name": "Lugar de colocação",
+          "value_id": "",
+          "value_name": "Piso"
+        },
+        {
+          "id": "EMPTY_GTIN_REASON",
+          "name": "Motivo de GTIN vazio",
+          "value_id": "17055161",
+          "value_name": "Outro motivo"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Suporte Móvel Para Subwoofer HH TNA-DF1\n\nVISÃO GERAL\nO Suporte Móvel Para Subwoofer HH TNA-DF1 é a solução perfeita para a mobilidade do sistema de som. Construído com uma estrutura de aço sólido, o TNA-DF1 se conecta de forma segura ao subwoofer passivo TNS-1200S, permitindo que você transforme o sistema TNA em uma matriz de linha totalmente portátil. Assim, este modelo se torna ideal para eventos, shows e muito mais.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: HH\n• Modelo: TNA-DF1\n• Lugar de colocação: Piso\n• Motivo de GTIN vazio: Outro motivo\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: HH\n• GTIN: 5060109456943\n• NCM: 8302.20.00\n• SKU: VTK001459\n\nEMBALAGEM\n• Dimensões informadas: 16 × 52 × 52 cm\n• Peso bruto informado: 13,1 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    },
+    {
+      "dryRun": true,
+      "produtoId": "443a6d87-6eb6-40a9-a7c8-f3b0f75ebc51",
+      "sku": "VTK006330",
+      "category": {
+        "id": "MLB1646",
+        "nome": "MLB1646",
+        "dominio": ""
+      },
+      "basePrice": 2990,
+      "missing": [],
+      "attributes": [
+        {
+          "id": "BRAND",
+          "name": "Marca",
+          "value_id": "",
+          "value_name": "Agratto"
+        },
+        {
+          "id": "MODEL",
+          "name": "Modelo",
+          "value_id": "",
+          "value_name": "Fit Top"
+        },
+        {
+          "id": "POWER_SUPPLY_TYPE",
+          "name": "Tipo de alimentação",
+          "value_id": "",
+          "value_name": "Elétrica"
+        },
+        {
+          "id": "AIR_CONDITIONER_TYPE",
+          "name": "Tipo de ar condicionado",
+          "value_id": "",
+          "value_name": "Split"
+        },
+        {
+          "id": "COOLING_CAPACITY",
+          "name": "Capacidade de refrigeração",
+          "value_id": "",
+          "value_name": "12000 BTU"
+        },
+        {
+          "id": "GTIN",
+          "name": "Código universal de produto",
+          "value_id": "",
+          "value_name": "7898461977763"
+        },
+        {
+          "id": "PACKAGING_BOXES_NUMBER",
+          "name": "Quantidade de caixas de embalagem",
+          "value_id": "",
+          "value_name": "2"
+        },
+        {
+          "id": "VOLTAGE",
+          "name": "Voltagem",
+          "value_id": "198813",
+          "value_name": "220V"
+        }
+      ],
+      "saleTerms": [
+        {
+          "id": "WARRANTY_TYPE",
+          "value_id": "2230279",
+          "value_name": "Garantia de fábrica"
+        },
+        {
+          "id": "WARRANTY_TIME",
+          "value_id": "",
+          "value_name": "12 meses"
+        }
+      ],
+      "description": "Ar-Condicionado Agratto Fit Top 12.000 BTUs 220v\n\nVISÃO GERAL\nO Ar-Condicionado Agratto Fit Top é um modelo que combina economia e desempenho com sua classificação Classe A, garantindo baixo consumo de energia. Seu painel backlight, com iluminação suave que pode ser desativada, não interfere na decoração ou no descanso. Equipado com serpentinas de cobre 100% com ranhuras internas, proporciona melhor eficiência na troca térmica.\n\nUtilizando gás ecológico R410A, contribui para a preservação da camada de ozônio. Seu sistema de filtros oferece 90% de eficiência na purificação do ar, com uma função bactericida que combate a maioria das bactérias, garantindo um ambiente mais saudável. Produto do tipo Split, composto por unidade interna (evaporadora) e unidade externa (condensadora), enviado em 2 caixas de embalagem.\n\nCARACTERÍSTICAS CONFIRMADAS\n• Marca: Agratto\n• Modelo: Fit Top\n• Tipo de alimentação: Elétrica\n• Tipo de ar condicionado: Split\n• Capacidade de refrigeração: 12000 BTU\n• Quantidade de caixas de embalagem: 2\n• Voltagem: 220V\n\nIDENTIFICAÇÃO DO PRODUTO\n• Marca: AGRATTO\n• GTIN: 7898461977763\n• NCM: 8415.10.11\n• SKU: VTK006330\n\nEMBALAGEM\n• Dimensões informadas: 84 × 41 × 90 cm\n• Peso bruto informado: 28,25 kg\n\nInformações confirmadas pelo cadastro do fornecedor e ficha técnica do Mercado Livre."
+    }
+  ],
+  "failed": []
+}
