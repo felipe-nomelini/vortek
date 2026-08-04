@@ -107,6 +107,7 @@ export type Database = {
           price: number
           price_to_win: number | null
           produto_id: string | null
+          refresh_job_id: string | null
           related_item_id: string | null
           related_permalink: string | null
           seller_id: number
@@ -133,6 +134,7 @@ export type Database = {
           price?: number
           price_to_win?: number | null
           produto_id?: string | null
+          refresh_job_id?: string | null
           related_item_id?: string | null
           related_permalink?: string | null
           seller_id: number
@@ -159,6 +161,7 @@ export type Database = {
           price?: number
           price_to_win?: number | null
           produto_id?: string | null
+          refresh_job_id?: string | null
           related_item_id?: string | null
           related_permalink?: string | null
           seller_id?: number
@@ -176,6 +179,50 @@ export type Database = {
             columns: ["produto_id"]
             isOneToOne: false
             referencedRelation: "produtos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      catalogo_ml_refresh_items: {
+        Row: {
+          attempts: number
+          created_at: string
+          job_id: string
+          last_error: string | null
+          ml_item_id: string
+          ordinal: number
+          processed_at: string | null
+          seller_id: number
+          updated_at: string
+        }
+        Insert: {
+          attempts?: number
+          created_at?: string
+          job_id: string
+          last_error?: string | null
+          ml_item_id: string
+          ordinal: number
+          processed_at?: string | null
+          seller_id: number
+          updated_at?: string
+        }
+        Update: {
+          attempts?: number
+          created_at?: string
+          job_id?: string
+          last_error?: string | null
+          ml_item_id?: string
+          ordinal?: number
+          processed_at?: string | null
+          seller_id?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "catalogo_ml_refresh_items_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
             referencedColumns: ["id"]
           },
         ]

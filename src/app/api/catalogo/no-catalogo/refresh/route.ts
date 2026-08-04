@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { fetchMLResult } from '@/services/integration';
 import { buildCatalogEnrichment, extractCatalogCandidateSku, extractCatalogGtin } from '@/lib/catalogo/no-catalogo';
+import { CATALOG_REFRESH_BATCH_SIZE, normalizeCatalogRefreshItemIds } from '@/lib/catalogo/refresh-batch';
 
 const PAGE_SIZE = 100;
 const MAX_INCREMENTAL_PAGES = 10;
@@ -139,6 +140,28 @@ export async function POST(request: Request) {
 
   const body = await request.json().catch(() => ({}));
   const mode = body?.mode === 'full' ? 'full' : 'incremental';
+  const internalAction = isInternalCall && body?.action === 'manifest'
+    ? 'manifest'
+    : isInternalCall && body?.action === 'batch'
+      ? 'batch'
+      : null;
+  const batchItemIds = internalAction === 'batch'
+    ? normalizeCatalogRefreshItemIds(body?.itemIds)
+    : [];
+  const refreshJobId = internalAction === 'batch'
+    ? String(body?.refreshJobId || '').trim()
+    : '';
+
+  if (internalAction === 'batch' && (batchItemIds.length === 0 || batchItemIds.length > CATALOG_REFRESH_BATCH_SIZE)) {
+    return NextResponse.json({
+      success: false,
+      error: `Lote interno deve conter entre 1 e ${CATALOG_REFRESH_BATCH_SIZE} anúncios.`,
+    }, { status: 400 });
+  }
+
+  if (internalAction === 'batch' && !/^[0-9a-f-]{36}$/i.test(refreshJobId)) {
+    return NextResponse.json({ success: false, error: 'refreshJobId inválido.' }, { status: 400 });
+  }
   const reportProgress = await createProgressReporter(body?.jobId);
 
   const meResult = await fetchMLResult<{ id: number }>('/users/me');
@@ -160,11 +183,32 @@ export async function POST(request: Request) {
     timestamp_utc: new Date().toISOString(),
   }));
 
+  if (internalAction === 'manifest') {
+    const scanResult = await fetchAllCatalogListingItemIds(sellerId);
+    if (!scanResult.ok) {
+      return NextResponse.json({
+        success: false,
+        error: scanResult.error || 'Falha ao buscar itens de catálogo',
+        auth_fatal: scanResult.authFatal === true,
+      }, { status: scanResult.authFatal ? 401 : 500 });
+    }
+
+    return NextResponse.json({
+      success: true,
+      seller_id: sellerId,
+      item_ids: scanResult.itemIds,
+      total_ml: scanResult.itemIds.length,
+    });
+  }
+
   const warnings: string[] = [];
   const allItemIds: string[] = [];
   let totalMl = 0;
 
-  if (mode === 'full') {
+  if (internalAction === 'batch') {
+    allItemIds.push(...batchItemIds);
+    totalMl = Math.max(batchItemIds.length, Number(body?.totalMl || 0));
+  } else if (mode === 'full') {
     await reportProgress({ stage: 'scan_catalog', message: 'Listando todos os anúncios de catálogo no Mercado Livre.', progress: 2 });
     const scanResult = await fetchAllCatalogListingItemIds(sellerId);
     if (!scanResult.ok) {
@@ -212,6 +256,22 @@ export async function POST(request: Request) {
   const detailsByItemId = new Map<string, any>();
   const priceToWinByItemId = new Map<string, any>();
   const failedItemIds = new Set<string>();
+  const previousCompetitionByItemId = new Map<string, { buy_box_status: string | null; price_to_win: number | null }>();
+
+  if (internalAction === 'batch') {
+    const { data: previousRows } = await service
+      .from('catalogo_ml_snapshot')
+      .select('ml_item_id,buy_box_status,price_to_win')
+      .in('ml_item_id', allItemIds);
+    for (const row of previousRows || []) {
+      previousCompetitionByItemId.set(String(row.ml_item_id), {
+        buy_box_status: row.buy_box_status || null,
+        price_to_win: row.price_to_win === null || row.price_to_win === undefined
+          ? null
+          : Number(row.price_to_win),
+      });
+    }
+  }
 
   await reportProgress({
     stage: 'fetch_details',
@@ -266,7 +326,10 @@ export async function POST(request: Request) {
   await runPool(itemIdsWithDetails, DETAIL_CONCURRENCY, async (itemId) => {
     const priceResult = await fetchMLResult<any>(`/items/${itemId}/price_to_win?version=v2`);
     if (!priceResult.ok || !priceResult.data) {
-      priceToWinByItemId.set(itemId, { buyBoxStatus: null, priceToWin: null });
+      const previous = previousCompetitionByItemId.get(itemId);
+      priceToWinByItemId.set(itemId, previous
+        ? { status: previous.buy_box_status, price_to_win: previous.price_to_win }
+        : { buyBoxStatus: null, priceToWin: null });
       warnings.push(`price_to_win_unavailable:${itemId}`);
       return;
     }
@@ -433,6 +496,7 @@ export async function POST(request: Request) {
       sku_local: local?.sku || fallbackProduto?.sku || fallbackSku || null,
       last_updated_ml: item.last_updated || null,
       synced_at: new Date().toISOString(),
+      ...(refreshJobId ? { refresh_job_id: refreshJobId } : {}),
     });
   }
 
@@ -459,7 +523,7 @@ export async function POST(request: Request) {
   }
 
   let removed = 0;
-  if (mode === 'full') {
+  if (mode === 'full' && internalAction !== 'batch') {
     const { data: existingRows, error: existingError } = await service
       .from('catalogo_ml_snapshot')
       .select('ml_item_id')
@@ -516,6 +580,7 @@ export async function POST(request: Request) {
     total_ml: totalMl,
     duration_ms: duration,
     warnings,
+    ...(internalAction === 'batch' ? { failed_item_ids: Array.from(failedItemIds) } : {}),
   };
 
   console.log(JSON.stringify({

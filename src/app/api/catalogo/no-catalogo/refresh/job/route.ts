@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase';
-import { runMlSingleStageJob } from '@/services/sync-ml-job';
+import { runCatalogRefreshJobBatch } from '@/services/catalog-refresh-job';
 
 const JOB_TIPO = 'catalogo_no_catalogo_refresh';
 
@@ -21,7 +21,8 @@ export async function POST(request: Request) {
     .from('jobs')
     .select('id, status')
     .eq('tipo', JOB_TIPO)
-    .in('status', ['pendente', 'rodando'])
+    .eq('dedupe_key', mode)
+    .in('status', ['pendente', 'rodando', 'on_hold'])
     .order('created_at', { ascending: false })
     .limit(1)
     .maybeSingle();
@@ -46,11 +47,31 @@ export async function POST(request: Request) {
       log: [],
       cancelado: false,
       created_by: user.id,
+      dedupe_key: mode,
     })
     .select('id, status')
     .single();
 
   if (jobInsertError || !insertedJob?.id) {
+    if (jobInsertError?.code === '23505') {
+      const { data: concurrentJob } = await serviceClient
+        .from('jobs')
+        .select('id,status')
+        .eq('tipo', JOB_TIPO)
+        .eq('dedupe_key', mode)
+        .in('status', ['pendente', 'rodando', 'on_hold'])
+        .order('created_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      if (concurrentJob?.id) {
+        return NextResponse.json({
+          success: true,
+          reused: true,
+          jobId: concurrentJob.id,
+          status: concurrentJob.status,
+        });
+      }
+    }
     return NextResponse.json(
       { error: jobInsertError?.message || 'Falha ao criar job de refresh de catálogo' },
       { status: 500 },
@@ -58,14 +79,7 @@ export async function POST(request: Request) {
   }
 
   setTimeout(() => {
-    void runMlSingleStageJob({
-      jobId: insertedJob.id,
-      tipo: JOB_TIPO,
-      path: '/api/catalogo/no-catalogo/refresh',
-      body: { mode, jobId: insertedJob.id },
-      label: mode === 'full' ? 'Refresh completo No Catálogo' : 'Refresh No Catálogo',
-      requestTimeoutMs: mode === 'full' ? 300000 : undefined,
-    }).catch(async (err: any) => {
+    void runCatalogRefreshJobBatch(insertedJob.id).catch(async (err: any) => {
       console.error('[catalogo-no-catalogo-refresh-job] Falha ao iniciar processamento em background:', err?.message || err);
       const { data: currentJob } = await serviceClient
         .from('jobs')
