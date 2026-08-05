@@ -49,6 +49,11 @@ export async function middleware(request: NextRequest) {
     "/api/ml/anuncio/criar",
   ].includes(pathname);
   const isApiRoute = pathname.startsWith("/api/");
+  const isMobileApiRoute = pathname.startsWith("/api/mobile/");
+  const hasBearerToken = /^Bearer\s+\S+$/i.test(
+    request.headers.get("authorization") || "",
+  );
+  const isTvBearerRoute = pathname.startsWith("/api/tv/") && hasBearerToken;
   const isPublicApiRoute =
     pathname.startsWith("/api/auth/") ||
     pathname.startsWith("/api/public/") ||
@@ -71,7 +76,14 @@ export async function middleware(request: NextRequest) {
     return supabaseResponse;
   }
 
-  if (!user && isApiRoute && !isPublicApiRoute) {
+  // Rotas mobile validam Authorization Bearer dentro de cada handler.
+  if (
+    !user &&
+    isApiRoute &&
+    !isPublicApiRoute &&
+    !isMobileApiRoute &&
+    !isTvBearerRoute
+  ) {
     return NextResponse.json({ erro: "Não autenticado" }, { status: 401 });
   }
 

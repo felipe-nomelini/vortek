@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { createClient, createServiceClient } from "@/lib/supabase";
+import { createServiceClient } from "@/lib/supabase";
+import { authorizeApiRequest } from "@/lib/api-request-auth";
 import { saoPauloDayBounds, saoPauloHour } from "@/lib/timezone";
 
 function round2(value: number): number {
@@ -91,14 +92,9 @@ function summarizeOrders(rows: any[]) {
   };
 }
 
-export async function GET() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) {
-    return NextResponse.json({ erro: "Não autenticado" }, { status: 401 });
-  }
+export async function GET(request: Request) {
+  const auth = await authorizeApiRequest(request, "tv.read");
+  if (!auth.ok) return auth.response;
 
   const service = createServiceClient();
   const now = new Date();

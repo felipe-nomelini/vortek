@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "Vortek",
+    "slug": "vortek-mobile",
+    "scheme": "vortek",
+    "version": "0.1.0",
+    "orientation": "default",
+    "userInterfaceStyle": "dark",
+    "android": {
+      "package": "shop.vortek.erp"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-secure-store",
+        {
+          "configureAndroidBackup": true
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

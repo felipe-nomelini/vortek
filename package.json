@@ -29,7 +29,8 @@
     "dedupe:anuncios-ml:dry": "node -r dotenv/config scripts/dedupe-anuncios-ml.js dotenv_config_path=.env.local",
     "dedupe:anuncios-ml:apply": "node -r dotenv/config scripts/dedupe-anuncios-ml.js --apply dotenv_config_path=.env.local",
     "waha:gows:smoke": "node scripts/waha-gows-smoke-test.js",
-    "test:ml-order-status": "node --test tests/ml-order-shipping-mode.test.js"
+    "test:ml-order-status": "node --test tests/ml-order-shipping-mode.test.js",
+    "test:mobile-auth": "node --test tests/mobile-auth-token.test.js tests/mobile-permissions.test.js"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.23.0",

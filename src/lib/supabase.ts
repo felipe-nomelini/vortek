@@ -42,3 +42,17 @@ export function createServiceClient() {
     { auth: { autoRefreshToken: false, persistSession: false } },
   );
 }
+
+/**
+ * Cliente público sem sessão persistida usado apenas para validar JWTs enviados
+ * por clientes externos, como o aplicativo móvel.
+ */
+export function createTokenValidationClient() {
+  const publicUrl = String(process.env.NEXT_PUBLIC_SUPABASE_URL || "").trim();
+
+  return createSupabaseClient<Database>(
+    publicUrl,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    { auth: { autoRefreshToken: false, persistSession: false } },
+  );
+}
