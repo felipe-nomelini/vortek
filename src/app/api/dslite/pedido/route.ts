@@ -51,7 +51,10 @@ import {
   usesThermalMlLabelSupplier,
 } from "@/lib/supplier-balance";
 import { getSkuLookupVariants } from "@/lib/sku";
-import { validarEstoqueEnvioInterno } from "@/lib/estoque-interno";
+import {
+  enfileirarSyncMlEstoqueInterno,
+  validarEstoqueEnvioInterno,
+} from "@/lib/estoque-interno";
 import {
   extractTaxpayerTypeFromBillingAddress,
   resolveDestIePolicy,
@@ -190,7 +193,21 @@ async function confirmSupplierStockWithDslite(params: {
     .eq("id", ofertaId);
 
   if (produtoId) {
-    await syncPreferredProductSnapshot(client, [produtoId]).catch(() => []);
+    try {
+      await syncPreferredProductSnapshot(client, [produtoId]);
+      await enfileirarSyncMlEstoqueInterno(produtoId);
+    } catch (error: any) {
+      // A confirmação de estoque da compra continua válida. A falha de fila
+      // não deve impedir o fluxo fiscal, mas precisa ficar visível nos logs.
+      console.error("[dslite_live_stock_ml_sync_failed]", {
+        produtoId,
+        ofertaId,
+        fornecedorId,
+        dsliteProdutoId,
+        liveStock,
+        error: error?.message || error,
+      });
+    }
   }
 
   if (liveStock <= 0) {
