@@ -34,8 +34,6 @@ function getSellerSkuFromItem(item: any): string | null {
 
 function getEligibilityLabel(status: string | null): string {
   const normalized = String(status || '').toUpperCase();
-  if (normalized === 'AWAITING_ML_ELIGIBILITY') return 'Aguardando liberação do ML';
-  if (normalized === 'CATALOG_PRODUCT_ID_NULL') return 'Aguardando vínculo de catálogo';
   if (normalized === 'READY_FOR_OPTIN') return 'Pronto para catálogo';
   if (normalized === 'ALREADY_OPTED_IN') return 'Já no catálogo';
   if (normalized === 'NOT_ELIGIBLE') return 'Não elegível';
@@ -361,22 +359,8 @@ export async function GET(request: Request) {
     return NextResponse.json({ erro: eligibleResult.error || 'Falha ao buscar elegíveis', auth_fatal: eligibleResult.authFatal === true }, { status: eligibleResult.authFatal ? 401 : 500 });
   }
 
-  const service = createServiceClient();
-  const { data: manualReviewRows, error: manualReviewError } = await service
-    .from('anuncios_ml')
-    .select('ml_item_id,sku')
-    .eq('catalog_review_pending', true)
-    .eq('catalogo', false)
-    .eq('status', 'ativo');
-  if (manualReviewError) {
-    return NextResponse.json({ erro: `Falha ao carregar fila manual: ${manualReviewError.message}` }, { status: 500 });
-  }
-
-  const manualReviewIds = new Set(
-    (manualReviewRows || []).map((row) => String(row.ml_item_id || '').trim()).filter(Boolean),
-  );
-  const mlEligibleIds = new Set(eligibleResult.itemIds);
-  const itemIds = Array.from(new Set([...eligibleResult.itemIds, ...manualReviewIds]));
+  const itemIds = eligibleResult.itemIds;
+  const total = itemIds.length;
 
   const eligibilityMap = new Map<string, any>();
   if (itemIds.length > 0) {
@@ -397,6 +381,7 @@ export async function GET(request: Request) {
   const localSkuMap = new Map<string, string>();
   const localProductsBySku = new Map<string, any>();
   if (itemIds.length > 0) {
+    const service = createServiceClient();
     await runPool(chunk(itemIds, ELIGIBILITY_CHUNK_SIZE), PRODUCT_CONCURRENCY, async (itemIdChunk) => {
       const { data } = await service
         .from('anuncios_ml')
@@ -410,6 +395,7 @@ export async function GET(request: Request) {
   }
 
   if (localSkuMap.size > 0) {
+    const service = createServiceClient();
     const { data } = await service
       .from('produtos')
       .select('sku,nome,descricao,gtin')
@@ -430,10 +416,7 @@ export async function GET(request: Request) {
       const isVariationReady = hasReadyForOptInVariation(variations);
       const hasCatalogLink = Boolean(item.catalog_product_id || rowStatus);
       const sellerSku = getSellerSkuFromItem(item) || localSkuMap.get(itemId) || null;
-      const manualReviewPending = manualReviewIds.has(itemId);
-      const effectiveEligibilityStatus = rowStatus
-        || (isVariationReady ? 'READY_FOR_OPTIN' : null)
-        || (manualReviewPending ? 'AWAITING_ML_ELIGIBILITY' : null);
+      const effectiveEligibilityStatus = rowStatus || (isVariationReady ? 'READY_FOR_OPTIN' : null);
 
       return {
         ml_item_id: String(item.id),
@@ -449,7 +432,6 @@ export async function GET(request: Request) {
         catalog_product_id: item.catalog_product_id || null,
         eligibility_status: effectiveEligibilityStatus,
         eligibility_label: getEligibilityLabel(effectiveEligibilityStatus),
-        manual_review_pending: manualReviewPending,
         buy_box_eligible: Boolean(el.buy_box_eligible),
         eligibility_reason: el.reason || null,
         variation_eligibility: variations,
@@ -459,7 +441,7 @@ export async function GET(request: Request) {
     .filter(Boolean) as any[];
 
   const readyForOptInBeforeFilters = rows.filter(isReadyForCatalogOptIn).length;
-  rows = rows.filter((row) => row.manual_review_pending || isReadyForCatalogOptIn(row));
+  rows = rows.filter(isReadyForCatalogOptIn);
 
   const catalogProducts = await fetchCatalogProducts(
     rows.map((row) => row.catalog_product_id).filter(Boolean),
@@ -469,7 +451,7 @@ export async function GET(request: Request) {
       ...row,
       catalog_product_status: String(catalogProducts.get(String(row.catalog_product_id || ''))?.status || '').toLowerCase() || null,
     }))
-    .filter((row) => row.manual_review_pending || row.catalog_product_status === 'active');
+    .filter((row) => row.catalog_product_status === 'active');
 
   await runPool(rows, CATALOG_FALLBACK_CONCURRENCY, async (row) => {
     const item = rowsById.get(row.ml_item_id);
@@ -491,13 +473,9 @@ export async function GET(request: Request) {
     row.catalog_product_warning = suggestion.warning;
   });
 
-  const activeCatalogProductsBeforeActionableFilter = rows.filter((row) => row.catalog_product_status === 'active').length;
+  const activeCatalogProductsBeforeActionableFilter = rows.length;
   const suggestedCatalogProductsBeforeFilters = rows.filter((row) => row.catalog_product_id_sugerido).length;
-  rows = rows.filter((row) => row.manual_review_pending || isActionableForCatalogOptIn(row));
-
-  if (statusMl !== 'all') {
-    rows = rows.filter((row) => String(row.status || '').toLowerCase() === statusMl);
-  }
+  rows = rows.filter(isActionableForCatalogOptIn);
 
   if (search) {
     rows = rows.filter((row) => {
@@ -531,16 +509,14 @@ export async function GET(request: Request) {
     seller_id: sellerId,
     page,
     page_size: pageSize,
-    total_ml: eligibleResult.itemIds.length,
-    manual_review_pending: manualReviewIds.size,
-    ml_eligible_in_manual_queue: Array.from(manualReviewIds).filter((itemId) => mlEligibleIds.has(itemId)).length,
+    total_ml: total,
     eligibility_loaded: eligibilityMap.size,
     ready_for_optin: readyForOptInBeforeFilters,
     active_catalog_products: activeCatalogProductsBeforeActionableFilter,
     actionable_catalog_products: filteredTotal,
     suggested_catalog_products: suggestedCatalogProductsBeforeFilters,
     returned: pagedRows.length,
-    eligibility_status: 'READY_FOR_OPTIN_OR_MANUAL_REVIEW',
+    eligibility_status: 'READY_FOR_OPTIN',
     timestamp_utc: new Date().toISOString(),
   }));
 
