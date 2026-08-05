@@ -4,6 +4,16 @@ import { inferSupplierPaymentMode, syncPreferredProductSnapshot } from '@/lib/pr
 import { obterSaldoEstoqueInternoProduto } from '@/lib/estoque-interno';
 import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
 
+type KitComponentDetail = {
+  sku: string;
+  nome: string;
+  sku_fornecedor: string;
+  quantidade: number;
+  estoque: number;
+  custo: number;
+  oferta_encontrada: boolean;
+};
+
 export async function GET(
   _request: Request,
   { params }: { params: { id: string } },
@@ -16,7 +26,7 @@ export async function GET(
   const [{ data: product, error: productError }, { data: offers, error: offersError }] = await Promise.all([
     service
       .from('produtos')
-      .select('id,oferta_preferencial_id,fornecedor_preferencial_manual,dslite_fornecedor_id,dslite_produto_id')
+      .select('id,fornecedor,custo,estoque,oferta_preferencial_id,fornecedor_preferencial_manual,dslite_fornecedor_id,dslite_produto_id')
       .eq('id', params.id)
       .maybeSingle(),
     service
@@ -37,6 +47,111 @@ export async function GET(
     return NextResponse.json({ error: offersError.message }, { status: 500 });
   }
 
+  let kitSupplierOffer: Record<string, unknown> | null = null;
+  if ((offers || []).length === 0) {
+    const { data: kit, error: kitError } = await (service as any)
+      .from('produto_kits')
+      .select('produto_id,fornecedor_dslite_id,sku_origem,ativo')
+      .eq('produto_id', params.id)
+      .maybeSingle();
+    if (kitError) {
+      return NextResponse.json({ error: kitError.message }, { status: 500 });
+    }
+
+    if (kit?.produto_id) {
+      const { data: componentLinks, error: componentLinksError } = await (service as any)
+        .from('produto_kit_componentes')
+        .select('componente_produto_id,quantidade')
+        .eq('kit_produto_id', params.id);
+      if (componentLinksError) {
+        return NextResponse.json({ error: componentLinksError.message }, { status: 500 });
+      }
+
+      const componentIds: string[] = Array.from(new Set<string>(
+        (componentLinks || [])
+          .map((row: any) => String(row.componente_produto_id || '').trim())
+          .filter(Boolean),
+      ));
+      const [{ data: components, error: componentsError }, { data: componentOffers, error: componentOffersError }] = componentIds.length > 0
+        ? await Promise.all([
+            service
+              .from('produtos')
+              .select('id,sku,nome,custo,estoque,ativo,dslite_fornecedor_id,dslite_produto_id')
+              .in('id', componentIds),
+            service
+              .from('produto_fornecedor_ofertas')
+              .select('*')
+              .in('produto_id', componentIds)
+              .eq('dslite_fornecedor_id', String(kit.fornecedor_dslite_id || '')),
+          ])
+        : [{ data: [], error: null }, { data: [], error: null }];
+      if (componentsError || componentOffersError) {
+        return NextResponse.json({
+          error: componentsError?.message || componentOffersError?.message,
+        }, { status: 500 });
+      }
+
+      const componentById = new Map(
+        (components || []).map((row: any) => [String(row.id), row]),
+      );
+      const offerByProductId = new Map(
+        (componentOffers || []).map((row: any) => [String(row.produto_id), row]),
+      );
+      const componentDetails: KitComponentDetail[] = (componentLinks || []).map((link: any) => {
+        const componentId = String(link.componente_produto_id || '');
+        const component = componentById.get(componentId) as any;
+        const offer = offerByProductId.get(componentId) as any;
+        const quantity = Math.max(1, Math.trunc(Number(link.quantidade || 0)));
+        return {
+          sku: String(component?.sku || ''),
+          nome: String(component?.nome || ''),
+          sku_fornecedor: String(
+            offer?.sku_oferta ||
+            offer?.sku_fornecedor ||
+            offer?.dslite_produto_id ||
+            component?.dslite_produto_id ||
+            '',
+          ),
+          quantidade: quantity,
+          estoque: Number(offer?.estoque ?? component?.estoque ?? 0),
+          custo: Number(offer?.custo ?? component?.custo ?? 0),
+          oferta_encontrada: Boolean(offer?.id),
+        };
+      });
+      const completeMapping = componentDetails.length > 0
+        && componentDetails.every((row: KitComponentDetail) => row.oferta_encontrada);
+      const derivedStock = completeMapping
+        ? Math.min(...componentDetails.map((row: KitComponentDetail) => Math.floor(Math.max(0, row.estoque) / row.quantidade)))
+        : Number(product.estoque || 0);
+      const derivedCost = completeMapping
+        ? componentDetails.reduce((sum: number, row: KitComponentDetail) => sum + Math.max(0, row.custo) * row.quantidade, 0)
+        : Number(product.custo || 0);
+      const supplierName = String(
+        (componentOffers || [])[0]?.fornecedor_nome || product.fornecedor || `Fornecedor DSLite ${kit.fornecedor_dslite_id}`,
+      );
+
+      kitSupplierOffer = {
+        id: `kit-fornecedor-${product.id}`,
+        produto_id: product.id,
+        fornecedor_nome: supplierName,
+        dslite_fornecedor_id: String(kit.fornecedor_dslite_id || ''),
+        dslite_produto_id: null,
+        sku_oferta: String(kit.sku_origem || ''),
+        sku_fornecedor: String(kit.sku_origem || ''),
+        custo: Math.round(derivedCost * 100) / 100,
+        estoque: Math.max(0, derivedStock),
+        ativo: kit.ativo !== false,
+        prioridade: 0,
+        preferred: true,
+        preferred_manual: false,
+        is_kit_supplier: true,
+        kit_sku_origem: String(kit.sku_origem || ''),
+        kit_components: componentDetails,
+        kit_mapping_complete: completeMapping,
+      };
+    }
+  }
+
   const currentPreferredOfferId = String((product as any).oferta_preferencial_id || '').trim();
   const manualSelection = Boolean(product.fornecedor_preferencial_manual);
   const currentFornecedorId = String(product.dslite_fornecedor_id || '').trim();
@@ -55,6 +170,8 @@ export async function GET(
         )),
       preferred_manual: manualSelection && currentPreferredOfferId === String(offer.id || '').trim(),
     }));
+
+  if (kitSupplierOffer) fornecedores.push(kitSupplierOffer);
 
   // Não persiste uma oferta DSLite fictícia: estoque próprio não pode gerar
   // pedido de compra. A linha é apenas a fonte interna disponível para envio.

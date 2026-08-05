@@ -37,6 +37,18 @@ type ProductSupplierOffer = Database['public']['Tables']['produto_fornecedor_ofe
   preferred?: boolean;
   preferred_manual?: boolean;
   is_internal_stock?: boolean;
+  is_kit_supplier?: boolean;
+  kit_sku_origem?: string;
+  kit_mapping_complete?: boolean;
+  kit_components?: Array<{
+    sku: string;
+    nome: string;
+    sku_fornecedor: string;
+    quantidade: number;
+    estoque: number;
+    custo: number;
+    oferta_encontrada: boolean;
+  }>;
 };
 
 function mapDBtoProduct(item: ProdutoRow & Record<string, any>): Product {
@@ -304,6 +316,7 @@ export default function ProductDetailPage() {
 
   const inputStyle = { background: '#1f1f1f', border: '1px solid #303030', color: '#e0e0e0', borderRadius: 6 };
   const labelStyle: React.CSSProperties = { color: '#a0a0a0', fontSize: 13 };
+  const kitSupplierOffer = supplierOffers.find((offer) => offer.is_kit_supplier);
 
   return (
     <div>
@@ -403,31 +416,43 @@ export default function ProductDetailPage() {
                 <div style={{ color: '#666', padding: 16 }}>Nenhuma oferta de fornecedor vinculada a este produto.</div>
               ) : (
                 <>
-                  <div style={{ marginBottom: 16 }}>
-                    <div style={labelStyle}>Fornecedor preferencial</div>
-                    <Select
-                      value={supplierSelectionMode === 'manual' && preferredSupplierOfferId
-                        ? preferredSupplierOfferId
-                        : 'automatic'}
-                      onChange={persistPreferredSupplier}
-                      loading={savingOfferId === 'supplier-selection'}
-                      disabled={savingOfferId !== null}
-                      style={{ width: '100%', marginTop: 4 }}
-                      options={[
-                        { value: 'automatic', label: 'Automático · menor custo' },
-                        ...supplierOffers
-                          .filter((offer) => !offer.is_internal_stock)
-                          .map((offer) => ({
-                            value: String(offer.id),
-                            label: `${offer.fornecedor_nome || offer.dslite_fornecedor_id} · ${formatCurrency(Number(offer.custo || 0))}`,
-                            disabled: offer.ativo === false || !(Number(offer.custo) > 0),
-                          })),
-                      ]}
-                    />
-                    <Text type="secondary" style={{ display: 'block', fontSize: 12, marginTop: 6 }}>
-                      No automático, vence o menor custo válido. Na escolha manual, sua seleção prevalece nas sincronizações. Estoque interno continua prioritário quando disponível.
-                    </Text>
-                  </div>
+                  {kitSupplierOffer ? (
+                    <div style={{ marginBottom: 16, padding: 12, background: '#111d2c', border: '1px solid #15395b', borderRadius: 8 }}>
+                      <Space size={8} wrap>
+                        <Tag color="blue">Kit vinculado</Tag>
+                        <Text style={{ color: '#e0e0e0' }}>Fornecedor herdado dos produtos-base</Text>
+                      </Space>
+                      <Text type="secondary" style={{ display: 'block', fontSize: 12, marginTop: 6 }}>
+                        Pedido e nota fiscal usam os componentes abaixo, multiplicados pela quantidade configurada no kit.
+                      </Text>
+                    </div>
+                  ) : (
+                    <div style={{ marginBottom: 16 }}>
+                      <div style={labelStyle}>Fornecedor preferencial</div>
+                      <Select
+                        value={supplierSelectionMode === 'manual' && preferredSupplierOfferId
+                          ? preferredSupplierOfferId
+                          : 'automatic'}
+                        onChange={persistPreferredSupplier}
+                        loading={savingOfferId === 'supplier-selection'}
+                        disabled={savingOfferId !== null}
+                        style={{ width: '100%', marginTop: 4 }}
+                        options={[
+                          { value: 'automatic', label: 'Automático · menor custo' },
+                          ...supplierOffers
+                            .filter((offer) => !offer.is_internal_stock && !offer.is_kit_supplier)
+                            .map((offer) => ({
+                              value: String(offer.id),
+                              label: `${offer.fornecedor_nome || offer.dslite_fornecedor_id} · ${formatCurrency(Number(offer.custo || 0))}`,
+                              disabled: offer.ativo === false || !(Number(offer.custo) > 0),
+                            })),
+                        ]}
+                      />
+                      <Text type="secondary" style={{ display: 'block', fontSize: 12, marginTop: 6 }}>
+                        No automático, vence o menor custo válido. Na escolha manual, sua seleção prevalece nas sincronizações. Estoque interno continua prioritário quando disponível.
+                      </Text>
+                    </div>
+                  )}
                   <Table<ProductSupplierOffer>
                     size="small"
                     rowKey="id"
@@ -441,7 +466,11 @@ export default function ProductDetailPage() {
                         <div>
                           <div style={{ color: '#e0e0e0', fontWeight: 600 }}>{offer.fornecedor_nome || offer.dslite_fornecedor_id}</div>
                           <div style={{ color: '#888', fontSize: 12 }}>
-                            {offer.is_internal_stock ? 'Saldo físico liberado' : `SKU ${offer.sku_oferta || '—'}`}
+                            {offer.is_internal_stock
+                              ? 'Saldo físico liberado'
+                              : offer.is_kit_supplier
+                                ? `Kit ${offer.kit_sku_origem || '—'} · ${(offer.kit_components || []).map((component) => `${component.quantidade}× ${component.sku} (DSLite ${component.sku_fornecedor || '—'})`).join(' + ')}`
+                                : `SKU ${offer.sku_oferta || '—'}`}
                           </div>
                         </div>
                       ),
@@ -469,6 +498,10 @@ export default function ProductDetailPage() {
                       render: (_, offer) => {
                         return offer.is_internal_stock ? (
                           <Tag color="green">Atual · estoque interno</Tag>
+                        ) : offer.is_kit_supplier ? (
+                          <Tag color={offer.kit_mapping_complete ? 'blue' : 'orange'}>
+                            {offer.kit_mapping_complete ? 'Fornecedor do kit' : 'Kit incompleto'}
+                          </Tag>
                         ) : offer.preferred ? (
                           <Tag color="green">{offer.preferred_manual ? 'Atual · manual' : 'Atual · menor custo'}</Tag>
                         ) : supplierOffers.some((item) => item.is_internal_stock) ? (
