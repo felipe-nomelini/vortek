@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       anuncios_ml: {
         Row: {
+          catalog_review_pending: boolean
           catalogo: boolean
           created_at: string
           id: string
@@ -38,6 +39,7 @@ export type Database = {
           visitas: number
         }
         Insert: {
+          catalog_review_pending?: boolean
           catalogo?: boolean
           created_at?: string
           id?: string
@@ -60,6 +62,7 @@ export type Database = {
           visitas?: number
         }
         Update: {
+          catalog_review_pending?: boolean
           catalogo?: boolean
           created_at?: string
           id?: string

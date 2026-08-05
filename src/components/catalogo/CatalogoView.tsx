@@ -57,6 +57,7 @@ type ElegivelRow = {
   catalog_product_status?: string | null;
   eligibility_status: string | null;
   eligibility_label?: string | null;
+  manual_review_pending?: boolean;
   buy_box_eligible: boolean;
   eligibility_reason: string | null;
   variation_eligibility: Array<{ id?: number; status?: string; buy_box_eligible?: boolean }>;
@@ -92,7 +93,7 @@ interface ElegiveisResumo {
   totalMl: number;
   carregados: number;
   ativos: number;
-  pendentesCatalogo: number;
+  aguardandoMl: number;
   semSku: number;
 }
 
@@ -519,7 +520,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
       totalMl: total,
       carregados,
       ativos: elegiveisData.filter((row) => row.status === 'active').length,
-      pendentesCatalogo: elegiveisData.filter((row) => row.status_label === 'Pendente de catálogo').length,
+      aguardandoMl: elegiveisData.filter((row) => !canCreateCatalogOptin(row)).length,
       semSku: elegiveisData.filter((row) => !String(row.seller_sku || '').trim()).length,
     };
   }, [elegiveisData, total]);
@@ -1416,6 +1417,16 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
     },
     { title: 'Título', dataIndex: 'title', key: 'title', width: 300 },
     {
+      title: 'Elegibilidade',
+      dataIndex: 'eligibility_label',
+      key: 'eligibility_label',
+      width: 210,
+      render: (v, record) => {
+        const ready = canCreateCatalogOptin(record);
+        return <Tag color={ready ? 'green' : 'gold'}>{v || 'Aguardando liberação do ML'}</Tag>;
+      },
+    },
+    {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
@@ -1636,7 +1647,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
             <Spin spinning={loading} indicator={<LoadingOutlined style={{ fontSize: 32, color: '#1677ff' }} spin />}>
               <Row gutter={[16, 16]}>
                 <Col xs={24} sm={12} md={8} lg={4}>
-                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Total ML</span>} value={resumoElegiveis.totalMl} valueStyle={{ color: '#1677ff', fontWeight: 700, fontSize: 24 }} />
+                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Total na fila</span>} value={resumoElegiveis.totalMl} valueStyle={{ color: '#1677ff', fontWeight: 700, fontSize: 24 }} />
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={4}>
                   <Statistic title={<span style={{ color: '#a0a0a0' }}>Carregados</span>} value={resumoElegiveis.carregados} valueStyle={{ color: '#d9d9d9', fontWeight: 700, fontSize: 24 }} />
@@ -1645,7 +1656,7 @@ export default function CatalogoView({ mode }: CatalogoViewProps) {
                   <Statistic title={<span style={{ color: '#a0a0a0' }}>Ativos</span>} value={resumoElegiveis.ativos} valueStyle={{ color: '#52c41a', fontWeight: 700, fontSize: 24 }} />
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={4}>
-                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Pendentes Catálogo</span>} value={resumoElegiveis.pendentesCatalogo} valueStyle={{ color: '#faad14', fontWeight: 700, fontSize: 24 }} />
+                  <Statistic title={<span style={{ color: '#a0a0a0' }}>Aguardando ML</span>} value={resumoElegiveis.aguardandoMl} valueStyle={{ color: '#faad14', fontWeight: 700, fontSize: 24 }} />
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={4}>
                   <Statistic title={<span style={{ color: '#a0a0a0' }}>Sem SKU</span>} value={resumoElegiveis.semSku} valueStyle={{ color: '#ff4d4f', fontWeight: 700, fontSize: 24 }} />

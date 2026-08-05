@@ -15,6 +15,42 @@ const IMAGE_CONCURRENCY = Math.max(1, Number(process.env.ML_IMAGE_CONCURRENCY ||
 const SUPPLIER_ID = '133';
 const BUCKET = 'product-images';
 const VORTEK_IMAGE_PREFIX = 'https://supabase.vortek.shop/storage/v1/object/public/product-images/';
+const PUBLICATION_CORRECTIONS = new Map([
+  ['VTK017331', {
+    attributes: [{ id: 'CABLE_AND_ADAPTER_TYPE', value_id: '13788222', value_name: 'VGA' }],
+  }],
+  ['VTK017456', {
+    attributes: [{ id: 'CABLE_AND_ADAPTER_TYPE', value_id: '13788220', value_name: 'RCA' }],
+  }],
+  ['VTK017781', {
+    attributes: [{ id: 'CABLE_AND_ADAPTER_TYPE', value_id: '13788220', value_name: 'RCA' }],
+  }],
+  ['VTK017959', {
+    attributes: [{ id: 'CABLE_AND_ADAPTER_TYPE', value_id: '13788220', value_name: 'RCA' }],
+  }],
+  ['VTK018069', {
+    categoryId: 'MLB235632',
+    categoryName: 'Abraçadeiras',
+    attributes: [
+      { id: 'BRAND', value_name: 'Ferragens FTTH' },
+      { id: 'MODEL', value_name: 'BAP 3' },
+    ],
+  }],
+  ['VTK018851', {
+    categoryId: 'MLB45256',
+    categoryName: 'Antenas',
+    attributes: [{ id: 'VEHICLE_TYPE', value_id: '11377043', value_name: 'Carro/Caminhonete' }],
+  }],
+  ['VTK018865', {
+    attributes: [{ id: 'VEHICLE_TYPE', value_id: '11377043', value_name: 'Carro/Caminhonete' }],
+  }],
+  ['VTK019484', {
+    attributes: [
+      { id: 'CABLE_AND_ADAPTER_TYPE', value_id: '16874774', value_name: 'Audio Video e Informática' },
+      { id: 'CABLE_LENGTH', value_name: '100 m' },
+    ],
+  }],
+]);
 
 if (!process.env.EVOLUSOM_AUDIT_CSV || !fs.existsSync(AUDIT_CSV)) {
   throw new Error('Defina EVOLUSOM_AUDIT_CSV com o CSV auditado da Evolusom.');
@@ -207,6 +243,7 @@ function suggestedPricePreview(product) {
 }
 
 function manifestItem(product, auditRow, supportsEmptyGtinReason) {
+  const correction = PUBLICATION_CORRECTIONS.get(String(product.sku)) || {};
   const withoutGtin = /sem GTIN/i.test(String(auditRow['Modalidade segura'] || ''));
   const preflight = {
     strictEvidence: true,
@@ -238,10 +275,11 @@ function manifestItem(product, auditRow, supportsEmptyGtinReason) {
     suggestedPricePreview: suggestedPricePreview(product),
     priceSource: product.custom_price == null ? 'pricing_strategy_preview' : 'custom_price',
     pricingStrategy: pricingStrategy(Number(product.custo || 0)),
-    categoryId: String(auditRow['Categoria ML'] || '').trim(),
+    categoryId: correction.categoryId || String(auditRow['Categoria ML'] || '').trim(),
+    ...(Array.isArray(correction.attributes) ? { attributeOverrides: correction.attributes } : {}),
     catalogEvidence: {
       source: 'evolusom_audit_2026_08_04_traditional_only',
-      categoryName: String(auditRow['Nome categoria'] || '').trim(),
+      categoryName: correction.categoryName || String(auditRow['Nome categoria'] || '').trim(),
       originalAuditMode: String(auditRow['Modalidade segura'] || '').trim(),
     },
     preflight,

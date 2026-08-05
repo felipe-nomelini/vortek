@@ -233,6 +233,19 @@ async function verifyCreated(created) {
   };
 }
 
+async function queueCatalogManualReview(created) {
+  const itemIds = created
+    .map((row) => String(row?.anuncio?.id || '').trim())
+    .filter(Boolean);
+  if (itemIds.length === 0) return;
+
+  const { error } = await supabase
+    .from('anuncios_ml')
+    .update({ catalog_review_pending: true })
+    .in('ml_item_id', itemIds);
+  if (error) throw new Error(`Falha ao enfileirar revisão de catálogo: ${error.message}`);
+}
+
 async function main() {
   fs.mkdirSync(RESULT_DIR, { recursive: true });
   const summary = {
@@ -329,6 +342,7 @@ async function main() {
           `${fileName}: verificação falhou (${batchSummary.verification.reason}).`,
         );
       }
+      await queueCatalogManualReview(created);
       summary.totals.verified += created.length;
     }
 
