@@ -344,10 +344,10 @@ function pickEmptyGtinReasonValue(attr: any, productName: unknown) {
   const wantKit = /(\bkit\b|\bkits\b|\bcartela\b|\bcombo\b|\bpack\b|\b10un\b|\b12un\b|\b24un\b)/i.test(text);
   const preferredPatterns = wantKit
     ? [/\bkit\b|\bpack\b/i, /^otro$/i, /^outro$/i, /nao registrado|no registrado|codigo cadastrado/i, /^artesanal$/i]
-    : [/^otro$/i, /^outro$/i, /nao registrado|no registrado|codigo cadastrado/i, /\bkit\b|\bpack\b/i, /^artesanal$/i];
+    : [/nao registrado|no registrado|codigo cadastrado/i, /^otro$/i, /^outro$/i, /\bkit\b|\bpack\b/i, /^artesanal$/i];
 
   for (const pattern of preferredPatterns) {
-    const hit = values.find((value: any) => pattern.test(String(value?.name || '').trim()));
+    const hit = values.find((value: any) => pattern.test(normalizeAttrText(value?.name)));
     if (hit) {
       return { id: String(hit.id), name: String(hit.name) };
     }
@@ -1033,7 +1033,7 @@ export async function POST(req: Request) {
     const gtinAttr = categoryAttrsById.get("GTIN");
     const emptyGtinReasonAttr = categoryAttrsById.get("EMPTY_GTIN_REASON");
     const hasGtinValue = hasValue(attributesMap.get("GTIN") || { id: "GTIN" });
-    if (!hasGtinValue && emptyGtinReasonAttr) {
+    if (!hasGtinValue && emptyGtinReasonAttr && !hasExplicitEmptyGtinReason) {
       const reason = pickEmptyGtinReasonValue(emptyGtinReasonAttr, produto.nome);
       if (reason) {
         attributesMap.set("EMPTY_GTIN_REASON", {
