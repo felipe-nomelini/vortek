@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
-import { createClient, createServiceClient } from "@/lib/supabase";
+import { createServiceClient } from "@/lib/supabase";
 import { saoPauloDateParamToUtcIso } from "@/lib/timezone";
 import {
   PREPARATION_ORDER_STATUSES,
   matchesOrdersOperationalView,
 } from "@/lib/orders/operational-view";
 import { enrichOrdersWithWhatsappStatus } from "@/services/order-operational-status";
+import { authorizeApiRequest } from "@/lib/api-request-auth";
 
 function logDbError(
   event: string,
@@ -117,12 +118,8 @@ function accumulateFinancialSummary(
 }
 
 export async function GET(request: Request) {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user)
-    return NextResponse.json({ erro: "Não autenticado" }, { status: 401 });
+  const auth = await authorizeApiRequest(request, "sales.read");
+  if (!auth.ok) return auth.response;
   const serviceClient = createServiceClient();
 
   const { searchParams } = new URL(request.url);

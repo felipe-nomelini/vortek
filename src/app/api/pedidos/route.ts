@@ -14,6 +14,7 @@ import {
 } from '@/lib/orders/operational-view';
 import { enrichOrdersWithWhatsappStatus } from '@/services/order-operational-status';
 import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
 
 function logDbError(
   event: string,
@@ -638,9 +639,8 @@ function applyPedidoSortWithMode(query: any, sortBy: string, sortOrder: 'asc' | 
 }
 
 export async function GET(request: Request) {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+  const auth = await authorizeApiRequest(request, 'sales.read');
+  if (!auth.ok) return auth.response;
   const serviceClient = createServiceClient();
 
   const { searchParams } = new URL(request.url);

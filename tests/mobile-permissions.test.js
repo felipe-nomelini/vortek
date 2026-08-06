@@ -31,3 +31,9 @@ test("visualizador permanece somente leitura", () => {
     "sales.track",
   ]);
 });
+
+test("todos os cargos internos podem consultar vendas", () => {
+  for (const role of ["admin", "gerente", "operador", "visualizador"]) {
+    assert.equal(hasMobilePermission(role, "sales.read"), true);
+  }
+});

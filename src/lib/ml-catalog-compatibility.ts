@@ -97,10 +97,34 @@ function titleHandOrientation(value: unknown): "destro" | "canhoto" | null {
 function titlePackQuantity(value: unknown): number | null {
   const text = normalize(value);
   const match = text.match(
-    /\b(?:kit|pack|combo|conjunto|lote)\s*(?:com|de)?\s*(\d{1,3})\b|\b(\d{1,3})\s*(?:unidades?|unds?|itens?|pecas?|pcs?)\b|\b(?:c|ct|cartela|car|bli|pct|cx|dz|cem|tub)\s*(?:\/|x)\s*(\d{1,3})\b/,
+    /^\s*(\d{1,4})\s*(?:un(?:idades?|id)?|unds?|itens?|pecas?|pcs?|pilhas?|baterias?|cartelas?|pares?|jogos?|tubos?|pacotes?|blisters?|encordoamentos?)\b|\b(?:kit|pack|combo|conjunto|lote)\s*(?:com|de)?\s*(\d{1,4})\b|\b(\d{1,4})\s*(?:un(?:idades?|id)?|unds?|itens?|pecas?|pcs?|pilhas?|baterias?|cartelas?|pares?|jogos?)\b|\b(?:cartela|cart|car|blister|bli|pacote|pct|caixa|cx|dz|cem|tub)\s+(?:(?:com|de|c\/|\/|x)\s*)?(\d{1,4})\b|\b(?:c|ct)\s*\/\s*(\d{1,4})\b/,
   );
-  const quantity = Number(match?.[1] || match?.[2] || match?.[3] || 0);
+  const quantity = Number(match?.[1] || match?.[2] || match?.[3] || match?.[4] || match?.[5] || 0);
   return Number.isInteger(quantity) && quantity > 0 ? quantity : null;
+}
+
+function positiveAttributeNumber(source: any, id: string): number | null {
+  const attribute = attributesById(source).get(id);
+  const raw = attributeValue(attribute);
+  const value = Number(String(raw || '').replace(',', '.'));
+  return Number.isFinite(value) && value > 0 ? value : null;
+}
+
+function catalogPackAttributeMismatch(product: any, catalogProduct: any) {
+  const localQuantity = titlePackQuantity(product?.nome);
+  const unitsPerPack = positiveAttributeNumber(catalogProduct, 'UNITS_PER_PACK');
+  if (!localQuantity || !unitsPerPack) return [];
+
+  const packsNumber = positiveAttributeNumber(catalogProduct, 'PACKS_NUMBER') || 1;
+  const representedQuantity = unitsPerPack * packsNumber;
+  if (representedQuantity === localQuantity) return [];
+
+  return [{
+    id: 'PACK_QUANTITY_ATTRIBUTES',
+    name: 'Quantidade física do kit nos atributos',
+    itemValue: String(localQuantity),
+    catalogValue: String(representedQuantity),
+  }];
 }
 
 function titleInstrumentVariant(value: unknown): string | null {
@@ -184,7 +208,10 @@ function catalogTitleCriticalMismatches(product: any, catalogProduct: any) {
 }
 
 export function catalogLocalCriticalMismatches(product: any, catalogProduct: any) {
-  const titleMismatches = catalogTitleCriticalMismatches(product, catalogProduct);
+  const titleMismatches = [
+    ...catalogTitleCriticalMismatches(product, catalogProduct),
+    ...catalogPackAttributeMismatch(product, catalogProduct),
+  ];
   const orientation = attributeLabel(attributesById(catalogProduct).get("HAND_ORIENTATION"));
   if (!orientation) return titleMismatches;
 

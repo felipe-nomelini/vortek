@@ -5,7 +5,10 @@ import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
 import { getSyncRuntimeJson } from '@/lib/sync/runtime-config';
 import { enfileirarSyncMlEstoqueInterno } from '@/lib/estoque-interno';
 import { enqueueKitStockUpdates, recalculateProductKits } from '@/lib/produto-kits';
-import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
+import {
+  enqueueAutomaticPricesForCostChanges,
+  type CostSnapshot,
+} from '@/lib/ml/automatic-pricing';
 import { shouldReconcilePreferredOfferCandidate } from '@/lib/preferred-offer';
 
 export const maxDuration = 300;
@@ -274,15 +277,25 @@ export async function POST(request: Request) {
               reconciledWithoutOfferChangeProductIds.add(snapshot.productId);
             }
           }
-          const automaticPricing = await enqueueAutomaticPricesForCostChanges(client, snapshots);
+          const kits = await recalculateProductKits(client, productIds);
+          kitsUpdated += kits.filter((kit) => kit.oldStock !== kit.newStock || kit.oldCost !== kit.newCost).length;
+          await enqueueKitStockUpdates(client, kits);
+          const kitCostSnapshots: CostSnapshot[] = kits.map((kit) => ({
+            productId: kit.produtoId,
+            previous: { custo: kit.oldCost },
+            next: { custo: kit.newCost },
+          }));
+          const automaticPricing = await enqueueAutomaticPricesForCostChanges(client, [
+            ...snapshots,
+            ...kitCostSnapshots,
+          ], {
+            forceProductIds: kitCostSnapshots.map((snapshot) => snapshot.productId),
+          });
           mlPriceProductsUpdated += automaticPricing.productsUpdated;
           mlPriceOutboxEnqueued += automaticPricing.outboxEnqueued;
           for (const priceError of automaticPricing.errors) {
             errors.push({ supplierId, message: `Preço automático ${priceError.productId}: ${priceError.message}` });
           }
-          const kits = await recalculateProductKits(client, productIds);
-          kitsUpdated += kits.filter((kit) => kit.oldStock !== kit.newStock || kit.oldCost !== kit.newCost).length;
-          await enqueueKitStockUpdates(client, kits);
 
           for (const snapshot of snapshots) {
             if (!snapshot.changed || String(snapshot.previous.ml_status || '') === 'sem_anuncio') continue;

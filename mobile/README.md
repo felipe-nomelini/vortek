@@ -8,7 +8,10 @@ Aplicativo Android interno da Vortek. Projeto isolado do ERP web existente.
 - Scaffold Expo criado com login, sessão segura e navegação principal.
 - Backend possui contratos versionados de sessão e TV em `/api/mobile/v1`.
 - TV ao vivo implementada com atualização automática em primeiro plano.
-- Próximo passo: implementar o módulo de vendas.
+- Vendas possui resumo, abas operacionais, busca com debounce e lista paginada.
+- Detalhe da venda mostra múltiplos produtos, entrega, fornecedor, fiscal e histórico operacional.
+- Vendas possui filtros por status, período e faixa de valor, além de rastreio ML detalhado.
+- Próximo passo: filtros de fornecedor/etiquetas e ações operacionais seguras.
 
 ## Limites do projeto
 

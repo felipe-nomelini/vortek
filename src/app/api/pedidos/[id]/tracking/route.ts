@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
-import { createClient, createServiceClient } from '@/lib/supabase';
+import { createServiceClient } from '@/lib/supabase';
 import { fetchML } from '@/services/integration';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
 
 export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ erro: 'Não autenticado' }, { status: 401 });
+  const auth = await authorizeApiRequest(request, 'sales.track');
+  if (!auth.ok) return auth.response;
   const serviceClient = createServiceClient();
 
   const { id } = await params;

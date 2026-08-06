@@ -57,7 +57,7 @@ Funcionário autorizado consegue:
 
 ### 3.2 Vendas
 
-- abas: Urgentes, Pendentes, Em preparação, Despachadas, Entregues e Todas;
+- abas alinhadas ao ERP: Urgentes, Preparação, Em transporte, Entregues e Todos;
 - busca por pedido ML, pack, cliente, SKU e produto;
 - filtros por fornecedor, status, etiqueta, WhatsApp e período;
 - paginação no servidor;
@@ -279,13 +279,15 @@ Estimativa: 6–9 dias.
 
 Tarefas:
 
-- implementar resumo e abas;
-- implementar busca e filtros;
-- criar lista em cartões adaptativos;
-- criar detalhe com múltiplos produtos;
-- mostrar estados fiscal, fornecedor, DSLite, etiqueta e WhatsApp;
-- mostrar linha do tempo operacional;
-- adicionar rastreio e link Mercado Livre;
+- [x] implementar resumo e abas;
+- [x] implementar busca principal;
+- [x] implementar filtros por status, período e faixa de valor;
+- [ ] implementar filtros por fornecedor, etiqueta e WhatsApp;
+- [x] criar lista em cartões adaptativos e paginação;
+- [x] criar detalhe com múltiplos produtos;
+- [x] mostrar estados fiscal, fornecedor, DSLite, etiqueta e WhatsApp;
+- [x] mostrar linha do tempo operacional;
+- [x] adicionar rastreio e link Mercado Livre;
 - implementar reenvio de WhatsApp;
 - implementar retomada do fluxo DSLite;
 - adicionar confirmações, permissões e idempotência;
@@ -524,4 +526,4 @@ Funcionalidade termina somente quando:
 
 ## 17. Próximo passo autorizado
 
-Executar Fase 0 e criar somente fundação técnica necessária. Não iniciar telas ou mutações antes de fechar contratos e permissões.
+Concluir a Fase 4: detalhe da venda, histórico e depois ações operacionais com confirmação e idempotência.

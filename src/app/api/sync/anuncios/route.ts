@@ -13,6 +13,7 @@ import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { persistSingleAnuncioBySku } from '@/lib/ml/persist-single-anuncio';
 import { mapMlStatusToLocalStatus } from '@/lib/ml/status';
 import { syncProdutoOperationalListing } from '@/lib/ml/operational-listing';
+import { extractMlItemSku } from '@/lib/ml/item-sku';
 
 export const maxDuration = 300;
 
@@ -93,16 +94,6 @@ async function fetchListingPerformance(itemId: string, userProductId: string | n
   }
 
   return last!;
-}
-
-function extractSku(item: any): string | null {
-  if (item?.seller_sku) return String(item.seller_sku).trim().toUpperCase();
-  if (item?.seller_custom_field) return String(item.seller_custom_field).trim().toUpperCase();
-  const skuAttr = Array.isArray(item?.attributes)
-    ? item.attributes.find((a: any) => a.id === 'SELLER_SKU' && a.value_name)
-    : null;
-  if (skuAttr?.value_name) return String(skuAttr.value_name).trim().toUpperCase();
-  return null;
 }
 
 async function runPool<T>(items: T[], limit: number, worker: (item: T) => Promise<void>) {
@@ -547,7 +538,7 @@ export async function POST(request: Request) {
         }
         return;
       }
-      const sku = extractSku(item);
+      const sku = extractMlItemSku(item);
 
       let produtoId: string | null = null;
       let skuLocal: string | null = null;

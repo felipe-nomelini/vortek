@@ -8,7 +8,10 @@ import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
 import { shouldProductBeInactiveByCost } from '@/lib/product-activity';
 import { enqueueKitStockUpdates, recalculateProductKits } from '@/lib/produto-kits';
 import { obterSaldoEstoqueInternoProduto } from '@/lib/estoque-interno';
-import { enqueueAutomaticPricesForCostChanges } from '@/lib/ml/automatic-pricing';
+import {
+  enqueueAutomaticPricesForCostChanges,
+  type CostSnapshot,
+} from '@/lib/ml/automatic-pricing';
 
 export const maxDuration = 300;
 
@@ -568,10 +571,16 @@ export async function POST(req: Request) {
           break;
       }
 
+      let kitCostSnapshots: CostSnapshot[] = [];
       try {
         const kitSnapshots = await recalculateProductKits(client, snapshotProductIds);
         kitStockUpdated += kitSnapshots.filter((kit) => kit.oldStock !== kit.newStock || kit.oldCost !== kit.newCost).length;
         kitMlOutboxEnqueued += await enqueueKitStockUpdates(client, kitSnapshots);
+        kitCostSnapshots = kitSnapshots.map((kit) => ({
+          productId: kit.produtoId,
+          previous: { custo: kit.oldCost },
+          next: { custo: kit.newCost },
+        }));
       } catch (err: any) {
         errors.push({
           code: 'kit_stock_recalculation_failed',
@@ -581,7 +590,12 @@ export async function POST(req: Request) {
       }
 
       try {
-        const automaticPricing = await enqueueAutomaticPricesForCostChanges(client, changedSnapshots);
+        const automaticPricing = await enqueueAutomaticPricesForCostChanges(client, [
+          ...changedSnapshots,
+          ...kitCostSnapshots,
+        ], {
+          forceProductIds: kitCostSnapshots.map((snapshot) => snapshot.productId),
+        });
         mlPriceProductsUpdated += automaticPricing.productsUpdated;
         mlPriceOutboxEnqueued += automaticPricing.outboxEnqueued;
         for (const priceError of automaticPricing.errors) {

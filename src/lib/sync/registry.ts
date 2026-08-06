@@ -139,6 +139,9 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     kind: 'ml',
     schedule: { businessMinutes: 5, offHoursMinutes: 15 },
     usesOffset: true,
+    runMode: 'inline',
+    requestTimeoutMs: 300_000,
+    retryOnFailure: true,
   },
   {
     key: 'sync_ml_listings_publish',

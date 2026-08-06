@@ -1,5 +1,6 @@
 import { calculateSuggestedPrice } from '@/services/pricing';
 import { enqueueMlPublishOutbox } from '@/lib/sync/ml-publish-outbox';
+import { resolveAutomaticPricingProductIds } from '@/lib/ml/automatic-pricing-selection';
 
 type ServiceClientLike = { from: (table: string) => any };
 
@@ -16,18 +17,14 @@ export type AutomaticPricingResult = {
   errors: Array<{ productId: string; message: string }>;
 };
 
-/** Recalcula e enfileira preço somente quando o custo preferencial realmente muda. */
+/** Recalcula preço quando custo muda; kits podem forçar reconciliação da fonte vigente. */
 export async function enqueueAutomaticPricesForCostChanges(
   client: ServiceClientLike,
   snapshots: CostSnapshot[],
+  options: { forceProductIds?: string[] } = {},
 ): Promise<AutomaticPricingResult> {
   const result: AutomaticPricingResult = { productsUpdated: 0, outboxEnqueued: 0, skipped: 0, errors: [] };
-  const productIds = Array.from(new Set(
-    snapshots
-      .filter((snapshot) => Math.abs(Number(snapshot.previous.custo) - Number(snapshot.next.custo)) > 0.0001)
-      .map((snapshot) => String(snapshot.productId || '').trim())
-      .filter(Boolean),
-  ));
+  const productIds = resolveAutomaticPricingProductIds(snapshots, options.forceProductIds);
   if (productIds.length === 0) return result;
 
   const [{ data: products, error: productsError }, { data: listings, error: listingsError }] = await Promise.all([

@@ -8,7 +8,7 @@ type AnuncioRow = Database['public']['Tables']['anuncios_ml']['Row'];
 type AnuncioInsert = Database['public']['Tables']['anuncios_ml']['Insert'];
 type AnuncioUpdate = Database['public']['Tables']['anuncios_ml']['Update'];
 
-type ExistingAnuncioCandidate = Pick<AnuncioRow, 'id' | 'ml_item_id' | 'sku' | 'produto_id' | 'catalogo' | 'updated_at'>;
+type ExistingAnuncioCandidate = Pick<AnuncioRow, 'id' | 'ml_item_id' | 'sku' | 'produto_id'>;
 
 function toIsoNow() {
   return new Date().toISOString();
@@ -16,24 +16,6 @@ function toIsoNow() {
 
 function normalizeText(value: unknown): string {
   return String(value || '').trim();
-}
-
-function byMostRecentlyUpdated(a: ExistingAnuncioCandidate, b: ExistingAnuncioCandidate) {
-  return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime();
-}
-
-function uniqueCandidates(rows: ExistingAnuncioCandidate[]) {
-  const seen = new Set<string>();
-  const unique: ExistingAnuncioCandidate[] = [];
-
-  for (const row of rows) {
-    const id = normalizeText(row.id);
-    if (!id || seen.has(id)) continue;
-    seen.add(id);
-    unique.push(row);
-  }
-
-  return unique;
 }
 
 export async function persistSingleAnuncioBySku(
@@ -62,66 +44,67 @@ export async function persistSingleAnuncioBySku(
     return { ok: true, canonicalId: null, removedDuplicateIds: [] };
   }
 
-  const { data: bySku, error: bySkuError } = await (client
-    .from('anuncios_ml')
-    .select('id, ml_item_id, sku, produto_id, catalogo, updated_at')
-    .eq('sku', sku) as any);
-  if (bySkuError) return { ok: false, error: bySkuError.message };
-
   const { data: byItemId, error: byItemIdError } = await (client
     .from('anuncios_ml')
-    .select('id, ml_item_id, sku, produto_id, catalogo, updated_at')
+    .select('id, ml_item_id, sku, produto_id')
     .eq('ml_item_id', mlItemId) as any);
   if (byItemIdError) return { ok: false, error: byItemIdError.message };
 
-  const candidates = uniqueCandidates([
-    ...((byItemId || []) as ExistingAnuncioCandidate[]),
-    ...((bySku || []) as ExistingAnuncioCandidate[]),
-  ]).filter((row) => (
-    normalizeText(row.ml_item_id) === mlItemId
-    || Boolean(row.catalogo) === Boolean(normalizedPayload.catalogo)
-  ));
+  const exact = ((byItemId || []) as ExistingAnuncioCandidate[])
+    .find((row) => normalizeText(row.ml_item_id) === mlItemId) || null;
 
-  const canonical = candidates.find((row) => normalizeText(row.ml_item_id) === mlItemId)
-    || candidates.find((row) => produtoId && normalizeText(row.produto_id) === produtoId)
-    || [...candidates].sort(byMostRecentlyUpdated)[0]
-    || null;
+  if (exact) {
+    const existingProdutoId = normalizeText(exact.produto_id);
+    if (produtoId && existingProdutoId && existingProdutoId !== produtoId) {
+      return {
+        ok: false,
+        error: `Conflito de produto no anúncio ${mlItemId}: ${existingProdutoId} != ${produtoId}`,
+      };
+    }
 
-  if (!canonical) {
-    const { error } = await (client
+    const patch: AnuncioUpdate = {
+      ...normalizedPayload,
+      updated_at: toIsoNow(),
+    };
+
+    const { error: updateError } = await (client
       .from('anuncios_ml')
-      .upsert(normalizedPayload as any, { onConflict: 'ml_item_id' }) as any);
+      .update(patch as any)
+      .eq('id', exact.id) as any);
+    if (updateError) return { ok: false, error: updateError.message };
 
-    if (error) return { ok: false, error: error.message };
-    return { ok: true, canonicalId: null, removedDuplicateIds: [] };
+    return {
+      ok: true,
+      canonicalId: normalizeText(exact.id) || null,
+      removedDuplicateIds: [],
+    };
   }
 
-  const patch: AnuncioUpdate = {
-    ...normalizedPayload,
-    updated_at: toIsoNow(),
-  };
-
-  const { error: updateError } = await (client
+  const { data: bySku, error: bySkuError } = await (client
     .from('anuncios_ml')
-    .update(patch as any)
-    .eq('id', canonical.id) as any);
-  if (updateError) return { ok: false, error: updateError.message };
+    .select('id, ml_item_id, sku, produto_id')
+    .eq('sku', sku) as any);
+  if (bySkuError) return { ok: false, error: bySkuError.message };
 
-  const duplicateIds = candidates
-    .map((row) => normalizeText(row.id))
-    .filter((id) => id && id !== normalizeText(canonical.id));
-
-  if (duplicateIds.length > 0) {
-    const { error: deleteError } = await (client
-      .from('anuncios_ml')
-      .delete()
-      .in('id', duplicateIds) as any);
-    if (deleteError) return { ok: false, error: deleteError.message };
+  const conflictingRow = ((bySku || []) as ExistingAnuncioCandidate[]).find((row) => {
+    const existingProdutoId = normalizeText(row.produto_id);
+    return Boolean(produtoId && existingProdutoId && existingProdutoId !== produtoId);
+  });
+  if (conflictingRow) {
+    return {
+      ok: false,
+      error: `Conflito de SKU ${sku}: anúncio ${normalizeText(conflictingRow.ml_item_id)} pertence ao produto ${normalizeText(conflictingRow.produto_id)}`,
+    };
   }
+
+  const { error } = await (client
+    .from('anuncios_ml')
+    .upsert(normalizedPayload as any, { onConflict: 'ml_item_id' }) as any);
+  if (error) return { ok: false, error: error.message };
 
   return {
     ok: true,
-    canonicalId: normalizeText(canonical.id) || null,
-    removedDuplicateIds: duplicateIds,
+    canonicalId: null,
+    removedDuplicateIds: [],
   };
 }

@@ -5,10 +5,13 @@ const { getSyncTaskByKey } = require('../src/lib/sync/registry.ts');
 
 test('jobs lentos usam timeout próprio e retornam para fila após falha transitória', () => {
   const dslite = getSyncTaskByKey('sync_dslite_pedidos_compra');
+  const mlObserved = getSyncTaskByKey('sync_ml_listings_observed');
   const mlPublish = getSyncTaskByKey('sync_ml_listings_publish');
 
   assert.equal(dslite?.requestTimeoutMs, 180_000);
   assert.equal(dslite?.retryOnFailure, true);
+  assert.equal(mlObserved?.requestTimeoutMs, 300_000);
+  assert.equal(mlObserved?.retryOnFailure, true);
   assert.equal(mlPublish?.requestTimeoutMs, 180_000);
   assert.equal(mlPublish?.retryOnFailure, true);
 });
