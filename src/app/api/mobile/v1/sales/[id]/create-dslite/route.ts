@@ -6,7 +6,7 @@ import { authorizeApiRequest } from "@/lib/api-request-auth";
 import { loadMobileOperationalSale, mobileSaleIdSchema } from "@/lib/mobile-sale-lookup";
 import { isPostDispatchOrder } from "@/lib/orders/operational-view";
 import { createServiceClient } from "@/lib/supabase";
-import { getJobPedidoId, normalizeIdempotencyKey } from "@/services/job-idempotency";
+import { jobBelongsToPedido, normalizeIdempotencyKey } from "@/services/job-idempotency";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 90;
@@ -81,8 +81,8 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
   const lookup = await loadMobileOperationalSale(request, parsedId.data);
   if (!lookup.ok) return lookup.response;
   const client = createServiceClient();
-  const { data: job } = await client.from("jobs").select("id,tipo,log").eq("id", parsedJob.data).maybeSingle();
-  if (!job || job.tipo !== "dslite_criar_pedido" || getJobPedidoId(job.log) !== String(lookup.row.id)) {
+  const { data: job } = await client.from("jobs").select("id,tipo,log,dedupe_key").eq("id", parsedJob.data).maybeSingle();
+  if (!job || job.tipo !== "dslite_criar_pedido" || !jobBelongsToPedido(job.log, job.dedupe_key, String(lookup.row.id))) {
     return error(requestId, 404, "JOB_NOT_FOUND", "Job não encontrado para esta venda");
   }
   const url = new URL("/api/dslite/pedido/status", request.url);

@@ -454,13 +454,17 @@ async function clearMercadoLivreTokens(
 async function ensureAllowedMercadoLivreToken(
   accessToken: string,
   source = "unknown",
-): Promise<boolean> {
-  if (verifiedAccessToken === accessToken) return true;
+): Promise<"allowed" | "account_not_allowed" | "refresh_required"> {
+  if (verifiedAccessToken === accessToken) return "allowed";
 
   const account = await validateMercadoLivreTokenOwner(accessToken);
   if (account.ok) {
     verifiedAccessToken = accessToken;
-    return true;
+    return "allowed";
+  }
+
+  if (account.reason !== "account_not_allowed") {
+    return "refresh_required";
   }
 
   const identity =
@@ -470,7 +474,7 @@ async function ensureAllowedMercadoLivreToken(
     source,
     account,
   );
-  return false;
+  return "account_not_allowed";
 }
 
 function isFatalAuthRefreshError(errorCode: string | null): boolean {
@@ -482,11 +486,12 @@ async function waitTokenFromOtherRefresher(): Promise<string | null> {
     await delay(REFRESH_WAIT_MS);
     const current = await getIntegracao("mercadolivre");
     if (current?.access_token && !isExpired(current.token_expires_at)) {
-      const allowed = await ensureAllowedMercadoLivreToken(
+      const validation = await ensureAllowedMercadoLivreToken(
         current.access_token,
         "wait_token_from_other_refresher",
       );
-      return allowed ? current.access_token : null;
+      if (validation === "allowed") return current.access_token;
+      if (validation === "account_not_allowed") return null;
     }
   }
   return null;
@@ -498,11 +503,12 @@ async function refreshMLTokenFromDB(force: boolean): Promise<string | null> {
   if (!initial?.refresh_token) return null;
 
   if (!force && initial.access_token && !isExpired(initial.token_expires_at)) {
-    const allowed = await ensureAllowedMercadoLivreToken(
+    const validation = await ensureAllowedMercadoLivreToken(
       initial.access_token,
       "refresh_initial_cached_token",
     );
-    return allowed ? initial.access_token : null;
+    if (validation === "allowed") return initial.access_token;
+    if (validation === "account_not_allowed") return null;
   }
 
   const owner = randomUUID();
@@ -517,11 +523,12 @@ async function refreshMLTokenFromDB(force: boolean): Promise<string | null> {
     if (!latest?.refresh_token) return null;
 
     if (!force && latest.access_token && !isExpired(latest.token_expires_at)) {
-      const allowed = await ensureAllowedMercadoLivreToken(
+      const validation = await ensureAllowedMercadoLivreToken(
         latest.access_token,
         "refresh_latest_cached_token",
       );
-      return allowed ? latest.access_token : null;
+      if (validation === "allowed") return latest.access_token;
+      if (validation === "account_not_allowed") return null;
     }
 
     const res = await fetch("https://api.mercadolibre.com/oauth/token", {
@@ -586,12 +593,21 @@ async function refreshMLTokenFromDB(force: boolean): Promise<string | null> {
       return null;
     }
 
-    const allowed = await ensureAllowedMercadoLivreToken(
+    const validation = await ensureAllowedMercadoLivreToken(
       accessToken,
       "refresh_payload_token",
     );
-    if (!allowed) {
+    if (validation === "account_not_allowed") {
       setAuthFatalCooldown("ml_account_not_allowed");
+      return null;
+    }
+    if (validation === "refresh_required") {
+      await markRefreshFailure(
+        false,
+        "token_owner_validation_failed",
+        "Não foi possível validar a conta do novo token do Mercado Livre",
+        "refresh_owner_validation",
+      );
       return null;
     }
 
@@ -638,11 +654,13 @@ export async function getValidMLToken(force = false): Promise<string | null> {
     integracao.access_token &&
     !isExpired(integracao.token_expires_at)
   ) {
-    const allowed = await ensureAllowedMercadoLivreToken(
+    const validation = await ensureAllowedMercadoLivreToken(
       integracao.access_token,
       "get_valid_cached_token",
     );
-    return allowed ? integracao.access_token : null;
+    if (validation === "allowed") return integracao.access_token;
+    if (validation === "account_not_allowed") return null;
+    return refreshMLTokenFromDB(true);
   }
 
   if (!force) {

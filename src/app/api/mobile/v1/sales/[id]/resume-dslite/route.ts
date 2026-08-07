@@ -10,7 +10,7 @@ import {
 import { isPostDispatchOrder } from "@/lib/orders/operational-view";
 import { createServiceClient } from "@/lib/supabase";
 import {
-  getJobPedidoId,
+  jobBelongsToPedido,
   normalizeIdempotencyKey,
 } from "@/services/job-idempotency";
 
@@ -145,14 +145,14 @@ export async function GET(
   const client = createServiceClient();
   const { data: job, error } = await client
     .from("jobs")
-    .select("id,tipo,log")
+    .select("id,tipo,log,dedupe_key")
     .eq("id", parsedJobId.data)
     .maybeSingle();
   if (
     error
     || !job
     || job.tipo !== "dslite_criar_pedido"
-    || getJobPedidoId(job.log) !== String(lookup.row.id)
+    || !jobBelongsToPedido(job.log, job.dedupe_key, String(lookup.row.id))
   ) {
     return mobileError(requestId, 404, "JOB_NOT_FOUND", "Job não encontrado para esta venda");
   }

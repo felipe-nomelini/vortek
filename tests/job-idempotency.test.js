@@ -6,6 +6,7 @@ const {
   getJobPedidoId,
   getLatestJobSnapshot,
   isJobUniqueViolation,
+  jobBelongsToPedido,
   normalizeIdempotencyKey,
 } = require("../src/services/job-idempotency.ts");
 
@@ -16,6 +17,11 @@ test("aceita chave móvel válida e rejeita entrada insegura", () => {
   );
   assert.equal(normalizeIdempotencyKey("curta"), null);
   assert.equal(normalizeIdempotencyKey("chave com espaço"), null);
+});
+
+test("valida pedido pelo dedupe key em jobs legados sem payload", () => {
+  assert.equal(jobBelongsToPedido([], "pedido:pedido-123", "pedido-123"), true);
+  assert.equal(jobBelongsToPedido([], "pedido:pedido-456", "pedido-123"), false);
 });
 
 test("recupera identidade e pedido do log do job", () => {

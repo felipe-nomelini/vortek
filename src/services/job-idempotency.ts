@@ -49,6 +49,18 @@ export function getJobPedidoId(log: unknown): string | null {
   return null;
 }
 
+export function jobBelongsToPedido(
+  log: unknown,
+  dedupeKey: unknown,
+  pedidoId: string,
+): boolean {
+  const normalizedPedidoId = String(pedidoId || "").trim();
+  if (!normalizedPedidoId) return false;
+  const loggedPedidoId = getJobPedidoId(log);
+  if (loggedPedidoId) return loggedPedidoId === normalizedPedidoId;
+  return String(dedupeKey || "").trim() === `pedido:${normalizedPedidoId}`;
+}
+
 export function isJobUniqueViolation(error: unknown): boolean {
   return String((error as any)?.code || "") === "23505";
 }

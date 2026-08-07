@@ -1684,7 +1684,10 @@ async function runDsliteCreateJob(
   mlOrderId: string | null,
   requestedProvider: NfeProvider,
   nfePayload?: Record<string, any> | null,
-  options?: { resumeAfterSupplierPayment?: boolean },
+  options?: {
+    resumeAfterSupplierPayment?: boolean;
+    idempotencyKey?: string | null;
+  },
 ) {
   const client = createServiceClient();
   const selectedProvider = requestedProvider;
@@ -1780,6 +1783,14 @@ async function runDsliteCreateJob(
       state,
       steps,
       result,
+      payload: {
+        pedidoId,
+        mlOrderId,
+        nfeProvider: selectedProvider,
+        hasNfePayload: Boolean(nfePayload),
+        resumeAfterSupplierPayment,
+        idempotencyKey: options?.idempotencyKey || null,
+      },
     };
     logEntries.push(snapshot);
 
@@ -5548,7 +5559,10 @@ export async function POST(req: Request) {
       mlOrderId ? String(mlOrderId) : null,
       provider,
       nfePayload || null,
-      { resumeAfterSupplierPayment: Boolean(resumeAfterSupplierPayment) },
+      {
+        resumeAfterSupplierPayment: Boolean(resumeAfterSupplierPayment),
+        idempotencyKey,
+      },
     );
 
     return NextResponse.json({ success: true, jobId, deduplicated: false }, { status: 202 });

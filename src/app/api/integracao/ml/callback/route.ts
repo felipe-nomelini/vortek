@@ -64,6 +64,12 @@ export async function GET(request: Request) {
     const account = await validateMercadoLivreTokenOwner(tokenData.access_token);
     if (!account.ok) {
       const identity = account.nickname || account.userId || account.error || 'desconhecida';
+      if (account.reason !== 'account_not_allowed') {
+        return NextResponse.json({
+          erro: `Não foi possível validar a conta Mercado Livre: ${identity}. Tente conectar novamente.`,
+        }, { status: 502 });
+      }
+
       await serviceClient
         .from('integracoes')
         .update({

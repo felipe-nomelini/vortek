@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { unstable_noStore as noStore } from 'next/cache';
 import { createClient, createServiceClient } from '@/lib/supabase';
 import { saoPauloDateParamToUtcIso } from '@/lib/timezone';
 import { reconcileLocalNfeSnapshotFromXml } from '@/lib/fiscal/nfe-local-reconciliation';
@@ -15,6 +16,10 @@ import {
 import { enrichOrdersWithWhatsappStatus } from '@/services/order-operational-status';
 import { calcularSaldoEstoqueInterno } from '@/lib/estoque-interno-saldo';
 import { authorizeApiRequest } from '@/lib/api-request-auth';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
 
 function logDbError(
   event: string,
@@ -639,6 +644,7 @@ function applyPedidoSortWithMode(query: any, sortBy: string, sortOrder: 'asc' | 
 }
 
 export async function GET(request: Request) {
+  noStore();
   const auth = await authorizeApiRequest(request, 'sales.read');
   if (!auth.ok) return auth.response;
   const serviceClient = createServiceClient();
