@@ -19,8 +19,37 @@ export type DslitePedidoLinkResolution = {
     | 'target_not_in_resolved_group';
 };
 
+export type DsliteManualUnlinkEvent = {
+  pedido_id?: string | null;
+  resposta_ml?: unknown;
+};
+
 function normalized(value: unknown): string {
   return String(value || '').trim();
+}
+
+/**
+ * Impede que o sincronizador restaure exatamente o vínculo DSLite removido
+ * manualmente. Um novo pedido DSLite continua elegível para vínculo.
+ */
+export function isDsliteRelinkBlockedByManualUnlink(
+  events: DsliteManualUnlinkEvent[],
+  candidatePedidoIds: string[],
+  expectedDsliteId: string,
+): boolean {
+  const candidateIds = new Set(candidatePedidoIds.map(normalized).filter(Boolean));
+  const expected = normalized(expectedDsliteId);
+  if (!candidateIds.size || !expected) return false;
+
+  return events.some((event) => {
+    if (!candidateIds.has(normalized(event.pedido_id))) return false;
+    if (!event.resposta_ml || typeof event.resposta_ml !== 'object' || Array.isArray(event.resposta_ml)) {
+      return false;
+    }
+
+    const response = event.resposta_ml as Record<string, unknown>;
+    return normalized(response.dslite_id_antigo) === expected;
+  });
 }
 
 /**

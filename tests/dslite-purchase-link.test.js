@@ -2,9 +2,28 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 
 const {
+  isDsliteRelinkBlockedByManualUnlink,
   resolveSafeDslitePedidoLinks,
   resolveSafeDslitePedidoMutation,
 } = require('../src/lib/dslite/purchase-link.ts');
+
+test('bloqueia restauração do mesmo DSLite removido manualmente', () => {
+  assert.equal(isDsliteRelinkBlockedByManualUnlink([
+    { pedido_id: 'p1', resposta_ml: { dslite_id_antigo: '391293' } },
+  ], ['p1'], '391293'), true);
+});
+
+test('permite vínculo de novo pedido DSLite após desvínculo manual', () => {
+  assert.equal(isDsliteRelinkBlockedByManualUnlink([
+    { pedido_id: 'p1', resposta_ml: { dslite_id_antigo: '391293' } },
+  ], ['p1'], '399999'), false);
+});
+
+test('ignora desvínculo manual de outra venda', () => {
+  assert.equal(isDsliteRelinkBlockedByManualUnlink([
+    { pedido_id: 'p2', resposta_ml: { dslite_id_antigo: '391293' } },
+  ], ['p1'], '391293'), false);
+});
 
 test('aceita pedido único sem vínculo conflitante', () => {
   assert.deepEqual(resolveSafeDslitePedidoLinks([{ id: 'p1', dslite_id: null }], '392520'), {

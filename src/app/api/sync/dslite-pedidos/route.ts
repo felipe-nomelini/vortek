@@ -4,7 +4,10 @@ import { createServiceClient } from '@/lib/supabase';
 import { inferSupplierPaymentMode, resolveCompraStatus } from '@/lib/produto-fornecedor';
 import { recordSupplierPurchaseDebit, resolveSupplierPurchaseDebitAmount } from '@/lib/supplier-balance';
 import { acquireDomainLock, releaseDomainLock } from '@/lib/sync/domain-lock';
-import { resolveSafeDslitePedidoLinks } from '@/lib/dslite/purchase-link';
+import {
+  isDsliteRelinkBlockedByManualUnlink,
+  resolveSafeDslitePedidoLinks,
+} from '@/lib/dslite/purchase-link';
 
 export const maxDuration = 300;
 
@@ -154,6 +157,7 @@ export async function POST(request: Request) {
     let withoutNfe = 0;
     let linkNotFound = 0;
     let linkSkippedCanceled = 0;
+    let linkSkippedManualUnlink = 0;
 
     while (true) {
       const data = await fetchDslite<DslitePedidosResponse>(
@@ -314,6 +318,44 @@ export async function POST(request: Request) {
               continue;
             }
 
+            const candidateIds = (candidatos || [])
+              .map((candidate) => String(candidate.id || '').trim())
+              .filter(Boolean);
+
+            if (candidateIds.length > 0) {
+              const { data: manualUnlinkEvents, error: manualUnlinkError } = await client
+                .from('nf_auditoria_eventos')
+                .select('pedido_id,resposta_ml')
+                .eq('evento', 'dslite_desvinculo_manual')
+                .in('pedido_id', candidateIds)
+                .order('created_at', { ascending: false })
+                .limit(100);
+
+              if (manualUnlinkError) {
+                errors.push({
+                  code: 'dslite_manual_unlink_check_failed',
+                  message: manualUnlinkError.message,
+                  context: { dsid: pedido.dsid, nf_chave: pedido.nf_chave },
+                });
+                linkNotFound += 1;
+                continue;
+              }
+
+              if (isDsliteRelinkBlockedByManualUnlink(
+                manualUnlinkEvents || [],
+                candidateIds,
+                String(pedido.dsid),
+              )) {
+                linkSkippedManualUnlink += 1;
+                warnings.push({
+                  code: 'dslite_link_skipped_manual_unlink',
+                  message: 'Vínculo DSLite antigo mantido removido por decisão manual',
+                  context: { dsid: pedido.dsid, nf_chave: pedido.nf_chave },
+                });
+                continue;
+              }
+            }
+
             const resolution = resolveSafeDslitePedidoLinks(
               candidatos || [],
               String(pedido.dsid),
@@ -390,6 +432,7 @@ export async function POST(request: Request) {
         without_nfe: withoutNfe,
         link_not_found: linkNotFound,
         link_skipped_canceled: linkSkippedCanceled,
+        link_skipped_manual_unlink: linkSkippedManualUnlink,
         failed,
       },
       warnings,
@@ -405,6 +448,7 @@ export async function POST(request: Request) {
       pedidos_sem_nfe_chave: withoutNfe,
       vinculo_nao_encontrado_no_pedidos: linkNotFound,
       vinculo_cancelado_ignorado: linkSkippedCanceled,
+      vinculo_manual_ignorado: linkSkippedManualUnlink,
       data_inicial_usada: dataInicial,
       data_final_usada: dataFinal,
       window_days: hasExplicitRange ? null : windowDays,
