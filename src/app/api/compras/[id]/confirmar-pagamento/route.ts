@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { createClient, createServiceClient } from '@/lib/supabase';
+import { createServiceClient } from '@/lib/supabase';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import { formatCurrency } from '@/lib/format';
 import { formatMlReleaseWindow } from '@/lib/ml/release-window-display';
@@ -43,6 +44,7 @@ async function parsePaymentConfirmationRequest(request: Request) {
       resumeOnly: String(form.get('resume_only') || '').trim() === 'true',
       pedidoId: String(form.get('pedido_id') || '').trim() || null,
       mlOrderId: String(form.get('ml_order_id') || '').trim() || null,
+      idempotencyKey: String(form.get('idempotency_key') || '').trim() || null,
       receiptFile: receipt instanceof File && receipt.size > 0 ? receipt : null,
     };
   }
@@ -56,6 +58,7 @@ async function parsePaymentConfirmationRequest(request: Request) {
     resumeOnly: Boolean(body?.resume_only),
     pedidoId: String(body?.pedido_id || '').trim() || null,
     mlOrderId: String(body?.ml_order_id || '').trim() || null,
+    idempotencyKey: String(body?.idempotency_key || '').trim() || null,
     receiptFile: null as File | null,
   };
 }
@@ -199,15 +202,22 @@ function resolveInternalApiBaseUrl(request: Request): string {
   return `${url.protocol}//${url.host}`;
 }
 
-async function startDsliteResumeFlow(input: { request: Request; pedidoId: string; mlOrderId: string }) {
+async function startDsliteResumeFlow(input: {
+  request: Request;
+  pedidoId: string;
+  mlOrderId: string;
+  idempotencyKey: string | null;
+}) {
   const body = JSON.stringify({
     pedidoId: input.pedidoId,
     mlOrderId: input.mlOrderId,
     nfeProvider: 'brasilnfe',
     resumeAfterSupplierPayment: true,
+    idempotencyKey: input.idempotencyKey,
   });
   const headers = {
     'Content-Type': 'application/json',
+    ...(input.idempotencyKey ? { 'Idempotency-Key': input.idempotencyKey } : {}),
     ...(process.env.API_SECRET_KEY ? { 'x-api-key': process.env.API_SECRET_KEY } : {}),
   };
   const urls = Array.from(new Set([
@@ -237,8 +247,8 @@ export async function POST(
   request: Request,
   { params }: { params: { id: string } },
 ) {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser().catch(() => ({ data: { user: null } } as any));
+  const auth = await authorizeApiRequest(request, 'purchases.payment.confirm');
+  if (!auth.ok) return auth.response;
 
   const compraId = String(params.id || '').trim();
   if (!compraId) {
@@ -323,7 +333,7 @@ export async function POST(
   }
 
   const confirmedAt = (compra as any).supplier_payment_confirmed_at || new Date().toISOString();
-  const confirmedBy = (compra as any).supplier_payment_confirmed_by || user?.email || user?.id || 'dslite_order_flow';
+  const confirmedBy = (compra as any).supplier_payment_confirmed_by || auth.userId;
   const nextStatus = String(compra.status_dslite || compra.status || 'Iniciado');
   const uploadedReceipt = resumeOnly
     ? null
@@ -434,6 +444,7 @@ export async function POST(
       request,
       pedidoId: String(pedido.id),
       mlOrderId: String(pedido.ml_order_id),
+      idempotencyKey: parsed.idempotencyKey,
     });
     resumeJson = resume.json;
     resumeError = resume.error;
@@ -445,6 +456,7 @@ export async function POST(
     resume: resumeDsliteFlow ? {
       started: Boolean(resumeJson?.jobId),
       error: resumeError,
+      deduplicated: Boolean(resumeJson?.deduplicated),
     } : null,
     compraId,
     pedidoId: pedido.id,

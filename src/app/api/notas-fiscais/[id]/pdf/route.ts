@@ -1,18 +1,13 @@
 import { NextResponse } from 'next/server';
-import { createClient, createServiceClient } from '@/lib/supabase';
+import { createServiceClient } from '@/lib/supabase';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
 import { createDanfeSignedUrl, ensureDanfeStoredForPedido, resolveDanfeStoragePath, DANFE_SIGNED_URL_TTL_SECONDS } from '@/lib/fiscal/danfe-storage';
 import { getFiscalProvider } from '@/services/fiscal-provider';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 
-export async function GET(_request: Request, context: { params: { id: string } }) {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return NextResponse.json({ error: 'Não autenticado' }, { status: 401 });
-  }
+export async function GET(request: Request, context: { params: { id: string } }) {
+  const auth = await authorizeApiRequest(request, 'sales.read');
+  if (!auth.ok) return auth.response;
 
   const id = context?.params?.id;
   if (!id) {

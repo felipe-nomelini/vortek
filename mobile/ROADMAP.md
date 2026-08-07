@@ -9,8 +9,8 @@
 - [x] Scaffold Expo com login, sessão segura e abas principais.
 - [x] Matriz final de permissões por cargo.
 - [x] Implementar API e tela da TV ao vivo.
-- [ ] Implementar Vendas.
-- [ ] Implementar Compras.
+- [x] Implementar Vendas.
+- [x] Implementar Compras.
 - [ ] Configurar notificações e distribuição interna.
 
 ## 1. Objetivo
@@ -66,7 +66,8 @@ Funcionário autorizado consegue:
 - histórico das etapas;
 - links para Mercado Livre e rastreio;
 - consulta de NF-e, DSLite e etiqueta;
-- ações controladas: reenviar WhatsApp e retomar fluxo DSLite;
+- ações controladas: criar/retomar DSLite, confirmar PIX, selecionar frete, processar envio interno, completar etiqueta, reenviar WhatsApp e desvincular compra rejeitada;
+- DANFE, XML, etiquetas PDF/térmica/ZPL e ordenação remota;
 - ações financeiras ou fiscais exigem confirmação explícita e permissão de cargo.
 
 ### 3.3 Compras
@@ -140,6 +141,9 @@ GET  /sales/:id
 GET  /sales/:id/tracking
 POST /sales/:id/whatsapp-label
 POST /sales/:id/resume-dslite
+POST /sales/:id/create-dslite
+POST /sales/:id/operation
+POST /sales/:id/supplier-payment
 GET  /purchases
 GET  /purchases/summary
 GET  /purchases/:id
@@ -282,22 +286,29 @@ Tarefas:
 - [x] implementar resumo e abas;
 - [x] implementar busca principal;
 - [x] implementar filtros por status, período e faixa de valor;
-- [ ] implementar filtros por fornecedor, etiqueta e WhatsApp;
+- [x] implementar filtros por fornecedor, etiqueta e WhatsApp;
 - [x] criar lista em cartões adaptativos e paginação;
 - [x] criar detalhe com múltiplos produtos;
 - [x] mostrar estados fiscal, fornecedor, DSLite, etiqueta e WhatsApp;
 - [x] mostrar linha do tempo operacional;
 - [x] adicionar rastreio e link Mercado Livre;
-- implementar reenvio de WhatsApp;
-- implementar retomada do fluxo DSLite;
-- adicionar confirmações, permissões e idempotência;
-- atualizar resultado de jobs sem duplicar execução;
+- [x] implementar reenvio de WhatsApp;
+- [x] implementar retomada do fluxo DSLite;
+- [x] implementar criação de pedido DSLite e tratamento de job;
+- [x] implementar confirmação de PIX com comprovante;
+- [x] implementar seleção de frete pago DSLite;
+- [x] implementar envio interno e conclusão de etiqueta DSLite;
+- [x] implementar DANFE, XML, PDF térmico, PDF comum e ZPL;
+- [x] implementar desvínculo local de compra rejeitada com permissão de gestão;
+- [x] implementar ordenação remota equivalente ao ERP;
+- [x] adicionar confirmações, permissões e idempotência;
+- [x] atualizar resultado de jobs sem duplicar execução;
 - testar venda unitária, kit e pack com múltiplos itens.
 
 Entrega:
 
 - acompanhamento completo de vendas;
-- duas ações operacionais seguras;
+- paridade funcional da página Vendas do ERP;
 - estado igual ao ERP web.
 
 Gate: repetição de toque ou falha de rede não duplica ação.
@@ -308,14 +319,13 @@ Estimativa: 4–6 dias.
 
 Tarefas:
 
-- implementar resumo e lista;
-- implementar busca e filtros;
-- criar detalhe de compra;
-- mostrar vínculo com venda e itens;
-- mostrar PIX, DSLite, etiqueta e transporte;
-- abrir comprovante com autorização;
-- validar compras com múltiplos itens;
-- preparar confirmação de pagamento sem habilitá-la por padrão.
+- [x] implementar resumo e lista;
+- [x] implementar busca, filtros, ordenação e paginação;
+- [x] criar detalhe de compra;
+- [x] mostrar vínculo com venda e itens;
+- [x] mostrar PIX, DSLite, NF-e e transporte;
+- [x] anexar, confirmar e reenviar comprovante com autorização;
+- [ ] validar compras com múltiplos itens em uso controlado;
 
 Entrega:
 

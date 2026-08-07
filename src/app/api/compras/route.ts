@@ -3,6 +3,7 @@ import { createServiceClient } from '@/lib/supabase';
 import { saoPauloDateParamToUtcIso } from '@/lib/timezone';
 import { DSLITE_BKR1_PLACEHOLDER_LABEL_SOURCE } from '@/lib/dslite/placeholder-label';
 import { isBkr1Supplier } from '@/lib/supplier-balance';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -89,6 +90,8 @@ function sortCompras(rows: any[], sortBy: CompraSortKey, sortOrder: 'asc' | 'des
 }
 
 export async function GET(request: Request) {
+  const auth = await authorizeApiRequest(request, 'purchases.read');
+  if (!auth.ok) return auth.response;
   try {
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get('page') || '1', 10);

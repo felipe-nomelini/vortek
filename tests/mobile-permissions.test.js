@@ -21,6 +21,21 @@ test("operador executa fluxo, mas não confirma pagamento", () => {
     hasMobilePermission("operador", "purchases.payment.confirm"),
     false,
   );
+  for (const permission of [
+    "sales.dslite.create",
+    "sales.dslite.label.complete",
+    "sales.dslite.shipping.select",
+    "sales.internal_shipping.process",
+  ]) {
+    assert.equal(hasMobilePermission("operador", permission), true);
+  }
+  assert.equal(hasMobilePermission("operador", "sales.dslite.unlink"), false);
+});
+
+test("desvínculo corretivo fica restrito à gestão", () => {
+  assert.equal(hasMobilePermission("admin", "sales.dslite.unlink"), true);
+  assert.equal(hasMobilePermission("gerente", "sales.dslite.unlink"), true);
+  assert.equal(hasMobilePermission("visualizador", "sales.dslite.unlink"), false);
 });
 
 test("visualizador permanece somente leitura", () => {

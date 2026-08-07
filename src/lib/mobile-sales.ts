@@ -1,5 +1,6 @@
 import {
   getOperationalUrgencyReasons,
+  isPostDispatchOrder,
   PREPARATION_ORDER_STATUSES,
   SHIPPING_ORDER_STATUSES,
 } from "@/lib/orders/operational-view";
@@ -90,6 +91,18 @@ export function mapMobileSaleDetail(row: any) {
       ? [String(row.ml_order_id)]
       : [];
   const mlReference = sale.packId || operationalOrderIds[0] || sale.number;
+  const postDispatch = isPostDispatchOrder(row);
+  const singleDslitePurchase = sale.dsliteIds.length === 1
+    && !Boolean(row?.has_split_fulfillment);
+  const supplierPhoneAvailable = Boolean(
+    String(row?.fornecedor_telefone || "").replace(/\D/g, ""),
+  );
+  const invalidOperationalStatus = ["cancelado", "entregue", "devolvido", "recusado"]
+    .includes(sale.status);
+  const hasDslite = sale.dsliteIds.length > 0;
+  const internalStockAvailable = Boolean(row?.internal_stock_available);
+  const nextAction = sale.dsliteNextAction;
+  const hasInvoice = sale.invoiceNumbers.length > 0;
 
   return {
     ...sale,
@@ -105,6 +118,68 @@ export function mapMobileSaleDetail(row: any) {
     nfeStatus: nullableString(row?.nfe_status),
     fiscalReleaseAt: nullableString(row?.ml_fiscal_release_at),
     splitFulfillment: Boolean(row?.has_split_fulfillment),
+    internalStockAvailable,
+    purchaseId: nullableString(row?.compra_id),
+    supplierPixKey: nullableString(row?.supplier_pix_key),
+    supplierPaymentReference: nullableString(row?.supplier_payment_reference),
+    supplierPaymentNotes: nullableString(row?.supplier_payment_notes),
+    hasSupplierPaymentReceipt: Boolean(row?.supplier_payment_receipt_path),
+    canCreateDslite: Boolean(
+      !sale.internalShipping
+      && !postDispatch
+      && !Boolean(row?.has_split_fulfillment)
+      && !hasDslite
+      && !internalStockAvailable
+      && !invalidOperationalStatus
+    ),
+    canProcessInternalShipping: Boolean(
+      !sale.internalShipping
+      && !postDispatch
+      && !Boolean(row?.has_split_fulfillment)
+      && !hasDslite
+      && internalStockAvailable
+      && row?.ml_shipment_id
+      && !invalidOperationalStatus
+    ),
+    canCompleteDsliteLabel: Boolean(
+      !sale.internalShipping
+      && !postDispatch
+      && !Boolean(row?.has_split_fulfillment)
+      && hasDslite
+      && nextAction === "complete_dslite_label"
+    ),
+    canConfirmSupplierPayment: Boolean(
+      !sale.internalShipping
+      && !postDispatch
+      && !Boolean(row?.has_split_fulfillment)
+      && hasDslite
+      && row?.compra_id
+      && ["confirm_supplier_payment", "send_supplier_receipt", "resume_dslite_flow"]
+        .includes(nextAction || "")
+    ),
+    canUnlinkDslite: Boolean(
+      hasDslite && /rejeitad|rejected/i.test(String(row?.dslite_status || ""))
+    ),
+    canOpenDanfe: hasInvoice,
+    canDownloadXml: hasInvoice,
+    canDownloadLabelPdf: Boolean(row?.ml_label_storage_path),
+    canDownloadThermalPdf: Boolean(row?.ml_label_storage_path),
+    canDownloadZpl: Boolean(row?.ml_thermal_label_storage_path),
+    canSendWhatsappLabel: Boolean(
+      !sale.internalShipping
+      && !postDispatch
+      && singleDslitePurchase
+      && supplierPhoneAvailable
+    ),
+    canResumeDslite: Boolean(
+      !sale.internalShipping
+      && !postDispatch
+      && singleDslitePurchase
+      && row?.dslite_next_action === "resume_dslite_flow"
+      && row?.supplier_payment_status === "paid"
+      && row?.supplier_payment_receipt_path
+      && row?.compra_id
+    ),
     mlSaleUrl: `https://www.mercadolivre.com.br/vendas/${encodeURIComponent(mlReference)}/detalhe`,
   };
 }

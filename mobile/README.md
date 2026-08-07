@@ -11,7 +11,13 @@ Aplicativo Android interno da Vortek. Projeto isolado do ERP web existente.
 - Vendas possui resumo, abas operacionais, busca com debounce e lista paginada.
 - Detalhe da venda mostra múltiplos produtos, entrega, fornecedor, fiscal e histórico operacional.
 - Vendas possui filtros por status, período e faixa de valor, além de rastreio ML detalhado.
-- Próximo passo: filtros de fornecedor/etiquetas e ações operacionais seguras.
+- Vendas possui filtros por fornecedor, etiqueta DSLite e WhatsApp real.
+- Vendas possui ordenação remota equivalente ao ERP.
+- Detalhe da venda cobre criação/retomada DSLite, PIX, frete pago, envio interno, etiquetas, DANFE/XML, WhatsApp e desvínculo corretivo.
+- Comprovantes e documentos usam seleção/download nativos do Android.
+- Compras possui resumo, busca, filtros, ordenação, paginação, detalhe, vínculo com venda, rastreio e confirmação/reenvio de PIX.
+- Ações exigem confirmação, permissão de cargo, idempotência e acompanhamento do job.
+- Próximo passo: validar Vendas e Compras em uso controlado, sem duplicar ações.
 
 ## Limites do projeto
 

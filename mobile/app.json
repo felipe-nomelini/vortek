@@ -16,7 +16,8 @@
         {
           "configureAndroidBackup": true
         }
-      ]
+      ],
+      "expo-sharing"
     ],
     "experiments": {
       "typedRoutes": true

@@ -85,6 +85,12 @@ import {
 } from "@/lib/ml/virtual-kit-orders";
 import { calculateOrderProfit } from "@/services/orders";
 import { canReuseExistingOrderSnapshot } from "@/lib/order-sync-lock-fallback";
+import {
+  findReusableJob,
+  getLatestJobSnapshot,
+  isJobUniqueViolation,
+  normalizeIdempotencyKey,
+} from "@/services/job-idempotency";
 
 const TRANSPORTADORA_PADRAO_CORREIOS = 31;
 const WAIT_AUTH_TIMEOUT_MS = 180_000;
@@ -5387,6 +5393,7 @@ export async function POST(req: Request) {
       nfeProvider,
       nfePayload,
       resumeAfterSupplierPayment,
+      idempotencyKey: bodyIdempotencyKey,
     } = await req.json();
     if (nfeProvider === "mercadolivre") {
       await registrarEventoNfAuditoria({
@@ -5439,6 +5446,34 @@ export async function POST(req: Request) {
         // Sem saldo interno completo: segue com o fornecedor externo normal.
       }
     }
+    const suppliedIdempotencyKey = req.headers.get("idempotency-key") || bodyIdempotencyKey;
+    const idempotencyKey = suppliedIdempotencyKey
+      ? normalizeIdempotencyKey(suppliedIdempotencyKey)
+      : `web-${crypto.randomUUID()}`;
+    if (!idempotencyKey) {
+      return NextResponse.json(
+        { error: "Chave de idempotência inválida" },
+        { status: 400 },
+      );
+    }
+    const dedupeKey = `pedido:${String(pedidoId)}`;
+    const reusable = await findReusableJob({
+      client,
+      type: "dslite_criar_pedido",
+      dedupeKey,
+      idempotencyKey,
+    });
+    if (reusable) {
+      const latest = getLatestJobSnapshot(reusable.job.log);
+      return NextResponse.json({
+        success: true,
+        jobId: reusable.job.id,
+        state: latest?.state || "running",
+        deduplicated: true,
+        dedupeReason: reusable.reason,
+      }, { status: 202 });
+    }
+
     const jobId = crypto.randomUUID();
     const initialSteps = initSteps();
     const syncIdx = initialSteps.findIndex(
@@ -5453,7 +5488,7 @@ export async function POST(req: Request) {
       };
     }
 
-    await client.from("jobs").insert({
+    const { data: insertedJob, error: insertError } = await client.from("jobs").insert({
       id: jobId,
       tipo: "dslite_criar_pedido",
       status: "pendente",
@@ -5461,6 +5496,7 @@ export async function POST(req: Request) {
       total: STEP_DEFS.length,
       processados: 0,
       cancelado: false,
+      dedupe_key: dedupeKey,
       log: JSON.parse(
         JSON.stringify([
           {
@@ -5474,11 +5510,37 @@ export async function POST(req: Request) {
               nfeProvider: provider,
               hasNfePayload: Boolean(nfePayload),
               resumeAfterSupplierPayment: Boolean(resumeAfterSupplierPayment),
+              idempotencyKey,
             },
           },
         ]),
       ),
-    });
+    }).select("id").single();
+
+    if (insertError && isJobUniqueViolation(insertError)) {
+      const conflicted = await findReusableJob({
+        client,
+        type: "dslite_criar_pedido",
+        dedupeKey,
+        idempotencyKey,
+      });
+      if (conflicted) {
+        const latest = getLatestJobSnapshot(conflicted.job.log);
+        return NextResponse.json({
+          success: true,
+          jobId: conflicted.job.id,
+          state: latest?.state || "running",
+          deduplicated: true,
+          dedupeReason: conflicted.reason,
+        }, { status: 202 });
+      }
+    }
+    if (insertError || !insertedJob?.id) {
+      return NextResponse.json(
+        { error: insertError?.message || "Falha ao registrar job DSLite" },
+        { status: 500 },
+      );
+    }
 
     void runDsliteCreateJob(
       jobId,
@@ -5489,7 +5551,7 @@ export async function POST(req: Request) {
       { resumeAfterSupplierPayment: Boolean(resumeAfterSupplierPayment) },
     );
 
-    return NextResponse.json({ success: true, jobId }, { status: 202 });
+    return NextResponse.json({ success: true, jobId, deduplicated: false }, { status: 202 });
   } catch (err: any) {
     return NextResponse.json(
       { error: err?.message || "Erro ao iniciar job" },

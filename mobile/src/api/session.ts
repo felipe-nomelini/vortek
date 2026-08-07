@@ -12,17 +12,9 @@ const mobileUserSchema = z.object({
 const sessionResponseSchema = z.object({
   data: z.object({
     user: mobileUserSchema,
-    permissions: z.array(
-      z.enum([
-        "tv.read",
-        "sales.read",
-        "purchases.read",
-        "sales.track",
-        "sales.whatsapp_label.send",
-        "sales.dslite.resume",
-        "purchases.payment.confirm",
-      ]),
-    ),
+    // Autorização real ocorre no backend. O app aceita permissões futuras sem
+    // invalidar a sessão inteira quando o servidor ganhar uma capacidade nova.
+    permissions: z.array(z.string().min(1)),
   }),
   error: z.null(),
   meta: z.object({ requestId: z.string().min(1) }),

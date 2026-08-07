@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { apiGet } from "@/api/client";
+import { apiGet, apiMultipart, apiPost } from "@/api/client";
 
 export const salesViewSchema = z.enum([
   "urgent",
@@ -111,6 +111,24 @@ export const saleDetailSchema = saleSchema.extend({
   nfeStatus: z.string().nullable(),
   fiscalReleaseAt: z.string().nullable(),
   splitFulfillment: z.boolean(),
+  internalStockAvailable: z.boolean(),
+  purchaseId: z.string().nullable(),
+  supplierPixKey: z.string().nullable(),
+  supplierPaymentReference: z.string().nullable(),
+  supplierPaymentNotes: z.string().nullable(),
+  hasSupplierPaymentReceipt: z.boolean(),
+  canCreateDslite: z.boolean(),
+  canProcessInternalShipping: z.boolean(),
+  canCompleteDsliteLabel: z.boolean(),
+  canConfirmSupplierPayment: z.boolean(),
+  canUnlinkDslite: z.boolean(),
+  canOpenDanfe: z.boolean(),
+  canDownloadXml: z.boolean(),
+  canDownloadLabelPdf: z.boolean(),
+  canDownloadThermalPdf: z.boolean(),
+  canDownloadZpl: z.boolean(),
+  canSendWhatsappLabel: z.boolean(),
+  canResumeDslite: z.boolean(),
   mlSaleUrl: z.string().url(),
 });
 
@@ -162,6 +180,47 @@ const saleTrackingResponseSchema = z.object({
   meta: z.object({ requestId: z.string() }),
 });
 
+const saleActionStepSchema = z.object({
+  key: z.string(),
+  label: z.string(),
+  status: z.enum(["pending", "loading", "success", "error", "warning"]),
+  detail: z.string().optional(),
+  error: z.string().optional(),
+  updatedAt: z.string().optional(),
+});
+
+const saleActionJobStateSchema = z.enum([
+  "running",
+  "success",
+  "warning",
+  "error",
+  "on_hold",
+]);
+
+const saleActionStartResponseSchema = z.object({
+  data: z.object({
+    jobId: z.string().uuid(),
+    state: saleActionJobStateSchema,
+    steps: z.array(saleActionStepSchema),
+    deduplicated: z.boolean(),
+  }),
+  error: z.null(),
+  meta: z.object({ requestId: z.string() }),
+});
+
+const saleActionJobResponseSchema = z.object({
+  data: z.object({
+    jobId: z.string().uuid(),
+    state: saleActionJobStateSchema,
+    steps: z.array(saleActionStepSchema),
+    result: z.unknown().nullable(),
+    nextRetryAt: z.string().nullable(),
+    retryAttempt: z.number(),
+  }),
+  error: z.null(),
+  meta: z.object({ requestId: z.string() }),
+});
+
 export type Sale = z.infer<typeof saleSchema>;
 export type SalesView = z.infer<typeof salesViewSchema>;
 export type SalesStatus = z.infer<typeof salesStatusSchema>;
@@ -170,12 +229,42 @@ export type SalesSummary = z.infer<typeof salesSummaryResponseSchema>["data"];
 export type SaleDetail = z.infer<typeof saleDetailSchema>;
 export type SaleHistoryEvent = z.infer<typeof saleHistoryEventSchema>;
 export type SaleTracking = z.infer<typeof saleTrackingSchema>;
+export type SaleActionKind = "whatsapp-label" | "resume-dslite" | "create-dslite";
+export type SaleOperation =
+  | { action: "complete_dslite_label"; duplicateAction?: "use_existing" | "reissue" }
+  | { action: "process_internal_shipping"; duplicateAction?: "use_existing" | "reissue" }
+  | { action: "select_dslite_shipping"; transportadoraId: string }
+  | { action: "unlink_dslite" };
+export type SaleActionJob = z.infer<typeof saleActionJobResponseSchema>["data"];
+export type SaleActionStart = z.infer<typeof saleActionStartResponseSchema>["data"];
+export type DsliteLabelFilter =
+  | "real_sent"
+  | "generic_sent"
+  | "provider_shipping"
+  | "sent_unverified"
+  | "pending"
+  | "failed"
+  | "unknown";
+export type WhatsappLabelFilter =
+  | "sent"
+  | "test_sent"
+  | "pending"
+  | "on_hold"
+  | "failed"
+  | "not_applicable"
+  | "not_sent"
+  | "unknown";
 export type SalesFilters = {
   status?: SalesStatus;
   dateFrom?: string;
   dateTo?: string;
   priceMin?: number;
   priceMax?: number;
+  supplier?: string;
+  dsliteLabel?: DsliteLabelFilter;
+  whatsappLabel?: WhatsappLabelFilter;
+  sortBy?: "numero" | "data" | "cliente" | "total" | "situacao" | "nota_fiscal_numero" | "pedido_compra" | "lucro";
+  sortOrder?: "asc" | "desc";
 };
 
 function appendSalesFilters(params: URLSearchParams, filters?: SalesFilters) {
@@ -184,6 +273,11 @@ function appendSalesFilters(params: URLSearchParams, filters?: SalesFilters) {
   if (filters?.dateTo) params.set("dateTo", filters.dateTo);
   if (filters?.priceMin != null) params.set("priceMin", String(filters.priceMin));
   if (filters?.priceMax != null) params.set("priceMax", String(filters.priceMax));
+  if (filters?.supplier) params.set("supplier", filters.supplier);
+  if (filters?.dsliteLabel) params.set("dsliteLabel", filters.dsliteLabel);
+  if (filters?.whatsappLabel) params.set("whatsappLabel", filters.whatsappLabel);
+  if (filters?.sortBy) params.set("sortBy", filters.sortBy);
+  if (filters?.sortOrder) params.set("sortOrder", filters.sortOrder);
 }
 
 export async function getSales(input: {
@@ -235,4 +329,81 @@ export async function getSaleTracking(id: string): Promise<SaleTracking> {
     await apiGet<unknown>(`/api/mobile/v1/sales/${encodeURIComponent(id)}/tracking`),
   );
   return response.data;
+}
+
+export function createMobileIdempotencyKey(action: SaleActionKind, saleId: string) {
+  const random = Math.random().toString(36).slice(2, 12);
+  return `mobile:${action}:${saleId}:${Date.now()}:${random}`.slice(0, 120);
+}
+
+export async function startSaleAction(
+  id: string,
+  action: SaleActionKind,
+  idempotencyKey: string,
+): Promise<SaleActionStart> {
+  const response = saleActionStartResponseSchema.parse(
+    await apiPost<unknown>(
+      `/api/mobile/v1/sales/${encodeURIComponent(id)}/${action}`,
+      { body: {}, idempotencyKey },
+    ),
+  );
+  return response.data;
+}
+
+export async function getSaleActionJob(
+  id: string,
+  action: SaleActionKind,
+  jobId: string,
+): Promise<SaleActionJob> {
+  const response = saleActionJobResponseSchema.parse(
+    await apiGet<unknown>(
+      `/api/mobile/v1/sales/${encodeURIComponent(id)}/${action}?jobId=${encodeURIComponent(jobId)}`,
+    ),
+  );
+  return response.data;
+}
+
+export async function runSaleOperation(id: string, operation: SaleOperation) {
+  const response = await apiPost<{ data: unknown; error: null }>(
+    `/api/mobile/v1/sales/${encodeURIComponent(id)}/operation`,
+    {
+      body: operation,
+      idempotencyKey: createMobileIdempotencyKey(operation.action as SaleActionKind, id),
+    },
+  );
+  return response.data;
+}
+
+export async function confirmSupplierPayment(input: {
+  id: string;
+  receipt?: { uri: string; name: string; mimeType: string };
+  reference?: string;
+  notes?: string;
+  resumeOnly?: boolean;
+}) {
+  const form = new FormData();
+  if (input.receipt) {
+    form.append("receipt", {
+      uri: input.receipt.uri,
+      name: input.receipt.name,
+      type: input.receipt.mimeType,
+    } as unknown as Blob);
+  }
+  if (input.reference?.trim()) form.append("supplier_payment_reference", input.reference.trim());
+  if (input.notes?.trim()) form.append("supplier_payment_notes", input.notes.trim());
+  if (input.resumeOnly) form.append("resume_only", "true");
+  form.append("idempotency_key", createMobileIdempotencyKey("resume-dslite", input.id));
+  const response = await apiMultipart<{ data: Record<string, unknown>; error: null }>(
+    `/api/mobile/v1/sales/${encodeURIComponent(input.id)}/supplier-payment`,
+    form,
+  );
+  return response.data;
+}
+
+export async function getSaleDocumentUrl(id: string, kind: "danfe" | "label-pdf" | "label-zpl") {
+  const path = kind === "danfe"
+    ? `/api/notas-fiscais/${encodeURIComponent(id)}/pdf`
+    : `/api/pedidos/${encodeURIComponent(id)}/etiqueta${kind === "label-zpl" ? "?format=zpl2" : ""}`;
+  const response = await apiGet<{ url: string }>(path);
+  return response.url;
 }

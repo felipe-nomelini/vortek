@@ -12,11 +12,13 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { type Href, useRouter } from "expo-router";
 import type {
+  DsliteLabelFilter,
   Sale,
   SalesFilters,
   SalesStatus,
   SalesSummary,
   SalesView,
+  WhatsappLabelFilter,
 } from "@/api/sales";
 import { LoadingScreen } from "@/components/loading-screen";
 import { useSales, useSalesSummary } from "@/hooks/use-sales";
@@ -49,7 +51,36 @@ const STATUS_LABELS: Record<string, string> = {
 };
 
 const FILTER_STATUSES = Object.keys(STATUS_LABELS) as SalesStatus[];
+const DSLITE_LABEL_FILTERS: Array<{ key: DsliteLabelFilter; label: string }> = [
+  { key: "real_sent", label: "Real enviada" },
+  { key: "generic_sent", label: "Genérica enviada" },
+  { key: "provider_shipping", label: "Frete DSLite" },
+  { key: "sent_unverified", label: "Sem confirmação" },
+  { key: "pending", label: "Pendente" },
+  { key: "failed", label: "Falhou" },
+  { key: "unknown", label: "Desconhecida" },
+];
+const WHATSAPP_LABEL_FILTERS: Array<{ key: WhatsappLabelFilter; label: string }> = [
+  { key: "sent", label: "Enviada" },
+  { key: "test_sent", label: "Teste enviado" },
+  { key: "pending", label: "Pendente" },
+  { key: "on_hold", label: "Em espera" },
+  { key: "failed", label: "Falhou" },
+  { key: "not_applicable", label: "Não aplicável" },
+  { key: "not_sent", label: "Não enviada" },
+  { key: "unknown", label: "Desconhecida" },
+];
 type PeriodFilter = "all" | "today" | "7d" | "30d";
+const SORT_FIELDS: Array<{ key: NonNullable<SalesFilters["sortBy"]>; label: string }> = [
+  { key: "data", label: "Data" },
+  { key: "numero", label: "Número" },
+  { key: "cliente", label: "Cliente" },
+  { key: "total", label: "Total" },
+  { key: "situacao", label: "Status" },
+  { key: "nota_fiscal_numero", label: "NF" },
+  { key: "pedido_compra", label: "Compra" },
+  { key: "lucro", label: "Lucro" },
+];
 
 function saoPauloDate(date: Date): string {
   const parts = new Intl.DateTimeFormat("en-CA", {
@@ -189,6 +220,11 @@ export default function SalesScreen() {
   const [draftPeriod, setDraftPeriod] = useState<PeriodFilter>("all");
   const [draftPriceMin, setDraftPriceMin] = useState("");
   const [draftPriceMax, setDraftPriceMax] = useState("");
+  const [draftSupplier, setDraftSupplier] = useState("");
+  const [draftDsliteLabel, setDraftDsliteLabel] = useState<DsliteLabelFilter | undefined>();
+  const [draftWhatsappLabel, setDraftWhatsappLabel] = useState<WhatsappLabelFilter | undefined>();
+  const [draftSortBy, setDraftSortBy] = useState<NonNullable<SalesFilters["sortBy"]>>("data");
+  const [draftSortOrder, setDraftSortOrder] = useState<NonNullable<SalesFilters["sortOrder"]>>("desc");
   const [filterError, setFilterError] = useState<string | null>(null);
   const sales = useSales(view, search, filters);
   const summary = useSalesSummary(search, filters);
@@ -228,6 +264,11 @@ export default function SalesScreen() {
       ...rangeForPeriod(draftPeriod),
       priceMin,
       priceMax,
+      supplier: draftSupplier.trim() || undefined,
+      dsliteLabel: draftDsliteLabel,
+      whatsappLabel: draftWhatsappLabel,
+      sortBy: draftSortBy,
+      sortOrder: draftSortOrder,
     });
     setFiltersOpen(false);
   }
@@ -237,6 +278,11 @@ export default function SalesScreen() {
     setDraftPeriod("all");
     setDraftPriceMin("");
     setDraftPriceMax("");
+    setDraftSupplier("");
+    setDraftDsliteLabel(undefined);
+    setDraftWhatsappLabel(undefined);
+    setDraftSortBy("data");
+    setDraftSortOrder("desc");
     setFilterError(null);
     setFilters({});
   }
@@ -244,7 +290,10 @@ export default function SalesScreen() {
   const activeFilterCount = Number(Boolean(filters.status))
     + Number(Boolean(filters.dateFrom || filters.dateTo))
     + Number(filters.priceMin != null)
-    + Number(filters.priceMax != null);
+    + Number(filters.priceMax != null)
+    + Number(Boolean(filters.supplier))
+    + Number(Boolean(filters.dsliteLabel))
+    + Number(Boolean(filters.whatsappLabel));
 
   if (sales.isPending && !rows.length) {
     return <LoadingScreen message="Carregando vendas" />;
@@ -320,6 +369,36 @@ export default function SalesScreen() {
                   ))}
                 </View>
 
+                <Text style={styles.filterLabel}>Ordenar por</Text>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                  <View style={styles.filterWrap}>
+                    {SORT_FIELDS.map((option) => (
+                      <Pressable
+                        key={option.key}
+                        onPress={() => setDraftSortBy(option.key)}
+                        style={[styles.filterChip, draftSortBy === option.key && styles.filterChipActive]}
+                      >
+                        <Text style={draftSortBy === option.key ? styles.filterChipTextActive : styles.filterChipText}>
+                          {option.label}
+                        </Text>
+                      </Pressable>
+                    ))}
+                  </View>
+                </ScrollView>
+                <View style={styles.filterWrap}>
+                  {(["desc", "asc"] as const).map((order) => (
+                    <Pressable
+                      key={order}
+                      onPress={() => setDraftSortOrder(order)}
+                      style={[styles.filterChip, draftSortOrder === order && styles.filterChipActive]}
+                    >
+                      <Text style={draftSortOrder === order ? styles.filterChipTextActive : styles.filterChipText}>
+                        {order === "desc" ? "Decrescente" : "Crescente"}
+                      </Text>
+                    </Pressable>
+                  ))}
+                </View>
+
                 <Text style={styles.filterLabel}>Status</Text>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                   <View style={styles.filterWrap}>
@@ -362,6 +441,64 @@ export default function SalesScreen() {
                     value={draftPriceMax}
                   />
                 </View>
+
+                <Text style={styles.filterLabel}>Fornecedor</Text>
+                <TextInput
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  maxLength={100}
+                  onChangeText={setDraftSupplier}
+                  placeholder="Ex.: BKR1, Evolusom, Estoque Interno"
+                  placeholderTextColor={colors.textMuted}
+                  style={styles.filterInput}
+                  value={draftSupplier}
+                />
+
+                <Text style={styles.filterLabel}>Etiqueta DSLite</Text>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                  <View style={styles.filterWrap}>
+                    <Pressable
+                      onPress={() => setDraftDsliteLabel(undefined)}
+                      style={[styles.filterChip, !draftDsliteLabel && styles.filterChipActive]}
+                    >
+                      <Text style={!draftDsliteLabel ? styles.filterChipTextActive : styles.filterChipText}>Todas</Text>
+                    </Pressable>
+                    {DSLITE_LABEL_FILTERS.map((option) => (
+                      <Pressable
+                        key={option.key}
+                        onPress={() => setDraftDsliteLabel(option.key)}
+                        style={[styles.filterChip, draftDsliteLabel === option.key && styles.filterChipActive]}
+                      >
+                        <Text style={draftDsliteLabel === option.key ? styles.filterChipTextActive : styles.filterChipText}>
+                          {option.label}
+                        </Text>
+                      </Pressable>
+                    ))}
+                  </View>
+                </ScrollView>
+
+                <Text style={styles.filterLabel}>WhatsApp real</Text>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                  <View style={styles.filterWrap}>
+                    <Pressable
+                      onPress={() => setDraftWhatsappLabel(undefined)}
+                      style={[styles.filterChip, !draftWhatsappLabel && styles.filterChipActive]}
+                    >
+                      <Text style={!draftWhatsappLabel ? styles.filterChipTextActive : styles.filterChipText}>Todos</Text>
+                    </Pressable>
+                    {WHATSAPP_LABEL_FILTERS.map((option) => (
+                      <Pressable
+                        key={option.key}
+                        onPress={() => setDraftWhatsappLabel(option.key)}
+                        style={[styles.filterChip, draftWhatsappLabel === option.key && styles.filterChipActive]}
+                      >
+                        <Text style={draftWhatsappLabel === option.key ? styles.filterChipTextActive : styles.filterChipText}>
+                          {option.label}
+                        </Text>
+                      </Pressable>
+                    ))}
+                  </View>
+                </ScrollView>
                 {filterError ? <Text style={styles.filterError}>{filterError}</Text> : null}
                 <Pressable onPress={applyFilters} style={styles.applyFilters}>
                   <Text style={styles.applyFiltersText}>Aplicar filtros</Text>
@@ -502,6 +639,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     color: colors.text,
     flex: 1,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+  },
+  filterInput: {
+    borderColor: colors.border,
+    borderRadius: 8,
+    borderWidth: 1,
+    color: colors.text,
     paddingHorizontal: 12,
     paddingVertical: 10,
   },

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { saoPauloDateParamToUtcIso } from '@/lib/timezone';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -23,6 +24,8 @@ function normalizeStatus(value: string): string {
 }
 
 export async function GET(request: Request) {
+  const auth = await authorizeApiRequest(request, 'purchases.read');
+  if (!auth.ok) return auth.response;
   try {
     const { searchParams } = new URL(request.url);
     const status = searchParams.get('status') || '';

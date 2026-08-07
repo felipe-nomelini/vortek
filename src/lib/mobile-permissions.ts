@@ -5,6 +5,11 @@ export const MOBILE_PERMISSIONS = [
   "sales.track",
   "sales.whatsapp_label.send",
   "sales.dslite.resume",
+  "sales.dslite.create",
+  "sales.dslite.label.complete",
+  "sales.dslite.shipping.select",
+  "sales.internal_shipping.process",
+  "sales.dslite.unlink",
   "purchases.payment.confirm",
 ] as const;
 
@@ -26,6 +31,10 @@ const OPERATIONAL_PERMISSIONS: MobilePermission[] = [
   ...READ_ONLY_PERMISSIONS,
   "sales.whatsapp_label.send",
   "sales.dslite.resume",
+  "sales.dslite.create",
+  "sales.dslite.label.complete",
+  "sales.dslite.shipping.select",
+  "sales.internal_shipping.process",
 ];
 
 const ROLE_PERMISSIONS: Record<MobilePermissionRole, MobilePermission[]> = {

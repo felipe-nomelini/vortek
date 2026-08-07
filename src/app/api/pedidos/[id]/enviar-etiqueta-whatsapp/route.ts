@@ -2,6 +2,13 @@ import { NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { registrarEventoNfAuditoria } from '@/services/nf-auditoria';
 import { initWhatsappLabelJobSteps, runWhatsappLabelJob } from '@/services/whatsapp-label-job';
+import { authorizeApiRequest } from '@/lib/api-request-auth';
+import {
+  findReusableJob,
+  getLatestJobSnapshot,
+  isJobUniqueViolation,
+  normalizeIdempotencyKey,
+} from '@/services/job-idempotency';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -16,13 +23,42 @@ function resolveAppBaseUrl(request: Request): string {
 
 export async function POST(request: Request, { params }: { params: { id: string } }) {
   try {
-    const { phoneNumber, usePlaceholderLabel } = await request.json().catch(() => ({}));
+    const auth = await authorizeApiRequest(request, 'sales.whatsapp_label.send');
+    if (!auth.ok) return auth.response;
+
+    const { phoneNumber, usePlaceholderLabel, idempotencyKey: bodyIdempotencyKey } = await request.json().catch(() => ({}));
     const normalizedPhone = String(phoneNumber || '').replace(/\D/g, '');
     if (!normalizedPhone) {
       return NextResponse.json({ error: 'Informe o número de WhatsApp do destinatário' }, { status: 400 });
     }
 
+    const suppliedIdempotencyKey = request.headers.get('idempotency-key') || bodyIdempotencyKey;
+    const idempotencyKey = suppliedIdempotencyKey
+      ? normalizeIdempotencyKey(suppliedIdempotencyKey)
+      : `web-${crypto.randomUUID()}`;
+    if (!idempotencyKey) {
+      return NextResponse.json({ error: 'Chave de idempotência inválida' }, { status: 400 });
+    }
+
     const client = createServiceClient();
+    const dedupeKey = `pedido:${params.id}`;
+    const reusable = await findReusableJob({
+      client,
+      type: 'whatsapp_label_send',
+      dedupeKey,
+      idempotencyKey,
+    });
+    if (reusable) {
+      const latest = getLatestJobSnapshot(reusable.job.log);
+      return NextResponse.json({
+        success: true,
+        jobId: reusable.job.id,
+        steps: latest?.steps || [],
+        deduplicated: true,
+        dedupeReason: reusable.reason,
+      }, { status: 202 });
+    }
+
     const jobId = crypto.randomUUID();
     const steps = initWhatsappLabelJobSteps();
     const appBaseUrl = resolveAppBaseUrl(request);
@@ -33,6 +69,7 @@ export async function POST(request: Request, { params }: { params: { id: string 
       phone_suffix: normalizedPhone.slice(-8),
       usePlaceholderLabel: Boolean(usePlaceholderLabel),
       appBaseUrl,
+      idempotencyKey,
     };
 
     const { data: insertedJob, error: jobInsertError } = await client
@@ -45,6 +82,8 @@ export async function POST(request: Request, { params }: { params: { id: string 
         total: steps.length,
         processados: 0,
         cancelado: false,
+        created_by: auth.userId,
+        dedupe_key: dedupeKey,
         log: JSON.parse(JSON.stringify([
           {
             event: 'request_received',
@@ -63,6 +102,24 @@ export async function POST(request: Request, { params }: { params: { id: string 
       .select('id')
       .single();
 
+    if (jobInsertError && isJobUniqueViolation(jobInsertError)) {
+      const conflicted = await findReusableJob({
+        client,
+        type: 'whatsapp_label_send',
+        dedupeKey,
+        idempotencyKey,
+      });
+      if (conflicted) {
+        const latest = getLatestJobSnapshot(conflicted.job.log);
+        return NextResponse.json({
+          success: true,
+          jobId: conflicted.job.id,
+          steps: latest?.steps || [],
+          deduplicated: true,
+          dedupeReason: conflicted.reason,
+        }, { status: 202 });
+      }
+    }
     if (jobInsertError || !insertedJob?.id) {
       return NextResponse.json(
         { error: jobInsertError?.message || 'Falha ao registrar tentativa de envio por WhatsApp' },
@@ -91,7 +148,7 @@ export async function POST(request: Request, { params }: { params: { id: string 
       console.error('[whatsapp-label-job] Falha não tratada:', err?.message || err);
     });
 
-    return NextResponse.json({ success: true, jobId, steps }, { status: 202 });
+    return NextResponse.json({ success: true, jobId, steps, deduplicated: false }, { status: 202 });
   } catch (err: any) {
     return NextResponse.json({ error: err?.message || 'Erro ao iniciar envio de etiqueta por WhatsApp' }, { status: 500 });
   }
