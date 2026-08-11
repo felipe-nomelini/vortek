@@ -16,6 +16,18 @@ export type SyncTaskKey =
 
 export type SyncTaskKind = 'dslite' | 'ml' | 'fiscal' | 'finance' | 'infra';
 
+/**
+ * Declara como a task chega a ser executada, para que a ausência de `schedule`
+ * seja uma decisão explícita e não um esquecimento silencioso (ver incidente
+ * de 22/07–10/08 em que `sync_dslite_preco_estoque` perdeu o `schedule` e
+ * ficou 19 dias sem rodar sem que nada acusasse).
+ *
+ * - 'scheduled': depende do `cron-dispatch` chamá-la periodicamente; exige `schedule`.
+ * - 'realtime': disparada por trigger de banco/evento fora do `cron-dispatch` (ex.: outbox).
+ * - 'manual': só roda por acionamento humano nas telas de operação.
+ */
+export type SyncTaskDispatchMode = 'scheduled' | 'realtime' | 'manual';
+
 export interface SyncTaskDefinition {
   key: SyncTaskKey;
   jobTipo: string;
@@ -24,6 +36,7 @@ export interface SyncTaskDefinition {
   domain: string;
   lockTtlSeconds: number;
   kind: SyncTaskKind;
+  dispatchMode: SyncTaskDispatchMode;
   schedule?: {
     businessMinutes: number;
     offHoursMinutes: number;
@@ -47,6 +60,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'fornecedores:dslite',
     lockTtlSeconds: 20 * 60,
     kind: 'dslite',
+    dispatchMode: 'scheduled',
     schedule: { businessMinutes: 30, offHoursMinutes: 120 },
   },
   {
@@ -57,6 +71,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'produtos:dslite_catalogo',
     lockTtlSeconds: 45 * 60,
     kind: 'dslite',
+    dispatchMode: 'scheduled',
     schedule: { businessMinutes: 360, offHoursMinutes: 720 },
     usesCursor: true,
     defaultBody: {
@@ -72,6 +87,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'produtos:dslite_preco',
     lockTtlSeconds: 15 * 60,
     kind: 'dslite',
+    dispatchMode: 'scheduled',
     schedule: { businessMinutes: 2, offHoursMinutes: 2 },
     usesCursor: true,
     defaultBody: {
@@ -89,6 +105,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'produtos:dslite_preco',
     lockTtlSeconds: 15 * 60,
     kind: 'dslite',
+    dispatchMode: 'scheduled',
     schedule: { businessMinutes: 10, offHoursMinutes: 10 },
     runMode: 'inline',
   },
@@ -100,6 +117,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'compras:dslite',
     lockTtlSeconds: 20 * 60,
     kind: 'dslite',
+    dispatchMode: 'scheduled',
     schedule: { businessMinutes: 2, offHoursMinutes: 2 },
     defaultBody: { windowDays: 2 },
     runMode: 'inline',
@@ -114,6 +132,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'pedidos:ml_ingest',
     lockTtlSeconds: 20 * 60,
     kind: 'ml',
+    dispatchMode: 'scheduled',
     schedule: { businessMinutes: 2, offHoursMinutes: 5 },
     usesOffset: true,
     runMode: 'inline',
@@ -126,6 +145,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'pedidos:cancelamentos_pos_nfe',
     lockTtlSeconds: 20 * 60,
     kind: 'fiscal',
+    dispatchMode: 'scheduled',
     schedule: { businessMinutes: 2, offHoursMinutes: 5 },
     defaultBody: { limit: 10 },
     runMode: 'inline',
@@ -138,6 +158,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'anuncios:ml_pull',
     lockTtlSeconds: 20 * 60,
     kind: 'ml',
+    dispatchMode: 'scheduled',
     schedule: { businessMinutes: 5, offHoursMinutes: 15 },
     usesOffset: true,
     runMode: 'inline',
@@ -152,6 +173,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'anuncios:ml_push',
     lockTtlSeconds: 20 * 60,
     kind: 'ml',
+    dispatchMode: 'realtime',
     defaultBody: { limit: 20 },
     runMode: 'inline',
     requestTimeoutMs: 180_000,
@@ -165,6 +187,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'pedidos:fiscal',
     lockTtlSeconds: 25 * 60,
     kind: 'fiscal',
+    dispatchMode: 'manual',
   },
   {
     key: 'sync_reconcile_brasilnfe',
@@ -174,6 +197,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'pedidos:brasilnfe',
     lockTtlSeconds: 15 * 60,
     kind: 'fiscal',
+    dispatchMode: 'scheduled',
     schedule: { businessMinutes: 2, offHoursMinutes: 10 },
     defaultBody: { limit: 10 },
     runMode: 'inline',
@@ -186,6 +210,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'financeiro:mercadopago',
     lockTtlSeconds: 20 * 60,
     kind: 'finance',
+    dispatchMode: 'scheduled',
     schedule: { businessMinutes: 180, offHoursMinutes: 360 },
     defaultBody: { windowDays: 7 },
   },
@@ -197,6 +222,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'pedidos:pack',
     lockTtlSeconds: 20 * 60,
     kind: 'ml',
+    dispatchMode: 'manual',
   },
   {
     key: 'sync_municipios_seed',
@@ -206,6 +232,7 @@ export const SYNC_TASKS: SyncTaskDefinition[] = [
     domain: 'municipios:seed',
     lockTtlSeconds: 30 * 60,
     kind: 'infra',
+    dispatchMode: 'manual',
   },
 ];
 
@@ -218,6 +245,15 @@ export function getSyncTaskByKey(key: string): SyncTaskDefinition | null {
 
 export function getSyncTaskByJobTipo(jobTipo: string): SyncTaskDefinition | null {
   return TASK_BY_JOB_TIPO.get(jobTipo) || null;
+}
+
+/**
+ * Tasks com `dispatchMode: 'scheduled'` mas sem `schedule` definido: o
+ * `cron-dispatch` nunca vai chamá-las (ele filtra por `task.schedule`), então
+ * isso é sempre um bug de configuração, não uma escolha válida.
+ */
+export function getScheduledTasksMissingSchedule(): SyncTaskDefinition[] {
+  return SYNC_TASKS.filter((task) => task.dispatchMode === 'scheduled' && !task.schedule);
 }
 
 export function getSaoPauloHour(): number {

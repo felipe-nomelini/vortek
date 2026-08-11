@@ -17,6 +17,7 @@ import {
 import {
   alertCriticalJobs,
   alertIntegrationStatus,
+  alertStaleScheduledTasks,
   scanAndAlertReleasedLabels,
   sendSalesReport,
 } from '@/services/whatsapp-alerts';
@@ -400,6 +401,7 @@ export async function POST(request: Request) {
   await Promise.allSettled([
     alertIntegrationStatus().then((result) => alertResults.push({ alert: 'integration_status', ...result })),
     alertCriticalJobs().then((result) => alertResults.push({ alert: 'critical_jobs', ...result })),
+    alertStaleScheduledTasks().then((result) => alertResults.push({ alert: 'stale_scheduled_tasks', ...result })),
     scanAndAlertReleasedLabels().then((result) => alertResults.push({ alert: 'released_labels', ...result })),
     dispatchPushNotifications().then((result) => alertResults.push({ alert: 'push_dispatch', ...result })),
   ]);

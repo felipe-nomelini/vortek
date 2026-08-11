@@ -48,7 +48,10 @@ export async function GET() {
   const serviceClient = createServiceClient();
   const hour = getSaoPauloHour();
   const mlAuth = await getMLAuthDiagnostics();
-  const tasks = SYNC_TASKS.filter((task) => task.schedule);
+  // Inclui todas as tasks (não só as com `schedule`) para que uma task que
+  // deveria rodar via cron e perdeu o `schedule` por engano apareça como
+  // problema visível, em vez de simplesmente sumir do painel.
+  const tasks = SYNC_TASKS;
 
   const rows = await Promise.all(tasks.map(async (task) => {
     const interval = getIntervalMinutesForTask(task, hour);
@@ -73,12 +76,17 @@ export async function GET() {
       ? new Date(new Date(last.finished_at).getTime() + interval * 60 * 1000).toISOString()
       : null;
 
+    const misconfigured = task.dispatchMode === 'scheduled' && !task.schedule;
+
     return {
       task: task.key,
       tipo: task.jobTipo,
       label: task.label,
       domain: task.domain,
       kind: task.kind,
+      dispatch_mode: task.dispatchMode,
+      scheduled: Boolean(task.schedule),
+      misconfigured,
       interval_minutes: interval,
       running: running || null,
       running_is_stale: isJobStale(running as any, DEFAULT_STALE_JOB_THRESHOLD_MINUTES),
@@ -99,12 +107,15 @@ export async function GET() {
     };
   }));
 
+  const misconfiguredTasks = rows.filter((row) => row.misconfigured).map((row) => row.task);
+
   return NextResponse.json({
     success: true,
     timezone: BUSINESS_TIME_ZONE,
     timestamps_timezone: 'UTC',
     hour,
     ml_auth: mlAuth,
+    misconfigured_tasks: misconfiguredTasks,
     tasks: rows,
   }, {
     headers: {

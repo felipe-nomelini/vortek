@@ -22,6 +22,11 @@ import {
 } from "@/services/github-ops";
 import { isMlOrderPaid } from "@/lib/ml/order-sale-alert";
 import { decideCriticalJobAlert } from "@/lib/sync/critical-job-alert";
+import {
+  SYNC_TASKS,
+  getIntervalMinutesForTask,
+  getSaoPauloHour,
+} from "@/lib/sync/registry";
 
 type AlertType =
   | "new_sale"
@@ -811,6 +816,90 @@ export async function alertCriticalJobs() {
     deferred_timeout: deferredTimeout,
     alerted,
   };
+}
+
+/**
+ * `alertCriticalJobs` só enxerga jobs que RODARAM e falharam. Uma task com
+ * `dispatchMode: 'scheduled'` que perde seu `schedule` (ou cujo cron-dispatch
+ * para de chamá-la por qualquer outro motivo) nunca cria um job de erro —
+ * ela simplesmente para de criar jobs, silenciosamente. Foi exatamente o que
+ * aconteceu com `sync_dslite_preco_estoque` entre 22/07 e 10/08 (19 dias sem
+ * rodar, sem nenhum alerta disparado). Esta checagem cobre esse buraco.
+ */
+export async function alertStaleScheduledTasks() {
+  const client = createServiceClient();
+  const hour = getSaoPauloHour();
+  const scheduledTasks = SYNC_TASKS.filter((task) => task.dispatchMode === "scheduled");
+
+  let checked = 0;
+  let alerted = 0;
+
+  for (const task of scheduledTasks) {
+    checked += 1;
+
+    if (!task.schedule) {
+      const result = await sendWhatsappAlert({
+        type: "critical_error",
+        severity: "critical",
+        title: "Task de sync sem agendamento",
+        dedupeKey: `sync_schedule_missing:${task.key}`,
+        dedupeTtlHours: 24,
+        message: [
+          `Task: ${task.label} (${task.key})`,
+          "dispatchMode é 'scheduled' mas o campo schedule não está definido no registry.",
+          "O cron-dispatch nunca vai chamar essa task até isso ser corrigido em src/lib/sync/registry.ts.",
+        ].join("\n"),
+        payload: { task: task.key, dispatch_mode: task.dispatchMode },
+      });
+      alerted += result.sent > 0 ? 1 : 0;
+      continue;
+    }
+
+    const intervalMinutes = getIntervalMinutesForTask(task, hour);
+    if (!intervalMinutes || intervalMinutes <= 0) continue;
+
+    const { data: last } = await client
+      .from("jobs")
+      .select("created_at")
+      .eq("tipo", task.jobTipo)
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    // Tolerância generosa (6x o intervalo, mínimo 30min) para não alertar por
+    // atrasos normais de fila/lock; o objetivo é pegar "parou de rodar", não
+    // uma execução isolada mais lenta.
+    const staleThresholdMinutes = Math.max(intervalMinutes * 6, 30);
+    const lastRunAt = last?.created_at ? new Date(last.created_at).getTime() : null;
+    const minutesSinceLastRun = lastRunAt ? (Date.now() - lastRunAt) / 60000 : null;
+
+    if (minutesSinceLastRun === null || minutesSinceLastRun > staleThresholdMinutes) {
+      const result = await sendWhatsappAlert({
+        type: "critical_error",
+        severity: "critical",
+        title: "Task de sync parou de rodar",
+        dedupeKey: `sync_schedule_stale:${task.key}`,
+        dedupeTtlHours: 6,
+        message: [
+          `Task: ${task.label} (${task.key})`,
+          `Esperado a cada: ${intervalMinutes} min`,
+          minutesSinceLastRun !== null
+            ? `Última execução: há ${Math.round(minutesSinceLastRun)} min`
+            : "Última execução: nenhum job encontrado para esta task",
+          `Link: ${process.env.NEXT_PUBLIC_APP_URL || "https://app.vortek.shop"}/dashboard`,
+        ].join("\n"),
+        payload: {
+          task: task.key,
+          interval_minutes: intervalMinutes,
+          stale_threshold_minutes: staleThresholdMinutes,
+          minutes_since_last_run: minutesSinceLastRun,
+        },
+      });
+      alerted += result.sent > 0 ? 1 : 0;
+    }
+  }
+
+  return { checked, alerted };
 }
 
 export async function sendSalesReport(
