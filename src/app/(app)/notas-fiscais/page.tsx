@@ -593,8 +593,11 @@ export default function NotasFiscaisPage() {
           </Col>
           <Col>
             <RangePicker
-              onChange={(_, dateStrings) => {
-                setDateRange([dateStrings[0] || null, dateStrings[1] || null]);
+              onChange={(dates) => {
+                setDateRange([
+                  dates?.[0]?.format('YYYY-MM-DD') || null,
+                  dates?.[1]?.format('YYYY-MM-DD') || null,
+                ]);
                 setPage(1);
               }}
               format="DD/MM/YYYY"

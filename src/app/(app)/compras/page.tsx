@@ -765,7 +765,10 @@ export default function ComprasPage() {
           </Col>
           <Col>
             <RangePicker
-              onChange={(_, dateStrings) => setDateRange([dateStrings[0] || null, dateStrings[1] || null])}
+              onChange={(dates) => setDateRange([
+                dates?.[0]?.format('YYYY-MM-DD') || null,
+                dates?.[1]?.format('YYYY-MM-DD') || null,
+              ])}
               format="DD/MM/YYYY"
               style={{ width: 240 }}
             />
