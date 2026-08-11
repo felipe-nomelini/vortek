@@ -21,3 +21,12 @@ test('publicação ML limita cada execução a vinte itens', () => {
 
   assert.deepEqual(mlPublish?.defaultBody, { limit: 20 });
 });
+
+test('preço e estoque DSLite permanecem agendados a cada dois minutos', () => {
+  const dsliteStock = getSyncTaskByKey('sync_dslite_preco_estoque');
+
+  assert.deepEqual(dsliteStock?.schedule, {
+    businessMinutes: 2,
+    offHoursMinutes: 2,
+  });
+});
